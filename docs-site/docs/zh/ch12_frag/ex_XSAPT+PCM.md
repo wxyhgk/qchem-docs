@@ -1,66 +1,38 @@
 ---
-title: "12.10.4 Running an XSAPT+MBD Job"
+title: "12.10.4 运行 XSAPT+MBD 计算任务"
 ---
 
-## 12.10.4 Running an XSAPT+MBD Job
+## 12.10.4 运行 XSAPT+MBD 计算任务
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-In order to run an XSAPT job, at least two separate jobs must be run, a third
-is optional and suggested in the case where the induction energy is thought to be important.
-The first job that must be run is a second-order SAPT job without charge embedding on the full system.
-This job provides the value for the electrostatic term, the exchange term, and the dispersion term.
-(For an XSAPT+MBD method[[200]](../bib_references/bib.md#bib188)
- job, the dispersion value will
-be the dispersion value obtained from the MBD calculation).
-The second job that needs to be run is a SAPT job with charge embedding on the full system.
-This SAPT job with charge embedding acts as a correction for the induction energy
-and must be run on each pair of monomers.
-The final induction energy for an XSAPT job is then the induction energy from
-the SAPT job without charge embedding plus the difference between the total SAPT
-energy with charge embedding minus the total SAPT energy without charge embedding.
-In equation form, the XSAPT contribution to the induction energy would be:
+为了运行 XSAPT 计算任务，至少必须运行两个独立的作业，第三个作业是可选的，并且在诱导能被认为很重要时建议使用。第一个必须运行的作业是在整个体系上进行的、不带电荷嵌入（charge embedding）的二阶 SAPT 作业。该作业提供静电项、交换项和色散项的数值。（对于 XSAPT+MBD 方法[[200]](../bib_references/bib.md#bib188)作业，色散值将取自 MBD 计算得到的色散值）。第二个需要运行的作业是在整个体系上进行的、带电荷嵌入的 SAPT 作业。这个带电荷嵌入的 SAPT 作业起到对诱导能的校正作用，并且必须在每一对单体（monomer）上运行。因此，XSAPT 计算的最终诱导能等于不带电荷嵌入的 SAPT 作业的诱导能，加上带电荷嵌入的 SAPT 总能量与不带电荷嵌入的 SAPT 总能量之差。用公式表示，XSAPT 对诱导能的贡献为：
 
 <a id="eq:xsapt_pol"></a>
 $$
 E_{\text{pol}}=\sum_{A}\sum_{B>A}\left[E_{AB}^{\text{XSAPT}}(AB)-E_{AB}^{\text{SAPT}}\right] \tag{12.69}
 $$
 
-Here the term in brackets is the difference between the charge-embedded energy for the $AB$
-dimer and the SAPT energy computed without charge embedding.
-Therefore, the electrostatic, exchange, and dispersion energy would be the equivalent
-to the same terms calculated from a normal SAPT calculation, it is the induction
-energy that changes upon an XSAPT calculation.
-An additional calculation can be performed to further correct the induction energy,
-this is the $\delta$HF calculation, which accounts for higher than second-order induction energy.
-The resulting delta(SCF) energy term is then added to the induction energy term
-calculated as described above.
+这里方括号中的项是 $AB$ 二聚体（dimer）的电荷嵌入能量与不带电荷嵌入计算得到的 SAPT 能量之差。
+因此，静电能、交换能和色散能将等同于从常规 SAPT 计算中得到的相同项，在 XSAPT 计算中发生变化的是诱导能。
+还可以执行额外的计算以进一步校正诱导能，即 $\delta$HF 计算，它考虑了高于二阶的诱导能。
+由此得到的 delta(SCF) 能量项随后被加到按上述方式计算得到的诱导能项上。
 
-The above procedure is the required procedure for performing an XSAPT ($+\delta$HF)
-calculation on a dimer complex.
-In order to perform an XAPT ($+\delta$HF) calculation on an n-mer complex, several
-more calculations need to be performed.
-The first of which is to run a SAPT job with charge embedding on each pair of monomers.
-This is required because the polarization of the dimers differs from that of the
-dimers embedded in the charges of the entire system.
-The second set of jobs, if the $\delta$HF correction is being performed, is
-a $\delta$HF job on every pair of monomers.
-These sets of jobs will again provide a correction to the induction energy for the system.
+上述流程是在二聚体复合物上执行 XSAPT（$+\delta$HF）计算所要求的流程。
+若要在 n 聚体复合物上执行 XSAPT（$+\delta$HF）计算，还需要进行更多计算。
+其中之一是在每一对单体上运行带电荷嵌入的 SAPT 作业。
+这是必需的，因为孤立二聚体的极化与嵌入在整个体系电荷中的二聚体的极化不同。
+第二组作业（如果在执行 $\delta$HF 校正）是在每一对单体上运行 $\delta$HF 作业。
+这些作业组同样会为体系的诱导能提供校正。
 
-Two scripts to help the user perform an XSAPT+MBD+$\delta$HF calculation exist in
-the `$QC/bin/tools` directory.
-The script named `xsapt_creation.py` creates three files for an arbitrary
-geometry (defined by the user), a SAPT job without embedding, a SAPT job with
-embedding, and a $\delta$HF job.
-See the script for instructions on how to use and modify the script for
-personal use.
-The other script named `xsapt_data_collection.py` looks through the
-output files of the three jobs created by `xsapt_creation.py` and
-performs the needed arithmetic to obtain the correct energy decomposition for
-an XSAPT+MBD+$\delta$HF job.
-See the script for instructions on how to use and modify it for personal use.
+在 `$QC/bin/tools` 目录中存在两个帮助用户执行 XSAPT+MBD+$\delta$HF 计算的脚本。
+名为 `xsapt_creation.py` 的脚本针对任意几何构型（由用户定义）创建三个文件：一个不带嵌入的 SAPT 作业、一个带嵌入的 SAPT 作业，以及一个 $\delta$HF 作业。
+请参阅脚本以了解如何使用并修改脚本以供个人使用。
+另一个名为 `xsapt_data_collection.py` 的脚本会遍历由 `xsapt_creation.py` 创建的三个作业的输出文件，
+并执行所需的运算，以获得 XSAPT+MBD+$\delta$HF 作业正确的能量分解结果。
+请参阅脚本以了解如何使用并修改它以供个人使用。
 
-???+ example "Example 12.42: AO-XSAPT(KS)+ ai D3 calculation of water-water interaction."
+???+ example "示例 12.42: 水-水相互作用的 AO-XSAPT(KS)+ ai D3 计算。"
     ```qchem
     $molecule
     0 1
@@ -116,7 +88,7 @@ See the script for instructions on how to use and modify it for personal use.
     $end
     ```
 
-???+ example "Example 12.43: XSAPT+MBD with PCM boundary conditions."
+???+ example "示例 12.43: 采用 PCM 边界条件的 XSAPT+MBD。"
     ```qchem
     $molecule
     0 1
@@ -170,7 +142,7 @@ See the script for instructions on how to use and modify it for personal use.
     $end
     ```
 
-???+ example "Example 12.44: XSAPT+oC8(r)aimMBD for the Hg $\cdots$ H ${}_{2}$ O van der Waals complex."
+???+ example "示例 12.44: Hg $\cdots$ H ${}_{2}$ O 范德华（van der Waals）复合物的 XSAPT+oC8(r)aimMBD。"
     ```qchem
     $comment
       XSAPT+oC8(r)aimMBD for the Hg...H2O van der Waals complex.
