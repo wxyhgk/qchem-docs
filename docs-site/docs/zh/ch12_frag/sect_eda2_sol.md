@@ -1,30 +1,21 @@
 ---
-title: "12.6.6 ALMO-EDA with Implicit Solvent Models"
+title: "12.6.6 结合隐式溶剂模型的 ALMO-EDA"
 ---
 
-## 12.6.6 ALMO-EDA with Implicit Solvent Models
+## 12.6.6 结合隐式溶剂模型的 ALMO-EDA
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Since the majority of chemical processes occur in the condensed phase, it
-is often desirable to investigate intermolecular interactions in the presence
-of solvents. The solvation environment can affect intermolecular interactions
-in a variety of ways such that the gas-phase ALMO-EDA may not be capable of
-revealing the physical picture of these interactions correctly. To address this
-gap, Mao *et al.* have proposed the ALMO-EDA(solv) approach,[[897]](../bib_references/bib.md#bib932)
+由于大多数化学过程发生在凝聚相中，因此在溶剂存在的情况下研究分子间相互作用往往是人们所期望的。溶剂环境会以多种方式影响分子间相互作用，使得气相 ALMO-EDA 可能无法正确揭示这些相互作用的物理图像。为了弥补这一不足，Mao *等*提出了 ALMO-EDA(solv) 方法[[897]](../bib_references/bib.md#bib932)，
 
-which, unlike many other EDA schemes, incorporates the
-solvation effect in the evaluation of all the energy components. Currently,
-ALMO-EDA(solv) supports two widely used implicit solvent models:
-PCM and SMD (see Sec. [11.2](../ch11_env/topic_solvation.md)). More solvation models will
-be made compatible in future releases of **Q-Chem**.
+与许多其他能量分解分析（EDA）方案不同，该方法在计算所有能量组分时都纳入了溶剂化效应。目前，
+ALMO-EDA(solv) 支持两种广泛使用的隐式溶剂模型：
+PCM 和 SMD（参见第 [11.2](../ch11_env/topic_solvation.md) 节）。未来的 **Q-Chem**
+版本还将兼容更多溶剂化模型。
 
-Within the ALMO-EDA(solv) scheme, the interaction energy to be decomposed is
-given by the energy difference between the solvated, fully relaxed complex and the
-sum of the energies of individually solvated, non-interacting fragments. [[897]](../bib_references/bib.md#bib932)
+在 ALMO-EDA(solv) 方案中，待分解的相互作用能由溶剂化且完全弛豫的配合物能量与各别溶剂化、无相互作用的片段能量之和的差值给出。[[897]](../bib_references/bib.md#bib932)
 
-As in gas-phase ALMO-EDA, the total interaction energy (INT) can be partitioned into
-frozen (FRZ), polarization (POL), and charge transfer (CT) contributions:
+与气相 ALMO-EDA 类似，总相互作用能（INT）可以划分为冻结（FRZ）、极化（POL）和电荷转移（CT）三项贡献：
 
 <a id="A3.S8.EGx119"></a>
 $$
@@ -32,14 +23,9 @@ $$
 &\displaystyle=\Delta E^{(\mathrm{s})}_{\mathrm{FRZ}}+\Delta E^{(\mathrm{s})}_{\mathrm{POL}}+\Delta E^{(\mathrm{s})}_{\mathrm{CT}}\end{aligned} \tag{12.18}
 $$
 
-Here the superscript “(s)” indicates that the energetic terms are evaluated with the
-solvent taken into account.
+这里上标“(s)”表示各能量项在计算时均考虑了溶剂的作用。
 
-The frozen interaction energy ($\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}$) is defined as
-the energy change upon the formation of a solvated complex from several individually
-solvated non-interacting fragments *without* relaxing their orbitals, which can be
-further decomposed into permanent electrostatics (ELEC), Pauli repulsion (PAULI), and
-dispersion (DISP) contributions:
+冻结相互作用能（$\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}$）定义为：由若干个别溶剂化的无相互作用片段形成一个溶剂化配合物、但*不*弛豫其轨道时的能量变化，该项还可进一步分解为永久静电作用（ELEC）、Pauli 排斥（PAULI）和色散（DISP）三项贡献：
 
 <a id="A3.S8.EGx120"></a>
 $$
@@ -48,27 +34,20 @@ $$
 &\displaystyle=\Delta E_{\mathrm{SOL}}+\Delta E^{(0)}_{\mathrm{ELEC}}+\Delta E^{(0)}_{\mathrm{PAULI}}+\Delta E^{(0)}_{\mathrm{DISP}}\end{aligned} \tag{12.19}
 $$
 
-Here we have introduced a new term,
+这里我们引入了一个新项，
 
 <a id="Ch12.E20"></a>
 $$
 \Delta E_{\mathrm{SOL}}=(E_{\mathrm{FRZ}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{0})})-\sum_{A}(E_{A}^{(\mathrm{s})}-E_{A}^{(0)}) \tag{12.20}
 $$
 
-to quantify the loss/gain of solvation energy upon the formation of the frozen complex.
-The other three terms in Eq. [12.19](#eq:frz_decomp_sol), $\Delta E^{(0)}_{\mathrm{ELEC}})$,
-$\Delta E^{(0)}_{\mathrm{PAULI}}$, and $\Delta E^{(0)}_{\mathrm{DISP}}$, are
-evaluated in the same way as in vacuum [[595]](../bib_references/bib.md#bib619)
- (as indicated by the superscripts
-“(0)”) but using MOs of solvated fragments.
+用于量化形成冻结配合物时溶剂化能的损失/增益。式 [12.19](#eq:frz_decomp_sol) 中的另外三项，$\Delta E^{(0)}_{\mathrm{ELEC}})$、
+$\Delta E^{(0)}_{\mathrm{PAULI}}$ 和 $\Delta E^{(0)}_{\mathrm{DISP}}$，其计算方式与真空中的计算完全相同 [[595]](../bib_references/bib.md#bib619)
+（由上标“(0)”标示），
+但使用的是溶剂化片段的分子轨道（MOs）。
 
-In the most general cases, the solvent contribution to the frozen interaction
-($\Delta E_{\mathrm{SOL}}$) includes both electrostatic ($\Delta E_{\mathrm{SOL}}^{\mathrm{el}}$)
-and non-electrostatic ($\Delta E_{\mathrm{SOL}}^{\text{non-el}}$) components, which can be
-combined with the “gas-phase” ELEC and PAULI terms, respectively. In addition, we ignore
-the solvent contribution to dispersion, an effect that cannot be captured by dispersion-corrected
-DFT that ALMO-EDA(solv) is based upon, which leads to $\Delta E^{(0)}_{\mathrm{DISP}}\approx\Delta E^{(\mathrm{s})}_{\mathrm{DISP}}$. The decomposition of the frozen energy in the
-solvation environment (Eq. [12.19](#eq:frz_decomp_sol)) can thus be rewritten as
+在最一般的情形下，溶剂对冻结相互作用能的贡献（$\Delta E_{\mathrm{SOL}}$）同时包含静电（$\Delta E_{\mathrm{SOL}}^{\mathrm{el}}$）
+和非静电（$\Delta E_{\mathrm{SOL}}^{\text{non-el}}$）两部分，它们可分别与“气相”的 ELEC 和 PAULI 项合并。此外，我们忽略溶剂对色散的贡献——这一效应无法被 ALMO-EDA(solv) 所基于的色散校正 DFT 所捕获——因此有 $\Delta E^{(0)}_{\mathrm{DISP}}\approx\Delta E^{(\mathrm{s})}_{\mathrm{DISP}}$。于是溶剂化环境下冻结能的分解式（式 [12.19](#eq:frz_decomp_sol)）可改写为
 
 <a id="A3.S8.EGx121"></a>
 $$
@@ -76,28 +55,23 @@ $$
 &\displaystyle=\Delta E^{(\mathrm{s})}_{\mathrm{ELEC}}+\Delta E^{(\mathrm{s})}_{\mathrm{PAULI}}+\Delta E^{(\mathrm{s})}_{\mathrm{DISP}}\end{aligned} \tag{12.21}
 $$
 
-Starting from the solvated frozen complex, one can relax the fragment orbitals using the SCF-MI
-technique in presence of solvent. The associated energy lowering is defined as the
-polarization energy in ALMO-EDA(solv) ($\Delta E_{\mathrm{POL}}^{(\mathrm{s})}$):
+从溶剂化的冻结配合物出发，可以在溶剂存在下利用 SCF-MI 技术弛豫片段轨道。相应的能量降低被定义为 ALMO-EDA(solv) 中的极化能（$\Delta E_{\mathrm{POL}}^{(\mathrm{s})}$）：
 
 <a id="Ch12.E22"></a>
 $$
 \Delta E_{\mathrm{POL}}^{(\mathrm{s})}=E_{\mathrm{POL}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{s})} \tag{12.22}
 $$
 
-where $E_{\mathrm{POL}}^{(\mathrm{s})}$ is the converged SCF-MI energy with solvent. Similarly,
-the charge-transfer term is given by
+其中 $E_{\mathrm{POL}}^{(\mathrm{s})}$ 是在溶剂存在下收敛的 SCF-MI 能量。类似地，电荷转移项由下式给出
 
 <a id="Ch12.E23"></a>
 $$
 \Delta E_{\mathrm{CT}}^{(\mathrm{s})}=E_{\mathrm{Full}}^{(\mathrm{s})}-E_{\mathrm{POL}}^{(\mathrm{s})} \tag{12.23}
 $$
 
-where $E_{\mathrm{Full}}^{(\mathrm{s})}$ is the full SCF energy evaluated with the presence of solvent.
-With that, the solvation effects are implicitly incorporated in the POL and CT terms produced by
-the ALMO-EDA(solv) scheme.
+其中 $E_{\mathrm{Full}}^{(\mathrm{s})}$ 是在溶剂存在下计算的全 SCF 能量。由此，溶剂化效应被隐式地纳入了 ALMO-EDA(solv) 方案所得到的 POL 项和 CT 项之中。
 
-???+ example "Example 12.17: EDA calculation for the water-Mg ${}^{2+}$ complex in PCM water."
+???+ example "示例 12.17：水-Mg ${}^{2+}$ 配合物在 PCM 水溶液中的 EDA 计算。"
     ```qchem
     $molecule
     2 1
@@ -142,7 +116,7 @@ the ALMO-EDA(solv) scheme.
     $END
     ```
 
-???+ example "Example 12.18: EDA calculation for the water-Mg ${}^{2+}$ complex in SMD water."
+???+ example "示例 12.18：水-Mg ${}^{2+}$ 配合物在 SMD 水溶液中的 EDA 计算。"
     ```qchem
     $molecule
     2 1

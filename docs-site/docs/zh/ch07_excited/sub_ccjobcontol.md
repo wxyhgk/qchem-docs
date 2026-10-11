@@ -1,67 +1,51 @@
+已翻译并写入 `7.9.18_EOM-CC_Job_Control_zh.md`（与本目录既有 `*_zh.md` 命名保持一致）。内容如下：
+
 ---
-title: "7.9.18 EOM-CC Job Control"
+title: "7.9.18 EOM-CC 作业控制"
 ---
 
-## 7.9.18 EOM-CC Job Control
+## 7.9.18 EOM-CC 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-It is important to ensure there are sufficient resources available for the
-necessary integral calculations and transformations. For CCMAN/CCMAN2
-algorithms, these resources are controlled using the *$rem* variables
-CC_MEMORY, MEM_STATIC and MEM_TOTAL (see
-Section [6.17](../ch06_correlation/CCparallel.md)).
+确保有足够的资源可用以进行必要的积分计算和变换非常重要。对于 CCMAN/CCMAN2 算法，这些资源通过 *$rem* 变量
+CC_MEMORY、MEM_STATIC 和 MEM_TOTAL 来控制（参见
+第 [6.17](../ch06_correlation/CCparallel.md) 节）。
 
-The exact flavor of correlation treatment within EOM methods is
-defined by METHOD (see Section [7.1](sect_ExStatesSummary.md)). For
-EOM-CCSD, once should set METHOD to EOM-CCSD,
-for CC2,METHOD = EOM-CC2,
-for EOM-MP2,
-METHOD = EOM-CCSD, *etc.*. In addition, a specification of
-the number of *target states* is required through XX_STATES (XX
-designates the type of the target states, *e.g.*, EE, SF, IP, EA, DIP, DSF,
-*etc.*). Users must be aware of the point group symmetry of the system being
-studied and also the symmetry of the initial and target states of interest, as
-well as symmetry of transition. It is possible to turn off the use of symmetry
-by CC_SYMMETRY. If set to FALSE the molecule will be treated
-as having $C_{1}$ symmetry and all states will be of $A$ symmetry.
+EOM 方法中电子关联处理的精确类型由 METHOD 定义（参见第 [7.1](sect_ExStatesSummary.md) 节）。对于
+EOM-CCSD，应将 METHOD 设为 EOM-CCSD，
+对于 CC2，METHOD = EOM-CC2，
+对于 EOM-MP2，
+METHOD = EOM-CCSD，*依此类推*。此外，需要通过 XX_STATES 指定*目标态*的数量（XX 表示目标态的类型，*例如*，EE、SF、IP、EA、DIP、DSF 等）。用户必须了解所研究体系的点群对称性，以及初始态和目标态的对称性，还有跃迁的对称性。可以通过 CC_SYMMETRY 关闭对称性的使用。如果将其设为 FALSE，则将分子视为具有 $C_{1}$ 对称性，所有态均为 $A$ 对称性。
 
-**Note: 
+**注意：
 
-Only Abelian groups are supported; USE_ABELIAN_SUBGROUP
-must be set to TRUE for all CCMAN and CCMAN2 jobs (it is set by default).
+仅支持阿贝尔群；对于所有 CCMAN 和 CCMAN2 作业，必须将 USE_ABELIAN_SUBGROUP
+设为 TRUE（默认即已设置）。
 **
 
-**Note: 
+**注意：
 
 1.
 
-In finite-difference calculations, the symmetry is turned off
-automatically, and the user must ensure that XX_STATES is
-adjusted accordingly.
+在有限差分计算中，对称性会自动关闭，用户必须确保相应地调整 XX_STATES。
 
 2.
 
-In CCMAN2, different types of
-target states can be requested in a single calculation.
-In CCMAN, mixing different EOM models in a single calculation is only
-allowed in Dyson orbitals calculations.
+在 CCMAN2 中，可以在单次计算中请求不同类型的目标态。
+在 CCMAN 中，单次计算中混合不同的 EOM 模型仅允许在 Dyson 轨道计算中使用。
 
 **
 
-Below we describe alternative way to specify correlation treatment in EOM-CC/CI
-calculations. These keywords will be eventually phased out. By default, the
-level of correlation of the EOM part of the wave function (*i.e.*, maximum
-excitation level in the EOM operators $R$) is set to match
-CORRELATION, however, one can mix different correlation levels for the
-reference and EOM states by using EOM_CORR. To request a CI
-calculation, set CORRELATION = CI and select type of CI expansion by
-EOM_CORR. The table below shows default and allowed
-CORRELATION and EOM_CORR combinations.
+下面我们描述在 EOM-CC/CI 计算中指定关联处理的替代方式。这些关键字最终将被淘汰。默认情况下，波函数 EOM 部分的关联级别（*即*，EOM 算符 $R$ 中的最大激发级别）设为与
+CORRELATION 匹配，但用户可以通过使用 EOM_CORR 为参考态和 EOM 态混合不同的关联级别。要请求 CI
+计算，请设置 CORRELATION = CI 并通过
+EOM_CORR 选择 CI 展开类型。下表显示了默认和允许的
+CORRELATION 与 EOM_CORR 组合。
 
-| CORRELATION | Default | Allowed | Target states | CCMAN / |
+| CORRELATION | 默认 EOM_CORR | 允许的 EOM_CORR | 目标态 | CCMAN / |
 | --- | --- | --- | --- | --- |
-|  | EOM_CORR | EOM_CORR |  | CCMAN2 |
+|  |  |  |  | CCMAN2 |
 | CI | none | CIS, CIS(D) | EE, SF | y/n |
 |  |  | CISD | EE, SF, IP | y/n |
 |  |  | SDT, DT | EE, SF, DSF | y/n |
@@ -72,40 +56,39 @@ CORRELATION and EOM_CORR combinations.
 |  |  | SD(dT), SD(fT), SD(sT) | IP | y/n |
 |  |  | SDT, DT | EE, SF, IP, EA, DIP, DSF | y/n |
 
-Table 7.1: Default and allowed CORRELATION and EOM_CORR
-combinations as well as valid target state types. The last column shows if a
-method is available in CCMAN or CCMAN2.
+表 7.1：默认和允许的 CORRELATION 与 EOM_CORR
+组合以及有效的目标态类型。最后一列显示该方法在 CCMAN 或 CCMAN2 中是否可用。
 
-Table [7.2](#table:EOMCI) shows the correct combinations of CORRELATION
-and EOM_CORR for standard EOM and CI models.
+表 [7.2](#table:EOMCI) 展示了标准 EOM 和 CI 模型的 CORRELATION
+与 EOM_CORR 的正确组合。
 
-| Method | CORRELATION | EOM_CORR | Target states selection |
+| 方法 | CORRELATION | EOM_CORR | 目标态选择 |
 | --- | --- | --- | --- |
 | CIS | CI | CIS | EE_STATES |
-|  |  |  | EE_SINGLETS , EE_TRIPLETS |
+|  |  |  | EE_SINGLETS, EE_TRIPLETS |
 | SF-CIS | CI | CIS | SF_STATES |
 | CIS(D) | CI | CIS(D) | EE_STATES |
-|  |  |  | EE_SINGLETS , EE_TRIPLETS |
+|  |  |  | EE_SINGLETS, EE_TRIPLETS |
 | SF-CIS(D) | CI | CIS(D) | SF_STATES |
 | CISD | CI | CISD | EE_STATES |
-|  |  |  | EE_SINGLETS , EE_TRIPLETS |
+|  |  |  | EE_SINGLETS, EE_TRIPLETS |
 | SF-CISD | CI | CISD | SF_STATES |
 | IP-CISD | CI | CISD | IP_STATES |
 | CISDT | CI | SDT | EE_STATES |
-|  |  |  | EE_SINGLETS , EE_TRIPLETS |
-| SF-CISDT | CI | SDT or DT | SF_STATES |
+|  |  |  | EE_SINGLETS, EE_TRIPLETS |
+| SF-CISDT | CI | SDT 或 DT | SF_STATES |
 | EOM-EE-CCSD | CCSD |  | EE_STATES |
-|  |  |  | EE_SINGLETS , EE_TRIPLETS |
+|  |  |  | EE_SINGLETS, EE_TRIPLETS |
 | EOM-SF-CCSD | CCSD |  | SF_STATES |
 | EOM-IP-CCSD | CCSD |  | IP_STATES |
 | EOM-EA-CCSD | CCSD |  | EA_STATES |
 | EOM-DEA-CCSD | CCSD |  | DIP_STATES |
-|  |  |  | DEA_SINGLETS , DEA_TRIPLETS |
+|  |  |  | DEA_SINGLETS, DEA_TRIPLETS |
 | EOM-DIP-CCSD | CCSD |  | DIP_STATES |
-|  |  |  | DIP_SINGLETS , DIP_TRIPLETS |
-| EOM-2SF-CCSD | CCSD | SDT or DT | DSF_STATES |
+|  |  |  | DIP_SINGLETS, DIP_TRIPLETS |
+| EOM-2SF-CCSD | CCSD | SDT 或 DT | DSF_STATES |
 | EOM-EE-(2,3) | CCSD | SDT | EE_STATES |
-|  |  |  | EE_SINGLETS , EE_TRIPLETS |
+|  |  |  | EE_SINGLETS, EE_TRIPLETS |
 | EOM-SF-(2,3) | CCSD | SDT | SF_STATES |
 | EOM-IP-(2,3) | CCSD | SDT | IP_STATES |
 | EOM-SF-CCSD(dT) | CCSD | SD(dT) | SF_STATES |
@@ -114,882 +97,702 @@ and EOM_CORR for standard EOM and CI models.
 | EOM-IP-CCSD(fT) | CCSD | SD(fT) | IP_STATES |
 | EOM-IP-CCSD(sT) | CCSD | SD(sT) | IP_STATES |
 
-Table 7.2: Commonly used EOM and CI models. “SINGLETS” and “TRIPLETS” are only
-available for closed-shell references.
+表 7.2：常用的 EOM 和 CI 模型。"SINGLETS" 和 "TRIPLETS" 仅适用于闭壳层参考态。
 
-The most relevant EOM-CC input options follow.
+以下是最相关的 EOM-CC 输入选项。
 
 EE_STATES
 
 ### `EE_STATES`
 
-> **Sets the number of excited state roots to find. For closed-shell reference, defaults into EE_SINGLETS . For open-shell references, specifies all low-lying states.**
+> **设置要寻找的激发态根数。对于闭壳层参考态，默认为 EE_SINGLETS。对于开壳层参考态，指定所有低能态。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个激发态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EE_SINGLETS
 
 ### `EE_SINGLETS`
 
-> **Sets the number of singlet excited state roots to find. Valid only for closed-shell references.**
+> **设置要寻找的单重态激发态根数。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个激发态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EE_TRIPLETS
 
 ### `EE_TRIPLETS`
 
-> **Sets the number of triplet excited state roots to find. Valid only for closed-shell references.**
+> **设置要寻找的三重态激发态根数。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个激发态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 SF_STATES
 
 ### `SF_STATES`
 
-> **Sets the number of spin-flip target states roots to find.**
+> **设置要寻找的自旋翻转目标态根数。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * SF states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 SF 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DSF_STATES
 
 ### `DSF_STATES`
 
-> **Sets the number of doubly spin-flipped target states roots to find.**
+> **设置要寻找的双自旋翻转目标态根数。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * doubly spin-flipped states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个双自旋翻转态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 IP_STATES
 
 ### `IP_STATES`
 
-> **Sets the number of ionized target states roots to find. By default, $\beta$ electron will be removed (see EOM_IP_BETA ).**
+> **设置要寻找的电离目标态根数。默认移除 $\beta$ 电子（参见 EOM_IP_BETA）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个电离态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 IP_ALPHA
 
 ### `IP_ALPHA`
 
-> **Sets the number of ionized target states derived by removing $\alpha$ electron ( $M_{S}=\tfrac{1}{2}$ ).**
+> **设置通过移除 $\alpha$ 电子（$M_{S}=\tfrac{1}{2}$）获得的电离目标态数。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个电离态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 IP_BETA
 
 ### `IP_BETA`
 
-> **Sets the number of ionized target states derived by removing $\beta$ electron ( $M_{S}=\tfrac{1}{2}$ , default for EOM-IP).**
+> **设置通过移除 $\beta$ 电子（$M_{S}=\tfrac{1}{2}$，EOM-IP 的默认选项）获得的电离目标态数。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个电离态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EA_STATES
 
 ### `EA_STATES`
 
-> **Sets the number of attached target states roots to find. By default, $\beta$ electron will be attached (see EA_BETA ).**
+> **设置要寻找的电子附着目标态根数。默认附着 $\beta$ 电子（参见 EA_BETA）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * EA states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 EA 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EA_ALPHA
 
 ### `EA_ALPHA`
 
-> **Sets the number of attached target states derived by attaching $\alpha$ electron ( $M_{S}=\tfrac{1}{2}$ , default in EOM-EA).**
+> **设置通过附着 $\alpha$ 电子（$M_{S}=\tfrac{1}{2}$，EOM-EA 的默认选项）获得的电子附着目标态数。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * EA states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 EA 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EA_BETA
 
 ### `EA_BETA`
 
-> **Sets the number of attached target states derived by attaching $\beta$ electron ( $M_{S}=\tfrac{1}{2}$ , EA-SF).**
+> **设置通过附着 $\beta$ 电子（$M_{S}=\tfrac{1}{2}$，EA-SF）获得的电子附着目标态数。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * EA states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 EA 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DIP_STATES
 
 ### `DIP_STATES`
 
-> **Sets the number of DIP roots to find. For closed-shell reference, defaults into DIP_SINGLETS . For open-shell references, specifies all low-lying states.**
+> **设置要寻找的 DIP 根数。对于闭壳层参考态，默认为 DIP_SINGLETS。对于开壳层参考态，指定所有低能态。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DIP_SINGLETS
 
 ### `DIP_SINGLETS`
 
-> **Sets the number of singlet DIP roots to find. Valid only for closed-shell references.**
+> **设置要寻找的单重态 DIP 根数。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP singlet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 单重态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DIP_TRIPLETS
 
 ### `DIP_TRIPLETS`
 
-> **Sets the number of triplet DIP roots to find. Valid only for closed-shell references.**
+> **设置要寻找的三重态 DIP 根数。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP triplet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 三重态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DIP_AA_STATES
 
 ### `DIP_AA_STATES`
 
-> **Sets the number of $M_{S}=-1$ DIP roots (remove two $\alpha$ electrons) to find. Valid only for closed-shell references.**
+> **设置要寻找的 $M_{S}=-1$ DIP 根数（移除两个 $\alpha$ 电子）。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DIP_BB_STATES
 
 ### `DIP_BB_STATES`
 
-> **Sets the number of $M_{S}=+1$ DIP roots (remove two $\beta$ electrons) to find.**
+> **设置要寻找的 $M_{S}=+1$ DIP 根数（移除两个 $\beta$ 电子）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DIP_AB_STATES
 
 ### `DIP_AB_STATES`
 
-> **Sets the number of $M_{S}=0$ DIP roots (remove one $\alpha$ and one $\beta$ electron) to find.**
+> **设置要寻找的 $M_{S}=0$ DIP 根数（移除一个 $\alpha$ 和一个 $\beta$ 电子）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DEA_STATES
 
 ### `DEA_STATES`
 
-> **Sets the number of DEA roots to find. For closed-shell reference, defaults into DEA_SINGLETS . For open-shell references, specifies all low-lying states.**
+> **设置要寻找的 DEA 根数。对于闭壳层参考态，默认为 DEA_SINGLETS。对于开壳层参考态，指定所有低能态。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DIP 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DEA_SINGLETS
 
 ### `DEA_SINGLETS`
 
-> **Sets the number of singlet DEA roots to find. Valid only for closed-shell references.**
+> **设置要寻找的单重态 DEA 根数。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA singlet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DEA 单重态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DEA_TRIPLETS
 
 ### `DEA_TRIPLETS`
 
-> **Sets the number of triplet DEA roots to find. Valid only for closed-shell references.**
+> **设置要寻找的三重态 DEA 根数。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA triplet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DEA 三重态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DEA_AA_STATES
 
 ### `DEA_AA_STATES`
 
-> **Sets the number of $M_{S}=1$ DEA roots (two $\alpha$ electrons) to find.**
+> **设置要寻找的 $M_{S}=1$ DEA 根数（两个 $\alpha$ 电子）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA
->     * $\alpha\alpha$
->     * states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DEA $\alpha\alpha$ 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DEA_BB_STATES
 
 ### `DEA_BB_STATES`
 
-> **Sets the number of $M_{S}=-1$ DEA roots (two $\beta$ electrons) to find.**
+> **设置要寻找的 $M_{S}=-1$ DEA 根数（两个 $\beta$ 电子）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA
->     * $\beta\beta$
->     * states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DEA $\beta\beta$ 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
 DEA_AB_STATES
 
 ### `DEA_AB_STATES`
 
-> **Sets the number of $M_{S}=0$ DEA roots (one $\alpha$ and one $\beta$ electron) to find.**
+> **设置要寻找的 $M_{S}=0$ DEA 根数（一个 $\alpha$ 和一个 $\beta$ 电子）。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA
->     * $\alpha\beta$
->     * states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 在第一个不可约表示中寻找 $i$ 个 DEA $\alpha\beta$ 态，
+>     * 在第二个不可约表示中寻找 $j$ 个态，
+>     * 依此类推。
+> * **建议**：无
 
-**Note: 
+**注意：
 
-It is a symmetry of a *transition* rather than that of a *target
-state* which is specified in excited state calculations. The symmetry of the
-target state is a product of the symmetry of the reference state and the
-transition. For closed-shell molecules, the former is fully symmetric and the
-symmetry of the target state is the same as that of transition, however, for
-open-shell references this is not so.
+在激发态计算中指定的对称性是*跃迁*的对称性，而非*目标态*的对称性。目标态的对称性是参考态对称性与跃迁对称性的乘积。对于闭壳层分子，前者为全对称的，因此目标态的对称性与跃迁的对称性相同；但对于开壳层参考态则不然。
 **
 
-**Note: 
+**注意：
 
-In earlier versions of **Q-Chem**, we used EOM_XX_STATES. These keywords were replaced by XX_STATES for uniformity (e.g., they are also used in ADC methods to specify target ADC states).
-For backward compatibility,
-the old keywords are aliased to the new ones, so old inputs would still work.
-However, these old keywords eventually will be depreciated. It is recommended
-to switch to the new ones.
+在 **Q-Chem** 的早期版本中，我们使用 EOM_XX_STATES。为实现统一（例如，这些关键字也用于 ADC 方法中指定目标 ADC 态），这些关键字已被替换为 XX_STATES。
+为了向后兼容，
+旧关键字被别名为新关键字，因此旧输入仍然可用。
+然而，这些旧关键字最终将被弃用。建议
+切换到新关键字。
 **
 
-**Note: 
+**注意：
 
-For the XX_STATES options, **Q-Chem** will increase the number of
-roots if it suspects degeneracy, or change it to a smaller value, if it cannot
-generate enough guess vectors to start the calculations.
+对于 XX_STATES 选项，如果 **Q-Chem** 怀疑存在简并，它会增加根数；如果无法生成足够的猜测向量来启动计算，它会将其改为更小的值。
 **
 
 EOM_FAKE_IPEA
 
 ### `EOM_FAKE_IPEA`
 
-> **If TRUE , calculates fake EOM-IP or EOM-EA energies and properties using the diffuse orbital trick. Default for EOM-EA and Dyson orbital calculations in CCMAN.**
+> **如果设为 TRUE，使用弥散轨道技巧计算伪 EOM-IP 或 EOM-EA 能量和性质。在 CCMAN 中为 EOM-EA 和 Dyson 轨道计算的默认选项。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (use proper EOM-IP code)`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE（使用正确的 EOM-IP 代码）`
+> * **选项**：
 >     * FALSE, TRUE
-> * **Recommendation**: None. This feature only works for CCMAN.
+> * **建议**：无。此功能仅在 CCMAN 中有效。
 
-**Note: 
+**注意：
 
-When EOM_FAKE_IPEA is set to TRUE, it can change the
-convergence of Hartree-Fock iterations compared to the same job without
-EOM_FAKE_IPEA, because a very diffuse basis function is added to a
-center of symmetry *before* the Hartree-Fock iterations start. For the
-same reason, BASIS2 keyword is incompatible with
-EOM_FAKE_IPEA. In order to read Hartree-Fock guess from a previous
-job, you must specify EOM_FAKE_IPEA (even if you do not request for
-any correlation or excited states) in that previous job. Currently, the second
-moments of electron density and Mulliken charges and spin densities are
-incorrect for the EOM-IP/EA-CCSD target states.
+当 EOM_FAKE_IPEA 设为 TRUE 时，与不使用 EOM_FAKE_IPEA 的相同作业相比，它可能会改变 Hartree-Fock 迭代的收敛性，因为在 Hartree-Fock 迭代开始*之前*，会在对称中心添加一个非常弥散的基函数。出于同样的原因，BASIS2 关键字与 EOM_FAKE_IPEA 不兼容。若要从之前的作业中读取 Hartree-Fock 猜测，必须在该之前的作业中指定 EOM_FAKE_IPEA（即使你不请求任何关联或激发态计算）。目前，EOM-IP/EA-CCSD 目标态的电子密度二阶矩、Mulliken 电荷和自旋密度是不正确的。
 **
 
 EOM_USER_GUESS
 
 ### `EOM_USER_GUESS`
 
-> **Specifies if user-defined guess will be used in EOM calculations.**
+> **指定在 EOM 计算中是否使用用户定义的猜测。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Solve for a state that has maximum overlap with a trans-n
->     * specified in
->     * $eom_user_guess
->     * .
-> * **Recommendation**: The orbitals are ordered by energy, as printed in the beginning of the CCMAN2 output. Not available in CCMAN.
+>     * 求解与 $eom_user_guess 中指定的跃迁具有最大重叠的态。
+> * **建议**：轨道按能量排序，如 CCMAN2 输出开头所示。在 CCMAN 中不可用。
 
 EOM_SHIFT
 
 ### `EOM_SHIFT`
 
-> **Specifies energy shift in EOM calculations.**
+> **指定 EOM 计算中的能量平移。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * $n$
->     * corresponds to
->     * $n\cdot 10^{-3}$
->     * Hartree shift (
->     * i.e.
->     * , 11000 = 11 Hartree); solve for
->     * eigenstates around this value.
-> * **Recommendation**: Not available in CCMAN.
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * $n$ 对应 $n\cdot 10^{-3}$ Hartree 的平移（即 11000 = 11 Hartree）；围绕此值求解本征态。
+> * **建议**：在 CCMAN 中不可用。
 
 EOM_NGUESS_DOUBLES
 
 ### `EOM_NGUESS_DOUBLES`
 
-> **Specifies number of excited state guess vectors which are double excitations.**
+> **指定为双激发的激发态猜测向量数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * $n$
->     * Include
->     * $n$
->     * guess vectors that are double excitations
-> * **Recommendation**: This should be set to the expected number of doubly excited states, otherwise they may not be found.
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * $n$ 包含 $n$ 个为双激发的猜测向量
+> * **建议**：应设为预期的双激发态数，否则可能无法找到这些态。
 
 EOM_NGUESS_SINGLES
 
 ### `EOM_NGUESS_SINGLES`
 
-> **Specifies number of excited state guess vectors that are single excitations.**
+> **指定为单激发的激发态猜测向量数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Equal to the number of excited states requested`
-> * **Options**:
->     * $n$
->     * Include
->     * $n$
->     * guess vectors that are single excitations
-> * **Recommendation**: Should be greater or equal than the number of excited states requested, unless .
+> * **类型**：`INTEGER`
+> * **默认值**：`等于所请求的激发态数`
+> * **选项**：
+>     * $n$ 包含 $n$ 个为单激发的猜测向量
+> * **建议**：应大于或等于所请求的激发态数。
 
 EOM_PRECONV_SINGLES
 
 ### `EOM_PRECONV_SINGLES`
 
-> **When not zero, singly excited vectors are converged prior to a full excited states calculation. Sets the maximum number of iterations for pre-converging procedure.**
+> **不为零时，在完整激发态计算之前先收敛单激发向量。设置预收敛过程的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * 0
->     * do not pre-converge
->     * 1
->     * pre-converge singles
-> * **Recommendation**: Sometimes helps with problematic convergence.
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * 0 不预收敛
+>     * 1 预收敛单激发
+> * **建议**：有时有助于解决收敛问题。
 
-**Note: 
+**注意：
 
-In CCMAN, setting EOM_PRECONV_SINGLES = $N$ would result in $N$
-Davidson iterations pre-converging singles.
+在 CCMAN 中，设置 EOM_PRECONV_SINGLES = $N$ 会导致 $N$ 次 Davidson 迭代来预收敛单激发。
 **
 
 EOM_PRECONV_DOUBLES
 
 ### `EOM_PRECONV_DOUBLES`
 
-> **When not zero, doubly excited vectors are converged prior to a full excited states calculation. Sets the maximum number of iterations for pre-converging procedure**
+> **不为零时，在完整激发态计算之前先收敛双激发向量。设置预收敛过程的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * 0
->     * Do not pre-converge
->     * N
->     * Perform N Davidson iterations pre-converging doubles.
-> * **Recommendation**: Occasionally necessary to ensure a doubly excited state is found. Also used in DSF, DIP, and DEA calculations instead of EOM_PRECONV_SINGLES
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * 0 不预收敛
+>     * N 执行 N 次 Davidson 迭代来预收敛双激发。
+> * **建议**：偶尔需要以确保找到双激发态。也用于 DSF、DIP 和 DEA 计算中替代 EOM_PRECONV_SINGLES。
 
-**Note: 
+**注意：
 
-Not available for EOM-EE in CCMAN2.
+在 CCMAN2 中不支持 EOM-EE。
 **
 
 EOM_PRECONV_SD
 
 ### `EOM_PRECONV_SD`
 
-> **When not zero, EOM vectors are pre-converged prior to a full excited states calculation. Sets the maximum number of iterations for pre-converging procedure.**
+> **不为零时，在完整激发态计算之前先预收敛 EOM 向量。设置预收敛过程的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * 0
->     * do not pre-converge
->     * N
->     * perform N Davidson iterations pre-converging singles and doubles.
-> * **Recommendation**: Occasionally necessary to ensure that all low-lying states are found. Also, very useful in EOM(2,3) calculations. None
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * 0 不预收敛
+>     * N 执行 N 次 Davidson 迭代来预收敛单激发和双激发。
+> * **建议**：偶尔需要以确保找到所有低能态。在 EOM(2,3) 计算中也非常有用。无。
 
-**Note: 
+**注意：
 
-Not available in CCMAN2.
+在 CCMAN2 中不可用。
 **
 
 EOM_DAVIDSON_CONVERGENCE
 
 ### `EOM_DAVIDSON_CONVERGENCE`
 
-> **Convergence criterion for the RMS residuals (square of the norm) of excited-state vectors.**
+> **激发态向量 RMS 残差（范数的平方）的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion
-> * **Recommendation**: Use the default. Normally this value be the same as EOM_DAVIDSON_THRESHOLD .
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **选项**：
+>     * $n$ 对应 $10^{-n}$ 收敛判据
+> * **建议**：使用默认值。通常该值应与 EOM_DAVIDSON_THRESHOLD 相同。
 
 EOM_DAVIDSON_THRESHOLD
 
 ### `EOM_DAVIDSON_THRESHOLD`
 
-> **Specifies threshold for including a new expansion vector in the iterative Davidson diagonalization. Their norm must be above this threshold.**
+> **指定在迭代 Davidson 对角化中包含新展开向量的阈值。向量的范数必须高于此阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `00103`
-> * **Options**:
->     * $abcde$
->     * Integer code is mapped to
->     * $abc\times 10^{-(de+2)}$
->     * ,
->     * i.e.
->     * , 02505->2.5
->     * $\times 10^{-6}$
-> * **Recommendation**: Use the default unless converge problems are encountered. Should normally be set to the same values as EOM_DAVIDSON_CONVERGENCE , if convergence problems arise try setting to a value slightly larger than EOM_DAVIDSON_CONVERGENCE .
+> * **类型**：`INTEGER`
+> * **默认值**：`00103`
+> * **选项**：
+>     * $abcde$ 整数编码映射为 $abc\times 10^{-(de+2)}$，例如 02505 对应 2.5 $\times 10^{-6}$
+> * **建议**：除非遇到收敛问题，否则使用默认值。通常应设为与 EOM_DAVIDSON_CONVERGENCE 相同的值，如果出现收敛问题，尝试设为略大于 EOM_DAVIDSON_CONVERGENCE 的值。
 
 EOM_DAVIDSON_MAXVECTORS
 
 ### `EOM_DAVIDSON_MAXVECTORS`
 
-> **Specifies maximum number of vectors in the subspace for the Davidson diagonalization.**
+> **指定 Davidson 对角化子空间中的最大向量数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `60`
-> * **Options**:
->     * $n$
->     * Up to
->     * $n$
->     * vectors per root before the subspace is reset
-> * **Recommendation**: Larger values increase disk storage but accelerate and stabilize convergence.
+> * **类型**：`INTEGER`
+> * **默认值**：`60`
+> * **选项**：
+>     * $n$ 在重置子空间之前每个根最多使用 $n$ 个向量
+> * **建议**：较大的值会增加磁盘存储，但能加速和稳定收敛。
 
 EOM_DAVIDSON_MAX_ITER
 
 ### `EOM_DAVIDSON_MAX_ITER`
 
-> **Maximum number of iteration allowed for Davidson diagonalization procedure.**
+> **Davidson 对角化过程允许的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `30`
-> * **Options**:
->     * $n$
->     * User-defined number of iterations
-> * **Recommendation**: Default is usually sufficient
+> * **类型**：`INTEGER`
+> * **默认值**：`30`
+> * **选项**：
+>     * $n$ 用户自定义的迭代次数
+> * **建议**：默认值通常足够。
 
 EOM_DIIS_CONVERGENCE
 
 ### `EOM_DIIS_CONVERGENCE`
 
-> **Convergence criterion for the DIIS algorithm for solving for real-valued EOM states (only for RI-CC2 in LIBGMBPT).**
+> **用于求解实值 EOM 态的 DIIS 算法的收敛判据（仅适用于 LIBGMBPT 中的 RI-CC2）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion.
-> * **Recommendation**: A loose convergence criterion may result in finding an incorrect state.
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **选项**：
+>     * $n$ 对应 $10^{-n}$ 收敛判据。
+> * **建议**：过松的收敛判据可能导致找到错误的态。
 
 EOM_DIIS_MAXVECTORS
 
 ### `EOM_DIIS_MAXVECTORS`
 
-> **Specifies maximum size of the DIIS subspace (only for RI-CC2 in LIBGMBPT).**
+> **指定 DIIS 子空间的最大尺寸（仅适用于 LIBGMBPT 中的 RI-CC2）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
->     * $n$
->     * Up to
->     * $n$
->     * vectors in the DIIS subspace.
-> * **Recommendation**: Larger values increase disk storage but accelerate and stabilize convergence.
+> * **类型**：`INTEGER`
+> * **默认值**：`7`
+> * **选项**：
+>     * $n$ DIIS 子空间中最多使用 $n$ 个向量。
+> * **建议**：较大的值会增加磁盘存储，但能加速和稳定收敛。
 
 EOM_DIIS_MAX_ITER
 
 ### `EOM_DIIS_MAX_ITER`
 
-> **Maximum number of iteration allowed for DIIS procedure (only for RI-CC2 in LIBGMBPT).**
+> **DIIS 过程允许的最大迭代次数（仅适用于 LIBGMBPT 中的 RI-CC2）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
->     * $n$
->     * User-defined number of iterations.
-> * **Recommendation**: Default is usually sufficient.
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **选项**：
+>     * $n$ 用户自定义的迭代次数。
+> * **建议**：默认值通常足够。
 
 EOM_IPEA_FILTER
 
 ### `EOM_IPEA_FILTER`
 
-> **If TRUE , filters the EOM-IP/EA amplitudes obtained using the diffuse orbital implementation (see EOM_FAKE_IPEA ). Helps with convergence.**
+> **如果设为 TRUE，过滤使用弥散轨道实现（参见 EOM_FAKE_IPEA）获得的 EOM-IP/EA 振幅。有助于收敛。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (EOM-IP or EOM-EA amplitudes will not be filtered)`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE（EOM-IP 或 EOM-EA 振幅不会被过滤）`
+> * **选项**：
 >     * FALSE, TRUE
-> * **Recommendation**: None
+> * **建议**：无
 
-**Note: 
+**注意：
 
-Not available in CCMAN2.
+在 CCMAN2 中不可用。
 **
 
 CC_FNO_THRESH
 
 ### `CC_FNO_THRESH`
 
-> **Initialize the FNO truncation and sets the threshold to be used for both cutoffs (OCCT and POVO).**
+> **初始化 FNO 截断并设置两种截止阈值（OCCT 和 POVO）使用的值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
->     * range
->     * 0000-10000
->     * $abcd$
->     * Corresponding to
->     * $ab.cd$
->     * %
-> * **Recommendation**: None
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **选项**：
+>     * 范围 0000-10000
+>     * $abcd$ 对应 $ab.cd$%
+> * **建议**：无
 
 CC_FNO_USEPOP
 
 ### `CC_FNO_USEPOP`
 
-> **Selection of the truncation scheme.**
+> **截断方案的选择。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
->     * 0
->     * POVO
-> * **Recommendation**: None
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
+>     * 0 POVO
+> * **建议**：无
 
 SCALE_NUCLEAR_CHARGE
 
 ### `SCALE_NUCLEAR_CHARGE`
 
-> **Scales charge of each nuclei by a certain value. The nuclear repulsion energy is calculated for the unscaled nuclear charges.**
+> **将每个原子核的电荷按某个值进行缩放。核排斥能是针对未缩放的核电荷计算的。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * $n$
->     * A total positive charge of (1+
->     * $n/100$
->     * )e is added to the molecule.
-> * **Recommendation**: NONE
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * $n$ 向分子添加 $(1+n/100)e$ 的总正电荷。
+> * **建议**：无
 
 ADD_CHARGED_CAGE
 
 ### `ADD_CHARGED_CAGE`
 
-> **Add a point charge cage of a given radius and total charge.**
+> **添加给定半径和总电荷的点电荷笼。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * 0
->     * No cage.
->     * 1
->     * Dodecahedral cage.
->     * 2
->     * Spherical cage.
-> * **Recommendation**: Spherical cage is expected to yield more accurate results, especially for small radii.
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * 0 无笼。
+>     * 1 十二面体笼。
+>     * 2 球形笼。
+> * **建议**：球形笼预期能给出更准确的结果，尤其是对于小半径。
 
 CAGE_RADIUS
 
 ### `CAGE_RADIUS`
 
-> **Defines radius of the charged cage.**
+> **定义带电笼的半径。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `225`
-> * **Options**:
->     * $n$
->     * radius is
->     * $n/100$
->     * Å.
-> * **Recommendation**: None
+> * **类型**：`INTEGER`
+> * **默认值**：`225`
+> * **选项**：
+>     * $n$ 半径为 $n/100$ Å。
+> * **建议**：无
 
 CAGE_POINTS
 
 ### `CAGE_POINTS`
 
-> **Defines number of point charges for the spherical cage.**
+> **定义球形笼的点电荷数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
->     * $n$
->     * Number of point charges to use.
-> * **Recommendation**: None
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **选项**：
+>     * $n$ 使用的点电荷数。
+> * **建议**：无
 
 CAGE_CHARGE
 
 ### `CAGE_CHARGE`
 
-> **Defines the total charge of the cage.**
+> **定义笼的总电荷。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `400`
-> * **Options**:
->     * $n$
->     * Total charge of the cage is
->     * $n/100$
->     * a.u.
-> * **Recommendation**: None
+> * **类型**：`INTEGER`
+> * **默认值**：`400`
+> * **选项**：
+>     * $n$ 笼的总电荷为 $n/100$ a.u.
+> * **建议**：无
 
 EOM_EE_IV_PROJ
 
 ### `EOM_EE_IV_PROJ`
 
-> **Enables the application of the inner-valence projector when computing excited states using EOM-EE-CCSD**
+> **在使用 EOM-EE-CCSD 计算激发态时启用内价层投影算符的应用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * $n$
->     * Number of active occupied orbitals that are used to construct the inner-valence projector. The orbitals are counted from the
->     * bottom, with frozen orbitals excluded from the count.
-> * **Recommendation**: none
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * $n$ 用于构造内价层投影算符的活性占据轨道数。轨道从底部开始计数，冻结轨道不计入。
+> * **建议**：无
 
 EOM_IP_IV_PROJ
 
 ### `EOM_IP_IV_PROJ`
 
-> **Enables the application of the inner-valence projector when computing ionized states using EOM-IP-CCSD**
+> **在使用 EOM-IP-CCSD 计算电离态时启用内价层投影算符的应用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * $n$
->     * Number of active occupied orbitals that are used to construct the inner-valence projector.
->     * The orbitals are counted from the
->     * bottom, with frozen orbitals excluded from the count.
-> * **Recommendation**: none
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * $n$ 用于构造内价层投影算符的活性占据轨道数。轨道从底部开始计数，冻结轨道不计入。
+> * **建议**：无

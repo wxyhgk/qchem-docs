@@ -1,59 +1,33 @@
 ---
-title: "7.9.16 EOM-CC Guess Formation and Iterative Diagonalization"
+title: "7.9.16 EOM-CC 初始猜测构建与迭代对角化"
 ---
 
-## 7.9.16 EOM-CC Guess Formation and Iterative Diagonalization
+## 7.9.16 EOM-CC 初始猜测构建与迭代对角化
 
 (July 4, 2026)
 
-An EOM-CC eigenproblem is solved by an iterative diagonalization procedure
-that avoids full diagonalization and only looks for several eigenstates, as
-specified by the XX_STATES keywords.
-The default procedure is based on the modified Davidson diagonalization algorithm.[[803]](../bib_references/bib.md#bib837)
+EOM-CC 本征问题通过迭代对角化（iterative diagonalization）程序求解，该程序避免了完全对角化，仅寻找由 XX_STATES 关键字指定的若干个本征态。
+默认程序基于改进的 Davidson 对角化算法。[[803]](../bib_references/bib.md#bib837)
 
-In addition to several keywords that control the convergence of algorithm, memory usage, and
-fine details of its execution, there are several important keywords that allow
-user to specify how the target state selection is performed.
+除了若干用于控制算法收敛性、内存使用及其执行细节的关键字之外，还有一些重要关键字允许用户指定目标态的选取方式。
 
-By default, the diagonalization looks for several lowest eigenstates, as
-specified by XX_STATES. The guess vectors are generated as singly
-excited determinants selected by using Koopmans’ theorem; the number of guess
-vectors is equal to the number of target states. If necessary, the user can
-increase the number of singly excited guess vectors
-(EOM_NGUESS_SINGLES) and include doubly excited guess vectors
-(EOM_NGUESS_DOUBLES).
+默认情况下，对角化程序寻找由 XX_STATES 指定的若干个最低本征态。初始猜测向量（guess vectors）由利用 Koopmans 定理选择的单激发行列式生成；猜测向量的数目等于目标态的数目。如有必要，用户可以增加单激发猜测向量的数目（EOM_NGUESS_SINGLES）并包含双激发猜测向量（EOM_NGUESS_DOUBLES）。
 
-**Note: 
+**注意：
 
-In CCMAN2, if there is not enough singly excited guess vectors, the
-algorithm adds doubly excited guess vectors. In CCMAN, doubly excited guess
-vectors are generated only if EOM_NGUESS_DOUBLES is invoked.
+在 CCMAN2 中，如果单激发猜测向量不足，算法会添加双激发猜测向量。而在 CCMAN 中，只有当调用了 EOM_NGUESS_DOUBLES 时才会生成双激发猜测向量。
 **
 
-The user can request to pre-converge singles (solve the equations in
-singles-only block of the Hamiltonian. This is done by using
-EOM_PRECONV_SINGLES. In EOM-DEA/DIP calculations,
-one can pre-converge $2p$/$2h$ amplitudes by using EOM_PRECONV_DOUBLES.
-In the CVS suite of methods, this option is invoked by
-CVS_EOM_PRECONV_SINGLES.
+用户可以请求对 singles 进行预收敛（即仅在哈密顿量的 singles-only 块中求解方程），通过 EOM_PRECONV_SINGLES 实现。在 EOM-DEA/DIP 计算中，可以通过 EOM_PRECONV_DOUBLES 对 $2p$/$2h$ 振幅进行预收敛。在 CVS 方法系列中，该选项由 CVS_EOM_PRECONV_SINGLES 调用。
 
-**Note: 
+**注意：
 
-In CCMAN, the user can pre-converge both singles and doubles blocks
-(EOM_PRECONV_SINGLES and EOM_PRECONV_DOUBLES)
-**.
+在 CCMAN 中，用户可以同时对 singles 和 doubles 块进行预收敛（EOM_PRECONV_SINGLES 和 EOM_PRECONV_DOUBLES）。
+**。
 
-If a state (or several states) of a particular character is desired (*e.g.*,
-$\rm HOMO\rightarrow LUMO+10$ excitation or $\rm HOMO-10$ ionization), the user
-can specify this by using EOM_USER_GUESS keyword and *$eom_user_guess* section, as illustrated by an example below. The algorithm will attempt to
-find an eigenstate that has the maximum overlap with this guess vector. The
-multiplicity of the state is determined as in the regular calculations, by
-using the XX_SINGLETS and EE_TRIPLETS keywords. This
-option is useful for looking for high-lying states such as core-ionized or
-core-excited states. It is only available with CCMAN2.
+如果需要某个（或某几个）具有特定特征的态（*例如*，$\rm HOMO\rightarrow LUMO+10$ 激发或 $\rm HOMO-10$ 电离），用户可以通过 EOM_USER_GUESS 关键字和 *$eom_user_guess* 节来指定，如下例所示。算法将尝试寻找与该猜测向量具有最大重叠的本征态。该态的多重度与常规计算相同，由 XX_SINGLETS 和 EE_TRIPLETS 关键字决定。此选项对于寻找高位态（如核心电离态或核心激发态）非常有用。它仅在 CCMAN2 中可用。
 
-The examples below illustrate how to use user-specified guess in EOM
-calculations:
+下面的示例说明了如何在 EOM 计算中使用用户指定的猜测：
 
 > ```qchem
 > $eom_user_guess
@@ -62,7 +36,7 @@ calculations:
 > $end
 > ```
 
-or
+或者
 
 > ```qchem
 > $eom_user_guess
@@ -71,7 +45,7 @@ or
 > $end
 > ```
 
-In IP/EA calculations, only one set of orbitals is specified:
+在 IP/EA 计算中，只需指定一组轨道：
 
 > ```qchem
 > $eom_user_guess
@@ -79,18 +53,8 @@ In IP/EA calculations, only one set of orbitals is specified:
 > $end
 > ```
 
-If IP_STATES is specified, this will invoke calculation of the EOM-IP
-states corresponding to the ionization from 4th, 5th, and 6th occupied MOs. If
-EA_STATES is requested, then EOM-EA equations will be solved for a
-root corresponding to electron-attachment to the 4th, 5th, and 6th virtual MOs.
+如果指定了 IP_STATES，则将计算对应于从第 4、5、6 个占据分子轨道（MO）电离的 EOM-IP 态。如果请求了 EA_STATES，则求解 EOM-EA 方程，寻找对应于电子附着到第 4、5、6 个空虚拟 MO 的根。
 
-For these options to work correctly, user should make sure that
-XX_STATES requests a sufficient number of states. In case of symmetry,
-one can request several states in each irrep, but the algorithm will only compute
-those states which are consistent with the user guess orbitals.
+为使这些选项正确工作，用户应确保 XX_STATES 请求了足够数目的态。在存在对称性的情况下，可以在每个不可约表示（irrep）中请求若干个态，但算法只会计算与用户猜测轨道相一致的那些态。
 
-Alternatively, the user can specify an energy shift by EOM_SHIFT.
-In this case, the solver looks for the XX_STATES eigenstates
-that are closest to this energy; the guess vectors are
-generated accordingly, using Koopmans’ theorem. This option
-is useful when highly excited states (*i.e.*, interior eigenstates) are desired.
+另外，用户可以通过 EOM_SHIFT 指定一个能量平移。在这种情况下，求解器寻找最接近该能量的 XX_STATES 个本征态；猜测向量相应地利用 Koopmans 定理生成。当需要高度激发态（*即*，内部本征态）时，此选项非常有用。

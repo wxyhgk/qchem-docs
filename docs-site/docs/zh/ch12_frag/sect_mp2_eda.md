@@ -1,40 +1,19 @@
 ---
-title: "12.7.1 ALMO-EDA for the MP2 Method"
+title: "12.7.1 面向 MP2 方法的 ALMO-EDA"
 ---
 
-## 12.7.1 ALMO-EDA for the MP2 Method
+## 12.7.1 面向 MP2 方法的 ALMO-EDA
 
 (July 4, 2026)
 
-The previously described EDA methods are limited to SCF methods such as HF and
-DFT. However, for many systems, it is preferable to use a wave function based
-correlation method. For this reason, the ALMO-EDA has been extended to
-MP2.[[1353]](../bib_references/bib.md#bib1413)
- The MP2 ALMO-EDA is based on the
-first-generation ALMO-EDA. It provides an MP2 correction to the FRZ, POL, and
-CT terms defined by the ALMO-EDA and also adds in a term corresponding to the
-London dispersion force. This is done by defining a constrained intermediate
-MP2 wave function corresponding to each HF intermediate.
+前述的 EDA 方法仅限于 HF 和 DFT 等 SCF 方法。然而对于许多体系而言，使用基于波函数的相关方法更为合适。因此，ALMO-EDA 已被推广至 MP2。[[1353]](../bib_references/bib.md#bib1413)
+ MP2 ALMO-EDA 建立在第一代 ALMO-EDA 的基础之上。它为 ALMO-EDA 定义的 FRZ、POL 和 CT 各项提供 MP2 修正，并额外引入一个对应于伦敦色散力（London dispersion force）的项。其实现方式是为每一个 HF 中间态定义一个受约束的中间 MP2 波函数。
 
-The current implementation is limited to only RI-MP2 rather than full MP2, and
-only works in the closed shell, spin restricted case. Frozen core and spin
-scaling are also not yet supported. Attempting to use the EDA with a
-correlation method other then RI-MP2 or with unrestricted orbitals will result
-in a crash. Frozen core and spin scaling settings will be ignored with a
-warning by the EDA, but not by the final energy, leading to inconsistent
-results.
+当前的实现仅限于 RI-MP2 而非完整的 MP2，并且只适用于闭壳层、自旋限制（spin restricted）的情形。冻结核（Frozen core）与自旋缩放（spin scaling）也尚不支持。若试图将该 EDA 与 RI-MP2 之外的其他相关方法一起使用，或使用非限制轨道（unrestricted orbitals），将导致程序崩溃。冻结核与自旋缩放的设置会被 EDA 忽略并给出警告，但不会被最终能量计算忽略，从而导致结果不一致。
 
-Though the MP2 EDA is based on the first generation ALMO-EDA, the code path and
-REM settings are shared with the second generation ALMO-EDA. The MP2 ALMO-EDA
-does not define any new REM variables of its own. Rather, running an EDA job
-with EDA2 and GEN_SCFMAN will trigger an MP2 ALMO-EDA when the correlation
-method is RI-MP2. The correlation setting causes the SCF portion of the EDA to
-be switched back to the original scheme and will also decompose the correlation
-energy. Most settings intended for the second generation ALMO-EDA are not
-supported, but EDA_NO_CT and EDA_BSSE are. An example
-appears below.
+尽管 MP2 EDA 基于第一代 ALMO-EDA，但其代码路径与 REM 设置与第二代 ALMO-EDA 共用。MP2 ALMO-EDA 本身并未定义任何新的 REM 变量。相反，在以 EDA2 和 GEN_SCFMAN 运行 EDA 任务时，若相关方法为 RI-MP2，便会触发 MP2 ALMO-EDA。该相关设置会使 EDA 的 SCF 部分切换回原始的格式，同时也会对相关能进行分解。多数为第二代 ALMO-EDA 设计的设置不受支持，但 EDA_NO_CT 和 EDA_BSSE 是例外。示例见下方。
 
-???+ example "Example 12.27: MP2 energy decomposition analysis of the water dimer."
+???+ example "示例 12.27：水二聚体的 MP2 能量分解分析。"
     ```qchem
     $molecule
     0 1

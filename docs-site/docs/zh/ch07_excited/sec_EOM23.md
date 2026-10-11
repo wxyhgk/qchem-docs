@@ -1,72 +1,42 @@
 ---
-title: "7.9.24 EOM(2,3) Methods for Higher-Accuracy and Problematic Situations (CCMAN only)"
+title: "7.9.24 用于高精度及疑难情形的 EOM(2,3) 方法（仅限 CCMAN）"
 ---
 
-## 7.9.24 EOM(2,3) Methods for Higher-Accuracy and Problematic Situations
-(CCMAN only)
+## 7.9.24 用于高精度及疑难情形的 EOM(2,3) 方法
+（仅限 CCMAN）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In the EOM-CC(2,3) approach,[[581]](../bib_references/bib.md#bib603)
- the transformed Hamiltonian
-$\bar{H}$ is diagonalized in the basis of the reference, singly, doubly, and
-triply excited determinants, *i.e.*, the excitation operator $R$ is truncated at
-triple excitations. The excitation operator $T$, however, is truncated at
-double excitation level, and its amplitudes are found from the CCSD equations,
-just like for EOM-CCSD [or EOM-CC(2,2)] method.
+在 EOM-CC(2,3) 方法[[581]](../bib_references/bib.md#bib603)中，
+变换后的哈密顿量 $\bar{H}$ 在参考行列式、单激发、双激发及三激发行列式所构成的基中进行对角化，*即*，激发算符 $R$ 在三激发水平处截断。而激发算符 $T$ 则在双激发水平处截断，其振幅由 CCSD 方程求得，与 EOM-CCSD [或 EOM-CC(2,2)] 方法完全相同。
 
-The accuracy of the EOM-CC(2,3) method closely follows that of full EOM-CCSDT
-[which can be also called EOM-CC(3,3)], whereas computational cost of the
-former model is less.
+EOM-CC(2,3) 方法的精度与完整的 EOM-CCSDT [也可称为 EOM-CC(3,3)] 方法非常接近，而前者的计算成本则更低。
 
-The inclusion of triple excitations is necessary for achieving chemical
-accuracy (1 kcal/mol) for ground state properties. It is even more so for
-excited states. In particular, triple excitations are crucial for doubly
-excited states,[[581]](../bib_references/bib.md#bib603)
- excited states of some radicals and SF
-calculations (diradicals, triradicals, bond-breaking) when a reference
-open-shell state is heavily spin-contaminated. Accuracy of EOM-CCSD and
-EOM-CC(2,3) is compared in Table  [7.3](#table:EOMvsEOM3).
+欲在基态性质上达到化学精度（1 kcal/mol），必须包含三激发。对于激发态更是如此。特别地，三激发对于双激发态、[[581]](../bib_references/bib.md#bib603)
+某些自由基的激发态，以及参考开壳层态存在严重自旋污染的自旋翻转（spin-flip，SF）计算（双自由基、三自由基、断键过程）都至关重要。EOM-CCSD 与 EOM-CC(2,3) 的精度对比见表 7.3。
 
-| System | EOM-CCSD | EOM-CC(2,3) |
+| 体系 | EOM-CCSD | EOM-CC(2,3) |
 | --- | --- | --- |
-| Singly-excited electronic states | 0.1–0.2 eV | 0.01 eV |
-| Doubly-excited electronic states | $\geq$ 1 eV | 0.1–0.2 eV |
-| Severe spin-contamination of the reference | $\sim$ 0.5 eV | $\leq$ 0.1 eV |
-| Breaking single bond (EOM-SF) | 0.1–0.2 eV | 0.01 eV |
-| Breaking double bond (EOM-2SF) | $\sim$ 1 eV | 0.1–0.2 eV |
+| 单激发电子态 | 0.1–0.2 eV | 0.01 eV |
+| 双激发电子态 | $\geq$ 1 eV | 0.1–0.2 eV |
+| 参考态严重自旋污染 | $\sim$ 0.5 eV | $\leq$ 0.1 eV |
+| 断裂单键（EOM-SF） | 0.1–0.2 eV | 0.01 eV |
+| 断裂双键（EOM-2SF） | $\sim$ 1 eV | 0.1–0.2 eV |
 
-Table 7.3: Performance of the EOM-CCSD and EOM-CC(2,3) methods
+表 7.3：EOM-CCSD 与 EOM-CC(2,3) 方法的性能表现
 
-The applicability of the EOM-EE/SF-CC(2,3) models to larger systems can
-be extended by using their active-space variants, in which triple excitations
-are restricted to semi-internal ones.
+通过使用限制三激发仅为半内部（semi-internal）激发的活性空间变体，可以拓展 EOM-EE/SF-CC(2,3) 模型在更大体系上的适用性。
 
-Since the computational scaling of EOM-CC(2,3) method is ${\cal{O}}({N^{8}})$, these
-calculations can be performed only for relatively small systems. Moderate size
-molecules (10 heavy atoms) can be tackled by either using the active space
-implementation or tiny basis sets. To achieve high accuracy for these systems,
-energy additivity schemes can be used. For example, one can extrapolate
-EOM-CCSDT/large basis set values by combining large basis set EOM-CCSD
-calculations with small basis set EOM-CCSDT ones.
+由于 EOM-CC(2,3) 方法的计算标度为 ${\cal{O}}({N^{8}})$，这类计算只能用于相对较小的体系。中等大小的分子（10 个重原子）可以通过活性空间实现方案或极小的基组来处理。为了对这些体系达到高精度，可以采用能量可加性方案。例如，通过将大基组的 EOM-CCSD 计算与小基组的 EOM-CCSDT 计算相结合，即可外推得到 EOM-CCSDT/大基组的数值。
 
-Running the full EOM-CC(2,3) calculations is straightforward, however, the
-calculations are expensive with the bottlenecks being storage of the data on a
-hard drive and the CPU time. Calculations with around 80 basis functions are
-possible for a molecule consisting of four first row atoms (NO dimer). The
-number of basis functions can be larger for smaller systems.
+运行完整的 EOM-CC(2,3) 计算十分直接，但计算代价高昂，其瓶颈在于硬盘数据存储和 CPU 时间。对于由四个第一行原子组成的分子（NO 二聚体），可以进行约含 80 个基函数的计算。对于更小的体系，基函数数目可以更多。
 
-**Note: 
+**注意：
 
-In EE calculations, one needs to always solve for at least one low-spin
-root in the first symmetry irrep in order to obtain the correlated EOM energy
-of the reference. The triples correction to the total reference energy must be
-used to evaluate EOM-(2,3) excitation energies.
+在 EE（电子激发，EE）计算中，必须始终在第一个对称性不可约表示中求解至少一个低自旋根，以获得参考态的关联 EOM 能量。求 EOM-(2,3) 激发能时，必须使用参考态总能量的三激发修正项。
 **
 
-**Note: 
+**注意：
 
-EOM-CC(2,3) works for EOM-EE, EOM-SF, and EOM-IP/EA. In EOM-IP,
-“triples” correspond to $3h2p$ excitations, and the computational scaling of
-EOM-IP-CC(2,3) is less.
+EOM-CC(2,3) 适用于 EOM-EE、EOM-SF 以及 EOM-IP/EA。在 EOM-IP 中，"三激发"对应于 $3h2p$ 激发，且 EOM-IP-CC(2,3) 的计算标度更低。
 **

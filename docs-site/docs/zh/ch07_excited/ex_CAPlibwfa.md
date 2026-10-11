@@ -1,13 +1,12 @@
 ---
-title: "7.9.19 Examples"
+title: "7.9.19 示例"
 ---
 
-## 7.9.19 Examples
+## 7.9.19 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 7.94: EOM-EE-OD and EOM-EE-CCSD calculations of the singlet excited states of
-formaldehyde."
+???+ example "示例 7.94：甲醛单重激发态的 EOM-EE-OD 与 EOM-EE-CCSD 计算。"
     ```qchem
     $molecule
        0 1
@@ -41,8 +40,7 @@ formaldehyde."
     $end
     ```
 
-???+ example "Example 7.95: EOM-EE-CCSD calculations of the singlet excited states of water using Cholesky
-decomposition."
+???+ example "示例 7.95：使用 Cholesky 分解进行水的单重激发态 EOM-EE-CCSD 计算。"
     ```qchem
     $comment
     EOM-EE with Cholesky
@@ -67,7 +65,7 @@ decomposition."
     $end
     ```
 
-???+ example "Example 7.96: EOM-SF-CCSD calculations for methylene from high-spin ${}^{3}$ B ${}_{2}$ reference."
+???+ example "示例 7.96：从自旋三重态 ${}^{3}$ B ${}_{2}$ 参考出发的亚甲基（methylene）EOM-SF-CCSD 计算。"
     ```qchem
     $molecule
        0 3
@@ -84,8 +82,7 @@ decomposition."
     $end
     ```
 
-???+ example "Example 7.97: EOM-SF-MP2 calculations for SiH ${}_{2}$ from high-spin ${}^{3}$ B ${}_{2}$ reference. Both
-energies and properties are computed."
+???+ example "示例 7.97：从自旋三重态 ${}^{3}$ B ${}_{2}$ 参考出发的 SiH ${}_{2}$ EOM-SF-MP2 计算。同时计算能量和性质。"
     ```qchem
     $molecule
        0 3
@@ -100,11 +97,11 @@ energies and properties are computed."
        SCF_CONVERGENCE  = 8
        METHOD           = eom-mp2
        SF_STATES        = [1,1,0,0]
-       CC_EOM_PROP_TE   = true   ! Compute &lt;S^2&gt; of excited states
+       CC_EOM_PROP_TE   = true   ! Compute <S^2> of excited states
     $end
     ```
 
-???+ example "Example 7.98: EOM-IP-CCSD calculations for NO ${}_{3}$ using closed-shell anion reference."
+???+ example "示例 7.98：使用闭壳层阴离子参考对 NO ${}_{3}$ 进行 EOM-IP-CCSD 计算。"
     ```qchem
     $molecule
        -1 1
@@ -125,7 +122,7 @@ energies and properties are computed."
     $end
     ```
 
-???+ example "Example 7.99: EOM-IP-CCSD calculation using FNO with OCCT=99%."
+???+ example "示例 7.99：使用 FNO、OCCT=99% 的 EOM-IP-CCSD 计算。"
     ```qchem
     $molecule
        0 1
@@ -142,7 +139,7 @@ energies and properties are computed."
     $end
     ```
 
-???+ example "Example 7.100: EOM-EE-CC2, EOM-EA-CC2, EOM-IP-CC2 calculations for water using Cholesky decomposition with CCMAN2."
+???+ example "示例 7.100：使用 CCMAN2 和 Cholesky 分解对水进行 EOM-EE-CC2、EOM-EA-CC2、EOM-IP-CC2 计算。"
     ```qchem
     $molecule
     0 1
@@ -163,7 +160,7 @@ energies and properties are computed."
     
     ```
 
-???+ example "Example 7.101: EOM-EE-CC2 calculation for water using the RI approximation and spin scaling with LIBGMBPT."
+???+ example "示例 7.101：使用 LIBGMBPT 模块、RI 近似和自旋标度对水进行 EOM-EE-CC2 计算。"
     ```qchem
     $molecule
     0 1
@@ -184,7 +181,7 @@ energies and properties are computed."
     
     ```
 
-???+ example "Example 7.102: EOM-EE-MP2T calculation of the H ${}_{2}$ excitation energies."
+???+ example "示例 7.102：H ${}_{2}$ 激发能的 EOM-EE-MP2T 计算。"
     ```qchem
     $molecule
        0 1
@@ -200,8 +197,7 @@ energies and properties are computed."
     $end
     ```
 
-???+ example "Example 7.103: EOM-IP-MP2 calculation of the three low lying ionized states of the phenolate
-anion."
+???+ example "示例 7.103：苯酚盐阴离子三个低能电离态的 EOM-IP-MP2 计算。"
     ```qchem
     $molecule
        0 1
@@ -228,7 +224,7 @@ anion."
     $end
     ```
 
-???+ example "Example 7.104: EOM-EA-CCSD calculation of CN using user-specified guess."
+???+ example "示例 7.104：使用用户指定初始猜测的 CN EOM-EA-CCSD 计算。"
     ```qchem
     $molecule
        +1 1
@@ -249,7 +245,7 @@ anion."
     $end
     ```
 
-???+ example "Example 7.105: DSF-CIDT calculation of methylene starting with quintet reference."
+???+ example "示例 7.105：以自旋五重态参考出发的亚甲基 DSF-CIDT 计算。"
     ```qchem
     $molecule
        0 5
@@ -271,13 +267,34 @@ anion."
     $end
     ```
 
-???+ example "Example 7.106: EOM-EA-CCSD job for cyano cation. We first do Hartree–Fock calculation for
-the cation in the basis set with one extremely diffuse orbital
-( EOM_FAKE_IPEA ) and use these orbitals in the second job. We need to
-make sure that the diffuse orbital is occupied using the OCCUPIED keyword. No SCF iterations are performed as the diffuse electron and the
-molecular core are uncoupled. The attached states show up as “excited”
-states in which electron is promoted from the diffuse orbital to the molecular
-ones."
+???+ example "示例 7.107：带电荷笼（charged cage）稳定化的亚甲基 EOM-DIP-CCSD 计算。"
+    ```qchem
+    $molecule
+       -2 1
+       C   0.000000     0.000000     0.106788
+       H  -0.989216     0.000000    -0.320363
+       H   0.989216     0.000000    -0.320363
+    $end
+    
+    $rem
+       METHOD                   = eom-ccsd
+       BASIS                    = 6-311g(d,p)
+       SCF_ALGORITHM            = diis_gdm
+       CC_SYMMETRY              = false
+       DIP_SINGLETS             = [1]  ! Compute one EOM-DIP singlet state
+       DIP_TRIPLETS             = [1]  ! Compute one EOM-DIP triplet state
+       EOM_DAVIDSON_CONVERGENCE = 5
+       CC_EOM_PROP              = true ! Compute excited state properties
+       ADD_CHARGED_CAGE         = 2    ! Install a charged sphere around the molecule
+       CAGE_RADIUS              = 225  ! Radius = 2.25 A
+       CAGE_CHARGE              = 500  ! Charge = +5 a.u.
+       CAGE_POINTS              = 100  ! Place 100 point charges
+       CC_MEMORY                = 256  ! Use 256Mb of memory, increase for larger jobs
+       INTEGRAL_SYMMETRY        = false
+    $end
+    ```
+
+???+ example "示例 7.106：氰基阳离子（cyano cation）的 EOM-EA-CCSD 计算。我们首先在一个含一个极端弥散轨道的基组中对阳离子进行 Hartree–Fock 计算（ EOM_FAKE_IPEA ），并在第二个作业中使用这些轨道。需要确保该弥散轨道被占据（使用 OCCUPIED 关键字）。由于弥散电子与分子实（core）之间不发生耦合，因此不执行 SCF 迭代。所附着的态表现为电子从弥散轨道被激发到分子轨道的"激发"态。"
     ```qchem
     $molecule
        +1 1
@@ -324,35 +341,7 @@ ones."
     $end
     ```
 
-???+ example "Example 7.107: EOM-DIP-CCSD calculation of methylene with charged cage stabilization."
-    ```qchem
-    $molecule
-       -2 1
-       C   0.000000     0.000000     0.106788
-       H  -0.989216     0.000000    -0.320363
-       H   0.989216     0.000000    -0.320363
-    $end
-    
-    $rem
-       METHOD                   = eom-ccsd
-       BASIS                    = 6-311g(d,p)
-       SCF_ALGORITHM            = diis_gdm
-       CC_SYMMETRY              = false
-       DIP_SINGLETS             = [1]  ! Compute one EOM-DIP singlet state
-       DIP_TRIPLETS             = [1]  ! Compute one EOM-DIP triplet state
-       EOM_DAVIDSON_CONVERGENCE = 5
-       CC_EOM_PROP              = true ! Compute excited state properties
-       ADD_CHARGED_CAGE         = 2    ! Install a charged sphere around the molecule
-       CAGE_RADIUS              = 225  ! Radius = 2.25 A
-       CAGE_CHARGE              = 500  ! Charge = +5 a.u.
-       CAGE_POINTS              = 100  ! Place 100 point charges
-       CC_MEMORY                = 256  ! Use 256Mb of memory, increase for larger jobs
-       INTEGRAL_SYMMETRY        = false
-    $end
-    ```
-
-???+ example "Example 7.108: EOM-EE-CCSD calculation of excited states in NO ${}^{-}$ using scaled nuclear
-charge stabilization method."
+???+ example "示例 7.108：使用标度核电荷稳定化方法计算 NO ${}^{-}$ 激发态的 EOM-EE-CCSD 计算。"
     ```qchem
     $molecule
        -1 1
@@ -375,7 +364,7 @@ charge stabilization method."
     $end
     ```
 
-???+ example "Example 7.109: EOM-DEA-CCSD calculation of ozone with EOM_PRECONV_DOUBLES ."
+???+ example "示例 7.109：使用 EOM_PRECONV_DOUBLES 对臭氧进行的 EOM-DEA-CCSD 计算。"
     ```qchem
     $molecule
        +2 1
@@ -393,9 +382,7 @@ charge stabilization method."
     $end
     ```
 
-???+ example "Example 7.110: EOM-EE-CCSD calculation for formamide with user-specified guess requesting the EE
-transition from the occupied orbital number 12 (2 $A^{\prime\prime}$ ) to the virtual orbital
-number 1 (11 $A^{\prime}$ )."
+???+ example "示例 7.110：甲酰胺（formamide）的 EOM-EE-CCSD 计算，使用用户指定初始猜测，请求从占据轨道编号 12（2 $A^{\prime\prime}$ ）到虚轨道编号 1（11 $A^{\prime}$ ）的 EE 跃迁。"
     ```qchem
     $molecule
        0 1
@@ -425,8 +412,7 @@ number 1 (11 $A^{\prime}$ )."
     $end
     ```
 
-???+ example "Example 7.111: Calculation of inner-valence excited states of He-Ar complex
-corresponding to He* + Ar using projector technique."
+???+ example "示例 7.111：使用投影（projector）技术计算对应于 He* + Ar 的 He-Ar 复合物内价层（inner-valence）激发态。"
     ```qchem
     $comment
     Inner-valence excited states of He-Ar complex, corresponding to He* + Ar
@@ -452,8 +438,7 @@ corresponding to He* + Ar using projector technique."
     
     ```
 
-???+ example "Example 7.112: EOM-IP-CCSD calculations of O(1s) ionization potential in water using
-projector technique (without applying frozen core)."
+???+ example "示例 7.112：使用投影技术（不施加冻结核）计算水中 O(1s) 电离能的 EOM-IP-CCSD 计算。"
     ```qchem
     $comment
     Ionization of O(1s) orbital in H2O without applying the frozen core
@@ -479,9 +464,7 @@ projector technique (without applying frozen core)."
     
     ```
 
-???+ example "Example 7.113: CAP-augmented EOM-EA-CCSD calculation for N ${}_{2}^{-}$ . aug-cc-pVTZ basis
-augmented by the 3 $s$ 3 $p$ 3 $d$ diffuse functions placed in the COM. Two EA
-states are computed for CAP strength $\eta=0.002$ ."
+???+ example "示例 7.113：N ${}_{2}^{-}$ 的 CAP 增强 EOM-EA-CCSD 计算。aug-cc-pVTZ 基组在质心（COM）处添加了 3 $s$ 3 $p$ 3 $d$ 弥散函数。针对 CAP 强度 $\eta=0.002$ 计算两个 EA 态。"
     ```qchem
     $molecule
        0 1
@@ -537,8 +520,7 @@ states are computed for CAP strength $\eta=0.002$ ."
     $end
     ```
 
-???+ example "Example 7.114: CAP-EOM-EE calculation of water, with wave-function analysis of state and
-transition properties."
+???+ example "示例 7.114：水的 CAP-EOM-EE 计算，包含态性质与跃迁性质的波函数分析。"
     ```qchem
     $molecule
        0 1
@@ -578,8 +560,7 @@ transition properties."
     $end
     ```
 
-???+ example "Example 7.115: CAP-EOM-EA-CCSD calculation of $\pi^{*}$ shape resonance in CO ${}^{-}$ using smooth
-Voronoi CAP."
+???+ example "示例 7.115：使用光滑 Voronoi CAP 计算 CO ${}^{-}$ 中 $\pi^{*}$ 形状共振（shape resonance）的 CAP-EOM-EA-CCSD 计算。"
     ```qchem
     $molecule
        0  1
@@ -721,8 +702,7 @@ Voronoi CAP."
     $end
     ```
 
-???+ example "Example 7.116: Projected CAP-EOM-EE-CCSD calculation of H ${}_{2}$ , with CAP added at the CCSD
-step."
+???+ example "示例 7.116：H ${}_{2}$ 的投影 CAP-EOM-EE-CCSD 计算，CAP 在 CCSD 步骤中加入。"
     ```qchem
     $molecule
        0 1
@@ -748,8 +728,7 @@ step."
     $end
     ```
 
-???+ example "Example 7.117: Projected CAP-EOM-EA-MP2T $\eta-$ trajectory generation for the first three
-states of H ${}_{2}^{-}$ , with CAP applied at the EOM step."
+???+ example "示例 7.117：H ${}_{2}^{-}$ 前三个态的投影 CAP-EOM-EA-MP2T $\eta-$ 轨迹生成，CAP 在 EOM 步骤施加。"
     ```qchem
     $molecule
        0 1
@@ -776,8 +755,7 @@ states of H ${}_{2}^{-}$ , with CAP applied at the EOM step."
     $end
     ```
 
-???+ example "Example 7.118: Projected CAP-EOM-EA $\eta-$ trajectory generation. CAP is projected onto the first five states of
-N ${}_{2}^{-}$ ."
+???+ example "示例 7.118：投影 CAP-EOM-EA $\eta-$ 轨迹生成。CAP 投影到 N ${}_{2}^{-}$ 的前五个态上。"
     ```qchem
     $molecule
        0 1
@@ -833,7 +811,7 @@ N ${}_{2}^{-}$ ."
     $end
     ```
 
-???+ example "Example 7.119: CBF-EOM-EA-CCSD calculations of water."
+???+ example "示例 7.119：水的 CBF-EOM-EA-CCSD 计算。"
     ```qchem
     $molecule
     0 1
@@ -868,7 +846,7 @@ N ${}_{2}^{-}$ ."
     $end
     ```
 
-???+ example "Example 7.120: CAP-EOM-EE-CC2 calculation of water using Resolution-of-the-Identity approximation."
+???+ example "示例 7.120：使用分辨率恒等（Resolution-of-the-Identity）近似的水的 CAP-EOM-EE-CC2 计算。"
     ```qchem
     $molecule
        0 1
@@ -899,7 +877,7 @@ N ${}_{2}^{-}$ ."
     $end
     ```
 
-???+ example "Example 7.121: CAP-RI-EA-CC2 calculation of N ${}_{2}^{-}$ using the LIBGMBPT module. Details of the actual basis set used in calculating the resonance states can be found in Ref 1382 Utku C., Paran G. P., Jagau T.C. J. Chem. Phys. (2025) , 163 , pp. 244103 . Link ."
+???+ example "示例 7.121：使用 LIBGMBPT 模块对 N ${}_{2}^{-}$ 进行 CAP-RI-EA-CC2 计算。计算共振态所实际使用基组的详细信息可见参考文献 1382 Utku C., Paran G. P., Jagau T.C. J. Chem. Phys. (2025) , 163 , pp. 244103 . 链接 。"
     ```qchem
     $molecule
     0 1
@@ -1037,7 +1015,7 @@ N ${}_{2}^{-}$ ."
     $end
     ```
 
-???+ example "Example 7.122: CBF-RI-EA-CC2 calculation of N ${}_{2}^{-}$ using the LIBGMBPT module. Details of the actual basis set used in calculating the resonance states can be found in Ref 1382 Utku C., Paran G. P., Jagau T.C. J. Chem. Phys. (2025) , 163 , pp. 244103 . Link ."
+???+ example "示例 7.122：使用 LIBGMBPT 模块对 N ${}_{2}^{-}$ 进行 CBF-RI-EA-CC2 计算。计算共振态所实际使用基组的详细信息可见参考文献 1382 Utku C., Paran G. P., Jagau T.C. J. Chem. Phys. (2025) , 163 , pp. 244103 . 链接 。"
     ```qchem
     $molecule
     0 1
@@ -1329,8 +1307,7 @@ N ${}_{2}^{-}$ ."
     $end
     ```
 
-???+ example "Example 7.123: Formaldehyde, calculating EOM-IP-CCSD-S(D) and EOM-IP-MP2-S(D) energies of 3
-valence ionized states."
+???+ example "示例 7.123：甲醛，计算 3 个价层电离态的 EOM-IP-CCSD-S(D) 和 EOM-IP-MP2-S(D) 能量。"
     ```qchem
     $molecule
        0 1
@@ -1359,7 +1336,7 @@ valence ionized states."
     $end
     ```
 
-???+ example "Example 7.124: Formaldehyde, calculating EOM-EE-CCSD states with C-PCM method."
+???+ example "示例 7.124：甲醛，使用 C-PCM 方法计算 EOM-EE-CCSD 态。"
     ```qchem
     $molecule
        0 1
@@ -1386,7 +1363,7 @@ valence ionized states."
     $end
     ```
 
-???+ example "Example 7.125: NO ${}_{2}^{-}$ , calculating EOM-IP-CCSD states with C-PCM method."
+???+ example "示例 7.125：NO ${}_{2}^{-}$ ，使用 C-PCM 方法计算 EOM-IP-CCSD 态。"
     ```qchem
     $molecule
        -1 1

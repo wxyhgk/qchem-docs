@@ -1,78 +1,75 @@
 ---
-title: "7.12.3 Methods Based on Kohn-Sham Eigenvalues"
+title: "7.12.3 基于 Kohn-Sham 本征值的方法"
 ---
 
-## 7.12.3 Methods Based on Kohn-Sham Eigenvalues
+## 7.12.3 基于 Kohn-Sham 本征值的方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 7.12.3.1 Koopmans’ Approach
+## 7.12.3.1 Koopmans 方法
 
-A simpler alternative to TDDFT for x-ray emission is to use Kohn-Sham eigenvalue differences,
+对于 X 射线发射（x-ray emission），相较 TDDFT 更为简便的替代方案是利用 Kohn-Sham 本征值之差，
 
 <a id="Ch7.E176"></a>
 $$
 \Delta E=\epsilon_{v}-\epsilon_{c}\;, \tag{7.176}
 $$
 
-where $\epsilon_{v}$ and $\epsilon_{c}$ are valence and core energy levels, respectively. Oscillator
-strengths are obtained from the corresponding transition dipole matrix elements,
+其中 $\epsilon_{v}$ 和 $\epsilon_{c}$ 分别为价层（valence）与芯层（core）能级。振子强度（oscillator
+strengths）由相应的跃迁偶极矩阵元求得，
 
 <a id="eq:f-trans-dipole"></a>
 $$
 f_{c\to v}\propto\|\langle\phi_{c}|\hat{\bm{\mu}}|\phi_{v}\rangle\|^{2}\;. \tag{7.177}
 $$
 
-This Koopmans’ theorem-type approach is somewhat crude,
-as there is no account for orbital relaxation in the core-excited state, but
-it has the benefit that only a ground-state calculation is required and therefore this approach is applicable to large
-systems,[[522]](../bib_references/bib.md#bib538)
+这种 Koopmans 定理类型的方法 somewhat 粗略，
+因为它没有考虑芯激发态中的轨道弛豫（orbital relaxation），但其优点在于只需要进行一次基态计算，
+因此该方法适用于大体系，[[522]](../bib_references/bib.md#bib538)
 
-and in conjunction with SRC functionals even this simple procedure can afford
-reasonable estimates of the transition energies.[[521]](../bib_references/bib.md#bib535)
- The method is controlled by *$rem* variables
-NCORE_XES and NVAL_XES that specify
-the number of core ($c$) and valence ($v$) levels to consider, and an example is given in
-Example [7.12.3.1](#ex:XES-KSDFT). Extension of this approach
-to resonant x-ray emission spectroscopy (involving an excited electronic state) is possible by modeling that
-state as a non-*aufbau* solution of the SCF equations, *e.g.*, using algorithms such as
-(Section [4.5.14](../ch04_scf/topic_mom.md)), SGM (Section [4.5.15](../ch04_scf/sect_SGM-SCF.md)), or STEP (Section [4.5.16](../ch04_scf/sect_STEP-SCF.md)).
+并且与短程校正（short-range corrected, SRC）泛函结合使用时，即使这一简单流程也能对跃迁能给出
+合理的估计。[[521]](../bib_references/bib.md#bib535)
+ 该方法由 *$rem* 变量
+NCORE_XES 和 NVAL_XES 控制，用于指定所考虑的芯层（$c$）和价层（$v$）
+能级的数目，示例见示例 [7.12.3.1](#ex:XES-KSDFT)。将此方法推广到
+共振 X 射线发射光谱（resonant x-ray emission spectroscopy，涉及激发电子态）也是可行的，方法是将该态
+建模为 SCF 方程的非 *aufbau*（非构造原理）解，*e.g.*，使用诸如（第 [4.5.14](../ch04_scf/topic_mom.md) 节）、SGM（第 [4.5.15](../ch04_scf/sect_SGM-SCF.md) 节）或 STEP（第 [4.5.16](../ch04_scf/sect_STEP-SCF.md) 节）等算法。
 
 NCORE_XES
 
 ### `NCORE_XES`
 
-> **Specifies how many core levels to use in a Koopmans-type XES calculation.**
+> **指定在 Koopmans 型 XES 计算中使用多少个芯层能级。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $n$
->     * Compute transition dipoles corresponding to the first (lowest energy)
+>     * 计算对应于最靠前（能量最低）的
 >     * $n$
->     * core orbitals,
+>     * 个芯层轨道
 >     * $\phi_{c}$
->     * .
-> * **Recommendation**: None
+>     * 的跃迁偶极矩。
+> * **推荐**: 无
 
 NVAL_XES
 
 ### `NVAL_XES`
 
-> **Specifies how many valence virtual levels to use in a Koopmans-type XES calculation.**
+> **指定在 Koopmans 型 XES 计算中使用多少个价层虚轨道能级。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $n$
->     * Compute transition dipoles corresponding to the highest
+>     * 计算对应于最高的
 >     * $n$
->     * occupied orbitals,
+>     * 个占据轨道
 >     * $\phi_{v}$
->     * .
-> * **Recommendation**: Setting $n=1$ will include the HOMO in the occupied space, $n=2$ will include HOMO and $\text{HOMO}-1$ , etc.
+>     * 的跃迁偶极矩。
+> * **推荐**: 设置 $n=1$ 将在占据空间中包含 HOMO，$n=2$ 将包含 HOMO 和 $\text{HOMO}-1$，依此类推。
 
-???+ example "Example 7.211: The calculation of the XES spectrum of water using the Koopmans approach with a short-range corrected functional."
+???+ example "示例 7.211: 使用短程校正（SRC）泛函的 Koopmans 方法计算水的 XES 谱。"
     ```qchem
     $molecule
        0 1
@@ -90,89 +87,85 @@ NVAL_XES
     $end
     ```
 
-## 7.12.3.2 Transition-Potential DFT
+## 7.12.3.2 跃迁势 DFT（Transition-Potential DFT, TP-DFT）
 
-The *transition potential* (TP-)DFT method[[1308]](../bib_references/bib.md#bib1365)
+*跃迁势*（transition potential, TP-）DFT 方法[[1308]](../bib_references/bib.md#bib1365)
 
-is an alternative approach that accounts for some orbital
-relaxation yet retains a framework based on Kohn-Sham eigenvalues, requiring only a ground-state calculation.
-This approach is based on Slater’s transition concept,[[1269]](../bib_references/bib.md#bib1322)
+是一种替代方案，它考虑了部分轨道弛豫，同时保留了基于 Kohn-Sham 本征值的框架，且只需进行一次基态计算。
+该方法基于 Slater 的跃迁概念，[[1269]](../bib_references/bib.md#bib1322)
 
-in which an SCF calculation with a fractional electron (originally $n_{i}=1/2$) is removed from occupied orbital $\phi_{i}$,
-then the ionization energy for that MO is approximated as
+即在 SCF 计算中从占据轨道 $\phi_{i}$ 上移去分数个电子（原始取值为 $n_{i}=1/2$），
+然后将该分子轨道（MO）的电离能（ionization energy）近似为
 
 <a id="eq:TPDFT-ip"></a>
 $$
 \text{IE}_{i}\approx-\epsilon_{i}(n_{i}=1/2)\;. \tag{7.178}
 $$
 
-This can be justified based on a
-Taylor expansion in terms of the orbital occupations.[[1269]](../bib_references/bib.md#bib1322)
+这一做法可以基于对轨道占据数的 Taylor 展开来加以论证。[[1269]](../bib_references/bib.md#bib1322)
 
-Excitation energies are approximated as eigenvalue differences $\epsilon_{a}-\epsilon_{i}$ obtained from a
-fractional-electron SCF calculation in which $n_{i}=1/2$ electron is promoted from $\phi_{i}$ into the LUMO:
+激发能被近似为从分数电子 SCF 计算中得到的本征值之差 $\epsilon_{a}-\epsilon_{i}$，其中 $n_{i}=1/2$ 个电子
+从 $\phi_{i}$ 被提升到 LUMO：
 
 <a id="eq:TPDFT-ee"></a>
 $$
 \Delta E_{i\to a}=\epsilon_{a}(n_{i}=1/2,n_{\text{LUMO}}=1/2)-\epsilon_{i}(n_{i}=1/2,n_{\text{LUMO}}=1/2)\;, \tag{7.179}
 $$
 
-with oscillator strengths $f_{i\to a}\propto|\langle\phi_{i}|\hat{\bm{\mu}}|\phi_{a}\rangle|^{2}$, as in Eq. ([7.177](#eq:f-trans-dipole)).
+振子强度为 $f_{i\to a}\propto|\langle\phi_{i}|\hat{\bm{\mu}}|\phi_{a}\rangle|^{2}$，与式 ([7.177](#eq:f-trans-dipole)) 相同。
 
-TP-DFT calculations in **Q-Chem** are setup to remove 1/2 electron from the lowest core orbital of a given atom that is
-specified using TPDFT_ATOM. (For more flexible and general fractional-electron SCF schemes, see
-Section [7.12.3.3](#ex:XAS-2).) Optionally, one may use TPDFT_LUMO to occupy the LUMO, corresponding
-to an excitation energy calculation [Eq. ([7.179](#eq:TPDFT-ee))], or omit this variable to compute the core-level electron
-binding energy [Eq. ([7.178](#eq:TPDFT-ip))].
+在 **Q-Chem** 中，TP-DFT 计算被设置为从由 TPDFT_ATOM 指定的原子的最低芯层轨道上移去 1/2 个电子。（关于更灵活、
+更通用的分数电子 SCF 方案，参见第 [7.12.3.3](#ex:XAS-2) 节。）可选择使用 TPDFT_LUMO 来占据 LUMO，
+对应于激发能计算 [式 ([7.179](#eq:TPDFT-ee))]；若省略该变量，则计算芯层电子结合能 [式 ([7.178](#eq:TPDFT-ip))]。
 
 TPDFT_ATOM
 
 ### `TPDFT_ATOM`
 
-> **Activate TP-DFT by specifying the atom from which to remove an electron.**
+> **通过指定要从中移去电子的原子来启用 TP-DFT。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $n$
->     * Remove an electron from the lowest-energy orbital on the atom whose index is
+>     * 从索引为
 >     * $n$
->     * .
-> * **Recommendation**: Be sure to set UNRESTRICTED = TRUE for TP-DFT calculations.
+>     * 的原子的最低能量轨道上移去一个电子。
+> * **推荐**: 进行 TP-DFT 计算时务必设置 UNRESTRICTED = TRUE。
 
 TPDFT_FRAC
 
 ### `TPDFT_FRAC`
 
-> **Specify the fractional value of $n_{i}$ to be removed.**
+> **指定要移去的 $n_{i}$ 的分数值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $n$
->     * Remove
+>     * 移去
 >     * $n/100$
->     * of an electron from the orbital specified using
+>     * 个电子，轨道由
 >     * TPDFT_ATOM
->     * .
-> * **Recommendation**: None
+>     * 指定。
+> * **推荐**: 无
 
 TPDFT_LUMO
 
 ### `TPDFT_LUMO`
 
-> **Specify the fractional value of $n_{\text{LUMO}}$ to be added.**
+> **指定要添加到 $n_{\text{LUMO}}$ 的分数值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Add
+>     * 向 LUMO 添加
 >     * $n/100$
->     * of an electron to the LUMO.
-> * **Recommendation**: Leave = 0 for core-level binding energy calculations [Eq. ( 7.178 )] or use = 50 to implement Eq. ( 7.179 ).
+>     * 个电子。
+> * **推荐**: 进行芯层结合能计算时保持 = 0 [式 ( 7.178 )]，或使用 = 50 以实现式 ( 7.179 )。
 
-???+ example "Example 7.212: TP-DFT excitation energy calculation, removing $n_{i}=1/2$ from O(1s) and placing it in the LUMO."
+???+ example "示例 7.212: TP-DFT 激发能计算，从 O(1s) 移去 $n_{i}=1/2$ 个电子并将其置于 LUMO 中。"
     ```qchem
     $molecule
        0 1
@@ -192,89 +185,85 @@ TPDFT_LUMO
     
     ```
 
-## 7.12.3.3 Slater-Type Fractional-Electron Methods
+## 7.12.3.3 Slater 型分数电子方法
 
-A more general set of fractional-electron methods for both core-level ionization (*i.e.*, XPS) and core-level excitation
-(XAS and also XES) has been explored by Jana and Herbert.[[626]](../bib_references/bib.md#bib650)
- These methods
-generalize Slater’s transition concept,[[1269]](../bib_references/bib.md#bib1322)
- and allow an arbitrary
-fraction of an electron to be removed from a core MO and (optionally) placed into a virtual MO, as specified by the user.
-The use of these generalized Slater-type methods
-is controlled by the *$rem* variables that are described below and illustrated in examples that follow.
-For XAS, oscillator strengths are computed according to Eq. ([7.177](#eq:f-trans-dipole)),
-and the (occupied, virtual) orbital pairs ($\phi_{i},\phi_{a}$) for which the transition dipole moment is computed are
-specified using NCORE_XAS and NVAL_XAS, as described in Section [7.12.3.1](#ex:XES-KSDFT).
-To converge the fractional-electron state, it may be necessary to use an algorithm such as MOM (Section [4.5.14](../ch04_scf/topic_mom.md)),
-SGM (Section [4.5.15](../ch04_scf/sect_SGM-SCF.md)), or STEP ([4.5.16](../ch04_scf/sect_STEP-SCF.md)).
-Consult Refs. [[626]](../bib_references/bib.md#bib650)
- and [[627]](../bib_references/bib.md#bib651)
- for best practices regarding which generalized
-Slater-type method to use.
+Jana 与 Herbert[[626]](../bib_references/bib.md#bib650)
+ 研究了一套更为通用的分数电子方法，既适用于芯层电离（*i.e.*，XPS），也适用于芯层激发
+（XAS 以及 XES）。这些方法
+推广了 Slater 的跃迁概念，[[1269]](../bib_references/bib.md#bib1322)
+ 允许从芯层分子轨道上移去任意分数个电子，并（可选地）将其放入虚分子轨道，具体由用户指定。
+这些广义 Slater 型方法的使用由下文所述的 *$rem* 变量控制，并在随后的示例中加以说明。
+对于 XAS，振子强度按式 ([7.177](#eq:f-trans-dipole)) 计算，而计算跃迁偶极矩所涉及的（占据，虚）轨道对 ($\phi_{i},\phi_{a}$)
+通过 NCORE_XAS 和 NVAL_XAS 指定，如第 [7.12.3.1](#ex:XES-KSDFT) 节所述。
+为收敛分数电子态，可能需要使用 MOM（第 [4.5.14](../ch04_scf/topic_mom.md) 节）、
+SGM（第 [4.5.15](../ch04_scf/sect_SGM-SCF.md) 节）或 STEP（[4.5.16](../ch04_scf/sect_STEP-SCF.md)）等算法。
+关于应选用哪一种广义 Slater 型方法的最佳实践，请参阅文献 [[626]](../bib_references/bib.md#bib650)
+ 和 [[627]](../bib_references/bib.md#bib651)
+。
 
 FRACTIONAL_ELECTRON
 
 ### `FRACTIONAL_ELECTRON`
 
-> **Specify the fraction of an electron to be removed from the occupied space.**
+> **指定要从占据空间中移去的电子分数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $-n$
->     * Remove
+>     * 移去
 >     * $n/1000$
->     * of an electron.
-> * **Recommendation**: The original Slater method ( $n_{i}=1/2$ ) corresponds to = $-$ 500 but there can be other choices.
+>     * 个电子。
+> * **推荐**: 原始的 Slater 方法（$n_{i}=1/2$）对应 = $-$ 500，但也存在其他选择。
 
 FRAC_VIR_ELEC
 
 ### `FRAC_VIR_ELEC`
 
-> **Specify the fraction of an electron to place into the occupied space.**
+> **指定要放入占据空间中的电子分数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Add
+>     * 添加
 >     * $n/1000$
->     * of an electron.
-> * **Recommendation**: A value $>0$ should be used for excitation (XAS or XES), whereas the default is appropriate for ionization (XPS).
+>     * 个电子。
+> * **推荐**: 对于激发（XAS 或 XES）应使用 $>0$ 的值，而默认值适用于电离（XPS）。
 
 FRAC_ELEC_ORB
 
 ### `FRAC_ELEC_ORB`
 
-> **Specify the occupied orbital from which the fractional electron should be removed.**
+> **指定要从中移去分数电子的占据轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Remove from
+>     * 从
 >     * $\phi_{n}$
->     * .
-> * **Recommendation**: None
+>     * 中移去。
+> * **推荐**: 无
 
 FRAC_VIR_ELEC_ORB
 
 ### `FRAC_VIR_ELEC_ORB`
 
-> **Specify the virtual orbital to which the fractional electron should be added.**
+> **指定要将分数电子添加到的虚轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Add to
+>     * 添加到
 >     * $\phi_{n}$
->     * .
-> * **Recommendation**: Use this only if FRAC_VIR_ELEC $>0$ .
+>     * 。
+> * **推荐**: 仅当 FRAC_VIR_ELEC $>0$ 时才使用此项。
 
-???+ example "Example 7.213: Original Slater transition method (STM) for oxygen K-shell XPS, removing $n_{i}=1/2$ electron from O(1s) core orbital.
-A normal SCF calculation is used to obtain the initial set of orbitals, followed by a fractional-electron calculation that
-is converged using the IMOM algorithm."
+???+ example "示例 7.213: 用于氧 K 壳层 XPS 的原始 Slater 跃迁方法（STM），从 O(1s) 芯层轨道
+移去 $n_{i}=1/2$ 个电子。
+先通过常规 SCF 计算获得初始轨道组，随后进行分数电子计算，并使用 IMOM 算法使其收敛。"
     ```qchem
     $molecule
     0 1
@@ -312,8 +301,8 @@ is converged using the IMOM algorithm."
     $end
     ```
 
-???+ example "Example 7.214: XAS at carbon K-edge, using Slater’s transition method with $n_{i}=1/2$ electrons removed from
-C(1s) and $n_{a}=1/2$ electron placed in the LUMO."
+???+ example "示例 7.214: 碳 K 边的 XAS 计算，使用 Slater 跃迁方法，从
+C(1s) 移去 $n_{i}=1/2$ 个电子，并将 $n_{a}=1/2$ 个电子置于 LUMO 中。"
     ```qchem
     $molecule
      0 1
@@ -340,14 +329,12 @@ C(1s) and $n_{a}=1/2$ electron placed in the LUMO."
      METHOD        B3LYP
      BASIS         def2-QZVP
      UNRESTRICTED  TRUE
-     FRAC_ELEC_ORB        2  ! C(1s)
+     FRAC_ELEC_ORB        1  ! lowest-energy orbital is O(1s)
      FRAC_VIR_ELEC_ORB    1
      FRACTIONAL_ELECTRON -500
-     FRAC_VIR_ELEC        500
+     FRAC_VIR_ELEC        0
      MOM_START            1
      MOM_METHOD           IMOM
-     NCORE_XAS            2
-     NVAL_XAS             2
      POINT_GROUP_SYMMETRY FALSE
      INTEGRAL_SYMMETRY    FALSE
     $end

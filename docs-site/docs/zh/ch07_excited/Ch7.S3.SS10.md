@@ -1,79 +1,76 @@
 ---
-title: "7.3.10 Spin-Orbit Coupling"
+title: "7.3.10 自旋-轨道耦合"
 ---
 
-## 7.3.10 Spin-Orbit Coupling
+## 7.3.10 自旋-轨道耦合
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The following sections describe two different ways to include spin-orbit couplings (SOCs) into TDDFT calculations.
+以下小节介绍在 TDDFT 计算中纳入自旋-轨道耦合（Spin-Orbit Coupling, SOC）的两种不同方式。
 
-## 7.3.10.1 SOCs Between TDDFT States
+## 7.3.10.1 TDDFT 态之间的 SOC
 
-There are several levels at which SOCs can be incorporated into TDDFT:[[713]](../bib_references/bib.md#bib745)
+将 SOC 纳入 TDDFT 计算可以有多个层次的近似方案：[[713]](../bib_references/bib.md#bib745)
 
 1. (i)
 
-one-electron part of the Breit-Pauli Hamiltonian,
+Breit-Pauli 哈密顿量的一电子部分，
 2. (ii)
 
-one-electron SOC using scaled nuclear charges, and
+使用缩放核电荷的一电子 SOC，以及
 3. (iii)
 
-full SOC using the mean-field treatment of the two-electron part.[[1103]](../bib_references/bib.md#bib1151)
+通过对两电子部分采用平均场（mean-field）处理的完整 SOC。[[1103]](../bib_references/bib.md#bib1151)
 
-Options (i) and (ii) are
-are available for both TDA and RPA variants (including TDHF and CIS states), for restricted Kohn-Sham references only.
-Option (iii) is available for both restricted and unrestricted variants, but only within TDA.
-Calculations of SOC for SF-TDDFT (both standard and MR-SFTDDFT) are also possible within TDA using option (iii).
-A Python code is available,[[882]](../bib_references/bib.md#bib1655) which harvests SOCs along with TDDFT energies and oscillator
-strengths from the **Q-Chem** output and uses them to construct and diagonalize the Breit-Pauli Hamiltonian,
-to obtain the coupled states.[[881]](../bib_references/bib.md#bib916)
- It can be used to compute L- and M-edge spectra for TDDFT, CIS, and
-DFT/CIS methods.
+方案 (i) 和 (ii)
+对 TDA 与 RPA 两种变体均可用（包括 TDHF 和 CIS 态），但仅限于限制型 Kohn-Sham（restricted Kohn-Sham）参考。
+方案 (iii) 对限制型和非限制型变体均可用，但仅限于 TDA 框架内。
+在 TDA 框架内使用方案 (iii) 也可以计算 SF-TDDFT（包括标准 SF-TDDFT 和 MR-SFTDDFT）的 SOC。
+目前有一个可用的 Python 程序，[[882]](../bib_references/bib.md#bib1655) 它从 **Q-Chem** 输出中提取 SOC 以及 TDDFT 能量和振子强度，
+并利用它们构造和是对角化 Breit-Pauli 哈密顿量，从而得到耦合态。[[881]](../bib_references/bib.md#bib916)
+该程序可用于计算 TDDFT、CIS 和 DFT/CIS 方法的 L 边与 M 边光谱。
 
-The implementation of one-electron SOC, options (i) and (ii), is based on the following.
-The SOCs are computed by evaluating matrix elements of the one-electron part of the Breit-Pauli Hamiltonian:
+一电子 SOC（方案 (i) 和 (ii)）的实现基于以下内容。
+SOC 通过计算 Breit-Pauli 哈密顿量一电子部分的矩阵元来获得：
 
 <a id="eq:HSO_Breit_Pauli"></a>
 $$
 \hat{H}_{\text{SO}}=-\frac{\alpha_{0}^{2}}{2}\sum_{i,A}\frac{Z_{A}}{r^{3}_{iA}}\left(\mathbf{r}_{iA}\times\mathbf{p}_{i}\right)\bm{\cdot}\mathbf{s}_{i} \tag{7.38}
 $$
 
-where $i$ denotes electrons, $A$ denotes nuclei, $\alpha_{0}=1/137.037$ is
-the fine structure constant, and $Z_{A}$ is the bare positive charge on nucleus $A$.
-In the second quantization representation, the spin-orbit Hamiltonian in different directions can be expressed as
+其中 $i$ 表示电子，$A$ 表示原子核，$\alpha_{0}=1/137.037$ 是
+精细结构常数，$Z_{A}$ 是原子核 $A$ 上的裸正电荷。
+在二次量子化表示下，不同方向的自旋-轨道哈密顿量可以表示为
 
 <a id="Ch7.E39"></a>
 $$
 \displaystyle\hat{H}_{\text{SO},x} \tag{7.39a}
 $$
 
-where $\hat{\tilde{L}}_{\alpha}=\hat{L}_{\alpha}r^{-3}$ for $\alpha\in\{x,y,z\}$ and
-$\tilde{L}_{\alpha,pq}$ are the matrix elements of this operator. The single-reference *ab initio*
-excited states (within the TDA) are given by
+其中对 $\alpha\in\{x,y,z\}$ 有 $\hat{\tilde{L}}_{\alpha}=\hat{L}_{\alpha}r^{-3}$，而
+$\tilde{L}_{\alpha,pq}$ 是该算符的矩阵元。单参考 *ab initio*
+激发态（在 TDA 框架内）由下式给出
 
 <a id="Ch7.E40"></a>
 $$
 \displaystyle\big{|}\Phi^{I}_{\text{singlet}}\big{\rangle} \tag{7.40a}
 $$
 
-where $s^{Ia}_{i}$ and $t^{Ia}_{i}$ are singlet and triplet excitation coefficients of the $I$th singlet or triplet state respectively, with the normalization
+其中 $s^{Ia}_{i}$ 和 $t^{Ia}_{i}$ 分别是第 $I$ 个单重态或三重态的单重态与三重态激发系数，其归一化条件为
 
 <a id="Ch7.E41"></a>
 $$
 \sum_{ia}(s^{Ia}_{i})^{2}=\sum_{ia}(t^{Ia}_{i})^{2}=\frac{1}{2}\;. \tag{7.41}
 $$
 
-The quantity $|\Phi_{\text{HF}}\rangle$ refers to the Hartree-Fock ground state. Thus the SOC constant from the
-singlet state to different triplet manifolds are
+量 $|\Phi_{\text{HF}}\rangle$ 指 Hartree-Fock 基态。因此，从单重态到不同三重态多重流形（manifold）的 SOC 常数为
 
 <a id="Ch7.E42"></a>
 $$
 \big{\langle}\Phi^{I}_{\text{singlet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=0}_{\text{triplet}}\big{\rangle}=\frac{\alpha_{0}^{2}\hbar}{2}\left(\sum_{i,a,b}\tilde{L}_{z,ab}\;s^{Ia}_{i}\;t^{Jb}_{i}-\sum_{i,j,a}\tilde{L}_{z,ij}\;s^{Ia}_{i}\;t^{Ja}_{j}\right) \tag{7.42}
 $$
 
-or
+或者
 
 <a id="A3.S8.EGx45"></a>
 $$
@@ -81,7 +78,7 @@ $$
 &\displaystyle\qquad\qquad+\frac{\alpha_{0}^{2}\hbar}{2\sqrt{2}\text{i}}\left(\sum_{i,a,b}\tilde{L}_{y,ab}\;s^{Ia}_{i}\;t^{Jb}_{i}-\sum_{i,j,a}\tilde{L}_{y,ij}\;s^{Ia}_{i}\;t^{Ja}_{j}\right)\;.\end{aligned} \tag{7.43}
 $$
 
-The SOC constant between different triplet manifolds can be obtained as
+不同三重态多重流形之间的 SOC 常数可由下式得到
 
 <a id="A3.S8.EGx46"></a>
 $$
@@ -89,71 +86,68 @@ $$
 &\displaystyle\qquad\qquad\frac{\alpha_{0}^{2}\hbar}{2\sqrt{2}\text{i}}\left(\sum_{i,a,b}\tilde{L}_{y,ab}\;t^{Ia}_{i}\;t^{Jb}_{i}+\sum_{i,j,a}\tilde{L}_{y,ij}\;t^{Ia}_{i}\;t^{Ja}_{j}\right)\end{aligned} \tag{7.44}
 $$
 
-or
+或者
 
 <a id="Ch7.E45"></a>
 $$
 \big{\langle}\Phi^{I,M_{s}=\pm 1}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=\pm 1}_{\text{triplet}}\big{\rangle}=\pm\frac{\alpha_{0}^{2}\hbar}{2}\left(\sum_{i,a,b}\tilde{L}_{z,ab}\;t^{Ia}_{i}\;t^{Jb}_{i}+\sum_{i,j,a}\tilde{L}_{z,ij}\;t^{Ia}_{i}\;t^{Ja}_{j}\right)\;. \tag{7.45}
 $$
 
-Note that
+注意有
 
 <a id="Ch7.E46"></a>
 $$
 \big{\langle}\Phi^{I,M_{s}=0}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=0}_{\text{triplet}}\big{\rangle}=0=\big{\langle}\Phi^{I,M_{s}=\pm 1}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=\mp 1}_{\text{triplet}}\big{\rangle}\;. \tag{7.46}
 $$
 
-The total (root-mean-square) spin-orbit coupling is
+总的（均方根，root-mean-square）自旋-轨道耦合为
 
 <a id="eqn:soc_const"></a>
 $$
 \displaystyle\big{\langle}\Phi^{I}_{\text{singlet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J}_{\text{triplet}}\big{\rangle} \tag{7.47a}
 $$
 
-For RPA states, the SOC constant can simply be obtained by replacing $s^{Ia}_{i}\;t^{Jb}_{j}$
-with $X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{singlet}}Y^{Jb}_{j,\text{triplet}}$
-and $t^{Ia}_{i}\;t^{Jb}_{j}$ with
-$X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{triplet}}Y^{Jb}_{j,\text{triplet}}$.
+对于 RPA 态，只需将 $s^{Ia}_{i}\;t^{Jb}_{j}$ 替换为 $X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{singlet}}Y^{Jb}_{j,\text{triplet}}$，
+并将 $t^{Ia}_{i}\;t^{Jb}_{j}$ 替换为
+$X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{triplet}}Y^{Jb}_{j,\text{triplet}}$，即可简单地得到 RPA 态的 SOC 常数。
 
-A TDDFT + SOC calculation is activated by *$rem* variable CALC_SOC:
+通过 *$rem* 变量 CALC_SOC 来启用 TDDFT + SOC 计算：
 
 CALC_SOC
 
 ### `CALC_SOC`
 
-> **Controls whether to calculate the SOC constants for EOM-CC, RAS-CI, CIS, TDDFT/TDA and TDDFT/RPA.**
+> **控制是否为 EOM-CC、RAS-CI、CIS、TDDFT/TDA 和 TDDFT/RPA 计算 SOC 常数。**
 >
-> * **Type**: `INTEGER/LOGICAL`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/LOGICAL`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not perform the SOC calculation.
+>     * 不执行 SOC 计算。
 >     * 1
->     * Perform the SOC calculation using the one-electron part of the Breit-Pauli Hamiltonian
+>     * 使用 Breit-Pauli 哈密顿量的一电子部分执行 SOC 计算
 >     * 2
->     * Perform the full SOC calculation using a mean-field treatment of the two-electron contribution
+>     * 对两电子贡献采用平均场处理，执行完整 SOC 计算
 >     * 4
->     * Perform the SOC calculation using scaled nuclear charges
-> * **Recommendation**: The final two options are described in Section 7.9.21.4 .
+>     * 使用缩放核电荷执行 SOC 计算
+> * **建议**: 最后两个选项在第 7.9.21.4 节中描述。
 
-Examples [7.3.10.1](#ex:dftcis-soc), [7.3.10.1](#ex:dftcis-soc), and [7.3.10.1](#ex:dftcis-soc)
-illustrate calculations of SOCs for (SF)-TDDFT states using the above features.
-These calculations can also be carried out for CIS states by modifying METHOD appropriately.
+示例 [7.3.10.1](#ex:dftcis-soc)、[7.3.10.1](#ex:dftcis-soc) 和 [7.3.10.1](#ex:dftcis-soc)
+演示了利用上述功能计算 (SF)-TDDFT 态 SOC 的过程。
+通过适当修改 METHOD，这些计算同样可用于 CIS 态。
 
-The **libwfa** analysis of the spinless one-particle transition density
-matrices (as described in Ref. [[1105]](../bib_references/bib.md#bib1152)
-)
-is implemented for the TDDFT and SF-TDDFT calculations.
-To activate this analysis, use the following: CALC_SOC = 2,
-STATE_ANALYSIS = TRUE, MOLDEN_FORMAT = TRUE,
-and NTO_PAIRS = $N$. Consult Section [10.2](../ch10_properties/sec_wfa.md) for details of the **libwfa** package.
+针对无自旋的单粒子跃迁密度矩阵（如文献 [[1105]](../bib_references/bib.md#bib1152)
+所述）的 **libwfa** 分析已在 TDDFT 和 SF-TDDFT 计算中实现。
+要启用该分析，请使用以下设置：CALC_SOC = 2、
+STATE_ANALYSIS = TRUE、MOLDEN_FORMAT = TRUE
+以及 NTO_PAIRS = $N$。有关 **libwfa** 包的详情，请参阅第 [10.2](../ch10_properties/sec_wfa.md) 节。
 
-**Note: 
+**注意：
 
-This analysis differs from the NTO analysis of the regular transition density matrix between the singlet and triplet states.
+该分析与单重态和三重态之间常规跃迁密度矩阵的 NTO 分析不同。
 **
 
-???+ example "Example 7.21: Calculation of one-electron SOCs for using TDDFT/TDA."
+???+ example "示例 7.21: 使用 TDDFT/TDA 计算一电子 SOC。"
     ```qchem
     $comment
        This sample input calculates the spin-orbit coupling constants for water
@@ -188,8 +182,8 @@ This analysis differs from the NTO analysis of the regular transition density ma
     $end
     ```
 
-???+ example "Example 7.22: Calculation of full SOCs for water molecule including mean-field treatment
-of the two-electron part of the Breit-Pauli Hamilton and UHF/TDDFT/TDA."
+???+ example "示例 7.22: 对水分子计算完整 SOC（包含对 Breit-Pauli 哈密顿量两电子部分的平均场处理）"
+    以及 UHF/TDDFT/TDA。
     ```qchem
     $comment
     Calculation of full SOCs for water molecule inlcuding mean-field treatment
@@ -217,7 +211,7 @@ of the two-electron part of the Breit-Pauli Hamilton and UHF/TDDFT/TDA."
     $end
     ```
 
-???+ example "Example 7.23: Calculation of SOCs for methylene using non-collinear SF-TDDFT/PBE0."
+???+ example "示例 7.23: 使用非共线 SF-TDDFT/PBE0 计算亚甲基（methylene）的 SOC。"
     ```qchem
     $comment
     Calculation of SOCs for methylene using non-collinear SF-TDDFT/PBE0,
@@ -244,9 +238,9 @@ of the two-electron part of the Breit-Pauli Hamilton and UHF/TDDFT/TDA."
     $end
     ```
 
-???+ example "Example 7.24: DFT/CIS calculation of the sulfur L ${}_{2,3}$ -edge in H ${}_{2}$ S. Input is set
-to compute SOCs and state-to-state transition moments that can be read by the pySETSOC code, 882 to construct and diagonalize the Breit-Pauli Hamiltonian.
-See Section 7.2.2.4 for additional details about the DFT/CIS method."
+???+ example "示例 7.24: 对 H ${}_{2}$ S 中硫的 L ${}_{2,3}$ 边进行 DFT/CIS 计算。输入设置为计算 SOC 以及态-态跃迁矩，"
+    可由 pySETSOC 程序（文献 882）读取，用于构造和是对角化 Breit-Pauli 哈密顿量。
+    关于 DFT/CIS 方法的更多细节，请参见第 7.2.2.4 节。
     ```qchem
     $molecule
     0 1
@@ -275,21 +269,20 @@ See Section 7.2.2.4 for additional details about the DFT/CIS method."
     $end
     ```
 
-## 7.3.10.2 TDDFT+SOC for Spin-Adiabats
+## 7.3.10.2 自旋绝热线（Spin-Adiabats）的 TDDFT+SOC
 
-For a system with SOC, it can be helpful to calculate the electronic eigenfunctions
-(called “spin-adiabats”) of the entire (Coulomb + SOC) Hamiltonian. Computation of such spin-adiabatic states has been implemented
-within the CIS or TDDFT/TDA framework, with the SOC treated by the one-electron
-Breit–Pauli Hamiltonian at the post-SCF level.
+对于存在 SOC 的体系，计算整个（Coulomb + SOC）哈密顿量的电子本征函数（称为"自旋绝热线"，spin-adiabats）可能很有帮助。
+此类自旋绝热态的计算已在 CIS 或 TDDFT/TDA 框架内实现，其中 SOC 在 post-SCF 层次上由一电子
+Breit–Pauli 哈密顿量处理。
 
-Within a CIS or TDDFT/TDA-SOC, the wave function is represented as
+在 CIS 或 TDDFT/TDA-SOC 中，波函数表示为
 
 <a id="A3.S8.EGx48"></a>
 $$
 \displaystyle\left|{\Psi}\right\rangle=\sum_{\epsilon}{\sum_{ia}{t_{ia}^{(\epsilon)}\left|{\Phi_{i}^{a(\epsilon)}}\right\rangle}} \tag{7.48}
 $$
 
-where $\epsilon$ is a label of spin, and
+其中 $\epsilon$ 是自旋标签，且
 
 <a id="A3.S8.EGx49"></a>
 $$
@@ -299,65 +292,64 @@ $$
 |{\Psi_{i_{\alpha}}^{a_{\beta}}}\rangle&\text{if }\epsilon=\text{triplet,}m_{s}=-1\end{cases} \tag{7.49}
 $$
 
-The spin-adiabatic wave functions in Eq. ([7.48](#eq:spinadiabatdef)) are obtained as the eigenstates of following Hamiltonian
-having $(4N_{O}N_{V})^{2}$ total matrix elements:
+式 ([7.48](#eq:spinadiabatdef)) 中的自旋绝热波函数可作为如下哈密顿量的本征态获得，该哈密顿量共有 $(4N_{O}N_{V})^{2}$ 个矩阵元：
 
 <a id="A3.S8.EGx50"></a>
 $$
 \displaystyle H=A+V_{\text{SO}}+V_{m} \tag{7.50}
 $$
 
-In Eq. ([7.50](#eq:tda_soc)), $A$ is the usual CIS-like TDDFT/TDA linear response matrix (including the one-electron and two-electron terms):
+在式 ([7.50](#eq:tda_soc)) 中，$A$ 是通常的类 CIS 的 TDDFT/TDA 线性响应矩阵（包括一电子项和两电子项）：
 
 <a id="A3.S8.EGx51"></a>
 $$
 \displaystyle\langle{\Phi_{\bm{i}}^{\bm{a}}}|{A}|{\Phi_{\bm{j}}^{\bm{b}}}\rangle \tag{7.51}
 $$
 
-where the indices $\bm{a},\bm{b},\bm{i},\bm{j}$ are the spin-orbitals, $F$ is the Fock matrix, $E_{gs}$ is the SCF energy, and $\Omega$ is the DFT exchange-correlation functional. More details can be found in Section [7.3.1](sect_tddftintro.md) and Ref. [[107]](../bib_references/bib.md#bib94)
-.
+其中指标 $\bm{a},\bm{b},\bm{i},\bm{j}$ 为自旋轨道，$F$ 是 Fock 矩阵，$E_{gs}$ 是 SCF 能量，$\Omega$ 是 DFT 交换-关联泛函。更多细节可参见第 [7.3.1](sect_tddftintro.md) 节及文献 [[107]](../bib_references/bib.md#bib94)
+。
 
-The $V_{\text{SO}}$ in Eq. ([7.50](#eq:tda_soc)) is the one-electron SOC Hamiltonian appearing in Eq. ([7.38](#eq:HSO_Breit_Pauli)), and the $V_{m}=g\mu_{B}\mathbf{B}\cdot\mathbf{S}$ is the spin-Zeeman term. Here $g=2$ is assumed. (The coupling between orbital motion and magnetic field is not yet included.) In matrix form, $V_{\text{SO}}+V_{m}$ reads
+式 ([7.50](#eq:tda_soc)) 中的 $V_{\text{SO}}$ 是式 ([7.38](#eq:HSO_Breit_Pauli)) 中出现的一电子 SOC 哈密顿量，而 $V_{m}=g\mu_{B}\mathbf{B}\cdot\mathbf{S}$ 是自旋-Zeeman 项。这里假设 $g=2$。（轨道运动与磁场的耦合尚未包括在内。）$V_{\text{SO}}+V_{m}$ 的矩阵形式为
 
 <a id="A3.S8.EGx52"></a>
 $$
 \displaystyle\langle{\Psi_{\bm{i}}^{\bm{a}}}|{V_{\text{SO}}+V_{m}}|{\Psi_{\bm{j}}^{\bm{b}}}\rangle=V_{\bm{a}\bm{b}}\delta_{\bm{i}\bm{j}}-V_{\bm{j}\bm{i}}\delta_{\bm{a}\bm{b}} \tag{7.52}
 $$
 
-The matrix elements of $V$ are given by
+$V$ 的矩阵元由下式给出
 
 <a id="A3.S8.EGx53"></a>
 $$
 \displaystyle V_{p_{\alpha}q_{\alpha}} \tag{7.53}
 $$
 
-where $\alpha_{0}$ is the fine-structure constant and $\tilde{\mathbf{L}}=\mathbf{L}/r^{3}$.
+其中 $\alpha_{0}$ 是精细结构常数，$\tilde{\mathbf{L}}=\mathbf{L}/r^{3}$。
 
-**Note: 
+**注意：
 
-Currently, this CIS or TDDFT/TDA-SOC implementation supports only restricted SCF calculations (which would produce excited state singlets and triplets in the absence of SOC). Also, the ground state is not coupled to the excited states through SOC (or otherwise).
+目前，该 CIS 或 TDDFT/TDA-SOC 实现仅支持限制型 SCF 计算（在没有 SOC 时，此类计算会产生激发单重态和三重态）。此外，基态不通过 SOC（或以其他方式）与激发态耦合。
 **
 
-The code is triggered by setting *$rem* variable CIS_SOC = $N$, where $N$ is the number of roots desired:
+该程序通过设置 *$rem* 变量 CIS_SOC = $N$ 来触发，其中 $N$ 是所需的根数：
 
 CIS_SOC
 
 ### `CIS_SOC`
 
-> **Controls the roots of performing TDDFT/TDA-SOC calculation.**
+> **控制 TDDFT/TDA-SOC 计算所求根的数目。**
 >
-> * **Type**: `INTEGER/LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `INTEGER/LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not perform the calculation.
+>     * 不执行该计算。
 >     * $N$
->     * Solve the
+>     * 求解
 >     * $N$
->     * lowest spin-adiabatic states of TDDFT/TDA-SOC.
-> * **Recommendation**: Less than or equal to $4\times$ CIS_N_ROOTS. TDDFT/TDA-SOC first performs a standard TDDFT/TDA calculation so as to generate an initial guess before rerunning the diagonalization to generate the spin adiabats. Therefore, it is a good idea to perform a stand-alone normal TDDFT/TDA calculation and generate the excited spin-diabats and check the desired range of energies, before generating the excited spin-adiabats.
+>     * 个最低的 TDDFT/TDA-SOC 自旋绝热态。
+> * **建议**: 不大于 $4\times$ CIS_N_ROOTS。TDDFT/TDA-SOC 会先执行一次标准的 TDDFT/TDA 计算以生成初始猜测，然后重新进行对角化以生成自旋绝热线。因此，一个好的做法是先单独执行一次常规的 TDDFT/TDA 计算，生成激发自旋 diabats（自旋 diabatic 态）并检查所需的能量范围，之后再生成激发自旋绝热线。
 
-To include a post-SCF magnetic field, the *$bfield_postscf* section must be initialized:
+若要加入 post-SCF 磁场，必须初始化 *$bfield_postscf* 区块：
 
 > ```qchem
 > $bfield_postscf
@@ -365,13 +357,13 @@ To include a post-SCF magnetic field, the *$bfield_postscf* section must be init
 >     $end
 > ```
 
-Here, the $B_{x},B_{y},B_{z}$ are the spatial components of the external magnetic field in Tesla. Their format must be float (i.e., “0” should be “0.0”).
+这里，$B_{x},B_{y},B_{z}$ 是外磁场的空间分量，单位为特斯拉（Tesla）。其数值格式必须为浮点数（即 "0" 应写为 "0.0"）。
 
-Derivative coupling calculations are possible between spin-adiabats, but note that the value of the real and imaginary components may vary between different calculations – because the wave functions are complex-valued and may acquire a different global phase (gauge) for each calculation. The norm of derivative coupling should not change.
+自旋绝热线之间的导数耦合计算是可行的，但请注意，实部和虚部的数值可能在不同计算之间有所变化——因为波函数是复数值，且每次计算可能带有不同的全局相位（规范）。导数耦合的模（norm）不应改变。
 
-Examples [7.3.10.2](#ex:cissoc), [7.3.10.2](#ex:cissoc) and [7.3.10.2](#ex:cissoc) illustrate the energy, gradient and derivative coupling calculations using TDDFT/TDA-SOC. In Example [7.3.10.2](#ex:cissoc), a post-SCF external magnetic field is also included.
+示例 [7.3.10.2](#ex:cissoc)、[7.3.10.2](#ex:cissoc) 和 [7.3.10.2](#ex:cissoc) 演示了使用 TDDFT/TDA-SOC 进行能量、梯度和导数耦合的计算。在示例 [7.3.10.2](#ex:cissoc) 中，还加入了 post-SCF 外磁场。
 
-???+ example "Example 7.25: TDDFT/TDA-SOC calculation of formaldehyde using the $\omega$ B97X functional for the lowest 7 spin-adiabats."
+???+ example "示例 7.25: 使用 $\omega$ B97X 泛函，对甲醛进行 TDDFT/TDA-SOC 计算，求最低的 7 个自旋绝热线。"
     ```qchem
     $rem
     jobtype                 sp
@@ -394,7 +386,7 @@ Examples [7.3.10.2](#ex:cissoc), [7.3.10.2](#ex:cissoc) and [7.3.10.2](#ex:cisso
     
     ```
 
-???+ example "Example 7.26: Nuclear gradient of the 4th state in the TDDFT/TDA-SOC calculation of formaldehyde with the $\omega$ B97X functional."
+???+ example "示例 7.26: 使用 $\omega$ B97X 泛函对甲醛进行 TDDFT/TDA-SOC 计算中第 4 态的核梯度。"
     ```qchem
     $rem
     jobtype                 force
@@ -419,7 +411,7 @@ Examples [7.3.10.2](#ex:cissoc), [7.3.10.2](#ex:cissoc) and [7.3.10.2](#ex:cisso
     
     ```
 
-???+ example "Example 7.27: Derivative coupling between the 4th and 7th TDDFT/TDA-SOC states for a calculation of benzaldehyde with the $\omega$ B97X functional, in the presence of 10 Tesla external magnetic field along the z-direction."
+???+ example "示例 7.27: 在沿 z 方向 10 特斯拉外磁场存在下，使用 $\omega$ B97X 泛函对苯甲醛计算第 4 与第 7 个 TDDFT/TDA-SOC 态之间的导数耦合。"
     ```qchem
     $rem
     jobtype                 sp

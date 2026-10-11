@@ -2,97 +2,23 @@
 title: "7.9.2 Excited States via EOM-EE-CCSD and EOM-CCSDT"
 ---
 
-## 7.9.2 Excited States via EOM-EE-CCSD and EOM-CCSDT
+## 7.9.2 通过 EOM-EE-CCSD 与 EOM-CCSDT 计算激发态
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-One can describe electronically excited states at a level of theory similar to
-that associated with coupled-cluster theory for the ground state by applying
-either linear response[[699]](../bib_references/bib.md#bib730)
- or equation-of-motion[[1289]](../bib_references/bib.md#bib1345)
+人们可以通过线性响应[[699]](../bib_references/bib.md#bib730)或运动方程（equation-of-motion, EOM）[[1289]](../bib_references/bib.md#bib1345)形式体系，在与耦合簇（coupled-cluster, CC）理论处理基态相当的精度水平上描述电子激发态。
+多个研究小组已经证明，基于耦合簇单激发与双激发（coupled-cluster singles and doubles, CCSD）基态得到的激发能，对于主要由基态单电子激发构成的态而言通常非常精确。计算所得的此类激发态激发能误差典型值为 0.1–0.2 eV，保守估计为 0.3 eV，价电子激发态（valence excited states）与里德堡激发态（Rydberg excited states）皆如此。当然，这一结论的前提是使用了足够大且足够灵活、能够同时描述价态与里德堡态的基组（basis set）。对于具有显著双激发特征的激发态，激发态耦合簇方法的精度会下降，误差可达 1 eV 甚至更大。产生此类误差的原因是，要描述具有显著双激发特征的激发态的电子相关，需要对激发算符进行更高阶的截断。
+通过引入三激发（如 EOM(2,3) 中所做的那样），可以改善对这些态的描述。在 CC 层级和 EOM 层级同时引入三激发即得到 EOM-CCSDT 方法（详见第 [7.9.23](subsec_EOM-CCSDT.md)
+节），该方法以严格且均衡的方式纳入了更高层级的相关处理。
 
-formalisms.
-A number of groups have demonstrated that
-excitation energies based on a coupled-cluster singles and doubles ground state
-are generally very accurate for states that are primarily single electron
-promotions from the ground state. The error observed in calculated excitation energies to such states
-is typically 0.1–0.2 eV, with 0.3 eV as a conservative estimate, including
-both valence and Rydberg excited states. This, of course, assumes that a basis
-set large and flexible enough to describe the valence and Rydberg states is
-employed. The accuracy of excited state coupled-cluster methods deteriorates
-for excited states that involve a substantial double excitation character,
-where errors may be 1 eV or even more. Such errors arise because the
-description of electron correlation of an excited state with substantial double
-excitation character requires higher truncation of the excitation operator.
-The description of these states can be improved by including triple
-excitations, as in EOM(2,3). Including triple excitations at CC as well as
-EOM levels results in the
-the EOM-CCSDT method (see Section [7.9.23](subsec_EOM-CCSDT.md)
-for details) in which, the higher-level correlation treatment is
-incorporated in a rigorous and balanced way.
+**Q-Chem** 包含基于上述耦合簇单双激发（CCSD）以及单、双、三激发（CCSDT）方法的激发态耦合簇方法。
 
-**Q-Chem** includes coupled-cluster methods for excited states based on the
-coupled cluster singles and doubles (CCSD) and the
-singles, doubles and triples (CCSDT) methods described above.
+CCMAN 代码还包含优化轨道耦合簇双激发（optimized orbital coupled-cluster doubles, OD）变体。已有研究表明，OD 激发能在数值表现上与 CCSD 激发态基本一致。[[725]](../bib_references/bib.md#bib756)
 
-CCMAN code
-also includes the optimized orbital coupled-cluster doubles (OD) variant. OD
-excitation energies have been shown to be essentially identical in numerical
-performance to CCSD excited states.[[725]](../bib_references/bib.md#bib756)
+这些方法的计算代价虽远高于 TDDFT，但作为经证明的高精度方法，它们对于研究小分子激发态仍然非常有用。此外，它们能够描述价电子激发态与里德堡激发态，也能够描述具有电荷转移特征的激发态。另外，在研究一系列相关分子时，至少在一个小体系上比较 TDDFT 与耦合簇理论的表现，对于理解其精度非常有价值。沿着类似的思路，前文作为 CIS 激发能的经济型相关能修正而介绍的 CIS(D) 方法，实际上就是 EOM-CCSD 的一种近似。
+RI-CC2/EOM-CC2 是 EOM-CCSD 的另一种常用近似，使得对大得多的体系进行计算成为可能。
+以完整的耦合簇方法为基准，评估 CIS(D) 或 CC2 在某一类问题上的表现是非常有用的。最后，**Q-Chem** 还包含 EOM 方法的扩展，可用于处理电离体系或电子附着体系，以及双自由基与三自由基体系。
 
-These methods, while far more computationally expensive than TDDFT, are
-nevertheless useful as proven high accuracy methods for the study of excited
-states of small molecules. Moreover, they are capable of describing both
-valence and Rydberg excited states, as well as states of a charge-transfer
-character. Also, when studying a series of related molecules it can be very
-useful to compare the performance of TDDFT and coupled-cluster theory for at
-least a small example to understand its performance. Along similar lines, the
-CIS(D) method described earlier as an economical correlation energy correction
-to CIS excitation energies is in fact an approximation to EOM-CCSD.
-RI-CC2/EOM-CC2 is another popular approximation to EOM-CCSD, which
-enables calculations of much larger systems.
-It is
-useful to assess the performance of CIS(D) or CC2 for a class of problems by
-benchmarking against the full coupled-cluster treatment. Finally, **Q-Chem**
-includes extensions of EOM methods to treat ionized or electron attachment
-systems, as well as di- and triradicals.
+![图 7.2：在 EOM 形式体系中，目标态 $\Psi$ 被描述为从参考态 $\Psi_{0}$ 出发的激发：$\Psi=R\Psi_{0}$，其中 $R$ 是一个一般性激发算符。通过选择不同的参考态以及算符 $R$ 的形式，即可定义不同的 EOM 模型。在用于电子激发态的 EOM 模型（EOM-EE，上面板）中，参考态是闭壳层基态 Hartree–Fock 行列式，算符 $R$ 保持 $\alpha$ 和 $\beta$ 电子数不变。注意，双组态开壳层单重态可以被 EOM-EE 正确描述，因为两个主导行列式均以单电子激发的形式出现。第二和第三面板展示了 EOM-IP/EA 模型。EOM-IP/EA 的参考态是 $N+1$ / $N-1$ 电子态的行列式，激发算符 $R$ 分别具有电离或电子附着的性质。注意，EOM-IP 和 EOM-EA 的行列式集合相对于双重自由基的多组态基态和激发态而言都是自旋完备且均衡的。EOM-SF 方法（最下面板）采用高自旋三重态作为参考，算符 $R$ 包含自旋翻转项，即不保持 $\alpha$ 和 $\beta$ 电子数不变。目标低自旋态中出现的所有行列式均以单次激发的形式出现，这保证了无论 HOMO/LUMO 能隙大或小，它们都能得到均衡的处理。Q-Chem 中可用的其他 EOM 方法还有 EOM-2SF、EOM-DIP 和 EOM-DEA。](../assets/eom_formalism_figure.png)
 
-![Figure 7.2: In the EOM formalism, target states $\Psi$ are described as
-excitations from a reference state $\Psi_{0}$ : $\Psi=R\Psi_{0}$ , where $R$ is a
-general excitation operator. Different EOM models are defined by choosing the
-reference and the form of the operator $R$ . In the EOM models for
-electronically excited states (EOM-EE, upper panel), the reference is the
-closed-shell ground state Hartree–Fock determinant, and the operator $R$ conserves the number of $\alpha$ and $\beta$ electrons. Note that
-two-configurational open-shell singlets can be correctly described by EOM-EE
-since both leading determinants appear as single electron excitations. The
-second and third panels present the EOM-IP/EA models. The reference
-states for EOM-IP/EA are determinants for $N+1$ / $N-1$ electron
-states, and the excitation operator $R$ is ionizing or electron-attaching,
-respectively. Note that both the EOM-IP and EOM-EA sets of determinants are
-spin-complete and balanced with respect to the target multi-configurational
-ground and excited states of doublet radicals. The EOM-SF method (the
-lowest panel) employs the high-spin triplet state as a reference, and the
-operator $R$ includes spin-flip, i.e. , does not conserve the number of $\alpha$ and $\beta$ electrons. All the determinants present in the target
-low-spin states appear as single excitations, which ensures their balanced
-treatment both in the limit of large and small HOMO/LUMO gaps. Other EOM
-methods available in Q-Chem are EOM-2SF, EOM-DIP, and EOM-DEA.](../assets/eom_formalism_figure.png)
-
-*Figure 7.2: In the EOM formalism, target states $\Psi$ are described as
-excitations from a reference state $\Psi_{0}$ : $\Psi=R\Psi_{0}$ , where $R$ is a
-general excitation operator. Different EOM models are defined by choosing the
-reference and the form of the operator $R$ . In the EOM models for
-electronically excited states (EOM-EE, upper panel), the reference is the
-closed-shell ground state Hartree–Fock determinant, and the operator $R$ conserves the number of $\alpha$ and $\beta$ electrons. Note that
-two-configurational open-shell singlets can be correctly described by EOM-EE
-since both leading determinants appear as single electron excitations. The
-second and third panels present the EOM-IP/EA models. The reference
-states for EOM-IP/EA are determinants for $N+1$ / $N-1$ electron
-states, and the excitation operator $R$ is ionizing or electron-attaching,
-respectively. Note that both the EOM-IP and EOM-EA sets of determinants are
-spin-complete and balanced with respect to the target multi-configurational
-ground and excited states of doublet radicals. The EOM-SF method (the
-lowest panel) employs the high-spin triplet state as a reference, and the
-operator $R$ includes spin-flip, i.e. , does not conserve the number of $\alpha$ and $\beta$ electrons. All the determinants present in the target
-low-spin states appear as single excitations, which ensures their balanced
-treatment both in the limit of large and small HOMO/LUMO gaps. Other EOM
-methods available in Q-Chem are EOM-2SF, EOM-DIP, and EOM-DEA.*
+*图 7.2：在 EOM 形式体系中，目标态 $\Psi$ 被描述为从参考态 $\Psi_{0}$ 出发的激发：$\Psi=R\Psi_{0}$，其中 $R$ 是一个一般性激发算符。通过选择不同的参考态以及算符 $R$ 的形式，即可定义不同的 EOM 模型。在用于电子激发态的 EOM 模型（EOM-EE，上面板）中，参考态是闭壳层基态 Hartree–Fock 行列式，算符 $R$ 保持 $\alpha$ 和 $\beta$ 电子数不变。注意，双组态开壳层单重态可以被 EOM-EE 正确描述，因为两个主导行列式均以单电子激发的形式出现。第二和第三面板展示了 EOM-IP/EA 模型。EOM-IP/EA 的参考态是 $N+1$ / $N-1$ 电子态的行列式，激发算符 $R$ 分别具有电离或电子附着的性质。注意，EOM-IP 和 EOM-EA 的行列式集合相对于双重自由基的多组态基态和激发态而言都是自旋完备且均衡的。EOM-SF 方法（最下面板）采用高自旋三重态作为参考，算符 $R$ 包含自旋翻转项，即不保持 $\alpha$ 和 $\beta$ 电子数不变。目标低自旋态中出现的所有行列式均以单次激发的形式出现，这保证了无论 HOMO/LUMO 能隙大或小，它们都能得到均衡的处理。Q-Chem 中可用的其他 EOM 方法还有 EOM-2SF、EOM-DIP 和 EOM-DEA。*

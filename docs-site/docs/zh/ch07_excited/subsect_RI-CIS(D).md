@@ -1,151 +1,150 @@
 ---
-title: "7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D 0 ): Job Controls and Examples"
+title: "7.8.7 RI-CIS(D)、SOS-CIS(D) 与 SOS-CIS(D 0)：作业控制与示例"
 ---
 
-## 7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D${}_{0}$): Job Controls and Examples
+## 7.8.7 RI-CIS(D)、SOS-CIS(D) 与 SOS-CIS(D${}_{0}$)：作业控制与示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-These methods are activated by setting the *$rem* keyword METHOD to
-RICIS(D), SOSCIS(D), and SOSCIS(D0), respectively.
-Other keywords are the same as in CIS method explained in
-Section [7.2.2](subsec_CIS.md). As these methods rely on the RI approximation,
-AUX_BASIS needs to be set by following the same guide as in RI-MP2
-(Section [6.6](../ch06_correlation/topic_rimp2.md)).
+将 *$rem* 关键字 METHOD 分别设置为
+RICIS(D)、SOSCIS(D) 和 SOSCIS(D0)，即可激活这些方法。
+其余关键字与 [7.2.2 节](subsec_CIS.md)中介绍的 CIS 方法相同。由于这些方法依赖于
+RI 近似，因此需要按照 RI-MP2（[6.6 节](../ch06_correlation/topic_rimp2.md)）中的相同指南来设置
+AUX_BASIS。
 
 METHOD
 
 ### `METHOD`
 
-> **Excited state method of choice**
+> **所选的激发态方法**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `None`
+> * **可选值**:
 >     * RICIS(D)
->     * Activate RI-CIS(D)
+>     * 激活 RI-CIS(D)
 >     * SOSCIS(D)
->     * Activate SOS-CIS(D)
+>     * 激活 SOS-CIS(D)
 >     * SOSCIS(D0)
->     * Activate SOS-CIS(D
+>     * 激活 SOS-CIS(D
 >     * ${}_{0}$
 >     * )
-> * **Recommendation**: None
+> * **建议**: 无
 
 CIS_N_ROOTS
 
 ### `CIS_N_ROOTS`
 
-> **Sets the number of excited state roots to find**
+> **设置要求解的激发态根数**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
 >     * $n>0$
->     * Looks for
+>     * 求解
 >     * $n$
->     * excited states
-> * **Recommendation**: None
+>     * 个激发态
+> * **建议**: 无
 
 CIS_SINGLETS
 
 ### `CIS_SINGLETS`
 
-> **Solve for singlet excited states (ignored for spin unrestricted systems)**
+> **求解单重激发态（对自旋非限制体系将被忽略）**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **可选值**:
 >     * TRUE
->     * Solve for singlet states
+>     * 求解单重态
 >     * FALSE
->     * Do not solve for singlet states.
-> * **Recommendation**: None
+>     * 不求解单重态。
+> * **建议**: 无
 
 CIS_TRIPLETS
 
 ### `CIS_TRIPLETS`
 
-> **Solve for triplet excited states (ignored for spin unrestricted systems)**
+> **求解三重激发态（对自旋非限制体系将被忽略）**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **可选值**:
 >     * TRUE
->     * Solve for triplet states
+>     * 求解三重态
 >     * FALSE
->     * Do not solve for triplet states.
-> * **Recommendation**: None
+>     * 不求解三重态。
+> * **建议**: 无
 
 CIS_STATE_DERIV
 
 ### `CIS_STATE_DERIV`
 
-> **Sets the excited state index for analytical gradient calculation for geometry optimizations and vibrational analysis with SOS-CIS(D ${}_{0}$ )**
+> **在使用 SOS-CIS(D ${}_{0}$ ) 进行几何优化和振动分析时，设置用于解析梯度计算的激发态索引**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * Select the
+>     * 选择第
 >     * $n$
->     * th state.
-> * **Recommendation**: Check to see that the states do no change order during an optimization. For closed-shell systems, either CIS_SINGLETS or CIS_TRIPLETS must be set to false.
+>     * 个态。
+> * **建议**: 需检查在优化过程中各态的顺序是否发生变化。对于闭壳层体系，必须将 CIS_SINGLETS 或 CIS_TRIPLETS 之一设置为 false。
 
 MEM_STATIC
 
 ### `MEM_STATIC`
 
-> **Sets the memory for individual program modules**
+> **为各个程序模块设置内存**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `192`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `192`
+> * **可选值**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: At least $150(N^{2}+N)D$ of is required ( $N$ : number of basis functions, $D$ : size of a double precision storage, usually 8). Because a number of matrices with $N^{2}$ size also need to be stored, 32–160 MB of additional is needed.
+>     * 用户自定义的内存大小（以兆字节计）。
+> * **建议**: 至少需要 $150(N^{2}+N)D$（$N$：基函数数目，$D$：双精度存储单元的大小，通常为 8）。由于还需要存储若干大小为 $N^{2}$ 的矩阵，因此额外需要 32–160 MB 的内存。
 
 MEM_TOTAL
 
 ### `MEM_TOTAL`
 
-> **Sets the total memory available to Q-Chem**
+> **设置 Q-Chem 可用的总内存**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2000`
+> * **可选值**:
 >     * $n$
->     * User-defined number of megabytes
-> * **Recommendation**: The minimum memory requirement of RI-CIS(D) is approximately MEM_STATIC + max $(3SVXD,3X^{2}D)$ ( $S$ : number of excited states, $X$ : number of auxiliary basis functions, $D$ : size of a double precision storage, usually 8). However, because RI-CIS(D) uses a batching scheme for efficient evaluations of electron repulsion integrals, specifying more memory will significantly speed up the calculation. Put as much memory as possible if you are not sure what to use, but never put any more than what is available. The minimum memory requirement of SOS-CIS(D) and SOS-CIS(D ${}_{0}$ ) is approximately MEM_STATIC + $20X^{2}D$ . SOS-CIS(D ${}_{0}$ ) gradient calculation becomes more efficient when $30X^{2}D$ more memory space is given. Like in RI-CIS(D), put as much memory as possible if you are not sure what to use. The actual memory size used in these calculations will be printed out in the output file to give a guide about the required memory.
+>     * 用户自定义的内存大小（以兆字节计）
+> * **建议**: RI-CIS(D) 的最低内存需求约为 MEM_STATIC + max $(3SVXD,3X^{2}D)$（$S$：激发态数目，$X$：辅助基函数数目，$D$：双精度存储单元的大小，通常为 8）。不过，由于 RI-CIS(D) 采用分批（batching）方案来高效计算电子排斥积分，指定更多内存会显著加快计算速度。如果不确定该使用多少，请尽可能多地分配内存，但绝不要超过实际可用的内存量。SOS-CIS(D) 和 SOS-CIS(D ${}_{0}$ ) 的最低内存需求约为 MEM_STATIC + $20X^{2}D$。当为 SOS-CIS(D ${}_{0}$ ) 梯度计算额外提供 $30X^{2}D$ 的内存空间时，其效率会更高。与 RI-CIS(D) 一样，如果不确定该使用多少，请尽可能多地分配内存。这些计算中实际使用的内存大小会打印在输出文件中，以便为所需内存提供参考。
 
 SOS_FACTOR
 
 ### `SOS_FACTOR`
 
-> **Sets the scaling parameter $c_{T}$**
+> **设置缩放参数 $c_{T}$**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1300000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1300000`
+> * **可选值**:
 >     * $n$
 >     * $c_{T}=n/1000000$
-> * **Recommendation**: Use the default
+> * **建议**: 使用默认值
 
 SOS_UFACTOR
 
 ### `SOS_UFACTOR`
 
-> **Sets the scaling parameter $c_{U}$**
+> **设置缩放参数 $c_{U}$**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `151`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `151`
+> * **可选值**:
 >     * $n$
 >     * $c_{U}=n/100$
-> * **Recommendation**: Use the default
+> * **建议**: 使用默认值
 
-???+ example "Example 7.67: Input for an RI-CIS(D) calculation."
+???+ example "示例 7.67: RI-CIS(D) 计算的输入。"
     ```qchem
     $molecule
        0 1
@@ -171,7 +170,7 @@ SOS_UFACTOR
     $end
     ```
 
-???+ example "Example 7.68: Input for an SOS-CIS(D) calculation."
+???+ example "示例 7.68: SOS-CIS(D) 计算的输入。"
     ```qchem
     $molecule
        0 1
@@ -195,7 +194,7 @@ SOS_UFACTOR
     $end
     ```
 
-???+ example "Example 7.69: Input for an SOS-CIS(D ${}_{0}$ ) geometry optimization on S ${}_{2}$ surface."
+???+ example "示例 7.69: 在 S ${}_{2}$ 面上进行 SOS-CIS(D ${}_{0}$ ) 几何优化的输入。"
     ```qchem
     $molecule
        0 1

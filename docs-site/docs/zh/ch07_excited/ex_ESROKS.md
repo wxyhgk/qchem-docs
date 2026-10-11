@@ -1,199 +1,116 @@
 ---
-title: "7.7.4 Restricted Open-Shell Kohn-Sham Method"
+title: "7.7.4 受限开壳层 Kohn-Sham 方法"
 ---
 
-## 7.7.4 Restricted Open-Shell Kohn-Sham Method
+## 7.7.4 受限开壳层 Kohn-Sham 方法
 
 (July 4, 2026)
 
-Singly-excited states of closed-shell molecules cannot be described via a
-single non-*aufbau* filled Slater determinant as both the up and down spins are
-equally likely to be excited, leading to at least two configurations with equal
-weights. Triplet energies can nonetheless be found from a single determinant
-by switching from the $M_{S}=0$ subspace of the ground state to $M_{S}=\pm 1$
-(*i.e.*, by having both unpaired electrons have spins pointing in the same direction
-instead of having one up and one down spin). This tactic however does not work
-on singlet excited states, with non-*aufbau* filled configurations where only the
-up (or down) spin is excited being intermediate between singlet and triplet
-(and thus spin contaminated). This mixed state is not unlike spin-symmetry
-broken, unrestricted ground state solutions. An actual singlet energy can be
-obtained via approximate spin-purification post SCF, by removing the triplet
-contribution to the energy. The triplet energy thus has to be separately
-estimated with a second orbital optimization.
+闭壳层分子的单激发态无法用单个非 *aufbau*（非构造原理）填充的 Slater 行列式来描述，因为自旋向上与自旋向下的电子被激发的概率相同，从而至少产生两个权重相等的组态。尽管如此， triplet（三重态）能量仍可由单个行列式求得，方法是从基态的 $M_{S}=0$ 子空间切换到 $M_{S}=\pm 1$ 子空间（*即*，让两个未配对电子的自旋指向同一方向，而不是一个向上、一个向下）。然而这一策略对单重激发态并不适用：在非 *aufbau* 填充组态中，仅激发自旋向上（或向下）的电子，其状态介于单重态与三重态之间（因而存在自旋污染）。这种混合态与破坏了自旋对称性的非受限（unrestricted）基态解并无本质区别。通过在 SCF 之后进行近似的自旋纯化（spin-purification）、扣除能量中的三重态贡献，可以获得真正的单重态能量。但这样一来，三重态能量就必须通过第二次轨道优化单独估算。
 
-The *restricted open-shell Kohn-Sham* (ROKS) method offers an alternative route to singlet
-excited states of this nature. The mixed non-*aufbau* configuration (with either
-the up or down spin being excited) is exactly halfway between a singlet and
-triplet when restricted open-shell orbitals are used, and has an energy
-$E_{\text{mix}}$. The triplet energy $E_{\text{T}}$ is also computable from a single
-determinant within the the $M_{S}=\pm 1$ subspaces. Consequently, ROKS optimizes
-a set of spin-restricted orbitals $\{\phi_{\text{ROKS}}\}$ such that the spin-purified
-singlet energy,
+*受限开壳层 Kohn-Sham*（restricted open-shell Kohn-Sham, ROKS）方法为这类单重激发态提供了一条替代途径。当使用受限开壳层轨道时，混合的非 *aufbau* 组态（激发自旋向上或自旋向下）恰好位于单重态与三重态的正中间，其能量为 $E_{\text{mix}}$。三重态能量 $E_{\text{T}}$ 同样可以在 $M_{S}=\pm 1$ 子空间内由单个行列式计算得到。因此，ROKS 优化一组自旋受限轨道 $\{\phi_{\text{ROKS}}\}$，使得自旋纯化后的单重态能量
 
 <a id="Ch7.E79"></a>
 $$
 E_{\text{S}}=2E_{\text{mix}}[\{\phi_{\text{ROKS}}\}]-E_{\text{T}}[\{\phi_{\text{ROKS}}\}]\;, \tag{7.79}
 $$
 
-is stationary. This therefore needs only one orbital optimization, in contrast to
-the two sets needed for the $\Delta$SCF approach mentioned in the preceding
-paragraph. The structure of the ROKS Fock matrix however is more complex,
-by virtue of the two-determinant nature of the equations.[[579]](../bib_references/bib.md#bib600)
+处于平稳状态。因此它只需要一次轨道优化，与前一段提到的 $\Delta$SCF 方法所需的两组轨道形成对比。不过，由于方程具有双行列式的性质，ROKS 的 Fock 矩阵结构更为复杂。[[579]](../bib_references/bib.md#bib600)
 
-It is also important to note that this excited-state method is
-distinct from ROKS theory for open-shell ground states, which is a single-determinant method
-corresponding to the high-spin state with multiple unpaired spins.
+还需要注意的是，这一激发态方法与用于开壳层*基态*的 ROKS 理论是不同的，后者是一种对应于具有多个未配对电子的高自旋态的单行列式方法。
 
-The implementation of ROKS excited states in **Q-Chem** largely follows the
-theoretical framework established by Filatov and Shaik;[[388]](../bib_references/bib.md#bib396)
+**Q-Chem** 中 ROKS 激发态的实现基本上遵循 Filatov 与 Shaik 建立的理论框架；[[388]](../bib_references/bib.md#bib396) 关于最低激发单重态（$S_{1}$ 态）采用基于 DIIS 方法的情形，可见文献 [[714]](../bib_references/bib.md#bib746)。下面给出一个示例。借助平方梯度法（squared-gradient approach，第 [7.7.5](ex_BEDSCF.md) 节）、最大重叠方法（maximum overlap method，第 [7.7.2](ex_OpSing.md) 节）或态定向能量投影（state-targeted energy projection，第 [7.7.8](ex_ROSTEP.md) 节），ROKS 也可以处理更高的激发态。
 
-see Ref. [[714]](../bib_references/bib.md#bib746)
- for the case of the
-lowest excited singlet ($S_{1}$ state) with a DIIS-based approach. An example is provided below.
-ROKS for higher excited states is possible using either the squared-gradient approach
-(Section [7.7.5](ex_BEDSCF.md)),
-the maximum overlap method (Section [7.7.2](ex_OpSing.md)),
-or else state-targeted energy projection (Section [7.7.8](ex_ROSTEP.md)).
+人们发现，在描述电荷转移态时，ROKS 的精度显著优于 TDDFT，[[513]](../bib_references/bib.md#bib523) 初步证据表明对 Rydberg 态同样如此。ROKS 在芯层（core）激发能方面也非常精确，使用 SCAN 泛函对小分子的 K 边与 L 边激发可获得低于 0.5 eV 的误差。[[510]](../bib_references/bib.md#bib525)
 
-ROKS has been found to be significantly more accurate than TDDFT for describing
-charge-transfer states,[[513]](../bib_references/bib.md#bib523)
- and preliminary evidence
-shows the same to hold for Rydberg states. ROKS is also extremely accurate for
-core excitation energies, with the SCAN functional yielding errors below 0.5 eV
-for both K- and L-edge excitations of small molecules.[[510]](../bib_references/bib.md#bib525)
+使用 ROKS/SGM 计算芯激发态的例子见第 [7.7.5](ex_BEDSCF.md) 节。（激发态的）解析核梯度同样可用，因此也能进行几何优化和分子动力学计算，以及有限差分频率计算。ROKS 代码的使用者被要求在引用文献 [[714]](../bib_references/bib.md#bib746) 的同时，若采用了 SGM 实现则再引用文献 [[511]](../bib_references/bib.md#bib526)，若用于电荷转移态则引用文献 [[513]](../bib_references/bib.md#bib523)，若用于芯激发则引用文献 [[510]](../bib_references/bib.md#bib525)。
 
-Examples of using ROKS/SGM to compute core-excited states are provided in
-Section [7.7.5](ex_BEDSCF.md). Analytic nuclear gradients (in the excited state) are
-also available, enabling geometry optimization and molecular dynamics
-calculations as well, along with finite-difference frequency calculations.
-Users of the ROKS code are requested to cite Ref. [[714]](../bib_references/bib.md#bib746)
-, and in addition
-Ref. [[511]](../bib_references/bib.md#bib526)
- if the SGM implementation is
-employed, as well as Ref. [[513]](../bib_references/bib.md#bib523)
- for charge-transfer states and
-Ref. [[510]](../bib_references/bib.md#bib525)
- for application to core excitations.
+ROKS 的主要局限在于它只能描述含一个断裂电子对的态。因此它仅适用于闭壳层体系的某些激发态：所有可由单对自然跃迁轨道（natural transition orbital, NTO）良好描述的单重单激发态，或者总共只断裂一个电子对的更高单重态（例如 tetrazine 的 ${}^{1}$B${}_{3g}$ 双激发态）。幸运的是，大多数电荷转移和芯激发并不需要断裂多于一个电子对，所以这一局限在实际应用中并非严重问题。
 
-The chief limitation of ROKS is that it can only describe states with one
-broken electron pair. It is consequently applicable only to certain excited
-states of closed-shell systems: all singlet single excitations well-described
-by a single natural transition orbital (NTO) pair, or higher singlets where
-only one electron pair is broken in total (like the ${}^{1}$B${}_{3g}$ doubly
-excited state of tetrazine). Fortunately, most charge-transfer and
-core-excitations do not require more than one broken electron pair, and so this
-limitation is not a major problem in practice.
+此外，当两个开壳层轨道属于同一空间对称性时，ROKS 常常出现非物理的相互混合，这在 $\pi\to\pi^{\ast}$ 和 $1s\to 3s$ 激发中表现尤为明显。[[408]](../bib_references/bib.md#bib417)
 
-Furthermore, ROKS often suffers from an unphysical mixing between the open-shell
-orbitals when they belong to the same spatial symmetry, which often manifests in
-$\pi\to\pi^{\ast}$ and $1s\to 3s$ excitations.[[408]](../bib_references/bib.md#bib417)
+这与为双行列式波函数定义有效 Fock 算符时固有的模糊性相关。[[579]](../bib_references/bib.md#bib600) 对于出现这种混合的态，收敛往往很困难，并且与基态的重叠可能相当显著。可以采用两种方案来缓解这一问题。第一种是能级平移（level-shift）技术，它拉开两个单占据轨道之间的能量，从而抑制它们的混合。[[714]](../bib_references/bib.md#bib746) 该技术仅在使用 DIIS 且基于旧 SCF 引擎的 ROKS 实现（GEN_SCFMAN = FALSE）中可用。第二种是完全抑制单占据轨道之间的混合。虽然这可能违背正确的变分条件，[[579]](../bib_references/bib.md#bib600) 但它能得到与基态重叠小得多的激发态，并带来更平滑的收敛。参见示例 7.7.4 的演示。
 
-This is associated with the inherent ambiguity
-in defining an effective Fock operator for a two-determinant wave
-function.[[579]](../bib_references/bib.md#bib600)
- Convergence is often difficult for the states where
-this mixing manifests, and the overlap with the ground state may be significant.
-Two protocols can be used to alleviate this issue. The first is a level-shift technique
-that splits the energy between the two singly-occupied orbitals thereby
-supressing their mixing.[[714]](../bib_references/bib.md#bib746)
- It is only available with DIIS and
-for the ROKS implementation on the old SCF engine (GEN_SCFMAN = FALSE).
-The second is a total supression of the mixing between the singly-occupied orbitals.
-While this may disregard the correct variational condition,[[579]](../bib_references/bib.md#bib600)
- it
-produces excited states with much smaller overlaps with the ground state and provides
-smoother convergence. See Example 7.7.4 for a demonstration.
-
-To perform an ROKS excited state calculation, simply set the keyword
-ROKS = TRUE and ensure that UNRESTRICTED = FALSE.
-It is recommended to perform a preliminary ground-state calculation on the system
-first, and then use the ground-state orbitals to construct the initial guess
-using SCF_GUESS = READ. Transition dipole moments between two
-arbitrary configurations (normally the ground state and an excited state computed
-with either $\Delta$SCF or ROKS) can be computed by setting TRANS_MOM_SAVE =
-TRUE on the calculation of the initial state and TRANS_MOM_READ =
-TRUE on the calculation of the final state. The non-orthogonality of
-the orbital bases is accounted for.
+要执行 ROKS 激发态计算，只需设置关键字 ROKS = TRUE 并确保 UNRESTRICTED = FALSE。建议先对该体系进行一次预备性的基态计算，然后通过 SCF_GUESS = READ 利用基态轨道构造初始猜测。两个任意的组态之间（通常是基态与用 $\Delta$SCF 或 ROKS 计算得到的某个激发态）的跃迁偶极矩，可以在初态计算中设置 TRANS_MOM_SAVE = TRUE、在末态计算中设置 TRANS_MOM_READ = TRUE 来求得。轨道基组之间的非正交性已被考虑在内。
 
 ROKS
 
 ### `ROKS`
 
-> **Controls whether ROKS calculation will be performed.**
+> **控制是否执行 ROKS 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * ROKS is not performed.
+>     * 不执行 ROKS。
 >     * TRUE
->     * ROKS will be performed.
-> * **Recommendation**: Set to TRUE if ROKS calculation is desired. Make sure that UNRESTRICTED is not set to TRUE .
+>     * 执行 ROKS。
+> * **建议**: 若希望进行 ROKS 计算则设为 TRUE。请确保 UNRESTRICTED 未被设为 TRUE。
 
 ROKS_LEVEL_SHIFT
 
 ### `ROKS_LEVEL_SHIFT`
 
-> **Introduce a level shift of $N$ /100 hartree to aid DIIS convergence.**
+> **引入 $N$/100 hartree 的能级平移以辅助 DIIS 收敛。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * No shift
+>     * 不平移
 >     * $N$
->     * level shift of
+>     * 平移量为
 >     * $N$
->     * /100 hartree.
-> * **Recommendation**: Use in cases of problematic DIIS convergence. Only available for the ROKS implementation on the old SCF engine ( GEN_SCFMAN = FALSE ).
+>     * /100 hartree。
+> * **建议**: 在 DIIS 收敛困难的情况使用。仅对基于旧 SCF 引擎（GEN_SCFMAN = FALSE）的 ROKS 实现可用。
 
 ROKS_SS_MIXING
 
 ### `ROKS_SS_MIXING`
 
-> **Allow coupling between the two singly-occupied molecular orbitals.**
+> **允许两个单占据分子轨道之间的耦合。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **可选值**:
 >     * 0
->     * Supress coupling.
+>     * 抑制耦合。
 >     * 1
->     * Allow coupling.
-> * **Recommendation**: Supress coupling when the resuling states are difficult to converge and / or overlap significantly with the ground state. Only for GDM and SGM-based solvers.
+>     * 允许耦合。
+> * **建议**: 当所得态难以收敛和/或与基态重叠显著时，抑制耦合。仅适用于基于 GDM 和 SGM 的求解器。
 
 TRANS_MOM_SAVE
 
 ### `TRANS_MOM_SAVE`
 
-> **Save orbitals for a subsequent transition dipole calculation.**
+> **保存轨道，供后续跃迁偶极矩计算使用。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Dont save orbitals.
+>     * 不保存轨道。
 >     * TRUE
->     * Save orbitals.
-> * **Recommendation**: Saves the orbitals of the calculation for which this variable is set. It usually would be the ground state calculation but it could be any restricted SCF, unrestricted SCF, or ROKS calculation, which allows computing general inter-state transition dipoles.
+>     * 保存轨道。
+> * **建议**: 保存设置该变量的那次计算的轨道。通常会是基态计算，但也可以是任意受限 SCF、非受限 SCF 或 ROKS 计算，从而允许计算一般的态间跃迁偶极矩。
 
 TRANS_MOM_READ
 
 ### `TRANS_MOM_READ`
 
-> **Read previously-saved reference orbitals and compute transition dipole with orbitals from current calculation.**
+> **读取先前保存的参考轨道，并与当前计算的轨道一起计算跃迁偶极矩。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Don’t read orbitals.
+>     * 不读取轨道。
 >     * TRUE
->     * Read orbitals.
-> * **Recommendation**: It assumes that a set of orbitals was previously saved with TRANS_MOM_SAVE . If so, reads said orbitals and computes the transition dipole moment with the orbitals of the current calculation.
+>     * 读取轨道。
+> * **建议**: 该选项假定先前已用 TRANS_MOM_SAVE 保存过一组轨道。若是如此，则读取这些轨道，并与当前计算的轨道一起求跃迁偶极矩。
 
-???+ example "Example 7.50: RO-PBE0/6-311+G* excited state gradient of formaldehyde, using the ground
-state orbitals as an initial guess. This used the DIIS based implementation of Ref 714 Kowalczyk T. et al. J. Chem. Phys. (2013) , 138 , pp. 164101 . Link ."
+???+ example "示例 7.50: 在 RO-PBE0/6-311+G* 水平下计算甲醛激发态的梯度，使用基态轨道作为初始猜测。此处采用了文献 714 Kowalczyk T. et al. J. Chem. Phys. (2013), 138, pp. 164101. Link. 中基于 DIIS 的实现。"
     ```qchem
     $comment
        ROKS excited state gradient of formaldehyde
@@ -233,10 +150,7 @@ state orbitals as an initial guess. This used the DIIS based implementation of R
     $end
     ```
 
-???+ example "Example 7.51: ROKS calculation on the lowest $\pi\to\pi^{\ast}$ excited state of acetone
-using $\omega$ B97X-D/STO-3G. To observe the mixing of the open shells, as well as the
-effect of mixing suppression, try running this example with ROKS_SS_MIXING set to
-TRUE/FALSE."
+???+ example "示例 7.51: 在 $\omega$B97X-D/STO-3G 水平下对丙酮最低 $\pi\to\pi^{\ast}$ 激发态进行 ROKS 计算。若要观察开壳层轨道之间的混合以及抑制混合的效果，可尝试将 ROKS_SS_MIXING 设为 TRUE/FALSE 运行本例。"
     ```qchem
     $comment
       Plain old SCF on the ground state.

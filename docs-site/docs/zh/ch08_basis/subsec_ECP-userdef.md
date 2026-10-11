@@ -1,5 +1,3 @@
-已保存至 `translated/8.10.5_user-defined-ecps_zh.md`
-
 ---
 title: "8.10.5 用户自定义 ECP"
 ---

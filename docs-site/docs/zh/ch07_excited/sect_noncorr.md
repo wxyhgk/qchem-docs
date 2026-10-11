@@ -1,15 +1,15 @@
 ---
-title: "7.2 Uncorrelated Wave Function Methods"
+title: "7.2 非关联波函数方法"
 ---
 
-# 7.2 Uncorrelated Wave Function Methods
+# 7.2 非关联波函数方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [7.2.1 Introduction](Ch7.S2.SS1.md)
+- [7.2.1 引言](Ch7.S2.SS1.md)
 
-- [7.2.2 Configuration Interaction with Single Substitutions (CIS)](subsec_CIS.md)
+- [7.2.2 组态相互作用单激发（CIS）方法](subsec_CIS.md)
 
-- [7.2.3 CIS Methods with Extended Excitation Manifolds](Ch7.S2.SS3.md)
+- [7.2.3 具有扩展激发流形的 CIS 方法](Ch7.S2.SS3.md)
 
-- [7.2.4 Job Control Options](sec_CIS-jobcontrol.md)
+- [7.2.4 作业控制选项](sec_CIS-jobcontrol.md)

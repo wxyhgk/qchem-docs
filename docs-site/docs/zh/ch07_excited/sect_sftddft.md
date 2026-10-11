@@ -1,116 +1,78 @@
 ---
-title: "7.3.4 Spin-Flip TDDFT"
+title: "7.3.4 自旋翻转 TDDFT"
 ---
 
-## 7.3.4 Spin-Flip TDDFT
+## 7.3.4 自旋翻转 TDDFT（Spin-Flip TDDFT）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The spin-flip approach provides
-a way to describe certain types of difficult multi-configurational states
-within a single-reference formalism.[[726]](../bib_references/bib.md#bib757)
+自旋翻转（spin-flip, SF）方法提供了一条在单参考（single-reference）框架内描述某些棘手的多组态（multi-configurational）态的途径。[[726]](../bib_references/bib.md#bib757)
 
-SF is particularly suitable for states that can be described as two electrons in two orbitals [(2e,2o)]
-or (3e,3o). The idea is to describe such target states as spin-flipping excitations
-(*e.g.*, $\alpha\rightarrow\beta$) from a high-spin reference determinant (triplet or
-quartet). SF treatment can be combined with different correlation treatments (*e.g.*,
-EOM-CC, ADC, CI, RAS-CI)[[205]](../bib_references/bib.md#bib207)
- as well as with DFT.[[1239]](../bib_references/bib.md#bib1294)
+SF 特别适用于可以用两电子两轨道 [(2e,2o)] 或 (3e,3o) 描述的态。其基本思想是将这类目标态描述为从高自旋参考行列式（三重态或四重态）出发的自旋翻转激发（例如 $\alpha\rightarrow\beta$）。SF 处理既可以与不同的关联处理方法相结合（例如 EOM-CC、ADC、CI、RAS-CI）[[205]](../bib_references/bib.md#bib207)，也可以与密度泛函理论（Density Functional Theory, DFT）相结合。[[1239]](../bib_references/bib.md#bib1294)
 
-SF-TDDFT can describe the ground state as well as a few low-lying excited states.
-It can be used to describe diradicals, triradicals, single-molecule magnets, systems with small HOMO-LUMO gaps,
-and, in some cases, bond-breaking and conical intersections.[[205]](../bib_references/bib.md#bib207)
+SF-TDDFT 既可以描述基态，也可以描述若干低激发态。它可用于描述双自由基（diradical）、三自由基（triradical）、单分子磁体、HOMO-LUMO 能隙较小的体系，在某些情况下还可用于描述键断裂过程和锥形交叉（conical intersection）。[[205]](../bib_references/bib.md#bib207)
 
-SF-DFT calculations are deployed by choosing an appropriate multiplicity of the
-reference state and setting SPIN_FLIP to 1 (regular SF-TDDFT) or 2
-(MRSF-TDDFT).
-SF-DFT is only
-used within Tamm-Dancoff approximation (RPA must be set to FALSE).
+执行 SF-DFT 计算时，需要为参考态选择适当的多重度（multiplicity），并将 SPIN_FLIP 设为 1（常规 SF-TDDFT）或 2（MRSF-TDDFT）。SF-DFT 仅在 Tamm-Dancoff 近似（Tamm-Dancoff approximation, TDA）下使用（必须将 RPA 设为 FALSE）。
 
-The original SF-DFT, formulated using collinear kernel,
-requires the functionals with substantial fraction of Hartree–Fock exchange. Best results are obtained
-using functionals with $\approx 50$% Hartree–Fock exchange,[[1239]](../bib_references/bib.md#bib1294)
+最初的 SF-DFT 采用共线（collinear）核（kernel）构建，要求使用含有较高比例 Hartree–Fock 交换的泛函。使用含约 $50$% Hartree–Fock 交换比例的泛函可获得最佳结果，[[1239]](../bib_references/bib.md#bib1294)
 
-behavior that was explained on theoretical grounds.[[603]](../bib_references/bib.md#bib626)
+这一行为已从理论层面得到解释。[[603]](../bib_references/bib.md#bib626)
 
-Becke’s half-and-half functional BH&HLYP has become something of a standard
-approach when using standard SF-TDDFT.
+Becke 的"半半"泛函 BH&HLYP 已成为使用标准 SF-TDDFT 时的事实上的标准方法。
 
-A SF-TDDFT method with a non-collinear exchange-correlation potential, originally developed by Ziegler and
-co-workers,[[1424]](../bib_references/bib.md#bib1486)
+由 Ziegler 及其合作者最早提出的、采用非共线（non-collinear）交换关联势的 SF-TDDFT 方法也已在程序中实现。[[1424]](../bib_references/bib.md#bib1486)[[114]](../bib_references/bib.md#bib101)
 
-has also been implemented.[[114]](../bib_references/bib.md#bib101)
+这一非共线版本在激发能方面有时优于共线 SF-TDDFT，但其分母中含有自旋密度因子（$\rho_{\alpha}-\rho_{\beta}$），有时会导致稳定性问题。
 
-This non-collinear version sometimes improves upon
-collinear SF-TDDFT for excitation energies but contains a factor of spin density
-($\rho_{\alpha}-\rho_{\beta}$) in the denominator that sometimes causes stability problems.
+SF-DFT 态可能存在自旋污染（spin-contamination）问题。该问题可以通过使用自旋适配（spin-adapted）版本的 SF-TDDFT（第 [7.2.3.3](Ch7.S2.SS3.md#safs-sftddft) 节）[[1549]](../bib_references/bib.md#bib1615)
 
-The SF-DFT states may suffer from spin-contamination. This problem can be addressed
-by using a spin-adapted version of SF-TDDFT (Section [7.2.3.3](Ch7.S2.SS3.md#safs-sftddft)),[[1549]](../bib_references/bib.md#bib1615)
+来解决，也可以通过使用下文所述的混合参考（mixed-reference）SF-TDDFT 公式来解决。
 
-or by using mixed-reference SF-TDDFT formulation described below.
+所有 SF-TDDFT 变体均可计算永久偶极矩和跃迁偶极矩。自旋-轨道耦合（spin-orbit coupling, SOC）和波函数分析（自然轨道占据数转变 NTO 及激子描述符）可用于 SF-TDDFT 的标准共线与非共线公式以及 MR-SF-TDDFT。解析梯度与非绝热耦合（non-adiabatic coupling, NAC）可用于非自旋适配的共线及非共线 SF-TDDFT 公式。
 
-Calculations of permanent and transition dipole moments
-are available for all
-SF-TDDFT variants.
-SOCs and wave-function analysis (NTOs and exciton descriptors)
-are available for
-for standard collinear and non-collinear formulations of SF-TDDFT and for
-MR-SFTDDFT.
-Analytic gradients and NACs are available for non-spin-adapted collinear and non-collinear formulations of SF-TDDFT.
+以下示例展示了 **Q-Chem** 中 SF-DFT 的功能：[7.3.4.2](#ex:MRSFDFT)、[7.2.3.3](Ch7.S2.SS3.md#safs-sftddft)、
+[7.3.10.1](Ch7.S3.SS10.md#ex:dftcis-soc)、[7.3.4.2](#ex:MRSFDFT)、
+[9.8.4](../ch09_opt/sfdft_MECP1.md) 以及 [7.3.4.2](#ex:MRSFDFT)。
+其他相关方法包括
+SF-XCIS（第 [7.2.3.2](Ch7.S2.SS3.md#topic:sf) 节）、自旋适配 SF-CIS（第 [7.2.3.3](Ch7.S2.SS3.md#safs-sftddft) 节）、
+EOM-SF-CC（第 [7.9.6](sec_EOMSF.md) 节）、SF-ADC（第 [7.10.8](sect_SF-ADC.md) 节），
+以及 SF-RASCI（第 [7.11](topic_rasi.md) 节）。
 
-The following examples illustrate SF-DFT capabilities available in **Q-Chem**:
-[7.3.4.2](#ex:MRSFDFT), [7.2.3.3](Ch7.S2.SS3.md#safs-sftddft),
-[7.3.10.1](Ch7.S3.SS10.md#ex:dftcis-soc), [7.3.4.2](#ex:MRSFDFT),
-[9.8.4](../ch09_opt/sfdft_MECP1.md), and [7.3.4.2](#ex:MRSFDFT).
-Other related methods include
-SF-XCIS (Section [7.2.3.2](Ch7.S2.SS3.md#topic:sf)), spin-adapted SF-CIS (Section [7.2.3.3](Ch7.S2.SS3.md#safs-sftddft)),
-EOM-SF-CC (Section [7.9.6](sec_EOMSF.md)), SF-ADC (Section [7.10.8](sect_SF-ADC.md)),
-and SF-RASCI (Section [7.11](topic_rasi.md)).
+## 7.3.4.1 混合参考 SF-TDDFT
 
-## 7.3.4.1 Mixed-reference SF-TDDFT
+在 MRSF-TDDFT 中，[[781]](../bib_references/bib.md#bib824)
 
-In MRSF-TDDFT,[[781]](../bib_references/bib.md#bib824)
-
-the reference state is constructed as an equal mixture of two Kohn–Sham determinants
-corresponding to the $M_{S}=+1$ and $M_{S}=-1$ components of the triplet state.
-The resulting mixed-reference reduced density matrix (RDM) defined as
+参考态构造为两个 Kohn–Sham 行列式的等权混合，分别对应三重态的 $M_{S}=+1$ 和 $M_{S}=-1$ 分量。由此得到的混合参考约化密度矩阵（reduced density matrix, RDM）定义为
 
 <a id="Ch7.E27"></a>
 $$
 \rho_{0}^{\rm MR}=\frac{1}{2}(\rho_{0}^{M_{S}=+1}+\rho_{0}^{M_{S}=-1}) \tag{7.27}
 $$
 
-is non-idempotent but the idempotency is restored through a complex transformation of the singly occupied
-spin-orbitals.[[781]](../bib_references/bib.md#bib824)
+它是非幂等的（non-idempotent），但通过对单占据自旋轨道进行复数变换可恢复幂等性。[[781]](../bib_references/bib.md#bib824)
 
-By coupling the $\alpha\rightarrow\beta$ spin-flip excitations from the $M_{S}=+1$ component with the $\beta\rightarrow\alpha$ excitations from
-the $M_{S}=-1$ component, MRSF-SFTDDFT recovers most of the determinants missing in conventional SF-TDDFT
-and by doing so restores spin-completeness.
+通过将来自 $M_{S}=+1$ 分量的 $\alpha\rightarrow\beta$ 自旋翻转激发与来自 $M_{S}=-1$ 分量的 $\beta\rightarrow\alpha$ 激发耦合起来，MRSF-SF-TDDFT 恢复了常规 SF-TDDFT 中缺失的大部分行列式，从而恢复了自旋完备性（spin-completeness）。
 
-The current implementation
+MRSF-TDDFT 的当前实现
 
- of MRSF-TDDFT is available for a ROHF reference (UNRESTRICTED = FALSE)
-and can describe both singlet and triplet states. It also affords calculations of transition
-properties including matrix elements of the dipole and angular momentum operators, SOCs and wave-function analysis.
-MRSF-TDDFT employs a collinear exchange-correlation kernel; hence, hybrid functionals
-are recommended, particularly those with a larger fraction of Hartree–Fock exchange.
+可用于 ROHF 参考（UNRESTRICTED = FALSE），能够同时描述单重态和三重态。它还可以计算跃迁性质，包括偶极矩与角动量算符的矩阵元、SOC 以及波函数分析。
+MRSF-TDDFT 采用共线交换关联核，因此推荐使用杂化泛函，尤其是 Hartree–Fock 交换比例较高的杂化泛函。
 
-The orbital Hessian matrix is defined as[[793]](../bib_references/bib.md#bib828)
+轨道 Hessian 矩阵定义为[[793]](../bib_references/bib.md#bib828)
 
 <a id="Ch7.E28"></a>
 $$
 A_{pq,rs}^{(k)}=A_{pq,rs}^{(k)(0)}+A_{pq,rs}^{{}^{\prime}(k)} \tag{7.28}
 $$
 
-where $k\in\{\text{S},\text{T}\}$ refers to a singlet or triplet state and
+其中 $k\in\{\text{S},\text{T}\}$ 表示单重态或三重态，且
 
 <a id="Ch7.E29"></a>
 $$
 A_{pq,rs}^{(k)(0)}=U_{pq}^{k}\{\delta_{pr}F_{qs}^{\beta}-\delta_{qs}F_{pr}^{\alpha}-c_{H}(pr|sq)\}U_{rs}^{(k)}. \tag{7.29}
 $$
 
-The term $A_{pq,rs}^{{}^{\prime}(k)}$ takes care of the coupling between the determinants generated from the two triplet components and is given by
+项 $A_{pq,rs}^{{}^{\prime}(k)}$ 处理由两个三重态分量生成的行列式之间的耦合，其表达式为
 
 <a id="A3.S8.EGx40"></a>
 $$
@@ -119,14 +81,14 @@ $$
 &\displaystyle\qquad+H_{pq,rs}^{(k){\rm inter}}(U_{pq}^{\text{CO1}}U_{rs}^{\text{O2V}}+U_{pq}^{\text{CO2}}U_{rs}^{\text{O1V}}+U_{pq}^{O1V}U_{rs}^{\text{CO2}}+U_{pq}^{\text{O2V}}U_{rs}^{\text{CO1}})\;.\end{aligned} \tag{7.30}
 $$
 
-Here, $U_{pq}$ are dimensional transformation matrices and
+这里，$U_{pq}$ 是维度变换矩阵，且
 
 <a id="Ch7.E31"></a>
 $$
 \displaystyle H_{pq,rs}^{(k)\text{intra}} \tag{7.31a}
 $$
 
-with
+其中
 
 <a id="Ch7.E32"></a>
 $$
@@ -135,7 +97,7 @@ $$
 \end{cases} \tag{7.32}
 $$
 
-and
+以及
 
 <a id="Ch7.E33"></a>
 $$
@@ -144,25 +106,17 @@ $$
 \end{cases} \tag{7.33}
 $$
 
-The dimensional transformation matrices ensure that the MRSF excitation subspace matches the dimensionality of the SF-TDDFT space for both
-$k=\text{S}$ and $k=\text{T}$. Owing to this structure in which the singlet and triplet spaces are completely decoupled from each other, MRSF-TDDFT, in contrast to the original
-SF-TDDFT, solves separate eigenvalue problems for singlet and triplet manifolds.
+维度变换矩阵确保在 $k=\text{S}$ 和 $k=\text{T}$ 两种情况下，MRSF 激发子空间的维数都与 SF-TDDFT 空间的维数相匹配。得益于这种单重态空间与三重态空间完全解耦的结构，MRSF-TDDFT 与最初的 SF-TDDFT 不同，它分别求解单重态和三重态流形的本征值问题。
 
-By default, the calculation prints $\langle\hat{S}^{2}\rangle$ values for each state, TDDFT amplitudes,
-and transition dipole moments wrt the lowest SF state in each spin manifold.
+默认情况下，计算会为每个态打印 $\langle\hat{S}^{2}\rangle$ 值、TDDFT 振幅，以及相对于每个自旋流形中最低 SF 态的跃迁偶极矩。
 
-Enabling keyword STS_MOM=TRUE prints additional
-information, including the Cartesian components of the permanent
-dipole moments (in a.u.) of each computed state, as well as the Cartesian components of the transition dipole moments
-(in a.u.), and the corresponding oscillator strengths between all computed SF states. To compute SOC, use
-CALC_SOC=2.
+启用关键词 STS_MOM=TRUE 可打印额外信息，包括每个计算态的永久偶极矩的笛卡尔分量（以原子单位 a.u. 计）、各态之间跃迁偶极矩的笛卡尔分量（以 a.u. 计），以及所有计算 SF 态之间相应的振子强度。若要计算 SOC，请使用 CALC_SOC=2。
 
-Example [7.3.4.2](#ex:MRSFDFT) illustrates MR-SF-TDDFT calculation for butadiene inlcuing state and transition properties and exciton analysis.
+示例 [7.3.4.2](#ex:MRSFDFT) 演示了丁二烯（butadiene）的 MR-SF-TDDFT 计算，包括态性质、跃迁性质和激子分析。
 
-## 7.3.4.2 Examples
+## 7.3.4.2 示例
 
-???+ example "Example 7.8: SF-TDDFT SP calculation of the 6 lowest states of the TMM diradical using
-recommended 50-50 functional."
+???+ example "示例 7.8：使用推荐的 50-50 泛函对 TMM 双自由基最低 6 个态进行 SF-TDDFT 单点能计算。"
     ```qchem
     $molecule
        0 3
@@ -209,8 +163,7 @@ recommended 50-50 functional."
     $end
     ```
 
-???+ example "Example 7.9: SF-TDDFT with non-collinear exchange-correlation functional for low-lying states
-of $\rm CH_{2}$ ."
+???+ example "示例 7.9：采用非共线交换关联泛函的 SF-TDDFT 计算 $\rm CH_{2}$ 的低激发态。"
     ```qchem
     $comment
       Non-collinear SF-DFT calculation for CH2 at 3B1 state geometry from
@@ -238,8 +191,7 @@ of $\rm CH_{2}$ ."
     $end
     ```
 
-???+ example "Example 7.10: SF-TDDFT calculation with collinear B5050LYP for $p$ -benzyne with wave-function analysis
-(natural orbitals and NTOs) performed by libwfa ."
+???+ example "示例 7.10：使用共线 B5050LYP 对 $p$-苯炔（p-benzyne）进行 SF-TDDFT 计算，并由 libwfa 执行波函数分析（自然轨道与 NTO）。"
     ```qchem
     $comment
     Para-benzyne diradical
@@ -275,7 +227,7 @@ of $\rm CH_{2}$ ."
     $end
     ```
 
-???+ example "Example 7.11: Mixed-reference SF-TDDFT/BHHLYP calculation of butadiene including exciton analysis."
+???+ example "示例 7.11：包含激子分析的丁二烯混合参考 SF-TDDFT/BHHLYP 计算。"
     ```qchem
     $comment
     - Singlet states of butadiene using MRSF-TDDFT

@@ -1,21 +1,19 @@
 ---
-title: "7.8 Correlated Excited State Methods: The CIS(D) Family"
+title: "7.8 关联激发态方法：CIS(D) 系列"
 ---
 
-# 7.8 Correlated Excited State Methods: The CIS(D) Family
+# 7.8 关联激发态方法：CIS(D) 系列
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [7.8.1 Introduction](Ch7.S8.SS1.md)
+- [7.8.1 引言](Ch7.S8.SS1.md)
 
-- [7.8.2 CIS(D) Theory](topic_cisd.md)
+- [7.8.2 CIS(D) 理论](topic_cisd.md)
 
-- [7.8.3 Resolution of the Identity CIS(D) Methods](topic_ricisd.md)
+- [7.8.3 分辨率恒等（Resolution of the Identity）CIS(D) 方法](topic_ricisd.md)
 
-- [7.8.4 SOS-CIS(D) Model](topic_sos-cisd.md)
+- [7.8.4 SOS-CIS(D) 模型](topic_sos-cisd.md)
 
-- [7.8.5 SOS-CIS(D${}_{0}$) Model](sect_SOS-CIS(D0).md)
+- [7.8.5 SOS-CIS(D${}_{0}$) 模型](sect_SOS-CIS(D0).md)
 
-- [7.8.6 CIS(D) Job Control and Examples](Ch7.S8.SS6.md)
-
-- [7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D${}_{0}$): Job Controls and Examples](subsect_RI-CIS(D).md)
+- [7.8.6 CIS(D) 任务控制与示例](Ch7.S8.SS6.md)

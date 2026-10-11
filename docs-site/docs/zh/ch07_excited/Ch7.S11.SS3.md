@@ -1,28 +1,17 @@
 ---
-title: "7.11.3 Second-Order Perturbative Corrections to RAS-CI"
+title: "7.11.3 RAS-CI 的二阶微扰修正"
 ---
 
-## 7.11.3 Second-Order Perturbative Corrections to RAS-CI
+## 7.11.3 RAS-CI 的二阶微扰修正
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In general, the RAS-CI family of methods within the $hole$ and $particle$
-approximation is unable to capture the necessary amounts of dynamic correlation
-for the computation of relative energies with chemical accuracy. The missed
-correlation can be added on top of the RAS-CI wave function using
-multi-reference perturbation theory (MRPT).[[210]](../bib_references/bib.md#bib204)
- The second
-order energy correction, *i.e.* RASCI(2), can be expressed as:
+一般来说，在 $hole$ 与 $particle$ 近似下的 RAS-CI 方法族无法捕获以化学精度计算相对能量所需的动态相关能。缺失的相关能可以在 RAS-CI 波函数的基础上通过多参考微扰理论（Multi-Reference Perturbation Theory, MRPT）加以补充。[[210]](../bib_references/bib.md#bib204)
+ 二阶能量修正，*即* RASCI(2)，可以表示为：
 
 <a id="eqRASCI2"></a>
 $$
 E^{(2)}=-\sum_{k}\frac{|\langle k|\hat{H}|0\rangle|^{2}}{E_{k}-E_{0}+\epsilon} \tag{7.165}
 $$
 
-where $0$ indicates the zero-order space and $\{|k\rangle\}$ is the
-complementary set of determinants. There is no natural choice for the
-$\{E_{k}\}$ excited energies in MRPT, and two different models are available
-within the RASCI(2) approach, namely, either Davidson-Kapuy or Epstein-Nesbet
-partitioning. As it is common practice in many second-order MRPT corrections,
-the denominator energy differences in Eq. ([7.165](#eqRASCI2)) can be level shifted
-with a parameter $\epsilon$.
+其中 $0$ 表示零级空间，$\{|k\rangle\}$ 为其互补的行列式集合。在 MRPT 中，激发能 $\{E_{k}\}$ 并没有天然唯一的选择，RASCI(2) 方法提供了两种不同的模型，即 Davidson-Kapuy 分割或 Epstein-Nesbet 分割。与许多二阶 MRPT 修正中的常见做法一样，公式 ([7.165](#eqRASCI2)) 中的分母能量差可通过参数 $\epsilon$ 进行能级平移（level shift）。

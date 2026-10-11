@@ -1,78 +1,68 @@
 ---
-title: "7.9.13 Charge Stabilization for EOM-DIP with Unstable References and Other Methods"
+title: "7.9.13 针对不稳定参考态及其他方法的 EOM-DIP 电荷稳定化"
 ---
 
-## 7.9.13 Charge Stabilization for EOM-DIP with Unstable References and Other Methods
+## 7.9.13 针对不稳定参考态及其他方法的 EOM-DIP 电荷稳定化
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-The performance of EOM-DIP deteriorates when the reference state is unstable
-with respect to electron detachment,[[740]](../bib_references/bib.md#bib773)
- which is usually
-the case for dianion reference states that are employed to describe neutral diradicals by EOM-DIP.
-These states are often characterized by occupied Hartree–Fock energy levels having positive (unbound) eigenvalues,
-corresponding to a wave function that is not normalizable.
-(These are essentially discretized continuum solutions,
-represented crudely in a Gaussian basis set.
+当参考态对于电子脱附（electron detachment）不稳定时，EOM-DIP 的性能会恶化，[[740]](../bib_references/bib.md#bib773)
+ 这通常出现在使用双阴离子参考态、通过 EOM-DIP 描述中性双自由基的情形。
+这些态的典型特征是占据的 Hartree–Fock 能量级具有正（非束缚）本征值，
+对应于一个不可归一化的波函数。
+（这些本质上是离散化的连续态解，
+在高斯基组（Basis Set）中被粗略地表示出来。
 
-)
-Similar problems are encountered by all excited-state methods when
-dealing with excited states lying above ionization or electron-detachment thresholds.
+）
+所有激发态方法在处理位于电离阈值或电子脱附阈值之上的激发态时，
+都会遇到类似的问题。
 
-To remedy this problem, one can employ charge stabilization methods.[[740]](../bib_references/bib.md#bib773)
+为解决这一问题，可以采用电荷稳定化方法。[[740]](../bib_references/bib.md#bib773)
 
-This approach, which can be used with any electronic structure method, introduces an
-additional Coulomb potential to stabilize the wave function. There are three ways to do this:
+这一方法可用于任何电子结构方法，它引入一个额外的库仑（Coulomb）势来稳定波函数。共有三种实现方式：
 
 - •
 
-Scaling the nuclear charges, which is accomplished using the *$rem* variable SCALE_NUCLEAR_CHARGE.
+对核电荷进行缩放（scaling），通过 *$rem* 变量 SCALE_NUCLEAR_CHARGE 实现。
 - •
 
-User-defined nuclear charges, activated by setting CHARGE_STABILIZE = TRUE and specifying
-the new charges in a *$nuclear_charges* input section. The format for the *$nuclear_charges* input section is the
-same as that of the *$van_der_waals* section, which is described in Section [11.2.10](../ch11_env/subsec_LD.md).
+用户自定义核电荷，通过设置 CHARGE_STABILIZE = TRUE 并在 *$nuclear_charges* 输入段中指定新电荷来激活。*$nuclear_charges* 输入段的格式与
+*$van_der_waals* 段相同，后者在第 [11.2.10](../ch11_env/subsec_LD.md) 节中有描述。
 - •
 
-Adding a “charged cage”, *i.e.*, an array of point charges around the molecule, which is activated by setting
-ADD_CHARGED_CAGE = TRUE.
-Two types of cages (spherical and dodecahedral) are available; the
-shape, radius, number of points, and total charge of the cage are set by the user.
+添加一个"带电笼"（charged cage），*即*，在分子周围布置一组点电荷，通过设置
+ADD_CHARGED_CAGE = TRUE 来激活。
+提供两种类型的笼（球形与十二面体形）；笼的形状、半径、点数和总电荷均由用户设置。
 
-In the case of EOM methods, a perturbative estimate of the effect of the external Coulomb potential on the EOM energy
-will be computed when target state densities are calculated, *e.g.*, when CC_EOM_PROP = TRUE.
-Charge stabilization techniques can be used with other methods including ground state DFT (in order to describe
-meta-stable ground states) and TDDFT (to improve the description of auto-ionizing resonances). For methods other
-than EOM, no special correction is applied and one simply obtains the “ordinary” electronic structure but with
-modified nuclear charges or in the presence of additional point charges. In such cases, it may be advisable to perform
-several calculations with differing values of the nuclear charges in order to extrapolate the results to the true atomic
-numbers.
+对于 EOM 方法，当计算目标态密度时（*例如*设置 CC_EOM_PROP = TRUE 时），
+会对外部库仑势对 EOM 能量的影响进行微扰估计。
+电荷稳定化技术也可用于其他方法，包括基态密度泛函理论（Density Functional Theory, DFT）（以描述亚稳基态）和含时密度泛函理论（TDDFT）（以改进对自电离共振的描述）。
+对于 EOM 之外的方法，不施加任何特殊修正，得到的只是"通常"的电子结构，但核电荷被修改或存在附加点电荷。
+在这种情况下，建议使用不同的核电荷值进行若干次计算，以便将结果外推至真实的原子序数。
 
- In so doing, only calculations for which
-stabilization is sufficient to obtain a bound-state wave function should be used in the extrapolation.
-Calculations that result in unbound occupied levels (SCF eigenvalues $\epsilon_{i}>0$)
-should not be taken seriously, as they represent orthogonalized discretized continuum states and not true bound-state
-solutions. Results from such solutions will vary strongly with respect to the choice of basis set but in ways that are
-essentially meaningless.
+ 在此过程中，只有那些稳定化程度足以得到束缚态波函数的计算才应用于外推。
+对于产生非束缚占据能级（自洽场（SCF）本征值 $\epsilon_{i}>0$）的计算
+不应认真对待，因为它们代表的是正交化后的离散化连续态，而非真正的束缚态解。
+此类解的结果会随基组选择发生强烈变化，且这种变化本质上毫无意义。
 
-The following descriptions and examples illustrate all three mechanisms of charge stabilization.
+以下描述和示例展示了电荷稳定化的全部三种机制。
 
 SCALE_NUCLEAR_CHARGE
 
 ### `SCALE_NUCLEAR_CHARGE`
 
-> **Scale the nuclear charges.**
+> **对核电荷进行缩放。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $N$
->     * scale the nuclear charges in a way that adds a charge of
+>     * 以某种方式缩放核电荷，所添加的电荷为
 >     * $N$
->     * /100 (in a.u.)
-> * **Recommendation**: For EOM methods a perturbative correction can be added in conjunction with this option (as noted above), but for other electronic structure methods once simply gets a traditional calculation but with modified nuclear charges.
+>     * /100（以原子单位计）
+> * **建议**: 对于 EOM 方法，可以配合此选项施加微扰修正（如上所述），但对于其他电子结构方法，得到的只是核电荷被修改后的传统计算。
 
-???+ example "Example 7.89: EOM-DIP excitation energies and properties using a charged cage for stabilization."
+???+ example "示例 7.89: 使用带电笼进行稳定化的 EOM-DIP 激发能与性质计算。"
     ```qchem
     $molecule
       -2 1
@@ -100,7 +90,7 @@ SCALE_NUCLEAR_CHARGE
     $end
     ```
 
-???+ example "Example 7.90: Stabilization of SO ${}_{4}^{2-}$ by modified nuclear charges."
+???+ example "示例 7.90: 通过修改核电荷稳定 SO ${}_{4}^{2-}$。"
     ```qchem
     $comment
        Charge stabilization of an unbound anion (sulfate) by changing nuclear charge

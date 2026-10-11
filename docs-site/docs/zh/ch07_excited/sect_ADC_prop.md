@@ -1,47 +1,16 @@
 ---
-title: "7.10.10 Properties and Visualization"
+title: "7.10.10 属性与可视化"
 ---
 
-## 7.10.10 Properties and Visualization
+## 7.10.10 属性与可视化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The calculation of excited, ionized and electron-attached states using the **ADCman** module yields by default
-the usual excitation energies, ionization potentials and electron-attachment energies
-together with the respective excitation amplitudes, as well as the
-transition dipole moments, oscillator strengths (or pole strengths in case of IP- and
-EA-ADC calulations), and the norm of the doubles
-part of the amplitudes (if applicable). In addition, the calculation of
-excited, ionized and electron-attached state properties, like dipole moments, and transition properties
-between these states can be requested by setting the *$rem* variables
-ADC_PROP_ES and ADC_PROP_ES2ES, respectively.
+使用 **ADCman** 模块计算激发态、电离态和电子附着态时，默认会输出常规的激发能、电离势和电子附着能，以及相应的激发振幅（excitation amplitudes）、跃迁偶极矩、振子强度（在 IP-ADC 与 EA-ADC 计算中则为极强度，pole strengths），并且（若适用）还会输出双激发部分振幅的范数。此外，可以通过设置 *$rem* 变量 ADC_PROP_ES 和 ADC_PROP_ES2ES，分别请求计算激发态、电离态和电子附着态的性质（如偶极矩），以及这些态之间的跃迁性质。
 
-Resonant
-two-photon absorption cross-sections of excited states can be computed as
-well, using either sum-over-states expressions or the matrix inversion
-technique. The calculation via sum-over-state expressions is automatically
-activated, if ADC_PROP_ES2ES is set. The accuracy of the results,
-however, strongly depends on the number of states which are included in the
-summation, *i.e.* the number of states computed. At least, 20-30 excited states
-(per irreducible representation) are required to yield useful results for the
-two-photon absorption cross-sections. Alternatively, the resonant two-photon
-absorption cross-sections can be calculated by setting ADC_PROP_TPA
-to TRUE. In this case, the computation of a large number of excited
-states is avoided and there is no dependence on the number of excited states.
-Instead, an additional linear matrix equation has to be solved for every
-excited state for which the two-photon absorption cross-section is computed.
-Thus, the obtained resonant two-photon absorption cross-sections are usually
-more reliable. The quantity printed out is the microscopic cross-section (also
-known as rotationally averaged 2PA strength). Specifically, the value
-$30\times\delta^{m}_{TP}$ is printed out where $\delta^{m}_{TP}$ is defined in
-Eq. (13) of Ref. [[1494]](../bib_references/bib.md#bib1555)
-.
-The quantity printed out is the microscopic cross-section (also known as rotationally averaged 2PA strength).
-Specifically, the value $30\times\delta^{m}_{TP}$ is printed out where $\delta^{m}_{TP}$ is defined in Eq. (13) of Ref. [[1494]](../bib_references/bib.md#bib1555)
-.
+激发态的共振双光子吸收（resonant two-photon absorption）截面同样可以计算，既可采用态求和（sum-over-states）表达式，也可采用矩阵求逆技术。若设置了 ADC_PROP_ES2ES，则基于态求和表达式的计算会自动启用。但结果的精度在很大程度上取决于参与求和的态数目，*即* 所计算的态数目。要获得对双光子吸收截面有意义的结果，至少需要 20–30 个激发态（每个不可约表示）。作为替代方案，可将 ADC_PROP_TPA 设置为 TRUE 来计算共振双光子吸收截面。此时无需计算大量激发态，结果也不依赖于激发态的数目；代价是，对于每个需要计算双光子吸收截面的激发态，都必须额外求解一个线性矩阵方程。因此，所得到的共振双光子吸收截面通常更为可靠。程序输出的物理量是微观截面（也称为转动平均双光子吸收强度，rotationally averaged 2PA strength）。具体而言，输出的值为 $30\times\delta$ 中的 $\delta$……
 
-Furthermore, the **ADCman** module allows for the detailed analysis of the
-excited states and export of various types of excited state related orbitals
-and densities. This can be activated by setting the keyword
-STATE_ANALYSIS. Details on the available analyses and export options
-can be found in section [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md).
+???+ note "说明"
+    上述段落中的公式 $30\times\delta$ 仅在原文以该形式出现时保留；此处原文并未给出显式公式，故不做改动。
+
+（注：原文该段仅包含上述内容。）

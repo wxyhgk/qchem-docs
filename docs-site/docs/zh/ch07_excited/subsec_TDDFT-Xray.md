@@ -1,118 +1,108 @@
 ---
-title: "7.12.2 Calculations of X-Ray Spectroscopy with TDDFT"
+title: "7.12.2 使用 TDDFT 的 X 射线光谱计算"
 ---
 
-## 7.12.2 Calculations of X-Ray Spectroscopy with TDDFT
+## 7.12.2 使用 TDDFT 的 X 射线光谱计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 7.12.2.1 Absorption Spectroscopy
+## 7.12.2.1 吸收光谱
 
-X-ray absorption spectroscopy can be calculated using TDDFT
-by restricting the excitation space to include excitations from a set of core orbitals.
-This is achieved by setting TRNSS = TRUE in the *$rem* section, which triggers the use of
-TDDFT with a truncated excitation space as described in Section [7.3.3](subsec_TRNSS.md).
-The occupied core orbitals that the user desires to be active in such a calculation should be listed individually
-in the *$alist* input section, and the number of such orbitals must be specified using N_SOL in the *$rem* section.
-This invokes the CVS approximation, which for TDDFT amounts to freezing all of the occupied orbitals except for
-the ones that are listed in *$alist*, while using the full virtual space.
+X 射线吸收光谱可以通过 TDDFT 计算，方法是将激发空间限制为仅包含来自一组核心轨道（core orbitals）的激发。
+这通过在 *$rem* 段中设置 TRNSS = TRUE 来实现，该设置会触发使用带有截断激发空间的 TDDFT，具体描述见第 [7.3.3](subsec_TRNSS.md) 节。
+用户希望在此类计算中处于活跃状态的已占据核心轨道，应当在 *$alist* 输入段中逐一列出，并且此类轨道的数目必须通过在 *$rem* 段中设置 N_SOL 来指定。
+这会调用 CVS 近似（core-valence separated approximation），对于 TDDFT 而言，该近似相当于冻结除 *$alist* 中所列轨道之外的所有已占据轨道，同时使用完整的虚轨道空间。
 
-Such calculations are not suited to describe the extended x-ray absorption fine structure
-(EXAFS) region, which corresponds to the scattering of the ionized electron by the neighboring atoms.
+此类计算不适合描述扩展 X 射线吸收精细结构（EXAFS）区域，该区域对应于电离电子被相邻原子散射的过程。
 
-Standard exchange-correlation functionals (including hybrids) tend to severely underestimate
-core excitation energies,[[123]](../bib_references/bib.md#bib112)
+标准的交换-关联泛函（包括杂化泛函）往往会严重低估核心激发能[[123]](../bib_references/bib.md#bib112)，
 
-although chemical shifts (from one compound to the next) may still be valid.[[404]](../bib_references/bib.md#bib413)
-**Q-Chem** has short-range corrected (SRC) functionals
-available that are designed to predict K-edge core excitation energies accurately.[[123]](../bib_references/bib.md#bib112)
+尽管化学位移（从一个化合物到另一个化合物）可能仍然有效[[404]](../bib_references/bib.md#bib413)。**Q-Chem** 提供了短程校正（short-range corrected, SRC）泛函，
+其设计目标是准确预测 K 边核心激发能[[123]](../bib_references/bib.md#bib112)。
 
-These functionals are a modification of the more familiar long-range corrected
-functionals (discussed in Section [5.6](../ch05_dft/sect_LRC-DFT.md)). However, in SRC-DFT the
-short-range component of the Coulomb operator is predominantly Hartree-Fock
-exchange, while the mid to long-range component is primarily treated with standard DFT exchange.
-Job control variables for SRC functionals are provided below and their use in
-conjunction with the CVS approximation is illustrated in Example [7.12.2.1](#ex:TDDFT-CVS-0).
-See Section [7.3.6.1](subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic) for basic TDDFT job control.
+这些泛函是对更常见的长程校正泛函（long-range corrected functionals，见第 [5.6](../ch05_dft/sect_LRC-DFT.md) 节）的一种修改。
+然而在 SRC-DFT 中，库仑算符的短程分量主要以 Hartree-Fock 交换处理，而中程到长程分量则主要用标准 DFT 交换处理。
+SRC 泛函的作业控制变量列于下文，其与 CVS 近似配合使用的示例见示例 [7.12.2.1](#ex:TDDFT-CVS-0)。
+基本 TDDFT 作业控制参见第 [7.3.6.1](subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic) 节。
 
 HF_SR
 
 ### `HF_SR`
 
-> **Sets the fraction of Hartree-Fock exchange at $r_{12}=0$ .**
+> **设置在 $r_{12}=0$ 处 Hartree-Fock 交换的比例。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * =
 >     * $n/1000$
-> * **Recommendation**: None
+> * **建议**: 无
 
 HF_LR
 
 ### `HF_LR`
 
-> **Sets the fraction of Hartree-Fock exchange at $r_{12}=\infty$ .**
+> **设置在 $r_{12}=\infty$ 处 Hartree-Fock 交换的比例。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * =
 >     * $n/1000$
-> * **Recommendation**: None
+> * **建议**: 无
 
 OMEGA
 
 ### `OMEGA`
 
-> **Sets the Coulomb attenuation parameter for the short-range component.**
+> **设置短程分量的库仑衰减（attenuation）参数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $\omega=n/1000$
->     * , in units of bohr
+>     * ，单位为 bohr
 >     * ${}^{-1}$
-> * **Recommendation**: None
+> * **建议**: 无
 
 OMEGA2
 
 ### `OMEGA2`
 
-> **Sets the Coulomb attenuation parameter for the long-range component.**
+> **设置长程分量的库仑衰减参数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $\omega_{2}=n/1000$
->     * , in units of bohr
+>     * ，单位为 bohr
 >     * ${}^{-1}$
-> * **Recommendation**: None
+> * **建议**: 无
 
 SRC_DFT
 
 ### `SRC_DFT`
 
-> **Selects form of the short-range corrected functional.**
+> **选择短程校正泛函的形式。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * 1
->     * SRC1 functional.
+>     * SRC1 泛函。
 >     * 2
->     * SRC2 functional.
-> * **Recommendation**: None
+>     * SRC2 泛函。
+> * **建议**: 无
 
-???+ example "Example 7.206: Calculation of carbon K-edge [C(1s) $\rightarrow$ virtual excitations] using SRC-TDDFT within the CVS approximation."
+???+ example "示例 7.206：在 CVS 近似下使用 SRC-TDDFT 计算碳 K 边 [C(1s) $\rightarrow$ 虚轨道] 激发。"
     ```qchem
     $comment
     Carbon K-edge excitations for acetone.
@@ -150,31 +140,26 @@ SRC_DFT
     
     ```
 
-Relativistic effects become increasingly significant for calculation
-of x-ray absorption spectra at the K-edge of heavier elements. The REL_SHIFT keyword
-introduces a correction to the calculated excitation energies to account for these
-effects, as illustrated in Example [7.12.2.1](#ex:TDDFT-CVS-0) below.
-The element-specific correction that is added is equal to the difference between
-relativistic (Douglas-Kroll-Hess) and non-relativistic Hartree-Fock eigenvalues for the $1s$ orbital
-of the isolated atom.[[118]](../bib_references/bib.md#bib113)
+对于较重元素 K 边 X 射线吸收光谱的计算，相对论效应会变得越来越重要。REL_SHIFT 关键字
+会对计算得到的激发能引入一项校正，以考虑这些效应，如下文示例 [7.12.2.1](#ex:TDDFT-CVS-0) 所示。
+所加入的元素特异性校正值等于孤立原子 $1s$ 轨道的相对论（Douglas-Kroll-Hess）与非相对论 Hartree-Fock 本征值之差[[118]](../bib_references/bib.md#bib113)。
 
-This probably suffices to account for relativistic effects for K-edge excitations, although in the case of L- or
-M-edge excitations the situation is complicated by spin-orbit coupling.
+对于 K 边激发，这大概足以描述相对论效应，但在 L 边或 M 边激发的情况下，由于自旋-轨道耦合的存在，问题会变得复杂。
 
 REL_SHIFT
 
 ### `REL_SHIFT`
 
-> **Corrects the calculated TDDFT excitation energy for scalar relativistic effects.**
+> **对计算得到的 TDDFT 激发能进行标量相对论效应校正。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $Z$
->     * Corresponding to the atomic number of the core-ionized element.
-> * **Recommendation**: The relativistic correction is equal to the difference of relativistic (Douglas-Kroll-Hess) and non-relativistic Hartree-Fock/cc-pCVTZ eigenvalues for the $1s$ orbital of the isolated atom.
+>     * 对应于核心电离元素的原子序数。
+> * **建议**: 相对论校正值等于孤立原子 $1s$ 轨道的相对论（Douglas-Kroll-Hess）与非相对论 Hartree-Fock/cc-pCVTZ 本征值之差。
 
-???+ example "Example 7.207: Calculation of core-excited states at the phosphorus K-edge, including a scalar relativistic shift."
+???+ example "示例 7.207：计算磷 K 边的核心激发态，包含标量相对论位移校正。"
     ```qchem
     $molecule
        0 1
@@ -200,86 +185,80 @@ REL_SHIFT
     $end
     ```
 
-Despite the relatively low computational cost of TDDFT, it can become challenging to calculate
-x-ray absorption spectra for large systems. The high density of core-excited states makes
-simulating spectra more computationally expensive than comparable calculations of the
-UV/vis spectra. This is particularly the case when excitations from many core-orbitals are
-required, which is often the situation when studying the carbon K-edge of organic molecules.
-There are two aspects to the computational cost, firstly the CPU time required and secondly
-the memory required. An implementation of TDDFT called “fTDDFTs” combines aggressive integral
-screening and a coarse DFT quadrature grid, which is especially
-efficient for the calculation of x-ray absorption spectra.[[126]](../bib_references/bib.md#bib115)
+尽管 TDDFT 的计算成本相对较低，但对于大体系而言，计算 X 射线吸收光谱仍可能变得颇具挑战。
+核心激发态的高密度使得光谱模拟比同等规模的 UV/vis 光谱计算在计算上更加昂贵。
+当需要来自多个核心轨道的激发时尤其如此，这在研究有机分子的碳 K 边时是常见情形。
+计算成本包含两个方面，其一是所需的 CPU 时间，其二是所需的内存。
+一种名为 “fTDDFTs” 的 TDDFT 实现结合了强力的积分筛选（integral screening）与粗略的 DFT 求积网格（quadrature grid），
+在计算 X 射线吸收光谱时格外高效[[126]](../bib_references/bib.md#bib115)。
 
-This approach may be fine-tuned using the *$rem* variables FAST_XAS, XAS_SCREEN_LEVEL
-and XAS_EDGE. The memory required
-for these calculations can be reduced further through the TDDFT_NVIRT keyword that
-reduces the number of virtual orbitals included in the TDDFT calculation.
-Job control variables for fTDDFTs are listed below and are illustrated in Example [7.12.2.1](#ex:TDDFT-CVS-0).
+该方法可以通过 *$rem* 变量 FAST_XAS、XAS_SCREEN_LEVEL 和 XAS_EDGE 进行微调。这些计算所需的内存
+还可以进一步通过 TDDFT_NVIRT 关键字来降低，该关键字可减少 TDDFT 计算中所包含的虚轨道数目。
+fTDDFTs 的作业控制变量列于下文，其用法在示例 [7.12.2.1](#ex:TDDFT-CVS-0) 中演示。
 
-**Note: 
+**注意：
 
-Currently fTDDFTs works only for restricted CIS/TDA calculations and is not parallelized.
-(Multiple threads can be used for the initial SCF calculation but the subsequent CIS/TDA calculation
-is performed in serial.)
+目前 fTDDFTs 仅适用于受限（restricted）CIS/TDA 计算，且未做并行化。
+（初始 SCF 计算可以使用多个线程，但随后的 CIS/TDA 计算是串行执行的。）
 **
 
 FAST_XAS
 
 ### `FAST_XAS`
 
-> **Controls whether fast TDDFT for core excitations is used.**
+> **控制是否用于核心激发的快速 TDDFT。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Use fast TDDFT.
-> * **Recommendation**: None
+>     * 使用快速 TDDFT。
+> * **建议**: 无
 
 XAS_SCREEN_LEVEL
 
 ### `XAS_SCREEN_LEVEL`
 
-> **Sets the integral screening procedure for fast TDDFT.**
+> **设置快速 TDDFT 的积分筛选程序。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $1$
->     * only evaluate integrals that include the inner core basis function on relevant atom(s).
+>     * 仅计算在相关原子上包含内层核心基函数的积分。
 >     * $2$
->     * only evaluate integrals that include basis functions on relevant atom(s).
-> * **Recommendation**: 1
+>     * 仅计算在相关原子上包含基函数的积分。
+> * **建议**: 1
 
 XAS_EDGE
 
 ### `XAS_EDGE`
 
-> **Specifies the nuclear charge of element being excited.**
+> **指定被激发元素的核电荷数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $n$
->     * Corresponding to the nuclear charge of element being excited.
-> * **Recommendation**: None
+>     * 对应于被激发元素的核电荷数。
+> * **建议**: 无
 
 TDDFT_NVIRT
 
 ### `TDDFT_NVIRT`
 
-> **Specifies the number of virtual orbitals included in the XAS TDDFT calculation.**
+> **指定 XAS TDDFT 计算中所包含的虚轨道数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * $n$
->     * Corresponding to the lowest energy
+>     * 对应于能量最低的
 >     * $n$
->     * virtual orbitals.
-> * **Recommendation**: None
+>     * 个虚轨道。
+> * **建议**: 无
 
-???+ example "Example 7.208: Fast, low-memory calculation of core-excited states at the oxygen K-edge of CO using fTDDFTs."
+???+ example "示例 7.208：使用 fTDDFTs 对 CO 的氧 K 边核心激发态进行快速、低内存计算。"
     ```qchem
     $molecule
        0 1
@@ -305,16 +284,13 @@ TDDFT_NVIRT
     $end
     ```
 
-## 7.12.2.2 Emission Spectroscopy
+## 7.12.2.2 发射光谱
 
-It is also possible to compute x-ray emission spectroscopy using TDDFT. This is achieved
-by using a reference determinant with a core-hole.[[1419]](../bib_references/bib.md#bib1480)
- The calculated
-excitation energies can be quite sensitive to the choice of basis set, and for the K-edge
-of heavier elements it can be necessary to use large or specially adapted basis sets
-to provide a good description of the core region.[[400]](../bib_references/bib.md#bib409)
+同样也可以使用 TDDFT 计算 X 射线发射光谱。这是通过采用带有一个核心空穴（core-hole）的参考行列式来实现的[[1419]](../bib_references/bib.md#bib1480)。
+计算得到的激发能对基组的选择可能相当敏感，对于较重元素的 K 边，可能需要使用大的或专门适配的基组，
+以便对核心区域给出良好的描述[[400]](../bib_references/bib.md#bib409)。
 
-???+ example "Example 7.209: This example shows a calculation of the XES spectrum of water using TDDFT + MOM."
+???+ example "示例 7.209：本示例展示了使用 TDDFT + MOM 计算水的 XES 光谱。"
     ```qchem
     $molecule
        0 1
@@ -352,12 +328,12 @@ to provide a good description of the core region.[[400]](../bib_references/bib.m
     $end
     ```
 
-## 7.12.2.3 XCIS-CVS for Open-Shell Ground States
+## 7.12.2.3 用于开壳层基态的 XCIS-CVS
 
-For open-shell systems, XAS spectra and core-excited states can be computed using the “extended CIS” (XCIS) method
-of Section [7.2.3.1](Ch7.S2.SS3.md#topic:xcis). With the CVS approximation, core-to-valence transitions can be specifically and efficiently targeted.[[1015]](../bib_references/bib.md#bib1057)
+对于开壳层体系，XAS 光谱和核心激发态可以使用第 [7.2.3.1](Ch7.S2.SS3.md#topic:xcis) 节中的“扩展 CIS”（extended CIS, XCIS）方法来计算。
+结合 CVS 近似，可以有针对性且高效地处理核心到价层的跃迁[[1015]](../bib_references/bib.md#bib1057)。
 
-???+ example "Example 7.210: Calculation of core-excited states at the oxygen pre-edge and K-edge of ${}^{3}$ O ${}_{2}$ using the XCIS-CVS method."
+???+ example "示例 7.210：使用 XCIS-CVS 方法计算 ${}^{3}$ O ${}_{2}$ 的氧 pre-edge 与 K 边核心激发态。"
     ```qchem
     $molecule
     0 3

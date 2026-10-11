@@ -1,56 +1,49 @@
 ---
-title: "7.9.14 Frozen Natural Orbitals in CC, IP-CC, and SF-CC Calculations"
+title: "7.9.14 CC、IP-CC 与 SF-CC 计算中的冻结自然轨道"
 ---
 
-## 7.9.14 Frozen Natural Orbitals in CC, IP-CC, and SF-CC Calculations
+## 7.9.14 CC、IP-CC 与 SF-CC 计算中的冻结自然轨道
 
 (July 4, 2026)
 
-Large computational savings are possible if the virtual space is truncated
-using the frozen natural orbital (FNO) approach (see Section [6.15.1](../ch06_correlation/sec_FNOCC.md)).
-An extension of the FNO approach to ionized states within the EOM-CC formalism has
-also been introduced and benchmarked.[[748]](../bib_references/bib.md#bib781)
- In addition to
-ground-state coupled-cluster calculations, FNOs can also be used in
-EOM-IP-CCSD, EOM-IP-CCSD(dT/fT), and EOM-IP-CC(2,3). In EOM-IP-CC the FNOs are
-computed for the reference (neutral) state and then are used to describe
-several target (ionized) states of interest. Different truncation scheme are
-described in Section [6.15.1](../ch06_correlation/sec_FNOCC.md).
+如果使用冻结自然轨道（frozen natural orbital, FNO）方法截断虚空间，可大幅节省计算量（参见第 [6.15.1 节](../ch06_correlation/sec_FNOCC.md)）。
+FNO 方法向 EOM-CC 框架下电离态的扩展也已被提出并进行了基准测试。[[748]](../bib_references/bib.md#bib781)
+除基态耦合簇（coupled-cluster）计算之外，FNO 还可用于
+EOM-IP-CCSD、EOM-IP-CCSD(dT/fT) 以及 EOM-IP-CC(2,3)。在 EOM-IP-CC 中，FNO 是针对参考（中性）态计算的，
+随后用于描述多个感兴趣的目标（电离）态。不同的截断方案在第 [6.15.1 节](../ch06_correlation/sec_FNOCC.md) 中有详细描述。
 
-To reduce the cost of EOM-SF-CCSD calculations, a special variant of
-FNO—open-shell frozen natural orbital approximation (OSFNO)—has been introduced.[[1104]](../bib_references/bib.md#bib1153)
+为降低 EOM-SF-CCSD 计算的成本，人们提出了一种特殊的 FNO 变体——开壳层冻结自然轨道近似（open-shell frozen natural orbital approximation, OSFNO）。[[1104]](../bib_references/bib.md#bib1153)
 
-This approach is a two-step scheme.
-First, the open-shell orbitals of the reference are found by singular value decomposition of the overlap matrix of alpha occupied and beta virtual orbitals.
-These orbitals contain the main amplitudes of the EOM-SF wave functions.
-Then, after separation of the open-shell orbitals, the rest of the virtual space is transformed through singular value decomposition of the singlet part of the MP2 density matrix (in alpha-beta spin orbital pairs).
-Benchmarks in Ref. [[1104]](../bib_references/bib.md#bib1153)
- show that this scheme achieves speedups similar to FNO, while introducing very small errors to the relative energies of both covalent and ionic EOM-SF states.
-In particular, the errors in singlet–triplet gaps for single molecule magnets are less than 18 cm${}^{-1}$ for a typical OSFNO truncation at 99% of total population.
-Properties also show small errors.
-OSFNO is activated with CC_OSFNO = TRUE rem variable.
-CC_FNO_THRESH and CC_FNO_USEPOP keywords have the same usage as in conventional FNO.
+该方法采用两步方案。
+首先，通过对 alpha 占据轨道与 beta 虚轨道的重叠矩阵进行奇异值分解，找出参考态的开壳层轨道。
+这些轨道包含了 EOM-SF 波函数的主要振幅。
+然后，在分离出开壳层轨道之后，通过对 MP2 密度矩阵的单重态部分（以 alpha-beta 自旋轨道对的形式）进行奇异值分解，对其余虚空间进行变换。
+参考文献 [[1104]](../bib_references/bib.md#bib1153) 中的基准测试表明，
+该方案可实现与 FNO 相近的加速比，同时对共价型和离子型 EOM-SF 态的相对能量引入的误差极小。
+特别地，在典型的 OSFNO 截断（保留 99% 的总占据数）下，单分子磁体的单重态–三重态能隙误差小于 18 cm${}^{-1}$。
+性质计算的误差同样很小。
+OSFNO 通过 rem 变量 CC_OSFNO = TRUE 启用。
+CC_FNO_THRESH 与 CC_FNO_USEPOP 关键字的用法与传统 FNO 相同。
 
-Because of the limitation of the implementation, point-group symmetry cannot be used with FNO/OSFNO and is disabled.
-Please, adjust your input consistently with CC_SYMMETRY = FALSE.
+由于实现的限制，点群对称性无法与 FNO/OSFNO 一同使用，因此会被自动禁用。
+请相应调整您的输入，设置 CC_SYMMETRY = FALSE。
 
-OSFNO can be combined with orbital localization to produce effective Hamiltonians,
-as described in the Section [13.6](../ch13_specialized/sec_EffHam.md).
+OSFNO 可以与轨道局域化结合以生成有效哈密顿量，如第 [13.6 节](../ch13_specialized/sec_EffHam.md) 所述。
 
 CC_OSFNO
 
 ### `CC_OSFNO`
 
-> **Activation of OSFNO. Available only for open-shell references.**
+> **启用 OSFNO。仅适用于开壳层参考态。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * activate
-> * **Recommendation**: Use for EOM-SF-CCSD calculations from open-shell references. Available in CCMAN2 only.
+> * **建议**: 用于从开壳层参考态出发的 EOM-SF-CCSD 计算。仅在 CCMAN2 中可用。
 
-???+ example "Example 7.91: An EOM-SF-CCSD job, illustrating usage of OSFNO for energies and properties."
+???+ example "示例 7.91: 一个 EOM-SF-CCSD 任务，演示 OSFNO 在能量与性质计算中的用法。"
     ```qchem
     $molecule
        0 3

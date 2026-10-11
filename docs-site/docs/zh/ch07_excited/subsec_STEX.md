@@ -1,15 +1,12 @@
 ---
-title: "7.6.2 Static Exchange"
+title: "7.6.2 静态交换（Static Exchange, STEX）"
 ---
 
-## 7.6.2 Static Exchange
+## 7.6.2 静态交换（Static Exchange）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In the simplest form of STEX,[[605]](../bib_references/bib.md#bib628)
- one computes excitation energies by diagonalizing the virtual space of a Fock matrix for the ionized system. When using STEX on multiple core-ionized states,[[28]](../bib_references/bib.md#bib12)
- the underlying assumptions are that the coupling between non-orthogonal determinants is negligible, and that all relevant excited determinants can be formed by single electron-attachment to the core-ionized state. In this way, STEX can be considered to be an approximation to NOCIS.
+在最简单的形式中，STEX[[605]](../bib_references/bib.md#bib628) 通过对电离体系的 Fock 矩阵的虚空间进行对角化来计算激发能。当将 STEX 用于多个核电离（core-ionized）态时，[[28]](../bib_references/bib.md#bib12)
+ 其基本假设是：非正交行列式之间的耦合可以忽略不计，且所有相关的激发行列式都可以通过向核电离态单电子附着（electron-attachment）的方式构造。从这一角度看，STEX 可视为 NOCIS 的一种近似。
 
-The STEX algorithm is very similar to NOCIS. The ground-state calculation includes the Boys localization of the reference orbitals before the MOM. However, the open-shell references are formed from the core-ionized reference, instead of optimizing them separately, rendering these states orthogonal to the rest of the core-excitations from that particular atom. After the matrix build, the orthogonal matrix blocks are projected against the ground state (contrasted with NOCIS, where the whole matrix is projected against the ground state), the eigenvalue problem is solved. Because the basis of excited determinants is not orthogonal to the ground state, NOCI is required to compute the oscillator strengths.
-
-Like NOCIS, STEX is spin-pure and size-consistent. However, due to the de-coupling of the references, STEX calculations break the spatial symmetry of the final states.
+STEX 算法与 NOCIS 非常相似。基态计算在构造参考行列式之前，先对参考轨道进行 Boys 定域化。这样，STEX 可被视为 NOCIS 的近似。

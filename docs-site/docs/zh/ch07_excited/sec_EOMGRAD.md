@@ -1,85 +1,58 @@
 ---
-title: "7.9.21 Analytic Gradients and Properties for CCSD and EOM-XX-CCSD"
+title: "7.9.21 CCSD 与 EOM-XX-CCSD 的解析梯度及性质"
 ---
 
-## 7.9.21 Analytic Gradients and Properties for CCSD and EOM-XX-CCSD
+## 7.9.21 CCSD 与 EOM-XX-CCSD 的解析梯度及性质
 
 (July 4, 2026)
 
-The coupled-cluster suite in **Q-Chem** can calculate properties of
-target EOM states including permanent dipoles, angular momentum projections, static
-polarizabilities, $\langle\hat{S}^{2}\rangle$ and $\langle\hat{R}^{2}\rangle$ values, $g$-tensors (CCSD only), nuclear
-gradients (and geometry optimizations). The target state of interest
-is selected by CC_STATE_TO_OPT in the *$rem* section, which specifies the
-symmetry and the number of the EOM state. In addition to state
-properties, calculations of various interstate properties are
-available, including transition dipoles, angular momentum matrix elements, two-photon absorption transition
-moments (and cross-sections), spin–orbit couplings, electronic circular dichroism (ECD) rotatory strengths, Dyson orbitals, and photo-ionization cross sections.
+**Q-Chem** 中的耦合簇（Coupled-Cluster, CC）方法套件可以计算目标 EOM 态的各类性质，包括永久偶极矩、角动量投影、静态极化率（static polarizabilities）、$\langle\hat{S}^{2}\rangle$ 与 $\langle\hat{R}^{2}\rangle$ 值、$g$ 张量（仅限 CCSD）、核梯度（以及几何优化）。目标态通过在 *$rem* 段落中设置 CC_STATE_TO_OPT 来选取，该关键字指定 EOM 态的对称性与序号。除了态性质之外，还可以计算各种态间（interstate）性质，包括跃迁偶极矩、角动量矩阵元、双光子吸收（two-photon absorption）跃迁矩（及截面）、自旋–轨道耦合、电子圆二色谱（Electronic Circular Dichroism, ECD）旋转强度、Dyson 轨道以及光电离截面。
 
-Analytic gradients are available for the CCSD and all EOM-CCSD methods for
-both closed- and open-shell references (UHF and RHF only), including frozen
-core/virtual functionality[[804]](../bib_references/bib.md#bib838)
- and RI/Cholesky representation of
-the two-electron integrals (see also Section [6.16](../ch06_correlation/sec_CCGRAD.md)).
-These calculations should be feasible whenever the corresponding single-point energy calculation is feasible.
+CCSD 及所有 EOM-CCSD 方法的解析梯度对闭壳层与开壳层参考（仅限 UHF 和 RHF）均可用，并支持冻结芯/虚轨道（frozen core/virtual）功能[[804]](../bib_references/bib.md#bib838)
+ 以及二电子积分的 RI/Cholesky 表示（另见第 [6.16](../ch06_correlation/sec_CCGRAD.md) 节）。
+只要相应的单点能计算可行，这些计算就应当是可行的。
 
-**Note: 
+**注意：
 
-Gradients for ROHF and non-HF (*e.g.*, B3LYP) orbitals are not yet available.
+ROHF 及非 HF（*e.g.*，B3LYP）轨道的梯度尚不可用。
 **
 
-For the CCSD and EOM-CCSD wave functions, **Q-Chem** can calculate
-permanent and transition dipole moments, oscillator strengths,
-ECD rotatory strengths [both in length gauge (origin dependent) and in velocity
-gauge (origin independent)], $\langle\hat{R}^{2}\rangle$
-(as well as XX, YY and ZZ components separately, which is
-useful for assigning different Rydberg states, *e.g.*, $3p_{x}$ vs. $3s$, *etc.*), and the
-$\langle\hat{S}^{2}\rangle$ values. Calculation of $g$-tensors is available for CCSD wave functions
-(see Section [10.11.4](../ch10_properties/sec_magnetman.md) and example [10.11.4.4](../ch10_properties/sec_magnetman.md#ex:CCSD-gtensor)).
+对于 CCSD 和 EOM-CCSD 波函数，**Q-Chem** 可以计算永久及跃迁偶极矩、振子强度、
+ECD 旋转强度 [包括长度规范（length gauge，与原点相关）和速度规范（velocity gauge，与原点无关）两种形式]、$\langle\hat{R}^{2}\rangle$
+（以及 XX、YY、ZZ 分量各自的值，这有助于指认不同的里德堡（Rydberg）态，*e.g.*，$3p_{x}$ 与 $3s$ 的区分，*etc.*），以及
+$\langle\hat{S}^{2}\rangle$ 值。$g$ 张量的计算对 CCSD 波函数可用
+（见第 [10.11.4](../ch10_properties/sec_magnetman.md) 节及示例 [10.11.4.4](../ch10_properties/sec_magnetman.md#ex:CCSD-gtensor)）。
 
-**Note: 
+**注意：
 
-$g$-tensors can also be computed with state-interaction approach using EOM-CC and RAS-CI
-wave-functions, as described in Ref. [[660]](../bib_references/bib.md#bib684)
-.
-**.
+$g$ 张量也可以按照文献 [[660]](../bib_references/bib.md#bib684)
+ 所述，使用 EOM-CC 与 RAS-CI 波函数通过组态相互作用（state-interaction）方法计算。
+**。
 
-Interface of the CCSD and EOM-CCSD codes with the NBO 5.0
-package is also available. Furthermore, excited state analyses can be requested for
-EOM-CCSD excited states. For EOM-MP2, only state properties (dipole moments, angular momentum
-projections, $\langle\hat{R}^{2}\rangle$, $\langle\hat{S}^{2}\rangle$ are available).
-Similar functionality is available for some EOM-OD and CI models (CCMAN only).
+CCSD 与 EOM-CCSD 程序与 NBO 5.0 程序包的接口同样可用。此外，可以请求对 EOM-CCSD 激发态进行激发态分析。对于 EOM-MP2，只有态性质（偶极矩、角动量投影、$\langle\hat{R}^{2}\rangle$、$\langle\hat{S}^{2}\rangle$）可用。
+类似的功能对某些 EOM-OD 和 CI 模型（仅限 CCMAN）也可用。
 
-Analysis of the real- and complex-valued EOM-CC wave functions can also be
-performed; see Sections [7.9.30](ex_eomip-wfa.md) and [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md). NTO analysis
-for EOM-IP/DIP /EA/DEA/SF states is, obviously, only available for the transitions
-between the EOM states, so CC_STATE_TO_OPT keyword needs to be
-used, as in calculations of transition properties.
+还可以对实值与复值 EOM-CC 波函数进行分析；
+见第 [7.9.30](ex_eomip-wfa.md) 节与第 [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md) 节。EOM-IP/DIP /EA/DEA/SF 态的自然轨道（NTO）分析显然仅可用于 EOM 态之间的跃迁，
+因此需要使用 CC_STATE_TO_OPT 关键字，与跃迁性质的计算方式相同。
 
-Users must be aware of the point group symmetry of the system being studied and
-also the symmetry of the excited (target) state of interest. It is possible to
-turn off the use of symmetry using the CC_SYMMETRY. If set to
-FALSE the molecule will be treated as having $C_{1}$ symmetry and all
-states will be of $A$ symmetry.
+用户必须了解所研究体系的点群对称性，
+以及所关注的激发（目标）态的对称性。可以通过 CC_SYMMETRY 关闭对称性的使用。若将其设置为
+FALSE，分子将按 $C_{1}$ 对称性处理，
+且所有态均属于 $A$ 对称性。
 
-**Q-Chem** allows flexible control of interstate properties calculations, by
-using the CC_TRANS_PROP keyword or rem section *$trans_prop*: the user can
-request the transitions between all computed EOM target states and the
-reference state (CC_TRANS_PROP = 1) or the calculations of all
-transition properties between all computed EOM target states
-(CC_TRANS_PROP = 2). By default, the reference state is the CCSD
-reference. To compute transition properties relative to a particular EOM state,
-use CC_STATE_TO_OPT.
+**Q-Chem** 允许通过 CC_TRANS_PROP 关键字或 rem 段落 *$trans_prop* 灵活地控制态间性质的计算：用户可以
+请求所有已计算 EOM 目标态与参考态之间的跃迁（CC_TRANS_PROP = 1），或者计算所有已计算的 EOM 目标态之间
+全部跃迁性质（CC_TRANS_PROP = 2）。默认情况下，参考态是 CCSD
+参考。若要计算相对于某一特定 EOM 态的跃迁性质，
+请使用 CC_STATE_TO_OPT。
 
-By default, only one-electron properties are computed. To activate calculations
-of two-electron properties, such as NACs, SOCs, 2PA, additional keywords should
-be activated, as described below.
+默认情况下，仅计算单电子性质。若要启用双电子性质（如 NAC、SOC、2PA）的计算，
+需要激活额外的关键字，如下文所述。
 
-The *$trans_prop* input section allows the user to specify precisely which
-properties and for which pairs of states to computed. When the *$trans_prop*
-section is present in the input, it overrides the setting of the
-CC_TRANS_PROP *$rem* variable. However, for *$trans_prop* to work,
-CC_TRANS_PROP *does* need to be set.
+*$trans_prop* 输入段落允许用户精确指定为哪些态对计算哪些性质。当输入中存在 *$trans_prop*
+段落时，它将覆盖 *$rem* 变量 CC_TRANS_PROP 的设置。但是，要使 *$trans_prop* 生效，
+CC_TRANS_PROP *确实*需要被设置。
 
 > ```qchem
 > $trans_prop
@@ -106,38 +79,34 @@ CC_TRANS_PROP *does* need to be set.
 > $end
 > ```
 
-Notes about the *$trans_prop* input section:
+关于 *$trans_prop* 输入段落的说明：
 
 1. 1.
 
-`calc` computes properties for the *first* pair list (or state
-list) *before* it.
+`calc` 为其*前面*的*第一个*态对列表（或态列表）计算性质。
 2. 2.
 
-The pair list is *optional*: if there is no pair list, all possible
-combinations within the state list will be considered.
+态对列表是*可选的*：若没有态对列表，则考虑态列表内所有可能的组合。
 3. 3.
 
-Options after `calc` include: `nac`, `soc`, `dyson`,
-`2pa`, `dipole`, `default`, `pcm`, `opdm_norm`,
-`wfa`, `ang`, `linmom`, `dipole linmom`, `ecd`. Currently, only some of them are implemented.
+`calc` 之后的选项包括：`nac`、`soc`、`dyson`、
+`2pa`、`dipole`、`default`、`pcm`、`opdm_norm`、
+`wfa`、`ang`、`linmom`、`dipole linmom`、`ecd`。目前仅实现了其中的一部分。
 
-**Note: 
+**注意：
 
-The *$trans_prop* section is a new feature and is still under development —
-use at your own risk. Eventually, this section will replace other controls and
-will become a default.
+*$trans_prop* 段落是一项新功能，仍在开发之中——使用风险自负。
+最终，该段落将取代其他控制方式并成为默认设置。
 **
 
-## 7.9.21.1 Calculations of Angular Momentum Matrix Elements Using EOM-CC Wave Functions
+## 7.9.21.1 使用 EOM-CC 波函数计算角动量矩阵元
 
-Angular momentum matrix elements can be useful for analyzing wave functions, assigning state characters, or
-identifying term
-symmetry labels in linear molecules. As other one-electron properties, these matrix elements
-are evaluated using one-particle state and transition density matrices.
-Angular momentum is a gauge-dependent property, meaning that its value depends on the origin of the gauge.
-The gauge position can be controlled with *$gauge_origin* input section.
-The default position of the gauge corresponds to the $(0,0,0)$ of the coordinate system.
+角动量矩阵元可用于分析波函数、指认态的特征，或
+识别线性分子的项（term）对称性标签。与其他单电子性质一样，这些矩阵元
+利用单粒子态密度矩阵和跃迁密度矩阵来求值。
+角动量是一个与规范相关的性质，即其数值依赖于规范原点。
+规范位置可通过 *$gauge_origin* 输入段落控制。
+默认的规范位置对应于坐标系的原点 $(0,0,0)$。
 
 > ```qchem
 > $gauge_origin            Position of the gauge origin for
@@ -145,17 +114,16 @@ The default position of the gauge corresponds to the $(0,0,0)$ of the coordinate
 > $end
 > ```
 
-## 7.9.21.2 EOM-CC Oscillator Strengths in Velocity and Mixed Gauges
+## 7.9.21.2 EOM-CC 在速度规范与混合规范下的振子强度
 
-The oscillator strength of one-photon absorption is usually calculated in the length gauge (“lg”)
+单光子吸收的振子强度通常在长度规范（“lg”）下计算
 
 <a id="Ch7.E110"></a>
 $$
 f^{\rm{lg}}=\frac{2\omega_{fn}}{3}\sum_{\alpha=x,y,z}\langle n|\hat{\mu}_{\alpha}|f\rangle\langle f|\hat{\mu}_{\alpha}|n\rangle, \tag{7.110}
 $$
 
-where $\hat{\mu}$ is the electric dipole moment operator,
-but it can also be expressed in velocity gauge (“vg”) and mixed gauge (“mx”) as follows
+其中 $\hat{\mu}$ 是电偶极矩算符，但它也可以在速度规范（“vg”）和混合规范（“mx”）下表示为
 
 <a id="Ch7.E111"></a>
 $$
@@ -167,110 +135,101 @@ $$
 f^{\rm{mx}}=\frac{2i}{3}\sum_{\alpha=x,y,z}\langle n|\hat{\mu}_{\alpha}|f\rangle\langle f|\hat{p}_{\alpha}|n\rangle, \tag{7.112}
 $$
 
-where $\hat{p}$ is the linear momentum operator.
+其中 $\hat{p}$ 是线动量算符。
 
-All three gauges are implemented as part of the EOM-CCSD transition properties in **Q-Chem**.
-Whereas $f^{\rm lg}$ is computed as the default transition property, the other two must be activated. This is done in the *$trans_prop* input section by specifying `calc linmom` for velocity gauge only, or `calc dipole linmom` for all three gauges.
-This is illustrated in Example [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1).
+三种规范均已实现，作为 **Q-Chem** 中 EOM-CCSD 跃迁性质的一部分。
+$f^{\rm lg}$ 作为默认跃迁性质计算，另外两种则需要手动激活。这可以在 *$trans_prop* 输入段落中通过指定 `calc linmom`（仅速度规范）或 `calc dipole linmom`（三种规范全部）来完成。
+示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 对此进行了演示。
 
-Note that:
+请注意：
 
 - –
 
-If the calculation of ECD is activated in the input, $f^{\rm lg}$, $f^{\rm vg}$, and $f^{\rm mx}$ will also be computed;
+若输入中激活了 ECD 计算，$f^{\rm lg}$、$f^{\rm vg}$ 和 $f^{\rm mx}$ 也将被计算；
 - –
 
-If the energy separation between the two states is very small (threshold = $10^{-6}$), as in case of (near)-degenerate states,
-a warning is issued and the calculation of the velocity gauge strength is skipped.
+若两个态之间的能量差非常小（阈值为 $10^{-6}$），如（近）简并态的情况，
+会发出警告并跳过速度规范振子强度的计算。
 
-## 7.9.21.3 Calculations of EOM-CC Rotatory Strengths (ECD and XCD) in Length and Velocity Gauges
+## 7.9.21.3 在长度与速度规范下计算 EOM-CC 旋转强度（ECD 与 XCD）
 
-**Q-Chem** affords ECD and XCD calculations using EOM-CC wave functions using formalism and implementation described in
-Ref. [[46]](../bib_references/bib.md#bib29)
-.
-The rotatory strength of ECD within CC theory is defined as:
+**Q-Chem** 可以按照文献 [[46]](../bib_references/bib.md#bib29)
+ 所述的形式体系与实现，使用 EOM-CC 波函数进行 ECD 和 XCD 计算。
+CC 理论下 ECD 的旋转强度定义为：
 
 <a id="A3.S8.EGx56"></a>
 $$
 \displaystyle R^{\text{lg}}_{nf} \tag{7.113}
 $$
 
-in the length (“lg”) and velocity (“vg”) formulations, respectively. $\hat{\mu}$ is the electric dipole moment operator and $\hat{p}$ is the linear momentum operator. The length-gauge expression in Eq. ([7.113](#eq:length)) is gauge-origin dependent, whereas Eq. ([7.114](#eq:velocity)) is gauge-origin independent.
+分别对应长度（“lg”）和速度（“vg”）表达形式。$\hat{\mu}$ 是电偶极矩算符，$\hat{p}$ 是线动量算符。式 ([7.113](#eq:length)) 中的长度规范表达式与规范原点相关，而式 ([7.114](#eq:velocity)) 与规范原点无关。
 
-ECD is available for ground-state and excited-state EOM-EE-CCSD transitions in the valence and core-excited regimes. The latter
-is based on the fc-CVS-EOM-EE-CCSD framework. ECD is also available for the transitions between EOM-EA-CCSD states. The ECD calculations are not available for EOM-IP/EOM-DIP calculations yet.
+ECD 可用于价层及核激发（core-excited）区域的基态与激发态 EOM-EE-CCSD 跃迁。后者
+基于 fc-CVS-EOM-EE-CCSD 框架。ECD 也可用于 EOM-EA-CCSD 态之间的跃迁。EOM-IP/EOM-DIP 计算的 ECD 尚不可用。
 
-The computation of rotatory strengths is activated in the input by either
-activating CC_EOM_ECD or via *$trans_prop* section, as illustrated in Example [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1).
-In the latter case, the user can either request the calculation of
-the transition dipole moment, linear momentum, and angular momentum operators together (“`calc dipole linmom ang`”)
-or request ECD only (“`calc ecd`”).
+旋转强度的计算可以通过激活 CC_EOM_ECD，或通过 *$trans_prop* 段落来启用，如示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 所示。
+在后一种情况下，用户既可以请求同时计算跃迁偶极矩、线动量和角动量算符（“`calc dipole linmom ang`”），
+也可以仅请求 ECD（“`calc ecd`”）。
 
-Note that:
+请注意：
 
 - –
 
-Rotatory strengths will be computed in both length and velocity gauge;
+旋转强度将在长度规范和速度规范下同时计算；
 - –
 
-Oscillator strengths in length, velocity, and mixed gauges will be computed as well;
+长度、速度和混合规范下的振子强度也将一并计算；
 - –
 
-If the energy separation between the two states is very small (threshold = $10^{-6}$), as in the case of (near)-degenerate s
-states, a warning is issued and the calculation of the velocity gauge strength is skipped.
+若两个态之间的能量差非常小（阈值为 $10^{-6}$），如（近）简并 s
+s 态的情况，会发出警告并跳过速度规范强度的计算。
 
-## 7.9.21.4 Calculations of Spin-Orbit Couplings Using EOM-CC Wave Functions
+## 7.9.21.4 使用 EOM-CC 波函数计算自旋-轨道耦合
 
-Calculations of spin-orbit couplings (SOCs) for EOM-CC wave functions is
-available in CCMAN2.[[364]](../bib_references/bib.md#bib370)
+EOM-CC 波函数的自旋-轨道耦合（spin-orbit coupling, SOC）计算在 CCMAN2 中可用。[[364]](../bib_references/bib.md#bib370)
 
-We employ a perturbative approach
-in which SOCs are computed as matrix elements of the respective part of the
-Breit–Pauli Hamiltonian using zero-order non-relativistic wave functions.
-There are two versions of the code that can be engaged by using CALC_SOC.
-The old code computes SOC as a matrix element between a
-pair of states that need to be explicitly computed; thus, it is able to produce
-only one matrix element per transition. Although this approach can be used to
-extract the whole matrix through rotations of the molecule,[[1107]](../bib_references/bib.md#bib1150)
+我们采用微扰处理方法，
+其中 SOC 使用零阶非相对论波函数，作为 Breit–Pauli 哈密顿量相应部分的矩阵元来计算。
+通过 CALC_SOC 可以使用两个版本的代码。
+旧代码将 SOC 计算为一对需显式计算的态之间的矩阵元；因此每次跃迁只能产生
+一个矩阵元。虽然这种方法可以通过旋转分子来
+提取整个矩阵，[[1107]](../bib_references/bib.md#bib1150)
 
-the relative phases of these matrix elements are
-lost. The new version of the code solves this issue and also improves
-performance.[[1103]](../bib_references/bib.md#bib1151)
- The new code uses
-Wigner–Eckart’s theorem to compute the entire spin-orbit matrix. We
-partition excitation operators by their spin properties. Since the spin–orbit
-operator is a triplet operator, we can consider the following triplet
-excitation operators
+但这些矩阵元之间的相对相位会
+丢失。新版本代码解决了这一问题，并提升了
+性能。[[1103]](../bib_references/bib.md#bib1151)
+ 新代码利用
+Wigner–Eckart 定理计算完整的自旋-轨道矩阵。我们按自旋属性
+对激发算符进行划分。由于自旋–轨道
+算符是三重（triplet）算符，可以考虑如下三重
+激发算符
 
 <a id="A3.S8.EGx57"></a>
 $$
 \displaystyle T^{1,1}_{p,q}=-a^{\dagger}_{p\alpha}a_{q\beta} \tag{7.115}
 $$
 
-If we apply Wigner–Eckart’s theorem, the following matrix elements are
-decomposed into the Clebsch–Gordan coefficients and reduced matrix elements:
+若应用 Wigner–Eckart 定理，下列矩阵元可
+分解为 Clebsch–Gordan 系数与约化矩阵元：
 
 <a id="eq:WignerEckart_u"></a>
 $$
 \langle\Psi_{I}SM|T^{1,k}_{p,q}|\Psi_{J}S^{\prime}M^{\prime}\rangle=\langle S^{\prime}M^{\prime}|1k|SM\rangle\langle\Psi_{I}S||T^{1,\cdot}_{p,q}||\Psi_{J}S^{\prime}\rangle, \tag{7.118}
 $$
 
-where $S$ and $S^{\prime}$ denote spins, and $M$ and $M^{\prime}$ denote spin
-projections of $\Psi_{I}$ and $\Psi_{J}$, respectively. The reduced matrix
-elements form a new, spinless triplet transition density matrix, which we will
-denote as $u^{1,\cdot}$. The spin-orbit reduced matrix elements are obtained
-as a trace with $u^{1,\cdot}$:
+其中 $S$ 和 $S^{\prime}$ 表示自旋，$M$ 和 $M^{\prime}$ 分别表示 $\Psi_{I}$ 和 $\Psi_{J}$ 的自旋
+投影。这些约化矩阵元构成一个新的无自旋三重跃迁密度矩阵，我们将其
+记为 $u^{1,\cdot}$。自旋-轨道约化矩阵元通过与 $u^{1,\cdot}$ 求迹得到：
 
 <a id="A3.S8.EGx58"></a>
 $$
 \displaystyle\langle\Psi_{I}S||H_{L_{-}}||\Psi_{J}S^{\prime}\rangle=-\frac{1}{2}\sum_{p,q}h^{SO}_{L_{-};p,q}u^{1,\cdot}_{p,q} \tag{7.119}
 $$
 
-Applying Wigner–Eckart’s theorem again, all possible matrix elements are
-generated from reduced matrix elements. This algorithm is available for the
-EOM-EE/SF/IP/EA/DIP /DEA wave functions for MP2 and CCSD references, as well as between the CCSD reference and EOM-EE/SF.
-Examples [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1), [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1), [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) illustrate
-calculations of SOCs for various EOM-CC models.
+再次应用 Wigner–Eckart 定理，即可由约化矩阵元生成所有可能的矩阵元。该算法可用于
+MP2 和 CCSD 参考的 EOM-EE/SF/IP/EA/DIP /DEA 波函数，以及 CCSD 参考与 EOM-EE/SF 之间的计算。
+示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)、[7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)、[7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 演示了
+各种 EOM-CC 模型的 SOC 计算。
 
 ```qchem
 A(Ket)->B(Bra) transition SO matrices
@@ -302,61 +261,56 @@ A(Ket)->B(Bra) transition SO matrices
  <Sz=0.00|(1.176458,5.735480)(0.000000,-6.173180)(1.176458,-5.735480)
 ```
 
-The algorithm is activated by setting CALC_SOC to 1 or 2. The
-execution relies on a non-zero Clebsch-Gordan coefficient (otherwise, it is not
-possible to extract the necessary information from the transition density
-matrix). If the Clebsch-Gordan coefficient is zero, a warning will be printed,
-and the transition will be skipped. Usually it is possible to select the
-states, leading to non-zero Clebsch-Gordan coefficients, by selecting SF or EE,
-alpha or beta electrons in case of EA or IP. Determination of state
-multiplicities is based on $\hat{S}^{2}$. In case of a strong spin contamination, a
-warning is printed, and the closest multiplicity is assumed.
+该算法通过将 CALC_SOC 设置为 1 或 2 来激活。
+其执行依赖于非零的 Clebsch-Gordan 系数（否则无法
+从跃迁密度矩阵中提取所需信息）。若 Clebsch-Gordan 系数为零，
+将打印警告并跳过该跃迁。通常可以通过选取自旋翻转（SF）或电子激发（EE），
+或在 EA、IP 情况下选取 alpha 或 beta 电子，
+来挑选出使 Clebsch-Gordan 系数非零的态。态多重度的
+判定基于 $\hat{S}^{2}$。若存在严重的自旋污染，
+会打印警告，并采用最接近的多重度。
 
-In the case of open-shell references, the resulting reduced matrix elements may
-violate symmetries implied by the spin-orbit operator. Setting
-CALC_SOC to 1 will produce these reduced matrix elements, but the
-actual spin-orbit matrix will be produced from the *averaged* reduced
-matrix elements, in which the desired symmetry is restored. Setting
-CALC_SOC to 2 will form spin-orbit matrix without averaging of
-reduced matrix elements. Although in practice the difference between these two
-options is small, the averaging may simplify the analysis of splittings.
-Examples [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) and [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)
-illustrate calculation of SOC using SOMF
-in the acetylene-O complex.
+在开壳层参考的情况下，所得的约化矩阵元可能
+违反自旋-轨道算符所隐含的对称性。将
+CALC_SOC 设置为 1 会产生这些约化矩阵元，但实际的自旋-轨道
+矩阵将由*平均后的*约化
+矩阵元构造，其中所需的对称性得到恢复。将
+CALC_SOC 设置为 2 则在不平均约化矩阵元的情况下直接构造自旋-轨道矩阵。
+尽管在实践中这两种选项的差异很小，但平均化可以简化
+能级分裂的分析。示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 和 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)
+演示了在使用 SOMF 的乙炔-O 复合物中计算 SOC。
 
-**Note: 
+**注意：
 
-In the case of ECP, attempts to compute SOCs using the above algorithms
-(with CALC_SOC=1 or 2)
-will, most likely, result in unphysically low SOC values.
-Instead, we recommend using effective charges (CALC_SOC=4).
+在存在有效核势（ECP）的情况下，尝试使用上述算法
+（CALC_SOC=1 或 2）计算 SOC，
+很可能得到非物理的极低 SOC 值。
+作为替代，我们建议使用有效核电荷（CALC_SOC=4）。
 **
 
-To activate the NTO analysis of the spinless one-particle transition density matrices,[[1105]](../bib_references/bib.md#bib1152)
+要对无自旋单粒子跃迁密度矩阵进行 NTO 分析[[1105]](../bib_references/bib.md#bib1152)
 
-and to compute spin-orbit integrals over NTOs,
-set STATE_ANALYSIS = TRUE , MOLDEN_FORMAT = TRUE,
-in addition to CALC_SOC = 1, 2, or 4.
+并计算 NTO 上的自旋-轨道积分，
+请在 CALC_SOC = 1、2 或 4 之外，
+设置 STATE_ANALYSIS = TRUE 以及 MOLDEN_FORMAT = TRUE。
 
-**Q-Chem** also affords computing SOCs using one-electron SO operator with
-effective nuclear charges.[[380]](../bib_references/bib.md#bib384)
+**Q-Chem** 还支持使用带有效核电荷的单电子 SO 算符计算 SOC。[[380]](../bib_references/bib.md#bib384)
 
-The rational for this approach is that the effect of the
-mean-field two-electron part of the SOC operator
-can be approximated by screened nuclear charges.
-In the case of all-electron calculations (no ECP), this approach is less rigorous than SOMF,
-but it does not use two-electron integrals at all and is, therefore, less expensive.
-Moreover, using effective charges allows one to obtain reasonable values of SOCs with ECPs.
-This calculation is activated by using CALC_SOC = 4. **Q-Chem** output will contain
-one-electron SOCs computed with the original and screened (effective) nuclear charges.
-In the case of open-shell references, SOCs are computed using $L_{+}/L_{-}$ averaging (as
-for the CALC_SOC = 1 case). By default, the calculations use effective
-charges from Fedorov *et al.*,[[380]](../bib_references/bib.md#bib384)
- tabulated for elements Li through At,
-except for lanthanides. For all-electron calculations,
-the effective charges from the 6-31G basis are used, and for ECPs, SBKJC charges are used.
-Alternatively, the user can provide user-defined effective charges via input section
-*$soc_eff_charges*, as follows:
+该方法的依据是：SOC 算符的
+平均场双电子部分的效应可以用屏蔽核电荷来近似。
+在全电子计算（无 ECP）的情况下，该方法不如 SOMF 严格，
+但它完全不使用双电子积分，因此计算代价更低。
+此外，使用有效核电荷可以在存在 ECP 时获得合理的 SOC 值。
+该计算通过 CALC_SOC = 4 激活。**Q-Chem** 的输出将包含
+使用原始核电荷与屏蔽（有效）核电荷计算的单电子 SOC。
+在开壳层参考的情况下，SOC 使用 $L_{+}/L_{-}$ 平均（与
+CALC_SOC = 1 的情况相同）计算。默认情况下，计算使用 Fedorov *et al.* 的
+有效核电荷[[380]](../bib_references/bib.md#bib384)，
+其数值已对 Li 至 At 的元素列表，
+镧系元素除外。对于全电子计算，
+使用基于 6-31G 基组的有效核电荷，对于 ECP，则使用 SBKJC 电荷。
+另外，用户可以通过输入段落
+*$soc_eff_charges* 提供自定义的有效核电荷，方式如下：
 
 > ```qchem
 > $soc_eff_charges
@@ -365,82 +319,72 @@ Alternatively, the user can provide user-defined effective charges via input sec
 > $end
 > ```
 
-Examples [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) and [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) illustrate this capability.
+示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 和 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 演示了这一功能。
 
-The legacy code has the full two-electron treatment and the mean-field
-approximation. To enable the SOC calculation, transition properties between
-EOM states must be enabled via CC_TRANS_PROP, and SOC requested
-setting CALC_SOC to 3. By default, one-electron and mean-field
-two-electron couplings will be computed. Full two-electron coupling calculation
-is activated by setting CC_EOM_PROP_TE.
+旧版（legacy）代码包含完整的双电子处理及平均场
+近似。要启用 SOC 计算，必须通过 CC_TRANS_PROP 启用 EOM 态之间的跃迁性质，
+并将 CALC_SOC 设置为 3 以请求 SOC。默认情况下，将计算单电子和平均场
+双电子耦合。完整双电子耦合计算通过设置 CC_EOM_PROP_TE 激活。
 
-As with other EOM transition properties, the initial EOM state is set by
-CC_STATE_TO_OPT, and couplings are computed between that state and
-all other EOM states. In the absence of CC_STATE_TO_OPT, SOCs are
-computed between the reference state and all EOM-EE or EOM-SF states.
+与其他 EOM 跃迁性质一样，初始 EOM 态由
+CC_STATE_TO_OPT 设定，耦合在该态与
+所有其他 EOM 态之间计算。若未设置 CC_STATE_TO_OPT，则 SOC 在
+参考态与所有 EOM-EE 或 EOM-SF 态之间计算。
 
-**Note: 
+**注意：
 
-In a spin-restricted case, such as EOM-EE calculations using closed-shell
-reference state, SOCs between the singlet and triplet EOM manifolds cannot be
-computed (only SOCs between the reference state and EOM triplets can be
-calculated). To compute SOCs between EOM-EE singlets and EOM-EE triplets, run
-the same job with UNRESTRICTED = TRUE, such that triplets and
-singlets appear in the same manifold.
+在自旋受限（spin-restricted）的情况下，如使用闭壳层
+参考态的 EOM-EE 计算，无法计算单重态与三重态 EOM 组态之间的 SOC（只能
+计算参考态与 EOM 三重态之间的 SOC）。若要计算 EOM-EE 单重态与 EOM-EE 三重态之间的 SOC，请在
+相同作业中设置 UNRESTRICTED = TRUE 重新运行，
+使三重态和单重态出现在同一组态中。
 **
 
-**Note: 
+**注意：
 
-The most flexible control for computing transition properties is afforded by the
-*$trans_prop* input section, as described in Section 7.9.21.
+计算跃迁性质最灵活的控制方式由
+*$trans_prop* 输入段落提供，如第 7.9.21 节所述。
 **
 
-## 7.9.21.5 Calculations of Non-Adiabatic Couplings Using EOM-CC Wave Functions
+## 7.9.21.5 使用 EOM-CC 波函数计算非绝热耦合
 
-Calculations of nonadiabatic (derivative) couplings (NACs) for EOM-CC wave functions is
-available in CCMAN2. We employ Szalay’s approach in which couplings are computed
-by a modified analytic gradient code, via “summed states”:[[1336]](../bib_references/bib.md#bib1394)
+EOM-CC 波函数的非绝热（绝热）耦合（nonadiabatic (derivative) couplings, NACs）计算在 CCMAN2 中可用。
+我们采用 Szalay 的方法，其中耦合通过修改的解析梯度代码，经由“求和态（summed states）”计算：[[1336]](../bib_references/bib.md#bib1394)
 
 <a id="eq:Szalay:ExactH"></a>
 $$
 h^{x}_{IJ}\equiv\langle\Psi_{I}|H^{x}|\Psi_{J}\rangle=\frac{1}{2}\left(G_{(I+J)}-G_{I}-G_{J}\right), \tag{7.122}
 $$
 
-where, $G_{I}$, $G_{J}$, and $G_{IJ}$ are analytic gradients for states $I$, $J$,
-and a fictitious summed state $|\Psi_{I+J}\rangle\equiv|\Psi_{I}\rangle+|\Psi_{J}\rangle$. Currently, NACs for EE/IP/EA are available.[[375]](../bib_references/bib.md#bib380)
+其中 $G_{I}$、$G_{J}$ 和 $G_{IJ}$ 分别是态 $I$、$J$
+以及虚拟求和态 $|\Psi_{I+J}\rangle\equiv|\Psi_{I}\rangle+|\Psi_{J}\rangle$ 的解析梯度。目前，EE/IP/EA 的 NAC 可用。[[375]](../bib_references/bib.md#bib380)
 
-**Note: 
+**注意：
 
-Note that the individual components of the NAC vector depend on the
-molecular orientation.
+请注意，NAC 向量的各个分量依赖于分子的
+取向。
 **
 
-## 7.9.21.6 Transition Moments and Cross Sections for Two-Photon Absorption
-within EOM-EE-CCSD
+## 7.9.21.6 EOM-EE-CCSD 内的双光子吸收跃迁矩与截面
 
-Calculation of transition moments and cross-sections for two-photon absorption
-for EOM-EE-CCSD wave functions is available in **Q-Chem** (CCMAN2 only). Both
-CCSD-EOM and EOM-EOM transitions can be computed. The formalism is described in
-Ref. [[977]](../bib_references/bib.md#bib1018)
-. This feature is available both for canonical and
-RI/CD implementations. The undamped canonical 2PA cross sections between EOM-DEA-CCSD states
-are also available. Relevant keywords are CC_EOM_2PA (turns on
-the calculation, controls NTO calculation), CC_STATE_TO_OPT (used
-for EOM-EOM transitions); additional customization can be performed using the
-*$2pa* section. The quantity printed out is the microscopic cross-section
-$\delta^{TPA}$ (also known as rotationally averaged 2PA strength), as defined
-in Eq. (30) of Ref. [[977]](../bib_references/bib.md#bib1018)
-.
+EOM-EE-CCSD 波函数的双光子吸收（two-photon absorption, 2PA）跃迁矩与截面计算在 **Q-Chem** 中可用（仅限 CCMAN2）。CCSD-EOM 和 EOM-EOM
+跃迁均可计算。其形式体系见
+文献 [[977]](../bib_references/bib.md#bib1018)
+。该功能在常规（canonical）实现和 RI/CD 实现中均可用。EOM-DEA-CCSD 态之间的无阻尼常规 2PA 截面
+也可用。相关关键字为 CC_EOM_2PA（开启计算，控制 NTO 计算）、CC_STATE_TO_OPT（用于
+EOM-EOM 跃迁）；额外的定制可通过
+*$2pa* 段落完成。输出的物理量是微观截面
+$\delta^{TPA}$（也称为旋转平均 2PA 强度），定义见文献 [[977]](../bib_references/bib.md#bib1018)
+ 的式 (30)。
 
-The *$2pa* section is used to specify the range of frequency-pairs satisfying
-the resonance condition. If *$2pa* section is absent in the input, the
-transition moments are computed for 2 degenerate photons with total energy
-matching the excitation energy of each target EOM state (for CCSD-EOM) or each
-EOM-EOM energy difference (for EOM-EOM transitions): $2h\nu=E_{ex}$
-For resonant or near-resonant calculations (*i.e.*, when one of the photons is in
-resonance with an excited state), damped response theory should be used;
-such calculations are deployed by adding DAMPED_EPSILON in the *$2pa* section
-(the value of $\epsilon$ is specified in hartrees, 0.001 is usually sufficient).
+*$2pa* 段落用于指定满足共振条件的频率对范围。若输入中不存在 *$2pa* 段落，
+则对两个简并光子计算跃迁矩，其总能量
+与各目标 EOM 态的激发能（对 CCSD-EOM）或各
+EOM-EOM 能量差（对 EOM-EOM 跃迁）相匹配：$2h\nu=E_{ex}$
+对于共振或近共振计算（*i.e.*，当其中一个光子与某一激发态
+共振时），应使用阻尼响应理论（damped response theory）；
+这类计算通过在 *$2pa* 段落中添加 DAMPED_EPSILON 来执行
+（$\epsilon$ 的值以 hartree 为单位指定，通常 0.001 就足够了）。
 
 > ```qchem
 > $2pa                      Non-degenerate resonant 2PA
@@ -450,85 +394,81 @@ such calculations are deployed by adding DAMPED_EPSILON in the *$2pa* section
 > $end
 > ```
 
-N_2PA_POINTS is the number of frequency pairs across the spectrum.
-The first value associated with OMEGA_1 is the frequency $\times 1000$ in cm${}^{-1}$ at the start of the spectrum and the second value is the
-step size $\times 1000$ in cm${}^{-1}$. The frequency of the second photon at
-each step is determined within the code as the excitation energy minus
-OMEGA_1.
+N_2PA_POINTS 是光谱范围内的频率对数目。
+OMEGA_1 关联的第一个值是光谱起始处频率 $\times 1000$（单位 cm${}^{-1}$），第二个值是
+步长 $\times 1000$（单位 cm${}^{-1}$）。每一步中第二个光子的频率
+由程序内部按激发能减去
+OMEGA_1 确定。
 
-To gain insight into computed cross sections for 2PA, one can perform NTO
-analysis of the response one-particle density matrices [[979]](../bib_references/bib.md#bib1020)
-. To
-activate NTO analysis of the 2PA response one-particle transition density
-matrices, set STATE_ANALYSIS = TRUE, MOLDEN_FORMAT
-= TRUE (to export the orbitals as **MolDen** files),
-NTO_PAIRS (specifies the number of orbitals to print). The NTO
-analysis will be performed for the full 2PA response one-particle transition
-density matrices as well as the normalized $\omega$DMs (see
-Ref. [[979]](../bib_references/bib.md#bib1020)
- for more details).
+为深入理解计算得到的 2PA 截面，可以对响应单粒子密度矩阵进行 NTO
+分析 [[979]](../bib_references/bib.md#bib1020)
+。要
+激活 2PA 响应单粒子跃迁密度矩阵的 NTO 分析，请设置
+STATE_ANALYSIS = TRUE、MOLDEN_FORMAT
+= TRUE（将轨道导出为 **MolDen** 文件）、
+NTO_PAIRS（指定要打印的轨道数目）。NTO
+分析将对完整的 2PA 响应单粒子跃迁
+密度矩阵以及归一化的 $\omega$DM 进行（更多细节见
+文献 [[979]](../bib_references/bib.md#bib1020)
+）。
 
-By default, both undamped and damped 2PA response wave functions are computed using a new
-iterative Davidson-like subspace procedure called the **Dalton** solver.[[248]](../bib_references/bib.md#bib251)
+默认情况下，无阻尼和阻尼的 2PA 响应波函数均使用一种名为 **Dalton**
+求解器的新型迭代 Davidson 型子空间方法计算。[[248]](../bib_references/bib.md#bib251)
 
-It is controlled by the DALTON_XCONV, DALTON_PRECOND_START,
-DALTON_MAXITER, and DALTON_MAXSPACE
-keywords. Damped 2PA response wave functions can also be computed using the older
-DIIS procedure by setting DAMPED_DALTON_SOLVER = FALSE.
-The DIIS solver is controlled by the
-CC_MAX_ITER, CC_DIIS_START,
-CC_DIIS_SIZE, CC_EOM_2PA_ECONV, and CC_EOM_2PA_XCONV.
+该方法由 DALTON_XCONV、DALTON_PRECOND_START、
+DALTON_MAXITER 和 DALTON_MAXSPACE
+关键字控制。阻尼 2PA 响应波函数也可以通过设置 DAMPED_DALTON_SOLVER = FALSE
+使用较旧的 DIIS 过程计算。
+DIIS 求解器由
+CC_MAX_ITER、CC_DIIS_START、
+CC_DIIS_SIZE、CC_EOM_2PA_ECONV 和 CC_EOM_2PA_XCONV 控制。
 
-**Note: 
+**注意：
 
-The **Dalton** solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver),
-whereas the DIIS solver uses the norm of the difference of the response vector between iterations.
+**Dalton** 求解器在判断收敛时使用残差范数的平方（与 Davidson 求解器相同），
+而 DIIS 求解器使用相邻迭代之间响应向量之差的范数。
 **
 
-2PA calculations can be carried out using single precision, by activating
-CC_EOM_2PA_SINGLE_PREC keyword, in addition to the keywords activating
-single-precision execution of CC and EOM-CC equations (see Section [7.9.15](sec_SP_EOM_CC.md).
-Capabilities for computing other non-linear properties include RIXS (see Section [7.9.9.1](sub_cvs_eom.md#sec:cvs_eom_rixs))
-and static and dynamic polarizabilities (Section [7.9.21.8](#sec:EOMpol)).
+2PA 计算可以通过激活
+CC_EOM_2PA_SINGLE_PREC 关键字（连同激活 CC 与 EOM-CC 方程单精度执行的关键字，见第 [7.9.15](sec_SP_EOM_CC.md) 节）
+以单精度进行。计算其他非线性性质的能力包括 RIXS（见第 [7.9.9.1](sub_cvs_eom.md#sec:cvs_eom_rixs) 节）
+以及静态和动态极化率（第 [7.9.21.8](#sec:EOMpol) 节）。
 
-## 7.9.21.7 Calculation of Optical Rotation for CCSD Wave Function
+## 7.9.21.7 CCSD 波函数旋光度的计算
 
-**Q-Chem** affords calculations of the optical rotation (OR) tensor and the related specific optical rotation[[1058]](../bib_references/bib.md#bib1103)
+**Q-Chem** 可以对 CCSD 波函数（在 CCMAN2 中）计算旋光（optical rotation, OR）张量及相关的比旋光度[[1058]](../bib_references/bib.md#bib1103)
 
-(at a chosen frequency corresponding to
-the polarimeter’s operating lamp) for a CCSD wave function (in CCMAN2)[[46]](../bib_references/bib.md#bib29)
-. The theory is based on the
-expectation-value approach, *i.e.*, the sum-over-states expressions recast into closed-form expressions using response
-states[[46]](../bib_references/bib.md#bib29)
-. The calculation involves computing regular or damped
-response wave functions. Length gauge, velocity gauge, and modified velocity gauge are used[[1059]](../bib_references/bib.md#bib1104)
-.
+（在对应于旋光仪工作 lamp 所选频率处）[[46]](../bib_references/bib.md#bib29)
+。该理论基于
+期望值方法，*i.e.*，利用响应态将按态求和（sum-over-states）表达式
+改写为封闭形式表达式[[46]](../bib_references/bib.md#bib29)
+。计算涉及常规（无阻尼）或阻尼
+响应波函数的求解。使用长度规范、速度规范及修正速度规范[[1059]](../bib_references/bib.md#bib1104)
+。
 
-The calculation of the regular (i.e., undamped) optical rotation is deployed by setting CC_OPTROT to 5 and involves computing
-(undamped) density matrices using zero-order and response wave functions.
-If the frequency of probing linearly-polarized (lp) light is nearly resonant with an excitation energy, the undamped response
-calculations
-diverge. By augmenting the frequency with a phenomenological imaginary damping factor
-(*e.g.*, 0.001 hartree), the corresponding
-damped response wave functions are computed.
+常规（即无阻尼）旋光的计算通过将 CC_OPTROT 设置为 5 来执行，涉及利用零阶波函数和
+响应波函数计算（无阻尼）密度矩阵。
+若线偏振（lp）光的探测频率接近某一激发能的共振，无阻尼响应计算
+将发散。通过给频率附加一个唯象的虚数阻尼因子
+（*e.g.*，0.001 hartree），即可计算相应的
+阻尼响应波函数。
 
-In the length (velocity) gauge, the real (imaginary) part of the damped optical rotation tensor corresponds to the differential absorption of
-the two circularly polarized components of the lp light, *i.e.*, to the electronic circular dichroism (ECD).
-The imaginary (real) part corresponds to the dispersion (ORD).
-Currently, these features are available for the canonical implementation only (no RI/CD).
+在长度（速度）规范下，阻尼旋光张量的实部（虚部）对应于
+线偏振光两个圆偏振分量的差分吸收，
+即电子圆二色谱（ECD）。其虚部（实部）对应于旋光色散（ORD）。
+目前，这些功能仅在常规实现中可用（无 RI/CD）。
 
-**Note: 
+**注意：
 
-CC_FULLRESPONSE must be set to 0 and
-CC_REF_PROP must be set to TRUE for these
-calculations.
+这些计算要求将 CC_FULLRESPONSE 设置为 0，
+并将 CC_REF_PROP 设置为 TRUE。
 **
 
-The response equations for OR are solved using the same solver as the response equations for polarizabilities
-(see Section [7.9.21.8](#sec:EOMpol) for relevant keywords).
+OR 的响应方程使用与极化率响应方程相同的求解器
+（相关关键字见第 [7.9.21.8](#sec:EOMpol) 节）。
 
-A typical *$opt_rot* section input for a regular (undamped) optical rotation calculation at the sodium D-line
-(589.6 nm = 16960.651 cm${}^{-1}$) is:
+典型的在钠 D 线（589.6 nm = 16960.651 cm${}^{-1}$）处进行常规（无阻尼）旋光计算的 *$opt_rot*
+段落输入为：
 
 > ```qchem
 > $opt_rot
@@ -539,7 +479,7 @@ A typical *$opt_rot* section input for a regular (undamped) optical rotation ca
 > $end
 > ```
 
-For a damped calculation, the frequency range, damping factor, and gauge choice are selected using the *$opt_rot* section as follows:
+对于阻尼计算，频率范围、阻尼因子和规范选择通过 *$opt_rot* 段落按如下方式设置：
 
 > ```qchem
 > $opt_rot
@@ -552,42 +492,36 @@ For a damped calculation, the frequency range, damping factor, and gauge choice 
 > $end
 > ```
 
-**Note: 
+**注意：
 
-Like other transition properties, ECD/XCD spectra can also be computed
-from the rotatory strengths between EOM-CC/CVS-EOM-CC states.
-See Section 7.9.21.
+与其他跃迁性质一样，ECD/XCD 光谱也可以由 EOM-CC/CVS-EOM-CC 态之间的
+旋转强度计算得到。
+见第 7.9.21 节。
 **
 
-## 7.9.21.8 Calculations of Static and Dynamic Polarizabilities for CCSD and EOM-CCSD
-Wave Functions
+## 7.9.21.8 CCSD 与 EOM-CCSD 波函数静态及动态极化率的计算
 
-Calculation of the static and dynamic dipole polarizabilities for CCSD and EOM-EE/SF-CCSD
-wave functions is available in CCMAN2. Polarizabilities are calculated as
-second derivatives of the CCSD or EOM-CCSD energy[[978]](../bib_references/bib.md#bib1019)
- as well as
-using the expectation-value approach, *i.e.*, the sum-over-states expression for
-the exact wave function[[976]](../bib_references/bib.md#bib1021)
-. In the analytic derivative approach
-(or the response-theory formalism), only the response of the cluster amplitudes
-is taken into the account; orbital relaxation is not included.
-CC_FULLRESPONSE must be set to 2 to turn off the orbital
-relaxation but allow amplitude response in EOM calculations, if the
-polarizabilities are to be computed with this approach (both CC_POL
-and EOM_POL must equal 1 or 2). CC_POL
-and EOM_POL = 3 or 4 coupled with
-CC_FULLRESPONSE = 0 will enable expectation-value
-polarizabilities. Note that CC_REF_PROP and CC_EOM_PROP/
-must be set to TRUE for these calculations.
+CCSD 与 EOM-EE/SF-CCSD 波函数的静态和动态偶极极化率计算在 CCMAN2 中可用。极化率的计算方式有两种：
+作为 CCSD 或 EOM-CCSD 能量的二阶导数[[978]](../bib_references/bib.md#bib1019)
+，以及
+使用期望值方法，*i.e.*，精确波函数的按态求和表达式[[976]](../bib_references/bib.md#bib1021)
+。在解析导数方法
+（或响应理论形式体系）中，只考虑簇振幅的响应；不包含轨道弛豫。
+若要用该方法计算极化率（CC_POL
+和 EOM_POL 均须等于 1 或 2），必须将 CC_FULLRESPONSE 设置为 2，
+以关闭轨道弛豫但在 EOM 计算中允许振幅响应。CC_POL
+和 EOM_POL = 3 或 4 与
+CC_FULLRESPONSE = 0 结合使用将启用期望值
+极化率。请注意，这些计算要求将 CC_REF_PROP 和 CC_EOM_PROP/
+设置为 TRUE。
 
-Dynamic polarizabilities are enabled using the *$dyn_pol* section, which
-specifies the frequency range. Without this section, only the static
-polarizabilities will be computed.
-CCSD and EOM-EE/SF-CCSD dynamic polarizabilities for imaginary frequencies
-are also available through the use of the *$dyn_pol* section.
-CCSD static and dynamic polarizabilities within the damped response theory are also available,
-which can be turned on by specifying the *damped_epsilon* variable in the
-*$dyn_pol* section.
+动态极化率通过 *$dyn_pol* 段落启用，该段落
+指定频率范围。若没有此段落，将只计算静态
+极化率。
+CCSD 与 EOM-EE/SF-CCSD 在虚频率下的动态极化率也可通过 *$dyn_pol* 段落
+使用。阻尼响应理论框架下的 CCSD 静态与动态极化率同样可用，
+可通过在 *$dyn_pol* 段落中指定
+*damped_epsilon* 变量来开启。
 
 > ```qchem
 > $dyn_pol
@@ -598,89 +532,84 @@ which can be turned on by specifying the *damped_epsilon* variable in the
 > $end
 > ```
 
-Currently, these features are available for the canonical implementation only.
+目前，这些功能仅在常规实现中可用。
 
-**Note: 
+**注意：
 
-EOM-CCSD polarizabilities are available for the EE and SF wave functions only.
+EOM-CCSD 极化率仅对 EE 和 SF 波函数可用。
 **
 
-By default, both undamped and damped polarizability response wave functions are computed using a new
-iterative Davidson-like subspace procedure called the **Dalton** solver.[[248]](../bib_references/bib.md#bib251)
+默认情况下，无阻尼和阻尼的极化率响应波函数均使用一种名为 **Dalton**
+求解器的新型迭代 Davidson 型子空间方法计算。[[248]](../bib_references/bib.md#bib251)
 
-It is controlled by the DALTON_XCONV, DALTON_PRECOND_START,
-DALTON_MAXITER, and DALTON_MAXSPACE
-keywords. Damped polarizability response wave functions can also be computed using the older DIIS solver
-by setting DAMPED_DALTON_SOLVER = FALSE. The DIIS solver is controlled by CC_MAX_ITER, CC_DIIS_START, CC_DIIS_SIZE, and CC _CONVERGENCE.
+该方法由 DALTON_XCONV、DALTON_PRECOND_START、
+DALTON_MAXITER 和 DALTON_MAXSPACE
+关键字控制。阻尼极化率响应波函数也可以通过设置 DAMPED_DALTON_SOLVER = FALSE
+使用较旧的 DIIS 求解器计算。DIIS 求解器由 CC_MAX_ITER、CC_DIIS_START、CC_DIIS_SIZE 和 CC _CONVERGENCE 控制。
 
-**Note: 
+**注意：
 
-The **Dalton** solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver), whereas the DIIS solver uses the norm of the difference of the response vector between iterations. The default threshold for convergence in response calculations (2PA, polarizability, RIXS) is 5.
+**Dalton** 求解器在判断收敛时使用残差范数的平方（与 Davidson 求解器相同），而 DIIS 求解器使用相邻迭代之间响应向量之差的范数。响应计算（2PA、极化率、RIXS）的默认收敛阈值为 5。
 **
 
-## 7.9.21.9 Calculations of Static and Dynamic First Hyperpolarizabilities for CCSD Wave Functions
+## 7.9.21.9 CCSD 波函数静态及动态第一超极化率的计算
 
-Calculation of the static and dynamic dipole first hyperpolarizabilities for CCSD
-wave functions is available in CCMAN2 (currently, canonical implementation only).
-First hyperpolarizabilities are computed within the damped-response expectation-value
-approach[[981]](../bib_references/bib.md#bib1024)
-.
-Setting CC_1HPOL to 1 deploys the algorithm that
-computes this property with the least number of response wave-function calculations.
-Setting CC_1HPOL to 3, computes this property by constructing
-the second-order response density matrices, which involves computing a
-large number of second-order response wave functions. These second-order response
-density matrices are then used to compute second-order response natural orbitals
-using **libwfa** for quantitative wave-function and orbital analyses.
-Calculations of first hyperpolarizabilities require the *$1hpol* section, which
-specifies the frequency ranges of the two photons ($\omega_{1}$ and $\omega_{2}$;
-$\omega_{3}=\omega_{1}+\omega_{2}$),
-as well as the corresponding damping factors.
+CCSD 波函数的静态和动态偶极第一超极化率计算在 CCMAN2 中可用（目前仅限常规实现）。
+第一超极化率在阻尼响应的期望值
+框架内计算[[981]](../bib_references/bib.md#bib1024)
+。
+将 CC_1HPOL 设置为 1 所启动的算法
+以最少数目的响应波函数计算来获得该性质。
+将 CC_1HPOL 设置为 3，则通过构造
+二阶响应密度矩阵来计算该性质，这需要计算
+大量的二阶响应波函数。随后利用这些二阶响应密度矩阵，
+通过 **libwfa** 计算二阶响应自然轨道，
+用于定量的波函数与轨道分析。
+第一超极化率的计算需要 *$1hpol* 段落，其中
+指定两个光子的频率范围（$\omega_{1}$ 和 $\omega_{2}$；
+$\omega_{3}=\omega_{1}+\omega_{2}$），
+以及相应的阻尼因子。
 
-**Note: 
+**注意：
 
-CC_FULLRESPONSE must be set to 0
-and CC_REF_PROP must be set to TRUE for these calculations.
+这些计算要求将 CC_FULLRESPONSE 设置为 0，
+并将 CC_REF_PROP 设置为 TRUE。
 **
 
 > ```qchem
 > $1hpol
 > omega_1 0000000 1500000 3 0.01 !Scans omega_1 from 0 cm$^{-1}$ to (3-1)*1500 cm$^{-1}
->                                ! in steps of 1500 cm$^{-1}
+>                                ! in steps of 1500 cm$^{-1}$
 >                                ! damping factor epsilon_1 is 0.01 Hartrees
 > omega_2 0000000 2500000 4 0.01 !Scans omega_2 from 0 cm$^{-1}$ to (4-1)*2500 cm$^{-1}
->                                ! in steps of 2500 cm$^{-1}
+>                                ! in steps of 2500 cm$^{-1}$
 >                                ! damping factor epsilon_2 is 0.01 Hartrees
 > omega_3 0.01                   ! damping factor epsilon_3 is 0.01 Hartrees
 > $end
 > ```
 
-Example [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) computes
-static and dynamic first hyperpolarizability for CCSD/STO-3G wave function for LiH using the framework of damped response theory and
-the expectation-value approach.
-The property for the following set of 3 photons is calculated (frequencies in cm${}^{-1}$):
+示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 在阻尼响应理论与
+期望值方法的框架下，计算了 LiH 的 CCSD/STO-3G 波函数的静态与动态第一超极化率。
+针对以下光子组（频率单位 cm${}^{-1}$）计算该性质：
 (0, 0; 0), (2500, 0; -2500), (5000, 0; -5000), (0, 3500; -3500), (0, 7000; -7000), (2500, 3500; -6000), (2500, 7000; -9500),
-(5000, 3500; -8500), (5000, 7000; -12000).
+(5000, 3500; -8500), (5000, 7000; -12000)。
 
-## 7.9.21.10 Photoionization and Photodetachment Cross Sections and PADs
+## 7.9.21.10 光电离与电子解离（Photodetachment）截面及光电子角分布（PAD）
 
-**Q-Chem** can compute quantities describing photo-ionization/photodetachment
-following the theoretical framework based on Dyson orbitals[[478]](../bib_references/bib.md#bib490)
-.
-One can use computed Dyson orbitals and then calculate cross sections using the stand-alone
-**ezDyson** code[[478]](../bib_references/bib.md#bib490)
- or request such calculations to be done by **Q-Chem**;
-the latter version is more efficient.
-These calculations require Dyson orbitals, which connect the initial and target states, and
-a wave-function of the free electron. Currently, only plane-wave treatment is available. This
-feature is only available in ccman2.
+**Q-Chem** 可以按照基于 Dyson 轨道[[478]](../bib_references/bib.md#bib490)
+的理论框架，计算描述光电离/电子解离的物理量。
+既可以使用计算得到的 Dyson 轨道，然后用独立的
+**ezDyson** 程序[[478]](../bib_references/bib.md#bib490)
+计算截面，也可以请求由 **Q-Chem** 完成这些计算；
+后一种方式效率更高。
+这些计算需要连接初始态与目标态的 Dyson 轨道以及
+自由电子的波函数。目前仅提供平面波（plane-wave）处理。此功能
+仅在 ccman2 中可用。
 
-Total and angular-resolved photoionization cross sections can be computed by using the following
-set-up. First, the user should request calculation of appropriate initial and target states
-and the corresponding Dyson orbitals (using CC_DO_DYSON keyword) or the corresponding setting in *$trans_prop* section). Second, CC_FREE_ELECTRON should be set to TRUE.
-Third, the parameters
-for the cross sections—such as polarization of the light, energy range of photoelectrons, and details of
-orientational averaging—should be specified in the *$free_electron* section.
+可以按照以下设置计算总截面和角分辨光电离截面。首先，用户应请求计算
+合适的初始态与目标态以及相应的 Dyson 轨道（使用 CC_DO_DYSON 关键字，或在 *$trans_prop* 段落中做相应设置）。其次，应将 CC_FREE_ELECTRON 设置为 TRUE。
+第三，截面的相关参数——如光的偏振、光电子的能量范围以及取向
+平均的细节——应在 *$free_electron* 段落中指定。
 
 > ```qchem
 > $free_electron
@@ -699,14 +628,14 @@ orientational averaging—should be specified in the *$free_electron* section.
 > $end
 > ```
 
-Using a similar setup, one can also compute overlap between a Dyson orbital and
-a plane wave. This calculation is activated by the DYSON_PW_COUPLING keyword
-(CC_DO_DYSON should also be set to TRUE).
-The parameters for the calculation, such as number of $|{\mathbf{k}}|$-values
-and whether averaging over different ${\mathbf{k}}$-orientations should be performed,
-are specified in *$free_electron* section. Examples [7.9.29.2](topic_dyson.md#ex:DYSONPW) and [7.9.29.2](topic_dyson.md#ex:DYSONPW)
-and excerpts below illustrate this capability. The default is no averaging and five grind points for
-$|{\mathbf{k}}|$.
+采用类似的设置，还可以计算 Dyson 轨道与
+平面波之间的重叠。该计算通过 DYSON_PW_COUPLING 关键字激活
+（CC_DO_DYSON 也应设置为 TRUE）。
+计算的参数，例如 $|{\mathbf{k}}|$ 值的数目
+以及是否应对不同 ${\mathbf{k}}$ 取向进行平均，
+在 *$free_electron* 段落中指定。示例 [7.9.29.2](topic_dyson.md#ex:DYSONPW) 和 [7.9.29.2](topic_dyson.md#ex:DYSONPW)
+及下文摘录演示了这一功能。默认不进行平均，
+$|{\mathbf{k}}|$ 使用五个网格点。
 
 > ```qchem
 > $free_electron
@@ -715,10 +644,10 @@ $|{\mathbf{k}}|$.
 > $end
 > ```
 
-**Note: 
+**注意：
 
-The grid of $|{\mathbf{k}}|$ values is computed as
-$\sqrt{2E}$ where $E$ runs from 0.0 eV to 0.1*($k\_grid\_points$-1) eV.
+$|{\mathbf{k}}|$ 值的网格按
+$\sqrt{2E}$ 计算，其中 $E$ 从 0.0 eV 变化到 0.1*($k\_grid\_points$-1) eV。
 **
 
 > ```qchem
@@ -730,49 +659,50 @@ $\sqrt{2E}$ where $E$ runs from 0.0 eV to 0.1*($k\_grid\_points$-1) eV.
 > $end
 > ```
 
-**Note: 
+**注意：
 
-The magnitude of $|{\mathbf{k}}|$ does not matter, only direction does.
+$|{\mathbf{k}}|$ 的大小无关紧要，只有方向重要。
 **
 
-Photoelectron angular distribution (PAD) — $\Omega(\theta,\phi)$,
-where $\theta$ and $\phi$ are angular coordinates of the photoelectron’s vector
-$\mathbf{k}$ in the lab frame — will be written in separate files
-for each ionized state (i.e., pad_1A1, pad_1B2, etc). For a linear polarization, asymmetry parameter $\beta$ will be calculated along with
-the cross section.
-Input parameters for the calculation are specified through the *$free_electron* section.
-The default values are: SPIN_DEG=2, ORB_DEG=1, and DO_AVERAGE=0 (no averaging).
-The calculations require a number of $\theta$ and $\phi$ points to be specified by the user
-(defaults are 50 and 10 respectively) to determine the directions of the wave-vector $\mathbf{k}$
-for computing PAD.
-The user should specify either the three components of the polarization (for linear polarization)
-or the circular polarization; the two options are mutually exclusive. For circular-polarized light,
-$z$ is the direction of light propagation.
-If DO_AVERAGE is set to 1, averaging over all molecular orientations is performed
-and polarization of light is assumed to be along the $z$-axis (the polarization setting
-will be ignored).
-These features are illustrated in examples [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)-[7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) below.
+光电子角分布（photoelectron angular distribution, PAD）——$\Omega(\theta,\phi)$，
+其中 $\theta$ 和 $\phi$ 是光电子矢量
+$\mathbf{k}$ 在实验室坐标系中的角坐标——将为每个电离态
+（即 pad_1A1、pad_1B2 等）写入单独的文件。对于线偏振光，将连同
+截面一起计算不对称参数 $\beta$。
+计算的输入参数通过 *$free_electron* 段落指定。
+默认值为：SPIN_DEG=2、ORB_DEG=1，以及 DO_AVERAGE=0（不做平均）。
+计算要求用户指定若干 $\theta$ 和 $\phi$ 点
+（默认分别为 50 和 10），以确定计算 PAD 时
+波矢 $\mathbf{k}$
+的方向。
+用户应指定偏振的三个分量（用于线偏振）
+或圆偏振；这两种选项互斥。对于圆偏振光，
+$z$ 为光的传播方向。
+若将 DO_AVERAGE 设置为 1，则对所有分子取向进行平均，
+并假设光的偏振沿 $z$ 轴（偏振设置
+将被忽略）。
+这些功能在下文的示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)-[7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 中演示。
 
 CC_FREE_ELECTRON
 
 ### `CC_FREE_ELECTRON`
 
-> **Specifies whether properties involving free electrons will be computed.**
+> **指定是否计算涉及自由电子的性质。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE/FALSE
-> * **Recommendation**: None
+> * **建议**: 无
 
 DYSON_PW_COUPLING
 
 ### `DYSON_PW_COUPLING`
 
-> **Calculate overlap between Dyson orbital and plane wave.**
+> **计算 Dyson 轨道与平面波之间的重叠。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (do not compute coupling)`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE (do not compute coupling)`
+> * **选项**:
 >     * TRUE/FLSE
-> * **Recommendation**: Activate when needed. CC_DO_DYSON must be turned on.
+> * **建议**: 需要时激活。必须同时开启 CC_DO_DYSON。

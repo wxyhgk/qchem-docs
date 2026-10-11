@@ -1,18 +1,11 @@
 ---
-title: "7.10.4 Resolution of the Identity ADC Methods"
+title: "7.10.4 恒等分辨（Resolution of the Identity）ADC 方法"
 ---
 
-## 7.10.4 Resolution of the Identity ADC Methods
+## 7.10.4 恒等分辨（Resolution of the Identity）ADC 方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Similar to MP2 and CIS(D), the ADC equations can be reformulated using the
-resolution-of-the-identity (RI) approximation. This significantly reduces
-the cost of the integral transformation and the storage requirements.
-Although it does not change the overall computational scaling of $O(N^{5})$
-for ADC(2)-s or $O(N^{6})$ for ADC(2)-x with the system
-size, employing the RI approximation will result in computational speed-up of
-calculations of larger systems.
+与 MP2 和 CIS(D) 类似，ADC 方程也可以借助恒等分辨（resolution-of-the-identity, RI）近似重新形式化。这一做法显著降低了积分变换的计算开销与存储需求。虽然相对于体系规模，RI 近似并不会改变 ADC(2)-s 的 $O(N^{5})$ 或 ADC(2)-x 的 $O(N^{6})$ 总体计算标度，但在计算较大体系时，采用 RI 近似仍能带来明显的加速效果。
 
-The RI approximation can be used with all available ADC methods.
-It is invoked as soon as an auxiliary basis set is specified using AUX_BASIS.
+RI 近似可与所有可用的 ADC 方法一同使用。只要通过 AUX_BASIS 指定了辅助基组（auxiliary basis set），该近似即会被自动启用。

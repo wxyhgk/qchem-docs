@@ -1,33 +1,14 @@
 ---
-title: "7.7.7 ALMO-SGM Method"
+title: "7.7.7 ALMO-SGM 方法"
 ---
 
-## 7.7.7 ALMO-SGM Method
+## 7.7.7 ALMO-SGM 方法
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-Studying the numerical stability of the initial guess density in OO-DFT
-methods[[144]](../bib_references/bib.md#bib134)
-, we concluded that, in the case of CT excitations,
-a suitable guess density can be obtained for a fragmented system by using
-the absolutely localized molecular orbitals (ALMO)
-method[[1314]](../bib_references/bib.md#bib1371)
-.
-The ALMO method is presented in Section [12.5](../ch12_frag/sect_old_scfmi_eda.md).
-In this method, the atom-centered Gaussian basis is localized, and ionized
-fragments can be computed.
-The resulting density is properly polarized for the calculation of intermolecular
-CT excitations, and can be further relaxed using the SGM method.
-Convergence is robust, and the input preparation is more straightforward compared
-to the FRZ-SGM method, although it is not straightforwardly transferable to
-covalently bonded systems.
+在研究 OO-DFT 方法[[144]](../bib_references/bib.md#bib134)中初始猜测密度的数值稳定性时，我们得出结论：对于电荷转移（CT）激发，可以通过使用绝对局域化分子轨道（absolutely localized molecular orbitals，ALMO）方法[[1314]](../bib_references/bib.md#bib1371)，为片段化体系获得合适的猜测密度。ALMO 方法在第 [12.5](../ch12_frag/sect_old_scfmi_eda.md) 节中介绍。在该方法中，原子中心的 Gaussian 基组被局域化，并且可以计算电离片段。所得密度对于分子间 CT 激发的计算具有正确的极化，还可以进一步用 SGM 方法进行弛豫。与 FRZ-SGM 方法相比，其收敛性稳健，输入文件的准备也更加直接，尽管它无法简单地推广到共价键合体系。
 
-???+ example "Example 7.7.57: Example input for the calculation of the lowest-lying intermolecular charge
-transfer excitation energy in the anthracene-tetracyanoethylene dimer using
-ALMO-SGM 144 Bogo N. et al. Phys. Chem. Chem. Phys. (2025) , 27 , pp. 17533 . Link and the nonequilibrium conductor-like polarizable
-continuum (C-PCM) solvation model 1530 You Z.-Q. et al. J. Chem. Phys. (2015) , 143 , pp. 204104 . Link , 940 Mewes J.-M. et al. J. Phys. Chem. A (2015) , 119 , pp. 5446 . Link for dichloromethane (DCM).
-The excitation energy and transition dipole moment to the CT excitation are
-calculated."
+???+ example "示例 7.7.57：使用 ALMO-SGM 计算蒉-四氰基乙烯（anthracene-tetracyanoethylene）二聚体中最低分子间电荷转移激发能的示例输入。144 Bogo N. et al. Phys. Chem. Chem. Phys. (2025), 27, pp. 17533. 链接。以及用于二氯甲烷（DCM）的非平衡类导体可极化连续介质（nonequilibrium conductor-like polarizable continuum，C-PCM）溶剂化模型：1530 You Z.-Q. et al. J. Chem. Phys. (2015), 143, pp. 204104. 链接；940 Mewes J.-M. et al. J. Phys. Chem. A (2015), 119, pp. 5446. 链接。计算到 CT 激发的激发能和跃迁偶极矩。"
     ```qchem
     $molecule
     0 1

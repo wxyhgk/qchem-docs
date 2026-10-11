@@ -1,15 +1,12 @@
 ---
-title: "7.11.15 Examples"
+title: "7.11.15 示例"
 ---
 
-## 7.11.15 Examples
+## 7.11.15 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 7.191: Input for a RAS-2SF-CI calculation of three states of the DDMX tetraradical
-using RASCI1. The active space (RAS2) contains $4$ electrons in the $4$ singly
-occupied orbitals in the ROHF quintet reference. Natural orbital occupancies
-are requested."
+???+ example "示例 7.191：使用 RASCI1 对 DDMX 四自由基的三个态进行 RAS-2SF-CI 计算的输入。活性空间（RAS2）包含 ROHF 五重态参考中 $4$ 个单占据轨道上的 $4$ 个电子。同时请求自然轨道占据数。"
     ```qchem
     $molecule
        0 5
@@ -46,9 +43,7 @@ are requested."
     $end
     ```
 
-???+ example "Example 7.192: Input for a RAS-2IP-CI calculation of triplet states of F ${}_{2}$ molecule using
-the dianion closed shell F ${}_{2}^{2-}$ as the reference determinant. RASCI1 code
-is used"
+???+ example "示例 7.192：使用 RASCI1 程序，以双阴离子闭壳层 F ${}_{2}^{2-}$ 作为参考行列式，对 F ${}_{2}$ 分子的三重态进行 RAS-2IP-CI 计算的输入。"
     ```qchem
     $molecule
        -2 1
@@ -70,8 +65,7 @@ is used"
     $end
     ```
 
-???+ example "Example 7.193: Input for a FCI/STO-3G calculation of water molecule expanding the RAS2 space
-to the entire molecular orbital set. RAS-CI code is used."
+???+ example "示例 7.193：对水分子进行 FCI/STO-3G 计算的输入，将 RAS2 空间扩展到整个分子轨道集合。使用 RAS-CI 程序。"
     ```qchem
     $molecule
        0 1
@@ -96,7 +90,7 @@ to the entire molecular orbital set. RAS-CI code is used."
     $end
     ```
 
-???+ example "Example 7.194: Methylene single spin-flip calculation using RASCI2"
+???+ example "示例 7.194：使用 RASCI2 对卡宾（亚甲基）进行单自旋翻转（single spin-flip）计算"
     ```qchem
     $molecule
        0 3
@@ -119,9 +113,7 @@ to the entire molecular orbital set. RAS-CI code is used."
     $end
     ```
 
-???+ example "Example 7.195: Two methylene separated by 10 Å; double spin-flip calculation using RASCI2.
-Note that the $\langle\hat{S}^{2}\rangle$ values for this case will not be uniquely
-defined at the triply-degenerate ground state."
+???+ example "示例 7.195：相距 10 Å 的两个卡宾（亚甲基）分子；使用 RASCI2 进行双自旋翻转（double spin-flip）计算。注意，在三重简并的基态下，此情形的 $\langle\hat{S}^{2}\rangle$ 值并非唯一定义。"
     ```qchem
     $molecule
        0 5
@@ -147,7 +139,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.196: RASCI2 calculation of the nitrogen cation using double spin-flip."
+???+ example "示例 7.196：使用双自旋翻转（double spin-flip）对氮分子阳离子进行 RASCI2 计算。"
     ```qchem
     $molecule
        1 6
@@ -171,7 +163,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.197: CAS-1SF calculation of the nitrogen dimer using casman ."
+???+ example "示例 7.197：使用 casman 对氮双聚体进行 CAS-1SF 计算。"
     ```qchem
     $rem
      exchange                hf
@@ -194,7 +186,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.198: RAS(3x)+D-1SF calculation of the nitrogen dimer using casman ."
+???+ example "示例 7.198：使用 casman 对氮双聚体进行 RAS(3x)+D-1SF 计算。"
     ```qchem
     $rem
      exchange                hf
@@ -217,7 +209,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.199: Custom SF-CAS(2x)2 calculation of the nitrogen dimer cation using casman ."
+???+ example "示例 7.199：使用 casman 对氮双聚体阳离子进行自定义 SF-CAS(2x)2 计算。"
     ```qchem
     $rem
      exchange                hf
@@ -244,7 +236,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.200: RAS(h,p)-1SF calculation of the quartet state of the nitrogen dimer using librassf ."
+???+ example "示例 7.200：使用 librassf 对氮双聚体的四重态进行 RAS(h,p)-1SF 计算。"
     ```qchem
     $molecule
        0 7
@@ -267,7 +259,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.201: RAS(h)-1SF-IP calculation of the nitrogen cation using librassf ."
+???+ example "示例 7.201：使用 librassf 对氮分子阳离子进行 RAS(h)-1SF-IP 计算。"
     ```qchem
     $molecule
        0 7
@@ -290,8 +282,7 @@ defined at the triply-degenerate ground state."
     $end
     ```
 
-???+ example "Example 7.202: SOC calculation of HSiCl molecule using RASCI2 method with double spin-flip.
-No NTO analysis is requested within this example."
+???+ example "示例 7.202：使用 RASCI2 方法（双自旋翻转）对 HSiCl 分子进行自旋-轨道耦合（SOC）计算。本示例中未请求自然跃迁轨道（NTO）分析。"
     ```qchem
     $molecule
        0 1
@@ -317,8 +308,7 @@ No NTO analysis is requested within this example."
     $end
     ```
 
-???+ example "Example 7.203: SOC calculation followed by NTO analysis of acetophenone molecule using RASCI2
-method with double spin-flip."
+???+ example "示例 7.203：使用 RASCI2 方法（双自旋翻转）对苯乙酮分子进行自旋-轨道耦合（SOC）计算，随后进行自然跃迁轨道（NTO）分析。"
     ```qchem
     $molecule
        0 1

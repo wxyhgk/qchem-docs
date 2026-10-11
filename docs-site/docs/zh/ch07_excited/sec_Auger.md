@@ -1,82 +1,56 @@
 ---
-title: "7.9.11 Auger Spectra and Lifetimes of Core-Level States"
+title: "7.9.11 俄歇光谱与核心能级态寿命"
 ---
 
-## 7.9.11 Auger Spectra and Lifetimes of Core-Level States
+## 7.9.11 俄歇光谱与核心能级态寿命
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Certain types of resonances can be described by using real-valued EOM-CC
-wave functions via Feshbach–Fano approach.[[384]](../bib_references/bib.md#bib392)
- In this section we describe
-the application of Feshbach–Fano approach to core-excited and
-core-ionized states.[[1262]](../bib_references/bib.md#bib1316)
+某些类型的共振态可以借助 Feshbach–Fano 方法，通过实数值的 EOM-CC 波函数来描述。[[384]](../bib_references/bib.md#bib392)
+本节描述 Feshbach–Fano 方法在核心激发态与核心电离态中的应用。[[1262]](../bib_references/bib.md#bib1316)
 
-Core-hole states, which are Feshbach resonances, are subject to autoionization—commonly known
-as Auger decay. Auger Electron Spectroscopy (AES) measures kinetic energy and intensity of
-ejected electrons. The energy of the Auger electrons are computed as differences between the initial
-core-hole state and final decay states. For example, for regular Auger decay:
+空穴态（core-hole state）属于 Feshbach 共振，会发生自电离——通常称为俄歇（Auger）衰变。俄歇电子能谱（Auger Electron Spectroscopy, AES）测量的是被发射电子的动能与强度。俄歇电子的能量由初始空穴态与最终衰变态之间的能量差计算得到。例如，对于常规俄歇衰变：
 
 <a id="eq:Echannel_a"></a>
 $$
 E_{\text{Auger}}^{\mu n}=E_{n}^{\text{CoreIP}}-E_{\mu}^{\text{DIP}}, \tag{7.104}
 $$
 
-where $E_{n}^{\text{CoreIP}}$ and $E_{\mu}^{\text{DIP}}$ are energies of the
-initial (core-hole) and final (doubly ionized valence) states, respectively.
-The intensities of each decay channel are given by partial decay widths, $\Gamma_{\mu n}$.
-In the crudest approximation, one can assign each decay channel unit intensity—so-computed Auger spectra reflect density of doubly ionized states of the system.
-For more rigorous treatments, the decay widths can be computed
-by either the Feshbach–Fano or complex-variable approaches[[1262]](../bib_references/bib.md#bib1316)
+其中 $E_{n}^{\text{CoreIP}}$ 与 $E_{\mu}^{\text{DIP}}$ 分别是初始（空穴）态和最终（双电离价态）态的能量。
+各衰变通道的强度由部分衰变宽度 $\Gamma_{\mu n}$ 给出。
+在最粗略的近似下，可以将每个衰变通道赋予单位强度——如此计算得到的俄歇谱反映的是体系中双电离态的态密度。
+若采用更严格的处理方式，衰变宽度可以通过 Feshbach–Fano 方法或复变量方法[[1262]](../bib_references/bib.md#bib1316)
 
-for electronic resonances (the latter approach is described in sections
-7.9.11 and [7.9.12](sec_AugerComplexVariable.md)).
+来计算，用于处理电子共振（后一种方法在第 7.9.11 节与 [7.9.12](sec_AugerComplexVariable.md) 节中描述）。
 
-The Feshbach–Fano theory[[384]](../bib_references/bib.md#bib392)
- invokes
-two projection operators, $\hat{Q}$ and $\hat{P}$, which
-decompose the total wave function into bound-like and continuum-like
-components. In the case of core-level states this separation
-is enabled by invoking the CVS scheme and frozen-core approximation in the calculations of initial and final
-states in the Auger process (more details about CVS can be found in Section [7.9.9](sub_cvs_eom.md)).
+Feshbach–Fano 理论[[384]](../bib_references/bib.md#bib392)
+引入两个投影算符 $\hat{Q}$ 和 $\hat{P}$，将总波函数分解为类束缚（bound-like）分量与类连续（continuum-like）分量。对于核心能级态，这一分离可以通过在计算俄歇过程的初态与末态时采用 CVS 方案以及冻结芯（frozen-core）近似来实现（关于 CVS 的更多细节见第 [7.9.9](sub_cvs_eom.md) 节）。
 
-The initial (bound-like) state $\Psi_{0}$ is a core-hole ionized or
-core-hole excited state, which can be described by CVS-EOM-CC.
-The final (continuum-like) state $\chi_{\mu,E_{k}}$ is represented by
-an antisymmetrized product of a stable channel state $\Psi_{\mu}$ (described by an appropriate EOM-CC model)
-and a continuum orbital
-$\phi_{k}$, $\chi_{\mu,E_{k}}\sim{\cal{A}}\{\phi_{k}\Psi_{\mu}\}$.
-Note that $\Psi_{\mu}$ is a state with one electron less than $\Psi_{0}$.
-Two essential parameters defining AES are the rate of the
-decay into a channel $\mu$, given as
+初始（类束缚）态 $\Psi_{0}$ 是一个空穴电离态或空穴激发态，可以由 CVS-EOM-CC 描述。
+最终（类连续）态 $\chi_{\mu,E_{k}}$ 表示为一个稳定通道态 $\Psi_{\mu}$（由合适的 EOM-CC 模型描述）与一个连续轨道 $\phi_{k}$ 的反对称化乘积，
+即 $\chi_{\mu,E_{k}}\sim{\cal{A}}\{\phi_{k}\Psi_{\mu}\}$。
+注意 $\Psi_{\mu}$ 比 $\Psi_{0}$ 少一个电子。定义 AES 的两个关键参数是衰变进入通道 $\mu$ 的速率，其表达式为
 
 <a id="eqn:gamma"></a>
 $$
 \Gamma_{\mu}=2\pi\langle\Psi_{0}^{L}|\hat{H}-E_{0}|\chi_{\mu,E_{k}}^{R}\rangle\langle\chi_{\mu,E_{k}}^{L}|\hat{H}-E_{0}|\Psi_{0}^{R}\rangle, \tag{7.105}
 $$
 
-and partial energy correction $\Delta_{\mu}$ to the zero-order resonance position $E_{0}$, defined as
+以及相对于零阶共振位置 $E_{0}$ 的部分能量修正 $\Delta_{\mu}$，定义为
 
 <a id="eqn:delta"></a>
 $$
 \Delta_{\mu}=P.V.\int_{0}^{\infty}\frac{\langle\Psi_{0}^{L}|\hat{H}-E_{0}|\chi_{\mu,E}^{R}\rangle\langle\chi_{\mu,E}^{L}|\hat{H}-E_{0}|\Psi_{0}^{R}\rangle}{E_{0}-E_{\mu}-E}dE. \tag{7.106}
 $$
 
-In the expressions above $\hat{H}$ is the electronic Hamiltonian,
-$E_{\mu}$ is the energy of the channel state $\Psi_{\mu}$,
-$E_{k}$ is the energy of the ejected electron ($E_{k}=E_{0}-E_{\mu}$),
-$L/R$ superscripts denote left and right
-EOM-CCSD wave functions, and $P.V.$ stands for the Cauchy principle value.
-Calculations of $\Gamma_{\mu}$ are activated with the CC_DO_FESHBACH keyword.
-By default, the continuum orbital $\phi_{k}$ is approximated with a plane
-wave.[[1262]](../bib_references/bib.md#bib1316)
+在上述表达式中，$\hat{H}$ 是电子哈密顿量，$E_{\mu}$ 是通道态 $\Psi_{\mu}$ 的能量，$E_{k}$ 是被发射电子的能量（$E_{k}=E_{0}-E_{\mu}$），
+上标 $L/R$ 表示左右 EOM-CCSD 波函数，$P.V.$ 表示柯西主值（Cauchy principle value）。
+$\Gamma_{\mu}$ 的计算通过 CC_DO_FESHBACH 关键字启用。
+默认情况下，连续轨道 $\phi_{k}$ 用平面波来近似。[[1262]](../bib_references/bib.md#bib1316)
 
-It is also possible to model $\phi_{k}$ with a Coulomb wave by setting CC_FESHBACH_CW = 1.
-This option requires an additional input section *$coulomb_wave*, which provides
-the Coulomb wave parameters for the expansion of the Coulomb wave in terms of product of a plane wave
-and Gaussian-type functions (PW-CGTOs), as detailed in Ref. [[1262]](../bib_references/bib.md#bib1316)
-. The parameters
-are listed below.
+也可以通过设置 CC_FESHBACH_CW = 1，用库仑波（Coulomb wave）来模拟 $\phi_{k}$。
+该选项需要一个额外的输入段 *$coulomb_wave*，其中提供库仑波的参数，用于将库仑波按平面波与高斯型函数乘积（PW-CGTOs）展开，详见文献 [[1262]](../bib_references/bib.md#bib1316)
+。各参数列举如下。
 
 > ```qchem
 > $coulomb_wave
@@ -91,41 +65,24 @@ are listed below.
 > $end
 > ```
 
-The Coulomb wave is approximated by the linear combination of PW-CGTOs. Typically,
-*lmax* = 4-6 and *ncoeff* = 6-8 provide a good approximation;
-increasing these values significantly increases computational cost.
-The grid is set up by the
-*Rmin*, *Rmax*, and *Rmid* parameters.
-If *Rmid* is specified, the grid spacing is set to 0.05 bohr from *Rmin* to
-*Rmid* and 0.1 bohr from *Rmid* to *Rmax*. If *Rmid* is not provided,
-a uniform grid spacing of 0.1 bohr is used. The grid should be large enough
-to accurately represent the continuum function in the space where bound-domain orbitals
-involved in the decay have considerable amplitudes.
-The *cwave_center* sets the position of the Coulomb wave.
-By default, it is at the origin (*cwave_center = 0*). One can place it at a specific
-atom or any other location, such as the midpoint of a bond, by
-defining a ghost atom (Gh) in the input and setting its index as the *cwave_center*.
-The *print_cw* option enables printing the Coulomb wave, its fitted
-representation (for each *l*), and the corresponding Coulomb
-basis. The user can check the *Fit square error:* in the
-**Q-Chem** output file and adjust these parameters
-accordingly by varying *ncoeff*.
+库仑波由 PW-CGTO 的线性组合来近似。通常，*lmax* = 4-6 与 *ncoeff* = 6-8 即可提供良好的近似；
+增大这些取值会显著提高计算成本。
+网格由 *Rmin*、*Rmax* 和 *Rmid* 参数设定。
+若指定了 *Rmid*，则从 *Rmin* 到 *Rmid* 的网格间距设为 0.05 bohr，从 *Rmid* 到 *Rmax* 设为 0.1 bohr。
+若未提供 *Rmid*，则使用 0.1 bohr 的均匀网格间距。网格应当足够大，以便在衰变所涉及的定域-区域（bound-domain）轨道具有显著振幅的空间内准确表示连续函数。
+*cwave_center* 设定库仑波的位置。默认情况下它位于原点（*cwave_center = 0*）。
+用户可以通过在输入中定义一个虚原子（Ghost atom, Gh）并将其序号设为 *cwave_center*，把库仑波中心放置在某个特定原子上，或放置在任意其他位置，例如键的中点。
+*print_cw* 选项会输出库仑波、其拟合表示形式（对每个 *l*）以及相应的库仑基组。
+用户可以在 **Q-Chem** 输出文件中检查 *Fit square error:*（拟合平方误差），并通过改变 *ncoeff* 相应地调整这些参数。
 
-It is also possible to provide the direct expansion of the Coulomb wave in terms of PW-CGTOs from external
-optimization (for the given effective charge and kinetic energy) in the input section *$coulomb_wave*. This
-is enabled by setting CC_FESHBACH_CW = 3.
+也可以通过设置 CC_FESHBACH_CW = 3，在 *$coulomb_wave* 输入段中直接给出在外部优化（针对给定有效电荷与动能）得到的库仑波按 PW-CGTO 的展开式。
 
-The implementation of Feshbach widths includes numerical integration over all possible
-directions of the emitted electron (**k**-vector). This integration over the sphere is
-carried out using Lebedev’s quadrature, with the default order of 5. For molecules with
-delocalized core-hole states (e.g., benzene), higher-order quadrature may be needed.
-The order of the quadrature is controlled by CC_FESHBACH_INT_ORDER.
-Examples [7.9.11.2](#ex:auger1) and [7.9.11.2](#ex:auger1) below illustrate calculations of auger decay rates using plane-wave and Coulomb wave treatments.
+Feshbach 宽度的实现包含对发射电子所有可能方向（**k** 矢量）的数值积分。这一球面积分采用 Lebedev 求积完成，默认阶数为 5。
+对于空穴态离域的分子（例如苯），可能需要更高阶的求积。求积阶数由 CC_FESHBACH_INT_ORDER 控制。
+下面的示例 [7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了分别使用平面波与库仑波处理方式计算俄歇衰变速率。
 
-For non-resonant Auger decay, the initial state can be conveniently computed by
-CVS-EOM-IP-CCSD and its stable decay channels can be computed by EOM-DIP-CCSD.
-A section of the input invoking Auger decay rates
-calculation for an atom can be given as:
+对于非共振俄歇衰变，初态可以由 CVS-EOM-IP-CCSD 方便地计算，其稳定衰变通道可以由 EOM-DIP-CCSD 计算。
+调用原子俄歇衰变速率计算的一个输入段示例如下：
 
 > ```qchem
 > $rem
@@ -140,14 +97,10 @@ calculation for an atom can be given as:
 > $end
 > ```
 
-In resonant Auger decay, the initial state can be computed by
-CVS-EOM-EE-CCSD and the corresponding decay channels can be computed by EOM-IP-CCSD.
-By default, Feshbach calculations are performed for all possible state pairs that
-include an energetically allowed decay channel. This is not practical
-if, for example, the core-hole state of interest is not the lowest state in the
-given symmetry, or when the Coulomb wave is used to model the continuum orbital.
-In such a case, the user can specify pairs of states for Feshbach calculations
-using the *$trans_prop* section with $dyson$ as the requested property:
+在共振俄歇衰变中，初态可以由 CVS-EOM-EE-CCSD 计算，相应的衰变通道可以由 EOM-IP-CCSD 计算。
+默认情况下，Feshbach 计算会针对所有包含能量上允许衰变通道的可能态对进行。
+然而，如果所关注的空穴态在给定对称性下并非最低态，或者使用库仑波来模拟连续轨道，这种做法并不实用。
+在这种情况下，用户可以使用 *$trans_prop* 段并以 $dyson$ 作为请求的性质来指定进行 Feshbach 计算的态对：
 
 > ```qchem
 > $trans_prop
@@ -164,208 +117,180 @@ using the *$trans_prop* section with $dyson$ as the requested property:
 > $end
 > ```
 
-Calculations of energy correction $\Delta_{\mu}$
-are invoked by setting CC_DO_FESHBACH = 2,
-and are currently available only within the plane-wave approximation.
+将 CC_DO_FESHBACH = 2 即可启用能量修正 $\Delta_{\mu}$ 的计算，
+目前该功能仅在平面波近似下可用。
 
-The integrals in Eq. ([7.105](#eqn:gamma)) are evaluated analytically. Integration in
-Eq. ([7.106](#eqn:delta)) is done numerically, and
-is split into two or three intervals to bypass the singularity at $E=E_{0}-E_{\mu}$. The upper limits of those intervals
-are set to default values related to $E_{0}$. They can also be customized
-(except for the first interval) by setting CC_FESHBACH_DELTA_INTB = XX and/or
-CC_FESHBACH_DELTA_INTC = YY where XX and/or YY are desired upper integration limits in units of eV.
+式 ([7.105](#eqn:gamma)) 中的积分以解析方式求值。式 ([7.106](#eqn:delta)) 中的积分数值求值，并被拆分为两个或三个区间，以绕过 $E=E_{0}-E_{\mu}$ 处的奇点。
+这些区间的上限默认设置为与 $E_{0}$ 相关的值。用户也可以通过设置 CC_FESHBACH_DELTA_INTB = XX 和/或 CC_FESHBACH_DELTA_INTC = YY 来自定义上限（第一个区间除外），
+其中 XX 和/或 YY 是以 eV 为单位的期望积分上限。
 
-A molecular-orbital description of the Auger process (or other two-electron decay processes such as intermolecular Coulomb and electron-transfer-mediated decay) can be obtained from
-the singular-value decomposition of the two-particle Dyson amplitudes ($\Gamma_{\mu}$)[[631]](../bib_references/bib.md#bib655)
-. The procedure yields several
-three-orbital sets, which represent the core-vacancy state and the valence decay states. These sets, called Natural Auger Orbitals, provide the most compact
-description of the two-electron decay process[[631]](../bib_references/bib.md#bib655)
-. The calculations of NAOs can be invoked within Feshbach calculations by the
-CC_DO_NAO keyword. The NAOs are printed in the **MolDen** format in a subdirectory created in the working directory. The “energies”
-are the squares of singular values (not normalized), core-hole NAOs are assigned populations of 1, and valence decay NAOs are assigned populations of 0.
-The default threshold for
-the NAOs to be printed is 0.20. It can be controlled by the user using the WFA_ORB_THRESH keyword (see Section [10.2](../ch10_properties/sec_wfa.md)). This feature is illustrated in examples
-[7.9.11.2](#ex:auger1), [7.9.11.2](#ex:auger1), and [7.9.11.2](#ex:auger1) below.
+俄歇过程（或其他双电子衰变过程，如分子间库仑衰变与电子转移介导衰变）的分子轨道描述，可以通过对双粒子戴森振幅（$\Gamma_{\mu}$）进行奇异值分解获得[[631]](../bib_references/bib.md#bib655)
+。该 procedure 会给出若干三轨道组合，它们代表空位态与价层衰变态。这些组合称为自然俄歇轨道（Natural Auger Orbitals, NAOs），能够对双电子衰变过程给出最为紧凑的描述[[631]](../bib_references/bib.md#bib655)
+。在 Feshbach 计算中，可以通过 CC_DO_NAO 关键字启用 NAO 的计算。NAO 以 **MolDen** 格式输出在工作目录下创建的子目录中。其“能量”为奇异值的平方（未归一化），空穴 NAO 被赋予占据数 1，价层衰变 NAO 被赋予占据数 0。
+输出 NAO 的默认阈值为 0.20，用户可以使用 WFA_ORB_THRESH 关键字控制该阈值（见第 [10.2](../ch10_properties/sec_wfa.md) 节）。下面的示例 [7.9.11.2](#ex:auger1)、[7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了这一功能。
 
-**Note: 
+**注意：
 
-NAOs are computed using $\Gamma_{r\beta}^{p\alpha,q\beta}$ block of the two-body Dyson amplitude. This means that in the non-resonant Auger decay calculations, the core hole
-should correspond to removing $\beta$-electron.
+NAO 是使用二体戴森振幅的 $\Gamma_{r\beta}^{p\alpha,q\beta}$ 分块计算得到的。这意味着在非共振俄歇衰变计算中，空穴应当对应于移除一个 $\beta$ 电子。
 **
 
 CC_DO_FESHBACH
 
 ### `CC_DO_FESHBACH`
 
-> **Activates calculation of resonance widths using Feshbach-Fano approach.**
+> **使用 Feshbach-Fano 方法启用共振宽度计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * do not invoke Feshbach-Fano calculation
+>     * 不进行 Feshbach-Fano 计算
 >     * 1
->     * invoke Feshbach-Fano calculation of the resonance width
+>     * 进行 Feshbach-Fano 共振宽度计算
 >     * 2
->     * invoke Feshbach-Fano calculation of the resonance width and resonance shift
-> * **Recommendation**: Initial and final states should be correctly specified.
+>     * 进行 Feshbach-Fano 共振宽度与共振位移计算
+> * **建议**: 应正确指定初态和末态。
 
 CC_FESHBACH_CW
 
 ### `CC_FESHBACH_CW`
 
-> **Activates Coulomb wave description of the ejected electron.**
+> **启用被发射电子的库仑波描述。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Use plane wave
+>     * 使用平面波
 >     * 1
->     * Use Coulomb wave generated internally
+>     * 使用内部生成的库仑波
 >     * 3
->     * Use Coulomb basis provided by the user in the
+>     * 使用用户在
 >     * $coulomb_wave
->     * section
-> * **Recommendation**: Additional details need to be specified in $coulomb_wave section.
+>     * 段中提供的库仑基组
+> * **建议**: 需要在 $coulomb_wave 段中指定额外的细节。
 
 CC_FESHBACH_INT_ORDER
 
 ### `CC_FESHBACH_INT_ORDER`
 
-> **Controls k-vector integration grid in calculations of resonance widths using Feshbach-Fano approach.**
+> **控制使用 Feshbach-Fano 方法计算共振宽度时的 k 矢量积分网格。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * $n$
->     * corresponds to the Lebedev quadrature order
-> * **Recommendation**: Use default, unless tighter convergence is desired (16 gives fully converged widths).
+>     * 对应 Lebedev 求积的阶数
+> * **建议**: 使用默认值，除非需要更严格的收敛（取 16 可获得完全收敛的宽度）。
 
 CC_FESHBACH_DELTA_INTB
 
 ### `CC_FESHBACH_DELTA_INTB`
 
-> **Specifies integration limits in calculation of energy shift in Feshbach-Fano calculations.**
+> **指定 Feshbach-Fano 计算中能量位移计算的积分上限。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Preset`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `Preset`
+> * **选项**:
 >     * $n$
->     * corresponds to energy limit in eV
-> * **Recommendation**: Use default.
+>     * 对应以 eV 为单位的能量上限
+> * **建议**: 使用默认值。
 
 CC_FESHBACH_DELTA_INTC
 
 ### `CC_FESHBACH_DELTA_INTC`
 
-> **Specifies integration limits in calculation of energy shift in Feshbach-Fano calculations.**
+> **指定 Feshbach-Fano 计算中能量位移计算的积分上限。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Preset`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `Preset`
+> * **选项**:
 >     * $n$
->     * corresponds to energy limit in eV
-> * **Recommendation**: Use default.
+>     * 对应以 eV 为单位的能量上限
+> * **建议**: 使用默认值。
 
 CC_DO_NAO
 
 ### `CC_DO_NAO`
 
-> **Activates calculation of NAOs within Feshbach–Fano calculation of the decay widths.**
+> **在衰变宽度的 Feshbach–Fano 计算中启用 NAO 计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * do not compute NAOs
+>     * 不计算 NAO
 >     * 1
->     * compute NAOs
-> * **Recommendation**: Initial and final states should be correctly specified.
+>     * 计算 NAO
+> * **建议**: 应正确指定初态和末态。
 
-## 7.9.11.1 One-Center Approximation
+## 7.9.11.1 单中心近似
 
-The Feshbach–Fano calculations of Auger decay that treat the continuum orbital $\phi_{k}$ explicitly[[1262]](../bib_references/bib.md#bib1316)
+显式处理连续轨道 $\phi_{k}$ 的俄歇衰变 Feshbach–Fano 计算[[1262]](../bib_references/bib.md#bib1316)
+需要求值束缚–连续混合的双电子积分，这是一个计算量很大的步骤。
+此外，目前可用的 $\phi_{k}$ 模型只允许平面波或库仑波处理方式，其结果并不总是令人完全满意。
 
-entail the evaluation of the mixed bound–continuum two-electron integrals, which
-is a computationally demanding step. Moreover, the currently available $\phi_{k}$ models only
-allow a plane wave or a Coulomb wave treatments, which do not always yield fully satisfactory results.
-
-A widely used and computationally efficient alternative to the explicit treatment of the continuum state is
-the one-center approximation (OCA).[[1264]](../bib_references/bib.md#bib1318)
- In this approach, the bound–continuum integrals are replaced by pretabulated
-atomic integrals:
+一种被广泛使用且计算高效的、替代显式处理连续态的方法，是单中心近似（one-center approximation, OCA）。[[1264]](../bib_references/bib.md#bib1318)
+在该方法中，束缚–连续积分被替换为预先算好的原子积分：
 
 <a id="Ch7.E107"></a>
 $$
 \langle\phi_{p}\phi_{q}||\phi_{k}\phi_{r}\rangle\approx\sum_{\mu\nu\rho}\langle\chi_{\mu}^{A}\chi_{\nu}^{A}||\chi_{E,lm}^{A}\chi_{\rho}^{A}\rangle D_{\mu p}D_{\nu q}D_{\rho r}. \tag{7.107}
 $$
 
-Here $\langle\chi_{\mu}^{A}\chi_{\nu}^{A}||\chi_{E,lm}^{A}\chi_{\rho}^{A}\rangle$ denote the precomputed atomic integrals and
-$D_{\mu p}$ are transformation matrices constructed by the projection of the molecular basis onto the chosen Minimal
-Basis Set (MBS).
+这里 $\langle\chi_{\mu}^{A}\chi_{\nu}^{A}||\chi_{E,lm}^{A}\chi_{\rho}^{A}\rangle$ 表示预计算的原子积分，
+$D_{\mu p}$ 是通过对所选极小基组（Minimal Basis Set, MBS）投影分子基函数而构造的变换矩阵。
 
-Similarly to the standard Feshbach–Fano setup described above, the OCA calculation requires specification of the initial core-ionized state (CVS-EOM-IP or CVS-EOM-EE) and the final decay channels (EOM-DIP or EOM-IP).
-The method is controlled by two keywords: CC_FESHBACH_OCA and OCA_ATOM_INDEX.
-The keyword CC_FESHBACH_OCA activates the OCA calculation and currently supports two options: 1 for $1s$
-core holes (K-LL, K-LM, and K-MM decays) and 2 for $2s$ core holes (only L1-MM decay).
-The keyword OCA_ATOM_INDEX = $n$
-specifies the atom on which the core hole is localized. The indexing starts from 1 and follows the order given
-in the *$molecule* section. For larger systems, it is recommended to use
-PRINT_ORBITALS option to verify proper identification of the core orbital.
-For cases where the core hole is delocalized over symmetry-equivalent atoms (e.g., benzene or the O-edge in CO${}_{2}$,
-OCA_ATOM_INDEX may correspond to any equivalent atom. The final decay width $\Gamma$ for a given channel
-$\mu$ is then obtained by summing over the corresponding symmetry-equivalent core-hole states $\Psi_{0}$.
+与上文描述的标准 Feshbach–Fano 设置类似，OCA 计算需要指定初始核心电离态（CVS-EOM-IP 或 CVS-EOM-EE）以及最终衰变通道（EOM-DIP 或 EOM-IP）。
+该方法由两个关键字控制：CC_FESHBACH_OCA 和 OCA_ATOM_INDEX。
+关键字 CC_FESHBACH_OCA 启用 OCA 计算，目前支持两个选项：1 表示 $1s$ 空穴（K-LL、K-LM 和 K-MM 衰变），2 表示 $2s$ 空穴（仅 L1-MM 衰变）。
+关键字 OCA_ATOM_INDEX = $n$ 指定空穴定域所在的原子。编号从 1 开始，遵循 *$molecule* 段中给出的顺序。
+对于较大体系，建议使用 PRINT_ORBITALS 选项以核实空穴轨道是否被正确识别。
+对于空穴在对称性等价原子间离域的情形（例如苯，或 CO${}_{2}$ 的 O-edge），OCA_ATOM_INDEX 可以对应任一等价原子。
+给定通道 $\mu$ 的最终衰变宽度 $\Gamma$ 由对相应的对称性等价空穴态 $\Psi_{0}$ 求和得到。
 
-In addition, an OCA calculation requires specification of a Minimal Basis Set (MBS) through the *$mbasis*
-section. The ordering of basis functions is important and must follow the shell structure:
-$(1s,2s,2p,\ldots)$. Two MBS choices for OCA-EOM-CCSD calculations were tested[[1264]](../bib_references/bib.md#bib1318)
-: a
-subset of the cc-pVTZ basis set and STO-3G.
+此外，OCA 计算需要通过 *$mbasis* 段指定一个极小基组（MBS）。基函数的排序很重要，必须遵循壳层结构：
+$(1s,2s,2p,\ldots)$。已有工作测试了两种用于 OCA-EOM-CCSD 计算的 MBS 选择[[1264]](../bib_references/bib.md#bib1318)
+：cc-pVTZ 基组的一个子集，以及 STO-3G。
 
-Examples [7.9.11.2](#ex:auger1) and [7.9.11.2](#ex:auger1) illustrate OCA calculations.
+示例 [7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了 OCA 计算。
 
 CC_FESHBACH_OCA
 
 ### `CC_FESHBACH_OCA`
 
-> **Activates Auger width calculation through OCA method.**
+> **通过 OCA 方法启用俄歇宽度计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * 1s core-hole
+>     * 1s 空穴
 >     * 2
->     * 2s core-hole.
-> * **Recommendation**: None
+>     * 2s 空穴。
+> * **建议**: 无
 
 OCA_ATOM_INDEX
 
 ### `OCA_ATOM_INDEX`
 
-> **Defines atom with core-hole.**
+> **定义带有空穴的原子。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * $n$
->     * follows order from molecule section.
-> * **Recommendation**: None
+>     * 遵循 molecule 段中的顺序。
+> * **建议**: 无
 
-## 7.9.11.2 Examples
+## 7.9.11.2 示例
 
-Examples [7.9.11.2](#ex:auger1) and [7.9.11.2](#ex:auger1) illustrate calculation of resonant
-Auger decay of core-ionized water molecule. The initial state is described by
-CVS-EOM-IP-CCSD and the decay channels are described by EOM-DIP-CCSD.
-Example [7.9.11.2](#ex:auger1) uses a plane-wave representation of the ejected electron.
-In example [7.9.11.2](#ex:auger1), the autoionizing electron is described by the Coulomb
-wave, represented by a pseudo-partial wave expansion over PW-CGTO functions.
-Examples [7.9.11.2](#ex:auger1), [7.9.11.2](#ex:auger1), and [7.9.11.2](#ex:auger1) illustrate calculations of NAOs for regular and resonant Auger decay.
+示例 [7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了核心电离水分子的共振俄歇衰变计算。初态由 CVS-EOM-IP-CCSD 描述，衰变通道由 EOM-DIP-CCSD 描述。
+示例 [7.9.11.2](#ex:auger1) 对被发射电子采用平面波表示。
+在示例 [7.9.11.2](#ex:auger1) 中，自电离电子由库仑波描述，并通过在 PW-CGTO 函数上的伪部分波展开来表示。
+示例 [7.9.11.2](#ex:auger1)、[7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了常规俄歇衰变与共振俄歇衰变中 NAO 的计算。
 
-???+ example "Example 7.79: Calculation of Auger decay rates of core-ionized water molecule
-to selected singlet and triplet final states.
-Continuum orbital is a plane wave."
+???+ example "示例 7.79: 计算核心电离水分子衰变到若干选定单重态与三重态末态的俄歇衰变速率。连续轨道为平面波。"
     ```qchem
     $molecule
     0 1
@@ -385,9 +310,7 @@ Continuum orbital is a plane wave."
     $end
     ```
 
-???+ example "Example 7.80: Calculation of Auger decay rates of core-ionized water molecule
-to selected singlet and triplet final states.
-Continuum orbital is approximated by a Coulomb wave."
+???+ example "示例 7.80: 计算核心电离水分子衰变到若干选定单重态与三重态末态的俄歇衰变速率。连续轨道由库仑波近似。"
     ```qchem
     $molecule
     0 1
@@ -429,7 +352,7 @@ Continuum orbital is approximated by a Coulomb wave."
     $end
     ```
 
-???+ example "Example 7.81: Calculation of Natural Auger Orbitals for regular (non-resonant) Auger decay in water for both singlet and triplet decay channels."
+???+ example "示例 7.81: 计算水中常规（非共振）俄歇衰变的自然俄歇轨道，同时包含单重态与三重态衰变通道。"
     ```qchem
     $comment
     NAO calculation - regular Auger decay in water
@@ -460,8 +383,7 @@ Continuum orbital is approximated by a Coulomb wave."
     
     ```
 
-???+ example "Example 7.82: Calculation of Natural Auger Orbitals for regular (non-resonant) Auger decay in benzene for both singlet and triplet decay channels, and for
-several core-hole states."
+???+ example "示例 7.82: 计算苯中常规（非共振）俄歇衰变的自然俄歇轨道，同时包含单重态与三重态衰变通道，并针对若干空穴态。"
     ```qchem
     $comment
     NAO calculation - regular Auger decay in benzene
@@ -496,7 +418,7 @@ several core-hole states."
     $end
     ```
 
-???+ example "Example 7.83: Calculation of Natural Auger Orbitals for resonant Auger decay in water."
+???+ example "示例 7.83: 计算水中共振俄歇衰变的自然俄歇轨道。"
     ```qchem
     $comment
     NAO calculation - resonant Auger decay in water
@@ -525,8 +447,7 @@ several core-hole states."
     
     ```
 
-???+ example "Example 7.84: Calculation of Auger decay rates of core-ionized water molecule
-using OCA"
+???+ example "示例 7.84: 使用 OCA 计算核心电离水分子的俄歇衰变速率"
     ```qchem
     $comment
     OCA-EOM-CCSD Auger width calculation for core-ionized H2O(1s^-1)
@@ -594,8 +515,7 @@ using OCA"
     
     ```
 
-???+ example "Example 7.85: Calculation of Auger decay rates of core-ionized CO ${}_{2}$ molecule
-using OCA"
+???+ example "示例 7.85: 使用 OCA 计算核心电离 CO ${}_{2}$ 分子的俄歇衰变速率"
     ```qchem
     $comment
     OCA-EOM-CCSD Auger width calculation for core-ionized CO2 (O-edge 1s^-1)

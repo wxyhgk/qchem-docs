@@ -1,120 +1,105 @@
 ---
-title: "7.7.5 Squared-Gradient Minimization"
+title: "7.7.5 梯度平方极小化"
 ---
 
-## 7.7.5 Squared-Gradient Minimization
+## 7.7.5 梯度平方极小化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The squared-gradient minimization (SGM) algorithm[[511]](../bib_references/bib.md#bib526)
- sidesteps
-the challenge of optimizing a saddle point in the space of orbital rotation
-variables $\vec{\theta}$, by instead minimizing the square of the energy
-gradient with respect to those variables. Ground-state SCF methods seek to
-minimize the energy $E$ with respect to $\vec{\theta}$ and therefore the
-gradient $\hat{\bm{\nabla}}_{\vec{\theta}}E$ must be zero at convergence. It is
-therefore possible to obtain the same result by minimizing
-$\Delta(\vec{\theta})=\|\hat{\bm{\nabla}}_{\vec{\theta}}E\|^{2}$ to zero.
-However, all stationary points of $E$ are minima of $\Delta(\vec{\theta})$, not
-just the ground state. It is therefore possible to optimize excited-state
-orbitals by starting from a reasonable guess (such as a non-*aufbau*
-configuration corresponding to the excitation) and minimizing
-$\Delta(\vec{\theta})$. This avoids all the pitfalls of attempting to optimize
-unstable stationary points in $E$ and thus averts variational collapse.
+梯度平方极小化（squared-gradient minimization, SGM）算法[[511]](../bib_references/bib.md#bib526)
+ 通过在轨道旋转变量 $\vec{\theta}$ 空间中最小化能量梯度的平方，
+绕开了在轨道旋转变量空间中优化鞍点这一难题。基态自洽场（SCF）方法
+力求最小化能量 $E$（关于 $\vec{\theta}$），因此在收敛时梯度
+$\hat{\bm{\nabla}}_{\vec{\theta}}E$ 必须为零。于是，通过最小化
+$\Delta(\vec{\theta})=\|\hat{\bm{\nabla}}_{\vec{\theta}}E\|^{2}$
+使其趋于零，同样可以获得相同的结果。然而，$E$ 的所有驻点都是
+$\Delta(\vec{\theta})$ 的极小点，而不仅仅是基态。因此，只要从一个合理的
+初始猜测出发（例如对应于激发态的非 *aufbau*（构造原理）
+排布），并通过最小化 $\Delta(\vec{\theta})$ 来优化，就有可能获得激发态
+轨道。这避免了尝试优化 $E$ 中不稳定驻点所带来的各种陷阱，从而防止了
+变分坍缩（variational collapse）。
 
-The SGM algorithm in **Q-Chem** can be used to optimize orbitals for two different
-excited state approaches: $\Delta$SCF and ROKS. The former simply attempts to
-minimize the energy of a single Slater determinant, which is often sufficient
-for many challenging excitations (including many double
-excitations).[[75]](../bib_references/bib.md#bib59)
- However, many
-excitations (including all single excitations from a closed shell ground state)
-break electron pairs, leading to states that cannot be described with a single
-determinant. It is possible to spin-purify the energy of a spin-contaminated,
-non-*aufbau* determinant *a posteriori*, but this requires at least
-two separate orbital optimizations. An alternative is ROKS (as described in
-Section [7.7.4](ex_ESROKS.md), which requires optimization of only a single set of
-orbitals, for which the spin-purified energy is stationary. Analytic nuclear
-gradients are available for both $\Delta$SCF and ROKS, permitting geometry
-optimizations and *ab initio* molecular dynamics. Analytic frequencies are
-available for $\Delta$SCF, including functionals that contain VV10 nonlocal correlation.
+**Q-Chem** 中的 SGM 算法可用于优化两种不同激发态方法的轨道：
+$\Delta$SCF 和 ROKS。前者简单地尝试最小化单个 Slater
+行列式的能量，这对许多具有挑战性的激发（包括许多双
+激发）而言通常已经足够。[[75]](../bib_references/bib.md#bib59)
+ 然而，许多激发（包括从闭壳层基态出发的所有单激发）会打破电子对，
+导致其状态无法用单个行列式描述。可以 *a posteriori*（事后）对自旋污染的、
+非 *aufbau* 行列式的能量进行自旋纯化，
+但这至少需要两次独立的轨道优化。另一种选择是 ROKS（如第 [7.7.4](ex_ESROKS.md)
+节所述），它只需要优化一组轨道，且自旋纯化后的能量对该组轨道而言是驻定的。
+$\Delta$SCF 和 ROKS 均已有解析核梯度可用，因此可以进行几何结构优化和
+*ab initio*（从头算）分子动力学。$\Delta$SCF
+已有解析频率可用，包括包含 VV10 非局域关联的泛函。
 
-There are some slight differences between use of SGM for different orbital
-classes due to ease of implementation. The $\Delta$SCF procedure with
-restricted closed-shell (R) and unrestricted (U) orbitals can be run with
-SCF_ALGORITHM = SGM_LS or SCF_ALGORITHM =
-SGM_QLS, with initial orbital occupation specified by the *$occupied* block (as described in Section [7.7.2](ex_OpSing.md) and in Examples 7.7.5
-and 7.7.5 below). A $\Delta$SCF calculation with restricted
-open-shell (RO) orbitals or an ROKS calculation can be performed via
-SCF_ALGORITHM = SGM or SCF_ALGORITHM =
-SGM_LS, and a re-ordering of orbitals to ensure that the unpaired
-ones lie at the frontier. (See Examples 7.7.5 and
-7.7.5 below.) The gradient of $\Delta(\vec{\theta})$ is
-computed analytically (except in the case of functionals that contain VV10
-nonlocal correlation), for R-, U- and RO-$\Delta$SCF, at a cost equal to a
-single Fock build. However, the gradient $\Delta(\vec{\theta})$ in the ROKS
-case, and for functionals containing VV10, is computed with a finite-difference
-approach [see Eq. ([4.47](../ch04_scf/sub_stability_analysis.md#eq:fd_mat_vec))]. In those cases, the cost is equal
-to that of two Fock builds. Cumulatively, a single SGM iteration costs twice
-as much as a single GDM iteration when the analytic $\Delta(\vec{\theta})$
-gradient is available, and three times as much if the finite difference
-construction must be used, although this does not affect the asymptotic scaling
-of the calculation with respect to system size.
+由于实现难易程度的不同，SGM 在不同轨道类别中的使用略有差异。
+使用限制闭壳层（R）和非限制（U）轨道的 $\Delta$SCF 过程，可以通过
+SCF_ALGORITHM = SGM_LS 或 SCF_ALGORITHM =
+SGM_QLS 运行，其初始轨道占据由 *$occupied* 块指定（如第
+[7.7.2](ex_OpSing.md) 节以及下文示例 7.7.5 和
+7.7.5 所述）。使用限制开壳层（RO）轨道的 $\Delta$SCF 计算或
+ROKS 计算可通过 SCF_ALGORITHM = SGM 或
+SCF_ALGORITHM = SGM_LS 执行，并且需要对轨道进行重新排序，
+以确保未配对轨道位于前沿（frontier）。（见下文示例 7.7.5 和
+7.7.5。）对于 R-、U- 和 RO-$\Delta$SCF，$\Delta(\vec{\theta})$
+的梯度是解析计算的（包含 VV10 非局域关联的泛函除外），其成本相当于一次
+Fock 矩阵构建。然而，在 ROKS 情况下以及对于包含 VV10
+的泛函，$\Delta(\vec{\theta})$ 的梯度采用有限差分方法计算
+[参见式 ([4.47](../ch04_scf/sub_stability_analysis.md#eq:fd_mat_vec))]。在这些情况下，其成本相当于
+两次 Fock 矩阵构建。累计下来，当解析 $\Delta(\vec{\theta})$
+梯度可用时，单次 SGM 迭代的成本是单次 GDM 迭代的两倍；若必须使用
+有限差分构造，则为三倍，不过这并不影响计算随体系规模增长的渐近标度行为。
 
-Excited-state orbital optimization sometimes requires more iterations than what
-is typical for ground-state SCF calculations, so MAX_SCF_CYCLES
-should be set to a large value (perhaps 200), rather than the default value of
-50. A loose convergence threshold of SCF_CONVERGENCE = 4 is also
-permissible if only energies are desired, as long as it is explicitly confirmed
-that the variation in energy over several iterations is much less than the
-desired accuracy after job completion. (A variation greater than
-$10^{-3}~{}E_{h}$ or 0.03 eV would be quite problematic, for example.) Further
-reduction of SCF_CONVERGENCE likely compromises properties such as
-dipole moments or nuclear gradients, and is not recommended.
+激发态轨道优化有时需要比基态 SCF
+计算通常所需的更多迭代次数，因此应将 MAX_SCF_CYCLES
+设置为一个较大的值（例如 200），而不是默认的 50。如果只需要能量，
+也可以采用较宽松的收敛阈值 SCF_CONVERGENCE = 4，但必须在
+任务完成后明确确认多次迭代间的能量变化远小于所需的精度（例如，若变化大于
+$10^{-3}~{}E_{h}$ 或 0.03 eV，就会相当成问题）。进一步降低
+SCF_CONVERGENCE 可能会损害偶极矩或核梯度等性质，因此不推荐这样做。
 
 SCF_ALGORITHM
 
 ### `SCF_ALGORITHM`
 
-> **Algorithm used for converging the SCF.**
+> **用于使 SCF 收敛的算法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `None`
+> * **选项**:
 >     * SGM
 >     * SGM_LS
 >     * SGM_QLS
-> * **Recommendation**: SGM should be used for RO- $\Delta$ SCF or ROKS calculations only. SGM_LS is recommended for R- or U- $\Delta$ SCF, though it can also be used for RO- $\Delta$ SCF or ROKS. SGM_QLS is a slower but more robust option for R- and U- $\Delta$ SCF calculations.
+> * **建议**: SGM 应仅用于 RO-$\Delta$SCF 或 ROKS 计算。对于 R- 或 U-$\Delta$SCF，推荐使用 SGM_LS，但它也可用于 RO-$\Delta$SCF 或 ROKS。SGM_QLS 是 R- 和 U-$\Delta$SCF 计算中较慢但更稳健的选择。
 
 DELTA_GRADIENT_SCALE
 
 ### `DELTA_GRADIENT_SCALE`
 
-> **Scales the gradient of $\Delta$ by $N$ /100, which can be useful for cases with troublesome convergence by reducing step size.**
+> **将 $\Delta$ 的梯度按 $N$/100 进行缩放，通过减小步长，可用于收敛困难的情况。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `100`
+> * **选项**:
 >     * $N$
-> * **Recommendation**: Use default. For problematic cases, $N=$ 50, 25, 10 or even $N=1$ could be useful.
+> * **建议**: 使用默认值。对于有问题的情况，$N=$ 50、25、10 甚至 $N=1$ 可能会有用。
 
 ROKS
 
 ### `ROKS`
 
-> **Controls whether ROKS calculation will be performed.**
+> **控制是否执行 ROKS 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * ROKS is not performed.
+>     * 不执行 ROKS。
 >     * TRUE
->     * ROKS will be performed.
-> * **Recommendation**: Set to TRUE if ROKS calculation is desired. UNRESTRICTED = FALSE should also be ensured.
+>     * 将执行 ROKS。
+> * **建议**: 若需要 ROKS 计算，请设置为 TRUE。同时应确保 UNRESTRICTED = FALSE。
 
-???+ example "Example 7.52: Restricted $\Delta$ SCF double excitation from $2s$ to $2p$ of Be atom, using SGM_QLS and the ground
-state orbitals as an initial guess."
+???+ example "示例 7.52: 使用 SGM_QLS 并以基态轨道作为初始猜测，对 Be 原子 $2s$ 到 $2p$ 的限制型 $\Delta$SCF 双激发进行计算。"
     ```qchem
     $comment
        Calculates Delta-SCF excitation energy for the 2s^2 -> 2p^2 excitation of Be
@@ -160,9 +145,7 @@ state orbitals as an initial guess."
     $end
     ```
 
-???+ example "Example 7.53: ROKS single excitation from HOMO to LUMO for an NH ${}_{3}$ $\cdots$ F ${}_{2}$ model complex,
-which describes electron transfer from NH ${}_{3}$ to F ${}_{2}$ . Ground
-state orbitals are used as an initial guess."
+???+ example "示例 7.53: NH ${}_{3}$ $\cdots$ F ${}_{2}$ 模型复合物从 HOMO 到 LUMO 的 ROKS 单激发，该激发描述从 NH ${}_{3}$ 到 F ${}_{2}$ 的电子转移。以基态轨道作为初始猜测。"
     ```qchem
     $molecule
        0 1
@@ -209,9 +192,7 @@ state orbitals are used as an initial guess."
     $end
     ```
 
-???+ example "Example 7.54: Unrestricted $\Delta$ SCF single excitation from HOMO $-1$ to LUMO $+1$ for the HCHO molecule
-using SGM_LS SCF convergence algorithm and the ground
-state orbitals as an initial guess."
+???+ example "示例 7.54: HCHO 分子从 HOMO $-1$ 到 LUMO $+1$ 的非限制型 $\Delta$SCF 单激发，使用 SGM_LS SCF 收敛算法并以基态轨道作为初始猜测。"
     ```qchem
     $comment
        Calculates Delta-SCF excitation energy for the HOMO-1 -> LUMO+1
@@ -265,7 +246,7 @@ state orbitals as an initial guess."
     $end
     ```
 
-???+ example "Example 7.7.55: Combined RO- $\Delta$ SCF core-ionization and $1s\rightarrow\text{LUMO}+1$ ROKS core-excited state."
+???+ example "示例 7.7.55: 结合 RO-$\Delta$SCF 芯层电离态与 $1s\rightarrow\text{LUMO}+1$ ROKS 芯激发态。"
     ```qchem
     $molecule
        0 1
@@ -326,12 +307,7 @@ state orbitals as an initial guess."
        BASIS            aug-cc-pCVTZ
        SCF_GUESS        read
        SCF_ALGORITHM    sgm
-       MAX_SCF_CYCLES   200
        INTEGRAL_SYMMETRY false
     $end
     
-    $reorder_mo
-       1 2 3 4 5 7 6
-       1 2 3 4 5 7 6
-    $end
     ```

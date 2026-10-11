@@ -1,39 +1,29 @@
 ---
-title: "7.11.2 The Restricted Active Space (RAS) Scheme"
+title: "7.11.2 受限活性空间（RAS）方案"
 ---
 
-## 7.11.2 The Restricted Active Space (RAS) Scheme
+## 7.11.2 受限活性空间（RAS）方案
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In the RAS formalism, one divides the orbital space into three subspaces called
-RAS1, RAS2 and RAS3 (Fig. [7.3](#fig:RAS)). The RAS-CI states are defined by
-the number of orbitals and the restrictions in each subspace.
+在 RAS 形式体系中，将轨道空间划分为三个子空间，分别称为 RAS1、RAS2 和 RAS3（图 [7.3](#fig:RAS)）。RAS-CI 态由每个子空间中的轨道数目及所施加的限制来定义。
 
-![Figure 7.3: Orbital subspaces in RAS-CI employing a ROHF triplet reference.](../assets/ras_formalism_figure.png)
+![图 7.3：采用 ROHF 三重态参考的 RAS-CI 轨道子空间。](../assets/ras_formalism_figure.png)
 
-*Figure 7.3: Orbital subspaces in RAS-CI employing a ROHF triplet reference.*
+*图 7.3：采用 ROHF 三重态参考的 RAS-CI 轨道子空间。*
 
-The single reference RAS-CI electronic wave functions
-are obtained by applying a spin-flipping or excitation operator $\hat{R}$
-on the reference determinant $|\phi^{\text{(0)}}\rangle$.
+单参考 RAS-CI 电子波函数通过对参考行列式 $|\phi^{\text{(0)}}\rangle$ 施加自旋翻转（spin-flipping）算符或激发算符 $\hat{R}$ 而得到。
 
 <a id="Ch7.E163"></a>
 $$
 \left|{\Psi}^{\text{RAS}}\right>=\hat{R}\left|\phi^{\text{(0)}}\right> \tag{7.163}
 $$
 
-The $\hat{R}$ operator must obey the restrictions imposed in the subspaces
-RAS1, RAS2 and RAS3, and can be decomposed as
+$\hat{R}$ 算符必须遵守在子空间 RAS1、RAS2 和 RAS3 中所施加的限制，并可分解为
 
 <a id="eqRoperator"></a>
 $$
 \hat{R}=\hat{r}^{\text{RAS2}}+\hat{r}^{h}+\hat{r}^{p}+\hat{r}^{hp}+\hat{r}^{2h}+\hat{r}^{2p}+\cdots\;. \tag{7.164}
 $$
 
-Here, $\hat{r}^{\text{RAS2}}$ contains all possible electronic promotions within
-the RAS2 space, *i.e.*, a reduced full CI, and the rest of the terms generate
-configurations with different number of holes ($h$ super-index) in RAS1 and
-electrons in RAS3 ($p$ super-index). The current implementation truncates this
-series up to the inclusion of hole and particle contributions, *i.e.*, the first
-three terms on the right hand side of Eq. ([7.164](#eqRoperator)).
+其中，$\hat{r}^{\text{RAS2}}$ 包含 RAS2 空间内所有可能的电子提升（promotion），*即*一个约化的全组态相互作用（reduced full CI）；其余各项则生成具有不同空穴（hole，$h$）数和粒子（particle，$p$）数的组态。

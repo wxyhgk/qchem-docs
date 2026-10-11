@@ -1,31 +1,31 @@
 ---
-title: "7.4.5 Real-Time Extension of TAO-DFT (RT-TAO)"
+title: "7.4.5 TAO-DFT 的实时扩展（RT-TAO）"
 ---
 
-## 7.4.5 Real-Time Extension of TAO-DFT (RT-TAO)
+## 7.4.5 TAO-DFT 的实时扩展（RT-TAO）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In order to investigate the time-dependent dynamics of large, strongly correlated systems starting from the ground state,
-and with a focus on minimizing computational complexity,
-Hung-Yi Tsai and Prof. Jeng-Da Chai have extended thermally-assisted-occupation density functional theory (TAO-DFT)[[227]](../bib_references/bib.md#bib222)
- to real-time TAO-DFT (RT-TAO).[[1376]](../bib_references/bib.md#bib1437)
+为了研究从基态出发的大型强关联体系的含时动力学，
+并以最小化计算复杂度为重点，
+Hung-Yi Tsai 与 Jeng-Da Chai 教授将热辅助占据密度泛函理论（thermally-assisted-occupation density functional theory, TAO-DFT）[[227]](../bib_references/bib.md#bib222)
+ 推广到了实时 TAO-DFT（RT-TAO）。[[1376]](../bib_references/bib.md#bib1437)
 
-The RT-TAO method is initiated with a TAO-DFT calculation (refer to Section [5.12.3](../ch05_dft/ex_ptao.md)) and is followed by time propagation (refer to Section [7.4](sec_TDKS.md)).
-The computational cost associated with RT-TAO is comparable to that of time-dependent Kohn-Sham,
-and it becomes equivalent to the cost of time-dependent Kohn-Sham in the absence of significant static correlation effects.
+RT-TAO 方法首先进行一次 TAO-DFT 计算（参见第 [5.12.3](../ch05_dft/ex_ptao.md) 节），随后进行时间演化（参见第 [7.4](sec_TDKS.md) 节）。
+RT-TAO 所需的计算代价与含时 Kohn-Sham（time-dependent Kohn-Sham）相当，
+并且在不存在显著静态关联效应时，其计算代价与含时 Kohn-Sham 完全相同。
 
-To perform an RT-TAO calculation, users are instructed to set TAO_DFT = TRUE and TDKS = TRUE in the *$rem* input section.
-Additional job control options are detailed in Section [5.12.3](../ch05_dft/ex_ptao.md) and Section [7.4.2](sec_TDKS_JobControl.md).
+要执行 RT-TAO 计算，用户需在 *$rem* 输入段中设置 TAO_DFT = TRUE 和 TDKS = TRUE。
+更多作业控制选项详见第 [5.12.3](../ch05_dft/ex_ptao.md) 节和第 [7.4.2](sec_TDKS_JobControl.md) 节。
 
-RT-TAO, serving as a real-time extension of TAO-DFT, is governed by a fictitious temperature parameter denoted as $\theta$.
-Setting TAO_DFT_THETA = 0 brings the method back to the ordinary time-dependent Kohn-Sham.[[1376]](../bib_references/bib.md#bib1437)
+RT-TAO 作为 TAO-DFT 的实时扩展，由一个记为 $\theta$ 的虚拟温度参数（fictitious temperature parameter）所控制。
+将 TAO_DFT_THETA 设为 0，该方法即退化为普通的含时 Kohn-Sham。[[1376]](../bib_references/bib.md#bib1437)
 
-In the adiabatic approximation, alongside the exchange-correlation (XC) functional, an additional functional $E_{\theta}[\rho]$ is required for RT-TAO.
+在绝热近似下，除了交换关联（exchange-correlation, XC）泛函之外，RT-TAO 还需要一个额外的泛函 $E_{\theta}[\rho]$。
 
-Two illustrative examples of RT-TAO calculations are provided:
+下面给出两个 RT-TAO 计算的示例：
 
-???+ example "Example 7.37: RT-TAO-ALDA, spin-restricted calculation on stretched H ${}_{2}$"
+???+ example "示例 7.37：RT-TAO-ALDA，对拉长的 H ${}_{2}$ 进行自旋限制计算"
     ```qchem
     $molecule
        0 1
@@ -59,7 +59,7 @@ Two illustrative examples of RT-TAO calculations are provided:
     $end
     ```
 
-???+ example "Example 7.38: RT-TAO-ALDA, spin-unrestricted calculation on stretched H ${}_{2}$"
+???+ example "示例 7.38：RT-TAO-ALDA，对拉长的 H ${}_{2}$ 进行自旋非限制计算"
     ```qchem
     $molecule
        0 1

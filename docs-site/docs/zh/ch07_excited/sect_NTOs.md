@@ -2,79 +2,46 @@
 title: "7.13.3 Natural Transition Orbitals"
 ---
 
-## 7.13.3 Natural Transition Orbitals
+## 7.13.3 自然跃迁轨道（Natural Transition Orbitals, NTOs）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In certain situations, even the attachment/detachment densities may be
-difficult to analyze. An important class of examples are systems with multiple
-chromophores, which may support exciton states consisting of linear
-combinations of localized excitations. For such states, both the attachment
-and the detachment density are highly delocalized and occupy basically the same
-region of space.[[752]](../bib_references/bib.md#bib785)
- Lack of phase information makes the
-attachment/detachment densities difficult to analyze, while strong mixing
-of the canonical MOs means that excitonic states are also difficult to
-characterize in terms of MOs.[[572]](../bib_references/bib.md#bib586)
+在某些情况下，即使是附着/脱离密度（attachment/detachment densities）也可能难以分析。一类重要的例子是含有多个发色团（chromophores）的体系，这类体系可以支持由定域激发的线性组合所构成的激子态（exciton states）。对于这样的态，附着密度和脱离密度都是高度离域的，并且基本上占据相同的空间区域。[[752]](../bib_references/bib.md#bib785)
+ 由于缺乏位相（phase）信息，附着/脱离密度难以分析；而正则分子轨道（canonical MOs）之间的强烈混合又使得激子态同样难以用分子轨道（MOs）来刻画。[[572]](../bib_references/bib.md#bib586)
 
-Analysis of these and other excited states is greatly simplified by
-constructing natural transition orbitals (NTOs) for the excited states.[[572]](../bib_references/bib.md#bib586)
+通过为激发态构造自然跃迁轨道（NTOs），这些态以及其他激发态的分析得以大大简化。[[572]](../bib_references/bib.md#bib586)
 
-(The basic idea behind NTOs is rather old,[[864]](../bib_references/bib.md#bib898)
- and has been
-rediscovered several times.[[913]](../bib_references/bib.md#bib947)
- These orbitals were
-later shown to be equivalent to CIS natural orbitals.[[1331]](../bib_references/bib.md#bib1390)
-) Let
-$\mathbf{T}$ denote the transition density matrix from an excited-state
-calculation. The dimension of this matrix is $O\times V$, where $O$ and $V$
-denote the number of occupied and virtual MOs, respectively. The NTOs are
-defined by transformations $\mathbf{U}$ and $\mathbf{V}$ obtained by singular
-value decomposition (SVD) of the matrix $\mathbf{T}$, *i.e.*,[[925]](../bib_references/bib.md#bib962)
+（NTOs 背后的基本思想其实相当古老，[[864]](../bib_references/bib.md#bib898)
+ 并已被多次重新发现。[[913]](../bib_references/bib.md#bib947)
+ 后来这些轨道被证明等价于 CIS 自然轨道（natural orbitals）。[[1331]](../bib_references/bib.md#bib1390)
+）设 $\mathbf{T}$ 表示来自激发态计算的跃迁密度矩阵（transition density matrix）。该矩阵的维度为 $O\times V$，其中 $O$ 和 $V$
+分别表示占据 MO 与虚 MO 的数目。NTOs 由矩阵 $\mathbf{T}$ 的奇异值分解（singular value decomposition, SVD）所得到的变换 $\mathbf{U}$ 与 $\mathbf{V}$
+定义，*即*：[[925]](../bib_references/bib.md#bib962)
 
 <a id="eq:NTO_SVD"></a>
 $$
 \mathbf{UTV}^{\dagger}=\bm{\Lambda} \tag{7.188}
 $$
 
-The matrices $\mathbf{U}$ and $\mathbf{V}$ are unitary and $\bm{\Lambda}$ is
-diagonal, with the latter containing at most $O$ non-zero elements. The matrix
-$\mathbf{U}$ is a unitary transformation from the canonical occupied MOs to a
-set of NTOs that together represent the “hole” orbital that is left by the
-excited electron, while $\mathbf{V}$ transforms the canonical virtual MOs into
-a set of NTOs representing the excited electron. (Equivalently, the “holes”
-are the eigenvectors of the $O\times O$ matrix $\mathbf{TT}^{\dagger}$ and the
-particles are eigenvectors of the $V\times V$ matrix
-$\mathbf{T}^{\dagger}\mathbf{T}$.[[913]](../bib_references/bib.md#bib947)
-) These “hole” and
-“particle” NTOs come in pairs, and their relative importance in describing
-the excitation is governed by the diagonal elements of $\bm{\Lambda}$, which
-are excitation amplitudes in the NTO basis. By virtue of the SVD in
-Eq. ([7.188](#eq:NTO_SVD)), any excited state may be represented using at most $O$
-excitation amplitudes and corresponding hole/particle NTO pairs. (The
-discussion here assumes that $V\geq O$, which is typically the case except
-possibly in minimal basis sets. Although it is possible to use the transpose
-of Eq. ([7.188](#eq:NTO_SVD)) to obtain NTOs when $V<O$, this has not been
-implemented in **Q-Chem** due to its limited domain of applicability.)
+矩阵 $\mathbf{U}$ 和 $\mathbf{V}$ 是酉矩阵，$\bm{\Lambda}$ 是对角矩阵，后者最多包含 $O$
+个非零元素。矩阵 $\mathbf{U}$ 是从正则占据 MO 到一组 NTOs 的酉变换，这组 NTOs 共同表示被激发电子留下的“空穴”（hole）轨道；而 $\mathbf{V}$
+则将正则虚 MO 变换为一组表示激发电子的 NTOs。（等价地，“空穴”是 $O\times O$ 矩阵 $\mathbf{TT}^{\dagger}$
+的本征矢，而“粒子”是 $V\times V$ 矩阵 $\mathbf{T}^{\dagger}\mathbf{T}$ 的本征矢。[[913]](../bib_references/bib.md#bib947)
+）这些“空穴”与“粒子”NTOs 成对出现，而它们在描述激发时的相对重要性由 $\bm{\Lambda}$
+的对角元素决定，这些对角元素即为 NTO 基下的激发振幅（excitation amplitudes）。凭借式 ([7.188](#eq:NTO_SVD))
+中的 SVD，任何激发态都可以用最多 $O$ 个激发振幅及相应的空穴/粒子 NTO 对来表示。（此处的讨论假定 $V\geq O$，除极小基组（minimal basis
+sets）外通常都是如此。虽然可以利用式 ([7.188](#eq:NTO_SVD))
+的转置在 $V<O$ 时求得 NTOs，但由于其适用范围有限，**Q-Chem** 中尚未实现这一功能。）
 
-The SVD generalizes the concept of matrix diagonalization to the case of
-rectangular matrices, and therefore reduces as much as possible the number of
-non-zero outer products needed for an exact representation of $\mathbf{T}$. In
-this sense, the NTOs represent the best possible particle/hole picture of
-an excited state. The detachment density is recovered as the sum of the
-squares of the “hole” NTOs, while the attachment density is precisely the sum
-of the squares of the “particle” NTOs. Unlike the attachment/detachment densities, however, NTOs preserve phase information, which can be
-very helpful in characterizing the diabatic character (*e.g.*, $\pi\pi^{\ast}$ or
-$n\pi^{\ast}$) of excited states in complex systems. In the limit that there is only one significant pair of NTOs,
-the squares of these two orbitals ($|\psi_{\text{hole}}(\mathbf{r})|^{2}$ and $|\psi_{\text{particle}}(\mathbf{r})|^{2}$) are
-precisely equivalent to the detachment and attachment densities that were introduced in
-Section [7.13.2](sect_AttachDetach.md).
+SVD 将矩阵对角化的概念推广到矩形矩阵的情形，因此可以尽可能减少精确表示 $\mathbf{T}$
+所需的非零外积（outer products）数目。就此意义而言，NTOs 代表了激发态的最佳可能的粒子/空穴图像。脱离密度可由“空穴”NTOs
+的平方和恢复，而附着密度则恰好是“粒子”NTOs 的平方和。然而，与附着/脱离密度不同，NTOs 保留了位相信息，这在刻画复杂体系中激发态的非绝热（diabatic）特征（*e.g.*，$\pi\pi^{\ast}$
+或 $n\pi^{\ast}$）时非常有用。当仅存在一对显著的 NTOs
+时，这两个轨道的平方（$|\psi_{\text{hole}}(\mathbf{r})|^{2}$ 与 $|\psi_{\text{particle}}(\mathbf{r})|^{2}$）恰好等同于第 [7.13.2](sect_AttachDetach.md)
+节中引入的脱离密度与附着密度。
 
-Even when there is more than one significant NTO amplitude, the NTOs still represent a significant
-compression of information, as compared to the canonical MO basis.
+即使存在多个显著的 NTO 振幅，与正则 MO 基相比，NTOs 仍然代表着信息的大幅压缩。
 
-NTOs are available within **Q-Chem** for CIS, RPA, TDDFT, ADC, and EOM-CC methods. For
-the correlated wave functions (EOM-CC and ADC) and for SF-DFT, they can be computed using **libwfa** 
-module. The simplest way to visualize the NTOs is to generate them in
-a format suitable for viewing with the freely-available **MolDen** or
-**MacMolPlt** programs, as described in Chapter [10](../ch10_properties/chap_properties.md).
+在 **Q-Chem** 中，CIS、RPA、TDDFT、ADC 和 EOM-CC 方法均可使用 NTOs。对于关联波函数方法（EOM-CC 与 ADC）以及 SF-DFT，可以利用 **libwfa** 模块计算 NTOs。可视化
+NTOs 最简单的方式，是按照第 [10](../ch10_properties/chap_properties.md) 章所述，生成适合用免费可用的 **MolDen** 或 **MacMolPlt**
+程序查看的格式。

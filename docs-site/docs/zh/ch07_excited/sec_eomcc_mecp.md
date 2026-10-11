@@ -1,26 +1,21 @@
 ---
-title: "7.9.28 Potential Energy Surface Crossing Minimization"
+title: "7.9.28 势能面交叉最小化"
 ---
 
-## 7.9.28 Potential Energy Surface Crossing Minimization
+## 7.9.28 势能面交叉最小化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-EOM-CCSD can also be used as the excited-state method to find minimum energy
-crossing points (MECPs). See Section [9.8.3](../ch09_opt/sect_MECP.md) for more general
-information about MECP calculations.
+EOM-CCSD 也可作为激发态方法用于寻找最小能量交叉点（Minimum Energy Crossing Points, MECPs）。关于 MECP 计算的更一般性信息，请参见第 [9.8.3](../ch09_opt/sect_MECP.md) 节。
 
-The potential energy surface crossing optimization procedure finds energy minima
-of crossing seams. On the seam, the potential surfaces are degenerate in the
-subspace perpendicular to the plane defined by two vectors: the gradient
-difference
+势能面交叉优化过程用于寻找交叉 seam（交叉集）上的能量极小点。在 seam 上，势能面在垂直于由以下两个矢量所张成平面的子空间中是简并的：梯度差
 
 <a id="Ch7.E125"></a>
 $$
 {\rm\bf g}=\frac{\partial}{\partial{\rm\bf q}}(E_{1}-E_{2}) \tag{7.125}
 $$
 
-and the derivative coupling
+以及导数耦合
 
 <a id="Ch7.E126"></a>
 $$
@@ -28,98 +23,88 @@ $$
 q}}\right|\Psi_{2}\right\rangle \tag{7.126}
 $$
 
-At this time **Q-Chem** is unable to locate crossing minima for states which have
-non-zero derivative coupling. Fortunately, this does not occur often. Minima
-on the seams of conical intersections of states of different multiplicity can
-be found as their derivative coupling is zero. Minima on the seams of
-intersections of states of different point group symmetry can be located as
-well.
+目前 **Q-Chem** 无法为具有非零导数耦合的态定位交叉极小点。幸运的是，这种情况并不常见。不同多重度态的锥形交叉 seam 上的极小点可以找到，因为其导数耦合为零。不同点群对称性态的交叉 seam 上的极小点同样可以定位。
 
-To run a PES crossing minimization, CCSD and EOM-CCSD methods must be employed
-for the ground and excited state calculations respectively.
+要运行势能面（PES）交叉最小化，必须分别采用 CCSD 和 EOM-CCSD 方法进行基态和激发态计算。
 
-**Note: 
+**注意：**
 
-MECP optimization is only available for methods with analytic gradients.
-Finite-difference evaluation of two gradients is not possible.
+MECP 优化仅适用于具有解析梯度的方法。
+无法通过有限差分方式计算两个梯度。
 **
 
-## 7.9.28.1 Job Control Options
+## 7.9.28.1 作业控制选项
 
-**Note: 
+**注意：**
 
-When performing coupled-cluster-based MECP calculations, one must use
-the XOPT_STATE_1 and XOPT_STATE_2 keywords and not
-MECP_STATE1 and MECP_STATE2.
+在执行基于耦合簇（Coupled-Cluster）的 MECP 计算时，必须使用
+XOPT_STATE_1 和 XOPT_STATE_2 关键字，而不能使用
+MECP_STATE1 和 MECP_STATE2。
 **
 
 XOPT_STATE_1, XOPT_STATE_2
 
 ### `XOPT_STATE_1, XOPT_STATE_2`
 
-> **Specify two electronic states the intersection of which will be searched.**
+> **指定将要搜索其交叉点的两个电子态。**
 >
-> * **Type**: `[INTEGER, INTEGER, INTEGER]`
-> * **Default**: `No default value (the option must be specified to run this calculation)`
-> * **Options**:
+> * **类型**: `[INTEGER, INTEGER, INTEGER]`
+> * **默认值**: `无默认值（必须指定该选项才能运行此计算）`
+> * **选项**:
 >     * [spin, irrep, state]
 >     * spin = 0
->     * Addresses states with low spin,
->     * see also EE_SINGLETS or IP_STATES,EA_STATES.
+>     * 处理低自旋（low spin）态，
+>     * 另见 EE_SINGLETS 或 IP_STATES,EA_STATES。
 >     * spin = 1
->     * Addresses states with high spin,
->     * see also EE_TRIPLETS.
+>     * 处理高自旋（high spin）态，
+>     * 另见 EE_TRIPLETS。
 >     * irrep
->     * Specifies the irreducible representation to which
->     * the state belongs; for example, in the
+>     * 指定该态所属的不可约表示（irreducible representation）；例如，在
 >     * $C_{2v}$
->     * point group,
->     * irreps are ordered 1, 2, 3, 4 for
+>     * 点群中，
+>     * 不可约表示按 1、2、3、4 依次对应
 >     * $A_{1}$
->     * ,
+>     * 、
 >     * $A_{2}$
->     * ,
+>     * 、
 >     * $B_{1}$
->     * , and
+>     * 和
 >     * $B_{2}$
->     * , respectively.
+>     * 。
 >     * state
->     * Specifies the state number within the irreducible
->     * representation, state = 1 means the lowest excited
->     * state, state = 2 is the second excited state,
->     * etc.
+>     * 指定不可约表示内的态序号，state = 1 表示最低的激发
+>     * 态，state = 2 表示第二激发态，
+>     * 以此类推。
 >     * .
 >     * 0, 0, -1
->     * Ground state.
-> * **Recommendation**: Only intersections of states with different spin or symmetry can be calculated at this time.
+>     * 基态。
+> * **建议**: 目前只能计算自旋或对称性不同的态之间的交叉。
 
-**Note: 
+**注意：**
 
-The spin can only be specified when using closed-shell RHF references. In
-the case of open-shell references all states are treated together, see also
-EE_STATES. For example, in spin-flip calculations use spin = 0 regardless of what is
-the actual multiplicity of the target state.
+只有在使用闭壳层 RHF 参考时才能指定自旋。
+对于开壳层参考，所有态被统一处理，另见
+EE_STATES。例如，在自旋翻转（spin-flip）计算中，无论目标态的实际多重度为何，均使用 spin = 0。
 **
 
 XOPT_SEAM_ONLY
 
 ### `XOPT_SEAM_ONLY`
 
-> **Orders an intersection seam search only, no minimization is to be performed.**
+> **仅执行交叉 seam 搜索，不进行最小化。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Find a point on the intersection seam and stop.
+>     * 在交叉 seam 上找到一个点后即停止。
 >     * FALSE
->     * Perform a minimization of the intersection seam.
-> * **Recommendation**: In systems with a large number of degrees of freedom it might be useful to locate the seam first by setting this option to TRUE and using that geometry as a starting point for the minimization.
+>     * 对交叉 seam 执行最小化。
+> * **建议**: 对于自由度很多的体系，可以先将该选项设为 TRUE 以定位 seam，然后以该几何结构作为最小化的起始点，这可能很有用。
 
-## 7.9.28.2 Examples
+## 7.9.28.2 示例
 
-???+ example "Example 7.164: Optimization of the intersection of Ã ${}^{1}$ B ${}_{2}$ and B̃ ${}^{1}$ A ${}_{2}$ states
-of the N ${}_{3}^{+}$ ion at the EOM-EE-CCSD level."
+???+ example "示例 7.164: 在 EOM-EE-CCSD 级别下优化 N ${}_{3}^{+}$ 离子的 Ã ${}^{1}$ B ${}_{2}$ 态与 B̃ ${}^{1}$ A ${}_{2}$ 态的交叉点。"
     ```qchem
     $molecule
        1 1
@@ -167,8 +152,7 @@ of the N ${}_{3}^{+}$ ion at the EOM-EE-CCSD level."
     $end
     ```
 
-???+ example "Example 7.165: Optimization of the intersection of Ã ${}^{2}$ A ${}_{1}$ and B̃ ${}^{2}$ B ${}_{1}$ states
-of the NO ${}_{2}$ molecule at the EOM-IP-CCSD level."
+???+ example "示例 7.165: 在 EOM-IP-CCSD 级别下优化 NO ${}_{2}$ 分子的 Ã ${}^{2}$ A ${}_{1}$ 态与 B̃ ${}^{2}$ B ${}_{1}$ 态的交叉点。"
     ```qchem
     $molecule
        -1  1

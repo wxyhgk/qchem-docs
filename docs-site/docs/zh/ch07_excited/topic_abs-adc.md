@@ -1,71 +1,29 @@
 ---
-title: "7.10.11 Excited States in Solution with ADC/SS-PCM"
+title: "7.10.11 采用 ADC/SS-PCM 计算溶液中的激发态"
 ---
 
-## 7.10.11 Excited States in Solution with ADC/SS-PCM
+## 7.10.11 采用 ADC/SS-PCM 计算溶液中的激发态
 
 (July 4, 2026)
 
-**ADCman** is interfaced to the versatile polarizable-continuum model (PCM)
-implemented in **Q-Chem** (Section [11.2.3](../ch11_env/topic_pcm-em.md)) and may thus be employed for
-the calculation and analysis of excited-state wave functions and transitions in
-solution, or more general in dielectric environments. The interface follows the
-state-specific approach, and supports a self-consistent equilibration of the
-solvent field for long-lived excited states commonly referred to as
-*equilibrium solvation*, as well as the calculation of perturbative
-corrections for vertical transitions, known as *nonequilibrium solvation*;
-see also section [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM). Combining both
-approaches, virtually all photochemically relevant processes can be modeled,
-including ground- and excited-state absorption, fluorescence, phosphorescence,
-as well as photochemical reactivity. Requiring only the electron-densities of
-ground- and excited states of the solute as well as and the dielectric constant
-and refractive index of the solvent, ADC/SS-PCM is straightforward to set
-up and supports all orders and variants of ADC for which densities are
-available via the ISR. This includes all levels of canonical ADC, SOS-ADC,
-SF-ADC for electronically complicated situations, as well as CVS-ADC for the
-description of core-excited states with and without the resolution of the
-identity and frozen-core approximation, restricted closed-shell references as
-well unrestricted open-shell. The computed solvent-relaxed wave functions can
-be visualized and analyzed using the interface to **libwfa**.
+**ADCman** 已与 **Q-Chem** 中实现的多功能极化连续介质模型（Polarizable-Continuum Model, PCM）（第 [11.2.3](../ch11_env/topic_pcm-em.md) 节）完成接口对接，因此可用于溶液中（或更广义地说，介电环境中）激发态波函数与跃迁的计算和分析。该接口遵循态特定（state-specific）方法，支持针对长寿命激发态的溶剂场自洽平衡——通常称为*平衡溶剂化（equilibrium solvation）*——以及针对垂直跃迁的微扰校正计算——即所谓的*非平衡溶剂化（nonequilibrium solvation）*；另参见本手册第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节。将这两种方法结合起来，几乎可以模拟所有光化学相关过程，包括基态与激发态吸收、荧光、磷光以及光化学反应性。ADC/SS-PCM 仅需溶质的基态与激发态电子密度，以及溶剂的介电常数和折射率即可，因此设置非常简单，并且支持所有可以通过 ISR 获得密度的 ADC 级别与变体。这包括所有层级的正则 ADC（canonical ADC）、SOS-ADC、用于处理电子结构复杂情形的自旋翻转 SF-ADC，以及用于描述芯激发态的 CVS-ADC（可选是否采用单位算符完备近似（resolution of the identity）与冻结核近似），既支持受限闭壳层参考态，也支持非受限开壳层参考态。计算得到的经溶剂弛豫的波函数可通过与 **libwfa** 的接口进行可视化和分析。
 
-Although we give a short introduction to the theory in this section, it is
-limited to a brief, qualitative overview with only the most important
-equations, leaving out major aspects such as the polarization work.
-For an overview of the theory see Ref. [[569]](../bib_references/bib.md#bib580)
-.
-A more detailed treatment of the theory can be found in
-Refs. [[940]](../bib_references/bib.md#bib979)
- and [[939]](../bib_references/bib.md#bib982)
-. See also
-Sections [11.2.3](../ch11_env/topic_pcm-em.md) and [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) of this manual.
+尽管本节对理论给出了简要介绍，但它仅限于定性概述，只列出最重要的几个方程，省略了诸如极化功（polarization work）等主要方面。关于理论的综述可参见文献 [[569]](../bib_references/bib.md#bib580)。更详细的理论论述可参见文献 [[940]](../bib_references/bib.md#bib979) 和 [[939]](../bib_references/bib.md#bib982)。另参见本手册第 [11.2.3](../ch11_env/topic_pcm-em.md) 节与第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节。
 
-## 7.10.11.1 Modeling the Absorption Spectrum in Solution
+## 7.10.11.1 模拟溶液中的吸收光谱
 
-**(A) Theory
+**(A) 理论**
 
-**Let us begin with a brief review of the theoretical and technical aspects of
-the calculation of absorption spectra in solution. For this purpose, one would
-typically employ the perturbative, state-specific approach in combination with
-an ADC of second or third order. The first step is a self-consistent reaction
-field calculation [SCRF, Hartree-Fock with a PCM, Eq. ([7.152](#eq:ADC_SCRF))].
+让我们首先简要回顾溶液中吸收光谱计算在理论与技术层面的要点。为此，通常会将微扰型态特定方法与二阶或三阶 ADC 结合使用。第一步是自洽反应场计算 [SCRF，即采用 PCM 的 Hartree-Fock，方程 ([7.152](#eq:ADC_SCRF))]。
 
 <a id="eq:ADC_SCRF"></a>
 $$
 E_{0}=\langle 0|\hat{H}^{\text{vac}}+\hat{R}(0)|0\rangle \tag{7.152}
 $$
 
-The PCM is formally represented by the reaction- or solvent-field operator
-$\hat{R}$. In practice, $\hat{R}$ is a set of point charges placed on the
-molecular surface, which are optimized together with the orbitals during the
-SCF procedure. Note that since $\hat{R}$ accounts for the self-induced
-polarization of the solute, it depends on solute’s wave function (here the
-ground state), which will in the following be indicated in the subscript $\hat{R}_{0}$.
+PCM 在形式上由反应场算符（或溶剂场算符）$\hat{R}$ 表示。在实际操作中，$\hat{R}$ 是放置在分子表面上的一组点电荷，它们在自洽场（SCF）过程中与轨道一同被优化。注意，由于 $\hat{R}$ 考虑了溶质的自致极化，它依赖于溶质的波函数（此处为基态），后文将用下标 $\hat{R}_{0}$ 来表示这一依赖关系。
 
-After the SCRF is converged, the final surface charges and the respective
-operator can, according to the Franck-Condon principle, be separated into a
-“slow” solvent-nuclei related ($\epsilon-n^{2}$) and “fast”,
-solvent-electron related ($n^{2}$) component (using Marcus partitioning, eq.
-([7.153](#eq:ADC_R_sep))), and are stored on disk.
+SCRF 收敛之后，根据 Franck-Condon 原理，最终的表面电荷及相应算符可以按照 Marcus 划分方案（方程 ([7.153](#eq:ADC_R_sep)))，被拆分为与溶剂核相关的“慢”组分（$\epsilon-n^{2}$）和与溶剂电子相关的“快”组分（$n^{2}$），并存储在磁盘上。
 
 <a id="eq:ADC_R_sep"></a>
 $$
@@ -77,30 +35,9 @@ $$
 \displaystyle q^{f}= \tag{7.154}
 $$
 
-The “polarized” MOs resulting from the SCRF step are subjected to ordinary
-MP/ADC calculations, which yield the correlation energy for the ground and
-excitation energies for the excited states, which are both added to the HF
-energy to obtain the total MP ground and ADC excited-state energies. However,
-since the MOs contain the interaction with the complete “frozen”
-solvent-polarization of the SCF ground-state density ($\hat{R}^{\text{tot}}$,
-*i.e.*, *both* components), the resulting excitation energies violate the
-Franck-Condon principle, which requires the solvents electronic degrees of
-freedom (fast component of the polarization) to be relaxed. Furthermore, the
-solvent field has been obtained for the SCF density, which more often than not
-provides a poor description of the electrostatic nature of the solute and may
-in turn lead to systematic errors in the excitation energies.
+由 SCRF 步骤得到的“极化”分子轨道（MO）随后用于常规的 MP/ADC 计算，从而给出基态关联能与激发态的激发能，二者均叠加到 HF 能量之上，以获得总的 MP 基态能量和 ADC 激发态能量。然而，由于这些 MO 已经包含了与 SCF 基态密度所对应的完整“冻结”溶剂极化（$\hat{R}^{\text{tot}}$，*即*包含*两个*组分）的相互作用，所得激发能违背了 Franck-Condon 原理——该原理要求溶剂的电子自由度（极化的快组分）必须被弛豫。此外，溶剂场是基于 SCF 密度求得的，而 SCF 密度往往对溶质静电性质的描述较差，进而可能导致激发能出现系统性误差。
 
-To account for the relaxation of the solvent electrons and bring the
-excitation/excited-state energies in accordance with Franck-Condon, we employ
-the perturbative ansatz shown in eq. ([7.155](#eq:ADC_ptSS)), in which the fast
-component of the ground-state solvent field $\hat{R}^{\text{f}}_{0}$ is replaced
-by the respective quantity computed for the excited-state density
-$\hat{R}^{\text{f}}_{\text{i}}$. In this framework, the energy of an excited
-state $i$ computed with the polarized MOs can be identified as the zeroth-order
-energy [Eq. ([7.157](#eq:ADC_PT_zeroth))], while the first-order term becomes the
-difference between the interaction of the zeroth-order excited-state density
-with the fast component of the ground- and excited-state solvent fields given
-in eq. ([7.158](#eq:ADC_PT_first)).
+为了考虑溶剂电子的弛豫并使激发能/激发态能量符合 Franck-Condon 原理，我们采用方程 ([7.155](#eq:ADC_ptSS)) 所示的微扰形式：其中基态溶剂场的快组分 $\hat{R}^{\text{f}}_{0}$ 被替换为针对激发态密度计算得到的相应量 $\hat{R}^{\text{f}}_{\text{i}}$。在这一框架下，用极化 MO 计算得到的激发态 $i$ 的能量可以视为零阶能量 [方程 ([7.157](#eq:ADC_PT_zeroth))]，而一阶项则由方程 ([7.158](#eq:ADC_PT_first)) 给出，即零阶激发态密度与基态及激发态溶剂场的快组分相互作用之差。
 
 <a id="eq:ADC_ptSS"></a>
 $$
@@ -112,390 +49,138 @@ $$
 \displaystyle E^{\rm NEq(0)}_{i}= \tag{7.156}
 $$
 
-After the ADC iterations have converged, $\hat{R}^{\text{f}}_{\text{i}}$ is
-computed from the respective excited-state density and $\hat{R}^{\text{f}}_{0}$
-read from disk to form the first-order correction. Adding this so-called
-ptSS-term to the zeroth order energy, one arrives at the vertical
-energy in the nonequilibrium limit $E_{\text{i}}^{\text{NEq}}$. Since the
-ptSS-term accounts for the response of the electron density of the implicit
-solvent molecules to excitation of the solute, its always negative and thus lowers
-the energy of the excited state with respect to the ground state.
+ADC 迭代收敛后，由相应的激发态密度计算 $\hat{R}^{\text{f}}_{\text{i}}$，并从磁盘读取 $\hat{R}^{\text{f}}_{0}$，从而构成一阶校正。将此所谓的 ptSS 项加到零阶能量上，便得到非平衡极限下的垂直能量 $E_{\text{i}}^{\text{NEq}}$。由于 ptSS 项描述了隐式溶剂分子电子密度对溶质激发的响应，它总是负值，因此相对于基态降低了激发态的能量。
 
-To eliminate problems resulting from the poor description of the ground-state
-solvent field at the SCF level of theory, we use an additive correction that
-is based on the MP2 ground-state density. In a nutshell, it replaces the
-interaction between the potential of the difference density of the excited
-state $\hat{V}_{i^{(0)}}-\hat{V}_{0^{\textit{MP}}}$ with the SCF solvent field
-$\hat{Q}_{0^{\textit{HF}}}$ by the respective interaction with the MP solvent
-field $\hat{Q}_{0^{\textit{MP}}}$:
+为了消除在 SCF 理论水平下基态溶剂场描述不佳所导致的问题，我们使用一种基于 MP2 基态密度的加和校正。简而言之，它将激发态差分密度的势 $\hat{V}_{i^{(0)}}-\hat{V}_{0^{\textit{MP}}}$ 与 SCF 溶剂场 $\hat{Q}_{0^{\textit{HF}}}$ 之间的相互作用，替换为与 MP 溶剂场 $\hat{Q}_{0^{\textit{MP}}}$ 的相应相互作用：
 
 <a id="A3.S8.EGx68"></a>
 $$
 \displaystyle E_{\textit{PTD}}= \tag{7.159}
 $$
 
-We will in the following refer to this as “perturbative, density-based” (PTD)
-correction and denote the respective approach as ptSS(PTD). Accordingly, the
-non-PTD corrected results will be denoted ptSS(PTE).
+后文将此项称为“微扰型、基于密度的”（perturbative, density-based, PTD）校正，并将相应方法记为 ptSS(PTD)。相应地，未做 PTD 校正的结果记为 ptSS(PTE)。
 
-In addition to the ptSS-PCM discussed above, a perturbative variant of the
-so-called linear response corrections (termed ptLR presented in
-Ref. [[940]](../bib_references/bib.md#bib979)
-) is also available. In contrast to the ptSS
-approach, the ptLR corrections depend on the transition rather than the state
-(difference) densities. Although the ptLR corrections are always computed and
-printed, we discourage their use with the correlated ADC variants (2 and
-higher), for which the ptSS approach is better suited. The ptSS and ptLR
-approaches are also available for TDDFT as described in
-Section [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM).
+除上述 ptSS-PCM 之外，还可以使用所谓线性响应校正（称为 ptLR，见文献 [[940]](../bib_references/bib.md#bib979)）的微扰变体。与 ptSS 方法不同，ptLR 校正依赖于跃迁密度而非态（差分）密度。尽管 ptLR 校正总是会被计算并输出，但我们不建议在关联 ADC 变体（2 阶及以上）中使用它，对这些方法而言 ptSS 更为适合。ptSS 和 ptLR 方法同样适用于 TDDFT，详见第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节。
 
-A detailed, comprehensive introduction to the theory and implementation, as
-well as extensive benchmark data for the nonequilibrium formalism in
-combination with all orders of ADC can be found in Ref.
-[[940]](../bib_references/bib.md#bib979)
-.
+关于该理论与实现的详细、全面介绍，以及非平衡形式与各种阶数 ADC 结合的广泛基准数据，可参见文献 [[940]](../bib_references/bib.md#bib979)。
 
-**(B) Usage
+**(B) 使用方法**
 
-**The calculation of vertical transition energies with the ptSS-PCM approach is
-fairly straightforward. One just needs to activate the PCM (set
-SOLVENT_METHOD in the *$rem* block to PCM), enable the
-nonequilibrium functionality (set NONEQUILIBRIUM in the *$pcm* block
-to TRUE), and specify the solvent parameters, *i.e.*, dielectric
-constant $\epsilon$ (DIELECTRIC) and squared refractive index $n^{2}$
-(DIELECTRIC_INFI) in the *$solvent* block.
+使用 ptSS-PCM 方法计算垂直跃迁能量相当简单。只需激活 PCM（将 *$rem* 块中的 SOLVENT_METHOD 设为 PCM）、启用非平衡功能（将 *$pcm* 块中的 NONEQUILIBRIUM 设为 TRUE），并在 *$solvent* 块中指定溶剂参数，*即*介电常数 $\epsilon$（DIELECTRIC）和折射率的平方 $n^{2}$（DIELECTRIC_INFI）。
 
-**Note: 
+**注意：**
 
-Symmetry will be disabled for all calculations with a PCM.
-**
+所有使用 PCM 的计算都会禁用对称性。
 
-In the output of a ptSS-PCM calculation with any correlated ADC variant,
-multiple values are given for the total and transition energies depending in
-the level of theory. For the correlated ADC variants these include:
+在任何关联 ADC 变体的 ptSS-PCM 计算输出中，总能量和跃迁能量会根据理论水平给出多个数值。对于关联 ADC 变体，这些数值包括：
 
 - •
 
-*Zeroth-order results*, direct outcome of the ADC calculation with
-solvated orbitals, excited states are ordered according to this value.
+*零阶结果*，即使用溶剂化轨道进行 ADC 计算的直接产出，激发态按此数值排序。
 - •
 
-*First-order results*, incl. only ptSS nonequilibrium
-corrections, termed ptSS(PTE).
+*一阶结果*，仅包含 ptSS 非平衡校正，记为 ptSS(PTE)。
 - •
 
-*Corrected first-order results*, incl. also the correlation
-correction, termed ptSS(PTD).
+*校正后的一阶结果*，还包含关联校正，记为 ptSS(PTD)。
 - •
 
-*Scaled and corrected first-order results*, incl. an empirical
-scaling of the correlation correction, termed ptSS(PTD*).
+*标度化并校正的一阶结果*，包含对关联校正的经验标度，记为 ptSS(PTD*)。
 
-We recommend to use the corrected first-order results since the PTD correction
-generally yields the most accurate results. The ptSS(PTD) approach is typically a
-very good approximation to the fully consistent, but more expensive PTED
-scheme, in which the solvent field is made self-consistent with the MP2 density
-(see next section for the PTED scheme and sample-jobs for a comparison of the
-two). Oscillator strengths are computed using the ptSS(PTD) energies.
-The PTD* approach includes an empirical scaling of the PTD correction
-that was developed to improve the solvatochromic-shifts of a series of
-nitro-aromatics with a cc-pVDZ basis.[[940]](../bib_references/bib.md#bib979)
- However, we later
-found that for most other systems, the scaling slightly worsens the
-agreement with the fully consistent PTED scheme.
-In addition to the compiled total and transition energies, all contributing
-terms (ptSS, PTD etc.) are given separately. An even more verbose output
-detailing all the integrals contributing to the 1st order corrections can
-be obtained by increasing PCM_PRINT to 1.
+我们推荐使用校正后的一阶结果，因为 PTD 校正通常给出最准确的结果。ptSS(PTD) 方法通常是完全自洽但代价更高的 PTED 方案的很好近似，在 PTED 方案中溶剂场与 MP2 密度自洽（PTED 方案及用于对比两者的示例作业见下一节）。振子强度使用 ptSS(PTD) 能量计算。PTD* 方法对 PTD 校正引入了经验标度，该标度是为改进一系列硝基芳香化合物在 cc-pVDZ 基组下的溶剂致色移而开发的 [[940]](../bib_references/bib.md#bib979)。但我们后来发现，对于大多数其他体系，这一标度反而会使结果与完全自洽的 PTED 方案的一致性略有下降。除汇总的总能量与跃迁能量之外，所有贡献项（ptSS、PTD 等）都会分别给出。若将 PCM_PRINT 设为 1，可获得更为详尽的输出，其中列出对一阶校正有贡献的所有积分。
 
-**Note: 
+**注意：**
 
-The zeroth-order results are by no means identical to the gas-phase
-excitation energies, and in turn the ptSS-term is not the solvatochromic
-shift.
-**
+零阶结果绝不等价于气相激发能，因而 ptSS 项也不是溶剂致色移。
 
-**(C) Tips and Tricks
+**(C) 技巧与提示**
 
-**To model the absorption spectrum in polar solvents, it is advisable to use a
-structure optimized in the presence of a PCM since the influence can be quite
-significant.
+为模拟极性溶剂中的吸收光谱，建议使用在 PCM 存在下优化的结构，因为溶剂的影响可能相当显著。
 
-It should also be taken into account that a PCM, being a purely electrostatic
-model, lacks at the description of explicit interactions such as hydrogen
-bonds. If fairly strong H-bond donor or acceptor moieties are present, or a
-protic or Lewis-basic solvent is to be modeled, consider adding one or two
-explicit solvent molecules per donor/acceptor site, and optimize
-them together with the molecule in the presence of a PCM. A systematic
-investigation of this aspect for two representative examples can be found in
-Ref. [[940]](../bib_references/bib.md#bib979)
-.
+还应考虑到，PCM 作为纯粹的静电模型，无法描述氢键等显式相互作用。如果体系中存在较强的氢键给体或受体基团，或者要模拟质子性溶剂或 Lewis 碱性溶剂，建议考虑在每个给体/受体位点添加一两个显式溶剂分子，并在 PCM 存在下将它们与溶质一起优化。关于这一方面在两个代表性例子上的系统性研究可参见文献 [[940]](../bib_references/bib.md#bib979)。
 
-If large differences between the HF and MP description of the molecule exist
-(PTD terms $>0.2$ eV), it is advisable to employ the iterative ptSS(PTED)
-scheme described in the next section. Due to the inverse nature of the
-systematic errors of ADC(2) and ADC(3), the best guess for the excitation
-energy in solution is usually the average of both values.
+如果 HF 与 MP 对分子的描述存在较大差异（PTD 项 $>0.2$ eV），建议采用下一节所述的迭代型 ptSS(PTED) 方案。由于 ADC(2) 与 ADC(3) 的系统误差方向相反，溶液中激发能的最佳估计通常是两者的平均值。
 
-For the PCM, we recommend the formally exact and slightly more expensive
-integral-equation formalism (IEF)-PCM variant (**Theory** to
-**IEFPCM** in the *$pcm* block) in place of the approximate C-PCM, and
-otherwise default parameters.
+对于 PCM，我们推荐使用形式上精确、代价略高的积分方程形式（IEF）-PCM 变体（在 *$pcm* 块的 **Theory** 中设为 **IEFPCM**），以代替近似的 C-PCM，其余参数使用默认值。
 
-## 7.10.11.2 Modeling Emission, Excited-State Absorption and Photochemical
-Reactivity
+## 7.10.11.2 模拟发射、激发态吸收与光化学反应性
 
-**(A) Theory
+**(A) 理论**
 
-**To model emission/absorption of solvent-equilibrated excited states and/or to
-investigate their photochemical reactivity, both components of the polarization
-have to be relaxed with respect to the desired state. This becomes evident
-considering that a full solvent-field equilibration (including the
-nuclear component) is essentially a geometry optimization for the implicit
-solvent, and should thus be employed whenever the geometry of the solute is
-optimized for the desired excited state. The Hamiltonian for a
-solvent-equilibrated state $|k\rangle$ simply reads
+若要模拟经溶剂平衡的激发态的发射/吸收，和/或研究其光化学反应性，极化的两个组分都必须相对于目标态进行弛豫。这一点从以下事实即可看出：完整的溶剂场平衡（包括核组分）本质上是针对隐式溶剂的几何优化，因此每当需要针对目标激发态优化溶质几何构型时，就应当采用它。溶剂平衡态 $|k\rangle$ 的哈密顿量 simply 写作
 
 <a id="Ch7.E161"></a>
 $$
 E^{\rm EqS}_{\rm k}=\bigl{\langle}k\bigl{|}\hat{H}^{\rm vac}+\hat{R}_{\rm k}\bigl{|}k\bigr{\rangle}\;. \tag{7.161}
 $$
 
-Since the interaction with solvent field of any state has to be introduced to
-the MOs in the SCF step of a calculation, a solvent-field equilibration for
-excited states (and correlated ground states) is an iterative procedure
-requiring multiple SCF+ADC calculations until convergence is achieved. This
-also means that a guess (typically from a ptSS calculation) for the solvent
-field has to generated and used in the first SCF step. The MOs resulting from
-this first SCF are subjected to an ADC calculation, providing a first
-excited-state density, for which a new solvent field is computed and employed
-in the SCF step of the second iteration. This procedure is repeated until the
-solvent field (charges) and energies are converged and ultimately provides the
-total energy and wave function of the solvent-equilibrated excited state $|k\rangle$,
-as well as the out-of-equilibrium wave functions of other states.
-However, as the name already suggest, this state-specific approach yields a
-meaningful energy only for the solvent-equilibrated reference state $|k\rangle$.
-All other states have to be treated in the nonequilibrium limit and
-subjected to the formalism presented in the previous section to be consistent
-with the Franck-Condon principle. The respective generalization of the
-perturbative ansatz for the Hamiltonian for the $i$th out-of-equilibrium
-state in the field of the equilibrated state $|k\rangle$ reads as
+由于任何态与溶剂场的相互作用都必须在计算的 SCF 步骤中引入 MO，因此激发态（以及关联基态）的溶剂场平衡是一个迭代过程，需要多次 SCF+ADC 计算直至收敛。这也意味着必须先生成一个溶剂场的初始猜测（通常来自 ptSS 计算）并将其用于第一步 SCF。由第一次 SCF 得到的 MO 经过一次 ADC 计算，提供第一个激发态密度，据此计算新的溶剂场并用于第二次迭代的 SCF 步骤。该过程重复进行，直到溶剂场（表面电荷）与能量收敛，最终给出溶剂平衡激发态 $|k\rangle$ 的总能量与波函数，以及其他各个非平衡态的波函数。然而，正如名称所暗示的，这种态特定方法仅对溶剂平衡参考态 $|k\rangle$ 给出有意义的能量。所有其他态必须在非平衡极限下处理，并采用上一节介绍的形式化处理，才与 Franck-Condon 原理一致。对于处于平衡态 $|k\rangle$ 场中的第 $i$ 个非平衡态，其哈密顿量的微扰形式相应地推广为
 
 <a id="Ch7.E162"></a>
 $$
 E^{\rm NEq(k)}_{\rm i}=\bigl{\langle}i|\hat{H}^{\rm vac}+\hat{R}^{\rm tot}_{\rm k}+\lambda(\hat{R}^{\rm f}_{\rm i}-\hat{R}^{\rm f}_{\rm k})|i\bigr{\rangle}\;, \tag{7.162}
 $$
 
-which can be solved using the procedure introduced in the previous section.
+该式可以用上一节介绍的方法求解。
 
-While most of the technical aspects concerning the application of the model
-will be covered in the following, we highly recommend to read at least the
-formalism and implementation section of Ref. [[939]](../bib_references/bib.md#bib982)
- before using the model.
+尽管有关该模型应用的大部分技术细节将在下文涉及，我们强烈建议在使用该模型之前至少阅读文献 [[939]](../bib_references/bib.md#bib982) 中关于形式体系与实现的部分。
 
-**(B) Usage
+**(B) 使用方法**
 
-**The main switch for the state-specific equilibrium solvation (SS-PCM) is the
-variable EQSOLV in the *$pcm* block. Setting it to TRUE will
-cause the SCF+ADC calculation to be carried out using the solvent field of the
-first excited state (if that is found on disk), while any integer $>1$ triggers
-the automatic solvent-field optimization and is interpreted as the maximum
-number of steps. We recommend to use EQSOLV = 15. Note that to use the
-SS-PCM, the PCM (SOLVENT_METHOD = PCM in *$rem*) and its
-nonequilibrium functionalities (NONEQUILIBRIUM = TRUE in
-*$pcm*) have to be activated as well. Since the solvent-field iterations
-require an initial guess, a SS-PCM calculation is always the second (or
-third, $\ldots$) step of a multi-step job.
+态特定平衡溶剂化（SS-PCM）的主开关是 *$pcm* 块中的变量 EQSOLV。将其设为 TRUE 会使 SCF+ADC 计算使用第一激发态的溶剂场进行（前提是该溶剂场已存在于磁盘上），而任何大于 $1$ 的整数则触发自动溶剂场优化，并被解释为最大迭代步数。我们推荐使用 EQSOLV = 15。注意，要使用 SS-PCM，必须同时激活 PCM（在 *$rem* 中设置 SOLVENT_METHOD = PCM）及其非平衡功能（在 *$pcm* 中设置 NONEQUILIBRIUM = TRUE）。由于溶剂场迭代需要初始猜测，SS-PCM 计算总是一个多步作业的第二步（或第三步……）。
 
-**Note: 
+**注意：**
 
-Any SS-PCM calculation requires a preceding converged ptSS-PCM
-calculation (*i.e.*, EQSOLV = FALSE) for the desired state to provide a
-guess for the initial solvent field, or it will crash during the SCF.
-**
+任何 SS-PCM 计算都要求事先针对目标态完成一次收敛的 ptSS-PCM 计算（*即* EQSOLV = FALSE），以提供初始溶剂场的猜测，否则计算将在 SCF 阶段崩溃。
 
-To create the input-file for a multi step job, add "@@@" at the end of the
-input for the first job and append the input for the second job. See also
-section [3.5](../ch03_inputs/sec_multiple_jobs.md). Note that the solvent field used in the
-subsequent step is stored in the basis of the molecular-surface elements and
-thus, the geometry of the molecule as well as parameters that affect
-construction and discretization of the molecular cavity must not be changed
-between the jobs/steps. This, however, is not enforced.
+要创建多步作业的输入文件，在第一个作业的输入末尾添加“@@@”，然后附上第二个作业的输入。另参见第 [3.5](../ch03_inputs/sec_multiple_jobs.md) 节。注意，后续步骤中使用的溶剂场是以分子表面元的基组存储的，因此在各作业/步骤之间不得改变分子的几何构型以及影响分子空腔构建与离散化的参数。不过程序并不强制检查这一点。
 
-The state for which the solvent field is to be optimized is specified using the
-variable EQSTATE in the *$pcm* block. A value of 0 refers to the MP
-ground-state (for PTED calculations), 1 selects the energetically lowest
-excited state (default), 2 the second lowest, and so on. The solvent field can
-be optimized for any singlet, triplet or spin-flip excited state. However,
-*only the desired class of states should be requested*, *i.e.*, either
-EE_SINGLETS or EE_TRIPLETS for singlet references, and
-either EE_STATES or SF_STATES for triplet references. To
-compute, *e.g.*, the phosphorescence energy, only triplet states should be
-requested and EQSTATE would typically be set to 1.
+需要优化溶剂场的目标态通过 *$pcm* 块中的变量 EQSTATE 指定。取值 0 表示 MP 基态（用于 PTED 计算），1 选取能量最低的激发态（默认值），2 选取次低激发态，依此类推。溶剂场可以针对任何单重态、三重态或自旋翻转激发态进行优化。但是，*只应请求所需的那一类态*，*即*对于单重态参考，要么选 EE_SINGLETS，要么选 EE_TRIPLETS；对于三重态参考，要么选 EE_STATES，要么选 SF_STATES。例如要计算磷光能量，只应请求三重态，且 EQSTATE 通常设为 1。
 
-**Note: 
+**注意：**
 
-Computing multiple classes of excited states during the solvent-field
-iterations will confuse the state-ordering logic of the program and yield the
-wrong results.
-**
+在溶剂场迭代过程中同时计算多类激发态会扰乱程序对态排序的逻辑，导致错误结果。
 
-Convergence is controlled by EQS_CONV. Criteria are the SCF energy as
-well as the RMSD, MAD and largest single difference of the surface-charges. The
-convergence should not need to be modified. It is per default derived from the
-SCF convergence parameter (SCF_CONVERGENCE$-4$). The default value
-of 4 (since SCF_CONVERGENCE is 8 for ADC calculations) corresponds to
-an maximum energy change of $2.72$ meV and will yield converged total energies
-for all states. Excitation energies and in particular the total energy of the
-reference state converge somewhat faster than the SCF energy, and a value of 3
-may save some time for the computation, *e.g.*, for the emission energy of large solutes.
+收敛性由 EQS_CONV 控制。判据包括 SCF 能量，以及表面电荷的 RMSD、MAD 和最大单项差。通常无需修改收敛标准。它默认由 SCF 收敛参数导出（SCF_CONVERGENCE$-4$）。默认值 4（因为 ADC 计算的 SCF_CONVERGENCE 为 8）对应最大能量变化 $2.72$ meV，可为所有态给出收敛的总能量。激发能——特别是参考态的总能量——比 SCF 能量收敛得更快一些，因此取值 3 可以在计算大溶质发射能等情形下节省一些时间。
 
-A typical ADC/SS-PCM calculation consists of three steps/subsequent jobs:
+典型的 ADC/SS-PCM 计算包含三个步骤/后续作业：
 
 1. 1.
 
-Generation of an initial guess for the solvent field using a
-nonequilibrium calculation (EQSTATE = FALSE). To save time,
-this would typically be done with a smaller basis set and lower convergence
-criteria (*e.g.*,
+利用非平衡计算（EQSTATE = FALSE）生成溶剂场的初始猜测。为节省时间，这一步通常会使用较小的基组和较宽松的收敛标准（*例如*
 
-ADC_DAVIDSON_CONV = 4).
+ADC_DAVIDSON_CONV = 4）。
 2. 2.
 
-Converging the solvent field for the desired state. In this step it is
-advisable to compute as few states as possible (maybe one more than
-EQSTATE to be aware of looming state crossings), and more importantly,
-only the desired class of excited states.
+针对目标态收敛溶剂场。在这一步中，建议计算尽可能少的态（可以比 EQSTATE 多算一个，以留意可能发生的态交叉），更重要的是，只计算所需的那一类激发态。
 3. 3.
 
-Computing all excited states of interest and their properties in the
-previously converged solvent field. If the reference state of the solvent-field
-equilibration is a singlet state, this is straightforward and any number of
-singlet/triplet states can be computed in this final step without further
-input. *If singlet states are to be computed in the solvent field of a
-triplet state*, the additional variable EQS_REF in *$pcm* has to be
-set to tell the program which state is to be treated as the reference state in
-this last step.
-For this purpose, EQS_REF is set to the desired triplet state plus
-the number of *converged* singlet states. Hence, assuming 2 singlet
-states are to be calculated along with the triplets in previously converged
-solvent field of $T_{1}$, and furthermore that both singlets converge,
-EQS_REF needs to be set to 3 (this can not be realized using the
-variable EQSTATE, because we still want to use the solvent field of
-the lowest triplet state stored in the previous step).
+在此前收敛的溶剂场中计算所有感兴趣的激发态及其性质。如果溶剂场平衡的参考态是单重态，这一步很直接：可以在最终步骤中计算任意数量的单重态/三重态，无需额外输入。*如果要在三重态的溶剂场中计算单重态*，则必须在 *$pcm* 中设置额外的变量 EQS_REF，以告知程序在最后这一步中应将哪个态视为参考态。
 
-The self-consistent SS-PCM can also be used to compute a fully consistent
-solvent field for the MP2 ground state by setting EQSTATE to 0. This
-is known as ptSS(PTED) approach and can improve vertical excitation energies if
-there are large differences between the electrostatic properties of the SCF and
-MP ground states (large PTD corrections). In most cases, however, the
-non-iterative PTD approach is a very good approximation to the PTED approach
-(see the sample jobs below). The output of a PTED calculation is essentially
-identical to that of a ptSS calculation.
+为此，将 EQS_REF 设为所需三重态的序号加上*已收敛*单重态的数目。因此，假设在 $T_{1}$ 此前收敛的溶剂场中要连同三重态一起计算 2 个单重态，且两个单重态均收敛，则 EQS_REF 需设为 3（这无法通过变量 EQSTATE 实现，因为我们仍希望使用上一步中存储的最低三重态的溶剂场）。
 
-The program possesses limited intelligence in detecting the type of the
-calculation (PTED or EQS/SS-PCM) as well as the target state of the
-solvent-field equilibration and will assemble and designate the ptSS
-corrections, total energies and transition energies accordingly. This logic
-will be confused if multiple classes of states (*e.g.* singlet and triplets) are
-computed simultaneously during the iterations, and/or if the ordering of the
-states changes. Nevertheless, in a final job for a previously converged solvent
-field *of a singlet reference* singlet and triplet states can be
-computed together yielding the correct output. However, if singlet states are
-computed in the converged solvent field of *a triplet reference* the
-additional variable EQS_REF has to be set (and only then, see above).
+自洽的 SS-PCM 也可以通过将 EQSTATE 设为 0 来为 MP2 基态计算完全自洽的溶剂场。这即所谓的 ptSS(PTED) 方法，当 SCF 基态与 MP 基态的静电性质差异较大（PTD 校正较大）时，它可以改进垂直激发能。不过，在大多数情况下，非迭代的 PTD 方法已经是 PTED 方案的很好近似（参见下文的示例作业）。PTED 计算的输出与 ptSS 计算基本相同。
 
-In the “HF/MP2/MP3 Summary” section, zeroth (without ptSS) and first (with
-ptSS) order total energies of the respective ground state in the solvent field
-of the target state are given along with the ptSS term for a vertical
-transition from the equilibrated state (emission). Note that to obtain the MP3
-ground state energy during an ADC(3)/EQS calculation, the ptSS term has to be
-added manually (it is printed in the MP2 Summary since we use the MP2 density
-for this purpose).
+程序在检测计算类型（PTED 或 EQS/SS-PCM）以及溶剂场平衡目标态方面具有有限的智能，并会相应地组织和标注 ptSS 校正、总能量和跃迁能量。如果在迭代过程中同时计算多类态（*例如*单重态和三重态），和/或态的排序发生变化，这一逻辑就会被扰乱。尽管如此，在针对*单重态参考*的此前已收敛溶剂场的最终作业中，单重态和三重态可以一起计算并给出正确的输出。然而，如果在*三重态参考*的已收敛溶剂场中计算单重态，则必须（且仅在这种情况下必须，见上文）设置额外变量 EQS_REF。
 
-In the “Excited-State Summary” section the reference state is distinguished
-from the out-of-equilibrium states. Respective total and transition energies
-are given along with the nonequilibrium corrections, transition moments and
-some remarks. Note that for emission, in contrast to absorption, the ptSS term
-increases the transition energy as it lowers the energy of the
-out-of-equilibrium ground state. The so-called “self-ptSS term” is a
-perturbative estimate of how much the solvent field of this state is off from
-its equilibrium. Although the line in the output changes depending on the value
-(from “not converged” to “reasonably converged” to “converged”) it is not used
-in the actual convergence check. Note that the self-ptSS term is computed with
-$n^{2}$ (**dielectric_infi**) and not $\epsilon$, as it probably should be.
-The self-ptSS term may be used to judge how well a solvent field computed with
-a different methodology (basis, ADC order/variant) fits. In such a case, values
-$<0.01$ eV signal a reasonable agreement.
+在“HF/MP2/MP3 Summary”一节中，给出了相应基态在目标态溶剂场中的零阶（不含 ptSS）与一阶（含 ptSS）总能量，以及从平衡态垂直跃迁（发射）的 ptSS 项。注意，若要在 ADC(3)/EQS 计算过程中获得 MP3 基态能量，需要手动加上 ptSS 项（该项会打印在 MP2 Summary 中，因为我们为此使用 MP2 密度）。
 
-To calculate inter-state transition moments for excited-state absorption, the
-variable ADC_PROP_ES2ES has to be set to TRUE.
-Unfortunately, transition energies have to be computed manually from the
-(first-order) total energies given in the excited-state summary, since the
-transition energies given along with the state-to-state transition moments
-following the excite-state summary are incorrect (missing nonequilibrium terms).
+在“Excited-State Summary”一节中，参考态与非平衡态被区分开来，并给出各自的总能量与跃迁能量、非平衡校正、跃迁矩以及一些说明。注意，就发射而言，与吸收相反，ptSS 项会增大跃迁能量，因为它降低了非平衡基态的能量。所谓的“self-ptSS 项”是一个微扰估计值，衡量该态的溶剂场偏离其平衡态的程度。尽管输出中的一行文字会随数值变化（从“not converged”到“reasonably converged”再到“converged”），但它并不参与实际的收敛判据。注意，self-ptSS 项是用 $n^{2}$（**dielectric_infi**）而非 $\epsilon$ 计算的，尽管理想情况下大概应该用后者。self-ptSS 项可用于判断采用不同方法（基组、ADC 阶数/变体）计算得到的溶剂场之间的吻合程度。在这种情况下，$<0.01$ eV 的数值表示吻合度良好。
 
-The progress of the solvent-field iteration and their convergence is reported
-following the “Excited-State Summary”.
+要计算激发态吸收的态间跃迁矩，必须将变量 ADC_PROP_ES2ES 设为 TRUE。遗憾的是，跃迁能量必须由激发态汇总中给出的一阶总能量手动计算，因为紧随激发态汇总之后、与态-态跃迁矩一起给出的跃迁能量是错误的（缺失了非平衡项）。
 
-**(C) Tips and Tricks
+溶剂场迭代的进展及其收敛情况会在“Excited-State Summary”之后报告。
 
-**To compute fluorescence and phosphorescence energies, solute geometry AND
-solvent field should both be optimized for the suspected emitting state. Since
-hardly any programs can perform excited-state optimizations with the SS-PCM
-solvent models, you will probably have to use gas-phase geometries. In our
-experience, the errors introduced by this approximation are small to negligible
-(typically $<0.1$ eV) in non-polar solvents, but can become significant in
-polar solvents, in particular for polar charge-transfer states.
+**(C) 技巧与提示**
 
-Concerning the predicted emission energies, we found that ADC(2)/SS-PCM
-typically over-stabilizes CT states, yielding emission energies that are too
-low. SOS-ADC(2) can improve this error, but does not eliminate it. In general,
-while emission energies are more accurate with (SOS-)ADC(2)/SS-PCM than with
-ADC(3)/SS-PCM, the latter affords better relative state energies (see Ref.
-[[939]](../bib_references/bib.md#bib982)
-).
+要计算荧光和磷光能量，溶质几何构型与溶剂场都应当针对推测的发光态进行优化。由于几乎没有任何程序能在 SS-PCM 溶剂模型下进行激发态几何优化，你很可能不得不使用气相几何构型。根据我们的经验，在_non-polar_（非极性）溶剂中，这种近似引入的误差很小甚至可以忽略（通常 $<0.1$ eV），但在极性溶剂中，尤其对于极性电荷转移态，误差可能变得显著。
 
-Keep in mind that the solute-solvent interaction of polar solvents with polar
-(*e.g.*, charge-transfer) states can become quite large (multiple eV), and may
-thus affect the ordering and nature of the excited states. This is quite
-typical for charge-transfer states even in remotely polar solvents. If they are
-not the lowest state in the nonequilibrium calculation, but say $S_{2}$, it is
-typically necessary to do one solvent-field iteration for the CT state
-(EQSOLV = 1 and EQSTATE = 2), which brings the CT down to
-become $S_{1}$, and then continue the iterations with EQSOLV = 15 and
-EQSTATE = 1. It is in general advisable to carefully check if the
-character and/or energetic ordering of the states changes during the procedure,
-in particular for any equilibration of the solvent field for all but the lowest
-excited state (*e.g.* $S_{2}$ or $S_{3}$). But even the solvent-field equilibration
-for a weakly polar $S_{1}$ in a polar solvent can cause a more polar state with
-the same dipole-vector to become the lowest state.
+关于预测的发射能量，我们发现 ADC(2)/SS-PCM 通常会过度稳定电荷转移（CT）态，导致发射能偏低。SOS-ADC(2) 可以改善这一误差，但不能消除它。总体而言，(SOS-)ADC(2)/SS-PCM 的发射能比 ADC(3)/SS-PCM 更准确，而后者能给出更好的相对态能量（参见文献 [[939]](../bib_references/bib.md#bib982)）。
 
-If the excited-states swap during the procedure, find out in which step the
-swap occurred and do only so many iterations (*i.e.*, set EQSOLV
-accordingly). In a following job, adjust the variable EQSTATE and
-continue the iterations. If states start to mix when they get close, it might
-help to first set an artificially large dielectric constant to induce the
-change in ordering, and then continue with the desired dielectric constant in a
-following job.
+请记住，极性溶剂与极性态（*例如*电荷转移态）之间的溶质-溶剂相互作用可能相当大（数个 eV），从而影响激发态的排序与性质。即便在极性较弱的溶剂中，这对电荷转移态来说也是非常典型的。如果它们在非平衡计算中不是最低的态，而比如是 $S_{2}$，则通常需要对 CT 态先做一次溶剂场迭代（EQSOLV = 1 且 EQSTATE = 2），使 CT 态下降成为 $S_{1}$，然后再用 EQSOLV = 15 和 EQSTATE = 1 继续迭代。一般而言，务必仔细检查在计算过程中态的性质和/或能量排序是否发生变化，尤其是对除最低激发态以外的态（*例如* $S_{2}$ 或 $S_{3}$）进行溶剂场平衡时。但即便是在极性溶剂中对弱极性 $S_{1}$ 进行溶剂场平衡，也可能导致一个极性更强、偶极矢量方向相同的态成为最低态。
 
-If performance is critical, the calculations may be accelerated by lowering the
-ADC convergence during the solvent-field iterations (set
-ADC_DAVIDSON_CONV = 5). The number of iterations may be
-reduced by first converging the solvent field with a smaller basis/at a lower
-level of ADC followed by another job with the full basis/level of ADC. However,
-in our experience ADC(2) and ADC(3) solvent fields for the same state differ
-quite significantly and the approach probably does not help much. In contrast,
-the solvent field computed with a smaller basis (*e.g.* 3-21G, SVP) is often a
-good approximation for that computed with a larger basis (*e.g.* def2-TZVP, see
-examples), such this may actually help. It is in general advisable to compute
-just as many states as is necessary during the solvent-field iterations and
-include higher lying excited states and triplets in the final job. In ADC(2)
-calculations for large systems, one should always employ the
-resolution-of-the-identity approximation.
+如果激发态在计算过程中发生了交换，请找出交换发生在哪一步，并只进行相应次数的迭代（*即*据此设置 EQSOLV）。在接下来的作业中，调整变量 EQSTATE 并继续迭代。如果各态在彼此靠近时开始发生混合，可以先人为设置一个较大的介电常数来诱发排序变化，然后在后续作业中使用所需的介电常数继续计算，可能会有帮助。
 
-To save time in PTED jobs, it is suggested to disable the computation of
-excited states during the solvent-field iterations of a PTED job by setting
-EE_SINGLETS (and/or EE_TRIPLETS/ EE_STATES) to 0
-and compute the excited-states in a final job once the reaction field is
-converged.
+如果计算性能至关重要，可以在溶剂场迭代期间降低 ADC 收敛标准（设置 ADC_DAVIDSON_CONV = 5）以加速计算。也可以先用较小的基组/较低的 ADC 级别收敛溶剂场，然后再用完整基组/ADC 级别运行另一个作业，从而减少迭代次数。然而，根据我们的经验，对同一个态而言，ADC(2) 与 ADC(3) 的溶剂场差异相当大，这种做法帮助可能不大。相反，用较小基组（*例如* 3-21G、SVP）计算的溶剂场往往是对较大基组（*例如* def2-TZVP，见示例）结果的良好近似，因此这一做法确实可能有帮助。一般而言，在溶剂场迭代期间只应计算必要数量的态，而在最终作业中加入更高激发的态和三重态。对于大体系的 ADC(2) 计算，应始终采用单位算符完备（resolution-of-the-identity）近似。
+
+为节省 PTED 作业的时间，建议在 PTED 的溶剂场迭代期间通过将 EE_SINGLETS（和/或 EE_TRIPLETS/EE_STATES）设为 0 来禁用激发态的计算，待反应场收敛后，再在最终作业中计算激发态。

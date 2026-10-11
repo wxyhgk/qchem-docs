@@ -1,31 +1,20 @@
 ---
-title: "7.3.11 CIS-1D and TDDFT-1D"
+title: "7.3.11 CIS-1D 与 TDDFT-1D"
 ---
 
-## 7.3.11 CIS-1D and TDDFT-1D
+## 7.3.11 CIS-1D 与 TDDFT-1D
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Simulating nonadiabatic dynamics is challenging particularly at crossings
-between the ground state (S${}_{0}$) and the first excited state (S${}_{1}$).
-For S${}_{1}$/S${}_{0}$ conical intersections, conventional electronic structure methods
-(such as HF/CIS and DFT/TDDFT—but not their spin-flip variants) produce
-incorrect dimensionality for the crossing
-seam.[[1548]](../bib_references/bib.md#bib1614)
+模拟非绝热动力学极具挑战性，尤其是在基态（S${}_{0}$）与第一激发态（S${}_{1}$）之间的锥形交叉区域。对于 S${}_{1}$/S${}_{0}$ 锥形交叉，常规的电子结构方法（如 HF/CIS 和 DFT/TDDFT——但其自旋翻转（spin-flip）变体除外）会给出错误的交叉接缝（crossing seam）维数。[[1548]](../bib_references/bib.md#bib1614)
 
-The TDDFT-1D method address this limitation by combining DFT and CI
-to achieve smooth crossings of S${}_{0}$ and S${}_{1}$ states[[1351]](../bib_references/bib.md#bib1410)
+TDDFT-1D 方法通过结合 DFT 与组态相互作用（Configuration Interaction, CI）来克服这一局限，从而实现 S${}_{0}$ 与 S${}_{1}$ 态之间的平滑交叉[[1351]](../bib_references/bib.md#bib1410)，同时保持与标准 TDDFT 计算相当的计算成本。
 
-while keeping the cost comparable to that of a standard TDDFT calculation.
+CIS-1D 与 TDDFT-1D 方法的核心思想是，对一个组态相互作用哈密顿量进行对角化，其基组包含参考态、所有单激发组态以及一个独特的双激发组态。CI 哈密顿量中的这个独特双激发组态（即 CIS-1D/TDDFT-1D 名称中的“1D”）决定了方法的类型：若从 Hartree–Fock 参考出发，则得到 CIS-1D 方法；若从 Kohn–Sham 参考出发，则得到 TDDFT-1D 方法。
 
-The idea behind the CIS-1D and the TDDFT-1D method is to diagonalize a configuration interaction
-Hamiltonian whose basis includes the reference state, all singly excited configurations, and one unique doubly excited configuration.
-This unique double (the “1D” in CIS-1D/TDDFT-1D) in the CI Hamiltonian gives rise to the CIS-1D method if one starts from a Hartree–Fock reference,
-or TDDFT-1D if one starts from a Kohn–Sham reference.
+该双激发组态由一对电子从最高占据分子轨道（HOMO，$h$）激发至最低未占据分子轨道（LUMO，$l$）而形成。为找到这一独特双激发组态，需对正则分子轨道进行旋转，使得双激发组态的能量（$E_{d}$）达到最小。[[56]](../bib_references/bib.md#bib38)
 
-The doubly excited configuration is formed by exciting a pair of electrons from the HOMO ($h$) to the LUMO ($l$). To find the unique double, the canonical molecular orbitals are rotated such that the energy of the doubly excited configuration ($E_{d}$) is minimized.[[56]](../bib_references/bib.md#bib38)
-
-From these optimized orbitals a CI Hamiltonian is constructed,
+基于这些优化后的轨道，构造出如下的 CI 哈密顿量，
 
 <a id="eq:configHamiltoninan_tddft1d"></a>
 $$
@@ -34,135 +23,130 @@ $$
 \left\langle\psi_{0}|H|\psi_{h\bar{h}}^{l\bar{l}}\right\rangle&\left\langle\psi_{h\bar{h}}^{l\bar{l}}|H|\psi_{i}^{a}\right\rangle&\left\langle\psi_{h\bar{h}}^{l\bar{l}}|H|\psi_{h\bar{h}}^{l\bar{l}}\right\rangle\end{pmatrix}\;, \tag{7.57}
 $$
 
-in the basis of the reference state along with all singly substituted determinants ($\text{\textbar}{\psi_{i}^{a}}\rangle$) and one unique doubly substituted
-determinant ($\text{\textbar}{\psi_{h\bar{h}}^{l\bar{l}}}\rangle$). Diagonalizing $\mathbf{H}$ yields the CIS-1D or TDDFT-1D states.
-At geometries that are far from crossing points, excitation energies computed with TDDFT-1D
-are generally at the same level of accuracy as TDDFT with the Tamm–Dancoff approximation (TDA).
-TDDFT-1D’s key advantage appears near ground- and excited-state crossing points, where it produces smooth potential energy surfaces.
+其基组由参考态、所有单替换行列式（$\text{\textbar}{\psi_{i}^{a}}\rangle$）以及一个独特的双替换行列式（$\text{\textbar}{\psi_{h\bar{h}}^{l\bar{l}}}\rangle$）构成。对 $\mathbf{H}$ 进行对角化即可得到 CIS-1D 或 TDDFT-1D 的激发态。在远离交叉点的几何构型下，采用 TDDFT-1D 计算的激发能精度通常与采用 Tamm–Dancoff 近似（TDA）的 TDDFT 处于同一水平。TDDFT-1D 的关键优势体现在基态与激发态交叉点附近，此时它能够给出平滑的势能面。
 
-To facilitate nonadiabatic dynamics simulations, analytical gradients and derivative couplings are available for the TDDFT-1D method.[[1352]](../bib_references/bib.md#bib1411)
+为便于非绝热动力学模拟，TDDFT-1D 方法已具备解析梯度和导数耦合[[1352]](../bib_references/bib.md#bib1411)。
 
-This facilitates the optimization of minimum-energy crossing points (MECPs) between electronic states.
+这使得对电子态之间的最小能量交叉点（Minimum-Energy Crossing Point, MECP）进行几何优化成为可能。
 
-## 7.3.11.1 Job Control for TDDFT-1D
+## 7.3.11.1 TDDFT-1D 的任务控制
 
-The rem variables for TDDFT-1D calculations are similar to those for CIS calculations and
-the following *$rem* variables are used to control TDDFT-1D.
+TDDFT-1D 计算的 *rem* 变量与 CIS 计算的类似，以下 *$rem* 变量用于控制 TDDFT-1D 计算。
 
 CIS1D_N_ROOTS
 
 ### `CIS1D_N_ROOTS`
 
-> **Sets the number of CIS-1D and TDDFT-1D states to calculate. The lowest eigenstate of $\mathbf{H}$ is the ground state, followed by excited states.**
+> **设置要计算的 CIS-1D 和 TDDFT-1D 态的数目。$\mathbf{H}$ 的最低本征态为基态，其后依次为激发态。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
 >     * $n>0$
->     * , Calculate the lowest
+>     * ，计算最低的
 >     * $n$
->     * CIS-1D or TDDFT-1D states.
-> * **Recommendation**: None
+>     * 个 CIS-1D 或 TDDFT-1D 态。
+> * **建议**：无
 
 CIS1D_ED_CONVERGENCE
 
 ### `CIS1D_ED_CONVERGENCE`
 
-> **Convergence criterion for the minimization of $E_{d}$ , used to optimize the orbitals. The stopping criterion is set to $10^{-\text{CIS1D\_ED\_CONVERGENCE}}$ .**
+> **用于轨道优化的 $E_{d}$ 最小化收敛判据。停止准则设为 $10^{-\text{CIS1D\_ED\_CONVERGENCE}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`7`
+> * **选项**：
 >     * $n$
->     * Convergence achieved when the error is lower than
+>     * 当误差低于
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Convergence on the roots of $\mathbf{H}$ is controlled by CIS_CONVERGENCE , which is set to 9 by default for a CIS-1D or TDDFT-1D calculation. If CIS_CONVERGENCE is increased then should also be increased.
+>     * 时认为已收敛。
+> * **建议**：$\mathbf{H}$ 本征根的收敛性由 CIS_CONVERGENCE 控制，对于 CIS-1D 或 TDDFT-1D 计算，其默认值为 9。若增大 CIS_CONVERGENCE，则本变量也应相应增大。
 
 CIS1D_MAX_CYCLES
 
 ### `CIS1D_MAX_CYCLES`
 
-> **Maximum number of Davidson iterations to diagonalize $\mathbf{H}$ .**
+> **对 $\mathbf{H}$ 进行对角化时 Davidson 迭代的最大次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `60`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`60`
+> * **选项**：
 >     * $n$
->     * Use up to
+>     * 最多使用
 >     * $n$
->     * iterations.
-> * **Recommendation**: The memory allocated for the Davidson iterations (used to diagonalize $\mathbf{H}$ ) is $(n_{\text{occ}}n_{\text{virt}}+\text{2})$ ( )( CIS1D_N_ROOTS )/2 double-precision numbers, where $n_{\text{occ}}$ and $n_{\text{virt}}$ are the number of occupied and virtual orbitals, respectively. Larger values of may require increasing MEM_TOTAL .
+>     * 次迭代。
+> * **建议**：为 Davidson 迭代（用于对角化 $\mathbf{H}$ ）分配的内存为 $(n_{\text{occ}}n_{\text{virt}}+\text{2})$ ( )( CIS1D_N_ROOTS )/2 个双精度数，其中 $n_{\text{occ}}$ 和 $n_{\text{virt}}$ 分别为占据轨道数和虚轨道数。较大的取值可能需要增大 MEM_TOTAL。
 
 CIS1D_SCALE_GD
 
 ### `CIS1D_SCALE_GD`
 
-> **Scaling factor for the coupling matrix element $\langle\psi_{0}|\hat{H}|\psi_{h\bar{h}}^{l\bar{l}}\rangle$ between the reference state and the doubly substituted Slater determinant.**
+> **参考态与双替换 Slater 行列式之间耦合矩阵元 $\langle\psi_{0}|\hat{H}|\psi_{h\bar{h}}^{l\bar{l}}\rangle$ 的缩放因子。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **选项**：
 >     * $n$
 >     * $0\leq n\leq 100$
->     * , The coupling element is scaled by
+>     * ，耦合元按
 >     * $n/100$
->     * .
-> * **Recommendation**: There is no rigorous way to determine the coupling elements in $\mathbf{H}$ , since the Kohn-Sham determinant is not a true wave function, so the couplings are computed using a “pseudo-wave function” approach. 1028 Ou Q., Alguire E. C., Subotnik J. E. J. Phys. Chem. B (2015) , 119 , pp. 7150 . Link , 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . Link It sometimes becomes necessary to scale the coupling elements to obtain accurate potential energy surfaces, and the scaling factor has to be determined with some benchmarking. 56 Athavale V., Teh H.-H., Subotnik J. E. J. Chem. Phys. (2021) , 155 , pp. 154105 . Link
+>     * 缩放。
+> * **建议**：由于 Kohn-Sham 行列式并非真正的波函数，因此没有严格的方法来确定 $\mathbf{H}$ 中的耦合元，故采用“伪波函数”（pseudo-wave function）方法计算这些耦合。1028 Ou Q., Alguire E. C., Subotnik J. E. J. Phys. Chem. B (2015) , 119 , pp. 7150 . Link , 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . Link 有时为了获得准确的势能面，需要对耦合元进行缩放，而缩放因子需通过一定的基准测试来确定。56 Athavale V., Teh H.-H., Subotnik J. E. J. Chem. Phys. (2021) , 155 , pp. 154105 . Link
 
 CIS1D_SCALE_SD
 
 ### `CIS1D_SCALE_SD`
 
-> **Scaling factor for the coupling matrix element $\langle\psi_{i}^{a}|H|\psi_{h\bar{h}}^{l\bar{l}}\rangle$ between the single excitations and the lone double excitation.**
+> **单激发组态与唯一双激发组态之间耦合矩阵元 $\langle\psi_{i}^{a}|H|\psi_{h\bar{h}}^{l\bar{l}}\rangle$ 的缩放因子。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **选项**：
 >     * $n$
 >     * $0\leq n\leq 100$
->     * , The coupling element is scaled by
+>     * ，耦合元按
 >     * $n/100$
->     * .
-> * **Recommendation**: Same as CIS1D_SCALE_GD .
+>     * 缩放。
+> * **建议**：与 CIS1D_SCALE_GD 相同。
 
 CIS1D_STATE_DERIV
 
 ### `CIS1D_STATE_DERIV`
 
-> **Selects the CIS-1D/TDDFT-1D state for which gradients are calculated. This is useful for jobs such as geometry optimizations.**
+> **选择要计算梯度的 CIS-1D/TDDFT-1D 态。这对于几何优化等任务非常有用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$-1$`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`$-1$`
+> * **选项**：
 >     * $n$
 >     * $n\geq 0$
->     * , Selects the
+>     * ，选择第
 >     * $n$
->     * th CIS-1D/TDDFT-1D state.
-> * **Recommendation**: None
+>     * 个 CIS-1D/TDDFT-1D 态。
+> * **建议**：无
 
 CIS1D_DER_NUMSTATE
 
 ### `CIS1D_DER_NUMSTATE`
 
-> **Determines the number of states for which derivative couplings are to be calculated. The states are specified in the $derivative_coupling section**
+> **确定要计算导数耦合的态的数目。这些态在 $derivative_coupling 区块中指定。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * Do not calculate derivative couplings.
+>     * 不计算导数耦合。
 >     * $n$
->     * Calculate
+>     * 计算
 >     * $n(n-1)/2$
->     * pairs of derivative couplings.
-> * **Recommendation**: None
+>     * 对导数耦合。
+> * **建议**：无
 
-## 7.3.11.2 Examples of TDDFT-1D
+## 7.3.11.2 TDDFT-1D 示例
 
-???+ example "Example 7.28: TDDFT-1D calculation of water using the B3LYP functional for the lowest 5 states."
+???+ example "示例 7.28: 使用 B3LYP 泛函对水分子最低的 5 个态进行 TDDFT-1D 计算。"
     ```qchem
     $molecule
     0 1
@@ -179,7 +163,7 @@ CIS1D_DER_NUMSTATE
     $end
     ```
 
-???+ example "Example 7.29: TDDFT-1D calculation of the gradient of the 1st excited state of water in the presence of external charges"
+???+ example "示例 7.29: 在外加点电荷存在下，对水分子第一激发态的梯度进行 TDDFT-1D 计算"
     ```qchem
     $molecule
     0 1
@@ -205,7 +189,7 @@ CIS1D_DER_NUMSTATE
     $end
     ```
 
-???+ example "Example 7.30: Optimizing the MECP between the ground and the 1st excited state of ethylene using the $\omega$ B97X functional."
+???+ example "示例 7.30: 使用 $\omega$ B97X 泛函优化乙烯基态与第一激发态之间的 MECP。"
     ```qchem
     $rem
     geom_opt_driver optimize

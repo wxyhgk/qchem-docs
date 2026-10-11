@@ -1,72 +1,69 @@
 ---
-title: "7.9.15 Single-Precision Arithmetic in EOM-CC Calculations"
+title: "7.9.15 EOM-CC 计算中的单精度算术"
 ---
 
-## 7.9.15 Single-Precision Arithmetic in EOM-CC Calculations
+## 7.9.15 EOM-CC 计算中的单精度算术
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Similar to ground-state CCSD calculations described in Section [6.18](../ch06_correlation/sec_SP_CC.md),
-single precision can be used in EOM-CC, EOM-MP2, and EOM-CC2 calculations.[[1102]](../bib_references/bib.md#bib1149)
+与第 [6.18](../ch06_correlation/sec_SP_CC.md) 节中所描述的基态 CCSD 计算类似，
+单精度也可用于 EOM-CC、EOM-MP2 以及 EOM-CC2 计算。[[1102]](../bib_references/bib.md#bib1149)
 
-Currently, the following variants of EOM are supported: EE, SF,IP, EA, DIP, DEA;
-both in standard and RI/CD implementations, for energies, gradients, and properties evaluation.
-If you wish to use single-precision version of EOM, please first read Section [6.18](../ch06_correlation/sec_SP_CC.md) for
-basic setup of single-precision coupled-cluster calculation.
-Here we describe only additional EOM-specific keywords.
+目前支持以下 EOM 变体：EE、SF、IP、EA、DIP、DEA；
+标准实现与 RI/CD 实现均支持，可用于能量、梯度及性质计算。
+如果您希望使用单精度版本的 EOM，请先阅读第 [6.18](../ch06_correlation/sec_SP_CC.md) 节，了解
+单精度耦合簇计算的基本设置。
+此处仅描述 EOM 特有的附加关键字。
 
-Precision selection is controlled by the
-EOM_SINGLE_PREC keyword:
-$0$ corresponds to double-precision calculation and $1$ corresponds to single-precision calculation.
-EOM-specific convergence criteria are controlled by the same keywords as in the
-double precision, but the same rule as for CCSD applies: too tight thresholds may
-cause issues with convergence. The default Davidson threshold $10^{-5}$ works well for
-most cases.[[1102]](../bib_references/bib.md#bib1149)
+精度的选择由
+EOM_SINGLE_PREC 关键字控制：
+$0$ 对应双精度计算，$1$ 对应单精度计算。
+EOM 特有的收敛判据所使用的关键字与双精度计算相同，但同样适用适用于 CCSD 的规则：过于严格的阈值可能
+导致收敛问题。默认的 Davidson 阈值 $10^{-5}$ 在大多数情况下都能很好地工作。[[1102]](../bib_references/bib.md#bib1149)
 
-The keyword CC_SP_DM controls calculation of intermediates, density matrices,
-and $\hat{S}^{2}$ for EOM calculations in the same manner as for CCSD, which is described in Section [6.18](../ch06_correlation/sec_SP_CC.md).
+关键字 CC_SP_DM 以与 CCSD 相同的方式控制 EOM 计算中中间量、密度矩阵以及 $\hat{S}^{2}$ 的计算，
+相关说明详见第 [6.18](../ch06_correlation/sec_SP_CC.md) 节。
 
-Calculations of analytical gradients require solving amplitude-response equations,
-which can be done in single precision as well; this is
-activated by EOM_ARESP_SINGLE_PREC = 1.
-For using single precision in calculating response equations for 2PA calculations, use the
-CC_EOM_2PA_SINGLE_PREC keyword (see also Section [7.9.21.6](sec_EOMGRAD.md#sec:2PA)).
+解析梯度的计算需要求解振幅响应方程，
+这些方程同样可以用单精度求解；只需将
+EOM_ARESP_SINGLE_PREC = 1 即可启用该功能。
+若要在双光子吸收（2PA）计算中用单精度求解响应方程，请使用
+CC_EOM_2PA_SINGLE_PREC 关键字（另见第 [7.9.21.6](sec_EOMGRAD.md#sec:2PA) 节）。
 
 EOM_SINGLE_PREC
 
 ### `EOM_SINGLE_PREC`
 
-> **Precision selection for EOM-CC/MP2 calculations. Available in CCMAN2 only.**
+> **EOM-CC/MP2 计算的精度选择。仅在 CCMAN2 中可用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 1
->     * single-precision calculation
+>     * 单精度计算
 >     * 2
->     * single-precision calculation is followed by double-precision clean-up iterations
-> * **Recommendation**: Do not set too tight convergence criteria when use single precision
+>     * 在单精度计算之后执行双精度的清理（clean-up）迭代
+> * **建议**: 使用单精度时请勿设置过于严格的收敛判据
 
 CC_EOM_2PA_SINGLE_PREC
 
 ### `CC_EOM_2PA_SINGLE_PREC`
 
-> **Precision selection for 2PA response equations. Available in CCMAN2 only.**
+> **2PA 响应方程的精度选择。仅在 CCMAN2 中可用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 1
->     * single-precision calculation
-> * **Recommendation**: NONE
+>     * 单精度计算
+> * **建议**: 无
 
-**Note: 
+**注意：
 
-Remember to adjust convergence thresholds when using single precision.
+使用单精度时，请记得调整收敛阈值。
 **
 
-???+ example "Example 7.92: A job evaluating EOM-EA-CCSD energies for formaldehyde anion using
-single-precision execution combined with CD"
+???+ example "示例 7.92：采用单精度执行并结合 CD 计算甲醛阴离子的 EOM-EA-CCSD 能量"
     ```qchem
     $comment
        Formaldehyde anion, single-precision calculation
@@ -96,8 +93,7 @@ single-precision execution combined with CD"
     $end
     ```
 
-???+ example "Example 7.93: Geometry optimization of a triplet excited state of uracil-water complex
-in single-precision setup"
+???+ example "示例 7.93：在单精度设置下对尿嘧啶-水复合物的三重激发态进行几何结构优化"
     ```qchem
     $molecule
        0 1

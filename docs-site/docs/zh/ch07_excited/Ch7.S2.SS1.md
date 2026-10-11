@@ -1,17 +1,11 @@
 ---
-title: "7.2.1 Introduction"
+title: "7.2.1 引言"
 ---
 
-## 7.2.1 Introduction
+## 7.2.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** includes several excited state methods which do not incorporate
-correlation: CIS, XCIS, and RPA, along with some spin-flip variants thereof.[[205]](../bib_references/bib.md#bib207)
+**Q-Chem** 包含若干不包含相关效应的激发态方法：CIS、XCIS 以及 RPA，此外还有一些相应的自旋翻转（Spin-Flip）变体。[[205]](../bib_references/bib.md#bib207)
 
-These methods are sufficiently inexpensive that
-calculations on large molecules are possible, and are roughly comparable to the
-HF treatment of the ground state in terms of performance. They tend to yield
-qualitative rather than quantitative insight. Excitation energies tend to
-exhibit errors on the order of an electron volt, consistent with the neglect of
-electron correlation effects, which are generally different in the ground state and the excited state.
+这些方法的计算代价足够低廉，因而可以对大分子进行计算，其在性能上大致与基态的 HF 处理相当。它们往往只能提供定性而非定量的认识。激发能的误差通常在数个电子伏特量级，这与忽略电子相关效应的做法相吻合，因为电子相关效应在基态和激发态中一般是不同的。

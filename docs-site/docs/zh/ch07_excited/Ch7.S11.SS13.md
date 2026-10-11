@@ -1,191 +1,190 @@
 ---
-title: "7.11.13 Job Control Options for casman"
+title: "7.11.13 casman 的作业控制选项"
 ---
 
-## 7.11.13 Job Control Options for **casman**
+## 7.11.13 **casman** 的作业控制选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In **casman**, the built-in methods can be run by simply setting the value of CORRELATION accordingly:
+在 **casman** 中，只需相应地设置 CORRELATION 的值，即可运行内置方法（built-in methods）：
 
 CORRELATION
 
 ### `CORRELATION`
 
-> **Sets the pre-defined method to use for casman .**
+> **设置 casman 所使用的预定义方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None.`
-> * **Options**:
+> * **类型（Type）**: `STRING`
+> * **默认值（Default）**: `无（None）。`
+> * **选项（Options）**:
 >     * SF-CAS
->     * CAS-SF with no perturbative corrections (or a custom method)
+>     * 不带微扰修正（perturbative corrections）的 CAS-SF（或自定义方法）
 >     * SF-CAS(h,p)
->     * CAS-SF with perturbative corrections for hole (h) and particle (p) excitations
+>     * 对空穴（hole，h）与粒子（particle，p）激发引入微扰修正的 CAS-SF
 >     * SF-CAS(S)
->     * CAS-SF with perturbative corrections for single (h,p,hp) excitations
+>     * 对单激发（single，h、p、hp）引入微扰修正的 CAS-SF
 >     * SF-CAS(2x)
->     * CAS-SF with perturbative corrections for 2x (h,p,hp,hh,pp) excitations
+>     * 对 2x（h、p、hp、hh、pp）激发引入微扰修正的 CAS-SF
 >     * SF-CAS(3x)
->     * CAS-SF with perturbative corrections for 3x (h,p,hp,hh,pp,hhp,hpp) excitations
+>     * 对 3x（h、p、hp、hh、pp、hhp、hpp）激发引入微扰修正的 CAS-SF
 >     * SF-CAS(3x)+D
->     * CAS-SF with perturbative corrections for (h,p,hp,hh,pp,hhp,hpp) + MP2 RAS1
->     * $\rightarrow$
->     * RAS3 double excitations
-> * **Recommendation**: None.
+>     * 对（h、p、hp、hh、pp、hhp、hpp）激发引入微扰修正，并加上 MP2 处理 RAS1
+> * $\rightarrow$
+>     * RAS3 双激发
+> * **建议（Recommendation）**: 无。
 
-If a custom excitation scheme is required, one can set CORRELATION = SF-CAS and
-set the following variables manually. (If you are using one of the built-in methods, setting these
-variables manually should be avoided, since they are automatically set up appropriately
-by **Q-Chem** if CORRELATION is not SF-CAS.)
+如果需要自定义的激发方案（excitation scheme），可以设置 CORRELATION = SF-CAS，
+并手动设置下列变量。（若使用某个内置方法，则应避免手动设置这些变量，因为当 CORRELATION 不是 SF-CAS 时，
+**Q-Chem** 会自动对其进行恰当的设置。）
 
 RAS_N_SPIN_FLIP
 
 ### `RAS_N_SPIN_FLIP`
 
-> **Sets the number of spin-flips.**
+> **设置自旋翻转（spin-flip）的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Maximum number of spin-flips (`
-> * **Options**:
+> * **类型（Type）**: `INTEGER`
+> * **默认值（Default）**: `自旋翻转的最大数目（`
+> * **选项（Options）**:
 >     * $n$
->     * Do
+>     * 执行
 >     * $n$
->     * spin-flips
-> * **Recommendation**: None.
+>     * 次自旋翻转
+> * **建议（Recommendation）**: 无。
 
 CAS_DO_NDPT
 
 ### `CAS_DO_NDPT`
 
-> **Do non-degenerate perturbation theory?**
+> **是否使用非简并微扰理论（non-degenerate perturbation theory）？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Do non-degenerate perturbation theory.
+>     * 使用非简并微扰理论。
 >     * FALSE
->     * Do not use non-degenerate perturbation theory.
-> * **Recommendation**: None.
+>     * 不使用非简并微扰理论。
+> * **建议（Recommendation）**: 无。
 
 CAS_QDPT_ORDER
 
 ### `CAS_QDPT_ORDER`
 
-> **Order of terms kept in the quasi-degenerate perturbation theory denominator expansion.**
+> **准简并微扰理论（quasi-degenerate perturbation theory）分母展开中保留到几阶项。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
+> * **类型（Type）**: `INTEGER`
+> * **默认值（Default）**: `无（None）。`
+> * **选项（Options）**:
 >     * $n$
->     * Keep terms of order
+>     * 在分母展开中保留
 >     * $n$
->     * in the denominator expansion.
-> * **Recommendation**: None.
+>     * 阶的项。
+> * **建议（Recommendation）**: 无。
 
 CAS_DO_1X
 
 ### `CAS_DO_1X`
 
-> **Do perturbative hole (h) and particle (p) correction?**
+> **是否执行空穴（h）与粒子（p）的微扰修正？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Do perturbative hole (h) and particle (p) correction
+>     * 执行空穴（h）与粒子（p）的微扰修正
 >     * FALSE
->     * Do not do perturbative hole (h) and particle (p) correction
-> * **Recommendation**: None.
+>     * 不执行空穴（h）与粒子（p）的微扰修正
+> * **建议（Recommendation）**: 无。
 
 CAS_DO_SINGLES
 
 ### `CAS_DO_SINGLES`
 
-> **Do perturbative singles (h,p,hp) correction?**
+> **是否执行单激发（h、p、hp）的微扰修正？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Do perturbative singles correction
+>     * 执行单激发的微扰修正
 >     * FALSE
->     * Do not do perturbative singles correction
-> * **Recommendation**: None.
+>     * 不执行单激发的微扰修正
+> * **建议（Recommendation）**: 无。
 
 CAS_DO_2x
 
 ### `CAS_DO_2x`
 
-> **Do perturbative 2x (h,p,hp,hh,pp) correction?**
+> **是否执行 2x（h、p、hp、hh、pp）的微扰修正？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Do perturbative 2x correction
+>     * 执行 2x 的微扰修正
 >     * FALSE
->     * Do not do perturbative 2x correction
-> * **Recommendation**: None.
+>     * 不执行 2x 的微扰修正
+> * **建议（Recommendation）**: 无。
 
 CAS_DO_3x
 
 ### `CAS_DO_3x`
 
-> **Do perturbative 3x (h,p,hp,hh,pp,hhp,hpp) correction?**
+> **是否执行 3x（h、p、hp、hh、pp、hhp、hpp）的微扰修正？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Do perturbative 3x correction
+>     * 执行 3x 的微扰修正
 >     * FALSE
->     * Do not do perturbative 3x correction
-> * **Recommendation**: None.
+>     * 不执行 3x 的微扰修正
+> * **建议（Recommendation）**: 无。
 
 CAS_DO_DOUBLES
 
 ### `CAS_DO_DOUBLES`
 
-> **Do perturbative (h,p,hp,hh,pp,hhp,hpp) correction + MP2 RAS1 $\rightarrow$ RAS3 doubles?**
+> **是否执行（h、p、hp、hh、pp、hhp、hpp）的微扰修正 + MP2 处理的 RAS1 $\rightarrow$ RAS3 双激发修正？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Do perturbative (h,p,hp,hh,pp,hhp,hpp) + MP2 RAS1
+>     * 执行（h、p、hp、hh、pp、hhp、hpp）微扰修正 + MP2 处理的 RAS1
 >     * $\rightarrow$
->     * RAS3 doubles correction
+>     * RAS3 双激发修正
 >     * FALSE
->     * Do not do the correction
-> * **Recommendation**: None.
+>     * 不执行该修正
+> * **建议（Recommendation）**: 无。
 
 CAS_LEVEL_SHIFT
 
 ### `CAS_LEVEL_SHIFT`
 
-> **Use a denominator level-shift?**
+> **是否对分母使用能级平移（level-shift）？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Use the denominator level-shift
+>     * 对分母使用能级平移
 >     * FALSE
->     * Do not use the denominator level-shift
-> * **Recommendation**: None.
+>     * 不对分母使用能级平移
+> * **建议（Recommendation）**: 无。
 
 CAS_SPARSE
 
 ### `CAS_SPARSE`
 
-> **Use a sparse matrix multiply when forming the effective Hamiltonian?**
+> **在构造有效哈密顿量（effective Hamiltonian）时是否使用稀疏矩阵乘法？**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**: `LOGICAL`
+> * **默认值（Default）**: `FALSE`
+> * **选项（Options）**:
 >     * TRUE
->     * Use sparse matrix multiply in forming effective Hamiltonian
+>     * 在构造有效哈密顿量时使用稀疏矩阵乘法
 >     * FALSE
->     * Do not use sparse matrix multiply in forming effective Hamiltonian
-> * **Recommendation**: None. Can be useful for larger numbers of spin-flips.
+>     * 在构造有效哈密顿量时不使用稀疏矩阵乘法
+> * **建议（Recommendation）**: 无。对于较大的自旋翻转数目，该选项可能很有用。

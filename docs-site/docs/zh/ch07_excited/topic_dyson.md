@@ -1,33 +1,26 @@
 ---
-title: "7.9.29 Dyson Orbitals for Ionized or Attached States within EOM-CCSD"
+title: "7.9.29 EOM-CCSD 框架下电离态或附着态的戴森轨道（Dyson Orbitals）"
 ---
 
-## 7.9.29 Dyson Orbitals for Ionized or Attached States within EOM-CCSD
+## 7.9.29 EOM-CCSD 框架下电离态或附着态的戴森轨道（Dyson Orbitals）
 
 (July 4, 2026)
 
-Dyson orbitals can be used to compute total photodetachment/photoionization cross-sections, as well as angular distribution of
-photoelectrons. A Dyson orbital is the overlap between the N-electron
-molecular wave function and the $N-1$/$N+1$ electron wave function of the
-corresponding cation/anion:
+戴森轨道（Dyson orbitals）可用于计算总光脱附/光电离截面（cross-sections），以及光电子的角分布。戴森轨道是 N 电子分子波函数与相应阳离子/阴离子的 $N-1$/$N+1$ 电子波函数之间的重叠：
 
 <a id="A3.S8.EGx60"></a>
 $$
 \displaystyle\phi^{d}(1) \tag{7.127}
 $$
 
-For the Hartree-Fock wave functions and within Koopmans’ approximation, these
-are just the canonical HF orbitals. For correlated wave functions, Dyson
-orbitals are linear combinations of the reference molecular orbitals:
+对于 Hartree-Fock 波函数，在 Koopmans 近似（Koopmans’ approximation）下，这些轨道就是正则 HF 轨道。对于关联波函数，戴森轨道是参考分子轨道（molecular orbitals）的线性组合：
 
 <a id="A3.S8.EGx61"></a>
 $$
 \displaystyle\phi^{d} \tag{7.129}
 $$
 
-The calculation of Dyson orbitals is straightforward within the EOM-IP/EA-CCSD methods, where cation/anion and initial molecule states are
-defined with respect to the same MO basis. Since the left and right CC vectors
-are not the same, one can define correspondingly two Dyson orbitals (left and right):
+在 EOM-IP/EA-CCSD 方法中，戴森轨道的计算非常直接，因为阳离子/阴离子态与初始分子态都是基于同一套分子轨道（MO）基组定义的。由于左 CC 向量和右 CC 向量并不相同，相应地可以定义两个戴森轨道（左戴森轨道和右戴森轨道）：
 
 <a id="A3.S8.EGx62"></a>
 $$
@@ -35,111 +28,76 @@ $$
 \displaystyle\gamma_{p}^{L}&\displaystyle=\bigl{\langle}\Phi_{0}e^{T_{1}+T_{2}}L^{IP}\bigl{|}p\bigr{|}R^{EE}e^{T_{1}+T_{2}}\Phi_{0}\bigr{\rangle}\end{aligned} \tag{7.132}
 $$
 
-The norm of these orbitals is proportional to the one-electron character of the transition.
+这些轨道的模长正比于跃迁的单电子特征（one-electron character）。
 
-Dyson orbitals also offer qualitative insight visualizing the difference
-between molecular and ionized/attached states. In ionization/photodetachment processes, these orbitals can be also interpreted as the wave
-function of the leaving electron. For additional details, see
-Refs. [[1002]](../bib_references/bib.md#bib1043)
- and [[1003]](../bib_references/bib.md#bib1044)
-. Dyson orbitals can be
-used for computing total and differential photoelectron cross-sections using a
-stand-alone **ezDyson** code [[478]](../bib_references/bib.md#bib490)
- or built-in **Q-Chem**’s
-functionality (see section [7.9.21.10](sec_EOMGRAD.md#sec:freeEl)).
+戴森轨道还可以通过可视化分子态与电离态/附着态之间的差异，提供定性的洞察。在电离/光脱附过程中，这些轨道也可以被解释为逸出电子的波函数。更多细节参见参考文献 [[1002]](../bib_references/bib.md#bib1043)
+ 和 [[1003]](../bib_references/bib.md#bib1044)
+。利用独立的 **ezDyson** 代码 [[478]](../bib_references/bib.md#bib490)
+ 或 **Q-Chem** 内置功能（见第 [7.9.21.10](sec_EOMGRAD.md#sec:freeEl) 节），可以使用戴森轨道计算总光电子截面和微分光电子截面。
 
-Dyson orbitals can be computed both for valence states and core-level states;[[1403]](../bib_references/bib.md#bib1463)
+戴森轨道既可以针对价层态（valence states）计算，也可以针对核心能级态（core-level states）计算；[[1403]](../bib_references/bib.md#bib1463)
 
-see Section [7.9.9](sub_cvs_eom.md) for calculations of Dyson orbitals within the FC-CVS-EOM framework.
+关于在 FC-CVS-EOM 框架下计算戴森轨道，参见第 [7.9.9](sub_cvs_eom.md) 节。
 
-The ezSpectra suite: An easy-to-use toolkit for spectroscopy modeling -
-Presented by Prof. Samer Gozem, Georgia State University
+ezSpectra 套件：一个易于使用的光谱学建模工具包 —— 由佐治亚州立大学（Georgia State University）Samer Gozem 教授呈现
 
-**Q-Chem** can also compute the overlap of a Dyson orbital with a plane wave,
-$\langle\phi^{d}|e^{i{\mathbf{k}r}}\rangle$,
-using the DYSON_PW_COUPLING keyword. The user can request calculations of
-the overlap for several $|{\mathbf{k}}|$-values and either
-perform averaging over ${\mathbf{k}}$-directions or perform the
-calculation for a fixed direction of ${\mathbf{k}}$.
-This capability is illustrated by examples [7.9.29.2](#ex:DYSONPW) and [7.9.29.2](#ex:DYSONPW)
-and explained in section [7.9.21.10](sec_EOMGRAD.md#sec:freeEl).
+**Q-Chem** 还可以利用 DYSON_PW_COUPLING 关键字计算戴森轨道与平面波的重叠 $\langle\phi^{d}|e^{i{\mathbf{k}r}}\rangle$。
+用户可以请求计算多个 $|{\mathbf{k}}|$ 值下的重叠，并可以选择对 ${\mathbf{k}}$ 方向进行平均，或者针对 ${\mathbf{k}}$ 的固定方向进行计算。
+该功能通过示例 [7.9.29.2](#ex:DYSONPW) 和 [7.9.29.2](#ex:DYSONPW)
+ 加以说明，并在第 [7.9.21.10](sec_EOMGRAD.md#sec:freeEl) 节中详细解释。
 
-## 7.9.29.1 Dyson Orbitals Job Control
+## 7.9.29.1 戴森轨道的作业控制（Job Control）
 
-The calculation of Dyson orbitals is implemented for the ground (reference) and
-excited states ionization/electron attachment. To obtain the ground state
-Dyson orbitals one needs to run an EOM-IP/EA-CCSD calculation, request
-transition properties calculation by setting CC_TRANS_PROP =
-TRUE and CC_DO_DYSON = TRUE. The Dyson orbitals
-decomposition in the MO basis is printed in the output, for all transitions
-between the reference and all IP/EA states. At the end of the file, also
-the coefficients of the Dyson orbitals in the AO basis are available.
+戴森轨道的计算已实现，适用于从基态（参考态）和激发态出发的电离/电子附着。要获得基态戴森轨道，需要运行一次 EOM-IP/EA-CCSD 计算，并通过设置 CC_TRANS_PROP =
+TRUE 和 CC_DO_DYSON = TRUE 来请求跃迁性质（transition properties）的计算。戴森轨道在 MO 基组下的分解会打印在输出文件中，涵盖参考态与所有 IP/EA 态之间的全部跃迁。在文件末尾，还可以获得戴森轨道在 AO 基组下的系数。
 
-Two implementations of Dyson orbitals are currently available: (i) the original
-implementation in CCMAN; and (ii) new implementation in CCMAN2. The CCMAN
-implementation is using a diffuse orbital trick (*i.e.*,
-EOM_FAKE_IPEA will be automatically set to TRUE in these
-calculations). Note: this implementation has a bug affecting the values of
-norms of Dyson orbitals (the shapes are correct); thus, using this code is
-strongly discouraged. The CCMAN2 implementation has all types of initial
-states available: Dyson orbitals from ground CC, excited EOM-EE, and spin-flip
-EOM-SF states; it is fully compatible with all helper features for EOM
-calculations, like FNO, RI, Cholesky decomposition. The CCMAN2 implementation
-can use a user-specified EOM guess (using EOM_USER_GUESS keyword and
-*$eom_user_guess* section), which is recommended for highly excited states
-(such as core-ionized states). In addition, CCMAN2 can calculate Dyson
-orbitals involving meta-stable states (see Section [7.9.10](sub_cc_cs_cap.md)) and
-core-level states (see Section [7.9.9](sub_cvs_eom.md)).
+目前有两种戴森轨道的实现方式：(i) CCMAN 中的原始实现；(ii) CCMAN2 中的新实现。CCMAN
+实现使用弥散轨道技巧（diffuse orbital trick）（*i.e.*，在这些计算中 EOM_FAKE_IPEA 将被自动设置为
+TRUE）。注意：该实现存在一个影响戴森轨道模长数值的 bug（轨道的形状是正确的）；因此强烈不建议使用该代码。CCMAN2
+实现支持所有类型的初始态：来自基态 CC、激发态 EOM-EE 以及自旋翻转（spin-flip）EOM-SF 态的戴森轨道；它与 EOM 计算的所有辅助功能完全兼容，例如 FNO、RI、Cholesky 分解。CCMAN2
+实现可以使用用户指定的 EOM 初猜（通过 EOM_USER_GUESS 关键字和
+*$eom_user_guess* 节），对于高度激发态（例如核心电离态）推荐使用此功能。此外，CCMAN2 还能计算涉及亚稳态（meta-stable states，见第 [7.9.10](sub_cc_cs_cap.md) 节）和核心能级态（见第 [7.9.9](sub_cvs_eom.md) 节）的戴森轨道。
 
-For calculating Dyson orbitals between excited or spin-flip states from the
-reference configuration and IP/EA states, same CC_TRANS_PROP =
-TRUE and CC_DO_DYSON = TRUE keywords have to be added to the
-combination of usual EOM-IP/EA-CCSD and EOM-EE-CCSD or EOM-SF-CCSD
-calculations. (However, note the separate keyword CC_DO_DYSON_EE =
-TRUE for CCMAN.) The IP_STATES keyword is used to specify
-the target ionized states. The attached states are specified by
-EA_STATES. The EA-SF states are specified by EOM_EA_BETA.
-The excited (or spin-flipped) states are specified by EE_STATES and
-SF_STATES. The Dyson orbital decomposition in MO and AO bases is
-printed for each EE/SF-IP/EA pair of states first for reference,
-then for all excited states in the order: CC-IP/EA1, CC-IP/EA2,$\ldots$,
+若要计算从参考组态以及激发态或自旋翻转态到 IP/EA 态的戴森轨道，需要在常规的 EOM-IP/EA-CCSD 与 EOM-EE-CCSD 或 EOM-SF-CCSD
+计算组合的基础上，添加相同的 CC_TRANS_PROP =
+TRUE 和 CC_DO_DYSON = TRUE 关键字。（不过，请注意 CCMAN 有关键字 CC_DO_DYSON_EE =
+TRUE。）IP_STATES 关键字用于指定目标电离态。附着态由
+EA_STATES 指定。EA-SF 态由 EOM_EA_BETA 指定。
+激发态（或自旋翻转态）由 EE_STATES 和 SF_STATES 指定。每个 EE/SF-IP/EA
+态对的戴森轨道在 MO 和 AO 基组下的分解会先针对参考态打印，然后按以下顺序针对所有激发态打印：CC-IP/EA1, CC-IP/EA2,$\ldots$,
 EE/SF1 - IP/EA1, EE/SF1 - IP/EA2,$\ldots$, EE/SF2
-- IP/EA1, EE/SF2 - IP/EA2,$\ldots$, and so on. CCMAN
-implementation keeps reference transitions separate, in accordance with
-separating keywords.
+- IP/EA1, EE/SF2 - IP/EA2,$\ldots$，依此类推。CCMAN
+实现会将参考态跃迁单独保留，以与相应关键字的划分保持一致。
 
 CC_DO_DYSON
 
 ### `CC_DO_DYSON`
 
-> **CCMAN2: starts all types of Dyson orbitals calculations. Desired type is determined by requesting corresponding EOM-XX transitions CCMAN: whether the reference-state Dyson orbitals will be calculated for EOM-IP/EA-CCSD calculations.**
+> **CCMAN2: 启动所有类型的戴森轨道计算。期望的类型通过请求相应的 EOM-XX 跃迁来确定。 CCMAN: 对于 EOM-IP/EA-CCSD 计算，是否计算参考态的戴森轨道。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (the option must be specified to run this calculation)`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE （必须指定该选项才能运行此计算）`
+> * **选项**:
 >     * TRUE/FALSE
-> * **Recommendation**: none
+> * **建议**: 无
 
 CC_DO_DYSON_EE
 
 ### `CC_DO_DYSON_EE`
 
-> **Whether excited-state or spin-flip state Dyson orbitals will be calculated for EOM-IP/EA-CCSD calculations with CCMAN.**
+> **对于使用 CCMAN 的 EOM-IP/EA-CCSD 计算，是否计算激发态或自旋翻转态的戴森轨道。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (the option must be specified to run this calculation)`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE （必须指定该选项才能运行此计算）`
+> * **选项**:
 >     * TRUE/FALSE
-> * **Recommendation**: none
+> * **建议**: 无
 
-Dyson orbitals are most easily visualized by setting IQMOL_FCHK =
-TRUE (equivalently, GUI = 2) and reading the resulting
-checkpoint file into **IQmol**. In addition to the canonical orbitals, the
-Dyson orbitals will appear under the Surfaces item in the Model View. For
-step-by-step instructions, see the **ezDyson** manual.
+设置 IQMOL_FCHK =
+TRUE（等价地，GUI = 2）并将生成的检查点文件（checkpoint file）读入 **IQmol**，是最简便的戴森轨道可视化方式。除了正则轨道之外，戴森轨道会出现在模型视图（Model View）的 Surfaces 项下。分步操作说明参见 **ezDyson** 手册。
 
-Alternatively Dyson orbitals can be plotted using IANLTY = 200 and the
-*$plots* utility. Only the sizes of the box need to be specified, followed by a line of zeros:
+或者，也可以使用 IANLTY = 200 和
+*$plots* 工具绘制戴森轨道。只需指定网格盒（box）的尺寸，然后跟一行零即可：
 
 > ```qchem
 > $plots
@@ -151,31 +109,26 @@ Alternatively Dyson orbitals can be plotted using IANLTY = 200 and the
 > $plots
 > ```
 
-All Dyson orbitals on the Cartesian grid will be written in the resulting
-`plot.mo` file (only CCMAN). For RHF(UHF) reference, the columns order in
-`plot.mo` is:
+笛卡尔网格上的所有戴森轨道将写入生成的
+`plot.mo` 文件（仅 CCMAN）。对于 RHF(UHF) 参考，`plot.mo`
+中的列顺序为：
 $\phi^{lr}_{1}\alpha\ (\phi^{lr}_{1}\beta)\ \phi^{rl}_{1}\alpha\ (\phi^{rl}_{1}\beta)\ \phi^{lr}_{2}\alpha\ (\phi^{lr}_{2}\beta)\ \ldots$
 
-In addition, setting the MAKE_CUBE_FILES keyword to TRUE will create
-cube files for Dyson orbitals which can be viewed with
+此外，将 MAKE_CUBE_FILES 关键字设置为 TRUE 会为戴森轨道创建 cube 文件，可用
 Visual Molecular Dynamics (VMD)[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627)
-or other programs;
-see Section [10.5.5](../ch10_properties/sec_cubefiles.md) for details. This option is available for
-CCMAN and CCMAN2. The Dyson orbitals will be written to files `mo.1.cube`,
-`mo.2.cube`, $\ldots$ in the order $\phi^{lr}_{1}\ \phi^{rl}_{1}\ \ \phi^{lr}_{2}\ \phi^{rl}_{2}\ldots$. For meta-stable states, the real and imaginary parts
-of the Dyson orbitals are written to separate files in the order
+或其他程序查看；详情参见第 [10.5.5](../ch10_properties/sec_cubefiles.md) 节。该选项对 CCMAN 和 CCMAN2
+均可用。戴森轨道将按 $\phi^{lr}_{1}\ \phi^{rl}_{1}\ \ \phi^{lr}_{2}\ \phi^{rl}_{2}\ldots$ 的顺序写入文件 `mo.1.cube`、
+`mo.2.cube`、$\ldots$。对于亚稳态，戴森轨道的实部和虚部按以下顺序分别写入不同的文件
 $\text{Re}(\phi^{lr}_{1})\ \text{Re}(\phi^{rl}_{1})\ \ \text{Re}(\phi^{lr}_{2})\ \text{Re}(\phi^{rl}_{2})\ldots\text{Im}(\phi^{lr}_{1})\ \text{Im}(\phi^{rl}_{1})\ \ \text{Im}(\phi^{lr}_{2})\ \text{Im}(\phi^{rl}_{2})\ldots$
 
-**Note: 
+**注意：
 
-Visualization via the **MolDen** format is not available.
+通过 **MolDen** 格式进行可视化不可用。
 **
 
-## 7.9.29.2 Examples
+## 7.9.29.2 示例
 
-???+ example "Example 7.166: Plotting grd-ex and ex-grd state Dyson orbitals for ionization of the oxygen
-molecule. The target states of the cation are ${}^{2}$ A ${}_{g}$ and ${}^{2}$ B ${}_{2u}$ . Works
-for CCMAN only."
+???+ example "示例 7.166: 绘制氧分子电离过程中 grd-ex 与 ex-grd 态之间的戴森轨道。阳离子的目标态为 ${}^{2}$ A ${}_{g}$ 和 ${}^{2}$ B ${}_{2u}$ 。仅适用于 CCMAN。"
     ```qchem
     $molecule
        0 3
@@ -201,9 +154,7 @@ for CCMAN only."
     $plots
     ```
 
-???+ example "Example 7.167: Plotting ex-ex state Dyson orbitals between the 1st ${}^{2}A_{1}$ excited state of
-the HO radical and the the 1st A ${}_{1}$ and A ${}_{2}$ excited states of HO ${}^{-}$ . Works
-for CCMAN only."
+???+ example "示例 7.167: 绘制 HO 自由基第 1 个 ${}^{2}A_{1}$ 激发态与 HO ${}^{-}$ 的第 1 个 A ${}_{1}$ 和 A ${}_{2}$ 激发态之间的 ex-ex 态戴森轨道。仅适用于 CCMAN。"
     ```qchem
     $molecule
        -1 1
@@ -230,8 +181,7 @@ for CCMAN only."
     $plots
     ```
 
-???+ example "Example 7.168: Dyson orbitals for ionization of CO molecule;
-A ${}_{1}$ and B ${}_{1}$ ionized states requested."
+???+ example "示例 7.168: CO 分子电离的戴森轨道；请求 A ${}_{1}$ 和 B ${}_{1}$ 电离态。"
     ```qchem
     $molecule
        0 1
@@ -251,8 +201,7 @@ A ${}_{1}$ and B ${}_{1}$ ionized states requested."
     $end
     ```
 
-???+ example "Example 7.169: Dyson orbitals for ionization of H ${}_{2}$ O;
-core (A ${}_{1}$ ) state requested — ionization from O(1s)."
+???+ example "示例 7.169: H ${}_{2}$ O 电离的戴森轨道；请求核心（A ${}_{1}$ ）态 — 从 O(1s) 电离。"
     ```qchem
     $molecule
        0 1
@@ -279,9 +228,7 @@ core (A ${}_{1}$ ) state requested — ionization from O(1s)."
     $end
     ```
 
-???+ example "Example 7.170: Dyson orbitals for ionization of NO molecule using EOM-EA and a closed-shell
-cation reference;
-A ${}_{1}$ and B ${}_{2}$ states requested."
+???+ example "示例 7.170: 使用 EOM-EA 和闭壳层阳离子参考计算 NO 分子电离的戴森轨道；请求 A ${}_{1}$ 和 B ${}_{2}$ 态。"
     ```qchem
     $molecule
        +1 1
@@ -301,7 +248,7 @@ A ${}_{1}$ and B ${}_{2}$ states requested."
     $end
     ```
 
-???+ example "Example 7.7.171: Dyson orbitals for detachment from the meta-stable ${}^{2}\Pi_{g}$ state of N ${}_{2}^{-}$ ."
+???+ example "示例 7.7.171: 从 N ${}_{2}^{-}$ 的亚稳态 ${}^{2}\Pi_{g}$ 脱附的戴森轨道。"
     ```qchem
     $molecule
        0 1
@@ -429,9 +376,7 @@ A ${}_{1}$ and B ${}_{2}$ states requested."
     $end
     ```
 
-???+ example "Example 7.172: Dyson orbitals for ionization of triplet O ${}_{2}$ and O ${}_{2}^{-}$ at slightly
-stretched (relative to the equilibrium O ${}_{2}$ geometry); B ${}_{3g}$ states are
-requested."
+???+ example "示例 7.172: 在相对于平衡 O ${}_{2}$ 几何略有拉伸的结构下，三重态 O ${}_{2}$ 和 O ${}_{2}^{-}$ 电离的戴森轨道；请求 B ${}_{3g}$ 态。"
     ```qchem
     $comment
        EOM-IP-CCSD/6-311+G* and EOM-EA-CCSD/6-311+G* levels of theory,
@@ -460,8 +405,7 @@ requested."
     $end
     ```
 
-???+ example "Example 7.173: Dyson orbitals for ionization of formaldehyde from the first excited state
-AND from the ground state."
+???+ example "示例 7.173: 甲醛（formaldehyde）从第一激发态以及从基态电离的戴森轨道。"
     ```qchem
     $molecule
        0 1
@@ -485,9 +429,7 @@ AND from the ground state."
     $end
     ```
 
-???+ example "Example 7.174: Dyson orbitals for core ionization of Li atom use Li ${}^{+}$ as a reference, get
-neutral atom via EOM-EA get 1st excitation for the cation via EOM-EE totally:
-core ionization AND 1st ionization of Li atom."
+???+ example "示例 7.174: Li 原子核心电离的戴森轨道：使用 Li ${}^{+}$ 作为参考，通过 EOM-EA 得到中性原子，通过 EOM-EE 得到阳离子的第 1 个激发态；总计：Li 原子的核心电离以及第 1 次电离。"
     ```qchem
     $molecule
        +1 1
@@ -508,8 +450,7 @@ core ionization AND 1st ionization of Li atom."
     $end
     ```
 
-???+ example "Example 7.175: Dyson orbitals for ionization of CH ${}_{2}$ from high-spin triplet reference and
-from the lowest SF state."
+???+ example "示例 7.175: CH ${}_{2}$ 从高自旋三重态参考以及从最低 SF 态电离的戴森轨道。"
     ```qchem
     $molecule
        0 3
@@ -536,10 +477,7 @@ from the lowest SF state."
     $end
     ```
 
-???+ example "Example 7.176: Dyson orbitals for ionization of SO ${}^{-}$ using EOM-EA
-to describe the anion states and EOM-SF to describe
-the neutral; both sets of EOM states are generated
-using neutral triplet reference."
+???+ example "示例 7.176: SO ${}^{-}$ 电离的戴森轨道：使用 EOM-EA 描述阴离子态，使用 EOM-SF 描述中性态；两组 EOM 态均使用中性三重态参考生成。"
     ```qchem
     $comment
     SO-, calculating Dyson orbitals using EOM-EA to describe
@@ -584,8 +522,7 @@ using neutral triplet reference."
     
     ```
 
-???+ example "Example 7.177: Calculation of overlap between Dyson orbital of HCl- computed with EOM-EA and plane wave
-for a fixed direction of k."
+???+ example "示例 7.177: 计算用 EOM-EA 求得的 HCl- 戴森轨道与平面波在 k 固定方向下的重叠。"
     ```qchem
     $comment
     Computes coupling between a Dyson orbital and a plane wave for HCl-
@@ -616,8 +553,7 @@ for a fixed direction of k."
     
     ```
 
-???+ example "Example 7.178: Calculation of overlap between Dyson orbital of N2- computed with EOM-EA and plane wave
-averaged over k-orientations."
+???+ example "示例 7.178: 计算用 EOM-EA 求得的 N2- 戴森轨道与平面波的重叠，并对 k 取向进行平均。"
     ```qchem
     $comment
     Computes coupling betwee a Dyson orbital of N2- and a plane wave with

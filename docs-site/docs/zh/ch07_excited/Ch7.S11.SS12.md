@@ -1,158 +1,141 @@
 ---
-title: "7.11.12 Job Control Options for RASCI2"
+title: "7.11.12 RASCI2 的任务控制选项"
 ---
 
-## 7.11.12 Job Control Options for RASCI2
+## 7.11.12 RASCI2 的任务控制选项
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-At present the RASCI1 and RASCI2 implementations employ different keywords
-(which will be reconciled in a future version). This subsection applies to
-RASCI2 (even and odd electron systems, determinant-driven algorithm using the
-resolution of the identity approximation).
+目前 RASCI1 和 RASCI2 的实现使用不同的关键字（将在未来版本中统一）。本节适用于 RASCI2（偶数与奇数电子体系，采用分辨恒等式（Resolution of the Identity, RI）近似的行列式驱动算法）。
 
-The use of the RAS-CI2 methodology is controlled by setting the
-CORRELATION = RASCI2 and EXCHANGE = HF.
-The minimum input also requires specifying the desired (non-zero) value for
-RAS_N_ROOTS, and the number of active occupied and virtual orbital
-comprising the “active” RAS2 space. RASCI2 calculations also require
-specification of an auxiliary basis via AUX_BASIS.
+RAS-CI2 方法的使用通过将 CORRELATION = RASCI2 且 EXCHANGE = HF 来控制。最基本的输入还要求指定 RAS_N_ROOTS 所需的（非零）值，以及构成"活性" RAS2 空间的活性占据轨道和虚轨道数目。RASCI2 计算还需要通过 AUX_BASIS 指定一个辅助基组。
 
 RAS_N_ROOTS
 
 ### `RAS_N_ROOTS`
 
-> **Sets the number of RAS-CI roots to be computed.**
+> **设置要计算的 RAS-CI 根（态）数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
 >     * $n$
 >     * $n>0$
->     * Compute
+>     * 计算
 >     * $n$
->     * RAS-CI states
-> * **Recommendation**: None. Only works with RASCI2
+>     * 个 RAS-CI 态
+> * **建议**: 无。仅适用于 RASCI2
 
 RAS_ACT_OCC
 
 ### `RAS_ACT_OCC`
 
-> **Sets the number of occupied orbitals to enter the RAS active space.**
+> **设置进入 RAS 活性空间的占据轨道数目。**
 >
-> * **Type**: `Integer`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `Integer`
+> * **默认值**: `None`
+> * **选项**:
 >     * $n$
->     * user defined integer
-> * **Recommendation**: None. Only works with RASCI2
+>     * 用户定义的整数
+> * **建议**: 无。仅适用于 RASCI2
 
 RAS_ACT_VIR
 
 ### `RAS_ACT_VIR`
 
-> **Sets the number of virtual orbitals to enter the RAS active space.**
+> **设置进入 RAS 活性空间的虚轨道数目。**
 >
-> * **Type**: `Integer`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `Integer`
+> * **默认值**: `None`
+> * **选项**:
 >     * $n$
->     * user defined integer
-> * **Recommendation**: None. Only works with RASCI2.
+>     * 用户定义的整数
+> * **建议**: 无。仅适用于 RASCI2。
 
 RAS_ACT_DIFF
 
 ### `RAS_ACT_DIFF`
 
-> **Sets the number of $\alpha$ versus $\beta$ electrons and therefore controls the level of excitations used in calculations.**
+> **设置 $\alpha$ 电子与 $\beta$ 电子数目的差异，从而控制计算中所用的激发级别。**
 >
-> * **Type**: `Integer`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `Integer`
+> * **默认值**: `None`
+> * **选项**:
 >     * 1
->     * odd number of electrons or cations
+>     * 奇数个电子或阳离子
 >     * 0
->     * even number of electrons
+>     * 偶数个电子
 >     * $-1$
->     * anions
+>     * 阴离子
 >     * $n$
 >     * $n<-99$
->     * triggers RAS2-SF at DDCI level of excitations
+>     * 在 DDCI 激发级别触发 RAS2-SF
 >     * $n=-451$
->     * and
+>     * 以及
 >     * $n=-452$
->     * triggers restart mechanism that restores the last best guess for each state to the number of states requested
-> * **Recommendation**: Set to 0 would be appropriate for most singlet systems. Only works with RASCI2.
+>     * 触发重启（restart）机制，将每个态的最新最佳猜测波函数恢复至所请求的态数目
+> * **建议**: 设置为 0 适用于大多数单重态体系。仅适用于 RASCI2。
 
-Note that other *$rem* variables that can be used to control the evaluation of
-RASCI2 calculations are MAX_CIS_CYCLES for the maximum number of Davidson
-iterations, and N_FROZEN_CORE and N_FROZEN_VIRTUAL to
-exclude core and/or virtual orbitals from the RASCI2 calculation. Please see
-the sample inputs below for more details.
+请注意，其他可用于控制 RASCI2 计算评估的 *$rem* 变量包括：MAX_CIS_CYCLES（Davidson 迭代的最大次数），以及 N_FROZEN_CORE 和 N_FROZEN_VIRTUAL（从 RASCI2 计算中排除-core 和/或虚轨道）。更多细节请参阅下方的示例输入。
 
 RAS_CALC_SOC
 
 ### `RAS_CALC_SOC`
 
-> **Controls whether to calculate the SOC constants for RAS2 jobs only.**
+> **控制是否仅对 RAS2 任务计算自旋-轨道耦合（Spin-Orbit Coupling, SOC）常数。**
 >
-> * **Type**: `Integer/Logical`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `Integer/Logical`
+> * **默认值**: `False`
+> * **选项**:
 >     * False
->     * Do not perform the SOC calculation.
+>     * 不执行 SOC 计算。
 >     * True
->     * Perform the SOC calculation.
-> * **Recommendation**: This $rem variable is used to control the spin-orbit coupling (SOC) analysis section.
+>     * 执行 SOC 计算。
+> * **建议**: 该 $rem 变量用于控制自旋-轨道耦合（SOC）分析部分。
 
-Note: For SOC calculations, RASCI2 method by default computes both the
-one-electron and two-electron mean-field contributions. SOC-NTO analyses can be
-triggered after the SOC analysis. Two additional parameters,
-MOLDEN_FORMAT and NTO_PAIRS, are needed for the NTO
-analysis. Details of the two variables are provided in the following *$rem*
-sections:
+注意：对于 SOC 计算，RASCI2 方法默认同时计算单电子和双电子平均场贡献。SOC 分析之后可以触发 SOC-NTO 分析。NTO 分析需要两个额外参数，MOLDEN_FORMAT 和 NTO_PAIRS。这两个变量的详细信息见以下 *$rem* 各节：
 
 MOLDEN_FORMAT
 
 ### `MOLDEN_FORMAT`
 
-> **Sets the output format of NTOs in RASCI2 SOC analysis to MolDen format.**
+> **将 RASCI2 SOC 分析中 NTO 的输出格式设置为 MolDen 格式。**
 >
-> * **Type**: `Logical`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `Logical`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Append
->     * MolDen
->     * input file at the end of the
+>     * 在
 >     * Q-Chem
->     * output file.
-> * **Recommendation**: Currently, SOC-NTO analysis in RASCI2 only works with MolDen . Other visualization tools are not supported at the moment. Please see the Visualizing Orbitals Using MolDen section for more information.
+>     * 输出文件末尾追加
+>     * MolDen
+>     * 输入文件。
+> * **建议**: 目前，RASCI2 中的 SOC-NTO 分析仅支持 MolDen 格式，暂不支持其他可视化工具。更多信息请参阅"使用 MolDen 可视化轨道"一节。
 
 NTO_PAIRS
 
 ### `NTO_PAIRS`
 
-> **Controls the writing of hole/particle NTO pairs for SOC transitions calculated within the RASCI2 SOC analysis section.**
+> **控制在 RASCI2 SOC 分析部分计算得到的 SOC 跃迁的空穴/粒子 NTO 对的输出。**
 >
-> * **Type**: `Integer`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `Integer`
+> * **默认值**: `0`
+> * **选项**:
 >     * $N$
->     * Write
+>     * 为每个 SOC 跃迁写出
 >     * $N$
->     * NTO pairs per SOC transition.
-> * **Recommendation**: If activated ( $N>0$ ), a minimum of two NTO pairs will be printed for each transition. Increase the value of $N$ if additional NTOs are desired. See Section 7.13.3 for information on visualizing NTOs.
+>     * 对 NTO。
+> * **建议**: 若启用（$N>0$），每个跃迁至少会打印两对 NTO。如需更多 NTO，请增大 $N$ 的值。有关 NTO 可视化的信息，请参见 7.13.3 节。
 
 RAS_PCM_INIT
 
 ### `RAS_PCM_INIT`
 
-> **Triggers state-specific PCM solvation within RAS-SF.**
+> **在 RAS-SF 中触发态特定（state-specific）PCM 溶剂化计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * include solvation
-> * **Recommendation**: This triggers the nonequilibrium version of state-specific solvation. Additional keywords are necessary for the equilibrium version.
+>     * 包含溶剂化
+> * **建议**: 这会触发型定溶剂化的非平衡（nonequilibrium）版本。平衡版本还需要额外的关键字。

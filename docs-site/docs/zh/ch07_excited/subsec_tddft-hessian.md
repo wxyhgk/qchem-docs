@@ -1,48 +1,36 @@
 ---
-title: "7.3.8 Analytic Excited-State Hessian in TDDFT"
+title: "7.3.8 TDDFT 中的解析激发态 Hessian"
 ---
 
-## 7.3.8 Analytic Excited-State Hessian in TDDFT
+## 7.3.8 TDDFT 中的解析激发态 Hessian
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-To carry out vibrational frequency analysis of an excited state with
-TDDFT,[[842]](../bib_references/bib.md#bib873)
- an optimization of the excited-state geometry
-is always necessary. Like the vibrational frequency analysis of the ground
-state, the frequency analysis of the excited state should be also performed at
-a stationary point on the excited state potential surface. The *$rem* variable
-CIS_STATE_DERIV should be set to the excited state for which an
-optimization and frequency analysis is needed, in addition to the *$rem*
-keywords used for an excitation energy calculation.
+若要对某个激发态使用 TDDFT[[842]](../bib_references/bib.md#bib873) 进行振动频率分析，
+首先必须对该激发态的几何结构进行优化。与基态的振动频率分析类似，
+激发态的频率分析同样应当在激发态势能面上的驻点处进行。除了激发能
+计算所需的 *$rem* 关键字之外，还需将 *$rem* 变量
+CIS_STATE_DERIV 设置为需要进行几何优化和频率分析的激发态。
 
-Compared to the numerical differentiation method, the analytic calculation of
-geometrical second derivatives of the excitation energy needs much less time
-but much more memory. The computational cost is mainly consumed by the steps to
-solve both the CPSCF equations for the derivatives of molecular orbital
-coefficients C${}^{\mathrm{x}}$ and the CP-TDDFT equations for the derivatives of
-the transition vectors, as well as to build the Hessian matrix. The memory
-usages for these steps scale as ${\cal{O}}({3mN^{2}})$, where $N$ is the number of basis
-functions and m is the number of atoms. For large systems, it is thus essential
-to solve all the coupled-perturbed equations in segments. In this case, the
-*$rem* variable CPSCF_NSEG is always needed.
+与数值微分方法相比，激发能几何二阶导数的解析计算所需时间大大减少，
+但需要更多的内存。计算开销主要消耗在以下这些步骤上：求解用于分子轨道
+系数导数 C${}^{\mathrm{x}}$ 的 CPSCF 方程、求解用于跃迁矢量导数的
+CP-TDDFT 方程，以及构建 Hessian 矩阵。这些步骤的内存使用量
+按 ${\cal{O}}({3mN^{2}})$ 的规模增长，其中 $N$ 是基函数数目，m 是原子数目。因此对于
+大体系，分段（in segments）求解所有耦合微扰方程至关重要。
+在这种情况下，必须始终设置 *$rem* 变量 CPSCF_NSEG。
 
-In the calculation of the analytic TDDFT excited-state Hessian, one has to
-evaluate a large number of energy-functional derivatives: the first-order to
-fourth-order functional derivatives with respect to the density variables as
-well as their derivatives with respect to the nuclear coordinates. Therefore,
-a very fine integration grid for DFT calculation should be adapted to guarantee
-the accuracy of the results.
+在解析 TDDFT 激发态 Hessian 的计算中，需要求值大量能量泛函导数：
+即关于密度变量的一阶至四阶泛函导数，以及它们对核坐标的导数。因此，
+应当采用非常精细的 DFT 计算积分网格，以保证结果的精度。
 
-Analytic TDDFT/C-PCM Hessian has been implemented in **Q-Chem**.
-Normal mode analysis for a system in solution can be performed with the
-frequency calculation by TDDFT/C-PCM method. The *$rem* and *$pcm*
-variables for the excited state calculation with TDDFT/C-PCM included
-in the vertical excitation energy example above are needed. When the properties
-of large systems are calculated, you must pay attention to the memory limit.
+解析 TDDFT/C-PCM Hessian 已在 **Q-Chem** 中实现。
+可以使用 TDDFT/C-PCM 方法的频率计算，对溶液中的体系进行
+正则模式分析。上述垂直激发能示例中，TDDFT/C-PCM 激发态计算
+所需的 *$rem* 和 *$pcm* 变量同样需要设置。当计算大体系的性质时，
+必须注意内存限制。
 
-???+ example "Example 7.18: B3LYP/6-31G* optimization in gas phase, followed by a frequency analysis for
-the first excited state of the peroxy radical."
+???+ example "示例 7.18: 在气相中进行 B3LYP/6-31G* 几何优化，随后对过氧自由基的第一激发态进行频率分析。"
     ```qchem
     $molecule
        0 2
@@ -85,8 +73,7 @@ the first excited state of the peroxy radical."
     $end
     ```
 
-???+ example "Example 7.19: Geometry optimization for a low-lying excited state of
-cyclopentadienone in methanol, using TDDFT/C-PCM"
+???+ example "示例 7.19: 使用 TDDFT/C-PCM 在甲醇中对环戊二烯酮的低能激发态进行几何优化"
     ```qchem
     $molecule
        0 1
@@ -128,7 +115,7 @@ cyclopentadienone in methanol, using TDDFT/C-PCM"
     
     ```
 
-???+ example "Example 7.20: Hessian calculation, using the optimized geometry from the previous example."
+???+ example "示例 7.20: Hessian 计算，使用上一个示例中优化后的几何结构。"
     ```qchem
     $molecule
        0 1

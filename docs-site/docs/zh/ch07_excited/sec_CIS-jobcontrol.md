@@ -1,414 +1,409 @@
 ---
-title: "7.2.4 Job Control Options"
+title: "7.2.4 作业控制选项"
 ---
 
-## 7.2.4 Job Control Options
+## 7.2.4 作业控制选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Basic job control variables to run CIS and related methods are discussed in Section [7.2.4.1](#sec:CIS-jobcontrol:Basic)
-and more advanced options are listed in Section [7.2.4.2](#sec:CIS-jobcontrol:Advanced).
+用于运行 CIS 及相关方法的基本作业控制变量在第 [7.2.4.1 节](#sec:CIS-jobcontrol:Basic) 中讨论，更高级的选项列于第 [7.2.4.2 节](#sec:CIS-jobcontrol:Advanced)。
 
-## 7.2.4.1 Basic Job Control
+## 7.2.4.1 基本作业控制
 
-CIS-type jobs are requested by setting the *$rem* variable EXCHANGE =
-HF and CORRELATION = NONE, as in a ground-state
-Hartree-Fock calculation, but then also specifying a number of excited-state
-roots using the *$rem* keyword CIS_N_ROOTS.
+请求 CIS 类作业的方式是：像基态 Hartree-Fock（HF）计算那样，将 *$rem* 变量设置为 EXCHANGE = HF 且 CORRELATION = NONE，然后再使用 *$rem* 关键字 CIS_N_ROOTS 指定所需的激发态根数。
 
-**Note: 
+**注意：
 
-For RHF case, $n$ singlets and $n$ triplets will be computed, unless
-specified otherwise by using CIS_TRIPLETS and CIS_SINGLETS.
+对于 RHF 情形，除非通过 CIS_TRIPLETS 和 CIS_SINGLETS 另行指定，否则将计算 $n$ 个单重态和 $n$ 个三重态。
 **
 
 CIS_N_ROOTS
 
 ### `CIS_N_ROOTS`
 
-> **Sets the number of CI-Singles (CIS) excited state roots to find.**
+> **设置要求解的 CI 单激发（CIS）激发态根数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
 >     * $n>0$
->     * Looks for
+>     * 求解
 >     * $n$
->     * CIS excited states.
-> * **Recommendation**: None
+>     * 个 CIS 激发态。
+> * **建议**: 无
 
 CIS_SINGLETS
 
 ### `CIS_SINGLETS`
 
-> **Solve for singlet excited states in RCIS calculations (ignored for UCIS).**
+> **在 RCIS 计算中求解单重态激发态（在 UCIS 中被忽略）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Solve for singlet states.
+>     * 求解单重态。
 >     * FALSE
->     * Do not solve for singlet states.
-> * **Recommendation**: None
+>     * 不求解单重态。
+> * **建议**: 无
 
 CIS_TRIPLETS
 
 ### `CIS_TRIPLETS`
 
-> **Solve for triplet excited states in RCIS calculations (ignored for UCIS).**
+> **在 RCIS 计算中求解三重态激发态（在 UCIS 中被忽略）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Solve for triplet states.
+>     * 求解三重态。
 >     * FALSE
->     * Do not solve for triplet states.
-> * **Recommendation**: None
+>     * 不求解三重态。
+> * **建议**: 无
 
 CIS_STATE_DERIV
 
 ### `CIS_STATE_DERIV`
 
-> **Sets CIS state for excited state optimizations and vibrational analysis.**
+> **为激发态优化和振动分析指定 CIS 态。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Select the
+>     * 选择第
 >     * $n$
->     * th state.
-> * **Recommendation**: Check to see that the states do not change order during an optimization, due to state crossings.
+>     * 个态。
+> * **建议**: 注意检查由于态交叉（state crossings）导致优化过程中各态的顺序是否发生变化。
 
 CIS_STATE_MULTIGRAD
 
 ### `CIS_STATE_MULTIGRAD`
 
-> **Selects the SCF and all CIS/TDDFT states for the gradient evaluations.**
+> **为梯度计算选择 SCF 态及所有 CIS/TDDFT 态。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * Evaluates gradients for all CIS/TDDFT states.
+>     * 对所有 CIS/TDDFT 态计算梯度。
 >     * 2
->     * Evaluates gradients for the SCF and all CIS/TDDFT states.
-> * **Recommendation**: The need depends on the specific application. If only one gradient is needed, use CIS_STATE_DERIV instead.
+>     * 对 SCF 态及所有 CIS/TDDFT 态计算梯度。
+> * **建议**: 是否需要取决于具体应用。如果只需要一个梯度，请改用 CIS_STATE_DERIV。
 
 RPA
 
 ### `RPA`
 
-> **Do an RPA calculation in addition to a CIS or TDDFT/TDA calculation.**
+> **在 CIS 或 TDDFT/TDA 计算之外额外进行 RPA（随机相位近似）计算。**
 >
-> * **Type**: `LOGICAL/INTEGER`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL/INTEGER`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do an RPA calculation.
+>     * 不进行 RPA 计算。
 >     * TRUE
->     * Do an RPA calculation.
+>     * 进行 RPA 计算。
 >     * 2
->     * Do an RPA calculation without running CIS or TDDFT/TDA first.
-> * **Recommendation**: RPA = 2 is not available for restricted open-shell wave functions.
+>     * 不进行 CIS 或 TDDFT/TDA 计算，直接进行 RPA 计算。
+> * **建议**: RPA = 2 不适用于限制开壳层（restricted open-shell）波函数。
 
 SPIN_FLIP
 
 ### `SPIN_FLIP`
 
-> **Selects whether to perform a standard excited state calculation, or a spin-flip calculation. In the most common uses, spin multiplicity should be set to 3 for systems with an even number of electrons, and 4 for systems with an odd number of electrons.**
+> **选择执行标准激发态计算还是自旋翻转（spin-flip）计算。在最常见的用法中，对于电子数为偶数的体系，自旋多重度应设为 3；对于电子数为奇数的体系，应设为 4。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE/FALSE
-> * **Recommendation**: None
+> * **建议**: 无
 
 SPIN_FLIP_XCIS
 
 ### `SPIN_FLIP_XCIS`
 
-> **Controls whether to do a SF-XCIS calculation.**
+> **控制是否进行 SF-XCIS 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do an SF-XCIS calculation.
+>     * 不进行 SF-XCIS 计算。
 >     * TRUE
->     * Do an SF-XCIS calculation (requires ROHF triplet ground state).
-> * **Recommendation**: None
+>     * 进行 SF-XCIS 计算（需要 ROHF 三重态基态）。
+> * **建议**: 无
 
 SFX_AMP_OCC_A
 
 ### `SFX_AMP_OCC_A`
 
-> **Defines a custom amplitude guess vector in SF-XCIS method.**
+> **在 SF-XCIS 方法中定义自定义的振幅初始猜测（guess）向量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * builds a guess amplitude with an
+>     * 构建一个在第
+>     * $n$
+>     * 个轨道上带有
 >     * $\alpha$
->     * -hole in the
->     * $n$
->     * th orbital
->     * (requires SFX_AMP_VIR_B).
-> * **Recommendation**: Only use when default guess is not satisfactory.
+>     * 空穴的猜测振幅
+>     * （需要 SFX_AMP_VIR_B）。
+> * **建议**: 仅在默认猜测不满足要求时使用。
 
 SFX_AMP_VIR_B
 
 ### `SFX_AMP_VIR_B`
 
-> **Defines a user-specified amplitude guess vector in SF-XCIS method.**
+> **在 SF-XCIS 方法中定义用户指定的振幅初始猜测向量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * builds a guess amplitude with a
+>     * 构建一个在第
+>     * $n$
+>     * 个轨道上带有
 >     * $\beta$
->     * -particle in the
->     * $n$
->     * th orbital
->     * (requires SFX_AMP_OCC_A).
-> * **Recommendation**: Only use when default guess is not satisfactory.
+>     * 粒子的猜测振幅
+>     * （需要 SFX_AMP_OCC_A）。
+> * **建议**: 仅在默认猜测不满足要求时使用。
 
 XCIS
 
 ### `XCIS`
 
-> **Controls whether to do an XCIS calculation in addition to a CIS calculation.**
+> **控制是否在 CIS 计算之外额外进行 XCIS 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do a XCIS calculation.
+>     * 不进行 XCIS 计算。
 >     * TRUE
->     * Do a XCIS calculation (requires ROHF ground state).
-> * **Recommendation**: None
+>     * 进行 XCIS 计算（需要 ROHF 基态）。
+> * **建议**: 无
 
 SASF_CIS
 
 ### `SASF_CIS`
 
-> **Controls whether to do an SA-SF-CIS/DFT calculation.**
+> **控制是否进行 SA-SF-CIS/DFT 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do a SA-SF-CIS/DFT calculation.
+>     * 不进行 SA-SF-CIS/DFT 计算。
 >     * TRUE
->     * Do a SA-SF-CIS/DFT calculation.
-> * **Recommendation**: The SA-SF method requires a restricted open-shell ground-state calculation.
+>     * 进行 SA-SF-CIS/DFT 计算。
+> * **建议**: SA-SF 方法需要限制开壳层基态计算。
 
 DFTCIS
 
 ### `DFTCIS`
 
-> **Controls whether to do a DFT/CIS calculation.**
+> **控制是否进行 DFT/CIS 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do a DFT/CIS calculation.
+>     * 不进行 DFT/CIS 计算。
 >     * TRUE
->     * Do a DFT/CIS calculation.
-> * **Recommendation**: None
+>     * 进行 DFT/CIS 计算。
+> * **建议**: 无
 
 DFTCIS_PARAMS
 
 ### `DFTCIS_PARAMS`
 
-> **Selects what variant of DFT/CIS**
+> **选择 DFT/CIS 的变体**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do CIS
+>     * 执行 CIS
 >     * 1
->     * Do B3LYP/CIS
+>     * 执行 B3LYP/CIS
 >     * 2
->     * Do CAM-B3LYP/CIS
-> * **Recommendation**: Requires DFTCIS to be set to 1 or 2.
+>     * 执行 CAM-B3LYP/CIS
+> * **建议**: 需要将 DFTCIS 设置为 1 或 2。
 
-## 7.2.4.2 Additional CIS Customization
+## 7.2.4.2 CIS 附加自定义选项
 
-Additional variables for fine-tuning CIS and related calculations are provided below.
+下面提供了用于精细调节 CIS 及相关计算的附加变量。
 
 N_FROZEN_CORE
 
 ### `N_FROZEN_CORE`
 
-> **Controls the number of frozen core orbitals.**
+> **控制被冻结的核心轨道数目。**
 >
-> * **Type**: `INTEGER/STRING`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/STRING`
+> * **默认值**: `0`
+> * **选项**:
 >     * FC
->     * Frozen core approximation.
+>     * 冻结核心近似（Frozen core approximation）。
 >     * $n$
->     * Freeze
+>     * 冻结
 >     * $n$
->     * core orbitals.
-> * **Recommendation**: There is no computational advantage to using frozen core for CIS, and analytical derivatives are only available when no orbitals are frozen. It is helpful when calculating CIS(D) corrections (see Section 7.8 ).
+>     * 个核心轨道。
+> * **建议**: 对 CIS 而言，使用冻结核心并没有计算上的优势，且只有在没有轨道被冻结时才提供解析导数。在计算 CIS(D) 校正时该选项很有帮助（参见第 7.8 节）。
 
-**Note: 
+**注意：
 
-In correlated calculation, the default setting is N_FROZEN_CORE=FC.
+在关联计算中，默认设置为 N_FROZEN_CORE=FC。
 **
 
 N_FROZEN_VIRTUAL
 
 ### `N_FROZEN_VIRTUAL`
 
-> **Controls the number of frozen virtual orbitals.**
+> **控制被冻结的虚轨道数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Freeze
+>     * 冻结
 >     * $n$
->     * virtual orbitals.
-> * **Recommendation**: There is no computational advantage to using frozen virtuals for CIS, and analytical derivatives are only available when no orbitals are frozen.
+>     * 个虚轨道。
+> * **建议**: 对 CIS 而言，使用冻结虚轨道并没有计算上的优势，且只有在没有轨道被冻结时才提供解析导数。
 
 MAX_CIS_CYCLES
 
 ### `MAX_CIS_CYCLES`
 
-> **Maximum number of CIS iterative cycles allowed.**
+> **允许的最大 CIS 迭代循环次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `30`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `30`
+> * **选项**:
 >     * $n$
->     * User-defined number of cycles.
-> * **Recommendation**: Default is usually sufficient.
+>     * 用户自定义的循环次数。
+> * **建议**: 默认值通常已经足够。
 
 MAX_CIS_SUBSPACE
 
 ### `MAX_CIS_SUBSPACE`
 
-> **Maximum number of subspace vectors allowed in the CIS iterations**
+> **CIS 迭代中允许的最大子空间向量数目**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `As many as required to converge all roots`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `以收敛所有根所需的数目为准`
+> * **选项**:
 >     * $n$
->     * User-defined number of subspace vectors
-> * **Recommendation**: The default is usually appropriate, unless a large number of states are requested for a large molecule. The total memory required to store the subspace vectors is bounded above by $2nOV$ , where $O$ and $V$ represent the number of occupied and virtual orbitals, respectively. $n$ can be reduced to save memory, at the cost of a larger number of CIS iterations. Convergence may be impaired if $n$ is not much larger than CIS_N_ROOTS .
+>     * 用户自定义的子空间向量数目
+> * **建议**: 默认值通常是合适的，除非为大分子请求大量激发态。存储子空间向量所需的总内存上界为 $2nOV$ ，其中 $O$ 和 $V$ 分别表示占据轨道和虚轨道的数目。可以减少 $n$ 以节省内存，代价是更多的 CIS 迭代次数。如果 $n$ 不比 CIS_N_ROOTS 大很多，收敛可能会受到影响。
 
 CIS_CONVERGENCE
 
 ### `CIS_CONVERGENCE`
 
-> **CIS is considered converged when error is less than $10^{-\mathrm{CIS\_CONVERGENCE}}$**
+> **当误差小于 $10^{-\mathrm{CIS\_CONVERGENCE}}$ 时，认为 CIS 已收敛**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
-> * **Recommendation**: Also controls convergence of the CPSCF equations.
+> * **建议**: 该变量同时控制 CPSCF 方程的收敛。
 
 CIS_DYNAMIC_MEM
 
 ### `CIS_DYNAMIC_MEM`
 
-> **Controls whether to use static or dynamic memory in CIS and TDDFT calculations.**
+> **控制 CIS 和 TDDFT 计算中使用静态内存还是动态内存。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Partly use static memory
+>     * 部分使用静态内存
 >     * TRUE
->     * Fully use dynamic memory
-> * **Recommendation**: The default control requires static memory ( MEM_STATIC ) sufficient to hold an array whose size grows by $2\times OV\times N_{\text{roots}}$ at each CIS iteration, where $N_{\text{roots}}$ is the number of unconverged roots ( $\leq$ CIS_N_ROOTS ). For a large calculation, one has to specify a large value for MEM_STATIC , which is not recommended (see Chapter 2 ). Therefore, it is recommended to use dynamic memory for large calculations.
+>     * 完全使用动态内存
+> * **建议**: 默认控制方式需要足够的静态内存（MEM_STATIC），以存放一个在每次 CIS 迭代中以 $2\times OV\times N_{\text{roots}}$ 规模增长的数组，其中 $N_{\text{roots}}$ 为未收敛根的数目（$\leq$ CIS_N_ROOTS）。对于大规模计算，必须为 MEM_STATIC 指定很大的值，这并不推荐（参见第 2 章）。因此，推荐对大规模计算使用动态内存。
 
 CIS_RELAXED_DENSITY
 
 ### `CIS_RELAXED_DENSITY`
 
-> **Use the relaxed CIS density for attachment/detachment density analysis as well as for for the general excited-state analysis of Section 10.2.12 .**
+> **在附着/脱离密度分析（attachment/detachment density analysis）以及第 10.2.12 节所述的一般激发态分析中使用弛豫 CIS 密度（relaxed CIS density）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not use the relaxed CIS density in analysis.
+>     * 分析中不使用弛豫 CIS 密度。
 >     * TRUE
->     * Use the relaxed CIS density in analysis.
-> * **Recommendation**: None
+>     * 分析中使用弛豫 CIS 密度。
+> * **建议**: 无
 
 CIS_GUESS_DISK
 
 ### `CIS_GUESS_DISK`
 
-> **Read the CIS guess from disk (previous calculation).**
+> **从磁盘读取 CIS 初始猜测（来自之前的计算）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Create a new guess.
+>     * 生成新的猜测。
 >     * TRUE
->     * Read the guess from disk.
-> * **Recommendation**: Requires a guess from previous calculation.
+>     * 从磁盘读取猜测。
+> * **建议**: 需要来自之前计算的猜测。
 
 CIS_GUESS_DISK_TYPE
 
 ### `CIS_GUESS_DISK_TYPE`
 
-> **Determines the type of guesses to be read from disk**
+> **确定从磁盘读取的猜测类型**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Nil`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `Nil`
+> * **选项**:
 >     * 0
->     * Read triplets only
+>     * 仅读取三重态
 >     * 1
->     * Read triplets and singlets
+>     * 读取三重态和单重态
 >     * 2
->     * Read singlets only
-> * **Recommendation**: Must be specified if CIS_GUESS_DISK is TRUE .
+>     * 仅读取单重态
+> * **建议**: 若 CIS_GUESS_DISK 为 TRUE，则必须指定该选项。
 
 STS_MOM
 
 ### `STS_MOM`
 
-> **Control calculation of the transition moments between excited states in CIS and TDDFT calculations (including spin-flip variants).**
+> **控制在 CIS 和 TDDFT 计算（包括自旋翻转变体）中计算态与态之间的跃迁矩。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not calculate state-to-state transition moments.
+>     * 不计算态间跃迁矩。
 >     * TRUE
->     * Do calculate state-to-state transition moments.
-> * **Recommendation**: When set to true requests the state-to-state dipole transition moments for all pairs of excited states and for each excited state with the ground state. This is not available for restricted open-shell wave functions.
+>     * 计算态间跃迁矩。
+> * **建议**: 设置为 true 时，请求计算所有激发态两两之间以及各激发态与基态之间的态间偶极跃迁矩。该选项不适用于限制开壳层波函数。
 
 CIS_MOMENTS
 
 ### `CIS_MOMENTS`
 
-> **Controls calculation of excited-state (CIS or TDDFT) multipole moments.**
+> **控制激发态（CIS 或 TDDFT）多极矩的计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not calculate excited-state moments.
+>     * 不计算激发态矩。
 >     * TRUE
->     * Calculate moments for each excited state.
-> * **Recommendation**: Set to TRUE if excited-state moments are desired. (This is a trivial additional calculation.) The MULTIPOLE_ORDER controls how many multipole moments are printed. This option is not available for spin-flip methods.
+>     * 为每个激发态计算多极矩。
+> * **建议**: 若需要激发态矩，请设置为 TRUE（这是一项附加的、计算量很小的任务）。MULTIPOLE_ORDER 控制打印多少阶多极矩。该选项不适用于自旋翻转方法。

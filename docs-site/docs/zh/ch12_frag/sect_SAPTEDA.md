@@ -1,9 +1,9 @@
 ---
-title: "12.11 Energy Decomposition Analysis Based on SAPT/cDFT"
+title: "12.11 基于 SAPT/cDFT 的能量分解分析"
 ---
 
-# 12.11 Energy Decomposition Analysis Based on SAPT/cDFT
+# 12.11 基于 SAPT/cDFT 的能量分解分析
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [12.11.1 Overview](Ch12.S11.SS1.md)
+- [12.11.1 概述](Ch12.S11.SS1.md)

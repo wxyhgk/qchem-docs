@@ -1,25 +1,25 @@
 ---
-title: "7.6.1 Non-Orthogonal CIS (NOCIS)"
+title: "7.6.1 非正交 CIS（NOCIS）"
 ---
 
-## 7.6.1 Non-Orthogonal CIS (NOCIS)
+## 7.6.1 非正交 CIS（NOCIS）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The motivation for the NOCIS method[[1024]](../bib_references/bib.md#bib1066)
+NOCIS 方法[[1024]](../bib_references/bib.md#bib1066)的提出动机，是在保持相对较低计算标度（scaling）的前提下改进 CIS 方法。
+它通过引入轨道弛豫（orbital relaxation，CIS 完全忽略了这一效应）以及多个空穴（core-hole）参考态之间的非正交相互作用来实现这一目标，
+例如 O${}_{2}$ 中的 O($1s$) 轨道。
 
-is the desire to improve on CIS while still maintaining a reasonably low computational scaling.
-It does so by including orbital relaxation, which CIS neglects altogether, and the non-orthogonal
-interaction between multiple core-hole references, such as the O($1s$) orbitals in O${}_{2}$.
+NOCIS 算法的简要概述如下：在完成基态轨道优化之后，使用最大重叠方法（maximum overlap method，MOM，见第 [4.5.14 节](../ch04_scf/topic_mom.md)）
+执行自洽场（SCF）计算，从而对每个感兴趣的定域芯轨道计算其电离态。
+这一步骤引入了轨道弛豫，同时使得激发态与基态之间非正交。
+矩阵元的构建方式为：对于共享同一组轨道的行列式之间的矩阵元，采用 Slater-Condon 规则；对于其余矩阵元，则采用 NOCI 方法，
+由此构造哈密顿量矩阵、重叠矩阵以及总自旋平方矩阵。[[1356]](../bib_references/bib.md#bib1417)
 
-A brief overview of the NOCIS algorithm is as follows: following a ground-state orbital optimization, an SCF calculation
-is performed using the maximum overlap method (MOM, see Section [4.5.14](../ch04_scf/topic_mom.md))
-to compute an ionization from each localized core orbital of interest.
-This introduces orbital relaxation, and also renders the excited states non-orthogonal to the ground state.
-The Hamiltonian, overlap, and total spin squared matrices are constructed using the Slater-Condon rules for matrix elements between determinants which share a common set of orbitals and NOCI for the remaining matrix elements.[[1356]](../bib_references/bib.md#bib1417)
+最后，求解广义本征值问题。
 
-Finally, the generalized eigenvalue problem is solved.
+开壳层 NOCIS 的一个关键特征是，对任何开壳层参考态进行单独优化。所谓开壳层参考态，是指芯电子被激发到一个 singly-occupied（单占据）基态轨道上所产生的态。
+这些单独的优化使得这些态与其他激发态之间非正交。
 
-A key feature in open-shell NOCIS is a separate optimization of any open-shell references, which are states in which a core-electron is excited to a singly-occupied ground-state orbital. These separate optimizations render these states non-orthogonal to the other excited states.
-
-NOCIS is spin-pure, size consistent, and maintains spatial symmetry. Like CIS, NOCIS produces excited states with the same $m_{s}$ as the reference but potentially with larger total spin. For example, performing NOCIS on a molecule with a singlet ground state will produce both singlet and triplet excited states.
+NOCIS 是自旋纯（spin-pure）、尺寸一致（size consistent）的，并且保持空间对称性。与 CIS 类似，NOCIS 产生的激发态与参考态具有相同的 $m_{s}$，但总自旋可能更大。
+例如，对具有单重态基态的分子执行 NOCIS，将同时产生单重态和三重态激发态。

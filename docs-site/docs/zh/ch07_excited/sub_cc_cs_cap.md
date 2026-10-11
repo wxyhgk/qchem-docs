@@ -1,46 +1,36 @@
 ---
-title: "7.9.10 EOM-CC Calculations of Metastable States"
+title: "7.9.10 亚稳态的 EOM-CC 计算"
 ---
 
-## 7.9.10 EOM-CC Calculations of Metastable States
+## 7.9.10 亚稳态的 EOM-CC 计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-While conventional coupled-cluster and equation-of-motion methods allow one to
-tackle electronic structure ranging from well-behaved closed-shell molecules to
-various open-shell and electronically excited species,[[729]](../bib_references/bib.md#bib760)
+常规的耦合簇（coupled-cluster）方法与运动方程（equation-of-motion, EOM）方法可以处理从性质良好的闭壳层分子到各种开壳层及电子激发态物种的电子结构问题[[729]](../bib_references/bib.md#bib760)，
 
-meta-stable electronic states, called resonances, present a difficult case
-for theory. By using complex scaling, complex basis functions (CBFs),
-and complex absorbing potential (CAP)
-techniques, **Q-Chem** extends these powerful methods to describe auto-ionizing
-states, such as transient anions, highly excited electronic states, and
-core-ionized species[[156]](../bib_references/bib.md#bib149)
+但被称为共振（resonance）的亚稳电子态对理论方法而言却是一个棘手的难题。通过使用复标度（complex scaling）、复基函数（complex basis functions, CBFs）以及复吸收势（complex absorbing potential, CAP）技术，**Q-Chem** 将这些强大的方法扩展到对自电离（auto-ionizing）态的描述，例如瞬态阴离子、高激发电子态以及内壳层电离物种[[156]](../bib_references/bib.md#bib149)
 
-(CBF extensions of CC and EOM-CC calculations
-are described in Sections [4.9.5](../ch04_scf/sec_cbfscf.md) and [8.7](../ch08_basis/sect_zbas.md)). In addition,
-users can employ stabilization techniques using charged sphere and scaled
-atomic charges options.[[741]](../bib_references/bib.md#bib774)
- These methods are only available within
-CCMAN2. The complex CC/EOM code is engaged by COMPLEX_CCMAN;
-the specific parameters should be specified in the *$complex_ccman* section.
+（CC 与 EOM-CC 计算的 CBF 扩展分别在[第 4.9.5 节](../ch04_scf/sec_cbfscf.md)和[第 8.7 节](../ch08_basis/sect_zbas.md)中描述）。此外，
+
+用户还可以采用带电球（charged sphere）和缩放原子电荷（scaled atomic charges）选项来使用稳态化（stabilization）技术。[[741]](../bib_references/bib.md#bib774)
+ 这些方法仅在 CCMAN2 中可用。复数 CC/EOM 代码由 COMPLEX_CCMAN 启用；
+具体参数应在 *$complex_ccman* 段中指定。
 
 COMPLEX_CCMAN
 
 ### `COMPLEX_CCMAN`
 
-> **Requests complex-scaled or CAP-augmented CC/EOM calculations.**
+> **请求复标度或 CAP 增强的 CC/EOM 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Engage complex CC/EOM code.
-> * **Recommendation**: Not available in CCMAN. Need to specify CAP strength or complex-scaling parameter in $complex_ccman section.
+>     * 启用复数 CC/EOM 代码。
+> * **建议**：在 CCMAN 中不可用。需要在 $complex_ccman 段中指定 CAP 强度或复标度参数。
 
-The *$complex_ccman* section is used to specify the details of the
-complex-scaled/CAP calculations, as illustrated below. If user specifies
-CS_THETA, complex scaling calculation is performed.
+*$complex_ccman* 段用于指定复标度/CAP 计算的细节，如下所示。如果用户指定了
+CS_THETA，则执行复标度计算。
 
 > ```qchem
 > $complex_ccman
@@ -50,7 +40,7 @@ CS_THETA, complex scaling calculation is performed.
 > $end
 > ```
 
-Alternatively, for CAP calculations, the CAP parameters need to be specified.
+或者，对于 CAP 计算，需要指定 CAP 参数。
 
 > ```qchem
 > $complex_ccman
@@ -62,10 +52,8 @@ Alternatively, for CAP calculations, the CAP parameters need to be specified.
 > $end
 > ```
 
-One can also add real absorbing potential by using CAP_RE_ETA;
-it follows the same format as CAP_ETA. For example,
-this setup would add purely real absorbing potential with
-$\eta$=0.01:
+用户也可以通过 CAP_RE_ETA 添加实数吸收势；其格式与 CAP_ETA 相同。例如，
+以下设置将添加纯实数吸收势，其强度为 $\eta$=0.01：
 
 > ```qchem
 > $complex_ccman
@@ -78,68 +66,55 @@ $\eta$=0.01:
 > $end
 > ```
 
-The CAP_TYPE field specifies the type of the CAP. The current
-options are: spherical CAP (CAP_TYPE = 0), cuboid CAP
-(CAP_TYPE = 1), and smooth Voronoi[[1283]](../bib_references/bib.md#bib1341)
+CAP_TYPE 字段指定 CAP 的类型。目前的
+选项有：球形 CAP（CAP_TYPE = 0）、长方体（cuboid）CAP
+（CAP_TYPE = 1），以及平滑 Voronoi[[1283]](../bib_references/bib.md#bib1341)
  CAP
-(CAP_TYPE = 2). In the calculations with a Voronoi CAP, the onset is
-specified by the CAP_X variable.
+（CAP_TYPE = 2）。在采用 Voronoi CAP 的计算中，起始位置（onset）由 CAP_X 变量指定。
 
-CS_THETA is specified in radian$\times$ 10${}^{-3}$.
-CS_ALPHA, CAP_X/Y/Z are specified in a.u. $\times$
-10${}^{-3}$, *i.e.*, CS_THETA = 10 means $\theta=0.01$; CAP_ETA
-is specified in units of $10^{-5}$ $E_{h}$. The CAP is calculated by numerical
-integration and the default grid is ($N_{r}=99,N_{\Omega}=590$).
-For testing the accuracy of
-numerical integration, the numerical overlap matrix is calculated and compared
-to the analytical one. If the performance of the default grid is poor, the grid
-type can be changed using the keyword XC_GRID (see
-Section [5.5](../ch05_dft/sect_quadrature.md) for further details). When CAP calculations are
-performed, CC_EOM_PROP = 1 by default; this is necessary for
-calculating first-order perturbative correction.
+CS_THETA 以 弧度$\times$ 10${}^{-3}$ 为单位指定。
+CS_ALPHA、CAP_X/Y/Z 以 a.u. $\times$
+10${}^{-3}$ 为单位指定，*即*，CS_THETA = 10 表示 $\theta=0.01$；CAP_ETA
+以 $10^{-5}$ $E_{h}$ 为单位指定。CAP 通过数值积分计算，默认网格为
+($N_{r}=99,N_{\Omega}=590$)。
+为检验数值积分的精度，程序会计算数值重叠矩阵并与解析结果进行比较。
+如果默认网格的表现不佳，可以通过关键字 XC_GRID 更改网格类型（详见
+[第 5.5 节](../ch05_dft/sect_quadrature.md)）。执行 CAP 计算时，CC_EOM_PROP 默认为 1；
+这对于计算一阶微扰修正是必需的。
 
-EOM-CC with CBFs (see Section [4.9.5](../ch04_scf/sec_cbfscf.md)) is deployed
-by setting COMPLEX_CCMAN = TRUE and
-COMPLEX_EXPONENTS = TRUE. As with mean-field calculations
-the complex basis must be specified as described in Section [8.7](../ch08_basis/sect_zbas.md).
+使用 CBF 的 EOM-CC（见[第 4.9.5 节](../ch04_scf/sec_cbfscf.md)）通过设置
+COMPLEX_CCMAN = TRUE 和 COMPLEX_EXPONENTS = TRUE 来启用。与平均场
+计算一样，必须按照[第 8.7 节](../ch08_basis/sect_zbas.md)中的说明指定复基组。
 
-Advanced users may find the following options useful. Several ways of
-conducing complex calculations are possible, *i.e.*, complex scaling/CAPs can be
-either engaged at all levels (HF, CCSD, EOM), or not. When applied at post
-Hartree-Fock level, CAP can either be added to all blocks of the Fock matrix or
-restricted to the virtual-virtual block only. The latter approach, known as
-projected CAP,[[1197]](../bib_references/bib.md#bib1251)
- improves the stability of the calculation
-results with respect to CAP onset by reducing a CAP-induced perturbation on the
-target states through the occupied orbital space.
+高级用户可能会发现以下选项很有用。执行复数计算有若干种方式，*即*，复标度/CAP 可以
+在所有层级（HF、CCSD、EOM）上启用，也可以不启用。当在后 Hartree-Fock 层级应用时，
+CAP 既可以添加到 Fock 矩阵的所有区块，也可以仅限制在虚-虚（virtual-virtual）区块。
+后一种方法称为投影 CAP（projected CAP）[[1197]](../bib_references/bib.md#bib1251)，
+它通过减小 CAP 经由占据轨道空间对目标态造成的微扰，
+提高了计算结果相对于 CAP 起始位置的稳定性。
 
-This type of CAP projection is currently implemented only for EE/EA calculations and is
-invoked by setting PROJ_CAP keyword in the *$complex_ccman* section as
-follows. PROJ_CAP = 1 deploys CAP/EOM-CCSD with projected CAP added
-at the CCSD and EOM steps and PROJ_CAP = 2 deploys CAP/EOM-CCSD/MP2/MP2T
-with projected CAP added at the EOM step. The latter implies that
-$T$-amplitudes (Sec. [7.9.3](sec_EOMEE.md)) are obtained from a real-valued
-calculation (for zero CAP strength) and can be reused to generate complex
-eigenvalue trajectories by specifying ETA_STEP and NSTEPS
-parameters in *$complex_ccman*.
+此类 CAP 投影目前仅对 EE/EA 计算实现，通过在 *$complex_ccman* 段中设置
+PROJ_CAP 关键字来调用，方式如下。PROJ_CAP = 1 启用 CAP/EOM-CCSD，
+在 CCSD 和 EOM 步骤中加入投影 CAP；PROJ_CAP = 2 启用
+CAP/EOM-CCSD/MP2/MP2T，在 EOM 步骤中加入投影 CAP。后者意味着
+$T$ 振幅（见[第 7.9.3 节](sec_EOMEE.md)）来自实数计算（CAP 强度为零），并且可以通过在
+*$complex_ccman* 中指定 ETA_STEP 和 NSTEPS 参数来复用它们，
+从而生成复本征值轨迹（eigenvalue trajectories）。
 
-PROJ_CAP = 3 deploys another form of CAP projection [[1284]](../bib_references/bib.md#bib1340)
- in which the CAP Hamiltonian
-is projected onto the subspace spanned by a set of pre-computed EOM eigenvectors. By default,
-the excited-state eigenvectors are obtained from a single real-valued calculation, and the CAP matrix
-represented in the state basis is printed in the output for each irreducible representation.
-This functionality is available for all EOM-CC models for which transition properties
-between EOM target states are available. To generate eigenvalue trajectories, CAP_ETA
-should be set to a non-zero CAP strength, and subsequent points are specified using
-the ETA_STEP and NSTEPS parameters in *$complex_ccman*. Trajectories
-are written to a separate output file for each irreducible representation. Additionally, first-order
-perturbative corrections can be obtained by setting PROJ_PROP = 1. Note that
-when PROJ_PROP = 1, the initial set of real eigenvectors are obtained using the
-complex valued code at zero CAP strength. As such, first-order perturbative corrections
-are only available for complex EOM-CC models. The complete set of one-particle state and transition OPDMs between each pair of states (which is all that is required for CAP projection) will be exported to checkpoint file for further analysis when GUI = 2 and PROJ_CAP = 3.
+PROJ_CAP = 3 启用另一种形式的 CAP 投影 [[1284]](../bib_references/bib.md#bib1340)，
+其中 CAP 哈密顿量被投影到由一组预先计算的 EOM 本征矢所张成的子空间上。默认情况下，
+激发态本征矢来自单次实数计算，并且在输出文件中针对每个不可约表示打印以态基表示的 CAP 矩阵。
+该功能适用于所有可在 EOM 目标态之间计算跃迁性质的 EOM-CC 模型。
+要生成本征值轨迹，应将 CAP_ETA 设为非零的 CAP 强度，后续各点通过在
+*$complex_ccman* 中指定 ETA_STEP 和 NSTEPS 参数来设定。轨迹会为每个不可约表示
+写入单独的输出文件。此外，通过设置 PROJ_PROP = 1 可以获得一阶微扰修正。注意，
+当 PROJ_PROP = 1 时，初始的一组实数本征矢是在复数代码、CAP 强度为零的条件下得到的。
+因此，一阶微扰修正仅对复数 EOM-CC 模型可用。当 GUI = 2 且 PROJ_CAP = 3 时，
+各态对之间完整的一粒子态密度矩阵与跃迁密度矩阵（OPDM）集合（这正是 CAP 投影所需的全部内容）
+将被导出到检查点（checkpoint）文件以供进一步分析。
 
-By default, if COMPLEX_CCMAN is specified, the EOM calculations are
-conducted using complex code. Other parameters are set up as follows:
+默认情况下，如果指定了 COMPLEX_CCMAN，EOM 计算将使用复数代码执行。
+其他参数的设置如下：
 
 > ```qchem
 > $complex_ccman
@@ -148,65 +123,67 @@ conducted using complex code. Other parameters are set up as follows:
 > $end
 > ```
 
-Alternatively, the user can disable complex HF. These options are experimental
-and should only be used by advanced users. For CBF-EOM-CC, only CS_HF =
-TRUE and CS_CCSD = TRUE is implemented.
+或者，用户可以禁用复数 HF。这些选项属于实验性质，
+只应由高级用户使用。对于 CBF-EOM-CC，目前仅实现了 CS_HF =
+TRUE 和 CS_CCSD = TRUE。
 
-Non-iterative triples corrections are available for all complex scaled and
-CAP-augmented CC/EOM-CC models and requested in analogy to regular
-CC/EOM-CC (see Section [7.9.27](sec_SD3.md) for details).
+所有复标度和 CAP 增强的 CC/EOM-CC 模型均可使用非迭代三重激发（non-iterative triples）
+修正，其请求方式与常规 CC/EOM-CC 相同（详见[第 7.9.27 节](sec_SD3.md)）。
 
-To take account of the impact of the environment on electronic resonances CAP-EOM-CCSD and CBF-EOM-CCSD can be combined with projection-based embedding,[[1043]](../bib_references/bib.md#bib1088)
+为了考虑环境对电子共振的影响，CAP-EOM-CCSD 和 CBF-EOM-CCSD 可以与基于投影的嵌入
+（projection-based embedding）[[1043]](../bib_references/bib.md#bib1088) 相结合，
+具体描述见[第 7.9.3.1 节](sec_EOMEE.md#subsec:eomcc-pbe)和[第 11.6 节](../ch11_env/sect_den_emb.md)。
 
-as described in Sections [7.9.3.1](sec_EOMEE.md#subsec:eomcc-pbe) and [11.6](../ch11_env/sect_den_emb.md).
+复标度或 CAP 增强的 CC/EOM-CC 计算可以像常规 CC/EOM-CC 一样请求分子性质和跃迁矩
+（详见[第 7.9.21 节](sec_EOMGRAD.md)）。可以计算自然轨道（natural orbitals）和
+自然跃迁轨道（natural transition orbitals），也可以分析激子（exciton）波函数，
+其用法与实数 EOM-CCSD 相同（使用相同的关键字调用分析）。解析梯度对于复数 CC/EOM-CC
+仅在长方体 CAP（CAP_TYPE = 1）且在 HF 层级引入（CS_HF = TRUE）时可用，
+如文献 [[108]](../bib_references/bib.md#bib95) 所述。
+对于 CAP-CC/EOM-CC 梯度计算，冻结芯层（frozen-core）近似会被禁用。
+几何优化的请求方式与常规 CC/EOM-CC 相同（详见[第 7.9.21 节](sec_EOMGRAD.md)）。
 
-Molecular properties and transition moments can be requested for complex scaled or
-CAP-augmented CC/EOM-CC calculations in analogy to regular CC/EOM-CC (see Section [7.9.21](sec_EOMGRAD.md) for details). Natural orbitals and
-natural transition orbitals can be computed and the exciton wave-functions can
-be analyzed, similarly to real-valued EOM-CCSD (same keywords are used to
-invoke the analysis). Analytic gradients are available for complex CC/EOM-CC only for cuboid CAPs (CAP_TYPE = 1) introduced at the HF level
-(CS_HF = TRUE), as described in Ref. [[108]](../bib_references/bib.md#bib95)
-. The
-frozen-core approximation is disabled for CAP-CC/EOM-CC gradient
-calculations. Geometry optimization can be requested in the same way as in
-regular CC/EOM-CC (see Section [7.9.21](sec_EOMGRAD.md) for details).
+## 7.9.10.1 复数 RI-EOM-CCSD
 
-## 7.9.10.1 Complex-valued RI-EOM-CCSD
+为降低内存需求，可以调用 RI 近似（resolution-of-identity approximation）来分解
+电子排斥积分。该代码的结构与实数 RI-EOM-CCSD[[366]](../bib_references/bib.md#bib762)
+相同，但采用复数 RI 分解[[1397]](../bib_references/bib.md#bib592)。
+RI 近似可用于 CCSD 以及 EOM-IP/EA/EE/SF-CCSD，并与复标度、复基函数
+以及复吸收势结合使用[[185]](../bib_references/bib.md#bib180)。
+通过将 AUX_BASIS 设置为用户选定的辅助基组（*例如* RIMP2-aug-cc-pVTZ）即可调用。
+对于使用复基函数的计算，还需要指定 COMPLEX_AUX_BASIS，
+它通常与 AUX_BASIS 相同。使用用户自定义的辅助基组时，AUX_BASIS 在
+*$aux_basis* 段中指定，而 COMPLEX_AUX_BASIS 在 *$aux_zbasis* 段中指定。
+复数 RI 积分目前仅可用于能量和非弛豫（unrelaxed）单电子性质。
+也可以将 RI 近似用于通过分解 CCSD 能量或通过 ACP 方法确定俄歇（Auger）
+部分衰变宽度（见[第 7.9.11 节](sec_Auger.md)和[第 7.9.12 节](sec_AugerComplexVariable.md)）。
 
-To reduce the memory requirements, the RI-approximation can be invoked to decompose
-the electron-repulsion integrals. The code has the same structure as for real-valued
-RI-EOM-CCSD[[366]](../bib_references/bib.md#bib762)
- but uses a complex-valued RI
-decomposition.[[1397]](../bib_references/bib.md#bib592)
- The RI-approximation is available for CCSD
-and EOM-IP/EA/EE/SF-CCSD in combination with complex-scaling, complex basis functions
-and complex absorbing potentials.[[185]](../bib_references/bib.md#bib180)
- It can be invoked by setting AUX_BASIS to
-your favorite auxiliary basis set (*e.g.* RIMP2-aug-cc-pVTZ). For calculations
-with complex basis functions, COMPLEX_AUX_BASIS needs to specified as well,
-which is usually the same as AUX_BASIS. When using user-defined auxiliary
-basis sets, AUX_BASIS is specified in *$aux_basis* while
-COMPLEX_AUX_BASIS is specified in *$aux_zbasis*. Complex-valued RI integrals
-are currently only available for energies and unrelaxed one-electron properties. It
-is also possible to use the RI-approximation for the determination of partial Auger
-decay widths by decomposing the CCSD energy or by the ACP method (see sections
-[7.9.11](sec_Auger.md) and [7.9.12](sec_AugerComplexVariable.md)).
+## 7.9.10.2 复数 RI-EOM-CC2
 
-## 7.9.10.2 Complex-valued RI-EOM-CC2
+RI-EOM-CC2 方法同样可用于描述通过电子附着（electron attachment, EA）形成的亚稳态，
+并与复吸收势（CAP）和复基函数（CBF）结合使用。CCMAN2 和 LIBGMBPT 模块中各有一种实现，
+二者在算法效率和所支持的功能上有所不同。
 
-The RI-EOM-CC2 method is also available for the description of metastable states through electron attachment (EA) in combination with complex absorbing potentials (CAPs) and complex basis functions (CBFs). Two implementations are available in the CCMAN2 and LIBGMBPT modules, which differ in their algorithmic efficiency and supported features.
+CCMAN2 实现遵循与 RI-EOM-CCSD 类似的代码结构，可以通过在输入中指定 method = CCMAN2
+来调用。然而，该实现并未采用最高效的算法，因为双激发振幅不是*即时（on-the-fly）*计算的。
+因此，其内存需求仍为 $\mathcal{O}(N^{4})$，与 EOM-CCSD 相同。
 
-The CCMAN2 implementation follows a code structure analogous to that of RI-EOM-CCSD, and can be invoked by specifying method = CCMAN2 in the input. However, this implementation does not employ the most efficient algorithm, as the doubles amplitudes are not evaluated *on-the-fly*. Consequently, the memory requirements remain at $\mathcal{O}(N^{4})$, same as EOM-CCSD.
+LIBGMBPT 实现基于更高效的算法，将内存需求降低到 $\mathcal{O}(N^{3})$，
+因此是较大体系的首选。EA-CC2 的自旋缩放（spin-scaled）变体，包括自旋分量缩放
+（spin-component-scaling, SCS）和缩放反自旋（scaled opposite-spin, SOS），
+也仅在该模块中提供，并可以按与 MP2 相同的方式调用（见[第 6.6.5 节](../ch06_correlation/topic_sbmp2.md)）。
 
-The LIBGMBPT implementation is based on a more efficient algorithm, reducing the memory requirements to $\mathcal{O}(N^{3})$, making it the preferred choice for larger systems. Spin-scaled variants of EA-CC2, including spin-component-scaling (SCS) and scaled opposite-spin (SOS), are also available exclusively in this module and can be invoked in the same manner as in MP2 (see section [6.6.5](../ch06_correlation/topic_sbmp2.md)).
+在该实现中，未采用实数 EOM-CC2 中所使用的 Davidson/DIIS 混合求解器
+（见[第 7.9.4 节](sec_eomcc2.md)）。取而代之的是，引入了一种改进的 Davidson
+算法来求解电子附着的 CC2 赝本征值方程。
 
-For this implementation, the mixed Davidson/DIIS solver is not employed as in the real-valued EOM-CC2 (see section [7.9.4](sec_eomcc2.md)). Instead, a modified Davidson algorithm is introduced for the solution of the CC2 pseudoeigenvalue equations for electron attachment.
+有若干输入特性值得注意。用户可以通过指定 EOM_USER_GUESS 关键字以及
+*$eom_user_guess* 段来针对特定的附着态，其用法与 EOM-CC 中相同
+（见[第 7.9.16 节](subsec_EOM-CC-diag.md)）。LIBGMBPT 中的轨道编号从第一个占据轨道开始，
+与 CCMAN2 中从第一个空轨道开始不同，并且必须从轨道总数中减去冻结芯层轨道。
+此外，通过设置 *$eom_user_guess* = 2，可以请求使用用户自定义猜测来顺序计算多个根。
 
-Several input features are worth noting. The user can target attachment to a specific state by specifying the 
+最后，该实现尚不支持点群对称性。关于该实现及其在瞬态阴离子上性能的更多细节，
+可参见文献 [[1382]](../bib_references/bib.md#bib1443)。
 
-EOM_USER_GUESS keyword along with the *$eom_user_guess* section, in the same manner as in EOM-CC (see section [7.9.16](subsec_EOM-CC-diag.md)). The orbital indexing in LIBGMBPT starts from the first occupied orbital, in contrast to the first unoccupied orbital as in CCMAN2, and the frozen core orbitals must be subtracted from the total orbital count. In addition, sequential calculation of multiple roots with a user-defined guess can be requested by setting *$eom_user_guess* = 2.
-
-Finally, point group symmetry is not yet supported in this implementation. Further details on the implementation and its performance on temporary anions can be found in Ref. [[1382]](../bib_references/bib.md#bib1443)
-.
-
-The LIBGMBPT implementation can be invoked by setting CCMAN2 = –1, the default currently is CCMAN2.
+LIBGMBPT 实现可以通过设置 CCMAN2 = –1 来调用，当前默认值为 CCMAN2。

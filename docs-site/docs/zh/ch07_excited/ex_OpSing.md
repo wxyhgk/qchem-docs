@@ -1,106 +1,90 @@
 ---
-title: "7.7.2 Maximum Overlap Method"
+title: "7.7.2 最大重叠法"
 ---
 
-## 7.7.2 Maximum Overlap Method
+## 7.7.2 最大重叠法（Maximum Overlap Method, MOM）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The Maximum Overlap Method (MOM) is a useful alternative to CIS and TDDFT for
-obtaining low-cost excited states.[[443]](../bib_references/bib.md#bib455)
- It works by modifying
-the orbital selection step in the SCF procedure. By choosing orbitals that
-most resemble those from the previous cycle, rather than those with the lowest
-eigenvalues, non-*aufbau*, excited-state SCF determinants can be determined,
-in what has sometimes been called
-*excited-state Kohn-Sham theory*.[[520]](../bib_references/bib.md#bib534)
+最大重叠法（Maximum Overlap Method, MOM）是获取低成本激发态时，对组态相互作用单激发（Configuration Interaction with Singles, CIS）和含时密度泛函理论（Time-Dependent Density Functional Theory, TDDFT）的一种有用的替代方法。[[443]](../bib_references/bib.md#bib455)
+它通过修改自洽场（Self-Consistent Field, SCF）过程中的轨道选择步骤来工作。通过选择与上一轮最相似的轨道，而非本征值最低的轨道，可以得到非*构造原理（aufbau）*的激发态 SCF 行列式，这种方法有时被称为
+*激发态 Kohn-Sham 理论（excited-state Kohn-Sham theory）*。[[520]](../bib_references/bib.md#bib534)
 
-This represents a form of “$\Delta$SCF” approach to computing excitation energies,
+这代表了一种“$\Delta$SCF”计算激发能的形式，
 
-which has advantages over TDDFT is certain cases. For example, TDDFT exhibits systemic
-problems with the description of charge-transfer and Rydberg excitations,
+在某些情况下它相比 TDDFT 具有优势。例如，TDDFT 在描述电荷转移（charge-transfer）激发和里德堡（Rydberg）激发时存在系统性问题，
 
-both of which can be modeled using the $\Delta$SCF approach. The use of MOM also allows the user
-to easily target very high energy states, such as those
-involving excitation of core electrons,[[118]](../bib_references/bib.md#bib113)
- which can be difficult
-to capture using other excited state methods.
+而这两者都可以用 $\Delta$SCF 方法来建模。MOM 的使用还允许用户
+轻松地将目标定位于非常高能量的态，例如涉及核心电子激发的态，[[118]](../bib_references/bib.md#bib113)
+而这些态用其他激发态方法难以捕捉。
 
-In order to calculate an excited state using MOM, the user must correctly
-identify the orbitals involved in the transition. For example, in a
-$\pi\rightarrow\pi^{\ast}$ transition, the $\pi$ and $\pi^{\ast}$ orbitals must be
-identified and this usually requires a preliminary calculation. The user then
-manipulates the orbital occupancies using the *$occupied* section, removing an
-electron from the $\pi$ and placing it in the $\pi^{\ast}$. The MOM is then
-invoked to preserve this orbital occupancy. The success of the MOM relies on
-the quality of the initial guess for the calculation. If the virtual orbitals
-are of poor quality then the calculation may ‘fall down’ to a lower energy
-state of the same symmetry. Often the virtual orbitals of the corresponding
-cation are more appropriate for using as initial guess orbitals for the excited state.
+为了使用 MOM 计算激发态，用户必须正确
+识别跃迁中所涉及的轨道。例如，在
+$\pi\rightarrow\pi^{\ast}$ 跃迁中，必须识别出 $\pi$ 和 $\pi^{\ast}$ 轨道，而这通常需要一次预备计算。随后用户
+使用 *$occupied* 节来操控轨道占据数，从 $\pi$ 轨道移除一个
+电子并将其放入 $\pi^{\ast}$ 轨道。然后调用 MOM 来
+保持这一轨道占据。MOM 的成功取决于计算初始猜测（initial guess）的质量。如果虚轨道
+质量较差，则计算可能“跌落”到相同对称性的更低能量
+态。通常情况下，相应阳离子的虚轨道更适合作为激发态的初始猜测轨道使用。
 
-Because the MOM states are single determinants, all of **Q-Chem**’s existing
-single determinant properties and derivatives are available. This allows, for
-example, analytic harmonic frequencies to be computed on excited states. The
-orbitals from a Hartree-Fock MOM calculation can also be used in an MP2
-calculation. For all excited state calculations, it is important to add
-diffuse functions to the basis set. This is particularly true if Rydberg
-transitions are being sought. For DFT based methods, it is also advisable to
-increase the size of the quadrature grid so that the more diffuse densities are
-accurately integrated.
+由于 MOM 态是单行列式，**Q-Chem** 所有现有的
+单行列式性质和导数都可用。这使得例如可以在激发态上计算
+解析谐频（analytic harmonic frequencies）。来自 Hartree-Fock MOM 计算的轨道也可以用于 MP2
+计算。对于所有激发态计算，在基组（basis set）中加入弥散函数（diffuse functions）非常重要。如果要寻找里德堡
+跃迁，这一点尤其正确。对于基于 DFT 的方法，还建议增大
+积分网格（quadrature grid）的规模，以便对更弥散的密度进行
+准确积分。
 
-Due to its single-determinant description,
-the MOM algorithm for unrestricted $\Delta$SCF calculations of open-shell singlets
-is often badly spin contaminated.
-Spin contamination can be alleviated by resorting to a
-restricted open-shell Kohn-Sham (ROKS) formalism
-(see Section [7.7.4](ex_ESROKS.md)),
-in which the objective function $E_{\text{S}}=2E_{\text{M}}-E_{\text{T}}$
-is optimized, where $E_{\text{S}}$ is the spin-pure singlet energy,
-$E_{\text{M}}$ is the energy of the “mixed” (or spin-contaminated)
-open-shell singlet state, and $E_{\text{T}}$ is the triplet energy.
-MOM can be used in conjunction with ROKS to evaluate a spin-pure
-energy for arbitrary open-shell singlet electron configurations
-(formerly only $S_{1}$ was accessible within the ROKS formulation).
+由于其单行列式描述，
+用于开壳层单重态非限制 $\Delta$SCF 计算的 MOM 算法常常存在严重的自旋污染（spin contamination）。
+可以通过采用限制开壳层 Kohn-Sham（Restricted Open-Shell Kohn-Sham, ROKS）形式来缓解自旋污染
+（参见第 [7.7.4](ex_ESROKS.md) 节），
+其中优化目标函数 $E_{\text{S}}=2E_{\text{M}}-E_{\text{T}}$，
+这里 $E_{\text{S}}$ 是自旋纯单重态能量，
+$E_{\text{M}}$ 是“混合”（或自旋污染）开壳层单重态的能量，
+而 $E_{\text{T}}$ 是三重态能量。
+MOM 可以与 ROKS 结合使用，以评估任意开壳层单重态电子组态的自旋纯
+能量（此前在 ROKS 公式中只能访问 $S_{1}$）。
 
-The MOM-based $\Delta$SCF method can be combined with a PCM based solvation
-description for both equilibrium and nonequilibrium effects
-(for more details see Section [7.7.9](sect_ROKS_neq-PCM.md)).
+基于 MOM 的 $\Delta$SCF 方法可以与基于极性连续介质模型（Polarizable Continuum Model, PCM）的溶剂化描述相结合，
+以考虑平衡效应和非平衡效应
+（更多细节参见第 [7.7.9](sect_ROKS_neq-PCM.md) 节）。
 
-The following *$rem* is used to invoke the MOM:
+以下 *$rem* 用于调用 MOM：
 
 MOM_START
 
 ### `MOM_START`
 
-> **Determines when MOM is switched on to preserve orbital occupancies.**
+> **确定 MOM 在何时被启用以保持轨道占据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 (FALSE)`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0 (FALSE)`
+> * **选项**:
 >     * 0 (FALSE)
->     * MOM is not used
+>     * 不使用 MOM
 >     * $n$
->     * MOM begins on cycle
+>     * MOM 从第
 >     * $n$
->     * .
-> * **Recommendation**: For calculations on excited states, an initial calculation without MOM is usually required to get satisfactory starting orbitals. These orbitals should be read in setting SCF_GUESS = TRUE and = 1.
+>     * 轮开始。
+> * **建议**: 对于激发态计算，通常需要进行一次不含 MOM 的初始计算以获得令人满意的起始轨道。应通过设置 SCF_GUESS = TRUE 和 = 1 来读入这些轨道。
 
 MOM_METHOD
 
 ### `MOM_METHOD`
 
-> **Determines the target orbitals with which to maximize the overlap on each SCF cycle.**
+> **确定在每一轮 SCF 中用于最大化重叠的目标轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `MOM`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `MOM`
+> * **选项**:
 >     * MOM
->     * Maximize overlap with the orbitals from the previous SCF cycle.
+>     * 与上一轮 SCF 的轨道最大化重叠。
 >     * IMOM
->     * Maximize overlap with the initial guess orbitals.
-> * **Recommendation**: If appropriate guess orbitals can be obtained, then IMOM can provide more reliable convergence to the desired solution. 75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , pp. 1501 . Link
+>     * 与初始猜测轨道最大化重叠。
+> * **建议**: 如果能够获得合适的猜测轨道，则 IMOM 可以更可靠地收敛到所需的解。75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , pp. 1501 . 链接
 
-???+ example "Example 7.46: Calculation of the lowest singlet state of CO."
+???+ example "示例 7.46: CO 最低单重态的计算。"
     ```qchem
     $comment
        CO spin-purified calculation
@@ -143,10 +127,10 @@ MOM_METHOD
     $end
     ```
 
-???+ example "Example 7.47: Input for obtaining the ${}^{2}$ A ${}^{\prime}$ excited state of formamide
-corresponding to the $\pi\rightarrow\pi^{\ast}$ transition. The ${}^{1}$ A ${}^{\prime}$ ground state is obtained if MOM is not used in the second calculation. Note
-the use of diffuse functions and a larger quadrature grid to accurately model
-the larger excited state."
+???+ example "示例 7.47: 用于获得对应 $\pi\rightarrow\pi^{\ast}$ 跃迁的甲酰胺 ${}^{2}$ A ${}^{\prime}$ 激发态的输入。
+如果第二次计算中不使用 MOM，则会得到 ${}^{1}$ A ${}^{\prime}$ 基态。请注意
+使用弥散函数和更大的积分网格以准确模拟
+更大的激发态。"
     ```qchem
     $molecule
        1  2
@@ -191,14 +175,11 @@ the larger excited state."
     $end
     ```
 
-Additionally, it is possible to perform a CIS/TDDFT calculation on top of
-the MOM excitation. This capability can be useful when modeling pump-probe
-spectra. In order to run MOM followed by CIS/TDDFT, the *$rem* variable
-CIS_N_ROOTS must be specified. Truncated subspaces may also be
-used, see Section [7.3.3](subsec_TRNSS.md).
+此外，还可以在 MOM 激发的基础上进行 CIS/TDDFT 计算。在模拟泵浦-探测（pump-probe）
+光谱时，这一功能非常有用。为了先运行 MOM 再运行 CIS/TDDFT，必须指定 *$rem* 变量
+CIS_N_ROOTS。也可以使用截断子空间（truncated subspaces），参见第 [7.3.3](subsec_TRNSS.md) 节。
 
-???+ example "Example 7.48: MOM valence excitation followed by core-state TDDFT using a restricted
-subspace"
+???+ example "示例 7.48: MOM 价层激发后接使用限制子空间的核心态 TDDFT"
     ```qchem
     $molecule
        0 1
@@ -245,31 +226,29 @@ subspace"
     $end
     ```
 
-If the MOM excitation corresponds to a core hole, a reduced subspace must be
-used to avoid de-excitations to the core hole. The *$rem* variable
-CORE_IONIZE allows only the hole to be specified so that not all
-occupied orbitals need to be entered in the *$solute* section.
+如果 MOM 激发对应于一个核心空穴（core hole），则必须使用约化子空间
+以避免向核心空穴的退激发。*$rem* 变量
+CORE_IONIZE 允许只指定空穴，这样就不需要在 *$solute* 节中输入所有
+占据轨道。
 
 CORE_IONIZE
 
 ### `CORE_IONIZE`
 
-> **Indicates how orbitals are specified for reduced excitation spaces.**
+> **指示在约化激发子空间中如何指定轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 1
->     * all valence orbitals are listed in
+>     * 所有价轨道都在
 >     * $solute
->     * section
+>     * 节中列出
 >     * 2
->     * only hole(s) are specified all other occupations same as ground state
-> * **Recommendation**: For MOM + TDDFT this specifies the input form of the $solute section. If set to 1 all occupied orbitals must be specified, 2 only the empty orbitals to ignore must be specified.
+>     * 只指定空穴，其他所有占据与基态相同
+> * **建议**: 对于 MOM + TDDFT，这指定了 $solute 节的输入形式。若设为 1，则必须指定所有占据轨道；设为 2 时，只需指定要忽略的空轨道。
 
-???+ example "Example 7.49: O(1s) core excited state using MOM followed by excitations among valence
-orbitals. Note that a reduced excitation subspace must be used to avoid
-“excitations” into the empty core hole"
+???+ example "示例 7.49: 使用 MOM 的 O(1s) 核心激发态，后接价轨道间的激发。请注意必须使用约化激发子空间以避免向空核心空穴的“激发”"
     ```qchem
     $molecule
        0 1
