@@ -1,0 +1,20 @@
+# Q-Chem 7.0 docs project - .gitignore
+
+# tooling
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# raw crawl dump (re-downloadable)
+crawl/
+
+# MkDocs build outputs
+docs-site/site/
+site_out/
+
+# temp & logs
+tmp/
+*.log
+.venv/
+venv/

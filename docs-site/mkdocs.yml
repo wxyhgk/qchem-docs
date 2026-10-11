@@ -1,0 +1,993 @@
+site_name: Q-Chem 7.0 User's Manual
+site_description: Q-Chem 7.0 量子化学软件用户手册与理论指南
+site_author: Q-Chem, Inc.
+site_url: ''
+use_directory_urls: true
+docs_dir: docs
+site_dir: site
+theme:
+  name: material
+  language: en
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/weather-night
+      name: Switch to dark mode
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to light mode
+  features:
+  - navigation.tracking
+  - navigation.tabs
+  - navigation.sections
+  - navigation.top
+  - navigation.footer
+  - search.suggest
+  - search.highlight
+  - content.code.copy
+  - content.tabs.link
+  - toc.follow
+  logo: assets/logo.svg
+  favicon: assets/1.png
+plugins:
+- search
+- i18n:
+    docs_structure: folder
+    languages:
+    - locale: en
+      default: true
+      name: English
+      build: true
+    - locale: zh
+      name: 中文
+      build: true
+markdown_extensions:
+- admonition
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.highlight
+- pymdownx.inlinehilite
+- pymdownx.tabbed
+- tables
+- footnotes
+- attr_list
+- md_in_html
+- pymdownx.arithmatex:
+    generic: true
+extra_javascript:
+- https://polyfill.io/v3/polyfill.min.js?features=es6
+- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+- assets/mathjax.js
+nav:
+- Home: index.md
+- 'Chapter 1: Introduction':
+  - Overview: ch01_intro/chap_intro.md
+  - 1.1 About This Manual:
+    - 1.1 About This Manual: ch01_intro/Ch1.S1.md
+    - 1.1.1 Overview: ch01_intro/Ch1.S1.SS1.md
+    - 1.1.2 Chapter Summaries: ch01_intro/Ch1.S1.SS2.md
+  - 1.2 Q-Chem, Inc.:
+    - 1.2 Q-Chem, Inc.: ch01_intro/Ch1.S2.md
+    - 1.2.1 Contact Information and Customer Support: ch01_intro/Ch1.S2.SS1.md
+    - 1.2.2 About the Company: ch01_intro/Ch1.S2.SS2.md
+    - 1.2.3 Company Mission: ch01_intro/Ch1.S2.SS3.md
+  - 1.3 Q-Chem Features:
+    - 1.3 Q-Chem Features: ch01_intro/sect_features.md
+    - 1.3.1 Overview of Q-Chem Features: ch01_intro/Ch1.S3.SS1.md
+    - 1.3.2 New Features in Q-Chem 7.0: ch01_intro/Ch1.S3.SS2.md
+    - 1.3.3 New Features in Q-Chem 6.4: ch01_intro/sect_features-6.3.md
+    - 1.3.4 New Features in Q-Chem 6.3: ch01_intro/sect_features-6.3.md
+    - 1.3.5 New Features in Q-Chem 6.2: ch01_intro/sect_features-6.2.md
+    - 1.3.6 New Features in Q-Chem 6.1: ch01_intro/sect_features-6.1.md
+    - 1.3.7 New Features in Q-Chem 6.0: ch01_intro/sect_features-6.0.md
+    - 1.3.8 New Features in Q-Chem 5.4: ch01_intro/sect_features-5.4.md
+    - 1.3.9 New Features in Q-Chem 5.3: ch01_intro/sect_features-5.3.md
+    - 1.3.10 New Features in Q-Chem 5.2: ch01_intro/sect_features-5.2.md
+    - 1.3.11 New Features in Q-Chem 5.1: ch01_intro/sect_features-5.1.md
+    - 1.3.12 New Features in Q-Chem 5.0: ch01_intro/sect_features-5.0.md
+    - 1.3.13 New Features in Q-Chem 4.4: ch01_intro/sect_features-4.4.md
+    - 1.3.14 New Features in Q-Chem 4.3: ch01_intro/sect_features-4.3.md
+    - 1.3.15 New Features in Q-Chem 4.2: ch01_intro/sect_features-4.2.md
+    - 1.3.16 New Features in Q-Chem 4.1: ch01_intro/sect_features-4.1.md
+    - 1.3.17 New Features in Q-Chem 4.0.1: ch01_intro/sect_features-4.0.1.md
+    - 1.3.18 New Features in Q-Chem 4.0: ch01_intro/sect_features-4.0.md
+    - 1.3.19 Summary of Features in Q-Chem Versions 3. x: ch01_intro/Ch1.S3.SS19.md
+    - 1.3.20 Summary of Features Prior to Q-Chem 3.0: ch01_intro/Ch1.S3.SS20.md
+  - 1.4 Citing Q-Chem:
+    - 1.4 Citing Q-Chem: ch01_intro/sec_cite.md
+    - 1.4.1 Overview: ch01_intro/Ch1.S4.SS1.md
+- 'Chapter 2: Installation, Customization, and Execution':
+  - Overview: ch02_install/chap_install.md
+  - 2.1 Installing Q-Chem:
+    - 2.1 Installing Q-Chem: ch02_install/Ch2.S1.md
+    - 2.1.1 Downloading and Licensing: ch02_install/Ch2.S1.SS1.md
+    - 2.1.2 Installation Requirements: ch02_install/Ch2.S1.SS2.md
+    - 2.1.3 Q-Chem Auxiliary files ($QCAUX): ch02_install/Ch2.S1.SS3.md
+    - 2.1.4 Q-Chem Run-time Environment Variables: ch02_install/Ch2.S1.SS4.md
+    - 2.1.5 User Account Adjustments: ch02_install/Ch2.S1.SS5.md
+    - 2.1.6 Further Customization: ch02_install/sect_customization.md
+  - 2.2 Running Q-Chem:
+    - 2.2 Running Q-Chem: ch02_install/sect_running.md
+    - 2.2.1 General Usage: ch02_install/ssect_general-usage.md
+    - 2.2.2 Integration with IQmol: ch02_install/sect_iqmolinstall.md
+    - 2.2.3 Customizable Archive Files: ch02_install/Ch2.S2.SS3.md
+    - 2.2.4 Testing and Exploring Q-Chem: ch02_install/Ch2.S2.SS4.md
+- 'Chapter 3: Q-Chem Inputs':
+  - Overview: ch03_inputs/chap_inputs.md
+  - 3.1 IQmol:
+    - 3.1 IQmol: ch03_inputs/Ch3.S1.md
+    - 3.1.1 Overview: ch03_inputs/Ch3.S1.SS1.md
+  - 3.2 General Form:
+    - 3.2 General Form: ch03_inputs/Ch3.S2.md
+    - 3.2.1 Overview: ch03_inputs/Ch3.S2.SS1.md
+  - 3.3 Molecular Coordinate Input ($molecule):
+    - 3.3 Molecular Coordinate Input ($molecule): ch03_inputs/sect_molinput.md
+    - 3.3.1 Introduction: ch03_inputs/Ch3.S3.SS1.md
+    - 3.3.2 Specifying the Molecular Coordinates Manually: ch03_inputs/sect_molinput_coords.md
+    - 3.3.3 Reading Molecular Coordinates from a Previous Job or File: ch03_inputs/Ch3.S3.SS3.md
+  - '3.4 Job Specification: The $rem Input Section':
+    - '3.4 Job Specification: The $rem Input Section': ch03_inputs/sect_rem.md
+    - 3.4.1 Overview: ch03_inputs/Ch3.S4.SS1.md
+  - '3.5 Batch Jobs: Multiple Inputs in a Single File':
+    - '3.5 Batch Jobs: Multiple Inputs in a Single File': ch03_inputs/sec_multiple_jobs.md
+    - 3.5.1 Overview: ch03_inputs/Ch3.S5.SS1.md
+  - 3.6 Q-Chem Output File:
+    - 3.6 Q-Chem Output File: ch03_inputs/Ch3.S6.md
+    - 3.6.1 Overview: ch03_inputs/Ch3.S6.SS1.md
+- 'Chapter 4: Self-Consistent Field Ground-State Methods':
+  - Overview: ch04_scf/chap_scf.md
+  - 4.1 Introduction:
+    - 4.1 Introduction: ch04_scf/Ch4.S1.md
+    - 4.1.1 Overview: ch04_scf/Ch4.S1.SS1.md
+  - 4.2 Theoretical Background:
+    - 4.2 Theoretical Background: ch04_scf/sec_SCF_theory.md
+    - 4.2.1 SCF and LCAO Approximations: ch04_scf/Ch4.S2.SS1.md
+    - 4.2.2 Hartree-Fock Theory: ch04_scf/Ch4.S2.SS2.md
+  - 4.3 Basic SCF Job Control:
+    - 4.3 Basic SCF Job Control: ch04_scf/sec_SCF_job-control.md
+    - 4.3.1 Introduction: ch04_scf/Ch4.S3.SS1.md
+    - 4.3.2 Job Control: ch04_scf/Ch4.S3.SS2.md
+    - 4.3.3 Additional Options: ch04_scf/sub_SCF_addOps.md
+    - 4.3.4 Examples: ch04_scf/Ch4.S3.SS4.md
+    - 4.3.5 Symmetry: ch04_scf/sec_symm.md
+  - 4.4 SCF Initial Guess:
+    - 4.4 SCF Initial Guess: ch04_scf/sect_initialguess.md
+    - 4.4.1 Introduction: ch04_scf/Ch4.S4.SS1.md
+    - 4.4.2 Initial Guess Types: ch04_scf/sect_guess.md
+    - 4.4.3 Reading MOs from Disk: ch04_scf/sect_readmos.md
+    - 4.4.4 Modifying the Occupied Molecular Orbitals: ch04_scf/sect_occupied.md
+    - 4.4.5 Basis Set Projection: ch04_scf/sect_projection.md
+  - 4.5 Converging SCF Calculations:
+    - 4.5 Converging SCF Calculations: ch04_scf/sect_convergence.md
+    - 4.5.1 Introduction: ch04_scf/Ch4.S5.SS1.md
+    - 4.5.2 Basic Convergence Control Options: ch04_scf/Ch4.S5.SS2.md
+    - 4.5.3 Direct Inversion in the Iterative Subspace (DIIS): ch04_scf/sect_diis.md
+    - 4.5.4 Damping: ch04_scf/sect_damp.md
+    - 4.5.5 Level-Shifting: ch04_scf/sect_lshift.md
+    - 4.5.6 Pseudo-Fractional Occupation Number Method (pFON): ch04_scf/sect_pFNO.md
+    - 4.5.7 Geometric Direct Minimization (GDM): ch04_scf/sect_gdm.md
+    - 4.5.8 Direct Minimization (DM): ch04_scf/Ch4.S5.SS8.md
+    - 4.5.9 Relaxed Constraint Algorithm (RCA): ch04_scf/Ch4.S5.SS9.md
+    - 4.5.10 Augmented Roothaan Hall Energy DIIS (ADIIS): ch04_scf/sub_adiis.md
+    - 4.5.11 Newton Methods: ch04_scf/sub_newton.md
+    - 4.5.12 User-Customized Hybrid SCF Algorithm: ch04_scf/sub_custom_algorithm.md
+    - 4.5.13 Black-box Robust SCF Pipelines: ch04_scf/sub_scf_robust_pipelines.md
+    - 4.5.14 Maximum Overlap Method (MOM): ch04_scf/topic_mom.md
+    - 4.5.15 Square Gradient Minimization (SGM): ch04_scf/sect_SGM-SCF.md
+    - 4.5.16 State-Targeted Energy Projection (STEP): ch04_scf/sect_STEP-SCF.md
+    - 4.5.17 Internal Stability Analysis and Automated Correction for Energy Minima: ch04_scf/sub_stability_analysis.md
+    - 4.5.18 Orbital Energy Scaling in Canonical ROSCF Calculations: ch04_scf/sub_ROHF-DODS.md
+  - 4.6 Large Molecules and Linear Scaling Methods:
+    - 4.6 Large Molecules and Linear Scaling Methods: ch04_scf/sec_O(N).md
+    - 4.6.1 Introduction: ch04_scf/Ch4.S6.SS1.md
+    - 4.6.2 Continuous Fast Multipole Method (CFMM): ch04_scf/sect_cfmm.md
+    - 4.6.3 Linear Scaling Exchange (LinK) Matrix Evaluation: ch04_scf/sect_link.md
+    - 4.6.4 Incremental and Variable Thresh Fock Matrix Building: ch04_scf/sect_incfock.md
+    - 4.6.5 Fourier Transform Coulomb Method: ch04_scf/sect_FTC.md
+    - 4.6.6 Resolution of the Identity Fock Matrix Methods: ch04_scf/sect_ri-DFT.md
+    - 4.6.7 PARI-K Fast Exchange Algorithm: ch04_scf/sect_pari-k.md
+    - 4.6.8 occ-RI-K Exchange Algorithm: ch04_scf/subsec_occrik.md
+    - 4.6.9 Seminumerical Exchange (SNK) Matrix Evaluation: ch04_scf/sect_snk.md
+  - 4.7 Dual-Basis Self-Consistent Field Calculations:
+    - 4.7 Dual-Basis Self-Consistent Field Calculations: ch04_scf/sect_dualbasis.md
+    - 4.7.1 Introduction: ch04_scf/Ch4.S7.SS1.md
+    - 4.7.2 Dual-Basis MP2: ch04_scf/topic_dbmp2.md
+    - 4.7.3 Dual-Basis Dynamics: ch04_scf/subsec_dual-dyn.md
+    - 4.7.4 Basis-Set Pairings: ch04_scf/Ch4.S7.SS4.md
+    - 4.7.5 Job Control and Example: ch04_scf/Ch4.S7.SS5.md
+  - 4.8 Hartree-Fock and Density-Functional Perturbative Corrections:
+    - 4.8 Hartree-Fock and Density-Functional Perturbative Corrections: ch04_scf/sect_HFPC.md
+    - 4.8.1 Introduction: ch04_scf/Ch4.S8.SS1.md
+    - 4.8.2 Job Control: ch04_scf/Ch4.S8.SS2.md
+    - 4.8.3 Examples: ch04_scf/Ch4.S8.SS3.md
+  - 4.9 Unconventional SCF Calculations:
+    - 4.9 Unconventional SCF Calculations: ch04_scf/Ch4.S9.md
+    - 4.9.1 Polarized Atomic Orbital (PAO) Calculations: ch04_scf/Ch4.S9.SS1.md
+    - 4.9.2 SCF Metadynamics: ch04_scf/sec_SCF-meta-dyn.md
+    - 4.9.3 Multiple SCF Solutions for Non-Orthogonal CI: ch04_scf/subsubsec_SCFMetadynNOCI.md
+    - 4.9.4 Holomorphic Hartree-Fock Theory: ch04_scf/sec_HoloHF.md
+    - 4.9.5 Non-Hermitian SCF with complex basis functions: ch04_scf/sec_cbfscf.md
+    - 4.9.6 Relativistic Effects: ch04_scf/sec_x2c.md
+  - 4.10 Extended Tight-Binding Methods (xTB):
+    - 4.10 Extended Tight-Binding Methods (xTB): ch04_scf/sec_xtb.md
+    - 4.10.1 Introduction: ch04_scf/Ch4.S10.SS1.md
+    - 4.10.2 Job Control: ch04_scf/Ch4.S10.SS2.md
+    - 4.10.3 Examples: ch04_scf/Ch4.S10.SS3.md
+- 'Chapter 5: Density Functional Theory':
+  - Overview: ch05_dft/chap_DFT.md
+  - 5.1 Introduction:
+    - 5.1 Introduction: ch05_dft/Ch5.S1.md
+    - 5.1.1 Overview: ch05_dft/Ch5.S1.SS1.md
+  - 5.2 Kohn-Sham Density Functional Theory: ch05_dft/sec_Kohn-Sham.md
+  - 5.3 Overview of Available Functionals:
+    - 5.3 Overview of Available Functionals: ch05_dft/sect_XCfuncs.md
+    - 5.3.1 Introduction: ch05_dft/Ch5.S3.SS1.md
+    - 5.3.2 Suggested Density Functionals: ch05_dft/sect_DFTsugg.md
+    - 5.3.3 Exchange Functionals: ch05_dft/sect_DFTexchange.md
+    - 5.3.4 Correlation Functionals: ch05_dft/sect_DFTcorrelation.md
+    - 5.3.5 Exchange-Correlation Functionals: ch05_dft/sect_DFTexchangecorrelation.md
+    - 5.3.6 Specialized Functionals: ch05_dft/Ch5.S3.SS6.md
+    - 5.3.7 User-Defined Density Functionals: ch05_dft/sect_userxc.md
+    - 5.3.8 Semi-Empirical Functionals: ch05_dft/Ch5.S3.SS8.md
+  - 5.4 Basic DFT Job Control:
+    - 5.4 Basic DFT Job Control: ch05_dft/sect_DFT_METHOD.md
+    - 5.4.1 Overview: ch05_dft/Ch5.S4.SS1.md
+  - 5.5 DFT Numerical Quadrature:
+    - 5.5 DFT Numerical Quadrature: ch05_dft/sect_quadrature.md
+    - 5.5.1 Introduction: ch05_dft/Ch5.S5.SS1.md
+    - 5.5.2 Angular Grids: ch05_dft/ssec_Lebedev.md
+    - 5.5.3 Standard Quadrature Grids: ch05_dft/sect_standard-quad.md
+    - 5.5.4 Consistency Check and Cutoffs: ch05_dft/Ch5.S5.SS4.md
+    - 5.5.5 Multi-resolution Exchange-Correlation (MRXC) Method: ch05_dft/sect_mrXC.md
+    - 5.5.6 Incremental DFT: ch05_dft/Ch5.S5.SS6.md
+  - 5.6 Range-Separated Hybrid Density Functionals:
+    - 5.6 Range-Separated Hybrid Density Functionals: ch05_dft/sect_LRC-DFT.md
+    - 5.6.1 Introduction: ch05_dft/Ch5.S6.SS1.md
+    - 5.6.2 Semi-Empirical RSH Functionals: ch05_dft/subsec_wb97series.md
+    - 5.6.3 User-Defined RSH Functionals: ch05_dft/ex_ks-wb97xd4.md
+    - 5.6.4 Tuned RSH Functionals: ch05_dft/subsubsec_w-tuning.md
+  - 5.7 DFT Methods for van der Waals Interactions:
+    - 5.7 DFT Methods for van der Waals Interactions: ch05_dft/topic_dispersion.md
+    - 5.7.1 Introduction: ch05_dft/Ch5.S7.SS1.md
+    - 5.7.2 Non-Local Correlation (NLC) Functionals: ch05_dft/sect_VV10.md
+    - '5.7.3 Empirical Dispersion Corrections: DFT-D': ch05_dft/subsec_DFT-D.md
+    - 5.7.4 Exchange-Dipole Model (XDM): ch05_dft/sect_XDM.md
+    - 5.7.5 Tkatchenko-Scheffler van der Waals Model (TS-vdW): ch05_dft/sect_TS.md
+    - 5.7.6 Many-Body Dispersion (MBD) Method: ch05_dft/sect_MBD.md
+  - 5.8 Empirical Corrections for Basis Set Superposition Error:
+    - 5.8 Empirical Corrections for Basis Set Superposition Error: ch05_dft/Ch5.S8.md
+    - 5.8.1 Overview: ch05_dft/Ch5.S8.SS1.md
+  - 5.9 Double-Hybrid Density Functional Theory:
+    - 5.9 Double-Hybrid Density Functional Theory: ch05_dft/subsec_dhdft.md
+    - 5.9.1 Overview: ch05_dft/Ch5.S9.SS1.md
+  - 5.10 Asymptotically Corrected Exchange-Correlation Potentials:
+    - 5.10 Asymptotically Corrected Exchange-Correlation Potentials: ch05_dft/sect_asymp-xc.md
+    - 5.10.1 Introduction: ch05_dft/Ch5.S10.SS1.md
+    - 5.10.2 LB94 Scheme: ch05_dft/sect_LB94.md
+    - 5.10.3 Localized Fermi-Amaldi (LFA) Schemes: ch05_dft/sect_LFA.md
+  - 5.11 Methods Based on “Constrained” DFT:
+    - 5.11 Methods Based on “Constrained” DFT: ch05_dft/topic_cdft.md
+    - 5.11.1 Introduction: ch05_dft/Ch5.S11.SS1.md
+    - 5.11.2 Manner of Counting Electrons: ch05_dft/Ch5.S11.SS2.md
+    - 5.11.3 Job Control: ch05_dft/Ch5.S11.SS3.md
+    - 5.11.4 Examples: ch05_dft/Ch5.S11.SS4.md
+    - 5.11.5 Configuration Interaction with Constrained DFT (CDFT-CI): ch05_dft/sect_CDFT-CI.md
+    - 5.11.6 CDFT-CI Job Control and Examples: ch05_dft/Ch5.S11.SS6.md
+  - 5.12 Unconventional DFT Methods:
+    - 5.12 Unconventional DFT Methods: ch05_dft/Ch5.S12.md
+    - 5.12.1 Density-Corrected DFT: ch05_dft/subsec_DC-DFT.md
+    - 5.12.2 Derivative Discontinuity Restoration: ch05_dft/sect_foaDD.md
+    - 5.12.3 Thermally-Assisted-Occupation DFT (TAO-DFT): ch05_dft/ex_ptao.md
+  - 5.13 Complex Absorbing Potential DFT Methods for the Description of Metastable Electronic States:
+    - 5.13 Complex Absorbing Potential DFT Methods for the Description of Metastable Electronic States: ch05_dft/topic_CAP-DFT.md
+    - 5.13.1 Introduction: ch05_dft/Ch5.S13.SS1.md
+    - 5.13.2 CAP-DFT Job Control: ch05_dft/sub_CAPDFT_jobcontrol.md
+    - 5.13.3 Density Functional Approximations Available for Use with Complex Absorbing Potentials: ch05_dft/sub_XCfuncs_CAP.md
+    - 5.13.4 CAP-DFT Job Examples: ch05_dft/Ch5.S13.SS4.md
+- 'Chapter 6: Wave Function-Based Correlation Methods':
+  - Overview: ch06_correlation/chap_correlation.md
+  - 6.1 Introduction:
+    - 6.1 Introduction: ch06_correlation/sect_c5Intro.md
+    - 6.1.1 Overview: ch06_correlation/Ch6.S1.SS1.md
+  - 6.2 Treatment and the Definition of Core Electrons:
+    - 6.2 Treatment and the Definition of Core Electrons: ch06_correlation/sec_core.md
+    - 6.2.1 Overview: ch06_correlation/Ch6.S2.SS1.md
+  - 6.3 Møller-Plesset Perturbation Theory:
+    - 6.3 Møller-Plesset Perturbation Theory: ch06_correlation/topic_mp2.md
+    - 6.3.1 Overview: ch06_correlation/Ch6.S3.SS1.md
+  - 6.4 Exact MP2 Methods:
+    - 6.4 Exact MP2 Methods: ch06_correlation/sect_exactmp.md
+    - 6.4.1 Algorithm: ch06_correlation/sect_mpalgor.md
+    - 6.4.2 Algorithm Control and Customization: ch06_correlation/Ch6.S4.SS2.md
+  - 6.5 Local MP2 Methods:
+    - 6.5 Local MP2 Methods: ch06_correlation/topic_lmp2.md
+    - 6.5.1 Local Triatomics in Molecules (TRIM) Model: ch06_correlation/sect_trim.md
+    - 6.5.2 EPAO Evaluation Options: ch06_correlation/Ch6.S5.SS2.md
+    - 6.5.3 Numerical Sparsity Based Implementation: ch06_correlation/Ch6.S5.SS3.md
+  - 6.6 Auxiliary Basis (Resolution of the Identity) MP2 Methods:
+    - 6.6 Auxiliary Basis (Resolution of the Identity) MP2 Methods: ch06_correlation/topic_rimp2.md
+    - 6.6.1 Introduction: ch06_correlation/Ch6.S6.SS1.md
+    - 6.6.2 RI-MP2 Energies and Gradients.: ch06_correlation/sect_rimp2.md
+    - 6.6.3 OpenMP Implementation of RI-MP2: ch06_correlation/Ch6.S6.SS3.md
+    - 6.6.4 GPU Implementation of RI-MP2: ch06_correlation/sect_gpu-rimp2.md
+    - 6.6.5 Spin-Biased MP2 Methods (SCS-MP2, SOS-MP2, and MOS-MP2): ch06_correlation/topic_sbmp2.md
+    - 6.6.6 Orbital-Optimized MP2: ch06_correlation/sec_oomp2.md
+    - 6.6.7 Brueckner CC2: ch06_correlation/Ch6.S6.SS7.md
+    - 6.6.8 RI-TRIM MP2 Energies: ch06_correlation/Ch6.S6.SS8.md
+    - 6.6.9 Dual-Basis MP2: ch06_correlation/Ch6.S6.SS9.md
+    - 6.6.10 RI-MP2 Method for Complex Basis Functions: ch06_correlation/sec_cbf_rimp2.md
+    - 6.6.11 RI-MP2 Method with the Laplace Transformation: ch06_correlation/sec_lt_rimp2.md
+  - 6.7 Attenuated MP2:
+    - 6.7 Attenuated MP2: ch06_correlation/topic_attmp2.md
+    - 6.7.1 Overview: ch06_correlation/Ch6.S7.SS1.md
+  - 6.8 Size-Consistent Brillouin-Wigner Perturbation Theory:
+    - 6.8 Size-Consistent Brillouin-Wigner Perturbation Theory: ch06_correlation/topic_bws2.md
+    - 6.8.1 Introduction: ch06_correlation/Ch6.S8.SS1.md
+    - 6.8.2 BW-s2 Job Control: ch06_correlation/sect_bws2_jobcontrol.md
+  - 6.9 Maximum Physical Regularisation Perturbation Theory:
+    - 6.9 Maximum Physical Regularisation Perturbation Theory: ch06_correlation/topic_mpr-bws2.md
+    - 6.9.1 Introduction: ch06_correlation/Ch6.S9.SS1.md
+    - 6.9.2 MPR-BWs2 Job Control: ch06_correlation/Ch6.S9.SS2.md
+  - 6.10 Direct Random Phase Approximation Methods:
+    - 6.10 Direct Random Phase Approximation Methods: ch06_correlation/topic_drpa.md
+    - 6.10.1 Introduction: ch06_correlation/Ch6.S10.SS1.md
+    - 6.10.2 dRPA Job Control: ch06_correlation/Ch6.S10.SS2.md
+  - 6.11 Resolution-of-Identity MP3:
+    - 6.11 Resolution-of-Identity MP3: ch06_correlation/topic_rimp3.md
+    - 6.11.1 Introduction: ch06_correlation/Ch6.S11.SS1.md
+    - 6.11.2 RI-MP3 Job Control: ch06_correlation/Ch6.S11.SS2.md
+    - 6.11.3 Examples: ch06_correlation/Ch6.S11.SS3.md
+  - 6.12 Coupled-Cluster Methods:
+    - 6.12 Coupled-Cluster Methods: ch06_correlation/topic_ccsd.md
+    - 6.12.1 Introduction: ch06_correlation/Ch6.S12.SS1.md
+    - 6.12.2 Coupled Cluster Singles and Doubles (CCSD): ch06_correlation/Ch6.S12.SS2.md
+    - 6.12.3 Coupled Cluster Singles, Doubles and Triples (CCSDT): ch06_correlation/topic_ccsdt.md
+    - 6.12.4 Second-Order Approximate Coupled Cluster Singles and Doubles (CC2): ch06_correlation/topic_cc2.md
+    - 6.12.5 Stochastic CC2 and CCSD: ch06_correlation/sec_Stochastic_CC2.md
+    - 6.12.6 Size-Consistent Brillouin-Wigner Second-Order Approximate Coupled Cluster Singles and Doubles (BWs-CC2): ch06_correlation/topic_bws-cc2.md
+    - 6.12.7 Quadratic Configuration Interaction (QCISD): ch06_correlation/topic_qcisd.md
+    - 6.12.8 Optimized Orbital Coupled Cluster Doubles (OD): ch06_correlation/topic_odcc.md
+    - 6.12.9 Quadratic Coupled Cluster Doubles (QCCD): ch06_correlation/topic_qccd.md
+    - 6.12.10 Resolution-of-the-Identity with CC (RI-CC): ch06_correlation/topic_ricc.md
+    - 6.12.11 Cholesky Decomposition with CC (CD-CC): ch06_correlation/topic_cdcc.md
+    - 6.12.12 Job Control Options: ch06_correlation/sec_CCcontrols.md
+    - 6.12.13 Examples: ch06_correlation/ex_CDCCSD.md
+  - 6.13 Non-Iterative Corrections to Coupled Cluster Energies:
+    - 6.13 Non-Iterative Corrections to Coupled Cluster Energies: ch06_correlation/topic_ccni.md
+    - 6.13.1 (T) Triples Corrections: ch06_correlation/Ch6.S13.SS1.md
+    - 6.13.2 (2) Triples and Quadruples Corrections: ch06_correlation/Ch6.S13.SS2.md
+    - 6.13.3 (dT) and (fT) corrections: ch06_correlation/sec_dT.md
+    - 6.13.4 Job Control Options: ch06_correlation/Ch6.S13.SS4.md
+    - 6.13.5 Examples: ch06_correlation/Ch6.S13.SS5.md
+  - 6.14 Coupled Cluster Active Space Methods:
+    - 6.14 Coupled Cluster Active Space Methods: ch06_correlation/sect_ccactive.md
+    - 6.14.1 Introduction: ch06_correlation/Ch6.S14.SS1.md
+    - 6.14.2 VOD and VOD(2) Methods: ch06_correlation/topic_vod.md
+    - 6.14.3 VQCCD: ch06_correlation/sect_vqccd.md
+    - 6.14.4 CCVB-SD: ch06_correlation/topic_ccvb.md
+    - 6.14.5 Local Pair Models for Valence Correlations Beyond Doubles: ch06_correlation/topic_lpcc.md
+    - 6.14.6 Convergence Strategies and More Advanced Options: ch06_correlation/sect_activeopt.md
+  - 6.15 Alternative Orbitals for Correlated Calculations:
+    - 6.15 Alternative Orbitals for Correlated Calculations: ch06_correlation/sec_AltOrbs.md
+    - 6.15.1 Frozen Natural Orbitals: ch06_correlation/sec_FNOCC.md
+    - 6.15.2 Non-Hartree-Fock Orbitals in Correlated Calculations: ch06_correlation/sub_ccdft.md
+  - 6.16 Analytic Gradients and Properties for Coupled-Cluster Methods:
+    - 6.16 Analytic Gradients and Properties for Coupled-Cluster Methods: ch06_correlation/sec_CCGRAD.md
+    - 6.16.1 Overview: ch06_correlation/Ch6.S16.SS1.md
+  - 6.17 Memory Options and Parallelization of Coupled-Cluster Calculations:
+    - 6.17 Memory Options and Parallelization of Coupled-Cluster Calculations: ch06_correlation/CCparallel.md
+    - 6.17.1 Introduction: ch06_correlation/Ch6.S17.SS1.md
+    - 6.17.2 Serial and Shared Memory Parallel Jobs: ch06_correlation/Ch6.S17.SS2.md
+    - 6.17.3 Summary of Keywords: ch06_correlation/Ch6.S17.SS3.md
+  - 6.18 Using Single-Precision Arithmetic in Coupled-Cluster Calculations:
+    - 6.18 Using Single-Precision Arithmetic in Coupled-Cluster Calculations: ch06_correlation/sec_SP_CC.md
+    - 6.18.1 Overview: ch06_correlation/Ch6.S18.SS1.md
+  - 6.19 Simplified Coupled-Cluster Methods Based on a Perfect-Pairing Active Space:
+    - 6.19 Simplified Coupled-Cluster Methods Based on a Perfect-Pairing Active Space: ch06_correlation/sect_pairing.md
+    - 6.19.1 Introduction: ch06_correlation/Ch6.S19.SS1.md
+    - 6.19.2 Perfect Pairing (PP): ch06_correlation/subsec_PP.md
+    - 6.19.3 Coupled Cluster Valence Bond (CCVB): ch06_correlation/subsec_CCVB.md
+    - '6.19.4 Second-Order Correction to Perfect Pairing: PP(2)': ch06_correlation/subsec_PP(2).md
+    - 6.19.5 Other GVBMAN Methods and Options: ch06_correlation/subsec_GVBMAN_other.md
+  - 6.20 Complete Active Space Methods:
+    - 6.20 Complete Active Space Methods: ch06_correlation/sec_casscf.md
+    - 6.20.1 Introduction & Theory: ch06_correlation/subsec_casscf_intro.md
+    - 6.20.2 CAS-CI and CASSCF Job Control Options: ch06_correlation/subsec_casscf_rems.md
+  - 6.21 Incremental Correlation Methods:
+    - 6.21 Incremental Correlation Methods: ch06_correlation/sect_ifci.md
+    - 6.21.1 Introduction: ch06_correlation/Ch6.S21.SS1.md
+    - 6.21.2 Theory: ch06_correlation/sect_icmtheory.md
+    - 6.21.3 Job Control for iFCI: ch06_correlation/sect_icmrems.md
+    - 6.21.4 Example: ch06_correlation/sect_icmexamples.md
+  - 6.22 Adaptive Sampling Configuration Interaction Method:
+    - 6.22 Adaptive Sampling Configuration Interaction Method: ch06_correlation/sec_asci.md
+    - 6.22.1 Introduction: ch06_correlation/subsec_asci_intro.md
+    - 6.22.2 Theory: ch06_correlation/subsec_asci_theory.md
+    - 6.22.3 ASCI Job Control: ch06_correlation/Ch6.S22.SS3.md
+  - 6.23 Variational Two-Electron Reduced-Density-Matrix Methods:
+    - 6.23 Variational Two-Electron Reduced-Density-Matrix Methods: ch06_correlation/sec_v2rdm.md
+    - 6.23.1 Introduction: ch06_correlation/subsec_v2rdm_intro.md
+    - 6.23.2 Theory: ch06_correlation/subsec_v2rdm_theory.md
+    - 6.23.3 v2RDM Job Control: ch06_correlation/Ch6.S23.SS3.md
+    - 6.23.4 Examples: ch06_correlation/Ch6.S23.SS4.md
+- 'Chapter 7: Open-Shell and Excited-State Methods':
+  - Overview: ch07_excited/chap_excited.md
+  - 7.1 General Excited-State Features:
+    - 7.1 General Excited-State Features: ch07_excited/sect_ExStatesSummary.md
+    - 7.1.1 Overview: ch07_excited/Ch7.S1.SS1.md
+  - 7.2 Uncorrelated Wave Function Methods:
+    - 7.2 Uncorrelated Wave Function Methods: ch07_excited/sect_noncorr.md
+    - 7.2.1 Introduction: ch07_excited/Ch7.S2.SS1.md
+    - 7.2.2 Configuration Interaction with Single Substitutions (CIS): ch07_excited/subsec_CIS.md
+    - 7.2.3 CIS Methods with Extended Excitation Manifolds: ch07_excited/Ch7.S2.SS3.md
+    - 7.2.4 Job Control Options: ch07_excited/sec_CIS-jobcontrol.md
+  - 7.3 Time-Dependent Density Functional Theory (TDDFT):
+    - 7.3 Time-Dependent Density Functional Theory (TDDFT): ch07_excited/sect_tddft.md
+    - 7.3.1 Brief Introduction: ch07_excited/sect_tddftintro.md
+    - 7.3.2 Charge-Transfer Metrics: ch07_excited/sec_CT-metrics.md
+    - 7.3.3 TDDFT within a Reduced Single-Excitation Space: ch07_excited/subsec_TRNSS.md
+    - 7.3.4 Spin-Flip TDDFT: ch07_excited/sect_sftddft.md
+    - 7.3.5 Electron-Affinity (EA-) TDDFT: ch07_excited/Ch7.S3.SS5.md
+    - 7.3.6 Job Control for TDDFT: ch07_excited/subsec_TDDFT-Control.md
+    - 7.3.7 TDDFT + PCM for Excitation and Emission Energies in Solution: ch07_excited/subsec_tddft-cPCM.md
+    - 7.3.8 Analytic Excited-State Hessian in TDDFT: ch07_excited/subsec_tddft-hessian.md
+    - 7.3.9 Electric Circular Dichroism: ch07_excited/sec_TDDFTECD.md
+    - 7.3.10 Spin-Orbit Coupling: ch07_excited/Ch7.S3.SS10.md
+    - 7.3.11 CIS-1D and TDDFT-1D: ch07_excited/Ch7.S3.SS11.md
+    - 7.3.12 Examples: ch07_excited/Ch7.S3.SS12.md
+  - 7.4 Real-Time SCF Methods:
+    - 7.4 Real-Time SCF Methods: ch07_excited/sec_TDKS.md
+    - 7.4.1 Introduction & Theory: ch07_excited/sec_TDKS_theory.md
+    - 7.4.2 Job Control: ch07_excited/sec_TDKS_JobControl.md
+    - 7.4.3 Calculation of Absorption Spectra: ch07_excited/sec_TDKS_Spectra.md
+    - 7.4.4 Calculation of High-Harmonic Generation (HHG) Spectra: ch07_excited/sec_TDKS_HHG_Spectra.md
+    - 7.4.5 Real-Time Extension of TAO-DFT (RT-TAO): ch07_excited/Ch7.S4.SS5.md
+  - 7.5 Non-Orthogonal Configuration Interaction (NOCI):
+    - 7.5 Non-Orthogonal Configuration Interaction (NOCI): ch07_excited/subsec_NOCI.md
+    - 7.5.1 Introduction: ch07_excited/Ch7.S5.SS1.md
+    - 7.5.2 Job Control: ch07_excited/subsec_LIBNOCI.md
+  - 7.6 Non-Orthogonal CIS and Static Exchange (STEX):
+    - 7.6 Non-Orthogonal CIS and Static Exchange (STEX): ch07_excited/subsec_NOCIS.md
+    - 7.6.1 Non-Orthogonal CIS (NOCIS): ch07_excited/Ch7.S6.SS1.md
+    - 7.6.2 Static Exchange: ch07_excited/subsec_STEX.md
+    - 7.6.3 One-Center NOCIS (1C-NOCIS): ch07_excited/Ch7.S6.SS3.md
+    - 7.6.4 Job Control: ch07_excited/Ch7.S6.SS4.md
+  - 7.7 Restricted Open-Shell and Δ SCF Methods:
+    - 7.7 Restricted Open-Shell and Δ SCF Methods: ch07_excited/sec_DeltaSCF.md
+    - 7.7.1 Introduction: ch07_excited/Ch7.S7.SS1.md
+    - 7.7.2 Maximum Overlap Method: ch07_excited/ex_OpSing.md
+    - 7.7.3 Approximate Spin Purification: ch07_excited/sect_OpSing.md
+    - 7.7.4 Restricted Open-Shell Kohn-Sham Method: ch07_excited/ex_ESROKS.md
+    - 7.7.5 Squared-Gradient Minimization: ch07_excited/ex_BEDSCF.md
+    - 7.7.6 Freeze-and-Release Calculations: ch07_excited/ex_FRZSGM.md
+    - 7.7.7 ALMO-SGM Method: ch07_excited/ex_ALMOSGM.md
+    - 7.7.8 State-Targeted Energy Projection: ch07_excited/ex_ROSTEP.md
+    - 7.7.9 Non-Equilibrium Solvation for ROKS and Δ SCF: ch07_excited/sect_ROKS_neq-PCM.md
+    - 7.7.10 Δ SCF Driver: ch07_excited/ex_DeltaSCF_Basic.md
+  - '7.8 Correlated Excited State Methods: The CIS(D) Family':
+    - '7.8 Correlated Excited State Methods: The CIS(D) Family': ch07_excited/sect_excorr.md
+    - 7.8.1 Introduction: ch07_excited/Ch7.S8.SS1.md
+    - 7.8.2 CIS(D) Theory: ch07_excited/topic_cisd.md
+    - 7.8.3 Resolution of the Identity CIS(D) Methods: ch07_excited/topic_ricisd.md
+    - 7.8.4 SOS-CIS(D) Model: ch07_excited/topic_sos-cisd.md
+    - 7.8.5 SOS-CIS(D 0 ) Model: ch07_excited/sect_SOS-CIS(D0).md
+    - 7.8.6 CIS(D) Job Control and Examples: ch07_excited/Ch7.S8.SS6.md
+    - '7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D 0 ): Job Controls and Examples': ch07_excited/subsect_RI-CIS(D).md
+  - 7.9 Coupled-Cluster Excited-State and Open-Shell Methods:
+    - 7.9 Coupled-Cluster Excited-State and Open-Shell Methods: ch07_excited/topic_eomcc.md
+    - 7.9.1 Introduction: ch07_excited/Ch7.S9.SS1.md
+    - 7.9.2 Excited States via EOM-EE-CCSD and EOM-CCSDT: ch07_excited/Ch7.S9.SS2.md
+    - 7.9.3 EOM-XX-CCSD and CI Suite of Methods: ch07_excited/sec_EOMEE.md
+    - 7.9.4 EOM-XX-CC2: ch07_excited/sec_eomcc2.md
+    - 7.9.5 Further approximate EOM-CC Methods: ch07_excited/Ch7.S9.SS5.md
+    - 7.9.6 Spin-Flip Methods for Di- and Triradicals: ch07_excited/sec_EOMSF.md
+    - 7.9.7 EOM-DIP-CCSD: ch07_excited/Ch7.S9.SS7.md
+    - 7.9.8 EOM-DEA-CCSD: ch07_excited/sec_eomdea.md
+    - 7.9.9 EOM-CC Calculations of Core-Level States: ch07_excited/sub_cvs_eom.md
+    - 7.9.10 EOM-CC Calculations of Metastable States: ch07_excited/sub_cc_cs_cap.md
+    - 7.9.11 Auger Spectra and Lifetimes of Core-Level States: ch07_excited/sec_Auger.md
+    - 7.9.12 Partial Auger Decay Widths from Complex-Variable Calculations: ch07_excited/sec_AugerComplexVariable.md
+    - 7.9.13 Charge Stabilization for EOM-DIP with Unstable References and Other Methods: ch07_excited/sec_CAGE.md
+    - 7.9.14 Frozen Natural Orbitals in CC, IP-CC, and SF-CC Calculations: ch07_excited/sec_FNO.md
+    - 7.9.15 Single-Precision Arithmetic in EOM-CC Calculations: ch07_excited/sec_SP_EOM_CC.md
+    - 7.9.16 EOM-CC Guess Formation and Iterative Diagonalization: ch07_excited/subsec_EOM-CC-diag.md
+    - 7.9.17 Using Projectors for Computing High-Lying EOM-CC Ctates: ch07_excited/subsec_EOM-CC-ivproj.md
+    - 7.9.18 EOM-CC Job Control: ch07_excited/sub_ccjobcontol.md
+    - 7.9.19 Examples: ch07_excited/ex_CAPlibwfa.md
+    - 7.9.20 Non-Hartree–Fock Orbitals in EOM Calculations: ch07_excited/Ch7.S9.SS20.md
+    - 7.9.21 Analytic Gradients and Properties for CCSD and EOM-XX-CCSD: ch07_excited/sec_EOMGRAD.md
+    - 7.9.22 EOM-CC Optimization and Properties Job Control: ch07_excited/Ch7.S9.SS22.md
+    - 7.9.23 EOM-CCSDT for High Accuracy (CCMAN2 only): ch07_excited/subsec_EOM-CCSDT.md
+    - 7.9.24 EOM(2,3) Methods for Higher-Accuracy and Problematic Situations (CCMAN only): ch07_excited/sec_EOM23.md
+    - '7.9.25 Active-Space EOM-CC(2,3): Tricks of the Trade (CCMAN only)': ch07_excited/Ch7.S9.SS25.md
+    - 7.9.26 Job Control for EOM-CC(2,3): ch07_excited/Ch7.S9.SS26.md
+    - 7.9.27 Non-Iterative Triples Corrections to EOM-CCSD and CCSD: ch07_excited/sec_SD3.md
+    - 7.9.28 Potential Energy Surface Crossing Minimization: ch07_excited/sec_eomcc_mecp.md
+    - 7.9.29 Dyson Orbitals for Ionized or Attached States within EOM-CCSD: ch07_excited/topic_dyson.md
+    - 7.9.30 Interpretation of EOM/CI Wave Functions and Orbital Numbering: ch07_excited/ex_eomip-wfa.md
+    - 7.9.31 Interface with OpenFermion Package for Quantum Computing: ch07_excited/ex_qis.md
+  - 7.10 The ADC( n ) Family of Correlated Excited-State Methods:
+    - 7.10 The ADC( n ) Family of Correlated Excited-State Methods: ch07_excited/sect_exadc.md
+    - 7.10.1 Introduction: ch07_excited/Ch7.S10.SS1.md
+    - 7.10.2 The Algebraic Diagrammatic Construction (ADC) Scheme: ch07_excited/sec_adc_pp_scheme.md
+    - 7.10.3 IP- and EA-ADC: ch07_excited/sec_IP_and_EA_ADC.md
+    - 7.10.4 Resolution of the Identity ADC Methods: ch07_excited/sec_ADC_RI.md
+    - 7.10.5 Spin Opposite Scaling ADC(2) Models: ch07_excited/sect_SOS-ADC.md
+    - 7.10.6 Regularised Excited States with BWs-ADC: ch07_excited/sect_BWS-ADC.md
+    - 7.10.7 Core-Excitation ADC Methods: ch07_excited/sect_CVS-ADC.md
+    - 7.10.8 Spin-Flip ADC Methods: ch07_excited/sect_SF-ADC.md
+    - 7.10.9 CAP/ADC Methods for the Description of Metastable Electronic States: ch07_excited/sec_CAP_ADC.md
+    - 7.10.10 Properties and Visualization: ch07_excited/sect_ADC_prop.md
+    - 7.10.11 Excited States in Solution with ADC/SS-PCM: ch07_excited/topic_abs-adc.md
+    - '7.10.12 Frozen-Density Embedding: FDE-ADC methods': ch07_excited/Ch7.S10.SS12.md
+    - 7.10.13 ADC Job Control: ch07_excited/sect_adc_jobcontrol.md
+    - 7.10.14 Examples: ch07_excited/example_n2_cap_ea_adc.md
+  - 7.11 Restricted Active Space Spin-Flip (RAS-SF) and Configuration Interaction (RAS-CI):
+    - 7.11 Restricted Active Space Spin-Flip (RAS-SF) and Configuration Interaction (RAS-CI): ch07_excited/topic_rasi.md
+    - 7.11.1 Introduction: ch07_excited/Ch7.S11.SS1.md
+    - 7.11.2 The Restricted Active Space (RAS) Scheme: ch07_excited/Ch7.S11.SS2.md
+    - 7.11.3 Second-Order Perturbative Corrections to RAS-CI: ch07_excited/Ch7.S11.SS3.md
+    - 7.11.4 Short-Range Density Functional Correlation within RAS-CI: ch07_excited/Ch7.S11.SS4.md
+    - 7.11.5 Excitonic Analysis of the RAS-CI Wave Function: ch07_excited/Ch7.S11.SS5.md
+    - 7.11.6 Diabatization of RAS-CI Eigenstates: ch07_excited/subsec_rasci_diab.md
+    - 7.11.7 Spin-flip CAS with Perturbative External Singles Corrections (casman): ch07_excited/Ch7.S11.SS7.md
+    - 7.11.8 Direct RAS-nSF-IP/EA (librassf): ch07_excited/Ch7.S11.SS8.md
+    - 7.11.9 librassf Effective Hamiltonian Analysis: ch07_excited/Ch7.S11.SS9.md
+    - 7.11.10 State-Specific PCM with RAS-SF: ch07_excited/Ch7.S11.SS10.md
+    - 7.11.11 Job Control for the RASCI1 Implementation: ch07_excited/Ch7.S11.SS11.md
+    - 7.11.12 Job Control Options for RASCI2: ch07_excited/Ch7.S11.SS12.md
+    - 7.11.13 Job Control Options for casman: ch07_excited/Ch7.S11.SS13.md
+    - 7.11.14 Job Control Options for librassf: ch07_excited/Ch7.S11.SS14.md
+    - 7.11.15 Examples: ch07_excited/Ch7.S11.SS15.md
+  - 7.12 Core Ionization Energies and Core-Excited States:
+    - 7.12 Core Ionization Energies and Core-Excited States: ch07_excited/sec_CoreLevels.md
+    - 7.12.1 Many-Body Methods for Core-Excited States: ch07_excited/ex_InvCore.md
+    - 7.12.2 Calculations of X-Ray Spectroscopy with TDDFT: ch07_excited/subsec_TDDFT-Xray.md
+    - 7.12.3 Methods Based on Kohn-Sham Eigenvalues: ch07_excited/Ch7.S12.SS3.md
+    - 7.12.4 Calculations of Core Excitations with ROKS: ch07_excited/ex_COCOREIP.md
+  - 7.13 Visualization of Excited States:
+    - 7.13 Visualization of Excited States: ch07_excited/sec_ES_visual.md
+    - 7.13.1 Introduction: ch07_excited/Ch7.S13.SS1.md
+    - 7.13.2 Attachment/Detachment Density Analysis: ch07_excited/sect_AttachDetach.md
+    - 7.13.3 Natural Transition Orbitals: ch07_excited/sect_NTOs.md
+- 'Chapter 8: Basis Sets and Effective Core Potentials':
+  - Overview: ch08_basis/chap_basis.md
+  - 8.1 Introduction to Basis Sets:
+    - 8.1 Introduction to Basis Sets: ch08_basis/Ch8.S1.md
+    - 8.1.1 Overview: ch08_basis/Ch8.S1.SS1.md
+  - 8.2 Built-In Basis Sets:
+    - 8.2 Built-In Basis Sets: ch08_basis/Ch8.S2.md
+    - 8.2.1 Overview: ch08_basis/Ch8.S2.SS1.md
+  - 8.3 Basis Set Symbolic Representation:
+    - 8.3 Basis Set Symbolic Representation: ch08_basis/sect_basis_symbol.md
+    - 8.3.1 Symbolic Representation Overview: ch08_basis/Ch8.S3.SS1.md
+    - 8.3.2 Customization: ch08_basis/sec_Basis_Customization.md
+  - 8.4 User-Defined Basis Sets ($basis):
+    - 8.4 User-Defined Basis Sets ($basis): ch08_basis/sect_userbasis.md
+    - 8.4.1 Introduction: ch08_basis/Ch8.S4.SS1.md
+    - 8.4.2 Job Control: ch08_basis/Ch8.S4.SS2.md
+    - 8.4.3 Format for User-Defined Basis Sets: ch08_basis/Ch8.S4.SS3.md
+  - 8.5 Mixed Basis Sets:
+    - 8.5 Mixed Basis Sets: ch08_basis/sect_mixedbas.md
+    - 8.5.1 Overview: ch08_basis/Ch8.S5.SS1.md
+  - 8.6 Dual Basis Sets:
+    - 8.6 Dual Basis Sets: ch08_basis/Ch8.S6.md
+    - 8.6.1 Overview: ch08_basis/Ch8.S6.SS1.md
+  - 8.7 Complex Basis Sets:
+    - 8.7 Complex Basis Sets: ch08_basis/sect_zbas.md
+    - 8.7.1 Overview: ch08_basis/Ch8.S7.SS1.md
+  - 8.8 Auxiliary Basis Sets for RI (Density Fitting):
+    - 8.8 Auxiliary Basis Sets for RI (Density Fitting): ch08_basis/Ch8.S8.md
+    - 8.8.1 Overview: ch08_basis/Ch8.S8.SS1.md
+  - 8.9 Ghost Atoms and Basis Set Superposition Error:
+    - 8.9 Ghost Atoms and Basis Set Superposition Error: ch08_basis/sec_BSSE.md
+    - 8.9.1 Overview: ch08_basis/Ch8.S9.SS1.md
+  - 8.10 Effective Core Potentials (ECPs):
+    - 8.10 Effective Core Potentials (ECPs): ch08_basis/sec_ECPs.md
+    - 8.10.1 Introduction & Overview: ch08_basis/Ch8.S10.SS1.md
+    - 8.10.2 ECP Fitting: ch08_basis/sub_ECP-fit.md
+    - 8.10.3 Built-In ECPs: ch08_basis/Ch8.S10.SS3.md
+    - 8.10.4 A Brief Guide to Q-Chem’s Built-In ECPs: ch08_basis/ECP_guide.md
+    - 8.10.5 User-Defined ECPs: ch08_basis/subsec_ECP-userdef.md
+    - 8.10.6 ECPs and Electron Correlation: ch08_basis/Ch8.S10.SS6.md
+    - 8.10.7 Forces and Vibrational Frequencies with ECPs: ch08_basis/sect_ECP_derivs.md
+- 'Chapter 9: Exploring Potential Energy Surfaces':
+  - Overview: ch09_opt/chap_opt.md
+  - 9.1 Equilibrium Geometries and Transition-State Structures with Q-Chem:
+    - 9.1 Equilibrium Geometries and Transition-State Structures with Q-Chem: ch09_opt/sec_geom_opt.md
+    - 9.1.1 Introduction: ch09_opt/topic_ts_Overview.md
+    - 9.1.2 Theoretical Background: ch09_opt/sec_geom_opt_theory.md
+    - 9.1.3 Eigenvector-Following (EF) Algorithm: ch09_opt/sect_ef.md
+    - 9.1.4 Delocalized Internal Coordinates: ch09_opt/Ch9.S1.SS4.md
+    - 9.1.5 Constrained Optimization: ch09_opt/sec_geom_opt_theory_constrained.md
+    - 9.1.6 Constrained Optimization in Delocalized Internal Coordinates: ch09_opt/Ch9.S1.SS6.md
+    - 9.1.7 GDIIS Algorithm: ch09_opt/Ch9.S1.SS7.md
+  - 9.2 Geometry Optimization Job Controls:
+    - 9.2 Geometry Optimization Job Controls: ch09_opt/sec_geom_opt_controls.md
+    - 9.2.1 Job Control Overview: ch09_opt/topic_ts_Job-Control.md
+    - 9.2.2 Optimize Job Control: ch09_opt/topic_ts_Job-Control-Optimize.md
+    - 9.2.3 Hessian-Free Characterization of Stationary Points: ch09_opt/topic_ts_Hessian-Free.md
+    - 9.2.4 Optimize Job Examples: ch09_opt/topic_ts_Job-Examples-Optimize.md
+    - 9.2.5 Libopt3 Job Control: ch09_opt/topic_ts_Job-Control-Libopt3.md
+    - 9.2.6 Libopt3 Job Examples: ch09_opt/topic_ts_Job-Examples-Libopt3.md
+  - 9.3 Improved Algorithms for Transition-Structure Optimization:
+    - 9.3 Improved Algorithms for Transition-Structure Optimization: ch09_opt/sec_better_TS_guess.md
+    - 9.3.1 Introduction: ch09_opt/Ch9.S3.SS1.md
+    - 9.3.2 Freezing String Method: ch09_opt/sect_fstring.md
+    - 9.3.3 Hessian-Free Transition-State Search: ch09_opt/sect_approx_hess.md
+  - 9.4 Constrained Optimization:
+    - 9.4 Constrained Optimization: ch09_opt/sec_constrained_opt.md
+    - 9.4.1 Introduction: ch09_opt/Ch9.S4.SS1.md
+    - 9.4.2 Geometry Optimization with General Constraints: ch09_opt/Ch9.S4.SS2.md
+    - 9.4.3 Frozen Atoms: ch09_opt/subsec_frozen-atoms-opt.md
+    - 9.4.4 Dummy Atoms: ch09_opt/Ch9.S4.SS4.md
+    - 9.4.5 Dummy Atom Placement in Dihedral Constraints: ch09_opt/Ch9.S4.SS5.md
+    - 9.4.6 Additional Atom Connectivity: ch09_opt/Ch9.S4.SS6.md
+    - 9.4.7 Atomic Confining Potentials as Alternatives to Constrained Optimization: ch09_opt/subsec_HarmonicConfiner.md
+  - 9.5 Application of Pressure and Forces:
+    - 9.5 Application of Pressure and Forces: ch09_opt/sec_Pressure.md
+    - 9.5.1 Application of External Forces: ch09_opt/sec_EFEI.md
+    - 9.5.2 Application of Pressure: ch09_opt/Ch9.S5.SS2.md
+  - 9.6 Potential Energy Scans:
+    - 9.6 Potential Energy Scans: ch09_opt/sec_pes-scan.md
+    - 9.6.1 Overview: ch09_opt/ex_Rest-1.md
+  - 9.7 Intrinsic Reaction Coordinate:
+    - 9.7 Intrinsic Reaction Coordinate: ch09_opt/sec_IRC.md
+    - 9.7.1 Overview: ch09_opt/Ch9.S7.SS1.md
+  - 9.8 Nonadiabatic Couplings and Optimization of Minimum-Energy Crossing Points:
+    - 9.8 Nonadiabatic Couplings and Optimization of Minimum-Energy Crossing Points: ch09_opt/topic_namd.md
+    - 9.8.1 Nonadiabatic Couplings: ch09_opt/subsec_NACMEs_and_CIs.md
+    - 9.8.2 Job Control and Examples: ch09_opt/subsec_deriv-couple-jobcontrol.md
+    - 9.8.3 Minimum-Energy Crossing Points: ch09_opt/sect_MECP.md
+    - 9.8.4 Job Control and Examples: ch09_opt/sfdft_MECP1.md
+    - 9.8.5 State-Tracking Algorithm: ch09_opt/sec_state_following.md
+  - 9.9 Ab Initio Molecular Dynamics:
+    - 9.9 Ab Initio Molecular Dynamics: ch09_opt/topic_aimd.md
+    - 9.9.1 Introduction: ch09_opt/Ch9.S9.SS1.md
+    - 9.9.2 Overview and Basic Job Control: ch09_opt/sub_aimd_jobcontrol.md
+    - 9.9.3 Additional Job Control and Examples: ch09_opt/Ch9.S9.SS3.md
+    - 9.9.4 Thermostats: ch09_opt/subsec_Thermostats.md
+    - 9.9.5 Vibrational Spectra: ch09_opt/Ch9.S9.SS5.md
+    - 9.9.6 Quasi-Classical Molecular Dynamics: ch09_opt/subsec_QCT.md
+    - 9.9.7 Fewest-Switches Surface Hopping: ch09_opt/sect_fssh.md
+    - 9.9.8 Meyer-Miller Nonadiabatic Dynamics: ch09_opt/sect_MMND.md
+  - 9.10 Ab Initio Path Integrals:
+    - 9.10 Ab Initio Path Integrals: ch09_opt/sec_PIMC.md
+    - 9.10.1 Theory: ch09_opt/Ch9.S10.SS1.md
+    - 9.10.2 Job Control and Examples: ch09_opt/Ch9.S10.SS2.md
+  - 9.11 Ab Initio Molecular Dynamics with Complex Absorbing Potentials:
+    - 9.11 Ab Initio Molecular Dynamics with Complex Absorbing Potentials: ch09_opt/sect_cap-aimd.md
+    - 9.11.1 Introduction: ch09_opt/sect_CAP-AIMD_introduction.md
+    - 9.11.2 Finding Electronic Resonance States of Temporary Anions: ch09_opt/sub_CAP-HF_solutions_temporary_anions.md
+    - 9.11.3 CAP-AIMD Job Control and Examples: ch09_opt/ex_CAP_HF_energy_decomp.md
+  - 9.12 Optimizing the Structure of Clusters:
+    - 9.12 Optimizing the Structure of Clusters: ch09_opt/sec_opt-clus.md
+    - 9.12.1 Introduction: ch09_opt/Ch9.S12.SS1.md
+    - 9.12.2 Cluster Optimization Job Control: ch09_opt/subsubsec_ClusOpt_job.md
+- 'Chapter 10: Molecular Properties and Analysis':
+  - Overview: ch10_properties/chap_properties.md
+  - 10.1 Introduction:
+    - 10.1 Introduction: ch10_properties/Ch10.S1.md
+    - 10.1.1 Overview: ch10_properties/Ch10.S1.SS1.md
+  - 10.2 Wave Function Analysis:
+    - 10.2 Wave Function Analysis: ch10_properties/sec_wfa.md
+    - 10.2.1 Introduction: ch10_properties/Ch10.S2.SS1.md
+    - 10.2.2 Atomic Partial Charges: ch10_properties/subsec_pop_anal.md
+    - 10.2.3 Multipole Moments: ch10_properties/subsec_mulmom.md
+    - 10.2.4 Population of Effectively Unpaired Electrons: ch10_properties/sect_odd_electron.md
+    - 10.2.5 Symmetry Decomposition: ch10_properties/Ch10.S2.SS5.md
+    - 10.2.6 Localized Orbital Bonding Analysis: ch10_properties/sect_LOBA.md
+    - 10.2.7 Oxidation State Localized Orbitals: ch10_properties/sect_OSLO.md
+    - 10.2.8 Intrinsic Atomic Orbitals: ch10_properties/Ch10.S2.SS8.md
+    - 10.2.9 Broken Bond Orbitals: ch10_properties/Ch10.S2.SS9.md
+    - 10.2.10 Atomic dipoles and quadrupoles: ch10_properties/Ch10.S2.SS10.md
+    - 10.2.11 Excited-State Analysis for CIS and TDDFT: ch10_properties/Ch10.S2.SS11.md
+    - 10.2.12 General Excited-State Analysis: ch10_properties/ex_StateAnal_MolDen.md
+    - 10.2.13 Earth Mover’s Distance Analysis: ch10_properties/subsec_emd.md
+  - 10.3 Orbital Analysis:
+    - 10.3 Orbital Analysis: ch10_properties/Ch10.S3.md
+    - 10.3.1 Interface to the NBO Package: ch10_properties/sect_NBO.md
+    - 10.3.2 Orbital Localization: ch10_properties/sect_localization.md
+    - 10.3.3 Donor–Acceptor Orbital Overlaps: ch10_properties/ex_DA-overlaps.md
+    - 10.3.4 Occupied–Virtual Orbitals for Chemical Valence Analysis: ch10_properties/sect_ovocv-analysis.md
+  - 10.4 Density Analysis:
+    - 10.4 Density Analysis: ch10_properties/Ch10.S4.md
+    - 10.4.1 Spin and Charge Densities at the Nuclei: ch10_properties/Ch10.S4.SS1.md
+    - 10.4.2 Atoms in Molecules: ch10_properties/Ch10.S4.SS2.md
+  - 10.5 Visualizing and Plotting Volumetric Quantities:
+    - 10.5 Visualizing and Plotting Volumetric Quantities: ch10_properties/sect_plots.md
+    - 10.5.1 Introduction: ch10_properties/Ch10.S5.SS1.md
+    - 10.5.2 Visualizing Orbitals Using MolDen and MacMolPlt: ch10_properties/Ch10.S5.SS2.md
+    - 10.5.3 Visualization of Natural Transition Orbitals: ch10_properties/sect_visualize_NTOs.md
+    - 10.5.4 Generation of Volumetric Data Using $plots: ch10_properties/sect_plot.mo.md
+    - 10.5.5 Direct Generation of “Cube” Files: ch10_properties/sec_cubefiles.md
+    - 10.5.6 Noncovalent Interactions (NCI) Plots: ch10_properties/NCI-plots.md
+    - 10.5.7 Electron Localization Function: ch10_properties/ELF-plots.md
+    - 10.5.8 Electrostatic Potentials: ch10_properties/sec_ESP.md
+  - 10.6 Electric Fields:
+    - 10.6 Electric Fields: ch10_properties/sect_efield.md
+    - 10.6.1 Overview: ch10_properties/Ch10.S6.SS1.md
+  - 10.7 Finite-Difference Properties: ch10_properties/sec_FDProp.md
+  - 10.8 Harmonic Vibrational Analysis:
+    - 10.8 Harmonic Vibrational Analysis: ch10_properties/topic_frequencies.md
+    - 10.8.1 Overview: ch10_properties/Ch10.S8.SS1.md
+    - 10.8.2 Isotopic Substitutions and Changes in T and P: ch10_properties/ex_Isotope-Mass.md
+    - 10.8.3 Treatment of Low-Frequency Vibrational Modes: ch10_properties/sect_qrrho.md
+    - 10.8.4 Partial Hessian Vibrational Analysis: ch10_properties/partial-hess.md
+    - 10.8.5 Localized Mode Vibrational Analysis: ch10_properties/sect_localizedModes.md
+    - 10.8.6 Resonance Raman intensities: ch10_properties/subsec_RR-IMDHO.md
+    - 10.8.7 Vibrationally-Resolved Electronic and Resonance Raman Spectra: ch10_properties/subsec_vibronic.md
+  - 10.9 Anharmonic Vibrational Frequencies:
+    - 10.9 Anharmonic Vibrational Frequencies: ch10_properties/sec_anharmonic.md
+    - 10.9.1 Introduction: ch10_properties/Ch10.S9.SS1.md
+    - 10.9.2 Vibration Configuration Interaction Theory: ch10_properties/Ch10.S9.SS2.md
+    - 10.9.3 Vibrational Perturbation Theory: ch10_properties/Ch10.S9.SS3.md
+    - 10.9.4 Transition-Optimized Shifted Hermite Theory: ch10_properties/Ch10.S9.SS4.md
+    - 10.9.5 Job Control: ch10_properties/Ch10.S9.SS5.md
+  - 10.10 Linear-Scaling Computation of Electric Properties:
+    - 10.10 Linear-Scaling Computation of Electric Properties: ch10_properties/sec_ElectricProps.md
+    - 10.10.1 Introduction: ch10_properties/Ch10.S10.SS1.md
+    - 10.10.2 $fdpfreq Input Section: ch10_properties/Ch10.S10.SS2.md
+    - 10.10.3 Job Control for the MOProp Module: ch10_properties/moprop_jobcontrol.md
+    - 10.10.4 Examples: ch10_properties/Ch10.S10.SS4.md
+  - 10.11 NMR and Other Magnetic Properties:
+    - 10.11 NMR and Other Magnetic Properties: ch10_properties/sec_magnetic.md
+    - 10.11.1 Introduction: ch10_properties/Ch10.S11.SS1.md
+    - 10.11.2 NMR Chemical Shifts and J-Couplings: ch10_properties/sec_magnetic_NMR.md
+    - 10.11.3 Linear-Scaling NMR Chemical Shift Calculations: ch10_properties/sec_D-CPSCF-NMR.md
+    - 10.11.4 Additional Magnetic Field-Related Properties: ch10_properties/sec_magnetman.md
+  - 10.12 Vibrational Circular Dichroism (VCD): ch10_properties/Ch10.S12.md
+  - 10.13 Finite-Field Calculation of (Hyper)Polarizabilities:
+    - 10.13 Finite-Field Calculation of (Hyper)Polarizabilities: ch10_properties/sec_(Hyper)Polarizability.md
+    - 10.13.1 Introduction: ch10_properties/Ch10.S13.SS1.md
+    - 10.13.2 Numerical Calculation of Static Polarizabilities: ch10_properties/sec_finite-field.md
+    - 10.13.3 Romberg Finite-Field Procedure: ch10_properties/sect_Romberg.md
+  - 10.14 General Response Theory:
+    - 10.14 General Response Theory: ch10_properties/sec_GeneralResponseTheory.md
+    - 10.14.1 Introduction: ch10_properties/Ch10.S14.SS1.md
+    - 10.14.2 Job Control: ch10_properties/subsec_responsemanJobControl.md
+    - 10.14.3 $response Section and Operator Specification: ch10_properties/subsec_GeneralOperatorSpecification.md
+    - 10.14.4 Examples Including $response Section: ch10_properties/subsec_responsemanExamples.md
+  - 10.15 Electronic Couplings for Electron- and Energy Transfer:
+    - 10.15 Electronic Couplings for Electron- and Energy Transfer: ch10_properties/sec_ElCoupl.md
+    - 10.15.1 Eigenstate-Based Methods: ch10_properties/Ch10.S15.SS1.md
+    - 10.15.2 Diabatic-State-Based Methods: ch10_properties/topic_dc.md
+    - 10.15.3 Fragment-Based Methods for Electronic Coupling: ch10_properties/subsec_frag_diabat.md
+- 'Chapter 11: Molecules in Complex Environments':
+  - Overview: ch11_env/chap_env.md
+  - 11.1 Introduction:
+    - 11.1 Introduction: ch11_env/Ch11.S1.md
+    - 11.1.1 Overview: ch11_env/Ch11.S1.SS1.md
+  - 11.2 Chemical Solvent Models:
+    - 11.2 Chemical Solvent Models: ch11_env/topic_solvation.md
+    - 11.2.1 Introduction: ch11_env/topic_solvation_Intro.md
+    - 11.2.2 Kirkwood-Onsager Multipole Expansion Method: ch11_env/example_SCRF.md
+    - 11.2.3 Polarizable Continuum Models: ch11_env/topic_pcm-em.md
+    - 11.2.4 PCM Job Control: ch11_env/subsec_PCM_job_control.md
+    - 11.2.5 Linear-Scaling QM/MM/PCM Calculations: ch11_env/subsec_linear-PCM.md
+    - 11.2.6 Isodensity Implementation of SS(V)PE: ch11_env/subsec_SS(V)PE.md
+    - 11.2.7 Composite Method for Implicit Representation of Solvent (CMIRS): ch11_env/example_CMIRS-water.md
+    - 11.2.8 COSMO: ch11_env/subsec_COSMO-Klamt.md
+    - 11.2.9 SM x Models: ch11_env/ex_SMx-User-Solvent.md
+    - 11.2.10 Langevin Dipoles Model: ch11_env/subsec_LD.md
+    - 11.2.11 Poisson Boundary Conditions: ch11_env/sect_PEQS.md
+  - 11.3 Stand-Alone QM/MM Calculations:
+    - 11.3 Stand-Alone QM/MM Calculations: ch11_env/sec_QMMM.md
+    - 11.3.1 Available QM/MM Methods and Features: ch11_env/Ch11.S3.SS1.md
+    - 11.3.2 Using the Stand-Alone QM/MM Features: ch11_env/Ch11.S3.SS2.md
+    - 11.3.3 Additional Job Control Variables: ch11_env/Ch11.S3.SS3.md
+    - 11.3.4 QM/MM Examples: ch11_env/Ch11.S3.SS4.md
+  - 11.4 Q-Chem/Charmm Interface: ch11_env/sect_CHARMM.md
+  - 11.5 Effective Fragment Potential Method:
+    - 11.5 Effective Fragment Potential Method: ch11_env/sect_efp.md
+    - 11.5.1 Introduction: ch11_env/Ch11.S5.SS1.md
+    - 11.5.2 Theoretical Background: ch11_env/sec_theory.md
+    - 11.5.3 Excited-State Calculations with EFP: ch11_env/sec_EOM-EFP.md
+    - 11.5.4 Pairwise Fragment Energy Decomposition: ch11_env/sec_FEED-EFP.md
+    - '11.5.5 Extension to Macromolecules: Fragmented EFP Scheme': ch11_env/sec_fefp.md
+    - 11.5.6 QM/MM models within EFP umbrella: ch11_env/sec_EFP-QMMM.md
+    - 11.5.7 Running EFP Jobs: ch11_env/sec_input.md
+    - 11.5.8 Debugging EFP Jobs: ch11_env/sec_debugging.md
+    - 11.5.9 Library of Fragments: ch11_env/sec_makefp.md
+    - 11.5.10 Calculation of User-Defined EFP Potentials: ch11_env/Ch11.S5.SS10.md
+    - 11.5.11 fEFP Input Structure: ch11_env/sec_fefp-param.md
+    - 11.5.12 Input Keywords: ch11_env/Ch11.S5.SS12.md
+    - 11.5.13 Examples: ch11_env/Ch11.S5.SS13.md
+  - 11.6 Projection-Based Density Embedding:
+    - 11.6 Projection-Based Density Embedding: ch11_env/sect_den_emb.md
+    - 11.6.1 Introduction and Theory: ch11_env/subsec_emb_theory.md
+    - 11.6.2 Job Control for Embedding Calculations: ch11_env/Ch11.S6.SS2.md
+    - 11.6.3 External Interface for Projection-Based Embedding: ch11_env/Ch11.S6.SS3.md
+    - 11.6.4 Iterative Approach for Supermolecular Properties: ch11_env/subsec_iter_emb.md
+    - 11.6.5 Previous Implementation Based on “EmbedMan”: ch11_env/subsec_embedman.md
+  - 11.7 Frozen-Density Embedding Theory:
+    - 11.7 Frozen-Density Embedding Theory: ch11_env/sect_FDET_methods.md
+    - 11.7.1 Introduction: ch11_env/Ch11.S7.SS1.md
+    - 11.7.2 FDE-Man: ch11_env/subsec_FDE_MAN.md
+    - 11.7.3 FDE-Man Job Control: ch11_env/subsec_FDE_JC.md
+    - 11.7.4 Single-Fragment Calculations: ch11_env/subsec_FDE-SINGLE.md
+    - 11.7.5 Read an External Potential From a File: ch11_env/subsec_ExterPotRead.md
+    - 11.7.6 Examples: ch11_env/subsec_FDE-MAN_ex.md
+    - 11.7.7 FDE-Man output: ch11_env/subsec_FDE-MAN_output.md
+  - 11.8 Polarizable Embedding Model:
+    - 11.8 Polarizable Embedding Model: ch11_env/sect_PE_model.md
+    - 11.8.1 Introduction: ch11_env/Ch11.S8.SS1.md
+    - 11.8.2 Job Control: ch11_env/subsec_PE_job_control.md
+    - 11.8.3 Interpreting the Output: ch11_env/subsubsec_PE_output.md
+  - 11.9 Atomic Interactions Represented By Empirical Dispersion (AIRBED):
+    - 11.9 Atomic Interactions Represented By Empirical Dispersion (AIRBED): ch11_env/sect_AIRBED.md
+    - 11.9.1 Introduction: ch11_env/Ch11.S9.SS1.md
+    - 11.9.2 AIRBED Job Control: ch11_env/subsubsec_AIRBED_job.md
+- 'Chapter 12: Fragment-Based Methods':
+  - Overview: ch12_frag/chap_frag.md
+  - 12.1 Introduction:
+    - 12.1 Introduction: ch12_frag/Ch12.S1.md
+    - 12.1.1 Overview: ch12_frag/Ch12.S1.SS1.md
+  - 12.2 Specifying Fragments in the $molecule Section:
+    - 12.2 Specifying Fragments in the $molecule Section: ch12_frag/sect_FRAGinput.md
+    - 12.2.1 Overview: ch12_frag/example_osfrag.md
+  - 12.3 FRAGMO Initial Guess for SCF Methods:
+    - 12.3 FRAGMO Initial Guess for SCF Methods: ch12_frag/sect_FRAGMOguess.md
+    - 12.3.1 Overview: ch12_frag/Ch12.S3.SS1.md
+  - 12.4 Automated Evaluation of Counterpoise Correction:
+    - 12.4 Automated Evaluation of Counterpoise Correction: ch12_frag/sect_autoBSSE.md
+    - 12.4.1 Overview: ch12_frag/Ch12.S4.SS1.md
+  - 12.5 Locally-Projected SCF and First-Generation ALMO-EDA Methods:
+    - 12.5 Locally-Projected SCF and First-Generation ALMO-EDA Methods: ch12_frag/sect_old_scfmi_eda.md
+    - 12.5.1 Locally-Projected SCF: ch12_frag/sect_lp_scf.md
+    - 12.5.2 Roothaan-Step Corrections and FRAGMO Initial Guess: ch12_frag/Ch12.S5.SS2.md
+    - 12.5.3 First-Generation ALMO-EDA and Perturbative Charge-Transfer Analysis: ch12_frag/sect_eda1.md
+    - 12.5.4 Perturbative Charge-Transfer Analysis Usinig Complementary Occupied/Virtual Pairs: ch12_frag/sect_covp.md
+    - 12.5.5 Job Control Options: ch12_frag/sect_old_almo_job.md
+  - 12.6 Second-Generation ALMO-EDA Method:
+    - 12.6 Second-Generation ALMO-EDA Method: ch12_frag/sect_eda2.md
+    - 12.6.1 Introduction: ch12_frag/Ch12.S6.SS1.md
+    - 12.6.2 Generalized SCF-MI Calculations and Additional Features: ch12_frag/sect_gen_scfmi.md
+    - 12.6.3 Polarization Energy with a Well-Defined Basis Set Limit: ch12_frag/sect_ferf.md
+    - 12.6.4 Further Decomposition of the Frozen Energy: ch12_frag/sect_frz_decomp.md
+    - 12.6.5 Job Control for EDA2: ch12_frag/sect_eda2_job.md
+    - 12.6.6 ALMO-EDA with Implicit Solvent Models: ch12_frag/sect_eda2_sol.md
+    - 12.6.7 ALMO-EDA with Non-Aufbau Electronic Configurations: ch12_frag/sect_eda2_non_aufbau.md
+    - 12.6.8 ALMO-EDA with Non-Perturbative Polarization and Charge Transfer Analysis: ch12_frag/sect_eda2_vcta.md
+    - 12.6.9 Visualization Tools Associated with ALMO-EDA: ch12_frag/sect_eda2_visual.md
+  - 12.7 Additional ALMO-EDA Capabilities:
+    - 12.7 Additional ALMO-EDA Capabilities: ch12_frag/Ch12.S7.md
+    - 12.7.1 ALMO-EDA for the MP2 Method: ch12_frag/sect_mp2_eda.md
+    - 12.7.2 ALMO-EDA for Bonded Interactions: ch12_frag/sect_bonded_eda.md
+    - 12.7.3 Adiabatic ALMO-EDA and VFB Analysis: ch12_frag/sect_adiabatic_eda.md
+    - 12.7.4 ALMO Force Decomposition Analysis: ch12_frag/sect_fda.md
+    - 12.7.5 ALMO-EDA for Excited States: ch12_frag/sect_ex_eda.md
+  - 12.8 The Explicit Polarization (XPol) Method:
+    - 12.8 The Explicit Polarization (XPol) Method: ch12_frag/sect_xpol.md
+    - 12.8.1 Theory: ch12_frag/Ch12.S8.SS1.md
+    - 12.8.2 Supplementing XPol with Empirical Potentials: ch12_frag/Ch12.S8.SS2.md
+    - 12.8.3 Job Control Variables for XPol: ch12_frag/subsec_XPol-JobControl.md
+    - 12.8.4 Examples: ch12_frag/Ch12.S8.SS4.md
+  - 12.9 Symmetry-Adapted Perturbation Theory (SAPT):
+    - 12.9 Symmetry-Adapted Perturbation Theory (SAPT): ch12_frag/topic_sapt.md
+    - 12.9.1 Theory: ch12_frag/Ch12.S9.SS1.md
+    - 12.9.2 Job Control for SAPT Calculations: ch12_frag/Ch12.S9.SS2.md
+  - 12.10 The XPol+SAPT (XSAPT) Method:
+    - 12.10 The XPol+SAPT (XSAPT) Method: ch12_frag/sect_XSAPT.md
+    - 12.10.1 Introduction: ch12_frag/Ch12.S10.SS1.md
+    - 12.10.2 Theory: ch12_frag/Ch12.S10.SS2.md
+    - 12.10.3 Dispersion Models: ch12_frag/subsec_AO-XSAPT(KS)+D.md
+    - 12.10.4 Running an XSAPT+MBD Job: ch12_frag/ex_XSAPT+PCM.md
+  - 12.11 Energy Decomposition Analysis Based on SAPT/cDFT:
+    - 12.11 Energy Decomposition Analysis Based on SAPT/cDFT: ch12_frag/sect_SAPTEDA.md
+    - 12.11.1 Overview: ch12_frag/Ch12.S11.SS1.md
+  - 12.12 The Many-Body Expansion Method:
+    - 12.12 The Many-Body Expansion Method: ch12_frag/sec_MBE.md
+    - 12.12.1 Introduction: ch12_frag/Ch12.S12.SS1.md
+    - 12.12.2 Job Control: ch12_frag/Ch12.S12.SS2.md
+  - 12.13 The Generalized Many-Body Expansion Method:
+    - 12.13 The Generalized Many-Body Expansion Method: ch12_frag/sec_GMBE.md
+    - 12.13.1 Introduction: ch12_frag/Ch12.S13.SS1.md
+    - 12.13.2 Job Control: ch12_frag/Ch12.S13.SS2.md
+  - 12.14 Ab Initio Frenkel Davydov Exciton Model (AIFDEM):
+    - 12.14 Ab Initio Frenkel Davydov Exciton Model (AIFDEM): ch12_frag/sect_AIFDEM.md
+    - 12.14.1 Theory: ch12_frag/Ch12.S14.SS1.md
+    - 12.14.2 Job Control Variables: ch12_frag/Ch12.S14.SS2.md
+    - 12.14.3 Examples: ch12_frag/Ch12.S14.SS3.md
+  - 12.15 TDDFT for Molecular Interactions:
+    - 12.15 TDDFT for Molecular Interactions: ch12_frag/sec_TDDFT(MI).md
+    - 12.15.1 Introduction: ch12_frag/Ch12.S15.SS1.md
+    - 12.15.2 Job Control: ch12_frag/Ch12.S15.SS2.md
+  - 12.16 ALMO-CIS/TDA and Its Charge-Transfer Correction:
+    - 12.16 ALMO-CIS/TDA and Its Charge-Transfer Correction: ch12_frag/sect_ALMO-CIS.md
+    - 12.16.1 Introduction: ch12_frag/Ch12.S16.SS1.md
+    - 12.16.2 Job Control: ch12_frag/Ch12.S16.SS2.md
+    - 12.16.3 ALMO-CIS/TDA with Selected Fragment Occupied-Virtual Pairs: ch12_frag/subsec_almocis_fragov.md
+- 'Chapter 13: Specialized Topics':
+  - Overview: ch13_specialized/chap_specialized_topics.md
+  - 13.1 Geminal Models:
+    - 13.1 Geminal Models: ch13_specialized/Ch13.S1.md
+    - 13.1.1 Introduction: ch13_specialized/Ch13.S1.SS1.md
+    - 13.1.2 Perturbative Corrections: ch13_specialized/Ch13.S1.SS2.md
+  - 13.2 Intracules:
+    - 13.2 Intracules: ch13_specialized/sect_intracules.md
+    - 13.2.1 Introduction: ch13_specialized/Ch13.S2.SS1.md
+    - 13.2.2 Position Intracules: ch13_specialized/Ch13.S2.SS2.md
+    - 13.2.3 Momentum Intracules: ch13_specialized/Ch13.S2.SS3.md
+    - 13.2.4 Wigner Intracules: ch13_specialized/Ch13.S2.SS4.md
+    - 13.2.5 Intracule Job Control: ch13_specialized/Ch13.S2.SS5.md
+    - 13.2.6 Format for the $intracule Section: ch13_specialized/Ch13.S2.SS6.md
+  - 13.3 CASE Approximation:
+    - 13.3 CASE Approximation: ch13_specialized/subsec_CASE.md
+    - 13.3.1 Overview: ch13_specialized/Ch13.S3.SS1.md
+  - 13.4 Molecular Junctions:
+    - 13.4 Molecular Junctions: ch13_specialized/sect_transport.md
+    - 13.4.1 Overview: ch13_specialized/Ch13.S4.SS1.md
+  - 13.5 Nuclear–Electronic Orbital Method:
+    - 13.5 Nuclear–Electronic Orbital Method: ch13_specialized/sect_neomethod.md
+    - 13.5.1 Introduction: ch13_specialized/Ch13.S5.SS1.md
+    - 13.5.2 Overview of Available NEO Models: ch13_specialized/Ch13.S5.SS2.md
+    - 13.5.3 Additional Customization to NEO Models: ch13_specialized/Ch13.S5.SS3.md
+    - 13.5.4 Job Control for the NEO methods: ch13_specialized/subsec_neo-job-control.md
+    - 13.5.5 Molecular Properties and Wave Function Analysis Tools for NEO Models: ch13_specialized/Ch13.S5.SS5.md
+    - 13.5.6 Examples: ch13_specialized/subsec_neo-examples.md
+  - 13.6 Construction of Effective Hamiltonians from EOM-CC Wave Functions:
+    - 13.6 Construction of Effective Hamiltonians from EOM-CC Wave Functions: ch13_specialized/sec_EffHam.md
+    - 13.6.1 Overview: ch13_specialized/Ch13.S6.SS1.md
+- 'Appendix A: AOInts: Q-Chem’s Integrals Engine':
+  - Overview: app_a_aoints/app_AOINTS.md
+  - A.1 Historical Overview:
+    - A.1 Historical Overview: app_a_aoints/A1.S1.md
+    - A.1.1 Overview: app_a_aoints/A1.S1.SS1.md
+  - A.2 Calculating Electron Repulsion Integrals (ERIs):
+    - A.2 Calculating Electron Repulsion Integrals (ERIs): app_a_aoints/A1.S2.md
+    - A.2.1 Overview: app_a_aoints/A1.S2.SS1.md
+    - 'A.2.2 Data Structures: Shell Pairs and Quartets': app_a_aoints/A1.S2.SS2.md
+    - A.2.3 Survey of ERI Evaluation: app_a_aoints/A1.S2.SS3.md
+    - A.2.4 Efficiency of ERI Evaluation: app_a_aoints/A1.S2.SS4.md
+  - A.3 User-Controllable Variables:
+    - A.3 User-Controllable Variables: app_a_aoints/A1.S3.md
+    - A.3.1 Overview: app_a_aoints/A1.S3.SS1.md
+- 'Appendix B: Q-Chem Quick Reference':
+  - Overview: app_b_quickref/app_quick_ref.md
+  - B.1 Text Input Summary:
+    - B.1 Text Input Summary: app_b_quickref/A2.S1.md
+    - B.1.1 Introduction: app_b_quickref/A2.S1.SS1.md
+    - B.1.2 Descriptions of Some Q-Chem Input Sections: app_b_quickref/A2.S1.SS2.md
+    - B.1.3 $rem Variable List: app_b_quickref/A2.S1.SS3.md
+  - B.2 Geometry Optimization, Frequencies, & Properties:
+    - B.2 Geometry Optimization, Frequencies, & Properties: app_b_quickref/A2.S2.md
+    - B.2.1 Survey of Job Control Options: app_b_quickref/A2.S2.SS1.md
+    - B.2.2 Geometry Optimization with General Constraints: app_b_quickref/A2.S2.SS2.md
+  - B.3 Alphabetical Listing of $rem Variables:
+    - B.3 Alphabetical Listing of $rem Variables: app_b_quickref/A2.S3.md
+    - B.3.1 Overview: app_b_quickref/A2.S3.SS1.md
+- 'Appendix C: Third-party Components':
+  - Overview: app_c_thirdparty/app_thirdparty.md
+  - C.1 Introduction:
+    - C.1 Introduction: app_c_thirdparty/A3.S1.md
+    - C.1.1 Overview: app_c_thirdparty/A3.S1.SS1.md
+  - C.2 Armadillo:
+    - C.2 Armadillo: app_c_thirdparty/A3.S2.md
+    - C.2.1 Overview: app_c_thirdparty/A3.S2.SS1.md
+  - C.3 ctx:
+    - C.3 ctx: app_c_thirdparty/A3.S3.md
+    - C.3.1 Overview: app_c_thirdparty/A3.S3.SS1.md
+  - C.4 dftd4:
+    - C.4 dftd4: app_c_thirdparty/A3.S4.md
+    - C.4.1 Overview: app_c_thirdparty/A3.S4.SS1.md
+  - C.5 libecpint:
+    - C.5 libecpint: app_c_thirdparty/A3.S5.md
+    - C.5.1 Overview: app_c_thirdparty/A3.S5.SS1.md
+  - C.6 libefp:
+    - C.6 libefp: app_c_thirdparty/A3.S6.md
+    - C.6.1 Overview: app_c_thirdparty/A3.S6.SS1.md
+  - C.7 libtensor:
+    - C.7 libtensor: app_c_thirdparty/A3.S7.md
+    - C.7.1 Overview: app_c_thirdparty/A3.S7.SS1.md
+  - C.8 libxm:
+    - C.8 libxm: app_c_thirdparty/A3.S8.md
+    - C.8.1 Overview: app_c_thirdparty/A3.S8.SS1.md
+- References: bib_references/bib.md
