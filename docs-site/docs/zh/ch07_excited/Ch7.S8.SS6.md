@@ -6,7 +6,7 @@ title: "7.8.6 CIS(D) 作业控制与示例"
 
 （2026 年 7 月 4 日）
 
-**Q-Chem** 中的传统（legacy）CIS(D) 算法由 **Q-Chem** 的 CCMAN/CCMAN2 模块处理，并共享许多 *$rem* 选项。RI-CIS(D)、SOS-CIS(D) 和 SOS-CIS(D${}_{0}$) 不依赖于耦合簇程序例程。不使用此传统 CIS(D) 方法的用户可直接跳至第 [7.8.7](subsect_RI-CIS(D).md) 节。
+**Q-Chem** 中的传统（legacy）CIS(D) 算法由 **Q-Chem** 的 CCMAN/CCMAN2 模块处理，并共享许多 *$rem* 选项。RI-CIS(D)、SOS-CIS(D) 和 SOS-CIS(D${}_{0}$) 不依赖于耦合簇程序例程。不使用此传统 CIS(D) 方法的用户可直接跳至第 [7.8.7](subsect_RI-CIS_D.md) 节。
 
 与所有 post-HF（后 Hartree-Fock）计算一样，确保有足够的资源用于必要的积分计算和积分变换至关重要。对于 CIS(D)，这些资源通过 *$rem* 变量 CC_MEMORY、MEM_STATIC 和 MEM_TOTAL 控制（参见第 [6.12.12](../ch06_correlation/sec_CCcontrols.md) 节）。
 

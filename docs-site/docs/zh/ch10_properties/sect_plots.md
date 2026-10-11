@@ -16,4 +16,4 @@ title: "10.5 体数据的可视化与绘图"
 
 - [10.5.5 直接生成 "Cube" 文件](sec_cubefiles.md)
 
-- [10.5.6 非共价相互作用（Noncovalent Interactions, NCI）图](sect_nci_plots.md)
+- [10.5.6 非共价相互作用（Noncovalent Interactions, NCI）图](NCI-plots.md)

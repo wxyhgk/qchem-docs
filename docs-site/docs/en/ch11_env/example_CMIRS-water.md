@@ -26,7 +26,7 @@ nonelectrostatic interactions alongside a PCM-style treatment of the bulk
 electrostatics. They call this approach the “composite method for implicit
 representation of solvent” (CMIRS), and it consists first of a self-consistent
 treatment of solute–continuum electrostatics using the SS(V)PE model
-(Section [11.2.6](subsec_SS(V)PE.md)). To this electrostatics calculation, CMIRS adds
+(Section [11.2.6](subsec_SS_V_PE.md)). To this electrostatics calculation, CMIRS adds
 a solute–solvent dispersion term that is modeled upon the non-local VV09 van
 der Waals dispersion density functional,[[1414]](../bib_references/bib.md#bib1475)
  a Pauli repulsion
@@ -110,7 +110,7 @@ energy using Chipman’s isodensity SS(V)PE module. The resulting isodensity
 cavity and the solute charge density are then employed in the calculation of
 the DEFESR interactions. To request a CMIRS calculation, users must set
 IDEFESR = 1 in an isodensity SS(V)PE calculation (see
-Section [11.2.6.2](subsec_SS(V)PE.md#subsec:SVP)). The solvent-dependent empirical parameters
+Section [11.2.6.2](subsec_SS_V_PE.md#subsec:SVP)). The solvent-dependent empirical parameters
 **A**, **B**, **C**, **D**, **Gamma** in the CMIRS
 model need to be specified in the *$pcm_nonels* section. Three additional
 parameters are also required. One is the damping parameter **Delta** in

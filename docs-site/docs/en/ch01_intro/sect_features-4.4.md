@@ -64,7 +64,7 @@ Exciton-based excited-state models:
 TDDFT for molecular interactions [TDDFT(MI)], a set of local excitation
 approximations for efficient TDDFT calculations in multi-chromophore systems and for single
 chromophores in the presence of explicit solvent molecules
-(J. Liu, J. M. Herbert); Section [12.15](../ch12_frag/sec_TDDFT(MI).md).
+(J. Liu, J. M. Herbert); Section [12.15](../ch12_frag/sec_TDDFT_MI.md).
 - •
 
 Improvements to many-body and XSAPT methods (K. U. Lao, J. M. Herbert):
@@ -75,7 +75,7 @@ MPI-parallelized many-body expansion with analytic gradient (Section [12.12](..
 - **–**
 
 Efficient atomic orbital implementation of XSAPT for both closed- and open-shell systems
-(Section [12.10.3](../ch12_frag/subsec_AO-XSAPT(KS)+D.md)).
+(Section [12.10.3](../ch12_frag/subsec_AO-XSAPT_KS_D.md)).
 - •
 
 Thermostats for *ab initio* molecular dynamics (R. P. Steele, J. M. Herbert).

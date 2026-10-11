@@ -30,7 +30,7 @@ title: "第 10 章 分子性质与分析"
 
 - [10.12 振动圆二色性（VCD）](Ch10.S12.md)
 
-- [10.13 基于有限电场法计算（超）极化率](sec_(Hyper)Polarizability.md)
+- [10.13 基于有限电场法计算（超）极化率](sec_HyperPolarizability.md)
 
 - [10.14 一般响应理论](sec_GeneralResponseTheory.md)
 

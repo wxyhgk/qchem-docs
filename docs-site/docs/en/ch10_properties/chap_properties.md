@@ -30,7 +30,7 @@ title: "Chapter 10 Molecular Properties and Analysis"
 
 - [10.12 Vibrational Circular Dichroism (VCD)](Ch10.S12.md)
 
-- [10.13 Finite-Field Calculation of (Hyper)Polarizabilities](sec_(Hyper)Polarizability.md)
+- [10.13 Finite-Field Calculation of (Hyper)Polarizabilities](sec_HyperPolarizability.md)
 
 - [10.14 General Response Theory](sec_GeneralResponseTheory.md)
 

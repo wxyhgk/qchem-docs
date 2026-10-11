@@ -10,7 +10,7 @@ Listed below are a number of useful options to customize an SCF
 calculation. This is only a short summary of the function of these *$rem*
 variables. A full list of all SCF-related variables is provided in Appendix [B](../app_b_quickref/app_quick_ref.md).
 Several important sub-topics are discussed separately, including ${\cal{O}}({N})$ methods for large molecules
-(Section [4.6](sec_O(N).md)), customizing the initial guess (Section [4.4](sect_initialguess.md)), and converging
+(Section [4.6](sec_O_N.md)), customizing the initial guess (Section [4.4](sect_initialguess.md)), and converging
 the SCF calculation (Section [4.5](sect_convergence.md)).
 
 INTEGRALS_BUFFER

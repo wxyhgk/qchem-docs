@@ -10,7 +10,7 @@ PCM（极化连续介质模型）即便像 SS(V)PE 和 IEF-PCM 这样精细的�
 
 Pomogaeva 和
 Chipman[[1108]](../bib_references/bib.md#bib1155)
- 提出了一种隐式溶剂化模型，试图在采用 PCM 方式处理整体静电作用的同时，对这些非静电相互作用进行建模。他们将这一方法称为"溶剂隐式表示组合法"（CMIRS），其第一步是采用 SS(V)PE 模型（第 [11.2.6](subsec_SS(V)PE.md) 节）对溶质–连续介质静电作用进行自洽处理。CMIRS 在该静电计算的基础上，加入了一个参照非局域 VV09 van der Waals 色散密度泛函建模的溶质–溶剂色散项[[1414]](../bib_references/bib.md#bib1475)、
+ 提出了一种隐式溶剂化模型，试图在采用 PCM 方式处理整体静电作用的同时，对这些非静电相互作用进行建模。他们将这一方法称为"溶剂隐式表示组合法"（CMIRS），其第一步是采用 SS(V)PE 模型（第 [11.2.6](subsec_SS_V_PE.md) 节）对溶质–连续介质静电作用进行自洽处理。CMIRS 在该静电计算的基础上，加入了一个参照非局域 VV09 van der Waals 色散密度泛函建模的溶质–溶剂色散项[[1414]](../bib_references/bib.md#bib1475)、
 一个依赖于延伸至溶质空腔之外的溶质电子密度尾部区域的 Pauli 排斥贡献，以及一个基于溶质在空腔表面所产生的电场法向分量的极大值与极小值的氢键校正项。溶剂化 Gibbs 自由能由此被建模为
 
 <a id="eq:CMIRS-free-energy"></a>
@@ -58,7 +58,7 @@ CMIRS 模型对每一种目标溶剂独立参数化，但每种溶剂使用的�
 ），对于离子，质子参考 $\Delta G$ 值取自文献 [[679]](../bib_references/bib.md#bib703)
 。
 
-**Q-Chem** 中 CMIRS 的当前实现使用 Chipman 的等密度 SS(V)PE 模块计算静电能。所得的等密度空腔和溶质电荷密度随后用于计算 DEFESR 相互作用。要请求 CMIRS 计算，用户必须在等密度 SS(V)PE 计算中将 IDEFESR 设为 1（见第 [11.2.6.2](subsec_SS(V)PE.md#subsec:SVP) 节）。CMIRS 模型中依赖于溶剂的经验参数 **A**、**B**、**C**、**D**、**Gamma** 需要在 *$pcm_nonels* 段中指定。此外还需要三个附加参数。其一是色散方程中的阻尼参数 **Delta**。我们建议将该参数固定为 $\delta=7$ a.u.（约 3.7 Å），这是一个优化值，只考虑分子间距离大于 van der Waals 接触距离时的色散作用。其二是溶剂的平均电子密度 **SolvRho**。最后是交换方程中对溶剂区域进行积分时所用 Gauss–Laguerre 点的数目 **GauLag_N**。我们建议使用 $40$ 个网格点以兼顾积分效率与精度。对于两种不同的 $\rho_{s}$ 值，所支持溶剂的优化参数列于表 [11.5](#table:CMIRS-params-rho0010) 和 [11.6](#table:CMIRS-params-rho0005)[[1527]](../bib_references/bib.md#bib1594)
+**Q-Chem** 中 CMIRS 的当前实现使用 Chipman 的等密度 SS(V)PE 模块计算静电能。所得的等密度空腔和溶质电荷密度随后用于计算 DEFESR 相互作用。要请求 CMIRS 计算，用户必须在等密度 SS(V)PE 计算中将 IDEFESR 设为 1（见第 [11.2.6.2](subsec_SS_V_PE.md#subsec:SVP) 节）。CMIRS 模型中依赖于溶剂的经验参数 **A**、**B**、**C**、**D**、**Gamma** 需要在 *$pcm_nonels* 段中指定。此外还需要三个附加参数。其一是色散方程中的阻尼参数 **Delta**。我们建议将该参数固定为 $\delta=7$ a.u.（约 3.7 Å），这是一个优化值，只考虑分子间距离大于 van der Waals 接触距离时的色散作用。其二是溶剂的平均电子密度 **SolvRho**。最后是交换方程中对溶剂区域进行积分时所用 Gauss–Laguerre 点的数目 **GauLag_N**。我们建议使用 $40$ 个网格点以兼顾积分效率与精度。对于两种不同的 $\rho_{s}$ 值，所支持溶剂的优化参数列于表 [11.5](#table:CMIRS-params-rho0010) 和 [11.6](#table:CMIRS-params-rho0005)[[1527]](../bib_references/bib.md#bib1594)
 。
 
 ???+ example "示例 11.15：甲烷在水溶剂中的 CMIRS 计算。"

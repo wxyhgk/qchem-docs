@@ -16,7 +16,7 @@ title: "Chapter 4 Self-Consistent Field Ground-State Methods"
 
 - [4.5 Converging SCF Calculations](sect_convergence.md)
 
-- [4.6 Large Molecules and Linear Scaling Methods](sec_O(N).md)
+- [4.6 Large Molecules and Linear Scaling Methods](sec_O_N.md)
 
 - [4.7 Dual-Basis Self-Consistent Field Calculations](sect_dualbasis.md)
 

@@ -51,7 +51,7 @@ is also a good strategy when the SCF calculation fails to converge.
 - •
 
 Linear-scaling, “${\cal{O}}({N})$”, and other reduced-cost methods are
-available for large systems (see Section [4.6](sec_O(N).md)).
+available for large systems (see Section [4.6](sec_O_N.md)).
 - •
 
 Unconventional SCF calculations. Some non-standard SCF methods

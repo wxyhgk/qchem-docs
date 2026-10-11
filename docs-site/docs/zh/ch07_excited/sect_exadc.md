@@ -18,7 +18,7 @@ adc
 
 - [7.10.5 自旋相反标度（Spin Opposite Scaling, SOS）ADC(2) 模型](sect_SOS-ADC.md)
 
-- [7.10.6 正则化激发态与 BWs-ADC](sect_BWs-ADC.md)
+- [7.10.6 正则化激发态与 BWs-ADC](sect_BWS-ADC.md)
 
 - [7.10.7 核激发 ADC 方法](sect_CVS-ADC.md)
 

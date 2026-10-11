@@ -16,7 +16,7 @@ title: "11.2 Chemical Solvent Models"
 
 - [11.2.5 Linear-Scaling QM/MM/PCM Calculations](subsec_linear-PCM.md)
 
-- [11.2.6 Isodensity Implementation of SS(V)PE](subsec_SS(V)PE.md)
+- [11.2.6 Isodensity Implementation of SS(V)PE](subsec_SS_V_PE.md)
 
 - [11.2.7 Composite Method for Implicit Representation of Solvent (CMIRS)](example_CMIRS-water.md)
 

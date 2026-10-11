@@ -103,4 +103,4 @@ $\omega$ 经过调节以满足 DFT 的电离势定理，
 泛函计算中使用的 *$rem* 变量 OMEGA 相同，即在原子单位制下
 $\omega=$ OMEGA/1000。关于在 XSAPT(KS) 方法背景下如何使用
 **DFT-LRC** 选项和 *$lrc_omega* 输入段的示例，请参见
-第 [12.10.3](subsec_AO-XSAPT(KS)+D.md) 节。
+第 [12.10.3](subsec_AO-XSAPT_KS_D.md) 节。

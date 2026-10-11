@@ -201,7 +201,7 @@ $\mathbf{K}$ matrix as compared to IEF-PCM. The *asymmetric* IEF-PCM is
 the recommended approach,[[756]](../bib_references/bib.md#bib789)
  although only the symmetrized
 version is available in the isodensity implementation of SS(V)PE that is
-discussed in Section [11.2.6](subsec_SS(V)PE.md). That said, differences between symmetry and asymmetric
+discussed in Section [11.2.6](subsec_SS_V_PE.md). That said, differences between symmetry and asymmetric
 versions are only important in the case of van der Waals cavity surfaces; they are insignificant for the
 isodensity cavity construction.[[569]](../bib_references/bib.md#bib580)
 

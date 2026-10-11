@@ -2,8 +2,7 @@
 title: "Chapter 11 Molecules in Complex Environments: Solvent Models, QM/MM, QM/EFP, and Embedding Methods"
 ---
 
-# Chapter 11 Molecules in Complex Environments: Solvent Models,
-QM/MM, QM/EFP, and Embedding Methods
+# Chapter 11 Molecules in Complex Environments: Solvent Models, QM/MM, QM/EFP, and Embedding Methods
 
 (July 4, 2026)
 

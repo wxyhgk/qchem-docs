@@ -20,4 +20,4 @@ title: "第 12 章 基于片段的方法（Fragment-Based Methods）"
 
 - [12.7 ALMO-EDA 的附加功能](Ch12.S7.md)
 
-- [12.8 其他基于片段的方法](Ch12.S8.md)
+- [12.8 其他基于片段的方法](sect_xpol.md)

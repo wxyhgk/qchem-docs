@@ -44,4 +44,4 @@ title: "第 6 章 基于波函数的相关方法"
 
 - [6.19 基于完美配对（Perfect-Pairing）活性空间的简化耦合簇方法](sect_pairing.md)
 
-- [6.20 完整活性空间（Complete Active Space）方法](sec_CASSCF.md)
+- [6.20 完整活性空间（Complete Active Space）方法](sec_casscf.md)

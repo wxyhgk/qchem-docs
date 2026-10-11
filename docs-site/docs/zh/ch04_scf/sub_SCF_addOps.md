@@ -6,7 +6,7 @@ title: "4.3.3 附加选项"
 
 （2026 年 7 月 4 日）
 
-下面列出的是若干用于自定义 SCF 计算的实用选项。这里仅对这些 *$rem* 变量的功能作简要概述。所有与 SCF 相关的变量完整列表见附录 [B](../app_b_quickref/app_quick_ref.md)。另有几个重要子主题单独讨论，包括用于大分子的 ${\cal{O}}({N})$ 方法（第 [4.6](sec_O(N).md) 节）、自定义初始猜测（第 [4.4](sect_initialguess.md) 节），以及 SCF 计算的收敛（第 [4.5](sect_convergence.md) 节）。
+下面列出的是若干用于自定义 SCF 计算的实用选项。这里仅对这些 *$rem* 变量的功能作简要概述。所有与 SCF 相关的变量完整列表见附录 [B](../app_b_quickref/app_quick_ref.md)。另有几个重要子主题单独讨论，包括用于大分子的 ${\cal{O}}({N})$ 方法（第 [4.6](sec_O_N.md) 节）、自定义初始猜测（第 [4.4](sect_initialguess.md) 节），以及 SCF 计算的收敛（第 [4.5](sect_convergence.md) 节）。
 
 INTEGRALS_BUFFER
 

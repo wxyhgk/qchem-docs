@@ -10,7 +10,7 @@ The legacy CIS(D) algorithm in **Q-Chem** is handled by the CCMAN/CCMAN2
 modules of **Q-Chem**’s and shares many of the *$rem* options.
 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D${}_{0}$) do not depend on the coupled-cluster
 routines. Users who will not use this legacy CIS(D) method may skip to
-Section [7.8.7](subsect_RI-CIS(D).md).
+Section [7.8.7](subsect_RI-CIS_D.md).
 
 As with all post-HF calculations, it is important to ensure there are
 sufficient resources available for the necessary integral calculations and

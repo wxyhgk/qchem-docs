@@ -12,4 +12,4 @@ title: "10.11 NMR 与其他磁性质"
 
 - [10.11.3 线性标度 NMR 化学位移计算](sec_D-CPSCF-NMR.md)
 
-- [10.11.4 其他与磁场相关的性质](sec_magnetman.txt)
+- [10.11.4 其他与磁场相关的性质](sec_magnetman.md)

@@ -63,7 +63,7 @@ B1LYP, B1PW91, MPW1K, LRC-BOP, BHH, BB1K, PW6B95, PWB6K, B2PLYP
 
 分子间相互作用的 TDDFT [TDDFT(MI)]，一套用于多生色团体系高效 TDDFT 计算的局域激发近似方法，
 也适用于含显式溶剂分子环境的单生色团体系
-(J. Liu, J. M. Herbert)；参见第 [12.15](../ch12_frag/sec_TDDFT(MI).md) 节。
+(J. Liu, J. M. Herbert)；参见第 [12.15](../ch12_frag/sec_TDDFT_MI.md) 节。
 - •
 
 多体（many-body）及 XSAPT 方法的改进（K. U. Lao, J. M. Herbert）：
@@ -74,7 +74,7 @@ MPI 并行的多体展开（many-body expansion）及解析梯度（参见第 [1
 - **–**
 
 XSAPT 的高效原子轨道实现，适用于闭壳层和开壳层体系
-（参见第 [12.10.3](../ch12_frag/subsec_AO-XSAPT(KS)+D.md) 节）。
+（参见第 [12.10.3](../ch12_frag/subsec_AO-XSAPT_KS_D.md) 节）。
 - •
 
 用于 *ab initio* 分子动力学（molecular dynamics）的恒温器（thermostat）(R. P. Steele, J. M. Herbert)。

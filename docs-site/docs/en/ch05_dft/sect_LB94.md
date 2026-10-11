@@ -44,7 +44,7 @@ relation[[811]](../bib_references/bib.md#bib845)
 
 <a id="Ch5.E68"></a>
 $$
-E_{x}^{\text{LB}}=-\int v_{x}^{\text{LB}}[\rho](\textbf{r})\bigl{[}3\rho(\mathbf{r})+\mathbf{r}\bm{\cdot}\hat{\bm{\nabla}}\rho(\mathbf{r})\bigr{]}\;d\mathbf{r} \tag{5.68}
+E_{x}^{\text{LB}}=-\int v_{x}^{\text{LB}}[\rho]\,(\textbf{r})\bigl{[}3\rho(\mathbf{r})+\mathbf{r}\bm{\cdot}\hat{\bm{\nabla}}\rho(\mathbf{r})\bigr{]}\;d\mathbf{r} \tag{5.68}
 $$
 
 An LB94 calculation is requested by setting EXCHANGE = LB94

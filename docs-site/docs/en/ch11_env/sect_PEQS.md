@@ -427,7 +427,7 @@ take to be equal to the van der Waals radius ($r_{\text{vdW}}$) scaled by a
 factor of 1.2; see Section [11.2.4](subsec_PCM_job_control.md).[[561]](../bib_references/bib.md#bib576)
 This cavity is rigid in the sense that once the atomic coordinates are
 specified, it remains unchanged during the SCF cycles. (The isodensity cavity
-discussed in Section [11.2.6](subsec_SS(V)PE.md) is an exception, but is not available
+discussed in Section [11.2.6](subsec_SS_V_PE.md) is an exception, but is not available
 for the PEqS method.) Furthermore, there is an abrupt and discontinuous change
 in the dielectric constant at the solute/continuum boundary. A
 three-dimensional analogue of this cavity, using continuous and differentiable

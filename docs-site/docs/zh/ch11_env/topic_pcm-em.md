@@ -156,7 +156,7 @@ for electrostatics, SS(V)PE）方法[[245]](../bib_references/bib.md#bib245)
 当积分方程被离散化为有限维矩阵方程时确实会出现一些差异[[756]](../bib_references/bib.md#bib789)，
 并且应从表 [11.3](#table:K-matrix) 中注意到，与 IEF-PCM 相比，SS(V)PE 使用了
 $\mathbf{K}$ 矩阵的对称化形式。*非对称*形式的 IEF-PCM 是推荐的方法[[756]](../bib_references/bib.md#bib789)，
-尽管在第 [11.2.6](subsec_SS(V)PE.md) 节讨论的 SS(V)PE 等密度（isodensity）实现中只提供对称化版本。
+尽管在第 [11.2.6](subsec_SS_V_PE.md) 节讨论的 SS(V)PE 等密度（isodensity）实现中只提供对称化版本。
 话虽如此，对称版本与非对称版本之间的差异只在范德华空腔表面的情况下才重要；对于
 等密度空腔构造而言，这种差异并不显著[[569]](../bib_references/bib.md#bib580)。
 

@@ -77,4 +77,17 @@ hide:
     ---
     Complete alphabetical listing of all `$rem` keywords, default values, and valid options.
 
+-   :material-calculator: **[Appendix A: AOInts Integrals Engine](app_a_aoints/app_AOINTS.md)**
+    ---
+    Architecture and implementation of Q-Chem's high-performance AO two-electron integral engine.
+
+-   :material-license: **[Appendix C: Third-Party Components](app_c_thirdparty/app_thirdparty.md)**
+    ---
+    Copyright notices and open-source licenses for Armadillo, Libtensor, Libefp, and other libraries.
+
+-   :material-bookshelf: **[References and Further Reading](bib_references/bib.md)**
+    ---
+    Over 1,580 citations to quantum chemistry methods, algorithms, and benchmark studies.
+
 </div>
+

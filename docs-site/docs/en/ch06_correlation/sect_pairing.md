@@ -13,6 +13,6 @@ Active Space
 
 - [6.19.3 Coupled Cluster Valence Bond (CCVB)](subsec_CCVB.md)
 
-- [6.19.4 Second-Order Correction to Perfect Pairing: PP(2)](subsec_PP(2).md)
+- [6.19.4 Second-Order Correction to Perfect Pairing: PP(2)](subsec_PP_2.md)
 
 - [6.19.5 Other GVBMAN Methods and Options](subsec_GVBMAN_other.md)

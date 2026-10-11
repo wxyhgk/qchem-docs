@@ -29,6 +29,7 @@ theme:
   - navigation.sections
   - navigation.top
   - navigation.footer
+  - navigation.path
   - search.suggest
   - search.highlight
   - content.code.copy
@@ -825,9 +826,11 @@ markdown_extensions:
 - pymdownx.arithmatex:
     generic: true
 extra_javascript:
-- https://polyfill.io/v3/polyfill.min.js?features=es6
-- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 - assets/mathjax.js
+- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+extra_css:
+- assets/custom.css
+
 nav:
 - Home: index.md
 - 'Chapter 1: Introduction':
@@ -948,7 +951,7 @@ nav:
     - 4.5.17 Internal Stability Analysis and Automated Correction for Energy Minima: ch04_scf/sub_stability_analysis.md
     - 4.5.18 Orbital Energy Scaling in Canonical ROSCF Calculations: ch04_scf/sub_ROHF-DODS.md
   - 4.6 Large Molecules and Linear Scaling Methods:
-    - 4.6 Large Molecules and Linear Scaling Methods: ch04_scf/sec_O(N).md
+    - 4.6 Large Molecules and Linear Scaling Methods: ch04_scf/sec_O_N.md
     - 4.6.1 Introduction: ch04_scf/Ch4.S6.SS1.md
     - 4.6.2 Continuous Fast Multipole Method (CFMM): ch04_scf/sect_cfmm.md
     - 4.6.3 Linear Scaling Exchange (LinK) Matrix Evaluation: ch04_scf/sect_link.md
@@ -1157,7 +1160,7 @@ nav:
     - 6.19.1 Introduction: ch06_correlation/Ch6.S19.SS1.md
     - 6.19.2 Perfect Pairing (PP): ch06_correlation/subsec_PP.md
     - 6.19.3 Coupled Cluster Valence Bond (CCVB): ch06_correlation/subsec_CCVB.md
-    - '6.19.4 Second-Order Correction to Perfect Pairing: PP(2)': ch06_correlation/subsec_PP(2).md
+    - '6.19.4 Second-Order Correction to Perfect Pairing: PP(2)': ch06_correlation/subsec_PP_2.md
     - 6.19.5 Other GVBMAN Methods and Options: ch06_correlation/subsec_GVBMAN_other.md
   - 6.20 Complete Active Space Methods:
     - 6.20 Complete Active Space Methods: ch06_correlation/sec_casscf.md
@@ -1240,9 +1243,9 @@ nav:
     - 7.8.2 CIS(D) Theory: ch07_excited/topic_cisd.md
     - 7.8.3 Resolution of the Identity CIS(D) Methods: ch07_excited/topic_ricisd.md
     - 7.8.4 SOS-CIS(D) Model: ch07_excited/topic_sos-cisd.md
-    - 7.8.5 SOS-CIS(D 0 ) Model: ch07_excited/sect_SOS-CIS(D0).md
+    - 7.8.5 SOS-CIS(D 0 ) Model: ch07_excited/sect_SOS-CIS_D0.md
     - 7.8.6 CIS(D) Job Control and Examples: ch07_excited/Ch7.S8.SS6.md
-    - '7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D 0 ): Job Controls and Examples': ch07_excited/subsect_RI-CIS(D).md
+    - '7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D 0 ): Job Controls and Examples': ch07_excited/subsect_RI-CIS_D.md
   - 7.9 Coupled-Cluster Excited-State and Open-Shell Methods:
     - 7.9 Coupled-Cluster Excited-State and Open-Shell Methods: ch07_excited/topic_eomcc.md
     - 7.9.1 Introduction: ch07_excited/Ch7.S9.SS1.md
@@ -1508,7 +1511,7 @@ nav:
     - 10.11.4 Additional Magnetic Field-Related Properties: ch10_properties/sec_magnetman.md
   - 10.12 Vibrational Circular Dichroism (VCD): ch10_properties/Ch10.S12.md
   - 10.13 Finite-Field Calculation of (Hyper)Polarizabilities:
-    - 10.13 Finite-Field Calculation of (Hyper)Polarizabilities: ch10_properties/sec_(Hyper)Polarizability.md
+    - 10.13 Finite-Field Calculation of (Hyper)Polarizabilities: ch10_properties/sec_HyperPolarizability.md
     - 10.13.1 Introduction: ch10_properties/Ch10.S13.SS1.md
     - 10.13.2 Numerical Calculation of Static Polarizabilities: ch10_properties/sec_finite-field.md
     - 10.13.3 Romberg Finite-Field Procedure: ch10_properties/sect_Romberg.md
@@ -1535,7 +1538,7 @@ nav:
     - 11.2.3 Polarizable Continuum Models: ch11_env/topic_pcm-em.md
     - 11.2.4 PCM Job Control: ch11_env/subsec_PCM_job_control.md
     - 11.2.5 Linear-Scaling QM/MM/PCM Calculations: ch11_env/subsec_linear-PCM.md
-    - 11.2.6 Isodensity Implementation of SS(V)PE: ch11_env/subsec_SS(V)PE.md
+    - 11.2.6 Isodensity Implementation of SS(V)PE: ch11_env/subsec_SS_V_PE.md
     - 11.2.7 Composite Method for Implicit Representation of Solvent (CMIRS): ch11_env/example_CMIRS-water.md
     - 11.2.8 COSMO: ch11_env/subsec_COSMO-Klamt.md
     - 11.2.9 SM x Models: ch11_env/ex_SMx-User-Solvent.md
@@ -1641,7 +1644,7 @@ nav:
     - 12.10 The XPol+SAPT (XSAPT) Method: ch12_frag/sect_XSAPT.md
     - 12.10.1 Introduction: ch12_frag/Ch12.S10.SS1.md
     - 12.10.2 Theory: ch12_frag/Ch12.S10.SS2.md
-    - 12.10.3 Dispersion Models: ch12_frag/subsec_AO-XSAPT(KS)+D.md
+    - 12.10.3 Dispersion Models: ch12_frag/subsec_AO-XSAPT_KS_D.md
     - 12.10.4 Running an XSAPT+MBD Job: ch12_frag/ex_XSAPT+PCM.md
   - 12.11 Energy Decomposition Analysis Based on SAPT/cDFT:
     - 12.11 Energy Decomposition Analysis Based on SAPT/cDFT: ch12_frag/sect_SAPTEDA.md
@@ -1660,7 +1663,7 @@ nav:
     - 12.14.2 Job Control Variables: ch12_frag/Ch12.S14.SS2.md
     - 12.14.3 Examples: ch12_frag/Ch12.S14.SS3.md
   - 12.15 TDDFT for Molecular Interactions:
-    - 12.15 TDDFT for Molecular Interactions: ch12_frag/sec_TDDFT(MI).md
+    - 12.15 TDDFT for Molecular Interactions: ch12_frag/sec_TDDFT_MI.md
     - 12.15.1 Introduction: ch12_frag/Ch12.S15.SS1.md
     - 12.15.2 Job Control: ch12_frag/Ch12.S15.SS2.md
   - 12.16 ALMO-CIS/TDA and Its Charge-Transfer Correction:

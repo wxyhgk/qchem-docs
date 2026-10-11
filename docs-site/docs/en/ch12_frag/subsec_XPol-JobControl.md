@@ -110,6 +110,6 @@ required. This input section simply consists of the values $\omega_{1},\omega_{2
 monomers appear in the *$molecule* section. These values have the same units
 as the *$rem* variable OMEGA that is used in range-separated hybrid
 functional calculations, namely, $\omega=$ OMEGA/1000 in atomic
-units. See Section [12.10.3](subsec_AO-XSAPT(KS)+D.md) for an example of how the
+units. See Section [12.10.3](subsec_AO-XSAPT_KS_D.md) for an example of how the
 **DFT-LRC** option and the *$lrc_omega* input section are used in the
 context of the XSAPT(KS) method.

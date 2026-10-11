@@ -18,7 +18,7 @@ SCF 计算的初始猜测（initial guess）（第 [4.4 节](sect_initialguess.m
 当 SCF 计算不收敛时，改变 SCF 收敛算法（第 [4.5 节](sect_convergence.md)）也是一种不错的策略。
 - •
 
-针对大体系，提供了线性标度（linear-scaling）、“${\cal{O}}({N})$” 及其他低成本方法（见第 [4.6 节](sec_O(N).md)）。
+针对大体系，提供了线性标度（linear-scaling）、“${\cal{O}}({N})$” 及其他低成本方法（见第 [4.6 节](sec_O_N.md)）。
 - •
 
 非常规 SCF 计算。一些具有新颖物理和数学特征的非标准 SCF 方法也可用。这些方法包括：

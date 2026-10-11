@@ -77,4 +77,17 @@ hide:
     ---
     所有 Q-Chem `$rem` 控制变量的完整字母索引、默认值及合法选项速查表。
 
+-   :material-calculator: **[附录 A：AOInts 积分引擎](app_a_aoints/app_AOINTS.md)**
+    ---
+    Q-Chem 高性能原子轨道双电子与多中心积分计算架构与实现。
+
+-   :material-license: **[附录 C：第三方组件与许可](app_c_thirdparty/app_thirdparty.md)**
+    ---
+    Armadillo、Libtensor、Libefp、Libecpint 等开源组件的版权与开源协议。
+
+-   :material-bookshelf: **[参考文献与延伸阅读](bib_references/bib.md)**
+    ---
+    全书 1,580 余篇量子化学经典理论文献与 Q-Chem 算法引用检索表。
+
 </div>
+

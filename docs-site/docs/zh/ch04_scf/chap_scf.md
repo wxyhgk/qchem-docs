@@ -16,7 +16,7 @@ title: "第 4 章 自洽场基态方法"
 
 - [4.5 SCF 计算的收敛](sect_convergence.md)
 
-- [4.6 大分子与线性标度方法](sec_O(N).md)
+- [4.6 大分子与线性标度方法](sec_O_N.md)
 
 - [4.7 双基组自洽场计算](sect_dualbasis.md)
 

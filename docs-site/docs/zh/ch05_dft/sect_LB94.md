@@ -26,7 +26,7 @@ $$
 
 <a id="Ch5.E68"></a>
 $$
-E_{x}^{\text{LB}}=-\int v_{x}^{\text{LB}}[\rho](\textbf{r})\bigl{[}3\rho(\mathbf{r})+\mathbf{r}\bm{\cdot}\hat{\bm{\nabla}}\rho(\mathbf{r})\bigr{]}\;d\mathbf{r} \tag{5.68}
+E_{x}^{\text{LB}}=-\int v_{x}^{\text{LB}}[\rho]\,(\textbf{r})\bigl{[}3\rho(\mathbf{r})+\mathbf{r}\bm{\cdot}\hat{\bm{\nabla}}\rho(\mathbf{r})\bigr{]}\;d\mathbf{r} \tag{5.68}
 $$
 
 在 *$rem* 区段中设置 EXCHANGE = LB94 即可请求 LB94 计算。更多的作业控制选项及示例见下文。

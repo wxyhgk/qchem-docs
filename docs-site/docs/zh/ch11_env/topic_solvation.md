@@ -16,8 +16,8 @@ title: "11.2 化学溶剂模型"
 
 - [11.2.5 线性标度 QM/MM/PCM 计算](subsec_linear-PCM.md)
 
-- [11.2.6 SS(V)PE 的等密度实现](subsec_SS(V)PE.md)
+- [11.2.6 SS(V)PE 的等密度实现](subsec_SS_V_PE.md)
 
-- [11.2.7 溶剂隐式表示的组合方法（Composite Method for Implicit Representation of Solvent, CMIRS）](example_CMIRS.md)
+- [11.2.7 溶剂隐式表示的组合方法（Composite Method for Implicit Representation of Solvent, CMIRS）](example_CMIRS-water.md)
 
-- [11.2.8 等密度（Isodensity）](subsec_SS(V)PE.md)
+- [11.2.8 等密度（Isodensity）](subsec_SS_V_PE.md)
