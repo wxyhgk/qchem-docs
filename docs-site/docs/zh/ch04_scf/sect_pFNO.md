@@ -12,6 +12,7 @@ title: "4.5.6 伪分数占据数方法（pFON）"
 pFON 方法引入如下的密度矩阵
 
 <a id="Ch4.E37"></a>
+
 $$
 P_{\mu\nu}=\sum_{p=1}^{N}\;n_{p}C_{\mu p}C_{\nu p} \tag{4.37}
 $$
@@ -19,6 +20,7 @@ $$
 其占据数 $0\leq n_{p}\leq 1$ 可以取分数值；而在常规的 SCF 计算中，要么 $n_{p}=1$（占据），要么 $n_{p}=0$（虚轨道）。在 pFON 中，占据数遵循费米-狄拉克（Fermi-Dirac）分布，
 
 <a id="Ch4.E38"></a>
+
 $$
 n_{p}=\bigl{(}1+e^{(\epsilon_{p}-\epsilon_{\mathrm{F}})/kT}\bigr{)}^{-1}\;, \tag{4.38}
 $$

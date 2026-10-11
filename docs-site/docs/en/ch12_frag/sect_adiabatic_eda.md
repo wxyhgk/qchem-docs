@@ -28,6 +28,7 @@ total binding energy (including monomer geometry distortions) is repartitioned
 into adiabatic FRZ, POL and CT terms:
 
 <a id="eq:ad_EDA"></a>
+
 $$
 \Delta E_{\mathrm{bind}}=\Delta E^{(\mathrm{ad})}_{\mathrm{frz}}+\Delta E^{(\mathrm{ad})}_{\mathrm{pol}}+\Delta E^{(\mathrm{ad})}_{\mathrm{ct}}. \tag{12.26}
 $$
@@ -38,6 +39,7 @@ using the corresponding frozen wave function) and the sum of fully relaxed,
 non-interacting fragment energies:
 
 <a id="eq:ad_FRZ"></a>
+
 $$
 \Delta E^{(\mathrm{ad})}_{\mathrm{frz}}=E[\mathbf{P}_{\mathrm{frz}}^{(\mathrm{frz})}]-\sum_{A}E_{A}^{(0)}. \tag{12.27}
 $$
@@ -47,6 +49,7 @@ geometry optimizations on the polarized (SCF-MI) and fully relaxed
 (unconstrained SCF) potential surfaces:
 
 <a id="A3.S8.EGx122"></a>
+
 $$
 \displaystyle\Delta E^{(\mathrm{ad})}_{\mathrm{pol}} \tag{12.28}
 $$
@@ -241,6 +244,7 @@ associated nuclear forces can be readily obtained. This allows for a facile inte
 into the adiabatic ALMO-EDA scheme introduced above:
 
 <a id="A3.S8.EGx123"></a>
+
 $$
 \displaystyle\Delta E^{(\mathrm{ad})}_{\mathrm{ctf}} \tag{12.30}
 $$

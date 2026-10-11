@@ -25,6 +25,7 @@ orbitals on fragments $A$ and $B$ are orthogonal to each other, its total
 energy can be expressed as
 
 <a id="A3.S8.EGx111"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle E_{\text{tot}}[\boldsymbol{\gamma}^{A}+\boldsymbol{\gamma}^{B}]&\displaystyle=\underbrace{\mathrm{tr}(\boldsymbol{\gamma}^{A}\mathbf{h})+J[\boldsymbol{\gamma}^{A}]+E_{\text{xc}}[\boldsymbol{\gamma}^{A}]}_{\text{Energy of A}}+\underbrace{\mathrm{tr}(\boldsymbol{\gamma}^{B}\mathbf{h})+J[\boldsymbol{\gamma}^{B}]+E_{\text{xc}}[\boldsymbol{\gamma}^{B}]}_{\text{Energy of B}}\\
 &\displaystyle\qquad+\underbrace{J[\boldsymbol{\gamma}^{A},\boldsymbol{\gamma}^{B}]+E_{\text{xc}}[\boldsymbol{\gamma}^{A},\boldsymbol{\gamma}^{B}]}_{\text{Non-additive terms}}\end{aligned} \tag{11.99}
@@ -38,6 +39,7 @@ theory in the presence of $\gamma^{B}$ (which is obtained at a low-level theory 
 then fixed), the total energy can be expressed as
 
 <a id="eq:Etot_dft_in_dft"></a>
+
 $$
 E_{\text{tot}}[\tilde{\gamma}^{A},\gamma^{B}]=E^{\text{high}}[\tilde{\gamma}^{A}]+E^{\text{low}}[\tilde{\gamma}^{A}+\gamma^{B}]-E^{\text{low}}[\tilde{\gamma}^{A}]. \tag{11.100}
 $$
@@ -46,6 +48,7 @@ Differentiating Eq. ([11.100](#eq:Etot_dft_in_dft)) with respect to $\tilde{\ga
 Fock matrix for the embedding calculation:
 
 <a id="Ch11.E101"></a>
+
 $$
 \mathbf{f}^{\text{A-in-B}}=\frac{\delta}{\delta\tilde{\gamma}^{A}}E_{\text{tot}}[\tilde{\gamma}^{A},\gamma^{B}]=\mathbf{F}^{\text{high}}[\tilde{\gamma}^{A}]+\mathbf{v}_{\text{emb}}[\tilde{\gamma}^{A},\gamma^{B}], \tag{11.101}
 $$
@@ -53,6 +56,7 @@ $$
 where the embedding potential
 
 <a id="A3.S8.EGx112"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\mathbf{v}_{\text{emb}}[\tilde{\gamma}^{A},\gamma^{B}]&\displaystyle=\frac{\partial}{\partial\tilde{\gamma}^{A}}\left(E^{\text{low}}[\tilde{\gamma}^{A}+\gamma^{B}]-E^{\text{low}}[\tilde{\gamma}^{A}]\right)\\
 &\displaystyle=\mathbf{F}^{\text{low}}[\tilde{\gamma}^{A}+\gamma^{B}]-\mathbf{F}^{\text{low}}[\tilde{\gamma}^{A}]\\
@@ -69,6 +73,7 @@ modified Fock matrix from which the variational degrees of freedom spanned by $B
 projected out:
 
 <a id="Ch11.E103"></a>
+
 $$
 \tilde{\mathbf{f}}^{\text{A-in-B}}=(\mathbf{I}-\mathbf{S}\boldsymbol{\gamma}^{B})\mathbf{f}^{\text{A-in-B}}(\mathbf{I}-\boldsymbol{\gamma}^{B}\mathbf{S}), \tag{11.103}
 $$
@@ -84,6 +89,7 @@ approximation was suggested,[[792]](../bib_references/bib.md#bib827)
 (to the first order of $\tilde{\gamma}^{A}-\gamma^{A}$):
 
 <a id="eq:linear_expansion"></a>
+
 $$
 E^{\text{low}}[\tilde{\gamma}^{A}+\gamma^{B}]-E^{\text{low}}[\tilde{\gamma}^{A}]\approx E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]+\mathrm{Tr}\left((\tilde{\gamma}^{A}-\gamma^{A})\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]\right), \tag{11.104}
 $$
@@ -91,6 +97,7 @@ $$
 where
 
 <a id="Ch11.E105"></a>
+
 $$
 \mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]=\frac{\delta}{\delta\gamma^{A}}\left(E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]\right)=\mathbf{F}^{\text{low}}[\gamma^{A}+\gamma^{B}]-\mathbf{F}[\gamma^{A}] \tag{11.105}
 $$
@@ -98,6 +105,7 @@ $$
 Based on this linearized approximation, the total energy of the entire system is approximately given by
 
 <a id="eq:Etot_dft_in_dft_approx"></a>
+
 $$
 E_{\text{tot}}[\tilde{\gamma}^{A};\gamma^{A},\gamma^{B}]=E^{\text{high}}[\tilde{\gamma}^{A}]+E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]+\mathrm{Tr}\left((\tilde{\gamma}^{A}-\gamma^{A})\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]\right), \tag{11.106}
 $$
@@ -105,6 +113,7 @@ $$
 and the Fock matrix for embedding calculation:
 
 <a id="Ch11.E107"></a>
+
 $$
 \mathbf{f}^{\text{A-in-B}}=\frac{\delta}{\delta\tilde{\gamma}^{A}}E_{\text{tot}}[\tilde{\gamma}^{A};\gamma^{A},\gamma^{B}]=\mathbf{F}^{\text{high}}[\tilde{\gamma}^{A}]+\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}] \tag{11.107}
 $$
@@ -118,6 +127,7 @@ $\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]$ into the Hamiltonian that is us
 for the correlated wave function calculation, converting Eq. ([11.106](#eq:Etot_dft_in_dft_approx)) into
 
 <a id="eq:Etot_wft_in_dft_approx"></a>
+
 $$
 E[\Psi^{A};\gamma^{A},\gamma^{B}]=\langle\Psi^{A}|\hat{H}^{\text{A-in-B}}|\Psi^{A}\rangle+E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]-\mathrm{Tr}\left(\gamma^{A}\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]\right)\;. \tag{11.108}
 $$
@@ -152,6 +162,7 @@ In this approach, one first transforms the occupied orbitals into the symmetrica
 orthogonalized AO basis:
 
 <a id="Ch11.E109"></a>
+
 $$
 \bar{\mathbf{C}}_{\text{occ}}=\mathbf{S}^{1/2}\mathbf{C}_{\text{occ}} \tag{11.109}
 $$
@@ -164,6 +175,7 @@ and the SPADE orbitals are then obtained by rotating the original
 $\mathbf{C}_{\text{occ}}$:
 
 <a id="Ch11.E110"></a>
+
 $$
 \mathbf{C}_{\text{occ}}^{\text{SPADE}}=\mathbf{C}_{\text{occ}}\mathbf{V}^{A}. \tag{11.110}
 $$
@@ -191,6 +203,7 @@ represented in the working basis (WB) are projected onto the embedded fragment
 $A$ in a user-specified projection basis (PB):
 
 <a id="Ch11.E111"></a>
+
 $$
 {}^{A}\mathbf{C}_{\text{vir}}^{\prime}=(\mathbf{S}_{\text{PB},A}^{-1})(^{A}\mathbf{S}_{\text{PB,WB}})\mathbf{C}_{\text{vir}} \tag{11.111}
 $$
@@ -203,6 +216,7 @@ orbitals denoted as $\mathbf{C}_{0}$ can then be selected by performing an SVD
 on the overlap between ${}^{A}\mathbf{C}_{\text{vir}}^{\prime}$ and $\mathbf{C}_{\text{vir}}$:
 
 <a id="eq:cl_step1"></a>
+
 $$
 (^{A}\mathbf{C}_{\text{vir}}^{\prime})^{T}(^{A}\mathbf{S}_{\text{PB,WB}})\mathbf{C}_{\text{vir}}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{T} \tag{11.112}
 $$
@@ -210,6 +224,7 @@ $$
 with
 
 <a id="Ch11.E113"></a>
+
 $$
 \displaystyle\mathbf{V} \tag{11.113a}
 $$
@@ -224,6 +239,7 @@ $\mathbf{C}^{T}\mathbf{F}\mathbf{C}_{\text{null},0}$, *i.e.*, the coupling
 between $\mathbf{C}_{0}$ and $\mathbf{C}_{\text{null},0}$ through the Fock operator
 
 <a id="eq:cl_step2"></a>
+
 $$
 \mathbf{C}_{0}^{T}\mathbf{F}\mathbf{C}_{\text{null},0}=\mathbf{U}_{0}\boldsymbol{\Sigma}_{0}\mathbf{V}_{0}^{T} \tag{11.114}
 $$
@@ -231,6 +247,7 @@ $$
 where
 
 <a id="Ch11.E115"></a>
+
 $$
 \displaystyle\mathbf{V}_{0} \tag{11.115a}
 $$
@@ -241,6 +258,7 @@ virtual orbitals. This procedure can be carried on iteratively, rendering the
 accuracy of this method tunable:
 
 <a id="eq:cl_iter"></a>
+
 $$
 \mathbf{C}_{n}^{\top}\mathbf{F}\mathbf{C}_{\text{null},n}=\mathbf{U}_{n}\boldsymbol{\Sigma}_{n}\mathbf{V}_{n}^{T} \tag{11.116}
 $$
@@ -248,6 +266,7 @@ $$
 where
 
 <a id="Ch11.E117"></a>
+
 $$
 \displaystyle\mathbf{V}_{n} \tag{11.117a}
 $$

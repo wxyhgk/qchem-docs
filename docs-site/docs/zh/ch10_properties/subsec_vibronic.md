@@ -31,6 +31,7 @@ title: "10.8.7 振动分辨的电子光谱与共振拉曼光谱"
 这里 $\omega_{i}$、$\omega_{1}$ 与 $\omega_{2}$ 表示入射光子频率，算符 $\hat{M}$ 定义为
 
 <a id="Ch10.E82"></a>
+
 $$
 \hat{M}=\begin{cases}\hat{\mu}&\text{(one-photon transition)}\\
 \sum_{L}\left[\frac{{\bf\mu}\cdot\hat{e}_{2}|L\rangle\langle L|{\bf\mu}\cdot\hat{e}_{1}}{(\omega_{1}-\omega_{LI})}+\frac{{\bf\mu}\cdot\hat{e}_{1}|L\rangle\langle L|{\bf\mu}\cdot\hat{e}_{2}}{(\omega_{2}-\omega_{LI})}\right]&\text{(two-photon transition)}\end{cases}\;. \tag{10.82}
@@ -44,6 +45,7 @@ $$
 $S(\omega_{i},\omega_{S})=|\langle F|\hat{M}|I\rangle|^{2}\delta(\Delta\omega)$，其中
 
 <a id="A3.S8.EGx80"></a>
+
 $$
 \displaystyle\hat{M}=\sum_{L}\left[\dfrac{\mu\cdot\hat{e}_{2}|L\rangle\langle L|\mu\cdot\hat{e}_{1}}{(\omega_{i}-\omega_{LI})}-\dfrac{\mu\cdot\hat{e}_{1}|L\rangle\langle L|\mu\cdot\hat{e}_{2}}{(\omega_{S}+\omega_{LI})}\right] \tag{10.83}
 $$
@@ -52,6 +54,7 @@ $$
 微分光子散射截面由下式给出[[35]](../bib_references/bib.md#bib18)
 
 <a id="rrs1"></a>
+
 $$
 \sigma(\omega_{i},\omega_{S})\propto\frac{4\omega_{i}\omega_{S}^{3}}{9c^{4}}S(\omega_{i},\omega_{S}). \tag{10.84}
 $$
@@ -65,6 +68,7 @@ RRS 光谱是振动拉曼光谱的一种，其入射激光频率接近所研究�
 函数写成电子波函数 $\Psi$ 与振动波函数 $\Lambda$ 的乘积
 
 <a id="Ch10.E85"></a>
+
 $$
 \Phi_{n}(q,Q)=\Psi_{n}(q,Q)\Lambda_{n}(Q)\;, \tag{10.85}
 $$
@@ -72,6 +76,7 @@ $$
 则有
 
 <a id="A3.S8.EGx81"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Psi_{n}(q,Q)&\displaystyle=\Psi_{n}(q,0)+[\partial{\Psi_{n}(q,0)}/{\partial Q}]_{Q=0}Q+\cdots\;,\\
 \displaystyle M_{IF}&\displaystyle=M_{IF}(Q=0)+[\partial{M_{IF}}/{\partial Q}]_{Q=0}Q+\cdots\;.\end{aligned} \tag{10.86}
@@ -80,6 +85,7 @@ $$
 式（[10.86](#HT1)）中的第二项源自 HT 展开。若在最低阶非零项之后截断展开，$M_{IF}$ 可写为
 
 <a id="A3.S8.EGx82"></a>
+
 $$
 \displaystyle M_{IF} \tag{10.87}
 $$
@@ -93,6 +99,7 @@ $$
 $\delta$ 函数 $\delta(\Delta\omega)$ 可表示为傅里叶积分
 
 <a id="eq4"></a>
+
 $$
 \delta(\Delta\omega)=\frac{1}{2\pi\hbar}\int_{-\infty}^{+\infty}\mathrm{e}^{(i\Delta\omega)t/\hbar}\,dt\;, \tag{10.88}
 $$
@@ -100,6 +107,7 @@ $$
 于是从初态到末态的跃迁速率变为
 
 <a id="eq:rate2"></a>
+
 $$
 k_{IF}=\int_{-\infty}^{+\infty}\exp[i(\omega_{0}+E_{i}-E_{f})t/\hbar-\gamma t]C_{i}(t)dt \tag{10.89}
 $$
@@ -107,6 +115,7 @@ $$
 其中 $\gamma$ 为阻尼因子，且
 
 <a id="Ch10.E90"></a>
+
 $$
 C_{i}(t)=\frac{\mbox{tr}[e^{-\beta\hat{H}_{i}}\mathrm{e}^{i\hat{H}_{i}t/\hbar}\hat{M}e^{-iH_{f}t/\hbar}\hat{M})}{\mbox{tr}[\mathrm{e}^{-\beta\hat{H}_{i}}]}\;. \tag{10.90}
 $$
@@ -119,6 +128,7 @@ $$
 基态与激发态上振动运动的哈密顿量可写为
 
 <a id="Ch10.E91"></a>
+
 $$
 \displaystyle H_{g} \tag{10.91a}
 $$
@@ -137,6 +147,7 @@ $D_{ij}=(\omega_{i}^{e}/\omega_{j}^{g})^{1/2}\bar{D}_{ij}$。
 质量加权笛卡尔位移坐标 $x$ 与简正模式坐标 $Q$ 之间的关系为
 
 <a id="A3.S8.EGx84"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle x^{g}-x_{0}^{g}&\displaystyle=L_{g}Q_{g}\;,\\
 \displaystyle x^{e}-x_{0}^{e}&\displaystyle=L_{e}Q_{e}\;,\end{aligned} \tag{10.92}
@@ -146,6 +157,7 @@ $$
 基态与激发态的简正模式坐标之间满足
 
 <a id="A3.S8.EGx85"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle Q_{e}&\displaystyle=(L_{e})^{\top}L_{g}Q_{g}+(L_{e})\top(x_{0}^{g}-x_{0}^{e})\\
 &\displaystyle=\bar{D}Q_{g}+\bar{\Delta}\;.\end{aligned} \tag{10.93}
@@ -159,6 +171,7 @@ $$
 则 $Q_{j}$ 的位移可由激发态能量梯度 $(\partial E/\partial Q)_{j}$ 计算得到，$\Delta^{\!\text{VG}}$ 可写为
 
 <a id="eq:VG"></a>
+
 $$
 \Delta_{j}^{\!\text{VG}}=(\omega_{j}^{g})^{-3/2}\left(\frac{\partial E}{\partial Q}\right)_{j}=\sum\limits_{i}(\omega_{j}^{g})^{-3/2}\left(\frac{\partial E}{\partial x_{i}}\right)L^{ij}_{g}. \tag{10.94}
 $$

@@ -28,6 +28,7 @@ The dipole moment of the exchange hole function
 $h_{\sigma}(\mathbf{r},\mathbf{r}^{\prime})$ is given at point $\mathbf{r}$ by
 
 <a id="Ch5.E40"></a>
+
 $$
 d_{\sigma}(\mathbf{r})=-\mathbf{r}-\int h_{\sigma}(\mathbf{r},\mathbf{r}^{\prime})\;\mathbf{r}^{\prime}\;d\mathbf{r}^{\prime}\;, \tag{5.40}
 $$
@@ -48,6 +49,7 @@ only the intermolecular $C_{6}$ coefficient,
 and its implementation in **Q-Chem** is denoted as “XDM6”. In this version, the dispersion energy is[[87]](../bib_references/bib.md#bib83)
 
 <a id="eq:XDM6"></a>
+
 $$
 E_{\text{vdW}}^{\text{XDM6}}=\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}E_{\text{vdW},AB}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\frac{C_{6,AB}}{R_{AB}^{6}+\kappa\,C_{6,AB}/E^{\text{corr}}_{AB}}\;. \tag{5.41}
 $$
@@ -60,6 +62,7 @@ $\kappa$ is a damping parameter that is universal in the sense that it is indepe
 The dispersion coefficients $C_{6,AB}$ is computed according to[[87]](../bib_references/bib.md#bib83)
 
 <a id="Ch5.E42"></a>
+
 $$
 C_{6,ij}=\frac{\langle d_{\rm X}^{2}\rangle_{\!A}\langle d_{\rm X}^{2}\rangle_{\!B}\;\alpha_{\!A}\,\alpha_{B}}{\langle d_{\text{X}}^{2}\rangle_{\!A}\,\alpha_{B}+\langle d_{\text{X}}^{2}\rangle_{\!B}\,\alpha_{A}} \tag{5.42}
 $$
@@ -72,6 +75,7 @@ coefficients,[[89]](../bib_references/bib.md#bib86)
  which leads to the “XDM10” model in **Q-Chem**:
 
 <a id="eq:XDM10"></a>
+
 $$
 E_{\rm vdW}^{\text{XDM10}}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left(\frac{C_{6,AB}}{R_{{\rm vdW},AB}^{6}+R_{AB}^{6}}+\frac{C_{8,AB}}{R_{{\rm
 vdW},AB}^{8}+R_{AB}^{8}}+\frac{C_{10,AB}}{R_{{\rm vdW},AB}^{10}+R_{AB}^{10}}\right)\;. \tag{5.43}
@@ -84,6 +88,7 @@ The quantity $R_{{\rm vdW},AB}$ prevents short-range divergence and is nominally
 the sum of effective atomic radii for atoms $A$ and $B$. In practice it is determined from the formula[[651]](../bib_references/bib.md#bib675)
 
 <a id="eq:Rvdw-damp"></a>
+
 $$
 R_{{\rm vdW},AB}=a_{1}R_{{\text{crit}},AB}+a_{2} \tag{5.44}
 $$
@@ -91,6 +96,7 @@ $$
 with a critical distance
 
 <a id="Ch5.E45"></a>
+
 $$
 R_{{\text{crit}},AB}=\frac{1}{3}\left[\left(\frac{C_{8,AB}}{C_{6,AB}}\right)^{1/2}+\left(\frac{C_{10,AB}}{C_{6,AB}}\right)^{1/4}+\left(\frac{C_{10,AB}}{C_{8,AB}}\right)^{1/2}\right] \tag{5.45}
 $$

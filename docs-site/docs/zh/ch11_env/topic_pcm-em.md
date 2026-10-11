@@ -25,6 +25,7 @@ Chipman[[245]](../bib_references/bib.md#bib245)
 PCM 表现为一组线性方程，
 
 <a id="eq:Kq=Rv"></a>
+
 $$
 \mathbf{Kq}=\mathbf{Rv}\;, \tag{11.2}
 $$
@@ -122,6 +123,7 @@ ${}^{a}$<span class="ltx_text" style="font-size:80%;">该模型还包含电荷�
 多年来，出现在该模型中的介电依赖因子（见表 [11.3](#table:K-matrix)）
 
 <a id="eq:f_epsilon"></a>
+
 $$
 f_{\varepsilon}=\frac{\varepsilon-1}{\varepsilon+x} \tag{11.3}
 $$
@@ -200,6 +202,7 @@ $\varepsilon\rightarrow\infty$ 下等价于 SS(V)PE[[245]](../bib_references/bib
 是由原子中心球的并集构成的范德华（vdW）表面。以原子 $A$ 为中心的球的半径可以写成如下形式
 
 <a id="eq:PCM_atomic_radii"></a>
+
 $$
 R_{A}=\alpha_{\text{vdW}}R_{\text{vdW},A}+R_{\text{probe}} \tag{11.4}
 $$
@@ -304,6 +307,7 @@ LR 方法将溶化效应视为一对跃迁之间的耦合，一个属于溶质�
 来确定。在 TDDFT 框架内，溶质与溶剂之间的相互作用由下式给出[[599]](../bib_references/bib.md#bib622)
 
 <a id="eq:LR-term"></a>
+
 $$
 \begin{split}\displaystyle\omega^{\prime}=&\displaystyle\int d\mathbf{r}\int d\mathbf{r}^{\prime}\int d\mathbf{r}^{\prime\prime}\int d\mathbf{r}^{\prime\prime\prime}\rho^{\ast}_{\text{tr}}(\mathbf{r})\left(\frac{1}{|\mathbf{r}-\mathbf{r}^{\prime}|}+g_{\mathrm{XC}}(\mathbf{r},\mathbf{r}^{\prime})\right)\\
 &\displaystyle\times\chi^{*}(\mathbf{r}^{\prime},\mathbf{r}^{\prime\prime},\omega)\left(\frac{1}{|\mathbf{r}^{\prime\prime}-\mathbf{r}^{\prime\prime\prime}|}+g_{\mathrm{XC}}(\mathbf{r}^{\prime\prime},\mathbf{r}^{\prime\prime\prime})\right)\rho_{\text{tr}}(\mathbf{r}^{\prime\prime\prime})\;,\end{split} \tag{11.5}
@@ -315,6 +319,7 @@ $$
 在 PCM 中，只考虑经典库仑相互作用，式 ([11.5](#eq:LR-term)) 变为
 
 <a id="Ch11.E6"></a>
+
 $$
 \begin{split}\displaystyle\omega^{\prime}_{\mathrm{PCM}}=&\displaystyle\int d\mathbf{r}\int d\mathbf{s}\ \frac{\rho^{\ast}_{\text{tr}}(\mathbf{r})}{|\mathbf{r}-\mathbf{s}|}\int d\mathbf{s}^{\prime}\int d\mathbf{r}^{\prime}\,\mathcal{Q}(\mathbf{s},\mathbf{s}^{\prime},\varepsilon)\frac{\rho_{\text{tr}}(\mathbf{r}^{\prime})}{|\mathbf{s}^{\prime}-\mathbf{r}^{\prime}|}\;,\end{split} \tag{11.6}
 $$
@@ -327,6 +332,7 @@ SS 方法考虑了溶剂部分自由度能够在激发发生时对溶质波函�
 作为如下非线性 Schrödinger 方程的解获得
 
 <a id="eq:SS-sdeq"></a>
+
 $$
 \left(\hat{H}^{\mathrm{vac}}+\hat{V}^{\mathrm{slow}}_{0}+\hat{V}^{\mathrm{fast}}_{i}\right)|\Psi_{i}\rangle=E^{\mathrm{SS}}_{i}|\Psi_{i}\rangle \tag{11.7}
 $$
@@ -346,6 +352,7 @@ Hamilton 量，反应场算符 $\hat{V}_{i}$ 产生对应于慢极化响应和�
 在 PCM 框架内，SS 激发态 $i$ 的快溶剂极化电荷可通过求解下列方程获得[[271]](../bib_references/bib.md#bib273)：
 
 <a id="eq:Kq=Rv-fast"></a>
+
 $$
 \mathbf{K}_{\varepsilon_{\mathrm{opt}}}\mathbf{q}^{\mathrm{fast,SS}}_{i}=\mathbf{R}_{\varepsilon_{\mathrm{opt}}}\left[\mathbf{v}_{i}+\mathbf{v}(\mathbf{q}^{\mathrm{slow}}_{0})\right]\;. \tag{11.8}
 $$
@@ -356,6 +363,7 @@ $\mathbf{v}_{i}$ 是溶质激发态密度 $\rho_{i}$ 的势。量
 $\mathbf{v}(\mathbf{q}^{\mathrm{slow}}_{0})$ 是基态下表观表面电荷慢部分的势，这些慢电荷由下式给出
 
 <a id="slow_q"></a>
+
 $$
 \mathbf{q}^{\mathrm{slow}}_{0}=\left(\frac{\varepsilon-\varepsilon_{\mathrm{opt}}}{\varepsilon-1}\right)\mathbf{q}_{0}\;. \tag{11.9}
 $$
@@ -364,6 +372,7 @@ $$
 式 ([11.8](#eq:Kq=Rv-fast)) 变为
 
 <a id="Ch11.E10"></a>
+
 $$
 \mathbf{K}_{\varepsilon_{\mathrm{opt}}}\mathbf{q}^{\mathrm{fast,LR}}_{i}=\mathbf{R}_{\varepsilon_{\mathrm{opt}}}\mathbf{v}(\rho^{\mathrm{tr}}_{i})\;. \tag{11.10}
 $$
@@ -403,6 +412,7 @@ LR 或 SS 方法计算，而基态则使用非平衡自洽 SS 方法计算。后
 的路径对所谓可逆电功进行积分推导出来的，*即*[[901]](../bib_references/bib.md#bib935)：
 
 <a id="Ch11.E11"></a>
+
 $$
 [\rho=0,\Phi=0]\xrightarrow[]{\varepsilon}[\rho_{1},\Phi^{\mathrm{eq}}_{1}]\xrightarrow[]{\varepsilon_{\mathrm{opt}}}[\rho_{2},\Phi^{\mathrm{neq}}_{2}] \tag{11.11}
 $$
@@ -422,6 +432,7 @@ Xiangyuan Li *et al.*[[1495]](../bib_references/bib.md#bib1563)
 建立了如下路径的非平衡溶化新理论：
 
 <a id="Ch11.E12"></a>
+
 $$
 [\rho_{1},\varphi^{\mathrm{eq}}_{1}]\xrightarrow[]{\mathrm{fast}}[\rho_{2},\varphi^{\mathrm{neq}}_{2}]\xrightarrow[]{-\lambda_{\mathrm{s}}}[\rho_{2},\varphi^{\mathrm{eq}}_{2}]\xrightarrow[]{+\rho_{\mathrm{ex}},\mathrm{quasistatic}}C[\rho_{2}+\rho_{\mathrm{ex}},\varphi^{\mathrm{neq}}_{2}] \tag{11.12}
 $$
@@ -431,6 +442,7 @@ $$
 从而将该约束平衡态映射到真实的非平衡态。这样，溶剂重组能可以推导为
 
 <a id="eq:lamuda_re"></a>
+
 $$
 \lambda_{\mathrm{s}}=-\frac{1}{2}\int_{V}\rho_{\text{ex}}\;\varphi^{\prime}\;dV \tag{11.13}
 $$
@@ -438,6 +450,7 @@ $$
 于是非平衡溶化自由能简单地由下式给出
 
 <a id="eq:neq_sol"></a>
+
 $$
 F^{\mathrm{neq}}_{2}=\frac{1}{2}\int_{V}\rho_{2}\;\varphi^{\mathrm{eq}}_{2}\;dV+\lambda_{\mathrm{s}} \tag{11.14}
 $$
@@ -448,6 +461,7 @@ $$
 在连续介质模型的框架内，式 ([11.14](#eq:neq_sol)) 的离散化与数值求解表示为[[130]](../bib_references/bib.md#bib118)
 
 <a id="Ch11.E15"></a>
+
 $$
 F^{\mathrm{neq}}_{i}=\sum_{m}V_{i,m}Q^{\mathrm{neq}}_{i,m}-\frac{1}{2}\sum_{m}Q^{\mathrm{neq}}_{i,m}D(\varepsilon)Q^{\mathrm{neq}}_{i,m} \tag{11.15}
 $$
@@ -460,6 +474,7 @@ $Q^{\mathrm{neq}}_{i,m}$ 是非平衡态的表观电荷。量 $D(\varepsilon)$
 吸收的垂直激发能定义为
 
 <a id="eq:hv_ab"></a>
+
 $$
 hv_{\mathrm{ab}}=G^{\mathrm{neq}}_{2}-G^{\mathrm{eq}}_{1} \tag{11.16}
 $$
@@ -467,6 +482,7 @@ $$
 其中 $G$ 表示溶液中溶质的总自由能，
 
 <a id="Ch11.E17"></a>
+
 $$
 G^{\mathrm{eq}}_{1}=E_{1}+F^{\mathrm{eq}}_{1}=E_{1}+\frac{1}{2}\sum_{m}V_{1,m}Q^{\mathrm{eq}}_{1,m}\; \tag{11.17}
 $$
@@ -476,6 +492,7 @@ $$
 基于平衡基态反应场，并在 TDDFT 框架内采用自洽的态专化方法，$G^{\mathrm{neq}}_{2}$ 由下式给出[[130]](../bib_references/bib.md#bib118)
 
 <a id="eq:G2_neq"></a>
+
 $$
 G^{\mathrm{neq}}_{2}=E_{1}+\omega_{\mathrm{ab}}+\sum_{m}V_{1,m}Q^{\mathrm{eq}}_{1,m}+\sum_{m}V_{2,m}(Q^{\mathrm{neq}}_{2,m}-Q^{\mathrm{eq}}_{1,m})-\frac{1}{2}\sum_{m}Q^{\mathrm{neq}}_{2,m}D(\varepsilon)Q^{\mathrm{neq}}_{2,m} \tag{11.18}
 $$
@@ -484,6 +501,7 @@ $$
 另一种方式是，基于非平衡激发态反应场，$G^{\mathrm{neq}}_{2}$ 由下式给出[[129]](../bib_references/bib.md#bib119)
 
 <a id="eq:G2_neq_k"></a>
+
 $$
 G^{\mathrm{neq}}_{2,k}=E^{k}_{1}+\omega^{k}_{\mathrm{ab}}-\sum_{m}V^{k}_{1,m}Q^{\mathrm{neq},k}_{2,m}-\frac{1}{2}\sum_{m}Q^{\mathrm{neq},k}_{2,m}D(\varepsilon)Q^{\mathrm{neq},k}_{2,m}\;, \tag{11.19}
 $$
@@ -496,6 +514,7 @@ $\omega^{k}_{\mathrm{ab}}$ 是在非平衡激发态反应场存在下由 TDDFT �
 类似地，发射的垂直激发能由下式给出[[129]](../bib_references/bib.md#bib119)
 
 <a id="Ch11.E20"></a>
+
 $$
 hv_{\mathrm{em}}=G^{\mathrm{eq}}_{2}-G^{\mathrm{neq}}_{1} \tag{11.20}
 $$
@@ -504,6 +523,7 @@ $$
 平衡激发态自由能和非平衡基态自由能。它们可以表示为[[129]](../bib_references/bib.md#bib119)
 
 <a id="Ch11.E21"></a>
+
 $$
 \displaystyle G^{\mathrm{neq}}_{1} \tag{11.21a}
 $$

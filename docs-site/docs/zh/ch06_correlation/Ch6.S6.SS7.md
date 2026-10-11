@@ -14,6 +14,7 @@ title: "6.6.7 Brueckner CC2"
 与 OOMP2 优化能量不同，BCC2 通过优化轨道使 CC2 的单激发振幅 t${}_{1}$ 降为 0。在不存在 t${}_{1}$ 振幅的情况下，CC2 的双激发振幅与 MP2 完全相同，而单激发振幅方程如下：
 
 <a id="eq:bcc2"></a>
+
 $$
 \Omega_{i}^{a}=f_{ai}+\sum_{jb}f_{jb}t_{ij}^{ab}+\frac{1}{2}\sum_{jbc}\langle
 ja||cb\rangle t_{ij}^{bc}+\frac{1}{2}\sum_{jkb}\langle jk||bi\rangle t_{jk}^{ab} \tag{6.30}
@@ -50,6 +51,7 @@ BCC2 的计算成本按 $\mathcal{O}(o^{2}v^{3})$ 标度——相比 OOCCD/BD �
  在这种情况下可用于进一步改善 BCC2 的结果。该正则化器通过按如下方式修改 $t_{ij}^{ab}$ 振幅来实现：
 
 <a id="eq:kbcc2"></a>
+
 $$
 t_{ij}^{ab}=\frac{-\langle ab||ij\rangle}{\Delta_{ij}^{ab}}\left(1-\exp(-\kappa\Delta_{ij}^{ab})\right)^{2} \tag{6.31}
 $$

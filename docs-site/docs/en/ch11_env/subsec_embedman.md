@@ -13,6 +13,7 @@ enforce the orthogonality between orbitals belonging to fragments 1 and 2.
 For the 1-in-2 case, the Fock matrix can be written as
 
 <a id="eq:des_fock"></a>
+
 $$
 \mathbf{f}^{(1)}=\mathbf{h}+\mathbf{J}[\gamma^{(1)}+\gamma^{(2)}]+\nu_{xc}[\gamma^{(1)}+\gamma^{(2)}]+\mu\mathbf{P}^{(2)} \tag{11.120}
 $$
@@ -20,6 +21,7 @@ $$
 where $\mathbf{P}^{(2)}$ is the level-shift projection operator constructed as:
 
 <a id="eq:des_proj"></a>
+
 $$
 \mathbf{P}^{(2)}_{\alpha\beta}=[\mathbf{S}\gamma^{(2)}\mathbf{S}]_{\alpha\beta} \tag{11.121}
 $$
@@ -30,6 +32,7 @@ the final energy to account for the level-shift projection operator contribution
 the Fock matrix energy. The correction term is calculated as the following:
 
 <a id="eq:des_corr"></a>
+
 $$
 E_{\mathrm{correction}}=\mu*\mathrm{tr}(\gamma^{(1)}\mathbf{P}^{(2)}) \tag{11.122}
 $$

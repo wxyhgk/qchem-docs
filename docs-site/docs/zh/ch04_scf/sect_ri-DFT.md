@@ -9,6 +9,7 @@ title: "4.6.6 恒等式分解 Fock 矩阵方法"
 Fock 矩阵（包括库仑（Coulomb，J）部分与交换（exchange，K）部分）的求值可以通过一种称为恒等式分解（resolution-of-the-identity，RI-JK）的近似来加速。本质上说，在常用基组中描述化学键所需要的完整复杂度，对于描述电子之间的平均场库仑相互作用与交换相互作用而言是不必要的。也就是说，式中等号左侧的 $\rho$ 比单独的 $\lambda\sigma$ 函数对要简单得多。
 
 <a id="A3.S8.EGx4"></a>
+
 $$
 \displaystyle(\mu\nu|\rho)=\sum_{\lambda\sigma}(\mu\nu|\lambda\sigma)\mathbf{P}_{\lambda\sigma} \tag{4.51}
 $$
@@ -18,6 +19,7 @@ $$
 在 RI-JK 近似中，函数对 $\rho(r)=\lambda\sigma(r)P_{\lambda\sigma}$ 的库仑相互作用由一组更小的原子中心辅助基函数来拟合。就 $J$ 而言：
 
 <a id="A3.S8.EGx5"></a>
+
 $$
 \displaystyle\sum_{\lambda\sigma}\int\textrm{d}^{3}\mathbf{r}_{1}P_{\lambda\sigma}\lambda\sigma(\mathbf{r}_{1})\frac{1}{|\mathbf{r}_{1}-\mathbf{r}|}\approx\sum_{K}\int\textrm{d}^{3}\mathbf{r}_{1}P_{K}K(\mathbf{r}_{1})\frac{1}{|\mathbf{r}_{1}-\mathbf{r}|} \tag{4.52}
 $$

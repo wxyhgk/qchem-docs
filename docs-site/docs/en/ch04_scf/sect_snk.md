@@ -15,6 +15,7 @@ integrals are decomposed by means of numerical quadrature; one integration
 is performed on a grid:
 
 <a id="A3.S8.EGx10"></a>
+
 $$
 \displaystyle(\mu\sigma|\nu\lambda)=\sum_{g}w_{g}\chi_{\mu}(\mathbf{r}_{g})(\nu\lambda|g)\chi_{\sigma}(\mathbf{r}_{g}) \tag{4.59}
 $$
@@ -22,6 +23,7 @@ $$
 while the second integration
 
 <a id="A3.S8.EGx11"></a>
+
 $$
 \displaystyle(\nu\lambda|g)=\int d\mathbf{r}\frac{\chi_{\nu}(\mathbf{r})\chi_{\lambda}(\mathbf{r})}{|\mathbf{r}-\mathbf{r}_{g}|} \tag{4.60}
 $$
@@ -29,6 +31,7 @@ $$
 is evaluated analytically (3c-1e). The exchange matrix is computed in three steps:
 
 <a id="A3.S8.EGx12"></a>
+
 $$
 \displaystyle F_{\lambda g} \tag{4.61}
 $$

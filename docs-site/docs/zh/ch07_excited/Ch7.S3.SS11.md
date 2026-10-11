@@ -17,6 +17,7 @@ CIS-1D 与 TDDFT-1D 方法的核心思想是，对一个组态相互作用哈密
 基于这些优化后的轨道，构造出如下的 CI 哈密顿量，
 
 <a id="eq:configHamiltoninan_tddft1d"></a>
+
 $$
 \mathbf{H}=\begin{pmatrix}\epsilon_{0}&0&\left\langle\psi_{0}|H|\psi_{h\bar{h}}^{l\bar{l}}\right\rangle\\
 0&\left\langle\psi_{i}^{a}|H|\psi_{j}^{b}\right\rangle&\left\langle\psi_{i}^{a}|H|\psi_{h\bar{h}}^{l\bar{l}}\right\rangle\\

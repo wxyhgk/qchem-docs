@@ -206,6 +206,7 @@ empirical dispersion potential has the aforementioned form, namely, pairwise
 atomic $-C/R^{6}$ terms:
 
 <a id="eqn:C6"></a>
+
 $$
 E^{\text{D2}}_{\text{disp}}=-s_{6}\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left(\frac{C_{6,AB}}{R_{AB}^{6}}\right)f^{\text{D2}}_{\text{damp}}(R_{AB})\;. \tag{5.25}
 $$
@@ -213,6 +214,7 @@ $$
 This function is damped at short range, where $R_{AB}^{-6}$ diverges, via
 
 <a id="Ch5.E26"></a>
+
 $$
 f^{\text{D2}}_{\text{damp}}(R_{AB})=\left[1+e^{-d(R_{AB}/R_{0,AB}-1)}\right]^{-1} \tag{5.26}
 $$
@@ -226,6 +228,7 @@ pairwise parameters in Eq. ([5.25](#eqn:C6)) are obtained as geometric means, a
 is common in classical force fields:
 
 <a id="eq:C_6AB"></a>
+
 $$
 C_{6,AB}=\bigl{(}C_{6,A}C_{6,B}\bigr{)}^{1/2} \tag{5.27}
 $$
@@ -274,6 +277,7 @@ Chai and Head-Gordon,[[224]](../bib_references/bib.md#bib219)
 Eq. ([5.25](#eqn:C6)) but with a slightly different damping function:
 
 <a id="A3.S8.EGx18"></a>
+
 $$
 \displaystyle f^{\text{CHG}}_{\text{damp}}(R_{AB})=\bigl{[}1+a(R_{AB}/R_{0,AB})^{-12}\bigr{]}^{-1} \tag{5.28}
 $$
@@ -316,6 +320,7 @@ for any density functional that is available in **Q-Chem**. The D3 correction
 includes a potential akin to that in D2 but including atomic $C_{8}$ terms as well:
 
 <a id="eq:D3eqn"></a>
+
 $$
 E_{\text{D3,2-body}}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left[s_{6}\left(\frac{C_{6,AB}}{R_{AB}^{6}}\right)f_{\text{damp,6}}(R_{AB})+s_{8}\left(\frac{C_{8,AB}}{R_{AB}^{8}}\right)f_{\text{damp,8}}(R_{AB})\right]\;. \tag{5.29}
 $$
@@ -331,6 +336,7 @@ formulation,[[486]](../bib_references/bib.md#bib504)
 version [DFT-D3(0)], uses damping functions of the form
 
 <a id="eq:zero-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3(0)}}(R_{AB})=\left[1+6\left(\frac{R_{AB}}{s_{r,n}R_{0,AB}}\right)^{-\beta_{n}}\right]^{-1} \tag{5.30}
 $$
@@ -347,6 +353,7 @@ DFT-D3(BJ), is designed to be finite (but non-zero) as $R_{AB}\rightarrow 0$.
 The damping functions used in DFT-D3(BJ) are
 
 <a id="eq:bj-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3(BJ)}}(R_{AB})=\frac{R_{AB}^{n}}{R_{AB}^{n}+\left(\alpha_{1}R_{0,AB}+\alpha_{2}\right)^{n}} \tag{5.31}
 $$
@@ -362,6 +369,7 @@ The D3S scheme redefines the C${}_{6}^{AB}$ coefficients by introducing atom-pai
 original DFT-D3 are introduced through the following expression:
 
 <a id="eq:d3_c6"></a>
+
 $$
 C_{6}^{AB}(CN^{A},CN^{B})=\frac{\sum_{i=1}^{N_{A}}\sum_{j=1}^{N_{B}}C_{6,\text{ref}}^{AB}(CN_{i}^{A},CN_{j}^{B})L_{ij}}{\sum_{i=1}^{N_{A}}\sum_{j=1}^{N_{B}}L_{ij}} \tag{6}
 $$
@@ -373,6 +381,7 @@ reference molecules. The term $L_{ij}$ modulates the weight based on how differe
 are from their reference points and is defined in the original D3 method as:
 
 <a id="eq:d3_k3"></a>
+
 $$
 L_{ij}^{D3}=e^{-k_{3}\left[(CN^{A}-CN_{i}^{A})^{2}+(CN^{B}-CN_{j}^{B})^{2}\right]} \tag{7}
 $$
@@ -383,6 +392,7 @@ on the potential energy surface, especially when the coordination numbers of ato
 the D3S scheme introduces atom-pair-dependent $k_{3}^{AB}$ parameters, resulting in an expression:
 
 <a id="eq:d3s_k3ab"></a>
+
 $$
 L_{ij}^{D3S}=e^{-k_{3}^{AB}\left[(CN^{A}-CN_{i}^{A})^{2}+(CN^{B}-CN_{j}^{B})^{2}\right]} \tag{8}
 $$
@@ -399,6 +409,7 @@ the $C_{8}$ term in Eq. ([5.29](#eq:D3eqn)) and uses a damping function with on
 parameter, $\alpha_{1}$:
 
 <a id="eq:cso-damping"></a>
+
 $$
 f_{\text{damp},6}^{\text{D3(CSO)}}(R_{AB})=\frac{C_{AB}^{6}}{R_{AB}^{6}+(2.5\mbox{\AA})^{6}}\left(s_{6}+\frac{\alpha_{1}}{1+\exp[R_{AB}-(2.5\mbox{\AA})R_{0,AB}]}\right)\;. \tag{5.32}
 $$
@@ -412,6 +423,7 @@ introduces one additional parameter
 ($\alpha_{1}$) as compared to DFT-D3(0):
 
 <a id="eq:zero-m-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3M(0)}}(R_{AB})=\left[1+6\left(\frac{R_{AB}}{s_{r,n}R_{0,AB}}+\alpha_{1}R_{0,AB}\right)^{-\beta_{n}}\right]^{-1}. \tag{5.33}
 $$
@@ -421,6 +433,7 @@ Finally, optimized power approach of Witte *et al.*[[1481]](../bib_references/b
 exponent, $\beta_{6}$, as an optimizable parameter, given by
 
 <a id="eq:op-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3(op)}}(R_{AB})=\frac{R_{AB}^{\beta_{n}}}{R_{AB}^{\beta_{n}}+(\alpha_{1}R_{0,AB}+\alpha_{2})^{\beta_{n}}}\;. \tag{5.34}
 $$
@@ -632,6 +645,7 @@ show that the proposed D4 model yields significantly lower error bars. The
 DFT-D4 dispersion energy similar to D3 model is given by
 
 <a id="eq:D4eqn"></a>
+
 $$
 E_{\text{D4,2-body}}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left[s_{6}\left(\frac{C_{6,AB}}{R_{AB}^{6}}\right)f_{\text{BJ damp,6}}(R_{AB})+s_{8}\left(\frac{C_{8,AB}}{R_{AB}^{8}}\right)f_{\text{BJ damp,8}}(R_{AB})\right]\;. \tag{5.35}
 $$
@@ -641,6 +655,7 @@ dependent $C_{6}^{\text{AB}}$ coefficients are obtained on-the-fly via
 Casimir-Polder integration
 
 <a id="eq:D4C6"></a>
+
 $$
 C_{6}^{\text{AB}}=\sum^{\text{N}^{A,\mathrm{ref}}}_{A,\mathrm{ref}=1}\sum^{\text{N}^{B,\mathrm{ref}}}_{B,\mathrm{ref}=1}\frac{3}{\pi}\int_{0}^{\infty}d\omega\alpha^{A,\mathrm{ref}}(i\omega,z^{A})\times W_{A}^{A,\mathrm{ref}}\alpha^{B,\mathrm{ref}}(i\omega,z^{B})W_{B}^{B,\mathrm{ref}}\;, \tag{5.36}
 $$
@@ -648,6 +663,7 @@ $$
 where
 
 <a id="eq:D4alpha"></a>
+
 $$
 \alpha^{A,\mathrm{ref}}(i\omega,z^{A})=\frac{1}{m}\left[\alpha^{A_{m}H_{n}}(i\omega)-\frac{n}{2}\alpha^{H_{2}}(i\omega)\times\zeta(z^{H_{A},\mathrm{ref}},z^{H_{2}})\right]\zeta(z^{A},z^{A,\mathrm{ref}})\; \tag{5.37}
 $$
@@ -655,6 +671,7 @@ $$
 and
 
 <a id="eq:D4zeta"></a>
+
 $$
 \zeta(z^{A},z^{A,\mathrm{ref}})=ba^{[1.47\text{exp}(z^{A}/z^{A,\mathrm{ref}})\text{log}_{10}(z^{A,\mathrm{ref}}/z^{A})]}\;. \tag{5.38}
 $$
@@ -668,6 +685,7 @@ $A_{m}H_{n}$. The effective charge $z^{A}$ is computed self-consistently via Mul
 charge $q^{A}$,
 
 <a id="eq:D4za"></a>
+
 $$
 z^{A}=Z^{A}+q^{A}. \tag{5.39}
 $$

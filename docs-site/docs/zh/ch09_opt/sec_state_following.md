@@ -15,6 +15,7 @@ title: "9.8.5 态跟踪算法（State-Tracking Algorithm）"
 重叠度的相似性度量定义为
 
 <a id="eq:similarity_metric"></a>
+
 $$
 \mathcal{S}=1-\tfrac{1}{2}\bigl{(}||\Delta\mathbf{A}||+||\Delta\mathbf{D}||\bigr{)} \tag{9.59}
 $$
@@ -22,6 +23,7 @@ $$
 其中 $\Delta\mathbf{A}=\mathbf{A}_{t+1}-\mathbf{A}_{t}$ 是相邻步骤间附着密度矩阵之差（式 ([7.185](../ch07_excited/sect_AttachDetach.md#eq:attach_density_matrix)))，$\Delta\mathbf{D}=\mathbf{D}_{t+1}-\mathbf{D}_{t}$ 是分离密度矩阵之差（式 ([7.183](../ch07_excited/sect_AttachDetach.md#eq:detach_density_matrix)))。式 ([9.59](#eq:similarity_metric)) 使用矩阵谱范数，
 
 <a id="Ch9.E60"></a>
+
 $$
 ||\mathbf{M}||=\left(\lambda_{\rm max}\mathbf{M}^{\dagger}\mathbf{M}\right)^{1/2} \tag{9.60}
 $$

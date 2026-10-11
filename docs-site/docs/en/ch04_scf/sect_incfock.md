@@ -15,6 +15,7 @@ iteration is solely sourced from the poor MO guess. Following this, the
 integral threshold used is computed as
 
 <a id="eq441"></a>
+
 $$
 t=10^{-\mathrm{VARTHRESH}}\times(\text{DIIS error}) \tag{4.48}
 $$
@@ -29,6 +30,7 @@ In an incremental Fock matrix build,[[41]](../bib_references/bib.md#bib25)
 $\mathbf{F}$ is computed recursively as
 
 <a id="eq442"></a>
+
 $$
 {\rm{\bf F}}^{\rm{\bf m}}={\rm{\bf F}}^{{\rm{\bf m}}-{\rm{\bf 1}}}+\Delta{\rm{\bf J}}^{{\rm{\bf m}}-{\rm{\bf 1}}}-\frac{1}{2}\Delta{\rm{\bf K}}^{{\rm{\bf m}}-{\rm{\bf 1}}} \tag{4.49}
 $$
@@ -36,6 +38,7 @@ $$
 where $m$ is the SCF cycle, and $\Delta$**J${}^{m}$** and $\Delta$**K${}^{m}$** are computed using the difference density
 
 <a id="eq443"></a>
+
 $$
 \Delta{\rm{\bf P}}^{\rm{\bf m}}={\rm{\bf P}}^{\rm{\bf m}}-{\rm{\bf P}}^{{\rm{\bf m}}-{\rm{\bf 1}}} \tag{4.50}
 $$

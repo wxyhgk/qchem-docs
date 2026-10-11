@@ -11,6 +11,7 @@ title: "7.9.7 EOM-DIP-CCSD"
 在 DIP 方法中，目标态是通过从参考态上剥离（detach）两个电子而得到的：
 
 <a id="DIP:WF"></a>
+
 $$
 \Psi_{k}=\hat{R}_{N-2}\Psi_{0}(N+2), \tag{7.100}
 $$
@@ -18,6 +19,7 @@ $$
 其中激发算符 $R$ 具有如下形式：
 
 <a id="eq:R-IP"></a>
+
 $$
 \hat{R}=\frac{1}{2}\sum_{ij}r_{ij}ji+\frac{1}{6}\sum_{ijka}r_{ijk}^{a}a^{\dagger}kji. \tag{7.101}
 $$

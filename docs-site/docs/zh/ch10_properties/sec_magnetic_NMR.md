@@ -13,6 +13,7 @@ NMR 计算可在 Hartree-Fock 和 DFT（密度泛函理论，Density Functional 
 屏蔽张量 $\bm{\sigma}$ 是一个二阶性质，依赖于外磁场 $\mathbf{B}$ 以及给定核的自旋角动量 $\bm{m}$：
 
 <a id="Ch10.E116"></a>
+
 $$
 \Delta E=-\bm{m}\bm{\cdot}(\mathbf{1}-\bm{\sigma})\bm{\cdot}\mathbf{B}\;. \tag{10.116}
 $$
@@ -20,6 +21,7 @@ $$
 利用解析求导技术计算 $\bm{\sigma}$，该 $3\times 3$ 张量的各分量按如下方式计算：
 
 <a id="Ch10.E117"></a>
+
 $$
 \sigma_{ij}=\sum_{\mu\nu}P_{\mu\nu}\left(\frac{\partial^{2}h_{\mu\nu}}{\partial B_{i}\partial m_{j}}\right)+\sum_{\mu\nu}\frac{\partial P_{\mu\nu}}{\partial B_{i}}\frac{\partial h_{\mu\nu}}{\partial m_{j}} \tag{10.117}
 $$
@@ -30,6 +32,7 @@ $$
 除化学位移外，间接核自旋-自旋耦合常数（亦称标量耦合或 $J$-耦合）也可在 SCF 层次上计算。原子 $A$ 与 $B$ 之间的耦合张量 $\mathbf{J}^{AB}$ 定义为电子能量对核磁矩 $\bm{m}$ 的二阶导数：
 
 <a id="issc"></a>
+
 $$
 \mathbf{J}^{AB}=\frac{\partial^{2}E}{\partial\bm{m}_{A}\partial\bm{m}_{B}}\;. \tag{10.118}
 $$

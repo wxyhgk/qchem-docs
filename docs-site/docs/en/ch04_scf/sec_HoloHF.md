@@ -24,6 +24,7 @@ Multiple solutions are then identified as the stationary points of the
 holomorphic energy[[584]](../bib_references/bib.md#bib607)
 
 <a id="eq:HoloHFEnergy"></a>
+
 $$
 \widetilde{E}=\frac{\langle\Psi^{*}|\hat{H}|\Psi\rangle}{\langle\Psi^{*}|\Psi\rangle}, \tag{4.70}
 $$
@@ -31,6 +32,7 @@ $$
 where $\hat{H}$ defines the conventional electronic Hamiltonian
 
 <a id="eq:HoloHamiltonian1"></a>
+
 $$
 \hat{H}=V_{\text{nuc}}+\sum_{i}^{N_{\text{e}}}\hat{h}(i)+\sum_{i<j}^{N_{\text{e}}}\frac{1}{r_{ij}}. \tag{4.71}
 $$
@@ -55,6 +57,7 @@ normalisation constraint, the molecular orbital coefficients must form
 a complex-orthogonal set (*cf*. unitary), *i.e.*,
 
 <a id="eq:HoloComplexOrth"></a>
+
 $$
 \sum_{\mu\nu}C^{\cdot\mu}_{i\cdot}S_{\mu\nu}C^{\nu\cdot}_{\cdot j}=\delta_{ij}, \tag{4.72}
 $$
@@ -71,6 +74,7 @@ solutions on the real axis. However, by scaling the electron-electron
 interaction using a complex parameter $\lambda$, *i.e.* introducing the Hamiltonian
 
 <a id="eq:HoloHamiltonian"></a>
+
 $$
 \hat{H}=V_{\text{nuc}}+\sum_{i}^{N_{\text{e}}}\hat{h}(i)+\lambda\sum_{i<j}^{N_{\text{e}}}\frac{1}{r_{ij}}, \tag{4.73}
 $$

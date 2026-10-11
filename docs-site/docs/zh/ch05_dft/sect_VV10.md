@@ -10,6 +10,7 @@ title: "5.7.2 非局域相关（NLC）泛函"
 （这正是第 [10.5.6](../ch10_properties/NCI-plots.md) 节所描述的非共价相互作用（Non-Covalent Interaction, NCI）图背后的基本思想：vdW 相互作用表现为在密度本身很小的空间区域中出现较大的密度梯度。）仅依赖于密度及其梯度的半局域广义梯度近似（Generalized Gradient Approximation, GGA）泛函无法描述这种长程、由相关效应诱导的相互作用；而.meta-GGA 至多只能借助密度的拉普拉斯算子和/或动能密度在中程范围内对其进行描述。要对*长程*电子相关给出正确的描述，就需要一个非局域泛函，*即*，具有如下形式的交换-相关势
 
 <a id="Ch5.E23"></a>
+
 $$
 v_{\rm c}^{\rm nl}(\mathbf{r})=\int f(\mathbf{r},\mathbf{r^{\prime}})\,d\mathbf{r^{\prime}}\;. \tag{5.23}
 $$
@@ -70,6 +71,7 @@ NL_VV_C 设为 89）。然而在 VV10 中，$C$ 与 $b$ 均无默认值，必须
 与局域（LSDA）及半局域（GGA 和 meta-GGA）泛函不同，非局域泛函在计算相关能时需要对空间变量做二重积分，而半局域泛函只需做如 [式 ([5.8](sec_Kohn-Sham.md#E_XC))] 所示的单重积分：
 
 <a id="Ch5.E24"></a>
+
 $$
 E_{\rm c}^{\rm nl}=\int v_{\rm c}^{\rm nl}(\mathbf{r})\;d\mathbf{r}=\int f(\mathbf{r},\mathbf{r^{\prime}})\,\rho(\mathbf{r})\;d\mathbf{r}\;d\mathbf{r^{\prime}}. \tag{5.24}
 $$

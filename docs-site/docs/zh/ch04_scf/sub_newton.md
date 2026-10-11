@@ -15,6 +15,7 @@ title: "4.5.11 Newton 方法"
 **Q-Chem** 中还实现了“无鞍点”（saddle-free）Newton-CG 算法（SF_NEWTON_CG）。该方法旨在当存在负特征值时，通过使用如下修改后的 Hessian 来恢复 Hessian 矩阵的曲率：
 
 <a id="eq:sf_newton"></a>
+
 $$
 \widetilde{\mathbf{H}}=\mathbf{H}-\mathbf{v}_{-}\lambda_{-}\mathbf{v}_{-}^{T} \tag{4.44}
 $$

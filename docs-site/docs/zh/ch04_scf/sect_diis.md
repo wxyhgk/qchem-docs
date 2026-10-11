@@ -12,6 +12,7 @@ diis
  的自洽场（SCF）实现利用了 SCF 解的一个性质，即密度矩阵必须与 Fock 矩阵对易：
 
 <a id="eq:DIIS-error"></a>
+
 $$
 \mathbf{SPF}-\mathbf{FPS}=\bm{0}\;. \tag{4.30}
 $$
@@ -19,6 +20,7 @@ $$
 因此，在 SCF 迭代循环过程中，在达到自洽之前，可以定义一个误差矢量 **e${}_{i}$**，该矢量除在收敛点外均非零：
 
 <a id="eq446"></a>
+
 $$
 {\rm{\bf SP}}_{i}{\rm{\bf F}}_{i}-{\rm{\bf F}}_{i}{\rm{\bf P}}_{i}{\rm{\bf S}}={\rm{\bf e}}_{i} \tag{4.31}
 $$
@@ -26,6 +28,7 @@ $$
 其中 $\mathbf{P}_{i}$ 通过对 $\mathbf{F}_{i}$ 对角化得到，且
 
 <a id="eq447"></a>
+
 $$
 \mathbf{F}_{k}=\sum\limits_{j=1}^{k-1}{c_{j}{\rm{\bf F}}_{j}} \tag{4.32}
 $$
@@ -33,6 +36,7 @@ $$
 DIIS 系数 $c_{k}$ 通过对误差矢量进行带约束的最小二乘极小化得到，*即*
 
 <a id="eq448"></a>
+
 $$
 Z=\left({\sum\limits_{k}{c_{k}{\rm{\bf e}}_{k}}}\right)\cdot\left({\sum\limits_{k}{c_{k}{\rm{\bf e}}_{k}}}\right) \tag{4.33}
 $$
@@ -40,6 +44,7 @@ $$
 并施加约束 $\sum_{k}c_{k}=1$，从而得到一组维度为 $N+1$ 的线性方程组：
 
 <a id="eq450"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{{\rm{\bf e}}_{1}\cdot{\rm{\bf e}}_{1}}&\cdots&{{\rm{\bf e}}_{1}\cdot{\rm{\bf e}}_{N}}&1\\
 \vdots&\ddots&\vdots&\vdots\\
@@ -61,6 +66,7 @@ $$
 通过限制用于确定 DIIS 系数的先前 Fock 矩阵的数量，可以提高收敛速度，
 
 <a id="eq451"></a>
+
 $$
 \mathbf{F}_{k}=\sum_{j=k-(L+1)}^{k-1}c_{j}\,\mathbf{F}_{j}\;. \tag{4.35}
 $$

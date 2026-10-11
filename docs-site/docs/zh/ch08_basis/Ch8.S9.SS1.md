@@ -9,6 +9,7 @@ title: "8.9.1 概述"
 在计算分子间相互作用能时，若直接按能量差做朴素计算
 
 <a id="eq:DeltaE_AB"></a>
+
 $$
 \Delta E_{AB}=E_{AB}-E_{A}-E_{B} \tag{8.5}
 $$

@@ -13,6 +13,7 @@ title: "7.11.4 RAS-CI 中的短程密度泛函关联"
 基于电子-电子库仑算符（$\hat{V}_{ee}$）的范围分离，通过误差函数来描述长程相互作用，
 
 <a id="A3.S8.EGx69"></a>
+
 $$
 \displaystyle\hat{V}_{\text{ee}}^{lr,\mu} \tag{7.166}
 $$
@@ -22,6 +23,7 @@ $$
 在 RAS-$sr$DFT 方法中，电子态的能量可以表示为：
 
 <a id="Ch7.E168"></a>
+
 $$
 E^{\text{RAS-}sr\text{DFT}}=\min_{\Psi^{\mu}}\left[\langle\Psi^{\mu}|\hat{T}+\hat{V}_{ne}+\hat{V}_{ee}^{lr,\mu}|\Psi^{\mu}\rangle+E_{\text{H}}^{sr,\mu}[\rho]+E_{\text{xc}}^{sr,\mu}[\rho]\right] \tag{7.168}
 $$

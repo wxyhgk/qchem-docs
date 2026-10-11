@@ -27,6 +27,7 @@ approaches.
 The energy of a complex-variable coupled-cluster singles and doubles wave function can be written as
 
 <a id="eq:ccenergy"></a>
+
 $$
 E-\mathrm{i}\frac{\Gamma}{2}=E_{\mathrm{CCSD}}=E_{\mathrm{HF}}+\sum_{ijab}\left(\frac{1}{4}t_{ij}^{ab}+\frac{1}{2}t_{i}^{a}t_{j}^{b}\right)\langle ij||ab\rangle. \tag{7.108}
 $$
@@ -39,6 +40,7 @@ it is evident that we can obtain the contribution from one of these valence orbi
 partial width, from the amplitude and two-electron integral tensors as
 
 <a id="Ch7.E109"></a>
+
 $$
 \frac{\Gamma_{ij}}{2}=-\mathrm{Im}\left(\sum_{b}\left(t_{ij}^{ab}+2t_{i}^{a}t_{j}^{b}\right)\langle ij||ab\rangle\right). \tag{7.109}
 $$

@@ -16,6 +16,7 @@ subspace perpendicular to the plane defined by two vectors: the gradient
 difference
 
 <a id="Ch7.E125"></a>
+
 $$
 {\rm\bf g}=\frac{\partial}{\partial{\rm\bf q}}(E_{1}-E_{2}) \tag{7.125}
 $$
@@ -23,6 +24,7 @@ $$
 and the derivative coupling
 
 <a id="Ch7.E126"></a>
+
 $$
 {\rm\bf h}=\left\langle\Psi_{1}\left|\frac{\partial{\rm\bf H}}{\partial{\rm\bf
 q}}\right|\Psi_{2}\right\rangle \tag{7.126}

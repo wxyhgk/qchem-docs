@@ -19,6 +19,7 @@ title: "7.9.12 基于复变量计算的俄歇部分衰变宽度"
 复变量耦合簇单双（CCSD）波函数的能量可写为
 
 <a id="eq:ccenergy"></a>
+
 $$
 E-\mathrm{i}\frac{\Gamma}{2}=E_{\mathrm{CCSD}}=E_{\mathrm{HF}}+\sum_{ijab}\left(\frac{1}{4}t_{ij}^{ab}+\frac{1}{2}t_{i}^{a}t_{j}^{b}\right)\langle ij||ab\rangle. \tag{7.108}
 $$
@@ -28,6 +29,7 @@ $$
 显然可以从振幅张量及双电子积分张量中获得其中一个价轨道组合的贡献，*即*，部分宽度可表示为
 
 <a id="Ch7.E109"></a>
+
 $$
 \frac{\Gamma_{ij}}{2}=-\mathrm{Im}\left(\sum_{b}\left(t_{ij}^{ab}+2t_{i}^{a}t_{j}^{b}\right)\langle ij||ab\rangle\right). \tag{7.109}
 $$

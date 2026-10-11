@@ -90,6 +90,7 @@ stationary. Denoting inactive orbitals by primes and active orbitals without
 primes, this corresponds to satisfying
 
 <a id="eq532"></a>
+
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{i}^{{j}^{\prime}}}=0 \tag{6.80}
 $$
@@ -99,6 +100,7 @@ must also be varied until the coupled-cluster energy is minimized with
 respect to these degrees of freedom:
 
 <a id="eq533"></a>
+
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{a}^{{b}^{\prime}}}=0 \tag{6.81}
 $$

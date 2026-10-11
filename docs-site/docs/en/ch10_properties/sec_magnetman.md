@@ -25,6 +25,7 @@ The hyperfine interaction tensor describes the interaction the interaction of
 unpaired electron spin with an atom’s nuclear spin levels:
 
 <a id="eq:hyperfine-hamiltonian"></a>
+
 $$
 \hat{H}_{\text{HFI}}/h=\mathbf{\hat{S}}\cdot\mathbf{A}\cdot\mathbf{\hat{I}}, \tag{10.119}
 $$
@@ -32,6 +33,7 @@ $$
 which is broken down into Fermi contact (FC), spin-dipole (SD), and orbital Zeeman/spin-orbit coupling (OZ/SOC) terms:
 
 <a id="eq:hyperfine-tensor"></a>
+
 $$
 A_{ab}^{\text{tot}}(N)=A_{ab}^{\text{FC}}(N)\delta_{ab}+A_{ab}^{\text{SD}}(N)+A_{ab}^{\text{OZ/SOC}}, \tag{10.120}
 $$
@@ -39,6 +41,7 @@ $$
 where the Fermi contact (FC) contribution is
 
 <a id="eq:hyperfine-fermi-contact"></a>
+
 $$
 A^{\text{FC}}(N)=\frac{\alpha}{2}\frac{1}{S}\frac{8\pi}{3}g_{\text{e}}g_{N}\mu_{N}\sum_{\mu\nu}P_{\mu\nu}^{\alpha-\beta}\left\langle\chi_{\mu}|\delta(\mathbf{r}_{N})|\chi_{\nu}\right\rangle \tag{10.121}
 $$
@@ -46,6 +49,7 @@ $$
 and the spin-dipole (SD) contribution is
 
 <a id="eq:hyperfine-spin-dipole"></a>
+
 $$
 A_{ab}^{\text{SD}}(N)=\frac{\alpha}{2}\frac{1}{S}g_{e}g_{N}\mu_{N}\sum_{\mu\nu}P_{\mu\nu}^{\alpha-\beta}\left\langle\chi_{\mu}\left|\frac{3r_{N,a}r_{N,b}-\delta_{ab}r_{N}^{2}}{r_{N}^{5}}\right|\chi_{\nu}\right\rangle \tag{10.122}
 $$
@@ -69,11 +73,13 @@ is the nuclear quadrupole interaction (NQI), which is a measure of how a nuclear
 quadrupole moment interacts with the local electric field gradient:
 
 <a id="eq:nqi-hamiltonian"></a>
+
 $$
 \hat{H}_{\text{NQI}}/h=\mathbf{\hat{I}}\cdot\mathbf{Q}\cdot\mathbf{\hat{I}}, \tag{10.123}
 $$
 
 <a id="eq:nqi-tensor"></a>
+
 $$
 \displaystyle Q_{ab}(N) \tag{10.124}
 $$
@@ -83,6 +89,7 @@ ordered $|Q_{1}|\leq|Q_{2}|\leq|Q_{3}|$, which are components of the
 asymmetry parameter eta:
 
 <a id="eq:nqi-eta"></a>
+
 $$
 \eta=\frac{Q_{1}-Q_{2}}{Q_{3}} \tag{10.125}
 $$
@@ -93,6 +100,7 @@ The electronic *g*-tensor is a measure of the electron describes the coupling o
 represented by the phenomenological Hamiltonian
 
 <a id="Ch10.E126"></a>
+
 $$
 \hat{H}^{\text{g-tensor}}=\mu_{\text{B}}\mathbf{S}\cdot\mathbf{g}\cdot\mathbf{B}, \tag{10.126}
 $$
@@ -105,6 +113,7 @@ $\mathbf{g}^{\text{rmc}}$, diamagnetic spin-orbit coupling $\mathbf{g}^{\text{ds
 $\mathbf{g}^{\text{pso}}$ terms:
 
 <a id="Ch10.E127"></a>
+
 $$
 \mathbf{g}=g_{\text{e}}\mathbf{I}+\mathbf{g}^{\text{rmc}}+\mathbf{g}^{\text{dso}}+\mathbf{g}^{\text{pso}}\;. \tag{10.127}
 $$
@@ -114,6 +123,7 @@ The relativistic interaction terms are added as perturbations following the Brei
 The relativistic mass correction shift term $g^{\text{rmc}}$ is
 
 <a id="Ch10.E128"></a>
+
 $$
 g^{\text{rmc}}_{pq}=-\frac{\alpha^{2}g_{\text{e}}}{2S}\delta_{pq}\sum_{\mu\nu}P^{\alpha-\beta}_{\mu\nu}T_{\mu\nu} \tag{10.128}
 $$
@@ -125,6 +135,7 @@ also only of minor importance for lighter elements or first to second row transi
 The paramagnetic spin-orbit coupling term $g^{\text{pso}}$ is a second-order term in the perturbation series but constitutes the main contribution to the $g$-tensor shift
 
 <a id="Ch10.E129"></a>
+
 $$
 g^{\text{pso}}=\frac{1}{\alpha S}\sum_{N}\frac{\left\langle\Psi_{0}\left|h^{\text{SO}}\right|\Psi_{N}\right\rangle\left\langle\Psi_{N}\left|h^{\text{OZ}}\right|\Psi_{0}\right\rangle}{E_{N}-E_{0}} \tag{10.129}
 $$
@@ -134,6 +145,7 @@ is used by default,[[364]](../bib_references/bib.md#bib370)
  and $h^{\text{OZ}}$ the orbital Zeeman interaction,
 
 <a id="Ch10.E130"></a>
+
 $$
 h^{\text{OZ}}=\mu_{\text{B}}\mathbf{L}\cdot\mathbf{B}\;, \tag{10.130}
 $$

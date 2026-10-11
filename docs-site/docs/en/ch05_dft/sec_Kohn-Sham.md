@@ -24,6 +24,7 @@ Within the Kohn-Sham formalism,[[701]](../bib_references/bib.md#bib732)
 electronic energy, $E$, can be written as
 
 <a id="eq:DFT_energy_components"></a>
+
 $$
 E=E_{\text{T}}+E_{\text{V}}+E_{\text{J}}+E_{\text{XC}} \tag{5.1}
 $$
@@ -35,6 +36,7 @@ energy. Adopting an unrestricted format, the $\alpha$ and $\beta$ total electron
 densities can be written as
 
 <a id="eq429"></a>
+
 $$
 \displaystyle\rho_{\alpha}(\mathbf{r}) \tag{5.2a}
 $$
@@ -43,6 +45,7 @@ where $n_{\alpha}$ and $n_{\beta}$ are the number of alpha and beta electron
 respectively, and $\psi_{i}$ are the Kohn-Sham orbitals. Thus, the total electron density is
 
 <a id="eq430"></a>
+
 $$
 \rho(\mathbf{r})=\rho_{\alpha}(\mathbf{r})+\rho_{\beta}(\mathbf{r}) \tag{5.3}
 $$
@@ -50,6 +53,7 @@ $$
 Within a finite basis set, the density is represented by[[1112]](../bib_references/bib.md#bib1163)
 
 <a id="eq431"></a>
+
 $$
 \rho(\mathbf{r})=\sum_{\mu\nu}P_{\mu\nu}\phi_{\mu}(\mathbf{r})\phi_{\nu}(\mathbf{r})\;, \tag{5.4}
 $$
@@ -59,6 +63,7 @@ Eq. ([4.24](../ch04_scf/Ch4.S2.SS2.md#eq:P(mu,nu))) in the discussion of Hartre
 Eq. ([5.1](#eq:DFT_energy_components)) can now be written
 
 <a id="A3.S8.EGx16"></a>
+
 $$
 \displaystyle E_{\mathrm{T}} \tag{5.5}
 $$
@@ -69,6 +74,7 @@ Eq. ([4.13](../ch04_scf/Ch4.S2.SS1.md#eq:Pople-Nesbet)),
 but with modified Fock matrix elements [*cf*. Eq. ([4.27](../ch04_scf/Ch4.S2.SS2.md#eq:F(mu,nu)))]
 
 <a id="eq437"></a>
+
 $$
 \displaystyle F_{\mu\nu}^{\alpha} \tag{5.9a}
 $$

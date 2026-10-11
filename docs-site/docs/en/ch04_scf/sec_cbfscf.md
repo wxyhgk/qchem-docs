@@ -9,6 +9,7 @@ title: "4.9.5 Non-Hermitian SCF with complex basis functions"
 Metastable electronic states can be characterized by a complex Siegert energy,
 
 <a id="Ch4.E74"></a>
+
 $$
 E=E_{r}-i\Gamma/2, \tag{4.74}
 $$

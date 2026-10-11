@@ -13,6 +13,7 @@ title: "9.10.1 理论"
 对于平衡态热分布，路径积分（path integral, PI）形式体系提供了一种既优雅又在计算上可行的替代方案。平衡态配分函数（partition function）可以写成热构型空间密度矩阵的迹，
 
 <a id="eq:primitive_Z"></a>
+
 $$
 Z=\mbox{tr}\bigl{(}e^{-\beta\hat{H}}\bigr{)}=\int dx\;\bigl{\langle}x\bigl{|}e^{-\beta\hat{H}}\bigr{|}x\bigr{\rangle}=\int dx\;\rho(x,x;\beta)\;. \tag{9.66}
 $$
@@ -20,6 +21,7 @@ $$
 密度矩阵在逆温度 $\beta=(k_{B}T)^{-1}$ 下由最后一个等式定义。计算式 ([9.66](#eq:primitive_Z)) 中的积分仍然需要求解 $\hat{H}$ 的本征态，而这通常是难以处理的。然而，若插入 $N-1$ 个恒等式的完备展开，则可得
 
 <a id="Ch9.E67"></a>
+
 $$
 Z=\int dx_{1}\int dx_{2}\cdots\int dx_{N}\ \rho\left(x_{1},x_{2};\frac{\beta}{N}\right)\rho\left(x_{2},x_{3};\frac{\beta}{N}\right)\cdots\rho\left(x_{N},x_{1};\frac{\beta}{N}\right)\;. \tag{9.67}
 $$
@@ -29,6 +31,7 @@ $$
 密度矩阵的高温形式可以表示为
 
 <a id="Ch9.E68"></a>
+
 $$
 \rho\left(x,x^{\prime};\frac{\beta}{N}\right)=\left(\frac{mN}{2\pi\beta\hbar^{2}}\right)^{\!1/2}\exp\left\{-\left(\frac{mN}{2\beta\hbar^{2}}\right)(x-x^{\prime})^{2}-\left(\frac{\beta}{2N}\right)\Bigl{[}V(x)+V(x^{\prime})\Bigr{]}\right\} \tag{9.68}
 $$
@@ -36,6 +39,7 @@ $$
 当 $T\rightarrow\infty$（即量子力学收敛于经典力学的极限）时，该式变为精确；换言之，当 $\beta\rightarrow 0$ 或 $N\rightarrow\infty$ 时亦然。利用 $N$ 个时间切片，配分函数因此被转化为如下形式
 
 <a id="eq:PI_partition_fn"></a>
+
 $$
 Z=\left(\frac{mN}{2\pi\beta\hbar^{2}}\right)^{\!N/2}\int dx_{1}\int dx_{2}\cdots\int dx_{N}\;\exp\left\{-\frac{\beta}{N}\left[\frac{mN^{2}}{2\beta^{2}\hbar^{2}}\sum_{i=1}^{N}\left(x_{i}-x_{i+1}\right)^{2}+\sum_{i=1}^{N}V(x_{i})\right]\right\}\;, \tag{9.69}
 $$
@@ -45,6 +49,7 @@ $$
 式 [9.69](#eq:PI_partition_fn) 具有如下形式
 
 <a id="eq:PI_equiv_to_classical"></a>
+
 $$
 Z\propto\int e^{-\beta V_{\rm eff}}\;, \tag{9.70}
 $$
@@ -54,6 +59,7 @@ $$
 上述方程的单珠粒（$N=1$）极限就是经典的构型采样。当温度（由 PIMC_TEMP 关键字控制）较高，或只涉及较重原子时，经典极限通常是合适的。可以使用路径积分机制（配合单个"珠粒"）来执行经典玻尔兹曼采样。此时，配分函数就变为如下简单的形式
 
 <a id="Ch9.E71"></a>
+
 $$
 Z=\int dx\ e^{-\beta V(x)} \tag{9.71}
 $$

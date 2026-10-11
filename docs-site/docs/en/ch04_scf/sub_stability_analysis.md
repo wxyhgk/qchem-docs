@@ -29,6 +29,7 @@ To understand what instabilities can occur, it is useful to consider the most
 general form possible for the spin orbitals:
 
 <a id="eq427"></a>
+
 $$
 \chi_{i}({\rm{\bf r}},\zeta)=\psi_{i}^{\alpha}({\rm{\bf r}})\alpha(\zeta)+\psi_{i}^{\beta}({\rm{\bf r}})\beta(\zeta)\;. \tag{4.45}
 $$
@@ -40,6 +41,7 @@ applied is to assume the spin orbitals depend only on one or other of the
 spin-functions $\alpha$ or $\beta$. Thus, the spin-functions take the form
 
 <a id="Ch4.E46"></a>
+
 $$
 \chi_{i}(\mathbf{r},\zeta)=\psi_{i}^{\alpha}(\mathbf{r})\alpha(\zeta)\quad\mathrm{or}\quad\chi_{i}(\mathbf{r},\zeta)=\psi_{i}^{\beta}(\mathbf{r})\beta(\zeta)\;. \tag{4.46}
 $$
@@ -98,6 +100,7 @@ product technique developed by Sharada *et al.*,[[1244]](../bib_references/bib.
 requires the gradient (related to the Fock matrix) only:
 
 <a id="eq:fd_mat_vec"></a>
+
 $$
 \mathbf{Hb}_{1}=\frac{\hat{\bm{\nabla}}E(\mathbf{X}_{0}+\xi\mathbf{b}_{1})-\hat{\bm{\nabla}}E(\mathbf{X}_{0}-\xi\mathbf{b}_{1})}{2\xi} \tag{4.47}
 $$

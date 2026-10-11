@@ -40,6 +40,7 @@ Ref. [[569]](../bib_references/bib.md#bib580)
  for a review. The PCM takes the form of a set of linear equations,
 
 <a id="eq:Kq=Rv"></a>
+
 $$
 \mathbf{Kq}=\mathbf{Rv}\;, \tag{11.2}
 $$
@@ -152,6 +153,7 @@ models.[[244]](../bib_references/bib.md#bib244)
 Over the years, the dielectric-dependent factor
 
 <a id="eq:f_epsilon"></a>
+
 $$
 f_{\varepsilon}=\frac{\varepsilon-1}{\varepsilon+x} \tag{11.3}
 $$
@@ -267,6 +269,7 @@ most common is the van der Waals (vdW) surface consisting of a union of
 atom-centered spheres. The radius for the sphere centered on atom $A$ can be written in the form
 
 <a id="eq:PCM_atomic_radii"></a>
+
 $$
 R_{A}=\alpha_{\text{vdW}}R_{\text{vdW},A}+R_{\text{probe}} \tag{11.4}
 $$
@@ -425,6 +428,7 @@ may be determined by considering such an interaction as a perturbation. In the
 framework of TDDFT, the interaction between solute and solvent is given by[[599]](../bib_references/bib.md#bib622)
 
 <a id="eq:LR-term"></a>
+
 $$
 \begin{split}\displaystyle\omega^{\prime}=&\displaystyle\int d\mathbf{r}\int d\mathbf{r}^{\prime}\int d\mathbf{r}^{\prime\prime}\int d\mathbf{r}^{\prime\prime\prime}\rho^{\ast}_{\text{tr}}(\mathbf{r})\left(\frac{1}{|\mathbf{r}-\mathbf{r}^{\prime}|}+g_{\mathrm{XC}}(\mathbf{r},\mathbf{r}^{\prime})\right)\\
 &\displaystyle\times\chi^{*}(\mathbf{r}^{\prime},\mathbf{r}^{\prime\prime},\omega)\left(\frac{1}{|\mathbf{r}^{\prime\prime}-\mathbf{r}^{\prime\prime\prime}|}+g_{\mathrm{XC}}(\mathbf{r}^{\prime\prime},\mathbf{r}^{\prime\prime\prime})\right)\rho_{\text{tr}}(\mathbf{r}^{\prime\prime\prime})\;,\end{split} \tag{11.5}
@@ -439,6 +443,7 @@ Within a PCM, only classical Coulomb interactions are taken into account, and
 Eq. ([11.5](#eq:LR-term)) becomes
 
 <a id="Ch11.E6"></a>
+
 $$
 \begin{split}\displaystyle\omega^{\prime}_{\mathrm{PCM}}=&\displaystyle\int d\mathbf{r}\int d\mathbf{s}\ \frac{\rho^{\ast}_{\text{tr}}(\mathbf{r})}{|\mathbf{r}-\mathbf{s}|}\int d\mathbf{s}^{\prime}\int d\mathbf{r}^{\prime}\,\mathcal{Q}(\mathbf{s},\mathbf{s}^{\prime},\varepsilon)\frac{\rho_{\text{tr}}(\mathbf{r}^{\prime})}{|\mathbf{s}^{\prime}-\mathbf{r}^{\prime}|}\;,\end{split} \tag{11.6}
 $$
@@ -454,6 +459,7 @@ the LR approach. In SS, a generic solvated-solute excited state $\Psi_{i}$ is
 obtained as a solution of a nonlinear Schrödinger equation
 
 <a id="eq:SS-sdeq"></a>
+
 $$
 \left(\hat{H}^{\mathrm{vac}}+\hat{V}^{\mathrm{slow}}_{0}+\hat{V}^{\mathrm{fast}}_{i}\right)|\Psi_{i}\rangle=E^{\mathrm{SS}}_{i}|\Psi_{i}\rangle \tag{11.7}
 $$
@@ -482,6 +488,7 @@ Within PCM, the fast solvent polarization charges for the SS excited state $i$
 can be obtained by solving the following equation:[[271]](../bib_references/bib.md#bib273)
 
 <a id="eq:Kq=Rv-fast"></a>
+
 $$
 \mathbf{K}_{\varepsilon_{\mathrm{opt}}}\mathbf{q}^{\mathrm{fast,SS}}_{i}=\mathbf{R}_{\varepsilon_{\mathrm{opt}}}\left[\mathbf{v}_{i}+\mathbf{v}(\mathbf{q}^{\mathrm{slow}}_{0})\right]\;. \tag{11.8}
 $$
@@ -495,6 +502,7 @@ slow part of the apparent surface charges in the ground state, which
 are given by
 
 <a id="slow_q"></a>
+
 $$
 \mathbf{q}^{\mathrm{slow}}_{0}=\left(\frac{\varepsilon-\varepsilon_{\mathrm{opt}}}{\varepsilon-1}\right)\mathbf{q}_{0}\;. \tag{11.9}
 $$
@@ -504,6 +512,7 @@ the electron density (TDDFT linear density response), and thus
 Eq. ([11.8](#eq:Kq=Rv-fast)) becomes
 
 <a id="Ch11.E10"></a>
+
 $$
 \mathbf{K}_{\varepsilon_{\mathrm{opt}}}\mathbf{q}^{\mathrm{fast,LR}}_{i}=\mathbf{R}_{\varepsilon_{\mathrm{opt}}}\mathbf{v}(\rho^{\mathrm{tr}}_{i})\;. \tag{11.10}
 $$
@@ -566,6 +575,7 @@ work integration along the path linking the initial equilibrium state (eq) and t
 *i.e.*,[[901]](../bib_references/bib.md#bib935)
 
 <a id="Ch11.E11"></a>
+
 $$
 [\rho=0,\Phi=0]\xrightarrow[]{\varepsilon}[\rho_{1},\Phi^{\mathrm{eq}}_{1}]\xrightarrow[]{\varepsilon_{\mathrm{opt}}}[\rho_{2},\Phi^{\mathrm{neq}}_{2}] \tag{11.11}
 $$
@@ -586,6 +596,7 @@ the constrained equilibrium principle,
  using the following pathway:
 
 <a id="Ch11.E12"></a>
+
 $$
 [\rho_{1},\varphi^{\mathrm{eq}}_{1}]\xrightarrow[]{\mathrm{fast}}[\rho_{2},\varphi^{\mathrm{neq}}_{2}]\xrightarrow[]{-\lambda_{\mathrm{s}}}[\rho_{2},\varphi^{\mathrm{eq}}_{2}]\xrightarrow[]{+\rho_{\mathrm{ex}},\mathrm{quasistatic}}C[\rho_{2}+\rho_{\mathrm{ex}},\varphi^{\mathrm{neq}}_{2}] \tag{11.12}
 $$
@@ -593,6 +604,7 @@ $$
 where C stands for the constrained equilibrium state which is constructed and mapped to the true nonequilibrium state by introducing the proper external charge $\rho_{\mathrm{ex}}$ which is used to equilibrate the “residual” polarization potential, $\varphi^{{}^{\prime}}=\varphi^{\mathrm{neq}}_{2}-\varphi^{\mathrm{eq}}_{2}$. In this way the solvent reorganization energy can be derived as
 
 <a id="eq:lamuda_re"></a>
+
 $$
 \lambda_{\mathrm{s}}=-\frac{1}{2}\int_{V}\rho_{\text{ex}}\;\varphi^{\prime}\;dV \tag{11.13}
 $$
@@ -600,6 +612,7 @@ $$
 Then the nonequilibrium solvation free energy is simply given by
 
 <a id="eq:neq_sol"></a>
+
 $$
 F^{\mathrm{neq}}_{2}=\frac{1}{2}\int_{V}\rho_{2}\;\varphi^{\mathrm{eq}}_{2}\;dV+\lambda_{\mathrm{s}} \tag{11.14}
 $$
@@ -609,6 +622,7 @@ For more detailed descriptions of the gain of the external (constraining) charge
 Within the framework of continuum model, the discretization and numerical solution of Eq. ([11.14](#eq:neq_sol)) is expressed as[[130]](../bib_references/bib.md#bib118)
 
 <a id="Ch11.E15"></a>
+
 $$
 F^{\mathrm{neq}}_{i}=\sum_{m}V_{i,m}Q^{\mathrm{neq}}_{i,m}-\frac{1}{2}\sum_{m}Q^{\mathrm{neq}}_{i,m}D(\varepsilon)Q^{\mathrm{neq}}_{i,m} \tag{11.15}
 $$
@@ -621,6 +635,7 @@ $D(\varepsilon)$ is the square matrix arising in PCMs such as C-PCM and IEF-PCM 
 The vertical excitation energy for absorption is defined as
 
 <a id="eq:hv_ab"></a>
+
 $$
 hv_{\mathrm{ab}}=G^{\mathrm{neq}}_{2}-G^{\mathrm{eq}}_{1} \tag{11.16}
 $$
@@ -628,6 +643,7 @@ $$
 where $G$ stands for total free energy of the solute in solution,
 
 <a id="Ch11.E17"></a>
+
 $$
 G^{\mathrm{eq}}_{1}=E_{1}+F^{\mathrm{eq}}_{1}=E_{1}+\frac{1}{2}\sum_{m}V_{1,m}Q^{\mathrm{eq}}_{1,m}\; \tag{11.17}
 $$
@@ -638,6 +654,7 @@ Based on the equilibrium ground-state reaction field, with a self-consistent sta
 $G^{\mathrm{neq}}_{2}$ is given by[[130]](../bib_references/bib.md#bib118)
 
 <a id="eq:G2_neq"></a>
+
 $$
 G^{\mathrm{neq}}_{2}=E_{1}+\omega_{\mathrm{ab}}+\sum_{m}V_{1,m}Q^{\mathrm{eq}}_{1,m}+\sum_{m}V_{2,m}(Q^{\mathrm{neq}}_{2,m}-Q^{\mathrm{eq}}_{1,m})-\frac{1}{2}\sum_{m}Q^{\mathrm{neq}}_{2,m}D(\varepsilon)Q^{\mathrm{neq}}_{2,m} \tag{11.18}
 $$
@@ -646,6 +663,7 @@ where $\omega_{\mathrm{ab}}$ is the TDDFT excitation energy.
 Alternatively, based on the nonequilibrium excited-state reaction field, $G^{\mathrm{neq}}_{2}$ is given by[[129]](../bib_references/bib.md#bib119)
 
 <a id="eq:G2_neq_k"></a>
+
 $$
 G^{\mathrm{neq}}_{2,k}=E^{k}_{1}+\omega^{k}_{\mathrm{ab}}-\sum_{m}V^{k}_{1,m}Q^{\mathrm{neq},k}_{2,m}-\frac{1}{2}\sum_{m}Q^{\mathrm{neq},k}_{2,m}D(\varepsilon)Q^{\mathrm{neq},k}_{2,m}\;, \tag{11.19}
 $$
@@ -658,6 +676,7 @@ Clearly, Eq. ([11.19](#eq:G2_neq_k)) is more physically-meaningful than Eq. ([
 Similarly, the vertical excitation energy for emission is given by[[129]](../bib_references/bib.md#bib119)
 
 <a id="Ch11.E20"></a>
+
 $$
 hv_{\mathrm{em}}=G^{\mathrm{eq}}_{2}-G^{\mathrm{neq}}_{1} \tag{11.20}
 $$
@@ -666,6 +685,7 @@ where $G^{\mathrm{eq}}_{2}$ and $G^{\mathrm{neq}}_{1}$ represent the free energi
 ground state at the excited-state equilibrium geometry, respectively. These can be expressed as[[129]](../bib_references/bib.md#bib119)
 
 <a id="Ch11.E21"></a>
+
 $$
 \displaystyle G^{\mathrm{neq}}_{1} \tag{11.21a}
 $$

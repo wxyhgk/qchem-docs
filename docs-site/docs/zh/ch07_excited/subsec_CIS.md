@@ -12,6 +12,7 @@ title: "7.2.2 单激发组态相互作用（Configuration Interaction with Singl
  始于选取 Hartree-Fock（HF）单行列式波函数作为体系基态的参考：
 
 <a id="eq600"></a>
+
 $$
 \Psi_{\mathrm{HF}}=\frac{1}{\sqrt{n!}}\det\left\{{\chi_{1}\chi{}_{2}\cdots\chi_{i}\chi{}_{j}\cdots\chi_{n}}\right\} \tag{7.1}
 $$
@@ -19,6 +20,7 @@ $$
 其中 $n$ 为电子数，自旋轨道
 
 <a id="eq601"></a>
+
 $$
 \chi_{i}=\sum\limits_{\mu}^{N}{c_{\mu i}\phi_{\mu}} \tag{7.2}
 $$
@@ -26,6 +28,7 @@ $$
 由 $N$ 个原子轨道基函数构成的有限基组展开得到。分子轨道系数 $\{c_{\mu i}\}$ 通常通过自洽场（Self-Consistent Field, SCF）程序求解 Hartree-Fock 方程
 
 <a id="eq602"></a>
+
 $$
 \mathbf{FC}=\bm{\varepsilon}\mathbf{SC}\;, \tag{7.3}
 $$
@@ -33,6 +36,7 @@ $$
 求得，其中 **S** 是重叠矩阵，**C** 是分子轨道系数矩阵，$\varepsilon$ 是轨道本征值构成的对角矩阵，**F** 是 Fock 矩阵，其元素为
 
 <a id="eq603"></a>
+
 $$
 F_{\mu\upsilon}=H_{\mu\upsilon}+\sum\limits_{\lambda\sigma}{\sum\limits_{i}{c_{\mu i}c_{\upsilon i}\left({\mu\lambda}\right.||\left.{\upsilon\sigma}\right)}} \tag{7.4}
 $$
@@ -40,6 +44,7 @@ $$
 式中涉及核心哈密顿量以及反对称化的双电子积分
 
 <a id="Ch7.E5"></a>
+
 $$
 (\mu\mu||\lambda\sigma)=\int\int\phi_{\mu}(\mathbf{r}_{1})\phi_{\nu}(\mathbf{r}_{2})\left(\frac{1}{r_{12}}\right)\bigl{[}\phi_{\lambda}(\mathbf{r}_{1})\phi_{\sigma}(\mathbf{r}_{2})-\phi_{\sigma}(\mathbf{r}_{1})\phi_{\lambda}(\mathbf{r}_{2})\bigr{]}\;d\mathbf{r}_{1}\,d\mathbf{r}_{2} \tag{7.5}
 $$
@@ -47,6 +52,7 @@ $$
 求解方程 ([7.3](#eq602)) 后，基态单行列式的总能量可表示为
 
 <a id="eq605"></a>
+
 $$
 E_{\mathrm{HF}}=\sum\limits_{\mu\upsilon}{P_{\mu\upsilon}^{\mathrm{HF}}H_{\mu\upsilon}}+\frac{1}{2}\sum\limits_{\mu\upsilon\lambda\sigma}{P_{\mu\upsilon}^{\mathrm{HF}}P_{\lambda\sigma}^{\mathrm{HF}}\left({\mu\lambda}\right.||\left.{\upsilon\sigma}\right)}+V_{\mathrm{nuc}} \tag{7.6}
 $$
@@ -56,11 +62,13 @@ $$
 方程 ([7.1](#eq600)) 只是由体系轨道构成的众多可能行列式中的一个；事实上，通过将基态中占有的轨道（$i$、$j$、$k,\ldots$）替换为基态中未占有的轨道（$a$、$b$、$c,\ldots$），可以构造出 $n(N-n)$ 个可能的单替换行列式。这类波函数与能量可写为
 
 <a id="eq606"></a>
+
 $$
 \Psi_{i}^{a}=\frac{1}{\sqrt{n!}}\det\left\{{\chi_{1}\chi{}_{2}\cdots\chi_{a}\chi{}_{j}\cdots\chi_{n}}\right\} \tag{7.7}
 $$
 
 <a id="eq607"></a>
+
 $$
 E_{ia}=E_{\mathrm{HF}}+\varepsilon_{a}-\varepsilon_{i}-\left({ia}\right.||\left.{ia}\right) \tag{7.8}
 $$
@@ -68,6 +76,7 @@ $$
 这里引入了分子轨道基下的反对称化双电子积分
 
 <a id="eq608"></a>
+
 $$
 \left({pq}\right.||\left.{rs}\right)=\sum\limits_{\mu\upsilon\lambda\sigma}{c_{\mu p}c_{\upsilon q}c_{\lambda r}c_{\sigma s}\left({\mu\lambda}\right.||\left.{\upsilon\sigma}\right)} \tag{7.9}
 $$
@@ -87,6 +96,7 @@ $$
 这些缺陷可以部分地通过将激发态波函数表示为*所有*可能单激发行列式的线性组合来克服，
 
 <a id="eq:CIS-wavefn"></a>
+
 $$
 |\Psi_{\text{CIS}}\rangle=\sum_{ia}a_{i}^{a}|\Psi_{i}^{a}\rangle \tag{7.10}
 $$
@@ -94,6 +104,7 @@ $$
 其中系数 $\{a_{i}^{a}\}$ 可通过对轨道 Hessian 矩阵 $\mathbf{A}$ 对角化获得。$\mathbf{A}$ 等价于在单激发空间中扣除基态能量后的哈密顿量。其矩阵元为
 
 <a id="eq:orbital-Hessian"></a>
+
 $$
 A_{ia,jb}=\langle\Psi_{i}^{a}|\hat{H}-E_{\text{HF}}|\Psi_{j}^{b}\rangle=(\varepsilon_{a}-\varepsilon_{j})\delta_{ij}\delta_{ab}-(ja||ib)\;. \tag{7.11}
 $$

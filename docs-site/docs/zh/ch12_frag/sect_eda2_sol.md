@@ -18,6 +18,7 @@ PCM 和 SMD（参见第 [11.2](../ch11_env/topic_solvation.md) 节）。未来�
 与气相 ALMO-EDA 类似，总相互作用能（INT）可以划分为冻结（FRZ）、极化（POL）和电荷转移（CT）三项贡献：
 
 <a id="A3.S8.EGx119"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{INT}}^{(\mathrm{s})}&\displaystyle=E_{\mathrm{Full}}^{(\mathrm{s})}-\sum_{A}E_{A}^{(\mathrm{s})}\\
 &\displaystyle=\Delta E^{(\mathrm{s})}_{\mathrm{FRZ}}+\Delta E^{(\mathrm{s})}_{\mathrm{POL}}+\Delta E^{(\mathrm{s})}_{\mathrm{CT}}\end{aligned} \tag{12.18}
@@ -28,6 +29,7 @@ $$
 冻结相互作用能（$\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}$）定义为：由若干个别溶剂化的无相互作用片段形成一个溶剂化配合物、但*不*弛豫其轨道时的能量变化，该项还可进一步分解为永久静电作用（ELEC）、Pauli 排斥（PAULI）和色散（DISP）三项贡献：
 
 <a id="A3.S8.EGx120"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}&\displaystyle=E_{\mathrm{FRZ}}^{(\mathrm{s})}-\sum_{A}E_{A}^{(\mathrm{s})}\\
 &\displaystyle=(E_{\mathrm{FRZ}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{0})})-\sum_{A}(E_{A}^{(\mathrm{s})}-E_{A}^{(0)})+E_{\mathrm{FRZ}}^{(0)}-\sum_{A}E_{A}^{(0)}\\
@@ -37,6 +39,7 @@ $$
 这里我们引入了一个新项，
 
 <a id="Ch12.E20"></a>
+
 $$
 \Delta E_{\mathrm{SOL}}=(E_{\mathrm{FRZ}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{0})})-\sum_{A}(E_{A}^{(\mathrm{s})}-E_{A}^{(0)}) \tag{12.20}
 $$
@@ -50,6 +53,7 @@ $\Delta E^{(0)}_{\mathrm{PAULI}}$ 和 $\Delta E^{(0)}_{\mathrm{DISP}}$，其计�
 和非静电（$\Delta E_{\mathrm{SOL}}^{\text{non-el}}$）两部分，它们可分别与“气相”的 ELEC 和 PAULI 项合并。此外，我们忽略溶剂对色散的贡献——这一效应无法被 ALMO-EDA(solv) 所基于的色散校正 DFT 所捕获——因此有 $\Delta E^{(0)}_{\mathrm{DISP}}\approx\Delta E^{(\mathrm{s})}_{\mathrm{DISP}}$。于是溶剂化环境下冻结能的分解式（式 [12.19](#eq:frz_decomp_sol)）可改写为
 
 <a id="A3.S8.EGx121"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}&\displaystyle=(\Delta E^{(0)}_{\mathrm{ELEC}}+\Delta E_{\mathrm{SOL}}^{\mathrm{el}})+(\Delta E^{(0)}_{\mathrm{PAULI}}+\Delta E_{\mathrm{SOL}}^{\text{non-el}})+\Delta E^{(0)}_{\mathrm{DISP}}\\
 &\displaystyle=\Delta E^{(\mathrm{s})}_{\mathrm{ELEC}}+\Delta E^{(\mathrm{s})}_{\mathrm{PAULI}}+\Delta E^{(\mathrm{s})}_{\mathrm{DISP}}\end{aligned} \tag{12.21}
@@ -58,6 +62,7 @@ $$
 从溶剂化的冻结配合物出发，可以在溶剂存在下利用 SCF-MI 技术弛豫片段轨道。相应的能量降低被定义为 ALMO-EDA(solv) 中的极化能（$\Delta E_{\mathrm{POL}}^{(\mathrm{s})}$）：
 
 <a id="Ch12.E22"></a>
+
 $$
 \Delta E_{\mathrm{POL}}^{(\mathrm{s})}=E_{\mathrm{POL}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{s})} \tag{12.22}
 $$
@@ -65,6 +70,7 @@ $$
 其中 $E_{\mathrm{POL}}^{(\mathrm{s})}$ 是在溶剂存在下收敛的 SCF-MI 能量。类似地，电荷转移项由下式给出
 
 <a id="Ch12.E23"></a>
+
 $$
 \Delta E_{\mathrm{CT}}^{(\mathrm{s})}=E_{\mathrm{Full}}^{(\mathrm{s})}-E_{\mathrm{POL}}^{(\mathrm{s})} \tag{12.23}
 $$

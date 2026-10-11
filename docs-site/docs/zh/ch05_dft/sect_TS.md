@@ -18,6 +18,7 @@ Tkatchenko 和 Scheffler[[1361]](../bib_references/bib.md#bib1421)
 TS-vdW 的能量表达式基于色散能量的成对加和模型，
 
 <a id="eq:ts_energy"></a>
+
 $$
 E_{\text{vdW}}^{\text{TS}}=-\frac{1}{2}\sum^{\text{atoms}}_{A}\sum^{\text{A}}_{B\neq A}\left(\frac{C_{6,AB}^{\text{eff}}}{R_{AB}^{6}}\right)f_{\text{damp}}(R_{AB})\;. \tag{5.46}
 $$
@@ -25,6 +26,7 @@ $$
 与 DFT-D 类似，式 ([5.46](#eq:ts_energy)) 中的 $R^{-6}$ 势必须在短程加以阻尼（damp），TS-vdW 模型使用的阻尼函数为
 
 <a id="eq:fdamp_TS-vdW"></a>
+
 $$
 f_{\text{damp}}(R_{AB})=\frac{1}{1+\exp\bigl{[}-d(R_{AB}/s_{R}R_{\mathrm{vdW,}AB}^{\text{eff}}-1)\bigr{]}} \tag{5.47}
 $$
@@ -43,6 +45,7 @@ TS-vdW 模型的优化阻尼参数 [式 ([5.46](#eq:ts_energy))]，取自文献 
 式 ([5.46](#eq:ts_energy)) 中的成对系数 $C_{6,AB}^{\text{eff}}$ 由相应的原子参数 $C_{6,A}^{\text{eff}}$ 通过下式构造：
 
 <a id="Ch5.E48"></a>
+
 $$
 C_{6,AB}^{\text{eff}}=\frac{2C_{6,A}^{\text{eff}}C_{6,B}^{\text{eff}}}{\bigl{(}\alpha_{B}^{\text{0,eff}}/\alpha_{A}^{\text{0,eff}}\bigr{)}\,C_{6,A}^{\text{eff}}+\bigl{(}\alpha_{A}^{\text{0,eff}}/\alpha_{B}^{\text{0,eff}}\bigr{)}\,C_{6,B}^{\text{eff}}}\;, \tag{5.48}
 $$
@@ -50,6 +53,7 @@ $$
 这与经验性 DFT-D 方法中对 $C_{6,AB}$ 参数所采用的简单几何平均[式 ([5.27](subsec_DFT-D.md#eq:C_6AB))]不同。这些 $C_{6}$ 系数之所以称为"有效"（effective）系数，是因为它们考虑了局域电子环境。如前所述，这是通过对相应的自由原子值进行缩放实现的，*即*，
 
 <a id="Ch5.E49"></a>
+
 $$
 C_{6,A}^{\text{eff}}=C_{6,A}^{\text{free}}\left(\frac{V_{A,\text{eff}}}{V_{A,\text{free}}}\right)^{\!2} \tag{5.49}
 $$
@@ -57,11 +61,13 @@ $$
 其中 $V_{A,\text{eff}}$ 是利用 Hirshfeld 划分确定的原子 $A$ 在分子中的有效体积。有效原子极化率和 vdW 半径以类似方式获得：
 
 <a id="Ch5.E50"></a>
+
 $$
 \alpha^{\text{0,eff}}_{A}=\alpha_{A}^{\text{0,free}}\left(\frac{V_{A,\text{eff}}}{V_{A,\text{free}}}\right) \tag{5.50}
 $$
 
 <a id="Ch5.E51"></a>
+
 $$
 R_{\text{vdW,}A}^{\text{eff}}=R_{\text{vdW,}A}^{\text{free}}\left(\frac{V_{A,\text{eff}}}{V_{A,\text{free}}}\right)^{\!1/3}\;. \tag{5.51}
 $$

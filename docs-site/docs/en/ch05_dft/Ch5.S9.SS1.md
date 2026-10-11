@@ -22,6 +22,7 @@ the KS-DFT calculation. Two scaling parameters, $c_{\mathrm{ss}}$ and $c_{\mathr
 introduced in order to avoid double-counting correlation:
 
 <a id="eq:dft2a"></a>
+
 $$
 E_{\text{DH-DFT}}=E_{\text{KS-DFT}}+c_{\mathrm{ss}}E_{c}^{\mathrm{ss}}+c_{\mathrm{os}}E_{c}^{\mathrm{os}} \tag{5.62}
 $$
@@ -35,6 +36,7 @@ electron density fixed at its value for the real system, for all $\lambda$.
 Then
 
 <a id="sung1"></a>
+
 $$
 E_{\rm XC}\left[\rho\right]=\int_{0}^{1}U_{{\rm XC},\lambda}[\rho]\;d\lambda\,, \tag{5.63}
 $$
@@ -45,6 +47,7 @@ electron–electron terms in the Hamiltonian had the form $\lambda/r_{ij}$
 rather than $1/r_{ij}$. Using a linear model of this quantity,
 
 <a id="sung2"></a>
+
 $$
 U_{{\rm XC},\lambda}=a+b\lambda\;, \tag{5.64}
 $$
@@ -57,6 +60,7 @@ slope at $\lambda$= 0, one obtains the doubly hybrid functional form in
 Eq. ([5.62](#eq:dft2a)) that includes MP2 type perturbative terms (PT2) involving virtual orbitals:[[684]](../bib_references/bib.md#bib710)
 
 <a id="sung3"></a>
+
 $$
 U_{{\rm XC},\lambda}=\left.\frac{\partial U_{{\rm XC},\lambda}}{\lambda}\right|_{\lambda=0}=2E_{\rm C}^{\rm GL2}\,. \tag{5.65}
 $$

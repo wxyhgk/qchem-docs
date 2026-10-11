@@ -15,6 +15,7 @@ title: "11.2.2 Kirkwood-Onsager 多极展开方法"
 关于空腔半径 $a$，Onsager 的原始建议基于纯溶质的摩尔体积 $V_{m}$，
 
 <a id="eq:OnsagerRadius"></a>
+
 $$
 a=(3V_{m}/4\pi N_{A})^{1/3} \tag{11.1}
 $$

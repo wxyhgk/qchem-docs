@@ -37,6 +37,7 @@ EA-TDDFT 仅对限制开壳层（restricted open-shell）轨道有定义，
 完整的 EA-TDDFT 方程具有熟悉的形式，
 
 <a id="Ch7.E34"></a>
+
 $$
 \displaystyle A_{ia,ib} \tag{7.34a}
 $$

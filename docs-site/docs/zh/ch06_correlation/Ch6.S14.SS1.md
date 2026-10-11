@@ -70,6 +70,7 @@ Hartree-Fock 描述并不是一个好的起点。第二类是动力学关联
 轨道、不带撇号表示活性轨道，这对应于满足
 
 <a id="eq532"></a>
+
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{i}^{{j}^{\prime}}}=0 \tag{6.80}
 $$
@@ -78,6 +79,7 @@ $$
 对这些自由度取极小值：
 
 <a id="eq533"></a>
+
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{a}^{{b}^{\prime}}}=0 \tag{6.81}
 $$

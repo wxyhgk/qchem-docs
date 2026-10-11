@@ -14,6 +14,7 @@ title: "4.5.17 内部稳定性分析与能量极小点的自动修正"
 为了理解可能出现哪些不稳定性，考虑自旋轨道所能具有的最一般形式是很有帮助的：
 
 <a id="eq427"></a>
+
 $$
 \chi_{i}({\rm{\bf r}},\zeta)=\psi_{i}^{\alpha}({\rm{\bf r}})\alpha(\zeta)+\psi_{i}^{\beta}({\rm{\bf r}})\beta(\zeta)\;. \tag{4.45}
 $$
@@ -21,6 +22,7 @@ $$
 其中，$\psi_{i}^{\alpha}$ 和 $\psi_{i}^{\beta}$ 是关于笛卡尔坐标 $\mathbf{r}$ 的复值函数，$\alpha$ 和 $\beta$ 是自旋变量 $\zeta$ 的自旋本征函数。几乎普遍采用的第一个约束是假设自旋轨道仅依赖于自旋函数 $\alpha$ 或 $\beta$ 中的一个。于是自旋函数取如下形式
 
 <a id="Ch4.E46"></a>
+
 $$
 \chi_{i}(\mathbf{r},\zeta)=\psi_{i}^{\alpha}(\mathbf{r})\alpha(\zeta)\quad\mathrm{or}\quad\chi_{i}(\mathbf{r},\zeta)=\psi_{i}^{\beta}(\mathbf{r})\beta(\zeta)\;. \tag{4.46}
 $$
@@ -58,6 +60,7 @@ GEN_SCFMAN 中内部稳定性分析的实现几乎克服了所有这些缺点。
  开发的有限差分矩阵-向量乘积技术进行稳定性分析，该技术只需要梯度（与 Fock 矩阵相关）：
 
 <a id="eq:fd_mat_vec"></a>
+
 $$
 \mathbf{Hb}_{1}=\frac{\hat{\bm{\nabla}}E(\mathbf{X}_{0}+\xi\mathbf{b}_{1})-\hat{\bm{\nabla}}E(\mathbf{X}_{0}-\xi\mathbf{b}_{1})}{2\xi} \tag{4.47}
 $$

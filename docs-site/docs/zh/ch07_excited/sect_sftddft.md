@@ -45,6 +45,7 @@ EOM-SF-CC（第 [7.9.6](sec_EOMSF.md) 节）、SF-ADC（第 [7.10.8](sect_SF-ADC
 参考态构造为两个 Kohn–Sham 行列式的等权混合，分别对应三重态的 $M_{S}=+1$ 和 $M_{S}=-1$ 分量。由此得到的混合参考约化密度矩阵（reduced density matrix, RDM）定义为
 
 <a id="Ch7.E27"></a>
+
 $$
 \rho_{0}^{\rm MR}=\frac{1}{2}(\rho_{0}^{M_{S}=+1}+\rho_{0}^{M_{S}=-1}) \tag{7.27}
 $$
@@ -61,6 +62,7 @@ MRSF-TDDFT 采用共线交换关联核，因此推荐使用杂化泛函，尤其
 轨道 Hessian 矩阵定义为[[793]](../bib_references/bib.md#bib828)
 
 <a id="Ch7.E28"></a>
+
 $$
 A_{pq,rs}^{(k)}=A_{pq,rs}^{(k)(0)}+A_{pq,rs}^{{}^{\prime}(k)} \tag{7.28}
 $$
@@ -68,6 +70,7 @@ $$
 其中 $k\in\{\text{S},\text{T}\}$ 表示单重态或三重态，且
 
 <a id="Ch7.E29"></a>
+
 $$
 A_{pq,rs}^{(k)(0)}=U_{pq}^{k}\{\delta_{pr}F_{qs}^{\beta}-\delta_{qs}F_{pr}^{\alpha}-c_{H}(pr|sq)\}U_{rs}^{(k)}. \tag{7.29}
 $$
@@ -75,6 +78,7 @@ $$
 项 $A_{pq,rs}^{{}^{\prime}(k)}$ 处理由两个三重态分量生成的行列式之间的耦合，其表达式为
 
 <a id="A3.S8.EGx40"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle A_{pq,rs}^{{}^{\prime}(k)}&\displaystyle=H_{p\underline{q},r\underline{s}}^{(k){\rm intra}}(U_{pq}^{\text{CO1}}-U_{pq}^{\text{CO2}})(U_{rs}^{\text{CO1}}-U_{rs}^{\text{CO2}})\\
 &\displaystyle\qquad+H_{\underline{p}q,\underline{r}s}^{(k){\rm intra}}(U_{pq}^{\text{O1V}}-U_{pq}^{\text{O2V}})(U_{rs}^{\text{O1V}}-U_{rs}^{\text{O2V}})\\
@@ -84,6 +88,7 @@ $$
 这里，$U_{pq}$ 是维度变换矩阵，且
 
 <a id="Ch7.E31"></a>
+
 $$
 \displaystyle H_{pq,rs}^{(k)\text{intra}} \tag{7.31a}
 $$
@@ -91,6 +96,7 @@ $$
 其中
 
 <a id="Ch7.E32"></a>
+
 $$
 \text{sgn}(k)=\begin{cases}+1,&\text{if}~{}k=\text{S}\\
 -1,&\text{if}~{}k=\text{T}\\
@@ -100,6 +106,7 @@ $$
 以及
 
 <a id="Ch7.E33"></a>
+
 $$
 \underline{p}=\begin{cases}\text{O2},&\text{if}~{}p=\text{O1}\\
 \text{O1},&\text{if}~{}p=\text{O2}\\

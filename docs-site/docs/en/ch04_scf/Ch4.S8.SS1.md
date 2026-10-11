@@ -17,6 +17,7 @@ calculation by HF/basis, and a HFPC calculation by HFPC/primary/secondary. Using
 restricted HF matrix elements for a 2$m$-electron system are
 
 <a id="Ch4.E65"></a>
+
 $$
 F_{\mu\nu}=h_{\mu\nu}+\sum_{\lambda\sigma}^{n}P_{\lambda\sigma}\left[(\mu\nu|\lambda\sigma)-\frac{1}{2}(\mu\lambda|\nu\sigma)\right] \tag{4.65}
 $$
@@ -27,6 +28,7 @@ calculation, $\mathbf{P}$ is subsequently used to build a new Fock matrix,
 $\mathbf{F}^{[1]}$, in a larger secondary basis of $N$ functions
 
 <a id="eq:F1"></a>
+
 $$
 F_{ab}^{[1]}=h_{ab}+\sum_{\lambda\sigma}^{n}P_{\lambda\sigma}\left[(ab|\lambda\sigma)-\frac{1}{2}(a\lambda|b\sigma)\right] \tag{4.66}
 $$
@@ -37,6 +39,7 @@ improved molecular orbitals and an associated density matrix $\mathbf{P}^{[1]}$.
 HFPC energy is given by
 
 <a id="eq:EHFPC"></a>
+
 $$
 E^{\text{HFPC}}=\sum_{ab}^{N}P^{[1]}_{ab}h_{ab}+\frac{1}{2}\sum_{abcd}^{N}P^{[1]}_{ab}P^{[1]}_{cd}\bigl{[}2(ab|cd)-(ac|bd)\bigr{]} \tag{4.67}
 $$

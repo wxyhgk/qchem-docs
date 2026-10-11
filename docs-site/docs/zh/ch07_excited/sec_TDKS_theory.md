@@ -39,6 +39,7 @@ TDKS 方法是显式含时的，其本质是在基态密度受到微扰之后，
 这是一个单电子方程
 
 <a id="eq:TDKS"></a>
+
 $$
 \text{i}\hbar\frac{d\phi_{k}(\mathbf{r},t)}{dt}=\hat{F}(t)\phi_{k}(\mathbf{r},t)\;. \tag{7.58}
 $$
@@ -46,6 +47,7 @@ $$
 这一时间演化可以等价地用密度 $\rho(\mathbf{r},t)$ 时间演化的 Liouville-von Neumann 方程来表示：
 
 <a id="eq:LvN"></a>
+
 $$
 \text{i}\hbar\frac{d\rho(\mathbf{r},t)}{dt}=\bigl{[}\hat{F}(t),\;\rho(\mathbf{r},t)]\;. \tag{7.59}
 $$

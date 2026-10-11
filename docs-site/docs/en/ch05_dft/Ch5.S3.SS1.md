@@ -39,6 +39,7 @@ further improve the performance of GGA functionals are either the Laplacian of
 the density $\hat{\nabla}^{2}\rho_{\sigma}$, and/or the kinetic energy density,
 
 <a id="eq:tau"></a>
+
 $$
 \tau_{\sigma}=\sum_{i}^{n_{\sigma}}\big{\|}\hat{\bm{\nabla}}\psi_{i,\sigma}\big{\|}^{2}\;. \tag{5.10}
 $$
@@ -65,6 +66,7 @@ example, the formula for the B3LYP functional, as implemented in **Q-Chem**,
 is[[484]](../bib_references/bib.md#bib496)
 
 <a id="eq:GHGGA"></a>
+
 $$
 E_{\text{xc}}^{\textrm{B3LYP}}=c_{\text{x}}E_{\text{x}}^{\text{HF}}+(1-c_{\text{x}}-a_{\text{x}})E_{\text{x}}^{\text{Slater}}+a_{\text{x}}E_{\text{x}}^{\text{B88}}+(1-a_{\text{c}})E_{\text{c}}^{\text{VWN1RPA}}+a_{\text{c}}E_{\text{c}}^{\text{LYP}} \tag{5.11}
 $$
@@ -78,6 +80,7 @@ exact exchange contribution into a short-range (SR) component and a long-range
 error function ($\rm erfc\equiv 1-erf$):
 
 <a id="eq:erf_partition"></a>
+
 $$
 \frac{1}{r_{12}}=\underbrace{\frac{\mbox{erfc}(\omega r_{12})}{r_{12}}}_{\text{SR}}+\underbrace{\frac{\mbox{erf}(\omega r_{12})}{r_{12}}}_{\text{LR}}\; \tag{5.12}
 $$
@@ -88,6 +91,7 @@ second term constitutes a non-singular, long-range background. An RSH XC
 functional can be expressed generically as
 
 <a id="eq:RSHGGA"></a>
+
 $$
 E_{\text{xc}}^{\text{RSH}}=c_{\text{x}}E_{\text{x,SR}}^{\text{HF}}+c_{\text{x,LR}}E_{\text{x,LR}}^{\text{HF}}+(1-c_{\text{x,SR}})E_{\text{x,SR}}^{\text{DFT}}+(1-c_{\text{x,LR}})E_{\text{x,LR}}^{\text{DFT}}+E_{\text{c}}^{\text{DFT}}\;, \tag{5.13}
 $$
@@ -118,6 +122,7 @@ hybrids (DH) are the most expensive density functionals available in **Q-Chem**,
 but can also be very accurate. The most basic form of a DH functional is
 
 <a id="eq:DHGGA"></a>
+
 $$
 E_{\text{xc}}^{\text{DH}}=c_{\text{x}}E_{\text{x}}^{\text{HF}}+(1-c_{\text{x}})E_{\text{x}}^{\text{DFT}}+c_{\text{c}}E_{c}^{\text{MP2}}+(1-c_{\text{c}})E_{\text{c}}^{\text{DFT}}\;. \tag{5.14}
 $$

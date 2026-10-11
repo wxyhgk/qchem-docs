@@ -18,6 +18,7 @@ ejected electrons. The energy of the Auger electrons are computed as differences
 core-hole state and final decay states. For example, for regular Auger decay:
 
 <a id="eq:Echannel_a"></a>
+
 $$
 E_{\text{Auger}}^{\mu n}=E_{n}^{\text{CoreIP}}-E_{\mu}^{\text{DIP}}, \tag{7.104}
 $$
@@ -51,6 +52,7 @@ Two essential parameters defining AES are the rate of the
 decay into a channel $\mu$, given as
 
 <a id="eqn:gamma"></a>
+
 $$
 \Gamma_{\mu}=2\pi\langle\Psi_{0}^{L}|\hat{H}-E_{0}|\chi_{\mu,E_{k}}^{R}\rangle\langle\chi_{\mu,E_{k}}^{L}|\hat{H}-E_{0}|\Psi_{0}^{R}\rangle, \tag{7.105}
 $$
@@ -58,6 +60,7 @@ $$
 and partial energy correction $\Delta_{\mu}$ to the zero-order resonance position $E_{0}$, defined as
 
 <a id="eqn:delta"></a>
+
 $$
 \Delta_{\mu}=P.V.\int_{0}^{\infty}\frac{\langle\Psi_{0}^{L}|\hat{H}-E_{0}|\chi_{\mu,E}^{R}\rangle\langle\chi_{\mu,E}^{L}|\hat{H}-E_{0}|\Psi_{0}^{R}\rangle}{E_{0}-E_{\mu}-E}dE. \tag{7.106}
 $$
@@ -297,6 +300,7 @@ the one-center approximation (OCA).[[1264]](../bib_references/bib.md#bib1318)
 atomic integrals:
 
 <a id="Ch7.E107"></a>
+
 $$
 \langle\phi_{p}\phi_{q}||\phi_{k}\phi_{r}\rangle\approx\sum_{\mu\nu\rho}\langle\chi_{\mu}^{A}\chi_{\nu}^{A}||\chi_{E,lm}^{A}\chi_{\rho}^{A}\rangle D_{\mu p}D_{\nu q}D_{\rho r}. \tag{7.107}
 $$

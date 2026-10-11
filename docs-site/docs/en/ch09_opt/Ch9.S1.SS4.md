@@ -122,6 +122,7 @@ Cartesian displacements $\Delta\mathbf{x}$ by means of the usual
 Wilson $\mathbf{B}$-matrix,
 
 <a id="Ch9.E15"></a>
+
 $$
 \Delta\mathbf{q}=\mathbf{B}\Delta\mathbf{x} \tag{9.15}
 $$
@@ -139,6 +140,7 @@ are isolated (they correspond to those eigenvectors with zero eigenvalues).
 The eigenvalue equation of $\mathbf{G}$ can thus be written
 
 <a id="eq:a13"></a>
+
 $$
 {\rm{\bf G}}({\rm{\bf UR}})=({\rm{\bf UR}})\left({{\begin{array}[]{*{2}c}\Lambda&0\\
 0&0\\

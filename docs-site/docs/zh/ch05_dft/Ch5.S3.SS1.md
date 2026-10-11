@@ -20,6 +20,7 @@ $\hat{\bm{\nabla}}\rho_{\sigma}$。
 $\hat{\nabla}^{2}\rho_{\sigma}$，和/或动能密度，
 
 <a id="eq:tau"></a>
+
 $$
 \tau_{\sigma}=\sum_{i}^{n_{\sigma}}\big{\|}\hat{\bm{\nabla}}\psi_{i,\sigma}\big{\|}^{2}\;. \tag{5.10}
 $$
@@ -29,6 +30,7 @@ $$
 雅各布天梯第四级横档上的泛函称为杂化密度泛函（hybrid density functionals）。这一级横档包含了可以说当今最流行的密度泛函 B3LYP——第一个在化学中获得广泛应用的泛函。“全局”杂化（global hybrid, GH）泛函如 B3LYP（与下文介绍的“ range-separated hybrids, RSH”相区别）是在前三级横档的任一泛函基础上加入恒定比例的“精确”（Hartree-Fock）交换。因此，可以构造杂化 LSDA、杂化 GGA 和杂化 meta-GGA 泛函，尽管后两种类型更为常见。作为示例，**Q-Chem** 中实现的 B3LYP 泛函公式为[[484]](../bib_references/bib.md#bib496)
 
 <a id="eq:GHGGA"></a>
+
 $$
 E_{\text{xc}}^{\textrm{B3LYP}}=c_{\text{x}}E_{\text{x}}^{\text{HF}}+(1-c_{\text{x}}-a_{\text{x}})E_{\text{x}}^{\text{Slater}}+a_{\text{x}}E_{\text{x}}^{\text{B88}}+(1-a_{\text{c}})E_{\text{c}}^{\text{VWN1RPA}}+a_{\text{c}}E_{\text{c}}^{\text{LYP}} \tag{5.11}
 $$
@@ -38,6 +40,7 @@ $$
 在泛函形式中引入精确交换的更近一些的方法是通过作用域分离（range separation）。作用域分离杂化（range-separated hybrid, RSH）泛函将精确交换贡献拆分为短程（SR）分量和长程（LR）分量，通常借助误差函数（erf）及互补误差函数（$\rm erfc\equiv 1-erf$）实现：
 
 <a id="eq:erf_partition"></a>
+
 $$
 \frac{1}{r_{12}}=\underbrace{\frac{\mbox{erfc}(\omega r_{12})}{r_{12}}}_{\text{SR}}+\underbrace{\frac{\mbox{erf}(\omega r_{12})}{r_{12}}}_{\text{LR}}\; \tag{5.12}
 $$
@@ -45,6 +48,7 @@ $$
 式 ([5.12](#eq:erf_partition)) 右端第一项是奇异的但属于短程项，并在 $\sim 1/\omega$ 的长度尺度上衰减为零，而第二项构成一个非奇异的长程背景。RSH XC 泛函一般可表示为
 
 <a id="eq:RSHGGA"></a>
+
 $$
 E_{\text{xc}}^{\text{RSH}}=c_{\text{x}}E_{\text{x,SR}}^{\text{HF}}+c_{\text{x,LR}}E_{\text{x,LR}}^{\text{HF}}+(1-c_{\text{x,SR}})E_{\text{x,SR}}^{\text{DFT}}+(1-c_{\text{x,LR}})E_{\text{x,LR}}^{\text{DFT}}+E_{\text{c}}^{\text{DFT}}\;, \tag{5.13}
 $$
@@ -55,6 +59,7 @@ $$
 雅各布天梯的最后一级横档包含不仅使用占据轨道（通过精确交换），还使用虚轨道（通过 MP2 或无规相位近似（random phase approximation, RPA）等方法）的泛函。这些双重杂化（double hybrid, DH）泛函是 **Q-Chem** 中计算代价最高的密度泛函，但也可以非常精确。DH 泛函最基本的形式为
 
 <a id="eq:DHGGA"></a>
+
 $$
 E_{\text{xc}}^{\text{DH}}=c_{\text{x}}E_{\text{x}}^{\text{HF}}+(1-c_{\text{x}})E_{\text{x}}^{\text{DFT}}+c_{\text{c}}E_{c}^{\text{MP2}}+(1-c_{\text{c}})E_{\text{c}}^{\text{DFT}}\;. \tag{5.14}
 $$

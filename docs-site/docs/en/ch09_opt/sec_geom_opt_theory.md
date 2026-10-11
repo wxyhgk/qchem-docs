@@ -21,6 +21,7 @@ surface. We can express the energy at a nearby point $\mathbf{x}=\mathbf{x}_{0}+
 by means of the Taylor series
 
 <a id="eq:a1"></a>
+
 $$
 E(\mathbf{x}_{0}+\mathbf{h})=E(\mathbf{x}_{0})+\mathbf{h}^{t}\left(\frac{dE(\mathbf{x}_{0})}{d\mathbf{x}}\right)+\frac{1}{2}\mathbf{h}^{t}\left(\frac{d^{2}E(\mathbf{x}_{0})}{d\mathbf{x}_{1}d\mathbf{x}_{2}}\right)\mathbf{h}+\cdots \tag{9.1}
 $$
@@ -35,6 +36,7 @@ and setting the left hand side, $dE(\mathbf{x}_{0}+\mathbf{h})/d\mathbf{h}$, to 
 is the value it would have at a genuine stationary point. Thus
 
 <a id="eq:a2"></a>
+
 $$
 \frac{dE(\mathbf{x}_{0}+\mathbf{h})}{d\mathbf{h}}=\frac{dE(\mathbf{x}_{0})}{d\mathbf{x}}+\left(\frac{d^{2}E(\mathbf{x}_{0})}{d\mathbf{x}_{1}d\mathbf{x}_{2}}\right)\mathbf{h}+\mbox{higher terms (ignored)} \tag{9.2}
 $$
@@ -42,6 +44,7 @@ $$
 from which
 
 <a id="eq:a3"></a>
+
 $$
 \mathbf{h}=-\mathbf{H}^{-1}\mathbf{g} \tag{9.3}
 $$
@@ -49,6 +52,7 @@ $$
 where
 
 <a id="eq:a4"></a>
+
 $$
 \frac{dE}{d{\rm{\bf x}}}\equiv{\rm{\bf g}}\mbox{ (gradient vector),}\qquad\frac{d^{2}E}{d{\rm{\bf x}}_{\rm 1}d{\rm{\bf x}}_{\rm 2}}\equiv{\rm{\bf H}}\mbox{ (Hessian matrix)} \tag{9.4}
 $$
@@ -95,6 +99,7 @@ minimization, but can be problematic when searching for a transition state.
 In a diagonal Hessian representation the Newton-Raphson step can be written
 
 <a id="eq:a5"></a>
+
 $$
 \mathbf{h}=-\sum_{i}\left(\frac{F_{i}}{b_{i}}\right){\mathbf{u}_{i}} \tag{9.5}
 $$

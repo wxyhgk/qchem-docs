@@ -9,6 +9,7 @@ title: "11.2.8 COSMO"
 根据表 [11.3](topic_pcm-em.md#table:K-matrix)，COSMO 与 C-PCM 似乎仅在介电屏蔽因子 $f_{\varepsilon}$ 上有所不同，见式 ([11.3](topic_pcm-em.md#eq:f_epsilon))。事实上，两种模型中的面电荷均按照下式计算
 
 <a id="eq:C-PCM"></a>
+
 $$
 \mathbf{q}=-f_{\varepsilon}\mathbf{S}^{-1}\mathbf{v}\;. \tag{11.24}
 $$

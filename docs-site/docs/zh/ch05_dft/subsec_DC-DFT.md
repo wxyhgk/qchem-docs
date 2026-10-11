@@ -21,6 +21,7 @@ title: "5.12.1 密度校正 DFT（Density-Corrected DFT）"
 表示用户选定的密度泛函，$E_{\text{HF}}[\rho]$ 表示 Hartree-Fock 泛函，则 DC-DFT 能量泛函为[[1143]](../bib_references/bib.md#bib1197)
 
 <a id="Ch5.E75"></a>
+
 $$
 E_{\text{DC-DFT}}[\rho]=E_{\text{DFT}}\Big{[}\operatorname*{arg\,min}_{\rho}\big{(}E_{\text{HF}}[\rho]\big{)}\Big{]} \tag{5.75}
 $$

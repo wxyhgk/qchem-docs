@@ -16,6 +16,7 @@ is based on the range separation of the electron-electron Coulomb operator ($\ha
 through the error function to describe long-range interactions,
 
 <a id="A3.S8.EGx69"></a>
+
 $$
 \displaystyle\hat{V}_{\text{ee}}^{lr,\mu} \tag{7.166}
 $$
@@ -27,6 +28,7 @@ DFT by applying $\hat{V}_{\text{ee}}^{lr,\mu}$ to RAS-CI and $V_{\text{ee}}^{lr,
 Within the RAS-$sr$DFT approach, the energy of an electronic state can be expressed as:
 
 <a id="Ch7.E168"></a>
+
 $$
 E^{\text{RAS-}sr\text{DFT}}=\min_{\Psi^{\mu}}\left[\langle\Psi^{\mu}|\hat{T}+\hat{V}_{ne}+\hat{V}_{ee}^{lr,\mu}|\Psi^{\mu}\rangle+E_{\text{H}}^{sr,\mu}[\rho]+E_{\text{xc}}^{sr,\mu}[\rho]\right] \tag{7.168}
 $$

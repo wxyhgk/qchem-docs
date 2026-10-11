@@ -24,6 +24,7 @@ similar to configuration interaction (CI): target EOM states are found by
 diagonalizing the similarity transformed Hamiltonian $\bar{H}=e^{-T}He^{T}$,
 
 <a id="eq747"></a>
+
 $$
 \bar{H}R=ER, \tag{7.97}
 $$
@@ -34,6 +35,7 @@ truncated at single and double excitations, and the amplitudes $T$ satisfy the
 CC equations for the reference state $|\Phi_{0}\rangle$:
 
 <a id="A3.S8.EGx55"></a>
+
 $$
 \displaystyle\langle\Phi_{i}^{a}|\bar{H}|\Phi_{0}\rangle \tag{7.98}
 $$

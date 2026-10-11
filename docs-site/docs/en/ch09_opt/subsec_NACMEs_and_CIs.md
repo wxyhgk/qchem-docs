@@ -17,6 +17,7 @@ possible,[[916]](../bib_references/bib.md#bib952)
  consider for convenience the two-state case, and let
 
 <a id="eq:H_2x2"></a>
+
 $$
 \mathbf{H}=\left(\begin{array}[]{cc}H_{JJ}(\mathbf{R})&H_{JK}(\mathbf{R})\\
 H_{JK}^{\ast}(\mathbf{R})&H_{KK}(\mathbf{R})\\
@@ -45,6 +46,7 @@ $\mathbf{g}_{JK}$ and $\mathbf{h}_{JK}$. The former is simply the
 difference in the gradient vectors of the two states in question,
 
 <a id="eq:gJK"></a>
+
 $$
 \mathbf{g}_{JK}=\frac{\partial E_{J}}{\partial\textbf{R}}-\frac{\partial E_{K}}{\partial\textbf{R}}\;, \tag{9.49}
 $$
@@ -56,6 +58,7 @@ $\mathbf{h}_{JK}$, on the other hand, is more involved and not directly
 amenable to finite-difference calculations:
 
 <a id="eq:hJK"></a>
+
 $$
 \mathbf{h}_{JK}=\left\langle\Psi_{J}\left|\left(\partial\hat{H}/\partial\mathbf{R}\right)\right|\Psi_{K}\right\rangle\;. \tag{9.50}
 $$
@@ -63,6 +66,7 @@ $$
 This is closely related to the *derivative coupling* vector
 
 <a id="eq:dJK"></a>
+
 $$
 \mathbf{d}_{JK}=\bigl{\langle}\Psi_{J}\bigl{|}\bigl{(}\partial/\partial\mathbf{R}\bigr{)}\bigr{|}\Psi_{K}\bigr{\rangle}=\frac{\mathbf{h}_{JK}}{E_{J}-E_{K}}\;. \tag{9.51}
 $$

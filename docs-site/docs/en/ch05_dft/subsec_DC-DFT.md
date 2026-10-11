@@ -26,6 +26,7 @@ represents the user’s chosen density functional and $E_{\text{HF}}[\rho]$ repr
 is[[1143]](../bib_references/bib.md#bib1197)
 
 <a id="Ch5.E75"></a>
+
 $$
 E_{\text{DC-DFT}}[\rho]=E_{\text{DFT}}\Big{[}\operatorname*{arg\,min}_{\rho}\big{(}E_{\text{HF}}[\rho]\big{)}\Big{]} \tag{5.75}
 $$

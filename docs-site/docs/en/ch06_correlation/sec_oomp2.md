@@ -101,6 +101,7 @@ suite of methods that utilizes an energy-dependent regularizer
 The $\kappa$-regularizer modifies the MP2 correlation energy as follows:
 
 <a id="eq:kmp2"></a>
+
 $$
 E_{\kappa-\text{MP2}}=-\frac{1}{4}\sum_{ijab}\frac{|\langle ij||ab\rangle|^{2}}{\Delta_{ij}^{ab}}\left(1-\exp(-\kappa\Delta_{ij}^{ab})\right)^{2} \tag{6.29}
 $$

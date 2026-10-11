@@ -22,6 +22,7 @@ In the EMD framework, these are interpreted as the source and target distributio
 whose elements $M_{ij}$ represent the distance between grid points $i$ and $j$, the Earth Mover’s Distance is defined as
 
 <a id="Ch10.E37"></a>
+
 $$
 d_{\mathbf{M}}(\mathbf{r},\mathbf{c})=\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\langle\mathbf{P},\mathbf{M}\rangle=\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\sum_{ij}P_{ij}M_{ij}, \tag{10.37}
 $$
@@ -29,6 +30,7 @@ $$
 where $\mathbf{P}$ is the transport plan and
 
 <a id="Ch10.E38"></a>
+
 $$
 U(\mathbf{r},\mathbf{c})=\left\{\mathbf{P}\in\mathbb{R}_{+}^{d\times d}\;\middle|\;\mathbf{P}\mathbf{1}=\mathbf{r},\;\mathbf{P}^{T}\mathbf{1}=\mathbf{c}\right\}. \tag{10.38}
 $$
@@ -40,6 +42,7 @@ In the present application, the source and target distributions are constructed 
 density difference associated with an excitation. Let
 
 <a id="Ch10.E39"></a>
+
 $$
 \Delta\rho(\mathbf{r})=\rho^{\mathrm{ES}}(\mathbf{r})-\rho^{\mathrm{GS}}(\mathbf{r}), \tag{10.39}
 $$
@@ -48,6 +51,7 @@ where $\rho^{\mathrm{GS}}(\mathbf{r})$ and $\rho^{\mathrm{ES}}(\mathbf{r})$ are 
 The positive and negative components of the density difference define the two charge distributions to be compared,
 
 <a id="Ch10.E40"></a>
+
 $$
 \rho^{+}(\mathbf{r})=\max\!\bigl{(}\Delta\rho(\mathbf{r}),0\bigr{)},\qquad\rho^{-}(\mathbf{r})=\max\!\bigl{(}-\Delta\rho(\mathbf{r}),0\bigr{)}. \tag{10.40}
 $$
@@ -56,6 +60,7 @@ After discretization on a grid with points $\{\mathbf{r}_{i}\}$ and quadrature w
 associated with each grid point is
 
 <a id="Ch10.E41"></a>
+
 $$
 q_{i}=w_{i}\rho(\mathbf{r}_{i}), \tag{10.41}
 $$
@@ -64,6 +69,7 @@ and the two nonnegative discrete distributions entering the EMD problem are obta
 difference. The total transferred charge is then
 
 <a id="Ch10.E42"></a>
+
 $$
 q^{\mathrm{CT}}=\sum_{i}q_{i}^{+}=\sum_{j}q_{j}^{-}, \tag{10.42}
 $$
@@ -71,6 +77,7 @@ $$
 and the corresponding transport cost,
 
 <a id="Ch10.E43"></a>
+
 $$
 \mu^{\mathrm{EMD}}=\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\sum_{ij}P_{ij}M_{ij}, \tag{10.43}
 $$
@@ -78,6 +85,7 @@ $$
 has units of charge times distance. A corresponding length-like quantity may be defined as
 
 <a id="Ch10.E44"></a>
+
 $$
 d^{\mathrm{EMD}}=\frac{\mu^{\mathrm{EMD}}}{q^{\mathrm{CT}}}. \tag{10.44}
 $$
@@ -100,6 +108,7 @@ let $\{\mathbf{r}_{i}^{\mathrm{small}}\}$ denote the reduced grid used for the E
 accumulating the charges from all original grid points associated with that reduced point,
 
 <a id="Ch10.E45"></a>
+
 $$
 q_{i}^{\mathrm{small}}=\sum_{k\in\Omega_{i}}w_{k}^{\mathrm{big}}\rho_{k}^{\mathrm{big}}, \tag{10.45}
 $$
@@ -116,6 +125,7 @@ reduced-grid representation of the density difference, and convergence with resp
 To further reduce the cost of the EMD evaluation, one may replace the exact optimal transport problem by an entropically regularized one,
 
 <a id="Ch10.E46"></a>
+
 $$
 \mathbf{P}^{\lambda}=\arg\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\left[\langle\mathbf{P},\mathbf{M}\rangle-\frac{1}{\lambda}h(\mathbf{P})\right], \tag{10.46}
 $$
@@ -123,6 +133,7 @@ $$
 where $h(\mathbf{P})$ is the entropy of the transport plan and $\lambda$ is the regularization parameter. The corresponding regularized transport cost is
 
 <a id="Ch10.E47"></a>
+
 $$
 d_{\mathbf{M}}^{\lambda}(\mathbf{r},\mathbf{c})=\langle\mathbf{P}^{\lambda},\mathbf{M}\rangle. \tag{10.47}
 $$
@@ -134,6 +145,7 @@ the exact EMD, whereas smaller values of $\lambda$ produce a smoother transport 
 The regularized problem admits a factorized form for the optimal transport plan,
 
 <a id="Ch10.E48"></a>
+
 $$
 \mathbf{P}^{\lambda}=\mathrm{diag}(\mathbf{u})\,\mathbf{K}\,\mathrm{diag}(\mathbf{v}), \tag{10.48}
 $$
@@ -141,6 +153,7 @@ $$
 where
 
 <a id="eq:emd_kernel"></a>
+
 $$
 K_{ij}=e^{-\lambda M_{ij}}. \tag{10.49}
 $$
@@ -148,6 +161,7 @@ $$
 The vectors $\mathbf{u}$ and $\mathbf{v}$ are positive scaling factors chosen such that the transport plan satisfies the marginal constraints,
 
 <a id="Ch10.E50"></a>
+
 $$
 \mathbf{P}^{\lambda}\mathbf{1}=\mathbf{r},\qquad(\mathbf{P}^{\lambda})^{T}\mathbf{1}=\mathbf{c}. \tag{10.50}
 $$
@@ -155,6 +169,7 @@ $$
 Substituting the factorized form into these constraints yields the coupled fixed-point equations
 
 <a id="Ch10.E51"></a>
+
 $$
 u_{i}=\frac{r_{i}}{(\mathbf{K}\mathbf{v})_{i}},\qquad v_{j}=\frac{c_{j}}{(\mathbf{K}^{T}\mathbf{u})_{j}}. \tag{10.51}
 $$

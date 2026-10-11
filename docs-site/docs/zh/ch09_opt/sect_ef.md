@@ -11,6 +11,7 @@ Cerjan 和 Miller[[221]](../bib_references/bib.md#bib217)
  的研究表明，存在一种比直接沿某一条 Hessian 特征矢量行走更好的步长方案。对牛顿-拉夫森（Newton-Raphson）步长做一个简单的修正，就能够引导搜索偏离当前区域，走向具有所需特征（极大/极小性质）的驻点。该步长为
 
 <a id="eq:a5t"></a>
+
 $$
 \mathbf{h}=-\sum_{i}\left(\frac{F_{i}}{b_{i}-\lambda}\right)\mathbf{u}_{i} \tag{9.6}
 $$
@@ -25,6 +26,7 @@ EF 算法[[64]](../bib_references/bib.md#bib46)
  中提出的有理函数方法，得到形如下的本征值方程
 
 <a id="eq:a6"></a>
+
 $$
 \left({{\begin{array}[]{*{2}c}{\rm{\bf H}}&{\rm{\bf g}}\\
 {{\rm{\bf g}}^{t}}&0\\
@@ -38,6 +40,7 @@ $$
 由此可以获得合适的 $\lambda$。将式 ([9.7](#eq:a6)) 展开可得
 
 <a id="eq:a7a"></a>
+
 $$
 (\mathbf{H}-\lambda)\mathbf{h}+\mathbf{g}=0 \tag{9.8}
 $$
@@ -45,6 +48,7 @@ $$
 以及
 
 <a id="eq:a7b"></a>
+
 $$
 \mathbf{g}^{t}\mathbf{h}=\lambda \tag{9.9}
 $$
@@ -52,6 +56,7 @@ $$
 在 Hessian 的对角表示下，式 ([9.8](#eq:a7a)) 可重新整理为式 ([9.6](#eq:a5t))；而将式 ([9.6](#eq:a5t)) 代入式 ([9.9](#eq:a7b)) 的对角形式，则得到
 
 <a id="Ch9.E10"></a>
+
 $$
 \lambda=-\sum_{i}\left(\frac{-F_{i}^{2}}{b_{i}-\lambda}\right) \tag{9.10}
 $$
@@ -73,6 +78,7 @@ $\lambda$ 的 $(n+1)$ 个取值将 Hessian 矩阵的 $n$ 个本征值"分隔包�
 最后这一性质——正、负 Hessian 本征值的可分隔性——使得可以使用两个平移参数：一个用于能量需要极大化的模式方向，另一个用于能量极小化的方向。对于过渡态（一阶鞍点），用 Hessian 本征模来表示，我们有两个矩阵方程
 
 <a id="eq:a9a"></a>
+
 $$
 \left({{\begin{array}[]{*{2}c}{b_{1}}&{F_{1}}\\
 {F_{1}}&0\\
@@ -84,6 +90,7 @@ $$
 $$
 
 <a id="eq:a9b"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{b_{2}}&&&{F_{2}}\\
 &\ddots&{\rm{\bf 0}}&\vdots\\
@@ -105,6 +112,7 @@ $$
 选取这些 $\lambda$ 值所得到的步长，会尝试沿最低的 Hessian 模式极大化，同时在所有其他模式上极小化。并且无论 Hessian 本征值的结构如何（不同于牛顿-拉夫森步长），它都能做到这一点。随后将这两个平移参数代入式 ([9.6](#eq:a5t))，得到最终的步长
 
 <a id="Ch9.E13"></a>
+
 $$
 \mathbf{h}=-\left(\frac{F_{1}}{b_{1}-\lambda_{p}}\right)\mathbf{u}_{1}+\sum\limits_{i=2}^{n}\left(\frac{F_{i}}{b_{i}-\lambda_{n}}\right)\mathbf{u}_{i} \tag{9.13}
 $$
@@ -114,6 +122,7 @@ $$
 在式 ([9.11](#eq:a9a))) 和式 ([9.12](#eq:a9b)) 中，我们假设该步长沿最低的 Hessian 模式 $b_{1}$ 极大化，而在所有较高模式上极小化。然而，也可以沿非最低的其他模式进行极大化，这样一来，从同一个初始起点出发，就有可能定位到对应于不同重排/解离路径的过渡态。若改为沿第 $k$ 个模式（而非最低模式）极大化，则式 ([9.11](#eq:a9a)) 替换为
 
 <a id="Ch9.E14"></a>
+
 $$
 \left({{\begin{array}[]{*{2}c}{b_{k}}&{F_{k}}\\
 {F_{k}}&0\\

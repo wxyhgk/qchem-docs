@@ -17,6 +17,7 @@ title: "7.10.11 采用 ADC/SS-PCM 计算溶液中的激发态"
 让我们首先简要回顾溶液中吸收光谱计算在理论与技术层面的要点。为此，通常会将微扰型态特定方法与二阶或三阶 ADC 结合使用。第一步是自洽反应场计算 [SCRF，即采用 PCM 的 Hartree-Fock，方程 ([7.152](#eq:ADC_SCRF))]。
 
 <a id="eq:ADC_SCRF"></a>
+
 $$
 E_{0}=\langle 0|\hat{H}^{\text{vac}}+\hat{R}(0)|0\rangle \tag{7.152}
 $$
@@ -26,11 +27,13 @@ PCM 在形式上由反应场算符（或溶剂场算符）$\hat{R}$ 表示。在
 SCRF 收敛之后，根据 Franck-Condon 原理，最终的表面电荷及相应算符可以按照 Marcus 划分方案（方程 ([7.153](#eq:ADC_R_sep)))，被拆分为与溶剂核相关的“慢”组分（$\epsilon-n^{2}$）和与溶剂电子相关的“快”组分（$n^{2}$），并存储在磁盘上。
 
 <a id="eq:ADC_R_sep"></a>
+
 $$
 \hat{R}(0)\equiv\hat{R}^{\text{tot}}_{0}=\hat{R}^{\text{f}}_{0}+\hat{R}^{\text{s}}_{0} \tag{7.153}
 $$
 
 <a id="eq:ADC_separation"></a>
+
 $$
 \displaystyle q^{f}= \tag{7.154}
 $$
@@ -40,11 +43,13 @@ $$
 为了考虑溶剂电子的弛豫并使激发能/激发态能量符合 Franck-Condon 原理，我们采用方程 ([7.155](#eq:ADC_ptSS)) 所示的微扰形式：其中基态溶剂场的快组分 $\hat{R}^{\text{f}}_{0}$ 被替换为针对激发态密度计算得到的相应量 $\hat{R}^{\text{f}}_{\text{i}}$。在这一框架下，用极化 MO 计算得到的激发态 $i$ 的能量可以视为零阶能量 [方程 ([7.157](#eq:ADC_PT_zeroth))]，而一阶项则由方程 ([7.158](#eq:ADC_PT_first)) 给出，即零阶激发态密度与基态及激发态溶剂场的快组分相互作用之差。
 
 <a id="eq:ADC_ptSS"></a>
+
 $$
 E_{\text{i}}^{\text{NEq}}=\langle i|\hat{H}^{\text{vac}}+\hat{R}^{\text{tot}}_{0}+\lambda(\hat{R}^{\text{f}}_{\text{i}}-\hat{R}^{\text{f}}_{\text{0}})|i\rangle\\ \tag{7.155}
 $$
 
 <a id="A3.S8.EGx67"></a>
+
 $$
 \displaystyle E^{\rm NEq(0)}_{i}= \tag{7.156}
 $$
@@ -54,6 +59,7 @@ ADC 迭代收敛后，由相应的激发态密度计算 $\hat{R}^{\text{f}}_{\te
 为了消除在 SCF 理论水平下基态溶剂场描述不佳所导致的问题，我们使用一种基于 MP2 基态密度的加和校正。简而言之，它将激发态差分密度的势 $\hat{V}_{i^{(0)}}-\hat{V}_{0^{\textit{MP}}}$ 与 SCF 溶剂场 $\hat{Q}_{0^{\textit{HF}}}$ 之间的相互作用，替换为与 MP 溶剂场 $\hat{Q}_{0^{\textit{MP}}}$ 的相应相互作用：
 
 <a id="A3.S8.EGx68"></a>
+
 $$
 \displaystyle E_{\textit{PTD}}= \tag{7.159}
 $$
@@ -110,6 +116,7 @@ $$
 若要模拟经溶剂平衡的激发态的发射/吸收，和/或研究其光化学反应性，极化的两个组分都必须相对于目标态进行弛豫。这一点从以下事实即可看出：完整的溶剂场平衡（包括核组分）本质上是针对隐式溶剂的几何优化，因此每当需要针对目标激发态优化溶质几何构型时，就应当采用它。溶剂平衡态 $|k\rangle$ 的哈密顿量 simply 写作
 
 <a id="Ch7.E161"></a>
+
 $$
 E^{\rm EqS}_{\rm k}=\bigl{\langle}k\bigl{|}\hat{H}^{\rm vac}+\hat{R}_{\rm k}\bigl{|}k\bigr{\rangle}\;. \tag{7.161}
 $$
@@ -117,6 +124,7 @@ $$
 由于任何态与溶剂场的相互作用都必须在计算的 SCF 步骤中引入 MO，因此激发态（以及关联基态）的溶剂场平衡是一个迭代过程，需要多次 SCF+ADC 计算直至收敛。这也意味着必须先生成一个溶剂场的初始猜测（通常来自 ptSS 计算）并将其用于第一步 SCF。由第一次 SCF 得到的 MO 经过一次 ADC 计算，提供第一个激发态密度，据此计算新的溶剂场并用于第二次迭代的 SCF 步骤。该过程重复进行，直到溶剂场（表面电荷）与能量收敛，最终给出溶剂平衡激发态 $|k\rangle$ 的总能量与波函数，以及其他各个非平衡态的波函数。然而，正如名称所暗示的，这种态特定方法仅对溶剂平衡参考态 $|k\rangle$ 给出有意义的能量。所有其他态必须在非平衡极限下处理，并采用上一节介绍的形式化处理，才与 Franck-Condon 原理一致。对于处于平衡态 $|k\rangle$ 场中的第 $i$ 个非平衡态，其哈密顿量的微扰形式相应地推广为
 
 <a id="Ch7.E162"></a>
+
 $$
 E^{\rm NEq(k)}_{\rm i}=\bigl{\langle}i|\hat{H}^{\rm vac}+\hat{R}^{\rm tot}_{\rm k}+\lambda(\hat{R}^{\rm f}_{\rm i}-\hat{R}^{\rm f}_{\rm k})|i\bigr{\rangle}\;, \tag{7.162}
 $$

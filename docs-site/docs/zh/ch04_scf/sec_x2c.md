@@ -13,6 +13,7 @@ title: "4.9.6 相对论效应"
 该方法依赖于以受限动量平衡（restricted kinetic balance, RKB）形式[[744]](../bib_references/bib.md#bib777)求解更易处理的单电子四分量 Dirac 哈密顿量，从而获得解耦幺正变换，用于修正单电子矩阵元（如动能与核吸引项），以计入相对论效应。X2C 变换矩阵的一个关键组成部分是计算
 
 <a id="Ch4.E75"></a>
+
 $$
 W_{{\rm SF},\mu\nu}=\langle\phi_{\mu}|\vec{p}\cdot\left(V\vec{p}\right)|\phi_{\nu}\rangle \tag{4.75}
 $$
@@ -68,6 +69,7 @@ REL_X2C_FD_DISPLACEMENT
 原则上，可以求得 1eX2C 哈密顿量的完整解，其中也将包含自旋–轨道耦合（spin-orbit coupling, SOC）项。然而，这需要自旋广义化的复数解。这一点可以从获得完整 $W$ 矩阵所需的附加矩阵 $W_{\text{SOC},\mu\ nu}$ 看出：
 
 <a id="Ch4.E76"></a>
+
 $$
 W_{{\rm SOC},\mu\nu}=i\sigma\cdot\langle\phi_{\mu}|\vec{p}\times\left(V\vec{p}\right)|\phi_{\nu}\rangle \tag{4.76}
 $$

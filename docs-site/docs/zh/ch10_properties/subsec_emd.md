@@ -17,6 +17,7 @@ EMD 提供了一种电荷重排的真实空间（real-space）度量，因此能
 其元素 $M_{ij}$ 表示网格点 $i$ 与 $j$ 之间的距离，推土机距离定义为
 
 <a id="Ch10.E37"></a>
+
 $$
 d_{\mathbf{M}}(\mathbf{r},\mathbf{c})=\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\langle\mathbf{P},\mathbf{M}\rangle=\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\sum_{ij}P_{ij}M_{ij}, \tag{10.37}
 $$
@@ -24,6 +25,7 @@ $$
 其中 $\mathbf{P}$ 为输运方案（transport plan），且
 
 <a id="Ch10.E38"></a>
+
 $$
 U(\mathbf{r},\mathbf{c})=\left\{\mathbf{P}\in\mathbb{R}_{+}^{d\times d}\;\middle|\;\mathbf{P}\mathbf{1}=\mathbf{r},\;\mathbf{P}^{T}\mathbf{1}=\mathbf{c}\right\}. \tag{10.38}
 $$
@@ -34,6 +36,7 @@ $\mathbf{P}$ 的每一行之和必须等于源分布，每一列之和必须等�
 在当前应用中，源分布和目标分布由与某一激发相关的真实空间密度差的正部和负部构造而来。令
 
 <a id="Ch10.E39"></a>
+
 $$
 \Delta\rho(\mathbf{r})=\rho^{\mathrm{ES}}(\mathbf{r})-\rho^{\mathrm{GS}}(\mathbf{r}), \tag{10.39}
 $$
@@ -42,6 +45,7 @@ $$
 密度差的正、负分量定义了两个待比较的电荷分布，
 
 <a id="Ch10.E40"></a>
+
 $$
 \rho^{+}(\mathbf{r})=\max\!\bigl{(}\Delta\rho(\mathbf{r}),0\bigr{)},\qquad\rho^{-}(\mathbf{r})=\max\!\bigl{(}-\Delta\rho(\mathbf{r}),0\bigr{)}. \tag{10.40}
 $$
@@ -49,6 +53,7 @@ $$
 在具有点 $\{\mathbf{r}_{i}\}$ 和求积权重 $\{w_{i}\}$ 的网格上进行离散化之后，每个网格点associated的有效电荷为
 
 <a id="Ch10.E41"></a>
+
 $$
 q_{i}=w_{i}\rho(\mathbf{r}_{i}), \tag{10.41}
 $$
@@ -56,6 +61,7 @@ $$
 而进入 EMD 问题的两个非负离散分布由密度差的正、负分量获得。于是转移的总电荷为
 
 <a id="Ch10.E42"></a>
+
 $$
 q^{\mathrm{CT}}=\sum_{i}q_{i}^{+}=\sum_{j}q_{j}^{-}, \tag{10.42}
 $$
@@ -63,6 +69,7 @@ $$
 相应的输运代价，
 
 <a id="Ch10.E43"></a>
+
 $$
 \mu^{\mathrm{EMD}}=\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\sum_{ij}P_{ij}M_{ij}, \tag{10.43}
 $$
@@ -70,6 +77,7 @@ $$
 其单位为电荷乘以距离。类似地，可以定义一个具有长度量纲的量
 
 <a id="Ch10.E44"></a>
+
 $$
 d^{\mathrm{EMD}}=\frac{\mu^{\mathrm{EMD}}}{q^{\mathrm{CT}}}. \tag{10.44}
 $$
@@ -89,6 +97,7 @@ $$
 并设 $\{\mathbf{r}_{i}^{\mathrm{small}}\}$ 表示用于 EMD 求值的约化网格。分配给约化网格上点 $i$ 的有效电荷通过累加所有归属于该约化点的原始网格点的电荷来构造，
 
 <a id="Ch10.E45"></a>
+
 $$
 q_{i}^{\mathrm{small}}=\sum_{k\in\Omega_{i}}w_{k}^{\mathrm{big}}\rho_{k}^{\mathrm{big}}, \tag{10.45}
 $$
@@ -103,6 +112,7 @@ $$
 为进一步降低 EMD 求值的开销，可以用一个熵正则化问题来替代精确的最优传输问题，
 
 <a id="Ch10.E46"></a>
+
 $$
 \mathbf{P}^{\lambda}=\arg\min_{\mathbf{P}\in U(\mathbf{r},\mathbf{c})}\left[\langle\mathbf{P},\mathbf{M}\rangle-\frac{1}{\lambda}h(\mathbf{P})\right], \tag{10.46}
 $$
@@ -110,6 +120,7 @@ $$
 其中 $h(\mathbf{P})$ 是输运方案的熵，$\lambda$ 是正则化参数。相应的正则化输运代价为
 
 <a id="Ch10.E47"></a>
+
 $$
 d_{\mathbf{M}}^{\lambda}(\mathbf{r},\mathbf{c})=\langle\mathbf{P}^{\lambda},\mathbf{M}\rangle. \tag{10.47}
 $$
@@ -120,6 +131,7 @@ $$
 正则化问题允许最优输运方案写成因子化形式，
 
 <a id="Ch10.E48"></a>
+
 $$
 \mathbf{P}^{\lambda}=\mathrm{diag}(\mathbf{u})\,\mathbf{K}\,\mathrm{diag}(\mathbf{v}), \tag{10.48}
 $$
@@ -127,6 +139,7 @@ $$
 其中
 
 <a id="eq:emd_kernel"></a>
+
 $$
 K_{ij}=e^{-\lambda M_{ij}}. \tag{10.49}
 $$
@@ -134,6 +147,7 @@ $$
 向量 $\mathbf{u}$ 和 $\mathbf{v}$ 为正的缩放因子，其选取使得输运方案满足边缘约束，
 
 <a id="Ch10.E50"></a>
+
 $$
 \mathbf{P}^{\lambda}\mathbf{1}=\mathbf{r},\qquad(\mathbf{P}^{\lambda})^{T}\mathbf{1}=\mathbf{c}. \tag{10.50}
 $$
@@ -141,6 +155,7 @@ $$
 将因子化形式代入这些约束，得到耦合的不动点方程
 
 <a id="Ch10.E51"></a>
+
 $$
 u_{i}=\frac{r_{i}}{(\mathbf{K}\mathbf{v})_{i}},\qquad v_{j}=\frac{c_{j}}{(\mathbf{K}^{T}\mathbf{u})_{j}}. \tag{10.51}
 $$

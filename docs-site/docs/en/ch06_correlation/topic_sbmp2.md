@@ -48,6 +48,7 @@ variable OMEGA, which tunes the level of attenuation of the MOS
 operator:[[853]](../bib_references/bib.md#bib886)
 
 <a id="Ch6.E28"></a>
+
 $$
 g_{\omega}(r_{12})=\frac{1}{r_{12}}+c_{\mathrm{MOS}}\frac{\mathrm{erf}\left({\omega r_{12}}\right)}{r_{12}} \tag{6.28}
 $$

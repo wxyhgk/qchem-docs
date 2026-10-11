@@ -23,6 +23,7 @@ experiments involving an ultrafast UV pump followed by a XUV or x-ray probe, fo
 state describable by a single NTO pair, where an electron in occupied orbital $o$ is promoted into a target virtual orbital $t$, the excited-state wave function takes the form
 
 <a id="Ch7.E74"></a>
+
 $$
 \big{|}^{1,\;3}\Psi_{i}\big{\rangle}=(2)^{1/2}\left(\big{|}\Phi_{o}^{t}\big{\rangle}\pm\big{|}\Phi_{\bar{o}}^{\bar{t}}\big{\rangle}\right) \tag{7.74}
 $$
@@ -30,6 +31,7 @@ $$
 where the plus corresponds to the singlet and the minus to the triplet. Subsequently promoting a core electron $c$ into an arbitrary particle level $y$, while remaining within the M${}_{s}$ = 0 manifold, results in eight possible configurations
 
 <a id="Ch7.E75"></a>
+
 $$
 \big{|}\Phi_{oc}^{to}\big{\rangle},\;\big{|}\Phi_{\bar{o}\bar{c}}^{\bar{t}\bar{o}}\big{\rangle},\;\big{|}\Phi_{oc}^{ty}\big{\rangle},\;\big{|}\Phi_{\bar{o}\bar{c}}^{\bar{t}\bar{y}}\big{\rangle},\;\big{|}\Phi_{\bar{o}c}^{\bar{t}y}\big{\rangle},\;\big{|}\Phi_{o\bar{c}}^{t\bar{y}}\big{\rangle},\;\big{|}\Phi_{\bar{o}c}^{\bar{y}t}\big{\rangle},\;\big{|}\Phi_{o\bar{c}}^{y\bar{t}}\big{\rangle} \tag{7.75}
 $$
@@ -37,6 +39,7 @@ $$
 Diagonalizing the S${}^{2}$ operator within the span of these configurations results in several possible configuration state fuctions (CSFs). A special one is the 2eOS singlet or triplet CSFs associated with the re-pairing of the core electron $c$ with the electron in the singly-occupied molecular orbital (SOMO) that was formerly fully-occupied in the closed-shell state, $o$.
 
 <a id="Ch7.E76"></a>
+
 $$
 \big{|}^{1,\;3}\Phi_{o}^{t}\big{\rangle}=(2)^{-1/2}\left(\big{|}\Phi_{c}^{t}\big{\rangle}\pm\big{|}\Phi_{\bar{c}}^{\bar{t}}\big{\rangle}\right) \tag{7.76}
 $$
@@ -44,6 +47,7 @@ $$
 When the core electron is promoted to an arbitrary virtual orbital (with respect to the closed-shell configuration), the states can be described by the remaining 4eOS singlet, triplet, and quintet CSFs.
 
 <a id="Ch7.E77"></a>
+
 $$
 \displaystyle\big{|}^{1_{A}}\Phi_{oc}^{ty}\big{\rangle} \tag{7.77a}
 $$

@@ -15,6 +15,7 @@ CCMAN（老版本的耦合簇代码）和 CCMAN2（默认版本）都具备共�
 在运行大型作业时，正确设置内存上限对于获得高性能至关重要。若要粗略估算耦合簇（coupled-cluster）计算所需的内存量，可使用以下公式：
 
 <a id="Ch6.E83"></a>
+
 $$
 \textrm{Memory}=\frac{(\textrm{Number of basis set functions})^{4}}{131072}~{}\textrm{MB} \tag{6.83}
 $$

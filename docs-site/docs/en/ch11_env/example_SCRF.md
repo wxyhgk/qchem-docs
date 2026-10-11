@@ -25,6 +25,7 @@ Regarding the cavity radius $a$,
 Onsager’s original suggestion is based on the molar volume $V_{m}$ of the pure solute,
 
 <a id="eq:OnsagerRadius"></a>
+
 $$
 a=(3V_{m}/4\pi N_{A})^{1/3} \tag{11.1}
 $$

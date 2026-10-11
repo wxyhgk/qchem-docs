@@ -17,6 +17,7 @@ can be assessed using an a spatial overlap metric, $\Lambda$,
 defined as[[1057]](../bib_references/bib.md#bib1102)
 
 <a id="eq:Tozer-metric"></a>
+
 $$
 \Lambda=\frac{\sum_{ia}(x_{ia}+y_{ia})^{2}O_{ia}}{\sum_{jb}(x_{jb}+y_{jb})^{2}} \tag{7.16}
 $$
@@ -24,6 +25,7 @@ $$
 where $O_{ia}$ is the spatial overlap of occupied MO $\psi_{i}$ with virtual MO $\psi_{a}$:
 
 <a id="eq:Tozer-overlaps"></a>
+
 $$
 O_{ia}=\int|\psi_{i}(\mathbf{r})|\cdot|\psi_{a}(\mathbf{r})|\;d\mathbf{r}\;. \tag{7.17}
 $$
@@ -32,6 +34,7 @@ The absolute value signs are necessary since the occupied and virtual MOs are
 orthogonal, $\langle\psi_{i}|\psi_{a}\rangle$, although **Q-Chem** includes the option to use squares of the MOs instead:
 
 <a id="eq:Tozer-overlaps2"></a>
+
 $$
 \tilde{O}_{ia}=\int|\psi_{i}(\mathbf{r})|^{2}|\psi_{a}(\mathbf{r})|^{2}\;d\mathbf{r}\;. \tag{7.18}
 $$
@@ -58,6 +61,7 @@ Empirically, the $\Lambda$ metric provides very good correlations with TDDFT err
 yet its numerical value is difficult to interpret in terms of a physical charge separation. For that reason, a similar metric
 
 <a id="eq:Delta-r"></a>
+
 $$
 \Delta r=\frac{\sum_{ia}(x_{ia}+y_{ia})^{2}\|\mathbf{R}_{ia}\|}{\sum_{jb}(x_{jb}+y_{jb})^{2}} \tag{7.19}
 $$
@@ -66,6 +70,7 @@ was proposed,[[503]](../bib_references/bib.md#bib515)
  where
 
 <a id="Ch7.E20"></a>
+
 $$
 \mathbf{R}_{ia}=\langle\psi_{i}|\hat{\mathbf{r}}|\psi_{i}\rangle-\langle\psi_{a}|\hat{\mathbf{r}}|\psi_{i}\rangle \tag{7.20}
 $$
@@ -78,6 +83,7 @@ displacements is qualitatively important.[[563]](../bib_references/bib.md#bib587
 molecule, it was later augmented by a quantity
 
 <a id="eq:Delta-sigma"></a>
+
 $$
 \Delta\sigma=\frac{\sum_{ia}(x_{ia}+y_{ia})^{2}\sigma_{ia}}{\sum_{jb}(x_{jb}+y_{jb})^{2}} \tag{7.21}
 $$
@@ -85,6 +91,7 @@ $$
 where
 
 <a id="Ch7.E22"></a>
+
 $$
 \sigma_{ia}=\bigl{|}\langle\psi_{i}|\hat{r}^{2}|\psi_{i}\rangle-\langle\psi_{a}|\hat{r}^{2}|\psi_{a}\rangle\big{|}^{1/2}\;, \tag{7.22}
 $$
@@ -94,6 +101,7 @@ The quantity $\sigma_{ia}$ provides a measure of the change in orbital size betw
 and a metric
 
 <a id="Ch7.E23"></a>
+
 $$
 \Gamma=\Delta r+\Delta\sigma \tag{7.23}
 $$
@@ -134,6 +142,7 @@ to transition density matrices. These can be computed using the **libwfa** modu
 As documented in Table [10.1](../ch10_properties/ex_StateAnal_MolDen.md#table:TDM-analysis) of that section, **libwfa** can compute expectation values such as
 
 <a id="Ch7.E24"></a>
+
 $$
 d_{\text{e-h}}=\|\langle\mathbf{r}_{\text{elec}}-\mathbf{r}_{\text{hole}}\rangle\|\;, \tag{7.24}
 $$
@@ -143,6 +152,7 @@ proper measure of electron–hole separation.[[563]](../bib_references/bib.md#bi
  Exciton size can be measured via
 
 <a id="Ch7.E25"></a>
+
 $$
 d_{\text{exc}}=\langle\|\mathbf{r}_{\text{elec}}-\mathbf{r}_{\text{hole}}\|^{2}\rangle^{1/2}\;, \tag{7.25}
 $$
@@ -152,6 +162,7 @@ which is also available from **libwfa**. Charge-displacement metrics[[572]](../b
 can also be computed using **libwfa**. These include
 
 <a id="Ch7.E26"></a>
+
 $$
 \displaystyle d_{\text{CD1}} \tag{7.26a}
 $$

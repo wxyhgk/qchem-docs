@@ -19,6 +19,7 @@ are obtained by applying a spin-flipping or excitation operator $\hat{R}$
 on the reference determinant $|\phi^{\text{(0)}}\rangle$.
 
 <a id="Ch7.E163"></a>
+
 $$
 \left|{\Psi}^{\text{RAS}}\right>=\hat{R}\left|\phi^{\text{(0)}}\right> \tag{7.163}
 $$
@@ -27,6 +28,7 @@ The $\hat{R}$ operator must obey the restrictions imposed in the subspaces
 RAS1, RAS2 and RAS3, and can be decomposed as
 
 <a id="eqRoperator"></a>
+
 $$
 \hat{R}=\hat{r}^{\text{RAS2}}+\hat{r}^{h}+\hat{r}^{p}+\hat{r}^{hp}+\hat{r}^{2h}+\hat{r}^{2p}+\cdots\;. \tag{7.164}
 $$

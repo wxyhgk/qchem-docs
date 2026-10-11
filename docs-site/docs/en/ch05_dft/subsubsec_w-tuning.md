@@ -17,6 +17,7 @@ adjustment can be performed in a non-empirical (albeit system-specific) way,[[60
 by “tuning” the value of $\omega$ in order to satisfy the Koopmans-like ionization energy criterion
 
 <a id="eq:IP-tuning"></a>
+
 $$
 -\epsilon_{\rm HOMO}(\omega)=\mbox{IE}(\omega) \tag{5.18}
 $$
@@ -49,6 +50,7 @@ gap, Kronik *et al.*[[720]](../bib_references/bib.md#bib751)
  suggest minimizing the function
 
 <a id="eq:J(w)"></a>
+
 $$
 J(\omega)=\big{[}\epsilon_{\rm HOMO}(\omega)+\mbox{IE}(\omega)\big{]}^{2}+\big{[}\epsilon_{\rm LUMO}(\omega)+\mbox{EA}(\omega)\big{]}^{2} \tag{5.19}
 $$
@@ -120,6 +122,7 @@ tuning procedure,[[956]](../bib_references/bib.md#bib997)
  in which the optimal value
 
 <a id="eq:wgdd"></a>
+
 $$
 \omega_{\text{GDD}}=C\langle d^{2}_{\text{x}}\rangle^{-1/2} \tag{5.20}
 $$
@@ -271,6 +274,7 @@ Another, alternative to IE-based tuning is the effective (EFF) tuning procedure�
 , in which the optimal value of the range-separation parameter is given by
 
 <a id="mu-eff"></a>
+
 $$
 \omega=\frac{a_{1}}{\langle r_{s}\rangle}+\frac{a_{2}\langle r_{s}\rangle}{1+a_{3}\langle r_{s}\rangle^{2}}~{}, \tag{5.21}
 $$
@@ -282,6 +286,7 @@ While $\langle r_{s}\rangle$ is straightforward to compute for bulk solids, spec
 To address this issue, a weighted average of $r_{s}$ is employed:
 
 <a id="eq:rs-average"></a>
+
 $$
 \langle r_{s}\rangle=\frac{\int w(\mathbf{r})\,r_{s}(\mathbf{r})\,d^{3}r}{\int
 w(\mathbf{r})\,d^{3}r}\;. \tag{5.22}

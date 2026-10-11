@@ -11,6 +11,7 @@ title: "7.8.5 SOS-CIS(D${}_{0}$) 模型"
 首先，从式 ([7.87](topic_cisd.md#eq619)) 出发，可以将 CIS(D) 能量显式地写为[[206]](../bib_references/bib.md#bib198)
 
 <a id="Ch7.E93"></a>
+
 $$
 \omega^{\rm CIS}+\omega^{(2)}=\bf b^{(0)^{\mathbf{t}}}{\rm{\bf A}_{SS}^{(0)}}\bf b^{(0)}+\bf b^{(0)^{\mathbf{t}}}{\rm{\bf A}_{SS}^{(2)}}\bf b^{(0)}-\bf b^{(0)^{\mathbf{t}}}{\rm{\bf A}_{SD}^{(1)}\left({\bf D}_{DD}^{(0)}-\omega^{CIS}\right)^{-1}{\bf A}_{DS}^{(1)}}\bf b^{(0)} \tag{7.93}
 $$
@@ -18,6 +19,7 @@ $$
 为避免微扰理论在近简并情形下失效，应当对整个单激发与双激发块构成的响应矩阵进行对角化。由于这样的对角化是一个非平凡的非线性问题，因此进一步引入了对该式二项式展开的附加近似：[[541]](../bib_references/bib.md#bib557)
 
 <a id="Ch7.E94"></a>
+
 $$
 \rm\left({\bf D}_{DD}^{(0)}-\omega^{CIS}\right)^{-1}=\left({\bf D}_{DD}^{(0)}\right)^{-1}\left(1+\omega\left({\bf D}_{DD}^{(0)}\right)^{-1}+\omega^{2}\left({\bf D}_{DD}^{(0)}\right)^{-2}+...\right) \tag{7.94}
 $$
@@ -25,6 +27,7 @@ $$
 SOS-CIS(D${}_{0}$) 能量 $\omega$ 被定义为利用该式的零阶展开所得响应矩阵的本征解。即：
 
 <a id="Ch7.E95"></a>
+
 $$
 \rm\left({\bf A}_{SS}^{(0)}+{\bf A}_{SS}^{(2)}-{\bf A}_{SD}^{(1)}({\bf D}_{DD}^{(0)})^{-1}{\bf A}_{DS}^{(1)}\right)\bf b=\omega\bf b \tag{7.95}
 $$
@@ -32,6 +35,7 @@ $$
 与 SOS-CIS(D) 类似，SOS-CIS(D${}_{0}$) 理论通过取该式的反自旋（opposite-spin）部分，并以两个半经验参数对其进行标度来定义：[[206]](../bib_references/bib.md#bib198)
 
 <a id="Ch7.E96"></a>
+
 $$
 \rm\left({\bf A}_{SS}^{(0)}+{\it c_{T}}{\bf A}_{SS}^{OS(2)}-{\it c_{U}}{\bf A}_{SD}^{OS(1)}({\bf D}_{DD}^{(0)})^{-1}{\bf A}_{DS}^{OS(1)}\right)\bf b=\omega\bf
 b \tag{7.96}

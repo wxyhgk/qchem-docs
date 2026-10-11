@@ -46,6 +46,7 @@ The most general formulation of Poisson’s equation, for a dielectric
 *function* rather than a dielectric *constant*, is
 
 <a id="eq:Poisson"></a>
+
 $$
 \hat{\bm{\nabla}}\bm{\cdot}\left[\varepsilon(\mathbf{r})\hat{\bm{\nabla}}\varphi_{\rm tot}(\mathbf{r})\right]=-4\pi\rho_{\rm sol}(\mathbf{r})\;. \tag{11.25}
 $$
@@ -53,6 +54,7 @@ $$
 The solute’s charge density will be separated into nuclear and electronic components,
 
 <a id="eq:rho"></a>
+
 $$
 \rho_{\rm sol}(\mathbf{r})=\rho_{\rm nuc}(\mathbf{r})+\rho_{\rm elec}(\mathbf{r})\;. \tag{11.26}
 $$
@@ -62,6 +64,7 @@ is comprised of the solute’s electrostatic potential $\varphi_{\rm elec}+\varp
 in Eq. ([11.26](#eq:rho)), plus the polarization potential induced in the medium:
 
 <a id="eq:phi"></a>
+
 $$
 \varphi_{\rm tot}(\mathbf{r})=\varphi_{\rm elec}(\mathbf{r})+\varphi_{\rm nuc}(\mathbf{r})+\varphi_{\rm pol}(\mathbf{r})\;. \tag{11.27}
 $$
@@ -70,6 +73,7 @@ To compute $\rho_{\rm elec}$, the electronic contribution to the electrostatic
 potential in vacuum is first evaluated on a Cartesian grid,
 
 <a id="eq:phi_elec"></a>
+
 $$
 \varphi_{\rm elec}(\mathbf{r}_{i})=\sum_{\mu\nu}^{N_{\rm basis}}P_{\mu\nu}\Bigl{\langle}g_{\mu}(\mathbf{r})\Bigl{|}\frac{1}{|\mathbf{r}-\mathbf{r}_{i}|}\Bigr{|}g_{\nu}(\mathbf{r})\Bigr{\rangle}\;. \tag{11.28}
 $$
@@ -80,6 +84,7 @@ $\mathbf{r}$. The electronic part of the solute’s charge density is
 then obtained from
 
 <a id="eq:rho_elec"></a>
+
 $$
 \rho_{\rm elec}(\mathbf{r})=-\frac{1}{4\pi}\hat{\nabla}^{2}\varphi_{\rm elec}(\mathbf{r})\;, \tag{11.29}
 $$
@@ -90,6 +95,7 @@ eighth-order finite difference scheme.[[266]](../bib_references/bib.md#bib268)
 density $\rho_{\rm nuc}$ is described classically,
 
 <a id="eq:rho_nuc"></a>
+
 $$
 \rho_{\rm nuc}(\mathbf{r})=-\sum_{A}^{N_{\rm atoms}}Z_{\!A}\ \delta\left(\mathbf{r}-\mathbf{R}_{A}\right)\;, \tag{11.30}
 $$
@@ -101,6 +107,7 @@ a Cartesian voxel. The exact nuclear electrostatic potential in vacuum is
 computed according to
 
 <a id="eq:phi_nuke"></a>
+
 $$
 \varphi_{\rm nuc}(\mathbf{r})=-\frac{1}{4\pi}\sum_{A}^{N_{\rm atoms}}\frac{Z_{\!A}}{|\mathbf{r}-\mathbf{R}_{A}|}\;. \tag{11.31}
 $$
@@ -120,6 +127,7 @@ Equation ([11.25](#eq:Poisson)) is rewritten to appear as Poisson’s equation 
 vacuum with an additional source charge density:
 
 <a id="A3.S8.EGx104"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\hat{\nabla}^{2}\varphi_{\rm tot}(\mathbf{r})&\displaystyle=-4\pi\left[\frac{\rho_{\rm sol}(\mathbf{r})}{\varepsilon(\mathbf{r})}+\frac{\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi_{\rm tot}(\mathbf{r})}{4\pi}\right]\\
 &\displaystyle=-4\pi\bigl{[}\rho_{\rm sol}(\mathbf{r})+\rho_{\rm pol}(\mathbf{r})\bigr{]}\;,\end{aligned} \tag{11.32}
@@ -128,6 +136,7 @@ $$
 where the polarization charge density is
 
 <a id="eq:rho_pol"></a>
+
 $$
 \rho_{\rm pol}(\mathbf{r})=\rho_{\rm iter}(\mathbf{r})+\left(\frac{1-\varepsilon(\mathbf{r})}{\varepsilon(\mathbf{r})}\right)\rho_{\rm sol}(\mathbf{r})\;. \tag{11.33}
 $$
@@ -135,6 +144,7 @@ $$
 The iterative charge density $\rho_{\rm iter}(\mathbf{r})$ takes the form
 
 <a id="eq:rho_iter1"></a>
+
 $$
 \rho_{\rm iter}^{(k+1)}(\mathbf{r})=\frac{\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi^{(k)}_{\rm tot}(\mathbf{r})}{4\pi} \tag{11.34}
 $$
@@ -151,6 +161,7 @@ to obtain a new total electrostatic potential. To stabilize the iterative
 updates of $\rho_{\rm iter}(\mathbf{r})$, we use a damping procedure
 
 <a id="A3.S8.EGx105"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\rho_{\rm iter}^{(k+1)}(\mathbf{r})&\displaystyle=\frac{\eta}{4\pi}\bigl{[}\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi^{(k)}_{\rm tot}(\mathbf{r})\bigr{]}+(1-\eta)\rho_{\rm iter}^{(k)}(\mathbf{r})\\
 &\displaystyle=\eta\rho_{\rm iter}^{(k+1)}+(1-\eta)\rho_{\rm iter}^{(k)}(\mathbf{r})\end{aligned} \tag{11.35}
@@ -165,6 +176,7 @@ Once the total charge density and electrostatic potential are iterated to
 self-consistency, the free energy of solvation,
 
 <a id="eq:Gpol"></a>
+
 $$
 G_{\rm pol}=\frac{1}{2}\int d\textbf{r}\;\varphi_{\rm pol}(\textbf{r})\;\rho_{\rm sol}(\mathbf{r})\;, \tag{11.36}
 $$
@@ -172,6 +184,7 @@ $$
 is computed, where
 
 <a id="eq:phi_pol"></a>
+
 $$
 \varphi_{\rm pol}(\textbf{r})=\varphi_{\rm tot}(\textbf{r})-\varphi_{\rm sol}(\mathbf{r})\;. \tag{11.37}
 $$
@@ -182,6 +195,7 @@ Fock matrix. This is accomplished by adding the correction term $\Delta\hat{F}=\
 correction in the atomic orbital basis is
 
 <a id="eq:fock"></a>
+
 $$
 \Delta F_{\mu\nu}=\int d\textbf{r}\;\varphi_{\rm pol}(\textbf{r})\;g_{\mu}(\textbf{r})\;g_{\nu}(\textbf{r})\;. \tag{11.38}
 $$
@@ -211,6 +225,7 @@ and slow components. Within the Marcus partitioning scheme,[[1530]](../bib_refer
 Eq. ([11.32](#eq:Poisson2)) becomes[[266]](../bib_references/bib.md#bib268)
 
 <a id="eq:neq1"></a>
+
 $$
 -\frac{1}{4\pi}\hat{\nabla}^{2}\varphi_{{\rm tot},i}(\mathbf{r})=\rho_{{\rm sol},i}(\mathbf{r})+\rho^{\rm slow}_{{\rm pol},0}(\mathbf{r})+\rho^{\rm fast}_{{\rm pol},i}(\mathbf{r})\;, \tag{11.39}
 $$
@@ -218,6 +233,7 @@ $$
 where the fast polarization charge density of the ionized state, $\rho^{\rm fast}_{{\rm pol},i}$, is given by
 
 <a id="eq:rho_pol_neq1"></a>
+
 $$
 \rho^{\rm fast}_{{\rm pol},i}(\mathbf{r})=\rho_{{\rm iter},i}(\mathbf{r})+\left(\frac{1-\varepsilon_{\rm opt}(\mathbf{r})}{\varepsilon_{\rm opt}(\mathbf{r})}\right)\bigl{[}\rho_{{\rm sol},i}(\mathbf{r})+\rho^{\rm slow}_{{\rm pol},0}(\mathbf{r})\bigr{]} \tag{11.40}
 $$
@@ -225,6 +241,7 @@ $$
 and the fast polarization potential, $\varphi^{\rm fast}_{{\rm pol},i}$, is
 
 <a id="eq:phi_pol_neq1"></a>
+
 $$
 \varphi^{\rm fast}_{{\rm pol},i}(\textbf{r})=\varphi_{{\rm tot},i}(\textbf{r})-\varphi_{{\rm sol},i}(\mathbf{r})-\varphi^{\rm slow}_{{\rm pol},0}(\mathbf{r})\;. \tag{11.41}
 $$
@@ -437,6 +454,7 @@ calculations, following the procedure in Ref. [[390]](../bib_references/bib.md#
 permittivity function, which depends parametrically on the nuclear positions $\mathbf{R}_{A}$, is
 
 <a id="eq:rigidvdw"></a>
+
 $$
 \varepsilon(\mathbf{r};\{\mathbf{R}_{A}\})=\bigl{(}\varepsilon_{\rm solvent}-1\bigr{)}\ \left\{\prod_{A}^{N_{\rm atoms}}h(d_{A},\Delta;\lvert\mathbf{r}-\mathbf{R}_{A}\rvert)\right\}\;, \tag{11.42}
 $$
@@ -444,6 +462,7 @@ $$
 where
 
 <a id="eq:h_func"></a>
+
 $$
 h(d_{A},\Delta;\lvert\mathbf{r}-\mathbf{R}_{A}\rvert)=\frac{1}{2}\left[1+{\rm
 erf}\left(\frac{\lvert\mathbf{r}-\mathbf{R}_{A}\rvert-d_{A}}{\Delta}\right)\right]\;. \tag{11.43}
@@ -548,6 +567,7 @@ construction of a spherical cavity around the solute, and the dielectric is
 smoothly interpolated from vacuum to solvent using a hyperbolic tangent function:[[267]](../bib_references/bib.md#bib267)
 
 <a id="eq:hyperbolic"></a>
+
 $$
 \varepsilon(r)=\frac{1}{2}\Bigl{\{}(\varepsilon_{\mathrm{solvent}}+1)+(\varepsilon_{\mathrm{solvent}}-1)\ \mbox{tanh}\bigl{[}\alpha(r-r_{\mathrm{mid}})\bigr{]}\Bigr{\}}\;. \tag{11.44}
 $$
@@ -617,6 +637,7 @@ across the Gibbs dividing surface ($z\equiv z_{\mathrm{GDS}}$) using the followi
 tangent switching function:[[267]](../bib_references/bib.md#bib267)
 
 <a id="eq:hyperbolic2"></a>
+
 $$
 \varepsilon(z)=\frac{1}{2}\Bigl{\{}(\varepsilon_{\rm solvent}+1)+(1-\varepsilon_{\rm solvent})\ \mbox{tanh}\bigl{[}\beta(z-z_{\mathrm{GDS}})\bigr{]}\Bigr{\}}\;. \tag{11.45}
 $$

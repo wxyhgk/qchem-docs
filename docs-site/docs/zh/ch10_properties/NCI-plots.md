@@ -10,6 +10,7 @@ Yang Weitao（杨伟涛）及其合作者[[652]](../bib_references/bib.md#bib676
 约化密度梯度（reduced density gradient），
 
 <a id="Ch10.E62"></a>
+
 $$
 s(\mathbf{r})=\left(\frac{1}{2(3\pi^{2})^{1/3}}\right)\frac{\|\hat{\bm{\nabla}}\rho(\mathbf{r})\|}{\rho(\mathbf{r})^{4/3}} \tag{10.62}
 $$

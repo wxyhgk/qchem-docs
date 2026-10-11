@@ -20,6 +20,7 @@ used in QCISD). The QCISD equations can clearly be viewed as the CCSD equations
 with a large number of terms omitted, which are evidently not very numerically significant:
 
 <a id="Ch6.E74"></a>
+
 $$
 \displaystyle E_{\text{QCISD}} \tag{6.74a}
 $$

@@ -11,6 +11,7 @@ title: "5.7.6 多体色散（Many-Body Dispersion, MBD）方法"
 MBD 的核心思想是用偶极耦合的量子谐振子（quantum harmonic oscillator, QHO）来近似体系的动态响应，每个谐振子代表目标体系的一个片段。此类体系的关联能可以通过对对应的哈密顿量进行对角化而精确求得[[574]](../bib_references/bib.md#bib590)：
 
 <a id="eq:mbdhamil"></a>
+
 $$
 \hat{H}_{\text{MBD}}=\frac{1}{2}\sum^{\text{atoms}}_{A}\hat{\nabla}^{2}_{\xi_{A}}+\frac{1}{2}\sum^{\text{atoms}}_{A}\omega^{2}_{A}\xi^{2}_{A}+\frac{1}{2}\sum^{\text{atoms}}_{A,B}\omega_{A}\omega_{B}(\alpha_{A}^{0}\alpha_{B}^{0})^{1/2}\xi_{A}T_{AB}\xi_{B}. \tag{5.52}
 $$
@@ -20,6 +21,7 @@ $\mathbf{R}_{A}$ 的质量加权位移，$\omega_{A}$ 是特征频率，$\alpha_
 是振子 $A$ 与 $B$ 之间的偶极势。MBD 哈密顿量是通过对长程关联进行粗粒化（经由长程偶极张量 $\mathbf{T}_{\mathrm{lr}}$）并利用绝热连接-涨落耗散（adiabatic connection fluctuation-dissipation）公式近似短程极化率而得到的：
 
 <a id="eq:lrmbdcorr"></a>
+
 $$
 E^{\mathrm{MBD}}_{c,\text{lr}}=-\sum_{n=2}^{\infty}\frac{(-1)^{n}}{n}\int_{0}^{\infty}\frac{\mathrm{d}u}{2\pi}\sum_{AB}\mbox{tr}\Bigl{[}\bigl{\langle}(\mathbf{\alpha}_{\mathrm{eff}}\mathbf{T}_{\mathrm{lr}})^{n}\bigl{\rangle}_{\!AB}(iu)\Bigr{]}\;. \tag{5.53}
 $$
@@ -28,6 +30,7 @@ $$
 $\mathbf{\alpha}_{\mathrm{eff}}$ 用相应 QHO 的极化率来表示，
 
 <a id="Ch5.E54"></a>
+
 $$
 \alpha_{A}^{\mathrm{QHO}}(u)=\frac{q_{A}^{2}}{m_{A}(\omega_{A}^{2}-u^{2}-i\delta u)} \tag{5.54}
 $$
@@ -36,6 +39,7 @@ $$
 中频率域的积分可以解析地完成，从而得到所谓关联能的等离激元极点（plasmon pole）公式，
 
 <a id="eq:mbdplasmon"></a>
+
 $$
 E_{c}=\frac{1}{2}\sum_{p=1}^{3N}(\bar{\omega}_{p}-\omega_{p}) \tag{5.55}
 $$

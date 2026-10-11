@@ -31,6 +31,7 @@ a set of spin-restricted orbitals $\{\phi_{\text{ROKS}}\}$ such that the spin-pu
 singlet energy,
 
 <a id="Ch7.E79"></a>
+
 $$
 E_{\text{S}}=2E_{\text{mix}}[\{\phi_{\text{ROKS}}\}]-E_{\text{T}}[\{\phi_{\text{ROKS}}\}]\;, \tag{7.79}
 $$

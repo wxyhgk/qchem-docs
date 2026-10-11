@@ -53,6 +53,7 @@ SAPT(KS) 计算及其多体扩展形式 XSAPT(KS)，采用 Kohn-Sham 密度泛�
 +*ai*D 势对色散采用成对近似，即假定相互作用势在所有原子对上可加和。成对色散近似使用形如下的原子对求和，
 
 <a id="eq:PairwiseDispersion"></a>
+
 $$
 E_{\text{disp}}=-\sum_{i\in A}\sum_{\begin{subarray}{c}j\in B\\
 A\neq B\end{subarray}}\Bigg{[}f_{6}(R_{ij})\frac{C_{6}^{ij}}{R^{6}_{ij}}+f_{8}(R_{ij})\frac{C_{8}^{ij}}{R^{8}_{ij}}\Bigg{]}\;, \tag{12.68}

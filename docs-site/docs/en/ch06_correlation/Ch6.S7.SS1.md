@@ -25,6 +25,7 @@ Attenuated MP2, denoted MP2(attenuator, basis) is implemented in **Q-Chem** base
 on the complementary terf function, below:
 
 <a id="Ch6.E32"></a>
+
 $$
 \rm{s}(r)=\rm{terfc}(r,r_{0})=\frac{1}{2}\left\{\rm{erfc}\left[\omega(r-r_{0})\right]+\rm{erfc}\left[\omega(r+r_{0})\right]\right\} \tag{6.32}
 $$

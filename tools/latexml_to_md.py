@@ -169,7 +169,7 @@ def convert_html_to_md(html_str, url_mapper=None, current_doc="", asset_rel_path
                 tag_str = f" \\tag{{{tag_text}}}"
 
         eq_id = eq_table.get("id", "")
-        anchor_str = f'<a id="{eq_id}"></a>\n' if eq_id else ""
+        anchor_str = f'<a id="{eq_id}"></a>\n\n' if eq_id else ""
         eq_md = f"\n\n{anchor_str}$$\n{alt}{tag_str}\n$$\n\n"
         eq_table.replace_with(soup.new_string(eq_md))
 

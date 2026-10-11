@@ -17,6 +17,7 @@ title: "4.5.9 松弛约束算法（RCA）"
  在这里，当前密度矩阵被写成先前各密度矩阵的线性组合：
 
 <a id="Ch4.E39"></a>
+
 $$
 \mathbf{P}(x)=\sum_{i}x_{i}\mathbf{P}_{i} \tag{4.39}
 $$
@@ -24,6 +25,7 @@ $$
 在非常好的近似下（对 Hartree-Fock 方法是精确的），$\mathbf{P}(x)$ 的能量可以写成关于 $x$ 的二次函数：
 
 <a id="Ch4.E40"></a>
+
 $$
 \mathbf{E}(x)=\sum_{i}E_{i}x_{i}+\frac{1}{2}\sum_{i}x_{i}(\mathbf{P}_{i}-\mathbf{P}_{j})\cdot(\mathbf{F}_{i}-\mathbf{F}_{j})x_{j} \tag{4.40}
 $$
@@ -31,6 +33,7 @@ $$
 在每次迭代中，选取 $x$ 以在约束条件"所有 $x_{i}$ 均介于零和一之间"下极小化 $\mathbf{E}(x)$。$\mathbf{P}(x)$ 对应的 Fock 矩阵进一步被写成先前各 Fock 矩阵的线性组合，
 
 <a id="Ch4.E41"></a>
+
 $$
 \mathbf{F}(x)=\sum_{i}x_{i}\mathbf{F}_{i}+\delta\mathbf{F}_{xc}(x) \tag{4.41}
 $$

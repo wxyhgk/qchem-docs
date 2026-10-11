@@ -12,6 +12,7 @@ molecular wave function and the $N-1$/$N+1$ electron wave function of the
 corresponding cation/anion:
 
 <a id="A3.S8.EGx60"></a>
+
 $$
 \displaystyle\phi^{d}(1) \tag{7.127}
 $$
@@ -21,6 +22,7 @@ are just the canonical HF orbitals. For correlated wave functions, Dyson
 orbitals are linear combinations of the reference molecular orbitals:
 
 <a id="A3.S8.EGx61"></a>
+
 $$
 \displaystyle\phi^{d} \tag{7.129}
 $$
@@ -30,6 +32,7 @@ defined with respect to the same MO basis. Since the left and right CC vectors
 are not the same, one can define correspondingly two Dyson orbitals (left and right):
 
 <a id="A3.S8.EGx62"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\gamma_{p}^{R}&\displaystyle=\bigl{\langle}\Phi_{0}e^{T_{1}+T_{2}}L^{EE}\bigl{|}p^{\dagger}\bigr{|}R^{IP}e^{T_{1}+T_{2}}\Phi_{0}\bigr{\rangle}\\
 \displaystyle\gamma_{p}^{L}&\displaystyle=\bigl{\langle}\Phi_{0}e^{T_{1}+T_{2}}L^{IP}\bigl{|}p\bigr{|}R^{EE}e^{T_{1}+T_{2}}\Phi_{0}\bigr{\rangle}\end{aligned} \tag{7.132}

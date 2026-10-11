@@ -14,6 +14,7 @@ title: "6.5.3 基于数值稀疏性的实现"
 MP2 能量为
 
 <a id="eq:lmp2_energy"></a>
+
 $$
 E^{(2)}=\sum_{iajb}{J_{ab}^{ij}\tau_{ab}^{ij}}\;, \tag{6.19}
 $$
@@ -21,6 +22,7 @@ $$
 其中 $\mathbf{J}$（以及类交换张量 $\mathbf{K}$）是电子排斥积分（electron repulsion integral, ERI）张量
 
 <a id="Ch6.E20"></a>
+
 $$
 J_{ab}^{ij}=K_{ba}^{ij}=(ia|jb)\;. \tag{6.20}
 $$
@@ -28,6 +30,7 @@ $$
 $\boldsymbol{\tau}$ 是 MP2 方程的解
 
 <a id="eq:lmp2_equation"></a>
+
 $$
 \mathbf{\Delta}\tau=-\left(2\mathbf{J}-\mathbf{K}\right)\;, \tag{6.21}
 $$
@@ -35,6 +38,7 @@ $$
 这是一组线性方程，对于正交轨道，$\Delta$ 为
 
 <a id="eq:Delta"></a>
+
 $$
 \Delta_{iajb,i^{\prime}a^{\prime}j^{\prime}b^{\prime}}=\delta_{ii^{\prime}}\delta_{aa^{\prime}}\delta_{jj^{\prime}}F^{\text{virt}}_{bb^{\prime}}-\delta_{ii^{\prime}}\delta_{aa^{\prime}}F^{\text{occ}}_{jj^{\prime}}\delta_{bb^{\prime}}+\delta_{ii^{\prime}}F^{\text{virt}}_{aa^{\prime}}\delta_{jj^{\prime}}\delta_{bb^{\prime}}-F^{\text{occ}}_{ii^{\prime}}\delta_{aa^{\prime}}\delta_{jj^{\prime}}\delta_{bb^{\prime}}\;. \tag{6.22}
 $$
@@ -68,6 +72,7 @@ LOCOOCCVIRT
 $\lambda$-Boys 试图同时最小化总轨道离域度（orbital spread）和总非对角 Fock 矩阵元。
 
 <a id="Ch6.E23"></a>
+
 $$
 f^{\text{min}}_{\lambda\text{-Boys}}=\sum_{i}\left|\langle i|\mathbf{r}-\langle i|\mathbf{r}|i\rangle|i\rangle\right|^{2}+\lambda\sum_{i\neq j}\;.(F^{\text{occ}}_{ij})^{2}. \tag{6.23}
 $$
@@ -128,6 +133,7 @@ VV-HV 是虚拟空间推荐的局域化方法。
 默认的 $i\rightarrow a$ 预筛选器阈值为
 
 <a id="eq:lmp2_i_to_a"></a>
+
 $$
 \epsilon_{i\rightarrow a}=\left\{\begin{aligned} &\displaystyle 10^{-2.5}\epsilon&\displaystyle\epsilon\geq 10^{-6},\\
 &\displaystyle 10^{3.5}\epsilon^{2}&\displaystyle\epsilon<10^{-6}.\end{aligned}\right. \tag{6.24}

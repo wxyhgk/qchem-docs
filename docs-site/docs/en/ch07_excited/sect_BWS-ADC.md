@@ -21,6 +21,7 @@ size-extensive, it is best to instead view BWs-$n$ as a regularised
 Rayleigh-Schrödinger perturbation theory, whose unperturbed Hamiltonian and perturbation are given by:
 
 <a id="A3.S8.EGx65"></a>
+
 $$
 \displaystyle\hat{H}^{(0)} \tag{7.147}
 $$
@@ -30,6 +31,7 @@ Here, $\hat{W}$ is a block-diagonal one-electron operator whose properties are e
 Within the context of BWs-ADC, we recommend using the $A_{0}$ and $B_{0}$ parameters of MPR-BWs2 (see also [6.9](../ch06_correlation/topic_mpr-bws2.md)):
 
 <a id="Ch7.E149"></a>
+
 $$
 \hat{W}=\frac{A_{0}}{8}\sum_{ijkab}\left(\langle ik||ab\rangle{t^{ab}_{jk}}^{(1)}\right)\left(\hat{a}^{\dagger}_{i}\hat{a}_{j}+\hat{a}^{\dagger}_{j}\hat{a}_{i}\right)+\frac{B_{0}}{8}\sum_{ijabc}\left(\langle ij||ac\rangle{t^{bc}_{ij}}^{(1)}\right)\left(\hat{a}^{\dagger}_{a}\hat{a}_{b}+\hat{a}^{\dagger}_{b}\hat{a}_{a}\right) \tag{7.149}
 $$
@@ -37,6 +39,7 @@ $$
 A key aspect of BW-s2 theory is that the combined zeroth order Hamiltonian still constitutes a one-particle operator and can thus be diagonalised self-consistently to yield the *dressed* orbitals $\phi_{p}^{\prime}(r,\sigma)$ with corresponding orbital energies $\varepsilon_{p}^{\prime}$:
 
 <a id="Ch7.E150"></a>
+
 $$
 (\hat{F}+\hat{W})\phi_{p}^{\prime}(r,\sigma)=\varepsilon_{p}^{\prime}\phi_{p}^{\prime}(r,\sigma) \tag{7.150}
 $$

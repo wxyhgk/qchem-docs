@@ -11,6 +11,7 @@ $f(\mathbf{r})\equiv f(r,\theta,\phi)$ has an exact expansion in spherical
 harmonic functions,
 
 <a id="Ch5.E16"></a>
+
 $$
 f(r,\theta,\phi)=\sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell}c_{\ell m}\mbox{Y}_{\ell m}(\theta,\phi)\;. \tag{5.16}
 $$

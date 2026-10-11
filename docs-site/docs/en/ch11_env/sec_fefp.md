@@ -34,6 +34,7 @@ peptide bond axis and at the distance corresponding to the equilibrium bond
 length of a CH bond:
 
 <a id="eq:hla"></a>
+
 $$
 P=A_{1}H+\sum_{i=2}^{N-1}HA_{i}H+HA_{N} \tag{11.89}
 $$
@@ -45,6 +46,7 @@ end of the fragment, or an amine to saturate the -C(=O) extremity of the
 fragment.
 
 <a id="eq:cla"></a>
+
 $$
 P=A_{1}C^{2}+\sum_{i=2}^{N-1}C^{i-1}A_{i}C^{i+1}+C^{N-1}A_{N} \tag{11.90}
 $$
@@ -63,6 +65,7 @@ to be removed ($C^{\emptyset}$) from the overlapping areas.
 Equations ([11.89](#eq:hla)) and ([11.90](#eq:cla)) become:
 
 <a id="eq:hcla"></a>
+
 $$
 P=A_{1}C^{\emptyset}+\sum_{i=2}^{N-1}C^{\emptyset}A_{i}C^{\emptyset}+C^{\emptyset}A_{N} \tag{11.91}
 $$
@@ -82,6 +85,7 @@ macromolecule). Consequently, the total interaction energy
 fragments is:
 
 <a id="eq:fefp-tot"></a>
+
 $$
 E^{\text{tot}}(P-L)=E^{\text{elec}}(P-L)+E^{\text{pol}}(P-L) \tag{11.92}
 $$
@@ -90,6 +94,7 @@ The electrostatics is an additive term; its contribution to fragment-fragment
 and ligand-fragment interaction is computed as follows:
 
 <a id="eq:la-fefp-elec"></a>
+
 $$
 E^{\text{elec}}(P-L)=\sum_{i}^{N}{E^{\text{elec}}\left(C^{\emptyset}A_{i=1}C^{\emptyset}-L\right)}\;. \tag{11.93}
 $$
@@ -97,6 +102,7 @@ $$
 The polarization contribution in an EFP system (no QM) is:
 
 <a id="eq:pol-efpfefp"></a>
+
 $$
 E^{\text{pol}}(P-L)=-\frac{1}{2}\sum_{k\in P,L}\mu^{k}F^{\text{mult},k}+\frac{1}{2}\sum_{k\in P}\mu^{k}F^{\text{mult},k}\;. \tag{11.94}
 $$
@@ -108,6 +114,7 @@ The system is thus fully polarized, all fragments (A${}_{i}$ or L) are polarizin
 each other until self-consistency:
 
 <a id="A3.S8.EGx110"></a>
+
 $$
 \displaystyle\mu^{k}_{\text{efp}}(L) \tag{11.95}
 $$
@@ -136,6 +143,7 @@ so-called conjugated caps or “concaps”.[[537]](../bib_references/bib.md#bib5
 $N-1$ concap fragments are actually used to subtract the overlapping effect.
 
 <a id="eq:mfcc"></a>
+
 $$
 P=A_{1}C^{2}+\sum_{i=2}^{N-1}C^{i-1}A_{i}C^{i+1}+C^{N-1}A_{N}-\sum_{i}^{N-1}C^{i+1}C^{i-1} \tag{11.97}
 $$
@@ -150,6 +158,7 @@ interaction energy between each capped fragment ($C^{i-1}A_{i}C^{i+1}$) and
 the ligand minus the interaction energy between each concap ($C^{i-1}C^{i+1}$) and the ligand:
 
 <a id="eq:mfcc-fefp-elec"></a>
+
 $$
 E^{\text{elec}}(P-L)=\sum_{i}^{N}{E^{\text{elec}}\left(C^{i-1}A_{i}C^{i+1}-L\right)}-\sum_{i}^{N-1}{E^{\text{elec}}\left(C^{i-1}C^{i+1}-L\right)} \tag{11.98}
 $$

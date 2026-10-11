@@ -299,6 +299,7 @@ be expressed as the sum of the electronic energy $E_{el}$ and the pressure $P$ t
 the volume $V$ occupied by the molecule.
 
 <a id="Ch9.E44"></a>
+
 $$
 H=E_{el}+PV \tag{9.44}
 $$
@@ -323,6 +324,7 @@ that is placed on the tessellated molecular surface and that compresses the
 electron density. Each Gaussian potential G${}_{j}$ has the form
 
 <a id="Ch9.E45"></a>
+
 $$
 G_{j}=p_{j}\cdot\exp\left(-w_{j}(\textbf{r}-\textbf{r}_{0})^{2}\right) \tag{9.45}
 $$
@@ -333,6 +335,7 @@ can be treated, and the pressure-induced increase in the electronic energy is
 physically sound. During the SCF, the energy expression takes the form
 
 <a id="A3.S8.EGx72"></a>
+
 $$
 \displaystyle E_{\text{GOSTSHYP}} \tag{9.46}
 $$

@@ -10,6 +10,7 @@ title: "7.11.3 RAS-CI 的二阶微扰修正"
  二阶能量修正，*即* RASCI(2)，可以表示为：
 
 <a id="eqRASCI2"></a>
+
 $$
 E^{(2)}=-\sum_{k}\frac{|\langle k|\hat{H}|0\rangle|^{2}}{E_{k}-E_{0}+\epsilon} \tag{7.165}
 $$

@@ -9,6 +9,7 @@ title: "7.7.3 近似自旋纯化"
 单重态双自由基（singlet biradicals）是一类重要的特殊情况，其在单行列式自洽场（SCF）框架下的描述通常以显著的自旋污染（spin contamination）为特征，$\langle\hat{S}^{2}\rangle\approx 1$（原子单位），这表明波函数近似为单重态（$\langle\hat{S}^{2}\rangle=0$）与三重态（$\langle\hat{S}^{2}\rangle=2$）的等比例混合。这一现象的根源在于：要对两个半占据轨道中的两个电子给出恰当的描述，至少需要两个行列式。一种简单的修正手段是使用近似自旋纯化（approximate spin-purification）公式，[[1580]](../bib_references/bib.md#bib1643)
 
 <a id="eq:OpSing"></a>
+
 $$
 E_{\text{OSS}}\approx 2E_{\text{BS}}-E_{\text{trip}}\;, \tag{7.78}
 $$

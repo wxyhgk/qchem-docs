@@ -33,6 +33,7 @@ defined by transformations $\mathbf{U}$ and $\mathbf{V}$ obtained by singular
 value decomposition (SVD) of the matrix $\mathbf{T}$, *i.e.*,[[925]](../bib_references/bib.md#bib962)
 
 <a id="eq:NTO_SVD"></a>
+
 $$
 \mathbf{UTV}^{\dagger}=\bm{\Lambda} \tag{7.188}
 $$

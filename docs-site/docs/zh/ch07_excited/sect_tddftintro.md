@@ -19,6 +19,7 @@ title: "7.3.1 简要介绍"
 从操作上看，这需要求解一个本征方程
 
 <a id="eq:TDDFT"></a>
+
 $$
 \left(\begin{array}[]{cc}\mathbf{A}&\mathbf{B}\\
 \mathbf{B}^{\dagger}&\mathbf{A}^{\dagger}\\

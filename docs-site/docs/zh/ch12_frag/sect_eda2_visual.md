@@ -46,6 +46,7 @@ $-n_{k}$。每一对 NOCV 相关的能量降低可以使用扩展过渡态（ext
 每个重要 NOCV 对 ($\psi_{-k}$, $\psi_{k}$) 对密度形变 ($\Delta\rho_{k}$) 的贡献：
 
 <a id="Ch12.E24"></a>
+
 $$
 \Delta\rho_{k}(\mathbf{r})=-n_{k}|\psi_{-k}(\mathbf{r})|^{2}+n_{k}|\psi_{k}(\mathbf{r})|^{2} \tag{12.24}
 $$

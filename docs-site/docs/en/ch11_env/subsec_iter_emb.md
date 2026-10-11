@@ -18,6 +18,7 @@ It is possible to compute supermolecular static polarizabilities using the itera
 an element $\alpha_{xy}$ of the polarizability tensor $\mathbb{\alpha}$ is computed as
 
 <a id="Ch11.E118"></a>
+
 $$
 \alpha_{xy}=\sum_{A}{(\alpha_{xy})_{A}} \tag{11.118}
 $$
@@ -27,6 +28,7 @@ This method can also be used to compute supermolecular dipole moments. A compone
 $\mathbb{\mu}$ is obtained as
 
 <a id="Ch11.E119"></a>
+
 $$
 \mu_{x}=\sum_{A}{(\mu_{x})_{A}} \tag{11.119}
 $$

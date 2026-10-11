@@ -13,6 +13,7 @@ basis, and each state is at the same geometry. Subtracting these matrices
 yields the difference density
 
 <a id="eq623"></a>
+
 $$
 \bm{\Delta}={\rm{\bf P}}_{1}-{\rm{\bf P}}_{2} \tag{7.180}
 $$
@@ -26,6 +27,7 @@ natural orbitals of the electronic transition and their occupation numbers
 (associated eigenvalues). These are defined as the eigenvectors $\mathbf{U}$ defined by
 
 <a id="eq624"></a>
+
 $$
 {\rm{\bf U}}^{\dagger}\bm{\Delta}{\rm{\bf U}}=\delta \tag{7.181}
 $$
@@ -33,6 +35,7 @@ $$
 The sum of the occupation numbers $\delta_{p}$ of these orbitals is then
 
 <a id="eq625"></a>
+
 $$
 \mbox{tr}(\bm{\Delta})=\sum\limits_{p=1}^{N}{\delta_{p}}=n \tag{7.182}
 $$
@@ -44,6 +47,7 @@ attachment will obviously be zero.
 The detachment density
 
 <a id="eq:detach_density_matrix"></a>
+
 $$
 \textbf{D}=\textbf{UdU}^{\dagger} \tag{7.183}
 $$
@@ -53,6 +57,7 @@ negative occupation numbers, weighted by the absolute value of their
 occupations where $\mathbf{d}$ is a diagonal matrix with elements
 
 <a id="eq627"></a>
+
 $$
 d_{p}=-\min(\delta_{p},0) \tag{7.184}
 $$
@@ -63,6 +68,7 @@ single particle levels vacated in an electronic transition or hole density.
 The attachment density
 
 <a id="eq:attach_density_matrix"></a>
+
 $$
 \textbf{A}=\textbf{UaU}^{\dagger} \tag{7.185}
 $$
@@ -71,6 +77,7 @@ is defined as the sum of all natural orbitals of the difference density with
 positive occupation numbers where $\mathbf{a}$ is a diagonal matrix with elements
 
 <a id="eq629"></a>
+
 $$
 a_{p}=\max(\delta_{p},0)\;. \tag{7.186}
 $$
@@ -81,6 +88,7 @@ The difference between the attachment and detachment densities yields the
 original difference density matrix
 
 <a id="eq630"></a>
+
 $$
 \bm{\Delta}=\mathbf{A}-\mathbf{D}\;. \tag{7.187}
 $$

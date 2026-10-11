@@ -12,6 +12,7 @@ determinant reference is used (specifically the Hartree-Fock determinant),
 then this defines the coupled-cluster doubles (CCD) method, as specified by the following equations:
 
 <a id="eq527"></a>
+
 $$
 \displaystyle E_{\text{CCD}} \tag{6.75a}
 $$
@@ -33,6 +34,7 @@ conditions that the cluster energy is minimized with respect to orbital
 variations. This may be mathematically expressed by
 
 <a id="eq529"></a>
+
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{i}^{a}}=0 \tag{6.76}
 $$

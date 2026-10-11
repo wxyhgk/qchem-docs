@@ -22,6 +22,7 @@ Hartree-Fock 波函数 $\Psi_{0}$ 与能量 $E_{0}$ 接近精确波函数 $\Psi$
 则现在可以将精确 Hamiltonian 算符写为
 
 <a id="eq500"></a>
+
 $$
 H=H_{0}+\lambda V \tag{6.1}
 $$
@@ -30,6 +31,7 @@ $$
 将精确波函数与能量按 HF 波函数与能量展开，可得
 
 <a id="eq501"></a>
+
 $$
 E=E^{(0)}+\lambda E^{(1)}+\lambda^{2}E^{(2)}+\lambda^{3}E^{(3)}+\ldots \tag{6.2}
 $$
@@ -37,6 +39,7 @@ $$
 以及
 
 <a id="eq02"></a>
+
 $$
 \Psi=\Psi_{0}+\lambda\Psi^{(1)}+\lambda^{2}\Psi^{(2)}+\lambda^{3}\Psi^{(3)}+\ldots \tag{6.3}
 $$
@@ -44,16 +47,19 @@ $$
 将这些展开式代入 Schrödinger 方程，并按 $\lambda$ 的幂次整理各项，可得
 
 <a id="eq503"></a>
+
 $$
 H_{0}\Psi_{0}=E^{(0)}\Psi_{0} \tag{6.4}
 $$
 
 <a id="eq504"></a>
+
 $$
 H_{0}\Psi^{(1)}+V\Psi_{0}=E^{(0)}\Psi^{(1)}+E^{(1)}\Psi_{0} \tag{6.5}
 $$
 
 <a id="eq505"></a>
+
 $$
 H_{0}\Psi^{(2)}+V\Psi^{(1)}=E^{(0)}\Psi^{(2)}+E^{(1)}\Psi^{(1)}+E^{(2)}\Psi_{0} \tag{6.6}
 $$
@@ -62,16 +68,19 @@ $$
 （MP$n$）能量的如下表达式：
 
 <a id="eq506"></a>
+
 $$
 E^{(0)}=\langle{\Psi_{0}}|H_{0}|{\Psi_{0}}\rangle \tag{6.7}
 $$
 
 <a id="eq507"></a>
+
 $$
 E^{(1)}=\langle{\Psi_{0}}|V|{\Psi_{0}}\rangle \tag{6.8}
 $$
 
 <a id="eq508"></a>
+
 $$
 E^{(2)}=\left\langle{\Psi_{0}}|V|{\Psi^{(1)}}\right\rangle \tag{6.9}
 $$
@@ -79,6 +88,7 @@ $$
 因此，Hartree-Fock 能量
 
 <a id="eq509"></a>
+
 $$
 E_{0}=\left\langle{\Psi_{0}}\right|H_{0}+V\left|{\Psi_{0}}\right\rangle \tag{6.10}
 $$
@@ -86,6 +96,7 @@ $$
 恰好是零阶能量与一阶能量之和
 
 <a id="eq510"></a>
+
 $$
 E_{0}=E^{(0)}+E^{(1)} \tag{6.11}
 $$
@@ -93,6 +104,7 @@ $$
 于是相关能可以写为
 
 <a id="eq511"></a>
+
 $$
 E_{\mathrm{corr}}=E_{0}^{(2)}+E_{0}^{(3)}+E_{0}^{(4)}+\ldots \tag{6.12}
 $$
@@ -102,6 +114,7 @@ $$
 可以证明，MP2 能量可以（用自旋轨道的形式）写为
 
 <a id="eq512"></a>
+
 $$
 E_{0}^{(2)}=-\frac{1}{4}\sum_{ab}^{\mathrm{virt}}{\sum_{ij}^{\mathrm{occ}}{\frac{\left|{\left\langle{ab}\right|\left|{ij}\right\rangle}\right|^{2}}{\varepsilon_{a}+\varepsilon_{b}-\varepsilon_{i}-\varepsilon_{j}}}} \tag{6.13}
 $$
@@ -109,6 +122,7 @@ $$
 其中
 
 <a id="eq513"></a>
+
 $$
 \left\langle ab||ij\right\rangle=\left\langle ab|ij\right\rangle-\left\langle
 ab|ji\right\rangle \tag{6.14}
@@ -117,6 +131,7 @@ $$
 且
 
 <a id="eq514"></a>
+
 $$
 \left\langle{ab}|{cd}\right\rangle=\int\int\psi_{a}(\mathbf{r}_{1})\psi_{c}(\mathbf{r}_{1})\frac{1}{r_{12}}\psi_{b}(\mathbf{r}_{2})\psi_{d}(\mathbf{r}_{2})d\mathbf{r}_{1}d\mathbf{r}_{2} \tag{6.15}
 $$
@@ -124,6 +139,7 @@ $$
 该式可以用二电子排斥积分表示为
 
 <a id="eq515"></a>
+
 $$
 \left\langle{ab}|{cd}\right\rangle=\sum_{\mu}\sum_{\nu}\sum_{\lambda}\sum_{\sigma}C_{\mu a}C_{\nu c}C_{\lambda b}C_{\sigma d}\left(\mu\nu|\lambda\sigma\right) \tag{6.16}
 $$

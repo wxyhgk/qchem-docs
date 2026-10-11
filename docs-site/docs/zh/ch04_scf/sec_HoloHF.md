@@ -13,6 +13,7 @@ title: "4.9.4 全纯 Hartree-Fock 理论"
 在全纯 Hartree-Fock 理论中，真实的 Hartree-Fock 方程被解析延拓到复平面，而*不*引入分子轨道系数的复共轭。随后，多个解被认定为全纯能量[[584]](../bib_references/bib.md#bib607)的驻点
 
 <a id="eq:HoloHFEnergy"></a>
+
 $$
 \widetilde{E}=\frac{\langle\Psi^{*}|\hat{H}|\Psi\rangle}{\langle\Psi^{*}|\Psi\rangle}, \tag{4.70}
 $$
@@ -20,6 +21,7 @@ $$
 其中 $\hat{H}$ 定义为常规的电子哈密顿量
 
 <a id="eq:HoloHamiltonian1"></a>
+
 $$
 \hat{H}=V_{\text{nuc}}+\sum_{i}^{N_{\text{e}}}\hat{h}(i)+\sum_{i<j}^{N_{\text{e}}}\frac{1}{r_{ij}}. \tag{4.71}
 $$
@@ -33,6 +35,7 @@ $$
 此外，由于归一化约束中同样必须去掉复共轭，分子轨道系数必须构成一组复正交集（*cf*. 酉，unitary），即
 
 <a id="eq:HoloComplexOrth"></a>
+
 $$
 \sum_{\mu\nu}C^{\cdot\mu}_{i\cdot}S_{\mu\nu}C^{\nu\cdot}_{\cdot j}=\delta_{ij}, \tag{4.72}
 $$
@@ -42,6 +45,7 @@ $$
 让真实解越过 Coulson-Fischer 点延拓进入复平面常常十分困难，因为它们在实轴上会与对称性纯（symmetry-pure）的解发生合并。然而，通过引入复参数 $\lambda$ 对电子-电子相互作用进行缩放，*即*引入哈密顿量
 
 <a id="eq:HoloHamiltonian"></a>
+
 $$
 \hat{H}=V_{\text{nuc}}+\sum_{i}^{N_{\text{e}}}\hat{h}(i)+\lambda\sum_{i<j}^{N_{\text{e}}}\frac{1}{r_{ij}}, \tag{4.73}
 $$

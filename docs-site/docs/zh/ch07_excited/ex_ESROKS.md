@@ -11,6 +11,7 @@ title: "7.7.4 受限开壳层 Kohn-Sham 方法"
 *受限开壳层 Kohn-Sham*（restricted open-shell Kohn-Sham, ROKS）方法为这类单重激发态提供了一条替代途径。当使用受限开壳层轨道时，混合的非 *aufbau* 组态（激发自旋向上或自旋向下）恰好位于单重态与三重态的正中间，其能量为 $E_{\text{mix}}$。三重态能量 $E_{\text{T}}$ 同样可以在 $M_{S}=\pm 1$ 子空间内由单个行列式计算得到。因此，ROKS 优化一组自旋受限轨道 $\{\phi_{\text{ROKS}}\}$，使得自旋纯化后的单重态能量
 
 <a id="Ch7.E79"></a>
+
 $$
 E_{\text{S}}=2E_{\text{mix}}[\{\phi_{\text{ROKS}}\}]-E_{\text{T}}[\{\phi_{\text{ROKS}}\}]\;, \tag{7.79}
 $$

@@ -11,6 +11,7 @@ title: "5.6.4 调优型 RSH 泛函"
 即通过“调优”（tuning）$\omega$ 的取值，使其满足类 Koopmans 电离能判据
 
 <a id="eq:IP-tuning"></a>
+
 $$
 -\epsilon_{\rm HOMO}(\omega)=\mbox{IE}(\omega) \tag{5.18}
 $$
@@ -26,6 +27,7 @@ $$
  建议最小化如下函数
 
 <a id="eq:J(w)"></a>
+
 $$
 J(\omega)=\big{[}\epsilon_{\rm HOMO}(\omega)+\mbox{IE}(\omega)\big{]}^{2}+\big{[}\epsilon_{\rm LUMO}(\omega)+\mbox{EA}(\omega)\big{]}^{2} \tag{5.19}
 $$
@@ -79,6 +81,7 @@ Ref. [[1380]](../bib_references/bib.md#bib1441)
 其中最优值
 
 <a id="eq:wgdd"></a>
+
 $$
 \omega_{\text{GDD}}=C\langle d^{2}_{\text{x}}\rangle^{-1/2} \tag{5.20}
 $$
@@ -209,6 +212,7 @@ IE 调优的另一种替代方案是有效（Effective, EFF）调优程序 [[125
 ，其中 range-separation 参数的最优值由下式给出
 
 <a id="mu-eff"></a>
+
 $$
 \omega=\frac{a_{1}}{\langle r_{s}\rangle}+\frac{a_{2}\langle r_{s}\rangle}{1+a_{3}\langle r_{s}\rangle^{2}}~{}, \tag{5.21}
 $$
@@ -220,6 +224,7 @@ $r_{s}=\left(\frac{3}{4\pi n}\right)^{1/3}$，其中 $n=n_{\uparrow}+n_{\downarr
 为解决这一问题，采用了 $r_{s}$ 的加权平均：
 
 <a id="eq:rs-average"></a>
+
 $$
 \langle r_{s}\rangle=\frac{\int w(\mathbf{r})\,r_{s}(\mathbf{r})\,d^{3}r}{\int
 w(\mathbf{r})\,d^{3}r}\;. \tag{5.22}

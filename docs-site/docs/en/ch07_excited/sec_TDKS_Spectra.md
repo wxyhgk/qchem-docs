@@ -13,6 +13,7 @@ The absorption cross-section $\sigma_{\kappa\kappa}(\omega)$ for light polarized
 polarizability, $\alpha_{\kappa\kappa}(\omega)$:[[1578]](../bib_references/bib.md#bib1641)
 
 <a id="Ch7.E65"></a>
+
 $$
 \sigma_{\kappa\kappa}(\omega)=\left(\frac{4\pi\omega}{c}\right)\Im\bigl{[}\alpha_{\kappa\kappa}(\omega)\bigr{]}\;. \tag{7.65}
 $$
@@ -20,6 +21,7 @@ $$
 Within the electric dipole approximation, a rotationally-averaged absorption spectrum $A(\omega)$ is then simply
 
 <a id="eq:RT-TDDFT_spectrum"></a>
+
 $$
 A(\omega)=\tfrac{1}{3}\bigl{[}\sigma_{xx}(\omega)+\sigma_{yy}(\omega)+\sigma_{zz}(\omega)\bigr{]}\;. \tag{7.66}
 $$
@@ -30,6 +32,7 @@ of the time-dependent dipole moment component $\mu_{\kappa}(t)$, for a perturbin
 in the $\lambda$ direction:[[1578]](../bib_references/bib.md#bib1641)
 
 <a id="eq:TDKS-FT"></a>
+
 $$
 \alpha_{\kappa\lambda}(\omega)=\frac{\mathcal{F}\bigl{[}\mu_{\kappa}(t)\bigr{]}}{\mathcal{F}\bigl{[}\mathcal{E}_{\lambda}(t)\bigr{]}}\;. \tag{7.67}
 $$
@@ -119,6 +122,7 @@ although this does require some advance knowledge of what transitions to expect.
 linear function of the density matrix,
 
 <a id="Ch7.E68"></a>
+
 $$
 \mu_{\lambda}(t)=\text{tr}\big{[}\mathbf{P}(t)\;\mathbf{D}_{\lambda}(t)\big{]}\;. \tag{7.68}
 $$
@@ -128,6 +132,7 @@ the dipole moment operator $\hat{\mu}_{\lambda}$, expressed in the MO basis. The
 $\mu_{\lambda}$ into a separate contribution from each. To do this, define a matrix
 
 <a id="Ch7.E69"></a>
+
 $$
 \mathbf{D}_{\lambda,k}=\left(\begin{array}[]{ccccc}0&\cdots&(\mathbf{D}_{\lambda})_{1,k}&\cdots&0\\
 \vdots&&\vdots&&\vdots\\
@@ -140,6 +145,7 @@ $$
 in which all but the $k$th row and column of $\mathbf{D}_{\lambda}$ have been set to zero. Then
 
 <a id="eq:dipole-filter"></a>
+
 $$
 \mu_{\lambda}(t)=\sum_{k}^{\text{occ}}\mu_{\lambda,k}(t) \tag{7.70}
 $$
@@ -147,6 +153,7 @@ $$
 where
 
 <a id="Ch7.E71"></a>
+
 $$
 \mu_{\lambda,k}(t)=\text{tr}\big{[}\mathbf{P}(t)\;\mathbf{D}_{\lambda,k}(t)\big{]}\;. \tag{7.71}
 $$

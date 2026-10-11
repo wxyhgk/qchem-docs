@@ -19,6 +19,7 @@ EOM-SF-OD）；[[726]](../bib_references/bib.md#bib757)
 方法同样可用。在概念上，EOM 与组态相互作用（Configuration Interaction, CI）非常相似：目标 EOM 态通过对相似变换后的哈密顿量 $\bar{H}=e^{-T}He^{T}$ 进行对角化来求得，
 
 <a id="eq747"></a>
+
 $$
 \bar{H}R=ER, \tag{7.97}
 $$
@@ -26,6 +27,7 @@ $$
 其中 $T$ 和 $R$ 是相对于参考行列式 $|\Phi_{0}\rangle$ 的一般激发算符。在 EOM-CCSD 模型中，$T$ 和 $R$ 均在单、双激发处截断，且振幅 $T$ 满足参考态 $|\Phi_{0}\rangle$ 的耦合簇（Coupled Cluster, CC）方程：
 
 <a id="A3.S8.EGx55"></a>
+
 $$
 \displaystyle\langle\Phi_{i}^{a}|\bar{H}|\Phi_{0}\rangle \tag{7.98}
 $$

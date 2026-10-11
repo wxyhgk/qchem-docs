@@ -16,6 +16,7 @@ from the current region towards a stationary point with the required
 characteristics. This is
 
 <a id="eq:a5t"></a>
+
 $$
 \mathbf{h}=-\sum_{i}\left(\frac{F_{i}}{b_{i}-\lambda}\right)\mathbf{u}_{i} \tag{9.6}
 $$
@@ -36,6 +37,7 @@ presented in Refs. [[72]](../bib_references/bib.md#bib57)
 , yielding an eigenvalue equation of the form
 
 <a id="eq:a6"></a>
+
 $$
 \left({{\begin{array}[]{*{2}c}{\rm{\bf H}}&{\rm{\bf g}}\\
 {{\rm{\bf g}}^{t}}&0\\
@@ -49,6 +51,7 @@ $$
 from which a suitable $\lambda$ can be obtained. Expanding Eq. ([9.7](#eq:a6)) yields
 
 <a id="eq:a7a"></a>
+
 $$
 (\mathbf{H}-\lambda)\mathbf{h}+\mathbf{g}=0 \tag{9.8}
 $$
@@ -56,6 +59,7 @@ $$
 and
 
 <a id="eq:a7b"></a>
+
 $$
 \mathbf{g}^{t}\mathbf{h}=\lambda \tag{9.9}
 $$
@@ -65,6 +69,7 @@ Eq. ([9.6](#eq:a5t)), and substitution of Eq. ([9.6](#eq:a5t)) into the diagon
 Eq. ([9.9](#eq:a7b)) gives
 
 <a id="Ch9.E10"></a>
+
 $$
 \lambda=-\sum_{i}\left(\frac{-F_{i}^{2}}{b_{i}-\lambda}\right) \tag{9.10}
 $$
@@ -95,6 +100,7 @@ transition state (a first-order saddle point), in terms of the Hessian
 eigenmodes, we have the two matrix equations
 
 <a id="eq:a9a"></a>
+
 $$
 \left({{\begin{array}[]{*{2}c}{b_{1}}&{F_{1}}\\
 {F_{1}}&0\\
@@ -106,6 +112,7 @@ $$
 $$
 
 <a id="eq:a9b"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{b_{2}}&&&{F_{2}}\\
 &\ddots&{\rm{\bf 0}}&\vdots\\
@@ -135,6 +142,7 @@ Newton-Raphson step). The two shift parameters are then used in
 Eq. ([9.6](#eq:a5t)) to give the final step
 
 <a id="Ch9.E13"></a>
+
 $$
 \mathbf{h}=-\left(\frac{F_{1}}{b_{1}-\lambda_{p}}\right)\mathbf{u}_{1}+\sum\limits_{i=2}^{n}\left(\frac{F_{i}}{b_{i}-\lambda_{n}}\right)\mathbf{u}_{i} \tag{9.13}
 $$
@@ -152,6 +160,7 @@ maximization along the $k$th mode (instead of the lowest mode),
 Eq. ([9.11](#eq:a9a)) is replaced by
 
 <a id="Ch9.E14"></a>
+
 $$
 \left({{\begin{array}[]{*{2}c}{b_{k}}&{F_{k}}\\
 {F_{k}}&0\\

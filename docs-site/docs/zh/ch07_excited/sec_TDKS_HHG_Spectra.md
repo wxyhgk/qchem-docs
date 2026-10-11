@@ -9,6 +9,7 @@ title: "7.4.4 高次谐波产生（HHG）光谱的计算"
 偶极加速度形式下的高次谐波产生（high-harmonic generation, HHG）光谱 $H(\omega)$ 由下式计算[[258]](../bib_references/bib.md#bib259)
 
 <a id="eq:hhg"></a>
+
 $$
 H(\omega)=\sum_{\kappa=x,y,z}\frac{1}{2\pi}\left|\int\frac{d^{2}\mu_{\kappa}(t)}{dt^{2}}w(t)e^{-i\omega t}dt\right|^{2} \tag{7.72}
 $$
@@ -17,6 +18,7 @@ $$
 对于沿 $\kappa$ 方向偏振的光（$\kappa\in\{x,y,z\}$），有 $\mu_{\lambda}(t)=0$（$\lambda\in\{x,y,z\},\lambda\neq\kappa$），此时式 ([7.72](#eq:hhg)) 变为
 
 <a id="eq:hhg2"></a>
+
 $$
 H(\omega)=\frac{1}{2\pi}\left|\int\frac{d^{2}\mu_{\kappa}(t)}{dt^{2}}w(t)e^{-i\omega t}dt\right|^{2} \tag{7.73}
 $$

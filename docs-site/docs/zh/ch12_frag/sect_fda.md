@@ -12,6 +12,7 @@ Aldossary *等* 的工作实现了经典静电能的解析导数 [[36]](../bib_r
 ，使得冻结受力可以被拆分为经典静电作用力和范德华（vdW，包括泡利与色散）力：
 
 <a id="eq:Ffrz_decomp"></a>
+
 $$
 \Delta\mathbf{F}_{\text{frz}}=\Delta\mathbf{F}_{\text{cls-elec}}+\Delta\mathbf{F}_{\text{vdw}}. \tag{12.32}
 $$
@@ -19,6 +20,7 @@ $$
 此外，现在对冻结受力的定义会减去几何畸变受力（由几何畸变能产生的力）。冻结受力项现在为：
 
 <a id="eq:Ffrz"></a>
+
 $$
 \Delta\textbf{F}_{\text{frz}}=\textbf{F}_{\text{frz}}[\mathbf{P}_{\text{frz}}]-\sum_{A}\textbf{F}_{A}[\textbf{P}_{A}], \tag{12.33}
 $$

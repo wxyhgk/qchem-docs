@@ -24,6 +24,7 @@ functions (FERFs). FERFs on a given fragment are prepared by
 solving CPSCF equations after its SCF solution is found:
 
 <a id="Ch12.E1"></a>
+
 $$
 H_{ai,bj}(\Delta_{\mu})_{bj}=2(M_{\mu})_{ai}, \tag{12.1}
 $$
@@ -34,6 +35,7 @@ response matrices ($\{\Delta_{\mu}\}$) are a set of $n_{\mathrm{v}}\times n_{\ma
 performed on $\Delta_{\mu}$:
 
 <a id="eq:ferf_cpscf"></a>
+
 $$
 (\Delta_{\mu})_{ai}=(L_{\mu})_{ab}(d_{\mu})_{bj}(R_{\mu}^{T})_{ji}, \tag{12.2}
 $$
@@ -43,6 +45,7 @@ a truncated virtual space, which is used to define the variational degrees of
 freedom for the SCF-MI problem:
 
 <a id="Ch12.E3"></a>
+
 $$
 \mathbf{V}_{\mu}=\mathbf{C}_{\mathrm{vir}}\mathbf{L}_{\mu}, \tag{12.3}
 $$
@@ -64,6 +67,7 @@ the SCF-MI problem. The full span of the polarization subspace of fragment $A$
 is thus:
 
 <a id="eq:pol_ss"></a>
+
 $$
 \mathbf{O}_{A}\oplus\mathrm{span}\{\mathbf{V}_{\mu x},\mathbf{V}_{\mu y},\mathbf{V}_{\mu z}\}\oplus\mathrm{span}\{\mathbf{V}_{Q2,-2},\mathbf{V}_{Q2,-1},\mathbf{V}_{Q2,0},\mathbf{V}_{Q2,1},\mathbf{V}_{Q2,2}\}. \tag{12.4}
 $$
@@ -86,6 +90,7 @@ SCF-MI procedure introduced in Section [12.6.2](sect_gen_scfmi.md).
 However, solving the CPSCF equation requires inverting the large orbital Hessian matrix $\mathbf{H}$ of dimension $ov\times ov$, which is the time demanding step in solving for FERFs. For example, in Hartree-Fock theory, in the canonical representation, it has matrix elements
 
 <a id="Ch12.E5"></a>
+
 $$
 H_{ai,bj}=2\left[(\epsilon_{a}-\epsilon_{i})\delta_{ij}\delta_{ab}+\langle aj||ib\rangle+\langle ab||ij\rangle\right]. \tag{12.5}
 $$
@@ -95,6 +100,7 @@ Recently, Aldossary and coauthors
  proposed an uncoupled-FERFs (uFERFs) to improve the conventional FERFs. The idea of uFERFs is simply to adopt the solution for uncoupled CPSCF equation, where the orbital Hessian is approximated with
 
 <a id="Ch12.E6"></a>
+
 $$
 H_{ai,bj}=2(\epsilon_{a}-\epsilon_{i})\delta_{ij}\delta_{ab}. \tag{12.6}
 $$
@@ -102,6 +108,7 @@ $$
 With this approximation, the orbital Hessian is easily inverted, and the fragment response matrices are simply
 
 <a id="Ch12.E7"></a>
+
 $$
 \left(\Delta_{\mu}^{\text{uFERF}}\right)_{ai}=\frac{(M_{\mu})_{ai}}{\epsilon_{a}-\epsilon_{i}}. \tag{12.7}
 $$

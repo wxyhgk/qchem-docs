@@ -13,6 +13,7 @@ fragments. In other literature,[[1408]](../bib_references/bib.md#bib1467)
 interaction is often decomposed in a classical fashion:
 
 <a id="eq:cls_decomp"></a>
+
 $$
 \Delta E_{\mathrm{frz}}=\Delta E_{\mathrm{elec}}^{\mathrm{cls}}+\Delta E_{\mathrm{Pauli}}^{\mathrm{cls}}, \tag{12.8}
 $$
@@ -21,6 +22,7 @@ where the contribution from permanent electrostatics is defined as the Coulomb
 interaction between isolated fragment charge distributions:
 
 <a id="eq:cls_elec"></a>
+
 $$
 \Delta E_{\mathrm{elec}}^{\mathrm{cls}}=\sum_{A<B}\int_{r_{1}}\int_{r_{2}}\rho_{A}^{\mathrm{tot}}({\textbf{r}_{1}})\frac{1}{{\textbf{r}_{12}}}\rho_{B}^{\mathrm{tot}}({\textbf{r}_{2}})\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2} \tag{12.9}
 $$
@@ -38,6 +40,7 @@ Horn *et al.*[[595]](../bib_references/bib.md#bib619)
 contributions from permanent electrostatics (ELEC), Pauli repulsion (PAULI) and dispersion (DISP):
 
 <a id="eq:new_decomp"></a>
+
 $$
 \Delta E_{\mathrm{frz}}=\Delta E_{\mathrm{elec}}+\Delta E_{\mathrm{Pauli}}+\Delta E_{\mathrm{disp}} \tag{12.10}
 $$
@@ -51,6 +54,7 @@ $\mathbf{P}_{\mathrm{frz}}=\sum_{A}\tilde{\mathbf{P}}_{A}$. This is achieved by
 minimizing an objective function as follows:
 
 <a id="eq:kep_obj"></a>
+
 $$
 \Omega=\sum_{A}E_{A}[\tilde{\mathbf{P}}_{A}]-E_{A}[\mathbf{P}_{A}] \tag{12.11}
 $$
@@ -63,6 +67,7 @@ The ELEC term is then defined as the Coulomb interaction between distorted
 fragment densities ($\tilde{\rho}_{A}(\mathbf{r})$):
 
 <a id="eq:eda_elec"></a>
+
 $$
 \Delta E_{\mathrm{elec}}=\sum_{A<B}\int_{r_{1}}\int_{r_{2}}\tilde{\rho}_{A}^{\mathrm{tot}}({\textbf{r}_{1}})\frac{1}{{\textbf{r}_{12}}}\tilde{\rho}_{B}^{\mathrm{tot}}({\textbf{r}_{2}})\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}. \tag{12.12}
 $$
@@ -72,6 +77,7 @@ exchange-correlation (XC) interaction, where an auxiliary “dispersion-free”
 XC (DFXC) functional is used in company with the primary (target) XC functional:
 
 <a id="eq:eda_disp"></a>
+
 $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\tilde{\mathbf{P}}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\tilde{\mathbf{P}}_{A}]\right). \tag{12.13}
 $$
@@ -85,6 +91,7 @@ The remainder of the frozen interaction goes into the PAULI term, which
 includes the net repulsive interaction given by Eq. ([12.11](#eq:kep_obj)) and the “dispersion-free” part of the XC interaction:
 
 <a id="eq:eda_pauli"></a>
+
 $$
 \Delta E_{\mathrm{Pauli}}=\sum_{A}(E_{A}[\tilde{\mathbf{P}}_{A}]-E_{A}[\mathbf{P}_{A}])+\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\tilde{\mathbf{P}}_{A}]\right). \tag{12.14}
 $$
@@ -103,6 +110,7 @@ new scheme is available, a modified classical Pauli term[[893]](../bib_reference
 also reported, which is simply defined as
 
 <a id="Ch12.E15"></a>
+
 $$
 \Delta E_{\mathrm{Pauli}}^{\mathrm{mod}}=\Delta E_{\mathrm{Pauli}}^{\mathrm{cls}}-\Delta E_{\mathrm{disp}}\;. \tag{12.15}
 $$
@@ -112,6 +120,7 @@ computed using its original definition. The overall decomposition of the frozen
 energy with the classical scheme is given by
 
 <a id="Ch12.E16"></a>
+
 $$
 \Delta E_{\mathrm{frz}}=\Delta E^{\mathrm{cls}}_{\mathrm{elec}}+\Delta E^{\mathrm{mod}}_{\mathrm{Pauli}}+\Delta E_{\mathrm{disp}}\;. \tag{12.16}
 $$
@@ -124,6 +133,7 @@ Eq. ([12.13](#eq:eda_disp)) except that undistorted monomer densities
 ($\{\tilde{\mathbf{P}}_{A}\}$):
 
 <a id="Ch12.E17"></a>
+
 $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\mathbf{P}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{A}]\right). \tag{12.17}
 $$

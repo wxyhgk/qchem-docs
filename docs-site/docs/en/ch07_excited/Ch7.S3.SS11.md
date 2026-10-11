@@ -28,6 +28,7 @@ The doubly excited configuration is formed by exciting a pair of electrons from 
 From these optimized orbitals a CI Hamiltonian is constructed,
 
 <a id="eq:configHamiltoninan_tddft1d"></a>
+
 $$
 \mathbf{H}=\begin{pmatrix}\epsilon_{0}&0&\left\langle\psi_{0}|H|\psi_{h\bar{h}}^{l\bar{l}}\right\rangle\\
 0&\left\langle\psi_{i}^{a}|H|\psi_{j}^{b}\right\rangle&\left\langle\psi_{i}^{a}|H|\psi_{h\bar{h}}^{l\bar{l}}\right\rangle\\

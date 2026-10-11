@@ -20,6 +20,7 @@ space, which makes it much more black-box than CCVB. Its energy function
 follows
 
 <a id="eq:ccvbsd"></a>
+
 $$
 E_{\mathrm{CCVB-SD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}}\right)\left|{\hat{H}}\right|\left(\exp\left({\hat{T}}\right)-\hat{\text{I}}_{\text{S}}\frac{\hat{Q}^{2}}{2}\right)\Phi_{0}}\right\rangle_{C} \tag{6.82}
 $$

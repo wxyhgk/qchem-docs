@@ -18,6 +18,7 @@ SCF references.**
 The MP2 energy is
 
 <a id="eq:lmp2_energy"></a>
+
 $$
 E^{(2)}=\sum_{iajb}{J_{ab}^{ij}\tau_{ab}^{ij}}\;, \tag{6.19}
 $$
@@ -25,6 +26,7 @@ $$
 where $\mathbf{J}$ (and the exchange-like tensor $\mathbf{K}$) is the electron repulsion integral (ERI) tensor
 
 <a id="Ch6.E20"></a>
+
 $$
 J_{ab}^{ij}=K_{ba}^{ij}=(ia|jb)\;. \tag{6.20}
 $$
@@ -32,6 +34,7 @@ $$
 $\boldsymbol{\tau}$ is the solution to the MP2 equation
 
 <a id="eq:lmp2_equation"></a>
+
 $$
 \mathbf{\Delta}\tau=-\left(2\mathbf{J}-\mathbf{K}\right)\;, \tag{6.21}
 $$
@@ -39,6 +42,7 @@ $$
 which is a set of linear equations and with orthogonal orbitals, $\Delta$ is
 
 <a id="eq:Delta"></a>
+
 $$
 \Delta_{iajb,i^{\prime}a^{\prime}j^{\prime}b^{\prime}}=\delta_{ii^{\prime}}\delta_{aa^{\prime}}\delta_{jj^{\prime}}F^{\text{virt}}_{bb^{\prime}}-\delta_{ii^{\prime}}\delta_{aa^{\prime}}F^{\text{occ}}_{jj^{\prime}}\delta_{bb^{\prime}}+\delta_{ii^{\prime}}F^{\text{virt}}_{aa^{\prime}}\delta_{jj^{\prime}}\delta_{bb^{\prime}}-F^{\text{occ}}_{ii^{\prime}}\delta_{aa^{\prime}}\delta_{jj^{\prime}}\delta_{bb^{\prime}}\;. \tag{6.22}
 $$
@@ -75,6 +79,7 @@ $\lambda$-Boys tries to minimize the total orbital spread and the total off-diag
 Fock at the same time.
 
 <a id="Ch6.E23"></a>
+
 $$
 f^{\text{min}}_{\lambda\text{-Boys}}=\sum_{i}\left|\langle i|\mathbf{r}-\langle i|\mathbf{r}|i\rangle|i\rangle\right|^{2}+\lambda\sum_{i\neq j}\;.(F^{\text{occ}}_{ij})^{2}. \tag{6.23}
 $$
@@ -136,6 +141,7 @@ All other thresholds for inner prescreening are listed here, they can be changed
 The default $i\rightarrow a$ pre-screener threshold is
 
 <a id="eq:lmp2_i_to_a"></a>
+
 $$
 \epsilon_{i\rightarrow a}=\left\{\begin{aligned} &\displaystyle 10^{-2.5}\epsilon&\displaystyle\epsilon\geq 10^{-6},\\
 &\displaystyle 10^{3.5}\epsilon^{2}&\displaystyle\epsilon<10^{-6}.\end{aligned}\right. \tag{6.24}

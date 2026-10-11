@@ -22,6 +22,7 @@ energy density. A proper description of *long-range* electron correlation
 requires a non-local functional, *i.e.*, an exchange-correlation potential having the form
 
 <a id="Ch5.E23"></a>
+
 $$
 v_{\rm c}^{\rm nl}(\mathbf{r})=\int f(\mathbf{r},\mathbf{r^{\prime}})\,d\mathbf{r^{\prime}}\;. \tag{5.23}
 $$
@@ -104,6 +105,7 @@ integral over the spatial variables, as compared to the single integral [Eq. ([
 required for semi-local functionals:
 
 <a id="Ch5.E24"></a>
+
 $$
 E_{\rm c}^{\rm nl}=\int v_{\rm c}^{\rm nl}(\mathbf{r})\;d\mathbf{r}=\int f(\mathbf{r},\mathbf{r^{\prime}})\,\rho(\mathbf{r})\;d\mathbf{r}\;d\mathbf{r^{\prime}}. \tag{5.24}
 $$

@@ -15,6 +15,7 @@ Becke 和 Johnson 提出了一种色散的*交换偶极模型*（exchange dipole
 交换空穴函数 $h_{\sigma}(\mathbf{r},\mathbf{r}^{\prime})$ 的偶极矩在点 $\mathbf{r}$ 处表示为
 
 <a id="Ch5.E40"></a>
+
 $$
 d_{\sigma}(\mathbf{r})=-\mathbf{r}-\int h_{\sigma}(\mathbf{r},\mathbf{r}^{\prime})\;\mathbf{r}^{\prime}\;d\mathbf{r}^{\prime}\;, \tag{5.40}
 $$
@@ -24,6 +25,7 @@ $$
 与 XDM 一起使用了两种不同的阻尼函数。其中一种仅依赖分子间 $C_{6}$ 系数，其在 **Q-Chem** 中的实现记为 "XDM6"。在该版本中，色散能量为[[87]](../bib_references/bib.md#bib83)
 
 <a id="eq:XDM6"></a>
+
 $$
 E_{\text{vdW}}^{\text{XDM6}}=\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}E_{\text{vdW},AB}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\frac{C_{6,AB}}{R_{AB}^{6}+\kappa\,C_{6,AB}/E^{\text{corr}}_{AB}}\;. \tag{5.41}
 $$
@@ -33,6 +35,7 @@ $$
 色散系数 $C_{6,AB}$ 按如下公式计算[[87]](../bib_references/bib.md#bib83)
 
 <a id="Ch5.E42"></a>
+
 $$
 C_{6,ij}=\frac{\langle d_{\rm X}^{2}\rangle_{\!A}\langle d_{\rm X}^{2}\rangle_{\!B}\;\alpha_{\!A}\,\alpha_{B}}{\langle d_{\text{X}}^{2}\rangle_{\!A}\,\alpha_{B}+\langle d_{\text{X}}^{2}\rangle_{\!B}\,\alpha_{A}} \tag{5.42}
 $$
@@ -42,6 +45,7 @@ $$
 XDM6 方案可以进一步推广以包含高阶色散系数，[[89]](../bib_references/bib.md#bib86) 这就导出了 **Q-Chem** 中的 "XDM10" 模型：
 
 <a id="eq:XDM10"></a>
+
 $$
 E_{\rm vdW}^{\text{XDM10}}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left(\frac{C_{6,AB}}{R_{{\rm vdW},AB}^{6}+R_{AB}^{6}}+\frac{C_{8,AB}}{R_{{\rm
 vdW},AB}^{8}+R_{AB}^{8}}+\frac{C_{10,AB}}{R_{{\rm vdW},AB}^{10}+R_{AB}^{10}}\right)\;. \tag{5.43}
@@ -52,6 +56,7 @@ $$
 量 $R_{{\rm vdW},AB}$ 用于防止短程发散，名义上等于原子 $A$ 和 $B$ 的有效原子半径之和。实际中它由如下公式确定[[651]](../bib_references/bib.md#bib675)
 
 <a id="eq:Rvdw-damp"></a>
+
 $$
 R_{{\rm vdW},AB}=a_{1}R_{{\text{crit}},AB}+a_{2} \tag{5.44}
 $$
@@ -59,6 +64,7 @@ $$
 其中临界距离为
 
 <a id="Ch5.E45"></a>
+
 $$
 R_{{\text{crit}},AB}=\frac{1}{3}\left[\left(\frac{C_{8,AB}}{C_{6,AB}}\right)^{1/2}+\left(\frac{C_{10,AB}}{C_{6,AB}}\right)^{1/4}+\left(\frac{C_{10,AB}}{C_{8,AB}}\right)^{1/2}\right] \tag{5.45}
 $$

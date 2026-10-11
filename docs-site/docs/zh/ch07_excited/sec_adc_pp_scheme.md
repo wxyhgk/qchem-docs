@@ -13,6 +13,7 @@ title: "7.10.2 代数图解构造（ADC）方案"
 通过 ISR 推导 ADC 方程的出发点是精确的 $N$ 电子基态 $\left|\Psi_{0}^{N}\right>$。从 $\left|\Psi_{0}^{N}\right>$ 出发，作用物理激发算符 $\hat{C}_{J}$ 即可得到一组完备的关联激发态。
 
 <a id="eq:adc_pp_precursor_states"></a>
+
 $$
 \left|\bar{\Psi}_{J}^{N}\right>=\hat{C}_{J}\left|\Psi_{0}^{N}\right> \tag{7.133}
 $$
@@ -20,6 +21,7 @@ $$
 其中
 
 <a id="eq:adc_pp_excitation_operator"></a>
+
 $$
 \left\{\hat{C}_{J}\right\}=\left\{c^{\dagger}_{a}c_{i};c^{\dagger}_{a}c^{\dagger}_{b}c_{i}c_{j},i<j,a<b;\ldots\right\} \tag{7.134}
 $$
@@ -27,6 +29,7 @@ $$
 然而，所得到的激发态并不构成正交归一基。为了从 $|\bar{\Psi}_{J}^{N}\rangle$ 构造一组正交归一基，从精确基态、单激发态、双激发态等出发，依次对各激发类中的激发态采用 Gram-Schmidt 正交化方案。这一过程最终给出中间态基 $\{|\tilde{\Psi}_{J}^{N}\rangle\}$，在该基下体系的哈密顿量可以表示为一个厄米的 ADC 矩阵
 
 <a id="Ch7.E135"></a>
+
 $$
 M_{IJ}=\left<\tilde{\Psi}_{I}^{N}\right|\hat{H}-E_{0}^{N}\left|\tilde{\Psi}_{J}^{N}\right> \tag{7.135}
 $$
@@ -34,6 +37,7 @@ $$
 这里，体系的哈密顿量以精确基态能量 $E_{0}^{N}$ 进行了平移。求解 ISR 长期方程（secular equation）
 
 <a id="Ch7.E136"></a>
+
 $$
 \mathbf{M}\mathbf{X}=\mathbf{X}\mathbf{\Omega},\;\;\text{ with }\;\;\mathbf{X}^{\dagger}\mathbf{X}=\mathbf{1} \tag{7.136}
 $$
@@ -41,6 +45,7 @@ $$
 可得精确激发能 $\Omega_{n}$ 作为本征值。由本征矢量可以按中间态的形式构造出精确的激发态
 
 <a id="Ch7.E137"></a>
+
 $$
 \left|\Psi_{n}^{N}\right>=\sum_{J}X_{nJ}\left|\tilde{\Psi}_{J}^{N}\right> \tag{7.137}
 $$
@@ -48,6 +53,7 @@ $$
 这同时也使得偶极跃迁矩可以通过下式计算
 
 <a id="Ch7.E138"></a>
+
 $$
 T_{n}=\left<\Psi_{n}^{N}\right|\hat{\mu}\left|\Psi_{0}^{N}\right>=\sum_{J}X_{nJ}^{\dagger}\left<\tilde{\Psi}_{J}^{N}\right|\hat{\mu}\left|\Psi_{0}^{N}\right>, \tag{7.138}
 $$
@@ -55,6 +61,7 @@ $$
 以及激发态性质可以通过下式计算
 
 <a id="Ch7.E139"></a>
+
 $$
 O_{n}=\left<\Psi_{n}^{N}\right|\hat{o}\left|\Psi_{n}^{N}\right>=\sum_{I,J}X_{nI}^{\dagger}X_{nJ}\left<\tilde{\Psi}_{I}^{N}\right|\hat{o}\left|\Psi_{J}^{N}\right>, \tag{7.139}
 $$

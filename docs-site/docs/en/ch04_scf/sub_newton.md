@@ -45,6 +45,7 @@ A “saddle-free” Newton-CG algorithm (SF_NEWTON_CG) is also implemented in
 eigenvalues are present by using the following modified Hessian:
 
 <a id="eq:sf_newton"></a>
+
 $$
 \widetilde{\mathbf{H}}=\mathbf{H}-\mathbf{v}_{-}\lambda_{-}\mathbf{v}_{-}^{T} \tag{4.44}
 $$

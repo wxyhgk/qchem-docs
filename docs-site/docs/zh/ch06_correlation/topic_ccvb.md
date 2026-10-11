@@ -12,6 +12,7 @@ Small 博士（Dr. D. W. Small）与 Joonho Lee 在伯克利分校与 Head-Gordo
 然而，其能量在占据空间与虚空间内的旋转下保持不变，这使得它比 CCVB 更加黑箱化（black-box）。其能量函数如下
 
 <a id="eq:ccvbsd"></a>
+
 $$
 E_{\mathrm{CCVB-SD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}}\right)\left|{\hat{H}}\right|\left(\exp\left({\hat{T}}\right)-\hat{\text{I}}_{\text{S}}\frac{\hat{Q}^{2}}{2}\right)\Phi_{0}}\right\rangle_{C} \tag{6.82}
 $$

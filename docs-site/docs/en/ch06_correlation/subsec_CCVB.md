@@ -29,6 +29,7 @@ geminals. Ignoring normalization, two equivalent ways of displaying these
 geminals are
 
 <a id="A3.S8.EGx26"></a>
+
 $$
 \displaystyle(\phi_{i}\phi_{i}+t_{i}\phi_{i}^{*}\phi_{i}^{*})(\alpha\beta-\beta\alpha)\ \ \ (\text{Natural-orbital form}) \tag{6.85}
 $$
@@ -57,6 +58,7 @@ singlet. A triplet geminal is obtained from a singlet by simply modifying the
 spin component accordingly. We thus obtain the CCVB wave function:
 
 <a id="A3.S8.EGx27"></a>
+
 $$
 \displaystyle|\Psi\rangle \tag{6.86}
 $$

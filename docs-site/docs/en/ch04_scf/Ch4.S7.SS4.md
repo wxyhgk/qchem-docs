@@ -57,6 +57,7 @@ BASIS2 = BASIS2_MIXED, respectively.
 Table 4.2: Summary and nomenclature of recommended dual-basis pairings
 
 <a id="Ch4.Ex5"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{ccc}s\\
 &p\\
@@ -88,6 +89,7 @@ s\\
 $$
 
 <a id="Ch4.Ex6"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{cccc}s\\
 &p\\
@@ -127,6 +129,7 @@ s\\
 $$
 
 <a id="Ch4.Ex7"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{ccc}s\\
 &p\\
@@ -156,6 +159,7 @@ s^{\prime}\end{array}\\
 $$
 
 <a id="Ch4.Ex8"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{ccc}s\\
 &p\\
@@ -191,6 +195,7 @@ s^{\prime}\end{array}\\
 $$
 
 <a id="Ch4.Ex9"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{cccc}s\\
 &p\\

@@ -46,6 +46,7 @@ Following a perturbation to the ground-state MOs $\phi_{k}(\mathbf{r},0)$ at $t=
 evolve in time according to the time-dependent Schrödinger equation. For an SCF level of theory, this is a one-electron equation
 
 <a id="eq:TDKS"></a>
+
 $$
 \text{i}\hbar\frac{d\phi_{k}(\mathbf{r},t)}{dt}=\hat{F}(t)\phi_{k}(\mathbf{r},t)\;. \tag{7.58}
 $$
@@ -54,6 +55,7 @@ This time evolution can equivalently be expressed in terms of the
 Liouville-von Neumann equation for the time evolution of the density $\rho(\mathbf{r},t)$:
 
 <a id="eq:LvN"></a>
+
 $$
 \text{i}\hbar\frac{d\rho(\mathbf{r},t)}{dt}=\bigl{[}\hat{F}(t),\;\rho(\mathbf{r},t)]\;. \tag{7.59}
 $$

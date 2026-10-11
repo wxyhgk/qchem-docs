@@ -27,6 +27,7 @@ To achieve the separation of core and valence excited states the CVS
 approximation forces the following types of two-electron integrals to zero
 
 <a id="A3.S8.EGx66"></a>
+
 $$
 \displaystyle\langle Ip|qr\rangle=\langle pI|qr\rangle=\langle pq|Ir\rangle=\langle pq|rI\rangle=0 \tag{7.151}
 $$

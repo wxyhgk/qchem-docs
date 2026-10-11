@@ -117,6 +117,7 @@ the interaction potential is assumed to be additive across all pairs of atoms.
 The pairwise dispersion approximation employs sums over atom pairs of the form,
 
 <a id="eq:PairwiseDispersion"></a>
+
 $$
 E_{\text{disp}}=-\sum_{i\in A}\sum_{\begin{subarray}{c}j\in B\\
 A\neq B\end{subarray}}\Bigg{[}f_{6}(R_{ij})\frac{C_{6}^{ij}}{R^{6}_{ij}}+f_{8}(R_{ij})\frac{C_{8}^{ij}}{R^{8}_{ij}}\Bigg{]}\;, \tag{12.68}

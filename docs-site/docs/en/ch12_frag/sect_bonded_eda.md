@@ -29,6 +29,7 @@ an unpaired electron in a $p$ orbital, while an amine group is often $sp^{3}$- o
 $sp^{2}$-hybridized with a lone pair in the $p$ orbital in a molecule. Then,
 
 <a id="Ch12.E25"></a>
+
 $$
 \Delta E_{\text{PREP}}=\Delta E_{\text{GEOM}}+\Delta E_{\text{HYBRID}} \tag{12.25}
 $$

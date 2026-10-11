@@ -20,6 +20,7 @@ title: "7.6.3 单中心 NOCIS（1C-NOCIS）"
  该理论适用于例如先用超快紫外（UV）泵浦、再用极紫外（XUV）或 X 射线探测的实验。对于可用单个自然跃迁轨道（NTO）对描述的 2eOS 态——即占据轨道 $o$ 上的一个电子被激发到目标虚轨道 $t$——其激发态波函数具有如下形式
 
 <a id="Ch7.E74"></a>
+
 $$
 \big{|}^{1,\;3}\Psi_{i}\big{\rangle}=(2)^{1/2}\left(\big{|}\Phi_{o}^{t}\big{\rangle}\pm\big{|}\Phi_{\bar{o}}^{\bar{t}}\big{\rangle}\right) \tag{7.74}
 $$
@@ -27,6 +28,7 @@ $$
 其中加号对应单重态，减号对应三重态。随后，在保持处于 M${}_{s}$ = 0 流形的前提下，将一个核心电子 $c$ 激发到任意粒子能级 $y$，可得到八种可能的组态
 
 <a id="Ch7.E75"></a>
+
 $$
 \big{|}\Phi_{oc}^{to}\big{\rangle},\;\big{|}\Phi_{\bar{o}\bar{c}}^{\bar{t}\bar{o}}\big{\rangle},\;\big{|}\Phi_{oc}^{ty}\big{\rangle},\;\big{|}\Phi_{\bar{o}\bar{c}}^{\bar{t}\bar{y}}\big{\rangle},\;\big{|}\Phi_{\bar{o}c}^{\bar{t}y}\big{\rangle},\;\big{|}\Phi_{o\bar{c}}^{t\bar{y}}\big{\rangle},\;\big{|}\Phi_{\bar{o}c}^{\bar{y}t}\big{\rangle},\;\big{|}\Phi_{o\bar{c}}^{y\bar{t}}\big{\rangle} \tag{7.75}
 $$
@@ -34,6 +36,7 @@ $$
 在这些组态所张成的空间内对角化 S${}^{2}$ 算符，可得到若干可能的组态态函数（Configuration State Function, CSF）。其中有一类特殊的 CSF，即与核心电子 $c$ 和那个在闭壳层态中原本满占据的单占据分子轨道（SOMO）$o$ 上的电子重新配对相对应的 2eOS 单重态或三重态 CSF。
 
 <a id="Ch7.E76"></a>
+
 $$
 \big{|}^{1,\;3}\Phi_{o}^{t}\big{\rangle}=(2)^{-1/2}\left(\big{|}\Phi_{c}^{t}\big{\rangle}\pm\big{|}\Phi_{\bar{c}}^{\bar{t}}\big{\rangle}\right) \tag{7.76}
 $$
@@ -41,6 +44,7 @@ $$
 当核心电子被激发到（相对于闭壳层组态而言的）任意虚轨道时，这些态可以用其余的 4eOS 单重态、三重态和五重态 CSF 来描述。
 
 <a id="Ch7.E77"></a>
+
 $$
 \displaystyle\big{|}^{1_{A}}\Phi_{oc}^{ty}\big{\rangle} \tag{7.77a}
 $$

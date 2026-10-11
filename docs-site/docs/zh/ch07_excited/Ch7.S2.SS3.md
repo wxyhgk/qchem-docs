@@ -18,6 +18,7 @@ ROCIS 和 UCIS 方法在硝基甲基自由基（nitromethyl radical）上的失�
 自旋适配的组态
 
 <a id="eq611"></a>
+
 $$
 \left|{\tilde{\Psi}_{i}^{a}(1)}\right\rangle=\frac{1}{\sqrt{6}}\left(|\Psi_{\bar{i}}^{\bar{a}}\rangle-|\Psi_{i}^{a}\rangle\right)+\frac{2}{\sqrt{6}}|\Psi_{p\bar{i}}^{a\bar{p}}\rangle \tag{7.12}
 $$
@@ -31,6 +32,7 @@ XCIS 方案是 CIS 向开壳层分子更令人满意的一种推广，其做法�
 $d\rightarrow s$、$s\rightarrow v$ 和 $d\rightarrow v$。于是，自旋适配的 ROCIS 波函数为
 
 <a id="eq612"></a>
+
 $$
 \left|{\Psi_{\mathrm{ROCIS}}}\right\rangle=\frac{1}{\sqrt{2}}\sum_{ia}^{dv}a_{i}^{a}\left(|\Psi_{i}^{a}\rangle+|\Psi_{\bar{i}}^{\bar{a}}\rangle\right)+\sum_{pa}^{sv}a_{p}^{a}|\Psi_{p}^{a}\rangle+\sum_{ip}^{ds}a_{\bar{i}}^{\bar{p}}|\Psi_{\bar{i}}^{\bar{p}}\rangle \tag{7.13}
 $$
@@ -39,6 +41,7 @@ $$
 以及那些双激发在 $\alpha$ 和 $\beta$ 空间中经由不同轨道发生的项：
 
 <a id="eq613"></a>
+
 $$
 \begin{array}[]{r}\left|{\Psi_{\mathrm{XCIS}}}\right\rangle=\frac{1}{\sqrt{2}}{\displaystyle\sum_{ia}^{dv}}a_{i}^{a}\left(|\Psi_{i}^{a}\rangle+|\Psi_{\bar{i}}^{\bar{a}}\rangle\right)+{\displaystyle\sum_{pa}^{sv}}a_{p}^{a}|\Psi_{p}^{a}\rangle+{\displaystyle\sum_{ip}^{ds}}a_{\bar{i}}^{\bar{p}}|\Psi_{\bar{i}}^{\bar{p}}\rangle\\
 +{\displaystyle\sum_{iap}^{dvs}}\tilde{a}_{i}^{a}(p)|\tilde{\Psi}_{i}^{a}(p)\rangle+{\displaystyle\sum_{ia,p\neq q}^{dv,ss}}a_{p\bar{i}}^{a\bar{q}}|\Psi_{p\bar{i}}^{a\bar{q}}\rangle\\

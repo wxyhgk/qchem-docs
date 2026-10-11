@@ -150,6 +150,7 @@ The default position of the gauge corresponds to the $(0,0,0)$ of the coordinate
 The oscillator strength of one-photon absorption is usually calculated in the length gauge (“lg”)
 
 <a id="Ch7.E110"></a>
+
 $$
 f^{\rm{lg}}=\frac{2\omega_{fn}}{3}\sum_{\alpha=x,y,z}\langle n|\hat{\mu}_{\alpha}|f\rangle\langle f|\hat{\mu}_{\alpha}|n\rangle, \tag{7.110}
 $$
@@ -158,11 +159,13 @@ where $\hat{\mu}$ is the electric dipole moment operator,
 but it can also be expressed in velocity gauge (“vg”) and mixed gauge (“mx”) as follows
 
 <a id="Ch7.E111"></a>
+
 $$
 f^{\rm{vg}}=\frac{2}{3\omega_{fn}}\sum_{\alpha=x,y,z}\langle n|\hat{p}_{\alpha}|f\rangle\langle f|\hat{p}_{\alpha}|n\rangle, \tag{7.111}
 $$
 
 <a id="Ch7.E112"></a>
+
 $$
 f^{\rm{mx}}=\frac{2i}{3}\sum_{\alpha=x,y,z}\langle n|\hat{\mu}_{\alpha}|f\rangle\langle f|\hat{p}_{\alpha}|n\rangle, \tag{7.112}
 $$
@@ -191,6 +194,7 @@ Ref. [[46]](../bib_references/bib.md#bib29)
 The rotatory strength of ECD within CC theory is defined as:
 
 <a id="A3.S8.EGx56"></a>
+
 $$
 \displaystyle R^{\text{lg}}_{nf} \tag{7.113}
 $$
@@ -243,6 +247,7 @@ operator is a triplet operator, we can consider the following triplet
 excitation operators
 
 <a id="A3.S8.EGx57"></a>
+
 $$
 \displaystyle T^{1,1}_{p,q}=-a^{\dagger}_{p\alpha}a_{q\beta} \tag{7.115}
 $$
@@ -251,6 +256,7 @@ If we apply Wigner–Eckart’s theorem, the following matrix elements are
 decomposed into the Clebsch–Gordan coefficients and reduced matrix elements:
 
 <a id="eq:WignerEckart_u"></a>
+
 $$
 \langle\Psi_{I}SM|T^{1,k}_{p,q}|\Psi_{J}S^{\prime}M^{\prime}\rangle=\langle S^{\prime}M^{\prime}|1k|SM\rangle\langle\Psi_{I}S||T^{1,\cdot}_{p,q}||\Psi_{J}S^{\prime}\rangle, \tag{7.118}
 $$
@@ -262,6 +268,7 @@ denote as $u^{1,\cdot}$. The spin-orbit reduced matrix elements are obtained
 as a trace with $u^{1,\cdot}$:
 
 <a id="A3.S8.EGx58"></a>
+
 $$
 \displaystyle\langle\Psi_{I}S||H_{L_{-}}||\Psi_{J}S^{\prime}\rangle=-\frac{1}{2}\sum_{p,q}h^{SO}_{L_{-};p,q}u^{1,\cdot}_{p,q} \tag{7.119}
 $$
@@ -402,6 +409,7 @@ available in CCMAN2. We employ Szalay’s approach in which couplings are comput
 by a modified analytic gradient code, via “summed states”:[[1336]](../bib_references/bib.md#bib1394)
 
 <a id="eq:Szalay:ExactH"></a>
+
 $$
 h^{x}_{IJ}\equiv\langle\Psi_{I}|H^{x}|\Psi_{J}\rangle=\frac{1}{2}\left(G_{(I+J)}-G_{I}-G_{J}\right), \tag{7.122}
 $$

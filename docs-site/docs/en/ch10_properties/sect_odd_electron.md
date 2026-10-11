@@ -28,6 +28,7 @@ The first-order reduced density matrix (1-RDM) corresponding to a
 single-determinant wave function (*e.g.*, SCF or Kohn-Sham DFT) is idempotent:
 
 <a id="A3.S8.EGx73"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\rho_{\sigma}({\mathbf{r}_{1}})&\displaystyle=\int\gamma_{\sigma}^{\text{SCF}}(1;2)\;\gamma_{\sigma}^{\text{SCF}}(2;1)\,d{\mathbf{r}_{2}}\\
 \displaystyle\gamma_{\sigma}^{\text{SCF}}(1;2)&\displaystyle=\sum_{i}^{\text{occ}}\psi_{i\sigma}^{\mathrm{KS}}(1)\psi_{i\sigma}^{\mathrm{KS}}(2)\;,\end{aligned} \tag{10.9}
@@ -41,6 +42,7 @@ reflects the Hartree-Fock exchange (or Kohn-Sham exact-exchange) governed by
 the HF exchange hole:
 
 <a id="A3.S8.EGx74"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\gamma_{\sigma}^{\text{SCF}}(1;2)\;\gamma_{\sigma}^{\text{SCF}}(2;1)&\displaystyle=\rho_{\alpha}(1)h_{\mathrm{X}\sigma\sigma}(1,2)\\
 \displaystyle\int{h}_{{\text{X}}\sigma\sigma}(1,2)\>d{\bf r}_{2}&\displaystyle=1\;.\end{aligned} \tag{10.10}
@@ -49,6 +51,7 @@ $$
 When 1-RDM includes electron correlation, it becomes non-idempotent:
 
 <a id="eq:non-idempotent1"></a>
+
 $$
 D_{\sigma}(1)\equiv{\rho}_{\sigma}(1)-\int\gamma_{\sigma}(1;2)\gamma_{\sigma}(2;1)\>d{\mathbf{r}_{2}}\geq 0\,. \tag{10.11}
 $$
@@ -63,6 +66,7 @@ spin components gives the total density of odd electrons, and integrating the
 latter over space gives the mean total number of odd electrons $\bar{N}_{u}$:
 
 <a id="eq:total-odds"></a>
+
 $$
 D_{u}(1)=2\sum_{\sigma}D_{\sigma}(1)d{\mathbf{r}_{1}},\,\,{\bar{N}}_{u}=\int D_{u}(1)d{\mathbf{r}_{1}}\,. \tag{10.12}
 $$
@@ -87,6 +91,7 @@ well. With this in mind, the following form of the correlated 1-RDM cross
 product was proposed:[[1129]](../bib_references/bib.md#bib1180)
 
 <a id="eq:b05-3"></a>
+
 $$
 \gamma_{\sigma}(1;2)\;\gamma_{\sigma}(2;1)=\rho_{\sigma}(1)\;\bar{h}_{\text{X}\sigma\sigma}^{\text{eff}}(1,2)\;. \tag{10.13}
 $$
@@ -102,6 +107,7 @@ is compensated by certain physically motivated real-space corrections to
 it:[[101]](../bib_references/bib.md#bib85)
 
 <a id="eq:B05-ND-XChole"></a>
+
 $$
 \bar{h}_{{\text{XC}}\alpha\alpha}(1,2)=\bar{h}_{{\text{X}}\alpha\alpha}^{\text{eff}}(1,2)+f_{{\mathrm{c}}}(1)\;\bar{h}_{{\text{X}}\beta\beta}^{\text{eff}}(1,2)\;. \tag{10.14}
 $$
@@ -113,6 +119,7 @@ that of the exact-exchange hole. This results in relaxed
 normalization of the auxiliary BR hole less than or equal to unity:
 
 <a id="eq:BR-auxiliary"></a>
+
 $$
 \int\bar{h}_{{\text{X}}\sigma\sigma}^{\text{eff}}(1;2)\;d\mathbf{r}_{2}=N_{X\sigma}^{\text{eff}}(1)\;\leq 1\,. \tag{10.15}
 $$
@@ -132,6 +139,7 @@ $f_{\mathrm{c}}$ in Eq.([10.14](#eq:B05-ND-XChole)) governs this deepening and
 hence the strength of the static correlation at each point:[[101]](../bib_references/bib.md#bib85)
 
 <a id="eq:f-factor1"></a>
+
 $$
 f_{\text{c}}(\mathbf{r})=\min\bigl{(}f_{\alpha}(\mathbf{r}),~{}f_{\beta}(\mathbf{r}),~{}1\bigr{)} \tag{10.16a}
 $$
@@ -140,6 +148,7 @@ Using Eqs. ([10.16](#eq:f-factor1)), ([10.12](#eq:total-odds)), and ([10.13](#e
 the density of odd electrons becomes:
 
 <a id="A3.S8.EGx75"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle D_{\alpha}(1)&\displaystyle=\rho_{\alpha}(1)(1-N_{X\alpha}^{\text{eff}}(1))\\
 &\displaystyle=\rho_{\alpha}(1)f_{\mathrm{c}}(1)\,N_{X\beta}^{\text{eff}}(1)\;.\end{aligned} \tag{10.17}
@@ -149,6 +158,7 @@ The final formulas for the spin-summed odd electron density and the
 total mean number of odd electrons read:
 
 <a id="A3.S8.EGx76"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle D_{u}(1)&\displaystyle=4a_{\text{nd}}^{\text{op}}\;f_{\text{c}}(1)\left[{\rho}_{\alpha}(1)\,N_{X\beta}^{\mathrm{eff}}(1)+{\rho}_{\beta}(1)\,N_{X\alpha}^{\mathrm{eff}}(1)\right]\\
 \displaystyle\bar{N}_{u}&\displaystyle=\int D_{u}(\mathbf{r_{1}})\;d\mathbf{r_{1}}\;.\end{aligned} \tag{10.18}
@@ -164,6 +174,7 @@ electrons $\bar{N}_{u}$ as a sum of atomic contributions, we obtain the
 atomic population of odd electrons ($F_{A}^{\text{r}}$) as:
 
 <a id="eq:b05-12"></a>
+
 $$
 F_{A}^{\mathrm{r}}=\int_{\Omega_{A}}D_{u}(\mathbf{r_{1}})\,d{\mathbf{r}_{1}}\,. \tag{10.19}
 $$

@@ -22,6 +22,7 @@ problem cases of this type. Specifically, the QCCD energy functional is defined
 as
 
 <a id="eq530"></a>
+
 $$
 E_{\mathrm{QCCD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}_{2}+\frac{1}{2}\hat{\Lambda}_{2}^{2}}\right)\left|{\hat{H}}\right|\exp\left({\hat{T}_{2}}\right)\Phi_{0}}\right\rangle_{C} \tag{6.77}
 $$
@@ -39,6 +40,7 @@ $\hat{\Lambda}_{2}$ operators, gives back the same CCD equations defined earlier
 This energy functional is
 
 <a id="eq531"></a>
+
 $$
 E_{\mathrm{CCD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}_{2}}\right)\left|{\hat{H}}\right|\exp\left({\hat{T}_{2}}\right)\Phi_{0}}\right\rangle_{C} \tag{6.78}
 $$

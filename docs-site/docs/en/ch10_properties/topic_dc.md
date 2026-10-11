@@ -13,6 +13,7 @@ molecular fragments. As an example, we will use the following reaction when
 necessary, and a generalization to other cases is straightforward:
 
 <a id="eq:electron-transfer"></a>
+
 $$
 \mathrm{D}^{-}\mathrm{A}\longrightarrow\mathrm{D}\mathrm{A}^{-} \tag{10.177}
 $$
@@ -22,6 +23,7 @@ localized to the acceptor (A) in the final state. The two-state secular
 equation for the initial and final electronic states can be written as
 
 <a id="eq:2by2HS"></a>
+
 $$
 {\bf H}-E{\bf S}=\left(\begin{array}[]{cc}H_{\mathrm{ii}}-S_{\mathrm{ii}}E&H_{\mathrm{if}}-S_{\mathrm{if}}E\\
 H_{\mathrm{if}}-S_{\mathrm{if}}E&H_{\mathrm{ff}}-S_{\mathrm{ff}}E\end{array}\right)=0 \tag{10.178}
@@ -32,6 +34,7 @@ between the initial and final states. A standard eigenvalue form for
 Eq. ([10.178](#eq:2by2HS)) can be obtained by using the Löwdin transformation:
 
 <a id="Ch10.E179"></a>
+
 $$
 \mathbf{H}_{\textrm{eff}}=\mathbf{S}^{-1/2}\mathbf{H}\mathbf{S}^{-1/2}, \tag{10.179}
 $$
@@ -40,6 +43,7 @@ where the off-diagonal element of the effective Hamiltonian matrix represents
 the *electronic coupling* for the reaction, and it is defined by
 
 <a id="eq:coupling-normal"></a>
+
 $$
 V=H^{\textrm{eff}}_{\mathrm{if}}=\frac{H_{\mathrm{if}}-S_{\mathrm{if}}(H_{\mathrm{ii}}+H_{\mathrm{ff}})/2}{1-S^{2}_{\mathrm{if}}} \tag{10.180}
 $$
@@ -48,6 +52,7 @@ In a general case where the initial and final states are not normalized, the
 electronic coupling is written as
 
 <a id="eq:coupling"></a>
+
 $$
 V=\sqrt{S_{\mathrm{ii}}S_{\mathrm{ff}}}\times\frac{H_{\mathrm{if}}-S_{\mathrm{if}}(H_{\mathrm{ii}}/S_{\mathrm{ii}}+H_{\mathrm{ff}}/S_{\mathrm{ff}})/2}{S_{\mathrm{ii}}S_{\mathrm{ff}}-S^{2}_{\mathrm{if}}} \tag{10.181}
 $$
@@ -91,6 +96,7 @@ wave functions for the initial and final states, and $\mathbf{a}$ and $\mathbf{b
 spin-orbital sets, respectively:
 
 <a id="A3.S8.EGx91"></a>
+
 $$
 \displaystyle\mathbf{a} \tag{10.182}
 $$
@@ -99,6 +105,7 @@ Since the two sets of spin-orbitals are not orthogonal, the overlap matrix
 $\mathbf{S}$ can be defined as:
 
 <a id="Ch10.E184"></a>
+
 $$
 \mathbf{S}=\int\mathbf{b}^{\dagger}\mathbf{a}\ d\tau. \tag{10.184}
 $$
@@ -111,6 +118,7 @@ used by the corresponding orbital transformation.[[689]](../bib_references/bib.m
 approach, each set of spin-orbitals $\mathbf{a}$ and $\mathbf{b}$ are linearly transformed,
 
 <a id="A3.S8.EGx92"></a>
+
 $$
 \displaystyle\hat{\mathbf{a}} \tag{10.185}
 $$
@@ -119,6 +127,7 @@ where $\mathbf{V}$ and $\mathbf{U}$ are the left-singular and right-singular mat
 respectively, in the singular value decomposition (SVD) of $\mathbf{S}$:
 
 <a id="Ch10.E187"></a>
+
 $$
 \mathbf{S}=\mathbf{U}\hat{\mathbf{s}}\mathbf{V}^{\dagger} \tag{10.187}
 $$
@@ -126,6 +135,7 @@ $$
 The overlap matrix in the new basis is now diagonal
 
 <a id="Ch10.E188"></a>
+
 $$
 \int\hat{\mathbf{b}}^{\dagger}\hat{\mathbf{a}}=\mathbf{U}^{\dagger}\left(\int\mathbf{b}^{\dagger}\mathbf{a}\right)\mathbf{V}=\hat{\mathbf{s}} \tag{10.188}
 $$
@@ -136,6 +146,7 @@ The Hamiltonian for electrons in molecules are a sum of one-electron and
 two-electron operators. In the following, we derive the expressions for the one- and two-electron operators
 
 <a id="Ch10.E189"></a>
+
 $$
 \displaystyle\Omega^{(1)} \tag{10.189a}
 $$
@@ -143,6 +154,7 @@ $$
 where
 
 <a id="Ch10.E190"></a>
+
 $$
 \displaystyle\omega(i) \tag{10.190a}
 $$
@@ -150,6 +162,7 @@ $$
 Matrix elements of the Hamiltonian can then be expressed as $H_{ab}=\Omega^{(1)}_{ab}+\Omega^{(2)}_{ab}$, where
 
 <a id="Ch10.E191"></a>
+
 $$
 \Omega^{(1)}_{ab}=\langle\Psi_{b}|\Omega^{(1)}|\Psi_{a}\rangle=\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\sum^{N}_{i=1}\langle\hat{b}_{i}|\omega(1)|\hat{a}_{i}\rangle\prod^{N}_{j\neq i}\hat{s}_{jj} \tag{10.191}
 $$
@@ -157,6 +170,7 @@ $$
 and
 
 <a id="eq:2par"></a>
+
 $$
 \Omega^{(2)}_{ab}=\langle\Psi_{b}|\Omega^{(2)}|\Psi_{a}\rangle=\frac{1}{2}\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\sum^{N}_{ij}\langle\hat{b}_{i}\hat{b}_{j}|\omega(1,2)(1-P_{12})|\hat{a}_{i}\hat{a}_{j}\rangle\prod^{N}_{k\neq{i,j}}\hat{s}_{kk}\;. \tag{10.192}
 $$
@@ -164,6 +178,7 @@ $$
 Overlap integrals are
 
 <a id="eq:1par"></a>
+
 $$
 S_{ab}=\langle\Psi_{b}|\Psi_{a}\rangle=\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\prod_{i=1}^{N}\hat{s}_{ii}\;. \tag{10.193}
 $$
@@ -171,6 +186,7 @@ $$
 In an atomic orbital basis set, $\{\chi\}$, we can expand the molecular spin orbitals $\mathbf{a}$ and $\mathbf{b}$,
 
 <a id="A3.S8.EGx95"></a>
+
 $$
 \displaystyle\mathbf{a}=\chi\mathbf{A},\qquad\hat{\mathbf{a}}=\chi\mathbf{A}\mathbf{V}=\chi\hat{\mathbf{A}} \tag{10.194}
 $$
@@ -178,6 +194,7 @@ $$
 The one-electron terms, Eq. ([10.193](#eq:1par)), can be expressed as
 
 <a id="A3.S8.EGx96"></a>
+
 $$
 \displaystyle\Omega^{(1)}_{ab} \tag{10.196}
 $$
@@ -186,6 +203,7 @@ where $\displaystyle T_{ii}=S_{ab}/\hat{s}_{ii}$ and define a
 generalized density matrix, $\mathbf{G}$:
 
 <a id="eq:g-density"></a>
+
 $$
 \mathbf{G}=\hat{\mathbf{A}}\mathbf{T}\hat{\mathbf{B}}^{\dagger}\;. \tag{10.197}
 $$
@@ -193,6 +211,7 @@ $$
 Similarly, the two-electron terms, Eq. ([10.192](#eq:2par)), are
 
 <a id="A3.S8.EGx97"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Omega^{(2)}_{ab}&\displaystyle=\frac{1}{2}\sum_{ij}\sum_{\lambda\sigma}\sum_{\mu\nu}\hat{A}_{\lambda i}\hat{A}_{\sigma j}\left(\frac{1}{\hat{s}_{ii}}\right)T_{jj}\hat{B}^{\dagger}_{i\mu}\hat{B}^{\dagger}_{j\nu}\langle\chi_{\mu}\chi_{\nu}|\omega(1,2)|\chi_{\lambda}\chi_{\sigma}\rangle\\
 &\displaystyle=\sum_{\lambda\sigma\mu\nu}G^{\text{L}}_{\lambda\mu}G^{\text{R}}_{\sigma\nu}\langle\mu\nu||\lambda\sigma\rangle\end{aligned} \tag{10.198}
@@ -205,11 +224,13 @@ The $\alpha$- and $\beta$-spin orbitals are treated explicitly. In terms of the
 spatial orbitals, the one- and two-electron contributions can be reduced to
 
 <a id="eq:1par-g-ab"></a>
+
 $$
 \Omega^{(1)}_{ab}=\sum_{\lambda\sigma}G^{\alpha}_{\lambda\sigma}\omega_{\sigma\lambda}+\sum_{\lambda\sigma}G^{\beta}_{\lambda\sigma}\omega_{\sigma\lambda} \tag{10.199}
 $$
 
 <a id="A3.S8.EGx98"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Omega^{(2)}_{ab}&\displaystyle=\sum_{\lambda\sigma\mu\nu}G^{\text{L}\alpha}_{\lambda\mu}G^{\text{R}\alpha}_{\sigma\nu}(\langle\mu\nu|\lambda\sigma\rangle-\langle\mu\nu|\sigma\lambda\rangle)+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\beta}_{\lambda\mu}G^{\text{R}\alpha}_{\sigma\nu}\langle\mu\nu|\lambda\sigma\rangle\\
 &\displaystyle\qquad+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\alpha}_{\lambda\mu}G^{\text{R}\beta}_{\sigma\nu}\langle\mu\nu|\lambda\sigma\rangle+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\beta}_{\lambda\mu}G^{\text{R}\beta}_{\sigma\nu}(\langle\mu\nu|\lambda\sigma\rangle-\langle\mu\nu|\sigma\lambda\rangle)\end{aligned} \tag{10.200}
@@ -399,6 +420,7 @@ calculate ET coupling.[[1384]](../bib_references/bib.md#bib1456)
 essentially an off-diagonal Kohn-Sham matrix element that accounts for overlap,
 
 <a id="eq:coupling-FMO"></a>
+
 $$
 V^{\mathrm{FMO}}=\frac{f_{\mathrm{DA}}-S\left(f_{\mathrm{DD}}+f_{\mathrm{AA}}\right)/2}{1-S^{2}} \tag{10.201}
 $$

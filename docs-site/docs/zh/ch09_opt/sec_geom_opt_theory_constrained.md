@@ -15,6 +15,7 @@ Baker 的算法同时使用了惩罚函数（penalty functions）和经典的拉
 约束优化的核心问题是在满足 $m$ 个形如 $C_{i}(\mathbf{x})=0$（$i=\ell,\ldots,m$）的约束条件下，最小化含 $n$ 个变量的函数 $F(\mathbf{x})$。假设 $m<n$，那么也许最好的求解方式（如果实践中可行的话）是利用这 $m$ 个约束方程消去 $m$ 个变量，然后针对剩余的 $n-m$ 个独立变量求解相应的无约束问题。这正是 *Z*-矩阵优化中所发生的过程。这种方法无法用于笛卡尔坐标，因为标准的距离和角度约束是关于相应坐标的非线性函数。例如，在笛卡尔坐标中，原子 $i$ 和 $j$ 之间的距离约束表示为 $(R_{ij}-R_{0})=0$，其中
 
 <a id="Ch9.E17"></a>
+
 $$
 R_{ij}=\bigl{[}(x_{i}-x_{j})^{2}+(y_{i}-y_{j})^{2}+(z_{i}-z_{j})^{2}\bigr{]}^{1/2} \tag{9.17}
 $$
@@ -24,6 +25,7 @@ $$
 内禀约束可以通过引入拉格朗日函数（Lagrangian function）在笛卡尔坐标中处理
 
 <a id="eq:a15"></a>
+
 $$
 L(\mathbf{x},\lambda)=F(\mathbf{x})-\sum\limits_{i=1}^{m}{\lambda_{i}C_{i}(\mathbf{x})} \tag{9.18}
 $$
@@ -31,6 +33,7 @@ $$
 该函数取代了无约束情形下的函数 $F(\mathbf{x})$。这里，$\lambda_{i}$ 即所谓的拉格朗日乘子，每个约束 $C_{i}(\mathbf{x})$ 对应一个。对式 ([9.18](#eq:a15)) 分别关于 $\mathbf{x}$ 和 $\lambda$ 求导，可得
 
 <a id="A3.S8.EGx70"></a>
+
 $$
 \displaystyle\frac{dL(\mathbf{x},\lambda)}{dx_{j}} \tag{9.19}
 $$
@@ -40,6 +43,7 @@ $$
 拉格朗日函数二阶导数矩阵是无约束优化中海森（Hessian）矩阵的对应物，其表达式为
 
 <a id="eq:a17"></a>
+
 $$
 \hat{\nabla}^{2}\mathbf{L}=\left(\begin{array}[]{cc}\displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}dx_{k}}&\displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}d\lambda_{i}}\\
 \displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}d\lambda_{i}}&\displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{d\lambda_{j}d\lambda_{i}}\end{array}\right) \tag{9.21}
@@ -48,6 +52,7 @@ $$
 其中
 
 <a id="A3.S8.EGx71"></a>
+
 $$
 \displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}dx_{k}} \tag{9.22}
 $$
@@ -62,6 +67,7 @@ $$
 本征向量跟随（eigenvector following）可以在约束优化中以类似于无约束情形的方式实现。考虑一个带有 $m$ 个约束的约束最小化，则式 ([9.11](sect_ef.md#eq:a9a)) 被替换为
 
 <a id="eq:a18a"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{b_{1}}&&&{F_{1}}\\
 &\ddots&{\rm{\bf 0}}&\vdots\\
@@ -81,6 +87,7 @@ $$
 式 ([9.12](sect_ef.md#eq:a9b)) 被替换为
 
 <a id="eq:a18b"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{b_{m+1}}&&&{F_{m+1}}\\
 &\ddots&{\rm{\bf 0}}&\vdots\\

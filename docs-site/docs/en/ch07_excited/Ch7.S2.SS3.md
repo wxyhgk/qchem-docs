@@ -29,6 +29,7 @@ promotion of a $\beta$ spin electron into the singly occupied orbital. The
 spin-adapted configurations
 
 <a id="eq611"></a>
+
 $$
 \left|{\tilde{\Psi}_{i}^{a}(1)}\right\rangle=\frac{1}{\sqrt{6}}\left(|\Psi_{\bar{i}}^{\bar{a}}\rangle-|\Psi_{i}^{a}\rangle\right)+\frac{2}{\sqrt{6}}|\Psi_{p\bar{i}}^{a\bar{p}}\rangle \tag{7.12}
 $$
@@ -48,6 +49,7 @@ ground state: $d\rightarrow s$, $s\rightarrow v$ and $d\rightarrow v$. Thus, the
 ROCIS wave function is
 
 <a id="eq612"></a>
+
 $$
 \left|{\Psi_{\mathrm{ROCIS}}}\right\rangle=\frac{1}{\sqrt{2}}\sum_{ia}^{dv}a_{i}^{a}\left(|\Psi_{i}^{a}\rangle+|\Psi_{\bar{i}}^{\bar{a}}\rangle\right)+\sum_{pa}^{sv}a_{p}^{a}|\Psi_{p}^{a}\rangle+\sum_{ip}^{ds}a_{\bar{i}}^{\bar{p}}|\Psi_{\bar{i}}^{\bar{p}}\rangle \tag{7.13}
 $$
@@ -58,6 +60,7 @@ similar to that of Eq. ([7.13](#eq612)), as well as those where the double
 excitation occurs through different orbitals in the $\alpha$ and $\beta$ space:
 
 <a id="eq613"></a>
+
 $$
 \begin{array}[]{r}\left|{\Psi_{\mathrm{XCIS}}}\right\rangle=\frac{1}{\sqrt{2}}{\displaystyle\sum_{ia}^{dv}}a_{i}^{a}\left(|\Psi_{i}^{a}\rangle+|\Psi_{\bar{i}}^{\bar{a}}\rangle\right)+{\displaystyle\sum_{pa}^{sv}}a_{p}^{a}|\Psi_{p}^{a}\rangle+{\displaystyle\sum_{ip}^{ds}}a_{\bar{i}}^{\bar{p}}|\Psi_{\bar{i}}^{\bar{p}}\rangle\\
 +{\displaystyle\sum_{iap}^{dvs}}\tilde{a}_{i}^{a}(p)|\tilde{\Psi}_{i}^{a}(p)\rangle+{\displaystyle\sum_{ia,p\neq q}^{dv,ss}}a_{p\bar{i}}^{a\bar{q}}|\Psi_{p\bar{i}}^{a\bar{q}}\rangle\\

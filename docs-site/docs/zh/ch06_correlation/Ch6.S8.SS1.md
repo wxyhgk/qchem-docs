@@ -9,6 +9,7 @@ title: "6.8.1 引言"
 尽管二阶 Møller-Plesset 微扰理论（MP2）提供了最简单且最具性价比的 *ab initio*（从头算）关联能，但它需要为简并态单独建立形式体系，因为 MP2 能量在零能隙（zero-gap）极限下发散。二阶 Brillouin-Wigner 微扰理论（BW2）则无需这样的重新推导，因为其给出的二阶能量
 
 <a id="Ch6.E33"></a>
+
 $$
 E_{\text{c}}^{(2)}=-\frac{1}{4}\sum\limits_{ijab}\frac{|\langle ij||ab\rangle|^{2}}{\Delta_{ij}^{ab}+E_{\text{c}}^{(2)}} \tag{6.33}
 $$
@@ -23,6 +24,7 @@ $E(A\cup B)=E(A)+E(B)$，这严重限制了其在化学中的适用性。
 MP2 振幅可以通过求解
 
 <a id="Ch6.E34"></a>
+
 $$
 \Delta_{ijkl}^{abcd}\cdot t_{kl}^{cd}=-\langle ij||ab\rangle\;, \tag{6.34}
 $$
@@ -30,6 +32,7 @@ $$
 求得，BW-s2 振幅方程则包含一个正则化张量，
 
 <a id="Ch6.E35"></a>
+
 $$
 \big{(}\Delta_{ijkl}^{abcd}+R_{ijkl}^{abcd}\big{)}\cdot t_{kl}^{cd}=-\langle ij||ab\rangle \tag{6.35}
 $$
@@ -38,6 +41,7 @@ $$
 $\Delta_{ij}^{ab}$，而
 
 <a id="eq:Rtensor"></a>
+
 $$
 R_{ijkl}^{abcd}=\frac{\alpha}{2}\big{(}W_{ik}\delta_{jl}+\delta_{ik}W_{jl}\big{)}\delta_{ac}\delta_{bd} \tag{6.36}
 $$
@@ -45,6 +49,7 @@ $$
 其中，
 
 <a id="Ch6.E37"></a>
+
 $$
 W_{ij}=\frac{1}{2}\sum\limits_{kab}\big{(}t_{ik}^{ab}\langle jk||ab\rangle+t_{jk}^{ab}\langle ik||ab\rangle\big{)} \tag{6.37}
 $$
@@ -54,6 +59,7 @@ $$
 将占据轨道旋转到使 $\bm{\Delta}+\bm{R}$ 对角的基组后，BW-s2 的工作方程与 MP2 的形式相同，
 
 <a id="Ch6.E38"></a>
+
 $$
 E_{\text{c}}^{(2)}=-\frac{1}{4}\sum\limits_{ijab}\frac{|\widetilde{\langle ij||ab\rangle}|^{2}}{\varepsilon_{a}+\varepsilon_{b}-\tilde{\varepsilon}_{i}-\tilde{\varepsilon}_{j}} \tag{6.38}
 $$

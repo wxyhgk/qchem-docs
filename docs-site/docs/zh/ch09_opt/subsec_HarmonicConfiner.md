@@ -9,6 +9,7 @@ title: "9.4.7 原子约束势作为约束优化的替代方案"
 从原理上讲,使用固定原子进行的约束优化所能达到的相同效果,也可以通过如下形式的软谐振约束势（soft harmonic confining potential）来实现
 
 <a id="eq:Vconf_cart"></a>
+
 $$
 V_{\text{conf}}(\mathbf{r}_{1},\mathbf{r}_{2},\ldots)=\frac{1}{2}\sum_{i}k\|\mathbf{r}_{i}-\mathbf{r}_{i}^{0}\|^{2}\;. \tag{9.42}
 $$
@@ -16,6 +17,7 @@ $$
 该式表示一个外部势场,将第 *i* 个原子（坐标为 $\mathbf{r}_{i}$）约束在位置 $\mathbf{r}_{i}^{0}$ 附近。上述实现方式被称为*笛卡尔（cartesian）*约束器（confiner），因为它基于每个被约束原子的笛卡尔坐标。实现谐振约束器的另一种方式是使用如下形式的*成对（pairwise）*谐振约束势
 
 <a id="eq:Vconf_pair"></a>
+
 $$
 V_{\text{conf}}(\mathbf{r}_{1},\mathbf{r}_{2},\ldots,\mathbf{r}_{N})=\frac{1}{2}\sum^{N}_{i>j}k\|\mathbf{r}_{ij}-\mathbf{r}_{ij}^{0}\|^{2}\;. \tag{9.43}
 $$

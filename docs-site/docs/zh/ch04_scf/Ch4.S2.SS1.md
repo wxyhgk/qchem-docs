@@ -9,6 +9,7 @@ title: "4.2.1 SCF 与 LCAO 近似"
 非相对论量子化学的基本方程是定态薛定谔方程（time-independent Schrödinger equation），
 
 <a id="eq400"></a>
+
 $$
 \hat{H}({\rm{\bf R}},{\rm{\bf r}})\;\Psi({\rm{\bf R}},{\rm{\bf r}})=E({\rm{\bf
 R}})\;\Psi({\rm{\bf R}},{\rm{\bf r}}). \tag{4.1}
@@ -17,6 +18,7 @@ $$
 在量子化学中，该方程是针对固定的核坐标（$\mathbf{R}$）值、作为电子变量（$\mathbf{r}$）的函数来求解的。式 ([4.1](#eq400)) 中的哈密顿算符（Hamiltonian operator）为
 
 <a id="eq:Hamiltonian"></a>
+
 $$
 \hat{H}=-\frac{1}{2}\sum_{i=1}^{N}\hat{\nabla}_{i}^{2}-\frac{1}{2}\sum_{A=1}^{M}\frac{1}{M_{A}}\hat{\nabla}_{A}^{2}-\sum_{i=1}^{N}\sum_{A=1}^{M}\frac{Z_{A}}{r_{iA}}+\sum_{i=1}^{N}\sum_{j>i}^{N}\frac{1}{r_{ij}}+\sum_{A=1}^{M}\sum_{B>A}^{M}\frac{Z_{A}Z_{B}}{R_{AB}} \tag{4.2}
 $$
@@ -24,6 +26,7 @@ $$
 采用原子单位（atomic units），其中
 
 <a id="eq402"></a>
+
 $$
 \hat{\nabla}^{2}=\frac{\partial^{2}}{\partial x^{2}}+\frac{\partial^{2}}{\partial y^{2}}+\frac{\partial^{2}}{\partial z^{2}}\;. \tag{4.3}
 $$
@@ -33,6 +36,7 @@ $$
 将电子运动与核运动分离——这一思想最初源于 Born 和 Oppenheimer[[147]](../bib_references/bib.md#bib138)——可得到电子哈密顿算符
 
 <a id="eq403"></a>
+
 $$
 \hat{H}_{\mathrm{elec}}=-\frac{1}{2}\sum_{i=1}^{N}\hat{\nabla}_{i}^{2}-\sum_{i=1}^{N}\sum_{A=1}^{M}\frac{Z_{A}}{r_{iA}}+\sum_{i=1}^{N}\sum_{j>i}^{N}\frac{1}{r_{ij}} \tag{4.4}
 $$
@@ -40,6 +44,7 @@ $$
 求解相应的电子薛定谔方程，
 
 <a id="eq404"></a>
+
 $$
 \hat{H}_{\mathrm{elec}}\Psi_{\mathrm{elec}}=E_{\mathrm{elec}}\Psi_{\mathrm{elec}}\;, \tag{4.5}
 $$
@@ -47,6 +52,7 @@ $$
 可得到总电子能量 $E_{\mathrm{elec}}$ 以及电子波函数 $\Psi_{\mathrm{elec}}$，后者描述了核位置固定时电子的分布。总能量只需将核–核排斥能 [式 ([4.2](#eq:Hamiltonian)) 中的第五项] 加到总电子能量上即可求得：
 
 <a id="eq405"></a>
+
 $$
 E_{\mathrm{tot}}=E_{\mathrm{elec}}+E_{\mathrm{nuc}}\;. \tag{4.6}
 $$
@@ -58,6 +64,7 @@ $$
 求解式 ([4.5](#eq404)) 时采用的第一个近似是独立电子（平均场）近似（independent-electron (mean-field) approximation），其中波函数被近似为单电子函数（即分子轨道（Molecular Orbital, MO））的反对称化乘积。每个分子轨道的确定都是考虑电子在其他所有电子形成的平均场中运动。由此便得到著名的 Slater 行列式波函数[[1266]](../bib_references/bib.md#bib1315)
 
 <a id="eq406"></a>
+
 $$
 \Psi=\frac{1}{\sqrt{n!}}\left|{{\begin{array}[]{cccc}\chi_{1}(1)&\chi_{2}(1)&\cdots&\chi_{n}(1)\\
 \chi_{1}(2)&\chi_{2}(2)&\cdots&\chi_{n}(2)\\
@@ -71,6 +78,7 @@ $$
 通过在所谓的"自洽场"（self-consistent field, SCF）近似中对多电子问题的能量进行变分最小化，可得到最优的分子轨道集合。SCF 方法的原型是 Hartree-Fock（HF）近似，但这些 SCF 方法也包括 KS-DFT（第 [5 章](../ch05_dft/chap_DFT.md)）。所有 SCF 方法都导出如下形式的方程
 
 <a id="eq407"></a>
+
 $$
 \hat{f}(i)\,\chi(\mathbf{x}_{i})=\varepsilon\,\chi(\mathbf{x}_{i})\;, \tag{4.8}
 $$
@@ -78,6 +86,7 @@ $$
 其中第 $i$ 个电子的 Fock 算符（Fock operator）$\hat{f}(i)$ 为
 
 <a id="eq408"></a>
+
 $$
 \hat{f}(i)=-\frac{1}{2}\hat{\nabla}_{i}^{2}+\upsilon_{\rm eff}(i)\;. \tag{4.9}
 $$
@@ -89,6 +98,7 @@ $$
 在式 ([4.8](#eq407)) 中消去自旋分量并引入有限基组后，
 
 <a id="eq409"></a>
+
 $$
 \psi_{i}=\sum_{\mu}{c_{\mu i}\phi_{\mu}}\;, \tag{4.10}
 $$
@@ -96,6 +106,7 @@ $$
 式 ([4.8](#eq407)) 约化为 Roothaan-Hall 矩阵方程
 
 <a id="eq:Roothaan-Hall"></a>
+
 $$
 \mathbf{FC}=\bm{\varepsilon}\mathbf{SC}\;. \tag{4.11}
 $$
@@ -103,6 +114,7 @@ $$
 这里，$\mathbf{F}$ 是 Fock 矩阵，$\mathbf{C}$ 是分子轨道系数的方阵，$\mathbf{S}$ 是 AO 重叠矩阵（overlap matrix），其元素为
 
 <a id="eq411"></a>
+
 $$
 S_{\mu\nu}=\int{\phi_{\mu}({\rm{\bf r}})}\phi_{\nu}({\rm{\bf r}})d{\rm{\bf r}} \tag{4.12}
 $$
@@ -110,6 +122,7 @@ $$
 $\bm{\varepsilon}$ 是包含轨道能量的对角矩阵。若在式 ([4.7](#eq406)) 中为 $\alpha$ 与 $\beta$ 自旋引入各自独立的空间轨道，从而推广到非限制（unrestricted）形式，便得到 Pople-Nesbet 方程[[1116]](../bib_references/bib.md#bib1159)
 
 <a id="A3.S8.EGx1"></a>
+
 $$
 \displaystyle\mathbf{F}^{\alpha}\mathbf{C}^{\alpha} \tag{4.13}
 $$

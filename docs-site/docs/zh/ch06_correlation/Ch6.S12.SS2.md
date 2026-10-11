@@ -12,6 +12,7 @@ title: "6.12.2 耦合簇单激发与双激发方法 (CCSD)"
 完整教科书式的 CCSD 阐述超出了本手册的范围，且已有若干全面的参考文献可供查阅。不过，简要概述其主要方程可能仍有所裨益。CCSD 波函数为：
 
 <a id="eq518"></a>
+
 $$
 \left|{\Psi_{\mathrm{CCSD}}}\right\rangle=\exp\left({\hat{T}_{1}+\hat{T}_{2}}\right)\left|{\Phi_{0}}\right\rangle \tag{6.58}
 $$
@@ -19,11 +20,13 @@ $$
 其中单激发与双激发算符可通过其作用于参考单行列式（在 CCSD 中通常取 Hartree-Fock 行列式）的效果来定义：
 
 <a id="eq519"></a>
+
 $$
 \hat{T}_{1}\left|{\Phi_{0}}\right\rangle=\sum_{i}^{\mathrm{occ}}{\sum_{a}^{\mathrm{virt}}{t_{i}^{a}}}\left|{\Phi_{i}^{a}}\right\rangle \tag{6.59}
 $$
 
 <a id="eq520"></a>
+
 $$
 \hat{T}_{2}\left|{\Phi_{0}}\right\rangle=\frac{1}{4}\sum_{ij}^{\mathrm{occ}}{\sum_{ab}^{\mathrm{virt}}{t_{ij}^{ab}}}\left|{\Phi_{ij}^{ab}}\right\rangle \tag{6.60}
 $$
@@ -31,6 +34,7 @@ $$
 由于 $\langle E\rangle_{\mathrm{CCSD}}$ 表达式终止于与完全组态相互作用（full configuration interaction）相同的复杂度级别（！），因此无法通过对单激发与双激发振幅（amplitudes）进行变分最小化来确定 CCSD 能量。所以，取而代之的是在由参考行列式、所有单激发替换以及所有双激发替换所张成的子空间中满足薛定谔方程（Schrödinger equation）。用这些函数进行投影并对全空间积分，即可提供足够的方程组，将能量以及单、双激发振幅作为一组非线性方程组的解来确定。这些方程可符号化地写为如下形式：
 
 <a id="A3.S8.EGx22"></a>
+
 $$
 \displaystyle E_{\mathrm{CCSD}} \tag{6.61}
 $$

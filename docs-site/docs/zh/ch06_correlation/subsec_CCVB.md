@@ -14,6 +14,7 @@ CCVB 旨在定性地描述共价键的断裂。在最基础的理论层面上，
 PP 波函数是简单强正交单重态 geminal（配对函数）的乘积。忽略归一化因子，这些 geminal 有两种等价的表达形式
 
 <a id="A3.S8.EGx26"></a>
+
 $$
 \displaystyle(\phi_{i}\phi_{i}+t_{i}\phi_{i}^{*}\phi_{i}^{*})(\alpha\beta-\beta\alpha)\ \ \ (\text{Natural-orbital form}) \tag{6.85}
 $$
@@ -23,6 +24,7 @@ $$
 这些 geminal 之间不相关，正如分子轨道在 HF 计算中不相关一样。因此，它们能够描述非耦合的、即相互独立的单键断裂过程，例如 C${}_{2}$H${}_{6}$ $\rightarrow$ 2 CH${}_{3}$，但无法描述耦合的多键断裂过程，例如 N${}_{2}$ 的解离。在后一体系中，三个键可以用三个单重态 geminal 来描述，但这一图像必须以某种方式转化为两个自旋四重态（spin-quartet）N 原子耦合为一个整体单重态——这正是解离极限处的情形。要在 GVB 框架内实现这一点，就必须对 geminal 引入关联。该关联中对键断裂至关重要的部分，可以通过将若干单重态 geminal 组成的簇（cluster）替换为三重态 geminal，并将这些三重态重新耦合为整体单重态来获得。一个三重态 geminal 只需相应地修改单重态 geminal 的自旋分量即可得到。由此我们得到 CCVB 波函数：
 
 <a id="A3.S8.EGx27"></a>
+
 $$
 \displaystyle|\Psi\rangle \tag{6.86}
 $$

@@ -17,6 +17,7 @@ Ge *et al.*  recently 将 ALMO-EDA 推广，用于处理在 CIS 或 TDDFT/TDA �
 。这里我们简要概述其分解方案。对于激发复合物的 EDA，首先将激发态下的相互作用能（$\Delta E_{\mathrm{INT}}^{\ast}$）定义为
 
 <a id="Ch12.E34"></a>
+
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=E^{\ast}-E_{\mathrm{frag}}^{\ast} \tag{12.34}
 $$
@@ -24,6 +25,7 @@ $$
 其中 $E^{\ast}=E+\omega$ 是激发态超体系（supersystem）的能量，而 $E_{\mathrm{frag}}^{\ast}$ 可表示为各基态片段能量之和加上其中一个片段的激发能（不失一般性，将该激发片段记为片段"1"）：
 
 <a id="eq:ex_e_frag"></a>
+
 $$
 E_{\mathrm{frag}}^{\ast}=\sum_{F}E_{F}+\omega_{1} \tag{12.35}
 $$
@@ -31,6 +33,7 @@ $$
 因此，我们可以将激发态相互作用能改写为
 
 <a id="eq:ex_int"></a>
+
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=\Delta E_{\mathrm{INT}}+\Delta\omega_{\mathrm{INT}} \tag{12.36}
 $$
@@ -40,6 +43,7 @@ $$
 ，激发态相互作用能可以被分离为冻结相互作用（FRZ）、极化（POL）和电荷转移（CT）三项贡献：
 
 <a id="eq:ex_eda"></a>
+
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=\Delta E_{\mathrm{FRZ}}^{\ast}+\Delta E_{\mathrm{POL}}^{\ast}+\Delta E_{\mathrm{CT}}^{\ast} \tag{12.37}
 $$
@@ -47,6 +51,7 @@ $$
 式 ([12.37](#eq:ex_eda)) 右端的每一项都可以写成类似于式 ([12.36](#eq:ex_int)) 的形式：
 
 <a id="A3.S8.EGx124"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{FRZ}}^{\ast}&\displaystyle=\Delta E_{\mathrm{FRZ}}+\omega_{\mathrm{FRZ}}-\omega_{1}\\
 &\displaystyle=\Delta E_{\mathrm{FRZ}}+\Delta\omega_{\mathrm{FRZ}}\\
@@ -59,6 +64,7 @@ $$
 其中的 $\Delta E_{\mathrm{FRZ}}$、$\Delta E_{\mathrm{POL}}$ 和 $\Delta E_{\mathrm{CT}}$ 可通过对超体系执行基态 ALMO-EDA 获得。而要计算 $\Delta\omega_{\mathrm{FRZ}}$、$\Delta\omega_{\mathrm{POL}}$ 和 $\Delta\omega_{\mathrm{CT}}$，就需要定义 $\omega_{\mathrm{FRZ}}$ 和 $\omega_{\mathrm{POL}}$，*即* 分别与冻结超体系和极化超体系相关联的激发能。冻结中间态可视为一个激发片段嵌入由其他处于基态的片段所构成的环境中，环境对激发片段的作用仅通过超体系的 Fock 矩阵体现。极化中间态的定义利用了 ALMO-CIS 模型（见第 [12.16](sect_ALMO-CIS.md) 节），其中分子轨道（MO）和激发振幅均被定域在各个片段上。我们还指出，激发态相互作用能中的冻结贡献 $\Delta E_{\mathrm{FRZ}}^{\ast}$ 可以进一步细分为经典静电项（孤立片段电荷分布之间的库仑相互作用）和非静电项（若使用如 CIS 这类未做色散校正的模型，则主要为泡利排斥）：
 
 <a id="eq:ex_eda_frz_decomp"></a>
+
 $$
 \Delta E_{\mathrm{FRZ}}^{\ast}=\Delta E_{\textrm{CLS-ELEC}}^{\ast}+\Delta E_{\textrm{NON-ELEC}}^{\ast} \tag{12.39}
 $$
@@ -67,6 +73,7 @@ $$
 类似于式 ([12.35](#eq:ex_e_frag))，我们有
 
 <a id="eq:ex_e_frag_mult"></a>
+
 $$
 E_{\mathrm{frag}}^{\kappa}=\sum_{F}E_{F}+\omega_{I}^{s} \tag{12.40}
 $$
@@ -74,6 +81,7 @@ $$
 相应的冻结激发态波函数通过将这一激发片段嵌入由其他处于基态的片段所构成的环境来构造：
 
 <a id="Ch12.E41"></a>
+
 $$
 \left|\Phi_{\mathrm{FRZ}}^{\kappa}\right\rangle=\left|\Psi_{1}\Psi_{2}\cdots\Psi_{I}^{s}\cdots\Psi_{N}\right\rangle \tag{12.41}
 $$
@@ -81,6 +89,7 @@ $$
 激发态冻结相互作用能为
 
 <a id="Ch12.E42"></a>
+
 $$
 \Delta E_{\mathrm{FRZ}}^{\kappa}=\Delta E_{\mathrm{FRZ}}+\Delta\omega_{\mathrm{FRZ}}^{\kappa}=\Delta E_{\mathrm{FRZ}}+(\omega_{\mathrm{FRZ}}^{\kappa}-\omega_{I}^{s}) \tag{12.42}
 $$
@@ -88,6 +97,7 @@ $$
 基于这 $M$ 个简并或近简并的冻结激发态，引入一个新的中间态，用于捕捉激发二聚体形成过程中纯的激子分裂（EXSP）效应，其可表示为各冻结态的线性组合：
 
 <a id="eq:ex_eda_exsp"></a>
+
 $$
 \left|\Phi^{\kappa}_{\mathrm{EXSP}}\right\rangle=\sum_{\kappa^{\prime}}^{M}c^{\kappa\kappa^{\prime}}\left|\Psi_{1}\Psi_{2}\cdots\Psi_{I}^{s}\cdots\Psi_{N}\right\rangle \tag{12.43}
 $$
@@ -95,6 +105,7 @@ $$
 相应的激发能 $\omega^{\kappa}_{\mathrm{EXSP}}$ 及其线性组合系数可通过在冻结态基组下求解久期方程（secular equation）获得。由于激子分裂 purely 是一种激发态现象，我们有
 
 <a id="Ch12.E44"></a>
+
 $$
 \Delta E^{\kappa}_{\mathrm{EXSP}}=\Delta\omega^{\kappa}_{\mathrm{EXSP}}=\omega^{\kappa}_{\mathrm{EXSP}}-\omega^{\kappa}_{\mathrm{FRZ}} \tag{12.44}
 $$
@@ -102,6 +113,7 @@ $$
 随后，极化和电荷转移的处理方式与激发二聚体（exciplex，即激发复合物）情形类似：
 
 <a id="A3.S8.EGx125"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E^{\kappa}_{\mathrm{POL}}&\displaystyle=\Delta E_{\mathrm{POL}}+\Delta\omega^{\kappa}_{\mathrm{POL}}=\Delta E_{\mathrm{POL}}+(\omega^{\kappa}_{\mathrm{POL}}-\omega^{\kappa}_{\mathrm{EXSP}})\\
 \displaystyle\Delta E^{\kappa}_{\mathrm{CT}}&\displaystyle=\Delta E_{\mathrm{CT}}+\Delta\omega^{\kappa}_{\mathrm{CT}}=\Delta E_{\mathrm{CT}}+(\omega^{\kappa}-\omega^{\kappa}_{\mathrm{POL}})\end{aligned} \tag{12.45}

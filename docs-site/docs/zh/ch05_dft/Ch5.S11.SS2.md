@@ -16,6 +16,7 @@ title: "5.11.2 电子计数方式"
 该方案所提供的积分权重在任何实际的 DFT 计算中都会与 Lebedev 求积权重相乘：
 
 <a id="eq:_becke_cell"></a>
+
 $$
 w_{n}(\mathbf{r})=\frac{P_{n}(\mathbf{r})}{\sum\limits_{m}P_{m}(\mathbf{r})} \tag{5.72}
 $$
@@ -71,6 +72,7 @@ BECKE_SHIFT
 基于片段的 Hirshfeld（Fragment-Based Hirshfeld, FBH）划分使用由孤立片段密度构造的权重，其形式为
 
 <a id="Ch5.E73"></a>
+
 $$
 w_{n}(\text{{r}})=\frac{\rho_{n}(\text{{r}})}{\sum\limits_{m}\rho_{m}(\text{{r}})}~{}, \tag{5.73}
 $$

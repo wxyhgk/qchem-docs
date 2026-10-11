@@ -18,6 +18,7 @@ these situations, one is interested in controlling the average value of some
 observable, $O(\mathbf{r})$, to take on a given value, $N$:
 
 <a id="Ch5.E69"></a>
+
 $$
 \int\rho(\mathbf{r})\,O(\mathbf{r})\;d\mathbf{r}=N \tag{5.69}
 $$
@@ -28,6 +29,7 @@ resulting constrained minimization problem, one introduces a Lagrange
 multiplier, $V$, and solves for the stationary point of
 
 <a id="Ch5.E70"></a>
+
 $$
 V[\rho,V]=E[\rho]-V\left(\int\rho(\mathbf{r})\,O(\mathbf{r})\;d\mathbf{r}-N\right) \tag{5.70}
 $$
@@ -50,6 +52,7 @@ Becke’s atomic partitioning functions[[94]](../bib_references/bib.md#bib73)
 Hirshfeld partition:[[1160]](../bib_references/bib.md#bib1214)
 
 <a id="Ch5.E71"></a>
+
 $$
 O(\mathbf{r})=\sum_{A}^{\rm atoms}\sum_{\sigma=\alpha,\beta}C^{\sigma}_{A}\,w_{A}(\mathbf{r}) \tag{5.71}
 $$

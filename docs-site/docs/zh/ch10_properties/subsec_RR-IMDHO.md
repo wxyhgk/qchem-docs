@@ -9,6 +9,7 @@ title: "10.8.6 共振拉曼强度"
 共振拉曼光谱的理论可由基于拉曼极化率张量的 Kramers-Heisenberg-Dirac 色散形式体系完整描述[[677]](../bib_references/bib.md#bib704)
 
 <a id="eq:SOS"></a>
+
 $$
 \alpha_{\sigma\tau}(\omega_{\text{L}},\omega_{\text{S}})=\sum_{\upsilon}\left[\frac{\langle f|\hat{r}_{\sigma}|\upsilon\rangle\langle\upsilon|\hat{r}_{\tau}|i\rangle}{\hbar\omega_{\text{L}}-\hbar\omega_{\upsilon i}+i\Gamma_{i\upsilon}}+\frac{\langle f|\hat{r}_{\tau}|\upsilon\rangle\langle\upsilon|\hat{r}_{\sigma}|i\rangle}{\hbar\omega_{\upsilon i}+\hbar\omega_{\text{S}}+i\Gamma_{i\upsilon}}\right] \tag{10.74}
 $$
@@ -25,6 +26,7 @@ $$
 在该模型中，振动强度的共振增强（以模式 1 和 2 为例）表示为比值[[552]](../bib_references/bib.md#bib563)
 
 <a id="eq:RR_intens"></a>
+
 $$
 \frac{I_{1}}{I_{2}}\approx\left(\frac{\omega^{\rm g}_{1}\Delta_{1}}{\omega^{\rm g}_{2}\Delta_{2}}\right)^{\!2}\;. \tag{10.75}
 $$
@@ -32,6 +34,7 @@ $$
 在该方程中，$\omega_{1}^{\text{g}}$ 和 $\omega_{2}^{\text{g}}$ 分别表示简正模式 $Q_{1}$ 和 $Q_{2}$ 的基态振动频率，$\omega$ 为电子激发能。式 ([10.75](#eq:RR_intens)) 中的第一个等号在此写为近似形式，但在 IMDHO 模型内是精确成立的。物理量
 
 <a id="eq:Delta_k"></a>
+
 $$
 \Delta_{k}=\left(\frac{\omega_{k}}{\hbar}\right)^{1/2}\Delta Q_{k} \tag{10.76}
 $$
@@ -43,6 +46,7 @@ $$
  在这种方法中，涉及不同电子态的所需极化率张量元表示为初态与末态电子波函数之间随时间演化的重叠积分的傅里叶变换：
 
 <a id="Ch10.E77"></a>
+
 $$
 \alpha(\omega_{\text{L}})\propto\int_{0}^{\infty}e^{i\omega_{\text{L}}t-\Gamma
 t}\langle\psi_{f}|\psi_{i}(t)\rangle dt+\text{NRT}\;. \tag{10.77}
@@ -53,6 +57,7 @@ $$
 在只考虑两个电子态的模型中，所得到的 RR 强度为
 
 <a id="eq:functional"></a>
+
 $$
 I_{k}\propto\omega_{\text{L}}(\omega_{\text{L}}-\omega_{k})^{3}(\omega_{k}\Delta_{k})^{2}\; \tag{10.78}
 $$
@@ -62,6 +67,7 @@ $$
 假设 $Q_{k}$ 在基态与激发态中具有相同的力常数，则可得该模式平衡位置的位移 $\Delta_{k}$（以简正坐标表示）与位移 $\widetilde{\Delta}_{i}$（以笛卡尔坐标表示）之间的线性变换关系：
 
 <a id="Ch10.E79"></a>
+
 $$
 \widetilde{\Delta}_{i}=\sum_{k=1}^{3N-6}\left(\frac{L_{ik}}{m_{i}^{1/2}}\right)\Delta_{k}\;. \tag{10.79}
 $$
@@ -69,6 +75,7 @@ $$
 其矩阵形式为
 
 <a id="Ch10.E80"></a>
+
 $$
 \mathbf{\Delta}_{Q}=\lambda^{-1}\mathbf{L}^{\dagger}\mathbf{M}^{1/2}\mathbf{V}_{X} \tag{10.80}
 $$
@@ -77,6 +84,7 @@ $$
 拉曼强度与无量纲位移相关
 
 <a id="Ch10.E81"></a>
+
 $$
 \Delta_{k}=\left(\frac{\lambda_{k}}{m_{e}}\right)^{\!1/4}\Delta_{Qk}\;. \tag{10.81}
 $$

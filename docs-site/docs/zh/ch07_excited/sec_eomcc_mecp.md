@@ -11,6 +11,7 @@ EOM-CCSD 也可作为激发态方法用于寻找最小能量交叉点（Minimum 
 势能面交叉优化过程用于寻找交叉 seam（交叉集）上的能量极小点。在 seam 上，势能面在垂直于由以下两个矢量所张成平面的子空间中是简并的：梯度差
 
 <a id="Ch7.E125"></a>
+
 $$
 {\rm\bf g}=\frac{\partial}{\partial{\rm\bf q}}(E_{1}-E_{2}) \tag{7.125}
 $$
@@ -18,6 +19,7 @@ $$
 以及导数耦合
 
 <a id="Ch7.E126"></a>
+
 $$
 {\rm\bf h}=\left\langle\Psi_{1}\left|\frac{\partial{\rm\bf H}}{\partial{\rm\bf
 q}}\right|\Psi_{2}\right\rangle \tag{7.126}

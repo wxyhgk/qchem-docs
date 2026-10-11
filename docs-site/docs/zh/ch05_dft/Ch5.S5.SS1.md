@@ -13,6 +13,7 @@ title: "5.5.1 引言"
  中的“原子尺寸调整（atomic size adjustments）”。随后通过标准单中心数值技术计算这些原子积分。因此，交换-关联能量可表示为
 
 <a id="eq439"></a>
+
 $$
 E_{\mathrm{XC}}=\sum_{A}^{\rm atoms}\sum_{i\in A}^{\rm points}w_{Ai}f(\mathbf{r}_{Ai})\;, \tag{5.15}
 $$

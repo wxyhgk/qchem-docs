@@ -9,6 +9,7 @@ title: "6.21.2 理论"
 iFCI 通过如下形式的 $n$ 体展开（$n$-body expansion）来获取电子能量：
 
 <a id="eqn:mbe"></a>
+
 $$
 E=E_{\mathrm{ref}}+E_{C}=E_{\mathrm{ref}}+\sum_{i}\epsilon_{i}+\sum_{j<i}\epsilon_{ij}+\sum_{k<j<i}\epsilon_{ijk}+\cdots \tag{6.96}
 $$
@@ -16,6 +17,7 @@ $$
 其中每个 $\epsilon_{X}$ 项表示一个关联能增量（increment of correlation energy），而 $i,j,k$ 指展开中的各个体（body）。增量关联能定义为
 
 <a id="A3.S8.EGx35"></a>
+
 $$
 \displaystyle\epsilon_{i} \tag{6.97}
 $$
@@ -27,6 +29,7 @@ $$
 增量项的截断通过考虑自然轨道（natural orbital, NO）占据数截断 $\eta^{(m)}$ 来完成，其中
 
 <a id="A3.S8.EGx36"></a>
+
 $$
 \displaystyle\epsilon_{i}^{(m)} \tag{6.100}
 $$
@@ -34,6 +37,7 @@ $$
 这样只纳入具有足够大 NO 本征值的虚轨道，从而缩小虚空间（virtual space）的规模。当满足
 
 <a id="eqn:ifcizeta"></a>
+
 $$
 \zeta>|\epsilon^{(m+1)}-\epsilon^{m}| \tag{6.102}
 $$
@@ -41,6 +45,7 @@ $$
 时，每个 iFCI 增量即达到收敛，其单位为 $10^{-\zeta}$ E${}_{\mathrm{h}}$。对于 $n\geq 3$ 的项，还可以利用参数 $\zeta$ 与形如下的筛查截断（screening cutoff）$\mathcal{C}_{n}$ 进行进一步截断：
 
 <a id="eqn:ifcicutoff"></a>
+
 $$
 \mathcal{C}_{n}=10^{-\zeta}\times\mathcal{S}_{n} \tag{6.103}
 $$

@@ -109,6 +109,7 @@ expressions, which can be compared against the full MP2 expression given
 earlier in Eq. ([6.13](Ch6.S3.SS1.md#eq512)). First, for the DIM model:
 
 <a id="eq516"></a>
+
 $$
 E_{\mathrm{DIM\,MP2}}=-\frac{1}{2}\sum_{\bar{P},\bar{Q}}\frac{(\bar{P}|\bar{Q})(\bar{P}||\bar{Q})}{\Delta_{\bar{P}}+\Delta_{\bar{Q}}} \tag{6.17}
 $$
@@ -119,6 +120,7 @@ difference between occupied and virtual levels in this local basis.
 Similarly, the TRIM model corresponds to the following local MP2 energy:
 
 <a id="eq517"></a>
+
 $$
 E_{\mathrm{TRIM\,MP2}}=-\sum_{\bar{P},jb}\frac{(\bar{P}|jb)(\bar{P}||jb)}{\Delta_{\bar{P}}+\varepsilon_{b}-\varepsilon_{j}}-E_{\mathrm{DIM\,MP2}} \tag{6.18}
 $$

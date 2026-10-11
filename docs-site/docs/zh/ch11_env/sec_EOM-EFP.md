@@ -11,6 +11,7 @@ EFP 与 EOM-CCSD（通过 CCMAN 和 CCMAN2 两种方式）、CIS、CIS(D)、TDDF
 在激发态计算中，各片段（fragment）的诱导偶极被冻结在与电子基态（HF 或 DFT）一致的取值上。由此得到的激发能包含了可极化环境的零级响应。此外，微扰态特异（state-specific）极化校正[[1272]](../bib_references/bib.md#bib1325)按下式计算：
 
 <a id="eq:EOM-EFP-ene2"></a>
+
 $$
 \Delta E_{\text{pol}}=\frac{1}{2}\sum_{k}\sum_{a}^{x,y,z}\Bigl{[}-(\mu_{\text{ex},a}^{k}-\mu_{\text{gr},a}^{k})(F_{a}^{\text{mult},k}+F_{a}^{\text{nuc},k})\\
 +(\tilde{\mu}_{\text{ex},a}^{k}F_{\text{ex},a}^{\text{ai},k}-\tilde{\mu}_{\text{gr},a}^{k}F_{\text{gr},a}^{\text{ai},k})-(\mu_{\text{ex},a}^{k}-\mu_{\text{gr},a}^{k}+\tilde{\mu}_{\text{ex},a}^{k}-\tilde{\mu}_{\text{gr},a}^{k})F_{\text{ex},a}^{\text{ai},k}\Bigr{]} \tag{11.77}

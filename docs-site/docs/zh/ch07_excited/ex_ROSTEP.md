@@ -12,6 +12,7 @@ title: "7.7.8 态靶向能量投影（State-Targeted Energy Projection）"
 STEP 通过对 Fock 矩阵进行简单修改来施加能级平移（level shift），
 
 <a id="Ch7.E80"></a>
+
 $$
 \text{{F}}^{\prime}=\text{{F}}+\eta\text{{SQS}}\;, \tag{7.80}
 $$
@@ -22,6 +23,7 @@ $\varepsilon_{a}+\eta$，对每一个包含在 **Q** 中的未占据轨道均如
 参数 $\eta$ 的选取原则是：在保留目标电子组态的前提下提供最小的能级平移，其定义如下：
 
 <a id="eq:eta-shift"></a>
+
 $$
 \eta=|\varepsilon_{\text{HOMO}}-\varepsilon_{\text{LUMO}}|+\epsilon^{\prime} \tag{7.81}
 $$

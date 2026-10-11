@@ -11,16 +11,19 @@ The equations for the second-order approximate coupled cluster singles and doubl
 are similar to the CCSD equations with the doubles amplitude equations approximated as:
 
 <a id="Ch6.E70"></a>
+
 $$
 E_{\mathrm{CC2}}=\langle\Phi_{0}\left|\hat{H}\exp\left(\hat{T}_{1}+\hat{T}_{2}\right)\right|\Phi_{0}\rangle \tag{6.70}
 $$
 
 <a id="Ch6.E71"></a>
+
 $$
 0=\left\langle{\Phi_{i}^{a}\left|{\bar{H}}+\left[{\bar{H}},\hat{T}_{2}\right]\right|\Phi_{0}}\right\rangle \tag{6.71}
 $$
 
 <a id="Ch6.E72"></a>
+
 $$
 0=\left\langle{\Phi_{ij}^{ab}\left|{\bar{H}}+\left[\hat{F},\hat{T}_{2}\right]\right|\Phi_{0}}\right\rangle \tag{6.72}
 $$
@@ -29,6 +32,7 @@ where the similarity-transformed Hamiltonian with the exponential function of th
 single excitation cluster operator is given by:
 
 <a id="Ch6.E73"></a>
+
 $$
 \bar{H}=\exp\left(-\hat{T}_{1}\right)\hat{H}\exp\left(\hat{T}_{1}\right) \tag{6.73}
 $$

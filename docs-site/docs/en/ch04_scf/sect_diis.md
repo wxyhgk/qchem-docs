@@ -14,6 +14,7 @@ method[[1136]](../bib_references/bib.md#bib1182)
 requires the density matrix to commute with the Fock matrix:
 
 <a id="eq:DIIS-error"></a>
+
 $$
 \mathbf{SPF}-\mathbf{FPS}=\bm{0}\;. \tag{4.30}
 $$
@@ -23,6 +24,7 @@ possible to define an error vector **e${}_{i}$**, which is non-zero except
 at convergence:
 
 <a id="eq446"></a>
+
 $$
 {\rm{\bf SP}}_{i}{\rm{\bf F}}_{i}-{\rm{\bf F}}_{i}{\rm{\bf P}}_{i}{\rm{\bf S}}={\rm{\bf e}}_{i} \tag{4.31}
 $$
@@ -30,6 +32,7 @@ $$
 Here $\mathbf{P}_{i}$ is obtained by diagonalizing $\mathbf{F}_{i}$, and
 
 <a id="eq447"></a>
+
 $$
 \mathbf{F}_{k}=\sum\limits_{j=1}^{k-1}{c_{j}{\rm{\bf F}}_{j}} \tag{4.32}
 $$
@@ -38,6 +41,7 @@ The DIIS coefficients $c_{k}$, are obtained by a least-squares constrained
 minimization of the error vectors, *viz*
 
 <a id="eq448"></a>
+
 $$
 Z=\left({\sum\limits_{k}{c_{k}{\rm{\bf e}}_{k}}}\right)\cdot\left({\sum\limits_{k}{c_{k}{\rm{\bf e}}_{k}}}\right) \tag{4.33}
 $$
@@ -46,6 +50,7 @@ where the constraint $\sum_{k}c_{k}=1$
 is imposed to yield a set of linear equations, of dimension $N+1$:
 
 <a id="eq450"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{{\rm{\bf e}}_{1}\cdot{\rm{\bf e}}_{1}}&\cdots&{{\rm{\bf e}}_{1}\cdot{\rm{\bf e}}_{N}}&1\\
 \vdots&\ddots&\vdots&\vdots\\
@@ -71,6 +76,7 @@ The rate of convergence may be improved by restricting the number of previous
 Fock matrices used for determining the DIIS coefficients,
 
 <a id="eq451"></a>
+
 $$
 \mathbf{F}_{k}=\sum_{j=k-(L+1)}^{k-1}c_{j}\,\mathbf{F}_{j}\;. \tag{4.35}
 $$

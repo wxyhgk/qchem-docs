@@ -25,6 +25,7 @@ title: "8.10.1 简介与概述"
 这类模型通过一个单电子算符 $U(r)$ 来描述内层的影响，其矩阵元直接加到单电子哈密顿矩阵上。ECP 算符表示为
 
 <a id="eq800"></a>
+
 $$
 U(r)=U_{L}(r)+\sum\limits_{\ell=0}^{L-1}{\sum\limits_{m=-l}^{+l}{\left|{Y_{\ell m}}\right\rangle U_{l}(r)\left\langle{Y_{\ell m}}\right|}} \tag{8.6}
 $$
@@ -32,6 +33,7 @@ $$
 其中径向势的形式为
 
 <a id="eq:radpot"></a>
+
 $$
 U_{\ell}(r)=\sum_{k=1}^{K_{\ell}}D_{\ell_{k}}\,r^{n_{\ell_{k}}}e^{-\eta_{\ell_{k}}r^{2}} \tag{8.7}
 $$

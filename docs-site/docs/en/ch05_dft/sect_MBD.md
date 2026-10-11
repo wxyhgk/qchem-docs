@@ -29,6 +29,7 @@ of such a system can then be evaluated exactly by diagonalizing the
 corresponding Hamiltonian:[[574]](../bib_references/bib.md#bib590)
 
 <a id="eq:mbdhamil"></a>
+
 $$
 \hat{H}_{\text{MBD}}=\frac{1}{2}\sum^{\text{atoms}}_{A}\hat{\nabla}^{2}_{\xi_{A}}+\frac{1}{2}\sum^{\text{atoms}}_{A}\omega^{2}_{A}\xi^{2}_{A}+\frac{1}{2}\sum^{\text{atoms}}_{A,B}\omega_{A}\omega_{B}(\alpha_{A}^{0}\alpha_{B}^{0})^{1/2}\xi_{A}T_{AB}\xi_{B}. \tag{5.52}
 $$
@@ -39,6 +40,7 @@ is the dipole potential between the oscillators $A$ and $B$.
 The MBD Hamiltonian is obtained through coarse-graining of the long-range correlation (through the long-range dipole tensor $\mathbf{T}_{\mathrm{lr}}$) and approximating the short-range polarizability via the adiabatic connection fluctuation-dissipation formula:
 
 <a id="eq:lrmbdcorr"></a>
+
 $$
 E^{\mathrm{MBD}}_{c,\text{lr}}=-\sum_{n=2}^{\infty}\frac{(-1)^{n}}{n}\int_{0}^{\infty}\frac{\mathrm{d}u}{2\pi}\sum_{AB}\mbox{tr}\Bigl{[}\bigl{\langle}(\mathbf{\alpha}_{\mathrm{eff}}\mathbf{T}_{\mathrm{lr}})^{n}\bigl{\rangle}_{\!AB}(iu)\Bigr{]}\;. \tag{5.53}
 $$
@@ -48,6 +50,7 @@ $\mathbf{\alpha}_{\mathrm{eff}}$ (of a given fragment) in terms of the
 polarizability of the corresponding QHO,
 
 <a id="Ch5.E54"></a>
+
 $$
 \alpha_{A}^{\mathrm{QHO}}(u)=\frac{q_{A}^{2}}{m_{A}(\omega_{A}^{2}-u^{2}-i\delta u)} \tag{5.54}
 $$
@@ -58,6 +61,7 @@ Eq. ([5.53](#eq:lrmbdcorr)) can be done analytically, leading to the so-called
 plasmon pole formula for the correlation energy,
 
 <a id="eq:mbdplasmon"></a>
+
 $$
 E_{c}=\frac{1}{2}\sum_{p=1}^{3N}(\bar{\omega}_{p}-\omega_{p}) \tag{5.55}
 $$

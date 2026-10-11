@@ -30,6 +30,7 @@ for the PBE, PBE0, BLYP, B3LYP, revPBE, M06L, and M06 functionals.
 The TS-vdW energy expression is based on a pairwise-additive model for the dispersion energy,
 
 <a id="eq:ts_energy"></a>
+
 $$
 E_{\text{vdW}}^{\text{TS}}=-\frac{1}{2}\sum^{\text{atoms}}_{A}\sum^{\text{A}}_{B\neq A}\left(\frac{C_{6,AB}^{\text{eff}}}{R_{AB}^{6}}\right)f_{\text{damp}}(R_{AB})\;. \tag{5.46}
 $$
@@ -38,6 +39,7 @@ As in DFT-D the $R^{-6}$ potentials in Eq. ([5.46](#eq:ts_energy)) must be damp
 at short range, and the TS-vdW model uses the damping function
 
 <a id="eq:fdamp_TS-vdW"></a>
+
 $$
 f_{\text{damp}}(R_{AB})=\frac{1}{1+\exp\bigl{[}-d(R_{AB}/s_{R}R_{\mathrm{vdW,}AB}^{\text{eff}}-1)\bigr{]}} \tag{5.47}
 $$
@@ -62,6 +64,7 @@ are constructed from the corresponding atomic parameters $C_{6,A}^{\text{eff}}$
 via
 
 <a id="Ch5.E48"></a>
+
 $$
 C_{6,AB}^{\text{eff}}=\frac{2C_{6,A}^{\text{eff}}C_{6,B}^{\text{eff}}}{\bigl{(}\alpha_{B}^{\text{0,eff}}/\alpha_{A}^{\text{0,eff}}\bigr{)}\,C_{6,A}^{\text{eff}}+\bigl{(}\alpha_{A}^{\text{0,eff}}/\alpha_{B}^{\text{0,eff}}\bigr{)}\,C_{6,B}^{\text{eff}}}\;, \tag{5.48}
 $$
@@ -73,6 +76,7 @@ environment. As indicated above, this is accomplished by scaling the
 corresponding free-atom values, *i.e.*,
 
 <a id="Ch5.E49"></a>
+
 $$
 C_{6,A}^{\text{eff}}=C_{6,A}^{\text{free}}\left(\frac{V_{A,\text{eff}}}{V_{A,\text{free}}}\right)^{\!2} \tag{5.49}
 $$
@@ -82,11 +86,13 @@ as determined using Hirshfeld partitioning. Effective atomic polarizabilities
 and vdW radii are obtained analogously:
 
 <a id="Ch5.E50"></a>
+
 $$
 \alpha^{\text{0,eff}}_{A}=\alpha_{A}^{\text{0,free}}\left(\frac{V_{A,\text{eff}}}{V_{A,\text{free}}}\right) \tag{5.50}
 $$
 
 <a id="Ch5.E51"></a>
+
 $$
 R_{\text{vdW,}A}^{\text{eff}}=R_{\text{vdW,}A}^{\text{free}}\left(\frac{V_{A,\text{eff}}}{V_{A,\text{free}}}\right)^{\!1/3}\;. \tag{5.51}
 $$

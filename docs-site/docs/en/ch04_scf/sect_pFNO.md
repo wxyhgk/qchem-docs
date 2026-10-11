@@ -20,6 +20,7 @@ to a finite-temperature formalism.
 The pFON method introduces a density matrix
 
 <a id="Ch4.E37"></a>
+
 $$
 P_{\mu\nu}=\sum_{p=1}^{N}\;n_{p}C_{\mu p}C_{\nu p} \tag{4.37}
 $$
@@ -29,6 +30,7 @@ conventional SCF calculation either $n_{p}=1$ (occupied) or $n_{p}=0$ (virtual).
 In pFON, the occupation numbers follow a Fermi-Dirac distribution,
 
 <a id="Ch4.E38"></a>
+
 $$
 n_{p}=\bigl{(}1+e^{(\epsilon_{p}-\epsilon_{\mathrm{F}})/kT}\bigr{)}^{-1}\;, \tag{4.38}
 $$

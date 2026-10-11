@@ -12,6 +12,7 @@ title: "5.9.1 概述"
  该 MP2 相关能校正包含一个同自旋（same-spin, ss）分量 $E_{c}^{\mathrm{ss}}$ 以及一个反自旋（opposite-spin, os）分量 $E_{c}^{\mathrm{os}}$，它们被加到 KS-DFT 计算得到的总能量上。为避免对相关性能量的重复计入（double-counting），引入了两个缩放参数 $c_{\mathrm{ss}}$ 和 $c_{\mathrm{os}}$：
 
 <a id="eq:dft2a"></a>
+
 $$
 E_{\text{DH-DFT}}=E_{\text{KS-DFT}}+c_{\mathrm{ss}}E_{c}^{\mathrm{ss}}+c_{\mathrm{os}}E_{c}^{\mathrm{os}} \tag{5.62}
 $$
@@ -19,6 +20,7 @@ $$
 理解形如式 ([5.62](#eq:dft2a)) 的泛函形式来源的一个出发点，是可为双杂化泛函提供严格定义的绝热连接公式（adiabatic connection formula）。人们考虑在虚构的非相互作用 KS 参考体系（$\lambda=0$）与真实物理体系（$\lambda=1$）之间的一条绝热路径，同时对所有 $\lambda$ 将电子密度固定为其在真实体系中的取值。于是
 
 <a id="sung1"></a>
+
 $$
 E_{\rm XC}\left[\rho\right]=\int_{0}^{1}U_{{\rm XC},\lambda}[\rho]\;d\lambda\,, \tag{5.63}
 $$
@@ -26,6 +28,7 @@ $$
 其中 $U_{{\rm XC},\lambda}$ 是耦合强度为 $\lambda$ 时的交换-相关能，其含义是：若哈密顿量中的电子–电子项取 $\lambda/r_{ij}$ 而非 $1/r_{ij}$ 的形式，所对应的交换-相关能。对该量使用线性模型，
 
 <a id="sung2"></a>
+
 $$
 U_{{\rm XC},\lambda}=a+b\lambda\;, \tag{5.64}
 $$
@@ -34,6 +37,7 @@ $$
  如果进一步使用 Görling-Levy 微扰理论（GL2）来定义 $\lambda=0$ 处的初始斜率，便可得到式 ([5.62](#eq:dft2a)) 中的双杂化泛函形式，其中包含涉及虚轨道的 MP2 型微扰项（PT2）：[[684]](../bib_references/bib.md#bib710)
 
 <a id="sung3"></a>
+
 $$
 U_{{\rm XC},\lambda}=\left.\frac{\partial U_{{\rm XC},\lambda}}{\lambda}\right|_{\lambda=0}=2E_{\rm C}^{\rm GL2}\,. \tag{5.65}
 $$

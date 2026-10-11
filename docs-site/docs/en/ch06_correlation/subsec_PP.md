@@ -9,6 +9,7 @@ title: "6.19.2 Perfect Pairing (PP)"
 To be more specific, the coupled cluster PP wave function is written as
 
 <a id="eqn:PP"></a>
+
 $$
 \left|\Psi\right\rangle=\exp\left({\sum_{i=1}^{n_{\mathrm{active}}}{t_{i}\hat{a}_{i\ast}^{{\dagger}}\hat{a}_{\bar{i}\ast}^{{\dagger}}\hat{a}_{\bar{i}}\hat{a}_{i}}}\right)\left|\Phi\right\rangle \tag{6.84}
 $$

@@ -213,6 +213,7 @@ oscillatory functions of the time $t$, and **Q-Chem**’s extrapolation procedur
 fits these oscillations to a power series in $t$:
 
 <a id="Ch9.E61"></a>
+
 $$
 F_{\mu\nu}(t)=\sum\limits_{n=0}^{N}{c_{n}\,}t^{n} \tag{9.61}
 $$
@@ -346,6 +347,7 @@ of the fastest vibrational frequency, and electronic oscillations, whose time
 scale $\tau_{\mathrm{elec}}$ may be estimated according to[[558]](../bib_references/bib.md#bib572)
 
 <a id="Ch9.E62"></a>
+
 $$
 \tau_{\mathrm{elec}}\geq\left(\frac{\mu}{\varepsilon_{\rm LUMO}-\varepsilon_{\rm HOMO}}\right)^{1/2} \tag{9.62}
 $$

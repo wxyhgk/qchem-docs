@@ -9,6 +9,7 @@ title: "7.9.27 EOM-CCSD 与 CCSD 的非迭代三激发修正"
 三激发对 EOM-CCSD 能量的影响可以通过微扰理论以经济高效的 ${\cal{O}}({N^{7}})$ 计算方案加以包含。以 EOM-CCSD 波函数作为零级波函数，第 $\mu$ 个 EOM-EE 或 SF 态的二阶三激发修正为：
 
 <a id="Ch7.E123"></a>
+
 $$
 \Delta E^{(2)}_{\mu}=-\frac{1}{36}\sum_{i,j,k}\sum_{a,b,c}\frac{{\tilde{\sigma}_{ijk}^{abc}}(\mu){\sigma_{ijk}^{abc}}(\mu)}{D_{ijk}^{abc}-\omega_{\mu}} \tag{7.123}
 $$
@@ -17,6 +18,7 @@ $$
 量 $\tilde{\sigma}$ 和 $\sigma$ 定义为：
 
 <a id="A3.S8.EGx59"></a>
+
 $$
 \displaystyle\tilde{\sigma}_{ijk}^{abc}(\mu) \tag{7.124}
 $$

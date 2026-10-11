@@ -22,6 +22,7 @@ title: "11.2.11 泊松边界条件（Poisson Boundary Conditions）"
 对于介电*函数*（而非介电*常数*），泊松方程最一般的形式为
 
 <a id="eq:Poisson"></a>
+
 $$
 \hat{\bm{\nabla}}\bm{\cdot}\left[\varepsilon(\mathbf{r})\hat{\bm{\nabla}}\varphi_{\rm tot}(\mathbf{r})\right]=-4\pi\rho_{\rm sol}(\mathbf{r})\;. \tag{11.25}
 $$
@@ -29,6 +30,7 @@ $$
 溶质的电荷密度将被拆分为核部分与电子部分，
 
 <a id="eq:rho"></a>
+
 $$
 \rho_{\rm sol}(\mathbf{r})=\rho_{\rm nuc}(\mathbf{r})+\rho_{\rm elec}(\mathbf{r})\;. \tag{11.26}
 $$
@@ -36,6 +38,7 @@ $$
 总静电势 $\varphi_{\rm tot}$ 由溶质自身的静电势 $\varphi_{\rm elec}+\varphi_{\rm nuc}$（由式 ([11.26](#eq:rho)) 中的密度求得）以及在介质中感应的极化势共同组成：
 
 <a id="eq:phi"></a>
+
 $$
 \varphi_{\rm tot}(\mathbf{r})=\varphi_{\rm elec}(\mathbf{r})+\varphi_{\rm nuc}(\mathbf{r})+\varphi_{\rm pol}(\mathbf{r})\;. \tag{11.27}
 $$
@@ -43,6 +46,7 @@ $$
 为计算 $\rho_{\rm elec}$，首先在笛卡尔网格上求出真空中静电势的电子贡献，
 
 <a id="eq:phi_elec"></a>
+
 $$
 \varphi_{\rm elec}(\mathbf{r}_{i})=\sum_{\mu\nu}^{N_{\rm basis}}P_{\mu\nu}\Bigl{\langle}g_{\mu}(\mathbf{r})\Bigl{|}\frac{1}{|\mathbf{r}-\mathbf{r}_{i}|}\Bigr{|}g_{\nu}(\mathbf{r})\Bigr{\rangle}\;. \tag{11.28}
 $$
@@ -50,6 +54,7 @@ $$
 其中 **P** 为单电子密度矩阵，$g_{\mu}$ 与 $g_{\nu}$ 是原子中心的 Gauss 型基函数，积分对 $\mathbf{r}$ 进行。于是溶质电荷密度的电子部分可由下式得到
 
 <a id="eq:rho_elec"></a>
+
 $$
 \rho_{\rm elec}(\mathbf{r})=-\frac{1}{4\pi}\hat{\nabla}^{2}\varphi_{\rm elec}(\mathbf{r})\;, \tag{11.29}
 $$
@@ -58,6 +63,7 @@ $$
  核电荷密度 $\rho_{\rm nuc}$ 则按经典方式描述，
 
 <a id="eq:rho_nuc"></a>
+
 $$
 \rho_{\rm nuc}(\mathbf{r})=-\sum_{A}^{N_{\rm atoms}}Z_{\!A}\ \delta\left(\mathbf{r}-\mathbf{R}_{A}\right)\;, \tag{11.30}
 $$
@@ -65,6 +71,7 @@ $$
 但为避免数值问题，实际计算中会把核电荷“抹平”到一个笛卡尔网格体素（voxel）之内。具体做法是把 $Z_{A}/dV$ 加到最靠近 $\mathbf{R}_{A}$ 的网格点上，其中 $dV$ 是笛卡尔体素的体积。真空中核的精确静电势按下式计算
 
 <a id="eq:phi_nuke"></a>
+
 $$
 \varphi_{\rm nuc}(\mathbf{r})=-\frac{1}{4\pi}\sum_{A}^{N_{\rm atoms}}\frac{Z_{\!A}}{|\mathbf{r}-\mathbf{R}_{A}|}\;. \tag{11.31}
 $$
@@ -76,6 +83,7 @@ $$
  所述流程，以迭代方式获得感应的极化电荷密度及相应的静电势。将式 ([11.25](#eq:Poisson)) 改写，使其形式上等同于真空中的泊松方程但附加了一个额外的源电荷密度：
 
 <a id="A3.S8.EGx104"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\hat{\nabla}^{2}\varphi_{\rm tot}(\mathbf{r})&\displaystyle=-4\pi\left[\frac{\rho_{\rm sol}(\mathbf{r})}{\varepsilon(\mathbf{r})}+\frac{\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi_{\rm tot}(\mathbf{r})}{4\pi}\right]\\
 &\displaystyle=-4\pi\bigl{[}\rho_{\rm sol}(\mathbf{r})+\rho_{\rm pol}(\mathbf{r})\bigr{]}\;,\end{aligned} \tag{11.32}
@@ -84,6 +92,7 @@ $$
 其中极化电荷密度为
 
 <a id="eq:rho_pol"></a>
+
 $$
 \rho_{\rm pol}(\mathbf{r})=\rho_{\rm iter}(\mathbf{r})+\left(\frac{1-\varepsilon(\mathbf{r})}{\varepsilon(\mathbf{r})}\right)\rho_{\rm sol}(\mathbf{r})\;. \tag{11.33}
 $$
@@ -91,6 +100,7 @@ $$
 迭代电荷密度 $\rho_{\rm iter}(\mathbf{r})$ 的形式为
 
 <a id="eq:rho_iter1"></a>
+
 $$
 \rho_{\rm iter}^{(k+1)}(\mathbf{r})=\frac{\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi^{(k)}_{\rm tot}(\mathbf{r})}{4\pi} \tag{11.34}
 $$
@@ -98,6 +108,7 @@ $$
 此为第 $k+1$ 次迭代。该函数仅在介电值从真空插值到溶剂的过渡区域中非零。另请注意，式 ([11.33](#eq:rho_pol)) 中的第二项在所有 $\varepsilon(\mathbf{r})=1$ 处为零。对 $\rho_{\mathrm{iter}}(\mathbf{r})$ 通过式 ([11.34](#eq:rho_iter1)) 执行更新 $\rho_{\mathrm{iter}}^{(k)}(\mathbf{r})\rightarrow\rho_{\mathrm{iter}}^{(k+1)}(\mathbf{r})$ 迭代至收敛，其中取 $\varphi^{(0)}_{\mathrm{tot}}(\mathbf{r})$ 为溶质在真空中的静电势。每次更新 $\rho_{\rm iter}(\mathbf{r})$ 都会生成一个新的极化电荷密度，并求解式 ([11.32](#eq:Poisson2)) 以获得新的总静电势。为稳定 $\rho_{\rm iter}(\mathbf{r})$ 的迭代更新，我们采用如下阻尼格式
 
 <a id="A3.S8.EGx105"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\rho_{\rm iter}^{(k+1)}(\mathbf{r})&\displaystyle=\frac{\eta}{4\pi}\bigl{[}\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi^{(k)}_{\rm tot}(\mathbf{r})\bigr{]}+(1-\eta)\rho_{\rm iter}^{(k)}(\mathbf{r})\\
 &\displaystyle=\eta\rho_{\rm iter}^{(k+1)}+(1-\eta)\rho_{\rm iter}^{(k)}(\mathbf{r})\end{aligned} \tag{11.35}
@@ -110,6 +121,7 @@ $$
 一旦总电荷密度与静电势迭代达到自洽，即可计算溶剂化自由能
 
 <a id="eq:Gpol"></a>
+
 $$
 G_{\rm pol}=\frac{1}{2}\int d\textbf{r}\;\varphi_{\rm pol}(\textbf{r})\;\rho_{\rm sol}(\mathbf{r})\;, \tag{11.36}
 $$
@@ -117,6 +129,7 @@ $$
 其中
 
 <a id="eq:phi_pol"></a>
+
 $$
 \varphi_{\rm pol}(\textbf{r})=\varphi_{\rm tot}(\textbf{r})-\varphi_{\rm sol}(\textbf{r})\;. \tag{11.37}
 $$
@@ -124,6 +137,7 @@ $$
 由于 $\varphi_{\mathrm{tot}}$ 与 $\rho_{\mathrm{tot}}$ 在每一次 SCF 迭代中都是自洽求得的，因此必须把极化效应纳入 Fock 矩阵。这通过加上修正项 $\Delta\hat{F}=\delta G_{\mathrm{pol}}/\delta\rho_{\mathrm{elec}}$ 来实现。该修正项在原子轨道基组下的矩阵形式为
 
 <a id="eq:fock"></a>
+
 $$
 \Delta F_{\mu\nu}=\int d\textbf{r}\;\varphi_{\rm pol}(\textbf{r})\;g_{\mu}(\textbf{r})\;g_{\nu}(\textbf{r})\;. \tag{11.38}
 $$
@@ -139,6 +153,7 @@ PCM 框架内的非平衡溶剂化在第 [11.2.3.3](topic_pcm-em.md#subsubsec:no
  下，式 ([11.32](#eq:Poisson2)) 变为[[266]](../bib_references/bib.md#bib268)
 
 <a id="eq:neq1"></a>
+
 $$
 -\frac{1}{4\pi}\hat{\nabla}^{2}\varphi_{{\rm tot},i}(\mathbf{r})=\rho_{{\rm sol},i}(\mathbf{r})+\rho^{\rm slow}_{{\rm pol},0}(\mathbf{r})+\rho^{\rm fast}_{{\rm pol},i}(\mathbf{r})\;, \tag{11.39}
 $$
@@ -146,6 +161,7 @@ $$
 其中电离态的快极化电荷密度 $\rho^{\rm fast}_{{\rm pol},i}$ 为
 
 <a id="eq:rho_pol_neq1"></a>
+
 $$
 \rho^{\rm fast}_{{\rm pol},i}(\mathbf{r})=\rho_{{\rm iter},i}(\mathbf{r})+\left(\frac{1-\varepsilon_{\rm opt}(\mathbf{r})}{\varepsilon_{\rm opt}(\mathbf{r})}\right)\bigl{[}\rho_{{\rm sol},i}(\mathbf{r})+\rho^{\rm slow}_{{\rm pol},0}(\mathbf{r})\bigr{]} \tag{11.40}
 $$
@@ -153,6 +169,7 @@ $$
 而快极化势 $\varphi^{\rm fast}_{{\rm pol},i}$ 为
 
 <a id="eq:phi_pol_neq1"></a>
+
 $$
 \varphi^{\rm fast}_{{\rm pol},i}(\textbf{r})=\varphi_{{\rm tot},i}(\textbf{r})-\varphi_{{\rm sol},i}(\textbf{r})-\varphi^{\rm slow}_{{\rm pol},0}(\mathbf{r})\;. \tag{11.41}
 $$
@@ -328,6 +345,7 @@ PEQS_SWITCH
  的做法，PEqS 计算中实现了该空腔的三维类比，使用连续且可微的球对称误差函数。该介电函数以参数方式依赖于核位置 $\mathbf{R}_{A}$，其形式为
 
 <a id="eq:rigidvdw"></a>
+
 $$
 \varepsilon(\mathbf{r};\{\mathbf{R}_{A}\})=\bigl{(}\varepsilon_{\rm solvent}-1\bigr{)}\ \left\{\prod_{A}^{N_{\rm atoms}}h(d_{A},\Delta;\lvert\mathbf{r}-\mathbf{R}_{A}\rvert)\right\}\;, \tag{11.42}
 $$
@@ -335,6 +353,7 @@ $$
 其中
 
 <a id="eq:h_func"></a>
+
 $$
 h(d_{A},\Delta;\lvert\mathbf{r}-\mathbf{R}_{A}\rvert)=\frac{1}{2}\left[1+{\rm
 erf}\left(\frac{\lvert\mathbf{r}-\mathbf{R}_{A}\rvert-d_{A}}{\Delta}\right)\right]\;. \tag{11.43}
@@ -434,6 +453,7 @@ $$
 将 **SoluteCavity** 关键字设为 **Spherical** 即请求在溶质周围构造球形空腔，并使用双曲正切函数将介电值从真空平滑插值到溶剂：[[267]](../bib_references/bib.md#bib267)
 
 <a id="eq:hyperbolic"></a>
+
 $$
 \varepsilon(r)=\frac{1}{2}\Bigl{\{}(\varepsilon_{\mathrm{solvent}}+1)+(\varepsilon_{\mathrm{solvent}}-1)\ \mbox{tanh}\bigl{[}\alpha(r-r_{\mathrm{mid}})\bigr{]}\Bigr{\}}\;. \tag{11.44}
 $$
@@ -494,6 +514,7 @@ $r_{\mathrm{mid}}$ 取为球半径 $R$ 与插值长度一半之和：$r_{\mathrm
 将 **Interface** 设为 **True** 后，笛卡尔网格上的介电函数会被进一步修改以模拟溶剂/真空界面。首先，按上文所述由 **SoluteCavity** 关键字指定的方式构造溶质空腔。然后，利用下述双曲正切切换函数，在 $z$ 方向上跨越 Gibbs 分界面（$z\equiv z_{\mathrm{GDS}}$）对介电函数进行平滑插值：[[267]](../bib_references/bib.md#bib267)
 
 <a id="eq:hyperbolic2"></a>
+
 $$
 \varepsilon(z)=\frac{1}{2}\Bigl{\{}(\varepsilon_{\rm solvent}+1)+(1-\varepsilon_{\rm solvent})\ \mbox{tanh}\bigl{[}\beta(z-z_{\mathrm{GDS}})\bigr{]}\Bigr{\}}\;. \tag{11.45}
 $$

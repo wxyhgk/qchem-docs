@@ -20,6 +20,7 @@ near any other nucleus. The integration weights provided by this scheme are
 multiplied into the Lebedev quadrature weights in any practical DFT calculation:
 
 <a id="eq:_becke_cell"></a>
+
 $$
 w_{n}(\mathbf{r})=\frac{P_{n}(\mathbf{r})}{\sum\limits_{m}P_{m}(\mathbf{r})} \tag{5.72}
 $$
@@ -87,6 +88,7 @@ partition.[[1160]](../bib_references/bib.md#bib1214)
 The fragment-based Hirshfeld (FBH) partition uses weights constructed from isolated fragment densities in the form,
 
 <a id="Ch5.E73"></a>
+
 $$
 w_{n}(\text{{r}})=\frac{\rho_{n}(\text{{r}})}{\sum\limits_{m}\rho_{m}(\text{{r}})}~{}, \tag{5.73}
 $$

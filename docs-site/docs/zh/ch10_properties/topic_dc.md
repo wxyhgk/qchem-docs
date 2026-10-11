@@ -11,6 +11,7 @@ title: "10.15.2 基于绝热态（Diabatic-State-Based）的方法"
 电荷转移涉及一对分子片段中电子数目的变化。作为示例，必要时我们将使用如下反应，将其推广到其他情形是直接的：
 
 <a id="eq:electron-transfer"></a>
+
 $$
 \mathrm{D}^{-}\mathrm{A}\longrightarrow\mathrm{D}\mathrm{A}^{-} \tag{10.177}
 $$
@@ -18,6 +19,7 @@ $$
 其中额外的电子初始定域在给体（donor，D）上，而在终态中它定域在受体（acceptor，A）上。初态与终电子态的两态久期方程（secular equation）可写为
 
 <a id="eq:2by2HS"></a>
+
 $$
 {\bf H}-E{\bf S}=\left(\begin{array}[]{cc}H_{\mathrm{ii}}-S_{\mathrm{ii}}E&H_{\mathrm{if}}-S_{\mathrm{if}}E\\
 H_{\mathrm{if}}-S_{\mathrm{if}}E&H_{\mathrm{ff}}-S_{\mathrm{ff}}E\end{array}\right)=0 \tag{10.178}
@@ -26,6 +28,7 @@ $$
 除初态与终态之间的非正交性之外，这非常接近一个本征值问题。利用 Löwdin 变换可以得到式 ([10.178](#eq:2by2HS)) 的标准本征值形式：
 
 <a id="Ch10.E179"></a>
+
 $$
 \mathbf{H}_{\textrm{eff}}=\mathbf{S}^{-1/2}\mathbf{H}\mathbf{S}^{-1/2}, \tag{10.179}
 $$
@@ -33,6 +36,7 @@ $$
 其中有效哈密顿矩阵的非对角元表示该反应的*电子耦合（electronic coupling）*，其定义为
 
 <a id="eq:coupling-normal"></a>
+
 $$
 V=H^{\textrm{eff}}_{\mathrm{if}}=\frac{H_{\mathrm{if}}-S_{\mathrm{if}}(H_{\mathrm{ii}}+H_{\mathrm{ff}})/2}{1-S^{2}_{\mathrm{if}}} \tag{10.180}
 $$
@@ -40,6 +44,7 @@ $$
 在初态与终态未归一化的一般情形下，电子耦合写作
 
 <a id="eq:coupling"></a>
+
 $$
 V=\sqrt{S_{\mathrm{ii}}S_{\mathrm{ff}}}\times\frac{H_{\mathrm{if}}-S_{\mathrm{if}}(H_{\mathrm{ii}}/S_{\mathrm{ii}}+H_{\mathrm{ff}}/S_{\mathrm{ff}})/2}{S_{\mathrm{ii}}S_{\mathrm{ff}}-S^{2}_{\mathrm{if}}} \tag{10.181}
 $$
@@ -62,6 +67,7 @@ DC 方法的核心基于相应的轨道变换（corresponding orbital transforma
 设 $|\Psi_{a}\rangle$ 与 $|\Psi_{b}\rangle$ 为初态和终态的两个单 Slater 行列式波函数，$\mathbf{a}$ 与 $\mathbf{b}$ 分别为其自旋轨道集合：
 
 <a id="A3.S8.EGx91"></a>
+
 $$
 \displaystyle\mathbf{a} \tag{10.182}
 $$
@@ -69,6 +75,7 @@ $$
 由于两组自旋轨道不正交，可以定义重叠矩阵 $\mathbf{S}$：
 
 <a id="Ch10.E184"></a>
+
 $$
 \mathbf{S}=\int\mathbf{b}^{\dagger}\mathbf{a}\ d\tau. \tag{10.184}
 $$
@@ -77,6 +84,7 @@ $$
  使用两组新的正交自旋轨道。在此方法中，每组自旋轨道 $\mathbf{a}$ 与 $\mathbf{b}$ 进行线性变换，
 
 <a id="A3.S8.EGx92"></a>
+
 $$
 \displaystyle\hat{\mathbf{a}} \tag{10.185}
 $$
@@ -84,6 +92,7 @@ $$
 其中 $\mathbf{V}$ 与 $\mathbf{U}$ 分别是 $\mathbf{S}$ 的奇异值分解（singular value decomposition，SVD）中的左奇异矩阵与右奇异矩阵：
 
 <a id="Ch10.E187"></a>
+
 $$
 \mathbf{S}=\mathbf{U}\hat{\mathbf{s}}\mathbf{V}^{\dagger} \tag{10.187}
 $$
@@ -91,6 +100,7 @@ $$
 新基下的重叠矩阵此时为对角矩阵
 
 <a id="Ch10.E188"></a>
+
 $$
 \int\hat{\mathbf{b}}^{\dagger}\hat{\mathbf{a}}=\mathbf{U}^{\dagger}\left(\int\mathbf{b}^{\dagger}\mathbf{a}\right)\mathbf{V}=\hat{\mathbf{s}} \tag{10.188}
 $$
@@ -100,6 +110,7 @@ $$
 分子中电子的哈密顿量是一电子算符与二电子算符之和。下面推导一电子与二电子算符的表达式
 
 <a id="Ch10.E189"></a>
+
 $$
 \displaystyle\Omega^{(1)} \tag{10.189a}
 $$
@@ -107,6 +118,7 @@ $$
 其中
 
 <a id="Ch10.E190"></a>
+
 $$
 \displaystyle\omega(i) \tag{10.190a}
 $$
@@ -114,6 +126,7 @@ $$
 于是哈密顿的矩阵元可表示为 $H_{ab}=\Omega^{(1)}_{ab}+\Omega^{(2)}_{ab}$，其中
 
 <a id="Ch10.E191"></a>
+
 $$
 \Omega^{(1)}_{ab}=\langle\Psi_{b}|\Omega^{(1)}|\Psi_{a}\rangle=\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\sum^{N}_{i=1}\langle\hat{b}_{i}|\omega(1)|\hat{a}_{i}\rangle\prod^{N}_{j\neq i}\hat{s}_{jj} \tag{10.191}
 $$
@@ -121,6 +134,7 @@ $$
 以及
 
 <a id="eq:2par"></a>
+
 $$
 \Omega^{(2)}_{ab}=\langle\Psi_{b}|\Omega^{(2)}|\Psi_{a}\rangle=\frac{1}{2}\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\sum^{N}_{ij}\langle\hat{b}_{i}\hat{b}_{j}|\omega(1,2)(1-P_{12})|\hat{a}_{i}\hat{a}_{j}\rangle\prod^{N}_{k\neq{i,j}}\hat{s}_{kk}\;. \tag{10.192}
 $$
@@ -128,6 +142,7 @@ $$
 重叠积分为
 
 <a id="eq:1par"></a>
+
 $$
 S_{ab}=\langle\Psi_{b}|\Psi_{a}\rangle=\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\prod_{i=1}^{N}\hat{s}_{ii}\;. \tag{10.193}
 $$
@@ -135,6 +150,7 @@ $$
 在原子轨道基组（atomic orbital basis set）$\{\chi\}$ 中，我们可以将分子自旋轨道 $\mathbf{a}$ 与 $\mathbf{b}$ 展开，
 
 <a id="A3.S8.EGx95"></a>
+
 $$
 \displaystyle\mathbf{a}=\chi\mathbf{A},\qquad\hat{\mathbf{a}}=\chi\mathbf{A}\mathbf{V}=\chi\hat{\mathbf{A}} \tag{10.194}
 $$
@@ -142,6 +158,7 @@ $$
 一电子项，即式 ([10.193](#eq:1par))，可以表示为
 
 <a id="A3.S8.EGx96"></a>
+
 $$
 \displaystyle\Omega^{(1)}_{ab} \tag{10.196}
 $$
@@ -149,6 +166,7 @@ $$
 其中 $\displaystyle T_{ii}=S_{ab}/\hat{s}_{ii}$，并定义广义密度矩阵（generalized density matrix）$\mathbf{G}$：
 
 <a id="eq:g-density"></a>
+
 $$
 \mathbf{G}=\hat{\mathbf{A}}\mathbf{T}\hat{\mathbf{B}}^{\dagger}\;. \tag{10.197}
 $$
@@ -156,6 +174,7 @@ $$
 类似地，二电子项，即式 ([10.192](#eq:2par))，为
 
 <a id="A3.S8.EGx97"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Omega^{(2)}_{ab}&\displaystyle=\frac{1}{2}\sum_{ij}\sum_{\lambda\sigma}\sum_{\mu\nu}\hat{A}_{\lambda i}\hat{A}_{\sigma j}\left(\frac{1}{\hat{s}_{ii}}\right)T_{jj}\hat{B}^{\dagger}_{i\mu}\hat{B}^{\dagger}_{j\nu}\langle\chi_{\mu}\chi_{\nu}|\omega(1,2)|\chi_{\lambda}\chi_{\sigma}\rangle\\
 &\displaystyle=\sum_{\lambda\sigma\mu\nu}G^{\text{L}}_{\lambda\mu}G^{\text{R}}_{\sigma\nu}\langle\mu\nu||\lambda\sigma\rangle\end{aligned} \tag{10.198}
@@ -166,11 +185,13 @@ $$
 $\alpha$ 自旋与 $\beta$ 自旋轨道被显式处理。用空间轨道表示时，一电子与二电子贡献可化简为
 
 <a id="eq:1par-g-ab"></a>
+
 $$
 \Omega^{(1)}_{ab}=\sum_{\lambda\sigma}G^{\alpha}_{\lambda\sigma}\omega_{\sigma\lambda}+\sum_{\lambda\sigma}G^{\beta}_{\lambda\sigma}\omega_{\sigma\lambda} \tag{10.199}
 $$
 
 <a id="A3.S8.EGx98"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Omega^{(2)}_{ab}&\displaystyle=\sum_{\lambda\sigma\mu\nu}G^{\text{L}\alpha}_{\lambda\mu}G^{\text{R}\alpha}_{\sigma\nu}(\langle\mu\nu|\lambda\sigma\rangle-\langle\mu\nu|\sigma\lambda\rangle)+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\beta}_{\lambda\mu}G^{\text{R}\alpha}_{\sigma\nu}\langle\mu\nu|\lambda\sigma\rangle\\
 &\displaystyle\qquad+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\alpha}_{\lambda\mu}G^{\text{R}\beta}_{\sigma\nu}\langle\mu\nu|\lambda\sigma\rangle+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\beta}_{\lambda\mu}G^{\text{R}\beta}_{\sigma\nu}(\langle\mu\nu|\lambda\sigma\rangle-\langle\mu\nu|\sigma\lambda\rangle)\end{aligned} \tag{10.200}
@@ -313,6 +334,7 @@ $$
  FMO 耦合值本质上是一个考虑了重叠的 Kohn-Sham 矩阵非对角元，
 
 <a id="eq:coupling-FMO"></a>
+
 $$
 V^{\mathrm{FMO}}=\frac{f_{\mathrm{DA}}-S\left(f_{\mathrm{DD}}+f_{\mathrm{AA}}\right)/2}{1-S^{2}} \tag{10.201}
 $$

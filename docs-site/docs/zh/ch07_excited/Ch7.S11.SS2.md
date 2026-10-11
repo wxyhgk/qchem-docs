@@ -15,6 +15,7 @@ title: "7.11.2 受限活性空间（RAS）方案"
 单参考 RAS-CI 电子波函数通过对参考行列式 $|\phi^{\text{(0)}}\rangle$ 施加自旋翻转（spin-flipping）算符或激发算符 $\hat{R}$ 而得到。
 
 <a id="Ch7.E163"></a>
+
 $$
 \left|{\Psi}^{\text{RAS}}\right>=\hat{R}\left|\phi^{\text{(0)}}\right> \tag{7.163}
 $$
@@ -22,6 +23,7 @@ $$
 $\hat{R}$ 算符必须遵守在子空间 RAS1、RAS2 和 RAS3 中所施加的限制，并可分解为
 
 <a id="eqRoperator"></a>
+
 $$
 \hat{R}=\hat{r}^{\text{RAS2}}+\hat{r}^{h}+\hat{r}^{p}+\hat{r}^{hp}+\hat{r}^{2h}+\hat{r}^{2p}+\cdots\;. \tag{7.164}
 $$

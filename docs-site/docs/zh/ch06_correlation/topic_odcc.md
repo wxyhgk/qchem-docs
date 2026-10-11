@@ -9,6 +9,7 @@ title: "6.12.8 优化轨道耦合簇双激发（OD）"
 通过省略单替换（single substitutions）（*即*，将 $T_{1}$ 算符置为零），可以极大地简化 CCSD 方程。如果仍使用相同的单行列式参考态（具体为 Hartree-Fock 行列式），则由此定义了耦合簇双激发（coupled-cluster doubles, CCD）方法，其由下列方程给出：
 
 <a id="eq527"></a>
+
 $$
 \displaystyle E_{\text{CCD}} \tag{6.75a}
 $$
@@ -19,6 +20,7 @@ CCD 方法本身通常不被推荐，因为虽然所有的对关联（pair corre
  OD 方法由上述 CCD 方程加上一组附加条件定义，即团簇能量相对于轨道变化取极小值。这可以用数学形式表达为
 
 <a id="eq529"></a>
+
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{i}^{a}}=0 \tag{6.76}
 $$

@@ -10,6 +10,7 @@ title: "5.5.2 角向网格"
 $f(\mathbf{r})\equiv f(r,\theta,\phi)$ 可以按球谐函数（spherical harmonic function）精确展开，
 
 <a id="Ch5.E16"></a>
+
 $$
 f(r,\theta,\phi)=\sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell}c_{\ell m}\mbox{Y}_{\ell m}(\theta,\phi)\;. \tag{5.16}
 $$

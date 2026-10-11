@@ -22,6 +22,7 @@ complete set of correlated excited states is obtained by applying physical
 excitation operators $\hat{C}_{J}$.
 
 <a id="eq:adc_pp_precursor_states"></a>
+
 $$
 \left|\bar{\Psi}_{J}^{N}\right>=\hat{C}_{J}\left|\Psi_{0}^{N}\right> \tag{7.133}
 $$
@@ -29,6 +30,7 @@ $$
 with
 
 <a id="eq:adc_pp_excitation_operator"></a>
+
 $$
 \left\{\hat{C}_{J}\right\}=\left\{c^{\dagger}_{a}c_{i};c^{\dagger}_{a}c^{\dagger}_{b}c_{i}c_{j},i<j,a<b;\ldots\right\} \tag{7.134}
 $$
@@ -43,6 +45,7 @@ $\{|\tilde{\Psi}_{J}^{N}\rangle\}$ in which the Hamiltonian of the system can be
 represented forming the Hermitian ADC matrix
 
 <a id="Ch7.E135"></a>
+
 $$
 M_{IJ}=\left<\tilde{\Psi}_{I}^{N}\right|\hat{H}-E_{0}^{N}\left|\tilde{\Psi}_{J}^{N}\right> \tag{7.135}
 $$
@@ -51,6 +54,7 @@ Here, the Hamiltonian of the system is shifted by the exact ground state
 energy $E_{0}^{N}$. The solution of the secular ISR equation
 
 <a id="Ch7.E136"></a>
+
 $$
 \mathbf{M}\mathbf{X}=\mathbf{X}\mathbf{\Omega},\;\;\text{ with }\;\;\mathbf{X}^{\dagger}\mathbf{X}=\mathbf{1} \tag{7.136}
 $$
@@ -60,6 +64,7 @@ eigenvectors the exact excited states in terms of the intermediate states can
 be constructed as
 
 <a id="Ch7.E137"></a>
+
 $$
 \left|\Psi_{n}^{N}\right>=\sum_{J}X_{nJ}\left|\tilde{\Psi}_{J}^{N}\right> \tag{7.137}
 $$
@@ -67,6 +72,7 @@ $$
 This also allows for the calculation of dipole transition moments via
 
 <a id="Ch7.E138"></a>
+
 $$
 T_{n}=\left<\Psi_{n}^{N}\right|\hat{\mu}\left|\Psi_{0}^{N}\right>=\sum_{J}X_{nJ}^{\dagger}\left<\tilde{\Psi}_{J}^{N}\right|\hat{\mu}\left|\Psi_{0}^{N}\right>, \tag{7.138}
 $$
@@ -74,6 +80,7 @@ $$
 as well as excited state properties via
 
 <a id="Ch7.E139"></a>
+
 $$
 O_{n}=\left<\Psi_{n}^{N}\right|\hat{o}\left|\Psi_{n}^{N}\right>=\sum_{I,J}X_{nI}^{\dagger}X_{nJ}\left<\tilde{\Psi}_{I}^{N}\right|\hat{o}\left|\Psi_{J}^{N}\right>, \tag{7.139}
 $$

@@ -119,6 +119,7 @@ CC_TRANS_PROP *确实*需要被设置。
 单光子吸收的振子强度通常在长度规范（“lg”）下计算
 
 <a id="Ch7.E110"></a>
+
 $$
 f^{\rm{lg}}=\frac{2\omega_{fn}}{3}\sum_{\alpha=x,y,z}\langle n|\hat{\mu}_{\alpha}|f\rangle\langle f|\hat{\mu}_{\alpha}|n\rangle, \tag{7.110}
 $$
@@ -126,11 +127,13 @@ $$
 其中 $\hat{\mu}$ 是电偶极矩算符，但它也可以在速度规范（“vg”）和混合规范（“mx”）下表示为
 
 <a id="Ch7.E111"></a>
+
 $$
 f^{\rm{vg}}=\frac{2}{3\omega_{fn}}\sum_{\alpha=x,y,z}\langle n|\hat{p}_{\alpha}|f\rangle\langle f|\hat{p}_{\alpha}|n\rangle, \tag{7.111}
 $$
 
 <a id="Ch7.E112"></a>
+
 $$
 f^{\rm{mx}}=\frac{2i}{3}\sum_{\alpha=x,y,z}\langle n|\hat{\mu}_{\alpha}|f\rangle\langle f|\hat{p}_{\alpha}|n\rangle, \tag{7.112}
 $$
@@ -158,6 +161,7 @@ $f^{\rm lg}$ 作为默认跃迁性质计算，另外两种则需要手动激活�
 CC 理论下 ECD 的旋转强度定义为：
 
 <a id="A3.S8.EGx56"></a>
+
 $$
 \displaystyle R^{\text{lg}}_{nf} \tag{7.113}
 $$
@@ -205,6 +209,7 @@ Wigner–Eckart 定理计算完整的自旋-轨道矩阵。我们按自旋属性
 激发算符
 
 <a id="A3.S8.EGx57"></a>
+
 $$
 \displaystyle T^{1,1}_{p,q}=-a^{\dagger}_{p\alpha}a_{q\beta} \tag{7.115}
 $$
@@ -213,6 +218,7 @@ $$
 分解为 Clebsch–Gordan 系数与约化矩阵元：
 
 <a id="eq:WignerEckart_u"></a>
+
 $$
 \langle\Psi_{I}SM|T^{1,k}_{p,q}|\Psi_{J}S^{\prime}M^{\prime}\rangle=\langle S^{\prime}M^{\prime}|1k|SM\rangle\langle\Psi_{I}S||T^{1,\cdot}_{p,q}||\Psi_{J}S^{\prime}\rangle, \tag{7.118}
 $$
@@ -222,6 +228,7 @@ $$
 记为 $u^{1,\cdot}$。自旋-轨道约化矩阵元通过与 $u^{1,\cdot}$ 求迹得到：
 
 <a id="A3.S8.EGx58"></a>
+
 $$
 \displaystyle\langle\Psi_{I}S||H_{L_{-}}||\Psi_{J}S^{\prime}\rangle=-\frac{1}{2}\sum_{p,q}h^{SO}_{L_{-};p,q}u^{1,\cdot}_{p,q} \tag{7.119}
 $$
@@ -352,6 +359,7 @@ EOM-CC 波函数的非绝热（绝热）耦合（nonadiabatic (derivative) coupl
 我们采用 Szalay 的方法，其中耦合通过修改的解析梯度代码，经由“求和态（summed states）”计算：[[1336]](../bib_references/bib.md#bib1394)
 
 <a id="eq:Szalay:ExactH"></a>
+
 $$
 h^{x}_{IJ}\equiv\langle\Psi_{I}|H^{x}|\Psi_{J}\rangle=\frac{1}{2}\left(G_{(I+J)}-G_{I}-G_{J}\right), \tag{7.122}
 $$

@@ -36,6 +36,7 @@ The implementation of one-electron SOC, options (i) and (ii), is based on the f
 The SOCs are computed by evaluating matrix elements of the one-electron part of the Breit-Pauli Hamiltonian:
 
 <a id="eq:HSO_Breit_Pauli"></a>
+
 $$
 \hat{H}_{\text{SO}}=-\frac{\alpha_{0}^{2}}{2}\sum_{i,A}\frac{Z_{A}}{r^{3}_{iA}}\left(\mathbf{r}_{iA}\times\mathbf{p}_{i}\right)\bm{\cdot}\mathbf{s}_{i} \tag{7.38}
 $$
@@ -45,6 +46,7 @@ the fine structure constant, and $Z_{A}$ is the bare positive charge on nucleus 
 In the second quantization representation, the spin-orbit Hamiltonian in different directions can be expressed as
 
 <a id="Ch7.E39"></a>
+
 $$
 \displaystyle\hat{H}_{\text{SO},x} \tag{7.39a}
 $$
@@ -54,6 +56,7 @@ $\tilde{L}_{\alpha,pq}$ are the matrix elements of this operator. The single-ref
 excited states (within the TDA) are given by
 
 <a id="Ch7.E40"></a>
+
 $$
 \displaystyle\big{|}\Phi^{I}_{\text{singlet}}\big{\rangle} \tag{7.40a}
 $$
@@ -61,6 +64,7 @@ $$
 where $s^{Ia}_{i}$ and $t^{Ia}_{i}$ are singlet and triplet excitation coefficients of the $I$th singlet or triplet state respectively, with the normalization
 
 <a id="Ch7.E41"></a>
+
 $$
 \sum_{ia}(s^{Ia}_{i})^{2}=\sum_{ia}(t^{Ia}_{i})^{2}=\frac{1}{2}\;. \tag{7.41}
 $$
@@ -69,6 +73,7 @@ The quantity $|\Phi_{\text{HF}}\rangle$ refers to the Hartree-Fock ground state.
 singlet state to different triplet manifolds are
 
 <a id="Ch7.E42"></a>
+
 $$
 \big{\langle}\Phi^{I}_{\text{singlet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=0}_{\text{triplet}}\big{\rangle}=\frac{\alpha_{0}^{2}\hbar}{2}\left(\sum_{i,a,b}\tilde{L}_{z,ab}\;s^{Ia}_{i}\;t^{Jb}_{i}-\sum_{i,j,a}\tilde{L}_{z,ij}\;s^{Ia}_{i}\;t^{Ja}_{j}\right) \tag{7.42}
 $$
@@ -76,6 +81,7 @@ $$
 or
 
 <a id="A3.S8.EGx45"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\big{\langle}\Phi^{I}_{\text{singlet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=\pm 1}_{\text{triplet}}\big{\rangle}&\displaystyle=\mp\frac{\alpha_{0}^{2}\hbar}{2\sqrt{2}}\left(\sum_{i,a,b}\tilde{L}_{x,ab}\;s^{Ia}_{i}\;t^{Jb}_{i}-\sum_{i,j,a}\tilde{L}_{x,ij}\;s^{Ia}_{i}\;t^{Ja}_{j}\right)\\
 &\displaystyle\qquad\qquad+\frac{\alpha_{0}^{2}\hbar}{2\sqrt{2}\text{i}}\left(\sum_{i,a,b}\tilde{L}_{y,ab}\;s^{Ia}_{i}\;t^{Jb}_{i}-\sum_{i,j,a}\tilde{L}_{y,ij}\;s^{Ia}_{i}\;t^{Ja}_{j}\right)\;.\end{aligned} \tag{7.43}
@@ -84,6 +90,7 @@ $$
 The SOC constant between different triplet manifolds can be obtained as
 
 <a id="A3.S8.EGx46"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\big{\langle}\Phi^{I,M_{s}=0}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=\pm 1}_{\text{triplet}}\big{\rangle}&\displaystyle=\mp\frac{\alpha_{0}^{2}\hbar}{2\sqrt{2}}\left(\sum_{i,a,b}\tilde{L}_{x,ab}\;t^{Ia}_{i}\;t^{Jb}_{i}+\sum_{i,j,a}\tilde{L}_{x,ij}\;t^{Ia}_{i}\;t^{Ja}_{j}\right)\\
 &\displaystyle\qquad\qquad\frac{\alpha_{0}^{2}\hbar}{2\sqrt{2}\text{i}}\left(\sum_{i,a,b}\tilde{L}_{y,ab}\;t^{Ia}_{i}\;t^{Jb}_{i}+\sum_{i,j,a}\tilde{L}_{y,ij}\;t^{Ia}_{i}\;t^{Ja}_{j}\right)\end{aligned} \tag{7.44}
@@ -92,6 +99,7 @@ $$
 or
 
 <a id="Ch7.E45"></a>
+
 $$
 \big{\langle}\Phi^{I,M_{s}=\pm 1}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=\pm 1}_{\text{triplet}}\big{\rangle}=\pm\frac{\alpha_{0}^{2}\hbar}{2}\left(\sum_{i,a,b}\tilde{L}_{z,ab}\;t^{Ia}_{i}\;t^{Jb}_{i}+\sum_{i,j,a}\tilde{L}_{z,ij}\;t^{Ia}_{i}\;t^{Ja}_{j}\right)\;. \tag{7.45}
 $$
@@ -99,6 +107,7 @@ $$
 Note that
 
 <a id="Ch7.E46"></a>
+
 $$
 \big{\langle}\Phi^{I,M_{s}=0}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=0}_{\text{triplet}}\big{\rangle}=0=\big{\langle}\Phi^{I,M_{s}=\pm 1}_{\text{triplet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J,M_{s}=\mp 1}_{\text{triplet}}\big{\rangle}\;. \tag{7.46}
 $$
@@ -106,6 +115,7 @@ $$
 The total (root-mean-square) spin-orbit coupling is
 
 <a id="eqn:soc_const"></a>
+
 $$
 \displaystyle\big{\langle}\Phi^{I}_{\text{singlet}}\big{|}\hat{H}_{\text{SO}}\big{|}\Phi^{J}_{\text{triplet}}\big{\rangle} \tag{7.47a}
 $$
@@ -285,6 +295,7 @@ Breit–Pauli Hamiltonian at the post-SCF level.
 Within a CIS or TDDFT/TDA-SOC, the wave function is represented as
 
 <a id="A3.S8.EGx48"></a>
+
 $$
 \displaystyle\left|{\Psi}\right\rangle=\sum_{\epsilon}{\sum_{ia}{t_{ia}^{(\epsilon)}\left|{\Phi_{i}^{a(\epsilon)}}\right\rangle}} \tag{7.48}
 $$
@@ -292,6 +303,7 @@ $$
 where $\epsilon$ is a label of spin, and
 
 <a id="A3.S8.EGx49"></a>
+
 $$
 \displaystyle\left|{\Phi_{i}^{a(\epsilon)}}\right\rangle\equiv\begin{cases}\frac{1}{\sqrt{2}}\left(|{\Psi_{i_{\alpha}}^{a_{\alpha}}}\rangle+|{\Psi_{i_{\beta}}^{a_{\beta}}}\rangle\right)&\text{if }\epsilon=\text{singlet}\\
 \frac{1}{\sqrt{2}}\left(|{\Psi_{i_{\alpha}}^{a_{\alpha}}}\rangle-|{\Psi_{i_{\beta}}^{a_{\beta}}}\rangle\right)&\text{if }\epsilon=\text{triplet,}m_{s}=0\\
@@ -303,6 +315,7 @@ The spin-adiabatic wave functions in Eq. ([7.48](#eq:spinadiabatdef)) are obtai
 having $(4N_{O}N_{V})^{2}$ total matrix elements:
 
 <a id="A3.S8.EGx50"></a>
+
 $$
 \displaystyle H=A+V_{\text{SO}}+V_{m} \tag{7.50}
 $$
@@ -310,6 +323,7 @@ $$
 In Eq. ([7.50](#eq:tda_soc)), $A$ is the usual CIS-like TDDFT/TDA linear response matrix (including the one-electron and two-electron terms):
 
 <a id="A3.S8.EGx51"></a>
+
 $$
 \displaystyle\langle{\Phi_{\bm{i}}^{\bm{a}}}|{A}|{\Phi_{\bm{j}}^{\bm{b}}}\rangle \tag{7.51}
 $$
@@ -320,6 +334,7 @@ where the indices $\bm{a},\bm{b},\bm{i},\bm{j}$ are the spin-orbitals, $F$ is th
 The $V_{\text{SO}}$ in Eq. ([7.50](#eq:tda_soc)) is the one-electron SOC Hamiltonian appearing in Eq. ([7.38](#eq:HSO_Breit_Pauli)), and the $V_{m}=g\mu_{B}\mathbf{B}\cdot\mathbf{S}$ is the spin-Zeeman term. Here $g=2$ is assumed. (The coupling between orbital motion and magnetic field is not yet included.) In matrix form, $V_{\text{SO}}+V_{m}$ reads
 
 <a id="A3.S8.EGx52"></a>
+
 $$
 \displaystyle\langle{\Psi_{\bm{i}}^{\bm{a}}}|{V_{\text{SO}}+V_{m}}|{\Psi_{\bm{j}}^{\bm{b}}}\rangle=V_{\bm{a}\bm{b}}\delta_{\bm{i}\bm{j}}-V_{\bm{j}\bm{i}}\delta_{\bm{a}\bm{b}} \tag{7.52}
 $$
@@ -327,6 +342,7 @@ $$
 The matrix elements of $V$ are given by
 
 <a id="A3.S8.EGx53"></a>
+
 $$
 \displaystyle V_{p_{\alpha}q_{\alpha}} \tag{7.53}
 $$

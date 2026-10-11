@@ -69,6 +69,7 @@ Joonho Lee 在 Martin Head-Gordon 的指导下开发了一套新的正则化 OOM
 $\kappa$-正则化器对 MP2 关联能的修正如下：
 
 <a id="eq:kmp2"></a>
+
 $$
 E_{\kappa-\text{MP2}}=-\frac{1}{4}\sum_{ijab}\frac{|\langle ij||ab\rangle|^{2}}{\Delta_{ij}^{ab}}\left(1-\exp(-\kappa\Delta_{ij}^{ab})\right)^{2} \tag{6.29}
 $$

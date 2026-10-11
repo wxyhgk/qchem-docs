@@ -11,6 +11,7 @@ title: "10.2.2 Atomic Partial Charges"
 The one-electron charge density,
 
 <a id="eq1001"></a>
+
 $$
 \rho({\rm{\bf r}})=\sum\limits_{\mu\nu}{P_{\mu\nu}\,\phi_{\mu}({\rm{\bf r}})\,\phi_{\nu}({\rm{\bf r}})}\;, \tag{10.1}
 $$
@@ -21,6 +22,7 @@ nucleus in a molecule. However, since the number of electrons $N$ is related to
 the occupied orbitals $\psi_{i}$ by
 
 <a id="eq1002"></a>
+
 $$
 N=2\sum_{a}^{N/2}\bigl{|}\psi_{a}(\mathbf{r})\bigr{|}^{2} \tag{10.2}
 $$
@@ -29,6 +31,7 @@ We can substitute the atomic orbital (AO) basis expansion of $\psi_{a}$ into
 Eq. ([10.2](#eq1002)) to obtain
 
 <a id="eq1003"></a>
+
 $$
 N=\sum_{\mu\nu}P_{\mu\nu}S_{\mu\nu}=\sum_{\mu}\left(\mathbf{PS}\right)_{\mu\mu}=\mathrm{tr}(\mathbf{PS}) \tag{10.3}
 $$
@@ -39,6 +42,7 @@ electrons associated with a given atom can be obtained by summing over all the
 basis functions. This leads to the Mulliken formula for the net charge on atom $A$:
 
 <a id="eq1004"></a>
+
 $$
 q_{A}=Z_{A}-\sum_{\mu\in A}\left(\mathbf{PS}\right)_{\mu\mu} \tag{10.4}
 $$
@@ -291,6 +295,7 @@ Hirshfeld population analysis[[583]](../bib_references/bib.md#bib606)
 another definition of atomic charges in a molecule:
 
 <a id="eq:hirshfeld"></a>
+
 $$
 q_{A}=Z_{A}-\int d{\bf r}\left(\frac{\rho^{0}_{A}({\bf r})}{\sum_{B}\rho^{0}_{B}({\bf r})}\right)\rho({\bf r}), \tag{10.5}
 $$
@@ -341,6 +346,7 @@ electronic population $N_{i}^{0}=\int d\mathbf{r}\,\rho_{i}^{0}(\mathbf{r})=Z_{i
 This affords charges
 
 <a id="eq:hirshc"></a>
+
 $$
 q_{i}^{1}=Z_{i}-\int d\mathbf{r}\left(\frac{\rho_{i}^{0}(\mathbf{r})}{\sum_{i}^{A}\rho_{i}^{0}(\mathbf{r})}\right)\rho(\mathbf{r})=Z_{i}-N_{i}^{1} \tag{10.6}
 $$
@@ -353,6 +359,7 @@ densities in the next iteration. In general, the new weighting function for
 atom $i$ in the $k$th iteration is
 
 <a id="eq:weight2"></a>
+
 $$
 w_{i,\rm{HI}}^{k}(\mathbf{r})=\frac{\rho_{i}^{k-1}(\mathbf{r})}{\sum\limits_{i\in A}\rho_{i}^{k-1}(\mathbf{r})}\;. \tag{10.7}
 $$
@@ -363,6 +370,7 @@ $\rho_{i}^{0,\lfloor N_{i}^{k}\rfloor}(\mathbf{r})$ and
 $\rho_{i}^{0,\lceil N_{i}^{k}\rceil}(\mathbf{r})$ of the same atom:[[170]](../bib_references/bib.md#bib164)
 
 <a id="eq:interpolate"></a>
+
 $$
 \rho_{i}^{k}(\mathbf{r})=\left(\lceil N_{i}^{k}\rceil-N_{i}^{k}\right)\,\rho_{i}^{0,\lfloor N_{i}^{k}\rfloor}(\mathbf{r})+\left(N_{i}^{k}-\lfloor N_{i}^{k}\rfloor\right)\,\rho_{i}^{0,\lceil N_{i}^{k}\rceil}(\mathbf{r})\;, \tag{10.8}
 $$

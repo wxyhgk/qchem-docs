@@ -13,6 +13,7 @@ title: "9.1.6 离域内坐标下的约束优化"
 更详细地说，该流程如下（直接引自文献 Ref. [[63]](../bib_references/bib.md#bib50)）。初始（通常为单位）固束矢量 $\mathbf{C}$ 按如下方式投影到离域内坐标集 $\mathbf{U}$ 上：
 
 <a id="Ch9.E27"></a>
+
 $$
 \mathbf{C}^{\text{proj}}=\sum_{k=1}^{n}\bigl{\langle}\mathbf{C}\bigl{|}\mathbf{CU}_{k}\mathbf{U}_{k}\bigr{\rangle}\mathbf{U}_{k}\;, \tag{9.27}
 $$
@@ -20,6 +21,7 @@ $$
 其中求和遍历所有活跃坐标 $\mathbf{U}_{k}$。然后将投影后的矢量 $\mathbf{C}^{\rm proj}$ 归一化，并构造一个 $n+l$ 维矢量空间 $\mathbf{V}$，它由归一化、投影后的固束矢量与所有活跃离域坐标共同组成
 
 <a id="Ch9.E28"></a>
+
 $$
 \mathbf{V}=\left\{\mathbf{C}^{\rm proj},~{}\mathbf{U}_{k}(k=1,\ldots,n)\right\}\;. \tag{9.28}
 $$
@@ -27,6 +29,7 @@ $$
 按照标准流程对这组矢量进行施密特正交化：
 
 <a id="eq:a21"></a>
+
 $$
 \widetilde{\mathbf{V}}_{k}=\alpha_{k}\left(\mathbf{V}_{k}-\sum_{\ell=1}^{k-1}\bigl{\langle}\mathbf{V}_{k}\bigl{|}\mathbf{V}_{k}\widetilde{\mathbf{V}}_{\ell}\widetilde{\mathbf{V}}_{\ell}\bigr{\rangle}\widetilde{\mathbf{V}}_{\ell}\right)\;, \tag{9.29}
 $$
@@ -46,16 +49,19 @@ $$
 若以 $R$ 表示一般的内坐标，则固束函数 $C_{i}(\mathbf{R})$ 仅是单个坐标 $R_{i}$ 的函数，该函数及其导数可写为
 
 <a id="eq:a22a"></a>
+
 $$
 C_{i}(R_{i})=R_{i}-R_{0} \tag{9.30}
 $$
 
 <a id="eq:a22b"></a>
+
 $$
 dC_{i}(R_{i})/dR_{i}=1;\quad dC_{i}(R_{i})/dR_{j}=0 \tag{9.31}
 $$
 
 <a id="eq:a22c"></a>
+
 $$
 d^{2}C_{i}(R_{i})/dR_{i}dR_{j}=0 \tag{9.32}
 $$

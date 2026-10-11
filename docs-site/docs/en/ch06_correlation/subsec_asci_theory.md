@@ -11,6 +11,7 @@ a wave function $|\Psi\rangle=\displaystyle\sum\limits_{i}C_{i}|D_{i}\rangle$ (w
 are Slater determinants with coefficients $C_{i}$) as an eigenstate of the Hamiltonian, then
 
 <a id="Ch6.E104"></a>
+
 $$
 C_{i}=\frac{\sum_{j\neq i}H_{ij}C_{j}}{(H_{ii}-E)}\;, \tag{6.104}
 $$
@@ -27,6 +28,7 @@ away from the most important determinants (as ranked by magnitude of coefficient
 the trial wave function $|\psi_{k}\rangle$ are assigned an estimated importance $A_{i}$ given as
 
 <a id="Ch6.E105"></a>
+
 $$
 A_{i}=\frac{\sum_{|D_{j}\rangle\in|\psi_{k}\rangle}H_{ij}C_{j}}{(H_{ii}-E_{k})}\;, \tag{6.105}
 $$

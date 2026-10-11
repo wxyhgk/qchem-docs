@@ -97,6 +97,7 @@ $E_{\theta}[\rho]$。目前 **Q-Chem** 中可用的有
  中的公式 (85) 给出：
 
 <a id="eq:excitationX"></a>
+
 $$
 \omega_{\text{pTAO/TDA}}[\text{X}]=(\omega[\text{X}]-\omega[\text{A}_{1}])+(E_{\text{A}_{1}}-E_{\text{GS}}). \tag{5.76}
 $$

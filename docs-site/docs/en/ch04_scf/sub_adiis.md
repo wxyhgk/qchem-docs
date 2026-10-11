@@ -14,6 +14,7 @@ accelerate SCF convergence in cases where DIIS performs poorly in the initial
 iterations. This algorithm also involves a Fock matrix extrapolation scheme:
 
 <a id="eq:adiis_fock"></a>
+
 $$
 \tilde{\mathbf{F}}_{n+1}=\sum_{i=1}^{n}c_{i}\mathbf{F}_{i} \tag{4.42}
 $$
@@ -26,6 +27,7 @@ Roothaan-Hall (ARH) energy function of an extrapolated density
 $\tilde{\mathbf{P}}_{i+1}=\sum_{i=1}^{n}\mathbf{P}_{i}$
 
 <a id="A3.S8.EGx3"></a>
+
 $$
 \displaystyle f^{\mathrm{ADIIS}}(c_{1},\dots,c_{n})=E[\mathbf{P}_{n}]+\sum_{i=1}^{n}c_{i}(\mathbf{P}_{i}-\mathbf{P}_{n})\cdot\mathbf{F}_{n} \tag{4.43}
 $$

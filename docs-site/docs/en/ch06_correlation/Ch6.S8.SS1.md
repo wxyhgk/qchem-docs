@@ -14,6 +14,7 @@ Second-order Brillouin-Wigner perturbation theory (BW2) requires
 no such reformulation, as the second-order energy given by,
 
 <a id="Ch6.E33"></a>
+
 $$
 E_{\text{c}}^{(2)}=-\frac{1}{4}\sum\limits_{ijab}\frac{|\langle ij||ab\rangle|^{2}}{\Delta_{ij}^{ab}+E_{\text{c}}^{(2)}} \tag{6.33}
 $$
@@ -35,6 +36,7 @@ results in a slightly-modified amplitude equation. Whereas
 the MP2 amplitudes can be found by solving,
 
 <a id="Ch6.E34"></a>
+
 $$
 \Delta_{ijkl}^{abcd}\cdot t_{kl}^{cd}=-\langle ij||ab\rangle\;, \tag{6.34}
 $$
@@ -42,6 +44,7 @@ $$
 the BW-s2 amplitude equation contains a regularizing tensor,
 
 <a id="Ch6.E35"></a>
+
 $$
 \big{(}\Delta_{ijkl}^{abcd}+R_{ijkl}^{abcd}\big{)}\cdot t_{kl}^{cd}=-\langle ij||ab\rangle \tag{6.35}
 $$
@@ -52,6 +55,7 @@ the familiar $\Delta_{ij}^{ab}$ when canonical orbitals are used,
 and
 
 <a id="eq:Rtensor"></a>
+
 $$
 R_{ijkl}^{abcd}=\frac{\alpha}{2}\big{(}W_{ik}\delta_{jl}+\delta_{ik}W_{jl}\big{)}\delta_{ac}\delta_{bd} \tag{6.36}
 $$
@@ -59,6 +63,7 @@ $$
 where,
 
 <a id="Ch6.E37"></a>
+
 $$
 W_{ij}=\frac{1}{2}\sum\limits_{kab}\big{(}t_{ik}^{ab}\langle jk||ab\rangle+t_{jk}^{ab}\langle ik||ab\rangle\big{)} \tag{6.37}
 $$
@@ -72,6 +77,7 @@ After rotating the occupied orbitals into a basis where $\bm{\Delta}+\bm{R}$ is
 diagonal, the BW-s2 working equation looks like that of MP2,
 
 <a id="Ch6.E38"></a>
+
 $$
 E_{\text{c}}^{(2)}=-\frac{1}{4}\sum\limits_{ijab}\frac{|\widetilde{\langle ij||ab\rangle}|^{2}}{\varepsilon_{a}+\varepsilon_{b}-\tilde{\varepsilon}_{i}-\tilde{\varepsilon}_{j}} \tag{6.38}
 $$

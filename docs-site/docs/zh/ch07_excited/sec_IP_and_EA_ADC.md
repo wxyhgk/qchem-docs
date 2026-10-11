@@ -9,6 +9,7 @@ title: "7.10.3 IP- 与 EA-ADC"
 与极化传播子（ADC）的 ADC 方案类似，该流程同样可以应用于电子传播子的 $(N-1)$ 与 $(N+1)$ 部分，电子传播子以其谱表示形式给出为
 
 <a id="Ch7.E140"></a>
+
 $$
 G_{pq}(\omega)=\underbrace{\sum_{n}\frac{\bigl{\langle}\Psi_{0}^{N}\bigl{\lvert}c_{p}\bigr{\rvert}\Psi_{n}^{N+1}\bigr{\rangle}\bigl{\langle}\Psi_{n}^{N+1}\bigl{\lvert}c_{q}^{\dagger}\bigr{\rvert}\Psi_{0}^{N}\bigr{\rangle}}{\omega+E_{0}^{N}-E_{n}^{N+1}}}_{(N+1)\text{-electron (EA) part}}+\underbrace{\sum_{n}\frac{\bigl{\langle}\Psi_{0}^{N}\bigl{\lvert}c_{q}^{\dagger}\bigr{\rvert}\Psi_{n}^{N-1}\bigr{\rangle}\bigl{\langle}\Psi_{n}^{N-1}\bigl{\lvert}c_{p}\bigr{\rvert}\Psi_{0}^{N}\bigr{\rangle}}{\omega+E_{n}^{N-1}-E_{0}^{N}}}_{(N-1)\text{-electron (IP) part}}. \tag{7.140}
 $$
@@ -18,6 +19,7 @@ $$
 与极化传播子的 ADC 方案情形相同，同样的工作方程也可通过 ISR 形式体系推导得出，与上一节 [7.10.2](sec_adc_pp_scheme.md) 所示流程的唯一区别在于激发算符
 
 <a id="A3.S8.EGx63"></a>
+
 $$
 \displaystyle\left\{\hat{C}_{J}^{N-1}\right\} \tag{7.141}
 $$
@@ -28,6 +30,7 @@ $$
 此外，$(N-1)$ 与 $(N+1)$ 跃迁的相对谱强度可通过极点强度（pole strength）$P_{n}$ 获得，其计算方式为
 
 <a id="Ch7.E143"></a>
+
 $$
 P_{n}=\sum_{p}\left|x_{pn}\right|^{2}, \tag{7.143}
 $$
@@ -35,6 +38,7 @@ $$
 其中 $x_{pn}$ 为谱因子（spectroscopic factor），利用 IP- 与 EA-ADC 的本征向量 $\mathbf{X}$ 以及有效跃迁振幅矩阵 $\mathbf{f}$，按下述关系式计算得到
 
 <a id="A3.S8.EGx64"></a>
+
 $$
 \displaystyle x_{pn}^{N-1} \tag{7.144}
 $$
@@ -47,6 +51,7 @@ $$
 谱因子还可用于计算与电子脱附和附着过程相关的 Dyson 轨道 $|\phi_{n}\rangle$
 
 <a id="Ch7.E146"></a>
+
 $$
 \left|\phi_{n}\right>=\sum_{p}x_{pn}\left|\varphi_{p}\right>, \tag{7.146}
 $$

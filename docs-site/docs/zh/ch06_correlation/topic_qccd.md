@@ -12,6 +12,7 @@ title: "6.12.9 二次耦合簇 doubles（QCCD）"
 （Quadratic Coupled Cluster Doubles, QCCD）方法[[[1389]](../bib_references/bib.md#bib1451)采用不同的能量泛函（energy functional），在此类问题案例中表现出更好的行为。具体而言，QCCD 能量泛函定义为
 
 <a id="eq530"></a>
+
 $$
 E_{\mathrm{QCCD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}_{2}+\frac{1}{2}\hat{\Lambda}_{2}^{2}}\right)\left|{\hat{H}}\right|\exp\left({\hat{T}_{2}}\right)\Phi_{0}}\right\rangle_{C} \tag{6.77}
 $$
@@ -25,6 +26,7 @@ $\hat{\Lambda}_{2}$ 算符最小化时，会重新得到前面定义的相同 CC
 该能量泛函为
 
 <a id="eq531"></a>
+
 $$
 E_{\mathrm{CCD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}_{2}}\right)\left|{\hat{H}}\right|\exp\left({\hat{T}_{2}}\right)\Phi_{0}}\right\rangle_{C} \tag{6.78}
 $$

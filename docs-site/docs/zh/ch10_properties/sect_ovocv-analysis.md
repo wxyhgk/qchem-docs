@@ -18,6 +18,7 @@ title: "10.3.4 用于化学价键分析的占据–虚轨道（Occupied–Virtua
 在初态 $I$ 的占据轨道与虚轨道的正交归一基下，$\hat{P}_{I}$ 的矩阵表示为
 
 <a id="eq:P_I"></a>
+
 $$
 {\color[rgb]{0,0,0}P_{I}}=\begin{pmatrix}1&0\\
 0&0\end{pmatrix} \tag{10.52}
@@ -26,6 +27,7 @@ $$
 其中 $1$ 的维度为 $o\times o$，对角零矩阵的维度为 $v\times v$。在同一基下，末态密度算符 $P_{F}$ 的表示可由 $P_{I}$ 构造为 $P_{F}=\exp\{X\}P_{I}\exp\{-X\}$，其中
 
 <a id="Ch10.E53"></a>
+
 $$
 X=\begin{pmatrix}0&X_{ov}\\
 -X_{ov}^{T}&0\end{pmatrix} \tag{10.53}
@@ -34,6 +36,7 @@ $$
 对 $X_{ov}$ 进行奇异值分解（SVD），
 
 <a id="Xov_SVD"></a>
+
 $$
 X_{ov}=U\Sigma V^{T} \tag{10.54}
 $$
@@ -41,6 +44,7 @@ $$
 其中 $\dim(U)=o\times o,\dim(\Sigma)=o\times v,\dim(V)=v\times v$，则可将 $\Delta P$ 写为
 
 <a id="eq:delta_p"></a>
+
 $$
 \Delta P=\begin{pmatrix}U&0\\
 0&V\end{pmatrix}\begin{pmatrix}-\sin^{2}{\Sigma^{\prime}}&-\cos{\Sigma^{\prime}}\sin{\Sigma^{\prime}}&0\\
@@ -54,6 +58,7 @@ $$
 由于 $\Delta P$ 在 $U,V$ 表示下的各个分块中均被对角化，自然地，我们将这一选择定义为化学价键占据-虚轨道（Occupied-Virtual Orbitals for Chemical Valence, OVOCVs）。
 
 <a id="A3.S8.EGx78"></a>
+
 $$
 \displaystyle|\phi^{i}_{\text{occ}}\rangle \tag{10.56}
 $$
@@ -63,6 +68,7 @@ $$
 在 OVOCV 基下，$\Delta P$ 为：
 
 <a id="eq:delta_p_ovocv"></a>
+
 $$
 \Delta P=\begin{pmatrix}-\sin^{2}{\Sigma^{\prime}}&-\cos{\Sigma^{\prime}}\sin{\Sigma^{\prime}}\\
 -\sin{\Sigma^{\prime}}\cos{\Sigma^{\prime}}&\sin^{2}{\Sigma^{\prime}}\end{pmatrix} \tag{10.58}
@@ -73,6 +79,7 @@ $$
 任意两个单行列式态之间的能量差可表示为
 
 <a id="Ch10.E59"></a>
+
 $$
 \Delta E=\text{Tr}\{\hat{F}^{\text{eff}}\Delta\hat{P}\}, \tag{10.59}
 $$
@@ -80,6 +87,7 @@ $$
 其中 $\hat{F}^{\text{eff}}$ 是有效 Fock 算符，由对两态之间密度矩阵的线积分（line-integral）得到。利用 $\Delta\hat{P}$ 在 OVOCV 基下的分解，我们有
 
 <a id="Ch10.E60"></a>
+
 $$
 \displaystyle\Delta E \tag{10.60}
 $$
@@ -357,6 +365,7 @@ SAVE_OVOCV
 为了揭示轨道弛豫的重要性，我们引入一个中间冻结态（frozen state, FRZ），其密度是从基态密度 $\hat{P}_{\text{G}}$ 出发，通过供体轨道 $|\psi_{\text{D}}\rangle$ 完全排空和受体轨道 $|\psi_{\text{A}}\rangle$ 完全占据来构造的：
 
 <a id="Ch10.E61"></a>
+
 $$
 \hat{P}_{\text{FRZ}}=\hat{P}_{\text{G}}-|\psi_{\text{D}}\rangle\langle\psi_{\text{D}}|+|\psi_{\text{A}}\rangle\langle\psi_{\text{A}}|. \tag{10.61}
 $$

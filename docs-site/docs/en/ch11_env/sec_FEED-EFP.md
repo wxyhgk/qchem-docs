@@ -13,6 +13,7 @@ available for the ground and excited states.[[1273]](../bib_references/bib.md#bi
 The ground state QM/EFP energy is decomposed as:
 
 <a id="A3.S8.EGx108"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle E_{\text{QM--EF, gr}}&\displaystyle=E_{\text{elec}}^{(1)}+E_{\text{pol-solute}}^{(0)}+E_{\text{pol-solute}}^{(1)}+E_{\text{pol-frag}}+E_{\text{QM--EFP}}^{\text{disp}}+E_{\text{QM--EF}}^{\text{ex-rep}}\\
 &\displaystyle=\langle\Psi_{\text{gr}}^{0}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle+\Big{[}\langle\Psi_{\text{gr}}^{\text{sol}}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{\text{sol}}\rangle-\langle\Psi_{\text{gr}}^{0}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{0}\rangle\Big{]}\\
@@ -27,6 +28,7 @@ Each of the integrals involving $\hat{V}^{\text{Coul}}$ and
 $\hat{V}^{\text{pol}}$ operators can be decomposed into individual fragment contributions, *e.g.*,
 
 <a id="eq:feed_elec"></a>
+
 $$
 E_{\text{elec}}^{(1)}=\langle\Psi_{\text{gr}}^{0}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle=\sum_{A}^{\text{fragments}}\langle\Psi_{\text{gr}}^{0}|\sum_{k\in A}\hat{V}_{k}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle \tag{11.79}
 $$
@@ -34,6 +36,7 @@ $$
 and similarly for the other terms. Polarization energy can be approximately decomposed into individual fragment contributions as:
 
 <a id="eq:feed_pol"></a>
+
 $$
 E_{\text{QM--EF, gr}}^{\text{pol}}=\frac{1}{2}\sum_{A}^{\text{fragments}}\sum_{p\in A}(-\mu^{p}F^{\text{ai,nuc,p}}+{\bar{\mu}^{p}F^{\text{ai,elec},p}}) \tag{11.80}
 $$
@@ -44,6 +47,7 @@ Dispersion and exchange-repulsion terms are also pairwise-additive.
 The only term that cannot be similarly split into fragment contributions is the zero-order solute polarization energy:
 
 <a id="eq:feed_pol2"></a>
+
 $$
 E_{\text{pol-solute}}^{(0)}=\langle\Psi_{\text{gr}}^{\text{sol}}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{\text{sol}}\rangle-\langle\Psi_{\text{gr}}^{0}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{0}\rangle\;. \tag{11.81}
 $$
@@ -52,6 +56,7 @@ This term is referred to as "non-separable term" in the output printout.
 From perturbation theory, this term is expected to be about twice smaller and of the opposite sign than the first-order solute polarization term:
 
 <a id="eq:feed_pol3"></a>
+
 $$
 E_{\text{pol-solute}}^{(1)}=\langle\Psi_{\text{gr}}^{\text{sol}}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{\text{sol}}\rangle-\langle\Psi_{\text{gr}}^{0}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle\;. \tag{11.82}
 $$
@@ -60,6 +65,7 @@ Application of the energy decomposition analysis to the electronically excited s
 The zero-order total solvatochromic shift can be represented as:
 
 <a id="eq:FEED_exs"></a>
+
 $$
 E_{\text{solv}}^{\text{QM/EFP}}=\sum_{A}^{\text{fragments}}\big{(}\Delta E_{\text{ex/gr}}^{\text{elec(1),A}}+\Delta E_{\text{ex/gr}}^{\text{pol-solute(1)},A}+\Delta E_{\text{ex/gr}}^{\text{pol-frag(1)},A}\big{)}+\Delta E_{\text{ex/gr}}^{\text{pol-solute(0)},A}\;. \tag{11.83}
 $$
@@ -67,6 +73,7 @@ $$
 The various terms are defined as
 
 <a id="A3.S8.EGx109"></a>
+
 $$
 \displaystyle\Delta E_{\text{ex/gr}}^{\text{elec(1)},A} \tag{11.84}
 $$
@@ -74,6 +81,7 @@ $$
 Fragment contribution of the perturbative polarization correction to the excited states [Eq.  ([11.77](sec_EOM-EFP.md#eq:EOM-EFP-ene2))] can be obtained as follows:
 
 <a id="eq:feed:polcorr"></a>
+
 $$
 \Delta E_{\text{pol},A}=\frac{1}{2}\sum_{p\in A}\Bigl{[}-(\mu_{\rm{ex}}^{p}-\mu_{\rm{gr}}^{p})(F^{\text{mult},p}+F^{\text{nuc},p})+(\tilde{\mu}_{\text{ex}}^{p}F_{\text{ex}}^{\text{ai},p}-\tilde{\mu}_{\text{gr}}^{p}F_{\text{gr}}^{\text{ai},p})-(\mu_{\text{ex}}^{p}-\mu_{\text{gr}}^{p}+\tilde{\mu}_{\text{ex}}^{p}-\tilde{\mu}_{\text{gr}}^{p})F_{\text{ex}}^{\text{ai},p}\Bigr{]} \tag{11.88}
 $$

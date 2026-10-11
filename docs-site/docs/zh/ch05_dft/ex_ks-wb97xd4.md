@@ -253,6 +253,7 @@ $c_{x,\rm SR}=0.2$（见 Eq. ([5.13](Ch5.S3.SS1.md#eq:RSHGGA))）和 $\omega=0.2
 这类 XC 泛函可通用地表示为[[33]](../bib_references/bib.md#bib16)
 
 <a id="eq:sRSH"></a>
+
 $$
 E_{xc}^{\textrm{sRSH}}=c_{x,{\rm SR}}E_{x,{\rm SR}}^{\textrm{HF}}+\varepsilon^{-1}E_{x,\rm LR}^{\textrm{HF}}+(\varepsilon^{-1}-c_{x,\rm SR})E_{x,\rm SR}^{\textrm{DFT}}+(1-\varepsilon^{-1})E_{x,\rm LR}^{\textrm{DFT}}+E_{c}^{\textrm{DFT}}\;, \tag{5.17}
 $$

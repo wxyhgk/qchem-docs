@@ -26,6 +26,7 @@ MOS-MP2 的能量与解析梯度同样在 **Q-Chem** 3.0 中可用，其计算�
 变量 OMEGA，用于调节 MOS 算符的衰减程度：[[853]](../bib_references/bib.md#bib886)
 
 <a id="Ch6.E28"></a>
+
 $$
 g_{\omega}(r_{12})=\frac{1}{r_{12}}+c_{\mathrm{MOS}}\frac{\mathrm{erf}\left({\omega r_{12}}\right)}{r_{12}} \tag{6.28}
 $$

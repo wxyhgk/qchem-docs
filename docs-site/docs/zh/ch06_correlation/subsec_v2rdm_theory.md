@@ -9,6 +9,7 @@ title: "6.23.2 理论"
 电子能量是一-RDM（1-RDM）与二-RDM（2-RDM）的精确泛函
 
 <a id="eq:v2rdm:energy"></a>
+
 $$
 E=\frac{1}{2}\sum_{pqrs}{}^{2}D^{pq}_{rs}(pr|qs)+\sum_{pq}{}^{1}D^{p}_{q}h_{pq}, \tag{6.106}
 $$
@@ -19,6 +20,7 @@ $$
 SDP 的原始（primal）形式为
 
 <a id="A3.S8.EGx37"></a>
+
 $$
 \displaystyle E_{\rm primal} \tag{6.107}
 $$
@@ -26,6 +28,7 @@ $$
 此处，$\mathbf{x}$ 表示原始解向量，向量 $\mathbf{c}$ 包含定义量子体系的所有信息（单电子与双电子积分），而映射 $M(\mathbf{x})$ 将原始解映射到一组半正定的 RDM 上：
 
 <a id="eqn:vectormatrixmap"></a>
+
 $$
 M({\bf x})=\left(\begin{array}[]{cccc}{}^{1}{\mathbf{D}}&0&0&0\\
 0&{}^{1}{\mathbf{Q}}&0&0\\
@@ -37,6 +40,7 @@ $$
 根据所选 N-可表示性（N-representability）条件的不同，可以在 $M(\mathbf{x})$ 中包含更多其他 RDM。约束矩阵 ${\mathbf{A}}$ 作用于 ${\mathbf{x}}$ 是 N-可表示性条件的一种紧致表示。${\mathbf{A}}$ 维护 $M({\mathbf{x}})$ 各分块之间的适当映射关系，并强制施加适当的自旋条件与收缩条件。另一种做法是考虑半正定问题的对偶（dual）形式，表示为
 
 <a id="A3.S8.EGx38"></a>
+
 $$
 \displaystyle E_{\rm dual} \tag{6.109}
 $$
@@ -61,6 +65,7 @@ BPSDP 算法包含一个迭代的二步流程：
 给定 v2RDM-CASSCF 计算收敛后得到的一-RDM 与二-RDM，可以通过 MC-PDFT 的形式体系来估算剩余的关联效应。在 MC-PDFT 中，体系的总能量表示为
 
 <a id="EQ:EMCPDFT"></a>
+
 $$
 E_{\rm MC-PDFT}=\sum_{i}h^{i}_{i}+\sum_{tu}h^{t}_{u}{}^{1}D^{t}_{u}+E_{\rm H}+E_{\rm XC}\left[\rho({\bf r}),\Pi({\bf r}),|\nabla\rho({\bf r})|,|\nabla\Pi({\bf r})|\right] \tag{6.110}
 $$
@@ -68,6 +73,7 @@ $$
 其中 Hartree 能量 $E_{\rm H}$ 为经典的库仑排斥能
 
 <a id="EQN:HARTREE_ENERGY"></a>
+
 $$
 E_{\rm H}=\frac{1}{2}\sum_{ij}(ii|jj)+\sum_{itu}(tu|ii){}^{1}D^{t}_{u}+\frac{1}{2}\sum_{tuvw}(tu|vw){}^{1}D^{t}_{u}{}^{1}D^{v}_{w} \tag{6.111}
 $$
@@ -75,6 +81,7 @@ $$
 而 $E_{\rm xc}$ 表示一个在顶对密度（on-top pair density）泛函。在式 [6.111](#EQN:HARTREE_ENERGY) 中，标签 $i$ 与 $j$ 表示双占据自旋轨道，标签 $t$、$u$、$v$ 与 $w$ 表示活性自旋轨道。符号 $\rho({\bf r})$ 与 $\Pi({\bf r})$ 分别表示密度与在顶对密度，它们用分子轨道 $\{\phi\}$ 定义为
 
 <a id="Ch6.E112"></a>
+
 $$
 \rho({\bf r})=\sum_{pq}\phi_{p}({\bf r})\phi_{q}({\bf r}){}^{1}D^{p}_{q} \tag{6.112}
 $$
@@ -82,6 +89,7 @@ $$
 以及
 
 <a id="Ch6.E113"></a>
+
 $$
 \Pi({\bf r})=\sum_{pqrs}\phi_{p}({\bf r})\phi_{q}({\bf r})\phi_{r}({\bf r})\phi_{s}({\bf r}){}^{2}D^{pq}_{rs} \tag{6.113}
 $$

@@ -9,6 +9,7 @@ title: "9.9.5 振动光谱"
 分子固有的核运动可通过分子对入射辐射的响应在实验上观测到。这种响应通常在临界点结构（critical-point structure）下，采用力学与电学谐振子近似（二阶导数计算）进行计算。包含非谐效应的光谱也可以通过动力学模拟获得。这些光谱由动力学响应函数生成，而响应函数涉及自相关函数的傅里叶变换。**Q-Chem** 既能提供来自速度自相关函数的振动谱密度
 
 <a id="Ch9.E63"></a>
+
 $$
 D(\omega)\propto\int_{-\infty}^{\infty}dt\ e^{-i\omega t}\langle\vec{v}(0)\bm{\cdot}\vec{v}(t)\rangle \tag{9.63}
 $$
@@ -16,6 +17,7 @@ $$
 也能提供来自偶极矩自相关函数的红外吸收强度
 
 <a id="Ch9.E64"></a>
+
 $$
 I(\omega)\propto\frac{\omega}{2\pi}\int_{-\infty}^{\infty}dt\ e^{-i\omega t}\langle\vec{\mu}(0)\bm{\cdot}\vec{\mu}(t)\rangle \tag{9.64}
 $$

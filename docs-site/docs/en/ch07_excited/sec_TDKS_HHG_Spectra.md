@@ -10,6 +10,7 @@ The high-harmonic generation (HHG) spectrum $H(\omega)$ in the dipole accelerati
 by[[258]](../bib_references/bib.md#bib259)
 
 <a id="eq:hhg"></a>
+
 $$
 H(\omega)=\sum_{\kappa=x,y,z}\frac{1}{2\pi}\left|\int\frac{d^{2}\mu_{\kappa}(t)}{dt^{2}}w(t)e^{-i\omega t}dt\right|^{2} \tag{7.72}
 $$
@@ -18,6 +19,7 @@ where $w(t)$ is some kind of window function to improve spectrum quality, and $\
 For light polarized in the $\kappa$ direction ($\kappa\in\{x,y,z\}$), we have $\mu_{\lambda}(t)=0$ ($\lambda\in\{x,y,z\},\lambda\neq\kappa$), and Eq. ([7.72](#eq:hhg)) becomes
 
 <a id="eq:hhg2"></a>
+
 $$
 H(\omega)=\frac{1}{2\pi}\left|\int\frac{d^{2}\mu_{\kappa}(t)}{dt^{2}}w(t)e^{-i\omega t}dt\right|^{2} \tag{7.73}
 $$

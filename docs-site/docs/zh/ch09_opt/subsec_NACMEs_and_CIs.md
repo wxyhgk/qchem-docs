@@ -12,6 +12,7 @@ title: "9.8.1 非绝热耦合"
  但为简便起见，我们考虑两态情形，并令
 
 <a id="eq:H_2x2"></a>
+
 $$
 \mathbf{H}=\left(\begin{array}[]{cc}H_{JJ}(\mathbf{R})&H_{JK}(\mathbf{R})\\
 H_{JK}^{\ast}(\mathbf{R})&H_{KK}(\mathbf{R})\\
@@ -23,6 +24,7 @@ $$
 分支空间由一对矢量 $\mathbf{g}_{JK}$ 和 $\mathbf{h}_{JK}$ 所张成的空间定义。前者 simply 是所讨论的两个态的梯度矢量之差，
 
 <a id="eq:gJK"></a>
+
 $$
 \mathbf{g}_{JK}=\frac{\partial E_{J}}{\partial\textbf{R}}-\frac{\partial E_{K}}{\partial\textbf{R}}\;, \tag{9.49}
 $$
@@ -30,6 +32,7 @@ $$
 在任何具备解析能量梯度（analytic energy gradients）的理论方法下都易于计算（若不具备，则可通过有限差分求得，只是不那么方便！）。而*非绝热耦合矢量（nonadiabatic coupling vector）* $\mathbf{h}_{JK}$ 的定义则更为复杂，且无法直接通过有限差分计算得到：
 
 <a id="eq:hJK"></a>
+
 $$
 \mathbf{h}_{JK}=\left\langle\Psi_{J}\left|\left(\partial\hat{H}/\partial\mathbf{R}\right)\right|\Psi_{K}\right\rangle\;. \tag{9.50}
 $$
@@ -37,6 +40,7 @@ $$
 它与*导数耦合（derivative coupling）*矢量密切相关
 
 <a id="eq:dJK"></a>
+
 $$
 \mathbf{d}_{JK}=\bigl{\langle}\Psi_{J}\bigl{|}\bigl{(}\partial/\partial\mathbf{R}\bigr{)}\bigr{|}\Psi_{K}\bigr{\rangle}=\frac{\mathbf{h}_{JK}}{E_{J}-E_{K}}\;. \tag{9.51}
 $$

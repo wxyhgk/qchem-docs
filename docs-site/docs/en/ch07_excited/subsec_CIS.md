@@ -14,6 +14,7 @@ function[[312]](../bib_references/bib.md#bib316)
 single-determinant wave function as reference for the ground state of the system:
 
 <a id="eq600"></a>
+
 $$
 \Psi_{\mathrm{HF}}=\frac{1}{\sqrt{n!}}\det\left\{{\chi_{1}\chi{}_{2}\cdots\chi_{i}\chi{}_{j}\cdots\chi_{n}}\right\} \tag{7.1}
 $$
@@ -21,6 +22,7 @@ $$
 where $n$ is the number of electrons, and the spin orbitals
 
 <a id="eq601"></a>
+
 $$
 \chi_{i}=\sum\limits_{\mu}^{N}{c_{\mu i}\phi_{\mu}} \tag{7.2}
 $$
@@ -30,6 +32,7 @@ orbital coefficients $\{c_{\mu i}\}$ are usually found by SCF procedures which
 solve the Hartree-Fock equations
 
 <a id="eq602"></a>
+
 $$
 \mathbf{FC}=\bm{\varepsilon}\mathbf{SC}\;, \tag{7.3}
 $$
@@ -39,6 +42,7 @@ orbital coefficients, $\varepsilon$ is a diagonal matrix of orbital
 eigenvalues and **F** is the Fock matrix with elements
 
 <a id="eq603"></a>
+
 $$
 F_{\mu\upsilon}=H_{\mu\upsilon}+\sum\limits_{\lambda\sigma}{\sum\limits_{i}{c_{\mu i}c_{\upsilon i}\left({\mu\lambda}\right.||\left.{\upsilon\sigma}\right)}} \tag{7.4}
 $$
@@ -46,6 +50,7 @@ $$
 involving the core Hamiltonian and the anti-symmetrized two-electron integrals
 
 <a id="Ch7.E5"></a>
+
 $$
 (\mu\mu||\lambda\sigma)=\int\int\phi_{\mu}(\mathbf{r}_{1})\phi_{\nu}(\mathbf{r}_{2})\left(\frac{1}{r_{12}}\right)\bigl{[}\phi_{\lambda}(\mathbf{r}_{1})\phi_{\sigma}(\mathbf{r}_{2})-\phi_{\sigma}(\mathbf{r}_{1})\phi_{\lambda}(\mathbf{r}_{2})\bigr{]}\;d\mathbf{r}_{1}\,d\mathbf{r}_{2} \tag{7.5}
 $$
@@ -54,6 +59,7 @@ On solving Eq. ([7.3](#eq602)), the total energy of the ground state single
 determinant can be expressed as
 
 <a id="eq605"></a>
+
 $$
 E_{\mathrm{HF}}=\sum\limits_{\mu\upsilon}{P_{\mu\upsilon}^{\mathrm{HF}}H_{\mu\upsilon}}+\frac{1}{2}\sum\limits_{\mu\upsilon\lambda\sigma}{P_{\mu\upsilon}^{\mathrm{HF}}P_{\lambda\sigma}^{\mathrm{HF}}\left({\mu\lambda}\right.||\left.{\upsilon\sigma}\right)}+V_{\mathrm{nuc}} \tag{7.6}
 $$
@@ -68,11 +74,13 @@ ground state ($i$, $j$, $k,\ldots$) with an orbital unoccupied in the ground
 state ($a$, $b$, $c,\ldots$). Such wave functions and energies can be written
 
 <a id="eq606"></a>
+
 $$
 \Psi_{i}^{a}=\frac{1}{\sqrt{n!}}\det\left\{{\chi_{1}\chi{}_{2}\cdots\chi_{a}\chi{}_{j}\cdots\chi_{n}}\right\} \tag{7.7}
 $$
 
 <a id="eq607"></a>
+
 $$
 E_{ia}=E_{\mathrm{HF}}+\varepsilon_{a}-\varepsilon_{i}-\left({ia}\right.||\left.{ia}\right) \tag{7.8}
 $$
@@ -81,6 +89,7 @@ where we have introduced the anti-symmetrized two-electron integrals in the
 molecular orbital basis
 
 <a id="eq608"></a>
+
 $$
 \left({pq}\right.||\left.{rs}\right)=\sum\limits_{\mu\upsilon\lambda\sigma}{c_{\mu p}c_{\upsilon q}c_{\lambda r}c_{\sigma s}\left({\mu\lambda}\right.||\left.{\upsilon\sigma}\right)} \tag{7.9}
 $$
@@ -104,6 +113,7 @@ state wave function as a linear combination of *all* possible singly excited
 determinants,
 
 <a id="eq:CIS-wavefn"></a>
+
 $$
 |\Psi_{\text{CIS}}\rangle=\sum_{ia}a_{i}^{a}|\Psi_{i}^{a}\rangle \tag{7.10}
 $$
@@ -113,6 +123,7 @@ matrix $\mathbf{A}$, which is equivalent to the Hamiltonian in the space of sing
 with the ground-state energy removed. Its matrix elements are
 
 <a id="eq:orbital-Hessian"></a>
+
 $$
 A_{ia,jb}=\langle\Psi_{i}^{a}|\hat{H}-E_{\text{HF}}|\Psi_{j}^{b}\rangle=(\varepsilon_{a}-\varepsilon_{j})\delta_{ij}\delta_{ab}-(ja||ib)\;. \tag{7.11}
 $$

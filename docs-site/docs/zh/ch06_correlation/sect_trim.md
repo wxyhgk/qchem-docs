@@ -32,6 +32,7 @@ title: "6.5.1 分子中的局域三原子（TRIM）模型"
 TRIM 与 DIM 模型中的局域 MP2 能量由下列表达式给出，可与前文式 ([6.13](Ch6.S3.SS1.md#eq512)) 给出的完整 MP2 表达式相比较。首先，DIM 模型：
 
 <a id="eq516"></a>
+
 $$
 E_{\mathrm{DIM\,MP2}}=-\frac{1}{2}\sum_{\bar{P},\bar{Q}}\frac{(\bar{P}|\bar{Q})(\bar{P}||\bar{Q})}{\Delta_{\bar{P}}+\Delta_{\bar{Q}}} \tag{6.17}
 $$
@@ -39,6 +40,7 @@ $$
 求和遍历线性数目的原子单替换（canonicalize 之后）。因此分母中的每一项都是该局域基下占据能级与虚能级之间的能量差。类似地，TRIM 模型对应的局域 MP2 能量为：
 
 <a id="eq517"></a>
+
 $$
 E_{\mathrm{TRIM\,MP2}}=-\sum_{\bar{P},jb}\frac{(\bar{P}|jb)(\bar{P}||jb)}{\Delta_{\bar{P}}+\varepsilon_{b}-\varepsilon_{j}}-E_{\mathrm{DIM\,MP2}} \tag{6.18}
 $$

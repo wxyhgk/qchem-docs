@@ -11,6 +11,7 @@ title: "7.12.3 Methods Based on Kohn-Sham Eigenvalues"
 A simpler alternative to TDDFT for x-ray emission is to use Kohn-Sham eigenvalue differences,
 
 <a id="Ch7.E176"></a>
+
 $$
 \Delta E=\epsilon_{v}-\epsilon_{c}\;, \tag{7.176}
 $$
@@ -19,6 +20,7 @@ where $\epsilon_{v}$ and $\epsilon_{c}$ are valence and core energy levels, resp
 strengths are obtained from the corresponding transition dipole matrix elements,
 
 <a id="eq:f-trans-dipole"></a>
+
 $$
 f_{c\to v}\propto\|\langle\phi_{c}|\hat{\bm{\mu}}|\phi_{v}\rangle\|^{2}\;. \tag{7.177}
 $$
@@ -102,6 +104,7 @@ in which an SCF calculation with a fractional electron (originally $n_{i}=1/2$) 
 then the ionization energy for that MO is approximated as
 
 <a id="eq:TPDFT-ip"></a>
+
 $$
 \text{IE}_{i}\approx-\epsilon_{i}(n_{i}=1/2)\;. \tag{7.178}
 $$
@@ -113,6 +116,7 @@ Excitation energies are approximated as eigenvalue differences $\epsilon_{a}-\ep
 fractional-electron SCF calculation in which $n_{i}=1/2$ electron is promoted from $\phi_{i}$ into the LUMO:
 
 <a id="eq:TPDFT-ee"></a>
+
 $$
 \Delta E_{i\to a}=\epsilon_{a}(n_{i}=1/2,n_{\text{LUMO}}=1/2)-\epsilon_{i}(n_{i}=1/2,n_{\text{LUMO}}=1/2)\;, \tag{7.179}
 $$

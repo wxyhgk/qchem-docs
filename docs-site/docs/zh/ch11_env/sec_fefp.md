@@ -14,6 +14,7 @@ title: "11.5.5 大分子扩展：碎片化 EFP 方案"
  饱和，也可以用来自相邻碎片的一价原子团饱和，后者在本文中称为“盖层连接原子”（cap link atom, CLA）。若采用 HLA 方案对碎片加盖，则氢原子位于肽键轴向上，其距离对应于 C–H 键的平衡键长：
 
 <a id="eq:hla"></a>
+
 $$
 P=A_{1}H+\sum_{i=2}^{N-1}HA_{i}H+HA_{N} \tag{11.89}
 $$
@@ -21,6 +22,7 @@ $$
 在 CLA 方案中，盖层与相应相邻基团具有完全相同的几何结构。若沿肽键切割（一个碎片为一个氨基酸），则盖层（$C^{i}$）或者是用于饱和碎片 -N(H) 端的醛基，或者是用于饱和碎片 -C(=O) 端的胺基。
 
 <a id="eq:cla"></a>
+
 $$
 P=A_{1}C^{2}+\sum_{i=2}^{N-1}C^{i-1}A_{i}C^{i+1}+C^{N-1}A_{N} \tag{11.90}
 $$
@@ -30,6 +32,7 @@ $$
 式 ([11.89](#eq:hla)) 和 ([11.90](#eq:cla)) 变为：
 
 <a id="eq:hcla"></a>
+
 $$
 P=A_{1}C^{\emptyset}+\sum_{i=2}^{N-1}C^{\emptyset}A_{i}C^{\emptyset}+C^{\emptyset}A_{N} \tag{11.91}
 $$
@@ -41,6 +44,7 @@ $$
 目前，fEFP 包含静电贡献和极化贡献，它们出现在 EFP(配体)/fEFP(大分子) 以及 QM/fEFP 计算中（注意 QM 部分与大分子之间没有共价键连接）。因此，配体（$L$）与被分割为碎片的蛋白质（$P$）之间的总相互作用能（$E^{\text{tot}}$）为：
 
 <a id="eq:fefp-tot"></a>
+
 $$
 E^{\text{tot}}(P-L)=E^{\text{elec}}(P-L)+E^{\text{pol}}(P-L) \tag{11.92}
 $$
@@ -48,6 +52,7 @@ $$
 静电作用是加和项；其对碎片-碎片以及配体-碎片相互作用的贡献按如下方式计算：
 
 <a id="eq:la-fefp-elec"></a>
+
 $$
 E^{\text{elec}}(P-L)=\sum_{i}^{N}{E^{\text{elec}}\left(C^{\emptyset}A_{i=1}C^{\emptyset}-L\right)}\;. \tag{11.93}
 $$
@@ -55,6 +60,7 @@ $$
 纯 EFP 体系（无 QM）中的极化贡献为：
 
 <a id="eq:pol-efpfefp"></a>
+
 $$
 E^{\text{pol}}(P-L)=-\frac{1}{2}\sum_{k\in P,L}\mu^{k}F^{\text{mult},k}+\frac{1}{2}\sum_{k\in P}\mu^{k}F^{\text{mult},k}\;. \tag{11.94}
 $$
@@ -63,6 +69,7 @@ $$
 因此整个体系被完全极化，所有碎片（A${}_{i}$ 或 L）相互极化直至达到自洽：
 
 <a id="A3.S8.EGx110"></a>
+
 $$
 \displaystyle\mu^{k}_{\text{efp}}(L) \tag{11.95}
 $$
@@ -80,6 +87,7 @@ MFCC 流程由两部分组成：对配体与加盖残基（CLA 方案）之间�
 实际使用 $N-1$ 个 concap 碎片来消除重叠效应。
 
 <a id="eq:mfcc"></a>
+
 $$
 P=A_{1}C^{2}+\sum_{i=2}^{N-1}C^{i-1}A_{i}C^{i+1}+C^{N-1}A_{N}-\sum_{i}^{N-1}C^{i+1}C^{i-1} \tag{11.97}
 $$
@@ -89,6 +97,7 @@ $$
 MFCC 静电相互作用能等于每个加盖碎片（$C^{i-1}A_{i}C^{i+1}$）与配体之间的相互作用能之和，减去每个 concap（$C^{i-1}C^{i+1}$）与配体之间的相互作用能之和：
 
 <a id="eq:mfcc-fefp-elec"></a>
+
 $$
 E^{\text{elec}}(P-L)=\sum_{i}^{N}{E^{\text{elec}}\left(C^{i-1}A_{i}C^{i+1}-L\right)}-\sum_{i}^{N-1}{E^{\text{elec}}\left(C^{i-1}C^{i+1}-L\right)} \tag{11.98}
 $$

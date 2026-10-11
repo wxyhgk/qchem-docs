@@ -14,6 +14,7 @@ Martínez 及其合作者[[805]](../bib_references/bib.md#bib840)
  提出了一种罚函数约束（penalty-constrained）的 MECP 优化算法，其核心是最小化目标函数
 
 <a id="Ch9.E52"></a>
+
 $$
 F_{\sigma}(\mathbf{R})=\tfrac{1}{2}\bigl{[}E_{I}(\mathbf{R})+E_{J}(\mathbf{R})\bigr{]}+\sigma\left(\frac{\bigl{[}E_{I}(\mathbf{R})-E_{J}(\mathbf{R})\bigr{]}^{2}}{E_{I}(\mathbf{R})-E_{J}(\mathbf{R})+\alpha}\right)\;, \tag{9.52}
 $$
@@ -23,6 +24,7 @@ $$
 第二种 MECP 优化算法是对罚函数约束方法的一种简化，我们称之为“直接（direct）”方法。此时，目标函数的梯度为
 
 <a id="eq:direct_MECP"></a>
+
 $$
 \mathbf{G}=\mathbf{P}\mathbf{G}_{\rm mean}+2(E_{K}-E_{J})\mathbf{G}_{\rm diff}\;, \tag{9.53}
 $$
@@ -30,6 +32,7 @@ $$
 其中
 
 <a id="Ch9.E54"></a>
+
 $$
 \mathbf{G}_{\rm mean}=\tfrac{1}{2}(\mathbf{G}_{J}+\mathbf{G}_{K}) \tag{9.54}
 $$
@@ -37,6 +40,7 @@ $$
 是平均能量梯度，这里 $\mathbf{G}_{i}=\partial E_{i}/\partial\mathbf{R}$ 是态 $i$ 的核梯度；而
 
 <a id="Ch9.E55"></a>
+
 $$
 \mathbf{G}_{\rm diff}=\frac{\mathbf{G}_{K}-\mathbf{G}_{J}}{||\mathbf{G}_{K}-\mathbf{G}_{J}||} \tag{9.55}
 $$
@@ -44,6 +48,7 @@ $$
 是归一化的差值梯度。最后，
 
 <a id="eq:MECP_projector1"></a>
+
 $$
 \mathbf{P}=\bm{1}-\mathbf{G}_{\rm diff}\mathbf{G}_{\rm diff}^{\top} \tag{9.56}
 $$
@@ -60,6 +65,7 @@ $$
  提出的这样一种算法在 **Q-Chem** 中也是可用的，它沿式 ([9.53](#eq:direct_MECP)) 给出的梯度进行优化，但使用投影算符
 
 <a id="eq:MECP_projector2"></a>
+
 $$
 \mathbf{P}=\bm{1}-\mathbf{G}_{\rm diff}\mathbf{G}_{\rm diff}^{\top}-\mathbf{y}\mathbf{y}^{\top} \tag{9.57}
 $$
@@ -67,6 +73,7 @@ $$
 其中
 
 <a id="Ch9.E58"></a>
+
 $$
 \mathbf{y}=\frac{(\bm{1}-\mathbf{x}\mathbf{x}^{\top})\mathbf{h}_{JK}}{||(\bm{1}-\mathbf{x}\mathbf{x}^{\top})\mathbf{h}_{JK}||}\;, \tag{9.58}
 $$

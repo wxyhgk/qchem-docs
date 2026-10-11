@@ -14,6 +14,7 @@ Chipman[[1108]](../bib_references/bib.md#bib1155)
 一个依赖于延伸至溶质空腔之外的溶质电子密度尾部区域的 Pauli 排斥贡献，以及一个基于溶质在空腔表面所产生的电场法向分量的极大值与极小值的氢键校正项。溶剂化 Gibbs 自由能由此被建模为
 
 <a id="eq:CMIRS-free-energy"></a>
+
 $$
 \begin{split}\displaystyle\Delta G_{\textrm{CMIRS}}(\rho_{s})=&\displaystyle\Delta G_{\textrm{SS(V)PE}}(\rho_{s})+\Delta G_{\textrm{DEFESR}}(\rho_{s})\;,\end{split} \tag{11.22}
 $$
@@ -21,6 +22,7 @@ $$
 其中 $\Delta G_{\textrm{SS(V)PE}}$ 是来自 SS(V)PE 模型的连续介质静电贡献，该模型基于以溶质电荷密度的等值面 $\rho_{s}$ 定义的溶质空腔。第二项包含短程色散、交换以及"场极值短程"（DEFESR）相互作用：
 
 <a id="eq:DEFESR-free-energy"></a>
+
 $$
 \begin{split}\displaystyle\Delta G_{\textrm{DEFESR}}=&\displaystyle\Delta G_{\textrm{disp}}+\Delta G_{\textrm{exch}}+\Delta G_{\textrm{FESR}}\;.\end{split} \tag{11.23}
 $$

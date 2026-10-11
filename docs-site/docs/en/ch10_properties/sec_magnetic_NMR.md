@@ -17,6 +17,7 @@ is a second-order property that depends upon the external magnetic field,
 $\mathbf{B}$, and the spin angular momentum $\bm{m}$ for a given nucleus:
 
 <a id="Ch10.E116"></a>
+
 $$
 \Delta E=-\bm{m}\bm{\cdot}(\mathbf{1}-\bm{\sigma})\bm{\cdot}\mathbf{B}\;. \tag{10.116}
 $$
@@ -25,6 +26,7 @@ Using analytical derivative techniques to evaluate $\bm{\sigma}$, the components
 of this $3\times 3$ tensor are computed as
 
 <a id="Ch10.E117"></a>
+
 $$
 \sigma_{ij}=\sum_{\mu\nu}P_{\mu\nu}\left(\frac{\partial^{2}h_{\mu\nu}}{\partial B_{i}\partial m_{j}}\right)+\sum_{\mu\nu}\frac{\partial P_{\mu\nu}}{\partial B_{i}}\frac{\partial h_{\mu\nu}}{\partial m_{j}} \tag{10.117}
 $$
@@ -47,6 +49,7 @@ evaluated as the second derivative of the electronic energy with respect to the
 nuclear magnetic moments $\bm{m}$:
 
 <a id="issc"></a>
+
 $$
 \mathbf{J}^{AB}=\frac{\partial^{2}E}{\partial\bm{m}_{A}\partial\bm{m}_{B}}\;. \tag{10.118}
 $$

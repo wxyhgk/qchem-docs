@@ -13,6 +13,7 @@ chemical bonding is not necessary to describe the mean-field Coulomb and
 exchange interactions between electrons. That is, $\rho$ in the left side of
 
 <a id="A3.S8.EGx4"></a>
+
 $$
 \displaystyle(\mu\nu|\rho)=\sum_{\lambda\sigma}(\mu\nu|\lambda\sigma)\mathbf{P}_{\lambda\sigma} \tag{4.51}
 $$
@@ -27,6 +28,7 @@ $\rho(r)=\lambda\sigma(r)P_{\lambda\sigma}$ are fit by a smaller set of
 atom-centered basis functions. In terms of $J$:
 
 <a id="A3.S8.EGx5"></a>
+
 $$
 \displaystyle\sum_{\lambda\sigma}\int\textrm{d}^{3}\mathbf{r}_{1}P_{\lambda\sigma}\lambda\sigma(\mathbf{r}_{1})\frac{1}{|\mathbf{r}_{1}-\mathbf{r}|}\approx\sum_{K}\int\textrm{d}^{3}\mathbf{r}_{1}P_{K}K(\mathbf{r}_{1})\frac{1}{|\mathbf{r}_{1}-\mathbf{r}|} \tag{4.52}
 $$

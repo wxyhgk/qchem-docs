@@ -11,6 +11,7 @@ title: "11.5.4 成对片段能量分解"
 基态 QM/EFP 能量的分解形式为：
 
 <a id="A3.S8.EGx108"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle E_{\text{QM--EF, gr}}&\displaystyle=E_{\text{elec}}^{(1)}+E_{\text{pol-solute}}^{(0)}+E_{\text{pol-solute}}^{(1)}+E_{\text{pol-frag}}+E_{\text{QM--EFP}}^{\text{disp}}+E_{\text{QM--EF}}^{\text{ex-rep}}\\
 &\displaystyle=\langle\Psi_{\text{gr}}^{0}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle+\Big{[}\langle\Psi_{\text{gr}}^{\text{sol}}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{\text{sol}}\rangle-\langle\Psi_{\text{gr}}^{0}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{0}\rangle\Big{]}\\
@@ -22,6 +23,7 @@ $$
 $\hat{V}^{\text{pol}}$ 算符的每个积分都可以分解为各个片段的贡献，*例如*，
 
 <a id="eq:feed_elec"></a>
+
 $$
 E_{\text{elec}}^{(1)}=\langle\Psi_{\text{gr}}^{0}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle=\sum_{A}^{\text{fragments}}\langle\Psi_{\text{gr}}^{0}|\sum_{k\in A}\hat{V}_{k}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle \tag{11.79}
 $$
@@ -29,6 +31,7 @@ $$
 其余各项的分解方式类似。极化能可以近似地分解为各个片段的贡献：
 
 <a id="eq:feed_pol"></a>
+
 $$
 E_{\text{QM--EF, gr}}^{\text{pol}}=\frac{1}{2}\sum_{A}^{\text{fragments}}\sum_{p\in A}(-\mu^{p}F^{\text{ai,nuc,p}}+{\bar{\mu}^{p}F^{\text{ai,elec},p}}) \tag{11.80}
 $$
@@ -39,6 +42,7 @@ $$
 唯一无法类似地拆分为片段贡献的项是零阶溶质极化能：
 
 <a id="eq:feed_pol2"></a>
+
 $$
 E_{\text{pol-solute}}^{(0)}=\langle\Psi_{\text{gr}}^{\text{sol}}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{\text{sol}}\rangle-\langle\Psi_{\text{gr}}^{0}|\hat{H}^{\text{QM}}|\Psi_{\text{gr}}^{0}\rangle\;. \tag{11.81}
 $$
@@ -47,6 +51,7 @@ $$
 根据微扰理论，该项的绝对值预期约为一阶溶质极化项的一半，且符号相反：
 
 <a id="eq:feed_pol3"></a>
+
 $$
 E_{\text{pol-solute}}^{(1)}=\langle\Psi_{\text{gr}}^{\text{sol}}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{\text{sol}}\rangle-\langle\Psi_{\text{gr}}^{0}|\hat{V}^{\text{Coul}}|\Psi_{\text{gr}}^{0}\rangle\;. \tag{11.82}
 $$
@@ -54,6 +59,7 @@ $$
 能量分解分析在电子激发态中的应用描述如下。零阶总溶剂致色变位移（solvatochromic shift）可表示为：
 
 <a id="eq:FEED_exs"></a>
+
 $$
 E_{\text{solv}}^{\text{QM/EFP}}=\sum_{A}^{\text{fragments}}\big{(}\Delta E_{\text{ex/gr}}^{\text{elec(1),A}}+\Delta E_{\text{ex/gr}}^{\text{pol-solute(1)},A}+\Delta E_{\text{ex/gr}}^{\text{pol-frag(1)},A}\big{)}+\Delta E_{\text{ex/gr}}^{\text{pol-solute(0)},A}\;. \tag{11.83}
 $$
@@ -61,6 +67,7 @@ $$
 各项定义如下
 
 <a id="A3.S8.EGx109"></a>
+
 $$
 \displaystyle\Delta E_{\text{ex/gr}}^{\text{elec(1)},A} \tag{11.84}
 $$
@@ -68,6 +75,7 @@ $$
 激发态的微扰极化校正[[式 (11.77)](sec_EOM-EFP.md#eq:EOM-EFP-ene2)]的片段贡献可按如下方式获得：
 
 <a id="eq:feed:polcorr"></a>
+
 $$
 \Delta E_{\text{pol},A}=\frac{1}{2}\sum_{p\in A}\Bigl{[}-(\mu_{\rm{ex}}^{p}-\mu_{\rm{gr}}^{p})(F^{\text{mult},p}+F^{\text{nuc},p})+(\tilde{\mu}_{\text{ex}}^{p}F_{\text{ex}}^{\text{ai},p}-\tilde{\mu}_{\text{gr}}^{p}F_{\text{gr}}^{\text{ai},p})-(\mu_{\text{ex}}^{p}-\mu_{\text{gr}}^{p}+\tilde{\mu}_{\text{ex}}^{p}-\tilde{\mu}_{\text{gr}}^{p})F_{\text{ex}}^{\text{ai},p}\Bigr{]} \tag{11.88}
 $$

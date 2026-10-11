@@ -16,6 +16,7 @@ Fourier transform of auto-correlation functions. **Q-Chem** can provide both the
 vibrational spectral density from the velocity auto-correlation function
 
 <a id="Ch9.E63"></a>
+
 $$
 D(\omega)\propto\int_{-\infty}^{\infty}dt\ e^{-i\omega t}\langle\vec{v}(0)\bm{\cdot}\vec{v}(t)\rangle \tag{9.63}
 $$
@@ -24,6 +25,7 @@ and infrared absorption intensity from the dipole
 auto-correlation function
 
 <a id="Ch9.E64"></a>
+
 $$
 I(\omega)\propto\frac{\omega}{2\pi}\int_{-\infty}^{\infty}dt\ e^{-i\omega t}\langle\vec{\mu}(0)\bm{\cdot}\vec{\mu}(t)\rangle \tag{9.64}
 $$

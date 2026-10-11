@@ -12,6 +12,7 @@ Low-frequency vibrational modes usually emerge due to hindered or near-free rota
  proposed to enforce a finite vibrational entropy by interpolating between the entropy of the free rotor $S_{\mathrm{FR}}$ and the harmonic vibrational entropy $S_{\mathrm{HO}}$ as
 
 <a id="eq:Grimme_interpolation"></a>
+
 $$
 S_{\mathrm{vib}}(\nu_{i})=\big{(}1-\omega(\nu_{i})\big{)}S_{\mathrm{FR}}(\nu_{i})+\omega(\nu_{i})S_{\mathrm{HO}}(\nu_{i}), \tag{10.71}
 $$
@@ -19,6 +20,7 @@ $$
 where
 
 <a id="eq:Chai_MHG_interpolator"></a>
+
 $$
 \omega(\nu_{i})=\frac{1}{1+(\nu_{0}/\nu_{i})^{\alpha}} \tag{10.72}
 $$
@@ -33,6 +35,7 @@ $H_{\mathrm{FR}}$ and a harmonic oscillator $H_{\mathrm{HO}}$ with zero-point vi
 $H_{\mathrm{ZPVE}}$, as[[822]](../bib_references/bib.md#bib853)
 
 <a id="eq:MHG_interpolation"></a>
+
 $$
 H_{\mathrm{vib}}(\nu_{i})=\big{[}1-\omega(\nu_{i})\big{]}H_{\mathrm{FR}}(\nu_{i})+\omega(\nu_{i})\big{[}H_{\mathrm{HO}}(\nu_{i})+H_{\mathrm{ZPVE}}(\nu_{i})\big{]}\;. \tag{10.73}
 $$

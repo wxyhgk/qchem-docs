@@ -11,6 +11,7 @@ title: "10.2.2 原子部分电荷"
 单电子电荷密度，
 
 <a id="eq1001"></a>
+
 $$
 \rho({\rm{\bf r}})=\sum\limits_{\mu\nu}{P_{\mu\nu}\,\phi_{\mu}({\rm{\bf r}})\,\phi_{\nu}({\rm{\bf r}})}\;, \tag{10.1}
 $$
@@ -18,6 +19,7 @@ $$
 表示在点 $\mathbf{r}$ 处找到电子的概率，但对于分子中与给定原子核相关联的电子数目几乎没有给出任何信息。然而，由于电子数 $N$ 与占据轨道 $\psi_{i}$ 的关系为
 
 <a id="eq1002"></a>
+
 $$
 N=2\sum_{a}^{N/2}\bigl{|}\psi_{a}(\mathbf{r})\bigr{|}^{2} \tag{10.2}
 $$
@@ -25,6 +27,7 @@ $$
 我们可以将 $\psi_{a}$ 的原子轨道（atomic orbital, AO）基组展开代入式 ([10.2](#eq1002))，得到
 
 <a id="eq1003"></a>
+
 $$
 N=\sum_{\mu\nu}P_{\mu\nu}S_{\mu\nu}=\sum_{\mu}\left(\mathbf{PS}\right)_{\mu\mu}=\mathrm{tr}(\mathbf{PS}) \tag{10.3}
 $$
@@ -32,6 +35,7 @@ $$
 其中我们将 $(\mathbf{PS})_{\mu\mu}$ 解释为与 $\phi_{\mu}$ 相关联的电子数。如果基函数是以原子为中心的，则通过对某个原子的所有基函数求和，即可获得与该原子相关联的电子数。由此得到原子 $A$ 净电荷的 Mulliken 公式：
 
 <a id="eq1004"></a>
+
 $$
 q_{A}=Z_{A}-\sum_{\mu\in A}\left(\mathbf{PS}\right)_{\mu\mu} \tag{10.4}
 $$
@@ -239,6 +243,7 @@ Hirshfeld 布居分析[[583]](../bib_references/bib.md#bib606)
  为分子中的原子电荷提供了另一种定义：
 
 <a id="eq:hirshfeld"></a>
+
 $$
 q_{A}=Z_{A}-\int d{\bf r}\left(\frac{\rho^{0}_{A}({\bf r})}{\sum_{B}\rho^{0}_{B}({\bf r})}\right)\rho({\bf r}), \tag{10.5}
 $$
@@ -256,6 +261,7 @@ $$
 由此得到
 
 <a id="eq:hirshc"></a>
+
 $$
 q_{i}^{1}=Z_{i}-\int d\mathbf{r}\left(\frac{\rho_{i}^{0}(\mathbf{r})}{\sum_{i}^{A}\rho_{i}^{0}(\mathbf{r})}\right)\rho(\mathbf{r})=Z_{i}-N_{i}^{1} \tag{10.6}
 $$
@@ -264,6 +270,7 @@ $$
 然后计算满足 $N_{i}^{1}=\int d\mathbf{r}\,\rho_{i}^{1}(\mathbf{r}_{1})$ 的新孤立原子密度，并在下一次迭代中用它们构造预分子密度。一般地，第 $k$ 次迭代中原子 $i$ 的新权重函数为
 
 <a id="eq:weight2"></a>
+
 $$
 w_{i,\rm{HI}}^{k}(\mathbf{r})=\frac{\rho_{i}^{k-1}(\mathbf{r})}{\sum\limits_{i\in A}\rho_{i}^{k-1}(\mathbf{r})}\;. \tag{10.7}
 $$
@@ -271,6 +278,7 @@ $$
 具有相应分数电子数 $N_{i}^{k}$ 的原子密度 $\rho_{i}^{k}(\mathbf{r})$ 通过对同一原子的 $\rho_{i}^{0,\lfloor N_{i}^{k}\rfloor}(\mathbf{r})$ 与 $\rho_{i}^{0,\lceil N_{i}^{k}\rceil}(\mathbf{r})$ 进行线性插值得到：[[170]](../bib_references/bib.md#bib164)
 
 <a id="eq:interpolate"></a>
+
 $$
 \rho_{i}^{k}(\mathbf{r})=\left(\lceil N_{i}^{k}\rceil-N_{i}^{k}\right)\,\rho_{i}^{0,\lfloor N_{i}^{k}\rfloor}(\mathbf{r})+\left(N_{i}^{k}-\lfloor N_{i}^{k}\rfloor\right)\,\rho_{i}^{0,\lceil N_{i}^{k}\rceil}(\mathbf{r})\;, \tag{10.8}
 $$

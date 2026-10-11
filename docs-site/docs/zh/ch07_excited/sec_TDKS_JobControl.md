@@ -219,6 +219,7 @@ TDKS 方法的基础是对一个（先前无场的）基态 $|\Psi_{0}\rangle$ �
 **Impulse** 场具有如下高斯包络，
 
 <a id="Ch7.E60"></a>
+
 $$
 \bm{\mathcal{E}}(t)=\mathbf{A}_{0}\exp\left(\frac{(t-t_{\text{peak}})^{2}}{2\tau^{2}}\right)\sin(\omega t) \tag{7.60}
 $$
@@ -230,6 +231,7 @@ $$
 **Impulse2** 场具有余弦平方包络，场 $\bm{\mathcal{E}}$ 初始即开启，并在 $t=2t_{\text{peak}}$ 时关闭。对于 $0\leq t\leq 2t_{\text{peak}}$，
 
 <a id="Ch7.E61"></a>
+
 $$
 \bm{\mathcal{E}}(t)=\mathbf{A}_{0}\cos^{2}\left[\frac{\pi}{2t_{\text{peak}}}(t_{\text{peak}}-t)\right]\cos[\omega(t-t_{\text{peak}})] \tag{7.61}
 $$
@@ -301,6 +303,7 @@ $$
 这是通过一组原子中心的 CAP 函数来实现的
 
 <a id="eqn:fk_CAP"></a>
+
 $$
 f^{\text{CAP}}_{k}(\mathbf{r})=\begin{cases}0,&\|\mathbf{r}-\mathbf{R}_{k}\|<r_{0}\\
 \eta\big{(}\|\mathbf{r}-\mathbf{R}_{k}\|-r_{0}\big{)}^{2},&\|\mathbf{r}-\mathbf{R}_{k}\|\geq r_{0}\end{cases}\;. \tag{7.62}
@@ -310,6 +313,7 @@ $$
 $E_{\text{max}}=10~{}E_{h}$ 中的最小值，后者的引入是为了避免数值溢出问题。综合起来，
 
 <a id="Ch7.E63"></a>
+
 $$
 \upsilon_{\text{CAP}}(\mathbf{r})=\min\big{\{}E_{\text{max}},f_{1}^{\text{CAP}}(\mathbf{r}),f_{2}^{\text{CAP}}(\mathbf{r}),\ldots,\big{\}}\;. \tag{7.63}
 $$
@@ -321,6 +325,7 @@ $r_{0}=3.5\times R_{\text{vdW}}$ 的取值，[[716]](../bib_references/bib.md#bi
 注意，将 $r_{0}$ 放置在高斯基函数本身的延展范围之外不会有任何效果。对于指数为 $\zeta$ 的高斯基函数，该函数的半高全宽（FWHM）为
 
 <a id="Ch7.E64"></a>
+
 $$
 \text{FWHM}(\zeta)=2\left(\frac{\ln 2}{\zeta}\right)^{1/2}\;, \tag{7.64}
 $$

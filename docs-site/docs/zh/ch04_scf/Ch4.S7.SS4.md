@@ -40,6 +40,7 @@ BASIS2 = BASIS2_MIXED 启用。
 表 4.2: 推荐的双基组配对汇总与命名
 
 <a id="Ch4.Ex5"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{ccc}s\\
 &p\\
@@ -71,6 +72,7 @@ s\\
 $$
 
 <a id="Ch4.Ex6"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{cccc}s\\
 &p\\
@@ -110,6 +112,7 @@ s\\
 $$
 
 <a id="Ch4.Ex7"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{ccc}s\\
 &p\\
@@ -139,6 +142,7 @@ s^{\prime}\end{array}\\
 $$
 
 <a id="Ch4.Ex8"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{ccc}s\\
 &p\\
@@ -174,6 +178,7 @@ s^{\prime}\end{array}\\
 $$
 
 <a id="Ch4.Ex9"></a>
+
 $$
 \begin{array}[]{cccccc}$H-He:$&\scriptsize\begin{array}[]{cccc}s\\
 &p\\

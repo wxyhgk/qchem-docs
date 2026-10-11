@@ -12,6 +12,7 @@ EOM-CCSD wave functions as zero-order wave functions, the second order triples
 correction to the $\mu$th EOM-EE or SF state is:
 
 <a id="Ch7.E123"></a>
+
 $$
 \Delta E^{(2)}_{\mu}=-\frac{1}{36}\sum_{i,j,k}\sum_{a,b,c}\frac{{\tilde{\sigma}_{ijk}^{abc}}(\mu){\sigma_{ijk}^{abc}}(\mu)}{D_{ijk}^{abc}-\omega_{\mu}} \tag{7.123}
 $$
@@ -22,6 +23,7 @@ EOM-CCSD excitation energy of the $\mu$th state.
 The quantities $\tilde{\sigma}$ and $\sigma$ are:
 
 <a id="A3.S8.EGx59"></a>
+
 $$
 \displaystyle\tilde{\sigma}_{ijk}^{abc}(\mu) \tag{7.124}
 $$

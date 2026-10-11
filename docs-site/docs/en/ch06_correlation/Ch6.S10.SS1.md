@@ -23,6 +23,7 @@ approach.[[1225]](../bib_references/bib.md#bib1280)
  In a nutshell, we define the dRPA energy as
 
 <a id="Ch6.E53"></a>
+
 $$
 E=E_{\text{HF}}+E_{\text{c}}^{\text{dRPA}} \tag{6.53}
 $$
@@ -30,6 +31,7 @@ $$
 where using the plasmon formula we compute[[373]](../bib_references/bib.md#bib377)
 
 <a id="Ch6.E54"></a>
+
 $$
 E_{\text{c}}^{\text{dRPA}}=\int_{-\infty}^{\infty}\frac{\mathrm{d}\omega}{4\pi}\mathrm{tr}\left[\ln\left(\mathbf{I}+\mathbf{Q}(\omega)\right)-\mathbf{Q}(\omega)\right] \tag{6.54}
 $$
@@ -37,6 +39,7 @@ $$
 where
 
 <a id="Ch6.E55"></a>
+
 $$
 \mathbf{Q}(\omega)=2\mathbf{B}^{T}\mathbf{D}(\mathbf{D}^{2}+\omega^{2}\mathbf{I})^{-1}\mathbf{B} \tag{6.55}
 $$
@@ -44,6 +47,7 @@ $$
 with
 
 <a id="A3.S8.EGx21"></a>
+
 $$
 \displaystyle B_{ia,P} \tag{6.56}
 $$

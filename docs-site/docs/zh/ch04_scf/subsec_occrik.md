@@ -17,6 +17,7 @@ occ-RI-K 形式（formalism）的思想源于一个简单的观察：交换能 $
 和占据-虚轨道块 $K_{ia}$ 中交换矩阵的对角元素来求值，而不需要 AO 表示下的完整矩阵 $K_{\mu\nu}$。数学上，
 
 <a id="A3.S8.EGx6"></a>
+
 $$
 \displaystyle E_{K} \tag{4.53}
 $$
@@ -24,6 +25,7 @@ $$
 以及
 
 <a id="eq4occ-RI-K2"></a>
+
 $$
 \frac{\partial E_{K}}{\partial\Delta_{ai}}=2K_{ai} \tag{4.54}
 $$
@@ -31,6 +33,7 @@ $$
 其中 $\Delta$ 是一个反对称矩阵，用于参数化幺正变换 $U$，该变换表示 MO 系数的变化，如下所示：
 
 <a id="eq4occ-RI-K3"></a>
+
 $$
 U=e^{(\Delta-\Delta^{T})}. \tag{4.55}
 $$
@@ -43,6 +46,7 @@ $$
 而 occ-RI-K 算法则有三项四次方量级的项。后者相对于前者的加速比可以从以下运算量之比来解释；详情参见文献 [[892]](../bib_references/bib.md#bib926)。
 
 <a id="A3.S8.EGx7"></a>
+
 $$
 \displaystyle\frac{\mbox{\#~{}of~{}RI-K~{}quartic~{}operations}}{\mbox{\#~{}of~{}occ-RI-K~{}quartic~{}operations}}=\frac{oNX^{2}+oN^{2}X}{o^{2}X^{2}+o^{2}NX+o^{2}NX}=\frac{N(X+N)}{o(X+2N)} \tag{4.56}
 $$
@@ -80,6 +84,7 @@ occ-RI-K 框架的一个极具吸引力的特性是，可以用与能量计算�
 occ-RI-K 形式在全局库仑度量（global Coulomb-metric）RI 下给出如下交换能梯度公式：
 
 <a id="A3.S8.EGx8"></a>
+
 $$
 \displaystyle E_{K}^{x} \tag{4.57}
 $$
@@ -91,6 +96,7 @@ $c_{\mu i}$ 的导数，因为 **Q-Chem** 已经通过重叠矩阵的导数，�
 标度，因为它涉及从 MO 到 AO 的反变换（back transformation）：
 
 <a id="A3.S8.EGx9"></a>
+
 $$
 \displaystyle C_{\mu\nu}^{P}=\sum_{ij}c_{\mu i}c_{\nu j}C_{ij}^{P} \tag{4.58}
 $$

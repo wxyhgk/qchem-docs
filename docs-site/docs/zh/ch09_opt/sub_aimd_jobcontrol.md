@@ -191,6 +191,7 @@ Functional Theory, DFT））层面，利用先前时间步的信息为新分子�
 **Q-Chem** 的外推过程将这些振荡拟合为 $t$ 的幂级数：
 
 <a id="Ch9.E61"></a>
+
 $$
 F_{\mu\nu}(t)=\sum\limits_{n=0}^{N}{c_{n}\,}t^{n} \tag{9.61}
 $$
@@ -306,6 +307,7 @@ $\tau_{\mathrm{nuc}}$ 由最快振动频率的周期决定，而电子振荡的�
 $\tau_{\mathrm{elec}}$ 可根据[[558]](../bib_references/bib.md#bib572)估计为
 
 <a id="Ch9.E62"></a>
+
 $$
 \tau_{\mathrm{elec}}\geq\left(\frac{\mu}{\varepsilon_{\rm LUMO}-\varepsilon_{\rm HOMO}}\right)^{1/2} \tag{9.62}
 $$

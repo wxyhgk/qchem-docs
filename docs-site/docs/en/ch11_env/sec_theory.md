@@ -14,6 +14,7 @@ electrostatics, polarization, dispersion and exchange-repulsion contributions
 ionic and highly polar species, is omitted in the current implementation):
 
 <a id="Ch11.E61"></a>
+
 $$
 E^{\text{ef-ef}}=E_{\text{elec}}+E_{\text{pol}}+E_{\text{disp}}+E_{\text{ex-rep}}\;. \tag{11.61}
 $$
@@ -23,6 +24,7 @@ polarization parts of the EFP potential contribute to the quantum Hamiltonian
 via one-electron terms,
 
 <a id="eq:H-EFP"></a>
+
 $$
 H^{\prime}_{pq}=H_{pq}+\langle p|\hat{V}^{\text{Coul}}+\hat{V}^{\text{pol}}|q\rangle \tag{11.62}
 $$
@@ -61,6 +63,7 @@ where $\alpha_{k}$ and $\alpha_{l}$ are the damping parameters associated with t
 corresponding expansion points:
 
 <a id="eq:EFP-elec-damp"></a>
+
 $$
 E^{\text{ch-ch}}_{kl}=\begin{cases}\left[1-(1+\alpha_{k}R_{kl}/2)e^{-\alpha_{k}R_{kl}}\right]\frac{q^{k}q^{l}}{R_{kl}}&\text{if $\alpha_{k}=\alpha_{l}$}\\
 \left[1-\left({\alpha_{l}^{2}\over\alpha_{l}^{2}-\alpha_{k}^{2}}\right)e^{-\alpha_{k}R_{kl}}-\left({\alpha_{k}^{2}\over\alpha_{k}^{2}-\alpha_{l}^{2}}\right)e^{-\alpha_{l}R_{kl}}\right]\frac{q^{k}q^{l}}{R_{kl}}&\text{if $\alpha_{k}\neq\alpha_{l}$}\\
@@ -71,6 +74,7 @@ Alternatively, one can obtain the short-range charge-penetration energy using
 the spherical Gaussian overlap (SGO) approximation:[[1271]](../bib_references/bib.md#bib1324)
 
 <a id="eq:overlap-damping"></a>
+
 $$
 E^{\text{pen}}_{kl}=-2\left({1\over{-2ln|S_{kl}|}}\right)^{1/2}\frac{S^{2}_{kl}}{R_{kl}} \tag{11.64}
 $$
@@ -91,6 +95,7 @@ terms originating from the electrostatic potential of the corresponding
 multipole (charge, dipole, quadrupole, and octupole):
 
 <a id="eq:QM-EFP-elec"></a>
+
 $$
 V^{\text{Coul}}_{k}(x)=q_{k}T(r_{kx})-\sum^{x,y,z}_{a}\mu^{k}_{a}T_{a}(r_{kx})+\frac{1}{3}\sum^{x,y,z}_{ab}\Theta^{k}_{ab}T_{ab}(r_{kx})-\frac{1}{15}\sum^{x,y,z}_{abc}\Omega^{k}_{abc}T_{abc}(r_{kx})\;, \tag{11.65}
 $$
@@ -104,6 +109,7 @@ gaussian-type damping function,[[504]](../bib_references/bib.md#bib517)
 that Eq. ([11.65](#eq:QM-EFP-elec)) becomes
 
 <a id="A3.S8.EGx106"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle V^{\text{Coul}}_{k}(x)=\big{[}q_{k}^{\text{nuc}}+q_{k}^{\text{ele}}(1-\exp{(-\beta_{k}r^{2}_{kx})}\big{]}T(r_{kx})&\displaystyle-\sum^{x,y,z}_{a}\mu^{k}_{a}\;T_{a}(r_{kx})+\frac{1}{3}\sum^{x,y,z}_{ab}\Theta^{k}_{ab}\;T_{ab}(r_{kx})\\
 &\displaystyle-\frac{1}{15}\sum^{x,y,z}_{abc}\Omega^{k}_{abc}\;T_{abc}(r_{kx})\;,\end{aligned} \tag{11.66}
@@ -127,6 +133,7 @@ The polarization energy of a system consisting of an *ab initio* and
 effective fragment regions is[[309]](../bib_references/bib.md#bib314)
 
 <a id="eq:pol_energy"></a>
+
 $$
 E^{\text{pol}}=-\frac{1}{2}\sum_{k}\sum^{x,y,z}_{a}\mu^{k}_{a}\big{(}F^{\text{mult},k}_{a}+F^{\text{ai,nuc},k}_{a}\big{)}+\frac{1}{2}\sum_{k}\sum^{x,y,z}_{a}\bar{\mu}^{k}_{a}\;F^{\text{ai,elec},k}_{a} \tag{11.67}
 $$
@@ -140,6 +147,7 @@ electronic density and nuclei of the *ab initio* part, respectively.
 The induced dipoles at each polarizability point $k$ are computed as
 
 <a id="eq:ind_dip"></a>
+
 $$
 \mu^{k}=\alpha^{k}F^{\text{total},k} \tag{11.68}
 $$
@@ -150,6 +158,7 @@ field due to other induced dipoles, $F^{\text{ind}}_{k}$, as well as the field d
 to nuclei and electronic density of the *ab initio* region:
 
 <a id="eq:pol_total_field"></a>
+
 $$
 F^{\text{ai,total},k}=F^{\text{mult},k}+F^{\text{ind},k}+F^{\text{ai,elec},k}+F^{\text{ai,nuc},k}\;. \tag{11.69}
 $$
@@ -161,6 +170,7 @@ Moreover, the induced dipoles on the effective fragments depend on the
 created by these induced dipoles through a one electron contribution to the Hamiltonian:
 
 <a id="eq:hamilt_pol"></a>
+
 $$
 \hat{V}^{\text{pol}}_{k}(x)=\frac{1}{2}\sum_{a}^{x,y,z}\big{(}\mu_{a}^{k}+\bar{\mu}_{a}^{k}\big{)}\;T_{a}(r_{kx}) \tag{11.70}
 $$
@@ -178,11 +188,13 @@ gaussian-like damping functions with default parameter $\alpha=\beta=0.6$,
 applied to electric field $F$:[[1271]](../bib_references/bib.md#bib1324)
 
 <a id="eq:pol_damp_1"></a>
+
 $$
 F=F_{0}f^{\mathrm{damp}} \tag{11.71}
 $$
 
 <a id="eq:pol_damp_2"></a>
+
 $$
 f^{\text{damp}}=1.0-\big{(}1+\sqrt{\alpha\beta}r^{2}\big{)}e^{-(\alpha\beta)^{1/2}r^{2}} \tag{11.72}
 $$
@@ -192,6 +204,7 @@ interactions,[[197]](../bib_references/bib.md#bib190)
  and its leading-order contribution is
 
 <a id="eq:disp_basic"></a>
+
 $$
 E^{\text{disp}}=\sum_{n}\frac{C_{6}}{R^{6}} \tag{11.73}
 $$
@@ -207,6 +220,7 @@ Tang-Toennies damping formula[[1342]](../bib_references/bib.md#bib1400)
  with parameter $b=1.5$,
 
 <a id="eq:disp_TT_damp"></a>
+
 $$
 C_{6}^{kl}\rightarrow\left(1-e^{-bR}\sum_{k=0}^{6}{{(bR)^{k}}\over{k!}}\right)C_{6}^{kl}\;, \tag{11.74}
 $$
@@ -214,6 +228,7 @@ $$
 or else using interfragment overlap (so-called overlap-based damping):[[1271]](../bib_references/bib.md#bib1324)
 
 <a id="eq:disp_overlap_damp"></a>
+
 $$
 C_{6}^{kl}\rightarrow\left(1-S_{kl}^{2}\left(1-2\log|S_{kl}|+2\log^{2}|S_{kl}|\right)\right)C_{6}^{kl}\;. \tag{11.75}
 $$
@@ -240,6 +255,7 @@ exchange-repulsion contribution from each pair of localized orbitals $i$ and
 $j$ belonging to fragments $A$ and $B$, respectively, is:
 
 <a id="A3.S8.EGx107"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle E^{\text{exch}}_{ij}=&\displaystyle-4\sqrt{-2\ln|S_{ij}|\over\pi}{S^{2}_{ij}\over R_{ij}}\\
 &\displaystyle-2S_{ij}\left(\sum_{k\in A}F^{A}_{ik}S_{kj}+\sum_{l\in B}F^{B}_{jl}S_{il}-2T_{ij}\right)\\

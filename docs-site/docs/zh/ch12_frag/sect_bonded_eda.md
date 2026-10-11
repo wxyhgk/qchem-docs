@@ -11,6 +11,7 @@ title: "12.7.2 用于成键相互作用的 ALMO-EDA"
 该方法从两个双重态（doublet）自由基片段出发，每个片段均由一个受限开壳层（restricted open-shell, RO）Hartree-Fock（HF）或 Kohn-Sham DFT 单行列式描述。在成键 EDA 方案中，由于轨道重杂化（re-hybridization）在能量中可能扮演如此重要的角色，$\Delta E_{\text{PREP}}$ 既包含将每个自由基片段扭曲至其在成键态中所采用几何构型所需的能量 $\Delta E_{\text{GEOM}}$，也包含源于轨道重杂化的电子制备能 $\Delta E_{\text{HYBRID}}$。例如，F 原子的未成对电子位于一个 $p$ 轨道中，而处于化学键中的 F 原子则为 $sp$ 杂化。胺自由基 NH${}_{2}$ 为 $sp^{2}$ 杂化，未成对电子位于 $p$ 轨道中；而分子中的胺基通常为 $sp^{3}$ 或 $sp^{2}$ 杂化，$p$ 轨道中容纳一对孤对电子。于是，
 
 <a id="Ch12.E25"></a>
+
 $$
 \Delta E_{\text{PREP}}=\Delta E_{\text{GEOM}}+\Delta E_{\text{HYBRID}} \tag{12.25}
 $$

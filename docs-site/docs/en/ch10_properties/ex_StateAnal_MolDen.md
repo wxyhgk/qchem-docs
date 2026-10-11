@@ -63,6 +63,7 @@ and quantification of electron–hole entanglement.[[1100]](../bib_references/bi
 The NTOs are obtained by singular value decomposition (SVD) of the 1TDM:[[572]](../bib_references/bib.md#bib586)
 
 <a id="A3.S8.EGx77"></a>
+
 $$
 \displaystyle\gamma^{\text{IF}}_{pq} \tag{10.34}
 $$
@@ -72,6 +73,7 @@ matrices $\bm{\alpha}$ and $\bm{\beta}$ contain the respective particle and hole
 NTOs. Note that:
 
 <a id="Ch10.E36"></a>
+
 $$
 \|\bm{\gamma}\|^{2}=\sum_{pq}\gamma_{pq}^{2}=\sum_{K}\sigma_{K}^{2}\equiv\Omega \tag{10.36}
 $$

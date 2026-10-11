@@ -45,6 +45,7 @@ two-photon process. Here $\omega_{i}$, $\omega_{1}$, and $\omega_{2}$ denote the
 incident photon frequencies and the operator $\hat{M}$ is given by
 
 <a id="Ch10.E82"></a>
+
 $$
 \hat{M}=\begin{cases}\hat{\mu}&\text{(one-photon transition)}\\
 \sum_{L}\left[\frac{{\bf\mu}\cdot\hat{e}_{2}|L\rangle\langle L|{\bf\mu}\cdot\hat{e}_{1}}{(\omega_{1}-\omega_{LI})}+\frac{{\bf\mu}\cdot\hat{e}_{1}|L\rangle\langle L|{\bf\mu}\cdot\hat{e}_{2}}{(\omega_{2}-\omega_{LI})}\right]&\text{(two-photon transition)}\end{cases}\;. \tag{10.82}
@@ -60,6 +61,7 @@ rate of the Raman process is proportional to
 $S(\omega_{i},\omega_{S})=|\langle F|\hat{M}|I\rangle|^{2}\delta(\Delta\omega)$, where
 
 <a id="A3.S8.EGx80"></a>
+
 $$
 \displaystyle\hat{M}=\sum_{L}\left[\dfrac{\mu\cdot\hat{e}_{2}|L\rangle\langle L|\mu\cdot\hat{e}_{1}}{(\omega_{i}-\omega_{LI})}-\dfrac{\mu\cdot\hat{e}_{1}|L\rangle\langle L|\mu\cdot\hat{e}_{2}}{(\omega_{S}+\omega_{LI})}\right] \tag{10.83}
 $$
@@ -69,6 +71,7 @@ The differential photon scattering cross section
 is given by[[35]](../bib_references/bib.md#bib18)
 
 <a id="rrs1"></a>
+
 $$
 \sigma(\omega_{i},\omega_{S})\propto\frac{4\omega_{i}\omega_{S}^{3}}{9c^{4}}S(\omega_{i},\omega_{S}). \tag{10.84}
 $$
@@ -88,6 +91,7 @@ functions as products of an electronic wave function
 $\Psi$ and a vibrational wave function $\Lambda$
 
 <a id="Ch10.E85"></a>
+
 $$
 \Phi_{n}(q,Q)=\Psi_{n}(q,Q)\Lambda_{n}(Q)\;, \tag{10.85}
 $$
@@ -95,6 +99,7 @@ $$
 we have
 
 <a id="A3.S8.EGx81"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Psi_{n}(q,Q)&\displaystyle=\Psi_{n}(q,0)+[\partial{\Psi_{n}(q,0)}/{\partial Q}]_{Q=0}Q+\cdots\;,\\
 \displaystyle M_{IF}&\displaystyle=M_{IF}(Q=0)+[\partial{M_{IF}}/{\partial Q}]_{Q=0}Q+\cdots\;.\end{aligned} \tag{10.86}
@@ -105,6 +110,7 @@ truncate the expansions after the lowest-order non-vanishing term, $M_{IF}$ can
 be written as
 
 <a id="A3.S8.EGx82"></a>
+
 $$
 \displaystyle M_{IF} \tag{10.87}
 $$
@@ -122,6 +128,7 @@ $k$ in state $|n\rangle$.
 The delta function $\delta(\Delta\omega)$ can be expressed as the Fourier integral
 
 <a id="eq4"></a>
+
 $$
 \delta(\Delta\omega)=\frac{1}{2\pi\hbar}\int_{-\infty}^{+\infty}\mathrm{e}^{(i\Delta\omega)t/\hbar}\,dt\;, \tag{10.88}
 $$
@@ -129,6 +136,7 @@ $$
 and then the transition rate from the initial state to the final state becomes
 
 <a id="eq:rate2"></a>
+
 $$
 k_{IF}=\int_{-\infty}^{+\infty}\exp[i(\omega_{0}+E_{i}-E_{f})t/\hbar-\gamma t]C_{i}(t)dt \tag{10.89}
 $$
@@ -136,6 +144,7 @@ $$
 where $\gamma$ is a damping factor and
 
 <a id="Ch10.E90"></a>
+
 $$
 C_{i}(t)=\frac{\mbox{tr}[e^{-\beta\hat{H}_{i}}\mathrm{e}^{i\hat{H}_{i}t/\hbar}\hat{M}e^{-iH_{f}t/\hbar}\hat{M})}{\mbox{tr}[\mathrm{e}^{-\beta\hat{H}_{i}}]}\;. \tag{10.90}
 $$
@@ -150,6 +159,7 @@ and excited states, respectively.
 The Hamiltonian of vibrational motions on the ground and excited states can be written as
 
 <a id="Ch10.E91"></a>
+
 $$
 \displaystyle H_{g} \tag{10.91a}
 $$
@@ -172,6 +182,7 @@ to different vibrational frequencies and normal modes. The relation between mass
 coordinates $x$ and normal mode coordinates $Q$ is given by
 
 <a id="A3.S8.EGx84"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle x^{g}-x_{0}^{g}&\displaystyle=L_{g}Q_{g}\;,\\
 \displaystyle x^{e}-x_{0}^{e}&\displaystyle=L_{e}Q_{e}\;,\end{aligned} \tag{10.92}
@@ -182,6 +193,7 @@ states. For an ideal $N$-dimensional harmonic oscillator, the normal mode
 coordinates of ground and excited states are related by
 
 <a id="A3.S8.EGx85"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle Q_{e}&\displaystyle=(L_{e})^{\top}L_{g}Q_{g}+(L_{e})\top(x_{0}^{g}-x_{0}^{e})\\
 &\displaystyle=\bar{D}Q_{g}+\bar{\Delta}\;.\end{aligned} \tag{10.93}
@@ -198,6 +210,7 @@ the displacement of $Q_{j}$ can be calculated by the excited-state energy gradie
 $(\partial E/\partial Q)_{j}$ and $\Delta^{\!\text{VG}}$ can be written as
 
 <a id="eq:VG"></a>
+
 $$
 \Delta_{j}^{\!\text{VG}}=(\omega_{j}^{g})^{-3/2}\left(\frac{\partial E}{\partial Q}\right)_{j}=\sum\limits_{i}(\omega_{j}^{g})^{-3/2}\left(\frac{\partial E}{\partial x_{i}}\right)L^{ij}_{g}. \tag{10.94}
 $$

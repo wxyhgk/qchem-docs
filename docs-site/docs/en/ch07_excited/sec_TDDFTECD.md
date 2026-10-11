@@ -9,6 +9,7 @@ title: "7.3.9 Electric Circular Dichroism"
 Circular dichroism (CD) is defined as the differential absorption of left- and right-circularly polarized light by a sample, expressed as $\Delta\varepsilon=\varepsilon_{\text{L}}-\varepsilon_{\text{R}}$. Electronic circular dichroism (ECD) specifically probes electronic transitions, and its intensity is characterized by the rotatory strength $R_{0n}$ for a transition from the ground state to the $n$-th excited state. Beyond the electric dipole approximation, the contributions to ECD involve both electric dipole-magnetic dipole and electric dipole-electric quadrupole terms. For an isotropic system (e.g., a dilute solution), the electric dipole-electric quadrupole contribution vanishes due to rotational averaging, and the rotatory strength simplifies to
 
 <a id="Ch7.E35"></a>
+
 $$
 R_{0n}=\mathrm{Im}\big{[}\bm{\mu}_{0n}\cdot\mathbf{m}_{n0}\big{]}, \tag{7.35}
 $$
@@ -16,6 +17,7 @@ $$
 where $\bm{\mu}_{0n}$ is the transition electric dipole moment and $\mathbf{m}_{n0}$ is the transition magnetic dipole moment. There are two formulations for calculating the rotatory strength, depending on how the transition electric dipole is evaluated. One is the “length-gauge”, where the transition electric dipole is given by
 
 <a id="Ch7.E36"></a>
+
 $$
 \bm{\mu}_{0n}^{\text{(l)}}=-e\langle\Psi_{0}|\hat{\mathbf{r}}|\Psi_{n}\rangle. \tag{7.36}
 $$
@@ -23,6 +25,7 @@ $$
 The other is the “velocity-gauge” (also referred to as the transition electric velocity dipole), defined as
 
 <a id="Ch7.E37"></a>
+
 $$
 \bm{\mu}_{0n}^{\text{(v)}}=-\frac{e}{i\omega_{n}}\langle\Psi_{0}|\hat{\mathbf{p}}|\Psi_{n}\rangle. \tag{7.37}
 $$

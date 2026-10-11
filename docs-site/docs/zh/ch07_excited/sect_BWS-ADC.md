@@ -14,6 +14,7 @@ title: "7.10.6 正则化激发态与 BWs-ADC"
 虽然它最初是作为一种重新分拆方案提出的，目的是使二阶 Brillouin-Wigner 理论具有尺寸一致性和尺寸广延性，但更好的理解方式是将 BWs-$n$ 视为一种正则化的 Rayleigh-Schrödinger 微扰理论，其零级哈密顿量和微扰项为：
 
 <a id="A3.S8.EGx65"></a>
+
 $$
 \displaystyle\hat{H}^{(0)} \tag{7.147}
 $$
@@ -23,6 +24,7 @@ $$
 在 BWs-ADC 的框架下，我们推荐使用 MPR-BWs2 的 $A_{0}$ 和 $B_{0}$ 参数（另见 [6.9](../ch06_correlation/topic_mpr-bws2.md)）：
 
 <a id="Ch7.E149"></a>
+
 $$
 \hat{W}=\frac{A_{0}}{8}\sum_{ijkab}\left(\langle ik||ab\rangle{t^{ab}_{jk}}^{(1)}\right)\left(\hat{a}^{\dagger}_{i}\hat{a}_{j}+\hat{a}^{\dagger}_{j}\hat{a}_{i}\right)+\frac{B_{0}}{8}\sum_{ijabc}\left(\langle ij||ac\rangle{t^{bc}_{ij}}^{(1)}\right)\left(\hat{a}^{\dagger}_{a}\hat{a}_{b}+\hat{a}^{\dagger}_{b}\hat{a}_{a}\right) \tag{7.149}
 $$
@@ -30,6 +32,7 @@ $$
 BW-s2 理论的一个关键特点是，组合后的零级哈密顿量仍然构成一个单粒子算符，因此可以自洽地对角化，从而得到* dressed（重整化）* 轨道 $\phi_{p}^{\prime}(r,\sigma)$ 及相应的轨道能 $\varepsilon_{p}^{\prime}$：
 
 <a id="Ch7.E150"></a>
+
 $$
 (\hat{F}+\hat{W})\phi_{p}^{\prime}(r,\sigma)=\varepsilon_{p}^{\prime}\phi_{p}^{\prime}(r,\sigma) \tag{7.150}
 $$

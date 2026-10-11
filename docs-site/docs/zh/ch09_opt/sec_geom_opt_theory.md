@@ -11,6 +11,7 @@ title: "9.1.2 理论背景"
 考虑势面上某一点 $\mathbf{x}_{0}$ 处的能量 $E(\mathbf{x}_{0})$。我们可以借助 Taylor 级数将附近一点 $\mathbf{x}=\mathbf{x}_{0}+\mathbf{h}$ 处的能量表示为
 
 <a id="eq:a1"></a>
+
 $$
 E(\mathbf{x}_{0}+\mathbf{h})=E(\mathbf{x}_{0})+\mathbf{h}^{t}\left(\frac{dE(\mathbf{x}_{0})}{d\mathbf{x}}\right)+\frac{1}{2}\mathbf{h}^{t}\left(\frac{d^{2}E(\mathbf{x}_{0})}{d\mathbf{x}_{1}d\mathbf{x}_{2}}\right)\mathbf{h}+\cdots \tag{9.1}
 $$
@@ -18,6 +19,7 @@ $$
 如果我们知道能量泛函 $E(\mathbf{x})$ 的精确形式及其所有导数，就可以从当前点 $\mathbf{x}_{0}$ 直接移动到某个驻点（*即*，我们将确切知道步长 $\mathbf{h}$ 应当为何值）。由于我们通常充其量只知道 $E(\mathbf{x})$ 的低阶导数，因此可以对 Taylor 级数关于 $\mathbf{h}$ 求导，只保留右端的前几项，并将左端的 $dE(\mathbf{x}_{0}+\mathbf{h})/d\mathbf{h}$ 设为零（即在真正驻点处它所应取的值），从而得到
 
 <a id="eq:a2"></a>
+
 $$
 \frac{dE(\mathbf{x}_{0}+\mathbf{h})}{d\mathbf{h}}=\frac{dE(\mathbf{x}_{0})}{d\mathbf{x}}+\left(\frac{d^{2}E(\mathbf{x}_{0})}{d\mathbf{x}_{1}d\mathbf{x}_{2}}\right)\mathbf{h}+\mbox{higher terms (ignored)} \tag{9.2}
 $$
@@ -25,6 +27,7 @@ $$
 由此可得
 
 <a id="eq:a3"></a>
+
 $$
 \mathbf{h}=-\mathbf{H}^{-1}\mathbf{g} \tag{9.3}
 $$
@@ -32,6 +35,7 @@ $$
 其中
 
 <a id="eq:a4"></a>
+
 $$
 \frac{dE}{d{\rm{\bf x}}}\equiv{\rm{\bf g}}\mbox{ (gradient vector),}\qquad\frac{d^{2}E}{d{\rm{\bf x}}_{\rm 1}d{\rm{\bf x}}_{\rm 2}}\equiv{\rm{\bf H}}\mbox{ (Hessian matrix)} \tag{9.4}
 $$
@@ -45,6 +49,7 @@ Hessian 矩阵的性质（尤其是其特征值结构）在优化的成功与否
 在对角化的 Hessian 表示下，Newton-Raphson 步可以写成
 
 <a id="eq:a5"></a>
+
 $$
 \mathbf{h}=-\sum_{i}\left(\frac{F_{i}}{b_{i}}\right){\mathbf{u}_{i}} \tag{9.5}
 $$

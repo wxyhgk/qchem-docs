@@ -11,6 +11,7 @@ CAS-$n$SF-IP/EA 方法将非粒子数守恒算符与非自旋守恒算符相结�
 自旋简并与空间简并体系的性质。例如，CAS-1SF-IP 算符定义如下：
 
 <a id="Ch7.E171"></a>
+
 $$
 |\Psi\rangle=\sum_{ij\bar{a}}c_{ij}^{\bar{a}}\hat{a}_{ij}^{\bar{a}}|\Psi^{\text{Ref}}\rangle \tag{7.171}
 $$

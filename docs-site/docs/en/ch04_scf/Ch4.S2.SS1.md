@@ -10,6 +10,7 @@ The fundamental equation of non-relativistic quantum chemistry is the
 time-independent Schrödinger equation,
 
 <a id="eq400"></a>
+
 $$
 \hat{H}({\rm{\bf R}},{\rm{\bf r}})\;\Psi({\rm{\bf R}},{\rm{\bf r}})=E({\rm{\bf
 R}})\;\Psi({\rm{\bf R}},{\rm{\bf r}}). \tag{4.1}
@@ -20,6 +21,7 @@ variables ($\mathbf{r}$), for fixed values of the nuclear coordinates ($\mathbf{
 The Hamiltonian operator in Eq. ([4.1](#eq400)) is
 
 <a id="eq:Hamiltonian"></a>
+
 $$
 \hat{H}=-\frac{1}{2}\sum_{i=1}^{N}\hat{\nabla}_{i}^{2}-\frac{1}{2}\sum_{A=1}^{M}\frac{1}{M_{A}}\hat{\nabla}_{A}^{2}-\sum_{i=1}^{N}\sum_{A=1}^{M}\frac{Z_{A}}{r_{iA}}+\sum_{i=1}^{N}\sum_{j>i}^{N}\frac{1}{r_{ij}}+\sum_{A=1}^{M}\sum_{B>A}^{M}\frac{Z_{A}Z_{B}}{R_{AB}} \tag{4.2}
 $$
@@ -27,6 +29,7 @@ $$
 in atomic units, where
 
 <a id="eq402"></a>
+
 $$
 \hat{\nabla}^{2}=\frac{\partial^{2}}{\partial x^{2}}+\frac{\partial^{2}}{\partial y^{2}}+\frac{\partial^{2}}{\partial z^{2}}\;. \tag{4.3}
 $$
@@ -42,6 +45,7 @@ originally due to Born and Oppenheimer,[[147]](../bib_references/bib.md#bib138)
  yields the electronic Hamiltonian operator
 
 <a id="eq403"></a>
+
 $$
 \hat{H}_{\mathrm{elec}}=-\frac{1}{2}\sum_{i=1}^{N}\hat{\nabla}_{i}^{2}-\sum_{i=1}^{N}\sum_{A=1}^{M}\frac{Z_{A}}{r_{iA}}+\sum_{i=1}^{N}\sum_{j>i}^{N}\frac{1}{r_{ij}} \tag{4.4}
 $$
@@ -49,6 +53,7 @@ $$
 The solution of the corresponding electronic Schrödinger equation,
 
 <a id="eq404"></a>
+
 $$
 \hat{H}_{\mathrm{elec}}\Psi_{\mathrm{elec}}=E_{\mathrm{elec}}\Psi_{\mathrm{elec}}\;, \tag{4.5}
 $$
@@ -60,6 +65,7 @@ nuclear–nuclear repulsion energy [the fifth term in Eq. ([4.2](#eq:Hamiltonia
 total electronic energy:
 
 <a id="eq405"></a>
+
 $$
 E_{\mathrm{tot}}=E_{\mathrm{elec}}+E_{\mathrm{nuc}}\;. \tag{4.6}
 $$
@@ -82,6 +88,7 @@ average field of all the other electrons. This affords the well-known Slater
 determinant wave function[[1266]](../bib_references/bib.md#bib1315)
 
 <a id="eq406"></a>
+
 $$
 \Psi=\frac{1}{\sqrt{n!}}\left|{{\begin{array}[]{cccc}\chi_{1}(1)&\chi_{2}(1)&\cdots&\chi_{n}(1)\\
 \chi_{1}(2)&\chi_{2}(2)&\cdots&\chi_{n}(2)\\
@@ -100,6 +107,7 @@ approximation, but these SCF methods also include KS-DFT
 (Chapter [5](../ch05_dft/chap_DFT.md)). All SCF methods lead to equations of the form
 
 <a id="eq407"></a>
+
 $$
 \hat{f}(i)\,\chi(\mathbf{x}_{i})=\varepsilon\,\chi(\mathbf{x}_{i})\;, \tag{4.8}
 $$
@@ -107,6 +115,7 @@ $$
 where the Fock operator $\hat{f}(i)$ for the $i$th electron is
 
 <a id="eq408"></a>
+
 $$
 \hat{f}(i)=-\frac{1}{2}\hat{\nabla}_{i}^{2}+\upsilon_{\rm eff}(i)\;. \tag{4.9}
 $$
@@ -128,6 +137,7 @@ After eliminating the spin components in Eq. ([4.8](#eq407)) and introducing a
 finite basis,
 
 <a id="eq409"></a>
+
 $$
 \psi_{i}=\sum_{\mu}{c_{\mu i}\phi_{\mu}}\;, \tag{4.10}
 $$
@@ -135,6 +145,7 @@ $$
 Eq. ([4.8](#eq407)) reduces to the Roothaan-Hall matrix equation
 
 <a id="eq:Roothaan-Hall"></a>
+
 $$
 \mathbf{FC}=\bm{\varepsilon}\mathbf{SC}\;. \tag{4.11}
 $$
@@ -143,6 +154,7 @@ Here, $\mathbf{F}$ is the Fock matrix, $\mathbf{C}$ is a square matrix of molecu
 orbital coefficients, $\mathbf{S}$ is the AO overlap matrix with elements
 
 <a id="eq411"></a>
+
 $$
 S_{\mu\nu}=\int{\phi_{\mu}({\rm{\bf r}})}\phi_{\nu}({\rm{\bf r}})d{\rm{\bf r}} \tag{4.12}
 $$
@@ -153,6 +165,7 @@ orbitals for $\alpha$ and $\beta$ spin in Eq. ([4.7](#eq406)) yields the
 Pople-Nesbet equations[[1116]](../bib_references/bib.md#bib1159)
 
 <a id="A3.S8.EGx1"></a>
+
 $$
 \displaystyle\mathbf{F}^{\alpha}\mathbf{C}^{\alpha} \tag{4.13}
 $$

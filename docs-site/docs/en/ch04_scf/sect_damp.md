@@ -18,6 +18,7 @@ matrix of the previous iteration to generate a damped density matrix as the
 input for the next SCF iteration:
 
 <a id="Ch4.E36"></a>
+
 $$
 P_{n}^{\text{damped}}=(1-\alpha)P_{n}+\alpha P_{n-1}, \tag{4.36}
 $$

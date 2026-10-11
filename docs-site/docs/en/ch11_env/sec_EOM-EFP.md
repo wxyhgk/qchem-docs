@@ -16,6 +16,7 @@ polarization corrections [[1272]](../bib_references/bib.md#bib1325)
  are computed according to
 
 <a id="eq:EOM-EFP-ene2"></a>
+
 $$
 \Delta E_{\text{pol}}=\frac{1}{2}\sum_{k}\sum_{a}^{x,y,z}\Bigl{[}-(\mu_{\text{ex},a}^{k}-\mu_{\text{gr},a}^{k})(F_{a}^{\text{mult},k}+F_{a}^{\text{nuc},k})\\
 +(\tilde{\mu}_{\text{ex},a}^{k}F_{\text{ex},a}^{\text{ai},k}-\tilde{\mu}_{\text{gr},a}^{k}F_{\text{gr},a}^{\text{ai},k})-(\mu_{\text{ex},a}^{k}-\mu_{\text{gr},a}^{k}+\tilde{\mu}_{\text{ex},a}^{k}-\tilde{\mu}_{\text{gr},a}^{k})F_{\text{ex},a}^{\text{ai},k}\Bigr{]} \tag{11.77}

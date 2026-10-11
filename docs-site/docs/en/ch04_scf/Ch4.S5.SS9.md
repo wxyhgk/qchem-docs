@@ -43,6 +43,7 @@ density matrix is written as a linear combination of the previous density
 matrices:
 
 <a id="Ch4.E39"></a>
+
 $$
 \mathbf{P}(x)=\sum_{i}x_{i}\mathbf{P}_{i} \tag{4.39}
 $$
@@ -51,6 +52,7 @@ To a very good approximation (exact for Hartree-Fock) the energy for $\mathbf{P}
 can be written as a quadratic function of x:
 
 <a id="Ch4.E40"></a>
+
 $$
 \mathbf{E}(x)=\sum_{i}E_{i}x_{i}+\frac{1}{2}\sum_{i}x_{i}(\mathbf{P}_{i}-\mathbf{P}_{j})\cdot(\mathbf{F}_{i}-\mathbf{F}_{j})x_{j} \tag{4.40}
 $$
@@ -61,6 +63,7 @@ $\mathbf{P}(x)$ is further written as a linear combination of the previous Fock
 matrices,
 
 <a id="Ch4.E41"></a>
+
 $$
 \mathbf{F}(x)=\sum_{i}x_{i}\mathbf{F}_{i}+\delta\mathbf{F}_{xc}(x) \tag{4.41}
 $$

@@ -9,6 +9,7 @@ title: "10.8.6 Resonance Raman intensities"
 The theory of resonance Raman spectroscopy is fully described by the Kramers-Heisenberg-Dirac dispersion formalism based on the Raman polarizability tensor[[677]](../bib_references/bib.md#bib704)
 
 <a id="eq:SOS"></a>
+
 $$
 \alpha_{\sigma\tau}(\omega_{\text{L}},\omega_{\text{S}})=\sum_{\upsilon}\left[\frac{\langle f|\hat{r}_{\sigma}|\upsilon\rangle\langle\upsilon|\hat{r}_{\tau}|i\rangle}{\hbar\omega_{\text{L}}-\hbar\omega_{\upsilon i}+i\Gamma_{i\upsilon}}+\frac{\langle f|\hat{r}_{\tau}|\upsilon\rangle\langle\upsilon|\hat{r}_{\sigma}|i\rangle}{\hbar\omega_{\upsilon i}+\hbar\omega_{\text{S}}+i\Gamma_{i\upsilon}}\right] \tag{10.74}
 $$
@@ -31,6 +32,7 @@ in which resonant enhancements to the vibrational intensities (for modes 1 and 
 are expressed as ratios[[552]](../bib_references/bib.md#bib563)
 
 <a id="eq:RR_intens"></a>
+
 $$
 \frac{I_{1}}{I_{2}}\approx\left(\frac{\omega^{\rm g}_{1}\Delta_{1}}{\omega^{\rm g}_{2}\Delta_{2}}\right)^{\!2}\;. \tag{10.75}
 $$
@@ -40,6 +42,7 @@ $Q_{1}$ and $Q_{2}$ and $\omega$ is the electronic excitation energy. The first 
 an approximation here, is exact within the IMDHO model. The quantity
 
 <a id="eq:Delta_k"></a>
+
 $$
 \Delta_{k}=\left(\frac{\omega_{k}}{\hbar}\right)^{1/2}\Delta Q_{k} \tag{10.76}
 $$
@@ -54,6 +57,7 @@ the requisite polarizability tensor elements involving different electronic stat
 time-evolving overlap between initial- and final-state electronic wave functions:
 
 <a id="Ch10.E77"></a>
+
 $$
 \alpha(\omega_{\text{L}})\propto\int_{0}^{\infty}e^{i\omega_{\text{L}}t-\Gamma
 t}\langle\psi_{f}|\psi_{i}(t)\rangle dt+\text{NRT}\;. \tag{10.77}
@@ -65,6 +69,7 @@ than 10–20 fs in the Franck-Condon region and the overlap integral is likely 
 Within a model that considers only two electronic states, the RR intensity that one obtains is
 
 <a id="eq:functional"></a>
+
 $$
 I_{k}\propto\omega_{\text{L}}(\omega_{\text{L}}-\omega_{k})^{3}(\omega_{k}\Delta_{k})^{2}\; \tag{10.78}
 $$
@@ -76,6 +81,7 @@ a linear transformation between the displacement $\Delta_{k}$ of the equilibrium
 in normal coordinates, and the displacements $\widetilde{\Delta}_{i}$ expressed in Cartesian coordinates:
 
 <a id="Ch10.E79"></a>
+
 $$
 \widetilde{\Delta}_{i}=\sum_{k=1}^{3N-6}\left(\frac{L_{ik}}{m_{i}^{1/2}}\right)\Delta_{k}\;. \tag{10.79}
 $$
@@ -83,6 +89,7 @@ $$
 In matrix form this is
 
 <a id="Ch10.E80"></a>
+
 $$
 \mathbf{\Delta}_{Q}=\lambda^{-1}\mathbf{L}^{\dagger}\mathbf{M}^{1/2}\mathbf{V}_{X} \tag{10.80}
 $$
@@ -91,6 +98,7 @@ where $\lambda$ is the eigenvalues of mass-weighted Hessian matrix, M defines th
 Raman intensities are related to the dimensionless displacements
 
 <a id="Ch10.E81"></a>
+
 $$
 \Delta_{k}=\left(\frac{\lambda_{k}}{m_{e}}\right)^{\!1/4}\Delta_{Qk}\;. \tag{10.81}
 $$

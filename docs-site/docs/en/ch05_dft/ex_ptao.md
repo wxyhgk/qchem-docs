@@ -111,6 +111,7 @@ Spurious excitations may arise in the time-dependent extension of TAO-DFT with t
 :
 
 <a id="eq:excitationX"></a>
+
 $$
 \omega_{\text{pTAO/TDA}}[\text{X}]=(\omega[\text{X}]-\omega[\text{A}_{1}])+(E_{\text{A}_{1}}-E_{\text{GS}}). \tag{5.76}
 $$

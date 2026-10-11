@@ -25,6 +25,7 @@ then evaluated through standard one-center numerical techniques. Thus, the
 exchange-correlation energy is obtained as
 
 <a id="eq439"></a>
+
 $$
 E_{\mathrm{XC}}=\sum_{A}^{\rm atoms}\sum_{i\in A}^{\rm points}w_{Ai}f(\mathbf{r}_{Ai})\;, \tag{5.15}
 $$

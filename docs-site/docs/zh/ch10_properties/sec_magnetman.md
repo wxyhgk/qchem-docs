@@ -23,6 +23,7 @@ title: "10.11.4 其他与磁场相关的性质"
 超精细相互作用张量描述未配对电子自旋与原子核自旋能级之间的相互作用：
 
 <a id="eq:hyperfine-hamiltonian"></a>
+
 $$
 \hat{H}_{\text{HFI}}/h=\mathbf{\hat{S}}\cdot\mathbf{A}\cdot\mathbf{\hat{I}}, \tag{10.119}
 $$
@@ -30,6 +31,7 @@ $$
 该张量可分解为费米接触（Fermi Contact, FC）项、自旋-偶极（spin-dipole, SD）项以及轨道塞曼/自旋-轨道耦合（OZ/SOC）项：
 
 <a id="eq:hyperfine-tensor"></a>
+
 $$
 A_{ab}^{\text{tot}}(N)=A_{ab}^{\text{FC}}(N)\delta_{ab}+A_{ab}^{\text{SD}}(N)+A_{ab}^{\text{OZ/SOC}}, \tag{10.120}
 $$
@@ -37,6 +39,7 @@ $$
 其中费米接触（FC）贡献为
 
 <a id="eq:hyperfine-fermi-contact"></a>
+
 $$
 A^{\text{FC}}(N)=\frac{\alpha}{2}\frac{1}{S}\frac{8\pi}{3}g_{\text{e}}g_{N}\mu_{N}\sum_{\mu\nu}P_{\mu\nu}^{\alpha-\beta}\left\langle\chi_{\mu}|\delta(\mathbf{r}_{N})|\chi_{\nu}\right\rangle \tag{10.121}
 $$
@@ -44,6 +47,7 @@ $$
 自旋-偶极（SD）贡献为
 
 <a id="eq:hyperfine-spin-dipole"></a>
+
 $$
 A_{ab}^{\text{SD}}(N)=\frac{\alpha}{2}\frac{1}{S}g_{e}g_{N}\mu_{N}\sum_{\mu\nu}P_{\mu\nu}^{\alpha-\beta}\left\langle\chi_{\mu}\left|\frac{3r_{N,a}r_{N,b}-\delta_{ab}r_{N}^{2}}{r_{N}^{5}}\right|\chi_{\nu}\right\rangle \tag{10.122}
 $$
@@ -59,11 +63,13 @@ $$
 探测分子中各个原子核所处环境的另一种灵敏探针是核四极相互作用（Nuclear Quadrupole Interaction, NQI），它衡量核四极矩与局部电场梯度的相互作用：
 
 <a id="eq:nqi-hamiltonian"></a>
+
 $$
 \hat{H}_{\text{NQI}}/h=\mathbf{\hat{I}}\cdot\mathbf{Q}\cdot\mathbf{\hat{I}}, \tag{10.123}
 $$
 
 <a id="eq:nqi-tensor"></a>
+
 $$
 \displaystyle Q_{ab}(N) \tag{10.124}
 $$
@@ -71,6 +77,7 @@ $$
 式中 $N$ 为某个原子核。对该张量对角化可得到三个主值，按 $|Q_{1}|\leq|Q_{2}|\leq|Q_{3}|$ 排序，它们是不对称参数（asymmetry parameter）eta 的组成部分：
 
 <a id="eq:nqi-eta"></a>
+
 $$
 \eta=\frac{Q_{1}-Q_{2}}{Q_{3}} \tag{10.125}
 $$
@@ -80,6 +87,7 @@ $$
 电子 *g*-张量描述未配对电子自旋与外磁场的耦合，由唯象哈密顿量表示
 
 <a id="Ch10.E126"></a>
+
 $$
 \hat{H}^{\text{g-tensor}}=\mu_{\text{B}}\mathbf{S}\cdot\mathbf{g}\cdot\mathbf{B}, \tag{10.126}
 $$
@@ -89,6 +97,7 @@ $$
 $g$-张量由自旋–塞曼（spin–Zeeman）项以及 $g$-张量平移（shift）组成，后者包括相对论质量校正 $\mathbf{g}^{\text{rmc}}$、抗磁自旋-轨道耦合 $\mathbf{g}^{\text{dso}}$ 和顺磁自旋–轨道耦合 $\mathbf{g}^{\text{pso}}$ 项：
 
 <a id="Ch10.E127"></a>
+
 $$
 \mathbf{g}=g_{\text{e}}\mathbf{I}+\mathbf{g}^{\text{rmc}}+\mathbf{g}^{\text{dso}}+\mathbf{g}^{\text{pso}}\;. \tag{10.127}
 $$
@@ -96,6 +105,7 @@ $$
 对于自旋–塞曼项，其贡献是各向同性的，等于自由电子 $g$-因子 $g_{\text{e}}$。相对论相互作用项按照 Breit-Pauli *ansatz* 以微扰方式加入，得到如下表达式。相对论质量校正平移项 $g^{\text{rmc}}$ 为
 
 <a id="Ch10.E128"></a>
+
 $$
 g^{\text{rmc}}_{pq}=-\frac{\alpha^{2}g_{\text{e}}}{2S}\delta_{pq}\sum_{\mu\nu}P^{\alpha-\beta}_{\mu\nu}T_{\mu\nu} \tag{10.128}
 $$
@@ -105,6 +115,7 @@ $$
 顺磁自旋-轨道耦合项 $g^{\text{pso}}$ 是微扰级数中的二阶项，但构成了 $g$-张量平移的主要贡献
 
 <a id="Ch10.E129"></a>
+
 $$
 g^{\text{pso}}=\frac{1}{\alpha S}\sum_{N}\frac{\left\langle\Psi_{0}\left|h^{\text{SO}}\right|\Psi_{N}\right\rangle\left\langle\Psi_{N}\left|h^{\text{OZ}}\right|\Psi_{0}\right\rangle}{E_{N}-E_{0}} \tag{10.129}
 $$
@@ -113,6 +124,7 @@ $$
  而 $h^{\text{OZ}}$ 为轨道塞曼相互作用，
 
 <a id="Ch10.E130"></a>
+
 $$
 h^{\text{OZ}}=\mu_{\text{B}}\mathbf{L}\cdot\mathbf{B}\;, \tag{10.130}
 $$

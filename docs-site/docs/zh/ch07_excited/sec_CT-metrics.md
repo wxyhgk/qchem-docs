@@ -11,6 +11,7 @@ title: "7.3.2 电荷转移度量"
 可以借助一个空间重叠度量 $\Lambda$ 来评估某个特定激发态的电荷转移特征程度，其定义为[[1057]](../bib_references/bib.md#bib1102)
 
 <a id="eq:Tozer-metric"></a>
+
 $$
 \Lambda=\frac{\sum_{ia}(x_{ia}+y_{ia})^{2}O_{ia}}{\sum_{jb}(x_{jb}+y_{jb})^{2}} \tag{7.16}
 $$
@@ -18,6 +19,7 @@ $$
 其中 $O_{ia}$ 是占据分子轨道（MO）$\psi_{i}$ 与虚分子轨道 $\psi_{a}$ 的空间重叠：
 
 <a id="eq:Tozer-overlaps"></a>
+
 $$
 O_{ia}=\int|\psi_{i}(\mathbf{r})|\cdot|\psi_{a}(\mathbf{r})|\;d\mathbf{r}\;. \tag{7.17}
 $$
@@ -25,6 +27,7 @@ $$
 由于占据 MO 与虚 MO 是正交的，$\langle\psi_{i}|\psi_{a}\rangle$，因此必须使用绝对值符号；不过 **Q-Chem** 提供了改用 MO 平方 instead 的选项：
 
 <a id="eq:Tozer-overlaps2"></a>
+
 $$
 \tilde{O}_{ia}=\int|\psi_{i}(\mathbf{r})|^{2}|\psi_{a}(\mathbf{r})|^{2}\;d\mathbf{r}\;. \tag{7.18}
 $$
@@ -38,6 +41,7 @@ $$
 但其数值难以用物理上的电荷分离来解释。因此，有人提出了一个与之类似的度量
 
 <a id="eq:Delta-r"></a>
+
 $$
 \Delta r=\frac{\sum_{ia}(x_{ia}+y_{ia})^{2}\|\mathbf{R}_{ia}\|}{\sum_{jb}(x_{jb}+y_{jb})^{2}} \tag{7.19}
 $$
@@ -45,6 +49,7 @@ $$
 其中
 
 <a id="Ch7.E20"></a>
+
 $$
 \mathbf{R}_{ia}=\langle\psi_{i}|\hat{\mathbf{r}}|\psi_{i}\rangle-\langle\psi_{a}|\hat{\mathbf{r}}|\psi_{i}\rangle \tag{7.20}
 $$
@@ -52,6 +57,7 @@ $$
 是轨道 $\psi_{i}$ 与 $\psi_{a}$ 质心之间的矢量位移，而式 ([7.19](#eq:Delta-r)) 中的 $\|\mathbf{R}_{ia}\|$ 是二者质心之间的距离。这使得 $\Delta r$ 成为电子位移（$\psi_{i}\to\psi_{a}$）的非相干（incoherent）平均值，而当位移的相干叠加（coherent superposition）在定性上起重要作用时，这就会带来问题。[[563]](../bib_references/bib.md#bib587) 由于对任何中心对称（centrosymmetric）分子 $\Delta r$ 都为零，后来人们用一个量对其进行了补充
 
 <a id="eq:Delta-sigma"></a>
+
 $$
 \Delta\sigma=\frac{\sum_{ia}(x_{ia}+y_{ia})^{2}\sigma_{ia}}{\sum_{jb}(x_{jb}+y_{jb})^{2}} \tag{7.21}
 $$
@@ -59,6 +65,7 @@ $$
 其中
 
 <a id="Ch7.E22"></a>
+
 $$
 \sigma_{ia}=\bigl{|}\langle\psi_{i}|\hat{r}^{2}|\psi_{i}\rangle-\langle\psi_{a}|\hat{r}^{2}|\psi_{a}\rangle\big{|}^{1/2}\;, \tag{7.22}
 $$
@@ -66,6 +73,7 @@ $$
 其中 $\langle\psi_{r}|\hat{r}^{2}|\psi_{r}\rangle$ 是轨道 $\psi_{r}$ 的二阶矩。量 $\sigma_{ia}$ 给出了给体（$\psi_{i}$）与受体（$\psi_{a}$）MO 之间轨道尺寸变化的度量；并且有人提出度量
 
 <a id="Ch7.E23"></a>
+
 $$
 \Gamma=\Delta r+\Delta\sigma \tag{7.23}
 $$
@@ -83,6 +91,7 @@ $$
 因此，尽管本程序包含了度量 $\Lambda$、$\Delta r$ 与 $\Gamma$（正则表示与 NTO 表示皆有），以帮助用户与现有文献对接，但仍建议电荷转移分析应基于对跃迁密度矩阵（transition density matrices）的 Proper 期望值。这些量可以使用 **libwfa** 模块计算，该模块在第 [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md) 节中描述。如该节表 [10.1](../ch10_properties/ex_StateAnal_MolDen.md#table:TDM-analysis) 所示，**libwfa** 可以计算如下期望值
 
 <a id="Ch7.E24"></a>
+
 $$
 d_{\text{e-h}}=\|\langle\mathbf{r}_{\text{elec}}-\mathbf{r}_{\text{hole}}\rangle\|\;, \tag{7.24}
 $$
@@ -90,6 +99,7 @@ $$
 *换言之*，即激发电子质心与空穴（hole）质心之间距离的期望值。这构成了对电子–空穴分离程度的 Proper 度量。[[563]](../bib_references/bib.md#bib587) 激子尺寸可通过下式度量
 
 <a id="Ch7.E25"></a>
+
 $$
 d_{\text{exc}}=\langle\|\mathbf{r}_{\text{elec}}-\mathbf{r}_{\text{hole}}\|^{2}\rangle^{1/2}\;, \tag{7.25}
 $$
@@ -99,6 +109,7 @@ $$
 也可用 **libwfa** 计算，其中包括
 
 <a id="Ch7.E26"></a>
+
 $$
 \displaystyle d_{\text{CD1}} \tag{7.26a}
 $$

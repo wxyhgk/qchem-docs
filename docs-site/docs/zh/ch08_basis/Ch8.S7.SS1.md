@@ -28,6 +28,7 @@ title: "8.7.1 概述"
 标度按照如下规则进行
 
 <a id="Ch8.E1"></a>
+
 $$
 \alpha\rightarrow\alpha e^{-2i\theta} \tag{8.1}
 $$

@@ -14,6 +14,7 @@ A simple means to correct for this is to use the approximate spin-purification
 formula,[[1580]](../bib_references/bib.md#bib1643)
 
 <a id="eq:OpSing"></a>
+
 $$
 E_{\text{OSS}}\approx 2E_{\text{BS}}-E_{\text{trip}}\;, \tag{7.78}
 $$

@@ -11,6 +11,7 @@ $2p$ and $1h3p$ operators acting on $N-2$ electron reference[[1077]](../bib_refe
 :
 
 <a id="DEA:WF"></a>
+
 $$
 \Psi_{k}=\hat{R}_{N+2}\Psi_{0}(N-2), \tag{7.102}
 $$
@@ -18,6 +19,7 @@ $$
 and the excitation operator $R$ has the following form:
 
 <a id="eq:R-DEA"></a>
+
 $$
 \hat{R}=\frac{1}{2}\sum_{ab}r_{ab}a^{\dagger}b^{\dagger}+\frac{1}{6}\sum_{iabc}r_{i}^{abc}a^{\dagger}b^{\dagger}c^{\dagger}i. \tag{7.103}
 $$

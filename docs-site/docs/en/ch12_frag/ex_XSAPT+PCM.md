@@ -22,6 +22,7 @@ energy with charge embedding minus the total SAPT energy without charge embeddin
 In equation form, the XSAPT contribution to the induction energy would be:
 
 <a id="eq:xsapt_pol"></a>
+
 $$
 E_{\text{pol}}=\sum_{A}\sum_{B>A}\left[E_{AB}^{\text{XSAPT}}(AB)-E_{AB}^{\text{SAPT}}\right] \tag{12.69}
 $$

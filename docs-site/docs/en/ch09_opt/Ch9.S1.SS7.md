@@ -21,6 +21,7 @@ In GDIIS geometries generated in previous optimization cycles, $\mathbf{x}_{i}$,
 linearly combined to find the “best” geometry for the current cycle
 
 <a id="eq:a23"></a>
+
 $$
 \mathbf{x}_{n}=\sum\limits_{i=1}^{m}c_{i}\mathbf{x}_{i} \tag{9.33}
 $$
@@ -32,6 +33,7 @@ final geometry, $\mathbf{x}_{f}$, *i.e.*, $\mathbf{x}_{f}=\mathbf{x}_{i}+\mathbf
 $\mathbf{e}_{i}$ is an error vector, then it is obvious that if the conditions
 
 <a id="eq:a24"></a>
+
 $$
 \mathbf{r}=\sum c_{i}\mathbf{e}_{i} \tag{9.34}
 $$
@@ -39,6 +41,7 @@ $$
 and
 
 <a id="eq:a25"></a>
+
 $$
 \sum{c_{i}}=1 \tag{9.35}
 $$
@@ -46,6 +49,7 @@ $$
 are satisfied, then the relation
 
 <a id="Ch9.E36"></a>
+
 $$
 \sum c_{i}\mathbf{x}_{i}=\mathbf{x}_{f} \tag{9.36}
 $$
@@ -56,6 +60,7 @@ The true error vectors $\mathbf{e}_{i}$ are, of course, unknown. However, in the
 of a nearly quadratic energy function they can be approximated by
 
 <a id="Ch9.E37"></a>
+
 $$
 \mathbf{e}_{i}=-\mathbf{H}^{-1}\mathbf{g}_{i} \tag{9.37}
 $$
@@ -66,6 +71,7 @@ norm of the residuum vector $\mathbf{r}$, Eq. ([9.34](#eq:a24)), together with 
 equation, Eq. ([9.35](#eq:a25)), leads to a system of $m+l$ linear equations
 
 <a id="eq:a28"></a>
+
 $$
 \left({{\begin{array}[]{c c c c}{B_{11}}&\cdots&{B_{1m}}&1\\
 \vdots&\ddots&\vdots&\vdots\\
@@ -89,6 +95,7 @@ The coefficients $c_{i}$ determined from Eq. ([9.38](#eq:a28)) are used to calc
 intermediate interpolated geometry
 
 <a id="Ch9.E39"></a>
+
 $$
 \mathbf{x}_{m+1}^{\prime}=\sum c_{i}\mathbf{x}_{i} \tag{9.39}
 $$
@@ -96,6 +103,7 @@ $$
 and its corresponding interpolated gradient
 
 <a id="Ch9.E40"></a>
+
 $$
 \mathbf{g}_{m+1}^{\prime}=\sum c_{i}\mathbf{g}_{i} \tag{9.40}
 $$
@@ -104,6 +112,7 @@ A new, independent geometry is generated from the interpolated geometry and
 gradient according to
 
 <a id="Ch9.E41"></a>
+
 $$
 \mathbf{x}_{m+1}=\mathbf{x}_{m+1}^{\prime}-\mathbf{H}^{-1}\mathbf{g}_{m+1}^{\prime}\;. \tag{9.41}
 $$

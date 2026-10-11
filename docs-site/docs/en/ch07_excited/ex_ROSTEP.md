@@ -13,6 +13,7 @@ procedures that were described in Section [7.7.2](ex_OpSing.md).
 STEP applies a level shift via a simple modification of the Fock matrix,
 
 <a id="Ch7.E80"></a>
+
 $$
 \text{{F}}^{\prime}=\text{{F}}+\eta\text{{SQS}}\;, \tag{7.80}
 $$
@@ -25,6 +26,7 @@ The parameter $\eta$ is chosen to provide the smallest level shift that retains 
 and is defined as follows:
 
 <a id="eq:eta-shift"></a>
+
 $$
 \eta=|\varepsilon_{\text{HOMO}}-\varepsilon_{\text{LUMO}}|+\epsilon^{\prime} \tag{7.81}
 $$

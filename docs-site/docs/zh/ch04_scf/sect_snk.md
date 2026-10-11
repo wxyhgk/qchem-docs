@@ -9,6 +9,7 @@ title: "4.6.9 半数值交换（SNK）矩阵计算"
 半数值交换（seminumerical exchange，SNK）是计算交换矩阵的一种替代方法。由于 SNK 对体系规模的正式标度为 ${\cal{O}}({N^{3}})$，对基组规模的标度为 ${\cal{O}}({N_{\text{basis}}^{2}})$，因此它在处理大体系和大基组时尤为高效。此外，对于稀疏体系还可以实现渐近线性标度。在 SNK 中，双电子积分通过数值求积的方式进行分解；其中一次积分在网格上完成：
 
 <a id="A3.S8.EGx10"></a>
+
 $$
 \displaystyle(\mu\sigma|\nu\lambda)=\sum_{g}w_{g}\chi_{\mu}(\mathbf{r}_{g})(\nu\lambda|g)\chi_{\sigma}(\mathbf{r}_{g}) \tag{4.59}
 $$
@@ -16,6 +17,7 @@ $$
 而第二次积分
 
 <a id="A3.S8.EGx11"></a>
+
 $$
 \displaystyle(\nu\lambda|g)=\int d\mathbf{r}\frac{\chi_{\nu}(\mathbf{r})\chi_{\lambda}(\mathbf{r})}{|\mathbf{r}-\mathbf{r}_{g}|} \tag{4.60}
 $$
@@ -23,6 +25,7 @@ $$
 则采用解析方式计算（三环一电子积分，3c-1e）。交换矩阵按以下三个步骤计算：
 
 <a id="A3.S8.EGx12"></a>
+
 $$
 \displaystyle F_{\lambda g} \tag{4.61}
 $$

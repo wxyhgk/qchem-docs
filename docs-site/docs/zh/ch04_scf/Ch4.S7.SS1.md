@@ -10,6 +10,7 @@ title: "4.7.1 引言"
 提供了一种高效的方法，能够以远低于在大基组中进行完整 SCF 计算的成本，获得大基组效应。首先，在选定的小基组（由 BASIS2 指定）中执行一次完整的 SCF 计算。然后，在较大的目标基组（照例由 BASIS 指定）中执行一步类 SCF（SCF-like）计算，以微扰方式近似大基组能量。该修正相当于在单步大基组计算之后，对密度矩阵变化量的一阶近似：
 
 <a id="Ch4.E64"></a>
+
 $$
 E_{\text{total}}=E_{\text{small basis}}+\mbox{tr}[(\Delta\mathbf{P})\mathbf{F}]_{\text{large basis}}\;. \tag{4.64}
 $$

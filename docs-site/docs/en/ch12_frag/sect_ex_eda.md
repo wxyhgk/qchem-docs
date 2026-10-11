@@ -30,6 +30,7 @@ Here we briefly overview the decomposition schemes. In the EDA for exciplexes,
 one first defines the interaction energy in the excited state ($\Delta E_{\mathrm{INT}}^{\ast}$) as
 
 <a id="Ch12.E34"></a>
+
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=E^{\ast}-E_{\mathrm{frag}}^{\ast} \tag{12.34}
 $$
@@ -40,6 +41,7 @@ energies and the excitation energy of one of the fragments (without losing
 generality, this excited fragment is denoted as fragment “1”):
 
 <a id="eq:ex_e_frag"></a>
+
 $$
 E_{\mathrm{frag}}^{\ast}=\sum_{F}E_{F}+\omega_{1} \tag{12.35}
 $$
@@ -47,6 +49,7 @@ $$
 Therefore, we can rewrite the excited-state interaction as
 
 <a id="eq:ex_int"></a>
+
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=\Delta E_{\mathrm{INT}}+\Delta\omega_{\mathrm{INT}} \tag{12.36}
 $$
@@ -58,6 +61,7 @@ interaction energy can be separated into contributions from frozen interaction
 (FRZ), polarization (POL), and charge transfer (CT):
 
 <a id="eq:ex_eda"></a>
+
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=\Delta E_{\mathrm{FRZ}}^{\ast}+\Delta E_{\mathrm{POL}}^{\ast}+\Delta E_{\mathrm{CT}}^{\ast} \tag{12.37}
 $$
@@ -65,6 +69,7 @@ $$
 Each term on the RHS of Eq. ([12.37](#eq:ex_eda)) can be written in a similar form as Eq. ([12.36](#eq:ex_int)):
 
 <a id="A3.S8.EGx124"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{FRZ}}^{\ast}&\displaystyle=\Delta E_{\mathrm{FRZ}}+\omega_{\mathrm{FRZ}}-\omega_{1}\\
 &\displaystyle=\Delta E_{\mathrm{FRZ}}+\Delta\omega_{\mathrm{FRZ}}\\
@@ -90,6 +95,7 @@ between isolated fragment charge distributions) and a non-electrostatic term
 (mostly Pauli repulsion if a non-dispersion-corrected model such as CIS is used):
 
 <a id="eq:ex_eda_frz_decomp"></a>
+
 $$
 \Delta E_{\mathrm{FRZ}}^{\ast}=\Delta E_{\textrm{CLS-ELEC}}^{\ast}+\Delta E_{\textrm{NON-ELEC}}^{\ast} \tag{12.39}
 $$
@@ -102,6 +108,7 @@ $\kappa$th reference state ($\kappa=1,2,\dots,M$).
 Similar to Eq. ([12.35](#eq:ex_e_frag)), we have
 
 <a id="eq:ex_e_frag_mult"></a>
+
 $$
 E_{\mathrm{frag}}^{\kappa}=\sum_{F}E_{F}+\omega_{I}^{s} \tag{12.40}
 $$
@@ -110,6 +117,7 @@ The corresponding frozen excited-state wave function is then constructed by
 embedding this excited fragment into the environment formed by other fragments in their ground states:
 
 <a id="Ch12.E41"></a>
+
 $$
 \left|\Phi_{\mathrm{FRZ}}^{\kappa}\right\rangle=\left|\Psi_{1}\Psi_{2}\cdots\Psi_{I}^{s}\cdots\Psi_{N}\right\rangle \tag{12.41}
 $$
@@ -117,6 +125,7 @@ $$
 and the excited-state frozen interaction energy
 
 <a id="Ch12.E42"></a>
+
 $$
 \Delta E_{\mathrm{FRZ}}^{\kappa}=\Delta E_{\mathrm{FRZ}}+\Delta\omega_{\mathrm{FRZ}}^{\kappa}=\Delta E_{\mathrm{FRZ}}+(\omega_{\mathrm{FRZ}}^{\kappa}-\omega_{I}^{s}) \tag{12.42}
 $$
@@ -127,6 +136,7 @@ intermediate state is then introduced to capture the pure excitonic-splitting
 combination of the frozen states:
 
 <a id="eq:ex_eda_exsp"></a>
+
 $$
 \left|\Phi^{\kappa}_{\mathrm{EXSP}}\right\rangle=\sum_{\kappa^{\prime}}^{M}c^{\kappa\kappa^{\prime}}\left|\Psi_{1}\Psi_{2}\cdots\Psi_{I}^{s}\cdots\Psi_{N}\right\rangle \tag{12.43}
 $$
@@ -137,6 +147,7 @@ secular equation in the basis of frozen states. As excitonic splitting is
 purely an excited-state phenomenon, we have
 
 <a id="Ch12.E44"></a>
+
 $$
 \Delta E^{\kappa}_{\mathrm{EXSP}}=\Delta\omega^{\kappa}_{\mathrm{EXSP}}=\omega^{\kappa}_{\mathrm{EXSP}}-\omega^{\kappa}_{\mathrm{FRZ}} \tag{12.44}
 $$
@@ -144,6 +155,7 @@ $$
 Subsequently, polarization and charge transfer are handled in a similar way as in the excimer case:
 
 <a id="A3.S8.EGx125"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E^{\kappa}_{\mathrm{POL}}&\displaystyle=\Delta E_{\mathrm{POL}}+\Delta\omega^{\kappa}_{\mathrm{POL}}=\Delta E_{\mathrm{POL}}+(\omega^{\kappa}_{\mathrm{POL}}-\omega^{\kappa}_{\mathrm{EXSP}})\\
 \displaystyle\Delta E^{\kappa}_{\mathrm{CT}}&\displaystyle=\Delta E_{\mathrm{CT}}+\Delta\omega^{\kappa}_{\mathrm{CT}}=\Delta E_{\mathrm{CT}}+(\omega^{\kappa}-\omega^{\kappa}_{\mathrm{POL}})\end{aligned} \tag{12.45}

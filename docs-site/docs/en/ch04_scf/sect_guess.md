@@ -120,6 +120,7 @@ guess is usually even worse than the core Hamiltonian.[[797]](../bib_references/
 It is constructed according to
 
 <a id="eq444"></a>
+
 $$
 H_{\mu\upsilon}=c_{x}S_{\mu\upsilon}(H_{\mu\mu}+\tfrac{1}{2}H_{\upsilon\upsilon})\;. \tag{4.29}
 $$

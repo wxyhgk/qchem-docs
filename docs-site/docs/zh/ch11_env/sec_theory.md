@@ -9,6 +9,7 @@ title: "11.5.2 理论背景"
 体系的总能量由有效碎片（effective fragments）之间的相互作用能（$E^{\text{ef-ef}}$）以及 *ab initio*（即量子力学，QM）区域在碎片场中的能量两部分组成。前者包含静电、极化、色散和交换排斥贡献项（荷电转移项——对于描述离子型和强极性体系可能很重要——在当前的实现中被忽略）：
 
 <a id="Ch11.E61"></a>
+
 $$
 E^{\text{ef-ef}}=E_{\text{elec}}+E_{\text{pol}}+E_{\text{disp}}+E_{\text{ex-rep}}\;. \tag{11.61}
 $$
@@ -16,6 +17,7 @@ $$
 QM-EF 相互作用的计算方式如下。EFP 势能的静电（Coulomb）部分和极化部分通过单电子项贡献到量子哈密顿量中，
 
 <a id="eq:H-EFP"></a>
+
 $$
 H^{\prime}_{pq}=H_{pq}+\langle p|\hat{V}^{\text{Coul}}+\hat{V}^{\text{pol}}|q\rangle \tag{11.62}
 $$
@@ -31,6 +33,7 @@ EFP 能量的静电组分描述 Coulomb 相互作用。对于含氢键或极性�
  展开点 $k$ 与 $l$ 之间经屏蔽（screened）的电荷-电荷能量由下式给出，其中 $\alpha_{k}$ 和 $\alpha_{l}$ 是与相应展开点关联的阻尼参数：
 
 <a id="eq:EFP-elec-damp"></a>
+
 $$
 E^{\text{ch-ch}}_{kl}=\begin{cases}\left[1-(1+\alpha_{k}R_{kl}/2)e^{-\alpha_{k}R_{kl}}\right]\frac{q^{k}q^{l}}{R_{kl}}&\text{if $\alpha_{k}=\alpha_{l}$}\\
 \left[1-\left({\alpha_{l}^{2}\over\alpha_{l}^{2}-\alpha_{k}^{2}}\right)e^{-\alpha_{k}R_{kl}}-\left({\alpha_{k}^{2}\over\alpha_{k}^{2}-\alpha_{l}^{2}}\right)e^{-\alpha_{l}R_{kl}}\right]\frac{q^{k}q^{l}}{R_{kl}}&\text{if $\alpha_{k}\neq\alpha_{l}$}\\
@@ -40,6 +43,7 @@ $$
 或者，也可以用球面高斯重叠（spherical Gaussian overlap，SGO）近似来获得短程电荷穿透能：[[1271]](../bib_references/bib.md#bib1324)
 
 <a id="eq:overlap-damping"></a>
+
 $$
 E^{\text{pen}}_{kl}=-2\left({1\over{-2ln|S_{kl}|}}\right)^{1/2}\frac{S^{2}_{kl}}{R_{kl}} \tag{11.64}
 $$
@@ -49,6 +53,7 @@ $$
 有效碎片与 QM 部分之间的静电相互作用通过 *ab initio* 哈密顿量的微扰 $\hat{V}^{\text{Coul}}$ 来描述[参见式 ([11.62](#eq:H-EFP))]。该微扰以有效碎片各展开点贡献之和的形式进入哈密顿量的单电子部分。每个展开点的贡献由四项组成，分别源自相应多极（电荷、偶极、四极和八极）的静电势：
 
 <a id="eq:QM-EFP-elec"></a>
+
 $$
 V^{\text{Coul}}_{k}(x)=q_{k}T(r_{kx})-\sum^{x,y,z}_{a}\mu^{k}_{a}T_{a}(r_{kx})+\frac{1}{3}\sum^{x,y,z}_{ab}\Theta^{k}_{ab}T_{ab}(r_{kx})-\frac{1}{15}\sum^{x,y,z}_{abc}\Omega^{k}_{abc}T_{abc}(r_{kx})\;, \tag{11.65}
 $$
@@ -59,6 +64,7 @@ QM 电子密度与多极电荷的相互作用还可以辅以高斯型阻尼函�
  此时式 ([11.65](#eq:QM-EFP-elec)) 变为
 
 <a id="A3.S8.EGx106"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle V^{\text{Coul}}_{k}(x)=\big{[}q_{k}^{\text{nuc}}+q_{k}^{\text{ele}}(1-\exp{(-\beta_{k}r^{2}_{kx})}\big{]}T(r_{kx})&\displaystyle-\sum^{x,y,z}_{a}\mu^{k}_{a}\;T_{a}(r_{kx})+\frac{1}{3}\sum^{x,y,z}_{ab}\Theta^{k}_{ab}\;T_{ab}(r_{kx})\\
 &\displaystyle-\frac{1}{15}\sum^{x,y,z}_{abc}\Omega^{k}_{abc}\;T_{abc}(r_{kx})\;,\end{aligned} \tag{11.66}
@@ -73,6 +79,7 @@ $$
 由 *ab initio* 区域和有效碎片区域组成的体系，其极化能为[[309]](../bib_references/bib.md#bib314)
 
 <a id="eq:pol_energy"></a>
+
 $$
 E^{\text{pol}}=-\frac{1}{2}\sum_{k}\sum^{x,y,z}_{a}\mu^{k}_{a}\big{(}F^{\text{mult},k}_{a}+F^{\text{ai,nuc},k}_{a}\big{)}+\frac{1}{2}\sum_{k}\sum^{x,y,z}_{a}\bar{\mu}^{k}_{a}\;F^{\text{ai,elec},k}_{a} \tag{11.67}
 $$
@@ -82,6 +89,7 @@ $$
 每个极化率点 $k$ 上的感应偶极按下式计算
 
 <a id="eq:ind_dip"></a>
+
 $$
 \mu^{k}=\alpha^{k}F^{\text{total},k} \tag{11.68}
 $$
@@ -90,6 +98,7 @@ $$
 总电场由静态电场、其他感应偶极产生的电场 $F^{\text{ind}}_{k}$，以及 *ab initio* 区域的原子核和电子密度产生的电场共同组成：
 
 <a id="eq:pol_total_field"></a>
+
 $$
 F^{\text{ai,total},k}=F^{\text{mult},k}+F^{\text{ind},k}+F^{\text{ai,elec},k}+F^{\text{ai,nuc},k}\;. \tag{11.69}
 $$
@@ -98,6 +107,7 @@ $$
 此外，有效碎片上的感应偶极取决于 *ab initio* 电子密度，而 *ab initio* 电子密度反过来又受到这些感应偶极通过哈密顿量的单电子贡献所产生的电场的影响：
 
 <a id="eq:hamilt_pol"></a>
+
 $$
 \hat{V}^{\text{pol}}_{k}(x)=\frac{1}{2}\sum_{a}^{x,y,z}\big{(}\mu_{a}^{k}+\bar{\mu}_{a}^{k}\big{)}\;T_{a}(r_{kx}) \tag{11.70}
 $$
@@ -107,11 +117,13 @@ $$
 对极化的自洽处理计入了多体相互作用效应。EFP 碎片之间的极化能用默认参数为 $\alpha=\beta=0.6$ 的高斯型阻尼函数加以增强，该阻尼函数作用于电场 $F$ 上：[[1271]](../bib_references/bib.md#bib1324)
 
 <a id="eq:pol_damp_1"></a>
+
 $$
 F=F_{0}f^{\mathrm{damp}} \tag{11.71}
 $$
 
 <a id="eq:pol_damp_2"></a>
+
 $$
 f^{\text{damp}}=1.0-\big{(}1+\sqrt{\alpha\beta}r^{2}\big{)}e^{-(\alpha\beta)^{1/2}r^{2}} \tag{11.72}
 $$
@@ -120,6 +132,7 @@ $$
  其最低阶贡献为
 
 <a id="eq:disp_basic"></a>
+
 $$
 E^{\text{disp}}=\sum_{n}\frac{C_{6}}{R^{6}} \tag{11.73}
 $$
@@ -129,6 +142,7 @@ $$
 当有效碎片间距较小时，色散相互作用需对电荷穿透和电子密度重叠效应进行校正，校正方式可采用参数 $b=1.5$ 的 Tang-Toennies 阻尼公式[[1342]](../bib_references/bib.md#bib1400)
 
 <a id="eq:disp_TT_damp"></a>
+
 $$
 C_{6}^{kl}\rightarrow\left(1-e^{-bR}\sum_{k=0}^{6}{{(bR)^{k}}\over{k!}}\right)C_{6}^{kl}\;, \tag{11.74}
 $$
@@ -136,6 +150,7 @@ $$
 或者采用碎片间重叠（所谓基于重叠的阻尼）：[[1271]](../bib_references/bib.md#bib1324)
 
 <a id="eq:disp_overlap_damp"></a>
+
 $$
 C_{6}^{kl}\rightarrow\left(1-S_{kl}^{2}\left(1-2\log|S_{kl}|+2\log^{2}|S_{kl}|\right)\right)C_{6}^{kl}\;. \tag{11.75}
 $$
@@ -151,6 +166,7 @@ QM/EFP 色散相互作用目前处于禁用状态。
  这要求每个有效碎片携带一个基组，用于计算每对相互作用碎片的重叠积分和动能单电子积分。属于碎片 $A$ 和 $B$ 的定域轨道 $i$ 与 $j$ 每一对所产生的交换排斥贡献为：
 
 <a id="A3.S8.EGx107"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle E^{\text{exch}}_{ij}=&\displaystyle-4\sqrt{-2\ln|S_{ij}|\over\pi}{S^{2}_{ij}\over R_{ij}}\\
 &\displaystyle-2S_{ij}\left(\sum_{k\in A}F^{A}_{ik}S_{kj}+\sum_{l\in B}F^{B}_{jl}S_{il}-2T_{ij}\right)\\

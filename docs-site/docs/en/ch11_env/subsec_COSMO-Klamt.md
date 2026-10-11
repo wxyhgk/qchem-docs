@@ -11,6 +11,7 @@ in the dielectric screening factor, $f_{\varepsilon}$ in
 Eq. ([11.3](topic_pcm-em.md#eq:f_epsilon)). Indeed, surface charges in either model are computed according to
 
 <a id="eq:C-PCM"></a>
+
 $$
 \mathbf{q}=-f_{\varepsilon}\mathbf{S}^{-1}\mathbf{v}\;. \tag{11.24}
 $$

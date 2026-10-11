@@ -10,6 +10,7 @@ An asymptotically corrected (AC) exchange potential proposed by van Leeuwen and
 Baerends is[[1386]](../bib_references/bib.md#bib1445)
 
 <a id="eq:vx_LB"></a>
+
 $$
 v_{x}^{\text{LB}}=-\beta\left(\frac{x^{2}}{1+3\beta\mbox{sinh}^{-1}(x)}\right) \tag{5.66}
 $$
@@ -21,6 +22,7 @@ potential is formed by a linear combination of LDA XC potential and the LB
 exchange potential:[[1386]](../bib_references/bib.md#bib1445)
 
 <a id="Ch5.E67"></a>
+
 $$
 v_{xc}^{\text{LB94}}=v_{xc}^{\text{LDA}}+v_{x}^{\text{LB}}\;. \tag{5.67}
 $$
@@ -43,6 +45,7 @@ relation[[811]](../bib_references/bib.md#bib845)
  is used instead to obtain the exchange energy:
 
 <a id="Ch5.E68"></a>
+
 $$
 E_{x}^{\text{LB}}=-\int v_{x}^{\text{LB}}[\rho]\,(\textbf{r})\bigl{[}3\rho(\mathbf{r})+\mathbf{r}\bm{\cdot}\hat{\bm{\nabla}}\rho(\mathbf{r})\bigr{]}\;d\mathbf{r} \tag{5.68}
 $$

@@ -56,6 +56,7 @@ one-electron operator $U(r)$ whose matrix elements are simply added to the
 one-electron Hamiltonian matrix. The ECP operator is given by
 
 <a id="eq800"></a>
+
 $$
 U(r)=U_{L}(r)+\sum\limits_{\ell=0}^{L-1}{\sum\limits_{m=-l}^{+l}{\left|{Y_{\ell m}}\right\rangle U_{l}(r)\left\langle{Y_{\ell m}}\right|}} \tag{8.6}
 $$
@@ -63,6 +64,7 @@ $$
 where the radial potentials have the form
 
 <a id="eq:radpot"></a>
+
 $$
 U_{\ell}(r)=\sum_{k=1}^{K_{\ell}}D_{\ell_{k}}\,r^{n_{\ell_{k}}}e^{-\eta_{\ell_{k}}r^{2}} \tag{8.7}
 $$

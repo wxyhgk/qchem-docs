@@ -12,6 +12,7 @@ title: "12.7.3 绝热 ALMO-EDA 与 VFB 分析"
  其中“绝热（adiabatic）”一词借用于光谱学，表示能量差是在各个势能面的弛豫几何结构上评估的。在该方案中，总结合能（包括单体几何畸变）被重新划分为绝热 FRZ、POL 和 CT 项：
 
 <a id="eq:ad_EDA"></a>
+
 $$
 \Delta E_{\mathrm{bind}}=\Delta E^{(\mathrm{ad})}_{\mathrm{frz}}+\Delta E^{(\mathrm{ad})}_{\mathrm{pol}}+\Delta E^{(\mathrm{ad})}_{\mathrm{ct}}. \tag{12.26}
 $$
@@ -19,6 +20,7 @@ $$
 绝热冻结相互作用能由冻结势能面的能量极小值（该面上每一点的能量均使用相应的冻结波函数计算）与完全弛豫、无相互作用的片段能量之和的差值给出：
 
 <a id="eq:ad_FRZ"></a>
+
 $$
 \Delta E^{(\mathrm{ad})}_{\mathrm{frz}}=E[\mathbf{P}_{\mathrm{frz}}^{(\mathrm{frz})}]-\sum_{A}E_{A}^{(0)}. \tag{12.27}
 $$
@@ -26,6 +28,7 @@ $$
 类似地，绝热 POL 和 CT 项可以通过分别在极化（SCF-MI）和完全弛豫（无约束 SCF）势能面上进行几何优化来获得：
 
 <a id="A3.S8.EGx122"></a>
+
 $$
 \displaystyle\Delta E^{(\mathrm{ad})}_{\mathrm{pol}} \tag{12.28}
 $$
@@ -186,6 +189,7 @@ FRZ_GEOM
 该分解通过引入两个额外的受约束中间态来实现，在这两个态中只允许单一方向的 CT。这两个“单向”CT 态以变分方式得到松弛，因而可以方便地求得相应的核受力。这使得该方案能够轻松地嵌入上文介绍的绝热 ALMO-EDA 格式中：
 
 <a id="A3.S8.EGx123"></a>
+
 $$
 \displaystyle\Delta E^{(\mathrm{ad})}_{\mathrm{ctf}} \tag{12.30}
 $$

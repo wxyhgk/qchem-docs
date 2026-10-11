@@ -25,6 +25,7 @@ transfer process, $|D^{+}A\rangle$ and $|DA^{+}\rangle$, the two diabats
 can be represented in the following form:
 
 <a id="Ch10.E202"></a>
+
 $$
 \displaystyle|{\psi_{a}}\rangle \tag{10.202a}
 $$
@@ -45,6 +46,7 @@ To calculate the electronic coupling between two ALMO diabats, one
 should first construct the diabatic Hamiltonian in the ALMO state basis
 
 <a id="Ch10.E203"></a>
+
 $$
 \mathbf{H}^{\prime}=\begin{pmatrix}H^{\prime}_{aa}&H^{\prime}_{ab}\\
 H^{\prime}_{ba}&H^{\prime}_{bb}\end{pmatrix} \tag{10.203}
@@ -53,6 +55,7 @@ $$
 and then transform that into the Löwdin-orthogonalized basis
 
 <a id="eq:sym_ortho_H"></a>
+
 $$
 \mathbf{H}=\mathbf{S}^{-1/2}\mathbf{H}^{\prime}\mathbf{S}^{-1/2} \tag{10.204}
 $$
@@ -60,6 +63,7 @@ $$
 whose off-diagonal element, $H_{ab}$, corresponds to the diabatic coupling to be evaluated. In the 2-state case, we have
 
 <a id="eq:almo_coupling"></a>
+
 $$
 H_{ab}=\frac{1}{1-S_{ab}^{2}}\left|H^{\prime}_{ab}-\frac{H^{\prime}_{aa}+H^{\prime}_{bb}}{2}S_{ab}\right| \tag{10.205}
 $$
@@ -68,6 +72,7 @@ which requires the overlap between two ALMO diabats and the diagonal and off-dia
 elements of $\mathbf{H}^{\prime}$. The interstate overlap is given by
 
 <a id="eq:state_overlap"></a>
+
 $$
 S_{ab}=\langle\psi_{a}|\psi_{b}\rangle=\mathrm{det}\big{[}(\mathbf{C}^{(a)}_{\mathrm{o}})^{\dagger}\mathbf{S}\mathbf{C}^{(b)}_{\mathrm{o}}\big{]}\;. \tag{10.206}
 $$
@@ -82,6 +87,7 @@ DFT (MSDFT) approach.[[220]](../bib_references/bib.md#bib216)
 For the diagonal elements, it is straightforward to employ the KS energies of the two diabats:
 
 <a id="Ch10.E207"></a>
+
 $$
 H^{\prime}_{aa}=E_{a}^{\mathrm{KS}}[\mathbf{P}^{(a)}],\quad H^{\prime}_{bb}=E_{b}^{\mathrm{KS}}[\mathbf{P}^{(b)}] \tag{10.207}
 $$
@@ -92,6 +98,7 @@ The approximation for the off-diagonal element is theoretically more challenging
 MSDFT scheme,[[220]](../bib_references/bib.md#bib216)
 
 <a id="eq:msdft1"></a>
+
 $$
 H^{\prime}_{ab}=S_{ab}\left[V_{\mathrm{nn}}+\mathbf{P}_{ab}\cdot\mathbf{h}+\frac{1}{2}\mathbf{P}_{ab}\cdot\mathbf{II}\cdot\mathbf{P}_{ab}+\frac{1}{2}(\Delta E_{a}^{\mathrm{c}}+\Delta E_{b}^{\mathrm{c}})\right] \tag{10.208}
 $$
@@ -99,6 +106,7 @@ $$
 where $\mathbf{P}_{ab}$ is the one-particle transition density matrix between two ALMO states
 
 <a id="eq:trans_den"></a>
+
 $$
 \mathbf{P}_{ab}=\mathbf{C}_{\mathrm{o}}^{(a)}\left[(\mathbf{C}_{\mathrm{o}}^{(b)})^{\dagger}\mathbf{S}\mathbf{C}_{\mathrm{o}}^{(a)}\right]^{-1}(\mathbf{C}_{\mathrm{o}}^{(b)})^{\dagger} \tag{10.209}
 $$
@@ -113,6 +121,7 @@ as a correction to the HF coupling, which is given by the average of the differe
 KS and HF energies calculated from the same one-electron density matrix for each diabat:
 
 <a id="Ch10.E210"></a>
+
 $$
 \displaystyle\Delta E_{a}^{\mathrm{c}} \tag{10.210a}
 $$
@@ -125,6 +134,7 @@ A modified approach, denoted as ALMO(MSDFT2), was proposed in Ref. [[898]](../b
 which evaluates the XC contribution using the XC energy of the symmetrized transition density matrix
 
 <a id="eq:msdft2"></a>
+
 $$
 H_{ab}^{\prime}=S_{ab}\left(V_{\mathrm{nn}}+\mathbf{P}_{ab}\cdot\mathbf{h}+\tfrac{1}{2}\mathbf{P}_{ab}\cdot\mathbf{II}\cdot\mathbf{P}_{ab}+E_{\mathrm{xc}}[\tilde{\mathbf{P}}_{ab}]\right) \tag{10.211}
 $$
@@ -132,6 +142,7 @@ $$
 where
 
 <a id="Ch10.E212"></a>
+
 $$
 \tilde{\mathbf{P}}_{ab}=\frac{1}{2}(\mathbf{P}_{ab}+\mathbf{P}_{ba})\;. \tag{10.212}
 $$
@@ -147,6 +158,7 @@ given by Eq. ([10.211](#eq:msdft2)) may become inaccurate when the overlap betw
 becomes near-singular, as
 
 <a id="Ch10.E213"></a>
+
 $$
 \boldsymbol{\sigma}_{ba}=(\mathbf{C}_{\mathrm{o}}^{(b)})^{\dagger}\mathbf{S}\mathbf{C}_{\mathrm{o}}^{(a)} \tag{10.213}
 $$
@@ -176,6 +188,7 @@ then partitions that into the donor and acceptor blocks, assuming that these ort
 basis functions still retain their original fragment tags:
 
 <a id="eq:pod_fock"></a>
+
 $$
 \tilde{\mathbf{F}}=\mathbf{S}^{-1/2}\mathbf{F}\mathbf{S}^{-1/2}=\begin{pmatrix}\tilde{\mathbf{F}}_{dd}&\tilde{\mathbf{F}}_{da}\\
 \tilde{\mathbf{F}}_{ad}&\tilde{\mathbf{F}}_{aa}\end{pmatrix} \tag{10.214}
@@ -184,6 +197,7 @@ $$
 One then diagonalizes $\tilde{\mathbf{F}}_{dd}$ and $\tilde{\mathbf{F}}_{aa}$ separately
 
 <a id="Ch10.E215"></a>
+
 $$
 \boldsymbol{\epsilon}_{d}=\mathbf{D}_{d}^{\dagger}\tilde{\mathbf{F}}_{dd}\mathbf{D}_{d},\ \boldsymbol{\epsilon}_{a}=\mathbf{D}_{a}^{\dagger}\tilde{\mathbf{F}}_{aa}\mathbf{D}_{a}, \tag{10.215}
 $$
@@ -191,6 +205,7 @@ $$
 where the eigenvectors $\mathbf{D}_{d}$ and $\mathbf{D}_{a}$ define the single-particle “diabatic states”:
 
 <a id="A3.S8.EGx101"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\big{|}\bar{\varphi}^{(d)}_{p}\big{\rangle}&\displaystyle=\sum_{\mu}\big{|}\tilde{\chi}^{(d)}_{\mu}\big{\rangle}(D_{d})^{\mu}_{\ p}\\
 \displaystyle\big{|}\bar{\varphi}^{(a)}_{p}\big{\rangle}&\displaystyle=\sum_{\mu}\big{|}\tilde{\chi}^{(a)}_{\mu}\big{\rangle}(D_{a})^{\mu}_{\ p},\\
@@ -200,6 +215,7 @@ $$
 and transforms the off-diagonal block of the Fock matrix into this diabatic basis
 
 <a id="Ch10.E217"></a>
+
 $$
 \bar{\mathbf{F}}_{da}=\mathbf{D}_{d}^{\dagger}\tilde{\mathbf{F}}_{da}\mathbf{D}_{a} \tag{10.217}
 $$
@@ -207,6 +223,7 @@ $$
 yielding
 
 <a id="Ch10.E218"></a>
+
 $$
 \bar{\mathbf{F}}=\begin{pmatrix}\boldsymbol{\epsilon}_{d}&\bar{\mathbf{F}}_{da}\\
 \bar{\mathbf{F}}_{ad}&\boldsymbol{\epsilon}_{a}\end{pmatrix} \tag{10.218}
@@ -239,6 +256,7 @@ diagonalizes the the donor and acceptor blocks of the Fock matrix
 (in the original AO basis):
 
 <a id="Ch10.E219"></a>
+
 $$
 \mathbf{F}_{dd}\mathbf{C}_{d}=\mathbf{S}_{dd}\mathbf{C}_{d}\boldsymbol{\epsilon}_{d},\quad\mathbf{F}_{aa}\mathbf{C}_{a}=\mathbf{S}_{aa}\mathbf{C}_{a}\boldsymbol{\epsilon}_{a} \tag{10.219}
 $$
@@ -246,6 +264,7 @@ $$
 The obtained diabatic MO coefficient matrix is fragment-block-diagonal in the AO basis:
 
 <a id="Ch10.E220"></a>
+
 $$
 \mathbf{C}_{\text{diab}}=\begin{pmatrix}\mathbf{C}_{d}&\mathbf{0}\\
 \mathbf{0}&\mathbf{C}_{a}\\
@@ -256,6 +275,7 @@ Transforming the AO Fock matrix into this diabatic MO basis, the D–D and A–A
 the resulting matrix are diagonal matrices:
 
 <a id="Ch10.E221"></a>
+
 $$
 \bar{\mathbf{F}}_{\text{diab}}=\mathbf{C}_{\text{diab}}^{T}\mathbf{F}\mathbf{C}_{\text{diab}}=\begin{pmatrix}\boldsymbol{\epsilon}_{d}&\bar{\mathbf{F}}_{da}\\
 \bar{\mathbf{F}}_{ad}&\boldsymbol{\epsilon}_{a}\\
@@ -270,6 +290,7 @@ Denoting this pair of orbital as $\phi_{d}$ and $\phi_{a}$, one can construct th
 and overlap matrices:
 
 <a id="Ch10.E222"></a>
+
 $$
 \mathbf{H}=\begin{pmatrix}\epsilon_{d}&\bar{F}_{da}\\
 \bar{F}_{ad}&\epsilon_{a}\\
@@ -285,6 +306,7 @@ is denoted as POD2L. The resulting coupling between the orthogonalized diabatic 
 are
 
 <a id="Ch10.E223"></a>
+
 $$
 H_{da}^{\text{eff}}=\frac{1}{1-S_{da}^{2}}\left|\bar{F}_{da}-\frac{1}{2}(\epsilon_{d}+\epsilon_{a})S_{da}\right| \tag{10.223}
 $$
@@ -322,6 +344,7 @@ Löwdin orthogonalize the occupied orbitals on two fragments.
 The reactant diabat ($\text{D}^{+}\text{A}$ or $\text{D}^{-}\text{A}$) can be represented as
 
 <a id="Ch10.E224"></a>
+
 $$
 |\bar{\psi}_{a}\rangle=\frac{1}{\sqrt{(N-1)!}}\;\mathrm{det}\left\{\bar{\phi}_{\text{D1}},\bar{\phi}_{\text{D2}},\dots,\bar{\phi}_{\text{D}n_{\text{D}}\pm 1}\bar{\phi}_{\text{A1}},\bar{\phi}_{\text{A2}},\dots,\bar{\phi}_{\text{A}n_{\text{A}}}\right\} \tag{10.224}
 $$
@@ -337,9 +360,11 @@ $\bar{\phi}_{\text{D}n_{\text{D}}}$ to $\bar{\phi}_{\text{A}n_{\text{A}}}$ (HT),
 $\bar{\phi}_{\text{D}n_{\text{D}}+1}$ to $\bar{\phi}_{\text{A}n_{\text{A}}+1}$ (ET)
 
 <a id="Ch10.E225"></a>
+
 $$
 |\bar{\psi}_{b}\rangle=\frac{1}{\sqrt{(N-1)!}}\;\mathrm{det}\left\{\bar{\phi}_{\text{D1}},\bar{\phi}_{\text{D2}},\dots,\bar{\phi}_{\text{D}n_{\text{D}}}\bar{\phi}_{\text{A1}},\bar{\phi}_{\text{A2}},\dots,\bar{\phi}_{\text{A}n_{\text{A}}\pm 1}\right\} \tag{10.225}
 $$
+
 - •
 
 Compute the electronic coupling between $|\bar{\psi}_{a}\rangle$ and
@@ -347,6 +372,7 @@ $|\bar{\psi}_{b}\rangle$, which is approximated by the coupling of the
 orthogonalized fragment orbitals through the Kohn-Sham Fock operator, built from the reactant diabat:
 
 <a id="A3.S8.EGx102"></a>
+
 $$
 \displaystyle\langle\bar{\psi}_{a}|\hat{H}|\bar{\psi}_{b}\rangle\approx\begin{cases}\langle\phi_{\text{D}n_{\text{D}}}|\hat{f}_{\text{KS}}|\phi_{\text{A}n_{\text{A}}}\rangle&\text{HT}\\
 \langle\phi_{\text{D}n_{\text{D}}+1}|\hat{f}_{\text{KS}}|\phi_{\text{A}n_{\text{A}}+1}\rangle&\text{ET}\end{cases} \tag{10.226}

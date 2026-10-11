@@ -37,6 +37,7 @@ example, a distance constraint between atoms $i$ and $j$ is, in Cartesians,
 given by $(R_{ij}-R_{0})=0$, with
 
 <a id="Ch9.E17"></a>
+
 $$
 R_{ij}=\bigl{[}(x_{i}-x_{j})^{2}+(y_{i}-y_{j})^{2}+(z_{i}-z_{j})^{2}\bigr{]}^{1/2} \tag{9.17}
 $$
@@ -50,6 +51,7 @@ Internal constraints can be handled in Cartesian coordinates by introducing the
 Lagrangian function
 
 <a id="eq:a15"></a>
+
 $$
 L(\mathbf{x},\lambda)=F(\mathbf{x})-\sum\limits_{i=1}^{m}{\lambda_{i}C_{i}(\mathbf{x})} \tag{9.18}
 $$
@@ -59,6 +61,7 @@ $\lambda_{i}$ are the so-called Lagrange multipliers, one for each constraint
 $C_{i}(\mathbf{x})$. Differentiating Eq. ([9.18](#eq:a15)) with respect to $\mathbf{x}$ and $\lambda$ affords
 
 <a id="A3.S8.EGx70"></a>
+
 $$
 \displaystyle\frac{dL(\mathbf{x},\lambda)}{dx_{j}} \tag{9.19}
 $$
@@ -75,6 +78,7 @@ The Lagrangian second derivative matrix, which is the analogue of the Hessian ma
 in an unconstrained optimization, is given by
 
 <a id="eq:a17"></a>
+
 $$
 \hat{\nabla}^{2}\mathbf{L}=\left(\begin{array}[]{cc}\displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}dx_{k}}&\displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}d\lambda_{i}}\\
 \displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}d\lambda_{i}}&\displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{d\lambda_{j}d\lambda_{i}}\end{array}\right) \tag{9.21}
@@ -83,6 +87,7 @@ $$
 where
 
 <a id="A3.S8.EGx71"></a>
+
 $$
 \displaystyle\frac{d^{2}L(\mathbf{x},\lambda)}{dx_{j}dx_{k}} \tag{9.22}
 $$
@@ -124,6 +129,7 @@ similar way to the unconstrained case. Considering a constrained minimization
 with $m$ constraints, then Eq. ([9.11](sect_ef.md#eq:a9a)) is replaced by
 
 <a id="eq:a18a"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{b_{1}}&&&{F_{1}}\\
 &\ddots&{\rm{\bf 0}}&\vdots\\
@@ -143,6 +149,7 @@ $$
 and Eq. ([9.12](sect_ef.md#eq:a9b)) by
 
 <a id="eq:a18b"></a>
+
 $$
 \left({{\begin{array}[]{*{4}c}{b_{m+1}}&&&{F_{m+1}}\\
 &\ddots&{\rm{\bf 0}}&\vdots\\

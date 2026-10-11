@@ -19,6 +19,7 @@ This correction amounts to a first-order approximation in the change in density
 matrix, after the single large-basis step:
 
 <a id="Ch4.E64"></a>
+
 $$
 E_{\text{total}}=E_{\text{small basis}}+\mbox{tr}[(\Delta\mathbf{P})\mathbf{F}]_{\text{large basis}}\;. \tag{4.64}
 $$

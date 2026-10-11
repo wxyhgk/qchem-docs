@@ -165,6 +165,7 @@ potential to bias geometry optimization.
 search of typical S${}_{\rm N}$2 reactions where the geometry restraints have the form
 
 <a id="Ch9.E47"></a>
+
 $$
 f(R)=k\left(R_{12}\pm R_{34}-R\right)^{2}\;. \tag{9.47}
 $$

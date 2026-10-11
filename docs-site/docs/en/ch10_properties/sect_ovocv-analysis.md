@@ -18,6 +18,7 @@ In mean-field theory such as HF and KS-DFT, the energy of a quantum state is com
 In the orthonormal basis of occupied and virtual orbitals of initial state $I$, the matrix representation of $\hat{P}_{I}$ is
 
 <a id="eq:P_I"></a>
+
 $$
 {\color[rgb]{0,0,0}P_{I}}=\begin{pmatrix}1&0\\
 0&0\end{pmatrix} \tag{10.52}
@@ -26,6 +27,7 @@ $$
 where $1$ is $o\times o$ and the diagonal 0 matrix is $v\times v$ in dimension. Under the same basis, the representation of the final density operator $P_{F}$ can be constructed from $P_{I}$ as $P_{F}=\exp\{X\}P_{I}\exp\{-X\}$, where
 
 <a id="Ch10.E53"></a>
+
 $$
 X=\begin{pmatrix}0&X_{ov}\\
 -X_{ov}^{T}&0\end{pmatrix} \tag{10.53}
@@ -34,6 +36,7 @@ $$
 With the SVD of $X_{ov}$,
 
 <a id="Xov_SVD"></a>
+
 $$
 X_{ov}=U\Sigma V^{T} \tag{10.54}
 $$
@@ -41,6 +44,7 @@ $$
 where $\dim(U)=o\times o,\dim(\Sigma)=o\times v,\dim(V)=v\times v$, we can write $\Delta P$ as
 
 <a id="eq:delta_p"></a>
+
 $$
 \Delta P=\begin{pmatrix}U&0\\
 0&V\end{pmatrix}\begin{pmatrix}-\sin^{2}{\Sigma^{\prime}}&-\cos{\Sigma^{\prime}}\sin{\Sigma^{\prime}}&0\\
@@ -54,6 +58,7 @@ where $\Sigma^{\prime}=\mathrm{diag}(\sigma_{1},\sigma_{2},...,\sigma_{o})$, and
 Since $\Delta P$ is rendered diagonal in each of its blocks in the $U,V$ representation, it is natural to define this choice as the Occupied-Virtual Orbitals for Chemical Valence (OVOCVs).
 
 <a id="A3.S8.EGx78"></a>
+
 $$
 \displaystyle|\phi^{i}_{\text{occ}}\rangle \tag{10.56}
 $$
@@ -63,6 +68,7 @@ Specifically, $|\phi^{i}_{\text{occ}}\rangle$ and $|\phi^{i}_{\text{vir}}\rangle
 In the OVOCV basis, $\Delta P$ is:
 
 <a id="eq:delta_p_ovocv"></a>
+
 $$
 \Delta P=\begin{pmatrix}-\sin^{2}{\Sigma^{\prime}}&-\cos{\Sigma^{\prime}}\sin{\Sigma^{\prime}}\\
 -\sin{\Sigma^{\prime}}\cos{\Sigma^{\prime}}&\sin^{2}{\Sigma^{\prime}}\end{pmatrix} \tag{10.58}
@@ -73,6 +79,7 @@ The (diagonal) oo block is negative semi-definite, corresponding to $\sin^{2}\si
 The energy difference between any two single-determinant states can be obtained as
 
 <a id="Ch10.E59"></a>
+
 $$
 \Delta E=\text{Tr}\{\hat{F}^{\text{eff}}\Delta\hat{P}\}, \tag{10.59}
 $$
@@ -80,6 +87,7 @@ $$
 where $\hat{F}^{\text{eff}}$ is an effective fock operator obtained from a line-integral over the density matrices between the two states. Using the decomposition of $\Delta\hat{P}$ in OVOCV basis, we have
 
 <a id="Ch10.E60"></a>
+
 $$
 \displaystyle\Delta E \tag{10.60}
 $$
@@ -357,6 +365,7 @@ With the development of SCF algorithms for non-aufbau determinants, it is often 
 To reveal the importance of orbital relaxations, we introduce an intermediate frozen state (FRZ), whose density is constructed from the complete depletion of donor orbital $|\psi_{\text{D}}\rangle$ and the complete occupation of acceptor orbital $|\psi_{\text{A}}\rangle$, starting from the ground state density $\hat{P}_{\text{G}}$:
 
 <a id="Ch10.E61"></a>
+
 $$
 \hat{P}_{\text{FRZ}}=\hat{P}_{\text{G}}-|\psi_{\text{D}}\rangle\langle\psi_{\text{D}}|+|\psi_{\text{A}}\rangle\langle\psi_{\text{A}}|. \tag{10.61}
 $$

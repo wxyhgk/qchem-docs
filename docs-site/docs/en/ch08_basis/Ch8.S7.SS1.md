@@ -29,6 +29,7 @@ An alternative way to specify the scaled functions is the scaling variable in th
 The scaling is done according to
 
 <a id="Ch8.E1"></a>
+
 $$
 \alpha\rightarrow\alpha e^{-2i\theta} \tag{8.1}
 $$

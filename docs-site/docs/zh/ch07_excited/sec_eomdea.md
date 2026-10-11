@@ -9,6 +9,7 @@ title: "7.9.8 EOM-DEA-CCSD"
 在 EOM-DEA（逐出电子耦合簇）方法中，目标态由作用于 $N-2$ 电子参考态[[1077]](../bib_references/bib.md#bib1122)上的 $2p$ 与 $1h3p$ 算符来描述：
 
 <a id="DEA:WF"></a>
+
 $$
 \Psi_{k}=\hat{R}_{N+2}\Psi_{0}(N-2), \tag{7.102}
 $$
@@ -16,6 +17,7 @@ $$
 其中激发算符 $R$ 具有如下形式：
 
 <a id="eq:R-DEA"></a>
+
 $$
 \hat{R}=\frac{1}{2}\sum_{ab}r_{ab}a^{\dagger}b^{\dagger}+\frac{1}{6}\sum_{iabc}r_{i}^{abc}a^{\dagger}b^{\dagger}c^{\dagger}i. \tag{7.103}
 $$

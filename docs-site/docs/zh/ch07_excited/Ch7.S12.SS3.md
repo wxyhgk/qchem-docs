@@ -11,6 +11,7 @@ title: "7.12.3 基于 Kohn-Sham 本征值的方法"
 对于 X 射线发射（x-ray emission），相较 TDDFT 更为简便的替代方案是利用 Kohn-Sham 本征值之差，
 
 <a id="Ch7.E176"></a>
+
 $$
 \Delta E=\epsilon_{v}-\epsilon_{c}\;, \tag{7.176}
 $$
@@ -19,6 +20,7 @@ $$
 strengths）由相应的跃迁偶极矩阵元求得，
 
 <a id="eq:f-trans-dipole"></a>
+
 $$
 f_{c\to v}\propto\|\langle\phi_{c}|\hat{\bm{\mu}}|\phi_{v}\rangle\|^{2}\;. \tag{7.177}
 $$
@@ -98,6 +100,7 @@ NVAL_XES
 然后将该分子轨道（MO）的电离能（ionization energy）近似为
 
 <a id="eq:TPDFT-ip"></a>
+
 $$
 \text{IE}_{i}\approx-\epsilon_{i}(n_{i}=1/2)\;. \tag{7.178}
 $$
@@ -108,6 +111,7 @@ $$
 从 $\phi_{i}$ 被提升到 LUMO：
 
 <a id="eq:TPDFT-ee"></a>
+
 $$
 \Delta E_{i\to a}=\epsilon_{a}(n_{i}=1/2,n_{\text{LUMO}}=1/2)-\epsilon_{i}(n_{i}=1/2,n_{\text{LUMO}}=1/2)\;, \tag{7.179}
 $$

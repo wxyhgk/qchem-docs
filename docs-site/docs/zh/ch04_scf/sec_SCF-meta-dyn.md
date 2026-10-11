@@ -17,6 +17,7 @@ $d_{wx}^{2}=N-{{}^{w}}\!P^{\mu\nu}S_{\nu\sigma}\cdot{{}^{x}}\!P^{\sigma\tau}S_{\
 与经典元动力学类似，为了对先前已定位的解集合 $x$ 施加偏置，我们构造一个新的拉格朗日量（Lagrangian），
 
 <a id="A3.S8.EGx13"></a>
+
 $$
 \displaystyle\tilde{E}=E+\sum_{x}N_{x}e^{-\lambda_{x}d_{0x}^{2}} \tag{4.68}
 $$
@@ -24,6 +25,7 @@ $$
 其中 $0$ 表示当前的密度。由此我们可以导出一个新的有效 Fock 矩阵，
 
 <a id="A3.S8.EGx14"></a>
+
 $$
 \displaystyle\tilde{F}_{\mu\nu}=F_{\mu\nu}+\sum_{x}{{}^{x}\!P}_{\mu\nu}N_{x}\lambda_{x}e^{-\lambda_{x}d_{0x}^{2}} \tag{4.69}
 $$

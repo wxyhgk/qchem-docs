@@ -20,6 +20,7 @@ CVS 近似的适用性是合理的，因为核激发态与价激发态在能量�
 CVS 近似将以下类型的双电子积分强制置为零
 
 <a id="A3.S8.EGx66"></a>
+
 $$
 \displaystyle\langle Ip|qr\rangle=\langle pI|qr\rangle=\langle pq|Ir\rangle=\langle pq|rI\rangle=0 \tag{7.151}
 $$

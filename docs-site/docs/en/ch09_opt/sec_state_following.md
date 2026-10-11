@@ -32,6 +32,7 @@ energy is specific to the type of calculation (*e.g.*, geometry optimization).
 The similarity metric for the overlap is defined as
 
 <a id="eq:similarity_metric"></a>
+
 $$
 \mathcal{S}=1-\tfrac{1}{2}\bigl{(}||\Delta\mathbf{A}||+||\Delta\mathbf{D}||\bigr{)} \tag{9.59}
 $$
@@ -42,6 +43,7 @@ density matrices (Eq. ([7.183](../ch07_excited/sect_AttachDetach.md#eq:detach_d
 Equation ([9.59](#eq:similarity_metric)) uses the matrix spectral norm,
 
 <a id="Ch9.E60"></a>
+
 $$
 ||\mathbf{M}||=\left(\lambda_{\rm max}\mathbf{M}^{\dagger}\mathbf{M}\right)^{1/2} \tag{9.60}
 $$

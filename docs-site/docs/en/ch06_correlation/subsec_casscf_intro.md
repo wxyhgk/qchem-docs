@@ -23,6 +23,7 @@ possible Slater determinants for an active space with $M$ *spatial* orbitals,
 $N_{\uparrow}$ up spins and $N_{\downarrow}$ down spins is:
 
 <a id="A3.S8.EGx28"></a>
+
 $$
 \displaystyle N_{\text{total}} \tag{6.87}
 $$
@@ -38,6 +39,7 @@ the requested active space and orbitally optimized.
 The electronic energy is an exact functional of the 1-RDM and 2-RDM
 
 <a id="eq:casscf:energy"></a>
+
 $$
 E=\frac{1}{2}\sum_{pqrs}\Gamma_{pqrs}g_{pqrs}+\sum_{pq}D_{pq}h_{pq}, \tag{6.88}
 $$
@@ -53,6 +55,7 @@ indices, $t,u,v,w,\ldots$ are active indices, and $a,b,c,\ldots$ are virtual ind
 The generalized Fock matrix is defined as
 
 <a id="A3.S8.EGx29"></a>
+
 $$
 \displaystyle F_{mn}=\sum_{q}D_{pq}h_{pq}+\sum_{qrs}\Gamma_{mqrs}g_{nqrs} \tag{6.89}
 $$
@@ -65,6 +68,7 @@ the indices are active. When the first index of the generalized Fock matrix is i
 and the second is general:
 
 <a id="A3.S8.EGx30"></a>
+
 $$
 \displaystyle F_{in}=2({}^{I}F_{ni}+{}^{A}F_{ni}) \tag{6.90}
 $$
@@ -72,6 +76,7 @@ $$
 where the *inactive* and *active Fock matrices* are
 
 <a id="A3.S8.EGx31"></a>
+
 $$
 \displaystyle{}^{I}F_{mn} \tag{6.91}
 $$
@@ -82,6 +87,7 @@ active space 1-PDM. When the first index is active, and the second index is gene
 have
 
 <a id="A3.S8.EGx32"></a>
+
 $$
 \displaystyle F_{tn}=\sum_{u}{}^{I}F_{nu}D_{vu}+Q_{tn} \tag{6.93}
 $$
@@ -89,6 +95,7 @@ $$
 where the auxiliary Q matrix is
 
 <a id="A3.S8.EGx33"></a>
+
 $$
 \displaystyle Q_{tm}=\sum_{u,v,w}\Gamma_{tuvw}g_{muvw} \tag{6.94}
 $$
@@ -100,6 +107,7 @@ and one general index, greatly reducing the storage and computational cost of th
 transformation. The orbital gradient is then given by
 
 <a id="A3.S8.EGx34"></a>
+
 $$
 \displaystyle\frac{\partial E}{\partial\Delta_{pq}}=2(F_{pq}-F_{qp}) \tag{6.95}
 $$

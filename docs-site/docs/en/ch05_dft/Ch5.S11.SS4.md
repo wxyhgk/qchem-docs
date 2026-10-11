@@ -71,6 +71,7 @@ with A excess electrons, and the second fragment consists of atom 26–38 with B
 The $cdft section can be viewd as a system of linear equations as follows:
 
 <a id="A3.S8.EGx19"></a>
+
 $$
 \displaystyle(\mathbf{1})*A+(\mathbf{-1})*B
 $$

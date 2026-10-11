@@ -15,6 +15,7 @@ multi-reference perturbation theory (MRPT).[[210]](../bib_references/bib.md#bib2
 order energy correction, *i.e.* RASCI(2), can be expressed as:
 
 <a id="eqRASCI2"></a>
+
 $$
 E^{(2)}=-\sum_{k}\frac{|\langle k|\hat{H}|0\rangle|^{2}}{E_{k}-E_{0}+\epsilon} \tag{7.165}
 $$

@@ -12,6 +12,7 @@ MP2(attenuator, basis) 通过将库仑算符（Coulomb operator）拆分为两�
 衰减 MP2 记作 MP2(attenuator, basis)，**Q-Chem** 中基于互补 terf 函数实现了该方法，其定义如下：
 
 <a id="Ch6.E32"></a>
+
 $$
 \rm{s}(r)=\rm{terfc}(r,r_{0})=\frac{1}{2}\left\{\rm{erfc}\left[\omega(r-r_{0})\right]+\rm{erfc}\left[\omega(r+r_{0})\right]\right\} \tag{6.32}
 $$

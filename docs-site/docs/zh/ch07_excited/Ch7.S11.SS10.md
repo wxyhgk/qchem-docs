@@ -13,6 +13,7 @@ title: "7.11.10 面向 RAS-SF 的态特定 PCM"
 平衡形式的表述通过求解态特定的薛定谔（Schrödinger）方程实现
 
 <a id="Ch7.E172"></a>
+
 $$
 (\hat{H}_{\text{vac}}+\hat{R}_{k})|\Psi_{k}\rangle=E_{k}|\Psi_{k}\rangle \tag{7.172}
 $$
@@ -20,6 +21,7 @@ $$
 其中 $\hat{R}_{k}$ 是态 $k$ 的反应场算符。由于 $\hat{R}_{k}$ 依赖于 $|\Psi_{k}\rangle$，该方程必须迭代求解。完全弛豫（平衡）的激发自由能为
 
 <a id="Ch7.E173"></a>
+
 $$
 \Delta G=G_{k}^{\text{eq}}-G_{0}=\Delta E_{k}^{\text{eq}}-W_{k}+W_{0}\;. \tag{7.173}
 $$
@@ -29,6 +31,7 @@ $$
 溶剂化模型的非平衡版本采用微扰框架来求解薛定谔方程。详细内容见[第 11.2.3.3 节](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM)。简而言之，该方法基于按如下方式划分的态特定哈密顿量
 
 <a id="Ch7.E174"></a>
+
 $$
 \hat{H}_{k}^{\text{noneq}}=\underbrace{\hat{H}_{\text{vac}}+\hat{R}_{0}^{\text{s+f}}}_{\hat{H}_{0}}+\lambda(\hat{R}_{k}^{\text{f}}-\hat{R}_{0}^{\text{f}})\;. \tag{7.174}
 $$
@@ -36,6 +39,7 @@ $$
 零阶哈密顿量（$\hat{H}_{0}$）包含基态平衡反应场算符 $\hat{R}_{0}\equiv R_{0}^{\text{s+f}}=\hat{R}_{0}^{\text{s}}+\hat{R}_{0}^{\text{f}}$。溶剂极化被划分为“慢”（核）分量与“快”（电子）分量，但在平衡溶剂化中两个分量都被包含在内。微扰项（由微扰参数 $\lambda$ 标示）用于修正激发 $|\Psi_{0}\rangle\rightarrow|\Psi_{k}\rangle$ 过程中的快极化。这一非平衡校正通过一阶微扰理论来描述，其结果是对激发能的微扰型、态特定（ptSS）校正：
 
 <a id="Ch7.E175"></a>
+
 $$
 \Delta G_{k}^{\text{ptSS(1)}}=G_{k}-G_{0}=\Delta E_{k}^{\text{ptSS(1)}}-W^{\text{f}}_{k(0)}+W^{\text{f}}_{0}+W_{0,k(0)} \tag{7.175}
 $$

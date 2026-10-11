@@ -11,6 +11,7 @@ the $(N-1)$- and $(N+1)$-parts of the electron propagator, which is given in its
 representation as
 
 <a id="Ch7.E140"></a>
+
 $$
 G_{pq}(\omega)=\underbrace{\sum_{n}\frac{\bigl{\langle}\Psi_{0}^{N}\bigl{\lvert}c_{p}\bigr{\rvert}\Psi_{n}^{N+1}\bigr{\rangle}\bigl{\langle}\Psi_{n}^{N+1}\bigl{\lvert}c_{q}^{\dagger}\bigr{\rvert}\Psi_{0}^{N}\bigr{\rangle}}{\omega+E_{0}^{N}-E_{n}^{N+1}}}_{(N+1)\text{-electron (EA) part}}+\underbrace{\sum_{n}\frac{\bigl{\langle}\Psi_{0}^{N}\bigl{\lvert}c_{q}^{\dagger}\bigr{\rvert}\Psi_{n}^{N-1}\bigr{\rangle}\bigl{\langle}\Psi_{n}^{N-1}\bigl{\lvert}c_{p}\bigr{\rvert}\Psi_{0}^{N}\bigr{\rangle}}{\omega+E_{n}^{N-1}-E_{0}^{N}}}_{(N-1)\text{-electron (IP) part}}. \tag{7.140}
 $$
@@ -24,6 +25,7 @@ procedure shown in the previous section [7.10.2](sec_adc_pp_scheme.md) being th
 operators
 
 <a id="A3.S8.EGx63"></a>
+
 $$
 \displaystyle\left\{\hat{C}_{J}^{N-1}\right\} \tag{7.141}
 $$
@@ -40,6 +42,7 @@ $(N+1)$-transitions are accessible as pole strengths $P_{n}$, which
 are computed according to
 
 <a id="Ch7.E143"></a>
+
 $$
 P_{n}=\sum_{p}\left|x_{pn}\right|^{2}, \tag{7.143}
 $$
@@ -49,6 +52,7 @@ EA-ADC eigenvectors $\mathbf{X}$ and the matrix of
 effective transition amplitudes $\mathbf{f}$ using the relations
 
 <a id="A3.S8.EGx64"></a>
+
 $$
 \displaystyle x_{pn}^{N-1} \tag{7.144}
 $$
@@ -77,6 +81,7 @@ $|\phi_{n}\rangle$
 connected to electron detachment and attachment processes
 
 <a id="Ch7.E146"></a>
+
 $$
 \left|\phi_{n}\right>=\sum_{p}x_{pn}\left|\varphi_{p}\right>, \tag{7.146}
 $$

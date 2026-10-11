@@ -9,6 +9,7 @@ title: "6.21.2 Theory"
 Electronic energy is retrieved by iFCI using an $n$-body expansion of the form
 
 <a id="eqn:mbe"></a>
+
 $$
 E=E_{\mathrm{ref}}+E_{C}=E_{\mathrm{ref}}+\sum_{i}\epsilon_{i}+\sum_{j<i}\epsilon_{ij}+\sum_{k<j<i}\epsilon_{ijk}+\cdots \tag{6.96}
 $$
@@ -18,6 +19,7 @@ $i,j,k$ refer to bodies of the expansion. Incremental correlation energies are
 defined as
 
 <a id="A3.S8.EGx35"></a>
+
 $$
 \displaystyle\epsilon_{i} \tag{6.97}
 $$
@@ -39,6 +41,7 @@ Truncation of incremental terms is performed by considering natural orbital
 (NO) occupancy cutoffs, $\eta^{(m)}$, where
 
 <a id="A3.S8.EGx36"></a>
+
 $$
 \displaystyle\epsilon_{i}^{(m)} \tag{6.100}
 $$
@@ -48,6 +51,7 @@ with sufficiently large NO eigenvalues. Convergence for each iFCI increment is
 reached when
 
 <a id="eqn:ifcizeta"></a>
+
 $$
 \zeta>|\epsilon^{(m+1)}-\epsilon^{m}| \tag{6.102}
 $$
@@ -57,6 +61,7 @@ performed by utilizing the $\zeta$ parameter and a screening cutoff,
 $\mathcal{C}_{n}$, in the form
 
 <a id="eqn:ifcicutoff"></a>
+
 $$
 \mathcal{C}_{n}=10^{-\zeta}\times\mathcal{S}_{n} \tag{6.103}
 $$

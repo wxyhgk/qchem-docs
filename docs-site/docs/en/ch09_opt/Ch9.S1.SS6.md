@@ -28,6 +28,7 @@ Ref. [[63]](../bib_references/bib.md#bib50)
 projected on to the set $\mathbf{U}$ of delocalized internal coordinates according to
 
 <a id="Ch9.E27"></a>
+
 $$
 \mathbf{C}^{\text{proj}}=\sum_{k=1}^{n}\bigl{\langle}\mathbf{C}\bigl{|}\mathbf{CU}_{k}\mathbf{U}_{k}\bigr{\rangle}\mathbf{U}_{k}\;, \tag{9.27}
 $$
@@ -38,6 +39,7 @@ dimensional vector space $\mathbf{V}$ is formed, comprising the normalized,
 projected constraint vector together with all active delocalized coordinates
 
 <a id="Ch9.E28"></a>
+
 $$
 \mathbf{V}=\left\{\mathbf{C}^{\rm proj},~{}\mathbf{U}_{k}(k=1,\ldots,n)\right\}\;. \tag{9.28}
 $$
@@ -45,6 +47,7 @@ $$
 This set of vectors is Schmidt orthogonalized according to the standard procedure,
 
 <a id="eq:a21"></a>
+
 $$
 \widetilde{\mathbf{V}}_{k}=\alpha_{k}\left(\mathbf{V}_{k}-\sum_{\ell=1}^{k-1}\bigl{\langle}\mathbf{V}_{k}\bigl{|}\mathbf{V}_{k}\widetilde{\mathbf{V}}_{\ell}\widetilde{\mathbf{V}}_{\ell}\bigr{\rangle}\widetilde{\mathbf{V}}_{\ell}\right)\;, \tag{9.29}
 $$
@@ -98,16 +101,19 @@ $C_{i}(\mathbf{R})$ is a function of one coordinate, $R_{i}$, and it and its
 derivatives can be written
 
 <a id="eq:a22a"></a>
+
 $$
 C_{i}(R_{i})=R_{i}-R_{0} \tag{9.30}
 $$
 
 <a id="eq:a22b"></a>
+
 $$
 dC_{i}(R_{i})/dR_{i}=1;\quad dC_{i}(R_{i})/dR_{j}=0 \tag{9.31}
 $$
 
 <a id="eq:a22c"></a>
+
 $$
 d^{2}C_{i}(R_{i})/dR_{i}dR_{j}=0 \tag{9.32}
 $$

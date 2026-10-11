@@ -27,6 +27,7 @@ occupied-virtual block $K_{ia}$, respectively, rather than the full matrix
 in the AO representation, $K_{\mu\nu}$. Mathematically,
 
 <a id="A3.S8.EGx6"></a>
+
 $$
 \displaystyle E_{K} \tag{4.53}
 $$
@@ -34,6 +35,7 @@ $$
 and
 
 <a id="eq4occ-RI-K2"></a>
+
 $$
 \frac{\partial E_{K}}{\partial\Delta_{ai}}=2K_{ai} \tag{4.54}
 $$
@@ -43,6 +45,7 @@ transformation $U$, which represents the variations of the MO coefficients
 as follows:
 
 <a id="eq4occ-RI-K3"></a>
+
 $$
 U=e^{(\Delta-\Delta^{T})}. \tag{4.55}
 $$
@@ -58,6 +61,7 @@ operations; refer to Ref. [[892]](../bib_references/bib.md#bib926)
  for details.
 
 <a id="A3.S8.EGx7"></a>
+
 $$
 \displaystyle\frac{\mbox{\#~{}of~{}RI-K~{}quartic~{}operations}}{\mbox{\#~{}of~{}occ-RI-K~{}quartic~{}operations}}=\frac{oNX^{2}+oN^{2}X}{o^{2}X^{2}+o^{2}NX+o^{2}NX}=\frac{N(X+N)}{o(X+2N)} \tag{4.56}
 $$
@@ -106,6 +110,7 @@ The occ-RI-K formulation yields the following formula for the gradient
 of exchange energy in global Coulomb-metric RI:
 
 <a id="A3.S8.EGx8"></a>
+
 $$
 \displaystyle E_{K}^{x} \tag{4.57}
 $$
@@ -121,6 +126,7 @@ coefficients ($C_{\mu\nu}^{P}$) has the worst scaling of $\mathcal{O}(M^{4})$
 because it involves MO to AO back transformations:
 
 <a id="A3.S8.EGx9"></a>
+
 $$
 \displaystyle C_{\mu\nu}^{P}=\sum_{ij}c_{\mu i}c_{\nu j}C_{ij}^{P} \tag{4.58}
 $$

@@ -27,6 +27,7 @@ The auxiliary basis $\{|K\rangle\}$ is used to approximate products of Gaussian
 basis functions:
 
 <a id="Ch8.E2"></a>
+
 $$
 |\mu\nu\rangle\approx|\widetilde{\mu\nu}\rangle=\sum_{K}|K\rangle C_{\mu\nu}^{K} \tag{8.2}
 $$
@@ -50,6 +51,7 @@ minimizing the deviation between the fitted distribution and the actual
 distribution, $\langle\mu\nu-\widetilde{\mu\nu}|{\mu\nu-\widetilde{\mu\nu}}\rangle$, which leads to the following set of linear equations:
 
 <a id="Ch8.E3"></a>
+
 $$
 \sum_{L}{\left\langle{K\left|L\right.}\right\rangle}C_{\mu\nu}^{L}=\left\langle{K\left|{\mu\nu}\right.}\right\rangle \tag{8.3}
 $$
@@ -60,6 +62,7 @@ approximated as the following optimal expression for a given choice of
 auxiliary basis set:
 
 <a id="eq:riapprox"></a>
+
 $$
 \langle\mu\nu|\lambda\sigma\rangle\approx\langle\widetilde{\mu\nu}|\widetilde{\lambda\sigma}\rangle=\sum_{K,L}C_{\mu\nu}^{L}\langle L|K\rangle C_{\lambda\sigma}^{K} \tag{8.4}
 $$

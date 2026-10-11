@@ -9,6 +9,7 @@ title: "12.10.4 运行 XSAPT+MBD 计算任务"
 为了运行 XSAPT 计算任务，至少必须运行两个独立的作业，第三个作业是可选的，并且在诱导能被认为很重要时建议使用。第一个必须运行的作业是在整个体系上进行的、不带电荷嵌入（charge embedding）的二阶 SAPT 作业。该作业提供静电项、交换项和色散项的数值。（对于 XSAPT+MBD 方法[[200]](../bib_references/bib.md#bib188)作业，色散值将取自 MBD 计算得到的色散值）。第二个需要运行的作业是在整个体系上进行的、带电荷嵌入的 SAPT 作业。这个带电荷嵌入的 SAPT 作业起到对诱导能的校正作用，并且必须在每一对单体（monomer）上运行。因此，XSAPT 计算的最终诱导能等于不带电荷嵌入的 SAPT 作业的诱导能，加上带电荷嵌入的 SAPT 总能量与不带电荷嵌入的 SAPT 总能量之差。用公式表示，XSAPT 对诱导能的贡献为：
 
 <a id="eq:xsapt_pol"></a>
+
 $$
 E_{\text{pol}}=\sum_{A}\sum_{B>A}\left[E_{AB}^{\text{XSAPT}}(AB)-E_{AB}^{\text{SAPT}}\right] \tag{12.69}
 $$

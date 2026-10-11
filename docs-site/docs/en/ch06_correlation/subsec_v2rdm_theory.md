@@ -9,6 +9,7 @@ title: "6.23.2 Theory"
 The electronic energy is an exact functional of the 1-RDM and 2-RDM
 
 <a id="eq:v2rdm:energy"></a>
+
 $$
 E=\frac{1}{2}\sum_{pqrs}{}^{2}D^{pq}_{rs}(pr|qs)+\sum_{pq}{}^{1}D^{p}_{q}h_{pq}, \tag{6.106}
 $$
@@ -31,6 +32,7 @@ SDP.[[1120]](../bib_references/bib.md#bib1167)
 The primal formulation of the SDP is
 
 <a id="A3.S8.EGx37"></a>
+
 $$
 \displaystyle E_{\rm primal} \tag{6.107}
 $$
@@ -41,6 +43,7 @@ two-electron integrals), and the mapping $M(\mathbf{x})$ maps the primal
 solution onto the set of positive semidefinite RDMs:
 
 <a id="eqn:vectormatrixmap"></a>
+
 $$
 M({\bf x})=\left(\begin{array}[]{cccc}{}^{1}{\mathbf{D}}&0&0&0\\
 0&{}^{1}{\mathbf{Q}}&0&0\\
@@ -58,6 +61,7 @@ the appropriate spin and contraction conditions. Alternatively, one could
 consider the dual formulation of the semidefinite problem, expressed as
 
 <a id="A3.S8.EGx38"></a>
+
 $$
 \displaystyle E_{\rm dual} \tag{6.109}
 $$
@@ -104,6 +108,7 @@ the remaining correlation effects can be obtained through the formalism
 of MC-PDFT. In MC-PDFT, the total energy for the system is expressed as
 
 <a id="EQ:EMCPDFT"></a>
+
 $$
 E_{\rm MC-PDFT}=\sum_{i}h^{i}_{i}+\sum_{tu}h^{t}_{u}{}^{1}D^{t}_{u}+E_{\rm H}+E_{\rm XC}\left[\rho({\bf r}),\Pi({\bf r}),|\nabla\rho({\bf r})|,|\nabla\Pi({\bf r})|\right] \tag{6.110}
 $$
@@ -111,6 +116,7 @@ $$
 where the Hartree energy, $E_{\rm H}$, is the classical Coulomb repulsion
 
 <a id="EQN:HARTREE_ENERGY"></a>
+
 $$
 E_{\rm H}=\frac{1}{2}\sum_{ij}(ii|jj)+\sum_{itu}(tu|ii){}^{1}D^{t}_{u}+\frac{1}{2}\sum_{tuvw}(tu|vw){}^{1}D^{t}_{u}{}^{1}D^{v}_{w} \tag{6.111}
 $$
@@ -121,6 +127,7 @@ represent active spin orbitals. The symbols $\rho({\bf r})$ and $\Pi({\bf r})$ r
 the density and on-top pair density, respectively, which are defined in terms of the molecular orbitals $\{\phi\}$ as
 
 <a id="Ch6.E112"></a>
+
 $$
 \rho({\bf r})=\sum_{pq}\phi_{p}({\bf r})\phi_{q}({\bf r}){}^{1}D^{p}_{q} \tag{6.112}
 $$
@@ -128,6 +135,7 @@ $$
 and
 
 <a id="Ch6.E113"></a>
+
 $$
 \Pi({\bf r})=\sum_{pqrs}\phi_{p}({\bf r})\phi_{q}({\bf r})\phi_{r}({\bf r})\phi_{s}({\bf r}){}^{2}D^{pq}_{rs} \tag{6.113}
 $$

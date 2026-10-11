@@ -12,6 +12,7 @@ Hu 和 Yang 提出的 [[601]](../bib_references/bib.md#bib624) ADIIS 算法同�
 DIIS 初始迭代表现不佳的情况下加速 SCF 收敛。该算法同样涉及一种 Fock 矩阵外推格式：
 
 <a id="eq:adiis_fock"></a>
+
 $$
 \tilde{\mathbf{F}}_{n+1}=\sum_{i=1}^{n}c_{i}\mathbf{F}_{i} \tag{4.42}
 $$
@@ -20,6 +21,7 @@ $$
 $\tilde{\mathbf{P}}_{i+1}=\sum_{i=1}^{n}\mathbf{P}_{i}$ 的增强型 Roothaan-Hall（ARH）能量函数进行极小化而得到
 
 <a id="A3.S8.EGx3"></a>
+
 $$
 \displaystyle f^{\mathrm{ADIIS}}(c_{1},\dots,c_{n})=E[\mathbf{P}_{n}]+\sum_{i=1}^{n}c_{i}(\mathbf{P}_{i}-\mathbf{P}_{n})\cdot\mathbf{F}_{n} \tag{4.43}
 $$

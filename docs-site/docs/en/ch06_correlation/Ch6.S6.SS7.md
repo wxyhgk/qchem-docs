@@ -24,6 +24,7 @@ amplitudes, the CC2 doubles amplitudes are exactly the same as MP2, and the
 singles amplitude equations are as follows:
 
 <a id="eq:bcc2"></a>
+
 $$
 \Omega_{i}^{a}=f_{ai}+\sum_{jb}f_{jb}t_{ij}^{ab}+\frac{1}{2}\sum_{jbc}\langle
 ja||cb\rangle t_{ij}^{bc}+\frac{1}{2}\sum_{jkb}\langle jk||bi\rangle t_{jk}^{ab} \tag{6.30}
@@ -68,6 +69,7 @@ further improve the results of BCC2 in this case. The regularizer is applied by
 modifying the $t_{ij}^{ab}$ amplitudes as follows:
 
 <a id="eq:kbcc2"></a>
+
 $$
 t_{ij}^{ab}=\frac{-\langle ab||ij\rangle}{\Delta_{ij}^{ab}}\left(1-\exp(-\kappa\Delta_{ij}^{ab})\right)^{2} \tag{6.31}
 $$

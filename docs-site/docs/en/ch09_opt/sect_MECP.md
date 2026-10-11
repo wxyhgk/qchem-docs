@@ -46,6 +46,7 @@ Martínez and coworkers[[805]](../bib_references/bib.md#bib840)
 MECP optimization algorithm that consists of minimizing the objective function
 
 <a id="Ch9.E52"></a>
+
 $$
 F_{\sigma}(\mathbf{R})=\tfrac{1}{2}\bigl{[}E_{I}(\mathbf{R})+E_{J}(\mathbf{R})\bigr{]}+\sigma\left(\frac{\bigl{[}E_{I}(\mathbf{R})-E_{J}(\mathbf{R})\bigr{]}^{2}}{E_{I}(\mathbf{R})-E_{J}(\mathbf{R})+\alpha}\right)\;, \tag{9.52}
 $$
@@ -60,6 +61,7 @@ penalty-constrained approach that we call the “direct” method. Here, the
 gradient of the objective function is
 
 <a id="eq:direct_MECP"></a>
+
 $$
 \mathbf{G}=\mathbf{P}\mathbf{G}_{\rm mean}+2(E_{K}-E_{J})\mathbf{G}_{\rm diff}\;, \tag{9.53}
 $$
@@ -67,6 +69,7 @@ $$
 where
 
 <a id="Ch9.E54"></a>
+
 $$
 \mathbf{G}_{\rm mean}=\tfrac{1}{2}(\mathbf{G}_{J}+\mathbf{G}_{K}) \tag{9.54}
 $$
@@ -74,6 +77,7 @@ $$
 is the mean energy gradient, with $\mathbf{G}_{i}=\partial E_{i}/\partial\mathbf{R}$ being the nuclear gradient for state $i$, and
 
 <a id="Ch9.E55"></a>
+
 $$
 \mathbf{G}_{\rm diff}=\frac{\mathbf{G}_{K}-\mathbf{G}_{J}}{||\mathbf{G}_{K}-\mathbf{G}_{J}||} \tag{9.55}
 $$
@@ -81,6 +85,7 @@ $$
 is the normalized difference gradient. Finally,
 
 <a id="eq:MECP_projector1"></a>
+
 $$
 \mathbf{P}=\bm{1}-\mathbf{G}_{\rm diff}\mathbf{G}_{\rm diff}^{\top} \tag{9.56}
 $$
@@ -118,6 +123,7 @@ and consists of optimization along the gradient in
 Eq. ([9.53](#eq:direct_MECP)) but with a projector
 
 <a id="eq:MECP_projector2"></a>
+
 $$
 \mathbf{P}=\bm{1}-\mathbf{G}_{\rm diff}\mathbf{G}_{\rm diff}^{\top}-\mathbf{y}\mathbf{y}^{\top} \tag{9.57}
 $$
@@ -125,6 +131,7 @@ $$
 where
 
 <a id="Ch9.E58"></a>
+
 $$
 \mathbf{y}=\frac{(\bm{1}-\mathbf{x}\mathbf{x}^{\top})\mathbf{h}_{JK}}{||(\bm{1}-\mathbf{x}\mathbf{x}^{\top})\mathbf{h}_{JK}||}\;, \tag{9.58}
 $$

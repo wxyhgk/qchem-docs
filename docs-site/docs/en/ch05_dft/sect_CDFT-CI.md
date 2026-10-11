@@ -33,6 +33,7 @@ as the physical meaning of the Kohn-Sham wave function is not entirely clear.
 We can, however, perform the following manipulation:[[1502]](../bib_references/bib.md#bib1560)
 
 <a id="A3.S8.EGx20"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle H_{12}&\displaystyle=\frac{1}{2}\Bigl{[}\langle 1|H+V_{C_{1}}\omega_{C_{1}}-V_{C1}\omega_{C_{1}}|2\rangle+\langle 1|H+V_{C_{2}}\omega_{C_{2}}-V_{C_{2}}\omega_{C_{2}}|2\rangle\Bigr{]}\\
 &\displaystyle=\frac{1}{2}\Bigl{[}\left(E_{1}+V_{C_{1}}N_{C_{1}}+E_{2}+V_{C_{2}}N_{C_{2}}\right)\langle 1|2\rangle-V_{C_{1}}\langle 1|\omega_{C_{1}}|2\rangle-V_{C_{2}}\langle 1|\omega_{C_{2}}|2\rangle\Bigr{]}\end{aligned} \tag{5.74}

@@ -15,6 +15,7 @@ The method relies on solving the more tractable one electron four-component Dira
  to obtain the decoupling unitary transformations that will be used to modify the one-electron matrix elements, such as the kinetic energy and nuclear-attraction, to account for relativistic effects. A key ingredient to the X2C transformation matrices is to compute
 
 <a id="Ch4.E75"></a>
+
 $$
 W_{{\rm SF},\mu\nu}=\langle\phi_{\mu}|\vec{p}\cdot\left(V\vec{p}\right)|\phi_{\nu}\rangle \tag{4.75}
 $$
@@ -73,6 +74,7 @@ This, however, requires a spin-generalized and complex-valued solution.
 This can be seen by the additional matrix $W_{\text{SOC},\mu\ nu}$ required to obtain a full $W$ matrix:
 
 <a id="Ch4.E76"></a>
+
 $$
 W_{{\rm SOC},\mu\nu}=i\sigma\cdot\langle\phi_{\mu}|\vec{p}\times\left(V\vec{p}\right)|\phi_{\nu}\rangle \tag{4.76}
 $$

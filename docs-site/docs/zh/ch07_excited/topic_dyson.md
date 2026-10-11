@@ -9,6 +9,7 @@ title: "7.9.29 EOM-CCSD 框架下电离态或附着态的戴森轨道（Dyson Or
 戴森轨道（Dyson orbitals）可用于计算总光脱附/光电离截面（cross-sections），以及光电子的角分布。戴森轨道是 N 电子分子波函数与相应阳离子/阴离子的 $N-1$/$N+1$ 电子波函数之间的重叠：
 
 <a id="A3.S8.EGx60"></a>
+
 $$
 \displaystyle\phi^{d}(1) \tag{7.127}
 $$
@@ -16,6 +17,7 @@ $$
 对于 Hartree-Fock 波函数，在 Koopmans 近似（Koopmans’ approximation）下，这些轨道就是正则 HF 轨道。对于关联波函数，戴森轨道是参考分子轨道（molecular orbitals）的线性组合：
 
 <a id="A3.S8.EGx61"></a>
+
 $$
 \displaystyle\phi^{d} \tag{7.129}
 $$
@@ -23,6 +25,7 @@ $$
 在 EOM-IP/EA-CCSD 方法中，戴森轨道的计算非常直接，因为阳离子/阴离子态与初始分子态都是基于同一套分子轨道（MO）基组定义的。由于左 CC 向量和右 CC 向量并不相同，相应地可以定义两个戴森轨道（左戴森轨道和右戴森轨道）：
 
 <a id="A3.S8.EGx62"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\gamma_{p}^{R}&\displaystyle=\bigl{\langle}\Phi_{0}e^{T_{1}+T_{2}}L^{EE}\bigl{|}p^{\dagger}\bigr{|}R^{IP}e^{T_{1}+T_{2}}\Phi_{0}\bigr{\rangle}\\
 \displaystyle\gamma_{p}^{L}&\displaystyle=\bigl{\langle}\Phi_{0}e^{T_{1}+T_{2}}L^{IP}\bigl{|}p\bigr{|}R^{EE}e^{T_{1}+T_{2}}\Phi_{0}\bigr{\rangle}\end{aligned} \tag{7.132}

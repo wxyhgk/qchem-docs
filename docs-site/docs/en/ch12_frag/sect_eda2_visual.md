@@ -59,6 +59,7 @@ plot the contribution from each significant NOCV pair ($\psi_{-k}$, $\psi_{k}$) 
 the density deformation ($\Delta\rho_{k}$):
 
 <a id="Ch12.E24"></a>
+
 $$
 \Delta\rho_{k}(\mathbf{r})=-n_{k}|\psi_{-k}(\mathbf{r})|^{2}+n_{k}|\psi_{k}(\mathbf{r})|^{2} \tag{12.24}
 $$

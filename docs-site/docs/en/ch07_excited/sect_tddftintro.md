@@ -21,6 +21,7 @@ field. These poles are Bohr frequencies, or in other words the excitation
 energies. Operationally, this involves solution of an eigenvalue equation
 
 <a id="eq:TDDFT"></a>
+
 $$
 \left(\begin{array}[]{cc}\mathbf{A}&\mathbf{B}\\
 \mathbf{B}^{\dagger}&\mathbf{A}^{\dagger}\\

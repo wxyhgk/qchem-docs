@@ -11,6 +11,7 @@ title: "6.12.11 结合 Cholesky 分解的耦合簇方法（CD-CC）"
 并能显著降低积分变换的计算开销与磁盘存储需求，同时改善并行性能：
 
 <a id="Ch6.E79"></a>
+
 $$
 (\mu\nu|\lambda\sigma)\approx\sum_{P=1}^{M}B_{\mu\nu}^{P}B_{\lambda\sigma}^{P}, \tag{6.79}
 $$

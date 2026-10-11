@@ -56,6 +56,7 @@ GWH 初猜
 其构造方式为
 
 <a id="eq444"></a>
+
 $$
 H_{\mu\upsilon}=c_{x}S_{\mu\upsilon}(H_{\mu\mu}+\tfrac{1}{2}H_{\upsilon\upsilon})\;. \tag{4.29}
 $$

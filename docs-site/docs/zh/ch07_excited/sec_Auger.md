@@ -12,6 +12,7 @@ title: "7.9.11 俄歇光谱与核心能级态寿命"
 空穴态（core-hole state）属于 Feshbach 共振，会发生自电离——通常称为俄歇（Auger）衰变。俄歇电子能谱（Auger Electron Spectroscopy, AES）测量的是被发射电子的动能与强度。俄歇电子的能量由初始空穴态与最终衰变态之间的能量差计算得到。例如，对于常规俄歇衰变：
 
 <a id="eq:Echannel_a"></a>
+
 $$
 E_{\text{Auger}}^{\mu n}=E_{n}^{\text{CoreIP}}-E_{\mu}^{\text{DIP}}, \tag{7.104}
 $$
@@ -32,6 +33,7 @@ Feshbach–Fano 理论[[384]](../bib_references/bib.md#bib392)
 注意 $\Psi_{\mu}$ 比 $\Psi_{0}$ 少一个电子。定义 AES 的两个关键参数是衰变进入通道 $\mu$ 的速率，其表达式为
 
 <a id="eqn:gamma"></a>
+
 $$
 \Gamma_{\mu}=2\pi\langle\Psi_{0}^{L}|\hat{H}-E_{0}|\chi_{\mu,E_{k}}^{R}\rangle\langle\chi_{\mu,E_{k}}^{L}|\hat{H}-E_{0}|\Psi_{0}^{R}\rangle, \tag{7.105}
 $$
@@ -39,6 +41,7 @@ $$
 以及相对于零阶共振位置 $E_{0}$ 的部分能量修正 $\Delta_{\mu}$，定义为
 
 <a id="eqn:delta"></a>
+
 $$
 \Delta_{\mu}=P.V.\int_{0}^{\infty}\frac{\langle\Psi_{0}^{L}|\hat{H}-E_{0}|\chi_{\mu,E}^{R}\rangle\langle\chi_{\mu,E}^{L}|\hat{H}-E_{0}|\Psi_{0}^{R}\rangle}{E_{0}-E_{\mu}-E}dE. \tag{7.106}
 $$
@@ -234,6 +237,7 @@ CC_DO_NAO
 在该方法中，束缚–连续积分被替换为预先算好的原子积分：
 
 <a id="Ch7.E107"></a>
+
 $$
 \langle\phi_{p}\phi_{q}||\phi_{k}\phi_{r}\rangle\approx\sum_{\mu\nu\rho}\langle\chi_{\mu}^{A}\chi_{\nu}^{A}||\chi_{E,lm}^{A}\chi_{\rho}^{A}\rangle D_{\mu p}D_{\nu q}D_{\rho r}. \tag{7.107}
 $$

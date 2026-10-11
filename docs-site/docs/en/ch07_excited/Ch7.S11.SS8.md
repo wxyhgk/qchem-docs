@@ -12,6 +12,7 @@ non-spin-conserving operators to model systems with spin and spatial degeneracie
 For example, the CAS-1SF-IP operator is defined as follows:
 
 <a id="Ch7.E171"></a>
+
 $$
 |\Psi\rangle=\sum_{ij\bar{a}}c_{ij}^{\bar{a}}\hat{a}_{ij}^{\bar{a}}|\Psi^{\text{Ref}}\rangle \tag{7.171}
 $$

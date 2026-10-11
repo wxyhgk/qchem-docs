@@ -15,6 +15,7 @@ title: "10.2.4 有效未成对电子布居数"
 对应于单行列式波函数（*e.g.*，SCF 或 Kohn-Sham DFT）的一阶约化密度矩阵（first-order reduced density matrix, 1-RDM）是幂等的：
 
 <a id="A3.S8.EGx73"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\rho_{\sigma}({\mathbf{r}_{1}})&\displaystyle=\int\gamma_{\sigma}^{\text{SCF}}(1;2)\;\gamma_{\sigma}^{\text{SCF}}(2;1)\,d{\mathbf{r}_{2}}\\
 \displaystyle\gamma_{\sigma}^{\text{SCF}}(1;2)&\displaystyle=\sum_{i}^{\text{occ}}\psi_{i\sigma}^{\mathrm{KS}}(1)\psi_{i\sigma}^{\mathrm{KS}}(2)\;,\end{aligned} \tag{10.9}
@@ -25,6 +26,7 @@ $\gamma_{\sigma}^{\text{SCF}}(1;2)\;\gamma_{\sigma}^{\text{SCF}}(2;1)$
 反映了由 HF 交换空穴（exchange hole）所决定的 Hartree-Fock 交换（或 Kohn-Sham 精确交换）：
 
 <a id="A3.S8.EGx74"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\gamma_{\sigma}^{\text{SCF}}(1;2)\;\gamma_{\sigma}^{\text{SCF}}(2;1)&\displaystyle=\rho_{\alpha}(1)h_{\mathrm{X}\sigma\sigma}(1,2)\\
 \displaystyle\int{h}_{{\text{X}}\sigma\sigma}(1,2)\>d{\bf r}_{2}&\displaystyle=1\;.\end{aligned} \tag{10.10}
@@ -33,6 +35,7 @@ $$
 当 1-RDM 包含电子关联时，它将变得非幂等：
 
 <a id="eq:non-idempotent1"></a>
+
 $$
 D_{\sigma}(1)\equiv{\rho}_{\sigma}(1)-\int\gamma_{\sigma}(1;2)\gamma_{\sigma}(2;1)\>d{\mathbf{r}_{2}}\geq 0\,. \tag{10.11}
 $$
@@ -42,6 +45,7 @@ $$
 因此，单线态体系中有效未成对电子的产生纯粹是一种基于关联的现象。将 $D_{\sigma}(1)$ 对自旋分量求和即得 odd 电子的总密度，再将其对空间积分即得 odd 电子的平均总数 $\bar{N}_{u}$：
 
 <a id="eq:total-odds"></a>
+
 $$
 D_{u}(1)=2\sum_{\sigma}D_{\sigma}(1)d{\mathbf{r}_{1}},\,\,{\bar{N}}_{u}=\int D_{u}(1)d{\mathbf{r}_{1}}\,. \tag{10.12}
 $$
@@ -51,6 +55,7 @@ $$
  用关联 1-RDM 交叉乘积描述的有效交换也应当是相当定域的。基于这一考虑，文献提出了如下形式的关联 1-RDM 交叉乘积：[[1129]](../bib_references/bib.md#bib1180)
 
 <a id="eq:b05-3"></a>
+
 $$
 \gamma_{\sigma}(1;2)\;\gamma_{\sigma}(2;1)=\rho_{\sigma}(1)\;\bar{h}_{\text{X}\sigma\sigma}^{\text{eff}}(1,2)\;. \tag{10.13}
 $$
@@ -60,6 +65,7 @@ $$
  仅靠 HF 交换空穴所带来的额外离域，可由某些具有物理依据的实空间修正来补偿：[[101]](../bib_references/bib.md#bib85)
 
 <a id="eq:B05-ND-XChole"></a>
+
 $$
 \bar{h}_{{\text{XC}}\alpha\alpha}(1,2)=\bar{h}_{{\text{X}}\alpha\alpha}^{\text{eff}}(1,2)+f_{{\mathrm{c}}}(1)\;\bar{h}_{{\text{X}}\beta\beta}^{\text{eff}}(1,2)\;. \tag{10.14}
 $$
@@ -67,6 +73,7 @@ $$
 BR 交换空穴 $\bar{h}_{{\text{X}}\sigma\sigma}^{\text{eff}}$ 在 B05 中用作辅助函数，使得弛豫后的 BR 空穴所产生的势与精确交换空穴的势相等。这导致辅助 BR 空穴的弛豫归一化（relaxed normalization）小于或等于 1：
 
 <a id="eq:BR-auxiliary"></a>
+
 $$
 \int\bar{h}_{{\text{X}}\sigma\sigma}^{\text{eff}}(1;2)\;d\mathbf{r}_{2}=N_{X\sigma}^{\text{eff}}(1)\;\leq 1\,. \tag{10.15}
 $$
@@ -78,6 +85,7 @@ $f_{{\mathrm{c}}}(1)\,{\bar{h}}_{{\mathrm{X}}\beta\beta}^{\mathrm{eff}}(1,2)$
 进一步加深，由此产生左右静态关联。Eq. ([10.14](#eq:B05-ND-XChole)) 中的局域关联因子 $f_{\mathrm{c}}$ 主导这种加深程度，从而决定每一点上静态关联的强度：[[101]](../bib_references/bib.md#bib85)
 
 <a id="eq:f-factor1"></a>
+
 $$
 f_{\text{c}}(\mathbf{r})=\min\bigl{(}f_{\alpha}(\mathbf{r}),~{}f_{\beta}(\mathbf{r}),~{}1\bigr{)} \tag{10.16a}
 $$
@@ -85,6 +93,7 @@ $$
 利用 Eq. ([10.16](#eq:f-factor1))、([10.12](#eq:total-odds)) 和 ([10.13](#eq:b05-3))，odd 电子密度可写为：
 
 <a id="A3.S8.EGx75"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle D_{\alpha}(1)&\displaystyle=\rho_{\alpha}(1)(1-N_{X\alpha}^{\text{eff}}(1))\\
 &\displaystyle=\rho_{\alpha}(1)f_{\mathrm{c}}(1)\,N_{X\beta}^{\text{eff}}(1)\;.\end{aligned} \tag{10.17}
@@ -93,6 +102,7 @@ $$
 自旋求和后的 odd 电子密度以及 odd 电子平均总数的最终公式为：
 
 <a id="A3.S8.EGx76"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle D_{u}(1)&\displaystyle=4a_{\text{nd}}^{\text{op}}\;f_{\text{c}}(1)\left[{\rho}_{\alpha}(1)\,N_{X\beta}^{\mathrm{eff}}(1)+{\rho}_{\beta}(1)\,N_{X\alpha}^{\mathrm{eff}}(1)\right]\\
 \displaystyle\bar{N}_{u}&\displaystyle=\int D_{u}(\mathbf{r_{1}})\;d\mathbf{r_{1}}\;.\end{aligned} \tag{10.18}
@@ -103,6 +113,7 @@ $$
 将 odd 电子平均总数分解为原子贡献是很有信息量的。将 odd 电子平均总数 $\bar{N}_{u}$ 在实空间中按原子贡献进行划分，我们得到 odd 电子的原子布居（$F_{A}^{\text{r}}$）：
 
 <a id="eq:b05-12"></a>
+
 $$
 F_{A}^{\mathrm{r}}=\int_{\Omega_{A}}D_{u}(\mathbf{r_{1}})\,d{\mathbf{r}_{1}}\,. \tag{10.19}
 $$

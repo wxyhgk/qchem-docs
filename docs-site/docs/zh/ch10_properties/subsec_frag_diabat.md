@@ -14,6 +14,7 @@ title: "10.15.3 用于电子耦合的基于片段的方法（Fragment-Based Meth
 ALMO 被用于分离分子间结合中的极化（polarization）与电荷转移（charge transfer）效应，因为 ALMO 具有一个有用的性质：按照 Mulliken 电荷布居的定义，它们不允许片段之间发生电荷转移。利用这一性质，可以针对空穴转移和电子转移构造电荷局域的非绝热态势（diabats）。例如，考虑空穴转移过程的初态与末态 $|D^{+}A\rangle$ 和 $|DA^{+}\rangle$，这两个非绝热态势可以表示为如下形式：
 
 <a id="Ch10.E202"></a>
+
 $$
 \displaystyle|{\psi_{a}}\rangle \tag{10.202a}
 $$
@@ -26,6 +27,7 @@ Section [12.5.1](../ch12_frag/sect_lp_scf.md)）。[[1314]](../bib_references/bi
 要计算两个 ALMO 非绝热态势之间的电子耦合（electronic coupling），首先应在 ALMO 态基下构造非绝热哈密顿量
 
 <a id="Ch10.E203"></a>
+
 $$
 \mathbf{H}^{\prime}=\begin{pmatrix}H^{\prime}_{aa}&H^{\prime}_{ab}\\
 H^{\prime}_{ba}&H^{\prime}_{bb}\end{pmatrix} \tag{10.203}
@@ -34,6 +36,7 @@ $$
 然后将其变换到 Löwdin 正交化基下
 
 <a id="eq:sym_ortho_H"></a>
+
 $$
 \mathbf{H}=\mathbf{S}^{-1/2}\mathbf{H}^{\prime}\mathbf{S}^{-1/2} \tag{10.204}
 $$
@@ -41,6 +44,7 @@ $$
 其非对角元 $H_{ab}$ 即对应于待求的非绝热耦合。在两态情形下，我们有
 
 <a id="eq:almo_coupling"></a>
+
 $$
 H_{ab}=\frac{1}{1-S_{ab}^{2}}\left|H^{\prime}_{ab}-\frac{H^{\prime}_{aa}+H^{\prime}_{bb}}{2}S_{ab}\right| \tag{10.205}
 $$
@@ -48,6 +52,7 @@ $$
 该式需要两个 ALMO 非绝热态势之间的重叠，以及 $\mathbf{H}^{\prime}$ 的对角元和非对角元。态间重叠由下式给出
 
 <a id="eq:state_overlap"></a>
+
 $$
 S_{ab}=\langle\psi_{a}|\psi_{b}\rangle=\mathrm{det}\big{[}(\mathbf{C}^{(a)}_{\mathrm{o}})^{\dagger}\mathbf{S}\mathbf{C}^{(b)}_{\mathrm{o}}\big{]}\;. \tag{10.206}
 $$
@@ -58,6 +63,7 @@ $$
 对于对角元，直接采用两个非绝热态势的 Kohn-Sham（KS）能量即可：
 
 <a id="Ch10.E207"></a>
+
 $$
 H^{\prime}_{aa}=E_{a}^{\mathrm{KS}}[\mathbf{P}^{(a)}],\quad H^{\prime}_{bb}=E_{b}^{\mathrm{KS}}[\mathbf{P}^{(b)}] \tag{10.207}
 $$
@@ -65,6 +71,7 @@ $$
 其中 $\mathbf{P}^{(a)}$ 和 $\mathbf{P}^{(b)}$ 分别是与两个 ALMO 态 $|\psi_{a}\rangle$ 和 $|\psi_{b}\rangle$ 相关联的一电子密度矩阵。非对角元的近似在理论上更具挑战性。在最初的 MSDFT 格式中，[[220]](../bib_references/bib.md#bib216)
 
 <a id="eq:msdft1"></a>
+
 $$
 H^{\prime}_{ab}=S_{ab}\left[V_{\mathrm{nn}}+\mathbf{P}_{ab}\cdot\mathbf{h}+\frac{1}{2}\mathbf{P}_{ab}\cdot\mathbf{II}\cdot\mathbf{P}_{ab}+\frac{1}{2}(\Delta E_{a}^{\mathrm{c}}+\Delta E_{b}^{\mathrm{c}})\right] \tag{10.208}
 $$
@@ -72,6 +79,7 @@ $$
 其中 $\mathbf{P}_{ab}$ 是两个 ALMO 态之间的一粒子跃迁密度矩阵
 
 <a id="eq:trans_den"></a>
+
 $$
 \mathbf{P}_{ab}=\mathbf{C}_{\mathrm{o}}^{(a)}\left[(\mathbf{C}_{\mathrm{o}}^{(b)})^{\dagger}\mathbf{S}\mathbf{C}_{\mathrm{o}}^{(a)}\right]^{-1}(\mathbf{C}_{\mathrm{o}}^{(b)})^{\dagger} \tag{10.209}
 $$
@@ -81,6 +89,7 @@ $$
 最后一项计入交换-关联（exchange-correlation, XC）泛函的贡献，作为对 HF 耦合的修正，其数值由每个非绝热态势下用同一张一电子密度矩阵计算的 KS 能量与 HF 能量之差取平均得到：
 
 <a id="Ch10.E210"></a>
+
 $$
 \displaystyle\Delta E_{a}^{\mathrm{c}} \tag{10.210a}
 $$
@@ -90,6 +99,7 @@ $$
  提出了一种改进方法，记作 ALMO(MSDFT2)，它使用对称化跃迁密度矩阵的 XC 能量来求值 XC 贡献
 
 <a id="eq:msdft2"></a>
+
 $$
 H_{ab}^{\prime}=S_{ab}\left(V_{\mathrm{nn}}+\mathbf{P}_{ab}\cdot\mathbf{h}+\tfrac{1}{2}\mathbf{P}_{ab}\cdot\mathbf{II}\cdot\mathbf{P}_{ab}+E_{\mathrm{xc}}[\tilde{\mathbf{P}}_{ab}]\right) \tag{10.211}
 $$
@@ -97,6 +107,7 @@ $$
 其中
 
 <a id="Ch10.E212"></a>
+
 $$
 \tilde{\mathbf{P}}_{ab}=\frac{1}{2}(\mathbf{P}_{ab}+\mathbf{P}_{ba})\;. \tag{10.212}
 $$
@@ -108,6 +119,7 @@ $$
  中的基准测试结果，ALMO(MSDFT2) 在空穴转移和电子转移方面比原始的 MSDFT 方法精度更好，因此在 **Q-Chem** 中被实现为计算 ALMO 非绝热态势之间电子耦合的默认方法。我们指出，当两个态之间的重叠接近奇异时，式（[10.211](#eq:msdft2)）给出的结果可能变得不准确，因为在构造跃迁密度矩阵时需要对式（[10.209](#eq:trans_den)）中的
 
 <a id="Ch10.E213"></a>
+
 $$
 \boldsymbol{\sigma}_{ba}=(\mathbf{C}_{\mathrm{o}}^{(b)})^{\dagger}\mathbf{S}\mathbf{C}_{\mathrm{o}}^{(a)} \tag{10.213}
 $$
@@ -124,6 +136,7 @@ $$
 从体系的标准 KS-DFT 计算出发，对收敛后的 Fock 矩阵进行后处理。它首先将 Fock 矩阵变换到 Löwdin 正交化的 AO 基下，然后将其划分为给体块与受体块，并假定这些正交化后的 AO 基函数仍保留其原有的片段标记：
 
 <a id="eq:pod_fock"></a>
+
 $$
 \tilde{\mathbf{F}}=\mathbf{S}^{-1/2}\mathbf{F}\mathbf{S}^{-1/2}=\begin{pmatrix}\tilde{\mathbf{F}}_{dd}&\tilde{\mathbf{F}}_{da}\\
 \tilde{\mathbf{F}}_{ad}&\tilde{\mathbf{F}}_{aa}\end{pmatrix} \tag{10.214}
@@ -132,6 +145,7 @@ $$
 随后分别对 $\tilde{\mathbf{F}}_{dd}$ 和 $\tilde{\mathbf{F}}_{aa}$ 对角化
 
 <a id="Ch10.E215"></a>
+
 $$
 \boldsymbol{\epsilon}_{d}=\mathbf{D}_{d}^{\dagger}\tilde{\mathbf{F}}_{dd}\mathbf{D}_{d},\ \boldsymbol{\epsilon}_{a}=\mathbf{D}_{a}^{\dagger}\tilde{\mathbf{F}}_{aa}\mathbf{D}_{a}, \tag{10.215}
 $$
@@ -139,6 +153,7 @@ $$
 其中本征矢量 $\mathbf{D}_{d}$ 和 $\mathbf{D}_{a}$ 定义了单粒子"非绝热态"：
 
 <a id="A3.S8.EGx101"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\big{|}\bar{\varphi}^{(d)}_{p}\big{\rangle}&\displaystyle=\sum_{\mu}\big{|}\tilde{\chi}^{(d)}_{\mu}\big{\rangle}(D_{d})^{\mu}_{\ p}\\
 \displaystyle\big{|}\bar{\varphi}^{(a)}_{p}\big{\rangle}&\displaystyle=\sum_{\mu}\big{|}\tilde{\chi}^{(a)}_{\mu}\big{\rangle}(D_{a})^{\mu}_{\ p},\\
@@ -148,6 +163,7 @@ $$
 并把 Fock 矩阵的非对角块变换到这一非绝热基下
 
 <a id="Ch10.E217"></a>
+
 $$
 \bar{\mathbf{F}}_{da}=\mathbf{D}_{d}^{\dagger}\tilde{\mathbf{F}}_{da}\mathbf{D}_{a} \tag{10.217}
 $$
@@ -155,6 +171,7 @@ $$
 于是得到
 
 <a id="Ch10.E218"></a>
+
 $$
 \bar{\mathbf{F}}=\begin{pmatrix}\boldsymbol{\epsilon}_{d}&\bar{\mathbf{F}}_{da}\\
 \bar{\mathbf{F}}_{ad}&\boldsymbol{\epsilon}_{a}\end{pmatrix} \tag{10.218}
@@ -171,6 +188,7 @@ $$
 该方法避免了对 AO 基做全局 Löwdin 正交化；取而代之的是，分别对（原始 AO 基下）Fock 矩阵的给体块与受体块进行对角化：
 
 <a id="Ch10.E219"></a>
+
 $$
 \mathbf{F}_{dd}\mathbf{C}_{d}=\mathbf{S}_{dd}\mathbf{C}_{d}\boldsymbol{\epsilon}_{d},\quad\mathbf{F}_{aa}\mathbf{C}_{a}=\mathbf{S}_{aa}\mathbf{C}_{a}\boldsymbol{\epsilon}_{a} \tag{10.219}
 $$
@@ -178,6 +196,7 @@ $$
 所得的非绝热 MO 系数矩阵在 AO 基下呈片段分块对角形式：
 
 <a id="Ch10.E220"></a>
+
 $$
 \mathbf{C}_{\text{diab}}=\begin{pmatrix}\mathbf{C}_{d}&\mathbf{0}\\
 \mathbf{0}&\mathbf{C}_{a}\\
@@ -187,6 +206,7 @@ $$
 将 AO Fock 矩阵变换到这一非绝热 MO 基下，所得矩阵的 D–D 块与 A–A 块均为对角矩阵：
 
 <a id="Ch10.E221"></a>
+
 $$
 \bar{\mathbf{F}}_{\text{diab}}=\mathbf{C}_{\text{diab}}^{T}\mathbf{F}\mathbf{C}_{\text{diab}}=\begin{pmatrix}\boldsymbol{\epsilon}_{d}&\bar{\mathbf{F}}_{da}\\
 \bar{\mathbf{F}}_{ad}&\boldsymbol{\epsilon}_{a}\\
@@ -196,6 +216,7 @@ $$
 直接使用非对角块（$\bar{\mathbf{F}}_{da}$）中的矩阵元素会高估耦合，因为非绝热 MO $\mathbf{C}_{d}$ 与 $\mathbf{C}_{a}$ 彼此不正交。因此需要最后一步正交化，以得到分别位于给体和受体上的某一对轨道之间的非绝热耦合。将这一对轨道记作 $\phi_{d}$ 和 $\phi_{a}$，可以构造 $2\times 2$ 的哈密顿量矩阵和重叠矩阵：
 
 <a id="Ch10.E222"></a>
+
 $$
 \mathbf{H}=\begin{pmatrix}\epsilon_{d}&\bar{F}_{da}\\
 \bar{F}_{ad}&\epsilon_{a}\\
@@ -209,6 +230,7 @@ Ghan *et al.* 研究了两种正交化格式。[[437]](../bib_references/bib.md#
 第一种方法对 $\phi_{d}$ 和 $\phi_{a}$ 做 Löwdin 正交化，记为 POD2L。正交化后的非绝热轨道之间的耦合为
 
 <a id="Ch10.E223"></a>
+
 $$
 H_{da}^{\text{eff}}=\frac{1}{1-S_{da}^{2}}\left|\bar{F}_{da}-\frac{1}{2}(\epsilon_{d}+\epsilon_{a})S_{da}\right| \tag{10.223}
 $$
@@ -233,6 +255,7 @@ $\{\phi_{\text{A1}},\phi_{\text{A2}},\dots,\phi_{\text{A}n_{\text{A}}}\}$
 对两个片段上的占据轨道做 Löwdin 正交化。反应物非绝热态势（$\text{D}^{+}\text{A}$ 或 $\text{D}^{-}\text{A}$）可表示为
 
 <a id="Ch10.E224"></a>
+
 $$
 |\bar{\psi}_{a}\rangle=\frac{1}{\sqrt{(N-1)!}}\;\mathrm{det}\left\{\bar{\phi}_{\text{D1}},\bar{\phi}_{\text{D2}},\dots,\bar{\phi}_{\text{D}n_{\text{D}}\pm 1}\bar{\phi}_{\text{A1}},\bar{\phi}_{\text{A2}},\dots,\bar{\phi}_{\text{A}n_{\text{A}}}\right\} \tag{10.224}
 $$
@@ -243,14 +266,17 @@ $$
 构造产物非绝热态势（$\text{DA}^{+}$ 或 $\text{DA}^{-}$），方法很简单：把空穴从 $\bar{\phi}_{\text{D}n_{\text{D}}}$ 移动到 $\bar{\phi}_{\text{A}n_{\text{A}}}$（空穴转移），或把多余电子从 $\bar{\phi}_{\text{D}n_{\text{D}}+1}$ 移动到 $\bar{\phi}_{\text{A}n_{\text{A}}+1}$（电子转移）
 
 <a id="Ch10.E225"></a>
+
 $$
 |\bar{\psi}_{b}\rangle=\frac{1}{\sqrt{(N-1)!}}\;\mathrm{det}\left\{\bar{\phi}_{\text{D1}},\bar{\phi}_{\text{D2}},\dots,\bar{\phi}_{\text{D}n_{\text{D}}}\bar{\phi}_{\text{A1}},\bar{\phi}_{\text{A2}},\dots,\bar{\phi}_{\text{A}n_{\text{A}}\pm 1}\right\} \tag{10.225}
 $$
+
 - •
 
 计算 $|\bar{\psi}_{a}\rangle$ 与 $|\bar{\psi}_{b}\rangle$ 之间的电子耦合，该耦合近似为由反应物非绝热态势构造的 Kohn-Sham Fock 算符在正交化片段轨道之间的矩阵元：
 
 <a id="A3.S8.EGx102"></a>
+
 $$
 \displaystyle\langle\bar{\psi}_{a}|\hat{H}|\bar{\psi}_{b}\rangle\approx\begin{cases}\langle\phi_{\text{D}n_{\text{D}}}|\hat{f}_{\text{KS}}|\phi_{\text{A}n_{\text{A}}}\rangle&\text{HT}\\
 \langle\phi_{\text{D}n_{\text{D}}+1}|\hat{f}_{\text{KS}}|\phi_{\text{A}n_{\text{A}}+1}\rangle&\text{ET}\end{cases} \tag{10.226}

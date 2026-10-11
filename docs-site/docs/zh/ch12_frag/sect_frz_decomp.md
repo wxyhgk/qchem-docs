@@ -10,6 +10,7 @@ ALMO-EDA 中的冻结相互作用能（frozen interaction energy）定义为非�
  这种相互作用常被以经典方式分解为：
 
 <a id="eq:cls_decomp"></a>
+
 $$
 \Delta E_{\mathrm{frz}}=\Delta E_{\mathrm{elec}}^{\mathrm{cls}}+\Delta E_{\mathrm{Pauli}}^{\mathrm{cls}}, \tag{12.8}
 $$
@@ -17,6 +18,7 @@ $$
 其中永久静电（permanent electrostatics）贡献定义为孤立碎片电荷分布之间的库仑相互作用：
 
 <a id="eq:cls_elec"></a>
+
 $$
 \Delta E_{\mathrm{elec}}^{\mathrm{cls}}=\sum_{A<B}\int_{r_{1}}\int_{r_{2}}\rho_{A}^{\mathrm{tot}}({\textbf{r}_{1}})\frac{1}{{\textbf{r}_{12}}}\rho_{B}^{\mathrm{tot}}({\textbf{r}_{2}})\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2} \tag{12.9}
 $$
@@ -27,6 +29,7 @@ Horn *et al.*[[595]](../bib_references/bib.md#bib619)
  提出了一种新方案，将冻结项进一步分解为永久静电（ELEC）、泡利排斥（PAULI）和色散（DISP）三部分贡献：
 
 <a id="eq:new_decomp"></a>
+
 $$
 \Delta E_{\mathrm{frz}}=\Delta E_{\mathrm{elec}}+\Delta E_{\mathrm{Pauli}}+\Delta E_{\mathrm{disp}} \tag{12.10}
 $$
@@ -35,6 +38,7 @@ $$
 $\mathbf{P}_{\mathrm{frz}}=\sum_{A}\tilde{\mathbf{P}}_{A}$。这一分解通过最小化如下目标函数来实现：
 
 <a id="eq:kep_obj"></a>
+
 $$
 \Omega=\sum_{A}E_{A}[\tilde{\mathbf{P}}_{A}]-E_{A}[\mathbf{P}_{A}] \tag{12.11}
 $$
@@ -45,6 +49,7 @@ $$
 ELEC 项随后定义为畸变（distorted）碎片密度（$\tilde{\rho}_{A}(\mathbf{r})$）之间的库仑相互作用：
 
 <a id="eq:eda_elec"></a>
+
 $$
 \Delta E_{\mathrm{elec}}=\sum_{A<B}\int_{r_{1}}\int_{r_{2}}\tilde{\rho}_{A}^{\mathrm{tot}}({\textbf{r}_{1}})\frac{1}{{\textbf{r}_{12}}}\tilde{\rho}_{B}^{\mathrm{tot}}({\textbf{r}_{2}})\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}. \tag{12.12}
 $$
@@ -52,6 +57,7 @@ $$
 DISP 项通过从总交换-关联（XC）相互作用中减去其无色散（dispersion-free）部分来求得，其中需在使用主（目标）XC 泛函的同时配合使用一个辅助的“无色散”（dispersion-free）XC（DFXC）泛函：
 
 <a id="eq:eda_disp"></a>
+
 $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\tilde{\mathbf{P}}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\tilde{\mathbf{P}}_{A}]\right). \tag{12.13}
 $$
@@ -62,6 +68,7 @@ $$
 冻结相互作用中的剩余部分归入 PAULI 项，其包含由式 ([12.11](#eq:kep_obj)) 给出的净排斥相互作用，以及 XC 相互作用的“无色散”部分：
 
 <a id="eq:eda_pauli"></a>
+
 $$
 \Delta E_{\mathrm{Pauli}}=\sum_{A}(E_{A}[\tilde{\mathbf{P}}_{A}]-E_{A}[\mathbf{P}_{A}])+\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\tilde{\mathbf{P}}_{A}]\right). \tag{12.14}
 $$
@@ -72,6 +79,7 @@ $$
 ，其定义非常简单：
 
 <a id="Ch12.E15"></a>
+
 $$
 \Delta E_{\mathrm{Pauli}}^{\mathrm{mod}}=\Delta E_{\mathrm{Pauli}}^{\mathrm{cls}}-\Delta E_{\mathrm{disp}}\;. \tag{12.15}
 $$
@@ -79,6 +87,7 @@ $$
 也就是说，从按原始定义计算的经典泡利项中扣除色散贡献。采用经典方案时，冻结能的整体分解为：
 
 <a id="Ch12.E16"></a>
+
 $$
 \Delta E_{\mathrm{frz}}=\Delta E^{\mathrm{cls}}_{\mathrm{elec}}+\Delta E^{\mathrm{mod}}_{\mathrm{Pauli}}+\Delta E_{\mathrm{disp}}\;. \tag{12.16}
 $$
@@ -88,6 +97,7 @@ $$
 （$\{\mathbf{P}_{A}\}$）而非其畸变后的对应量（$\{\tilde{\mathbf{P}}_{A}\}$）：
 
 <a id="Ch12.E17"></a>
+
 $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\mathbf{P}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{A}]\right). \tag{12.17}
 $$

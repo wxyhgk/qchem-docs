@@ -10,6 +10,7 @@ Formulated by Becke and Edgecombe,[[86]](../bib_references/bib.md#bib76)
  the electron localization function (ELF),
 
 <a id="Ch10.E63"></a>
+
 $$
 \text{ELF}=\Bigg{[}1+\Bigg{(}\frac{\tau_{\sigma}-\|\hat{\nabla}\rho_{\sigma}\|^{2}/(4\rho_{\sigma})}{\frac{3}{5}(6\pi^{2})^{2/3}(\rho_{\sigma}^{5/3})}\Bigg{)}^{\!2}\Bigg{]}^{-1} \tag{10.63}
 $$

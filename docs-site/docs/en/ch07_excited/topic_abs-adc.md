@@ -50,6 +50,7 @@ an ADC of second or third order. The first step is a self-consistent reaction
 field calculation [SCRF, Hartree-Fock with a PCM, Eq. ([7.152](#eq:ADC_SCRF))].
 
 <a id="eq:ADC_SCRF"></a>
+
 $$
 E_{0}=\langle 0|\hat{H}^{\text{vac}}+\hat{R}(0)|0\rangle \tag{7.152}
 $$
@@ -68,11 +69,13 @@ solvent-electron related ($n^{2}$) component (using Marcus partitioning, eq.
 ([7.153](#eq:ADC_R_sep))), and are stored on disk.
 
 <a id="eq:ADC_R_sep"></a>
+
 $$
 \hat{R}(0)\equiv\hat{R}^{\text{tot}}_{0}=\hat{R}^{\text{f}}_{0}+\hat{R}^{\text{s}}_{0} \tag{7.153}
 $$
 
 <a id="eq:ADC_separation"></a>
+
 $$
 \displaystyle q^{f}= \tag{7.154}
 $$
@@ -103,11 +106,13 @@ with the fast component of the ground- and excited-state solvent fields given
 in eq. ([7.158](#eq:ADC_PT_first)).
 
 <a id="eq:ADC_ptSS"></a>
+
 $$
 E_{\text{i}}^{\text{NEq}}=\langle i|\hat{H}^{\text{vac}}+\hat{R}^{\text{tot}}_{0}+\lambda(\hat{R}^{\text{f}}_{\text{i}}-\hat{R}^{\text{f}}_{\text{0}})|i\rangle\\ \tag{7.155}
 $$
 
 <a id="A3.S8.EGx67"></a>
+
 $$
 \displaystyle E^{\rm NEq(0)}_{i}= \tag{7.156}
 $$
@@ -130,6 +135,7 @@ $\hat{Q}_{0^{\textit{HF}}}$ by the respective interaction with the MP solvent
 field $\hat{Q}_{0^{\textit{MP}}}$:
 
 <a id="A3.S8.EGx68"></a>
+
 $$
 \displaystyle E_{\textit{PTD}}= \tag{7.159}
 $$
@@ -257,6 +263,7 @@ optimized for the desired excited state. The Hamiltonian for a
 solvent-equilibrated state $|k\rangle$ simply reads
 
 <a id="Ch7.E161"></a>
+
 $$
 E^{\rm EqS}_{\rm k}=\bigl{\langle}k\bigl{|}\hat{H}^{\rm vac}+\hat{R}_{\rm k}\bigl{|}k\bigr{\rangle}\;. \tag{7.161}
 $$
@@ -282,6 +289,7 @@ perturbative ansatz for the Hamiltonian for the $i$th out-of-equilibrium
 state in the field of the equilibrated state $|k\rangle$ reads as
 
 <a id="Ch7.E162"></a>
+
 $$
 E^{\rm NEq(k)}_{\rm i}=\bigl{\langle}i|\hat{H}^{\rm vac}+\hat{R}^{\rm tot}_{\rm k}+\lambda(\hat{R}^{\rm f}_{\rm i}-\hat{R}^{\rm f}_{\rm k})|i\bigr{\rangle}\;, \tag{7.162}
 $$

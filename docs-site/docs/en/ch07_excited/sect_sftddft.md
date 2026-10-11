@@ -77,6 +77,7 @@ corresponding to the $M_{S}=+1$ and $M_{S}=-1$ components of the triplet state.
 The resulting mixed-reference reduced density matrix (RDM) defined as
 
 <a id="Ch7.E27"></a>
+
 $$
 \rho_{0}^{\rm MR}=\frac{1}{2}(\rho_{0}^{M_{S}=+1}+\rho_{0}^{M_{S}=-1}) \tag{7.27}
 $$
@@ -99,6 +100,7 @@ are recommended, particularly those with a larger fraction of Hartree–Fock exc
 The orbital Hessian matrix is defined as[[793]](../bib_references/bib.md#bib828)
 
 <a id="Ch7.E28"></a>
+
 $$
 A_{pq,rs}^{(k)}=A_{pq,rs}^{(k)(0)}+A_{pq,rs}^{{}^{\prime}(k)} \tag{7.28}
 $$
@@ -106,6 +108,7 @@ $$
 where $k\in\{\text{S},\text{T}\}$ refers to a singlet or triplet state and
 
 <a id="Ch7.E29"></a>
+
 $$
 A_{pq,rs}^{(k)(0)}=U_{pq}^{k}\{\delta_{pr}F_{qs}^{\beta}-\delta_{qs}F_{pr}^{\alpha}-c_{H}(pr|sq)\}U_{rs}^{(k)}. \tag{7.29}
 $$
@@ -113,6 +116,7 @@ $$
 The term $A_{pq,rs}^{{}^{\prime}(k)}$ takes care of the coupling between the determinants generated from the two triplet components and is given by
 
 <a id="A3.S8.EGx40"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle A_{pq,rs}^{{}^{\prime}(k)}&\displaystyle=H_{p\underline{q},r\underline{s}}^{(k){\rm intra}}(U_{pq}^{\text{CO1}}-U_{pq}^{\text{CO2}})(U_{rs}^{\text{CO1}}-U_{rs}^{\text{CO2}})\\
 &\displaystyle\qquad+H_{\underline{p}q,\underline{r}s}^{(k){\rm intra}}(U_{pq}^{\text{O1V}}-U_{pq}^{\text{O2V}})(U_{rs}^{\text{O1V}}-U_{rs}^{\text{O2V}})\\
@@ -122,6 +126,7 @@ $$
 Here, $U_{pq}$ are dimensional transformation matrices and
 
 <a id="Ch7.E31"></a>
+
 $$
 \displaystyle H_{pq,rs}^{(k)\text{intra}} \tag{7.31a}
 $$
@@ -129,6 +134,7 @@ $$
 with
 
 <a id="Ch7.E32"></a>
+
 $$
 \text{sgn}(k)=\begin{cases}+1,&\text{if}~{}k=\text{S}\\
 -1,&\text{if}~{}k=\text{T}\\
@@ -138,6 +144,7 @@ $$
 and
 
 <a id="Ch7.E33"></a>
+
 $$
 \underline{p}=\begin{cases}\text{O2},&\text{if}~{}p=\text{O1}\\
 \text{O1},&\text{if}~{}p=\text{O2}\\

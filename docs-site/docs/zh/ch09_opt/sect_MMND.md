@@ -15,6 +15,7 @@ title: "9.9.8 Meyer-Miller 非绝热动力学"
 在绝热表示中（与 **Q-Chem** 生成的 Born-Oppenheimer PES 相关），Meyer-Miller 哈密顿量为
 
 <a id="eq:MMad"></a>
+
 $$
 H(\mathbf{x,p,R,P})=\frac{1}{2\boldsymbol{\mu}}\bigg{(}\mathbf{P}+\sum_{I,J}^{F}(x_{I}p_{J}-x_{J}p_{I})\mathbf{d}_{IJ}(\mathbf{R})\bigg{)}^{2}+\sum_{I}^{F}\bigg{(}\frac{1}{2}p_{I}^{2}+\frac{1}{2}x_{I}^{2}-\gamma_{I}\bigg{)}E_{I}(\mathbf{R}) \tag{9.65}
 $$

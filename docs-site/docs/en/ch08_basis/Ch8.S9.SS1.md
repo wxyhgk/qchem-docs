@@ -10,6 +10,7 @@ When calculating intermolecular interaction energies, a naïve calculation
 of the energy difference
 
 <a id="eq:DeltaE_AB"></a>
+
 $$
 \Delta E_{AB}=E_{AB}-E_{A}-E_{B} \tag{8.5}
 $$

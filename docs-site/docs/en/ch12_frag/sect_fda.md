@@ -24,6 +24,7 @@ broken down into classical electrostatics and van der Waals (Pauli and
 Dispersion) forces:
 
 <a id="eq:Ffrz_decomp"></a>
+
 $$
 \Delta\mathbf{F}_{\text{frz}}=\Delta\mathbf{F}_{\text{cls-elec}}+\Delta\mathbf{F}_{\text{vdw}}. \tag{12.32}
 $$
@@ -33,6 +34,7 @@ distortion forces (forces arising from geometric distortion energy). The
 frozen force term is now:
 
 <a id="eq:Ffrz"></a>
+
 $$
 \Delta\textbf{F}_{\text{frz}}=\textbf{F}_{\text{frz}}[\mathbf{P}_{\text{frz}}]-\sum_{A}\textbf{F}_{A}[\textbf{P}_{A}], \tag{12.33}
 $$

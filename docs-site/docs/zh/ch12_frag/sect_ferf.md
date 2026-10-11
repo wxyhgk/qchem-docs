@@ -12,6 +12,7 @@ title: "12.6.3 具有明确基组极限的极化能"
  基于片段电响应函数（fragment electrical response functions, FERFs）为 ALMO-EDA 方法中的 POL 项提出了一种新的定义。给定片段上的 FERFs 是在求得该片段的 SCF 解之后，通过求解耦合微扰自洽场（CPSCF）方程得到的：
 
 <a id="Ch12.E1"></a>
+
 $$
 H_{ai,bj}(\Delta_{\mu})_{bj}=2(M_{\mu})_{ai}, \tag{12.1}
 $$
@@ -19,6 +20,7 @@ $$
 其中 $\mathbf{H}$ 是 SCF 轨道 Hessian 矩阵，$\mathbf{M}_{\mu}$ 是某一阶多极矩矩阵的分量（$\mu$）。所得到的片段响应矩阵（$\{\Delta_{\mu}\}$）是一组 $n_{\mathrm{v}}\times n_{\mathrm{o}}$ 矩阵。随后，对 $\Delta_{\mu}$ 进行奇异值分解（SVD）：
 
 <a id="eq:ferf_cpscf"></a>
+
 $$
 (\Delta_{\mu})_{ai}=(L_{\mu})_{ab}(d_{\mu})_{bj}(R_{\mu}^{T})_{ji}, \tag{12.2}
 $$
@@ -26,6 +28,7 @@ $$
 并利用左奇异矢量（不包含零矢量）构造一个截断的虚空间，该虚空间用于定义 SCF-MI 问题的变分自由度：
 
 <a id="Ch12.E3"></a>
+
 $$
 \mathbf{V}_{\mu}=\mathbf{C}_{\mathrm{vir}}\mathbf{L}_{\mu}, \tag{12.3}
 $$
@@ -35,6 +38,7 @@ $$
 使用 FERFs 的基本思想是：获取与给定片段电极化最为相关的一部分虚轨道子集，同时排除多余的变分自由度（这些自由度可能带有电荷转移（CT）性质）。结果表明，该方案为依赖于 SCF-MI 计算的极化能给出了明确的基组极限。多极阶数——偶极（D）、四极（Q）与八极（O）——是否包含在式 ([12.2](#eq:ferf_cpscf)) 的右侧，决定了每个片段上 FERFs 的张成空间。数值实验表明，纳入偶极型与四极型响应即可正确处理远程诱导静电作用，并给出明确的基组极限，因此推荐将其作为 SCF-MI 问题的基础（working basis）。于是片段 $A$ 极化子空间的完整张成空间为：
 
 <a id="eq:pol_ss"></a>
+
 $$
 \mathbf{O}_{A}\oplus\mathrm{span}\{\mathbf{V}_{\mu x},\mathbf{V}_{\mu y},\mathbf{V}_{\mu z}\}\oplus\mathrm{span}\{\mathbf{V}_{Q2,-2},\mathbf{V}_{Q2,-1},\mathbf{V}_{Q2,0},\mathbf{V}_{Q2,1},\mathbf{V}_{Q2,2}\}. \tag{12.4}
 $$
@@ -48,6 +52,7 @@ Ref. [[593]](../bib_references/bib.md#bib617)
 然而，求解 CPSCF 方程需要求逆维度为 $ov\times ov$ 的大型轨道 Hessian 矩阵 $\mathbf{H}$，这是求解 FERFs 过程中最耗时的步骤。例如，在 Hartree-Fock 理论中，在正则表示下其矩阵元为
 
 <a id="Ch12.E5"></a>
+
 $$
 H_{ai,bj}=2\left[(\epsilon_{a}-\epsilon_{i})\delta_{ij}\delta_{ab}+\langle aj||ib\rangle+\langle ab||ij\rangle\right]. \tag{12.5}
 $$
@@ -57,6 +62,7 @@ $$
  提出了非耦合 FERFs（uncoupled-FERFs, uFERFs），以改进传统的 FERFs。uFERFs 的思想很简单，即采用非耦合 CPSCF 方程的解，其中轨道 Hessian 被近似为
 
 <a id="Ch12.E6"></a>
+
 $$
 H_{ai,bj}=2(\epsilon_{a}-\epsilon_{i})\delta_{ij}\delta_{ab}. \tag{12.6}
 $$
@@ -64,6 +70,7 @@ $$
 在这一近似下，轨道 Hessian 极易求逆，片段响应矩阵简化为
 
 <a id="Ch12.E7"></a>
+
 $$
 \left(\Delta_{\mu}^{\text{uFERF}}\right)_{ai}=\frac{(M_{\mu})_{ai}}{\epsilon_{a}-\epsilon_{i}}. \tag{12.7}
 $$

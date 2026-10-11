@@ -14,6 +14,7 @@ combines energy values obtained for a succession of $k$ external electric
 fields with amplitudes that form a geometric progression:
 
 <a id="Ch10.E153"></a>
+
 $$
 F(k)=a^{k}F_{0}\;. \tag{10.153}
 $$
@@ -24,6 +25,7 @@ example, in the case of the diagonal $\bm{\beta}$-tensor components the Romberg
 FF expression is
 
 <a id="Ch10.E154"></a>
+
 $$
 \beta_{iii}(k,0)=3\left(\frac{\bigl{[}E(F_{-i}(k+1)-E(F_{i}(k+1))\bigr{]}-a\bigl{[}E(F_{-i}(k)-E(F_{i}(k))\bigr{]}}{a(a^{2}-1)(a^{k}F_{0})^{3}}\right)\;. \tag{10.154}
 $$
@@ -35,6 +37,7 @@ recursive expression. For a component of a (hyper)polarizability tensor
 $\bm{\zeta}$, the recursive expression is
 
 <a id="Ch10.E155"></a>
+
 $$
 \zeta(k,n)=\frac{a^{2n}\zeta(k,n-1)-\zeta(k+1,n-1)}{a^{2n}-1}\;. \tag{10.155}
 $$
@@ -60,6 +63,7 @@ amplitude error is defined as the difference between $\zeta$-values obtained
 for consecutive field amplitudes at the same Romberg iteration:
 
 <a id="Ch10.E156"></a>
+
 $$
 \epsilon_{k}(n)=\zeta(k+1,n)-\zeta(k,n)\;. \tag{10.156}
 $$
@@ -69,6 +73,7 @@ decrease with each iteration. Convergence of the Romberg procedure can be
 probed using the iteration (order) error, defined as
 
 <a id="Ch10.E157"></a>
+
 $$
 \epsilon_{n}(k)=\zeta(k,n+1)-\zeta(k,n)\;. \tag{10.157}
 $$

@@ -19,6 +19,7 @@ excitation using the solvent’s optical dielectric constant.
 The equilibrium formulation solves the state-specific Schrödinger equation
 
 <a id="Ch7.E172"></a>
+
 $$
 (\hat{H}_{\text{vac}}+\hat{R}_{k})|\Psi_{k}\rangle=E_{k}|\Psi_{k}\rangle \tag{7.172}
 $$
@@ -27,6 +28,7 @@ where $\hat{R}_{k}$ is the reaction field operator for state $k$. Since $\hat{R}
 The fully relaxed (equilibrium) excitation free energy is
 
 <a id="Ch7.E173"></a>
+
 $$
 \Delta G=G_{k}^{\text{eq}}-G_{0}=\Delta E_{k}^{\text{eq}}-W_{k}+W_{0}\;. \tag{7.173}
 $$
@@ -39,6 +41,7 @@ This is described in more detail in Section [11.2.3.3](../ch11_env/topic_pcm-em
 Hamiltonian that is partitioned according to
 
 <a id="Ch7.E174"></a>
+
 $$
 \hat{H}_{k}^{\text{noneq}}=\underbrace{\hat{H}_{\text{vac}}+\hat{R}_{0}^{\text{s+f}}}_{\hat{H}_{0}}+\lambda(\hat{R}_{k}^{\text{f}}-\hat{R}_{0}^{\text{f}})\;. \tag{7.174}
 $$
@@ -50,6 +53,7 @@ correction is described via first-order perturbation theory. The result is a per
 excitation energy:
 
 <a id="Ch7.E175"></a>
+
 $$
 \Delta G_{k}^{\text{ptSS(1)}}=G_{k}-G_{0}=\Delta E_{k}^{\text{ptSS(1)}}-W^{\text{f}}_{k(0)}+W^{\text{f}}_{0}+W_{0,k(0)} \tag{7.175}
 $$

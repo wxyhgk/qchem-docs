@@ -51,6 +51,7 @@ and produces spin-pure spectra.
 The full EA-TDDFT equations take a familiar form,
 
 <a id="Ch7.E34"></a>
+
 $$
 \displaystyle A_{ia,ib} \tag{7.34a}
 $$

@@ -61,3 +61,15 @@
 .md-path {
   font-size: 0.75rem;
 }
+
+/* Equation target anchors and smooth scrolling */
+a[id]:empty, span[id]:empty {
+  scroll-margin-top: 80px;
+}
+
+p:has(> a[id]:only-child:empty) {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  line-height: 0 !important;
+}

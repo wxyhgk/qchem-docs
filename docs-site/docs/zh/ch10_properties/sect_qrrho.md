@@ -12,6 +12,7 @@ title: "10.8.3 低频振动模式的处理"
 提出通过在自由转子熵 $S_{\mathrm{FR}}$ 与谐振子振动熵 $S_{\mathrm{HO}}$ 之间进行插值，来强制给出有限的振动熵，即
 
 <a id="eq:Grimme_interpolation"></a>
+
 $$
 S_{\mathrm{vib}}(\nu_{i})=\big{(}1-\omega(\nu_{i})\big{)}S_{\mathrm{FR}}(\nu_{i})+\omega(\nu_{i})S_{\mathrm{HO}}(\nu_{i}), \tag{10.71}
 $$
@@ -19,6 +20,7 @@ $$
 其中
 
 <a id="eq:Chai_MHG_interpolator"></a>
+
 $$
 \omega(\nu_{i})=\frac{1}{1+(\nu_{0}/\nu_{i})^{\alpha}} \tag{10.72}
 $$
@@ -31,6 +33,7 @@ $$
 $H_{\mathrm{ZPVE}}$ 的谐振子 $H_{\mathrm{HO}}$ 之间对振动焓贡献进行插值，如[[822]](../bib_references/bib.md#bib853)
 
 <a id="eq:MHG_interpolation"></a>
+
 $$
 H_{\mathrm{vib}}(\nu_{i})=\big{[}1-\omega(\nu_{i})\big{]}H_{\mathrm{FR}}(\nu_{i})+\omega(\nu_{i})\big{[}H_{\mathrm{HO}}(\nu_{i})+H_{\mathrm{ZPVE}}(\nu_{i})\big{]}\;. \tag{10.73}
 $$

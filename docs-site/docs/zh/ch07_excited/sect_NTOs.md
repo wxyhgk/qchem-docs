@@ -19,6 +19,7 @@ title: "7.13.3 自然跃迁轨道（NTO）"
 定义，*即*：[[925]](../bib_references/bib.md#bib962)
 
 <a id="eq:NTO_SVD"></a>
+
 $$
 \mathbf{UTV}^{\dagger}=\bm{\Lambda} \tag{7.188}
 $$

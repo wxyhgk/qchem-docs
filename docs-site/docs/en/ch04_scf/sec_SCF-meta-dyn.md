@@ -39,6 +39,7 @@ In a manner analogous to classical metadynamics, to bias against the set of
 previously located solutions, $x$, we create a new Lagrangian,
 
 <a id="A3.S8.EGx13"></a>
+
 $$
 \displaystyle\tilde{E}=E+\sum_{x}N_{x}e^{-\lambda_{x}d_{0x}^{2}} \tag{4.68}
 $$
@@ -47,6 +48,7 @@ where $0$ represents the present density.
 From this we may derive a new effective Fock matrix,
 
 <a id="A3.S8.EGx14"></a>
+
 $$
 \displaystyle\tilde{F}_{\mu\nu}=F_{\mu\nu}+\sum_{x}{{}^{x}\!P}_{\mu\nu}N_{x}\lambda_{x}e^{-\lambda_{x}d_{0x}^{2}} \tag{4.69}
 $$

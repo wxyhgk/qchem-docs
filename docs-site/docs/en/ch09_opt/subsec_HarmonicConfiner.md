@@ -10,6 +10,7 @@ In principle, the same effect of constrained optimization using fixed atoms can
 be achieved instead using a soft harmonic confining potentials of the form
 
 <a id="eq:Vconf_cart"></a>
+
 $$
 V_{\text{conf}}(\mathbf{r}_{1},\mathbf{r}_{2},\ldots)=\frac{1}{2}\sum_{i}k\|\mathbf{r}_{i}-\mathbf{r}_{i}^{0}\|^{2}\;. \tag{9.42}
 $$
@@ -21,6 +22,7 @@ of each confined atom. An alternative way to implement harmonic confiners is to 
 a *pairwise* harmonic confining potential of the form
 
 <a id="eq:Vconf_pair"></a>
+
 $$
 V_{\text{conf}}(\mathbf{r}_{1},\mathbf{r}_{2},\ldots,\mathbf{r}_{N})=\frac{1}{2}\sum^{N}_{i>j}k\|\mathbf{r}_{ij}-\mathbf{r}_{ij}^{0}\|^{2}\;. \tag{9.43}
 $$

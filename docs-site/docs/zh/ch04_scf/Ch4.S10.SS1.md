@@ -19,6 +19,7 @@ GFN2-xTB 属于密度泛函紧束缚（density-functional tight-binding, DFTB）
  其中 Kohn–Sham DFT 能量围绕中性原子参考密度叠加进行展开，
 
 <a id="Ch4.E77"></a>
+
 $$
 \rho_{0}(\mathbf{r})=\sum_{A}\rho_{A}^{0}(\mathbf{r}), \tag{4.77}
 $$
@@ -26,6 +27,7 @@ $$
 密度涨落定义为 $\delta\rho=\rho-\rho_{0}$。以示意形式书写，能量展开为
 
 <a id="Ch4.E78"></a>
+
 $$
 E[\rho]=E^{(0)}[\rho_{0}]+E^{(1)}[\rho_{0},\delta\rho]+E^{(2)}[\rho_{0},(\delta\rho)^{2}]+E^{(3)}[\rho_{0},(\delta\rho)^{3}]+\cdots. \tag{4.78}
 $$
@@ -37,6 +39,7 @@ $$
 GFN2-xTB 的实用能量表达式为[[73]](../bib_references/bib.md#bib58)
 
 <a id="Ch4.E79"></a>
+
 $$
 E_{\mathrm{GFN2-xTB}}=E_{\mathrm{rep}}+E_{\mathrm{disp}}+E_{\mathrm{EHT}}+E_{\mathrm{IES}}+E_{\mathrm{IXC}}+E_{\mathrm{AES}}+E_{\mathrm{AXC}}+G_{\mathrm{Fermi}}. \tag{4.79}
 $$

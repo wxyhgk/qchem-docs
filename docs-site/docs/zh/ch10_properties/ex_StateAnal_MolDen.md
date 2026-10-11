@@ -54,6 +54,7 @@ title: "10.2.12 通用激发态分析"
 NTO 是通过对 1TDM 进行奇异值分解（SVD）获得的：[[572]](../bib_references/bib.md#bib586)
 
 <a id="A3.S8.EGx77"></a>
+
 $$
 \displaystyle\gamma^{\text{IF}}_{pq} \tag{10.34}
 $$
@@ -61,6 +62,7 @@ $$
 其中 $\bm{\sigma}$ 是包含奇值的对角矩阵，酉矩阵 $\bm{\alpha}$ 和 $\bm{\beta}$ 分别包含相应的粒子 NTO 和空穴 NTO。注意：
 
 <a id="Ch10.E36"></a>
+
 $$
 \|\bm{\gamma}\|^{2}=\sum_{pq}\gamma_{pq}^{2}=\sum_{K}\sigma_{K}^{2}\equiv\Omega \tag{10.36}
 $$

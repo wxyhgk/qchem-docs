@@ -21,6 +21,7 @@ increasing threshold of a criterion called the
 one needs to know Pipek’s delocalization measure. This is defined as
 
 <a id="pipek-deloc"></a>
+
 $$
 d_{i}=\left[\sum_{A}(N_{A}^{i})^{2}\right]^{-1} \tag{10.20}
 $$
@@ -40,6 +41,7 @@ in those that are also highly localized on fragment $A$. Defining the
 *fragment orbital localization index* (FOLI),
 
 <a id="foli"></a>
+
 $$
 d_{i}^{A}=\left(\frac{d_{i}}{N_{A}}\right)^{1/2}\;, \tag{10.21}
 $$

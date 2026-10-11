@@ -11,6 +11,7 @@ title: "7.4.3 吸收光谱的计算"
 沿 $\kappa$ 方向偏振的光（$\kappa\in\{x,y,z\}$）的吸收截面 $\sigma_{\kappa\kappa}(\omega)$ 可由频率相关极化率 $\alpha_{\kappa\kappa}(\omega)$ 的虚部（$\Im$）获得:[[1578]](../bib_references/bib.md#bib1641)
 
 <a id="Ch7.E65"></a>
+
 $$
 \sigma_{\kappa\kappa}(\omega)=\left(\frac{4\pi\omega}{c}\right)\Im\bigl{[}\alpha_{\kappa\kappa}(\omega)\bigr{]}\;. \tag{7.65}
 $$
@@ -18,6 +19,7 @@ $$
 在电偶极近似下，旋转平均后的吸收光谱 $A(\omega)$ 即为
 
 <a id="eq:RT-TDDFT_spectrum"></a>
+
 $$
 A(\omega)=\tfrac{1}{3}\bigl{[}\sigma_{xx}(\omega)+\sigma_{yy}(\omega)+\sigma_{zz}(\omega)\bigr{]}\;. \tag{7.66}
 $$
@@ -25,6 +27,7 @@ $$
 频率相关极化率张量 $\bm{\alpha}(\omega)$ 的各分量 $\alpha_{\kappa\lambda}(\omega)$ 可由时间依赖偶极矩分量 $\mu_{\kappa}(t)$ 的傅里叶变换（$\mathcal{F}$）获得，其中微扰场 $\mathcal{E}_{\lambda}$ 沿 $\lambda$ 方向:[[1578]](../bib_references/bib.md#bib1641)
 
 <a id="eq:TDKS-FT"></a>
+
 $$
 \alpha_{\kappa\lambda}(\omega)=\frac{\mathcal{F}\bigl{[}\mu_{\kappa}(t)\bigr{]}}{\mathcal{F}\bigl{[}\mathcal{E}_{\lambda}(t)\bigr{]}}\;. \tag{7.67}
 $$
@@ -103,6 +106,7 @@ TDKS 宽带光谱计算中一个重要但未被充分认识的方面是，它们
 尽管这确实需要事先对预期出现的跃迁有一定了解。关键在于认识到偶极矩是密度矩阵的线性函数，
 
 <a id="Ch7.E68"></a>
+
 $$
 \mu_{\lambda}(t)=\text{tr}\big{[}\mathbf{P}(t)\;\mathbf{D}_{\lambda}(t)\big{]}\;. \tag{7.68}
 $$
@@ -110,6 +114,7 @@ $$
 这里，$\lambda\in\{x,y,z\}$ 表示偶极矩的笛卡尔分量，$\mathbf{D}_{\lambda}$ 是偶极矩算符 $\hat{\mu}_{\lambda}$ 在 MO 基组下的矩阵表示。对占位 MO $k$ 的求和使我们能够将 $\mu_{\lambda}$ 分解为来自每个 MO 的独立贡献。为此，定义矩阵
 
 <a id="Ch7.E69"></a>
+
 $$
 \mathbf{D}_{\lambda,k}=\left(\begin{array}[]{ccccc}0&\cdots&(\mathbf{D}_{\lambda})_{1,k}&\cdots&0\\
 \vdots&&\vdots&&\vdots\\
@@ -122,6 +127,7 @@ $$
 其中除 $\mathbf{D}_{\lambda}$ 的第 $k$ 行和第 $k$ 列之外的所有元素均被置为零。于是
 
 <a id="eq:dipole-filter"></a>
+
 $$
 \mu_{\lambda}(t)=\sum_{k}^{\text{occ}}\mu_{\lambda,k}(t) \tag{7.70}
 $$
@@ -129,6 +135,7 @@ $$
 其中
 
 <a id="Ch7.E71"></a>
+
 $$
 \mu_{\lambda,k}(t)=\text{tr}\big{[}\mathbf{P}(t)\;\mathbf{D}_{\lambda,k}(t)\big{]}\;. \tag{7.71}
 $$

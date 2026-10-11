@@ -13,6 +13,7 @@ title: "6.6.1 引言"
 辅助基组 $\{|K\rangle\}$ 用于近似高斯基组函数的乘积：
 
 <a id="Ch6.E25"></a>
+
 $$
 |\mu\nu\rangle\approx|\widetilde{\mu\nu}\rangle=\sum_{K}|K\rangle C_{\mu\nu}^{K} \tag{6.25}
 $$
@@ -24,6 +25,7 @@ $$
 辅助基组展开系数 $\mathbf{C}$ 由最小化拟合分布与真实分布之间的偏差 $\langle\mu\nu-\widetilde{\mu\nu}|{\mu\nu-\widetilde{\mu\nu}}\rangle$ 来确定，由此得到如下线性方程组：
 
 <a id="Ch6.E26"></a>
+
 $$
 \sum_{L}{\left\langle{K\left|L\right.}\right\rangle}C_{\mu\nu}^{L}=\left\langle{K\left|{\mu\nu}\right.}\right\rangle \tag{6.26}
 $$
@@ -31,6 +33,7 @@ $$
 显然，求解拟合方程只需要二中心和三中心积分，因此（四中心的）双电子积分可近似表示为如下针对给定辅助基组选择的最优表达式：
 
 <a id="Ch6.E27"></a>
+
 $$
 \langle\mu\nu|\lambda\sigma\rangle\approx\langle\widetilde{\mu\nu}|\widetilde{\lambda\sigma}\rangle=\sum_{K,L}C_{\mu\nu}^{L}\langle L|K\rangle C_{\lambda\sigma}^{K} \tag{6.27}
 $$

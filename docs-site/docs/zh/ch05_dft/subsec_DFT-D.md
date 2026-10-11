@@ -187,6 +187,7 @@ DFT_D
 $-C/R^{6}$ 项组成：
 
 <a id="eqn:C6"></a>
+
 $$
 E^{\text{D2}}_{\text{disp}}=-s_{6}\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left(\frac{C_{6,AB}}{R_{AB}^{6}}\right)f^{\text{D2}}_{\text{damp}}(R_{AB})\;. \tag{5.25}
 $$
@@ -194,6 +195,7 @@ $$
 该函数在短程（即 $R_{AB}^{-6}$ 发散的区域）通过下式进行阻尼：
 
 <a id="Ch5.E26"></a>
+
 $$
 f^{\text{D2}}_{\text{damp}}(R_{AB})=\left[1+e^{-d(R_{AB}/R_{0,AB}-1)}\right]^{-1} \tag{5.26}
 $$
@@ -201,6 +203,7 @@ $$
 这也有助于避免电子关联效应的重复计算，因为短程到中程的关联已通过密度泛函包含在内。（量 $R_{0,AB}$ 是原子 $A$ 和 $B$ 的 van der Waals 半径之和，$d$ 是一个附加参数。）式 ([5.25](#eqn:C6)) 中的主要参数是原子系数 $C_{6,A}$，式 ([5.25](#eqn:C6)) 中的成对参数由它们通过几何平均得到，这与经典力场中的常见做法一致：
 
 <a id="eq:C_6AB"></a>
+
 $$
 C_{6,AB}=\bigl{(}C_{6,A}C_{6,B}\bigr{)}^{1/2} \tag{5.27}
 $$
@@ -238,6 +241,7 @@ Grimme 的 DFT-D2 的一个替代方案是 Chai 和 Head-Gordon 的经验色散�
  它使用与式 ([5.25](#eqn:C6)) 相同的形状，但阻尼函数略有不同：
 
 <a id="A3.S8.EGx18"></a>
+
 $$
 \displaystyle f^{\text{CHG}}_{\text{damp}}(R_{AB})=\bigl{[}1+a(R_{AB}/R_{0,AB})^{-12}\bigr{]}^{-1} \tag{5.28}
 $$
@@ -275,6 +279,7 @@ Grimme 的 DFT-D3 方法[[486]](../bib_references/bib.md#bib504)
  是对其 D2 方案的改进，同样可与 **Q-Chem** 中提供的任何密度泛函一起使用，并附有一阶和二阶解析导数。D3 校正包含一个与 D2 中类似的势，但同时纳入了原子 $C_{8}$ 项：
 
 <a id="eq:D3eqn"></a>
+
 $$
 E_{\text{D3,2-body}}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left[s_{6}\left(\frac{C_{6,AB}}{R_{AB}^{6}}\right)f_{\text{damp,6}}(R_{AB})+s_{8}\left(\frac{C_{8,AB}}{R_{AB}^{8}}\right)f_{\text{damp,8}}(R_{AB})\right]\;. \tag{5.29}
 $$
@@ -285,6 +290,7 @@ $$
  即现被称为"零阻尼"版本 [DFT-D3(0)]，使用如下形式的阻尼函数：
 
 <a id="eq:zero-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3(0)}}(R_{AB})=\left[1+6\left(\frac{R_{AB}}{s_{r,n}R_{0,AB}}\right)^{-\beta_{n}}\right]^{-1} \tag{5.30}
 $$
@@ -298,6 +304,7 @@ $$
 即 DFT-D3(BJ)，被设计为当 $R_{AB}\rightarrow 0$ 时有限（但非零）。DFT-D3(BJ) 使用的阻尼函数为：
 
 <a id="eq:bj-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3(BJ)}}(R_{AB})=\frac{R_{AB}^{n}}{R_{AB}^{n}+\left(\alpha_{1}R_{0,AB}+\alpha_{2}\right)^{n}} \tag{5.31}
 $$
@@ -309,6 +316,7 @@ $$
 D3S 方案通过引入依赖于原子对的 $k_{3}$ 重新定义了 C${}_{6}^{AB}$ 系数。原始 DFT-D3 中的 C${}_{6}^{AB}$ 系数通过下式给出：
 
 <a id="eq:d3_c6"></a>
+
 $$
 C_{6}^{AB}(CN^{A},CN^{B})=\frac{\sum_{i=1}^{N_{A}}\sum_{j=1}^{N_{B}}C_{6,\text{ref}}^{AB}(CN_{i}^{A},CN_{j}^{B})L_{ij}}{\sum_{i=1}^{N_{A}}\sum_{j=1}^{N_{B}}L_{ij}} \tag{6}
 $$
@@ -316,6 +324,7 @@ $$
 这里，$N_{A}$ 和 $N_{B}$ 分别是原子 A 和 B 的参考分子数目，$C_{6,\text{ref}}^{AB}(CN_{i}^{A},CN_{j}^{B})$ 是参考分子预先计算好的色散系数，而 $CN_{i}^{A}$、$CN_{j}^{B}$ 分别是原子 A 和 B 在各自参考分子中的配位数。项 $L_{ij}$ 根据配位数与其参考点的差异程度来调节权重，在原始 D3 方法中定义为：
 
 <a id="eq:d3_k3"></a>
+
 $$
 L_{ij}^{D3}=e^{-k_{3}\left[(CN^{A}-CN_{i}^{A})^{2}+(CN^{B}-CN_{j}^{B})^{2}\right]} \tag{7}
 $$
@@ -323,6 +332,7 @@ $$
 其中 $CN^{A}$ 和 $CN^{B}$ 是原子 A 和 B 在所研究体系中的配位数，$k_{3}$ 固定取值 4。然而，这个固定值可能导致势能面上出现非物理的局部极小点，尤其是在原子的配位数发生变化时。为解决这一问题，D3S 方案引入了依赖于原子对的参数 $k_{3}^{AB}$，得到表达式：
 
 <a id="eq:d3s_k3ab"></a>
+
 $$
 L_{ij}^{D3S}=e^{-k_{3}^{AB}\left[(CN^{A}-CN_{i}^{A})^{2}+(CN^{B}-CN_{j}^{B})^{2}\right]} \tag{8}
 $$
@@ -333,6 +343,7 @@ Schröder *et al.*[[1218]](../bib_references/bib.md#bib1272)
  的仅含 $C_{6}$（CSO）方法舍弃了式 ([5.29](#eq:D3eqn)) 中的 $C_{8}$ 项，并使用只含一个参数 $\alpha_{1}$ 的阻尼函数：
 
 <a id="eq:cso-damping"></a>
+
 $$
 f_{\text{damp},6}^{\text{D3(CSO)}}(R_{AB})=\frac{C_{AB}^{6}}{R_{AB}^{6}+(2.5\mbox{\AA})^{6}}\left(s_{6}+\frac{\alpha_{1}}{1+\exp[R_{AB}-(2.5\mbox{\AA})R_{0,AB}]}\right)\;. \tag{5.32}
 $$
@@ -342,6 +353,7 @@ DFT-D3(BJ) 方法被 Smith *et al.*[[1278]](../bib_references/bib.md#bib1331)
 得到"改进的"DFT-D3(BJ) 方法，即 DFT-D3M(BJ)，其参数化很大程度上依赖于非平衡几何构型。同一批作者还提出了对原始零阻尼校正的改进 DFT-D3M(0)，与 DFT-D3(0) 相比引入了一个额外参数（$\alpha_{1}$）：
 
 <a id="eq:zero-m-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3M(0)}}(R_{AB})=\left[1+6\left(\frac{R_{AB}}{s_{r,n}R_{0,AB}}+\alpha_{1}R_{0,AB}\right)^{-\beta_{n}}\right]^{-1}. \tag{5.33}
 $$
@@ -350,6 +362,7 @@ $$
  的优化指数（optimized power）方法将指数 $\beta_{6}$ 视为可优化参数，其形式为：
 
 <a id="eq:op-damping"></a>
+
 $$
 f_{\text{damp},n}^{\text{D3(op)}}(R_{AB})=\frac{R_{AB}^{\beta_{n}}}{R_{AB}^{\beta_{n}}+(\alpha_{1}R_{0,AB}+\alpha_{2})^{\beta_{n}}}\;. \tag{5.34}
 $$
@@ -526,6 +539,7 @@ DFT_D3_3BODY
  D4 的主要特征是通过动态原子极化率 $\alpha(i\omega)$ 的 Casimir-Polder 积分生成系数，其中借助原子部分电荷使用了电子密度信息。基准测试结果表明，所提出的 D4 模型显著降低了误差范围。与 D3 模型类似，DFT-D4 色散能量由下式给出：
 
 <a id="eq:D4eqn"></a>
+
 $$
 E_{\text{D4,2-body}}=-\sum^{\text{atoms}}_{A}\sum^{\text{atoms}}_{B<A}\left[s_{6}\left(\frac{C_{6,AB}}{R_{AB}^{6}}\right)f_{\text{BJ damp,6}}(R_{AB})+s_{8}\left(\frac{C_{8,AB}}{R_{AB}^{8}}\right)f_{\text{BJ damp,8}}(R_{AB})\right]\;. \tag{5.35}
 $$
@@ -533,6 +547,7 @@ $$
 默认使用 Becke-Johnson 阻尼。依赖于配位数的 $C_{6}^{\text{AB}}$ 系数通过 Casimir-Polder 积分实时获得：
 
 <a id="eq:D4C6"></a>
+
 $$
 C_{6}^{\text{AB}}=\sum^{\text{N}^{A,\mathrm{ref}}}_{A,\mathrm{ref}=1}\sum^{\text{N}^{B,\mathrm{ref}}}_{B,\mathrm{ref}=1}\frac{3}{\pi}\int_{0}^{\infty}d\omega\alpha^{A,\mathrm{ref}}(i\omega,z^{A})\times W_{A}^{A,\mathrm{ref}}\alpha^{B,\mathrm{ref}}(i\omega,z^{B})W_{B}^{B,\mathrm{ref}}\;, \tag{5.36}
 $$
@@ -540,6 +555,7 @@ $$
 其中
 
 <a id="eq:D4alpha"></a>
+
 $$
 \alpha^{A,\mathrm{ref}}(i\omega,z^{A})=\frac{1}{m}\left[\alpha^{A_{m}H_{n}}(i\omega)-\frac{n}{2}\alpha^{H_{2}}(i\omega)\times\zeta(z^{H_{A},\mathrm{ref}},z^{H_{2}})\right]\zeta(z^{A},z^{A,\mathrm{ref}})\; \tag{5.37}
 $$
@@ -547,6 +563,7 @@ $$
 以及
 
 <a id="eq:D4zeta"></a>
+
 $$
 \zeta(z^{A},z^{A,\mathrm{ref}})=ba^{[1.47\text{exp}(z^{A}/z^{A,\mathrm{ref}})\text{log}_{10}(z^{A,\mathrm{ref}}/z^{A})]}\;. \tag{5.38}
 $$
@@ -554,6 +571,7 @@ $$
 $\alpha^{A_{m}H_{n}}$ 表示参考极化率，它代表对称氢化物体系 $A_{m}H_{n}$ 的分子极化率。$W_{A/B}^{A,\mathrm{ref}/B,\mathrm{ref}}$ 是决定所有元素特定参考体系 $N^{A,\mathrm{ref}/B,\mathrm{ref}}$ 贡献的权重因子。$z^{H_{A}}$ 描述参考体系 $A_{m}H_{n}$ 中与原子 A 相连的氢的有效电荷。有效电荷 $z^{A}$ 通过 Mulliken 电荷 $q^{A}$ 自洽地计算：
 
 <a id="eq:D4za"></a>
+
 $$
 z^{A}=Z^{A}+q^{A}. \tag{5.39}
 $$

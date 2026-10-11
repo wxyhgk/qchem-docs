@@ -13,6 +13,7 @@ RI and substantially reducing the cost of integral transformation, disk storage
 requirements, and improving parallel performance:
 
 <a id="Ch6.E79"></a>
+
 $$
 (\mu\nu|\lambda\sigma)\approx\sum_{P=1}^{M}B_{\mu\nu}^{P}B_{\lambda\sigma}^{P}, \tag{6.79}
 $$

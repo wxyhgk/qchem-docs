@@ -27,6 +27,7 @@ As in gas-phase ALMO-EDA, the total interaction energy (INT) can be partitioned 
 frozen (FRZ), polarization (POL), and charge transfer (CT) contributions:
 
 <a id="A3.S8.EGx119"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{INT}}^{(\mathrm{s})}&\displaystyle=E_{\mathrm{Full}}^{(\mathrm{s})}-\sum_{A}E_{A}^{(\mathrm{s})}\\
 &\displaystyle=\Delta E^{(\mathrm{s})}_{\mathrm{FRZ}}+\Delta E^{(\mathrm{s})}_{\mathrm{POL}}+\Delta E^{(\mathrm{s})}_{\mathrm{CT}}\end{aligned} \tag{12.18}
@@ -42,6 +43,7 @@ further decomposed into permanent electrostatics (ELEC), Pauli repulsion (PAULI)
 dispersion (DISP) contributions:
 
 <a id="A3.S8.EGx120"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}&\displaystyle=E_{\mathrm{FRZ}}^{(\mathrm{s})}-\sum_{A}E_{A}^{(\mathrm{s})}\\
 &\displaystyle=(E_{\mathrm{FRZ}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{0})})-\sum_{A}(E_{A}^{(\mathrm{s})}-E_{A}^{(0)})+E_{\mathrm{FRZ}}^{(0)}-\sum_{A}E_{A}^{(0)}\\
@@ -51,6 +53,7 @@ $$
 Here we have introduced a new term,
 
 <a id="Ch12.E20"></a>
+
 $$
 \Delta E_{\mathrm{SOL}}=(E_{\mathrm{FRZ}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{0})})-\sum_{A}(E_{A}^{(\mathrm{s})}-E_{A}^{(0)}) \tag{12.20}
 $$
@@ -71,6 +74,7 @@ DFT that ALMO-EDA(solv) is based upon, which leads to $\Delta E^{(0)}_{\mathrm{D
 solvation environment (Eq. [12.19](#eq:frz_decomp_sol)) can thus be rewritten as
 
 <a id="A3.S8.EGx121"></a>
+
 $$
 \displaystyle\begin{aligned} \displaystyle\Delta E_{\mathrm{FRZ}}^{(\mathrm{s})}&\displaystyle=(\Delta E^{(0)}_{\mathrm{ELEC}}+\Delta E_{\mathrm{SOL}}^{\mathrm{el}})+(\Delta E^{(0)}_{\mathrm{PAULI}}+\Delta E_{\mathrm{SOL}}^{\text{non-el}})+\Delta E^{(0)}_{\mathrm{DISP}}\\
 &\displaystyle=\Delta E^{(\mathrm{s})}_{\mathrm{ELEC}}+\Delta E^{(\mathrm{s})}_{\mathrm{PAULI}}+\Delta E^{(\mathrm{s})}_{\mathrm{DISP}}\end{aligned} \tag{12.21}
@@ -81,6 +85,7 @@ technique in presence of solvent. The associated energy lowering is defined as t
 polarization energy in ALMO-EDA(solv) ($\Delta E_{\mathrm{POL}}^{(\mathrm{s})}$):
 
 <a id="Ch12.E22"></a>
+
 $$
 \Delta E_{\mathrm{POL}}^{(\mathrm{s})}=E_{\mathrm{POL}}^{(\mathrm{s})}-E_{\mathrm{FRZ}}^{(\mathrm{s})} \tag{12.22}
 $$
@@ -89,6 +94,7 @@ where $E_{\mathrm{POL}}^{(\mathrm{s})}$ is the converged SCF-MI energy with solv
 the charge-transfer term is given by
 
 <a id="Ch12.E23"></a>
+
 $$
 \Delta E_{\mathrm{CT}}^{(\mathrm{s})}=E_{\mathrm{Full}}^{(\mathrm{s})}-E_{\mathrm{POL}}^{(\mathrm{s})} \tag{12.23}
 $$

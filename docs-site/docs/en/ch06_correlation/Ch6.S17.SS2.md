@@ -28,6 +28,7 @@ performance when running large jobs. To roughly estimate the amount of memory
 required for a coupled-cluster calculation use the following formula:
 
 <a id="Ch6.E83"></a>
+
 $$
 \textrm{Memory}=\frac{(\textrm{Number of basis set functions})^{4}}{131072}~{}\textrm{MB} \tag{6.83}
 $$

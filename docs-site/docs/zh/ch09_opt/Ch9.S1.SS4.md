@@ -46,6 +46,7 @@ Baker *et al.*[[63]](../bib_references/bib.md#bib50)
 考虑一组 $n$ 个内坐标 $\mathbf{q}=(q_{1},q_{2},\ldots q_{n})^{t}$。$\mathbf{q}$ 中的位移 $\Delta\mathbf{q}$ 与相应的笛卡尔位移 $\Delta\mathbf{x}$ 通过通常的 Wilson $\mathbf{B}$-矩阵相联系，
 
 <a id="Ch9.E15"></a>
+
 $$
 \Delta\mathbf{q}=\mathbf{B}\Delta\mathbf{x} \tag{9.15}
 $$
@@ -55,6 +56,7 @@ $$
 离域内坐标是通过构造并对角化矩阵 $\mathbf{G}=\mathbf{BB}^{t}$ 得到的。对 $\mathbf{G}$ 进行对角化会得到两组本征向量：一组是 $m$ 个（通常为 $3N-6$，其中 $N$ 为原子数）本征值 $\lambda>0$ 的本征向量，另一组是 $nm$ 个本征值 $\lambda=0$（在数值精度意义下）的本征向量。这样，原始坐标集 $\mathbf{q}$ 中存在的任何冗余都被分离出来（它们对应于那些本征值为零的本征向量）。因此 $\mathbf{G}$ 的本征值方程可以写成
 
 <a id="eq:a13"></a>
+
 $$
 {\rm{\bf G}}({\rm{\bf UR}})=({\rm{\bf UR}})\left({{\begin{array}[]{*{2}c}\Lambda&0\\
 0&0\\

@@ -20,6 +20,7 @@ several comprehensive references are available. However, it may be useful to
 briefly summarize the main equations. The CCSD wave function is:
 
 <a id="eq518"></a>
+
 $$
 \left|{\Psi_{\mathrm{CCSD}}}\right\rangle=\exp\left({\hat{T}_{1}+\hat{T}_{2}}\right)\left|{\Phi_{0}}\right\rangle \tag{6.58}
 $$
@@ -29,11 +30,13 @@ actions on the reference single determinant (which is normally taken as the
 Hartree-Fock determinant in CCSD):
 
 <a id="eq519"></a>
+
 $$
 \hat{T}_{1}\left|{\Phi_{0}}\right\rangle=\sum_{i}^{\mathrm{occ}}{\sum_{a}^{\mathrm{virt}}{t_{i}^{a}}}\left|{\Phi_{i}^{a}}\right\rangle \tag{6.59}
 $$
 
 <a id="eq520"></a>
+
 $$
 \hat{T}_{2}\left|{\Phi_{0}}\right\rangle=\frac{1}{4}\sum_{ij}^{\mathrm{occ}}{\sum_{ab}^{\mathrm{virt}}{t_{ij}^{ab}}}\left|{\Phi_{ij}^{ab}}\right\rangle \tag{6.60}
 $$
@@ -49,6 +52,7 @@ energy, the singles and doubles amplitudes as the solutions of sets of
 nonlinear equations. These equations may be symbolically written as follows:
 
 <a id="A3.S8.EGx22"></a>
+
 $$
 \displaystyle E_{\mathrm{CCSD}} \tag{6.61}
 $$

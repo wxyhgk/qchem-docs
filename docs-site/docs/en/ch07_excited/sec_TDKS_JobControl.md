@@ -254,6 +254,7 @@ the keywords **Field_Amp** and **Field_Frequency**, respectively, in the *$tdks*
 The **Impulse** field has a Gaussian envelope,
 
 <a id="Ch7.E60"></a>
+
 $$
 \bm{\mathcal{E}}(t)=\mathbf{A}_{0}\exp\left(\frac{(t-t_{\text{peak}})^{2}}{2\tau^{2}}\right)\sin(\omega t) \tag{7.60}
 $$
@@ -266,6 +267,7 @@ respectively, in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set usi
 The **Impulse2** field has a cosine-squared envelope, with the field $\bm{\mathcal{E}}$ turned on initially and turned off at $t=2t_{\text{peak}}$. For $0\leq t\leq 2t_{\text{peak}}$,
 
 <a id="Ch7.E61"></a>
+
 $$
 \bm{\mathcal{E}}(t)=\mathbf{A}_{0}\cos^{2}\left[\frac{\pi}{2t_{\text{peak}}}(t_{\text{peak}}-t)\right]\cos[\omega(t-t_{\text{peak}})] \tag{7.61}
 $$
@@ -346,6 +348,7 @@ that radius, the potential rises quadratically with curvature $\eta$.
 This is implemented using a set of atom-centered CAP functions
 
 <a id="eqn:fk_CAP"></a>
+
 $$
 f^{\text{CAP}}_{k}(\mathbf{r})=\begin{cases}0,&\|\mathbf{r}-\mathbf{R}_{k}\|<r_{0}\\
 \eta\big{(}\|\mathbf{r}-\mathbf{R}_{k}\|-r_{0}\big{)}^{2},&\|\mathbf{r}-\mathbf{R}_{k}\|\geq r_{0}\end{cases}\;. \tag{7.62}
@@ -356,6 +359,7 @@ $\upsilon_{\text{CAP}}(\mathbf{r})$ is the minimum of the various atom-centered 
 $E_{\text{max}}=10~{}E_{h}$, the latter of which is used to avoid numerical overflow problems. All together,
 
 <a id="Ch7.E63"></a>
+
 $$
 \upsilon_{\text{CAP}}(\mathbf{r})=\min\big{\{}E_{\text{max}},f_{1}^{\text{CAP}}(\mathbf{r}),f_{2}^{\text{CAP}}(\mathbf{r}),\ldots,\big{\}}\;. \tag{7.63}
 $$
@@ -369,6 +373,7 @@ Note that placing $r_{0}$ beyond the extent of the Gaussian basis functions them
 For a Gaussian basis function with exponent $\zeta$, the full width at half maximum of that function is
 
 <a id="Ch7.E64"></a>
+
 $$
 \text{FWHM}(\zeta)=2\left(\frac{\ln 2}{\zeta}\right)^{1/2}\;, \tag{7.64}
 $$

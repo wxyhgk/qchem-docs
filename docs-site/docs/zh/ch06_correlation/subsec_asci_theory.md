@@ -9,6 +9,7 @@ title: "6.22.2 理论"
 若波函数 $|\Psi\rangle=\displaystyle\sum\limits_{i}C_{i}|D_{i}\rangle$（其中 $|D_{i}\rangle$ 为系数为 $C_{i}$ 的 Slater 行列式）是哈密顿量的本征态，则有
 
 <a id="Ch6.E104"></a>
+
 $$
 C_{i}=\frac{\sum_{j\neq i}H_{ij}C_{j}}{(H_{ii}-E)}\;, \tag{6.104}
 $$
@@ -18,6 +19,7 @@ $$
 在 ASCI 方法中，所有相对于试探波函数 $|\psi_{k}\rangle$ 中最重要行列式（按系数大小排序）为单激发或双激发的行列式 $|D_{i}\rangle$，都被赋予一个估计重要度 $A_{i}$，其定义为
 
 <a id="Ch6.E105"></a>
+
 $$
 A_{i}=\frac{\sum_{|D_{j}\rangle\in|\psi_{k}\rangle}H_{ij}C_{j}}{(H_{ii}-E_{k})}\;, \tag{6.105}
 $$
