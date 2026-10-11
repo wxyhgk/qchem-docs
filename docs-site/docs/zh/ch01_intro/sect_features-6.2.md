@@ -1,233 +1,233 @@
 ---
-title: "1.3.5 New Features in Q-Chem 6.2"
+title: "1.3.5 Q-Chem 6.2 新特性"
 ---
 
-## 1.3.5 New Features in **Q-Chem** 6.2
+## 1.3.5 **Q-Chem** 6.2 新特性
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-## 1.3.5.1 Features in 6.2.0
+## 1.3.5.1 6.2.0 版本特性
 
 - •
 
-**Changes to default behavior:**
+**默认行为变更：**
 
 - **–**
 
-Set POINT_GROUP_SYMMETRY = FALSE for freq jobs reading guess from previous job to avoid reorientation
+对于从前一作业读取初始猜测（guess）的频率计算作业，设置 POINT_GROUP_SYMMETRY = FALSE 以避免重新取向（reorientation）
 - **–**
 
-Make NO_REORIENT = 1 and POINT_GROUP_SYMMETRY = 0 the defaults for harmonic confiner jobs
+将 NO_REORIENT = 1 和 POINT_GROUP_SYMMETRY = 0 设为谐振限制器（harmonic confiner）作业的默认值
 - **–**
 
-Make improved initial guess Hessian the default for optimizations (INITIAL_HESSIAN = MODEL)
+将改进的初始猜测 Hessian 设为几何优化的默认选项（INITIAL_HESSIAN = MODEL）
 - **–**
 
-Enable RI-K virtual orbital correction by default for occ-RI-K frequency jobs
+对 occ-RI-K 频率计算作业默认启用 RI-K 虚轨道校正
 - •
 
-**General features and improvements:**
+**通用功能与改进：**
 
 - **–**
 
-NEO Multistate DFT (NEO-MSDFT) (Joseph Dickinson, Qi Yu, Sharon Hammes-Schiffer)
+NEO 多态密度泛函理论（NEO Multistate DFT, NEO-MSDFT）（Joseph Dickinson、Qi Yu、Sharon Hammes-Schiffer）
 - **–**
 
-Added simulation of nuclear-electronic quantum dynamics based on real-time nuclear-electronic orbital (RT-NEO) (Tao E. Li, Mathew Chow, Sharon Hammes-Schiffer)
+新增基于实时核-电子轨道（real-time nuclear-electronic orbital, RT-NEO）的核-电子量子动力学模拟（Tao E. Li、Mathew Chow、Sharon Hammes-Schiffer）
 - **–**
 
-Added support for D3 empirical dispersion correction (energies and gradients) and Effective Core Potential (ECP) (energies and gradients) for NEO approach and RT-NEO methods (Mathew Chow, Sharon Hammes-Schiffer)
+为 NEO 方法及 RT-NEO 方法新增对 D3 经验色散校正（能量与梯度）以及有效核势（Effective Core Potential, ECP）（能量与梯度）的支持（Mathew Chow、Sharon Hammes-Schiffer）
 - **–**
 
-Constrained NEO (CNEO) for a single NEO center (Eno Paenurk, Sharon Hammes-Schiffer)
+针对单一 NEO 中心的约束 NEO（Constrained NEO, CNEO）（Eno Paenurk、Sharon Hammes-Schiffer）
 - **–**
 
-Addition of SCS-RIMP2 and SOS-OOMP2 to NEO methods (Jonathan Fetherolf, Sharon Hammes-Schiffer)
+在 NEO 方法中新增 SCS-RIMP2 和 SOS-OOMP2（Jonathan Fetherolf、Sharon Hammes-Schiffer）
 - **–**
 
-Faster NEO-SCF via simultaneous DIIS optimization (Mathew Chow, Sharon Hammes-Schiffer)
+通过同时 DIIS 优化加速 NEO-SCF（Mathew Chow、Sharon Hammes-Schiffer）
 - **–**
 
-Add atomic multipole moment calculation using IAOs (Alexandra McIsaac, Abdulrahman Aldossary, Martin Head-Gordon)
+新增基于独立原子轨道（independent atomic orbitals, IAOs）的原子多极矩计算（Alexandra McIsaac、Abdulrahman Aldossary、Martin Head-Gordon）
 - **–**
 
-Update the list of occasions not allowed for the AUTOSAD $\to$ CORE fallback when atomic jobs fail (Yuezhi Mao)
+更新原子（atomic）作业失败时不允许 AUTOSAD $\to$ CORE 回退的情形列表（Yuezhi Mao）
 - **–**
 
-New syntax allowing external electric field to follow a bond (Tarek Scheele, Tim Neudecker)
+新语法支持外加电场沿化学键跟随（Tarek Scheele、Tim Neudecker）
 - **–**
 
-Real-time extension of TAO-DFT (RT-TAO) (Hung-Yi Tsai, Jeng-Da Chai)
+TAO-DFT 的实时扩展（RT-TAO）（Hung-Yi Tsai、Jeng-Da Chai）
 - **–**
 
-SCF energy prints now break one-electron terms into kinetic, nuclear attraction and remainder when SCF_FINAL_PRINT is set to TRUE
+当 SCF_FINAL_PRINT 设置为 TRUE 时，SCF 能量输出现将单电子项拆分为动能、核吸引及其余项
 - **–**
 
-Resolved issues with:
+解决了以下问题：
 
 - *
 
-Incorrect hydrogen isotope mass when using EPC functionals with NEO (Mathew Chow, Zhen (Coraline) Tao, Sharon Hammes-Schiffer)
+使用 NEO 中的 EPC 泛函时氢同位素质量不正确（Mathew Chow、Zhen (Coraline) Tao、Sharon Hammes-Schiffer）
 - *
 
-NEO Hessian implementation for range-separated functionals (Eno Paenurk and Sharon Hammes-Schiffer)
+NEO 中范围分离泛函的 Hessian 实现（Eno Paenurk 和 Sharon Hammes-Schiffer）
 - *
 
-Failure of the READ_REAL guess of complex RHF (Yuezhi Mao)
+复数 RHF 的 READ_REAL 初始猜测失败（Yuezhi Mao）
 - *
 
-**Libopt3** misclassification of structure type for near-zero eigenvalues
+**Libopt3** 对接近零的本征值之结构类型误分类
 - *
 
-“SVD Failed" invalid step error in rare geometry optimization cases
+少数几何优化情形中出现的 "SVD Failed" 无效步长错误
 - •
 
-**Density functional theory and self-consistent field:**
+**密度泛函理论与自洽场（Self-Consistent Field, SCF）：**
 
 - **–**
 
-Implemented DFT/CIS, including a new parameterization for x-ray spectroscopy (Aniket Mandal, John Herbert)
+实现 DFT/CIS，包括针对 X 射线光谱学的新的参数化方案（Aniket Mandal、John Herbert）
 - **–**
 
-Addition of new TZVP basis set for DFT/CIS to QCAUX (Aniket Mandal, John Herbert)
+在 QCAUX 中为 DFT/CIS 新增 TZVP 基组（Basis Set）（Aniket Mandal、John Herbert）
 - **–**
 
-Implemented suppression of open-shell mixing for ROKS calculations (Juanes Arias-Martinez, Martin Head-Gordon)
+在 ROKS 计算中实现开壳层混合的抑制（Juanes Arias-Martinez、Martin Head-Gordon）
 - **–**
 
-Enable negative $s_{8}$ values for Grimme’s D4 dispersion correction
+允许 Grimme D4 色散校正中 $s_{8}$ 取负值
 - **–**
 
-Dipole filtering for restricted and unrestricted TDKS (John Herbert, Avik Kumar Ojha)
+为受限与非受限 TDKS 增加偶极矩过滤（dipole filtering）（John Herbert、Avik Kumar Ojha）
 - **–**
 
-Print spatial overlaps of orbitals (intermediate overlaps for occ/virt pairs) (John Herbert)
+输出轨道的空间重叠（occ/virt 对之间的中间重叠）（John Herbert）
 - **–**
 
-Make virtual orbital correction after SCF convergence optional for occ-RI-K
+将 occ-RI-K 在 SCF 收敛后的虚轨道校正改为可选项
 - **–**
 
-Enable MakeMeSAD for GEN_SCFMAN
+为 GEN_SCFMAN 启用 MakeMeSAD
 - **–**
 
-Add SAD guesses for cc-pV6Z and aug-cc-pV6Z
+为 cc-pV6Z 和 aug-cc-pV6Z 新增 SAD 初始猜测
 - **–**
 
-Disable AUTOSAD guess for CDFT-CI (John Herbert)
+为 CDFT-CI 禁用 AUTOSAD 初始猜测（John Herbert）
 - **–**
 
-Disable NTOs for RPA (John Herbert)
+为 RPA 禁用自然轨道跃迁密度（NTO）（John Herbert）
 - **–**
 
-Resolved issues with:
+解决了以下问题：
 
 - *
 
-Job control through FDIFF_DER for anharmonic frequency calculations (Yuezhi Mao)
+非谐频率计算中通过 FDIFF_DER 进行的作业控制（Yuezhi Mao）
 - *
 
-Anharmonic frequency calculation failure with DFT (Yuezhi Mao)
+DFT 非谐频率计算失败（Yuezhi Mao）
 - *
 
-Restart initialization for unrestricted TDKS (Hung-Yi Tsai, Jeng-Da Chai)
+非受限 TDKS 的重启动初始化（Hung-Yi Tsai、Jeng-Da Chai）
 - *
 
-Bug in RI related to basis sets that use multishells (note that this does not affect most RI calculations, unless an auxiliary multishell basis is used)
+与使用多重壳层（multishells）基组相关的 RI 缺陷（注意：除非使用辅助多重壳层基组，否则不影响大多数 RI 计算）
 - •
 
-**Correlated methods:**
+**相关方法：**
 
 - **–**
 
-Added hyperfine coupling code to calculate couplings between singlet/triplet excited CIS states (Samuel May, Joseph Subotnik)
+新增超精细耦合代码，用于计算单重态/三重态激发 CIS 态之间的耦合（Samuel May、Joseph Subotnik）
 - **–**
 
-Generalization of 1C-NOCIS to two-electron open-shell singlets (Juanes Arias-Martinez, Hamlin Wu, Martin Head-Gordon)
+将 1C-NOCIS 推广至双电子开壳层单重态（Juanes Arias-Martinez、Hamlin Wu、Martin Head-Gordon）
 - **–**
 
-Implemented the ACP-EOMIP-CCSD method to compute partial Auger decay widths (Florian Matz, Thomas Jagau)
+实现 ACP-EOMIP-CCSD 方法以计算部分俄歇（Auger）衰变宽度（Florian Matz、Thomas Jagau）
 - **–**
 
-Built-in implementation of calculations of cross-sections and angular distributions using Dyson orbitals (Madhubani Mukherjee, Sarai Folkestad, Anna Krylov)
+内置基于 Dyson 轨道计算截面和角分布的功能（Madhubani Mukherjee、Sarai Folkestad、Anna Krylov）
 - **–**
 
-Natural Auger Orbitals for Auger decay, ICD, and related processes for CVS-EOM methods (Nayanthara K. Jayadev, Anna I. Krylov)
+为 CVS-EOM 方法针对俄歇衰变、ICD 及相关过程引入自然俄歇轨道（Natural Auger Orbitals）（Nayanthara K. Jayadev、Anna I. Krylov）
 - **–**
 
-Added BW-s2 method (Kevin Carter-Fenk, Martin Head-Gordon)
+新增 BW-s2 方法（Kevin Carter-Fenk、Martin Head-Gordon）
 - **–**
 
-Stochastic resolution of identity to CC2 (sRI-CC2) for excited state energy calculations (Chongxiao Zhao, Wenjie Dou, Joonho Lee)
+将随机分辨率恒等（stochastic resolution of identity）方法应用于 CC2（sRI-CC2），用于激发态能量计算（Chongxiao Zhao、Wenjie Dou、Joonho Lee）
 - **–**
 
-EOM-CCSDT for EE and SF states (Manisha, Prashant Uday Manohar)
+针对 EE 和 SF 态的 EOM-CCSDT（Manisha、Prashant Uday Manohar）
 - **–**
 
-Resolved issues with:
+解决了以下问题：
 
 - *
 
-Legacy RI-MP2 code crashes when MEM_STATIC value is too large (Yuezhi Mao)
+当 MEM_STATIC 值过大时，旧版 RI-MP2 代码崩溃（Yuezhi Mao）
 - *
 
-Error in calculation of the separable part of the one-particle density matrix with CCSD (Yongbin Kim, Madhubani Mukherjee, Anna Krylov)
+CCSD 中单粒子密度矩阵可分离部分计算的错误（Yongbin Kim、Madhubani Mukherjee、Anna Krylov）
 - *
 
-Overwriting of Molden files for natural Auger orbitals in resonant Auger decay calculations (Nayanthara Karippara Jayadev, Anna Krylov)
+共振俄歇衰变计算中自然俄歇轨道的 Molden 文件被覆盖（Nayanthara Karippara Jayadev、Anna Krylov）
 - •
 
-**Molecular dynamics, non-adiabatic dynamics, embedding, and solvation improvements:**
+**分子动力学、非绝热动力学、嵌入与溶剂化改进：**
 
 - **–**
 
-External/embedded potential read (Huseyin Aksu, Barry Dunietz)
+外部/嵌入势读取（Huseyin Aksu、Barry Dunietz）
 - **–**
 
-Turn on PCM at the first SCF iteration when SCF_GUESS = READ,
-allowing faster convergence (Yuezhi Mao)
+当 SCF_GUESS = READ 时，在第一次 SCF 迭代即开启 PCM，
+从而加快收敛（Yuezhi Mao）
 - **–**
 
-Turn on PCM at the first SCF iteration in the 2nd geom opt cycle for FRAGMO and AUTOSAD (Yuezhi Mao)
+对 FRAGMO 和 AUTOSAD，在第二次几何优化循环的首次 SCF 迭代即开启 PCM（Yuezhi Mao）
 - **–**
 
-Clarified ambiguous output for COSMO (John Herbert)
+澄清 COSMO 中含义模糊的输出（John Herbert）
 - **–**
 
-Added analytic X-HCFF Hessian (Rahel Weiss, Felix Zeller, Tim Neudecker)
+新增解析的 X-HCFF Hessian（Rahel Weiss、Felix Zeller、Tim Neudecker）
 - **–**
 
-Resolved issues with:
+解决了以下问题：
 
 - *
 
-Out-of-bound access error for SMX with ghost atoms
+SMX 与虚原子（ghost atoms）联用时的越界访问错误
 - *
 
-Undesirable behavior of SOLVENT_METHOD = TRUE invoking Kirkwood model (John Herbert)
+SOLVENT_METHOD = TRUE 触发 Kirkwood 模型的不当行为（John Herbert）
 - *
 
-Add missing qarchive files for QM/MM calculations (Xiaoliang Pan, Yihan Shao)
+为 QM/MM 计算补充缺失的 qarchive 文件（Xiaoliang Pan、Yihan Shao）
 - *
 
-Incorrectly increasing van der Waals radii for I and At atoms in jobs with multiple SMD calculations (Zheng Pei)
+在多次 SMD 计算作业中，I 和 At 原子的范德华半径被错误地增大（Zheng Pei）
 - •
 
-**Fragment and energy decomposition analysis improvements:**
+**片段与能量分解分析改进：**
 
 - **–**
 
-Add additional printout for libwfa regarding ionic/covalent states (Felix Plasser)
+为 libwfa 新增关于离子态/共价态的额外输出（Felix Plasser）
 - **–**
 
-Resolved issues with:
+解决了以下问题：
 
 - *
 
-Occasional crash in non-perturbative CTA (Yuezhi Mao)
+非微扰 CTA 中偶发的崩溃（Yuezhi Mao）
 - •
 
-**Post-processing features:**
+**后处理功能：**
 
 - **–**
 
-Calculations of g-tensors using ezMagnet (Sven Kähler, Antonio Cebreiro-Gallardo, Pavel Pokhilko, David Casanova, and Anna I. Krylov)
+使用 ezMagnet 计算 g 张量（Sven Kähler、Antonio Cebreiro-Gallardo、Pavel Pokhilko、David Casanova 和 Anna I. Krylov）

@@ -1,29 +1,13 @@
 ---
-title: "1.1.1 Overview"
+title: "1.1.1 概述"
 ---
 
-## 1.1.1 Overview
+## 1.1.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-This manual is intended as a general-purpose user’s guide for **Q-Chem**, a
-modern electronic structure program. The manual contains background
-information that describes **Q-Chem** methods and user-selected parameters.
-It is assumed that the user has some familiarity with the Unix/Linux environment,
-an ASCII file editor, and a basic understanding of quantum chemistry.
+本手册是 **Q-Chem**（一款现代电子结构计算程序）的通用用户指南。手册中包含介绍 **Q-Chem** 方法及用户可选参数的背景信息。我们假定用户已经对 Unix/Linux 环境、ASCII 文本编辑器以及量子化学的基本知识有一定了解。
 
-After installing **Q-Chem** and making necessary adjustments to your user
-account, it is recommended that particular attention be given to
-Chapters [3](../ch03_inputs/chap_inputs.md) and [4](../ch04_scf/chap_scf.md). The latter, which describes
-**Q-Chem**’s self-consistent field capabilities, has been formatted so that
-advanced users can quickly find the information they require while supplying
-new users with a moderate level of important background information. This
-format has been maintained throughout the manual, and every attempt has been
-made to guide the user forward and backward to other relevant information so
-that a logical progression through this manual is not necessary.
+在完成 **Q-Chem** 的安装并对用户账户做出必要调整之后，建议重点阅读第 [3](../ch03_inputs/chap_inputs.md) 章和第 [4](../ch04_scf/chap_scf.md) 章。其中第 4 章介绍 **Q-Chem** 的自洽场（Self-Consistent Field, SCF）功能，其编排格式既能帮助高级用户快速查找所需信息，又能为新用户提供了适度的重要背景知识。全书各章均保持这一编排风格，并尽可能在前后文中引导用户查阅其他相关信息，因此阅读本手册并无必要按照线性顺序进行。
 
-Documentation for **IQmol**, a graphical user interface designed for use with
-**Q-Chem**, can be found on the `http://www.iqmol.org` websitge. **IQmol** functions
-as a molecular structure builder, as an interface for local or remote
-submission of **Q-Chem** jobs, and as a post-calculation visualization program
-for densities and molecular orbitals.
+**IQmol** 是专为配合 **Q-Chem** 使用而设计的图形用户界面，其相关文档可在 `http://www.iqmol.org` 网站上找到。**IQmol** 既可作为分子结构构建器，也可作为提交本地或远程 **Q-Chem** 任务的接口，还可作为计算后程序，用于对电子密度和分子轨道进行可视化显示。

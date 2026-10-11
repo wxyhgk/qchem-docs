@@ -1,11 +1,11 @@
 ---
-title: "1.1 About This Manual"
+title: "1.1 关于本手册"
 ---
 
-# 1.1 About This Manual
+# 1.1 关于本手册
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [1.1.1 Overview](Ch1.S1.SS1.md)
+- [1.1.1 概述](Ch1.S1.SS1.md)
 
-- [1.1.2 Chapter Summaries](Ch1.S1.SS2.md)
+- [1.1.2 各章摘要](Ch1.S1.SS2.md)

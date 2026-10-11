@@ -1,29 +1,9 @@
 ---
-title: "1.2.2 About the Company"
+title: "1.2.2 关于公司"
 ---
 
-## 1.2.2 About the Company
+## 1.2.2 关于公司
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem**, Inc. was founded in 1993 and was based in Pittsburgh, PA until 2013,
-when it relocated to Pleasanton, CA. **Q-Chem**’s scientific contributors
-include leading quantum chemists around the world. The company is governed by
-the Board of Directors which currently consists of Peter Gill (Canberra), Anna
-Krylov (USC), John Herbert (Ohio State), and Hilary Pople. Fritz Schaefer
-(Georgia) is a Board Member Emeritus. Martin Head-Gordon is a Scientific
-Advisor to the Board. The close coupling between leading university research
-groups and **Q-Chem** Inc. ensures that the methods and algorithms available in
-**Q-Chem** are state-of-the-art.
-
-In order to create this technology, the founders of **Q-Chem**, Inc. built
-entirely new methodologies from the ground up, using the latest algorithms and
-modern programming techniques. Since 1993, well over 300 person-years have been
-devoted to the development of the **Q-Chem** program. The author list of the
-program shows the full list of contributors to the current version, and the
-journal citations for **Q-Chem** versions 2, 3, and 4[[708]](../bib_references/bib.md#bib1188)
-
-illustrate the breadth of the **Q-Chem** developer community. The current group
-of developers consist of more than 100 people in 9 countries. A brief history
-of **Q-Chem** is given in the article *Q-Chem: An Engine for
-Innovation*.[[723]](../bib_references/bib.md#bib761)
+**Q-Chem** 公司成立于 1993 年，总部设于宾夕法尼亚州匹兹堡，直至 2013 年迁至加利福尼亚州普莱森顿。**Q-Chem** 的科学贡献者包括世界各地的顶尖量子化学家。公司由董事会管理，董事会成员目前包括 Peter Gill（堪培拉）、Anna Krylov（南加州大学）、John Herbert（俄亥俄州立大学）以及 Hilary Pople。Fritz Schaefer（佐治亚大学）为荣誉退休董事（Board Member Emeritus）。Martin Head-Gordon 担任董事会的科学顾问。顶尖大学研究小组与 **Q-Chem** 公司之间的紧密结合，确保了 **Q-Chem** 中提供的方法与算法始终处于前沿水平。

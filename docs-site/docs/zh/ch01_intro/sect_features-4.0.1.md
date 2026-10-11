@@ -1,19 +1,17 @@
 ---
-title: "1.3.17 New Features in Q-Chem 4.0.1"
+title: "1.3.17 Q-Chem 4.0.1 新特性"
 ---
 
-## 1.3.17 New Features in **Q-Chem** 4.0.1
+## 1.3.17 **Q-Chem** 4.0.1 新特性
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 - •
 
-Remote submission capability in **IQmol** (A. T. B. Gilbert).
+**IQmol** 中的远程提交（Remote submission）功能（A. T. B. Gilbert）。
 - •
 
-Scaled nuclear charge and charge-cage stabilization capabilities (T. Kús and A. I. Krylov; Section [7.9.13](../ch07_excited/sec_CAGE.md)).
+缩放核电荷（Scaled nuclear charge）与电荷笼稳定化（Charge-cage stabilization）功能（T. Kús 和 A. I. Krylov；第 [7.9.13](../ch07_excited/sec_CAGE.md) 节）。
 - •
 
-Calculations of excited state properties including transition dipole
-moments between different excited states in CIS and TDDFT as well as
-couplings for electron and energy transfer (Z.-Q. You and C.-P. Hsu; Section [10.15](../ch10_properties/sec_ElCoupl.md)).
+激发态性质计算，包括 CIS 与 TDDFT 中不同激发态之间的跃迁偶极矩（Transition dipole moments），以及电子转移与能量转移的耦合（Couplings）（Z.-Q. You 和 C.-P. Hsu；第 [10.15](../ch10_properties/sec_ElCoupl.md) 节）。

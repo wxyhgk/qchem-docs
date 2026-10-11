@@ -1,14 +1,13 @@
 ---
-title: "1.2.1 Contact Information and Customer Support"
+title: "1.2.1 联系方式与客户支持"
 ---
 
-## 1.2.1 Contact Information and Customer Support
+## 1.2.1 联系方式与客户支持
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-For general information regarding **Q-Chem** program, visit `www.q-chem.com`.
-Full customer support is promptly provided via telephone or email
-(`support@q-chem.com`)
-for those customers who have purchased **Q-Chem**’s “QMP” maintenance contract.
-In addition to free customer support, this contract provides discounts on future updates and
-releases of **Q-Chem**. For details of the maintenance contract please see `www.q-chem.com`.
+如需获取 **Q-Chem** 程序的一般信息，请访问 `www.q-chem.com`。
+对于购买了 **Q-Chem** "QMP" 维护合同的客户，我们将通过电话或电子邮件
+（`support@q-chem.com`）
+及时提供完整的客户支持。除免费客户支持外，该合同还为 **Q-Chem** 的后续更新和版本提供折扣。
+有关维护合同的详细信息，请访问 `www.q-chem.com`。

@@ -1,17 +1,9 @@
 ---
-title: "1.3.1 Overview of Q-Chem Features"
+title: "1.3.1 Q-Chem 功能概览"
 ---
 
-## 1.3.1 Overview of **Q-Chem** Features
+## 1.3.1 **Q-Chem** 功能概览
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-Quantum chemistry methods have proven invaluable for studying chemical and
-physical properties of molecules. The **Q-Chem** system brings together a variety
-of advanced computational methods and tools in an integrated *ab initio*
-software package, greatly improving the speed and accuracy of calculations
-being performed. In addition, **Q-Chem** will accommodate larger molecular
-structures than previously possible, with no loss in accuracy, thereby bringing
-the power of quantum chemistry to critical research projects for which this
-tool was previously unavailable. Below is a reverse-chronological listing of
-new features added to **Q-Chem**.
+量子化学方法在研究分子的化学与物理性质方面已被证明具有不可替代的价值。**Q-Chem** 系统将多种先进的计算方法与工具整合为一个一体化的 *ab initio*（从头算）软件包，显著提升了计算的速度与精度。此外，**Q-Chem** 能够处理比以往更大规模的分子结构，且不会牺牲任何精度，从而将量子化学的强大能力带给那些此前无法使用这一工具的关键研究项目。以下为 **Q-Chem** 新增功能的倒序（按时间由近及远）列表。

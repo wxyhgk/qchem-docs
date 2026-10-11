@@ -1,112 +1,88 @@
 ---
-title: "1.3.16 New Features in Q-Chem 4.1"
+title: "1.3.16 Q-Chem 4.1 新特性"
 ---
 
-## 1.3.16 New Features in **Q-Chem** 4.1
+## 1.3.16 **Q-Chem** 4.1 新特性
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
 - •
 
-Fundamental algorithms:
+基础算法：
 
 - **–**
 
-Improved parallel performance at all levels including new OpenMP capabilities for Hartree-Fock, DFT, MP2,
-and coupled cluster theory (Z. Gan, E. Epifanovsky, M. Goldey, and Y. Shao; Section [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel)).
+各层级的并行性能均得到提升，包括为 Hartree-Fock、密度泛函理论（Density Functional Theory, DFT）、二阶微扰理论（MP2）以及耦合簇（coupled cluster）理论新增的 OpenMP 能力（Z. Gan, E. Epifanovsky, M. Goldey, 和 Y. Shao；第 [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel) 节）。
 - **–**
 
-Significantly enhanced ECP capabilities, including gradients and frequencies in all basis sets for which the energy can be evaluated
-(Y. Shao and M. Head-Gordon; Section [8.10.7](../ch08_basis/sect_ECP_derivs.md)).
+显著增强了有效核心势（Effective Core Potential, ECP）能力，在所有可计算能量的基组（Basis Set）中均支持梯度和频率计算（Y. Shao 和 M. Head-Gordon；第 [8.10.7](../ch08_basis/sect_ECP_derivs.md) 节）。
 - •
 
-SCF and DFT capabilities:
+自洽场（SCF）与 DFT 能力：
 
 - **–**
 
-TDDFT energy with the M06, M08, and M11 series of functionals.
+支持 M06、M08 和 M11 系列泛函的含时密度泛函理论（TDDFT）能量计算。
 - **–**
 
-XYGJ-OS analytical energy gradient.
+XYGJ-OS 解析能量梯度。
 - **–**
 
-TDDFT/C-PCM excitation energies, gradient, and Hessian (J. Liu and W. Liang; Section [7.3.7](../ch07_excited/subsec_tddft-cPCM.md)).
+TDDFT/C-PCM 的激发能、梯度与 Hessian 矩阵（J. Liu 和 W. Liang；第 [7.3.7](../ch07_excited/subsec_tddft-cPCM.md) 节）。
 - **–**
 
-Additional features in the maximum overlap method (MOM) approach for converging difficult SCF calculations
-(N. A. Besley; Section [4.5.14](../ch04_scf/topic_mom.md)).
+在最重叠方法（maximum overlap method, MOM）中新增附加功能，用于收敛困难的 SCF 计算（N. A. Besley；第 [4.5.14](../ch04_scf/topic_mom.md) 节）。
 - •
 
-Wave function correlation capabilities:
+波函数相关方法能力：
 
 - **–**
 
-RI and Cholesky decomposition implementation of all CC and EOM-CC methods enabling
-applications to larger systems with reduced disk and memory requirements and
-improved performance (E. Epifanovsky, X. Feng, D. Zuev, Y. Shao, and A. I. Krylov; Sections [6.12.10](../ch06_correlation/topic_ricc.md) and [6.12.11](../ch06_correlation/topic_cdcc.md)).
+为所有耦合簇（CC）及 EOM-CC 方法实现了 Resolution of Identity（RI）与 Cholesky 分解，从而可将应用扩展至更大体系，同时降低磁盘与内存需求并提升性能（E. Epifanovsky, X. Feng, D. Zuev, Y. Shao, 和 A. I. Krylov；第 [6.12.10](../ch06_correlation/topic_ricc.md) 节与第 [6.12.11](../ch06_correlation/topic_cdcc.md) 节）。
 - **–**
 
-Attenuated MP2 theory in the aug-cc-pVDZ and aug-cc-pVTZ basis sets, which truncates two-electron integrals to cancel basis set superposition
-error, yielding results for intermolecular interactions that are much more accurate than standard MP2 in the same basis set
-(M. Goldey and M. Head-Gordon; Section [6.7](../ch06_correlation/topic_attmp2.md)).
+在 aug-cc-pVDZ 与 aug-cc-pVTZ 基组中提供衰减（attenuated）MP2 理论，通过对双电子积分进行截断来抵消基组重叠误差（basis set superposition error），在相同基组下所得分子间相互作用结果的精度远高于标准 MP2（M. Goldey 和 M. Head-Gordon；第 [6.7](../ch06_correlation/topic_attmp2.md) 节）。
 - **–**
 
-Extended RAS-$n$SF methodology for ground and excited states involving strong non-dynamical correlation
-(P. M. Zimmerman, D. Casanova, and M. Head-Gordon; Section [7.11](../ch07_excited/topic_rasi.md)).
+扩展了 RAS-$n$SF 方法学，适用于涉及强非动态相关的基态与激发态（P. M. Zimmerman, D. Casanova, 和 M. Head-Gordon；第 [7.11](../ch07_excited/topic_rasi.md) 节）。
 - **–**
 
-Coupled cluster valence bond (CCVB) method for describing molecules with strong spin correlations (D. W. Small and M. Head-Gordon;
-Section [6.19.3](../ch06_correlation/subsec_CCVB.md)).
+耦合簇价键（coupled cluster valence bond, CCVB）方法，用于描述具有强自旋关联的分子（D. W. Small 和 M. Head-Gordon；第 [6.19.3](../ch06_correlation/subsec_CCVB.md) 节）。
 - •
 
-Searching and scanning potential energy surfaces:
+势能面搜索与扫描：
 
 - **–**
 
-Potential energy surface scans (Y. Shao; Section [9.6](../ch09_opt/sec_pes-scan.md)).
+势能面（potential energy surface）扫描（Y. Shao；第 [9.6](../ch09_opt/sec_pes-scan.md) 节）。
 - **–**
 
-Improvements in automatic transition structure searching via the “freezing string” method,
-including the ability to perform such calculations without a Hessian calculation (S. M. Sharada and M. Head-Gordon;
-Section [9.3.3](../ch09_opt/sect_approx_hess.md)).
+通过“自由字符串（freezing string）”方法改进了自动过渡态搜索，包括无需进行 Hessian 矩阵计算即可完成此类计算的能力（S. M. Sharada 和 M. Head-Gordon；第 [9.3.3](../ch09_opt/sect_approx_hess.md) 节）。
 - **–**
 
-Enhancements to partial Hessian vibrational analysis (N. A. Besley; Section [10.8.4](../ch10_properties/partial-hess.md)).
+对偏 Hessian 振动分析（partial Hessian vibrational analysis）进行了增强（N. A. Besley；第 [10.8.4](../ch10_properties/partial-hess.md) 节）。
 - •
 
-Calculating and characterizing inter- and intramolecular interactions
+分子间与分子内相互作用的计算与表征
 
 - **–**
 
-Extension of EFP to macromolecules: fEFP approach (A. Laurent, D. Ghosh, A. I. Krylov, and L. V. Slipchenko; Section [11.5.5](../ch11_env/sec_fefp.md)).
+将有效片段势（Effective Fragment Potential, EFP）方法扩展至大分子体系：fEFP 方法（A. Laurent, D. Ghosh, A. I. Krylov, 和 L. V. Slipchenko；第 [11.5.5](../ch11_env/sec_fefp.md) 节）。
 - **–**
 
-Symmetry-adapted perturbation theory level at the “SAPT0” level,
-for intermolecular interaction energy decomposition analysis into
-physically-meaningful components such as electrostatics, induction, dispersion,
-and exchange. An RI version is also available (L. D. Jacobson, J. M. Herbert; Section [12.9](../ch12_frag/topic_sapt.md)).
+对称适配微扰理论（symmetry-adapted perturbation theory, SAPT）的“SAPT0”级别，可将分子间相互作用能分解为静电、诱导、色散与交换等有物理意义的成分。同时提供 RI 版本（L. D. Jacobson, J. M. Herbert；第 [12.9](../ch12_frag/topic_sapt.md) 节）。
 - **–**
 
-The “explicit polarization” (XPol) monomer-based SCF calculations to
-compute many-body polarization
-effects in linear-scaling time via charge embedding (Section [12.8](../ch12_frag/sect_xpol.md)), which
-can be combined either with empirical potentials (*e.g.*, Lennard-Jones) for
-the non-polarization parts of the intermolecular interactions, or better yet, with
-SAPT for an *ab initio* approach called XSAPT that extends SAPT to systems containing more that two monomers
-(L. D. Jacobson and J. M. Herbert; Section [12.10](../ch12_frag/sect_XSAPT.md)).
+“显极化（explicit polarization, XPol）”基于单体的 SCF 计算，通过电荷嵌入以线性标度时间计算多体极化效应（第 [12.8](../ch12_frag/sect_xpol.md) 节），既可经验势（*e.g.*，Lennard-Jones）与非极化部分的分子间相互作用相结合，也可更好地与 SAPT 结合，形成名为 XSAPT 的 *ab initio* 方法，将 SAPT 推广至包含两个以上单体的体系（L. D. Jacobson 和 J. M. Herbert；第 [12.10](../ch12_frag/sect_XSAPT.md) 节）。
 - **–**
 
-Extension of the absolutely-localized molecular orbital (ALMO)-based energy
-decomposition analysis to unrestricted cases (P. R. Horn and M. Head-Gordon; Section [12.5.3](../ch12_frag/sect_eda1.md)).
+将基于完全定域分子轨道（absolutely-localized molecular orbital, ALMO）的能量分解分析（energy decomposition analysis）扩展至非限制（unrestricted）情形（P. R. Horn 和 M. Head-Gordon；第 [12.5.3](../ch12_frag/sect_eda1.md) 节）。
 - **–**
 
-Calculation of the populations of “effectively unpaired electrons” in low-spin state using DFT,
-a new method of evaluating localized atomic magnetic moments within Kohn-Sham without symmetry breaking,
-and Mayer-type bond order analysis with inclusion of static correlation effects (E. I. Proynov; Section [10.2.4](../ch10_properties/sect_odd_electron.md)).
+利用 DFT 计算低自旋态下“有效未成对电子（effectively unpaired electrons）”的布居数；一种在 Kohn-Sham 框架内无需对称性破缺即可评估定域原子磁矩的新方法；以及包含静态相关效应的 Mayer 型键级分析（E. I. Proynov；第 [10.2.4](../ch10_properties/sect_odd_electron.md) 节）。
 - •
 
-Quantum transport calculations including electron transmission
-functions and electron tunneling currents under applied bias voltage (B. D. Dunietz and N. Sergueev; Section [13.4](../ch13_specialized/sect_transport.md)).
+量子输运计算，包括电子透射函数以及外加偏压下的电子隧穿电流（B. D. Dunietz 和 N. Sergueev；第 [13.4](../ch13_specialized/sect_transport.md) 节）。
 - •
 
-Searchable online version of the **Q-Chem** PDF manual (J. M. Herbert and E. Epifanovsky).
+提供可检索的在线版 **Q-Chem** PDF 手册（J. M. Herbert 和 E. Epifanovsky）。

@@ -2,32 +2,32 @@
 title: "1.3.13 New Features in Q-Chem 4.4"
 ---
 
-## 1.3.13 New Features in **Q-Chem** 4.4
+## 1.3.13 **Q-Chem** 4.4 新特性
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
 - •
 
-occ-RI-K algorithm for the evaluation of exact exchange in energy and force calculations
-(S. Manzer, F. Rob, M. Head-Gordon); Section [4.6.8](../ch04_scf/subsec_occrik.md).
+用于能量和力计算中精确交换（exact exchange）求值的 occ-RI-K 算法
+(S. Manzer, F. Rob, M. Head-Gordon)；参见第 [4.6.8](../ch04_scf/subsec_occrik.md) 节。
 - •
 
-Combinatorially-optimized exchange-correlation functionals
-(N. Mardirossian, M. Head-Gordon); Section [5.3](../ch05_dft/sect_XCfuncs.md)):
+组合优化交换-关联泛函（combinatorially-optimized exchange-correlation functionals）
+(N. Mardirossian, M. Head-Gordon)；参见第 [5.3](../ch05_dft/sect_XCfuncs.md) 节：
 
 - **–**
 
-$\omega$B97M-V (range-separated hybrid, meta-GGA functional with VV10 non-local correlation)
+$\omega$B97M-V（带 VV10 非局域关联的 range-separated hybrid meta-GGA 泛函）
 - **–**
 
-B97M-V (meta-GGA functional with VV10 non-local correlation)
+B97M-V（带 VV10 非局域关联的 meta-GGA 泛函）
 - **–**
 
-$\omega$B97X-V (range-separated hybrid functional with VV10 non-local correlation)
+$\omega$B97X-V（带 VV10 非局域关联的 range-separated hybrid 泛函）
 - •
 
-Implementation of new exchange-correlation functionals from the literature (N. Mardirossian and M. Head-Gordon;
-Section [5.3](../ch05_dft/sect_XCfuncs.md)). These include:
+实现来自文献的新型交换-关联泛函（N. Mardirossian 和 M. Head-Gordon；
+参见第 [5.3](../ch05_dft/sect_XCfuncs.md) 节）。包括：
 
 - **–**
 
@@ -50,60 +50,58 @@ SRC1-R1, SRC1-R2, SRC2-R1, SRC2-R2
 B1LYP, B1PW91, MPW1K, LRC-BOP, BHH, BB1K, PW6B95, PWB6K, B2PLYP
 - •
 
-Hessian-free minimum point verification (S. Sharada, M. Head-Gordon); Section [9.3.3](../ch09_opt/sect_approx_hess.md))
+无 Hessian 极小点验证（Hessian-free minimum point verification）(S. Sharada, M. Head-Gordon)；参见第 [9.3.3](../ch09_opt/sect_approx_hess.md) 节。
 - •
 
-Exciton-based excited-state models:
+基于激子（exciton）的激发态模型：
 
 - **–**
 
-*Ab initio* Frenkel-Davydov model for coupled excitations in multi-chromophore systems
-(A. F. Morrison, J. M. Herbert); Section [12.14](../ch12_frag/sect_AIFDEM.md).
+用于多生色团（multi-chromophore）体系耦合激发的 *ab initio* Frenkel-Davydov 模型
+(A. F. Morrison, J. M. Herbert)；参见第 [12.14](../ch12_frag/sect_AIFDEM.md) 节。
 - **–**
 
-TDDFT for molecular interactions [TDDFT(MI)], a set of local excitation
-approximations for efficient TDDFT calculations in multi-chromophore systems and for single
-chromophores in the presence of explicit solvent molecules
-(J. Liu, J. M. Herbert); Section [12.15](../ch12_frag/sec_TDDFT(MI).md).
+分子间相互作用的 TDDFT [TDDFT(MI)]，一套用于多生色团体系高效 TDDFT 计算的局域激发近似方法，
+也适用于含显式溶剂分子环境的单生色团体系
+(J. Liu, J. M. Herbert)；参见第 [12.15](../ch12_frag/sec_TDDFT(MI).md) 节。
 - •
 
-Improvements to many-body and XSAPT methods (K. U. Lao, J. M. Herbert):
+多体（many-body）及 XSAPT 方法的改进（K. U. Lao, J. M. Herbert）：
 
 - **–**
 
-MPI-parallelized many-body expansion with analytic gradient (Section [12.12](../ch12_frag/sec_MBE.md)).
+MPI 并行的多体展开（many-body expansion）及解析梯度（参见第 [12.12](../ch12_frag/sec_MBE.md) 节）。
 - **–**
 
-Efficient atomic orbital implementation of XSAPT for both closed- and open-shell systems
-(Section [12.10.3](../ch12_frag/subsec_AO-XSAPT(KS)+D.md)).
+XSAPT 的高效原子轨道实现，适用于闭壳层和开壳层体系
+（参见第 [12.10.3](../ch12_frag/subsec_AO-XSAPT(KS)+D.md) 节）。
 - •
 
-Thermostats for *ab initio* molecular dynamics (R. P. Steele, J. M. Herbert).
+用于 *ab initio* 分子动力学（molecular dynamics）的恒温器（thermostat）(R. P. Steele, J. M. Herbert)。
 - •
 
-Analytic energy gradient for the Ewald summation in QM/MM calculations (Z. C. Holden, J. M. Herbert).
+QM/MM 计算中 Ewald 求和的解析能量梯度（analytic energy gradient）(Z. C. Holden, J. M. Herbert)。
 - •
 
-Zeolite QM/MM methods (J. Gomes, M. Head-Gordon).
+沸石（zeolite）QM/MM 方法（J. Gomes, M. Head-Gordon）。
 - •
 
-EOM-MP2 methods for excitation, ionization and electron attachment energies
-(A. Kunitsa, K. Bravaya); Section [7.9.5.1](../ch07_excited/Ch7.S9.SS5.md#sec:EOMMP2).
+用于激发能、电离能及电子附着能的 EOM-MP2 方法
+(A. Kunitsa, K. Bravaya)；参见第 [7.9.5.1](../ch07_excited/Ch7.S9.SS5.md#sec:EOMMP2) 节。
 - •
 
-Evaluation of polarizabilities using CCSD and EOM-CCSD wave functions
-(K. Nanda, A. I. Krylov); Section [7.9.21.8](../ch07_excited/sec_EOMGRAD.md#sec:EOMpol).
+利用 CCSD 和 EOM-CCSD 波函数求值极化率（polarizabilities）
+(K. Nanda, A. I. Krylov)；参见第 [7.9.21.8](../ch07_excited/sec_EOMGRAD.md#sec:EOMpol) 节。
 - •
 
-Distributed-memory parallel implementation of CC and EOM-CC methods
-and performance improvements in disk-based algorithms (E. Epifanovsky, I. Kaliman, A. I. Krylov).
+CC 和 EOM-CC 方法的分布式内存并行实现，以及基于磁盘算法的性能优化（E. Epifanovsky, I. Kaliman, A. I. Krylov）。
 - •
 
-Improvements to the maximum overlap method (MOM) for SCF calculations (A. T. B. Gilbert); Section [7.7.2](../ch07_excited/ex_OpSing.md).
+SCF 计算中最大重叠方法（maximum overlap method, MOM）的改进（A. T. B. Gilbert）；参见第 [7.7.2](../ch07_excited/ex_OpSing.md) 节。
 - •
 
-Non-equilibrium PCM method to describe solvent effects in ADC excited-state calculations
-(J.-M. Mewes, A. Dreuw); Section [7.10.11](../ch07_excited/topic_abs-adc.md).
+用于描述 ADC 激发态计算中溶剂效应的非平衡态（non-equilibrium）PCM 方法
+(J.-M. Mewes, A. Dreuw)；参见第 [7.10.11](../ch07_excited/topic_abs-adc.md) 节。
 - •
 
-Spin-flip ADC method (D. Lefrancois, A. Dreuw); Section [7.10.8](../ch07_excited/sect_SF-ADC.md).
+自旋反转 ADC 方法（spin-flip ADC method）(D. Lefrancois, A. Dreuw)；参见第 [7.10.8](../ch07_excited/sect_SF-ADC.md) 节。

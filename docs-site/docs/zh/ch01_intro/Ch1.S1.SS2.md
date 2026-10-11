@@ -1,79 +1,71 @@
 ---
-title: "1.1.2 Chapter Summaries"
+title: "1.1.2 章节摘要"
 ---
 
-## 1.1.2 Chapter Summaries
+## 1.1.2 章节摘要
 
 (July 4, 2026)
 
-**Ch. 1:**
+**第 1 章：**
 
-General overview of **Q-Chem**’s features, contributors, and contact information.
+**Q-Chem** 功能、贡献者及联系方式的总体概述。
 
-**Ch. 2:**
+**第 2 章：**
 
-Procedures to install, test, and run **Q-Chem** on your machine.
+在用户机器上安装、测试和运行 **Q-Chem** 的操作步骤。
 
-**Ch. 3:**
+**第 3 章：**
 
-Overview of the **Q-Chem** command-line input.
+**Q-Chem** 命令行输入的概述。
 
-**Ch. 4:**
+**第 4 章：**
 
-Running ground-state self-consistent field calculations.
+运行基态自洽场（Self-Consistent Field, SCF）计算。
 
-**Ch. 5:**
+**第 5 章：**
 
-Details specific to running density functional theory (DFT) calculations.
+运行密度泛函理论（Density Functional Theory, DFT）计算的专项细节。
 
-**Ch. 6:**
+**第 6 章：**
 
-Running post-Hartree-Fock correlated wave function calculations for ground states.
+运行基态的后 Hartree-Fock（post-Hartree-Fock）关联波函数计算。
 
-**Ch. 7:**
+**第 7 章：**
 
-Running calculations for excited states and open-shell species.
+运行激发态与开壳层（open-shell）物种的计算。
 
-**Ch. 8:**
+**第 8 章：**
 
-Using **Q-Chem**’s built-in basis sets, or specifying a user-defined basis set.
+使用 **Q-Chem** 内置基组（Basis Set），或指定用户自定义基组。
 
-**Ch. 9:**
+**第 9 章：**
 
-Using **Q-Chem**’s effective core potential capabilities.
+使用 **Q-Chem** 的有效核势（Effective Core Potential, ECP）功能。
 
-**Ch. 10:**
+**第 10 章：**
 
-Options available for exploring potential energy surfaces, such as determining
-critical points (transition states and local minima on a single surface, or
-minimum-energy crossing points between surfaces) as well as *ab initio*
-molecular dynamics.
+用于探索势能面的可用选项，例如确定临界点（单一势能面上的过渡态和局部极小值，或不同势能面之间的最小能量交叉点），以及 *ab initio* 分子动力学。
 
-**Ch. 11:**
+**第 11 章：**
 
-Molecular properties and *a posteriori* wave function analysis.
+分子性质计算与 *a posteriori*（事后）波函数分析。
 
-**Ch. 12:**
+**第 12 章：**
 
-Methods for molecules in complex environments, including implicit solvation
-models, QM/MM models, the Effective Fragment Potential, and density
-embedding.
+复杂环境中分子的计算方法，包括隐式溶剂化模型（implicit solvation models）、量子力学/分子力学（QM/MM）模型、有效片段势（Effective Fragment Potential, EFP）以及密度嵌入（density embedding）。
 
-**Ch. 13:**
+**第 13 章：**
 
-Fragment-based approaches for efficient calculations on large systems,
-calculation of non-covalent interactions, and energy decomposition analysis.
+面向大体系高效计算的基于片段（Fragment-based）的方法、非共价相互作用的计算以及能量分解分析（Energy Decomposition Analysis）。
 
-**App. A:**
+**附录 A：**
 
-Overview of the **AOInts** library, which
-contains some of the fastest two-electron integral code currently available.
+**AOInts** 库概述，该库包含目前可用的部分最快的两电子积分（two-electron integral）代码。
 
-**App. B:**
+**附录 B：**
 
-Quick-reference section containing an alphabetized list of job control
-variables.
+快速参考部分，包含按字母顺序排列的作业控制变量（job control variables）列表。
 
-**App. C:**
+**附录 C：**
 
-Overview of third-party packages.
+第三方库概述。

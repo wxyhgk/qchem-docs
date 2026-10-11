@@ -1,15 +1,15 @@
 ---
-title: "Chapter 1 Introduction"
+title: "第 1 章 引言"
 ---
 
-# Chapter 1 Introduction
+# 第 1 章 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [1.1 About This Manual](Ch1.S1.md)
+- [1.1 关于本手册](Ch1.S1.md)
 
-- [1.2 **Q-Chem**, Inc.](Ch1.S2.md)
+- [1.2 **Q-Chem** 公司](Ch1.S2.md)
 
-- [1.3 **Q-Chem** Features](sect_features.md)
+- [1.3 **Q-Chem** 功能特性](sect_features.md)
 
-- [1.4 Citing **Q-Chem**](sec_cite.md)
+- [1.4 引用 **Q-Chem**](sec_cite.md)

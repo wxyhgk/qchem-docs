@@ -1,183 +1,183 @@
 ---
-title: "1.3.20 Summary of Features Prior to Q-Chem 3.0"
+title: "1.3.20 Q-Chem 3.0 之前版本特性汇总"
 ---
 
-## 1.3.20 Summary of Features Prior to **Q-Chem** 3.0
+## 1.3.20 Q-Chem 3.0 之前版本特性汇总
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 - •
 
-Efficient algorithms for large-molecule density functional calculations:
+大分子密度泛函计算的高效算法：
 
 - **–**
 
-CFMM for linear scaling Coulomb interactions (energies and gradients) (C. A. White).
+用于线性标度库仑相互作用（能量与梯度）的 CFMM（连续多极矩方法，C. A. White）。
 - **–**
 
-Second-generation J-engine and J-force engine (Y. Shao).
+第二代 J-engine（J 引擎）与 J-force engine（J 力引擎）（Y. Shao）。
 - **–**
 
-LinK for exchange energies and forces (C. Ochsenfeld and C. A. White).
+用于交换能量与受力的 LinK（线性标度交换方法，C. Ochsenfeld 和 C. A. White）。
 - **–**
 
-Linear scaling DFT exchange-correlation quadrature.
+线性标度密度泛函理论（DFT）交换-相关求积。
 - •
 
-Local, gradient-corrected, and hybrid DFT functionals:
+局域、梯度修正及杂化 DFT 泛函：
 
 - **–**
 
-Slater, Becke, GGA91 and Gill ‘96 exchange functionals.
+Slater、Becke、GGA91 和 Gill '96 交换泛函。
 - **–**
 
-VWN, PZ81, Wigner, Perdew86, LYP and GGA91 correlation functionals.
+VWN、PZ81、Wigner、Perdew86、LYP 和 GGA91 相关泛函。
 - **–**
 
-EDF1 exchange-correlation functional (R. Adamson).
+EDF1 交换-相关泛函（R. Adamson）。
 - **–**
 
-B3LYP, B3P and user-definable hybrid functionals.
+B3LYP、B3P 及用户可定义的杂化泛函。
 - **–**
 
-Analytical gradients and analytical frequencies.
+解析梯度与解析频率。
 - **–**
 
-SG-0 standard quadrature grid (S.-H. Chien).
+SG-0 标准求积网格（S.-H. Chien）。
 - **–**
 
-Lebedev grids up to 5294 points (S. T. Brown).
+多达 5294 个点的 Lebedev 网格（S. T. Brown）。
 - •
 
-High level wave function-based electron correlation methods
+高精度基于波函数的电子相关方法
 
 - **–**
 
-Efficient semi-direct MP2 energies and gradients.
+高效的半直接式（semi-direct）MP2 能量与梯度。
 - **–**
 
-MP3, MP4, QCISD, CCSD energies.
+MP3、MP4、QCISD、CCSD 能量。
 - **–**
 
-OD and QCCD energies and analytical gradients.
+OD（开口壳层双取代耦合簇）与 QCCD（四取代耦合簇）能量及解析梯度。
 - **–**
 
-Triples corrections (QCISD(T), CCSD(T) and OD(T) energies).
+三取代修正（QCISD(T)、CCSD(T) 和 OD(T) 能量）。
 - **–**
 
-CCSD(2) and OD(2) energies.
+CCSD(2) 和 OD(2) 能量。
 - **–**
 
-Active space coupled cluster methods: VOD, VQCCD, VOD(2).
+活性空间耦合簇方法：VOD、VQCCD、VOD(2)。
 - **–**
 
-Local second order Møller-Plesset (MP2) methods (DIM and TRIM).
+局域二阶 Møller-Plesset（MP2）方法（DIM 与 TRIM）。
 - **–**
 
-Improved definitions of core electrons for post-HF correlation (V. A. Rassolov).
+针对 HF 之后相关方法中芯电子定义的改进（V. A. Rassolov）。
 - •
 
-Extensive excited state capabilities:
+丰富的激发态计算能力：
 
 - **–**
 
-CIS energies, analytical gradients and analytical frequencies.
+CIS（组态相互作用单取代）能量、解析梯度与解析频率。
 - **–**
 
-CIS(D) energies.
+CIS(D) 能量。
 - **–**
 
-Time-dependent density functional theory energies (TDDFT).
+含时密度泛函理论（TDDFT）能量。
 - **–**
 
-Coupled cluster excited state energies, OD and VOD (A. I. Krylov).
+耦合簇激发态能量，OD 与 VOD（A. I. Krylov）。
 - **–**
 
-Coupled-cluster excited-state geometry optimizations.
+耦合簇激发态几何优化。
 - **–**
 
-Coupled-cluster property calculations (dipoles, transition dipoles).
+耦合簇性质计算（偶极矩、跃迁偶极矩）。
 - **–**
 
-Spin-flip calculations for CCSD and TDDFT excited states
-(A. I. Krylov and Y. Shao).
+针对 CCSD 与 TDDFT 激发态的自旋翻转（spin-flip）计算
+（A. I. Krylov 和 Y. Shao）。
 - •
 
-High performance geometry and transition structure optimization (J. Baker):
+高性能几何结构与过渡态优化（J. Baker）：
 
 - **–**
 
-Optimizes in Cartesian, *Z*-matrix or delocalized internal coordinates.
+可在笛卡尔坐标、*Z*-矩阵（Z 矩阵）或离域内坐标下进行优化。
 - **–**
 
-Impose bond angle, dihedral angle (torsion) or out-of-plane bend constraints.
+可施加键角、二面角（扭转角）或面外弯曲约束。
 - **–**
 
-Freezes atoms in Cartesian coordinates.
+可在笛卡尔坐标下冻结原子。
 - **–**
 
-Constraints do not need to be satisfied in the starting structure.
+初始结构无需满足约束条件。
 - **–**
 
-Geometry optimization in the presence of fixed point charges.
+存在固定点电荷情况下的几何优化。
 - **–**
 
-Intrinsic reaction coordinate (IRC) following code.
+内禀反应坐标（IRC）跟踪程序。
 - •
 
-Evaluation and visualization of molecular properties
+分子性质的计算与可视化
 
 - **–**
 
-Kirkwood-Onsager, SS(V)PE, and Langevin dipoles solvation models.
+Kirkwood-Onsager、SS(V)PE 和 Langevin 偶极子溶剂化模型。
 - **–**
 
-Evaluate densities, electrostatic potentials, orbitals over cubes for plotting.
+在网格立方体上计算密度、静电势、轨道用于绘图。
 - **–**
 
-Natural Bond Orbital (NBO) analysis.
+自然键轨道（NBO）分析。
 - **–**
 
-Attachment/detachment densities for excited states via CIS, TDDFT.
+通过 CIS、TDDFT 计算激发态的附着/解离密度（attachment/detachment densities）。
 - **–**
 
-Vibrational analysis after evaluation of the nuclear coordinate Hessian.
+计算核坐标 Hessian（海塞矩阵）后的振动分析。
 - **–**
 
-Isotopic substitution for frequency calculations (R. Doerksen).
+用于频率计算的同位素取代（R. Doerksen）。
 - **–**
 
-NMR chemical shifts (J. Kussmann).
+核磁共振（NMR）化学位移（J. Kussmann）。
 - **–**
 
-Atoms in Molecules (AIMPAC) support (J. Ritchie).
+分子中的原子（AIM）支持（AIMPAC 程序，J. Ritchie）。
 - **–**
 
-Stability analysis of SCF wave functions (Y. Shao).
+自洽场（SCF）波函数的稳定性分析（Y. Shao）。
 - **–**
 
-Calculation of position and momentum molecular intracules
-A. Lee, N. A. Besley, and D. P. O’Neill).
+位置-动量分子内函（intracules）的计算
+（A. Lee、N. A. Besley 和 D. P. O'Neill）。
 - •
 
-Flexible basis set and effective core potential (ECP) functionality:
-(Ross Adamson and Peter Gill)
+灵活的基组与有效核势（ECP）功能：
+（Ross Adamson 和 Peter Gill）
 
 - **–**
 
-Wide range of built-in basis sets and ECPs.
+内置丰富的基组与 ECP。
 - **–**
 
-Basis set superposition error correction.
+基组重叠误差（BSSE）校正。
 - **–**
 
-Support for mixed and user-defined basis sets.
+支持混合基组与用户自定义基组。
 - **–**
 
-Effective core potentials for energies and gradients.
+用于能量与梯度的有效核势。
 - **–**
 
-Highly efficient PRISM-based algorithms to evaluate ECP matrix elements.
+基于 PRISM 的高效算法用于计算 ECP 矩阵元。
 - **–**
 
-Faster and more accurate ECP second derivatives for frequencies.
+用于频率计算的更快、更精确的 ECP 二阶导数。

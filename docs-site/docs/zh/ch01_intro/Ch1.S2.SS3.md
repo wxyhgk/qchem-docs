@@ -1,13 +1,9 @@
 ---
-title: "1.2.3 Company Mission"
+title: "1.2.3 公司使命"
 ---
 
-## 1.2.3 Company Mission
+## 1.2.3 公司使命
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The mission of **Q-Chem**, Inc. is to develop, distribute, and support innovative
-and *sustainable*
-quantum chemistry software for industrial, government and academic researchers
-in the chemical, petrochemical, biochemical, pharmaceutical and material
-sciences.
+**Q-Chem** 公司的使命是开发、发行并支持创新型且*可持续*的量子化学软件，服务于化工、石化、生物化学、制药以及材料科学领域的工业界、政府机构和学术界研究人员。
