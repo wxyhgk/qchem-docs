@@ -1,64 +1,41 @@
 ---
-title: "12.6.7 ALMO-EDA with Non-Aufbau Electronic Configurations"
+title: "12.6.7 采用非 *Aufbau*（非构造原理）电子组态的 ALMO-EDA"
 ---
 
-## 12.6.7 ALMO-EDA with Non-*Aufbau* Electronic Configurations
+## 12.6.7 采用非 *Aufbau*（非构造原理）电子组态的 ALMO-EDA
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** also supports ALMO-EDA calculations with one or multiple
-fragments in non-*aufbau* electronic configurations.[[899]](../bib_references/bib.md#bib931)
- This method is
-particularly useful for cases where the energetically most stable electronic
-state of a given fragment changes upon the formation of intermolecular
-complex, which is common for systems involving open-shell species such
-as carbenes, transition metal cations, etc. For example, the lowest-energy
-electronic configuration of an isolated Ba${}^{+}$ radical cation is 6s${}^{1}$;
-however, when it is ligated with CO, the complex is more stable when
-the unpaired electron of Ba${}^{+}$ is promoted from 6s${}^{1}$ to 5d${}^{1}$, which
-is thus in a non-*aufbau* state relative to the isolated Ba${}^{+}$ cation. A
-sensible strategy to study the formation of such a complex is to perform
-an ALMO-EDA calculation with Ba${}^{+}$ in the 5d${}^{1}$ electronic configuration,
-and then evaluate the energy difference between Ba${}^{+}$(5d${}^{1}$) and
-Ba${}^{+}$(6s${}^{1}$) and interpret that as the monomer “electronic preparation”
-energy. To ensure that the system stays in a given non-*aufbau* electronic
-configuration throughout, the Maximum Overlap Method [[443]](../bib_references/bib.md#bib455)
- (MOM,
-see Sec. [4.5.14](../ch04_scf/topic_mom.md) for details) is applied to almost all stages in ALMO-EDA,
-including (i) isolated fragment calculations, (ii) calculation for the polarized wave function,
-and (iii) full SCF calculation for the whole system. Among them, (i) and (iii) are
-standard SCF calculations using MOM, while (ii) involves the application of MOM
-to an SCF-MI calculation,[[899]](../bib_references/bib.md#bib931)
- which is compatible with the use of
-DIIS algorithm to solve locally projected SCF equations (with FRGM_METHOD =
-STOLL or GIA, see Section [12.5.1](sect_lp_scf.md)).
+**Q-Chem** 还支持一个或多个片段（fragment）处于非 *aufbau*（非构造原理）电子组态的 ALMO-EDA（绝对定域分子轨道能量分解分析，Absolutely Localized Molecular Orbital Energy Decomposition Analysis）计算。[[899]](../bib_references/bib.md#bib931)
+该方法特别适用于如下情形：给定片段在形成分子间复合物后，其能量最稳定的电子态发生了变化——这在涉及开壳层（open-shell）物种（如卡宾、过渡金属阳离子等）的体系中十分常见。例如，孤立的 Ba${}^{+}$ 自由基阳离子的最低能量电子组态为 6s${}^{1}$；
+然而，当其与 CO 配位时，若 Ba${}^{+}$ 的单电子从 6s${}^{1}$ 激发至 5d${}^{1}$，复合物反而更加稳定，因而相对于孤立的 Ba${}^{+}$ 阳离子，该组态处于非 *aufbau* 状态。
+研究此类复合物形成的一种合理策略是：对处于 5d${}^{1}$ 电子组态的 Ba${}^{+}$ 执行 ALMO-EDA 计算，
+然后评估 Ba${}^{+}$(5d${}^{1}$) 与 Ba${}^{+}$(6s${}^{1}$) 之间的能量差，并将其解释为单体的“电子激发制备（electronic preparation）”能。
+为确保体系在整个计算过程中保持在给定的非 *aufbau* 电子组态，
+最大重叠方法（Maximum Overlap Method）[[443]](../bib_references/bib.md#bib455)
+（MOM，详见第 [4.5.14](../ch04_scf/topic_mom.md) 节）被应用于 ALMO-EDA 的几乎所有阶段，包括 (i) 孤立片段计算、(ii) 极化波函数计算，以及 (iii) 整个体系的完整自洽场（Self-Consistent Field, SCF）计算。
+其中，(i) 与 (iii) 是使用 MOM 的标准 SCF 计算，而 (ii) 则是将 MOM 应用于 SCF-MI（片段间自洽场，SCF in Molecular Interacting fragments）计算，[[899]](../bib_references/bib.md#bib931)
+该做法与使用直接迭代在子空间中的方法（Direct Inversion in the Iterative Subspace, DIIS）算法求解局域投影 SCF 方程（FRGM_METHOD = STOLL 或 GIA，见第 [12.5.1](sect_lp_scf.md) 节）相兼容。
 
-Specifically, an ALMO-EDA calculation for a complex within a non-*aufbau*
-electronic configuration (assuming only one of the fragments is excited)
-comprises the following steps:
+具体而言，对处于非 *aufbau* 电子组态的复合物进行 ALMO-EDA 计算（假设仅有一个片段被激发）
+包含以下步骤：
 
 - •
 
-Perform ground-state SCF calculations for all fragments
+对所有片段执行基态 SCF 计算
 - •
 
-Calculate the non-*aufbau* electronic configuration for the fragment
-as specified in the input using MOM: the energy consumed to excite this fragment
-is reported in the output as the *preparation* energy ($E_{\mathrm{prp}}$);
-construct the frozen state for the system with that one fragment in the
-non-*aufbau* state and the rest in ground state
+使用 MOM，按输入中指定的方式计算该片段的非 *aufbau* 电子组态：激发该片段所消耗的能量在输出中以*制备（preparation）*能（$E_{\mathrm{prp}}$）的形式报告；
+以此构建体系的冻结态（frozen state），即该片段处于非 *aufbau* 态，其余片段处于基态
 - •
 
-Starting from the frozen state, perform an SCF-MI calculation with MOM
-to obtain the polarized state within the non-*aufbau* electronic configuration
+从冻结态出发，执行带 MOM 的 SCF-MI 计算，以获得非 *aufbau* 电子组态下的极化态（polarized state）
 - •
 
-Perform a full SCF calculation with MOM, starting from the polarized
-wave function in the non-*aufbau* state
+从非 *aufbau* 态下的极化波函数出发，执行带 MOM 的完整 SCF 计算
 
-Such a calculation requires EDA2_MOM = TRUE in addition to
-the setup of standard EDA2 jobs. The non-*aufbau* electronic state is specified
-through the *$scfmi_mom* input section, which has the following format:
+此类计算除标准 EDA2 任务的常规设置外，还需要设置 EDA2_MOM = TRUE。
+非 *aufbau* 电子态通过 *$scfmi_mom* 输入节来指定，其格式如下：
 
 > ```qchem
 > $scfmi_mom
@@ -68,16 +45,11 @@ through the *$scfmi_mom* input section, which has the following format:
 > $end
 > ```
 
-In each row, the first entry specifies the index of the non-*aufbau* fragment
-(starting from 1). The second and third entries specify the non-*aufbau*
-electronic configuration, which is prepared by promoting an electron from
-a given fragment’s HOMO$-$X to LUMO$+$Y once the ground-state
-SCF calculation of that fragment is finished. The last entry specifies the spin
-of the occupied and virtual orbitals that are being swapped (“a” for $\alpha$
-electrons and “b” for $\beta$ electrons, and $\alpha$ orbitals will be used by
-default if the fourth entry is left blank). For instance, for a
-HOMO$\rightarrow$LUMO excitation on the first fragment, this section would
-simply look like
+在每一行中，第一个条目指定非 *aufbau* 片段的索引（从 1 开始）。第二个与第三个条目指定非 *aufbau*
+电子组态，其构造方式为：在该片段的基态 SCF 计算完成后，将一个电子从该片段的 HOMO$-$X 激发到 LUMO$+$Y。
+最后一个条目指定被交换的占据轨道与虚轨道的自旋（“a” 表示 $\alpha$ 电子，“b” 表示 $\beta$ 电子；
+若第四个条目留空，则默认使用 $\alpha$ 轨道）。例如，若要在第一个片段上执行
+HOMO$\rightarrow$LUMO 激发，该节只需写成
 
 > ```qchem
 > $scfmi_mom
@@ -85,53 +57,43 @@ simply look like
 > $end
 > ```
 
-**Q-Chem** 5 also allows one to perform SCF-MI calculations for non-*aufbau* electronic
-configurations,[[899]](../bib_references/bib.md#bib931)
- without going through the entire ALMO-EDA procedure.
-To do that, one can simply add SCFMI_MOM = TRUE to the *$rem* setup of an
-SCF-MI calculation (see Section [12.6.2](sect_gen_scfmi.md)). The non-*aufbau* electronic
-configuration can be specified through the *$scfmi_mom* section in the same way.
+**Q-Chem** 5 还允许在不执行完整 ALMO-EDA 流程的情况下，对非 *aufbau* 电子组态进行 SCF-MI 计算，[[899]](../bib_references/bib.md#bib931)
+做法非常简单：只需在 SCF-MI 计算的 *$rem* 设置中添加 SCFMI_MOM = TRUE（见第 [12.6.2](sect_gen_scfmi.md) 节）。
+非 *aufbau* 电子组态同样可以通过 *$scfmi_mom* 节按相同方式指定。
 
 EDA2_MOM
 
 ### `EDA2_MOM`
 
-> **Perform ALMO-EDA calculation with non- aufbau electronic configurations using MOM**
+> **使用 MOM 对非 *aufbau*（非构造原理）电子组态执行 ALMO-EDA 计算**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`BOOLEAN`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * FALSE
->     * Standard ALMO-EDA calculation
+>     * 标准 ALMO-EDA 计算
 >     * TRUE
->     * ALMO-EDA for non-
+>     * 针对非
 >     * aufbau
->     * states
-> * **Recommendation**: None
-
-SCFMI_MOM
+>     * 态的 ALMO-EDA 计算
+> * **建议**：无
 
 ### `SCFMI_MOM`
 
-> **Perform an SCF-MI calculation with non- aufbau electronic configurations using MOM**
+> **使用 MOM 对非构造原理（non-aufbau）电子组态执行 SCF-MI 计算**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Standard SCF-MI calculation
+>     * 标准 SCF-MI 计算
 >     * TRUE
->     * SCF-MI calculation with MOM
-> * **Recommendation**: None
+>     * 使用 MOM 的 SCF-MI 计算
+> * **建议**: 无
 
-Note that EDA2_MOM and SCFMI_MOM can be used without
-explicitly setting the *$scfmi_mom* section, where the electronic configuration of the
-frozen state constructed from two ground-state fragments will be preserved in the SCF-MI
-or ALMO-EDA calculation.
+请注意，EDA2_MOM 与 SCFMI_MOM 可以在不显式设置 *$scfmi_mom* 段的情况下使用，此时在 SCF-MI 或 ALMO-EDA 计算中，将由两个基态碎片构造的冻结态的电子组态得以保留。
 
-???+ example "Example 12.19: ALMO-EDA calculation for the [Ba(CO)] ${}^{+}$ complex with Ba ${}^{+}$ in the
-5d ${}^{1}$ electronic configuration at the B3LYP/def2-TZVP level.
-The $scfmi_mom section specifies that the unpaired $\alpha$ electron in the 6s orbital is promoted to one of the 5d orbitals."
+???+ example "示例 12.19: 在 B3LYP/def2-TZVP 水平下，对 Ba 处于 5d ${}^{1}$ 非构造原理电子组态的 [Ba(CO)] ${}^{+}$ 配合物进行 ALMO-EDA 计算。$scfmi_mom 段指定将 6s 轨道中的单电子 $\alpha$ 电子提升至某个 5d 轨道。"
     ```qchem
     $molecule
     1 2

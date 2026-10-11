@@ -1,22 +1,12 @@
 ---
-title: "12.2.1 Overview"
+title: "12.2.1 概述"
 ---
 
-## 12.2.1 Overview
+## 12.2.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-To request any of the methods mentioned above one must specify how system is
-partitioned into fragments. All atoms and all electrons in the systems should
-be assigned to a fragment. Each fragment must contain an integer number of
-electrons. In the current implementation, both open and closed-shell fragments
-are allowed. In order to specify fragments, the fragment descriptors must be
-inserted into the *$molecule* section of the **Q-Chem** input file. A fragment
-descriptor consists of two lines: the first line must start with two hyphens
-followed by optional comments, the second line must contain the charge and the
-multiplicity of the fragment. At least two fragments must be specified.
-Fragment descriptors in the *$molecule* section does not affect jobs that are
-not designed to use fragmentation.
+若要请求使用上述任何方法，必须指定体系如何划分为片段（Fragment）。体系中的所有原子和所有电子都应被分配到某个片段中。每个片段必须包含整数个电子。在当前实现中，开壳层（Open-shell）和闭壳层（Closed-shell）片段均被允许。为了指定片段，片段描述符（Fragment descriptor）必须插入到 **Q-Chem** 输入文件的 *$molecule* 部分中。一个片段描述符由两行组成：第一行必须以两个连字符开头，后跟可选的注释；第二行必须包含该片段的电荷和多重度（Multiplicity）。至少必须指定两个片段。*$molecule* 部分中的片段描述符不会影响那些并非设计为使用片段化方法的计算任务。
 
 ```qchem
 $molecule
@@ -37,11 +27,7 @@ $molecule
 $end
 ```
 
-Open shell systems must have a number of alpha electrons greater than the
-number of beta electrons. However, individual fragments in the system can be
-made to contain excess beta electrons by specifying a negative multiplicity.
-For instance, a multiplicity of $-2$ indicates one excess beta electron, as in
-the second fragment of the following example.
+开壳层体系的 alpha 电子数必须大于 beta 电子数。然而，通过将多重度指定为负值，可以使体系中的单个片段包含过剩的 beta 电子。例如，多重度 $-2$ 表示有一个过剩的 beta 电子，如下例中的第二个片段所示。
 
 ```qchem
 $molecule

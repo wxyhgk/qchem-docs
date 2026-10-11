@@ -1,47 +1,16 @@
 ---
-title: "12.5.4 Perturbative Charge-Transfer Analysis Usinig Complementary Occupied/Virtual Pairs"
+title: "12.5.4 使用互补占据/虚轨道对的微扰电荷转移分析"
 ---
 
-## 12.5.4 Perturbative Charge-Transfer Analysis Usinig Complementary Occupied/Virtual Pairs
+## 12.5.4 使用互补占据/虚轨道对（Complementary Occupied/Virtual Pairs, COVPs）的微扰电荷转移分析
 
 (July 4, 2026)
 
-In addition to quantifying the amount and energetics of intermolecular charge
-transfer, it is often useful to have a simple description of orbital
-interactions in intermolecular complexes. The polarized ALMOs obtained from the
-SCF-MI procedure and used as a reference basis set in the decomposition
-analysis do not directly show which occupied-virtual orbital pairs are of most
-importance in forming intermolecular bonds. By performing rotations of the
-polarized ALMOs within a molecule, it is possible to find a “chemist’s basis
-set” that represents bonding between molecules in terms of just a few
-localized orbitals called complementary occupied-virtual pairs (COVPs). This
-orbital interaction model validates existing conceptual descriptions of
-intermolecular bonding. For example, in the modified ALMO basis, hydrogen
-bonding in water dimer is represented as an electron pair localized on an
-oxygen atom donating electrons to the O–H $\sigma$-antibonding orbital on the
-other molecule,[[681]](../bib_references/bib.md#bib708)
- and the description of synergic bonding
-in metal complexes agrees well with simple Dewar-Chatt-Duncanson
-model.[[257]](../bib_references/bib.md#bib258)
+除了定量描述分子间电荷转移的量与能量贡献之外,对分子间复合物中的轨道相互作用给出简单的描述通常也很有用。由 SCF-MI  procedure 得到的极化局域分子轨道(Asserted Localized Molecular Orbitals, ALMOs)在分解分析(decomposition analysis)中被用作参考基组,但它并不能直接指出哪些占据-虚轨道对（occupied-virtual orbital pairs）在形成分子间键合中最为重要。通过在分子内部对极化 ALMOs 进行旋转,可以找到一套"化学家基组（chemist's basis set）",它仅用少数几个称为互补占据-虚轨道对（COVPs）的定域轨道来表示分子间的键合。这一轨道相互作用模型验证了现有的关于分子间键合的概念性描述。例如,在修正后的 ALMO 基组中,水二聚体的氢键被描述为定域在氧原子上的一对电子向另一分子上的 O–H $\sigma$ 反键轨道给予电子,[[681]](../bib_references/bib.md#bib708) 而金属配合物中协同键合（synergic bonding）的描述也与简单的 Dewar-Chatt-Duncanson 模型高度吻合。[[257]](../bib_references/bib.md#bib258)
 
-Set EDA_COVP to TRUE to perform the COVP analysis of the CT
-term in an EDA job. COVP analysis is currently implemented only for
-systems of two fragments. Set EDA_PRINT_COVP to TRUE to
-print out localized orbitals that form occupied-virtual pairs. In this case,
-MOs obtained in the end of the run (SCF-MI orbitals, SCF-MI(RA) orbitals,
-converged SCF orbitals) are replaced by the orbitals of COVPs. Each orbital is
-printed with the corresponding CT energy term in kJ/mol (instead of the energy
-eigenvalues in hartrees). These energy labels make it easy to find
-correspondence between an occupied orbital on one molecule and the virtual
-orbital on the other molecule. The examples below show how to print COVP
-orbitals. One way is to set *$rem* variable PRINT_ORBITALS, the other
-is to set IANLTY to 200 and use the *$plots* section in the **Q-Chem**
-input. In the first case, the orbitals can be visualized using MOLDEN (set
-MOLDEN_FORMAT to TRUE). In the second case use
-Visual Molecular Dynamics (VMD)[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627)
-or a similar third party program capable of making 3D plots.
+在能量分解分析（Energy Decomposition Analysis, EDA）计算中,将 EDA_COVP 设置为 TRUE 即可对电荷转移（Charge Transfer, CT）项执行 COVP 分析。目前 COVP 分析仅支持两个片段（fragment）的体系。将 EDA_PRINT_COVP 设置为 TRUE 可打印形成占据-虚轨道对的定域轨道。在这种情况下,运行结束时得到的分子轨道(MOs)（SCF-MI 轨道、SCF-MI(RA) 轨道、收敛的 SCF 轨道）将被 COVP 的轨道所取代。每个轨道都会连同相应的 CT 能量项(以 kJ/mol 为单位,而不是以 hartree 为单位的轨道本征值)一起打印。这些能量标签便于找出一个分子上的占据轨道与另一个分子上的虚轨道之间的对应关系。下面的示例展示了如何打印 COVP 轨道。一种方法是设置 *$rem* 变量 PRINT_ORBITALS,另一种方法是将 IANLTY 设置为 200 并在 **Q-Chem** 输入中使用 *$plots* 段。在前一种情况下,可以使用 MOLDEN 对轨道进行可视化(将 MOLDEN_FORMAT 设置为 TRUE)。在后一种情况下,可使用 Visual Molecular Dynamics (VMD)[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627) 或类似的能够绘制三维图像的第三方程序。
 
-???+ example "Example 12.10: COVP analysis of the CT term. The COVP orbitals are printed in the Q-Chem and MOLDEN formats."
+???+ example "示例 12.10: CT 项的 COVP 分析。COVP 轨道以 Q-Chem 和 MOLDEN 格式打印。"
     ```qchem
     $molecule
     0 1
@@ -72,11 +41,8 @@ or a similar third party program capable of making 3D plots.
     $end
     ```
 
-???+ example "Example 12.11: COVP analysis of the CT term. Note that it is not necessary to run a full EDA
-job. It is suffice to set FRGM_LPCORR to RS or ARS and EDA_COVP = TRUE to perform the COVP analysis. The
-orbitals of the most significant occupied-virtual pair are printed into an
-ASCII file called plot.mo which can be converted into a cube file and
-visualized in VMD."
+???+ example "示例 12.11: CT 项的 COVP 分析。注意,无需运行完整的 EDA 计算。
+只需将 FRGM_LPCORR 设置为 RS 或 ARS 并将 EDA_COVP 设置为 TRUE,即可执行 COVP 分析。最重要的占据-虚轨道对的轨道会被输出到名为 plot.mo 的 ASCII 文件中,该文件可以转换为 cube 文件并在 VMD 中进行可视化。"
     ```qchem
     $molecule
     0 1

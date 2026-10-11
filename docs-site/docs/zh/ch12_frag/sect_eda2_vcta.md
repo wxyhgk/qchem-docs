@@ -1,216 +1,183 @@
 ---
-title: "12.6.8 ALMO-EDA with Non-Perturbative Polarization and Charge Transfer Analysis"
+title: "12.6.8 采用非微扰极化与电荷转移分析的 ALMO-EDA"
 ---
 
-## 12.6.8 ALMO-EDA with Non-Perturbative Polarization and Charge Transfer Analysis
+## 12.6.8 采用非微扰极化与电荷转移分析的 ALMO-EDA
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** also supports the non-perturbative [[1396]](../bib_references/bib.md#bib1457)
- (variational) energy and
-charge decomposition analysis in the second-generation ALMO-EDA framework through the eda2 driver. The advantage
-of this method over the perturbative CT analysis method is that the energy and charge
-decompositions are both exact and there are no higher-order terms left. Currently, this method is
-implemented for both restricted and unrestricted SCF calculations, and is eligible to analyze both
-polarization [[1249]](../bib_references/bib.md#bib1301)
- (POL) and charge transfer (CT) processes of intermolecular interactions.
-The non-perturbative POL and CT analysis can be invoked by setting EDA_POL_A = TRUE and
-EDA_VCT_A = TRUE, respectively. The POL analysis [[1249]](../bib_references/bib.md#bib1301)
- uses the recently developed
-fragment density matrix connecting method and can break the energy lowering and charge shift in the POL process into
-exactly fragment-wise additive sums. The CT analysis will print out the pairwise energy and charge changes between fragments
-as matrices, with fragment labels starting from 1, following the orders in the Q-Chem fragment input. The
-interpretation is that the energy lowering and charge transfer happens due to electron donation from the fragments labeled
-in the rows to the fragments labeled in the columns.
+**Q-Chem** 还通过 eda2 驱动程序，在第二代 ALMO-EDA 框架中支持非微扰（变分）的能量与电荷分解分析[[1396]](../bib_references/bib.md#bib1457)。与微扰电荷转移（CT）分析方法相比，该方法的优势在于能量分解和电荷分解都是精确的，不会留下任何高阶项。目前，该方法已针对受限与非受限自洽场（SCF）计算实现，可用于分析分子间相互作用中的极化（POL）[[1249]](../bib_references/bib.md#bib1301) 与电荷转移（CT）过程。分别设置 EDA_POL_A = TRUE 和 EDA_VCT_A = TRUE，即可启用非微扰的 POL 与 CT 分析。POL 分析[[1249]](../bib_references/bib.md#bib1301) 采用了新近发展的片段密度矩阵连接方法，能够将 POL 过程中的能量降低与电荷偏移精确地拆分为按片段可加的和式。CT 分析将以矩阵形式输出片段之间的成对能量与电荷变化，片段标签从 1 开始，其顺序与 Q-Chem 片段输入中的顺序一致。其解读方式为：能量降低和电荷转移源于由行标签所指片段向列标签所指片段的电子供与。
 
-The default orbital analysis method is the complementary occupied-virtual pairs (COVP) method. To select the significant COVPs,
-set EDA_COVP_THRESH = $N$ to print out the COVPs that contributes more than $0.001\times N$ kJ/mol to the energy
-decrease, and the default value is set to 500. To visualize the COVPs, set EDA_SAVE_COVP = TRUE,
-MAKE_CUBE_FILES = TRUE and PLOTS = TRUE to save the orbitals as cube files, which can
-be visualized using IQmol, VMD, or other visualization software. The natural orbitals for chemical valence (NOCV) analysis can also be
-performed by setting EDA_NOCV = TRUE. To select the significant NOCVs, set EDA_NOCV_THRESH = $N$
-to print out NOCVs that contributes more than $0.001\times N$ kJ/mol to energy decrease, and the default value is also set to 500.
-The NOCV analysis includes the POL process, CT process, and the traditional NOCV results which combine the POL and CT processes.
-As pointed out in this paper [[1250]](../bib_references/bib.md#bib1300)
-, the ETS-NOCV method approximates the effective Fock matrix integration with only one quadrature,
-which is set by EDA_NOCV_QUADRATURE =1, and **Q-Chem** also supports 5-quadratures for systems with significant density changes.
-As an improvement upon the NOCVs, the recently proposed occupied-virtual orbitals for chemical valence (OVOCV) [[1248]](../bib_references/bib.md#bib1302)
- can also be used
-to analyse the CT step. The OVOCVs block-diagonalize the density difference operator into 2 $\times$ 2 blocks, which are spanned by one level
-that is filled in the initial state (the occupied OVOCV) and one that is empty (the virtual OVOCV), making them much easier to interpret than
-the NOCVs. For a more detailed introduction to OVOCV analysis, we refer the users to [10.3.4](../ch10_properties/sect_ovocv-analysis.md). To enable OVOCV analysis,
-set OVOCV_ANALYSIS = 1 and OVOCV_THRESH = $N$ to print out the OVOCVs that contributes
-more than $0.001\times N$ kJ/mol to the energy decrease.
+默认的轨道分析方法是互补占据-虚轨道对（COVP）方法。要筛选出显著的 COVP，可设置 EDA_COVP_THRESH = $N$，以打印出对能量降低贡献超过 $0.001\times N$ kJ/mol 的 COVP，默认值设为 500。若要可视化 COVP，可同时设置 EDA_SAVE_COVP = TRUE、MAKE_CUBE_FILES = TRUE 和 PLOTS = TRUE，将轨道保存为 cube 文件，随后可使用 IQmol、VMD 或其他可视化软件进行查看。化学价自然轨道（NOCV）分析也可通过设置 EDA_NOCV = TRUE 来执行。要筛选出显著的 NOCV，可设置 EDA_NOCV_THRESH = $N$，以打印出对能量降低贡献超过 $0.001\times N$ kJ/mol 的 NOCV，默认值同样为 500。NOCV 分析包含 POL 过程、CT 过程，以及将 POL 与 CT 过程合并的传统 NOCV 结果。正如文献[[1250]](../bib_references/bib.md#bib1300) 中所指出的，ETS-NOCV 方法仅用一组求积（quadrature）来近似有效 Fock 矩阵的积分，该项由 EDA_NOCV_QUADRATURE =1 设置；**Q-Chem** 还支持针对密度变化显著体系的五组求积方式。作为对 NOCV 的改进，新近提出的化学价占据-虚轨道（OVOCV）[[1248]](../bib_references/bib.md#bib1302) 同样可用于分析 CT 步骤。OVOCV 将密度差算符分块对角化为 $2 \times 2$ 块，每个块由初始态中被占据的一能级（占据 OVOCV）和空置的一能级（虚 OVOCV）张成，因此比 NOCV 更易于解读。关于 OVOCV 分析更详细的介绍，请参见 [10.3.4](../ch10_properties/sect_ovocv-analysis.md)。要启用 OVOCV 分析，请设置 OVOCV_ANALYSIS = 1 以及 OVOCV_THRESH = $N$，以打印出对能量降低贡献超过 $0.001\times N$ kJ/mol 的 OVOCV。
 
-Unrestricted analysis will be used if at least one of the fragments has an open-shell structure. It can also be forced by setting
-UNRESTRICTED=TRUE.
+若至少有一个片段为开壳层结构，则 will 采用非受限分析。也可以通过设置 UNRESTRICTED=TRUE 来强制使用非受限分析。
 
 EDA_POL_A
 
 ### `EDA_POL_A`
 
-> **Perform EDA for polarization process**
+> **对极化过程执行能量分解分析（EDA）**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not perform EDA for polarization process
+>     * 不对极化过程执行 EDA
 >     * TRUE
->     * Perform EDA for polarization process
-> * **Recommendation**: Set to TRUE to perform EDA for polarization process
+>     * 对极化过程执行 EDA
+> * **建议**: 设置为 TRUE 以对极化过程执行 EDA
 
 EDA_VCT_A
 
 ### `EDA_VCT_A`
 
-> **Perform non-perturbative CT analysis**
+> **执行非微扰 CT 分析**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not perform non-perturbative CT analysis
+>     * 不执行非微扰 CT 分析
 >     * TRUE
->     * Perform non-perturbative CT analysis.
-> * **Recommendation**: Set to TRUE to perform non-perturbative CT analysis
+>     * 执行非微扰 CT 分析。
+> * **建议**: 设置为 TRUE 以执行非微扰 CT 分析
 
 EDA_COVP_THRESH
 
 ### `EDA_COVP_THRESH`
 
-> **Specifies the significance above which the COVPs will be saved**
+> **指定保存 COVP 时所需的显著性阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **选项**:
 >     * $N$
->     * COVPs that contributes more than
+>     * 对能量降低贡献超过
 >     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
-> * **Recommendation**: None
+>     * kJ/mol 的 COVP 将被保存
+> * **建议**: 无
 
 EDA_SAVE_COVP
 
 ### `EDA_SAVE_COVP`
 
-> **Save significant COVPs or not**
+> **是否保存重要的 COVP**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not save significant COVPs
+>     * 不保存重要的 COVP
 >     * TRUE
->     * Save significant COVPs
-> * **Recommendation**: Set to TRUE to save COVPs. Note that REMs for plotting cube files need also be set
+>     * 保存重要的 COVP
+> * **建议**: 设置为 TRUE 以保存 COVP。注意还需要设置用于绘制 cube 文件的 REM 选项
 
 EDA_NOCV
 
 ### `EDA_NOCV`
 
-> **Perform NOCV analysis**
+> **是否执行 NOCV 分析**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do NOCV analysis
+>     * 不执行 NOCV 分析
 >     * TRUE
->     * Do NOCV analysis
-> * **Recommendation**: None
+>     * 执行 NOCV 分析
+> * **建议**: 无
 
 EDA_NOCV_THRESH
 
 ### `EDA_NOCV_THRESH`
 
-> **Specifies the significance above which the NOCVs will be saved**
+> **指定保存 NOCV 所对应的显著性阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **选项**:
 >     * $N$
->     * NOCVs that contributes more than
+>     * 能量降低贡献超过
 >     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
-> * **Recommendation**: None
+>     * kJ/mol 的 NOCV 将被保存
+> * **建议**: 无
 
 EDA_SAVE_NOCV
 
 ### `EDA_SAVE_NOCV`
 
-> **Save significant NOCVs or not**
+> **是否保存重要的 NOCV**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not save significant NOCVs
+>     * 不保存重要的 NOCV
 >     * 1
->     * Save significant NOCVs
-> * **Recommendation**: Set to 1 to save NOCVs. Note REMs for plotting cube files need also be set
+>     * 保存重要的 NOCV
+> * **建议**: 设置为 1 以保存 NOCV。注意还需要设置用于绘制 cube 文件的 REM 选项
 
 EDA_NOCV_QUADRATURE
 
 ### `EDA_NOCV_QUADRATURE`
 
-> **Number of quadratures used to integrate effective fock matrix**
+> **用于积分有效 Fock 矩阵的求积（quadrature）数目**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 1
->     * Use 1 quadrature
+>     * 使用 1 个求积
 >     * 5
->     * Use 5 quadratures
-> * **Recommendation**: Most of the time, one quadrature is enough. However, in cases where the NOCV energy decreases are very different from the corresponding COVP results, it is recommended to increase the quadrature numbers.
+>     * 使用 5 个求积
+> * **建议**: 大多数情况下，一个求积就足够了。然而，当 NOCV 的能量降低与对应的 COVP 结果差异很大时，建议增加求积数目。
 
 OVOCV_ANALYSIS
 
 ### `OVOCV_ANALYSIS`
 
-> **Perform OVOCV analysis**
+> **是否执行 OVOCV 分析**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not do OVOCV analysis
+>     * 不执行 OVOCV 分析
 >     * TRUE
->     * Do OVOCV analysis
-> * **Recommendation**: None
+>     * 执行 OVOCV 分析
+> * **建议**: 无
 
 OVOCV_THRESH
 
 ### `OVOCV_THRESH`
 
-> **Specifies the significance above which the OVOCVs will be saved**
+> **指定保存 OVOCV 所对应的显著性阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **选项**:
 >     * $N$
->     * OVOCVs that contributes more than
+>     * 能量降低贡献超过
 >     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
-> * **Recommendation**: None
+>     * kJ/mol 的 OVOCV 将被保存
+> * **建议**: 无
 
 SAVE_OVOCV
 
 ### `SAVE_OVOCV`
 
-> **Save significant OVOCVs or not**
+> **是否保存重要的 OVOCV**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not save significant OVOCVs
+>     * 不保存重要的 OVOCV
 >     * 1
->     * Save significant OVOCVs
-> * **Recommendation**: Set to 1 to save OVOCVs. Note REMs for plotting cube files need also be set
+>     * 保存重要的 OVOCV
+> * **建议**: 设置为 1 以保存 OVOCV。注意还需要设置用于绘制 cube 文件的 REM 选项
 
-???+ example "Example 12.20: Restricted EDA calculation for the H ${}_{2}$ O-Na ${}^{+}$ system with non-perturbative POL and CT analysis."
+???+ example "示例 12.20: 采用非微扰 POL 与 CT 分析对 H ${}_{2}$ O-Na ${}^{+}$ 体系进行限制 EDA 计算。"
     ```qchem
     $molecule
     1 1
@@ -257,7 +224,7 @@ SAVE_OVOCV
     
     ```
 
-???+ example "Example 12.21: Unrestricted EDA calculation for the CH ${}_{3}$ -Na ${}^{+}$ system with non-perturbative POL and CT analysis."
+???+ example "示例 12.21: 采用非微扰 POL 与 CT 分析对 CH ${}_{3}$ -Na ${}^{+}$ 体系进行非限制 EDA 计算。"
     ```qchem
     $molecule
     1 2
@@ -304,7 +271,7 @@ SAVE_OVOCV
     
     ```
 
-???+ example "Example 12.22: Unrestricted EDA calculation for the Rn ${}^{+}$ -CH ${}_{4}$ system with non-perturbative POL and CT analysis and NOCV analysis"
+???+ example "示例 12.22: 采用非微扰 POL 与 CT 分析及 NOCV 分析对 Rn ${}^{+}$ -CH ${}_{4}$ 体系进行非限制 EDA 计算"
     ```qchem
     $molecule
     1 2
@@ -354,8 +321,8 @@ SAVE_OVOCV
     
     ```
 
-???+ example "Example 12.23: Restricted EDA calculation for the ethene- $[\text{PtCl}_{3}]^{-}$ system with non-perturbative POL and CT analysis.
-OVOCV analysis is enabled for CT analysis."
+???+ example "示例 12.23: 采用非微扰 POL 与 CT 分析对乙烯- $[\text{PtCl}_{3}]^{-}$ 体系进行限制 EDA 计算。
+已为 CT 分析启用 OVOCV 分析。"
     ```qchem
     $molecule
     -1 1

@@ -1,46 +1,40 @@
 ---
-title: "12.16.3 ALMO-CIS/TDA with Selected Fragment Occupied-Virtual Pairs"
+title: "12.16.3 采用选定片段占据-虚轨道对的 ALMO-CIS/TDA"
 ---
 
-## 12.16.3 ALMO-CIS/TDA with Selected Fragment Occupied-Virtual Pairs
+## 12.16.3 采用选定片段占据-虚轨道对的 ALMO-CIS/TDA
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-**Q-Chem** 6.0 and later versions support ALMO-CIS/TDA calculations with
-selected fragment occupied-virtual pairs, *i.e.*, only excitation amplitudes
-that correspond to transitions between selected occupied and virtual orbitals
-are considered in Eq. ([12.85](Ch12.S16.SS1.md#eq:almo-cis)). To run this type of calculations
-one needs to set ALMOCIS_FRAGOV $>0$, and currently three different
-modes are supported:
+**Q-Chem** 6.0 及更高版本支持采用选定片段占据-虚轨道对的 ALMO-CIS/TDA 计算，*即*，在公式 ([12.85](Ch12.S16.SS1.md#eq:almo-cis)) 中仅考虑对应于所选占据轨道与虚轨道之间跃迁的激发振幅。要运行此类计算，需设置 ALMOCIS_FRAGOV $>0$，目前支持三种不同的模式：
 
 ALMOCIS_FRAGOV
 
 ### `ALMOCIS_FRAGOV`
 
-> **Doing ALMO-CIS/TDA calculations with transitions from occupied orbitals on the 1st fragment and virtuals in the full system**
+> **执行从第 1 个片段的占据轨道到整个体系虚轨道跃迁的 ALMO-CIS/TDA 计算**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Doing standard ALMO-CIS/TDA calculations (if
+>     * 执行标准的 ALMO-CIS/TDA 计算（若
 >     * LOCAL_CIS
 >     * $>0$
->     * )
+>     * ）
 >     * 1
->     * Reading user-specified active fragment O-V pairs from the
->     * $frag_ov_pairs section
+>     * 从 $frag_ov_pairs 区段读取用户指定的活性片段占据-虚（O-V）对
 >     * 2
->     * Excitations on the
->     * first
->     * fragment only
+>     * 仅在第
+>     * 一
+>     * 个片段上激发
 >     * 3
->     * Excitations from the occupied orbitals on the
->     * first
->     * fragment to all virtuals in the system
-> * **Recommendation**: None
+>     * 从第
+>     * 一
+>     * 个片段的占据轨道激发到体系中所有虚轨道
+> * **建议**: 无
 
-The format of the *$frag_ov_pairs* section:
+*$frag_ov_pairs* 区段的格式：
 
 > ```qchem
 > $frag_ov_pairs
@@ -51,13 +45,9 @@ The format of the *$frag_ov_pairs* section:
 > $end
 > ```
 
-These modified ALMO-CIS/TDA models can be used to model excited states in complex environments,
-such as the local excitation of a chromophore in solution or its charge-transfer-to-solvent (CTTS)
-excitations. Note that the iterative Davidson algorithm is required for these calculations,
-*i.e.*, EIGSLV_METH = 1.
+这些改进的 ALMO-CIS/TDA 模型可用于模拟复杂环境中的激发态，例如溶液中发色团的局域激发或其向溶剂的电荷转移（charge-transfer-to-solvent, CTTS）激发。需要注意的是，此类计算必须采用迭代的 Davidson 算法，*即*，EIGSLV_METH = 1。
 
-???+ example "Example 12.55: ALMO-TDA calculation for foramide water with user-specified occupied-virtual
-pairs: O(1) -> V(1) and O(1) -> V(2)"
+???+ example "示例 12.55: 采用用户指定占据-虚轨道对（O(1) -> V(1) 与 O(1) -> V(2)）对甲酰胺-水复合物进行 ALMO-TDA 计算"
     ```qchem
     $molecule
     0 1

@@ -6,10 +6,11 @@ title: "6.12.7 二次组态相互作用（QCISD）"
 
 （2026 年 7 月 4 日）
 
-包含单、双激发的二次组态相互作用（quadratic configuration interaction with singles and doubles，QCISD）
-是耦合簇方法 CCSD[[1113]](../bib_references/bib.md#bib1162) 的一种被广泛使用的替代方案，
-它继承了 CCSD 的主要优良性质，即具有尺寸一致性（size-consistent）、对电子对（electron pairs）精确，
-同时同样属于非变分（non-variational）方法。其计算代价随分子尺寸和基组（Basis Set）的变化规律
-与 CCSD 相同，只是常数因子略小。尽管 QCISD 最初是独立于 CCSD 提出的，其出发点是修正组态
-相互作用（Configuration Interaction，CI）方程使其具备尺寸一致性，但 QCISD 最好被理解为 CCSD
-的一种近似。其定义方程如下所示（假设在此前提下给出）：
+包含单激发和双激发的二次组态相互作用（Quadratic Configuration Interaction with Singles and Doubles, QCISD）是 CCSD 的一种广泛使用的替代方法，[[1113]](../bib_references/bib.md#bib1162) 它具备 CCSD 的主要优良性质：具有尺寸一致性、对双电子体系是精确的，同时也是非变分的。它的计算量随分子大小和基组的标度关系与 CCSD 相同，尽管比例常数略小。虽然最初它是独立于 CCSD 提出的（基于修正组态相互作用方程以使其满足尺寸一致性），但 QCISD 最好被视为 CCSD 的一种近似。定义方程如下所示（假设采用 Hartree-Fock 轨道，在 QCISD 中应始终使用 HF 轨道）。QCISD 方程显然可以看作是忽略了大量项的 CCSD 方程，而这些被忽略的项在数值上显然不太显著：
+
+<a id="Ch6.E74"></a>
+$$
+\displaystyle E_{\text{QCISD}} \tag{6.74a}
+$$
+
+**Q-Chem** 支持计算 QCISD 能量，可通过关键字 QCISD 请求。如第 [6.13](topic_ccni.md) 节所讨论的，对 QCISD 解的非迭代 QCISD(T) 修正同样可用，以近似计入更高阶激发替换的效应。

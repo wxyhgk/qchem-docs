@@ -6,6 +6,9 @@ title: "7.11.7 带微扰外部单激发修正的自旋翻转 CAS（casman）"
 
 （2026 年 7 月 4 日）
 
-**casman** 模块允许用户执行基于自旋翻转 CAS（spin-flip CAS）的计算，并通过微扰修正来考虑活性空间（active space）之外的空穴（hole）与粒子（particle）激发。
-（若需对空穴与粒子激发做变分处理，请参阅 **librassf** 相关章节。）
-该模块还允许限制自旋翻转（spin-flip）的最大数目，这对于无法执行最大自旋翻转数的大型过渡金属配合物非常有用。关于此方法的更多细节，请参阅 Mayhall 与 Head-Gordon 的出版物。[[926]](../bib_references/bib.md#bib926)
+**casman** 模块允许用户执行基于自旋翻转 CAS 的计算，并通过微扰修正考虑活性空间外的空穴和粒子激发。（关于变分空穴和粒子激发，请参阅 **librassf** 章节。）它还允许用户设置受限的自旋翻转次数，这对于无法执行最大自旋翻转次数的大型过渡金属配合物非常有用。有关该方法的更多详细信息，请参阅 Mayhall 和 Head-Gordon 的论文。[[926]](../bib_references/bib.md#bib964)
+
+**Q-Chem** 内置了多种激发方案。要使用这些方案，只需将 CORRELATION 设置为相应的值。目前可用的方法如下：
+SF-CAS、SF-CAS(h,p)、SF-CAS(S)、SF-CAS(2x)、SF-CAS(3x) 以及 SF-CAS(3x)+D。
+
+或者，如果需要自定义方法，可以设置 CORRELATION = SF-CAS，并根据需要手动定义相应的 *$rem* 变量。有关更多详细信息，请参阅 **casman** 作业控制选项章节。

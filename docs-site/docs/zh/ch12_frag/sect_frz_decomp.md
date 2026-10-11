@@ -1,127 +1,91 @@
 ---
-title: "12.6.4 Further Decomposition of the Frozen Energy"
+title: "12.6.4 冻结能的进一步分解"
 ---
 
-## 12.6.4 Further Decomposition of the Frozen Energy
+## 12.6.4 冻结能的进一步分解
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The frozen interaction energy in ALMO-EDA is defined as the energy difference
-between the unrelaxed frozen (Heitler-London) wave function and the isolated
-fragments. In other literature,[[1408]](../bib_references/bib.md#bib1467)
- this
-interaction is often decomposed in a classical fashion:
+ALMO-EDA 中的冻结相互作用能（frozen interaction energy）定义为非弛豫冻结（Heitler-London）波函数与孤立碎片之间的能量差。在其他文献中，[[1408]](../bib_references/bib.md#bib1467)
+ 这种相互作用常被以经典方式分解为：
 
 <a id="eq:cls_decomp"></a>
 $$
 \Delta E_{\mathrm{frz}}=\Delta E_{\mathrm{elec}}^{\mathrm{cls}}+\Delta E_{\mathrm{Pauli}}^{\mathrm{cls}}, \tag{12.8}
 $$
 
-where the contribution from permanent electrostatics is defined as the Coulomb
-interaction between isolated fragment charge distributions:
+其中永久静电（permanent electrostatics）贡献定义为孤立碎片电荷分布之间的库仑相互作用：
 
 <a id="eq:cls_elec"></a>
 $$
 \Delta E_{\mathrm{elec}}^{\mathrm{cls}}=\sum_{A<B}\int_{r_{1}}\int_{r_{2}}\rho_{A}^{\mathrm{tot}}({\textbf{r}_{1}})\frac{1}{{\textbf{r}_{12}}}\rho_{B}^{\mathrm{tot}}({\textbf{r}_{2}})\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2} \tag{12.9}
 $$
 
-and the remainder constitutes the Pauli (or exchange) term. Such a
-decomposition (referred to as the classical decomposition below) is associated
-with two issues: (i) the evaluation of permanent electrostatics makes use of
-the “promolecule” state (whose density is the simple sum of monomer densities)
-rather than a properly anti-symmetrized wave function; (ii) when
-dispersion-corrected density functionals are used, the Pauli term contains
-dispersion interaction and thus loses its original meaning.
+余项则构成泡利（Pauli，或交换）项。这样的分解（下文称为经典分解）存在两个问题：(i) 永久静电的计算使用的是“前分子”（promolecule）态（其密度仅为各单体密度的简单加和），而非经过正确反对称化的波函数；(ii) 当使用色散校正的密度泛函时，泡利项中会包含色散相互作用，从而失去其原始含义。
 
-Horn *et al.*[[595]](../bib_references/bib.md#bib619)
- proposed a new scheme to further decompose the frozen term into
-contributions from permanent electrostatics (ELEC), Pauli repulsion (PAULI) and dispersion (DISP):
+Horn *et al.*[[595]](../bib_references/bib.md#bib619)
+ 提出了一种新方案，将冻结项进一步分解为永久静电（ELEC）、泡利排斥（PAULI）和色散（DISP）三部分贡献：
 
 <a id="eq:new_decomp"></a>
 $$
 \Delta E_{\mathrm{frz}}=\Delta E_{\mathrm{elec}}+\Delta E_{\mathrm{Pauli}}+\Delta E_{\mathrm{disp}} \tag{12.10}
 $$
 
-This approach is compatible with the use of all kinds of density functionals
-except double hybrids, and all three components of the FRZ term are computed
-with the antisymmetrized frozen wave function. The key step of this method is
-the orthogonal decomposition of the 1PDM associated with the frozen wave
-function into contributions from individual fragments:
-$\mathbf{P}_{\mathrm{frz}}=\sum_{A}\tilde{\mathbf{P}}_{A}$. This is achieved by
-minimizing an objective function as follows:
+该方法与除双杂化泛函之外的所有密度泛函均兼容，并且 FRZ 项的三个分量都使用反对称化的冻结波函数来计算。此方法的关键步骤是将与冻结波函数相关的一阶密度矩阵（1PDM）正交分解为各碎片的贡献：
+$\mathbf{P}_{\mathrm{frz}}=\sum_{A}\tilde{\mathbf{P}}_{A}$。这一分解通过最小化如下目标函数来实现：
 
 <a id="eq:kep_obj"></a>
 $$
 \Omega=\sum_{A}E_{A}[\tilde{\mathbf{P}}_{A}]-E_{A}[\mathbf{P}_{A}] \tag{12.11}
 $$
 
-while interfragment orthogonality is enforced between fragment density matrices
-$\tilde{\mathbf{P}}_{A}$; see Ref. [[595]](../bib_references/bib.md#bib619)
-.
+同时在碎片密度矩阵 $\tilde{\mathbf{P}}_{A}$ 之间强制施加碎片间正交性；见参考文献 [[595]](../bib_references/bib.md#bib619)
+。
 
-The ELEC term is then defined as the Coulomb interaction between distorted
-fragment densities ($\tilde{\rho}_{A}(\mathbf{r})$):
+ELEC 项随后定义为畸变（distorted）碎片密度（$\tilde{\rho}_{A}(\mathbf{r})$）之间的库仑相互作用：
 
 <a id="eq:eda_elec"></a>
 $$
 \Delta E_{\mathrm{elec}}=\sum_{A<B}\int_{r_{1}}\int_{r_{2}}\tilde{\rho}_{A}^{\mathrm{tot}}({\textbf{r}_{1}})\frac{1}{{\textbf{r}_{12}}}\tilde{\rho}_{B}^{\mathrm{tot}}({\textbf{r}_{2}})\mathrm{d}\mathbf{r}_{1}\mathrm{d}\mathbf{r}_{2}. \tag{12.12}
 $$
 
-The DISP term is evaluated by subtracting the dispersion-free part of the total
-exchange-correlation (XC) interaction, where an auxiliary “dispersion-free”
-XC (DFXC) functional is used in company with the primary (target) XC functional:
+DISP 项通过从总交换-关联（XC）相互作用中减去其无色散（dispersion-free）部分来求得，其中需在使用主（目标）XC 泛函的同时配合使用一个辅助的“无色散”（dispersion-free）XC（DFXC）泛函：
 
 <a id="eq:eda_disp"></a>
 $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\tilde{\mathbf{P}}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\tilde{\mathbf{P}}_{A}]\right). \tag{12.13}
 $$
 
-It has been suggested[[896]](../bib_references/bib.md#bib933)
- that HF is an appropriate DFXC for use with
-dispersion-inclusive or dispersion-corrected hybrid functionals such as $\omega$B97M-V or B3LYP-D3, while
-revPBE is appropriate for semi-local functionals such as B97M-V.
+已有研究建议[[896]](../bib_references/bib.md#bib933)
+，对于包含色散或经色散校正的杂化泛函（如 $\omega$B97M-V 或 B3LYP-D3），HF 是合适的 DFXC；而对于半局域泛函（如 B97M-V），revPBE 更为合适。
 
-The remainder of the frozen interaction goes into the PAULI term, which
-includes the net repulsive interaction given by Eq. ([12.11](#eq:kep_obj)) and the “dispersion-free” part of the XC interaction:
+冻结相互作用中的剩余部分归入 PAULI 项，其包含由式 ([12.11](#eq:kep_obj)) 给出的净排斥相互作用，以及 XC 相互作用的“无色散”部分：
 
 <a id="eq:eda_pauli"></a>
 $$
 \Delta E_{\mathrm{Pauli}}=\sum_{A}(E_{A}[\tilde{\mathbf{P}}_{A}]-E_{A}[\mathbf{P}_{A}])+\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\tilde{\mathbf{P}}_{A}]\right). \tag{12.14}
 $$
 
-The PAULI term and the ELEC term can also be combined together and reported as
-the dispersion-free frozen (DFFRZ) term if desired.
+如有需要，PAULI 项与 ELEC 项也可以合并，作为无色散冻结（dispersion-free frozen，DFFRZ）项报告。
 
-In **Q-Chem**’s implementation of “EDA2”, the classical frozen decomposition and
-the new scheme defined by Eqs. ([12.12](#eq:eda_elec))–([12.14](#eq:eda_pauli)) are both
-computed by default. The classical ELEC term only depends on monomer
-properties and the distances between fragments, therefore, it can be
-particularly useful for scenarios such as force field development (as the
-reference for permanent electrostatics). When the DISP term calculated by the
-new scheme is available, a modified classical Pauli term[[893]](../bib_references/bib.md#bib927)
- is
-also reported, which is simply defined as
+在 **Q-Chem** 的 “EDA2” 实现中，经典冻结分解以及由式 ([12.12](#eq:eda_elec))–([12.14](#eq:eda_pauli)) 定义的新方案默认都会计算。经典的 ELEC 项仅依赖于单体性质和碎片间距离，因此在力场开发等场景中特别有用（可作为永久静电的参考值）。当新方案计算出的 DISP 项可用时，程序还会报告一个修正的经典泡利项[[893]](../bib_references/bib.md#bib927)
+，其定义非常简单：
 
 <a id="Ch12.E15"></a>
 $$
 \Delta E_{\mathrm{Pauli}}^{\mathrm{mod}}=\Delta E_{\mathrm{Pauli}}^{\mathrm{cls}}-\Delta E_{\mathrm{disp}}\;. \tag{12.15}
 $$
 
-That is, the dispersion contribution is removed from the classical Pauli term
-computed using its original definition. The overall decomposition of the frozen
-energy with the classical scheme is given by
+也就是说，从按原始定义计算的经典泡利项中扣除色散贡献。采用经典方案时，冻结能的整体分解为：
 
 <a id="Ch12.E16"></a>
 $$
 \Delta E_{\mathrm{frz}}=\Delta E^{\mathrm{cls}}_{\mathrm{elec}}+\Delta E^{\mathrm{mod}}_{\mathrm{Pauli}}+\Delta E_{\mathrm{disp}}\;. \tag{12.16}
 $$
 
-Alternatively, this can also be achieved without performing the orthogonal
-decomposition, by setting EDA_CLS_DISP to TRUE.
-This also evaluates the DISP term via
-Eq. ([12.13](#eq:eda_disp)) except that undistorted monomer densities
-($\{\mathbf{P}_{A}\}$) are used instead of their distorted counterparts
-($\{\tilde{\mathbf{P}}_{A}\}$):
+或者，也可以通过将 EDA_CLS_DISP 设为 TRUE，在不执行正交分解的情况下实现这一点。
+此时同样使用式 ([12.13](#eq:eda_disp)) 计算 DISP 项，只不过使用的是未畸变的单体密度
+（$\{\mathbf{P}_{A}\}$）而非其畸变后的对应量（$\{\tilde{\mathbf{P}}_{A}\}$）：
 
 <a id="Ch12.E17"></a>
 $$
@@ -132,89 +96,84 @@ FRZ_ORTHO_DECOMP
 
 ### `FRZ_ORTHO_DECOMP`
 
-> **Perform the decomposition of frozen interaction energy based on the orthogonal decomposition of the 1PDM associated with the frozen wave function.**
+> **基于与冻结波函数关联的一阶密度矩阵（1PDM）的正交分解，执行冻结相互作用能的分解。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE (automatically set to`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE (automatically set to`
+> * **选项**:
 >     * FALSE
->     * Do not perform the orthogonal decomposition.
+>     * 不执行正交分解。
 >     * TRUE
->     * Perform the frozen energy decomposition using orthogonal fragment densities.
-> * **Recommendation**: Use default value automatically set by “EDA2”. Note that users are allowed to turn off the orthogonal decomposition by setting to $-1$ . Also, for calculations that involve ECPs, it is automatically set to FALSE since unreasonable results will be produced otherwise.
+>     * 使用正交碎片密度执行冻结能分解。
+> * **建议**: 使用由 "EDA2" 自动设置的默认值。注意，用户可以通过将其设置为 $-1$ 来关闭正交分解。此外，对于涉及有效核势（ECP）的计算，该值会被自动设置为 FALSE，否则会产生不合理的结果。
 
 FRZ_ORTHO_DECOMP_CONV
 
 ### `FRZ_ORTHO_DECOMP_CONV`
 
-> **Convergence criterion for the minimization problem that gives the orthogonal fragment densities.**
+> **用于求解正交碎片密度的最小化问题的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $n$
 >     * $10^{-n}$
-> * **Recommendation**: Use the default unless tighter convergence is preferred.
+> * **建议**: 除非需要更严格的收敛标准，否则使用默认值。
 
 EDA_CLS_ELEC
 
 ### `EDA_CLS_ELEC`
 
-> **Perform the classical decomposition of the frozen term.**
+> **对冻结项执行经典分解。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE (automatically set to`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE (automatically set to`
+> * **选项**:
 >     * FALSE
->     * Do not compute the classical ELEC and PAULI terms.
+>     * 不计算经典的 ELEC 项和 PAULI 项。
 >     * TRUE
->     * Perform the classical decomposition.
-> * **Recommendation**: TRUE
+>     * 执行经典分解。
+> * **建议**: TRUE
 
 EDA_CLS_DISP
 
 ### `EDA_CLS_DISP`
 
-> **Compute the DISP contribution without performing the orthogonal decomposition, which will then be subtracted from the classical PAULI term.**
+> **在不执行正交分解的情况下计算 DISP 贡献，随后将其从经典 PAULI 项中扣除。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Use the DISP term computed with orthogonal decomposition (if available).
+>     * 使用通过正交分解计算得到的 DISP 项（如果可用）。
 >     * TRUE
->     * Use the DISP term computed using undistorted monomer densities.
-> * **Recommendation**: Set it to TRUE when orthogonal decomposition is not performed.
+>     * 使用基于未畸变单体密度（undistorted monomer densities）计算得到的 DISP 项。
+> * **建议**: 当不执行正交分解时，将其设置为 TRUE。
 
 DISP_FREE_X
 
 ### `DISP_FREE_X`
 
-> **Specify the employed “dispersion-free” exchange functional.**
+> **指定所采用的"无色散"（dispersion-free）交换泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `HF`
-> * **Options**:
->     * Exchange functionals (
->     * e.g.
->     * revPBE) or exchange-correlation functionals (
->     * e.g.
->     * B3LYP)
->     * supported by
->     * Q-Chem
->     * .
-> * **Recommendation**: HF is recommended for hybrid (primary) functionals ( e.g. $\omega$ B97X-V) and revPBE for semi-local ones ( e.g. B97M-V). Other reasonable options ( e.g. B3LYP for B3LYP-D3) can also be applied.
+> * **类型**: `STRING`
+> * **默认值**: `HF`
+> * **选项**:
+>     * Q-Chem 所支持的交换泛函（
+>     * 例如
+>     * revPBE）或交换-关联泛函（
+>     * 例如
+>     * B3LYP）。
+> * **建议**: 对于杂化（主）泛函（例如 $\omega$ B97X-V）推荐使用 HF，对于半局域泛函（例如 B97M-V）推荐使用 revPBE。其他合理选项（例如对 B3LYP-D3 使用 B3LYP）亦可采用。
 
 DISP_FREE_C
 
 ### `DISP_FREE_C`
 
-> **Specify the employed “dispersion-free” correlation functional.**
+> **指定所采用的"无色散"（dispersion-free）关联泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
->     * Correlation functionals supported by
->     * Q-Chem
->     * .
-> * **Recommendation**: Put the appropriate correlation functional paired with the chosen exchange functional ( e.g. put PBE if DISP_FREE_X is revPBE); put NONE if DISP_FREE_X is set to an exchange-correlation functional.
+> * **类型**: `STRING`
+> * **默认值**: `NONE`
+> * **选项**:
+>     * Q-Chem 所支持的关联泛函。
+> * **建议**: 填入与所选交换泛函相匹配的关联泛函（例如，若 DISP_FREE_X 设为 revPBE，则填入 PBE）；若 DISP_FREE_X 设为某个交换-关联泛函，则填入 NONE。

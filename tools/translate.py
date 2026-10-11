@@ -50,6 +50,8 @@ def is_already_translated(zh_path):
     except Exception:
         return False
 
+import time
+
 def translate_content_with_pi(content, model=DEFAULT_MODEL, provider=DEFAULT_PROVIDER):
     prompt = TRANSLATE_PROMPT_TEMPLATE.format(content=content)
     cmd = [
@@ -59,22 +61,65 @@ def translate_content_with_pi(content, model=DEFAULT_MODEL, provider=DEFAULT_PRO
         "--no-session",
         prompt
     ]
-    try:
-        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=120)
-        if result.returncode == 0:
-            out = result.stdout.strip()
-            # Clean possible markdown wrapping if the model wrapped everything in ```markdown ... ```
-            if out.startswith("```markdown") and out.endswith("```"):
-                out = out[len("```markdown"): -3].strip()
-            elif out.startswith("```md") and out.endswith("```"):
-                out = out[len("```md"): -3].strip()
-            return True, out
-        else:
-            return False, f"CLI error: {result.stderr.strip()}"
-    except Exception as e:
-        return False, str(e)
+    max_retries = 3
+    last_err = ""
+    for attempt in range(max_retries):
+        try:
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=240)
+            if result.returncode == 0:
+                out = result.stdout.strip()
+                # Clean possible markdown wrapping if the model wrapped everything in ```markdown ... ```
+                if out.startswith("```markdown") and out.endswith("```"):
+                    out = out[len("```markdown"): -3].strip()
+                elif out.startswith("```md") and out.endswith("```"):
+                    out = out[len("```md"): -3].strip()
+                elif out.startswith("```\n") and out.endswith("```"):
+                    out = out[3: -3].strip()
+                return True, out
+            else:
+                last_err = f"CLI error: {result.stderr.strip()}"
+                time.sleep(2 * (attempt + 1))
+        except subprocess.TimeoutExpired:
+            last_err = "Timed out after 240s"
+            time.sleep(2 * (attempt + 1))
+        except Exception as e:
+            last_err = str(e)
+            time.sleep(2 * (attempt + 1))
+    return False, last_err
 
-def translate_file(rel_path, model=DEFAULT_MODEL, provider=DEFAULT_PROVIDER, force=False):
+def split_markdown_into_chunks(text, max_chunk_size=6000):
+    if len(text) <= max_chunk_size:
+        return [text]
+
+    lines = text.splitlines(keepends=True)
+    chunks = []
+    current_chunk = []
+    current_size = 0
+    in_code_block = False
+
+    for i, line in enumerate(lines):
+        if line.strip().startswith("```"):
+            in_code_block = not in_code_block
+
+        is_heading = (line.startswith("# ") or line.startswith("## ") or line.startswith("### "))
+        is_var_header = (bool(re.match(r"^[A-Z0-9_]+\s*$", line)) and i + 2 < len(lines) and lines[i+2].startswith("### `"))
+
+        is_safe_boundary = not in_code_block and (is_heading or is_var_header)
+
+        if is_safe_boundary and current_size >= max_chunk_size * 0.75:
+            chunks.append("".join(current_chunk))
+            current_chunk = [line]
+            current_size = len(line)
+        else:
+            current_chunk.append(line)
+            current_size += len(line)
+
+    if current_chunk:
+        chunks.append("".join(current_chunk))
+
+    return chunks
+
+def translate_file(rel_path, model=DEFAULT_MODEL, provider=DEFAULT_PROVIDER, force=False, workers=4):
     en_file = EN_DIR / rel_path
     zh_file = ZH_DIR / rel_path
 
@@ -94,6 +139,34 @@ def translate_file(rel_path, model=DEFAULT_MODEL, provider=DEFAULT_PROVIDER, for
         with open(zh_file, "w", encoding="utf-8") as f:
             f.write(zh_content)
         return True, "translated (home)"
+
+    # Handle large files by splitting into chunks
+    if len(en_content) > 6000:
+        chunks = split_markdown_into_chunks(en_content, max_chunk_size=6000)
+        print(f"[*] Splitting {rel_path} ({len(en_content)} chars) into {len(chunks)} chunks...")
+        translated_chunks = [None] * len(chunks)
+        with ThreadPoolExecutor(max_workers=workers) as executor:
+            chunk_futures = {
+                executor.submit(translate_content_with_pi, chunk, model=model, provider=provider): idx
+                for idx, chunk in enumerate(chunks)
+            }
+            for cf in as_completed(chunk_futures):
+                idx = chunk_futures[cf]
+                try:
+                    c_ok, c_res = cf.result()
+                    if c_ok:
+                        translated_chunks[idx] = c_res
+                        print(f"    [+] {rel_path} chunk {idx+1}/{len(chunks)} translated")
+                    else:
+                        return False, f"Chunk {idx+1}/{len(chunks)} failed: {c_res}"
+                except Exception as e:
+                    return False, f"Chunk {idx+1}/{len(chunks)} exception: {e}"
+
+        res = "\n\n".join(c.strip() for c in translated_chunks)
+        zh_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(zh_file, "w", encoding="utf-8") as f:
+            f.write(res + "\n")
+        return True, f"translated successfully ({len(chunks)} chunks)"
 
     success, res = translate_content_with_pi(en_content, model=model, provider=provider)
     if success:
@@ -230,7 +303,7 @@ def main():
     success_count = 0
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         futures = {
-            executor.submit(translate_file, f, model=args.model, provider=args.provider, force=args.force): f
+            executor.submit(translate_file, f, model=args.model, provider=args.provider, force=args.force, workers=args.workers): f
             for f in files
         }
         for future in as_completed(futures):

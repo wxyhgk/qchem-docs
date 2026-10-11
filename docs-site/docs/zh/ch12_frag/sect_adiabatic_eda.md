@@ -1,117 +1,70 @@
 ---
-title: "12.7.3 Adiabatic ALMO-EDA and VFB Analysis"
+title: "12.7.3 绝热 ALMO-EDA 与 VFB 分析"
 ---
 
-## 12.7.3 Adiabatic ALMO-EDA and VFB Analysis
+## 12.7.3 绝热 ALMO-EDA 与 VFB 分析
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Despite the huge success and usefulness of today’s most popular EDA methods,
-they still face some limitations in their capabilities. For instance, EDAs are
-usually performed at complex geometries that are obtained from unconstrained
-electronic structure calculations (*e.g.*, optimized equilibrium geometries). For
-strongly interacting systems, close intermolecular contacts driven by POL and
-particularly CT often result in largely unfavorable FRZ interaction, which
-offers little physical insights besides indicating obviously substantial
-intermolecular overlap. Another limitation is that the conventional EDA methods
-often partitions a “single-point" interaction energy evaluated at a given
-geometry. Therefore, the influence of FRZ, POL and CT on the structural and
-vibrational properties of an intermolecular complex cannot be directly
-characterized.
+尽管当今最流行的能量分解分析（Energy Decomposition Analysis, EDA）方法取得了巨大成功并被广泛使用，它们在能力上仍存在一些局限。例如，EDA 通常在复杂的几何结构上进行，而这些几何结构来自无约束的电子结构计算（*e.g.*, 优化后的平衡几何结构）。对于强相互作用体系，由极化（POL）特别是电荷转移（CT）驱动的紧密分子间接触，往往导致极度不利的冻结（FRZ）相互作用项，除了表明分子间存在明显的显著重叠之外，几乎无法提供太多物理洞察。另一个局限是，传统的 EDA 方法通常只对给定几何结构处的“单点”相互作用能进行划分。因此，FRZ、POL 和 CT 对分子间复合物结构与振动性质的影响无法被直接表征。
 
-Recently Mao *et al.* reformulated the original ALMO-EDA method in an
-adiabatic picture,[[894]](../bib_references/bib.md#bib928)
- where the term “adiabatic" is borrowed from
-spectroscopy and indicates that energy differences are evaluated at
-relaxed geometry on each potential energy surface. In this scheme, the
-total binding energy (including monomer geometry distortions) is repartitioned
-into adiabatic FRZ, POL and CT terms:
+近期 Mao *et al.* 在绝热图像下重新表述了原始的 ALMO-EDA 方法，[[894]](../bib_references/bib.md#bib928)
+ 其中“绝热（adiabatic）”一词借用于光谱学，表示能量差是在各个势能面的弛豫几何结构上评估的。在该方案中，总结合能（包括单体几何畸变）被重新划分为绝热 FRZ、POL 和 CT 项：
 
 <a id="eq:ad_EDA"></a>
 $$
 \Delta E_{\mathrm{bind}}=\Delta E^{(\mathrm{ad})}_{\mathrm{frz}}+\Delta E^{(\mathrm{ad})}_{\mathrm{pol}}+\Delta E^{(\mathrm{ad})}_{\mathrm{ct}}. \tag{12.26}
 $$
 
-The adiabatic frozen interaction energy is given by the difference between the
-energy minimum of the frozen potential surface (on which the energy of each point is computed
-using the corresponding frozen wave function) and the sum of fully relaxed,
-non-interacting fragment energies:
+绝热冻结相互作用能由冻结势能面的能量极小值（该面上每一点的能量均使用相应的冻结波函数计算）与完全弛豫、无相互作用的片段能量之和的差值给出：
 
 <a id="eq:ad_FRZ"></a>
 $$
 \Delta E^{(\mathrm{ad})}_{\mathrm{frz}}=E[\mathbf{P}_{\mathrm{frz}}^{(\mathrm{frz})}]-\sum_{A}E_{A}^{(0)}. \tag{12.27}
 $$
 
-Similarly, the adiabatic POL and CT terms can be obtained by performing
-geometry optimizations on the polarized (SCF-MI) and fully relaxed
-(unconstrained SCF) potential surfaces:
+类似地，绝热 POL 和 CT 项可以通过分别在极化（SCF-MI）和完全弛豫（无约束 SCF）势能面上进行几何优化来获得：
 
 <a id="A3.S8.EGx122"></a>
 $$
 \displaystyle\Delta E^{(\mathrm{ad})}_{\mathrm{pol}} \tag{12.28}
 $$
 
-With this method, the changes in monomer structures and intermolecular
-coordinates due to FRZ, POL and CT and the accompanied energetics are provided.
-Moreover, at the energy minimum (or other stationary points) on each potential surface, the
-other properties such as multipole points, vibrational frequencies and
-intensities can also be computed, therefore the effect of different
-intermolecular interaction components on them can also be characterized.
+利用该方法，可以提供 FRZ、POL 和 CT 引起的单体结构变化、分子间坐标变化以及相应的能量学信息。此外，在每个势能面的能量极小值（或其他驻点）处，还可以计算多极矩点、振动频率及强度等其他性质，因此不同分子间相互作用分量对这些性质的影响也能够被表征。
 
-The geometry optimization on the frozen potential surface is facilitated by the analytical
-gradient of the frozen wave function energy implemented in **Q-Chem**. As for the
-geometry optimization on the polarized potential surface, the nuclear gradient of the SCF-MI
-energy has the same form as that of the full SCF energy if the original ALMO
-model is used. These analytical gradients can also be used for finite
-difference calculations of harmonic frequencies by setting IDERIV = 1.
-We note that the analytical gradients of SCF-MI calculations that use FERFs are
-not available yet, and SCFMI_MODE = 0 is required for computing the
-forces on the frozen and polarized potential surfaces. Also, the current implementation of
-this method requires users to perform geometry optimization separately on the three potential surfaces
-(see the example below) and then evaluate the energy components by taking
-several **Q-Chem** outputs (including geometry optimizations for the monomers)
-together, which is probably not so convenient. We look forward to extending the
-functionality of this method and improving its implementation in the future.
+在冻结势能面上进行几何优化，得益于 **Q-Chem** 中实现的冻结波函数能量解析梯度。至于在极化势能面上的几何优化，若使用原始 ALMO 模型，SCF-MI 能量的核梯度与完整 SCF 能量的梯度形式相同。这些解析梯度还可用于通过设置 IDERIV = 1 来进行谐振频率的有限差分计算。我们注意到，使用费米-迪拉克正则化函数（Fermi-Dirac Regularized Function, FERF）的 SCF-MI 计算的解析梯度尚不可用，并且在冻结和极化势能面上计算力时需要设置 SCFMI_MODE = 0。此外，该方法的当前实现要求用户在三个势能面上分别进行几何优化（见下方示例），然后综合多个 **Q-Chem** 输出（包括单体的几何优化结果）来评估各能量分量，这可能不太方便。我们期待未来扩展该方法的功能并改进其实现。
 
-As mentioned in Section [12.6.5](sect_eda2_job.md), for systems containing radicals of highly
-symmetric geometries, the frozen wave function obtained from concatenating the
-fragment MOs might be non-unique. In those cases, we recommend the user to set
-EDA_ALIGN_FRGM_SPIN = 1 or 2 when performing geometry optimization
-on the frozen potential surface. The job will then go through the fragment spin alignment procedure
-in each optimization cycle.
+如第 [12.6.5](sect_eda2_job.md) 节所述，对于包含高度对称几何结构自由基的体系，通过拼接片段分子轨道（MO）得到的冻结波函数可能不是唯一的。在这些情况下，我们建议用户在冻结势能面上进行几何时，设置 EDA_ALIGN_FRGM_SPIN = 1 或 2。这样，计算任务在每个优化循环中都会执行片段自旋对齐流程。
 
 FRZ_GEOM
 
 ### `FRZ_GEOM`
 
-> **Compute forces on the frozen potential surface.**
+> **在冻结势能面上计算力。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Do not compute forces on the frozen potential surface.
+>     * 不在冻结势能面上计算力。
 >     * TRUE
->     * Compute forces on the frozen potential surface.
-> * **Recommendation**: Set it to TRUE when optimized geometry or vibrational frequencies on the frozen potential surface are desired.
-
-POL_GEOM
+>     * 在冻结势能面上计算力。
+> * **建议**: 当需要在冻结势能面上获得优化几何结构或振动频率时，将其设置为 TRUE。
 
 ### `POL_GEOM`
 
-> **Compute forces on the polarized (converged SCF-MI) potential surface.**
+> **在极化（收敛的 SCF-MI）势能面上计算受力。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Do not compute forces on the polarized potential surface.
+>     * 不在极化势能面上计算受力。
 >     * TRUE
->     * Compute forces on the polarized potential surface.
-> * **Recommendation**: Set it to TRUE when optimized geometry or vibrational frequencies on the polarized potential surface are desired.
+>     * 在极化势能面上计算受力。
+> * **建议**: 当需要在极化势能面上进行几何优化或计算振动频率时，将其设置为 TRUE。
 
-???+ example "Example 12.12.30: Geometry optimization of the ammonia-borane complex on the fully relaxed,
-polarized, and frozen potential energy surfaces successively."
+???+ example "示例 12.12.30: 依次在全松弛、极化和冻结势能面上对氨-硼烷配合物进行几何优化。"
     ```qchem
     $molecule
     0 1
@@ -183,8 +136,7 @@ polarized, and frozen potential energy surfaces successively."
     $end
     ```
 
-???+ example "Example 12.31: Geometry optimization of the [Cu(CO)] ${}^{+}$ complex on the frozen potential surface, followed by
-a frequency calculation which is computed via finite differences."
+???+ example "示例 12.31: 先在冻结势能面上对 [Cu(CO)] ${}^{+}$ 配合物进行几何优化，随后通过有限差分法进行频率计算。"
     ```qchem
     $molecule
     1 1
@@ -230,48 +182,36 @@ a frequency calculation which is computed via finite differences."
     $end
     ```
 
-To further understand the charge-transfer effects in dative complexes, in **Q-Chem**
-5.2.2 and after, one is allowed to separate the overall CT into contributions from
-forward and backward donations using the variational forward-backward (VFB)
-approach.[[857]](../bib_references/bib.md#bib891)
- Such a decomposition is achieved by introducing
-two additional constrained intermediate states in which only one direction of CT is
-permitted. These two “one-way” CT states are variationally relaxed such that the
-associated nuclear forces can be readily obtained. This allows for a facile integration
-into the adiabatic ALMO-EDA scheme introduced above:
+为了进一步理解给予体（dative）配合物中的电荷转移（charge-transfer, CT）效应，在 **Q-Chem** 5.2.2 及之后的版本中，允许使用变分前向-后向（variational forward-backward, VFB）方法[[857]](../bib_references/bib.md#bib891)将总体 CT 分解为前向捐赠（forward donation）与后向捐赠（backward donation）各自的贡献。
+该分解通过引入两个额外的受约束中间态来实现，在这两个态中只允许单一方向的 CT。这两个“单向”CT 态以变分方式得到松弛，因而可以方便地求得相应的核受力。这使得该方案能够轻松地嵌入上文介绍的绝热 ALMO-EDA 格式中：
 
 <a id="A3.S8.EGx123"></a>
 $$
 \displaystyle\Delta E^{(\mathrm{ad})}_{\mathrm{ctf}} \tag{12.30}
 $$
 
-and thus the molecular property changes arising from forward and backward donations
-can be separately assigned. Note that in its **Q-Chem** implementation, the evaluation of
-a VFB state always follows a polarization (standard SCF-MI) calculation. Also, since the
-definition of VFB states is based on the generalized SCF-MI technique (Section [12.6.2](sect_gen_scfmi.md)),
-SCFMI_MODE = 1 is required.
+由此，前向捐赠与后向捐赠所引发的分子性质变化可以被分别归属。需要注意的是，在 **Q-Chem** 的实现中，VFB 态的求解总是紧随极化（标准 SCF-MI）计算之后。此外，由于 VFB 态的定义基于广义 SCF-MI 技术（第 [12.6.2](sect_gen_scfmi.md) 节），因此必须设置 SCFMI_MODE = 1。
 
 VFB_CTA
 
 ### `VFB_CTA`
 
-> **Use the Variational Forward-Backward (VFB) approach to obtain “one-way” CT potential surfaces.**
+> **使用变分前向-后向（Variational Forward-Backward, VFB）方法获得“单向”电荷转移（CT）势能面。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`NONE`
+> * **可选值**：
 >     * FORWARD
->     * Allow 1
+>     * 仅允许 1
 >     * $\rightarrow$
->     * 2 CT only (1 and 2 are two fragments).
+>     * 2 方向的 CT（1 和 2 为两个片段）。
 >     * BACKWARD
->     * Allow 2
+>     * 仅允许 2
 >     * $\rightarrow$
->     * 1 CT only.
-> * **Recommendation**: None
+>     * 1 方向的 CT。
+> * **建议设置**：无
 
-???+ example "Example 12.32: Geometry optimization on one-side CT surface (2 $\to$ 1)
-using the variational forward-backward (VFB) approach"
+???+ example "示例 12.32: 使用变分前向-后向（VFB）方法在单向 CT 势能面（2 $\to$ 1）上进行几何优化"
     ```qchem
     $molecule
        0 1
@@ -301,17 +241,9 @@ using the variational forward-backward (VFB) approach"
     $end
     ```
 
-In **Q-Chem** v. 5.4 or later, analytical gradients for the polarized and two VFB “one-way” CT
-states with implicit solvent models PCM and SMD are supported so that one can perform
-part of the adiabatic ALMO-EDA steps (POL $\rightarrow$ CTf/CTb $\rightarrow$ Full)
-in solvation environments. To do this, one only needs to set the *$rem* variable
-SOLVENT_METHOD to PCM or SMD, which is similar to the usage of ALMO-EDA(solv)
-(see Section [12.6.6](sect_eda2_sol.md)). The calculation of analytical forces on the frozen surface with
-implicit solvents is currently unavailable, and we look forward to enabling that in future
-releases of **Q-Chem**.
+在 **Q-Chem** v. 5.4 及更高版本中，已支持在隐式溶剂模型 PCM 与 SMD 下对极化（polarized）VFB “单向” CT 态以及两个 VFB “单向” CT 态求解析梯（解析梯度），从而可以在溶剂化环境中完成绝热 ALMO-EDA 步骤的一部分（POL $\rightarrow$ CTf/CTb $\rightarrow$ Full）。为此，只需将 *$rem* 变量 SOLVENT_METHOD 设置为 PCM 或 SMD，其用法与 ALMO-EDA(solv) 类似（参见第 [12.6.6](sect_eda2_sol.md) 节）。目前在隐式溶剂下计算冻结（frozen）势能面上的解析力尚不可用，我们期待在 **Q-Chem** 的未来版本中实现该功能。
 
-???+ example "Example 12.33: Geometry optimization on the polarized surface with
-SMD solvent model"
+???+ example "示例 12.33: 在极化势能面上使用 SMD 溶剂模型进行几何优化"
     ```qchem
     $molecule
        0 1

@@ -1,11 +1,7 @@
----
-title: "12.15 TDDFT for Molecular Interactions"
----
+您的消息中"待翻译文档："之后没有附带任何内容（可能是粘贴时丢失了），同时我也在工作目录中未找到对应的源文件：
 
-# 12.15 TDDFT for Molecular Interactions
+```
+find docs-site/docs/en -iname "*12.15*"   # 无结果
+```
 
-(July 4, 2026)
-
-- [12.15.1 Introduction](Ch12.S15.SS1.md)
-
-- [12.15.2 Job Control](Ch12.S15.SS2.md)
+请提供需要翻译的 Markdown 原文，我会按照上述要求（保留 Frontmatter、公式、代码块、链接路径，仅翻译正文与链接描述文本等）直接输出完整的简体中文译文。

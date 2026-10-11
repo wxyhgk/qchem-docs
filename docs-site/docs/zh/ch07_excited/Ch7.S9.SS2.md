@@ -1,5 +1,5 @@
 ---
-title: "7.9.2 Excited States via EOM-EE-CCSD and EOM-CCSDT"
+title: "7.9.2 通过 EOM-EE-CCSD 与 EOM-CCSDT 计算激发态"
 ---
 
 ## 7.9.2 通过 EOM-EE-CCSD 与 EOM-CCSDT 计算激发态

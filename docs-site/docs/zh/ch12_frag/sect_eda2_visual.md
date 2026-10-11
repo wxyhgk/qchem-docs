@@ -1,76 +1,62 @@
 ---
-title: "12.6.9 Visualization Tools Associated with ALMO-EDA"
+title: "12.6.9 与 ALMO-EDA 相关的可视化工具"
 ---
 
-## 12.6.9 Visualization Tools Associated with ALMO-EDA
+## 12.6.9 与 ALMO-EDA 相关的可视化工具
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-The following visualization tools are enabled in EDA2:
+EDA2 中启用了以下可视化工具：
 
 - •
 
-Automated generation of complementary occupied-virtual pairs (COVP)
+互补占据-虚轨道对（complementary occupied-virtual pairs, COVP）的自动生成
 - •
 
-Electron density difference (EDD) maps between intermediate states
-(FRZ$\rightarrow$POL, POL$\rightarrow$Full)
+中间态之间（FRZ$\rightarrow$POL、POL$\rightarrow$Full）的电子密度差（electron density difference, EDD）图
 - •
 
-Plots for Natural Orbitals for Chemical Valence (NOCV)
+化学价自然轨道（Natural Orbitals for Chemical Valence, NOCV）图
 - •
 
-Plots of frozen and polarized ALMOs
+冻结（frozen）与极化（polarized）ALMO 图
 
-As introduced in Sec. [12.5.4](sect_covp.md), the COVPs can help elucidate the details
-of a charge-transfer process by showing the chemically most relevant
-donor-acceptor orbitals. In its implementation in EDA2, we enabled an
-automated selection of the most significant occupied-virtual pairs (based on a
-threshold on singular values). The MO cube files of these selected COVPs are
-then generated, and thus there is no need to specify which orbitals to plot.
-This new feature can be turned on by setting EDA_COVP_PRINT = AUTOMATED.
-Also, both the old and new formats of the *$plots* section are supported for
-automated COVP cube generation in EDA2. The old format requires
-MAKE_CUBE_FILES  = TRUE and the new format requires PLOTS =
-TRUE. The plotted COVPs are indexed as `covp_a.N.cube` and
-`covp_b.N.cube` and the energetic significance of each of them
-can be looked up from the output file.
+如第 [12.5.4 节](sect_covp.md) 所述，COVP 通过展示化学上最相关的供体-受体轨道，
+有助于阐明电荷转移过程的细节。在 EDA2 的实现中，
+我们启用了最重要的占据-虚轨道对的自动筛选（基于奇异值的阈值）。随后会为这些筛选出的
+COVP 生成分子轨道（MO）cube 文件，因此无需指定要绘制哪些轨道。
+该新功能可通过设置 EDA_COVP_PRINT = AUTOMATED 来开启。
+此外，EDA2 中的自动 COVP cube 生成同时支持 *$plots* 部分的旧格式和新格式。
+旧格式需要 MAKE_CUBE_FILES = TRUE，新格式则需要 PLOTS =
+TRUE。所绘制的 COVP 以 `covp_a.N.cube` 和
+`covp_b.N.cube` 命名索引，而每一对的能量重要性可以从输出文件中查阅。
 
-EDA2 also enabled electron density difference (EDD) plots to show the
-redistribution of electron density upon polarization ($\Delta\mathbf{P}_{\mathrm{pol}}=\mathbf{P}_{\mathrm{pol}}-\mathbf{P}_{\mathrm{frz}}$) and charge transfer ($\Delta\mathbf{P}_{\mathrm{ct}}=\mathbf{P}_{\mathrm{full}}-\mathbf{P}_{\mathrm{pol}}$). For unrestricted ALMO-EDA calculations, the spin
-density at FRZ, POL, and fully relaxed states are plotted together.
-Another related quantity that can be visualized
-is the so-called natural orbitals for chemical valence (NOCV),
+EDA2 还启用了电子密度差（EDD）图，用于展示极化（$\Delta\mathbf{P}_{\mathrm{pol}}=\mathbf{P}_{\mathrm{pol}}-\mathbf{P}_{\mathrm{frz}}$）和电荷转移（$\Delta\mathbf{P}_{\mathrm{ct}}=\mathbf{P}_{\mathrm{full}}-\mathbf{P}_{\mathrm{pol}}$）过程中电子密度的重新分布。对于非限制（unrestricted）ALMO-EDA 计算，FRZ、POL 以及完全弛豫状态下的自旋密度会一起绘制。
+另一个可供可视化的相关量是所谓的化学价自然轨道（NOCV），
 [[954]](../bib_references/bib.md#bib995)
- which are defined as the eigenvectors of $\Delta\mathbf{P}=\mathbf{P}_{\mathrm{full}}-\mathbf{P}_{\mathrm{frz}}$. The NOCVs appear in
-pairs $\psi_{k}$ and $\psi_{-k}$, whose associated eigenvalues are $n_{k}$ and
-$-n_{k}$, respectively. The energy lowering associated with each pair of NOCVs
-can be calculated using the extended transition state (ETS) approach (see
-Ref. [[954]](../bib_references/bib.md#bib995)
- for details). The NOCVs are useful tools for
-illustrating the underlying orbital interactions, including both polarization and
-charge transfer, in chemical bonding.
+其定义为 $\Delta\mathbf{P}=\mathbf{P}_{\mathrm{full}}-\mathbf{P}_{\mathrm{frz}}$ 的本征向量。NOCV 以 $\psi_{k}$ 和 $\psi_{-k}$ 成对出现，其对应的本征值分别为 $n_{k}$ 和
+$-n_{k}$。每一对 NOCV 相关的能量降低可以使用扩展过渡态（extended transition state, ETS）方法计算（详见
+参考文献 [[954]](../bib_references/bib.md#bib995)
+）。NOCV 是阐明化学键中 underlying 轨道相互作用（包括极化与
+电荷转移）的有用工具。
 
-In EDA2, the EDD maps are plotted when EDA_PLOT_DIFF_DEN = TRUE.
-The calculation of NOCVs are performed when EDA_NOCV $>0$. The
-most significant NOCVs are automatically selected based on a threshold on the
-eigenvalues $\{n_{k}\}$. When EDA_NOCV = 1, **Q-Chem** will only
-plot the contribution from each significant NOCV pair ($\psi_{-k}$, $\psi_{k}$) to
-the density deformation ($\Delta\rho_{k}$):
+在 EDA2 中，当 EDA_PLOT_DIFF_DEN = TRUE 时绘制 EDD 图。
+当 EDA_NOCV $>0$ 时执行 NOCV 的计算。
+最重要的 NOCV 基于本征值 $\{n_{k}\}$ 的阈值自动筛选。当 EDA_NOCV = 1 时，**Q-Chem** 将仅绘制
+每个重要 NOCV 对 ($\psi_{-k}$, $\psi_{k}$) 对密度形变 ($\Delta\rho_{k}$) 的贡献：
 
 <a id="Ch12.E24"></a>
 $$
 \Delta\rho_{k}(\mathbf{r})=-n_{k}|\psi_{-k}(\mathbf{r})|^{2}+n_{k}|\psi_{k}(\mathbf{r})|^{2} \tag{12.24}
 $$
 
-When EDA_NOCV = 2, **Q-Chem** will plot not only the NOCV pair contributions to
-density deformation but also the NOCVs themselves. Note that the new format of the
-*$plots* section is required for these visualizations (see Sec. [10.5.4.1](../ch10_properties/sect_plot.mo.md#sec:new-plots) for details).
+当 EDA_NOCV = 2 时，**Q-Chem** 不仅绘制 NOCV 对对密度形变的贡献，
+还会绘制 NOCV 本身。注意，这些可视化需要使用 *$plots* 部分的新格式
+（详见第 [10.5.4.1 节](../ch10_properties/sect_plot.mo.md#sec:new-plots)）。
 
-Finally, **Q-Chem** 5.2.2 enables the visualization of frozen and polarized
-ALMOs, which is controlled by *$rem* variables PLOT_ALMO_FRZ and
-PLOT_ALMO_POL. The user needs to specify which orbitals to plot for each
-fragment through the *$almo_print* section:
+最后，**Q-Chem** 5.2.2 启用了冻结与极化 ALMO 的可视化，
+由 *$rem* 变量 PLOT_ALMO_FRZ 和 PLOT_ALMO_POL 控制。
+用户需要通过 *$almo_print* 部分为每个片段指定要绘制的轨道：
 
 > ```qchem
 > $almo_print
@@ -80,20 +66,17 @@ fragment through the *$almo_print* section:
 > $end
 > ```
 
-One can use the format “orb1:orb2” to specify a range of orbitals to plot for
-each fragment. For unrestricted cases, at the end of each line one can write
-“a” or “b” to specify whether alpha or beta orbitals are plotted (alpha orbitals
-will be plotted by default if there is no specification). As above, a *$plots*
-section with its new format is required for the visualization of ALMOs.
+可以使用“orb1:orb2”格式为每个片段指定要绘制的轨道范围。
+对于非限制情况，可以在每行末尾书写“a”或“b”以指定绘制 alpha 还是 beta 轨道
+（若未作指定，默认绘制 alpha 轨道）。如上所述，ALMO 的可视化需要采用新格式的 *$plots*
+部分。
 
-In the following table, we summarize the names of the cube files generated by each
-type of plots. Note that for the EDD plots, “0” refers to the EDD between POL and FRZ states,
-while “1” refers to the EDD between full SCF and POL states; for the spin density
-plots, “0”, ”1”, and ”2” correspond to the FRZ, POL, and fully relaxed states, respectively.
+在下表中，我们总结了每种图所生成的 cube 文件名称。注意，对于 EDD 图，“0”表示 POL 与 FRZ 状态之间的 EDD，
+而“1”表示完全 SCF 与 POL 状态之间的 EDD；对于自旋密度图，“0”、”1” 和 ”2” 分别对应 FRZ、POL 和完全弛豫状态。
 
-Table 12.1: Cube file names generated by visualization tools in EDA2
+表 12.1：EDA2 中可视化工具生成的 cube 文件名称
 
-| Plot type | Orbital type | Cube file name |
+| 图类型 | 轨道类型 | Cube 文件名称 |
 | --- | --- | --- |
 | COVP | R | covp_a.N.cube |
 |  | U | covp_a.N.cube , covp_b.N.cube |
@@ -108,72 +91,67 @@ Table 12.1: Cube file names generated by visualization tools in EDA2
 |  | U | almo_frz_a.N.cube , almo_frz_b.N.cube |
 |  |  | almo_pol_a.N.cube , almo_pol_b.N.cube |
 
-EDA_PLOT_DIFF_DEN
-
 ### `EDA_PLOT_DIFF_DEN`
 
-> **Plot changes in electron density due to POL and CT**
+> **绘制由于 POL（极化）和 CT（电荷转移）引起的电子密度变化图**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not make EDD plots
+>     * 不生成 EDD（电子密度差）图
 >     * TRUE
->     * Make EDD plots
-> * **Recommendation**: None
+>     * 生成 EDD（电子密度差）图
+> * **建议**: 无
 
 EDA_NOCV
 
 ### `EDA_NOCV`
 
-> **Perform the NOCV analysis and plot the significant NOCVs**
+> **执行 NOCV 分析并绘制重要的 NOCV（自然轨道对化学键, Natural Orbitals for Chemical Valence）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not perform NOCV analysis
+>     * 不执行 NOCV 分析
 >     * 1
->     * Plot NOCV pair contributions to density deformation
+>     * 绘制 NOCV 对密度形变（density deformation）的贡献
 >     * 2
->     * Plot both NOCV pair contribution to density deformation and NOCV orbitals
-> * **Recommendation**: None
+>     * 同时绘制 NOCV 对密度形变的贡献及 NOCV 轨道
+> * **建议**: 无
 
 PLOT_ALMO_FRZ
 
 ### `PLOT_ALMO_FRZ`
 
-> **Plot ALMOs at the frozen stage of EDA2 calculations**
+> **在 EDA2（能量分解分析第二版, Energy Decomposition Analysis 2）计算的冻结（frozen）阶段绘制 ALMO（定域分子轨道, Absolutely Localized Molecular Orbitals）**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not plot frozen ALMOs
+>     * 不绘制冻结态 ALMO
 >     * TRUE
->     * Plot frozen ALMOs
-> * **Recommendation**: None
+>     * 绘制冻结态 ALMO
+> * **建议**: 无
 
 PLOT_ALMO_POL
 
 ### `PLOT_ALMO_POL`
 
-> **Plot ALMOs after the polarization calculation**
+> **在极化（polarization）计算之后绘制 ALMO**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not plot polarized ALMOs
+>     * 不绘制极化态 ALMO
 >     * TRUE
->     * Plot polarized ALMOs
-> * **Recommendation**: None
+>     * 绘制极化态 ALMO
+> * **建议**: 无
 
-???+ example "Example 12.24: Performing perturbative CTA through EDA2 (using the default settings). The
-automatic COVP generation is enabled by setting EDA_PRINT_COVP = AUTOMATED ,
-which plots the most significant COVPs automatically. The new format of the $plots section is used by setting PLOTS = TRUE , and there is no need
-to specify how many orbitals to plot."
+???+ example "示例 12.24: 通过 EDA2 执行微扰 CTA（约束轨道对, Constrained Transition-amplitude）计算（使用默认设置）。通过设置 EDA_PRINT_COVP = AUTOMATED 来启用自动 COVP（正则化轨道对, Canonical Orbital-Pair）生成，可自动绘制最重要的 COVP。通过设置 PLOTS = TRUE 使用新版 $plots 区块格式，无需指定要绘制的轨道数目。"
     ```qchem
     $molecule
        0 1
@@ -212,9 +190,7 @@ to specify how many orbitals to plot."
     $end
     ```
 
-???+ example "Example 12.25: Electron density difference (EDD) plots and NOCV analysis for the NH ${}_{3}\cdots$ BH ${}_{3}$ complex.
-Both the significant NOCV pairs and each pair’s contribution to density deformation due to
-orbital interaction (polarization and charge transfer) are plotted."
+???+ example "示例 12.25: NH ${}_{3}\cdots$ BH ${}_{3}$ 复合物的电子密度差（EDD）图及 NOCV 分析。同时绘制了重要的 NOCV 对，以及每一对轨道相互作用（极化与电荷转移）对密度形变的贡献。"
     ```qchem
     $molecule
     0 1
@@ -253,7 +229,7 @@ orbital interaction (polarization and charge transfer) are plotted."
     $end
     ```
 
-???+ example "Example 12.26: Plot HOMO and LUMO for each fragment (frozen and polarized ALMOs) in an EDA2 calculation"
+???+ example "示例 12.26: 在 EDA2 计算中绘制每个片段的 HOMO（最高占据分子轨道）和 LUMO（最低未占分子轨道）（冻结态与极化态 ALMO）"
     ```qchem
     $molecule
     0 1

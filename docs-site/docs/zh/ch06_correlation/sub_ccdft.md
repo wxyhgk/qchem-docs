@@ -11,4 +11,33 @@ title: "6.15.2 相关计算中的非 Hartree-Fock 轨道"
 这样才能对轨道进行正确的伪正则化（pseudocanonicalization）。
 
 ???+ example "示例 6.49: 使用 B3LYP 轨道对三重态卡宾进行 CCSD 计算"
-    CCSD calculation of triplet methylene using B3LYP orbitals
+    ```qchem
+    $molecule
+       0 3
+       C
+       H  1  CH
+       H  1  CH  2  HCH
+    
+       CH  = 1.07
+       HCH = 111.0
+    $end
+    
+    $rem
+       EXCHANGE        b3lyp
+       BASIS           cc-pvdz
+    $end
+    
+    @@@
+    
+    $molecule
+       read
+    $end
+    
+    $rem
+       BASIS           cc-pvdz
+       METHOD          ccsd
+       SCF_GUESS       read
+       MAX_SCF_CYCLES  0
+       N_FROZEN_CORE   1
+    $end
+    ```

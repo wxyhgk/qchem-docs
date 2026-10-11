@@ -1,15 +1,15 @@
 ---
-title: "12.10 The XPol+SAPT (XSAPT) Method"
+title: "12.10 XPol+SAPT（XSAPT）方法"
 ---
 
-# 12.10 The XPol+SAPT (XSAPT) Method
+# 12.10 XPol+SAPT（XSAPT）方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [12.10.1 Introduction](Ch12.S10.SS1.md)
+- [12.10.1 引言](Ch12.S10.SS1.md)
 
-- [12.10.2 Theory](Ch12.S10.SS2.md)
+- [12.10.2 理论](Ch12.S10.SS2.md)
 
-- [12.10.3 Dispersion Models](subsec_AO-XSAPT(KS)+D.md)
+- [12.10.3 色散模型](subsec_AO-XSAPT(KS)+D.md)
 
-- [12.10.4 Running an XSAPT+MBD Job](ex_XSAPT+PCM.md)
+- [12.10.4 运行 XSAPT+MBD 计算任务](ex_XSAPT+PCM.md)

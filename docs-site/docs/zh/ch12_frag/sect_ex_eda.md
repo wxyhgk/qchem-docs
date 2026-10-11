@@ -1,68 +1,50 @@
 ---
-title: "12.7.5 ALMO-EDA for Excited States"
+title: "12.7.5 激发态的 ALMO-EDA"
 ---
 
-## 12.7.5 ALMO-EDA for Excited States
+## 12.7.5 激发态的 ALMO-EDA
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 12.7.5.1 Theory
+## 12.7.5.1 理论
 
-So far we have only covered EDA methods for intermolecular interactions between
-molecules in their ground states. Since electronic excited states are
-associated with less strongly bound electrons, modified electrostatic multipole
-moments (due to electron transition), and often larger polarizabilities,
-effects imposed by other molecules can be even larger as well as less
-chemically intuitive than those on ground states. Furthermore, there exist
-systems that are weakly bound in the ground state but much more strongly bound
-in the electronic excited state (*e.g.* He${}_{2}$ versus He${}_{2}^{\ast}$). Therefore, it
-is very desirable to develop an interpretation tool that can be utilized to
-study these important phenomena that are related to intermolecular interactions
-involving excited-state molecules.
+到目前为止，我们仅介绍了针对处于基态的分子之间分子间相互作用的能量分解分析（EDA）方法。由于电子激发态通常伴随着束缚较弱的电子、因电子跃迁而改变的多极矩（静电多极矩），以及往往更大的极化率，其他分子对激发态体系的影响可能比对基态的影响更大，也更缺乏化学直觉上的可解释性。此外，还存在一些体系在基态下仅以弱相互作用结合，但在电子激发态下却结合得强得多（*例如* He${}_{2}$ 与 He${}_{2}^{\ast}$）。因此，非常需要开发一种解释工具，用于研究与激发态分子间的分子间相互作用相关的这些重要现象。
 
-Ge *et al.* recently extended the ALMO-EDA to treat *exciplexes* (where the
-excitation can be assigned to a single molecule within a complex)[[435]](../bib_references/bib.md#bib446)
+Ge *et al.*  recently 将 ALMO-EDA 推广，用于处理在 CIS 或 TDDFT/TDA 理论水平上计算的*激发复合物*（exciplex，其激发可归属于复合物中的单一分子）[[435]](../bib_references/bib.md#bib446)
 
-and *excimers* (where multiple fragments contribute to the
-excitation)[[434]](../bib_references/bib.md#bib447)
- computed at the CIS or TDDFT/TDA level of theory.
-Here we briefly overview the decomposition schemes. In the EDA for exciplexes,
-one first defines the interaction energy in the excited state ($\Delta E_{\mathrm{INT}}^{\ast}$) as
+以及*激发二聚体*（excimer，其激发由多个片段共同贡献）[[434]](../bib_references/bib.md#bib447)
+
+。这里我们简要概述其分解方案。对于激发复合物的 EDA，首先将激发态下的相互作用能（$\Delta E_{\mathrm{INT}}^{\ast}$）定义为
 
 <a id="Ch12.E34"></a>
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=E^{\ast}-E_{\mathrm{frag}}^{\ast} \tag{12.34}
 $$
 
-where $E^{\ast}=E+\omega$ is the energy of the excited supersystem, and
-$E_{\mathrm{frag}}^{\ast}$ can be expressed as the sum of ground-state fragment
-energies and the excitation energy of one of the fragments (without losing
-generality, this excited fragment is denoted as fragment “1”):
+其中 $E^{\ast}=E+\omega$ 是激发态超体系（supersystem）的能量，而 $E_{\mathrm{frag}}^{\ast}$ 可表示为各基态片段能量之和加上其中一个片段的激发能（不失一般性，将该激发片段记为片段"1"）：
 
 <a id="eq:ex_e_frag"></a>
 $$
 E_{\mathrm{frag}}^{\ast}=\sum_{F}E_{F}+\omega_{1} \tag{12.35}
 $$
 
-Therefore, we can rewrite the excited-state interaction as
+因此，我们可以将激发态相互作用能改写为
 
 <a id="eq:ex_int"></a>
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=\Delta E_{\mathrm{INT}}+\Delta\omega_{\mathrm{INT}} \tag{12.36}
 $$
 
-which contains contributions from the ground-state interaction energy ($\Delta E=E-\sum_{F}E_{F}$) and the excitation energy ($\Delta\omega_{\mathrm{INT}}=\omega-\omega_{1}$). Then, as in the first-generation
-ALMO-EDA for ground states[[682]](../bib_references/bib.md#bib706)
-, the excited-state
-interaction energy can be separated into contributions from frozen interaction
-(FRZ), polarization (POL), and charge transfer (CT):
+它包含基态相互作用能（$\Delta E=E-\sum_{F}E_{F}$）与激发能之差（$\Delta\omega_{\mathrm{INT}}=\omega-\omega_{1}$）的贡献。然后，类似于第一代基态 ALMO-EDA[[682]](../bib_references/bib.md#bib706)
+
+，激发态相互作用能可以被分离为冻结相互作用（FRZ）、极化（POL）和电荷转移（CT）三项贡献：
 
 <a id="eq:ex_eda"></a>
 $$
 \Delta E_{\mathrm{INT}}^{\ast}=\Delta E_{\mathrm{FRZ}}^{\ast}+\Delta E_{\mathrm{POL}}^{\ast}+\Delta E_{\mathrm{CT}}^{\ast} \tag{12.37}
 $$
 
-Each term on the RHS of Eq. ([12.37](#eq:ex_eda)) can be written in a similar form as Eq. ([12.36](#eq:ex_int)):
+式 ([12.37](#eq:ex_eda)) 右端的每一项都可以写成类似于式 ([12.36](#eq:ex_int)) 的形式：
 
 <a id="A3.S8.EGx124"></a>
 $$
@@ -74,74 +56,50 @@ $$
 &\displaystyle=\Delta E_{\mathrm{CT}}+\Delta\omega_{\mathrm{CT}}\end{aligned} \tag{12.38}
 $$
 
-The terms $\Delta E_{\mathrm{FRZ}}$, $\Delta E_{\mathrm{POL}}$, and $\Delta E_{\mathrm{CT}}$ can be obtained by performing a ground-state ALMO-EDA for the
-supersystem. To compute $\Delta\omega_{\mathrm{FRZ}}$, $\Delta\omega_{\mathrm{POL}}$, and $\Delta\omega_{\mathrm{CT}}$, one needs to define
-$\omega_{\mathrm{FRZ}}$ and $\omega_{\mathrm{POL}}$, *i.e.*, excitation energies
-associated with the frozen and polarized supersystem, respectively. The frozen
-intermediate state can be viewed as one excited fragment embedded in the
-environment formed by other ground-state fragments, whose effects on the
-excited fragment are only through the supersystem Fock matrix. The definition
-of the polarized intermediate state utilizes the ALMO-CIS model (see
-Section [12.16](sect_ALMO-CIS.md)), where both MOs and excitation amplitudes are
-fragment-localized. We also note that the frozen contribution to the
-excited-state interaction energy, $\Delta E_{\mathrm{FRZ}}^{\ast}$, can be
-further partitioned into a classical electrostatics term (Coulomb interactions
-between isolated fragment charge distributions) and a non-electrostatic term
-(mostly Pauli repulsion if a non-dispersion-corrected model such as CIS is used):
+其中的 $\Delta E_{\mathrm{FRZ}}$、$\Delta E_{\mathrm{POL}}$ 和 $\Delta E_{\mathrm{CT}}$ 可通过对超体系执行基态 ALMO-EDA 获得。而要计算 $\Delta\omega_{\mathrm{FRZ}}$、$\Delta\omega_{\mathrm{POL}}$ 和 $\Delta\omega_{\mathrm{CT}}$，就需要定义 $\omega_{\mathrm{FRZ}}$ 和 $\omega_{\mathrm{POL}}$，*即* 分别与冻结超体系和极化超体系相关联的激发能。冻结中间态可视为一个激发片段嵌入由其他处于基态的片段所构成的环境中，环境对激发片段的作用仅通过超体系的 Fock 矩阵体现。极化中间态的定义利用了 ALMO-CIS 模型（见第 [12.16](sect_ALMO-CIS.md) 节），其中分子轨道（MO）和激发振幅均被定域在各个片段上。我们还指出，激发态相互作用能中的冻结贡献 $\Delta E_{\mathrm{FRZ}}^{\ast}$ 可以进一步细分为经典静电项（孤立片段电荷分布之间的库仑相互作用）和非静电项（若使用如 CIS 这类未做色散校正的模型，则主要为泡利排斥）：
 
 <a id="eq:ex_eda_frz_decomp"></a>
 $$
 \Delta E_{\mathrm{FRZ}}^{\ast}=\Delta E_{\textrm{CLS-ELEC}}^{\ast}+\Delta E_{\textrm{NON-ELEC}}^{\ast} \tag{12.39}
 $$
 
-Modifications are needed in order to extend this method to excimers, where
-different fragments are of degenerate or near-degenerate excited states. In
-such cases, we choose $M$ reference fragment states as the initial basis.
-Denote the $s$th excited state on fragment $I$ as the
-$\kappa$th reference state ($\kappa=1,2,\dots,M$).
-Similar to Eq. ([12.35](#eq:ex_e_frag)), we have
+若要将此方法推广到激发二聚体（excimer），即不同片段处于简并或近简并激发态的情形，则需要做一些修改。在这种情况下，我们选取 $M$ 个参考片段态作为初始基。将片段 $I$ 上的第 $s$ 个激发态记为第 $\kappa$ 个参考态（$\kappa=1,2,\dots,M$）。
+类似于式 ([12.35](#eq:ex_e_frag))，我们有
 
 <a id="eq:ex_e_frag_mult"></a>
 $$
 E_{\mathrm{frag}}^{\kappa}=\sum_{F}E_{F}+\omega_{I}^{s} \tag{12.40}
 $$
 
-The corresponding frozen excited-state wave function is then constructed by
-embedding this excited fragment into the environment formed by other fragments in their ground states:
+相应的冻结激发态波函数通过将这一激发片段嵌入由其他处于基态的片段所构成的环境来构造：
 
 <a id="Ch12.E41"></a>
 $$
 \left|\Phi_{\mathrm{FRZ}}^{\kappa}\right\rangle=\left|\Psi_{1}\Psi_{2}\cdots\Psi_{I}^{s}\cdots\Psi_{N}\right\rangle \tag{12.41}
 $$
 
-and the excited-state frozen interaction energy
+激发态冻结相互作用能为
 
 <a id="Ch12.E42"></a>
 $$
 \Delta E_{\mathrm{FRZ}}^{\kappa}=\Delta E_{\mathrm{FRZ}}+\Delta\omega_{\mathrm{FRZ}}^{\kappa}=\Delta E_{\mathrm{FRZ}}+(\omega_{\mathrm{FRZ}}^{\kappa}-\omega_{I}^{s}) \tag{12.42}
 $$
 
-With $M$ degenerate or near-degenerate frozen excited states, a new
-intermediate state is then introduced to capture the pure excitonic-splitting
-(EXSP) effect in the formation of excimers, which can be expressed as a linear
-combination of the frozen states:
+基于这 $M$ 个简并或近简并的冻结激发态，引入一个新的中间态，用于捕捉激发二聚体形成过程中纯的激子分裂（EXSP）效应，其可表示为各冻结态的线性组合：
 
 <a id="eq:ex_eda_exsp"></a>
 $$
 \left|\Phi^{\kappa}_{\mathrm{EXSP}}\right\rangle=\sum_{\kappa^{\prime}}^{M}c^{\kappa\kappa^{\prime}}\left|\Psi_{1}\Psi_{2}\cdots\Psi_{I}^{s}\cdots\Psi_{N}\right\rangle \tag{12.43}
 $$
 
-The associated excitation energy $\omega^{\kappa}_{\mathrm{EXSP}}$ and the
-corresponding linear combination coefficients can be obtained by solving a
-secular equation in the basis of frozen states. As excitonic splitting is
-purely an excited-state phenomenon, we have
+相应的激发能 $\omega^{\kappa}_{\mathrm{EXSP}}$ 及其线性组合系数可通过在冻结态基组下求解久期方程（secular equation）获得。由于激子分裂 purely 是一种激发态现象，我们有
 
 <a id="Ch12.E44"></a>
 $$
 \Delta E^{\kappa}_{\mathrm{EXSP}}=\Delta\omega^{\kappa}_{\mathrm{EXSP}}=\omega^{\kappa}_{\mathrm{EXSP}}-\omega^{\kappa}_{\mathrm{FRZ}} \tag{12.44}
 $$
 
-Subsequently, polarization and charge transfer are handled in a similar way as in the excimer case:
+随后，极化和电荷转移的处理方式与激发二聚体（exciplex，即激发复合物）情形类似：
 
 <a id="A3.S8.EGx125"></a>
 $$
@@ -149,27 +107,12 @@ $$
 \displaystyle\Delta E^{\kappa}_{\mathrm{CT}}&\displaystyle=\Delta E_{\mathrm{CT}}+\Delta\omega^{\kappa}_{\mathrm{CT}}=\Delta E_{\mathrm{CT}}+(\omega^{\kappa}-\omega^{\kappa}_{\mathrm{POL}})\end{aligned} \tag{12.45}
 $$
 
-One more complication compared to the EDA scheme for exciplexes is that since
-multiple ($M$) states are considered, extra caution needs be paid to the
-state-ordering at different stages (EXSP, POL and CT). In order to locate the
-states of interest (which can be most unambiguously identified at the EXSP
-stage) correctly during the entire EDA procedure, a state-tracking algorithm
-based on a maximum-overlap criterion is employed. The reader is referred to
-Ref. [[434]](../bib_references/bib.md#bib447)
- for more details.
+与激发复合物的 EDA 方案相比，还有一份额外的复杂性：由于考虑了多个（$M$ 个）态，在不同阶段（EXSP、POL 和 CT）需要格外注意态的排序问题。为了在整个 EDA 流程中正确定位所关心的态（这些态在 EXSP 阶段最容易被明确无误地识别），采用了一种基于最大重叠判据的态追踪（state-tracking）算法。更多细节请参见文献 [[434]](../bib_references/bib.md#bib447)。
 
-## 12.7.5.2 Job Control
+## 12.7.5.2 作业控制（Job Control）
 
-The ALMO-EDA for intermolecular interactions involving excited-state molecules
-implemented in **Q-Chem** 5.1 supports CIS and TDDFT within the Tamm-Dancoff
-approximation (TDA) for closed-shell systems, *i.e.*, excited states calculated
-by TDDFT and unrestricted systems are currently *not* supported. The EDA
-procedure is triggered by setting EX_EDA = TRUE. The code
-first performs a customized ground-state calculation (using AO-based ALMOs)
-through the “EDA2” driver. During the isolated fragment calculations in this
-EDA, the fragment excited states are also computed after its ground-state SCF
-is converged, which is controlled by a new input section *$frgm_cis_n_roots*.
-The format of this input section is as follows:
+**Q-Chem** 5.1 中实现的、涉及激发态分子的分子间相互作用的 ALMO-EDA，支持闭壳层体系在 Tamm-Dancoff 近似（TDA）下的 CIS 与 TDDFT，*亦即*，由 TDDFT 计算的激发态以及非限制（unrestricted）体系目前*尚不*支持。EDA 流程通过将 EX_EDA = TRUE 来触发。程序首先经由 “EDA2” 驱动执行一次定制化的基态计算（使用基于 AO 的 ALMO）。在该 EDA 的孤立片段计算过程中，片段激发态会在其基态 SCF 收敛之后一并计算，这由新的输入段 *$frgm_cis_n_roots* 控制。
+该输入段的格式如下：
 
 > ```qchem
 > $frgm_cis_n_roots
@@ -179,43 +122,27 @@ The format of this input section is as follows:
 > $end
 > ```
 
-Here “nstates_to_calc” specifies the number of states to calculate for each
-fragment (the value of CIS_N_ROOTS for each fragment calculation),
-and “nstates_as_exciton_basis” refers to the number of calculated fragment
-states that are used to construct the EXSP state (whose sum gives $M$ in
-Eq. ([12.43](#eq:ex_eda_exsp))). When the supersystem is considered as an exciplex
-where the excitation is assigned to a specific fragment, only one row is needed
-in this section, and there is no need to specify the number of states used as
-the basis for the EXSP state.
+其中 “nstates_to_calc” 指定为每个片段计算的态数目（即各片段计算中 CIS_N_ROOTS 的取值），而 “nstates_as_exciton_basis” 指用于构造 EXSP 态的计算所得片段态数目（其求和给出公式 ([12.43](#eq:ex_eda_exsp)) 中的 $M$）。当把超体系（supersystem）视为激发态被指定到某一特定片段的激基复合物（exciplex）时，本段只需要一行即可，且无需指定用作 EXSP 态基底的态数目。
 
-The other relevant rem variables includes CIS_N_ROOTS, which
-specifies the number of roots to calculate in the ALMO-CIS/TDA and full CIS/TDA
-calculations, and EIGSLV_METH (see Section [12.16](sect_ALMO-CIS.md)) that is
-set to 1 (using the Davidson iterative solver) by default. Note that the number
-of states that the EDA is concerned with is controlled by the number of
-isolated fragment states (the exciplex case) or the total number of states that
-are excitonically coupled (the excimer case). In the latter case,
-CIS_N_ROOTS is usually set to a value that is larger than $M$ to
-ensure that all states of interest are captured in the ALMO-CIS/TDA and full
-CIS/TDA calculations, as changes in state-ordering might occur.
+其余相关的 rem 变量包括 CIS_N_ROOTS，它指定在 ALMO-CIS/TDA 以及完整 CIS/TDA 计算中要计算的根（roots）数目；以及 EIGSLV_METH（见第 [12.16](sect_ALMO-CIS.md) 节），其默认值为 1（使用 Davidson 迭代求解器）。需要注意的是，EDA 所关注的态数目由孤立片段的态数目（激基复合物情形）或由发生激子耦合的态的总数（激基缔合物/excimer 情形）来控制。在后一种情形下，通常将 CIS_N_ROOTS 设置为大于 $M$ 的值，以确保所有感兴趣的态都被包含在 ALMO-CIS/TDA 与完整 CIS/TDA 计算之中，因为可能会出现态排序（state-ordering）的变化。
 
 EX_EDA
 
 ### `EX_EDA`
 
-> **Perform an ALMO-EDA calculation with one or more fragments excited.**
+> **执行一个含有一个或多个激发片段的 ALMO-EDA 计算。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Perform EDA with excited-state molecule(s) taken into account.
+>     * 执行 EDA，并考虑激发态分子。
 >     * FALSE
-> * **Recommendation**: None
+> * **建议**: 无
 
-???+ example "Example 12.35: EDA for the lowest two excited states of the formamide-water complex at the
-CIS/6-31+G(d) level of theory. Both excited states are assigned to the
-formamide molecule and the system is regarded as an exciplex."
+???+ example "示例 12.35: 在 CIS/6-31+G(d)
+理论水平下对甲酰胺-水复合物的最低两个激发态执行 EDA。两个激发态均归属于甲酰胺分子，
+体系被视为激基复合物（exciplex）。"
     ```qchem
     $molecule
     0 1
@@ -253,11 +180,8 @@ formamide molecule and the system is regarded as an exciplex."
     
     ```
 
-???+ example "Example 12.36: EDA for the lowest two states (1s->2s) of the He ${}_{2}^{\ast}$ excimer
-computed at the CIS/6-311(2+,2+)G (customized) level of theory.
-For each He, eight excited states are calculated and only the lowest
-one is used to construct the EXSP state, giving rise to two supersystem
-states."
+???+ example "示例 12.36: 在 CIS/6-311(2+,2+)G（自定义）理论水平下计算 He ${}_{2}^{\ast}$ 激基缔合物（excimer）的最低两个态 (1s->2s) 的 EDA。
+对每个 He 计算八个激发态，且仅使用最低的一个来构造 EXSP 态，从而得到两个超体系态。"
     ```qchem
     $molecule
     0 1

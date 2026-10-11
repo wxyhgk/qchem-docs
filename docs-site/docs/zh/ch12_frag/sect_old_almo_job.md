@@ -1,223 +1,222 @@
 ---
-title: "12.5.5 Job Control Options"
+title: "12.5.5 作业控制选项"
 ---
 
-## 12.5.5 Job Control Options
+## 12.5.5 作业控制选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 FRGM_METHOD
 
 ### `FRGM_METHOD`
 
-> **Specifies a locally-projected method.**
+> **指定一种局域投影（locally-projected）方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`NONE`
+> * **可选值**：
 >     * STOLL
->     * Locally-projected SCF equations of Stoll are solved.
+>     * 求解 Stoll 提出的局域投影自洽场（SCF）方程。
 >     * GIA
->     * Locally-projected SCF equations of Gianinetti are solved.
+>     * 求解 Gianinetti 提出的局域投影 SCF 方程。
 >     * NOSCF_RS
->     * Single Roothaan-step correction to the
+>     * 对
 >     * FRAGMO
->     * initial guess.
+>     * 初始猜测施加单步 Roothaan 修正。
 >     * NOSCF_ARS
->     * Approximate single Roothaan-step correction to the
+>     * 对
 >     * FRAGMO
->     * initial guess.
+>     * 初始猜测施加近似的单步 Roothaan 修正。
 >     * NOSCF_DRS
->     * Double Roothaan-step correction to the
+>     * 对
 >     * FRAGMO
->     * initial guess.
+>     * 初始猜测施加双步 Roothaan 修正。
 >     * NOSCF_RS_FOCK
->     * Non-converged SCF energy of the single Roothaan-step MOs.
-> * **Recommendation**: STOLL and GIA are for variational optimization of the ALMOs. NOSCF options are for computationally fast corrections of the FRAGMO initial guess.
+>     * 单步 Roothaan 分子轨道（MO）对应的未收敛 SCF 能量。
+> * **使用建议**：STOLL 与 GIA 用于对局域化分子轨道（ALMO）进行变分优化；NOSCF 系列选项用于对 FRAGMO 初始猜测进行快速的计算修正。
 
 FRGM_LPCORR
 
 ### `FRGM_LPCORR`
 
-> **Specifies a correction method performed after the locally-projected equations are converged.**
+> **指定在局域投影方程收敛之后所执行的修正方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`NONE`
+> * **可选值**：
 >     * ARS
->     * Approximate Roothaan-step perturbative correction.
+>     * 近似 Roothaan 步微扰修正。
 >     * RS
->     * Single Roothaan-step perturbative correction.
+>     * 单步 Roothaan 微扰修正。
 >     * EXACT_SCF
->     * Full SCF variational correction.
+>     * 完整的 SCF 变分修正。
 >     * ARS_EXACT_SCF
->     * Both
+>     * 在同一次作业中同时执行
 >     * ARS
->     * and
+>     * 与
 >     * EXACT_SCF
->     * in a single job.
+>     * 。
 >     * RS_EXACT_SCF
->     * Both
+>     * 在同一次作业中同时执行
 >     * RS
->     * and
+>     * 与
 >     * EXACT_SCF
->     * in a single job.
-> * **Recommendation**: For large basis sets use ARS , use RS if ARS fails.
+>     * 。
+> * **使用建议**：对于大基组建议使用 ARS；若 ARS 失败则改用 RS。
 
 SCF_PRINT_FRGM
 
 ### `SCF_PRINT_FRGM`
 
-> **Controls the output of Q-Chem jobs on isolated fragments.**
+> **控制对孤立片段（isolated fragments）运行的 Q-Chem 作业的输出。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * The output is printed to the parent job output file.
+>     * 将输出打印到父作业的输出文件中。
 >     * FALSE
->     * The output is not printed.
-> * **Recommendation**: Use TRUE if details about isolated fragments are important.
+>     * 不打印输出。
+> * **使用建议**：若需要了解孤立片段的详细信息，请设置为 TRUE。
 
 EDA_BSSE
 
 ### `EDA_BSSE`
 
-> **Calculates the BSSE correction when performing the energy decomposition analysis.**
+> **在进行能量分解分析（Energy Decomposition Analysis, EDA）时计算基组重叠误差（Basis Set Superposition Error, BSSE）修正。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE/FALSE
-> * **Recommendation**: Set to TRUE unless a very large basis set is used.
+> * **使用建议**：除非使用了非常大的基组，否则应设置为 TRUE。
 
 EDA_COVP
 
 ### `EDA_COVP`
 
-> **Perform COVP analysis when evaluating the RS or ARS charge-transfer correction. COVP analysis is currently implemented only for systems of two fragments.**
+> **在计算 RS 或 ARS 电荷转移修正时执行 COVP 分析。目前 COVP 分析仅支持由两个片段组成的体系。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE/FALSE
-> * **Recommendation**: Set to TRUE to perform COVP analysis in an EDA or SCF-MI(RS) job.
+> * **使用建议**：在 EDA 或 SCF-MI(RS) 作业中执行 COVP 分析时设置为 TRUE。
 
 EDA_PRINT_COVP
 
 ### `EDA_PRINT_COVP`
 
-> **Replace the final MOs with the CVOP orbitals in the end of the run.**
+> **在运行结束时用 COVP 轨道替换最终的分子轨道（MO）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE/FALSE
-> * **Recommendation**: Set to TRUE to print COVP orbitals instead of conventional MOs.
+> * **使用建议**：若希望打印 COVP 轨道而非传统 MO，请设置为 TRUE。
 
 NVO_LIN_MAX_ITE
 
 ### `NVO_LIN_MAX_ITE`
 
-> **Maximum number of iterations in the preconditioned conjugate gradient solver of the single-excitation amplitude equations.**
+> **单激发振幅方程预条件共轭梯度（preconditioned conjugate gradient）求解器的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `30`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`30`
+> * **可选值**：
 >     * $n$
->     * User–defined number of iterations.
-> * **Recommendation**: None.
+>     * 用户自定义的迭代次数。
+> * **使用建议**：无。
 
 NVO_LIN_CONVERGENCE
 
 ### `NVO_LIN_CONVERGENCE`
 
-> **Target error factor in the preconditioned conjugate gradient solver of the single-excitation amplitude equations.**
+> **单激发振幅方程预条件共轭梯度求解器的目标误差因子。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`3`
+> * **可选值**：
 >     * $n$
->     * User–defined number.
-> * **Recommendation**: Solution of the single-excitation amplitude equations is considered converged if the maximum residual is less than $10^{-n}$ multiplied by the current DIIS error. For the ARS correction, $n$ is automatically set to 1 since the locally-projected DIIS error is normally several orders of magnitude smaller than the full DIIS error.
+>     * 用户自定义的数值。
+> * **使用建议**：若最大残差小于 $10^{-n}$ 与当前 DIIS 误差的乘积，则认为单激发振幅方程的解已收敛。对于 ARS 修正，$n$ 会自动设为 1，因为局域投影的 DIIS 误差通常比完整 DIIS 误差小若干个数量级。
 
 NVO_METHOD
 
 ### `NVO_METHOD`
 
-> **Sets method to be used to converge solution of the single-excitation amplitude equations.**
+> **设置用于使单激发振幅方程解收敛的方法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `9`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`9`
+> * **可选值**：
 >     * $n$
->     * User–defined number.
-> * **Recommendation**: This is an experimental option. Use the default.
+>     * 用户自定义的数值。
+> * **使用建议**：这是一个实验性选项。请使用默认值。
 
 NVO_UVV_PRECISION
 
 ### `NVO_UVV_PRECISION`
 
-> **Controls convergence of the Taylor series when calculating the $U_{vv}$ block from the single-excitation amplitudes. Series is considered converged when the maximum element of the term is less than $10^{-n}$ .**
+> **控制由单激发振幅计算 $U_{vv}$ 块时泰勒级数的收敛精度。当某一项的最大元素小于 $10^{-n}$ 时，认为该级数已收敛。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `11`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`11`
+> * **可选值**：
 >     * $n$
->     * User–defined number.
-> * **Recommendation**: must be the same as or larger than THRESH .
+>     * 用户自定义的数值。
+> * **使用建议**：该值必须等于或大于 THRESH。
 
 NVO_UVV_MAXPWR
 
 ### `NVO_UVV_MAXPWR`
 
-> **Controls convergence of the Taylor series when calculating the $U_{vv}$ block from the single-excitation amplitudes. If the series is not converged at the $n$ th term, more expensive direct inversion is used to calculate the $U_{vv}$ block.**
+> **控制由单激发振幅计算 $U_{vv}$ 分块时泰勒级数的收敛性。若级数在第 $n$ 项仍未收敛，则改用代价更高的直接求逆来计算 $U_{vv}$ 分块。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `10`
+> * **选项**:
 >     * $n$
->     * User–defined number.
-> * **Recommendation**: None.
+>     * 用户自定义的数值。
+> * **建议**: 无。
 
 NVO_TRUNCATE_DIST
 
 ### `NVO_TRUNCATE_DIST`
 
-> **Specifies which atomic blocks of the Fock matrix are used to construct the preconditioner.**
+> **指定在构造预条件器（preconditioner）时使用 Fock 矩阵的哪些原子分块。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$-$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$-$`
+> * **选项**:
 >     * $n>0$
->     * If distance between a pair of atoms is more than
+>     * 若一对原子之间的距离超过
 >     * $n$
->     * Ångstroms
->     * do not include the atomic block.
+>     * 埃（Ångstroms），则
+>     * 不包含对应的原子分块。
 >     * $-$
 >     * 2
->     * Do not use distance threshold, use
+>     * 不使用距离阈值，改为使用
 >     * NVO_TRUNCATE_PRECOND
->     * instead.
+>     * 。
 >     * $-$
 >     * 1
->     * Include all blocks.
+>     * 包含所有分块。
 >     * 0
->     * Include diagonal blocks only.
-> * **Recommendation**: This option does not affect the final result. However, it affects the rate of the PCG algorithm convergence. For small systems, use the default.
+>     * 仅包含对角分块。
+> * **建议**: 该选项不影响最终结果，但会影响 PCG 算法的收敛速度。对于小体系，使用默认值即可。
 
 NVO_TRUNCATE_PRECOND
 
 ### `NVO_TRUNCATE_PRECOND`
 
-> **Specifies which atomic blocks of the Fock matrix are used to construct the preconditioner. This variable is used only if NVO_TRUNCATE_DIST is set to $-2$ .**
+> **指定在构造预条件器时使用 Fock 矩阵的哪些原子分块。仅当 `NVO_TRUNCATE_DIST` 设置为 $-2$ 时，本变量才会生效。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
 >     * $n$
->     * If the maximum element in an atomic block is less than
->     * $10^{-n}$
->     * do not include
->     * the block.
-> * **Recommendation**: Use the default. Increasing $n$ improves convergence of the PCG algorithm but overall may slow down calculations.
+>     * 若某一原子分块中的最大元素小于
+>     * $n$，则不包含该分块
+>     * 。
+> * **建议**: 无。

@@ -1,825 +1,795 @@
 ---
-title: "7.10.13 ADC Job Control"
+title: "7.10.13 ADC 作业控制"
 ---
 
-## 7.10.13 ADC Job Control
+## 7.10.13 ADC 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-For an ADC calculation it is important to ensure that there are sufficient resources
-available for the necessary integral calculations and transformations. These resources
-are controlled using the *$rem* variables MEM_STATIC and MEM_TOTAL.
-The memory used by ADC is currently 95% of the difference
-MEM_TOTAL $-$ MEM_STATIC.
+对于 ADC（聚合迭代对微扰理论，Agorithmic Combined Expansion / Algebraic Diagrammatic Construction，代数图论构造）计算，确保有足够的资源可用于必需的积分计算和变换至关重要。这些资源通过 *$rem* 变量 MEM_STATIC 和 MEM_TOTAL 来控制。目前 ADC 使用的内存为 MEM_TOTAL $-$ MEM_STATIC 差值的 95%。
 
-An ADC calculation is requested by setting the *$rem* variable METHOD to the
-respective ADC variant. Furthermore, the number of excited
-states to be calculated
-has to be specified using one of the *$rem* variables EE_STATES,
-EE_SINGLETS or EE_TRIPLETS.
-The former variable should be used for
-open-shell or unrestricted closed-shell calculations, while the latter two variables are
-intended for restricted closed-shell calculations. Even though not recommended, it is
-possible to use EE_STATES in a restricted calculation which translates into
-EE_SINGLETS, if neither EE_SINGLETS nor EE_TRIPLETS is set.
-Similarly, the use EE_SINGLETS in an unrestricted calculation will translate
-into EE_STATES, if the latter is not set as well.
-For IP- and EA-ADC calculations, the IP_STATES,
-EOM_IP_ALPHA, EOM_IP_BETA, EA_STATES,
-EOM_EA_ALPHA and EOM_EA_BETA are available to control the number and
-type of ionized or electron-attached states to calculate. IP_STATES and
-EA_STATES should be used in case of restricted calculations, while the
-EOM_[IP/EA]_[ALPHA/BETA] keywords control the number of $\alpha$- and
-$\beta$-ionized and -electron-attached states to calculate in case of unrestricted
-or open-shell calculations.
+通过在 *$rem* 变量 METHOD 中设置为相应的 ADC 变体来请求 ADC 计算。此外，必须使用 *$rem* 变量 EE_STATES、EE_SINGLETS 或 EE_TRIPLETS 之一来指定需要计算的激发态数目。前者适用于开壳层或非限制闭壳层计算，而后两者则用于限制闭壳层计算。尽管不推荐，但在限制计算中仍可以使用 EE_STATES，若 EE_SINGLETS 和 EE_TRIPLETS 均未设置，它将被转换为 EE_SINGLETS。类似地，在非限制计算中使用 EE_SINGLETS，若 EE_STATES 也未设置，则会被转换为 EE_STATES。
+对于 IP-ADC（电离势，Ionization Potential）和 EA-ADC（电子亲和）计算，可使用 IP_STATES、EOM_IP_ALPHA、EOM_IP_BETA、EA_STATES、EOM_EA_ALPHA 和 EOM_EA_BETA 来控制所要计算的电离态或电子附着态的数目和类型。在限制计算中应使用 IP_STATES 和 EA_STATES，而 EOM_[IP/EA]_[ALPHA/BETA] 关键字则在非限制或开壳层计算中控制所要计算的 $\alpha$、$\beta$ 电离态和电子附着态的数目。
 
-All *$rem* variables to set the number of excited, ionized or electron-attached states
-accept either an integer number
-or a vector of integer numbers. A single number specifies that the same number of excited
-states are calculated for every irreducible representation the point group of the
-molecular system possesses (molecules without symmetry are treated as $C_{1}$ symmetric).
-In contrast, a vector of numbers determines the number of states for each irreducible
-representation explicitly. Thus, the length of the vector always has to match the number
-of irreducible representations. Hereby, the excited states are labeled according to the
-irreducible representation of the electronic transition which might be different from
-the irreducible representation of the excited state wave function.
-Users can choose to calculate any molecule as $C_{1}$ symmetric by setting
-CC_SYMMETRY = FALSE.
+所有用于设置激发态、电离态或电子附着态数目的 *$rem* 变量均接受单个整数或整数向量。单个数字表示对分子体系点群的每个不可约表示计算相同数目的激发态（无对称性的分子按 $C_{1}$ 对称性处理）。相反，数字向量则显式确定每个不可约表示的态数目。因此，向量的长度必须始终与不可约表示的数目一致。在此，激发态按照电子跃迁的不可约表示进行标记，这可能与激发态波函数本身的不可约表示不同。用户可以通过设置 CC_SYMMETRY = FALSE，将任意分子按 $C_{1}$ 对称性进行计算。
 
 METHOD
 
 ### `METHOD`
 
-> **Controls the order in perturbation theory of ADC.**
+> **控制 ADC 微扰理论的阶数。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `None`
+> * **选项**:
 >     * ADC(1)
->     * Perform ADC(1) calculation.
+>     * 执行 ADC(1) 计算。
 >     * ADC(2)
->     * Perform ADC(2)-s, IP-ADC(2)-s or EA-ADC(2)-s calculation.
+>     * 执行 ADC(2)-s、IP-ADC(2)-s 或 EA-ADC(2)-s 计算。
 >     * ADC(2)-x
->     * Perform ADC(2)-x calculation.
+>     * 执行 ADC(2)-x 计算。
 >     * ADC(3)
->     * Perform ADC(3), IP-ADC(3) or EA-ADC(3) calculation.
+>     * 执行 ADC(3)、IP-ADC(3) 或 EA-ADC(3) 计算。
 >     * SOS-ADC(2)
->     * Perform spin-opposite scaled ADC(2)-s calculation.
+>     * 执行自旋反平行标度（spin-opposite scaled）ADC(2)-s 计算。
 >     * SOS-ADC(2)-x
->     * Perform spin-opposite scaled ADC(2)-x calculation.
+>     * 执行自旋反平行标度 ADC(2)-x 计算。
 >     * CVS-ADC(1)
->     * Perform ADC(1) calculation of core excitations.
+>     * 执行核激发的 ADC(1) 计算（CVS 近似）。
 >     * CVS-ADC(2)
->     * Perform ADC(2)-s calculation of core excitations.
+>     * 执行核激发的 ADC(2)-s 计算（CVS 近似）。
 >     * CVS-ADC(2)-x
->     * Perform ADC(2)-x calculation of core excitations.
-> * **Recommendation**: None
+>     * 执行核激发的 ADC(2)-x 计算（CVS 近似）。
+> * **建议**: 无
 
 EE_STATES
 
 ### `EE_STATES`
 
-> **Controls the number of excited states to calculate.**
+> **控制要计算的激发态数目。**
 >
-> * **Type**: `INTEGER/ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of states to calculate for each irrep or
+>     * 每个不可约表示要计算的态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
->     * states for the first irrep,
+>     * 个态，为第二个不可约表示计算
 >     * $n_{2}$
->     * states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of excited states in case of unrestricted or open-shell calculations. In restricted calculations it can also be used, if neither EE_SINGLETS nor EE_TRIPLETS is given. Then, it has the same effect as setting EE_SINGLETS .
+>     * 个态，……
+> * **建议**: 在非限制或开壳层计算中，使用此变量来定义激发态数目。在限制计算中，若 EE_SINGLETS 和 EE_TRIPLETS 均未给出，也可以使用它。此时其效果等同于设置 EE_SINGLETS 。
 
 EE_SINGLETS
 
 ### `EE_SINGLETS`
 
-> **Controls the number of singlet excited states to calculate.**
+> **控制要计算的单重激发态数目。**
 >
-> * **Type**: `INTEGER/ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of singlet states to calculate for each irrep or
+>     * 每个不可约表示要计算的单重态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
->     * states for the first irrep,
+>     * 个态，为第二个不可约表示计算
 >     * $n_{2}$
->     * states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of excited states in case of restricted calculations of singlet states. In unrestricted calculations it can also be used, if EE_STATES not set. Then, it has the same effect as setting EE_STATES .
+>     * 个态，……
+> * **建议**: 在单重态的限制计算中，使用此变量来定义激发态数目。在非限制计算中，若 EE_STATES 未设置，也可以使用它。此时其效果等同于设置 EE_STATES 。
 
 EE_TRIPLETS
 
 ### `EE_TRIPLETS`
 
-> **Controls the number of triplet excited states to calculate.**
+> **控制要计算的三重激发态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of triplet states to calculate for each irrep or
+>     * 每个不可约表示要计算的三重态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
->     * states for the first irrep,
+>     * 个态，为第二个不可约表示计算
 >     * $n_{2}$
->     * states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of excited states in case of restricted calculations of triplet states.
+>     * 个态，……
+> * **建议**: 在三重态的限制计算中，使用此变量来定义激发态数目。
 
 IP_STATES
 
 ### `IP_STATES`
 
-> **Controls the number of ionized states to calculate.**
+> **控制要计算的电离态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of states to calculate for each irrep or
+>     * 每个不可约表示要计算的态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
->     * states for the first irrep,
+>     * 个态，为第二个不可约表示计算
 >     * $n_{2}$
->     * states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of ionized states in case of restricted calculations.
+>     * 个态，……
+> * **建议**: 在限制计算中，使用此变量来定义电离态数目。
 
 EOM_IP_ALPHA
 
 ### `EOM_IP_ALPHA`
 
-> **Controls the number of $\alpha$ -ionized states to calculate.**
+> **控制要计算的 $\alpha$ 电离态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of
+>     * 每个不可约表示要计算的
 >     * $\alpha$
->     * -ionized states to calculate for each irrep or
+>     * 电离态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
+>     * 个
 >     * $\alpha$
->     * -ionized states for the first irrep,
+>     * 电离态，为第二个不可约表示计算
 >     * $n_{2}$
+>     * 个
 >     * $\alpha$
->     * -ionized states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of $\alpha$ -ionized states in case of unrestricted or open-shell calculations.
+>     * 电离态，……
+> * **建议**: 在非限制或开壳层计算中，使用此变量来定义 $\alpha$ 电离态数目。
 
 EOM_IP_BETA
 
 ### `EOM_IP_BETA`
 
-> **Controls the number of $\beta$ -ionized states to calculate.**
+> **控制要计算的 $\beta$ 电离态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of
+>     * 每个不可约表示要计算的
 >     * $\beta$
->     * -ionized states to calculate for each irrep or
+>     * 电离态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
+>     * 个
 >     * $\beta$
->     * -ionized states for the first irrep,
+>     * 电离态，为第二个不可约表示计算
 >     * $n_{2}$
+>     * 个
 >     * $\beta$
->     * -ionized states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of $\beta$ -ionized states in case of unrestricted or open-shell calculations.
+>     * 电离态，……
+> * **建议**: 在非限制或开壳层计算中，使用此变量来定义 $\beta$ 电离态数目。
 
 EA_STATES
 
 ### `EA_STATES`
 
-> **Controls the number of electron-attached states to calculate.**
+> **控制要计算的电子附着态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of states to calculate for each irrep or
+>     * 每个不可约表示要计算的态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
->     * states for the first irrep,
+>     * 个态，为第二个不可约表示计算
 >     * $n_{2}$
->     * states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of electron-attached states in case of restricted calculations.
+>     * 个态，……
+> * **建议**: 在限制计算中，使用此变量来定义电子附着态数目。
 
 EOM_EA_ALPHA
 
 ### `EOM_EA_ALPHA`
 
-> **Controls the number of $\alpha$ -electron-attached states to calculate.**
+> **控制要计算的 $\alpha$ 电子附着态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of
+>     * 每个不可约表示要计算的
 >     * $\alpha$
->     * -electron-attached states to calculate for each irrep or
+>     * 电子附着态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
+>     * 个
 >     * $\alpha$
->     * -electron-attached states for the first irrep,
+>     * 电子附着态，为第二个不可约表示计算
 >     * $n_{2}$
+>     * 个
 >     * $\alpha$
->     * -electron-attached states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of $\alpha$ -electron-attached states in case of unrestricted or open-shell calculations.
+>     * 电子附着态，……
+> * **建议**: 在非限制或开壳层计算中，使用此变量来定义 $\alpha$ 电子附着态数目。
 
 EOM_EA_BETA
 
 ### `EOM_EA_BETA`
 
-> **Controls the number of $\beta$ -electron-attached states to calculate.**
+> **控制要计算的 $\beta$ 电子附着态数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of
+>     * 每个不可约表示要计算的
 >     * $\beta$
->     * -electron-attached states to calculate for each irrep or
+>     * 电子附着态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
+>     * 个
 >     * $\beta$
->     * -electron-attached states for the first irrep,
+>     * 电子附着态，为第二个不可约表示计算
 >     * $n_{2}$
+>     * 个
 >     * $\beta$
->     * -electron-attached states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of $\beta$ -electron-attached states in case of unrestricted or open-shell calculations.
+>     * 电子附着态，……
+> * **建议**: 在非限制或开壳层计算中，使用此变量来定义 $\beta$ 电子附着态数目。
 
 CC_SYMMETRY
 
 ### `CC_SYMMETRY`
 
-> **Activates point-group symmetry in the ADC calculation.**
+> **在 ADC 计算中启用点群对称性。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Employ point-group symmetry
+>     * 利用点群对称性
 >     * FALSE
->     * Do not use point-group symmetry
-> * **Recommendation**: None
+>     * 不使用点群对称性
+> * **建议**: 无
 
 ADC_DENSITY_ORDER
 
 ### `ADC_DENSITY_ORDER`
 
-> **Controls the order of the ground state density used for the computation of third-order ADC matrix elements (non-CVS methods only).**
+> **控制用于计算三阶 ADC 矩阵元的基态密度阶数（仅适用于非 CVS 方法）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
 >     * 3
->     * Use a third-order ground state density computed from the IP-ADC(3)
->     * effective transition moments and the corresponding
->     * fourth order static self-energy according to the
+>     * 使用由 IP-ADC(3)
+>     * 有效跃迁矩及按
 >     * $\Sigma(4)$
->     * scheme
+>     * 方案计算的相应四阶静态自能所导出的三阶基态密度
 >     * 4
->     * Use an improved third-order ground state density and the corresponding
->     * improved fourth-order static self-energy computed according to the
->     * self-consistent
+>     * 使用按自洽
 >     * $\Sigma(4+)$
->     * procedure
-> * **Recommendation**: In case of IP-ADC(3) calculations, employing the $\Sigma(4+)$ scheme provides more accurate ionization potentials and ionized state dipole moments.
+>     * 程序计算得到的改进型三阶基态密度及相应的
+>     * 改进型四阶静态自能
+> * **建议**: 在 IP-ADC(3) 计算中，采用 $\Sigma(4+)$ 方案可获得更精确的电离势和电离态偶极矩。
 
 ADC_DENSITY_MAXITER
 
 ### `ADC_DENSITY_MAXITER`
 
-> **When setting ADC_DENSITY_ORDER = 4, this keyword controls the maximum number of DIIS iterations carried out in the $\Sigma(4+)$ procedure.**
+> **当设置 ADC_DENSITY_ORDER = 4 时，此关键字控制 $\Sigma(4+)$ 程序中执行的 DIIS 迭代最大数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1000`
+> * **选项**:
 >     * $n$
->     * User-defined integer.
-> * **Recommendation**: Use the default value.
+>     * 用户自定义整数。
+> * **建议**: 使用默认值。
 
 ADC_DIRECT
 
 ### `ADC_DIRECT`
 
-> **For third-order ADC methods, this keyword controls if some large intermediate tensor contractions should be carried out in advance and the result saved in memory for later use or if these quantities should be evaluated directly whenever they are encountered.**
+> **对于三阶 ADC 方法，此关键字控制某些大型中间张量收缩是预先计算并将结果保存在内存中供后续使用，还是在每次遇到时直接求值。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Directly evaluate some
+>     * 直接求值某些
 >     * $N^{6}$
->     * -scaling tensor contractions. This will reduce the memory
->     * requirement by
+>     * 标度的张量收缩。这将使内存
+>     * 需求减少约
 >     * $\sim$
->     * 10 %.
+>     * 10 %。
 >     * FALSE
->     * Precompute all possible
+>     * 预先计算所有可能的
 >     * $N^{6}$
->     * -scaling intermediates. This will speed up ADC(3)
->     * calculations considerably (by a factor of
+>     * 标度中间量。这将显著加速 ADC(3)
+>     * 计算（对 $N$
+>     * 电子激发而言 ADC(3) 约加速
 >     * $\sim$
->     * 3 in case of ADC(3) for
->     * $N$
->     * -electron excitations and somewhat less for IP- and EA-ADC(3)).
-> * **Recommendation**: Use the default value unless memory is the bottleneck.
+>     * 3 倍，对 IP- 和 EA-ADC(3) 则略低一些）。
+> * **建议**: 除非内存是瓶颈，否则使用默认值。
 
 ADC_STRICT_ISR
 
 ### `ADC_STRICT_ISR`
 
-> **Controls how second-order ground state contributions are treated in the calculation of second- and third-order IP- and EA-ADC state properties using the second-order ISR formalism.**
+> **控制在使用二阶 ISR（相互作用表象，Intermediate Source Representation）形式理论计算二阶和三阶 IP- 及 EA-ADC 态性质时，如何处理二阶基态贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Scale the second-order part of the ground state contribution to one-electron
->     * properties of ionized/electron-attached states by the
->     * one-hole/one-particle character of the respective states
->     * as implied by the strict ISR derivation.
+>     * 按照严格 ISR 推导所隐含的相应态的单空穴/单粒子
+>     * 特性，对电离态/电子附着态单电子性质的
+>     * 基态贡献二阶部分进行标度。
 >     * FALSE
->     * Use the full second-order ground state contribution for each
->     * ionized/electron-attached state property.
-> * **Recommendation**: Use the default value. Both options are, however, valid second-order treatments of ionized/electron-attached state properties and should yield very similar results for states with predominant one-hole/one-particle chaaracter.
+>     * 对每个电离态/电子附着态性质使用完整的二阶基态贡献。
+> * **建议**: 使用默认值。不过两种选项都是对电离态/电子附着态性质的有效二阶处理，对于以单空穴/单粒子特性为主的态（原文 chaaracter 为笔误），应给出非常相似的结果。
 
 ADC_DO_DYSON
 
 ### `ADC_DO_DYSON`
 
-> **Controls if Dyson orbitals are output in case of IP- and EA-ADC calculations. This keyword only takes effect when used together with STATE_ANALYSIS = TRUE . See Section 10.2.12 for further details.**
+> **控制在 IP- 和 EA-ADC 计算中是否输出戴森轨道（Dyson orbitals）。此关键字仅在与 STATE_ANALYSIS = TRUE 一起使用时才生效。详见第 10.2.12 节。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Output Dyson orbitals as cube files.
+>     * 以 cube 文件形式输出戴森轨道。
 >     * FALSE
->     * Do not output Dyson orbitals.
-> * **Recommendation**: Set to TRUE if visualization of ionization/electron-attachment processes is desired.
+>     * 不输出戴森轨道。
+> * **建议**: 若需要对电离/电子附着过程进行可视化，请设置为 TRUE。
 
 ADC_CAP
 
 ### `ADC_CAP`
 
-> **Controls the type of CAP/ADC calculation to be performed.**
+> **控制要执行的 CAP/ADC（复数吸收势，Complex Absorbing Potential）计算类型。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * Perform a subspace-projected CAP/ADC calculation.
-> * **Recommendation**: Set to 1 for the computation of CAP/ADC subspace projections.
+>     * 执行子空间投影的 CAP/ADC 计算。
+> * **建议**: 若要计算 CAP/ADC 子空间投影，请设置为 1。
 
 CAP_X
 
 ### `CAP_X`
 
-> **For ADC methods, in combination with a smoothed Voronoi-CAP ( CAP_TYPE = 2) or a spherical CAP ( CAP_TYPE = 0), this keyword controls the lower limit for a series of CAP onsets, where the upper limit is given by CAP_X_END . The parameter value in a.u. is obtained by multiplying the given integer by $10^{-3}$ . In this case, the onset value defines the region around the molecule with zero CAP strength. In combination with a cuboid CAP ( CAP_TYPE = 1) or in general for other electronic structure methods (see 7.9.10 for further details), this keyword controls the CAP onset in $x$ direction.**
+> **对于 ADC 方法，与平滑 Voronoi-CAP（ CAP_TYPE = 2）或球对称 CAP（ CAP_TYPE = 0）组合使用时，此关键字控制一系列 CAP 起始值的下限，其上限由 CAP_X_END 给出。以原子单位表示的参数值通过将给定的整数乘以 $10^{-3}$ 获得。在这种情况下，起始值定义了分子周围 CAP 强度为零的区域。与长方体（cuboid）CAP（ CAP_TYPE = 1）组合使用，或一般而言对于其他电子结构方法（详见 7.9.10），此关键字控制 $x$ 方向上的 CAP 起始值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * User-defined integer.
-> * **Recommendation**: Usually, values of 2000 to 4000 (corresponding to onset values between 2.0 and 4.0 a.u.) give reasonable results.
+>     * 用户自定义整数。
+> * **建议**: 通常，取值 2000 到 4000（对应 2.0 至 4.0 原子单位的起始值）可得到合理结果。
 
 CAP_X_STEP
 
 ### `CAP_X_STEP`
 
-> **Controls the step size for a series of CAP onsets between CAP_X and CAP_X_END . The parameter value in a.u. is obtained by multiplying the given integer by $10^{-3}$ . Currently only used in ADC methods.**
+> **控制 CAP_X 与 CAP_X_END 之间一系列 CAP 起始值的步长。以原子单位表示的参数值通过将给定的整数乘以 $10^{-3}$ 获得。目前仅用于 ADC 方法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **选项**:
 >     * $n>0$
->     * User-defined integer.
-> * **Recommendation**: None.
+>     * 用户自定义整数。
+> * **建议**: 无。
 
 CAP_X_END
 
 ### `CAP_X_END`
 
-> **Controls the upper onset limit for a series of CAP onsets, where the lower limit is given by CAP_X . The parameter value in a.u. is obtained by multiplying the given integer by $10^{-3}$ . Currently only used in ADC methods.**
+> **控制一系列 CAP 起始值的上限，其下限由 CAP_X 给出。以原子单位表示的参数值通过将给定的整数乘以 $10^{-3}$ 获得。目前仅用于 ADC 方法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `CAP_X`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `CAP_X`
+> * **选项**:
 >     * $n>\text{\mbox{{\small CAP\_X}}}$
->     * User-defined integer.
-> * **Recommendation**: Use this keyword if CAP onset series are desired.
+>     * 用户自定义整数。
+> * **建议**: 若需要 CAP 起始值序列，请使用此关键字。
 
 ADC_PROP_ES
 
 ### `ADC_PROP_ES`
 
-> **Controls the calculation of excited, ionized or electron-attached state properties (currently only dipole moments and $\hat{r}^{2}$ expectation values).**
+> **控制激发态、电离态或电子附着态性质（目前仅包括偶极矩和 $\hat{r}^{2}$ 期望值）的计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Calculate excited, ionized or electron-attached state properties.
+>     * 计算激发态、电离态或电子附着态性质。
 >     * FALSE
->     * Do not compute state properties.
-> * **Recommendation**: Set to TRUE , if properties are required.
+>     * 不计算态性质。
+> * **建议**: 若需要这些性质，请设置为 TRUE 。
 
 ADC_PROP_ES2ES
 
 ### `ADC_PROP_ES2ES`
 
-> **Controls the calculation of transition properties between excited, ionized or electron-attached states (currently only transition dipole moments and oscillator strengths). For ADC for $N$ -electron excitations, this keyword also controls the computation of two-photon absorption cross-sections of excited states using the sum-over-states expression.**
+> **控制激发态、电离态或电子附着态之间跃迁性质的计算（目前仅包括跃迁偶极矩和振子强度）。对于 $N$ 电子激发的 ADC，此关键字还控制利用态叠加（sum-over-states）表达式计算激发态的双光子吸收截面。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Calculate state-to-state transition properties.
+>     * 计算态与态之间的跃迁性质。
 >     * FALSE
->     * Do not compute transition properties between excited, ionized or
->     * electron-attached states.
-> * **Recommendation**: Set to TRUE , if state-to-state properties (ADC, IP-ADC, EA-ADC) or sum-over-states two-photon absorption cross-sections (only ADC) are required.
+>     * 不计算激发态、电离态或
+>     * 电子附着态之间的跃迁性质。
+> * **建议**: 若需要态与态之间的性质（ADC、IP-ADC、EA-ADC）或态叠加双光子吸收截面（仅 ADC），请设置为 TRUE 。
 
 ADC_PROP_TPA
 
 ### `ADC_PROP_TPA`
 
-> **Controls the calculation of two-photon absorption cross-sections of excited states using matrix inversion techniques.**
+> **控制利用矩阵求逆技术计算激发态的双光子吸收（two-photon absorption, TPA）截面。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Calculate two-photon absorption cross-sections.
+>     * 计算双光子吸收截面。
 >     * FALSE
->     * Do not compute two-photon absorption cross-sections.
-> * **Recommendation**: Set to TRUE , if to obtain two-photon absorption cross-sections.
+>     * 不计算双光子吸收截面。
+> * **建议**: 若需要获得双光子吸收截面，请设置为 TRUE 。
 
 STATE_ANALYSIS
 
 ### `STATE_ANALYSIS`
 
-> **Controls the analysis and export of excited, ionized or electron-attached state densities and orbitals (see 10.2.12 for details).**
+> **控制激发态、电离态或电子附着态密度与轨道的分析和导出（详见 10.2.12）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Perform excited state analyses.
+>     * 执行激发态分析。
 >     * FALSE
->     * No excited state analyses or export will be performed.
-> * **Recommendation**: Set to TRUE , if detailed analysis of the excited, ionized or electron-attached states is required or if density or orbital plots are needed.
+>     * 不执行激发态分析或导出。
+> * **建议**: 若需要对激发态、电离态或电子附着态进行详细分析，或需要密度/轨道图，请设置为 TRUE 。
 
 ADC_C_T
 
 ### `ADC_C_T`
 
-> **Set the spin-opposite scaling parameter $c_{T}$ for an SOS-ADC(2) calculation. The parameter value is obtained by multiplying the given integer by $10^{-3}$ .**
+> **为 SOS-ADC(2) 计算设置自旋反平行标度参数 $c_{T}$。参数值通过将给定的整数乘以 $10^{-3}$ 获得。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1300`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1300`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $n\cdot 10^{-3}$
-> * **Recommendation**: Use the default.
+> * **建议**: 使用默认值。
 
 ADC_C_C
 
 ### `ADC_C_C`
 
-> **Set the spin-opposite scaling parameter $c_{c}$ for the ADC(2) calculation. The parameter value is obtained by multiplying the given integer by $10^{-3}$ .**
+> **为 ADC(2) 计算设置自旋反平行标度参数 $c_{c}$。参数值通过将给定的整数乘以 $10^{-3}$ 获得。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1170`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1170`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $n\cdot 10^{-3}$
-> * **Recommendation**: Use the default.
+> * **建议**: 使用默认值。
 
 ADC_C_X
 
 ### `ADC_C_X`
 
-> **Set the spin-opposite scaling parameter $c_{x}$ for the ADC(2)-x calculation. The parameter value is obtained by multiplying the given integer by $10^{-3}$ .**
+> **为 ADC(2)-x 计算设置自旋反平行标度参数 $c_{x}$。参数值通过将给定的整数乘以 $10^{-3}$ 获得。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1300`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1300`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $n\cdot 10^{-3}$
-> * **Recommendation**: Use the default.
+> * **建议**: 使用默认值。
 
 ADC_NGUESS_SINGLES
 
 ### `ADC_NGUESS_SINGLES`
 
-> **Controls the number of excited state guess vectors which are single excitations, one-hole ionizations and one-particle electron-attachments in case of ADC, IP-ADC and EA-ADC, respectively. If the number of requested excited states exceeds the total number of guess vectors (singles and doubles), this parameter is automatically adjusted, so that the number of guess vectors matches the number of requested excited states.**
+> **控制激发态初始猜测向量中为单激发的向量数目（分别为 ADC、IP-ADC 和 EA-ADC 情形下的单激发、单空穴电离和单粒子电子附着）。若请求的激发态数目超过初始猜测向量总数（单激发加双激发），此参数将自动调整，使猜测向量数目与请求的激发态数目相匹配。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Equals to the number of excited states requested.`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `等于请求的激发态数目。`
+> * **选项**:
 >     * $n$
->     * User-defined integer.
-> * **Recommendation**: Increase if there are convergence problems.
+>     * 用户自定义整数。
+> * **建议**: 若存在收敛问题，请增大此值。
 
 ADC_NGUESS_DOUBLES
 
 ### `ADC_NGUESS_DOUBLES`
 
-> **Controls the number of excited state guess vectors which are double excitations, two-hole-one-particle ionizations and one-hole-two-particle electron-attachments in case of ADC, IP-ADC and EA-ADC, respectively.**
+> **控制激发态初始猜测向量中为双激发的向量数目（分别为 ADC、IP-ADC 和 EA-ADC 情形下的双激发、双空穴单粒子电离和单空穴双粒子电子附着）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined integer.
+>     * 用户自定义整数。
 
 ADC_DO_DIIS
 
 ### `ADC_DO_DIIS`
 
-> **Activates the use of the DIIS algorithm for the calculation of ADC(2) excited states.**
+> **在 ADC(2) 激发态计算中启用 DIIS（直接迭代在子空间中，Direct Inversion in the Iterative Subspace）算法。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Use DIIS algorithm.
+>     * 使用 DIIS 算法。
 >     * FALSE
->     * Do diagonalization using Davidson algorithm.
-> * **Recommendation**: None.
+>     * 使用 Davidson（戴维森）算法进行对角化。
+> * **建议**: 无。
 
 ADC_DIIS_START
 
 ### `ADC_DIIS_START`
 
-> **Controls the iteration step at which DIIS is turned on.**
+> **控制 DIIS 启用的迭代步数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * $n$
->     * User-defined integer.
-> * **Recommendation**: Set to a large number to switch off DIIS steps.
+>     * 用户自定义整数。
+> * **建议**: 设置为较大的数以关闭 DIIS 步骤。
 
 ADC_DIIS_SIZE
 
 ### `ADC_DIIS_SIZE`
 
-> **Controls the size of the DIIS subspace.**
+> **控制 DIIS 子空间的大小。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `7`
+> * **选项**:
 >     * $n$
->     * User-defined integer
-> * **Recommendation**: None
+>     * 用户自定义整数
+> * **建议**: 无
 
 ADC_DIIS_MAXITER
 
 ### `ADC_DIIS_MAXITER`
 
-> **Controls the maximum number of DIIS iterations.**
+> **控制 DIIS 迭代的最大数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **选项**:
 >     * $n$
->     * User-defined integer.
-> * **Recommendation**: Increase in case of slow convergence.
+>     * 用户自定义整数。
+> * **建议**: 若收敛缓慢，请增大此值。
 
 ADC_DIIS_ECONV
 
 ### `ADC_DIIS_ECONV`
 
-> **Controls the convergence criterion for the excited state energy during DIIS.**
+> **控制 DIIS 过程中激发态能量的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
-> * **Recommendation**: None
+> * **建议**: 无
 
 ADC_DIIS_RCONV
 
 ### `ADC_DIIS_RCONV`
 
-> **Convergence criterion for the residual vector norm of the excited state during DIIS.**
+> **DIIS 过程中激发态残差向量范数的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
-> * **Recommendation**: None
+> * **建议**: 无
 
 ADC_DAVIDSON_MAXSUBSPACE
 
 ### `ADC_DAVIDSON_MAXSUBSPACE`
 
-> **Controls the maximum subspace size for the Davidson procedure.**
+> **控制 Davidson 过程的最大子空间大小。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$5\times$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$5\times$`
+> * **选项**:
 >     * $n$
->     * User-defined integer.
-> * **Recommendation**: Should be at least 2–4 $\times$ the number of excited states to calculate. The larger the value the more disk space is required.
+>     * 用户自定义整数。
+> * **建议**: 应至少为所要计算激发态数目的 2–4 $\times$ 倍。该值越大，所需的磁盘空间越多。
 
 ADC_DAVIDSON_MAXITER
 
 ### `ADC_DAVIDSON_MAXITER`
 
-> **Controls the maximum number of iterations of the Davidson procedure.**
+> **控制 Davidson 过程的迭代最大数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `60`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `60`
+> * **选项**:
 >     * $n$
->     * Number of iterations
-> * **Recommendation**: Use the default unless convergence problems are encountered.
+>     * 迭代数目
+> * **建议**: 除非遇到收敛问题，否则使用默认值。
 
 ADC_DAVIDSON_CONV
 
 ### `ADC_DAVIDSON_CONV`
 
-> **Controls the convergence criterion of the Davidson procedure.**
+> **控制 Davidson 过程的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$6$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$6$`
+> * **选项**:
 >     * $n\leq 12$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Use the default unless higher accuracy is required or convergence problems are encountered.
+>     * 。
+> * **建议**: 除非需要更高精度或遇到收敛问题，否则使用默认值。
 
 ADC_DAVIDSON_THRESH
 
 ### `ADC_DAVIDSON_THRESH`
 
-> **Controls the threshold for the norm of expansion vectors to be added during the Davidson procedure.**
+> **控制 Davidson 过程中待添加的展开向量范数的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Twice the value of`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `该值的两倍`
+> * **选项**:
 >     * $n\leq 14$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
-> * **Recommendation**: Use the default unless convergence problems are encountered. The threshold value $10^{-n}$ should always be smaller than the convergence criterion ADC_DAVIDSON_CONV .
+> * **建议**: 除非遇到收敛问题，否则使用默认值。阈值 $10^{-n}$ 应始终小于收敛判据 ADC_DAVIDSON_CONV 。
 
 ADC_PRINT
 
 ### `ADC_PRINT`
 
-> **Controls the amount of printing during an ADC calculation.**
+> **控制 ADC 计算过程中的输出详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 0
->     * Quiet: almost only results are printed.
+>     * 精简模式：几乎只打印结果。
 >     * 1
->     * Normal: basic status information and results are printed.
+>     * 正常模式：打印基本状态信息和结果。
 >     * 2
->     * Debug: more status information, extended information on timings.
+>     * 调试模式：更多状态信息，以及扩展的计时信息。
 >     * …
-> * **Recommendation**: Use the default.
+> * **建议**: 使用默认值。
 
 ADC_CVS
 
 ### `ADC_CVS`
 
-> **Activates the use of the CVS approximation for the calculation of CVS-ADC core-excited states.**
+> **在计算 CVS-ADC 核激发态时启用 CVS（化学价分离，Core-Valence Separation）近似。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Activates the CVS approximation.
+>     * 启用 CVS 近似。
 >     * FALSE
->     * Do not compute core-excited states using the CVS approximation.
-> * **Recommendation**: Set to TRUE , if to obtain core-excited states for the simulation of x-ray absorption spectra. In the case of TRUE , the $rem variable CC_REST_OCC has to be defined as well.
+>     * 不使用 CVS 近似计算核激发态。
+> * **建议**: 若需要获得核激发态以模拟 X 射线吸收谱，请设置为 TRUE 。设置为 TRUE 时，还必须定义 *$rem 变量 CC_REST_OCC。
 
 CC_REST_OCC
 
 ### `CC_REST_OCC`
 
-> **Sets the number of restricted occupied orbitals including active core occupied orbitals.**
+> **设置受限占据轨道（包括活性核占据轨道）的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Restrict
+>     * 将能量最低的
 >     * $n$
->     * energetically lowest occupied orbitals to correspond to the
->     * active core space.
-> * **Recommendation**: Example: cytosine with the molecular formula C ${}_{4}$ H ${}_{5}$ N ${}_{3}$ O includes one oxygen atom. To calculate O 1s core-excited states, $n$ has to be set to 1, because the 1s orbital of oxygen is the energetically lowest. To obtain the N 1s core excitations, the integer $n$ has to be set to 4, because the 1s orbital of the oxygen atom is included as well, since it is energetically below the three 1s orbitals of the nitrogen atoms. Accordingly, to simulate the C 1s spectrum of cytosine, $n$ must be set to 8.
+>     * 个占据轨道限制为对应于
+>     * 活性核空间。
+> * **建议**: 示例：分子式为 C ${}_{4}$ H ${}_{5}$ N ${}_{3}$ O 的胞嘧啶包含一个氧原子。若要计算 O 1s 核激发态，必须将 $n$ 设为 1，因为氧的 1s 轨道能量最低。若要获得 N 1s 核激发，整数 $n$ 必须设为 4，因为氧原子的 1s 轨道能量低于三个氮原子的 1s 轨道，也被包括在内。相应地，若要模拟胞嘧啶的 C 1s 谱，$n$ 必须设为 8。
 
 SF_STATES
 
 ### `SF_STATES`
 
-> **Controls the number of excited spin-flip states to calculate.**
+> **控制要计算的自旋翻转（spin-flip）激发态数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n>0$
->     * Number of states to calculate for each irrep or
+>     * 每个不可约表示要计算的态数目，或
 >     * $[n_{1},n_{2},...]$
->     * Compute
+>     * 为第一个不可约表示计算
 >     * $n_{1}$
->     * states for the first irrep,
+>     * 个态，为第二个不可约表示计算
 >     * $n_{2}$
->     * states for the second irrep, …
-> * **Recommendation**: Use this variable to define the number of excited states in the case of a spin-flip calculation. SF-ADC is available for ADC(2)-s, ADC(2)-x and ADC(3).
+>     * 个态，……
+> * **建议**: 在自旋翻转计算中，使用此变量来定义激发态数目。SF-ADC 可用于 ADC(2)-s、ADC(2)-x 和 ADC(3)。
 
-**Keywords for SS-PCM control in *$pcm***:
+**用于在 *$pcm* 中控制 SS-PCM（状态特定求解态反应场模型，State-Specific PCM）的关键字**：
 
 ### `EQSOLV`
 
-> **Main switch of the self-consistent SS-PCM procedure. INPUT SECTION: $pcm**
+> **自洽 SS-PCM 过程的主开关。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * No self-consistent SS-PCM.
+>     * 不进行自洽 SS-PCM。
 >     * 1
->     * Single SS-PCM calculation (SCF+ADC) with the solvent field found on disk.
+>     * 单次 SS-PCM 计算（SCF+ADC），使用磁盘上找到的溶剂场。
 >     * $n>$
 >     * 1
->     * Do a maximum of
+>     * 最多执行
 >     * $n$
->     * automatic solvent-field iterations.
-> * **Recommendation**: We recommend to use 15 steps max. Typical convergence is 3-5 steps. In difficult cases 6-12. If the solvent-field iteration do not converge in 15 steps, something is wrong. Make sure that a solvent field has been stored on disk by a previous job.
+>     * 次自动溶剂场迭代。
+> * **建议**: 我们建议最多使用 15 步。典型收敛需要 3–5 步，困难情形为 6–12 步。若溶剂场迭代在 15 步内不收敛，则说明存在问题。请确保先前的作业已将溶剂场存储在磁盘上。
 
 ### `EQSTATE`
 
-> **Specifies the state for which the solvent field is to be optimized. INPUT SECTION: $pcm**
+> **指定要为其优化溶剂场的态。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * MP2 ground state (for PTED approach)
+>     * MP2 基态（用于 PTED 方法）
 >     * 1
->     * energetically lowest excited state
+>     * 能量最低的激发态
 >     * 2
->     * 2nd lowest excited state
+>     * 第二低的激发态
 >     * …
-> * **Recommendation**: Given that only one class of excited states is calculated, the state will be selected according to its energetic position shown in the “Exited-State Summary” of the output file. A maximum of 99 states is stored and can be selected.
+> * **建议**: 鉴于只计算一类激发态，该态将根据输出文件"Exited-State Summary"（激发态汇总）中显示的能量位置被选取。最多存储并可选择 99 个态。
 
 ### `EQS_CONV`
 
-> **Controls the convergence of the solvent-field iterations by setting the convergence criteria (a mixture of SCF energy and charge-vector). SCF energy criterion computes as $10^{-\rm value}$ $E_{h}$ . INPUT SECTION: $pcm**
+> **通过设置收敛判据（SCF 能量与电荷向量的混合）来控制溶剂场迭代的收敛。SCF 能量判据按 $10^{-\rm value}$ $E_{h}$ 计算。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `SCF_CONVERGENCE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `SCF_CONVERGENCE`
+> * **选项**:
 >     * 3
->     * May be sufficient for emission energies
+>     * 对发射能量而言可能已足够
 >     * 4
->     * Assured converged total energies (2.7 meV)
+>     * 确保总能量收敛（2.7 meV）
 >     * 5
->     * Really tight
-> * **Recommendation**: Use the default.
+>     * 非常严格
+> * **建议**: 使用默认值。
 
 ### `EQS_REF`
 
-> **Allows to specify which state is to be treated as the reference state in the ADC part of the calculation. Does in contrast to EQSTATE not affect which solvent field is loaded in the SCF step. Only has to be used when singlets are computed in the solvent field of a triplet reference. Note that (converged) singlets states are always counted before triplets, and thus to select $T_{1}$ in a calculation with EE_SINGLETS = 2 this has to be set to 3. INPUT SECTION: $pcm**
+> **允许指定在计算的 ADC 部分中哪个态被视为参考态。与 EQSTATE 不同，它不影响 SCF 步骤中加载哪个溶剂场。仅当在三重态参考的溶剂场中计算单重态时才需使用。注意，（收敛的）单重态总是排在三重态之前计数，因此在设置 EE_SINGLETS = 2 的计算中选取 $T_{1}$ 时，此值必须设为 3。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Same as`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `与……相同`
+> * **选项**:
 >     * 1
->     * First excited state
+>     * 第一激发态
 >     * 2
->     * Second excited state
+>     * 第二激发态
 >     * …
-> * **Recommendation**: Only needed when computing singlet states in the solvent field of a triplet reference.
+> * **建议**: 仅在多重态参考的溶剂场中计算单重态时才需要。

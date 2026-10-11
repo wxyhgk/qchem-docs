@@ -1,9 +1,9 @@
 ---
-title: "12.3 FRAGMO Initial Guess for SCF Methods"
+title: "12.3 SCF 方法的 FRAGMO 初始猜测（Initial Guess）"
 ---
 
-# 12.3 FRAGMO Initial Guess for SCF Methods
+# 12.3 SCF 方法的 FRAGMO 初始猜测
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [12.3.1 Overview](Ch12.S3.SS1.md)
+- [12.3.1 概述](Ch12.S3.SS1.md)
