@@ -1,12 +1,12 @@
 ---
-title: "4.10.3 Examples"
+title: "4.10.3 示例"
 ---
 
-## 4.10.3 Examples
+## 4.10.3 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 4.30: xTB single-point calculation."
+???+ example "示例 4.30: xTB 单点能计算。"
     ```qchem
     $molecule
     0 1
@@ -22,7 +22,7 @@ title: "4.10.3 Examples"
     $end
     ```
 
-???+ example "Example 4.31: xTB geometry optimization."
+???+ example "示例 4.31: xTB 几何优化。"
     ```qchem
     $molecule
     0  1

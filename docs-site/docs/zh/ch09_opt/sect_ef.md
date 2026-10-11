@@ -1,39 +1,28 @@
 ---
-title: "9.1.3 Eigenvector-Following (EF) Algorithm"
+title: "9.1.3 特征矢量跟随（EF）算法"
 ---
 
-## 9.1.3 Eigenvector-Following (EF) Algorithm
+## 9.1.3 特征矢量跟随（Eigenvector-Following, EF）算法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The work of Cerjan and Miller,[[221]](../bib_references/bib.md#bib217)
- and later Simons and
-co-workers,[[1256]](../bib_references/bib.md#bib1309)
- showed that there was a better step
-than simply directly following one of the Hessian eigenvectors. A simple
-modification to the Newton-Raphson step is capable of guiding the search away
-from the current region towards a stationary point with the required
-characteristics. This is
+Cerjan 和 Miller[[221]](../bib_references/bib.md#bib217)
+ 的工作，以及后来 Simons 及其合作者[[1256]](../bib_references/bib.md#bib1309)
+ 的研究表明，存在一种比直接沿某一条 Hessian 特征矢量行走更好的步长方案。对牛顿-拉夫森（Newton-Raphson）步长做一个简单的修正，就能够引导搜索偏离当前区域，走向具有所需特征（极大/极小性质）的驻点。该步长为
 
 <a id="eq:a5t"></a>
 $$
 \mathbf{h}=-\sum_{i}\left(\frac{F_{i}}{b_{i}-\lambda}\right)\mathbf{u}_{i} \tag{9.6}
 $$
 
-in which $\lambda$ can be regarded as a shift parameter on the Hessian
-eigenvalue $b_{i}$. Scaling the Newton-Raphson step in this manner effectively
-directs the step to lie primarily, but not exclusively (unlike Poppinger’s
-algorithm[[1117]](../bib_references/bib.md#bib1164)
-), along one of the local eigenmodes, depending
-on the value chosen for $\lambda$.
-References [[221]](../bib_references/bib.md#bib217)
- all use the same basic
-approach of Eq. ([9.6](#eq:a5t)) but differ in the means of determining the value of $\lambda$.
+其中 $\lambda$ 可以视为对 Hessian 本征值 $b_{i}$ 的平移参数（shift parameter）。以这种方式对牛顿-拉夫森步长进行缩放，能够有效地使该步长主要（但并非完全——这与 Poppinger 的算法[[1117]](../bib_references/bib.md#bib1164)
+ 不同）沿某一条局部本征模（eigenmode）方向行进，具体取决于 $\lambda$ 所选取的值。
+参考文献 [[221]](../bib_references/bib.md#bib217)
+ 全部采用式 ([9.6](#eq:a5t)) 这一相同的基本思路，只是在确定 $\lambda$ 取值的方法上有所不同。
 
-The EF algorithm[[64]](../bib_references/bib.md#bib46)
- uses the rational function approach
-presented in Refs. [[72]](../bib_references/bib.md#bib57)
-, yielding an eigenvalue equation of the form
+EF 算法[[64]](../bib_references/bib.md#bib46)
+ 采用参考文献 [[72]](../bib_references/bib.md#bib57)
+ 中提出的有理函数方法，得到形如下的本征值方程
 
 <a id="eq:a6"></a>
 $$
@@ -46,53 +35,42 @@ $$
 \end{array}}}\right) \tag{9.7}
 $$
 
-from which a suitable $\lambda$ can be obtained. Expanding Eq. ([9.7](#eq:a6)) yields
+由此可以获得合适的 $\lambda$。将式 ([9.7](#eq:a6)) 展开可得
 
 <a id="eq:a7a"></a>
 $$
 (\mathbf{H}-\lambda)\mathbf{h}+\mathbf{g}=0 \tag{9.8}
 $$
 
-and
+以及
 
 <a id="eq:a7b"></a>
 $$
 \mathbf{g}^{t}\mathbf{h}=\lambda \tag{9.9}
 $$
 
-In terms of a diagonal Hessian representation, Eq. ([9.8](#eq:a7a)) rearranges to
-Eq. ([9.6](#eq:a5t)), and substitution of Eq. ([9.6](#eq:a5t)) into the diagonal form of
-Eq. ([9.9](#eq:a7b)) gives
+在 Hessian 的对角表示下，式 ([9.8](#eq:a7a)) 可重新整理为式 ([9.6](#eq:a5t))；而将式 ([9.6](#eq:a5t)) 代入式 ([9.9](#eq:a7b)) 的对角形式，则得到
 
 <a id="Ch9.E10"></a>
 $$
 \lambda=-\sum_{i}\left(\frac{-F_{i}^{2}}{b_{i}-\lambda}\right) \tag{9.10}
 $$
 
-which can be used to evaluate $\lambda$ iteratively.
+该式可用于迭代求解 $\lambda$。
 
-The eigenvalues, $\lambda$, of the RFO equation Eq. ([9.7](#eq:a6)) have the
-following important properties:[[72]](../bib_references/bib.md#bib57)
+有理函数优化（Rational Function Optimization, RFO）方程即式 ([9.7](#eq:a6)) 的本征值 $\lambda$ 具有以下重要性质：[[72]](../bib_references/bib.md#bib57)
 
 - •
 
-The $(n+1)$ values of $\lambda$ bracket the $n$ eigenvalues of the
-Hessian matrix $\lambda_{i}<b_{i}<\lambda_{i+1}$.
+$\lambda$ 的 $(n+1)$ 个取值将 Hessian 矩阵的 $n$ 个本征值"分隔包围"起来，即 $\lambda_{i}<b_{i}<\lambda_{i+1}$。
 - •
 
-At a stationary point, one of the eigenvalues, $\lambda$, of Eq. ([9.7](#eq:a6)) is
-zero and the other $n$ eigenvalues are those of the Hessian at the
-stationary point.
+在驻点处，式 ([9.7](#eq:a6)) 的某个本征值 $\lambda$ 为零，其余 $n$ 个本征值即为驻点处 Hessian 的本征值。
 - •
 
-For a saddle point of order $m$, the zero eigenvalue separates the $m$
-negative and the $(n-m)$ positive Hessian eigenvalues.
+对于一个 $m$ 阶鞍点（saddle point），那个零本征值恰好将 $m$ 个负 Hessian 本征值与 $(n-m)$ 个正 Hessian 本征值分隔开来。
 
-This last property, the separability of the positive and negative Hessian
-eigenvalues, enables two shift parameters to be used, one for modes along which
-the energy is to be maximized and the other for which it is minimized. For a
-transition state (a first-order saddle point), in terms of the Hessian
-eigenmodes, we have the two matrix equations
+最后这一性质——正、负 Hessian 本征值的可分隔性——使得可以使用两个平移参数：一个用于能量需要极大化的模式方向，另一个用于能量极小化的方向。对于过渡态（一阶鞍点），用 Hessian 本征模来表示，我们有两个矩阵方程
 
 <a id="eq:a9a"></a>
 $$
@@ -122,34 +100,18 @@ $$
 \end{array}}}\right) \tag{9.12}
 $$
 
-where it is assumed that we are maximizing along the lowest Hessian mode
-$\mathbf{u}_{1}$. Note that $\lambda_{p}$ is the highest eigenvalue of Eq. ([9.11](#eq:a9a)), which
-is always positive and approaches zero at convergence, and $\lambda_{n}$ is
-the lowest eigenvalue of Eq. ([9.12](#eq:a9b)), which it is always negative and again
-approaches zero at convergence.
+这里假设我们沿最低的 Hessian 模式 $\mathbf{u}_{1}$ 进行极大化。注意，$\lambda_{p}$ 是式 ([9.11](#eq:a9a)) 的最大本征值，它始终为正，并在收敛时趋于零；$\lambda_{n}$ 是式 ([9.12](#eq:a9b)) 的最小本征值，它始终为负，同样在收敛时趋于零。
 
-Choosing these values of $\lambda$ gives a step that attempts to maximize along
-the lowest Hessian mode, while at the same time minimizing along all the other
-modes. It does this regardless of the Hessian eigenvalue structure (unlike the
-Newton-Raphson step). The two shift parameters are then used in
-Eq. ([9.6](#eq:a5t)) to give the final step
+选取这些 $\lambda$ 值所得到的步长，会尝试沿最低的 Hessian 模式极大化，同时在所有其他模式上极小化。并且无论 Hessian 本征值的结构如何（不同于牛顿-拉夫森步长），它都能做到这一点。随后将这两个平移参数代入式 ([9.6](#eq:a5t))，得到最终的步长
 
 <a id="Ch9.E13"></a>
 $$
 \mathbf{h}=-\left(\frac{F_{1}}{b_{1}-\lambda_{p}}\right)\mathbf{u}_{1}+\sum\limits_{i=2}^{n}\left(\frac{F_{i}}{b_{i}-\lambda_{n}}\right)\mathbf{u}_{i} \tag{9.13}
 $$
 
-If this step is greater than the maximum allowed, it is scaled down. For
-minimization only one shift parameter, $\lambda_{n}$, is used which acts
-on all modes.
+若该步长超过允许的最大值，则将其缩小。对于纯极小化，只使用一个平移参数 $\lambda_{n}$，它作用于所有模式。
 
-In Eq. ([9.11](#eq:a9a))) and Eq. ([9.12](#eq:a9b)) it was assumed that the step
-would maximize along the lowest Hessian mode, $b_{1}$, and minimize along all the
-higher modes. However, it is possible to maximize along modes other than the
-lowest, and in this way potentially locate transition states for alternative
-rearrangements/dissociations from the same initial starting point. For
-maximization along the $k$th mode (instead of the lowest mode),
-Eq. ([9.11](#eq:a9a)) is replaced by
+在式 ([9.11](#eq:a9a))) 和式 ([9.12](#eq:a9b)) 中，我们假设该步长沿最低的 Hessian 模式 $b_{1}$ 极大化，而在所有较高模式上极小化。然而，也可以沿非最低的其他模式进行极大化，这样一来，从同一个初始起点出发，就有可能定位到对应于不同重排/解离路径的过渡态。若改为沿第 $k$ 个模式（而非最低模式）极大化，则式 ([9.11](#eq:a9a)) 替换为
 
 <a id="Ch9.E14"></a>
 $$
@@ -162,12 +124,5 @@ $$
 \end{array}}}\right) \tag{9.14}
 $$
 
-and Eq. ([9.12](#eq:a9b)) now excludes the $k$th mode, but includes the lowest
-mode. Since what was originally the $k$th mode is the mode along which the
-negative eigenvalue is required, then this mode will eventually become the
-lowest mode at some stage of the optimization. To ensure that the original mode
-is being followed smoothly from one cycle to the next, the mode that is
-actually followed is the one with the greatest overlap with the mode followed
-on the previous cycle. This procedure is known as *mode following*. For
-more details and some examples, see Ref. [[64]](../bib_references/bib.md#bib46)
-.
+而此时式 ([9.12](#eq:a9b)) 排除第 $k$ 个模式，但包含最低模式。由于原来的第 $k$ 个模式正是需要负本征值的那个模式，因此在优化过程的某个阶段，该模式最终会变成最低模式。为了保证从一开始所跟随的模式在相邻优化循环之间被平滑地追踪，实际跟随的模式是与上一循环所跟随模式重叠（overlap）最大的那个模式。这一做法称为*模式跟随（mode following）*。更多细节及示例可参见参考文献 [[64]](../bib_references/bib.md#bib46)
+。

@@ -1,74 +1,49 @@
 ---
-title: "6.12.9 Quadratic Coupled Cluster Doubles (QCCD)"
+title: "6.12.9 二次耦合簇 doubles（QCCD）"
 ---
 
-## 6.12.9 Quadratic Coupled Cluster Doubles (QCCD)
+## 6.12.9 二次耦合簇 doubles（QCCD）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The non variational determination of the energy in the CCSD, QCISD, and OD
-methods discussed in the above subsections is not normally a practical problem.
-However, there are some cases where these methods perform poorly. One such
-example are potential curves for homolytic bond dissociation, using closed
-shell orbitals, where the calculated energies near dissociation go
-significantly below the true energies, giving potential curves with unphysical
-barriers to formation of the molecule from the separated
-fragments.[[1388]](../bib_references/bib.md#bib1450)
- The Quadratic Coupled Cluster Doubles
-(QCCD) method[[1389]](../bib_references/bib.md#bib1451)
- recently proposed by Troy Van Voorhis at
-Berkeley uses a different energy functional to yield improved behavior in
-problem cases of this type. Specifically, the QCCD energy functional is defined
-as
+如上文各小节所讨论的，CCSD、QCISD 和 OD 方法中能量的非变分确定通常不是一个实际问题。
+然而在某些情况下，这些方法的表现很差。其中一个例子是使用闭壳层轨道（closed shell orbitals）计算均裂键解离（homolytic bond dissociation）的势能曲线，此时在接近解离区域计算得到的能量会显著低于真实能量，从而给出具有非物理势垒的势能曲线（即从分离碎片形成分子时出现不合理的势垒）[[[1388]](../bib_references/bib.md#bib1450)。
+由 Berkeley 的 Troy Van Voorhis 近期提出的二次耦合簇 doubles
+（Quadratic Coupled Cluster Doubles, QCCD）方法[[[1389]](../bib_references/bib.md#bib1451)采用不同的能量泛函（energy functional），在此类问题案例中表现出更好的行为。具体而言，QCCD 能量泛函定义为
 
 <a id="eq530"></a>
 $$
 E_{\mathrm{QCCD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}_{2}+\frac{1}{2}\hat{\Lambda}_{2}^{2}}\right)\left|{\hat{H}}\right|\exp\left({\hat{T}_{2}}\right)\Phi_{0}}\right\rangle_{C} \tag{6.77}
 $$
 
-where the amplitudes of both the $\hat{T}_{2}$ and $\hat{\Lambda}_{2}$
-operators are determined by minimizing the QCCD energy functional.
-Additionally, the optimal orbitals are determined by minimizing the QCCD
-energy functional with respect to orbital rotations mixing occupied and
-virtual orbitals.
+其中 $\hat{T}_{2}$ 和 $\hat{\Lambda}_{2}$ 算符的振幅（amplitudes）均通过最小化 QCCD 能量泛函来确定。
+此外，最优轨道（optimal orbitals）通过针对混合占据轨道与虚轨道的轨道旋转（orbital rotations）最小化 QCCD 能量泛函来确定。
 
-To see why the QCCD energy should be an improvement on the OD energy, we first
-write the latter in a different way than before. Namely, we can write a CCD
-energy functional which when minimized with respect to the $\hat{T}_{2}$ and
-$\hat{\Lambda}_{2}$ operators, gives back the same CCD equations defined earlier.
-This energy functional is
+为理解为何 QCCD 能量应当优于 OD 能量，我们首先以不同于之前的方式重写后者。
+也就是说，我们可以写出一个 CCD 能量泛函，当它针对 $\hat{T}_{2}$ 和
+$\hat{\Lambda}_{2}$ 算符最小化时，会重新得到前面定义的相同 CCD 方程。
+该能量泛函为
 
 <a id="eq531"></a>
 $$
 E_{\mathrm{CCD}}=\left\langle{\Phi_{0}\left({1+\hat{\Lambda}_{2}}\right)\left|{\hat{H}}\right|\exp\left({\hat{T}_{2}}\right)\Phi_{0}}\right\rangle_{C} \tag{6.78}
 $$
 
-Minimization with respect to the $\hat{\Lambda}_{2}$ operator gives the equations
-for the $\hat{T}_{2}$ operator presented previously, and, if those equations are
-satisfied then it is clear that we do not require knowledge of the $\hat{\Lambda}_{2}$ operator itself to evaluate the energy.
+针对 $\hat{\Lambda}_{2}$ 算符的最小化给出了前面介绍的 $\hat{T}_{2}$ 算符方程，并且，若这些方程得到满足，则显然我们在计算能量时无需知道
+$\hat{\Lambda}_{2}$ 算符本身。
 
-Comparing the two energy functionals, Eqs. ([6.77](#eq530)) and ([6.78](#eq531)), we see
-that the QCCD functional includes up through quadratic terms of the Maclaurin
-expansion of $\exp(\hat{\Lambda}_{2})$ while the conventional CCD functional
-includes only linear terms. Thus the bra wave function and the ket wave function
-in the energy expression are treated more equivalently in QCCD than in CCD.
-This makes QCCD closer to a true variational treatment[[1388]](../bib_references/bib.md#bib1450)
+对比这两个能量泛函，即式 ([6.77](#eq530)) 和 ([6.78](#eq531))，我们可以看到
+QCCD 泛函包含了 $\exp(\hat{\Lambda}_{2})$ 的麦克劳林展开（Maclaurin expansion）中直至二次的项，而传统的 CCD 泛函只包含线性项。因此在 QCCD 中，能量表达式里的左矢（bra）波函数和右矢（ket）波函数得到了比 CCD 中更对等的处理。
+这使得 QCCD 更接近真正的变分处理[[[1388]](../bib_references/bib.md#bib1450)
 
-where the bra and ket wave functions are treated precisely equivalently, but
-without the exponential cost of the variational method.
+在变分方法中左矢与右矢波函数被完全对等地处理，但 QCCD 无需承担变分方法那样的指数级计算代价。
 
-In practice QCCD is a dramatic improvement relative to any of the conventional
-pair correlation methods for processes involving more than two active electrons
-(*i.e.*, the breaking of at least a double bond, or, two spatially close single
-bonds). For example calculations, we refer to the original paper,[[1389]](../bib_references/bib.md#bib1451)
+实际上，对于涉及两个以上活性电子（active electrons）的过程（*即*，至少断裂一个双键，或者断裂两个空间上相邻的单键），QCCD 相对于任何传统的对关联（pair correlation）方法都有显著改进。
+计算示例方面，我们参见原始论文[[[1389]](../bib_references/bib.md#bib1451)
 
-and the follow-up paper describing the full implementation.[[177]](../bib_references/bib.md#bib172)
+以及描述完整实现的后续论文[[[177]](../bib_references/bib.md#bib172)。
 
-We note that these improvements carry a computational price.
-While QCCD scales formally with the 6th power of molecule size like
-CCSD, QCISD, and OD, the coefficient is substantially larger. For this reason,
-QCCD calculations are by default performed as OD calculations until they are
-partly converged. **Q-Chem** also contains some configuration interaction models
-(CISD and CISDT). The CI methods are inferior to CC due to size-consistency
-issues, however, these models may be useful for benchmarking and development
-purposes.
+我们需要注意，这些改进是以计算代价换来的。
+虽然 QCCD 与 CCSD、QCISD 和 OD 一样，其形式化计算标度（scaling）随分子体系大小的六次方增长，但其前置系数（coefficient）要大得多。
+因此，QCCD 计算默认先作为 OD 计算执行，直到部分收敛为止。**Q-Chem**
+还包含某些组态相互作用（configuration interaction, CI）模型（CISD 和 CISDT）。由于尺寸一致性（size-consistency）问题，CI 方法劣于 CC 方法，不过这些模型可能对基准测试（benchmarking）和开发用途有帮助。

@@ -1,12 +1,12 @@
 ---
-title: "Appendix C Third-party Components"
+title: "附录 C 第三方组件"
 ---
 
-# Appendix C Third-party Components
+# 附录 C 第三方组件
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [C.1 Introduction](A3.S1.md)
+- [C.1 简介](A3.S1.md)
 
 - [C.2 Armadillo](A3.S2.md)
 

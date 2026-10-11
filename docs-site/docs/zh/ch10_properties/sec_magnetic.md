@@ -1,15 +1,3 @@
----
-title: "10.11 NMR and Other Magnetic Properties"
----
+您好，您的消息在“待翻译文档：”之后没有附带实际的 Markdown 内容，我这边只收到了空的请求。
 
-# 10.11 NMR and Other Magnetic Properties
-
-(July 4, 2026)
-
-- [10.11.1 Introduction](Ch10.S11.SS1.md)
-
-- [10.11.2 NMR Chemical Shifts and *J*-Couplings](sec_magnetic_NMR.md)
-
-- [10.11.3 Linear-Scaling NMR Chemical Shift Calculations](sec_D-CPSCF-NMR.md)
-
-- [10.11.4 Additional Magnetic Field-Related Properties](sec_magnetman.md)
+请将需要翻译的文档内容（完整 Markdown 文本）粘贴发送给我，我会按照您列出的要求（保留 Frontmatter、Markdown 结构、LaTeX 公式、代码块原样、链接路径不变、Callout 标题翻译等）直接输出规范的简体中文译文。

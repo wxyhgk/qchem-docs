@@ -1,22 +1,16 @@
 ---
-title: "9.4.3 Frozen Atoms"
+title: "9.4.3 冻结原子（Frozen Atoms）"
 ---
 
-## 9.4.3 Frozen Atoms
+## 9.4.3 冻结原子（Frozen Atoms）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Absolute atom positions can be frozen with the *FIXED* section. The
-section starts with the *FIXED* keyword as the first line and ends with
-the *ENDFIXED* keyword on the last. The format to fix a coordinate or
-coordinates of an atom is:
+原子的绝对位置可以通过 *FIXED* 区段（section）来冻结。该区段以 *FIXED* 关键字作为首行开始，以末行的 *ENDFIXED* 关键字结束。冻结某个原子的一个或多个坐标的格式为：
 
-`atom    coordinate_reference`
+`atom    coordinate_reference`
 
-*coordinate_reference* can be any combination of up to three characters
-$X$, $Y$ and $Z$ to specify the coordinate(s) to be fixed: $X$, $Y$, $Z$,
-*XY*, *XZ*, *YZ*, *XYZ*. The fixing characters must be next
-to each other. *e.g.*,
+*coordinate_reference* 可以是 $X$、$Y$、$Z$ 至多三个字符的任意组合，用于指定要冻结的坐标：$X$、$Y$、$Z$、*XY*、*XZ*、*YZ*、*XYZ*。用于指定冻结方向的字符必须紧邻排列。*例如*，
 
 > ```qchem
 > FIXED
@@ -24,7 +18,7 @@ to each other. *e.g.*,
 > ENDFIXED
 > ```
 
-means the $x$-coordinate and $y$-coordinate of atom 2 are fixed, whereas
+表示冻结原子 2 的 $x$ 坐标和 $y$ 坐标，而
 
 > ```qchem
 > FIXED
@@ -32,62 +26,49 @@ means the $x$-coordinate and $y$-coordinate of atom 2 are fixed, whereas
 > ENDFIXED
 > ```
 
-will yield erroneous results.
+则会产生错误的结果。
 
-**Note: 
+**注意：
 
-When the *FIXED* section is specified within *$opt*, the
-optimization will proceed in Cartesian coordinates.
+当在 *$opt* 中指定 *FIXED* 区段时，几何优化将在笛卡尔坐标（Cartesian coordinates）下进行。
 **
 
-Note that *frequency* calculations for a system with frozen atom constraints will generally produce
-imaginary frequencies. These arise because the Hessian computed
-for the frequency calculation has different physics compared to the gradient
-computed during the fixed-atom optimization.
-One possible workaround is simply to zero out the elements of the Hessian associated
-with the frozen atoms. This removes the contribution of the frozen atoms to
-the normal modes and reduces the number of frequencies computed. For a system
-with $N$ atoms, where $n$ atoms are frozen, there will be $3(N-n)-6$ normal
-modes, or $3(N-n)-5$ if the system is linear. This “zeroing out” approach can be requested with a pair of *$rem* variables,
-FRZN_OPT and FRZ_ATOMS, as described below. A more elegant approach is to replace the strictly
-fixed atomic positions with soft harmonic confining potentials, which achieves effectively the same result but allows for relaxation
-(*i.e.*, optimization) of all atomic coordinates, so that a proper vibrational frequency calculation can be performed. The use of
-harmonic confining potentials as a replacement for fixed atom constraints is described in Section [9.4.7](subsec_HarmonicConfiner.md).
+请注意，对于带有冻结原子约束的体系，*频率（frequency）* 计算通常会产生虚频（imaginary frequencies）。其原因是：频率计算所得到的 Hessian 矩阵，与冻结原子优化过程中计算的梯度在物理意义上并不一致。
+一种可能的解决办法是直接将 Hessian 中与冻结原子相关的元素置零。这样可以消除冻结原子对简正模式（normal modes）的贡献，并减少所计算频率的数目。对于一个含 $N$ 个原子的体系，若冻结了 $n$ 个原子，则简正模式的数目为 $3(N-n)-6$，若体系为线性分子则为 $3(N-n)-5$。这种“置零”方法可以通过一对 *$rem* 变量 FRZN_OPT 和 FRZ_ATOMS 来启用，详见下文说明。另一种更优雅的做法是用软的谐振约束势（soft harmonic confining potentials）替代严格固定的原子位置，这在效果上能达到相同的目的，同时允许所有原子坐标发生弛豫（*即*，优化），从而可以进行正确的振动频率计算。用谐振约束势替代冻结原子约束的方法在第 [9.4.7 节](subsec_HarmonicConfiner.md) 中描述。
 
 FRZN_OPT
 
 ### `FRZN_OPT`
 
-> **Controls whether the job uses zeroed Hessian technique in the frequency calculations**
+> **控制本作业在频率计算中是否使用 Hessian 置零技术**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `False`
+> * **可选值**:
 >     * False
->     * Do not use the zeroed out Hessian
+>     * 不使用置零的 Hessian
 >     * True
->     * Use the zeroed out Hessian
-> * **Recommendation**: False
+>     * 使用置零的 Hessian
+> * **建议**: False
 
 FRZ_ATOMS
 
 ### `FRZ_ATOMS`
 
-> **Controls the number of frozen atoms**
+> **控制冻结原子的数目**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
->     * User defined
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **可选值**:
+>     * 用户自定义
+> * **建议**: 无
 
-**Note: 
+**注意：
 
-The above two *$rem* variables are only relevant to frequency calculations; they are
-not required in geometry optimization with fixed atoms.
+上述两个 *$rem* 变量仅与频率计算相关；在带有冻结原子的几何优化中并不需要它们。
 **
 
-???+ example "Example 9.12: Optimization of the water dimer structure with the structure of the first water frozen"
+???+ example "示例 9.12: 在冻结第一个水分子结构的条件下优化水二聚体结构"
     ```qchem
     $molecule
      0 1
@@ -113,8 +94,7 @@ not required in geometry optimization with fixed atoms.
     $end
     ```
 
-???+ example "Example 9.13: Frequency calculations using zeroed out Hessian technique. Note the frozen atom indices
-are specified in the $frozen_opt section."
+???+ example "示例 9.13: 使用 Hessian 置零技术进行频率计算。注意冻结原子的索引在 $frozen_opt 区段中指定。"
     ```qchem
     $molecule
        0 1

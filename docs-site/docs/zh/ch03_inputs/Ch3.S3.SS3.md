@@ -1,31 +1,21 @@
 ---
-title: "3.3.3 Reading Molecular Coordinates from a Previous Job or File"
+title: "3.3.3 从先前的作业或文件中读取分子坐标"
 ---
 
-## 3.3.3 Reading Molecular Coordinates from a Previous Job or File
+## 3.3.3 从先前的作业或文件中读取分子坐标
 
 (July 4, 2026)
 
-Often users wish to perform several calculations in sequence, where the later
-calculations rely on results obtained from the previous ones. For example, a
-geometry optimization at a low level of theory, followed by a vibrational
-analysis and then, perhaps, single-point energy at a higher level. Rather than
-having the user manually transfer the coordinates from the output of the
-optimization to the input file of a vibrational analysis or single point energy
-calculation, **Q-Chem** can transfer them directly from job to job.
+用户常常希望依次执行多项计算，其中后续计算依赖于先前计算所得的结果。例如，先在较低的理论级别上进行几何优化，随后进行振动分析，最后 Perhaps 在更高的理论级别上做单点能计算。为了避免用户手动将优化输出中的坐标复制到振动分析或单点能计算的输入文件中，**Q-Chem** 可以在各个作业（job）之间直接传递这些坐标。
 
-To achieve this requires that:
+要实现这一点，需要满足以下条件：
 
 - •
 
-The READ variable is entered into the molecular coordinate input
+在分子坐标输入中填写 READ 变量
 - •
 
-Scratch files from a previous calculation have been saved. These may be
-obtained *explicitly* by using the save option across multiple job
-runs as described below and in Chapter [2](../ch02_install/chap_install.md), or
-*implicitly* when running multiple calculations in one input file,
-as described in Section [3.5](sec_multiple_jobs.md).
+先前计算的暂存文件（scratch files）已被保存。这些文件可以通过下文及第 [2](../ch02_install/chap_install.md) 章所述的 save 选项在多次作业运行中*显式（explicitly）*获得，或者如第 [3.5](sec_multiple_jobs.md) 节所述，在单个输入文件中运行多个计算时*隐式（implicitly）*获得。
 
 ```qchem
 $molecule
@@ -33,29 +23,21 @@ $molecule
 $end
 ```
 
-In this example, the *job1* scratch files are saved in a directory
-*$QCSCRATCH/job1* and are then made available to the *job2*
-calculation. This is achieved with the following commands:
+在此示例中，*job1* 的暂存文件被保存在目录 *$QCSCRATCH/job1* 中，随后供 *job2* 计算使用。可通过以下命令实现：
 
 > ```qchem
 > localhost-1> qchem job1.in job1.out job1
 > localhost-2> qchem job2.in job2.out job1
 > ```
 
-In this example, the `job1` scratch files are saved in a directory
-`$QCSCRATCH/job1` and are then made available to the `job2`
-calculation.
+在此示例中，`job1` 的暂存文件被保存在目录 `$QCSCRATCH/job1` 中，随后供 `job2` 计算使用。
 
-**Note: 
+**注意：
 
-The program must be instructed to read specific scratch files by the
-input of `job2`.
+必须通过 `job2` 的输入指明程序要读取的具体暂存文件。
 **
 
-The READ function can also be used to read molecular coordinates
-from a second input file. The format for the coordinates in the second file
-follows that for standard **Q-Chem** input, and must be delimited with the
-*$molecule* and *$end* keywords.
+READ 功能还可以用于从第二个输入文件中读取分子坐标。第二个文件中坐标的格式遵循标准 **Q-Chem** 输入的格式，并且必须用 *$molecule* 和 *$end* 关键字进行界定。
 
 ```qchem
 $molecule

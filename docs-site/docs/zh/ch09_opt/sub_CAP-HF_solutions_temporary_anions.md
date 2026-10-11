@@ -1,37 +1,36 @@
 ---
-title: "9.11.2 Finding Electronic Resonance States of Temporary Anions"
+title: "9.11.2 寻找临时阴离子的电子共振态"
 ---
 
-## 9.11.2 Finding Electronic Resonance States of Temporary Anions
+## 9.11.2 寻找临时阴离子的电子共振态
 
 (July 4, 2026)
 
-We limit our discussion here to the HF method, but the general principles outlined also applies to higher level methods.
+此处的讨论仅限于 HF 方法，但所概述的一般原理同样适用于更高级别的方法。
 
 1. 1.
 
-The correct description of the electronic state of temporary anions usually requires the use of extra diffuse
-functions in the basis set. You may thus consider having enough extra diffuse functions in your basis set.
+要正确描述临时阴离子的电子态，通常需要在基组（Basis Set）中加入额外的弥散函数。
+因此请考虑在你的基组中包含足够的额外弥散函数。
 2. 2.
 
-It is best you use the core Hamiltonian as guess for the CAP-HF SCF procedure
-(*i.e.*, set SCF_GUESS = CORE).
+最好使用核哈密顿量（core Hamiltonian）作为 CAP-HF SCF 程序的初始猜测
+（*即*，设置 SCF_GUESS = CORE）。
 3. 3.
 
-For CAP calculations, **Q-Chem** first solves the SCF problem using the old SCF drivers in **Q-Chem**;
-the solution is then used as the starting point for the CAP part of the calculation.
-This preliminary SCF solution usually
-leads to wrong CAP-HF solutions. You may avoid this issue by setting
-SKIP_OLD_SCFMAN = TRUE in *$rem*.
-See Example [9.11.3](ex_CAP_HF_energy_decomp.md).
+对于 CAP 计算，**Q-Chem** 首先使用 **Q-Chem** 中的旧版 SCF 驱动求解 SCF 问题；
+随后该解被用作计算中 CAP 部分的起点。
+这一预处理 SCF 解通常会导致错误的 CAP-HF 解。你可以通过在 *$rem* 中设置
+SKIP_OLD_SCFMAN = TRUE 来避免这一问题，
+参见示例 [9.11.3](ex_CAP_HF_energy_decomp.md)。
 4. 4.
 
-Make sure the CAP contribution to the real and imaginary parts of the SCF solution found is negligible.
-You can get these CAP contributions by asking for an energy decomposition of the complex energy by setting
-CS_SCF_FINAL_PRINT = 1 in *$rem*.
-An alternative is to look at how close the imaginary (and real) parts of the CAP-HF energy and the corrected CAP-HF
-energy are; the ratio of the imaginary parts should be close to unity. See Example [9.11.3](ex_CAP_HF_energy_decomp.md).
+请确保 CAP 对所得 SCF 解的实部与虚部的贡献可以忽略不计。
+你可以通过在 *$rem* 中设置 CS_SCF_FINAL_PRINT = 1 来要求对复能量做能量分解，
+从而获得这些 CAP 贡献。
+另一种做法是观察 CAP-HF 能量及其校正后的 CAP-HF 能量的虚部（与实部）有多接近；
+虚部之比应接近 1。参见示例 [9.11.3](ex_CAP_HF_energy_decomp.md)。
 
-For CAP-HF calculations, set the *$rem* variable CS_STRICT = TRUE
-to print out the correct properties (*e.g.*, Mulliken charges and multipole moments) of the solution.
-See Example [9.11.3](ex_CAP_HF_energy_decomp.md).
+对于 CAP-HF 计算，请设置 *$rem* 变量 CS_STRICT = TRUE，
+以打印该解的正确性质（*例如*，Mulliken 电荷与多极矩）。
+参见示例 [9.11.3](ex_CAP_HF_energy_decomp.md)。

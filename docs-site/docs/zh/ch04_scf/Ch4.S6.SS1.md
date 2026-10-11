@@ -1,56 +1,34 @@
 ---
-title: "4.6.1 Introduction"
+title: "4.6.1 引言"
 ---
 
-## 4.6.1 Introduction
+## 4.6.1 引言
 
 (July 4, 2026)
 
-Construction of the effective Hamiltonian, or Fock matrix, has traditionally
-been the rate-determining step in self-consistent field calculations, due
-primarily to the cost of two-electron integral evaluation, even with the
-efficient methods available in **Q-Chem** (see Appendix [A](../app_a_aoints/app_AOINTS.md)).
-However, for large enough molecules, significant speedups are possible by
-employing linear-scaling methods for each of the nonlinear terms that can
-arise. Linear scaling means that if the molecule size is doubled, then the
-computational effort likewise only doubles. There are three computationally
-significant terms:
+有效哈密顿量（即 Fock 矩阵）的构造，传统上一直是自洽场（Self-Consistent Field, SCF）计算中的限速步骤，这主要是因为双电子积分求取的开销，即便 **Q-Chem** 已经提供了高效的方法（参见附录 [A](../app_a_aoints/app_AOINTS.md)）。
+然而，对于足够大的分子，通过对各个可能出现的非线性项采用线性缩放（linear-scaling）方法，可以获得显著的速度提升。
+所谓线性缩放，是指若分子尺寸增大一倍，则计算量同样也只增大一倍。
+其中在计算上意义重大的项有三类：
 
 - •
 
-Electron-electron Coulomb interactions, for which **Q-Chem** incorporates
-the Continuous Fast Multipole Method (CFMM) discussed in section
-[4.6.2](sect_cfmm.md)
+电子-电子库仑相互作用，对此 **Q-Chem** 实现了连续快速多极子方法（Continuous Fast Multipole Method, CFMM），详见 [4.6.2](sect_cfmm.md) 节
 - •
 
-Exact exchange interactions, which arise in hybrid DFT calculations and
-Hartree-Fock calculations, for which **Q-Chem** incorporates the LinK
-method discussed in section [4.6.3](sect_link.md) below.
+精确交换相互作用，该项出现在杂化密度泛函理论（Density Functional Theory, DFT）计算和 Hartree-Fock 计算中，对此 **Q-Chem** 实现了下文 [4.6.3](sect_link.md) 节讨论的 LinK 方法。
 - •
 
-Numerical integration of the exchange and correlation functionals in DFT
-calculations, which we have already discussed in section [5.5](../ch05_dft/sect_quadrature.md).
+DFT 计算中交换关联泛函的数值积分，我们已在 [5.5](../ch05_dft/sect_quadrature.md) 节中讨论过。
 
-**Q-Chem** supports energies and efficient analytical gradients for all three of
-these high performance methods to permit structure optimization of large
-molecules, as well as relative energy evaluation. Note that analytical second
-derivatives of SCF energies do not exploit these methods at present.
+对于上述全部三种高性能方法，**Q-Chem** 均支持能量计算以及高效的解析梯度计算，从而可以对大分子进行结构优化以及相对能量求值。请注意，SCF 能量的解析二阶导数目前尚未利用这些方法。
 
-For the most part, these methods are switched on automatically by the program
-based on whether they offer a significant speedup for the job at hand.
-Nevertheless it is useful to have a general idea of the key concepts behind
-each of these algorithms, and what input options are necessary to control them.
-That is the primary purpose of this section, in addition to briefly describing
-two more conventional methods for reducing computer time in large calculations
-in Section [4.6.4](sect_incfock.md).
+在大多数情况下，程序会根据这些方法能否为当前计算任务带来显著加速而自动启用它们。
+尽管如此，了解每种算法背后的关键概念、以及控制它们所需的输入选项，仍然是有益的。
+这正是本节的主要目的；此外，我们还在 [4.6.4](sect_incfock.md) 节中简要介绍另外两种用于减少大计算量所需机时的、更为传统的方法。
 
-There is one other computationally significant step in SCF calculations, and
-that is diagonalization of the Fock matrix, once it has been constructed.
-This step scales with the cube of molecular size (or basis set size), with a
-small pre-factor. So, for large enough SCF calculations (very roughly in the
-vicinity of 2000 basis functions and larger), diagonalization becomes the
-rate-determining step. The cost of cubic scaling with a small pre-factor at
-this point exceeds the cost of the linear scaling Fock build, which has a
-very large pre-factor, and the gap rapidly widens thereafter. This sets an
-effective upper limit on the size of SCF calculation for which **Q-Chem** is
-useful at several thousand basis functions.
+在 SCF 计算中还有另一个在计算上意义重大的步骤，那就是 Fock 矩阵构造完成之后的对角化。
+该步骤的计算量随分子尺寸（或基组尺寸）的三次方缩放，但前置因子（pre-factor）较小。
+因此，对于足够大的 SCF 计算（大致在 2000 个基函数及以上的量级），对角化便成为限速步骤。
+此时，具有小前置因子的三次方缩放的开销，会超过具有非常大前置因子的线性缩放 Fock 构建的开销，而且此后差距会迅速拉大。
+这就为 **Q-Chem** 所能胜任的 SCF 计算规模设定了一个实际的上限，即数千个基函数左右。

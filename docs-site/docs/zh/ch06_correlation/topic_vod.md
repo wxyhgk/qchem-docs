@@ -1,33 +1,16 @@
 ---
-title: "6.14.2 VOD and VOD(2) Methods"
+title: "6.14.2 VOD 与 VOD(2) 方法"
 ---
 
-## 6.14.2 VOD and VOD(2) Methods
+## 6.14.2 VOD 与 VOD(2) 方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The VOD method is the active space version of the OD method described earlier
-in Section [6.12.8](topic_odcc.md). Both energies and gradients are available for VOD, so
-structure optimization is possible. There are a few important comments to make
-about the usefulness of VOD. First, it is a method that is capable of
-accurately treating problems that fundamentally involve 2 active electrons in a
-given local region of the molecule. It is therefore a good alternative for
-describing single bond-breaking, or torsion around a double bond, or some
-classes of diradicals. However it often performs poorly for problems where
-there is more than one bond being broken in a local region, with the non
-variational solutions being quite possible. For such problems the newer VQCCD
-method is substantially more reliable.
+VOD 方法是前文第 [6.12.8 节](topic_odcc.md) 中所描述的 OD（轨道优化二阶密度矩阵，Orbital-Optimized Double）方法的活性空间版本。VOD 既可以计算能量，也可以计算梯度，因此可以进行结构优化。关于 VOD 的适用性，有几点重要说明。首先，该方法能够精确处理那些在分子某个局域区域内本质上涉及 2 个活性电子的问题。因此，它是描述单键断裂、双键扭转（异构化）或某些类别双自由基的一个良好选择。然而，对于在同一局域区域内存在多个键被断裂的问题，VOD 的表现往往不佳，并且很可能得到非变分的解。针对此类问题，较新的 VQCCD 方法要可靠得多。
 
-Assuming that VOD is a valid zero order description for the electronic
-structure, then a second-order correction, VOD(2), is available for energies
-only. VOD(2) is a version of OD(2) generalized to valence active spaces. It
-permits more accurate calculations of relative energies by accounting for
-dynamical correlation.
+在假设 VOD 是电子结构的合理零阶描述的前提下，可以进一步计算仅针对能量的二阶修正，即 VOD(2)。VOD(2) 是 OD(2) 推广到手性（价层）活性空间后的版本。它通过计入动力学相关能，使得相对能量的计算更加精确。
 
-???+ example "Example 6.45: Calculate the correlation energy of the water molecule with partially
-stretched bonds, the VOD coupled-cluster active space method. This is a
-relatively “easy” job to converge, and may be contrasted with the next
-example, which is not easy to converge. The orbitals are restricted."
+???+ example "示例 6.45：使用 VOD 耦合簇活性空间方法计算部分拉伸键的水分子的关联能。这是一个相对“容易”收敛的任务，可与下一个不易收敛的示例形成对照。轨道采用限制性（restricted）方式。"
     ```qchem
     $molecule
       0  1
@@ -45,12 +28,7 @@ example, which is not easy to converge. The orbitals are restricted."
     $end
     ```
 
-???+ example "Example 6.46: The water molecule with highly stretched bonds, calculated via the VOD
-coupled-cluster active space method. This is a “difficult”
-job to converge. The convergence options shown permitted the job to converge
-after some experimentation (thanks due to Ed Byrd for this!). The difficulty of
-converging this job should be contrasted with the previous example where the
-bonds were less stretched."
+???+ example "示例 6.46：使用 VOD 耦合簇活性空间方法计算高度拉伸键的水分子。这是一个“困难”的、不易收敛的任务。经过若干次试验后，所示的收敛选项使该任务得以收敛（感谢 Ed Byrd！）。该任务的收敛难度应与前一个键拉伸程度较小的示例形成对照。"
     ```qchem
     $molecule
        0  1

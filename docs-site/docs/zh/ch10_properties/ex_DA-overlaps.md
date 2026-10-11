@@ -1,65 +1,50 @@
 ---
-title: "10.3.3 Donor–Acceptor Orbital Overlaps"
+title: "10.3.3 给体–受体轨道重叠"
 ---
 
-## 10.3.3 Donor–Acceptor Orbital Overlaps
+## 10.3.3 给体–受体轨道重叠（Donor–Acceptor Orbital Overlaps）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In donor–acceptor (D–A) materials, the overlap between the donor orbital
-(HOMO of D) and the acceptor orbital (LUMO of A) has been shown to correlate
-with excited-state charge-transfer character.[[1337]](../bib_references/bib.md#bib1396)
- This overlap can be
-computed, taking into account relaxation of the monomer geometries upon formation
-of the D–A complex, using the *$rem* variable
-MO_OVERLAPS_TWO_GEOMS, as shown in
-Example 10.3.3 below. This requires two separate SCF calculations (one for
-either D or A in isolation, and another for the dimer D–A), and both calculations must use
-the same basis set. Therefore, ghost atoms should be added in the monomer calculation
-so that both SCF calculations use the dimer basis set. Output is delivered in a directory
-`OutputName.MO-overlaps` (where `OutputName` is the name of the **Q-Chem**
-output file). This output consists of the $\alpha$-spin MO coefficients for both systems
-(`CA-Geom1.txt` and `CA-Geom2.txt`), the AO overlap matrix between the
-two calculations (`AO-overlap-TwoGeoms.txt`, which need not be an identity matrix
-because the geometries could differ), and the MO overlap matrix between the two calculations
-(`MO-overlap-TwoGeoms.txt`).
+在给体–受体（D–A）材料中，给体轨道（D 的 HOMO）与受体轨道（A 的 LUMO）之间的重叠已被证明与激发态的电荷转移特性相关。[[1337]](../bib_references/bib.md#bib1396)
+计算该重叠时可以考虑形成 D–A 复合物时单体几何结构的弛豫，方法是通过 *$rem* 变量
+MO_OVERLAPS_TWO_GEOMS 来实现，如下方示例 10.3.3 所示。这需要两次独立的自洽场（SCF）计算（一次针对孤立的 D 或 A，另一次针对二聚体 D–A），并且两次计算必须使用相同的基组。因此，应在单体计算中添加虚原子（ghost atoms），使两次 SCF 计算都使用二聚体的基组。输出结果存放于目录
+`OutputName.MO-overlaps` 中（其中 `OutputName` 为 **Q-Chem**
+输出文件的名称）。该输出包含两个体系的 $\alpha$-自旋分子轨道（MO）系数
+（`CA-Geom1.txt` 和 `CA-Geom2.txt`）、两次计算之间的原子轨道（AO）重叠矩阵
+（`AO-overlap-TwoGeoms.txt`，由于几何结构可能不同，该矩阵不必是单位矩阵），以及两次计算之间的 MO 重叠矩阵
+（`MO-overlap-TwoGeoms.txt`）。
 
-**Note: 
+**注意：
 
-Currently, only overlaps between $\alpha$-spin MOs are considered, hence why only
-$\alpha$-spin MO coefficients are returned. This means that this features is implemented
-only for spin-restricted wave functions.
+目前仅考虑 $\alpha$-自旋 MO 之间的重叠，这也是为何只返回 $\alpha$-自旋 MO 系数的原因。
+这意味着该功能仅针对自旋限制（spin-restricted）波函数实现。
 **
 
-Alternatively, one might be interested in the degree of spatial overlap between donor and
-acceptor orbitals (*e.g.*, HOMO and LUMO) within the same molecule or on two different molecules
-within the same supramolecular calculation. These can be computed using the same tools that
-are used to compute the $\Lambda$ metric in TDDFT [Eq. ([7.16](../ch07_excited/sec_CT-metrics.md#eq:Tozer-metric))], and the
-contributing overlaps $O_{ia}$ [Eq. ([7.17](../ch07_excited/sec_CT-metrics.md#eq:Tozer-overlaps))] can be printed using
-SPATIAL_OVERLAP_ANALYSIS. See Section [7.3.6.1](../ch07_excited/subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic)
-for job control options and Example 10.3.3 for an example.
+或者，人们可能关心同一分子内给体轨道与受体轨道（*例如*，HOMO 与 LUMO）之间空间重叠的程度，或同一超分子计算中两个不同分子轨道之间的空间重叠程度。这些量可以使用与 TDDFT 中计算 $\Lambda$ 度量的相同工具来计算 [式 ([7.16](../ch07_excited/sec_CT-metrics.md#eq:Tozer-metric))]，并且其贡献的重叠 $O_{ia}$ [式 ([7.17](../ch07_excited/sec_CT-metrics.md#eq:Tozer-overlaps))] 可通过
+SPATIAL_OVERLAP_ANALYSIS 打印输出。作业控制选项请参见第 [7.3.6.1](../ch07_excited/subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic) 节，
+示例请参见示例 10.3.3。
 
 MO_OVERLAPS_TWO_GEOMS
 
 ### `MO_OVERLAPS_TWO_GEOMS`
 
-> **Specifies whether to compute molecular orbital overlaps at two different geometries.**
+> **指定是否在两种不同几何结构下计算分子轨道重叠。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not compute these overlaps.
+>     * 不计算这些重叠。
 >     * 1
->     * Used to indicate the first of two required SCF calculations.
+>     * 用于指示两次必需 SCF 计算中的第一次。
 >     * 2
->     * Used to indicate the second of two required SCF calculations.
-> * **Recommendation**: The atoms must be ordered in the same way for both calculations. (This is not checked.)
+>     * 用于指示两次必需 SCF 计算中的第二次。
+> * **建议**: 两次计算中原子的排列顺序必须一致。（程序不会对此进行检查。）
 
-???+ example "Example 10.14: Compute “spatial overlaps” of the frontier MOs, for a dimer of naphthalene and tetracyanoquinone.
-These are overlaps $O_{ia}$ of the absolute values
-of the orbitals [ Eq. ( 7.17 )]. This feature is based on the $\Lambda$ metric
-of TDDFT, therefore at least one excited state must be computed in order to trigger this analysis."
+???+ example "示例 10.14：计算萘与四氰基对苯醌二甲烷（TCNQ）二聚体前线分子轨道的“空间重叠”。
+这些是轨道绝对值的重叠 $O_{ia}$ [式 ([7.17](../ch07_excited/sec_CT-metrics.md#eq:Tozer-overlaps))]。该功能基于 TDDFT 的 $\Lambda$ 度量，
+因此必须至少计算一个激发态才能触发此分析。"
     ```qchem
     $molecule
     0 1
@@ -113,7 +98,7 @@ of TDDFT, therefore at least one excited state must be computed in order to trig
     $end
     ```
 
-???+ example "Example 10.15: Compute MO overlaps for a C ${}_{\text{2}}$ H ${}_{\text{4}}\cdots$ C ${}_{\text{2}}$ F ${}_{\text{4}}$ dimer."
+???+ example "示例 10.15：计算 C ${}_{\text{2}}$ H ${}_{\text{4}}\cdots$ C ${}_{\text{2}}$ F ${}_{\text{4}}$ 二聚体的 MO 重叠。"
     ```qchem
     $comment
     Job 1: this is the dimer

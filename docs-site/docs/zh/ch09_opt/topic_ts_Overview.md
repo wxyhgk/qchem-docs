@@ -1,186 +1,125 @@
 ---
-title: "9.1.1 Introduction"
+title: "9.1.1 引言"
 ---
 
-## 9.1.1 Introduction
+## 9.1.1 引言
 
 (July 4, 2026)
 
-Molecular potential energy surfaces rely on the Born-Oppenheimer separation of
-nuclear and electronic motion. Of particular interest are the critical points
-on these surfaces, *i.e.* where the gradient of the energy vanishes.
-Characterization of a critical point requires consideration of the eigenvalues
-of the Hessian (second derivative matrix) calculated at that point. An
-equilibrium geometry corresponds to a critical point where the eigenvalues of
-the Hessian are all positive, whereas a transition-state structure is defined
-as a first-order saddle point, and therefore has a Hessian with precisely one
-negative eigenvalue. The latter is a local maximum along the reaction path
-between the minima corresponding to the reactants and products, and a minimum in
-all directions perpendicular to this reaction path.
+分子势能面（Potential Energy Surface, PES）依赖于玻恩-奥本海默（Born-Oppenheimer）近似下核运动与电子运动的分离。人们尤其关注这些势能面上的临界点（critical point），*即*能量梯度为零的点。要表征一个临界点，需要考察在该点计算的海塞矩阵（Hessian，二阶导数矩阵）的本征值。平衡几何结构对应于海塞矩阵本征值全部为正的临界点；而过渡态结构则定义为一阶鞍点（first-order saddle point），因此其海塞矩阵恰好只有一个负本征值。后者沿着反应物极小值与产物极小值之间的反应路径方向是局部极大值，而在垂直于该反应路径的所有方向上均为极小值。
 
-The quality of a geometry optimization algorithm is of major importance; even
-the fastest integral code in the world will be useless if combined with an
-inefficient optimization algorithm that requires excessive numbers of steps to
-converge. **Q-Chem** is currently transitioning to a new geometry optimization
-driver, **Libopt3**, which improves on the older **Optimize** driver.
-Details on the difference in capabilities between the two drivers are provided
-in Table [9.1](#table:libopt_vs_optimize).
+几何优化算法的质量至关重要；即便拥有世界上最快的积分代码，若配以效率低下、需要过多迭代步数才能收敛的优化算法，也毫无用处。**Q-Chem** 目前正逐步过渡到新的几何优化驱动模块（driver）**Libopt3**，它在旧有的 **Optimize** 驱动模块的基础上进行了改进。两种驱动模块在功能上的差异详见表 [9.1](#table:libopt_vs_optimize)。
 
-| Feature | LIBOPT3 | OPTIMIZE |
+| 特性 | LIBOPT3 | OPTIMIZE |
 | --- | --- | --- |
-| Optimization Type: |  |  |
-| Unconstrained | ✓ | ✓ |
-| Constrained | ✗ | ✓ |
-| Structure Search: |  |  |
-| Equilibrium | ✓ | ✓ |
-| Transition | ✓ | ✓ |
-| Coordinates: |  |  |
-| Cartesian | ✓ | ✓ |
-| Z -matrix | ✓ | ✓ |
-| Redundant Internal | ✓ | – |
-| Delocalized Internal | ✓ | ✓ |
-| Optimization Algorithms: |  |  |
-| Gradient Based | ✓ | – |
-| Quasi-Newton | ✓ | ✓ |
-| Newton | ✓ | – |
-| Step Generation Algorithms: |  |  |
-| Line Search (LS) | ✓ | – |
-| Eigenvector Following (EF) | ✓ | ✓ |
+| 优化类型： |  |  |
+| 无约束优化 | ✓ | ✓ |
+| 约束优化 | ✗ | ✓ |
+| 结构搜索： |  |  |
+| 平衡结构 | ✓ | ✓ |
+| 过渡态 | ✓ | ✓ |
+| 坐标体系： |  |  |
+| 笛卡尔坐标 | ✓ | ✓ |
+| *Z*-矩阵 | ✓ | ✓ |
+| 冗余内坐标 | ✓ | – |
+| 离域内坐标 | ✓ | ✓ |
+| 优化算法： |  |  |
+| 基于梯度的方法 | ✓ | – |
+| 拟牛顿法（Quasi-Newton） | ✓ | ✓ |
+| 牛顿法（Newton） | ✓ | – |
+| 步长生成算法： |  |  |
+| 线搜索（Line Search, LS） | ✓ | – |
+| 本征矢量跟随（Eigenvector Following, EF） | ✓ | ✓ |
 | QM/MM | ✗ | ✓ |
-| GDIIS algorithms | ✗ | ✓ |
-| Hessian-Free Characterization | ✗ | ✓ |
-| Intrinsic Reaction Coordinates (IRC) | ✗ | ✓ |
-| Minimum-Energy Crossing Points (MECPs) | ✓ | ✓ |
-| Harmonic Confiner | ✓ | ✓ |
+| GDIIS 算法 | ✗ | ✓ |
+| 免海塞矩阵表征（Hessian-Free Characterization） | ✗ | ✓ |
+| 内禀反应坐标（Intrinsic Reaction Coordinates, IRC） | ✗ | ✓ |
+| 最小能量交叉点（Minimum-Energy Crossing Points, MECPs） | ✓ | ✓ |
+| 谐振约束器（Harmonic Confiner） | ✓ | ✓ |
 
-Table 9.1: 
-Differences of available features within the two optimization drivers,
-as controlled by GEOM_OPT_DRIVER in the *$rem* section.
-For unconstrained optimization, the default is
-GEOM_OPT_DRIVER = LIBOPT3, whereas **Q-Chem**’s
-original driver is selected using GEOM_OPT_DRIVER = OPTIMIZE.
+表 9.1： 
+两种优化驱动模块可用功能的差异对比，由 *$rem* 段中的 GEOM_OPT_DRIVER 控制。
+对于无约束优化，默认值为 GEOM_OPT_DRIVER = LIBOPT3；若要选用 **Q-Chem** 
+最初的开发驱动模块，则设置 GEOM_OPT_DRIVER = OPTIMIZE。
 
-The key to optimizing a molecular geometry successfully is to proceed from the
-starting geometry to the final geometry in as few steps as possible. Four
-factors influence the path and number of steps:
+成功优化分子几何结构的关键在于：尽可能以最少的步数从初始几何结构走到最终几何结构。有四个因素会影响优化路径与步数：
 
 - •
 
-starting geometry
+初始几何结构
 - •
 
-coordinate system
+坐标体系
 - •
 
-optimization algorithm
+优化算法
 - •
 
-quality of the Hessian (and gradient)
+海塞矩阵（以及梯度）的质量
 
-**Q-Chem** controls the last three of these, but the starting geometry is solely
-determined by the user, and the closer it is to the converged geometry, the
-fewer optimization steps will be required. Decisions regarding the
-optimization algorithm and the coordinate system are generally made by the
-**Libopt3** and **Optimize** drivers (*i.e.*, internally, within **Q-Chem**) to
-maximize the rate of convergence. Although users may override these choices,
-caution should be exercised when doing so as changes may significantly
-impact the computational cost.
+后三个因素由 **Q-Chem** 控制，而初始几何结构则完全取决于用户；初始结构越接近收敛结构，所需的优化步数就越少。关于优化算法和坐标体系的选择，通常由 **Libopt3** 和 **Optimize** 驱动模块在 **Q-Chem** 内部自动决定，以最大化收敛速率。尽管用户可以覆盖这些默认选择，但这样做时应谨慎行事，因为更改可能会显著影响计算开销。
 
-**Q-Chem** provides the capability to optimize a molecule using Cartesian,
-*Z*-matrix, redundant internal, or delocalized internal coordinates. The last
-two of these are generated automatically from the Cartesian coordinates, and
-delocalized internal coordinates are usually the best choice. These
-coordinates were developed by Baker *et al.*,[[63]](../bib_references/bib.md#bib50)
- and can be
-considered as an extension of the natural internal coordinates developed by
-Pulay *et al.*[[1133]](../bib_references/bib.md#bib1181)
- and the redundant optimization
-method of Pulay and Fogarasi.[[1134]](../bib_references/bib.md#bib1184)
+**Q-Chem** 支持使用笛卡尔坐标、*Z*-矩阵坐标、冗余内坐标或离域内坐标来优化分子。后两种坐标可由笛卡尔坐标自动生成，其中离域内坐标通常是最佳选择。这类坐标由 Baker *et al.*[[63]](../bib_references/bib.md#bib50) 提出，
+可以视为对 Pulay *et al.*[[1133]](../bib_references/bib.md#bib1181) 开发的自然内坐标，
+以及 Pulay 与 Fogarasi[[1134]](../bib_references/bib.md#bib1184) 提出的冗余优化方法的扩展。
 
-The heart of the geometry optimization in **Q-Chem** (for both minima and
-transition states) is Baker’s eigenvector-following (EF)
-algorithm.[[64]](../bib_references/bib.md#bib46)
- This was developed following the work of Cerjan and
-Miller,[[221]](../bib_references/bib.md#bib217)
- and of Simons and
-co-workers.[[1256]](../bib_references/bib.md#bib1309)
- The Hessian mode-following option
-incorporated into this algorithm is capable of locating a transition state by
-walking uphill from the associated minimum. By following the lowest Hessian
-mode, the EF algorithm can locate a transition state starting from any
-reasonable input geometry and Hessian.
+**Q-Chem** 几何优化（包括极小点和过渡态）的核心是 Baker 的本征矢量跟随（eigenvector-following, EF）算法[[64]](../bib_references/bib.md#bib46)。
+该算法是在 Cerjan 和 Miller[[221]](../bib_references/bib.md#bib217)
+以及 Simons 及其合作者[[1256]](../bib_references/bib.md#bib1309)
+的工作基础上发展而来的。此算法中所包含的海塞模式跟随（Hessian mode-following）选项，能够通过从相应极小点出发沿 uphill 方向"行走"来定位过渡态。通过跟随海塞矩阵最低的模式（mode），EF 算法可以从任意合理的输入几何结构和海塞矩阵出发找到过渡态。
 
-An additional option available for minimization is Pulay’s GDIIS
-algorithm,[[285]](../bib_references/bib.md#bib289)
- which is based on the well known DIIS technique for
-accelerating SCF convergence.[[1137]](../bib_references/bib.md#bib1183)
- GDIIS must be specifically
-requested, as the EF algorithm is the default.
+对于极小化优化，还有一个可选方案是 Pulay 的 GDIIS 算法[[285]](../bib_references/bib.md#bib289)，
+其基础是广为人知的用于加速自洽场（SCF）收敛的 DIIS 技术[[1137]](../bib_references/bib.md#bib1183)。
+由于默认算法是 EF 算法，因此 GDIIS 必须显式指定才能使用。
 
-**Q-Chem** incorporates a very accurate and efficient Lagrange multiplier
-algorithm for constrained optimization. This was originally developed for use
-with Cartesian coordinates[[65]](../bib_references/bib.md#bib48)
- and can handle
-constraints that are not necessarily satisfied by the starting geometry. The
-Lagrange multiplier approach has been modified for use with delocalized
-internal coordinates,[[66]](../bib_references/bib.md#bib51)
- which is much more efficient and is now
-the default within **Q-Chem**. The Lagrange multiplier code can locate
-constrained transition states as well as minima.
+**Q-Chem** 内置了一套非常精确且高效的拉格朗日乘子（Lagrange multiplier）约束优化算法。该算法最初是针对笛卡尔坐标开发的[[65]](../bib_references/bib.md#bib48)，
+能够处理初始几何结构并不天然满足的约束条件。拉格朗日乘子方法后来被改进以用于离域内坐标[[66]](../bib_references/bib.md#bib51)，
+效率显著提高，现已成为 **Q-Chem** 中的默认方法。拉格朗日乘子代码既能定位约束极小点，也能定位约束过渡态。
 
-Another consideration when trying to minimize the total optimization time concerns
-the quality of the gradient and Hessian. A higher-quality Hessian (*i.e.*,
-analytical versus approximate) will in many cases lead to faster convergence,
-in the sense of requiring fewer optimization steps. This is why by default for
-transition-state optimization with **Libopt3** the exact Hessian will be
-calculated. However, the construction of an analytical Hessian requires
-significant computational effort and may outweigh the advantage of fewer
-optimization cycles. Currently available analytical gradients and Hessians are
-summarized in Table [9.2](#table:grad_and_hess).
+在设法缩短总优化时间时，另一个需要考虑的因素是梯度与海塞矩阵的质量。更高质量的海塞矩阵（*即*解析海塞矩阵与近似海塞矩阵之别）在很多情况下能带来更快的收敛——也就是所需的优化步数更少。正因如此，在使用 **Libopt3** 进行过渡态优化时，默认会计算精确的海塞矩阵。然而，构建解析海塞矩阵需要相当大的计算量，其开销可能会超过减少优化循环次数所带来的收益。目前可用的解析梯度与海塞矩阵汇总于表 [9.2](#table:grad_and_hess)。
 
-| Level of Theory | Analytical | Maximum Angular | Analytical | Maximum Angular |
+| 理论方法级别 | 解析 | 最大角动量 | 解析 | 最大角动量 |
 | --- | --- | --- | --- | --- |
-| (Algorithm) | Gradients | Momentum Type | Hessian | Momentum Type |
+| （算法） | 梯度 | 类型 | 海塞矩阵 | 类型 |
 | HF/DFT | ✓ | $k$ | ✓ | $k$ |
 | ROHF | ✓ | $h$ | ✗ |  |
-| canonical ROHF | ✗ |  | ✗ |  |
+| 正则 ROHF（canonical ROHF） | ✗ |  | ✗ |  |
 | RI-MP2 | ✓ | $h$ | ✗ |  |
 | CCSD | ✓ | $h$ | ✗ |  |
-| CIS/TDDFT (except RO) | ✓ | $h$ | ✓ | $g$ |
+| CIS/TDDFT（RO 除外） | ✓ | $h$ | ✓ | $g$ |
 | EOM-CCSD | ✓ | $h$ | ✗ |  |
 | ADC( $n$ ) | ✗ |  | ✗ |  |
 
-Table 9.2: 
-Gradients and Hessians currently available for geometry optimizations
-with maximum angular momentum types for analytical derivative calculations.
-Higher angular momentum are supported when GEN_SCFMAN = TRUE.
+表 9.2： 
+目前可用于几何优化的梯度与海塞矩阵，以及解析导数计算所支持的最大角动量类型。
+当设置 GEN_SCFMAN = TRUE 时，可支持更高的角动量。
 
-Features of **Q-Chem**’s geometry and transition-state optimization capabilities include:
+**Q-Chem** 几何结构与过渡态优化功能的特点包括：
 
 - •
 
-Cartesian, *Z*-matrix or internal coordinate systems
+笛卡尔坐标、*Z*-矩阵坐标或内坐标体系
 - •
 
-Eigenvector Following (EF) or GDIIS algorithms
+本征矢量跟随（EF）或 GDIIS 算法
 - •
 
-Constrained optimizations
+约束优化
 - •
 
-Equilibrium structure searches
+平衡结构搜索
 - •
 
-Transition structure searches
+过渡结构搜索
 - •
 
-Hessian-free characterization of stationary points
+免海塞矩阵的驻点表征
 - •
 
-Initial Hessian and Hessian update options
+初始海塞矩阵及海塞矩阵更新选项
 - •
 
-Reaction pathways using intrinsic reaction coordinates (IRC)
+基于内禀反应坐标（IRC）的反应路径计算
 - •
 
-Optimization of minimum-energy crossing points (MECPs) along conical seams
+沿锥形交叉接缝（conical seam）的最小能量交叉点（MECP）优化

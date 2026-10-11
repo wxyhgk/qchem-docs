@@ -1,204 +1,189 @@
+已翻译并写入 `docs-site/docs/zh/ch06_correlation/Ch6.S1.SS1.md`（该文件此前仍是英文原文）：
+
 ---
-title: "6.1.1 Overview"
+title: "6.1.1 概述"
 ---
 
-## 6.1.1 Overview
+## 6.1.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The Hartree-Fock procedure, while often qualitatively correct, is frequently
-quantitatively deficient. The deficiency is due to the underlying assumption of
-the Hartree-Fock approximation: that electrons move *independently*
-within molecular orbitals subject to an averaged field imposed by the remaining
-electrons. The error that this introduces is called the correlation energy and
-a wide variety of procedures exist for estimating its magnitude. The purpose of
-this Chapter is to introduce the main wave function-based methods available in
-**Q-Chem** to describe electron correlation.
+Hartree-Fock 方法虽然在定性上往往是正确的，但在定量上却经常存在不足。
+这种不足源自 Hartree-Fock 近似的基本假设：即电子在分子轨道中
+*独立*运动，仅受到其余电子所施加的平均场的作用。由此引入的误差
+被称为关联能（correlation energy），而人们已经发展出众多方法来估计其大小。
+本章的目的是介绍 **Q-Chem** 中可用于描述电子关联的主要基于波函数
+（wave function-based）的方法。
 
-Wave function-based electron correlation methods concentrate on the design of
-corrections to the wave function beyond the mean-field Hartree-Fock
-description. This is to be contrasted with the density functional theory
-methods discussed in the previous Chapter. While density functional methods
-yield a description of electronic structure that accounts for electron
-correlation subject only to the limitations of present-day functionals (which,
-for example, omit dispersion interactions), DFT cannot be systematically
-improved if the results are deficient. Wave function-based approaches for
-describing electron correlation[[16]](../bib_references/bib.md#bib20)
+基于波函数的电子关联方法着眼于在平均场 Hartree-Fock 描述之外
+构造对波函数的修正。这与上一章讨论的密度泛函理论
+（Density Functional Theory, DFT）方法形成对照。密度泛函方法虽然能够给出
+考虑了电子关联的电子结构描述，且其局限仅来自于当前泛函本身的不足
+（例如忽略了色散相互作用），但当 DFT 结果不理想时，却无法对其进行
+系统性的改进。基于波函数的电子关联描述方法[[16]](../bib_references/bib.md#bib20)
 
-offer this main advantage. Their main disadvantage is relatively high
-computational cost, particularly for the higher-level theories.
+则具备这一主要优势。其主要缺点则是相对高昂的计算代价，
+对于高阶理论方法而言尤其如此。
 
-There are four broad classes of models for describing electron correlation that
-are supported within **Q-Chem**. The first three directly approximate the full
-time-independent Schrödinger equation. In order of increasing accuracy, and
-also increasing cost, they are:
+**Q-Chem** 支持的电子关联描述模型可大致分为四类。
+前三类直接近似完整的含时无关 Schrödinger 方程。按精度递增
+（同时计算代价也递增）的顺序，它们分别是：
 
 1. 1.
 
-Perturbative treatment of pair correlations between electrons, typically
-capable of recovering 80% or so of the correlation energy in stable
-molecules.
+对电子间成对关联采用微扰处理，对于稳定分子通常可恢复约 80%
+的关联能。
 2. 2.
 
-Self-consistent treatment of pair correlations between electrons (most often
-based on coupled-cluster theory),
-capable of recovering on the order of 95% or so of the correlation
-energy.
+对电子间成对关联采用自洽处理（大多基于耦合簇
+（coupled-cluster）理论），可恢复约 95% 左右的关联能。
 3. 3.
 
-Non-iterative corrections for higher than double substitutions, which
-can account for more than 99% of the correlation energy. They are the
-basis of many modern methods that are capable of yielding chemical
-accuracy for ground state reaction energies, as exemplified by the
-G2[[296]](../bib_references/bib.md#bib297)
- and G3 methods.[[295]](../bib_references/bib.md#bib299)
+针对高于双替换（double substitutions）的非迭代修正，可涵盖
+99% 以上的关联能。它们是许多现代方法的基础，这些方法能够对
+基态反应能给出化学精度，G2[[296]](../bib_references/bib.md#bib297)
+ 与 G3[[295]](../bib_references/bib.md#bib299) 方法即为典型代表。
 
-These methods are discussed in the following subsections.
+这些方法将在后续各小节中讨论。
 
-There is also a fourth class of methods supported in **Q-Chem**, which have a
-different objective. These active space methods aim to obtain a balanced
-description of electron correlation in highly correlated systems, such as
-diradicals, or along bond-breaking coordinates. Active space methods are
-discussed in Section [6.14](sect_ccactive.md). Finally, equation-of-motion (EOM)
-methods provide tools for describing open-shell and electronically excited
-species. Selected configuration interaction (CI) models are also available.
+**Q-Chem** 还支持第四类方法，其目标有所不同。这类活性空间
+（active space）方法旨在对强关联体系（例如双自由基）或沿断键坐标的
+电子关联给出均衡的描述。活性空间方法在第 [6.14](sect_ccactive.md) 节中讨论。
+最后，等价运动方程（equation-of-motion, EOM）方法为描述开壳层
+与电子激发物种提供了工具。此外还可使用选定的组态相互作用
+（configuration interaction, CI）模型。
 
-In order to carry out a wave function-based electron correlation calculation
-using **Q-Chem**, three *$rem* variables need to be set:
+若要使用 **Q-Chem** 执行基于波函数的电子关联计算，需要设置三个 *$rem* 变量：
 
 - •
 
-BASIS to specify the basis set (see Chapter [8](../ch08_basis/chap_basis.md))
+BASIS 用于指定基组（basis set）（见第 [8](../ch08_basis/chap_basis.md) 章）
 - •
 
-METHOD for treating correlation
+METHOD 用于确定关联处理方式
 - •
 
-N_FROZEN_CORE frozen core electrons (FC default, optionally
-FC, or $n$)
+N_FROZEN_CORE 冻结核心电子（默认值为 FC，也可选用
+FC，或 $n$）
 
-For wave function-based correlation methods, the default option for exchange
-is Hartree-Fock. If desired, correlated calculations can employ DFT orbitals,
-which should be set up using a pair of EXCHANGE and
-CORRELATION keywords. EXCHANGE should be set to a specific
-DFT method (see Section [6.15.2](sub_ccdft.md)).
+对于基于波函数的关联方法，交换（exchange）的默认选项是 Hartree-Fock。
+如有需要，关联计算也可以采用 DFT 轨道，此时应通过 EXCHANGE 与
+CORRELATION 这对关键字来设置。EXCHANGE 应设为某个具体的
+DFT 方法（见第 [6.15.2](sub_ccdft.md) 节）。
 
-Additionally, for EOM or CI calculations the number of target states of each type
-(excited, spin-flipped, ionized, attached, *etc.*) in each
-irreducible representation (irrep) should be specified (see Section
-[7.9.18](../ch07_excited/sub_ccjobcontol.md)). The level of correlation of the target EOM states
-may be different from that used for the reference, and can be specified by
-EOM_CORR keyword.
+此外，对于 EOM 或 CI 计算，应在每个不可约表示（irreducible representation，
+irrep）中指定各类目标态（激发态、自旋翻转态、电离态、电子附着态，
+*等等*）的数目（见第 [7.9.18](../ch07_excited/sub_ccjobcontol.md) 节）。目标 EOM 态的关联水平
+可以与参考态所使用的关联水平不同，可通过 EOM_CORR 关键字指定。
 
-The full range of ground and excited state wave function-based correlation
-methods available (*i.e.* the recognized options to the METHOD keyword)
-are as follows. Ground-state methods are also a valid option for
-the CORRELATION keyword.
+可用的基态与激发态基于波函数的关联方法全集（*即* METHOD
+关键字所识别的选项）如下所列。基态方法同样可以作为
+CORRELATION 关键字的有效取值。
 
 METHOD
 
 ### `METHOD`
 
-> **Specifies the level of theory, either DFT or wave function-based.**
+> **指定理论层次，可为 DFT 方法或基于波函数的方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `HF`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`HF`
+> * **选项**：
 >     * MP2
->     * Sections
->     * 6.3
->     * and
+>     * 第 6.3
+>     * 与
 >     * 6.4
+>     * 节
 >     * RI-MP2
->     * Section
->     * 6.6
+>     * 第 6.6
+>     * 节
 >     * Local_MP2
->     * Section
->     * 6.5
+>     * 第 6.5
+>     * 节
 >     * RILMP2
->     * Section
->     * 6.6.2
+>     * 第 6.6.2
+>     * 节
 >     * ATTMP2
->     * Section
->     * 6.7
+>     * 第 6.7
+>     * 节
 >     * ATTRIMP2
->     * Section
->     * 6.7
+>     * 第 6.7
+>     * 节
 >     * ZAPT2
->     * A more efficient restricted open-shell MP2 method.
+>     * 一种更为高效的限制开壳层 MP2 方法。
 >     * 632
 >     * Jayatilaka D., Lee T. J.
->     * Chem. Phys. Lett.
+>     * Chem. Phys. Lett.
 >     * (1992)
 >     * ,
 >     * 199
 >     * ,
 >     * pp. 211
 >     * .
->     * Link
+>     * 链接
 >     * MP3
->     * Section
->     * 6.3
+>     * 第 6.3
+>     * 节
 >     * MP4SDQ
->     * Section
->     * 6.3
+>     * 第 6.3
+>     * 节
 >     * MP4
->     * Section
->     * 6.3
+>     * 第 6.3
+>     * 节
 >     * CCD
->     * Section
->     * 6.12
+>     * 第 6.12
+>     * 节
 >     * CCD(2)
->     * Section
->     * 6.13
+>     * 第 6.13
+>     * 节
 >     * CCSD
->     * Section
->     * 6.12
+>     * 第 6.12
+>     * 节
 >     * CCSDT
->     * Section
->     * 6.12.3
+>     * 第 6.12.3
+>     * 节
 >     * CC2
->     * Section
->     * 6.12
+>     * 第 6.12
+>     * 节
 >     * CCSD(T)
->     * Section
->     * 6.13
+>     * 第 6.13
+>     * 节
 >     * CCSD(2)
->     * Section
->     * 6.13
+>     * 第 6.13
+>     * 节
 >     * CCSD(fT)
->     * Section
->     * 6.13.3
+>     * 第 6.13.3
+>     * 节
 >     * CCSD(dT)
->     * Section
->     * 6.13.3
+>     * 第 6.13.3
+>     * 节
 >     * QCISD
->     * Section
->     * 6.12
+>     * 第 6.12
+>     * 节
 >     * QCISD(T)
->     * Section
->     * 6.13
+>     * 第 6.13
+>     * 节
 >     * OD
->     * Section
->     * 6.12
+>     * 第 6.12
+>     * 节
 >     * OD(T)
->     * Section
->     * 6.13
+>     * 第 6.13
+>     * 节
 >     * OD(2)
->     * Section
->     * 6.13
+>     * 第 6.13
+>     * 节
 >     * VOD
->     * Section
->     * 6.14
+>     * 第 6.14
+>     * 节
 >     * VOD(2)
->     * Section
->     * 6.14
+>     * 第 6.14
+>     * 节
 >     * QCCD
->     * Section
->     * 6.12
+>     * 第 6.12
+>     * 节
 >     * QCCD(T)
 >     * QCCD(2)
 >     * VQCCD
->     * Section
->     * 6.14
-> * **Recommendation**: Consult the literature for guidance.
+>     * 第 6.14
+>     * 节
+> * **建议**：请参考文献以获取指导。

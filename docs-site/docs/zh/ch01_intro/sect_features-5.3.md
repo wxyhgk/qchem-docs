@@ -1,163 +1,161 @@
 ---
-title: "1.3.9 New Features in Q-Chem 5.3"
+title: "1.3.9 Q-Chem 5.3 新特性"
 ---
 
-## 1.3.9 New Features in **Q-Chem** 5.3
+## 1.3.9 **Q-Chem** 5.3 新特性
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 - •
 
-**Changes in default settings:**
+**默认设置的变更：**
 
 - **–**
 
-Renamed rem variable ADIABATIC_CTA to VFB_CTA
+将 rem 变量 ADIABATIC_CTA 重命名为 VFB_CTA
 - **–**
 
-Changed ROHF_DIAG_SPEC default from 0 to 2 for ROHF and set
-GEN_SCFMAN as default ROSCF engine
+针对限制性开壳层自洽场（ROHF）将 ROHF_DIAG_SPEC 默认值从 0 改为 2，并将 GEN_SCFMAN 设为默认的 ROHF 自洽场（ROSCF）引擎
 - •
 
-**General improvements:**
+**通用改进：**
 
 - **–**
 
-Added support for the jun-cc-pVDZ basis set (Kevin Carter-Fenk)
+新增对 jun-cc-pVDZ 基组（Basis Set）的支持（Kevin Carter-Fenk）
 - •
 
-**New features and improvements in the DFT suite:**
+**密度泛函理论（Density Functional Theory, DFT）套件的新特性与改进：**
 
 - **–**
 
-TD-DFT analytic force and frequencies for meta-GGA density functionals
+针对杂化广义梯度近似（meta-GGA）密度泛函的含时密度泛函理论（TD-DFT）解析力与频率计算
 - **–**
 
-Level shifting in DIIS for better SCF convergence in difficult cases (Section [4.5](../ch04_scf/sect_convergence.md))
+在直接迭代子空间最小二乘法（DIIS）中引入能级平移（level shifting），以改善困难情况下的自洽场（SCF）收敛性（第 [4.5](../ch04_scf/sect_convergence.md) 节）
 - **–**
 
-M06-SX density functional (Pierpaolo Morgante, Roberto Peverati)
+M06-SX 密度泛函（Pierpaolo Morgante，Roberto Peverati）
 - **–**
 
-HF-3c method (Bhaskar Rana, John Herbert)
+HF-3c 方法（Bhaskar Rana，John Herbert）
 - •
 
-**New features and improvements in the CC/EOM-CC package:**
+**耦合簇（CC）/运动方程耦合簇（EOM-CC）程序包的新特性与改进：**
 
 - **–**
 
-Calculation of RIXS and orbital analysis of RIXS transition moments (Kaushik Nanda, Anna Krylov; Section [7.9.9.1](../ch07_excited/sub_cvs_eom.md#sec:cvs_eom_rixs))
+共振非弹性 X 射线散射（RIXS）的计算以及 RIXS 跃迁矩的轨道分析（Kaushik Nanda，Anna Krylov；第 [7.9.9.1](../ch07_excited/sub_cvs_eom.md#sec:cvs_eom_rixs) 节）
 - **–**
 
-New features in the CVS-EOM-CC suite (Marta Vidal, Sonia Coriani)
+核价分离近似运动方程耦合簇（CVS-EOM-CC）套件的新特性（Marta Vidal，Sonia Coriani）
 - **–**
 
-Energies and properties for EOM-DEA-CCSD (Sahil Gulania, Maxim Ivanov, Anna Krylov; Section [7.9.8](../ch07_excited/sec_eomdea.md))
+偶极方程运动方程耦合簇（EOM-DEA-CCSD）的能量与性质计算（Sahil Gulania，Maxim Ivanov，Anna Krylov；第 [7.9.8](../ch07_excited/sec_eomdea.md) 节）
 - **–**
 
-Transition properties and $\langle\hat{S}^{2}\rangle$
-for EOM-DIP-CCSD (Sahil Gulania, Wojciech Skomorowski, Anna Krylov)
+偶极移除方程运动方程耦合簇（EOM-DIP-CCSD）的跃迁性质与 $\langle\hat{S}^{2}\rangle$
+（Sahil Gulania，Wojciech Skomorowski，Anna Krylov）
 - **–**
 
-New NLO properties (hyperpolarizabilities) in EOM-CC (Kaushik Nanda, Anna Krylov)
+EOM-CC 中新增的非线性光学（NLO）性质（超极化率）（Kaushik Nanda，Anna Krylov）
 - **–**
 
-New tools for strongly correlated and magnetic systems: Extension of FNO to open-shell references
-(Pavel Pokhilko, Anna Krylov; Section [7.9.14](../ch07_excited/sec_FNO.md))
+面向强关联与磁性体系的新工具：将冻结自然轨道（FNO）近似推广至开壳层参考态
+（Pavel Pokhilko，Anna Krylov；第 [7.9.14](../ch07_excited/sec_FNO.md) 节）
 - **–**
 
-Construction of effective Hamiltonians from EOM-CC wave functions (Pavel Pokhilko, Anna Krylov; Section [13.6](../ch13_specialized/sec_EffHam.md))
+由 EOM-CC 波函数构造有效哈密顿量（Pavel Pokhilko，Anna Krylov；第 [13.6](../ch13_specialized/sec_EffHam.md) 节）
 - **–**
 
-NTO analysis of spin-forbidden transitions (Pavel Pokhilko, Anna Krylov; Section [7.9.21.4](../ch07_excited/sec_EOMGRAD.md#sec:EOMSOC))
+自旋禁阻跃迁的自然跃迁轨道（NTO）分析（Pavel Pokhilko，Anna Krylov；第 [7.9.21.4](../ch07_excited/sec_EOMGRAD.md#sec:EOMSOC) 节）
 - **–**
 
-Search for special points of complex PES (minima, MECP, and exceptional points) within CAP-EOM-CCSD (Zsuzsanna Koczor-Benda, Thomas Jagau)
+在复吸收势能（CAP）EOM-CCSD 中搜索复势能面（PES）的特殊点（极小点、最小能量交叉点（MECP）以及例外点）（Zsuzsanna Koczor-Benda，Thomas Jagau）
 - **–**
 
-Voronoi CAP and projected CAP methods (James Gayvert, Ksenia Bravaya; Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md))
+Voronoi 复吸收势（CAP）与投影复吸收势（CAP）方法（James Gayvert，Ksenia Bravaya；第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）
 - **–**
 
-Two-body Dyson orbitals for computing Auger decay rates and resonance lifetimes (Wojciech Skomorowski, Anna Krylov)
+用于计算俄歇（Auger）衰减速率与共振寿命的两体戴森（Dyson）轨道（Wojciech Skomorowski，Anna Krylov）
 - **–**
 
-Stability improvements in EOM-CC (Pavel Pokhilko, Anna Krylov)
+EOM-CC 的数值稳定性改进（Pavel Pokhilko，Anna Krylov）
 - •
 
-**New features and improvements in MP2 methods:**
+**二阶微扰理论（MP2）方法的新特性与改进：**
 
 - **–**
 
-Geometry optimization with regularized orbital-optimized second-order Møller-Plesset perturbation theory ($\kappa$-OOMP2)
-(Joonho Lee, Martin Head-Gordon; Section [6.6.6](../ch06_correlation/sec_oomp2.md))
+采用正则化轨道优化二阶 Møller-Plesset 微扰理论（$\kappa$-OOMP2）进行几何优化
+（Joonho Lee，Martin Head-Gordon；第 [6.6.6](../ch06_correlation/sec_oomp2.md) 节）
 - •
 
-**New capabilities for intermolecular interactions:**
+**分子间相互作用的新功能：**
 
 - **–**
 
-Implementation of the XSAPT+MBD method (Kevin Carter-Fenk, John Herbert)
+XSAPT+MBD 方法的实现（Kevin Carter-Fenk，John Herbert）
 - •
 
-**QM/MM improvements:**
+**量子力学/分子力学（QM/MM）改进：**
 
 - **–**
 
-L-BFGS algorithm for geometry optimization (Bhaskar Rana, John Herbert)
+用于几何优化的有限内存 BFGS（L-BFGS）算法（Bhaskar Rana，John Herbert）
 - **–**
 
-Harmonic confining potentials (Saswata Dasgupta, John Herbert)
+谐振约束势（Harmonic confining potentials）（Saswata Dasgupta，John Herbert）
 - •
 
-**New methods and capabilities:**
+**新方法与新功能：**
 
 - **–**
 
-Nuclear-electronic orbital DFT and TD-DFT methods (Fabian Pavosevic, Zhen Tao, Sharon Hammes-Schiffer)
+核-电子轨道密度泛函理论（NEO-DFT）及其含时方法（TD-DFT）（Fabian Pavosevic，Zhen Tao，Sharon Hammes-Schiffer）
 - **–**
 
-New module for RAS-SF methods (Shannon Houck, Nick Mayhall)
+受限激活空间自旋翻转（RAS-SF）方法的新模块（Shannon Houck，Nick Mayhall）
 - **–**
 
-A family of configuration-interaction methods: non-orthogonal configuration interaction singles (NOCIS), static exchange (STEX),
-and one-center NOCIS (Katherine Oosterbaan, Martin Head-Gordon)
+一族组态相互作用（CI）方法：非正交组态相互作用单激发（NOCIS）、静态交换（STEX），以及单中心 NOCIS（Katherine Oosterbaan，Martin Head-Gordon）
 - **–**
 
-Integral screening and resolution-of-the-identity capabilities for complex basis functions (Thomas Jagau)
+针对复基函数的积分筛选与分辨率恒等（RI）近似功能（Thomas Jagau）
 - **–**
 
-RI-MP2 method for complex basis functions (Mario Hernández Vera, Thomas Jagau; Section [6.6.10](../ch06_correlation/sec_cbf_rimp2.md))
+针对复基函数的 RI-MP2 方法（Mario Hernández Vera，Thomas Jagau；第 [6.6.10](../ch06_correlation/sec_cbf_rimp2.md) 节）
 - **–**
 
-New method (concentric localization) for truncating the virtual space in projector-based embedding theory (Yuezhi Mao)
+在基于投影子的嵌入理论中用于截断虚空间的新方法（同心局域化，concentric localization）（Yuezhi Mao）
 - **–**
 
-Square gradient minimization for excited-state orbital optimization (Diptarka Hait, Martin Head-Gordon)
+用于激发态轨道优化的平方梯度最小化（square gradient minimization）方法（Diptarka Hait，Martin Head-Gordon）
 - **–**
 
-Resonance Raman spectroscopy simulation (Saswata Dasgupta, John Herbert)
+共振拉曼（Resonance Raman）光谱模拟（Saswata Dasgupta，John Herbert）
 - **–**
 
-Population analysis of antibonding orbitals (Abdulrahman Aldossary)
+反键轨道的布居分析（Abdulrahman Aldossary）
 - **–**
 
-Fragment-based diabatization schemes (Yuezhi Mao)
+基于片段的二态化（diabatization）方案（Yuezhi Mao）
 - **–**
 
-Enabled ghost atoms without basis functions (Bushra Alam, John Herbert)
+支持不携带基函数的虚原子（ghost atom）（Bushra Alam，John Herbert）
 - **–**
 
-Electron localization function (Bushra Alam, John Herbert
+电子局域函数（Electron localization function）（Bushra Alam，John Herbert
 - **–**
 
-New input options for wave function analysis (Felix Plasser)
+波函数分析的新输入选项（Felix Plasser）
 - •
 
-**New features in the BrianQC GPU module:**
+**BrianQC GPU 模块的新特性：**
 
 - **–**
 
-Extended support for GPU accelerated DFT exchange-correlation with support for LDA, GGA, and meta-GGA functionals
+扩展对 GPU 加速 DFT 交换-关联泛函的支持，涵盖局域密度近似（LDA）、广义梯度近似（GGA）及 meta-GGA 泛函
 - **–**
 
-Partially GPU accelerated DFT frequency calculations
+部分 GPU 加速的 DFT 频率计算

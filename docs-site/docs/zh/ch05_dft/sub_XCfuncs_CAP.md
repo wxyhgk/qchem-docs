@@ -1,127 +1,125 @@
 ---
-title: "5.13.3 Density Functional Approximations Available for Use with Complex Absorbing Potentials"
+title: "5.13.3 可用于复吸收势的密度泛函近似"
 ---
 
-## 5.13.3 Density Functional Approximations Available for Use with Complex Absorbing Potentials
+## 5.13.3 可用于复吸收势（Complex Absorbing Potentials）的密度泛函近似
 
 (July 4, 2026)
 
-The existing functionals defined for conventional real-valued electron densities
-can be reused for complex-variable DFT calculations.[[1575]](../bib_references/bib.md#bib1638)
+为常规实值电子密度定义的现有泛函可以复用于复变量密度泛函理论（complex-variable DFT）计算。[[1575]](../bib_references/bib.md#bib1638)
 
-The functionals listed in this section are thus derived from the functionals already available in **Q-Chem** (see Section [5.3](sect_XCfuncs.md)),
-but have been adapted for handling complex-valued electron densities.
-Their names are taken from the original functional name with added prefix “cx_”.
+因此，本节列出的泛函衍生自 **Q-Chem** 中已有的泛函（参见第 [5.3 节](sect_XCfuncs.md)），
+但已针对处理复值电子密度进行了适配。
+其名称由原始泛函名称加上前缀 "cx_" 构成。
 
-## 5.13.3.1 Exchange functionals
+## 5.13.3.1 交换泛函
 
-**Note: 
+**注：
 
-All exchange functionals in this section can be invoked using the *$rem* variable EXCHANGE.
+本节所有交换泛函均可通过 *$rem* 变量 EXCHANGE 调用。
 **
 
 - $\circ$
 
-Local Spin-Density Approximation (LSDA)
+局域自旋密度近似（Local Spin-Density Approximation, LSDA）
 
 - $\bullet$
 
-cx_Slater: Slater-Dirac exchange functional (X$\alpha$ method with $\alpha=2/3$)[[329]](../bib_references/bib.md#bib333)
+cx_Slater: Slater-Dirac 交换泛函（X$\alpha$ 方法，$\alpha=2/3$）[[329]](../bib_references/bib.md#bib333)
 - $\circ$
 
-Generalized Gradient Approximation (GGA)
+广义梯度近似（Generalized Gradient Approximation, GGA）
 
 - $\bullet$
 
-cx_B88: Becke exchange functional from 1988[[95]](../bib_references/bib.md#bib74)
+cx_B88: Becke 1988 年提出的交换泛函[[95]](../bib_references/bib.md#bib74)
 - $\bullet$
 
-cx_PBE: Perdew, Burke, and Ernzerhof exchange functional[[1062]](../bib_references/bib.md#bib1112)
+cx_PBE: Perdew、Burke 和 Ernzerhof 交换泛函[[1062]](../bib_references/bib.md#bib1112)
 
-## 5.13.3.2 Correlation functionals
+## 5.13.3.2 相关泛函
 
-**Note: 
+**注：
 
-All correlation functionals in this section can be invoked using the *$rem* variable CORRELATION.
+本节所有相关泛函均可通过 *$rem* 变量 CORRELATION 调用。
 **
 
 - $\circ$
 
-Local Spin-Density Approximation (LSDA)
+局域自旋密度近似（Local Spin-Density Approximation, LSDA）
 
 - $\bullet$
 
-cx_VWN5 / cx_VWN: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #5[[1410]](../bib_references/bib.md#bib1470)
+cx_VWN5 / cx_VWN: Vosko-Wilk-Nusair 的 LSDA 相关能参数化形式 #5[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-cx_VWN1RPA: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #1 with RPA values[[1410]](../bib_references/bib.md#bib1470)
+cx_VWN1RPA: 采用 RPA 值的 Vosko-Wilk-Nusair LSDA 相关能参数化形式 #1[[1410]](../bib_references/bib.md#bib1470)
 - $\circ$
 
-Generalized Gradient Approximation
+广义梯度近似（Generalized Gradient Approximation, GGA）
 
 - $\bullet$
 
-cx_PBE: Perdew, Burke, and Ernzerhof correlation functional[[1062]](../bib_references/bib.md#bib1112)
+cx_PBE: Perdew、Burke 和 Ernzerhof 相关泛函[[1062]](../bib_references/bib.md#bib1112)
 - $\bullet$
 
-cx_LYP: Lee-Yang-Parr opposite-spin correlation functional[[780]](../bib_references/bib.md#bib813)
+cx_LYP: Lee-Yang-Parr 反平行自旋相关泛函[[780]](../bib_references/bib.md#bib813)
 
-## 5.13.3.3 Exchange-Correlation Functionals
+## 5.13.3.3 交换-相关泛函
 
-**Note: 
+**注：
 
-All exchange-correlation functionals in this section can be invoked using
-the *$rem* variable METHOD.
+本节所有交换-相关泛函均可通过 *$rem* 变量 METHOD 调用。
 **
 
 - $\circ$
 
-Local Spin-Density Approximation (LSDA)
+局域自旋密度近似（Local Spin-Density Approximation, LSDA）
 
 - $\bullet$
 
-cx_LDA / cx_SVWN5: Slater LSDA exchange + VWN5 LSDA correlation
+cx_LDA / cx_SVWN5: Slater LSDA 交换 + VWN5 LSDA 相关
 - $\circ$
 
-Generalized Gradient Approximation (GGA)
+广义梯度近似（Generalized Gradient Approximation, GGA）
 
 - $\bullet$
 
-cx_PBE: PBE GGA exchange + PBE GGA correlation
+cx_PBE: PBE GGA 交换 + PBE GGA 相关
 - $\bullet$
 
-cx_BLYP: B88 GGA exchange + LYP GGA correlation
+cx_BLYP: B88 GGA 交换 + LYP GGA 相关
 - $\bullet$
 
-cx_BPBE: B88 GGA exchange + PBE GGA correlation
+cx_BPBE: B88 GGA 交换 + PBE GGA 相关
 - $\circ$
 
-Global Hybrid Generalized Gradient Approximation (GH GGA)
+全局杂化广义梯度近似（Global Hybrid Generalized Gradient Approximation, GH GGA）
 
 - $\bullet$
 
-cx_B1LYP: 25% HF exchange + 75% B88 GGA exchange + LYP GGA correlation[[17]](../bib_references/bib.md#bib1)
+cx_B1LYP: 25% HF 交换 + 75% B88 GGA 交换 + LYP GGA 相关[[17]](../bib_references/bib.md#bib1)
 - $\bullet$
 
-cx_B3LYP: 20% HF exchange + 8% Slater LSDA exchange + 72% B88 GGA exchange + 19% VWN1RPA
-LSDA correlation + 81% LYP GGA correlation[[96]](../bib_references/bib.md#bib78)
+cx_B3LYP: 20% HF 交换 + 8% Slater LSDA 交换 + 72% B88 GGA 交换 + 19% VWN1RPA
+LSDA 相关 + 81% LYP GGA 相关[[96]](../bib_references/bib.md#bib78)
 - $\bullet$
 
-cx_B3LYP5: 20% HF exchange + 8% Slater LSDA exchange + 72% B88 GGA exchange + 19% VWN5 LSDA
-correlation + 81% LYP GGA correlation[[96]](../bib_references/bib.md#bib78)
+cx_B3LYP5: 20% HF 交换 + 8% Slater LSDA 交换 + 72% B88 GGA 交换 + 19% VWN5 LSDA
+相关 + 81% LYP GGA 相关[[96]](../bib_references/bib.md#bib78)
 - $\bullet$
 
-cx_B5050LYP: 50% HF exchange + 8% Slater LSDA exchange + 42% B88 GGA exchange + 19% VWN5
-LSDA correlation + 81% LYP GGA correlation[[1239]](../bib_references/bib.md#bib1294)
+cx_B5050LYP: 50% HF 交换 + 8% Slater LSDA 交换 + 42% B88 GGA 交换 + 19% VWN5
+LSDA 相关 + 81% LYP GGA 相关[[1239]](../bib_references/bib.md#bib1294)
 - $\bullet$
 
-cx_BHHLYP: 50% HF exchange + 50% B88 GGA exchange + LYP GGA correlation, sometimes called BH&H-LYP[[484]](../bib_references/bib.md#bib496)
+cx_BHHLYP: 50% HF 交换 + 50% B88 GGA 交换 + LYP GGA 相关，有时称为 BH&H-LYP[[484]](../bib_references/bib.md#bib496)
 - $\bullet$
 
-cx_HFLYP: 100% HF exchange + LYP GGA correlation
+cx_HFLYP: 100% HF 交换 + LYP GGA 相关
 - $\bullet$
 
-cx_PBE0: 25% HF exchange + 75% PBE GGA exchange + PBE GGA correlation[[19]](../bib_references/bib.md#bib3)
+cx_PBE0: 25% HF 交换 + 75% PBE GGA 交换 + PBE GGA 相关[[19]](../bib_references/bib.md#bib3)
 - $\bullet$
 
-cx_PBE50: 50% HF exchange + 50% PBE GGA exchange + PBE GGA correlation[[114]](../bib_references/bib.md#bib101)
+cx_PBE50: 50% HF 交换 + 50% PBE GGA 交换 + PBE GGA 相关[[114]](../bib_references/bib.md#bib101)

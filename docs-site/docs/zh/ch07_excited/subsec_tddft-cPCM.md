@@ -1,122 +1,34 @@
+翻译已完成并写入 `translated_7_3_7_tddft_pcm.md`（4 个代码块、4 个 Callout、所有公式与链接均原样保留）。以下为完整内容：
+
 ---
-title: "7.3.7 TDDFT + PCM for Excitation and Emission Energies in Solution"
+title: "7.3.7 溶液中的激发能与发射能：TDDFT + PCM"
 ---
 
-## 7.3.7 TDDFT + PCM for Excitation and Emission Energies in Solution
+## 7.3.7 溶液中的激发能与发射能：TDDFT + PCM
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-As described in Section [11.2.3](../ch11_env/topic_pcm-em.md), polarizable continuum models (PCMs) are
-a simple means of including solvation effects in quantum chemistry calculations
-at the level of the dielectric continuum. In this section, the available options
-in **Q-Chem** for PCM solvation of TDDFT excited states are discussed. For further details
-on the associated keywords, see Sections [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM)
-and [11.2.4](../ch11_env/subsec_PCM_job_control.md). For background information on PCM solvation models,
-see Ref. [[569]](../bib_references/bib.md#bib580)
-.
+如第 [11.2.3](../ch11_env/topic_pcm-em.md) 节所述，可极化连续介质模型（Polarizable Continuum Model, PCM）是在介电连续介质层次上纳入溶剂化效应的一种简便手段。本节讨论 **Q-Chem** 中用于 TDDFT 激发态 PCM 溶剂化的可用选项。关于相关关键字的更多细节，请参见第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节和第 [11.2.4](../ch11_env/subsec_PCM_job_control.md) 节。关于 PCM 溶剂化模型的背景信息，请参见文献 [[569]](../bib_references/bib.md#bib580)。
 
-TDDFT can be combined with PCM in two different formalisms: *linear response* (LR)-
-and *state-specific* (SS)-PCM. The LR-PCM approach[[183]](../bib_references/bib.md#bib178)
- employs the transition density
-between the ground and excited state and describes the coupling between the excitation
-process on the solute and the solvent environment. (For more details, see
-Section [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM).) LR-PCM entails only a minor additional
-computational cost. However, the use of the transition density limits its applicability
-to optically-allowed transitions, whereas the LR-PCM contribution vanishes for
-charge-transfer states or singlet to triplet excitations. In **Q-Chem**, TDDFT/LR-PCM
-is available for excitation energies, as well as excited-state energy gradients and
-Hessians,[[844]](../bib_references/bib.md#bib876)
+TDDFT 可以通过两种不同的形式框架与 PCM 相结合：*线性响应*（Linear Response, LR）-PCM 与*态特异*（State-Specific, SS）-PCM。LR-PCM 方法 [[183]](../bib_references/bib.md#bib178) 使用基态与激发态之间的跃迁密度，用于描述溶质上的激发过程与溶剂环境之间的耦合。（更多细节请参见第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节。）LR-PCM 只带来很小的额外计算代价。然而，使用跃迁密度限制了其适用范围，使之仅适用于光学允许跃迁；而对于电荷转移态或单重态到三重态的激发，LR-PCM 的贡献会消失。在 **Q-Chem** 中，TDDFT/LR-PCM 可用于计算激发能，也可用于计算激发态能量梯度与 Hessian 矩阵 [[844]](../bib_references/bib.md#bib876)，从而实现如第 [7.3.8](subsec_tddft-hessian.md) 节所描述的几何结构优化与振动频率计算。
 
-to allow for geometry optimization and vibrational frequency calculations as described in
-Section [7.3.8](subsec_tddft-hessian.md).
+态特异 PCM 形式框架 [[182]](../bib_references/bib.md#bib179) 基于差密度（difference-density），并考虑了溶剂对溶质波函数变化的瞬时响应。这一贡献在 LR-PCM 中并未包含，并且即使在光学禁阻跃迁的跃迁密度为零的情况下仍然非零。**Q-Chem** 提供的 SS-PCM 既可以是微扰修正形式 [[1530]](../bib_references/bib.md#bib1593)（ptSS-PCM），也可以采用两种完全迭代式的实现方案。一般而言，TDDFT 的 SS-PCM 实现 [[412]](../bib_references/bib.md#bib421) 紧密遵循第 [7.10.11](topic_abs-adc.md) 节所描述的 ADC($n$) 方法族。ptSS-PCM 方法 [[1530]](../bib_references/bib.md#bib1593)（也被称为修正线性响应方法 cLR-PCM [[190]](../bib_references/bib.md#bib185)）针对每一个所计算的态，基于 TDDFT 激发态密度来求解一个态特异的一阶修正。该一阶修正不包含激发态密度对态特异反应场的响应，因为要纳入这种响应需要一个迭代过程。ptSS-PCM 方法可以与 LR-PCM 的微扰近似 ptLR-PCM 相结合。更多细节请参见第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节。
 
-The state-specific PCM formalism[[182]](../bib_references/bib.md#bib179)
+若要超越一阶修正，就必须使用 SS-PCM 的某种迭代实现。此时，通过针对特定态迭代优化反应场，可以自洽地求解一个态特异的薛定谔方程。在 **Q-Chem** 中，迭代式 SS-PCM 的实现 [[412]](../bib_references/bib.md#bib421) 有两种途径：*外迭代*（External Iteration, EI-SS-PCM，有时称为 Improta-Barone-Scalmani-Frisch 方法）[[612]](../bib_references/bib.md#bib635)，或者*内迭代*（Internal Iteration, II-SS-PCM，亦称*垂直激发模型*（Vertical Excitation Model, VEM））[[908]](../bib_references/bib.md#bib944)。ptSS-PCM 只增加可忽略的计算代价，而迭代过程则会使计算代价按所需迭代次数成倍增加。
 
-is difference-density-based
-and takes into account the instantaneous response of the solvent to the change in
-the solute wave function. This contribution is not included with LR-PCM and is non-zero
-even for vanishing transition densities in optically-forbidden transitions.
-**Q-Chem** includes SS-PCM both as a perturbative correction[[1530]](../bib_references/bib.md#bib1593)
+TDDFT 的激发态溶剂化可在两种机制下进行：*平衡*溶剂化与*非平衡*溶剂化。非平衡溶剂化适用于快速过程（*例如*，垂直激发或发射过程），在这些过程中，溶剂的慢核自由度相对于初始态保持平衡。因此，必须将溶质置于（隐式）溶剂的非平衡状态下来建模，其中只有溶剂的快速电子极化是用终态的电荷密度弛豫得到的。这一快速溶剂响应由高频（无限频率）介电常数即所谓“光学”介电常数（$\varepsilon_{\infty}$）决定，通常取溶剂折射率的平方：$\varepsilon_{\infty}=n_{\text{refr}}^{2}$。[[569]](../bib_references/bib.md#bib580)
 
-(ptSS-PCM) as well as in two fully iterative implementations.
-Generally, the SS-PCM implementation for TDDFT[[412]](../bib_references/bib.md#bib421)
- follows
-closely the ADC($n$)-family of methods described in Section [7.10.11](topic_abs-adc.md).
-The ptSS-PCM approach,[[1530]](../bib_references/bib.md#bib1593)
- which is
-alternatively called corrected linear-response (cLR-PCM),[[190]](../bib_references/bib.md#bib185)
+另一方面，平衡溶剂化适用于寿命足够长、能够让溶剂完全弛豫的激发态。此时相关的是零频率或静态介电常数（$\varepsilon_{0}$），因为它包含所有极化机制，既包括快速的电子自由度，也包括慢速的振动与取向自由度。
 
-evaluates a state-specific correction based on the TDDFT excited state density
-for each calculated state. This first-order correction excludes the response of
-the excited state density to the state-specific reaction field, as to include this response requires
-an iterative procedure. The ptSS-PCM approach can be combined with a perturbative approximation to LR-PCM,
-ptLR-PCM. For more details, see Section [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM).
+## 7.3.7.1 线性响应 PCM
 
-To go beyond a first-order correction, one of the iterative implementations
-of SS-PCM has to be used. Here, a state-specific Schrödinger equation
-is solved self-consistently via iterative optimization of the reaction field
-for a specific state. In **Q-Chem**, iterative SS-PCM is implemented[[412]](../bib_references/bib.md#bib421)
+TDDFT 的 LR-PCM 通过在 *$pcm* 段中设置 TDDFT_LR_PCM = TRUE 来启用。默认执行非平衡计算，其中激发态使用光学介电常数 $\varepsilon_{\infty}$，而所用分子轨道（MO）的基态溶剂化则使用静态介电常数。这对应于文献 [[844]](../bib_references/bib.md#bib876) 中的“完整线性响应理论”。$\varepsilon_{\infty}$ 的数值通过 *$solvent* 输入段中的关键字 **OpticalDielectric** 指定，也可以按照第 [11.2.4.3](../ch11_env/subsec_PCM_job_control.md#subsubsec:PCM-solvent-Elst) 节所述从一组预设值中选取；若要在激发态中请求平衡计算，可将 **OpticalDielectric** 设置为溶剂静态介电常数的数值。
 
-either via *external iteration*
-(EI-SS-PCM, sometimes called the Improta-Barone-Scalmani-Frisch approach),[[612]](../bib_references/bib.md#bib635)
+完整 LR-PCM 的微扰近似同样可用；此外还有一些在理论上更为严格的态特异修正方法 [[569]](../bib_references/bib.md#bib580)，这些方法也已在 TDDFT 中实现 [[940]](../bib_references/bib.md#bib979)。相关方法在下面的第 [7.3.7.2](#subsubsec:tddft-PCM-iterSS) 节以及第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节中有更详细的描述。若使用 C-PCM 模型，则 TDDFT + LR-PCM 提供解析的激发态能量梯度，并且在为 TDDFT 几何优化激活 LR-PCM 时自动启用。由于激发态几何优化隐含了溶质结构在激发态中已经平衡，因此在几何优化中使用静态介电常数可能是合适的。
 
-or else via *internal iteration* (II-SS-PCM,
-otherwise known as the *vertical excitation model* or VEM).[[908]](../bib_references/bib.md#bib944)
+LR-PCM 方法考虑的是溶剂对电子跃迁密度的响应，因而只对光学允许跃迁给出非零贡献。光学禁阻跃迁应当用态特异 PCM 来描述。这既包括从单重态基态出发的三重态激发，也包括跃迁密度为零的电荷转移态。
 
-Whereas ptSS-PCM adds only negligible computational cost, the iterative procedures
-increase it by a factor of the required number of iterations.
-
-Excited-state solvation with TDDFT is available in two regimes:
-*equilibrium* and *nonequilibrium*
-solvation. Nonequilibrium solvation applies to fast processes
-(*e.g.*, during vertical excitation or emission), in which the slow nuclear degrees of
-freedom of the solvent remain equilibrated with respect to the initial state.
-Hence, the solute has to be
-modeled for an out-of-equilibrium state of the (implicit) solvent, with only the
-fast electronic polarization of the solvent relaxed using the final state’s charge density. This fast
-solvent response is governed by the infinite-frequency or “optical” dielectric constant ($\varepsilon_{\infty}$),
-often taken to be the square of the solvent’s index of refraction:
-$\varepsilon_{\infty}=n_{\text{refr}}^{2}$.[[569]](../bib_references/bib.md#bib580)
-
-Equilibrium solvation, on the other hand,
-is appropriate for excited states with a sufficiently long lifetime to allow for complete
-relaxation of the solvent. Here, the zero-frequency or static dielectric constant
-($\varepsilon_{0}$) is the relevant one, as it includes all polarization mechanisms including both the
-fast electronic degrees of freedom and the slow vibrational and orientational degrees of freedom.
-
-## 7.3.7.1 Linear-Response PCM
-
-LR-PCM for TDDFT is activated by setting TDDFT_LR_PCM = TRUE
-in the *$pcm* section. The default is a nonequilibrium
-calculation employing the optical dielectric constant $\varepsilon_{\infty}$
-for the excited state, whereas the static dielectric constant is employed for the
-ground-state solvation of the used MOs.
-This corresponds to the “full linear response theory” of Ref. [[844]](../bib_references/bib.md#bib876)
-.
-The value of $\varepsilon_{\infty}$ is specified using the keyword **OpticalDielectric** in the *$solvent* input section,
-or can be chosen from a list of preset values as described in Section [11.2.4.3](../ch11_env/subsec_PCM_job_control.md#subsubsec:PCM-solvent-Elst);
-an equilibrium calculation in the excited state could be requested by setting **OpticalDielectric** equal to the
-value of the solvent’s static dielectric constant.
-
-A perturbative approximation to full
-LR-PCM is also available, along with state-specific corrections that are somewhat more
-theoretically rigorous,[[569]](../bib_references/bib.md#bib580)
- and have also been implemented for
-TDDFT.[[940]](../bib_references/bib.md#bib979)
- This approach is described in further detail below
-in Sections [7.3.7.2](#subsubsec:tddft-PCM-iterSS) and [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM).
-If the C-PCM model is used, then analytical excited-state energy gradients are available for TDDFT + LR-PCM
-and are automatically used if LR-PCM is activated for TDDFT geometry optimization.
-As excited-state geometry optimization presupposes equilibration of the solute structure
-in the excited state, it is probably appropriate to employ the static dielectric constant for geometry optimization.
-
-The LR-PCM approach considers the solvent response to the electronic transition density
-and provides only for optically-allowed transitions a non-vanishing contribution.
-Optically-forbidden transitions should be described with a state-specific PCM. This includes
-triplet excited states accessed from a singlet ground state and also charge-transfer
-states with a vanishing transition density
-
-???+ example "Example 7.14: TDDFT/LR-C-PCM low-lying vertical excitation energy"
+???+ example "示例 7.14：TDDFT/LR-C-PCM 计算低能垂直激发能"
     ```qchem
     $molecule
        0 1
@@ -152,85 +64,67 @@ TDDFT_LR_PCM
 
 ### `TDDFT_LR_PCM`
 
-> **Controls LR-PCM for TDDFT, i.e. , whether or not to add the LR-PCM contributions to the TDDFT eigenvalue problem.**
+> **控制 TDDFT 的 LR-PCM，即决定是否将 LR-PCM 贡献加入 TDDFT 本征值问题。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **可选值**:
 >     * FALSE
->     * Do not do LR-PCM (0th-order solvent correction only).
+>     * 不执行 LR-PCM（仅做 0 阶溶剂修正）。
 >     * TRUE
->     * Perform full LR-PCM.
-> * **Recommendation**: Assuming that PCM solvation is turned on for the ground state ( SOLVENT_METHOD = PCM in the $rem section), then disabling LR-PCM by setting = FALSE will afford a “0th-order” solvation correction, in which solvent-polarized MOs and energy levels are used in what is otherwise equivalent to a gas-phase TDDFT calculation. This is the first step in more sophisticated “nonequilibrium” TDDFT + PCM methods, which are discussed in Section 11.2.3.3 . The LR-PCM correction to the excitation energies has some peculiar properties, such as the fact that it vanishes for optically-forbidden states, 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link and the state-specific approaches that are discussed in Section 11.2.3.3 are likely preferable.
+>     * 执行完整的 LR-PCM。
+> * **建议**: 假设基态已开启 PCM 溶剂化（即在 $rem 段中设置 SOLVENT_METHOD = PCM），则通过设置 = FALSE 关闭 LR-PCM 将得到一个“0 阶”溶剂化修正，其中使用被溶剂极化了的 MO 与能级，其余部分等价于气相 TDDFT 计算。这是更精细的“非平衡”TDDFT + PCM 方法的第一步，详见第 11.2.3.3 节。LR-PCM 对激发能的修正具有一些特殊性质，例如它对光学禁阻态为零，569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link，而第 11.2.3.3 节所讨论的态特异方法通常更可取。
 
-## 7.3.7.2 State-Specific PCM
+## 7.3.7.2 态特异 PCM
 
-The state-specific PCM jobs are controlled with the StateSpecific keyword in the *$pcm* block,
-which can be employed to activate either a perturbative or one of the iterative SS-PCMs.
+态特异 PCM 任务通过 *$pcm* 块中的 StateSpecific 关键字控制，该关键字可用于激活微扰式 SS-PCM 或某一种迭代式 SS-PCM。
 
 ### `StateSpecific`
 
-> **Specifies which the state-specific PCM will be used. INPUT SECTION: $pcm**
+> **指定使用哪一种态特异 PCM。输入段：$pcm**
 >
-> * **Type**: `Various`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `Various`
+> * **默认值**: `NONE`
+> * **可选值**:
 >     * Perturb
->     * Perform ptSS and ptLR for vertical excitations.
+>     * 对垂直激发执行 ptSS 与 ptLR。
 >     * External
->     * Perform self-consistent EI-SS-PCM to the excited state (for emission).
+>     * 对激发态执行自洽的 EI-SS-PCM（用于发射）。
 >     * Internal
->     * Perform self-consistent II-SS-PCM to the excited state (for emission or excitation).
-> * **Recommendation**: Use for vertical excitation energies ptSS-PCM or in very polar cases the nonequilibrium II-SS-PCM, and equilibrium EI-SS-PCM for emission energies of long-lived excited states.
+>     * 对激发态执行自洽的 II-SS-PCM（用于发射或激发）。
+> * **建议**: 对于垂直激发能，使用 ptSS-PCM，或在极性很强的体系中使用非平衡 II-SS-PCM；对于长寿命激发态的发射能，使用平衡 EI-SS-PCM。
 
-**1. Perturbative State-Specific (ptSS) PCM**
+**1. 微扰态特异（ptSS）PCM**
 
-Perturbative state-specific PCM (ptSS-PCM)[[1530]](../bib_references/bib.md#bib1593)
-
-is activated by setting
-**StateSpecific** = **Perturb** in the *$pcm* block. By default, the ptSS correction
-is evaluated in the nonequilibrium regime governed by the optical dielectric constant
-(**OpticalDielectric** in the *$solvent* block). To force an *equilibrium* ptSS-PCM
-calculation, **OpticalDielectric** must be set to the static value,
-$\varepsilon_{0}$. To separate the fast and slow contributions to the reaction field,
-the charge-separation procedure is chosen with the **ChargeSeparation** keyword.
-(**Marcus** is the default, for more information, see Section [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM)
-and Ref. [[1530]](../bib_references/bib.md#bib1593)
-.)
-Alternatively, setting **NonEquilibrium** = **TRUE** results in a default
-nonequilibrium ptSS-PCM calculation with **Marcus** charge separation and
-deactivated LR-PCM. The ptSS-PCM output provides for each calculated state both a ptSS
-and a ptLR-correction. In the nonequilibrium case, the corrected energy corresponds to the
-vertical excitation energy. Results are provided both with the unrelaxed density and the relaxed
-density, if the latter has been recommended. Results based on the relaxed density are recommended.[[1530]](../bib_references/bib.md#bib1593)
+微扰态特异 PCM（ptSS-PCM）[[1530]](../bib_references/bib.md#bib1593) 通过在 *$pcm* 块中设置 **StateSpecific** = **Perturb** 来启用。默认情况下，ptSS 修正在由光学介电常数（*$solvent* 块中的 **OpticalDielectric**）决定的非平衡机制下求解。若要强制执行*平衡*的 ptSS-PCM 计算，必须将 **OpticalDielectric** 设置为静态值 $\varepsilon_{0}$。为了将反应场分离为快速贡献与慢速贡献，使用 **ChargeSeparation** 关键字选择电荷分离方案（默认值为 **Marcus**，更多信息请参见第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节以及文献 [[1530]](../bib_references/bib.md#bib1593)。）另外，设置 **NonEquilibrium** = **TRUE** 会执行一次默认的非平衡 ptSS-PCM 计算，采用 **Marcus** 电荷分离并关闭 LR-PCM。ptSS-PCM 的输出针对每个所计算的态同时给出 ptSS 修正与 ptLR 修正。在非平衡情形下，修正后的能量对应于垂直激发能。结果会分别基于非弛豫密度与弛豫密度给出（若后者被推荐）。推荐使用基于弛豫密度的结果。[[1530]](../bib_references/bib.md#bib1593)
 
 ### `NonEquilibrium`
 
-> **Activate nonequilibrium ptSS-PCM. INPUT SECTION: $pcm**
+> **激活非平衡 ptSS-PCM。输入段：$pcm**
 >
-> * **Type**: `STRING`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `False`
+> * **可选值**:
 >     * TRUE
->     * Activate nonequilibrium ptSS-PCM.
+>     * 激活非平衡 ptSS-PCM。
 >     * FALSE
->     * Deactivate nonequilibrium ptSS-PCM.
-> * **Recommendation**: activates a default ptSS-PCM calculation with Marcus charge separation and no additional LR-PCM.
+>     * 停用非平衡 ptSS-PCM。
+> * **建议**: 激活一次默认的 ptSS-PCM 计算，采用 Marcus 电荷分离且不附加 LR-PCM。
 
 ### `ChargeSeparation`
 
-> **Partition fast and slow charges in solvent equilibrium state INPUT SECTION: $pcm**
+> **在溶剂平衡态中分离快速电荷与慢速电荷。输入段：$pcm**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `NONE`
+> * **可选值**:
 >     * Marcus
->     * Do slow/fast charge separation with the Marcus partition.
+>     * 使用 Marcus 分区进行慢/快电荷分离。
 >     * Pekar
->     * Do slow/fast charge separation with the Pekar partition.
-> * **Recommendation**: Charge separation is used in conjunction with the StateSpecific keyword in $pcm .
+>     * 使用 Pekar 分区进行慢/快电荷分离。
+> * **建议**: 电荷分离需与 $pcm 中的 StateSpecific 关键字配合使用。
 
-???+ example "Example 7.15: PCM solvation effects on the vertical excitation energies of planar DMABN using the ptSS and ptLR methods."
+???+ example "示例 7.15：使用 ptSS 与 ptLR 方法研究平面型 DMABN 垂直激发能所受的 PCM 溶剂化效应。"
     ```qchem
     $molecule
        0  1
@@ -281,116 +175,78 @@ density, if the latter has been recommended. Results based on the relaxed densit
     $end
     ```
 
-**2. Iterative State-Specific PCM**
+**2. 迭代式态特异 PCM**
 
-The control options for iterative state-specific PCM, as implemented in Ref. [[412]](../bib_references/bib.md#bib421)
-,
-follow the same setup as for the ADC($n$)-family of methods described in Section [7.10.11](topic_abs-adc.md).
-By setting the keyword **EqSolv** to the intended maximum number of iterations,
-self-consistent SS-PCM is activated for the reference state indicated in **EqState**.
-Iterations are performed until either the maximum number of iterations is reached or
-the convergence criteria are satisfied. These criteria are based on the excited-state energy
-and the surface charges and are set using **Eqs_Conv**.
-During the iterative optimization of the reaction field, states may change
-their ordering (root-flipping). Automatic state-following (**EqState_Follow** = **true**)
-based on a combination of the electrostatic potential at the surface, the energy changes,
-and excited state dipole moments is available. It performs well for separated states
-or states of substantially different character (*i.e.* charge-transfer and locally excited states)
-but can break down for similar states close to their crossing points.
+文献 [[412]](../bib_references/bib.md#bib421) 中实现的迭代式态特异 PCM 的控制选项，与第 [7.10.11](topic_abs-adc.md) 节所述 ADC($n$) 方法族的设置方式相同。将关键字 **EqSolv** 设置为目标最大迭代次数，即可对 **EqState** 所指明的参考态激活自洽 SS-PCM。迭代一直进行，直到达到最大迭代次数或满足收敛判据为止。这些判据基于激发态能量与表面电荷，通过 **Eqs_Conv** 设置。在反应场的迭代优化过程中，各态可能改变其排序（root-flipping，根翻转）。基于表面静电势、能量变化以及激发态偶极矩三者组合的自动态跟踪（**EqState_Follow** = **true**）可以使用。它对分离良好或性质差异显著的态（*即*电荷转移态与局域激发态）表现良好，但在接近交叉点的相似态上可能失效。
 
-Note that the excited state energy with iterative state-specific PCMs is only
-physically meaningful for the reference state (marked in the output as “EqS-reference”).
-For all other states, only energies relative to the self-consistent reference state can be interpreted.
-The iterative equilibrium SS-PCM output lists the emission energy to the ground state (only EI-SS-PCM),
-as well as transition energies to the other excited states (both EI- and II-SS-PCM)
-in zeroth- and first-order (with nonequilibrium ptSS correction).
-For nonequilibrium II-SS-PCM, only the vertical excitation energy to the self-consistently
-optimized excited state is physically meaningful. For the nonequilibrium II-SS-PCM
-and ptSS-PCM calculations, again the **ChargeSeparation** keyword is employed.
+请注意，迭代式态特异 PCM 的激发态能量只对被标记为输出中“EqS-reference”的参考态才具有物理意义。对于所有其他态，只能解释相对于自洽参考态的能量。迭代平衡 SS-PCM 的输出列出向基态的发射能（仅 EI-SS-PCM），以及向其他激发态的跃迁能（EI- 与 II-SS-PCM 均提供），并分别给出 0 阶结果与一阶结果（附加非平衡 ptSS 修正）。对于非平衡 II-SS-PCM，只有到自洽优化激发态的垂直激发能才具有物理意义。在非平衡 II-SS-PCM 与 ptSS-PCM 计算中，同样使用 **ChargeSeparation** 关键字。
 
 ### `EqSolv`
 
-> **Main switch of the self-consistent SS-PCM procedure. INPUT SECTION: $pcm**
+> **自洽 SS-PCM 过程的主开关。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * No self-consistent SS-PCM.
+>     * 不做自洽 SS-PCM。
 >     * 1
->     * Single SS-PCM calculation (SCF + TDDFT) with the solvent field found on disk.
+>     * 使用磁盘上已有的溶剂场做一次 SS-PCM 计算（SCF + TDDFT）。
 >     * $n>1$
->     * Do a maximum of
+>     * 最多执行
 >     * $n$
->     * automatic solvent-field iterations.
-> * **Recommendation**: We recommend to use 15 steps max. Typical convergence is 3–5 steps. In difficult cases 6–12. If the solvent-field iteration do not converge in 15 steps, something is wrong. For EI-SS-PCM jobs make sure a solvent field was written to disk by a previous job. II-SS-PCM will automatically begin by setting up the solvent field.
+>     * 次自动溶剂场迭代。
+> * **建议**: 我们建议最多使用 15 步。典型收敛需要 3–5 步，困难情形需要 6–12 步。如果溶剂场迭代在 15 步内不收敛，说明存在问题。对于 EI-SS-PCM 任务，务必确认此前的任务已将溶剂场写入磁盘。II-SS-PCM 会自动从建立溶剂场开始。
 
 ### `EqState`
 
-> **Specifies the state for which the solvent field is to be optimized. INPUT SECTION: $pcm**
+> **指定要为其优化溶剂场的态。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `NONE`
+> * **可选值**:
 >     * 1
->     * energetically lowest excited state
+>     * 能量最低的激发态
 >     * 2
->     * 2nd lowest excited state
+>     * 第二低的激发态
 >     * $\cdots$
-> * **Recommendation**: Given that only one class of excited states is calculated, the state will be selected according to its energetic position shown in the “Exited-State Summary” of the output file.
+> * **建议**: 在只计算一类激发态的前提下，该态将按照输出文件“Exited-State Summary”（激发态摘要）中显示的能量位置来选择。
 
 ### `Eqs_Conv`
 
-> **Controls the convergence of the solvent-field iterations by setting the convergence criteria (a mixture of SCF energy (EI-SS-PCM) or excited state energy (II-SS-PCM) and charge-vector). SCF energy criterion computes as $10^{-n}$ $E_{h}$ . INPUT SECTION: $pcm**
+> **通过设置收敛判据（SCF 能量（EI-SS-PCM）或激发态能量（II-SS-PCM）与电荷向量的混合）来控制溶剂场迭代的收敛。SCF 能量判据按 $10^{-n}$ $E_{h}$ 计算。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `SCF_CONVERGENCE`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `SCF_CONVERGENCE`
+> * **可选值**:
 >     * 3
->     * May be sufficient for emission energies
+>     * 对发射能可能已经足够
 >     * 4
->     * Assured converged total energies (2.7 meV)
+>     * 确保总能量收敛（2.7 meV）
 >     * 5
->     * Very tight
-> * **Recommendation**: Use the default.
+>     * 非常严格
+> * **建议**: 使用默认值。
 
 ### `EqState_Follow`
 
-> **Controls the automatic state-following based on the electrostatic potential at the surface, excited state energy changes, and excited state dipole moments. INPUT SECTION: $pcm**
+> **控制基于表面静电势、激发态能量变化以及激发态偶极矩的自动态跟踪。输入段：$pcm**
 >
-> * **Type**: `NONE`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `NONE`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * TRUE
->     * Activate automatic state-following
+>     * 激活自动态跟踪
 >     * FALSE
->     * Deactivate automatic state-following.
-> * **Recommendation**: State-Following works well for separated states of different character and can become problematic for nearly degenerate states. It can be advisable to deactivate state-following if similar states are close.
+>     * 停用自动态跟踪。
+> * **建议**: 态跟踪对性质不同的分离态效果良好，但对近简并态可能出现问题。当相似态彼此接近时，建议停动态跟踪。
 
-**2. (A) External-Iteration SS-PCM**
+**2. (A) 外迭代 SS-PCM**
 
-EI-SS-PCM, otherwise known as Improta-Barone-Scalmani-Frisch PCM,[[612]](../bib_references/bib.md#bib635)
+EI-SS-PCM（亦称 Improta-Barone-Scalmani-Frisch PCM [[612]](../bib_references/bib.md#bib635)）通过在 *$pcm* 段中设置 **StateSpecific** = **External** 来启用。EI-SS-PCM 同时对 SCF 与 TDDFT 计算进行迭代，其做法是将激发态反应场返回到一个冻结反应场（frozen-Reaction-Field, fRF）SCF 中。在此之前的独立任务中，必须通过设置 **StateSpecific** = External 且不加 **EqSolv** 关键字来预先建立反应场。在随后的迭代任务中，参考态（**EqState**）可以在先前计算得到的各态中自由选取，并且可以用完全相同的方式重启迭代（*例如*，用于手动修正自动态跟踪的结果）。EI-SS-PCM 的收敛判据基于表面电荷向量的变化以及 fRF-SCF 能量，以将所有激发态收敛到同一水平。此外，self-ptSS 项也可以指示收敛情况，但它并非实际使用的收敛判据。
 
-is activated by setting **StateSpecific** = **External** in the *$pcm* section. EI-SS-PCM
-iterates over both the SCF and TDDFT calculation by returning the excited-state reaction field
-into a frozen-Reaction-Field (fRF) SCF. Prior to this, the reaction field has to be set up in a separate
-job by setting **StateSpecific** = External without adding the keyword **EqSolv**.
-In the following iterative job, the reference state (**EqState**) can then be chosen freely
-among the states calculated prior, and iterations can be restarted in the same way
-(*e.g.*, to manually correct the automatic state-following).
-The EI-SS-PCM convergence is judged based on the change in the surface charge vector
-and the fRF-SCF energy, in order to converge all excited states to the same level.
-Additionally, the self-ptSS term indicates convergence though it is not used as an
-actual convergence criterion.
+EI-SS-PCM 始终按平衡溶剂化执行，基于静态介电常数（**Dielectric**）使用溶剂的完整介电响应。非平衡的发射能与跃迁能则在 ptSS-PCM 级别上一阶求得。EI-SS-PCM 给出态特异薛定谔方程的正确解，且不受基态 MO 的污染，因此，当需要对激发态与基态同等对待时，应当使用该方法。
 
-EI-SS-PCM is always performed as equilibrium solvation employing the full dielectric response
-of the solvent based on the static dielectric constant (**Dielectric**). Non-equilibrium
-emission and transition energies are calculated in first order at the ptSS-PCM level. EI-SS-PCM
-provides the correct solution of the state-specific Schrödinger equation without
-contamination from the ground state MOs, and hence, should be used whenever the excited state
-is to be treated on equal footing with the ground state.
-
-???+ example "Example 7.7.16: TDDFT with External Iteration SS-PCM for nitrate in acetonitrile."
+???+ example "示例 7.7.16：乙腈中硝酸根离子的 TDDFT 外迭代 SS-PCM 计算。"
     ```qchem
     $molecule
        -1 1
@@ -459,62 +315,34 @@ is to be treated on equal footing with the ground state.
     $end
     ```
 
-**2. (B) Internal-Iteration SS-PCM**
+**2. (B) 内迭代 SS-PCM**
 
-II-SS-PCM, otherwise known as the vertical excitation model (VEM),[[908]](../bib_references/bib.md#bib944)
+II-SS-PCM（亦称垂直激发模型 VEM [[908]](../bib_references/bib.md#bib944)）通过设置关键字 **StateSpecific** = **Internal** 来启用。II-SS-PCM 在迭代过程中保持相同的基态波函数，但在 TDDFT 计算中交换基态与激发态的反应场。这会导致激发态受到基态 MO 的轻微污染。II-SS-PCM 既可用于平衡情形（绝热激发模型，Adiabatic Excitation Model, AEM），也可用于非平衡情形（VEM），并且既可使用激发态反应场的完整矩阵（f），也可仅使用其对角元（d），如文献 [[908]](../bib_references/bib.md#bib944) 所述。要选择确切的模型，需将关键字 **InternalIteration** 设置为 **VEM(d)**、**VEM(f)**、**AEM(d)** 或 **AEM(f)**。与 EI-SS-PCM 不同，II-SS-PCM 方法会自动先执行一次准备计算，以产生用于迭代的初始激发态反应场，而该迭代无法重启。为了在自动态跟踪之外仍然允许手动态跟踪，可以在 **InternalIteration** 中所选方法之后附加 -state 来列出特定的态序列。该序列以零结束，零之后态跟踪将重新启用。对于 II-SS-PCM，收敛判据基于参考态能量与表面电荷向量。
 
-is activated by setting the keyword **StateSpecific** = **Internal**.
-II-SS-PCM retains the same ground state wave-function in the iterations
-but exchanges the ground and excited-state reaction field during the TDDFT calculation.
-This leads to slight contamination of the excited state by the ground state MOs.
-II-SS-PCM is available both for equilibrium (adiabatic excitation model, AEM) and nonequilibrium (VEM), and
-with either the full matrix (f) or only the diagonal elements (d) of the excited state
-reaction field, as described in Ref. [[908]](../bib_references/bib.md#bib944)
-. To choose the exact model,
-the keyword **InternalIteration** is set to
-**VEM(d)**, **VEM(f)**, **AEM(d)**, or **AEM(f)**.
-In contrast to EI-SS-PCM, the II-SS-PCM approach automatically begins with a setup calculation to
-produce the initial excited state reaction field for the iterations, which then cannot be restarted.
-To still allow besides the automatic also for manual state following, a specific sequence of states
-can be listed by appending the chosen method in **InternalIteration** with -state.
-The sequence is terminated by a zero, after which state-following is re-engaged. For II-SS-PCM,
-convergence is judged on the reference state energy and the surface charge vector.
+非平衡 II-SS-PCM 或 VEM 计算相当于垂直激发能的非平衡 ptSS-PCM 的迭代版本。此时还纳入了密度对快速激发态反应场的响应。因此，VEM 对收敛参考态（输出中以“EqS-reference”标示）的结果对应于垂直激发能，而其他各态没有物理意义。
 
-A nonequilibrium II-SS-PCM or VEM calculation corresponds to an iterative version of
-nonequilibrium ptSS-PCM for vertical excitation energies. Here, also the response of the
-density to the fast excited state reaction field is included. Hence, the VEM result
-for the converged reference state (indicated by “EqS-reference” in the output)
-corresponds to the vertical excitation energy, while the other states have no physical meaning.
-
-Equilibrium II-SS-PCM or AEM, on the other hand, provides the excited reference state energy
-and transition energies to other excited states. However, emission energies from the reference
-state to the ground state are adiabatic because the ground state orbitals are not affected by the
-excited state reaction field. To obtain vertical emission energies, a further
-fRF ground state calculation has to be performed by setting **RF_ptSS_Save** = **true**
-and loading the reaction field in a consecutive job by setting **RF_ptSS_Read** = **true**.
-See Section [7.7.9](sect_ROKS_neq-PCM.md) for further information.
+而平衡 II-SS-PCM 或 AEM 则给出激发参考态能量以及向其他激发态的跃迁能。但是，从参考态到基态的发射能是绝热型的，因为基态轨道不受激发态反应场的影响。要获得垂直发射能，必须再执行一次 fRF 基态计算：设置 **RF_ptSS_Save** = **true**，并在随后的任务中通过设置 **RF_ptSS_Read** = **true** 来读取反应场。更多信息请参见第 [7.7.9](sect_ROKS_neq-PCM.md) 节。
 
 ### `InternalIteration`
 
-> **Controls the used internal iteration SS-PCM model. Additionally, a sequence of state to be followed can be appended after adding -state . INPUT SECTION: $pcm**
+> **控制所使用的内迭代 SS-PCM 模型。此外，在添加 -state 之后可以追加要跟踪的态序列。输入段：$pcm**
 >
-> * **Type**: `NONE`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `NONE`
+> * **默认值**: `NONE`
+> * **可选值**:
 >     * VEM(f)
->     * Activate nonequilibrium II-SS-PCM (VEM) with the full matrix contribution.
+>     * 激活使用完整矩阵贡献的非平衡 II-SS-PCM（VEM）。
 >     * VEM(d)
->     * Activate nonequilibrium II-SS-PCM (VEM) with only diagonal matrix elements.
+>     * 激活仅使用对角矩阵元的非平衡 II-SS-PCM（VEM）。
 >     * AEM(f)
->     * Activate equilibrium II-SS-PCM (AEM) with the full matrix contribution.
+>     * 激活使用完整矩阵贡献的平衡 II-SS-PCM（AEM）。
 >     * AEM(d)
->     * Activate equilibrium II-SS-PCM (AEM) with only diagonal matrix elements.
+>     * 激活仅使用对角矩阵元的平衡 II-SS-PCM（AEM）。
 >     * …-state x y z … 0
->     * Specify sequence of states to be followed (terminate with 0).
-> * **Recommendation**: The nonequilibrium versions (VEM) provide vertical excitation energies, while in equilibrium (AEM) the initial state for emission energies is prepared. By attaching the -state ending an explicit sequence of states to be followed can be provided. After terminating with a zero, state-following will be re-engaged.
+>     * 指定要跟踪的态序列（以 0 结束）。
+> * **建议**: 非平衡版本（VEM）给出垂直激发能，而在平衡版本（AEM）中则准备发射能的初始态。通过附加 -state 后缀可以提供显式的待跟踪态序列。以零结束之后，态跟踪将重新启用。
 
-???+ example "Example 7.7.17: TDDFT with Internal Iteration SS-PCM and the additional ground state calculation for
-vertical emission energies of nitrate in acetonitrile."
+???+ example "示例 7.7.17：TDDFT 内迭代 SS-PCM，并附加基态计算以求乙腈中硝酸根离子的垂直发射能。"
     ```qchem
     $molecule
        -1 1

@@ -1,101 +1,68 @@
 ---
-title: "6.15.1 Frozen Natural Orbitals"
+title: "6.15.1 冻结自然轨道"
 ---
 
-## 6.15.1 Frozen Natural Orbitals
+## 6.15.1 冻结自然轨道
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Large computational savings are possible if the virtual space is truncated
-using the frozen natural orbital (FNO) approach. For example, using a fraction
-$f$ of the full virtual space results in a $1/(1-f)^{4}$-fold speed up for each
-CCSD iteration (CCSD scales with the forth power of the virtual space size).
-FNO-based truncation for ground-states CC methods was introduced by Bartlett
-and coworkers.[[1287]](../bib_references/bib.md#bib1342)
- Extension of the FNO
-approach to ionized states within EOM-CC formalism was recently introduced and
-benchmarked;[[748]](../bib_references/bib.md#bib781)
- see Section [7.9.14](../ch07_excited/sec_FNO.md).
+若采用冻结自然轨道（Frozen Natural Orbitals, FNO）方法对虚轨道空间进行截断，可带来巨大的计算开销节省。例如，仅使用完整虚轨道空间的 $f$ 比例，每一轮 CCSD 迭代即可获得 $1/(1-f)^{4}$ 倍的加速（CCSD 的计算量随虚轨道空间大小的四次方增长）。基于 FNO 的截断方法由 Bartlett 及其合作者首次引入基态耦合簇（CC）方法[[1287]](../bib_references/bib.md#bib1342)
+；将该方法推广至 EOM-CC 框架下的电离态 recently 已被提出并完成基准测试[[748]](../bib_references/bib.md#bib781)
+，详见第 [7.9.14](../ch07_excited/sec_FNO.md) 节。
 
-The FNOs are computed as the eigenstates of the virtual-virtual block of the
-MP2 density matrix [${\cal{O}}({N^{5}})$ scaling], and the eigenvalues are the
-occupation numbers associated with the respective FNOs. By using a
-user-specified threshold, the FNOs with the smallest occupations are frozen in
-CC calculations. This could be done in CCSD, CCSD(T), CCSD(2), CCSD(dT),
-CCSD(fT) as well as CCD, OD, QCCD, VQCCD, and all possible triples corrections
-for these wave functions.
+FNO 由 MP2 密度矩阵的虚-虚块（virtual-virtual block）的本征态求得（计算量按 ${\cal{O}}({N^{5}})$ 标度），其本征值即为相应 FNO 的占据数。通过用户指定的阈值，可在 CC 计算中将占据数最小的 FNO 予以冻结。该做法可用于 CCSD、CCSD(T)、CCSD(2)、CCSD(dT)、CCSD(fT)，以及 CCD、OD、QCCD、VQCCD，并适用于这些波函数的所有可能的三重激发修正。
 
-The truncation can be performed using two different schemes. The first
-approach is to simply specify the total number of virtual orbitals to retain,
-*e.g.*, as the percentage of total virtual orbitals, as was done in
-Refs. [[1349]](../bib_references/bib.md#bib1408)
-. The second approach is to specify
-the percentage of total natural occupation (in the virtual space) that needs to
-be recovered in the truncated space. These two criteria are referred to as the
-POVO (percentage of virtual orbitals) and OCCT (occupation threshold) cutoffs,
-respectively.[[748]](../bib_references/bib.md#bib781)
+截断可采用两种不同的方案。第一种方案是直接指定所保留的虚轨道总数，*e.g.*，以虚轨道总数的百分比形式给出，如文献 [[1349]](../bib_references/bib.md#bib1408)
+ 中所做的那样。第二种方案是指定需要在截断后的空间中恢复的（虚空间）总自然占据数百分比。这两种判据分别被称为 POVO（虚轨道百分比，percentage of virtual orbitals）与 OCCT（占据阈值，occupation threshold）截断[[748]](../bib_references/bib.md#bib781)
+。
 
-Since the OCCT criterion is based on the correlation in a specific molecule, it
-yields more consistent results than POVO. For ionization energy calculations
-employing 99–99.5% natural occupation threshold should yields errors
-(relative to the full virtual space values) below
-1 kcal/mol.[[748]](../bib_references/bib.md#bib781)
- The errors decrease linearly as a function of
-the total natural occupation recovered, which can be exploited by extrapolating
-truncated calculations to the full virtual space values. This extrapolation
-scheme is called the extrapolated FNO (XFNO) procedure.[[748]](../bib_references/bib.md#bib781)
- The
-linear behavior is exhibited by the total energies of the ground and the
-ionized states as a function of OCCT. Therefore, the XFNO scheme can be
-employed even when the two states are not calculated on the same level, *e.g.*,
-in adiabatic energy differences and EOM-IP-CC(2,3) calculations.
-(For more discussion see Ref. [[748]](../bib_references/bib.md#bib781)
-.)
+由于 OCCT 判据基于特定分子的相关能，因此相比 POVO 能给出更一致的结果。在电离能计算中，采用 99–99.5% 的自然占据阈值，相对于完整虚轨道空间结果的误差可低于 1 kcal/mol[[748]](../bib_references/bib.md#bib781)
+。误差随所恢复的总自然占据数呈线性下降，这一性质可被利用，通过对截断计算结果外推得到完整虚轨道空间下的值。这种外推方案称为外推 FNO（extrapolated FNO, XFNO）方法[[748]](../bib_references/bib.md#bib781)
+。基态与电离态的总能量随 OCCT 的变化均呈现该线性行为。因此，即使这两个态并非在同一理论水平下计算，XFNO 方案依然可用，*e.g.*，在绝热能量差以及 EOM-IP-CC(2,3) 计算中。（更多讨论见文献 [[748]](../bib_references/bib.md#bib781)
+。）
 
-The FNO truncation often causes slower convergence of the CCSD and EOM
-procedures. Nevertheless, despite larger number of iterations, the FNO-based
-truncation of orbital space reduces computational cost considerably, with a
-negligible decline in accuracy.[[748]](../bib_references/bib.md#bib781)
+FNO 截断常常导致 CCSD 与 EOM 流程的收敛变慢。尽管如此，尽管迭代次数增多，基于 FNO 的轨道空间截断仍能显著降低计算成本，而精度的下降微乎其微[[748]](../bib_references/bib.md#bib781)
+。
 
-Because of the limitation of the implementation, point-group symmetry cannot be used with FNO/OSFNO and will be disabled.
-Please, adjust your input consistently with CC_SYMMETRY = FALSE.
+由于实现上的限制，FNO/OSFNO 不能使用点群对称性，对称性将被自动禁用。
+请将输入文件相应地设置为 CC_SYMMETRY = FALSE。
 
-For open-shell species an open-shell FNO (OSFNO) has been developed for the use in EOM-SF-CC calculations.
-The benchmarks show negligible errors in singlet–triplet gaps for a variety of molecules.
-For more details, see Section [7.9.14](../ch07_excited/sec_FNO.md) and the Ref. [[1104]](../bib_references/bib.md#bib1153)
-.
+对于开壳层体系，已发展出开壳层 FNO（open-shell FNO, OSFNO），用于 EOM-SF-CC 计算。
+基准测试表明，对多种分子的单重态–三重态能隙，其误差可忽略不计。
+更多细节请参见第 [7.9.14](../ch07_excited/sec_FNO.md) 节及文献 [[1104]](../bib_references/bib.md#bib1153)
+。
 
 CC_FNO_THRESH
 
 ### `CC_FNO_THRESH`
 
-> **Initialize the FNO truncation and sets the threshold to be used for both cutoffs (OCCT and POVO)**
+> **初始化 FNO 截断，并为两种截断判据（OCCT 和 POVO）设置所用阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
->     * range
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **可选值**：
+>     * 取值范围
 >     * 0000-10000
 >     * $abcd$
->     * Corresponding to
+>     * 对应于
 >     * $ab.cd$
 >     * %
-> * **Recommendation**: None
+> * **建议**：无
 
 CC_FNO_USEPOP
 
 ### `CC_FNO_USEPOP`
 
-> **Selection of the truncation scheme**
+> **截断方案的选择**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **可选值**：
 >     * 0
 >     * POVO
-> * **Recommendation**: None
+> * **建议**：无
 
-???+ example "Example 6.48: CCSD(T) calculation using FNO with POVO = 65%"
+???+ example "示例 6.48：使用 FNO 且 POVO = 65% 的 CCSD(T) 计算"
     ```qchem
     $molecule
        0 1

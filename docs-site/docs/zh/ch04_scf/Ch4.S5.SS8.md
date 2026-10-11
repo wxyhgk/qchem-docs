@@ -1,32 +1,13 @@
 ---
-title: "4.5.8 Direct Minimization (DM)"
+title: "4.5.8 直接极小化（DM）"
 ---
 
-## 4.5.8 Direct Minimization (DM)
+## 4.5.8 直接极小化（Direct Minimization, DM）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Direct minimization (DM) is a less sophisticated forerunner of the
-geometric direct minimization (GDM) method discussed in the previous
-section. DM does not properly step along great circles in the
-hyper-spherical space of orbital rotations, and therefore converges
-less rapidly and less robustly than GDM, in general. DM is retained in
-**Q-Chem** only for legacy purposes. In general, the input options are
-the same as for GDM, with the exception of the specification of
-SCF_ALGORITHM, which can be either DIIS_DM
-(recommended) or DM.
+直接极小化（Direct Minimization, DM）是上一节所讨论的几何直接极小化（Geometric Direct Minimization, GDM）方法的一种较为原始、不够精细的前身。DM 并不能在轨道旋转所构成的超球面空间（hyper-spherical space）中沿大圆（great circle）正确地走步，因此一般而言，其收敛速度和稳健程度都不如 GDM。**Q-Chem** 保留 DM 仅仅是出于历史兼容（legacy）目的的考虑。总体上，其输入选项与 GDM 相同，只是 SCF_ALGORITHM 的取值有所不同，它可以是 DIIS_DM（推荐）或 DM。
 
 PSEUDO_CANONICAL
 
 ### `PSEUDO_CANONICAL`
-
-> **When SCF_ALGORITHM = DM , this controls the way the initial step, and steps after subspace resets are taken.**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE
->     * Use Roothaan steps when (re)initializing
->     * TRUE
->     * Use a steepest descent step when (re)initializing
-> * **Recommendation**: The default is usually more efficient, but choosing TRUE sometimes avoids problems with orbital reordering.

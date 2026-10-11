@@ -1,71 +1,44 @@
 ---
-title: "6.6.2 RI-MP2 Energies and Gradients."
+title: "6.6.2 RI-MP2 能量与梯度。"
 ---
 
-## 6.6.2 RI-MP2 Energies and Gradients.
+## 6.6.2 RI-MP2 能量与梯度。
 
 (July 4, 2026)
 
-Following common convention, the MP2 energy evaluated approximately using an
-auxiliary basis is referred to as “resolution of the identity” MP2, or RI-MP2
-for short. RI-MP2 energy and gradient calculations are enabled simply by
-specifying the AUX_BASIS keyword discussed above. As discussed above,
-RI-MP2 energies[[387]](../bib_references/bib.md#bib395)
- and
-gradients[[1440]](../bib_references/bib.md#bib1500)
- are significantly faster than the
-best conventional MP2 energies and gradients, and cause negligible loss of
-accuracy, when an appropriate standardized auxiliary basis set is employed.
-Therefore they are recommended for jobs where turnaround time is an issue. Disk
-requirements are very modest; one merely needs to hold various 3-index arrays.
-Memory requirements grow more slowly than our conventional MP2
-algorithms—only quadratically with molecular size. The minimum memory
-requirement is approximately 3$X^{2}$, where $X$ is the number of auxiliary
-basis functions, for both energy and analytical gradient evaluations, with some
-additional memory being necessary for integral evaluation and other small
-arrays.
+按照惯例，使用辅助基组（auxiliary basis）近似计算的 MP2 能量被称为“分辨率恒等”（resolution of the identity）MP2，简称 RI-MP2。只需指定上文讨论的 AUX_BASIS 关键字，即可启用 RI-MP2 能量与梯度计算。如前所述，当采用合适的标准化辅助基组（auxiliary basis set）时，RI-MP2 能量[[387]](../bib_references/bib.md#bib395) 和梯度[[1440]](../bib_references/bib.md#bib1500) 的计算显著快于最佳的常规 MP2 能量与梯度计算，且精度损失可以忽略不计。因此，对于关心周转时间的计算任务，推荐使用 RI-MP2。磁盘需求非常 modest；只需保存各种三指标（3-index）数组即可。内存需求的增长速度慢于我们的常规 MP2 算法——仅随分子尺寸呈二次方增长。能量和解析梯度评估的最低内存需求约为 3$X^{2}$，其中 $X$ 是辅助基函数的数目，此外积分评估和其他小数组还需要一些额外内存。
 
-In fact, for molecules that are not too large (perhaps no more than 20 or 30
-heavy atoms) the RI-MP2 treatment of electron correlation is so efficient that
-the computation is dominated by the initial Hartree-Fock calculation. This is
-despite the fact that as a function of molecule size, the cost of the RI-MP2
-treatment still scales more steeply with molecule size (it is just that the
-pre-factor is so much smaller with the RI approach). Its scaling remains
-5th order with the size of the molecule, which only dominates the
-initial SCF calculation for larger molecules. Thus, for RI-MP2 energy
-evaluation on moderate size molecules (particularly in large basis sets), it is
-desirable to use the dual basis HF method to further improve execution times
-(see Section [4.7](../ch04_scf/sect_dualbasis.md)).
+事实上，对于不太大的分子（重原子数不超过 20 或 30 个），RI-MP2 对电子相关（electron correlation）的处理极其高效，以至于整个计算主要由初始的 Hartree-Fock 计算主导。尽管作为分子尺寸的函数，RI-MP2 处理的开销随分子尺寸的-scaling 仍然更陡峭（只是 RI 方法的前置因子要小得多）。其标度（scaling）相对于分子尺寸仍为五阶，只对较大分子的初始 SCF 计算起主导作用。因此，对于中等尺寸分子（尤其是使用大基组时）的 RI-MP2 能量评估，建议使用双基组（dual basis）HF 方法以进一步改善执行时间（见第 [4.7](../ch04_scf/sect_dualbasis.md) 节）。
 
-For the size of required memory, the following need to be considered.
+关于所需内存的大小，需要考虑以下几点。
 
 MEM_STATIC
 
 ### `MEM_STATIC`
 
-> **Sets the memory for AO-integral evaluations and their transformations in Q-Chem 4.1 or older versions.**
+> **在 Q-Chem 4.1 或更早版本中，用于设置 AO 积分评估及其变换（transformation）的内存。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `192`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `192`
+> * **选项**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: For RI-MP2 calculations using Q-Chem 4.1 or older versions, $150(ON+V)$ of is required. Because a number of matrices with $N^{2}$ size also need to be stored, 32–160 MB of additional is needed.
+>     * 用户自定义的兆字节（megabytes）数。
+> * **建议**: 在 Q-Chem 4.1 或更早版本中进行 RI-MP2 计算时，需要 $150(ON+V)$ 的内存。由于还需要存储若干尺寸为 $N^{2}$ 的矩阵，因此需要额外 32–160 MB 的内存。
 
 MEM_TOTAL
 
 ### `MEM_TOTAL`
 
-> **Sets the total memory available to Q-Chem , in megabytes.**
+> **设置 Q-Chem 可用的总内存（以兆字节计）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2000`
+> * **选项**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: Use the default, or set to the physical memory of your machine. The minimum requirement is $3X^{2}$ .
+>     * 用户自定义的兆字节（megabytes）数。
+> * **建议**: 使用默认值，或设置为机器的物理内存。最低需求为 $3X^{2}$ 。
 
-???+ example "Example 6.4: Q-Chem input for an RI-MP2 geometry optimization."
+???+ example "示例 6.4: RI-MP2 几何优化的 Q-Chem 输入。"
     ```qchem
     $molecule
        0 1

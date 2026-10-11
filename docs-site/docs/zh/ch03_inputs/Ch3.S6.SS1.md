@@ -1,60 +1,43 @@
 ---
-title: "3.6.1 Overview"
+title: "3.6.1 概述"
 ---
 
-## 3.6.1 Overview
+## 3.6.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-When **Q-Chem** is invoked using
+当使用以下方式调用 **Q-Chem** 时
 
 > ```qchem
 > # qchem infile outfile
 > ```
 
-the output file *outfile* contains a variety of information, depending on
-the type of job(s), but in general consists of the following.
+输出文件 *outfile* 包含各类信息，具体取决于作业类型，但一般而言包括以下内容。
 
 - •
 
-**Q-Chem** citation
+**Q-Chem** 引用文献
 - •
 
-User input (for record-keeping purposes)
+用户输入（用于存档记录）
 - •
 
-Molecular geometry in Cartesian coordinates
+以笛卡尔坐标表示的分子几何结构
 - •
 
-Molecular point group, nuclear repulsion energy, number of $\alpha$- and
-$\beta$-spin electrons
+分子点群、核排斥能、$\alpha$-自旋和 $\beta$-自旋电子数
 - •
 
-Basis set information (number of functions, shells and function pairs)
+基组（Basis Set）信息（函数数目、壳层（shells）及函数对数目）
 - •
 
-SCF details (method, guess, and convergence procedure)
+自洽场（SCF）细节（方法、初始猜测（guess）及收敛过程）
 - •
 
-Energy and DIIS error for each SCF iteration
+每次 SCF 迭代的能量与 DIIS 误差
 - •
 
-Results of any post-SCF calculation that is requested
+任何激发态计算的结果
 - •
 
-Results of any excited-state calculation that is requested
-- •
-
-Molecular orbital symmetries and energies
-- •
-
-Wave function analysis
-- •
-
-Message signaling successful job completion
-
-**Note: 
-
-If *outfile* above already exists when the job is started, then the
-existing file is overwritten with the results of the new calculation.
-**
+波函分析

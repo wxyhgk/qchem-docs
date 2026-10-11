@@ -1,64 +1,59 @@
 ---
-title: "6.4.2 Algorithm Control and Customization"
+title: "6.4.2 算法控制与自定义"
 ---
 
-## 6.4.2 Algorithm Control and Customization
+## 6.4.2 算法控制与自定义
 
 (July 4, 2026)
 
-The direct and semi-direct integral transformation algorithms used by **Q-Chem**
-(*e.g.*, MP2, CIS(D)) are limited by available disk space, $D$, and memory, $C$,
-the number of basis functions, $N$, the number of virtual orbitals, $V$ and the
-number of occupied orbitals, $O$, as discussed above. The generic description
-of the key *$rem* variables are:
+**Q-Chem** 所使用的直接（direct）与半直接（semi-direct）积分变换算法（*e.g.*, MP2, CIS(D)）受可用磁盘空间 $D$、内存 $C$、基函数（basis function）数目 $N$、虚轨道（virtual orbital）数目 $V$ 以及占据轨道（occupied orbital）数目 $O$ 的限制，如前文所述。关键 *$rem* 变量的通用说明如下：
 
 MEM_STATIC
 
 ### `MEM_STATIC`
 
-> **Sets the memory for Fortran AO integral calculation and transformation modules.**
+> **设置 Fortran AO 积分计算与变换模块所使用的内存。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `192`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `192`
+> * **选项**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: For direct and semi-direct MP2 calculations, this must exceed OVN + requirements for AO integral evaluation (32–160 MB), as discussed above.
+>     * 用户自定义的兆字节（MB）数。
+> * **建议**: 对于直接和半直接 MP2 计算，该值必须超过 OVN 加上 AO 积分评估所需的内存（32–160 MB），如前文所述。
 
 MEM_TOTAL
 
 ### `MEM_TOTAL`
 
-> **Sets the total memory available to Q-Chem , in megabytes.**
+> **设置 Q-Chem 可用的总内存，以兆字节（MB）为单位。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2000`
+> * **选项**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: Use the default, or set equal to the physical memory of your machine. Note that if the memory allocation total more than 1 GB for a CCMAN job, the memory is allocated as follows 12% MEM_STATIC 50% CC_MEMORY 35% Other memory requirements:
+>     * 用户自定义的兆字节（MB）数。
+> * **建议**: 使用默认值，或设置为机器的物理内存。注意，如果 CCMAN 作业的内存分配总量超过 1 GB，则内存按如下方式分配：12% MEM_STATIC，50% CC_MEMORY，35% 其他内存需求：
 
 CD_ALGORITHM
 
 ### `CD_ALGORITHM`
 
-> **Determines the algorithm for MP2 integral transformations.**
+> **决定 MP2 积分变换的算法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `Program determined.`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `由程序确定。`
+> * **选项**:
 >     * DIRECT
->     * Uses fully direct algorithm (energies only).
+>     * 使用完全直接算法（仅计算能量）。
 >     * SEMI_DIRECT
->     * Uses disk-based semi-direct algorithm.
+>     * 使用基于磁盘的半直接算法。
 >     * LOCAL_OCCUPIED
->     * Alternative energy algorithm (see
+>     * 备选能量算法（参见
 >     * 6.4.1
->     * ).
-> * **Recommendation**: Semi-direct is usually most efficient, and will normally be chosen by default.
+>     * ）。
+> * **建议**: 半直接算法通常效率最高，一般情况下会被默认选择。
 
-???+ example "Example 6.1: Example of an MP2/6-31G* calculation employing the frozen core approximation.
-Note that the EXCHANGE $rem variable will default to HF"
+???+ example "示例 6.1: 采用冻结芯层近似（frozen core approximation）的 MP2/6-31G* 计算示例。注意 EXCHANGE $rem 变量将默认为 HF"
     ```qchem
     $molecule
        0 1

@@ -1,172 +1,114 @@
 ---
-title: "5.9.1 Overview"
+title: "5.9.1 概述"
 ---
 
-## 5.9.1 Overview
+## 5.9.1 概述
 
 (July 4, 2026)
 
-Double-hybrid density functional
-theory[[493]](../bib_references/bib.md#bib501)
+双杂化密度泛函理论（Double-hybrid density functional theory, DH-DFT）[[493]](../bib_references/bib.md#bib501)
 
-(DH-DFT) has demonstrated tremendous potential for approaching the chemical
-accuracy with a computational cost comparable to the second-order
-Møller-Plesset perturbation theory (MP2). In a DH-DFT, a Kohn-Sham (KS) DFT
-calculation is performed first, followed by a treatment of non-local orbital
-correlation energy at the level of second-order Møller-Plesset perturbation
-theory (MP2).[[957]](../bib_references/bib.md#bib998)
- This MP2 correlation correction includes a a
-same-spin (ss) component, $E_{c}^{\mathrm{ss}}$, as well as an opposite-spin (os)
-component, $E_{c}^{\mathrm{os}}$, which are added to the total energy obtained from
-the KS-DFT calculation. Two scaling parameters, $c_{\mathrm{ss}}$ and $c_{\mathrm{os}}$, are
-introduced in order to avoid double-counting correlation:
+(DH-DFT) 已展现出巨大的潜力，能够在与二阶 Møller-Plesset 微扰理论（MP2）相当的计算成本下逼近化学精度。在 DH-DFT 中，首先执行一次 Kohn-Sham（KS）密度泛函理论（DFT）计算，然后在二阶 Møller-Plesset 微扰理论（MP2）级别处理非定域轨道相关能。[[957]](../bib_references/bib.md#bib998)
+ 该 MP2 相关能校正包含一个同自旋（same-spin, ss）分量 $E_{c}^{\mathrm{ss}}$ 以及一个反自旋（opposite-spin, os）分量 $E_{c}^{\mathrm{os}}$，它们被加到 KS-DFT 计算得到的总能量上。为避免对相关性能量的重复计入（double-counting），引入了两个缩放参数 $c_{\mathrm{ss}}$ 和 $c_{\mathrm{os}}$：
 
 <a id="eq:dft2a"></a>
 $$
 E_{\text{DH-DFT}}=E_{\text{KS-DFT}}+c_{\mathrm{ss}}E_{c}^{\mathrm{ss}}+c_{\mathrm{os}}E_{c}^{\mathrm{os}} \tag{5.62}
 $$
 
-A starting point for understanding where a functional form like
-Eq. ([5.62](#eq:dft2a)) might come from is the adiabatic connection formula that
-provides a rigorous way to define double-hybrid functionals. One considers an
-adiabatic path between the fictitious non-interacting KS reference system
-($\lambda=0$) and the real physical system ($\lambda=1$), while holding the
-electron density fixed at its value for the real system, for all $\lambda$.
-Then
+理解形如式 ([5.62](#eq:dft2a)) 的泛函形式来源的一个出发点，是可为双杂化泛函提供严格定义的绝热连接公式（adiabatic connection formula）。人们考虑在虚构的非相互作用 KS 参考体系（$\lambda=0$）与真实物理体系（$\lambda=1$）之间的一条绝热路径，同时对所有 $\lambda$ 将电子密度固定为其在真实体系中的取值。于是
 
 <a id="sung1"></a>
 $$
 E_{\rm XC}\left[\rho\right]=\int_{0}^{1}U_{{\rm XC},\lambda}[\rho]\;d\lambda\,, \tag{5.63}
 $$
 
-where $U_{{\rm XC},\lambda}$ is the exchange-correlation energy at a coupling
-strength $\lambda$, meaning that the exchange-correlation energy if the
-electron–electron terms in the Hamiltonian had the form $\lambda/r_{ij}$
-rather than $1/r_{ij}$. Using a linear model of this quantity,
+其中 $U_{{\rm XC},\lambda}$ 是耦合强度为 $\lambda$ 时的交换-相关能，其含义是：若哈密顿量中的电子–电子项取 $\lambda/r_{ij}$ 而非 $1/r_{ij}$ 的形式，所对应的交换-相关能。对该量使用线性模型，
 
 <a id="sung2"></a>
 $$
 U_{{\rm XC},\lambda}=a+b\lambda\;, \tag{5.64}
 $$
 
-one obtains the popular hybrid functional that includes the HF exchange (or
-occupied orbitals) such as B3LYP.[[96]](../bib_references/bib.md#bib78)
- If one
-further uses the Gorling-Levy’s perturbation theory (GL2) to define the initial
-slope at $\lambda$= 0, one obtains the doubly hybrid functional form in
-Eq. ([5.62](#eq:dft2a)) that includes MP2 type perturbative terms (PT2) involving virtual orbitals:[[684]](../bib_references/bib.md#bib710)
+即可得到包含 HF 交换（或占据轨道）的流行杂化泛函，例如 B3LYP。[[96]](../bib_references/bib.md#bib78)
+ 如果进一步使用 Görling-Levy 微扰理论（GL2）来定义 $\lambda=0$ 处的初始斜率，便可得到式 ([5.62](#eq:dft2a)) 中的双杂化泛函形式，其中包含涉及虚轨道的 MP2 型微扰项（PT2）：[[684]](../bib_references/bib.md#bib710)
 
 <a id="sung3"></a>
 $$
 U_{{\rm XC},\lambda}=\left.\frac{\partial U_{{\rm XC},\lambda}}{\lambda}\right|_{\lambda=0}=2E_{\rm C}^{\rm GL2}\,. \tag{5.65}
 $$
 
-The adiabatic connection formula has been used to develop double hybrid
-functionals such as XYG3.[[1551]](../bib_references/bib.md#bib1610)
- Note that XYG3 as implemented in
-**Q-Chem** uses B3LYP orbitals to generate the density and evaluate the PT2
-terms. This is different from B2PLYP, an earlier doubly hybrid functional from
-Grimme.[[493]](../bib_references/bib.md#bib501)
- The latter uses truncated KS orbitals while
-XYG3 uses converged KS orbitals to evaluate the PT2 terms. The performance of
-XYG3 is not only comparable to that of the G2 or G3 theory for thermochemistry,
-but barrier heights and non-covalent interactions, including stacking
-interactions, are also very well described by XYG3.[[1551]](../bib_references/bib.md#bib1610)
+绝热连接公式已被用于发展诸如 XYG3 这样的双杂化泛函。[[1551]](../bib_references/bib.md#bib1610)
+ 需要注意的是，**Q-Chem** 中实现的 XYG3 使用 B3LYP 轨道来生成密度并计算 PT2 项。这与 B2PLYP 不同，后者是 Grimme 提出的更早的双杂化泛函。[[493]](../bib_references/bib.md#bib501)
+ B2PLYP 使用截断的 KS 轨道，而 XYG3 使用收敛的 KS 轨道来计算 PT2 项。XYG3 的精度不仅可与 G2 或 G3 理论在热化学方面的表现相媲美，而且势垒高度和非共价相互作用（包括堆积相互作用）也能被 XYG3 非常好地描述。[[1551]](../bib_references/bib.md#bib1610)
 
-**Note: 
+**注意： 
 
-The recommended basis set for XYG3 is 6-311+G(3df,2p).
+XYG3 推荐的基组是 6-311+G(3df,2p)。
 **
 
-Due to the inclusion of PT2 terms, the cost of double-hybrid calculations is
-formally ${\cal{O}}({N^{5}})$, as in conventional MP2, thereby not applicable to large
-systems and partly losing DFT’s cost advantages. However, the highly successful
-SOS-MP2 and local SOS-MP2 algorithms in **Q-Chem** can be leveraged to develop
-double-hybrid functionals based on these ${\cal{O}}({N^{4}})$ methods. A version of
-XYG3 that uses SOS-MP2 is the XYGJ-OS functional.[[1543]](../bib_references/bib.md#bib1611)
- This
-functional has 4 parameters that are optimized using thermochemical data. It is
-not only faster than XYG3, but comparable to XYG3 (or perhaps slightly better)
-in accuracy. If the local SOS-MP2 algorithm is applied, the scaling of XYGJ-OS
-is further reduced to ${\cal{O}}({N^{3}})$. Recently, XYGJ-OS became the first
-double-hybrid functional whose analytic energy gradient has been derived and
-implemented.[[642]](../bib_references/bib.md#bib666)
+由于包含了 PT2 项，双杂化计算的形式计算标度为 ${\cal{O}}({N^{5}})$，与传统 MP2 相同，因此不适用于大体系，并且在一定程度上丧失了 DFT 的成本优势。不过，**Q-Chem** 中非常成功的 SOS-MP2 及局域 SOS-MP2 算法可以被加以利用，从而发展基于这些 ${\cal{O}}({N^{4}})$ 方法的双杂化泛函。使用 SOS-MP2 的 XYG3 版本即为 XYGJ-OS 泛函。[[1543]](../bib_references/bib.md#bib1611)
+ 该泛函含有 4 个参数，利用热化学数据进行优化。它不仅比 XYG3 更快，而且精度与 XYG3 相当（甚至可能略好）。若应用局域 SOS-MP2 算法，XYGJ-OS 的标度可进一步降低至 ${\cal{O}}({N^{3}})$。最近，XYGJ-OS 成为首个解析能量梯度被推导并实现的双杂化泛函。[[642]](../bib_references/bib.md#bib666)
 
-Other more empirical double-hybrid functionals have been implemented in
-**Q-Chem**. Among the $\omega$B97 series of functionals,
-$\omega$B97X-2[[225]](../bib_references/bib.md#bib221)
- is a long-range corrected double
-hybrid that can greatly reduce the self-interaction errors (due to its high
-fraction of HF exchange), and has been shown significantly superior to other
-functionals for systems with both bonded and non-bonded interactions. Due to
-the sensitivity of PT2 correlation energy with respect to the choices of basis
-sets, $\omega$B97X-2 was parameterized with two different basis
-sets: the $\omega$B97X-2(LP) was parameterized for use with
-6-311++G(3df,3pd), while $\omega$B97X-2(TQZ) was parameterized with
-the T/Q (triple-$\zeta$/quadruple-$\zeta$) extrapolation to the basis set
-limit. A careful reading of Ref. [[225]](../bib_references/bib.md#bib221)
- is highly advised
-before using either of these two functionals.
+其他更为经验化的双杂化泛函也已在 **Q-Chem** 中实现。在 $\omega$B97 系列泛函中，$\omega$B97X-2[[225]](../bib_references/bib.md#bib221)
+ 是一个长程校正的双杂化泛函，能够大幅减小自相互作用误差（因其具有很高的 HF 交换比例），并且已被证明对于同时包含成键与非键相互作用的体系显著优于其他泛函。由于 PT2 相关能对基组选择较为敏感，$\omega$B97X-2 使用两套不同的基组进行了参数化：$\omega$B97X-2(LP) 是为配合 6-311++G(3df,3pd) 使用而参数化的，而 $\omega$B97X-2(TQZ) 则是采用 T/Q（三重-$\zeta$/四重-$\zeta$）外推至基组极限进行参数化的。在使用这两个泛函中的任何一个之前，强烈建议仔细阅读文献 [[225]](../bib_references/bib.md#bib221)
+。
 
-Job control variables for double-hybrid DFT are described below. Note that the
-PT2 correlation energy can also be computed with the efficient
-resolution-of-identity (RI) methods.
-Since **Q-Chem** 5.2, RIMP2 can be invoked simply by specifying auxiliary basis set
-using AUX_BASIS_CORR. See Section [6.6](../ch06_correlation/topic_rimp2.md).
+双杂化 DFT 的任务控制变量（job control variables）如下所述。请注意，PT2 相关能也可以使用高效的分辨率恒等（resolution-of-identity, RI）方法计算。
+自 **Q-Chem** 5.2 起，只需通过 AUX_BASIS_CORR 指定辅助基组即可调用 RIMP2。参见第 [6.6](../ch06_correlation/topic_rimp2.md) 节。
 
 DH
 
 ### `DH`
 
-> **Controls the application of DH-DFT scheme.**
+> **控制是否应用 DH-DFT 方案。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Do not apply the DH-DFT scheme
->     * TRUE (or 1)
->     * Apply DH-DFT scheme
-> * **Recommendation**: NONE
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **取值选项**:
+>     * FALSE（或 0）
+>     * 不应用 DH-DFT 方案
+>     * TRUE（或 1）
+>     * 应用 DH-DFT 方案
+> * **建议**: 无（NONE）
 
-The following to *$rem* variables pertain to the
-$\omega$B97X-2(LP) and $\omega$B97X-2(TQZ) functionals.
+以下 *$rem* 变量与 $\omega$B97X-2(LP) 和 $\omega$B97X-2(TQZ) 泛函相关。
 
 SSS_FACTOR
 
 ### `SSS_FACTOR`
 
-> **Controls the strength of the same-spin component of PT2 correlation energy.**
+> **控制 PT2 相关能中同自旋（same-spin）分量的强度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $c_{\mathrm{ss}}=n/10^{6}$
->     * in Eq. (
+>     * （见式 (
 >     * 5.62
->     * ).
-> * **Recommendation**: NONE
+>     * )）。
+> * **建议**: 无（NONE）
 
 SOS_FACTOR
 
 ### `SOS_FACTOR`
 
-> **Controls the strength of the opposite-spin component of PT2 correlation energy.**
+> **控制 PT2 相关能中反自旋（opposite-spin）分量的强度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $c_{\mathrm{os}}=n/10^{6}$
->     * in Eq. (
+>     * （见式 (
 >     * 5.62
->     * ).
-> * **Recommendation**: NONE
+>     * )）。
+> * **建议**: 无（NONE）
 
-???+ example "Example 5.18: Applications of the B2PLYP functional to LiH with and without using RI."
+???+ example "示例 5.18: B2PLYP 泛函在 LiH 上的应用（使用与不使用 RI）"
     ```qchem
     $molecule
        0 1
@@ -192,7 +134,7 @@ SOS_FACTOR
     $end
     ```
 
-???+ example "Example 5.19: Application of the $\omega$ B97X-2(TQZ) functional to LiH with and without RI"
+???+ example "示例 5.19: $\omega$B97X-2(TQZ) 泛函在 LiH 上的应用（使用与不使用 RI）"
     ```qchem
     $molecule
        0 1
@@ -218,13 +160,9 @@ SOS_FACTOR
     $end
     ```
 
-In the following example of XYG3, **Q-Chem** automatically performs a B3LYP
-calculation first, then uses the resulting orbitals to evaluate the PT2
-correlation terms. Once can also use XYG3 combined with the RI approximation;
-use EXCHANGE = XYG3RI to do so, along with an appropriate choice of
-auxiliary basis set.
+在下面 XYG3 的示例中，**Q-Chem** 会自动先执行一次 B3LYP 计算，然后利用所得轨道来计算 PT2 相关项。也可以将 XYG3 与 RI 近似结合使用；为此可设置 EXCHANGE = XYG3RI，并配合选择合适的辅助基组。
 
-???+ example "Example 5.20: XYG3 calculation of N ${}_{2}$"
+???+ example "示例 5.20: N ${}_{2}$ 的 XYG3 计算"
     ```qchem
     $molecule
        0 1
@@ -238,10 +176,9 @@ auxiliary basis set.
     $end
     ```
 
-The next example illustrates XYGJ-OS. This functional uses the RI
-approximation by default, so it is necessary to specify an auxiliary basis set.
+下一个示例演示 XYGJ-OS。该泛函默认使用 RI 近似，因此必须指定辅助基组。
 
-???+ example "Example 5.21: XYGJ-OS calculation of N ${}_{2}$"
+???+ example "示例 5.21: N ${}_{2}$ 的 XYGJ-OS 计算"
     ```qchem
     $molecule
        0 1
@@ -258,12 +195,9 @@ approximation by default, so it is necessary to specify an auxiliary basis set.
     $end
     ```
 
-The final example uses the local version of XYGJ-OS, which is the same as the
-original XYGJ-OS but with the use of the attenuated Coulomb metric to solve the
-RI coefficients. Here, the keyword omega determines the locality of
-the metric.
+最后一个示例使用 XYGJ-OS 的局域版本，它与原始 XYGJ-OS 相同，只是在求解 RI 系数时采用了衰减库仑度量（attenuated Coulomb metric）。这里，关键字 omega 决定度量的局域程度。
 
-???+ example "Example 5.22: Local XYGJ-OS calculation of N ${}_{2}$"
+???+ example "示例 5.22: N ${}_{2}$ 的局域 XYGJ-OS 计算"
     ```qchem
     $molecule
        0 1

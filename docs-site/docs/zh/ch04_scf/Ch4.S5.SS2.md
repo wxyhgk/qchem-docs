@@ -1,128 +1,122 @@
 ---
-title: "4.5.2 Basic Convergence Control Options"
+title: "4.5.2 基本收敛控制选项"
 ---
 
-## 4.5.2 Basic Convergence Control Options
+## 4.5.2 基本收敛控制选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-See also more detailed options in the following sections, and note that the SCF
-convergence criterion and the integral threshold must be set in a compatible
-manner, (this usually means THRESH should be set to at least 3 higher
-than SCF_CONVERGENCE).
+另请参见后续章节中更详细的选项，并注意 SCF（自洽场）收敛判据与积分类阈值（integral threshold）必须以相互兼容的方式设置（这通常意味着 THRESH 的值应至少比 SCF_CONVERGENCE 高 3）。
 
 MAX_SCF_CYCLES
 
 ### `MAX_SCF_CYCLES`
 
-> **Controls the maximum number of SCF iterations permitted.**
+> **控制所允许的 SCF 迭代最大次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`50`
+> * **选项**：
 >     * $n$
 >     * $n>0$
->     * User-selected.
-> * **Recommendation**: Increase for slowly converging systems such as those containing transition metals.
+>     * 由用户自行选择。
+> * **建议**：对于收敛缓慢的体系（例如含有过渡金属的体系），应增大该值。
 
 SCF_ALGORITHM
 
 ### `SCF_ALGORITHM`
 
-> **Algorithm used for converging the SCF.**
+> **用于驱动 SCF 收敛的算法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `DIIS`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`DIIS`
+> * **选项**：
 >     * DIIS
->     * Pulay DIIS.
+>     * Pulay DIIS（直接迭代子空间法，Direct Inversion in the Iterative Subspace）。
 >     * ROOTHAAN
->     * Roothaan repeated diagonalization
+>     * Roothaan 重复对角化
 >     * DM
->     * Direct minimizer.
+>     * 直接极小化器（Direct minimizer）。
 >     * L_BFGS
->     * Limited memory BFGS algorithm with line search
+>     * 带线搜索的有限内存 BFGS（Limited memory BFGS）算法
 >     * GDM
->     * Geometric Direct Minimization
+>     * 几何直接极小化（Geometric Direct Minimization）
 >     * GDM_LS
->     * Like GDM, but employs a line search in L-BFGS
+>     * 与 GDM 类似，但在 L-BFGS 中采用线搜索
 >     * GDM_QLS
->     * Like
+>     * 与
 >     * GDM_LS
->     * , but uses a quadratic line search in L-BFGS
+>     * 类似，但在 L-BFGS 中使用二次线搜索
 >     * RCA
->     * Relaxed-constraint algorithm
+>     * 松弛约束算法（Relaxed-constraint algorithm）
 >     * ADIIS
->     * The combination of the ARH energy function and DIIS by Hu and Yang
+>     * Hu 和 Yang 提出的 ARH 能量函数与 DIIS 的组合
 >     * NEWTON_CG
->     * Solve
+>     * 求解
 >     * $\mathbf{Hd}=-\mathbf{g}$
->     * using conjugated gradients to determine Newton steps
->     * (see also
+>     * 采用共轭梯度法确定牛顿步（Newton steps）
+>     * （另见
 >     * NEWTON_MINRES
->     * , which uses the MINRES algorithm
->     * to solve the linear equation)
+>     * ，该选项使用 MINRES 算法
+>     * 求解上述线性方程）
 >     * DIIS_DM
->     * Uses DIIS initially, switching to direct minimizer for later iterations
->     * (See
+>     * 初始阶段使用 DIIS，后续迭代切换为直接极小化器
+>     * （参见
 >     * THRESH_DIIS_SWITCH
->     * ,
+>     * 、
 >     * MAX_DIIS_CYCLES
->     * )
+>     * ）
 >     * DIIS_GDM
->     * Use DIIS and then later switch to geometric direct minimization
->     * (See
+>     * 先使用 DIIS，随后切换为几何直接极小化
+>     * （参见
 >     * THRESH_DIIS_SWITCH
->     * ,
+>     * 、
 >     * MAX_DIIS_CYCLES
->     * )
+>     * ）
 >     * LS_DIIS
->     * Uses level-shifting initially, switching to DIIS for later iterations
->     * (See
+>     * 初始阶段使用能级移动（level shifting），后续迭代切换为 DIIS
+>     * （参见
 >     * THRESH_LS_SWITCH
->     * ,
+>     * 、
 >     * MAX_LS_CYCLES
->     * )
+>     * ）
 >     * RCA_DIIS
->     * Use RCA initially, switching to DIIS for later iterations
->     * (See
+>     * 初始阶段使用 RCA，后续迭代切换为 DIIS
+>     * （参见
 >     * THRESH_RCA_SWITCH
->     * and
+>     * 和
 >     * MAX_RCA_CYCLES
->     * )
+>     * ）
 >     * ADIIS_DIIS
->     * Use ADIIS initially, switching to DIIS for later iterations
->     * (See
+>     * 初始阶段使用 ADIIS，后续迭代切换为 DIIS
+>     * （参见
 >     * THRESH_ADIIS_SWITCH
->     * and
+>     * 和
 >     * MAX_ADIIS_CYCLES
->     * )
+>     * ）
 >     * ROBUST
->     * New black-box workflow for robust convergence featuring tighter
->     * thresholds and a combination of algorithms (DIIS, ADIIS, and GDM).
+>     * 用于稳健收敛的新型黑箱（black-box）工作流，采用更严格的阈值
+>     * 并结合多种算法（DIIS、ADIIS 和 GDM）。
 >     * ROBUST_STABLE
->     * Does stability analysis on top of the ROBUST procedure.
-> * **Recommendation**: Use DIIS unless performing a restricted open-shell calculation, in which case GDM is recommended. If DIIS fails to find a reasonable approximate solution in the initial iterations, RCA_DIIS or ADIIS_DIIS are the recommended fallback options. If DIIS approaches the correct solution but fails to finally converge, DIIS_GDM is the recommended fallback. For systems with a small HOMO/LUMO gap, and where, DIIS fails to converge, LS_DIIS may help. If nothing works, try ROBUST or ROBUST_STABLE . Please report failed SCF convergence to the Q-Chem office, in order to help refine these workflows.
+>     * 在 ROBUST 流程的基础上额外进行稳定性分析。
+> * **建议**：默认使用 DIIS；除非进行受限开壳层（restricted open-shell）计算，此时推荐使用 GDM。如果 DIIS 在初始迭代中无法找到合理的近似解，则推荐的备选方案是 RCA_DIIS 或 ADIIS_DIIS。如果 DIIS 已接近正确解但最终无法收敛，则推荐的备选方案是 DIIS_GDM。对于 HOMO/LUMO 能隙较小且 DIIS 无法收敛的体系，LS_DIIS 可能有所帮助。如果上述方法均无效，请尝试 ROBUST 或 ROBUST_STABLE。请将 SCF 收敛失败的情况反馈给 Q-Chem 办公室，以帮助完善这些工作流。
 
-**Note**:
-For usage of the ROBUST or ROBUST_STABLE algorithms, see Section [4.5.13](sub_scf_robust_pipelines.md).
-For the Squared Gradient Minimization (SGM) and related algorithms, see Section [4.5.15](sect_SGM-SCF.md).
+**注**：
+关于 ROBUST 或 ROBUST_STABLE 算法的使用，参见第 [4.5.13](sub_scf_robust_pipelines.md) 节。
+关于平方梯度极小化（Squared Gradient Minimization, SGM）及相关算法，参见第 [4.5.15](sect_SGM-SCF.md) 节。
 
 SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 
-> **SCF is considered converged when the wave function error is $<10^{-\mathrm{SCF\_CONVERGENCE}}$ . Adjust the value of THRESH at the same time.**
+> **当波函数误差 $<10^{-\mathrm{SCF\_CONVERGENCE}}$ 时，即认为 SCF 已收敛。请同时调整 THRESH 的值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **选项**：
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
-> * **Recommendation**: Tighter criteria for geometry optimization and vibration analysis. Larger values provide more significant figures, at greater computational cost.
+> * **建议**：几何优化和振动分析需要更严格的收敛判据。较大的值可提供更多有效数字，但计算代价也更高。
 
-In some cases besides the total SCF energy, one needs its separate energy
-components, like kinetic energy, exchange energy, correlation energy, *etc.*
-The values of these components are printed at each SCF cycle if one specifies
-SCF_PRINT = 1 in the input.
+在某些情况下，除了 SCF 总能量之外，还需要其各个能量组分，例如动能、交换能、相关能等（*etc.*）。如果在输入中指定 SCF_PRINT = 1，则这些组分的数值将在每一轮 SCF 循环中被打印出来。

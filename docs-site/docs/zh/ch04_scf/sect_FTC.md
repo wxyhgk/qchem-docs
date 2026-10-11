@@ -1,105 +1,73 @@
 ---
-title: "4.6.5 Fourier Transform Coulomb Method"
+title: "4.6.5 傅里叶变换库仑方法"
 ---
 
-## 4.6.5 Fourier Transform Coulomb Method
+## 4.6.5 傅里叶变换库仑方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The Coulomb part of the DFT calculations using ordinary Gaussian
-representations can be sped up dramatically using plane waves as a secondary
-basis set by replacing the most costly analytical electron repulsion integrals
-with numerical integration techniques. The main advantages to keeping the
-Gaussians as the primary basis set is that the diagonalization step is much
-faster than using plane waves as the primary basis set, and all electron
-calculations can be performed analytically.
+在使用常规高斯表示的 DFT 计算中，可以通过将平面波作为辅助基组来大幅加速库仑部分的计算，其做法是用数值积分技术替代最昂贵的解析电子排斥积分。保留高斯函数作为主基组的主要优势在于：对角化步骤比以平面波为主基组时要快得多，并且所有电子计算都可以解析地完成。
 
-The Fourier Transform Coulomb (FTC) technique[[423]](../bib_references/bib.md#bib431)
- is
-precise and tunable and all results are practically identical with the
-traditional analytical integral calculations. The FTC technique is at least
-2–3 orders of magnitude more accurate then other popular plane wave based
-methods using the same energy cutoff. It is also at least 2–3 orders of
-magnitude more accurate than the density fitting (resolution-of-identity)
-technique. Recently, an efficient way to implement the forces of the Coulomb
-energy was introduced,[[425]](../bib_references/bib.md#bib433)
- and a new technique to localize
-filtered core functions. Both of these features have been implemented within
-**Q-Chem** and contribute to the efficiency of the method.
+傅里叶变换库仑（Fourier Transform Coulomb, FTC）技术[[423]](../bib_references/bib.md#bib431)精确且可调节，其所有结果与传统解析积分计算的结果实际上完全一致。在相同的能量截断（energy cutoff）条件下，FTC 技术的精度至少比其他流行的基于平面波的方法高出 2–3 个数量级。它的精度也至少比密度拟合（分辨率恒等，density fitting (resolution-of-identity)）技术高出 2–3 个数量级。最近，人们提出了一种高效实现库仑能量梯度（forces）的方法，[[425]](../bib_references/bib.md#bib433)
+ 并开发了一种新的局域化过滤核函数（localize filtered core functions）技术。这两项功能均已在 **Q-Chem** 中实现，并进一步提升了该方法的效率。
 
-The FTC method achieves these spectacular results by replacing the analytical
-integral calculations, whose computational costs scales as ${\cal{O}}({N^{4}})$ (where
-$N$ is the number of basis function) with procedures that scale as only
-${\cal{O}}({N^{2}})$. The asymptotic scaling of computational costs with system size is
-linear versus the analytical integral evaluation which is quadratic. Research
-at **Q-Chem** Inc. has yielded a new, general, and very efficient implementation
-of the FTC method which work in tandem with the J-engine and the CFMM
-(Continuous Fast Multipole Method) techniques.[[422]](../bib_references/bib.md#bib434)
+FTC 方法之所以能取得如此卓越的效果，是因为它用仅按
+${\cal{O}}({N^{2}})$ 规模增长的流程，替代了计算成本按 ${\cal{O}}({N^{4}})$ 规模增长（其中 $N$ 为基函数数目）的解析积分计算。其计算成本随体系规模的渐进行为是线性的，而解析积分评估则是二次方的。**Q-Chem** Inc. 的研究工作催生了一种新颖、通用且极为高效的 FTC 方法实现，它与 J-engine 及 CFMM（快速多极子方法，Continuous Fast Multipole Method）技术协同工作。[[422]](../bib_references/bib.md#bib434)
 
-In the current implementation the speed-ups arising from the FTC technique are
-moderate when small or medium Pople basis sets are used. The reason is that the
-J-matrix engine and CFMM techniques provide an already highly efficient
-solution to the Coulomb problem. However, increasing the number of
-polarization functions and, particularly, the number of diffuse functions
-allows the FTC to come into its own and gives the most significant
-improvements. For instance, using the 6-311G+(df,pd) basis set for a
-medium-to-large size molecule is more affordable today then before. We found
-also significant speed ups when non–Pople basis sets are used such as cc-pvTZ.
-The FTC energy and gradients calculations are implemented to use up to $f$-type
-basis functions.
+在当前的实现中，当使用小型或中型 Pople 基组时，FTC 技术带来的加速较为有限。原因在于 J-matrix 引擎和 CFMM 技术已经为库仑问题提供了高度高效的解决方案。然而，增加极化函数的数目，尤其是扩散函数的数目，能够使 FTC 充分发挥优势，从而带来最显著的性能提升。例如，如今对中到大型分子使用 6-311G+(df,pd) 基组比过去更加可行。我们还发现，当使用非 Pople 型基组（如 cc-pvTZ）时同样有显著的加速。FTC 的能量与梯度计算已实现为可使用至 $f$ 型基函数。
 
 FTC
 
 ### `FTC`
 
-> **Controls the overall use of the FTC.**
+> **控制 FTC 的整体使用情况。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not use FTC in the Coulomb part
+>     * 在库仑部分中不使用 FTC
 >     * 1
->     * Use FTC in the Coulomb part
-> * **Recommendation**: Use FTC when bigger and/or diffuse basis sets are used.
+>     * 在库仑部分中使用 FTC
+> * **建议**: 当使用较大和/或扩散基组时启用 FTC。
 
 FTC_SMALLMOL
 
 ### `FTC_SMALLMOL`
 
-> **Controls whether or not the operator is evaluated on a large grid and stored in memory to speed up the calculation.**
+> **控制是否在大型网格上计算算符并将其存储在内存中以加速计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 1
->     * Use a big pre-calculated array to speed up the FTC calculations
+>     * 使用预先计算的大型数组来加速 FTC 计算
 >     * 0
->     * Use this option to save some memory
-> * **Recommendation**: Use the default if possible and use 0 (or buy some more memory) when needed.
+>     * 使用此选项以节省一些内存
+> * **建议**: 尽可能使用默认值，必要时使用 0（或者增加更多内存）。
 
 FTC_CLASS_THRESH_ORDER
 
 ### `FTC_CLASS_THRESH_ORDER`
 
-> **Together with FTC_CLASS_THRESH_MULT , determines the cutoff threshold for included a shell-pair in the $dd$ class, i.e. , the class that is expanded in terms of plane waves.**
+> **与 FTC_CLASS_THRESH_MULT 一起，决定将某个壳层对（shell-pair）纳入 $dd$ 类（即以平面波展开的类）时所采用的截断阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * $n$
->     * User specified
-> * **Recommendation**: Use the default.
+>     * 用户指定
+> * **建议**: 使用默认值。
 
 FTC_CLASS_THRESH_MULT
 
 ### `FTC_CLASS_THRESH_MULT`
 
-> **Together with FTC_CLASS_THRESH_ORDER , determines the cutoff threshold for included a shell-pair in the $dd$ class, i.e. , the class that is expanded in terms of plane waves.**
+> **与 FTC_CLASS_THRESH_ORDER 一起，决定将某个壳层对（shell-pair）纳入 $dd$ 类（即以平面波展开的类）时所采用的截断阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * $n$
->     * User specified.
-> * **Recommendation**: Use the default. If diffuse basis sets are used and the molecule is relatively big then tighter FTC classification threshold has to be used. According to our experiments using Pople-type diffuse basis sets, the default $5\times 10^{-5}$ value provides accurate result for an alanine5 molecule while $1\times 10^{-5}$ threshold value for alanine10 and $5\times 10^{-6}$ value for alanine15 has to be used.
+>     * 用户指定。
+> * **建议**: 使用默认值。如果使用扩散基组且分子相对较大，则必须使用更严格的 FTC 分类阈值。根据我们对 Pople 型扩散基组的实验，默认的 $5\times 10^{-5}$ 值可为 alanine5 分子提供准确的结果，而对 alanine10 必须使用 $1\times 10^{-5}$ 的阈值，对 alanine15 则须使用 $5\times 10^{-6}$ 的值。

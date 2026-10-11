@@ -1,109 +1,102 @@
 ---
-title: "5.3.2 Suggested Density Functionals"
+title: "5.3.2 推荐的密度泛函"
 ---
 
-## 5.3.2 Suggested Density Functionals
+## 5.3.2 推荐的密度泛函
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** contains over 150 exchange-correlation functionals, not counting those
-that can be straightforwardly appended with a dispersion correction (such as
-B3LYP-D3). Therefore, we suggest a few functionals from the second through
-fourth rungs of Jacob’s Ladder in order to guide functional selection. Most of
-these suggestions come from a benchmark of over 200 density functionals on a
-vast database of nearly 5000 data points, covering non-covalent interactions,
-isomerization energies, thermochemistry, and barrier heights. **The
-single recommended method from each category is indicated in bold.**
+**Q-Chem** 包含超过 150 种交换-关联泛函（exchange-correlation functional），这还不包括那些可以直接附加色散校正（dispersion correction）的泛函（例如 B3LYP-D3）。因此，我们从"雅各布阶梯（Jacob's Ladder）"的第二至第四层中推荐几种泛函，以指导泛函的选择。这些推荐大多来自一项基准测试，该测试在涵盖非共价相互作用、异构化能、热化学和势垒高度的近 5000 个数据点的大型数据库上，对 200 多种密度泛函进行了评估。**每个类别中唯一推荐的方法以粗体标示。**
 
-From the GGAs on Rung 2, we recommend:
+对于第 2 层的广义梯度近似（Generalized Gradient Approximation, GGA），我们推荐：
 
 - •
 
-**B97-D3(BJ)**: METHOD = B97-D3 and DFT_D = D3_BJ
+**B97-D3(BJ)**：METHOD = B97-D3 且 DFT_D = D3_BJ
 - •
 
-revPBE-D3(BJ): METHOD = revPBE and DFT_D = D3_BJ
+revPBE-D3(BJ)：METHOD = revPBE 且 DFT_D = D3_BJ
 - •
 
-BLYP-D3(BJ): METHOD = BLYP and DFT_D = D3_BJ
+BLYP-D3(BJ)：METHOD = BLYP 且 DFT_D = D3_BJ
 - •
 
-PBE: METHOD = PBE
+PBE：METHOD = PBE
 
-From the meta-GGAs on Rung 3, we recommend:
-
-- •
-
-**B97M-rV**: METHOD = B97M-rV
-- •
-
-MS1-D3(0): METHOD = MGGA_MS1 and DFT_D = D3_ZERO
-- •
-
-MS2-D3(0): METHOD = MGGA_MS2 and DFT_D = D3_ZERO
-- •
-
-M06-L-D3(0): METHOD = M06-L and DFT_D = D3_ZERO
-- •
-
-TPSS-D3(BJ): METHOD = TPSS and DFT_D = D3_BJ
-
-From the hybrid GGAs on Rung 4, we recommend:
+对于第 3 层的 meta-GGA，我们推荐：
 
 - •
 
-$\omega$**B97X-V**: METHOD = wB97X-V
+**B97M-rV**：METHOD = B97M-rV
 - •
 
-$\omega$B97X-D3S(BJ): METHOD = wB97X-D3S(BJ)
+MS1-D3(0)：METHOD = MGGA_MS1 且 DFT_D = D3_ZERO
 - •
 
-$\omega$B97X-D: METHOD = wB97X-D
+MS2-D3(0)：METHOD = MGGA_MS2 且 DFT_D = D3_ZERO
 - •
 
-B3LYP-D3(BJ): METHOD = B3LYP and DFT_D = D3_BJ
+M06-L-D3(0)：METHOD = M06-L 且 DFT_D = D3_ZERO
 - •
 
-revPBE0-D3(BJ): METHOD = revPBE0 and DFT_D = D3_BJ
+TPSS-D3(BJ)：METHOD = TPSS 且 DFT_D = D3_BJ
 
-From the hybrid meta-GGAs on Rung 4, we recommend:
-
-- •
-
-**COACH**: METHOD = COACH
-- •
-
-$\omega$**B97M-V**: METHOD = wB97M-V
-- •
-
-CF22D: METHOD = CF22D
-- •
-
-M06-2X-D3(0): METHOD = M06-2X and DFT_D = D3_ZERO
-- •
-
-TPSSh-D3(BJ): METHOD = TPSSh and DFT_D = D3_BJ
-
-From the double-hybrid GGAs on Rung 5, we recommend:
+对于第 4 层的混合 GGA（hybrid GGA），我们推荐：
 
 - •
 
-$\omega$**B97X-2(LP)**: METHOD = wB97X-2(LP)
+$\omega$**B97X-V**：METHOD = wB97X-V
 - •
 
-$\omega$**B97X-2(TQZ)**: METHOD = wB97X-2(TQZ)
+$\omega$B97X-D3S(BJ)：METHOD = wB97X-D3S(BJ)
 - •
 
-**DSD-PBEPBE-D3**: METHOD = DSD-PBEPBE-D3
+$\omega$B97X-D：METHOD = wB97X-D
 - •
 
-**revDSD-PBEP86-D4**: METHOD = revDSD-PBEP86-D4
+B3LYP-D3(BJ)：METHOD = B3LYP 且 DFT_D = D3_BJ
+- •
 
-From the double-hybrid mGGAs on Rung 5, we recommend:
+revPBE0-D3(BJ)：METHOD = revPBE0 且 DFT_D = D3_BJ
+
+对于第 4 层的混合 meta-GGA，我们推荐：
 
 - •
 
-$\omega$**B97M-(2)**: METHOD = wB97M-(2)
+**COACH**：METHOD = COACH
 - •
 
-**PTPSS-D3**: METHOD = PTPSS-D3
+$\omega$**B97M-V**：METHOD = wB97M-V
+- •
+
+CF22D：METHOD = CF22D
+- •
+
+M06-2X-D3(0)：METHOD = M06-2X 且 DFT_D = D3_ZERO
+- •
+
+TPSSh-D3(BJ)：METHOD = TPSSh 且 DFT_D = D3_BJ
+
+对于第 5 层的双杂化 GGA（double-hybrid GGA），我们推荐：
+
+- •
+
+$\omega$**B97X-2(LP)**：METHOD = wB97X-2(LP)
+- •
+
+$\omega$**B97X-2(TQZ)**：METHOD = wB97X-2(TQZ)
+- •
+
+**DSD-PBEPBE-D3**：METHOD = DSD-PBEPBE-D3
+- •
+
+**revDSD-PBEP86-D4**：METHOD = revDSD-PBEP86-D4
+
+对于第 5 层的双杂化 meta-GGA，我们推荐：
+
+- •
+
+$\omega$**B97M-(2)**：METHOD = wB97M-(2)
+- •
+
+**PTPSS-D3**：METHOD = PTPSS-D3

@@ -1,92 +1,62 @@
 ---
-title: "10.8.4 Partial Hessian Vibrational Analysis"
+title: "10.8.4 部分 Hessian 振动分析"
 ---
 
-## 10.8.4 Partial Hessian Vibrational Analysis
+## 10.8.4 部分 Hessian 振动分析
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The computation of harmonic frequencies for systems with a very large number of
-atoms can become computationally expensive. However, in many cases only a few
-specific vibrational modes or vibrational modes localized in a region of the
-system are of interest. A typical example is the calculation of the vibrational
-modes of a molecule adsorbed on a surface. In such a case, only the vibrational
-modes of the adsorbate are useful, and the vibrational modes associated with
-the surface atoms are of less interest. If the vibrational modes of interest
-are only weakly coupled to the vibrational modes associated with the rest of
-the system, it can be appropriate to adopt a partial Hessian approach. In this
-approach,[[120]](../bib_references/bib.md#bib109)
- only the part of the Hessian matrix
-comprising the second derivatives of a subset of the atoms defined by the user
-is computed. These atoms are defined in the *$alist* block. This results in a
-significant decrease in the cost of the calculation. Physically, this
-approximation corresponds to assigning an infinite mass to all the atoms
-excluded from the Hessian and will only yield sensible results if these atoms
-are not involved in the vibrational modes of interest. VPT2 and TOSH anharmonic
-frequencies can be computed following a partial Hessian
-calculation.[[519]](../bib_references/bib.md#bib533)
- It is also possible to include a subset of
-the harmonic vibrational modes with an anharmonic frequency calculation by setting
-ANHAR_SEL = TRUE in the *$rem* section.
-This can be useful to reduce the
-computational cost of an anharmonic frequency calculation or to explore the
-coupling between specific vibrational modes.
+对于原子数非常多的体系，谐振频率的计算可能变得极为昂贵。然而在许多情况下，人们只关心少数几个特定的振动模式，或局域在体系某个区域内的振动模式。一个典型的例子是吸附在表面上的分子的振动模式计算。在这种情况下，只有吸附质的振动模式是有用的，而与表面原子相关的振动模式则不太受关注。如果所关心的振动模式与体系其余部分相关的振动模式之间仅存在弱耦合，那么采用部分 Hessian 方法是合适的。在这种方法中，[[120]](../bib_references/bib.md#bib109)
+ 仅计算由用户定义的原子子集所对应的二阶导数构成的那部分 Hessian 矩阵。这些原子在 *$alist* 块中定义。这样可以显著降低计算成本。从物理上看，这一近似相当于对 Hessian 中排除的所有原子赋予无限大质量，只有当这些原子不参与所关心的振动模式时，才能得到合理的结果。在部分 Hessian 计算之后，可以计算 VPT2 和 TOSH 非谐频率。[[519]](../bib_references/bib.md#bib533)
+ 也可以通过在 *$rem* 段中设置 ANHAR_SEL = TRUE，将谐振振动模式的某个子集纳入非谐频率计算。这对于降低非谐频率计算的计算成本，或探索特定振动模式之间的耦合，都很有用。
 
-Alternatively, vibrationally averaged interactions with the rest of the system
-can be folded into a partial Hessian calculation using vibrational subsystem
-analysis.[[1574]](../bib_references/bib.md#bib1636)
- Based on an adiabatic approximation,
-this procedure reduces the cost of diagonalizing the full Hessian, while
-providing a local probe of fragments vibrations, and providing better than
-partial Hessian accuracy for the low frequency modes of large
-molecules.[[439]](../bib_references/bib.md#bib450)
- Mass-effects from the rest of the system can be
-vibrationally averaged or excluded within this scheme.
+或者，可以利用振动子系统分析[[1574]](../bib_references/bib.md#bib1636)
+，将体系其余部分的振动平均相互作用折叠到部分 Hessian 计算中。该方法基于绝热近似，降低了同时对角化完整 Hessian 的成本，同时提供对碎片振动的局域探测，并且对于大分子的低频模式，其精度优于部分 Hessian 方法。[[439]](../bib_references/bib.md#bib450)
+ 在该框架内，体系其余部分的质量效应可以被振动平均化或排除在外。
 
 PHESS
 
 ### `PHESS`
 
-> **Controls whether partial Hessian calculations are performed.**
+> **控制是否执行部分 Hessian 计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * Partial Hessian calculation.
+>     * 部分 Hessian 计算。
 >     * 2
->     * Vibrational subsystem analysis (massless).
+>     * 振动子系统分析（无质量）。
 >     * 3
->     * Vibrational subsystem analysis (weighted).
-> * **Recommendation**: None
+>     * 振动子系统分析（加权）。
+> * **建议**: 无
 
 N_SOL
 
 ### `N_SOL`
 
-> **Specifies number of atoms included in the Hessian.**
+> **指定包含在 Hessian 中的原子数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
->     * User defined
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
+>     * 用户定义
+> * **建议**: 无
 
 PH_FAST
 
 ### `PH_FAST`
 
-> **Lowers integral cutoff in partial Hessian calculation is performed.**
+> **在执行部分 Hessian 计算时降低积分截断值。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Lower integral cutoffs
-> * **Recommendation**: None
+>     * 降低积分截断值
+> * **建议**: 无
 
-???+ example "Example 10.43: This example shows a partial Hessian frequency calculation of the vibrational
-frequencies of acetylene on a model of the C(100) surface"
+???+ example "示例 10.43: 本例展示了乙炔在 C(100) 表面模型上的部分 Hessian 频率计算"
     ```qchem
     $comment
        acetylene - C(100)

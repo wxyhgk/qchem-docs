@@ -1,118 +1,103 @@
 ---
-title: "7.9.27 Non-Iterative Triples Corrections to EOM-CCSD and CCSD"
+title: "7.9.27 EOM-CCSD 与 CCSD 的非迭代三激发修正"
 ---
 
-## 7.9.27 Non-Iterative Triples Corrections to EOM-CCSD and CCSD
+## 7.9.27 EOM-CCSD 与 CCSD 的非迭代三激发修正
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The effect of triple excitations to EOM-CCSD energies can be included via
-perturbation theory in an economical ${\cal{O}}({N^{7}})$ computational scheme. Using
-EOM-CCSD wave functions as zero-order wave functions, the second order triples
-correction to the $\mu$th EOM-EE or SF state is:
+三激发对 EOM-CCSD 能量的影响可以通过微扰理论以经济高效的 ${\cal{O}}({N^{7}})$ 计算方案加以包含。以 EOM-CCSD 波函数作为零级波函数，第 $\mu$ 个 EOM-EE 或 SF 态的二阶三激发修正为：
 
 <a id="Ch7.E123"></a>
 $$
 \Delta E^{(2)}_{\mu}=-\frac{1}{36}\sum_{i,j,k}\sum_{a,b,c}\frac{{\tilde{\sigma}_{ijk}^{abc}}(\mu){\sigma_{ijk}^{abc}}(\mu)}{D_{ijk}^{abc}-\omega_{\mu}} \tag{7.123}
 $$
 
-where $i,j$ and $k$ denote occupied orbitals, and
-$a,b$ and $c$ are virtual orbital indices. $\omega_{\mu}$ is the
-EOM-CCSD excitation energy of the $\mu$th state.
-The quantities $\tilde{\sigma}$ and $\sigma$ are:
+其中 $i,j$ 和 $k$ 表示占据轨道，$a,b$ 和 $c$ 为虚轨道指标。$\omega_{\mu}$ 是第 $\mu$ 个态的 EOM-CCSD 激发能。
+量 $\tilde{\sigma}$ 和 $\sigma$ 定义为：
 
 <a id="A3.S8.EGx59"></a>
 $$
 \displaystyle\tilde{\sigma}_{ijk}^{abc}(\mu) \tag{7.124}
 $$
 
-where, the $L$ and $R$ are left and right eigen-vectors for $\mu$th state.
-Two different choices of the denominator,
-$D_{ijk}^{abc}$, define the (dT) and (fT) variants of the correction.
-In (fT), $D_{ijk}^{abc}$ is just Hartree–Fock orbital energy differences.
-A more accurate (but not fully orbital invariant) (dT) correction employs
-the complete three body diagonal of $\bar{H}$,
-$\langle\Phi_{ijk}^{abc}|(He^{(T_{1}+T_{2})})_{C}|\Phi_{ijk}^{abc}\rangle$,
-$D_{ijk}^{abc}$as a denominator.
-For the reference (*e.g.*, a ground-state CCSD wave function),
-the (fT) and (dT) corrections are identical to the
-CCSD(2)${}_{T}$ and CR-CCSD(T)${}_{L}$ corrections of Piecuch and coworkers.[[1091]](../bib_references/bib.md#bib1136)
+其中，$L$ 和 $R$ 分别是第 $\mu$ 个态的左本征矢和右本征矢。
+分母 $D_{ijk}^{abc}$ 的两种不同选取方式分别定义了 (dT) 和 (fT) 修正变体。
+在 (fT) 中，$D_{ijk}^{abc}$ 仅取 Hartree–Fock 轨道能之差。
+更为精确（但并非完全轨道不变）的 (dT) 修正则采用 $\bar{H}$ 的完整三体对角元
+$\langle\Phi_{ijk}^{abc}|(He^{(T_{1}+T_{2})})_{C}|\Phi_{ijk}^{abc}\rangle$
+作为分母 $D_{ijk}^{abc}$。
+对于参考态（*例如*，基态 CCSD 波函数），(fT) 和 (dT) 修正分别等价于
+Piecuch 及其合作者提出的 CCSD(2)${}_{T}$ 和 CR-CCSD(T)${}_{L}$ 修正。[[1091]](../bib_references/bib.md#bib1136)
 
-The EOM-SF-CCSD(dT) and EOM-SF-CCSD(fT) methods
-yield a systematic improvement over EOM-SF-CCSD bringing the errors
-below 1 kcal/mol. For theoretical background and detailed benchmarks,
-see Ref. [[887]](../bib_references/bib.md#bib921)
-.
+EOM-SF-CCSD(dT) 和 EOM-SF-CCSD(fT) 方法相较于 EOM-SF-CCSD 可带来系统性的改进，
+将误差降至 1 kcal/mol 以下。理论背景和详细基准测试参见文献 [[887]](../bib_references/bib.md#bib921)。
 
-Similar corrections are available for EOM-IP-CCSD,[[888]](../bib_references/bib.md#bib922)
- where
-triples correspond to $3h2p$ excitations and EOM-EA-CCSD, where triples
-correspond to $2h3p$ excitations.
+类似的修正也适用于 EOM-IP-CCSD，[[888]](../bib_references/bib.md#bib922)
+其中三激发对应于 $3h2p$ 激发；以及 EOM-EA-CCSD，其中三激发对应于 $2h3p$ 激发。
 
-**Note: 
+**注意：
 
-Due to the orbital non-invariance problem, using (dT) correction is discouraged.
+由于轨道非不变性问题，不建议使用 (dT) 修正。
 **
 
-**Note: 
+**注意：
 
-EOM-IP-CCSD(fT) correction is now available both in CCMAN and CCMAN2.
-**.
+EOM-IP-CCSD(fT) 修正现已在 CCMAN 和 CCMAN2 中均可用。
+**。
 
-**Note: 
+**注意：
 
-In CCMAN2, triples corrections can be computed using two different backends,
-**libtensor** and **libpt**. The former is more effective and recommended for larger jobs (see Section [6.13.3](../ch06_correlation/sec_dT.md)).
+在 CCMAN2 中，三激发修正可使用两种不同的后端进行计算，
+即 **libtensor** 和 **libpt**。前者效率更高，推荐用于较大规模的计算任务（参见第 [6.13.3](../ch06_correlation/sec_dT.md) 节）。
 **
 
-## 7.9.27.1 Job Control for Non-Iterative Triples Corrections
+## 7.9.27.1 非迭代三激发修正的任务控制
 
-Triples corrections are requested by using METHOD or
-EOM_CORR:
+三激发修正可通过 METHOD 或 EOM_CORR 关键字请求：
 
 METHOD
 
 ### `METHOD`
 
-> **Specifies the calculation method.**
+> **指定计算方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default value`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`无默认值`
+> * **选项**：
 >     * EOM-CCSD(DT)
->     * EOM-CCSD(dT), available for EE, SF, and IP
+>     * EOM-CCSD(dT)，适用于 EE、SF 和 IP
 >     * EOM-CCSD(FT)
->     * EOM-CCSD(fT), available for EE, SF, IP, and EA
+>     * EOM-CCSD(fT)，适用于 EE、SF、IP 和 EA
 >     * EOM-CCSD(ST)
->     * EOM-CCSD(sT), available for IP
-> * **Recommendation**: None
+>     * EOM-CCSD(sT)，适用于 IP
+> * **建议**：无
 
 EOM_CORR
 
 ### `EOM_CORR`
 
-> **Specifies the correlation level.**
+> **指定关联级别。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **选项**：
 >     * SD(DT)
->     * EOM-CCSD(dT), available for EE, SF, and IP
+>     * EOM-CCSD(dT)，适用于 EE、SF 和 IP
 >     * SD(FT)
->     * EOM-CCSD(fT), available for EE, SF, IP, and EA
+>     * EOM-CCSD(fT)，适用于 EE、SF、IP 和 EA
 >     * SD(ST)
->     * EOM-CCSD(sT), available for IP
-> * **Recommendation**: None
+>     * EOM-CCSD(sT)，适用于 IP
+> * **建议**：无
 
-**Note: 
+**注意：
 
-In CCMAN2, EOM-IP-CCSD(fT) can be computed with or without
-USE_LIBPT = TRUE.
+在 CCMAN2 中，EOM-IP-CCSD(fT) 可在设置 USE_LIBPT = TRUE 或不设置的情况下计算。
 **
 
-## 7.9.27.2 Examples
+## 7.9.27.2 示例
 
-???+ example "Example 7.161: EOM-EE-CCSD(fT) calculation of CH ${}^{+}$ ."
+???+ example "示例 7.161: CH ${}^{+}$ 的 EOM-EE-CCSD(fT) 计算。"
     ```qchem
     $molecule
        1 1
@@ -171,7 +156,7 @@ USE_LIBPT = TRUE.
     $end
     ```
 
-???+ example "Example 7.162: EOM-SF-CCSD(dT) calculations of methylene."
+???+ example "示例 7.162: 卡宾（亚甲基）的 EOM-SF-CCSD(dT) 计算。"
     ```qchem
     $molecule
        0 3
@@ -193,7 +178,7 @@ USE_LIBPT = TRUE.
     $end
     ```
 
-???+ example "Example 7.163: EOM-IP-CCSD(dT) calculations of Mg."
+???+ example "示例 7.163: Mg 的 EOM-IP-CCSD(dT) 计算。"
     ```qchem
     $molecule
        0 1

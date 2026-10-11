@@ -1,42 +1,15 @@
 ---
-title: "5.1.1 Overview"
+title: "5.1.1 概述"
 ---
 
-## 5.1.1 Overview
+## 5.1.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-DFT[[700]](../bib_references/bib.md#bib733)
+密度泛函理论（Density Functional Theory, DFT）[[700]](../bib_references/bib.md#bib733)
 
-has emerged as an accurate, alternative first-principles approach to quantum
-mechanical molecular investigations. DFT calculations account for the overwhelming majority of all quantum chemistry
-calculations, not only because of its proven chemical accuracy, but also because of its relatively low
-computational expense, comparable to Hartree-Fock theory but with treatment of electron correlation that is neglected in
-a HF calculation. These two features suggest that DFT is likely to remain
-a leading method in the quantum chemist’s toolkit well into the future.
-**Q-Chem** contains fast, efficient and accurate algorithms for all popular
-density functionals, making calculations on large molecules possible and practical.
+已成为量子力学分子研究中一种精确的、替代性的第一性原理方法。DFT 计算占据了全部量子化学计算的绝大多数，这不仅是因为其已被证实的化学精度（chemical accuracy），还因为其计算成本相对较低——与 Hartree-Fock 理论相当，但却包含了 HF 计算中所忽略的电子关联（electron correlation）处理。这两大特点表明，DFT 很可能将在未来很长一段时间内继续成为量子化学家工具箱中的领先方法。**Q-Chem** 为所有流行的密度泛函提供了快速、高效且精确的算法，使得对大分子进行计算成为可能且具有实用性。
 
-DFT is primarily a theory of electronic ground state structures based on the
-electron density, $\rho(\mathbf{r})$, as opposed to the many-electron wave function,
-$\Psi(\mathbf{r}_{1},\ldots,\mathbf{r}_{N})$. (Its excited-state extension, time-dependent DFT, is discussed in Section [7.3](../ch07_excited/sect_tddft.md).)
-There are a number of distinct similarities and
-differences between traditional wave function approaches and modern DFT
-methodologies. First, the essential building blocks of the many-electron
-wave function $\Psi$ are single-electron orbitals, which are directly analogous to the
-Kohn-Sham orbitals in the DFT framework. Second, both the
-electron density and the many-electron wave function tend to be constructed
-via a SCF approach that requires the construction of matrix elements that are conveniently very similar.
+DFT 主要是一种基于电子密度 $\rho(\mathbf{r})$（而非多电子波函数 $\Psi(\mathbf{r}_{1},\ldots,\mathbf{r}_{N})$）的电子基态结构理论。（其激发态推广形式——含时密度泛函理论（time-dependent DFT）——将在第 [7.3 节](../ch07_excited/sect_tddft.md) 中讨论。）传统波函数方法与现代 DFT 方法论之间存在诸多明显的异同。首先，多电子波函数 $\Psi$ 的基本构成单元是单电子轨道（single-electron orbitals），它与 DFT 框架中的 Kohn-Sham 轨道直接类似。其次，电子密度和多电子波函数通常都通过自洽场（SCF）方法构造，而该方法所需的矩阵元构造在形式上极为相似。
 
-However, traditional *ab initio* approaches using the many-electron wave function as a
-foundation must resort to a post-SCF calculation (Chapter [6](../ch06_correlation/chap_correlation.md))
-to incorporate correlation effects, whereas DFT approaches incorporate correlation at the SCF level.
-Post-SCF methods, such as perturbation theory or coupled-cluster theory are extremely expensive
-relative to the SCF procedure. On the
-other hand, while the DFT approach is exact in principle, in practice it relies on
-modeling an unknown exchange-correlation energy functional. While more
-accurate forms of such functionals are constantly being developed, there is no
-systematic way to improve the functional to achieve an arbitrary level of
-accuracy. Thus, the traditional approaches offer the possibility of achieving
-a systematically-improvable level of accuracy, but can be computationally demanding, whereas
-DFT approaches offer a practical route, but the theory is currently incomplete.
+然而，以多电子波函数为基础的传统 *ab initio* 方法必须借助 SCF 之后的后处理计算（第 [6 章](../ch06_correlation/chap_correlation.md)）来纳入关联效应，而 DFT 方法则在 SCF 层面就已纳入关联。微扰理论（perturbation theory）或耦合簇理论（coupled-cluster theory）等 SCF 后（Post-SCF）方法，相对于 SCF 流程而言计算代价极其高昂。另一方面，尽管 DFT 方法在原则上是精确的，但在实践中它依赖于对一个未知的交换-关联（exchange-correlation）能量泛函进行建模。虽然更精确的泛函形式在不断被发展，但并不存在系统性地改进泛函以达到任意精度等级的方法。因此，传统方法提供了实现可系统性提升的精度等级的可能性，但计算需求可能很高；而 DFT 方法提供了一条切实可行的途径，但其理论目前尚不完整。

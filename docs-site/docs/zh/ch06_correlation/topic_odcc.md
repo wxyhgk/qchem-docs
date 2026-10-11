@@ -1,56 +1,28 @@
 ---
-title: "6.12.8 Optimized Orbital Coupled Cluster Doubles (OD)"
+title: "6.12.8 优化轨道耦合簇双激发（OD）"
 ---
 
-## 6.12.8 Optimized Orbital Coupled Cluster Doubles (OD)
+## 6.12.8 优化轨道耦合簇双激发（OD）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-It is possible to greatly simplify the CCSD equations by omitting the single
-substitutions (*i.e.*, setting the $T_{1}$ operator to zero). If the same single
-determinant reference is used (specifically the Hartree-Fock determinant),
-then this defines the coupled-cluster doubles (CCD) method, as specified by the following equations:
+通过省略单替换（single substitutions）（*即*，将 $T_{1}$ 算符置为零），可以极大地简化 CCSD 方程。如果仍使用相同的单行列式参考态（具体为 Hartree-Fock 行列式），则由此定义了耦合簇双激发（coupled-cluster doubles, CCD）方法，其由下列方程给出：
 
 <a id="eq527"></a>
 $$
 \displaystyle E_{\text{CCD}} \tag{6.75a}
 $$
 
-The CCD method cannot itself usually be recommended because while pair
-correlations are all correctly included, the neglect of single substitutions
-causes calculated energies and properties to be significantly less reliable
-than for CCSD. Single substitutions play a role very similar to orbital
-optimization, in that they effectively alter the reference determinant to be
-more appropriate for the description of electron correlation (the Hartree-Fock
-determinant is optimized in the absence of electron correlation).
+CCD 方法本身通常不被推荐，因为虽然所有的对关联（pair correlations）都被正确包含，但对单替换的忽略使得计算得到的能量和性质明显不如 CCSD 可靠。单替换所起的作用与轨道优化极为相似：它们实际上改变了参考行列式，使其更适合用于描述电子关联（而 Hartree-Fock 行列式是在不考虑电子关联的条件下优化得到的）。
 
-This suggests an alternative to CCSD and QCISD that has some additional
-advantages. This is the optimized orbital CCD method (OO-CCD), which we
-normally refer to as simply optimized doubles (OD).[[1251]](../bib_references/bib.md#bib1304)
- The
-OD method is defined by the CCD equations above, plus the additional set of
-conditions that the cluster energy is minimized with respect to orbital
-variations. This may be mathematically expressed by
+由此提出了一种 CCSD 和 QCISD 的替代方法，并且它具有若干额外的优势。这就是优化轨道 CCD 方法（optimized orbital CCD, OO-CCD），我们通常简称为优化双激发（optimized doubles, OD）。[[1251]](../bib_references/bib.md#bib1304)
+ OD 方法由上述 CCD 方程加上一组附加条件定义，即团簇能量相对于轨道变化取极小值。这可以用数学形式表达为
 
 <a id="eq529"></a>
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{i}^{a}}=0 \tag{6.76}
 $$
 
-where the rotation angle $\theta_{i}^{a}$ mixes the $i$th occupied orbital
-with the $a$th virtual (empty) orbital. Thus the orbitals that define
-the single determinant reference are optimized to minimize the coupled-cluster
-energy, and are variationally best for this purpose. The resulting orbitals are
-approximate Brueckner orbitals.
+其中旋转角 $\theta_{i}^{a}$ 将第 $i$ 个占据轨道与第 $a$ 个虚（空）轨道混合。因此，定义单行列式参考态的轨道经过优化以使耦合簇能量极小化，从而在变分意义上最适合这一目的。所得到的轨道是近似的 Brueckner 轨道（Brueckner orbitals）。
 
-The OD method has the advantage of formal simplicity (orbital variations and
-single substitutions are essentially redundant variables). In cases where
-Hartree-Fock theory performs poorly (for example artificial symmetry
-breaking, or non-convergence), it is also practically advantageous to use the OD
-method, where the HF orbitals are not required, rather than CCSD or QCISD.
-**Q-Chem** supports both energies and analytical gradients using the OD method.
-The computational cost for the OD energy is more than twice that of the CCSD or
-QCISD method, but the total cost of energy plus gradient is roughly similar,
-although OD remains more expensive. An additional advantage of the OD method is
-that it can be performed in an active space, as discussed later, in
-Section [6.14](sect_ccactive.md).
+OD 方法的优点在于形式上的简洁性（轨道变化与单替换本质上是冗余变量）。在 Hartree-Fock 理论表现不佳的情况下（例如非物理的对称性破缺，或者不收敛），使用不需要 HF 轨道的 OD 方法，相比于 CCSD 或 QCISD，在实际应用中也具有优势。**Q-Chem** 支持使用 OD 方法计算能量和解析梯度。OD 能量的计算成本是 CCSD 或 QCISD 方法的两倍多，但能量加梯度的总成本大致相当，尽管 OD 仍然更为昂贵。OD 方法的另一个优点是它可以在活性空间（active space）中进行，如后文 [6.14](sect_ccactive.md) 节所述。

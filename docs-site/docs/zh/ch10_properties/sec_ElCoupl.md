@@ -1,13 +1,13 @@
 ---
-title: "10.15 Electronic Couplings for Electron- and Energy Transfer"
+title: "10.15 电子转移与能量转移的电子耦合"
 ---
 
-# 10.15 Electronic Couplings for Electron- and Energy Transfer
+# 10.15 电子转移与能量转移的电子耦合
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [10.15.1 Eigenstate-Based Methods](Ch10.S15.SS1.md)
+- [10.15.1 基于本征态的方法](Ch10.S15.SS1.md)
 
-- [10.15.2 Diabatic-State-Based Methods](topic_dc.md)
+- [10.15.2 基于 diabatic 态（非绝热态）的方法](topic_dc.md)
 
-- [10.15.3 Fragment-Based Methods for Electronic Coupling](subsec_frag_diabat.md)
+- [10.15.3 基于片段（Fragment)的电子耦合方法](subsec_frag_diabat.md)

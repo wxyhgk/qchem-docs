@@ -1,54 +1,17 @@
 ---
-title: "8.1.1 Overview"
+title: "8.1.1 概述"
 ---
 
-## 8.1.1 Overview
+## 8.1.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-A basis set is a set of functions combined linearly to model molecular
-orbitals. Basis functions can be considered as representing the atomic orbitals
-of the atoms and are introduced in quantum chemical calculations because the
-equations defining the molecular orbitals are otherwise very difficult to solve.
+基组（Basis Set）是一组通过线性组合来描述分子轨道的函数。基函数（Basis Function）可以被视为代表原子的原子轨道（Atomic Orbital），之所以在量子化学计算中引入它们，是因为若不借助基组，定义分子轨道的方程将极难求解。
 
-Many standard basis sets have been carefully optimized and tested over the
-years. In principle, a user would employ the largest basis set available in
-order to model molecular orbitals as accurately as possible. In practice, the
-computational cost grows rapidly with the size of the basis set so a compromise
-must be sought between accuracy and cost. If this is systematically pursued, it
-leads to a “theoretical model chemistry”,
+许多标准基组多年来经过了精心的优化和检验。原则上，用户应当使用可用的最大基组，以尽可能精确地描述分子轨道。但实践中，计算开销随基组 size 的增大而迅速增长，因此必须在精度与成本之间寻求折中。若系统性地沿此思路进行，就形成了所谓的"理论模型化学"（theoretical model chemistry），
 
- that is, a
-well-defined energy procedure (*e.g.*, Hartree-Fock) in combination with a
-well-defined basis set.
+即一套定义明确的能量计算方法（*例如*，Hartree-Fock）与一套定义明确的基组的组合。
 
-Basis sets have been constructed from Slater, Gaussian, plane wave and delta
-functions. Slater functions were initially employed because they are considered
-“natural” and have the correct behavior at the origin and in the asymptotic
-regions. However, the two-electron repulsion integrals (ERIs) encountered when
-using Slater basis functions are expensive and difficult to evaluate. Delta
-functions are used in several quantum chemistry programs. However, while codes
-incorporating delta functions are simple, thousands of functions are required
-to achieve accurate results, even for small molecules. Plane waves are widely
-used and highly efficient for calculations on periodic systems, but are not so
-convenient or natural for molecular calculations.
+基组可以由 Slater 函数、Gauss 函数、平面波（Plane Wave）和 Delta 函数构造而成。Slater 函数最初被采用，是因为它们被认为是"自然的"，并且在原点处和渐近区域都具有正确的行为。然而，使用 Slater 基函数时遇到的双电子排斥积分（Electron Repulsion Integrals, ERIs）计算代价高昂且难以求值。Delta 函数被若干量子化学程序所使用。然而，尽管采用 Delta 函数的程序实现简单，但即便对于小分子，也需要成千上万个函数才能获得精确的结果。平面波在周期性体系的计算中应用广泛且效率极高，但对于分子计算而言并不十分方便或自然。
 
-The most important basis sets are contracted sets of atom-centered Gaussian
-functions. The number of basis functions used depends on the number of core and
-valence atomic orbitals, and whether the atom is light (H or He) or heavy
-(everything else). Contracted basis sets have been shown to be computationally
-efficient and to have the ability to yield chemical accuracy (see Appendix [A](../app_a_aoints/app_AOINTS.md)).
-The **Q-Chem** program has been optimized to exploit basis sets of
-the contracted Gaussian function type and has a large number of built-in
-standard basis sets (developed by Dunning and Pople, among others) which the
-user can access quickly and easily.
-
-The selection of a basis set for quantum chemical calculations is very
-important. It is sometimes possible to use small basis sets to obtain good
-chemical accuracy, but calculations can often be significantly improved by the
-addition of diffuse and polarization functions. Consult the literature,
-including pertinent review
-articles,[[608]](../bib_references/bib.md#bib631)
-
-in order to aid your selection. See also the “Further Reading” section at
-the end of this chapter.
+最为重要的基组是收缩的（Contracted）以原子为中心的 Gauss 函数组。所用基函数的数目取决于核心原子轨道和价层原子轨道的数量，以及该原子是轻原子（H 或 He）还是重原子（其余所有原子）。事实证明，收缩基组（Contracted Basis Set）在计算上是高效的，并且能够达到化学精度（见附录 [A](../app_a_aoints/app_AOINTS.md)）。**Q-Chem** 程序拥有大量以原子为中心的收缩 Gauss 基组供选择。

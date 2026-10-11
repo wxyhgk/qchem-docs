@@ -1,98 +1,89 @@
 ---
-title: "6.8.2 BW-s2 Job Control"
+title: "6.8.2 BW-s2 作业控制"
 ---
 
-## 6.8.2 BW-s2 Job Control
+## 6.8.2 BW-s2 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The BW-s2 approach has been implemented with the resolution-of-the-identity approximation
-and is invoked with METHOD = RIBWS2.
-The BW-s2 equation is iterative much like BW2, and keywords that give more
-precise control over the self-consistent determination of the BW-s2 energy are
-housed within a separate *$bws2* section.
-Finally, the underlying algorithm that is used to solve the BW-s2 equation
-can be used to solve for other forms of the correlation energy
-such as MP2, BW2, size-extensive xBW2 (which is not size-consistent), or
-second-order Bethe-Goldstone (BGE2)/independent electron pair approximation (IEPA).
-While these methods are available for academic purposes, it is
-advised to only use the BW2, xBW2, and BGE2/IEPA codes
-for comparison as the first two are not size-consistent and the latter is
-not orbital invariant. For MP2 calculations, the standard RI-MP2 code should be used.
+BW-s2 方法已结合分辨率恒等（resolution-of-the-identity，RI）近似实现，通过 METHOD = RIBWS2 调用。
+BW-s2 方程与 BW2 类似，是一个迭代求解的方程；用于更精确控制 BW-s2 能量自洽求解过程的关键字，则放置在一个独立的 *$bws2* 段中。
+最后，用于求解 BW-s2 方程的底层算法也可以用于求解其他形式的关联能，例如 MP2、BW2、尺寸广延（size-extensive）的 xBW2（其不具备尺寸一致性，size-consistent），或二阶 Bethe-Goldstone（BGE2）/独立电子对近似（independent electron pair approximation，IEPA）。
+尽管这些方法可供学术研究使用，但建议仅将 BW2、xBW2 以及 BGE2/IEPA 代码用于对比目的，因为前两者不具备尺寸一致性，而后者不具备轨道不变性（orbital invariant）。若要进行 MP2 计算，应使用标准的 RI-MP2 代码。
 
 ### `METHOD`
 
-> **Defines the correlation energy expression to be used. INPUT SECTION: $bws2**
+> **定义所要使用的关联能表达式。输入段（INPUT SECTION）：$bws2**
 >
-> * **Type**: `STRING`
-> * **Default**: `BWS2`
-> * **Options**:
->     * BWS2, BW2, xBW2, BGE2, IEPA, or MP2
-> * **Recommendation**: BW-s2 is the recommended method, but if comparisons with non-size-consistent methods like BW2 or xBW2 or non-orbital-invariant methods like BGE2/IEPA are desired, those options are available.
+> * **类型**：`STRING`
+> * **默认值**：`BWS2`
+> * **可选值**：
+>     * BWS2、BW2、xBW2、BGE2、IEPA 或 MP2
+> * **建议**：BW-s2 是推荐方法；但如果希望与不具备尺寸一致性的方法（如 BW2 或 xBW2），或不具备轨道不变性的方法（如 BGE2/IEPA）进行对比，也可以选择这些选项。
 
 ### `ALPHA`
 
-> **Controls the extent of BW-s2( $\alpha$ ) regularization. INPUT SECTION: $bws2**
+> **控制 BW-s2( $\alpha$ ) 正则化的程度。输入段（INPUT SECTION）：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1000`
+> * **可选值**：
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $\alpha$
->     * .
-> * **Recommendation**: The default is set to the original BW-s2 theory where $\alpha=1$ (corresponding to $n=1000$ ) is exact for a two-electron, two-orbital problem. For general applications $\alpha=4$ ( $n=4000$ ) is a broadly successful choice. Other values can be set based on the chemical problem at hand.
+>     * 的取值。
+> * **建议**：默认值对应原始的 BW-s2 理论，此时 $\alpha=1$（对应 $n=1000$ ），对两电子、两轨道问题是精确的。对于一般应用，$\alpha=4$ （ $n=4000$ ）是一个适用性很广的选择。也可以根据所研究的具体化学问题设置其他数值。
 
 ### `ENERGY_CONVERGENCE`
 
-> **Defines the convergence threshold for the correlation energy. INPUT SECTION: $bws2**
+> **定义关联能的收敛阈值。输入段（INPUT SECTION）：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$n$`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`$n$`
+> * **可选值**：
 >     * $n$
->     * where the convergence threshold is set to
+>     * 其中收敛阈值被设为
 >     * $10^{-n}$
-> * **Recommendation**: Use the default unless the cost of the calculation becomes prohibitive, then consider reducing to a slightly lower value.
+> * **建议**：使用默认值；除非计算代价变得过高，此时可考虑将其略微放宽（取稍小的值）。
 
 ### `AMPLITUDE_CONVERGENCE`
 
-> **Defines the convergence threshold for the magnitude of the amplitude equation residual. INPUT SECTION: $bws2**
+> **定义振幅方程残量范数的收敛阈值。输入段（INPUT SECTION）：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`8`
+> * **可选值**：
 >     * $n$
->     * where the convergence threshold is set to
+>     * 其中收敛阈值被设为
 >     * $10^{-n}$
-> * **Recommendation**: Use the default for small to medium sized molecules. Large molecules may require looser criteria.
+> * **建议**：对小到中等规模的分子使用默认值。大分子可能需要较宽松的判断标准。
 
 ### `MAX_CYCLES`
 
-> **Defines maximum number of iterations to be used in determining the correlation energy. INPUT SECTION: $bws2**
+> **定义求解关联能时所使用的最大迭代次数。输入段（INPUT SECTION）：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$n$`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`$n$`
+> * **可选值**：
 >     * $n>0$
-> * **Recommendation**: Use the default unless convergence is particularly slow, then increase the number of iterations accordingly.
+> * **建议**：使用默认值；除非收敛特别缓慢，此时相应地增大迭代次数。
 
 ### `PARAM_GRADIENT`
 
-> **Controls whether or not to compute the derivative of the energy with respect to $\alpha$ . INPUT SECTION: $bws2**
+> **控制是否计算能量对 $\alpha$ 的导数。输入段（INPUT SECTION）：$bws2**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`BOOLEAN`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Computes the iterative and non-iterative parameter gradient.
+>     * 计算迭代与非迭代的参数梯度。
 >     * FALSE
->     * Does not compute the parameter gradient.
-> * **Recommendation**: If required, set to TRUE.
+>     * 不计算参数梯度。
+> * **建议**：如有需要，设置为 TRUE。
 
-???+ example "Example 6.23: Example of RI-BW-s2 on an acetylene pyridine complex"
+???+ example "示例 6.23：RI-BW-s2 计算乙炔-吡啶复合物的示例"
     ```qchem
     $molecule
     0 1

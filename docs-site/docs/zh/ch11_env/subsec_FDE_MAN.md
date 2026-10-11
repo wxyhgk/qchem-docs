@@ -4,109 +4,95 @@ title: "11.7.2 FDE-Man"
 
 ## 11.7.2 FDE-Man
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Several FDET-based methods are available in the FDE-Man module of **Q-Chem**.
-The FDE-Man job control is accomplished in two sections, *$rem* and *$fde*.
+**Q-Chem** 的 FDE-Man 模块中提供了若干基于 FDET（冻结密度嵌入理论，Frozen-Density Embedding Theory）的方法。
+FDE-Man 的任务控制分为两个部分，即 *$rem* 和 *$fde*。
 
-The fragments are specified via the fragment descriptors (see
-Section [12](../ch12_frag/chap_frag.md)) in the *$molecule* section, whereas the first fragment
-corresponds to the embedded species (A), the second fragment represents
-the environment (B).
+各片段通过 *$molecule* 段中的片段描述符（fragment descriptor）来指定（见第 [12](../ch12_frag/chap_frag.md) 章），其中第一个片段对应被嵌入的体系（A），第二个片段表示环境（B）。
 
-**Note: 
+**注意：
 
-The current implementation allows only for closed shell fragments.
+当前实现仅允许闭壳层（closed shell）片段。
 **
 
 FDE
 
 ### `FDE`
 
-> **Turns density embedding on.**
+> **开启密度嵌入（density embedding）。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**：`BOOLEAN`
+> * **默认值**：`False`
+> * **选项**：
 >     * True
->     * Perform an FDET calculation.
+>     * 执行 FDET 计算。
 >     * False
->     * Don’t perform FDET calculation.
-> * **Recommendation**: Set the $rem variable to TRUE to start a FDET calculation.
+>     * 不执行 FDET 计算。
+> * **建议**：将 $rem 变量设置为 TRUE 以启动 FDET 计算。
 
-Enabling FDE-Man, the specification of the embedding method and other job control
-parameters (thresholds, max. iterations *etc.*) should be set in the *$rem*
-section.
+启用 FDE-Man 后，嵌入方法的指定以及其他任务控制参数（收敛阈值、最大迭代次数 *等*）应在 *$rem* 段中设置。
 
 METHOD
 
 ### `METHOD`
 
-> **Determines which FDET-based method should be used for the embedded wave function if FDE = TRUE .**
+> **确定当 FDE = TRUE 时，嵌入波函数应采用哪种基于 FDET 的方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **选项**：
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is either
+>     * 取值为
 >     * HF
->     * for Hartree-Fock theory or
->     * else one of the DFT methods listed in Section
+>     *（Hartree-Fock 理论），或者为第
 >     * 5.3.5
->     * .
-> * **Recommendation**: None
+>     * 节所列的 DFT 方法之一。
+> * **建议**：无
 
-Other DFT functionals can also be requested with the EXCHANGE and CORRELATION keywords as described
-in Section [5.4](../ch05_dft/sect_DFT_METHOD.md).
+如第 [5.4](../ch05_dft/sect_DFT_METHOD.md) 节所述，也可以通过 EXCHANGE 和 CORRELATION 关键字来指定其他 DFT 泛函。
 
-**Note: 
+**注意：
 
-The current implementation is restricted to mean-field methods that are solved with the SCFMAN module.
+当前实现仅限于由 SCFMAN 模块求解的 mean-field（平均场）方法。
 **
 
-The standard capabilities to use customized basis sets are also possible with the FDE-Man module.
+FDE-Man 模块同样支持使用自定义基组（customized basis set）的标准功能。
 
 ## 11.7.2.1 FDE-ADC
 
 FDE-ADC[[1121]](../bib_references/bib.md#bib1168)
- is a density embedding method based on the
-combination of the Algebraic Diagrammatic Construction scheme for the
-polarization propagator (ADC, Section [7.10](../ch07_excited/sect_exadc.md)) and Frozen-Density
-Embedding Theory (FDET).
-In this particular variant, the subsystem A is represented by a wave function
-whereas subsystem B is described by a density. The FDE-ADC method uses the
-linearized FDET approximation.[[1539]](../bib_references/bib.md#bib1603)
+ 是一种密度嵌入方法，它将针对极化传播子（polarization propagator）的代数图构（Algebraic Diagrammatic Construction，ADC）方案（第 [7.10](../ch07_excited/sect_exadc.md) 节）与冻结密度嵌入理论（FDET）结合起来。
+在这一特定变体中，子系统 A 由波函数描述，而子系统 B 由密度描述。FDE-ADC 方法采用线性化的 FDET 近似[[1539]](../bib_references/bib.md#bib1603)。
 
-Similar to the other methods, the ADC specifications have to be done inside the
-*$rem* section, as shown below.
+与其他方法类似，ADC 的相关设置也必须在 *$rem* 段内完成，如下所示。
 
 METHOD
 
 ### `METHOD`
 
-> **Determines which FDET-based method should be used if FDE = TRUE .**
+> **确定当 FDE = TRUE 时应采用哪种基于 FDET 的方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **选项**：
 >     * adc(2)
->     * Perform an FDE-ADC(2)-s calculation.
+>     * 执行 FDE-ADC(2)-s 计算。
 >     * adc(2)-x
->     * Perform an FDE-ADC(2)-x calculation.
+>     * 执行 FDE-ADC(2)-x 计算。
 >     * adc(3)
->     * Perform an FDE-ADC(3) calculation (potential constructed with MP(2) density).
+>     * 执行 FDE-ADC(3) 计算（势由 MP(2) 密度构造）。
 >     * cvs-adc(2)
->     * Perform an FDE-ADC(2)-s calculation of core excitations.
+>     * 执行核心激发（core excitation）的 FDE-ADC(2)-s 计算。
 >     * cvs-adc(2)-x
->     * Perform an FDE-ADC(2)-x calculation of core excitations.
+>     * 执行核心激发的 FDE-ADC(2)-x 计算。
 >     * cvs-adc(3)
->     * Perform an FDE-ADC(3) calculation of core excitations.
-> * **Recommendation**: None
+>     * 执行核心激发的 FDE-ADC(3) 计算。
+> * **建议**：无
 
-FDE-ADC also supports the excited state analysis
-(STATE_ANALYSIS) carried out by the **libwfa** module.
+FDE-ADC 还支持由 **libwfa** 模块执行的激发态分析（STATE_ANALYSIS）。

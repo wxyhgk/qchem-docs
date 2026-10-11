@@ -1,16 +1,12 @@
 ---
-title: "7.9.30 Interpretation of EOM/CI Wave Functions and Orbital Numbering"
+title: "7.9.30 EOM/CI 波函数的解释与轨道编号"
 ---
 
-## 7.9.30 Interpretation of EOM/CI Wave Functions and Orbital Numbering
+## 7.9.30 EOM/CI 波函数的解释与轨道编号
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-Analysis of the leading wave function amplitudes is always necessary for
-determining the character of the state (*e.g.*, $\rm HOMO\rightarrow LUMO$
-excitation, open-shell diradical, *etc.*). The CCMAN module print out leading
-EOM/CI amplitudes using its internal orbital numbering scheme, which is
-printed in the beginning. The typical CCMAN EOM-CCSD output looks like:
+要确定电子态的特征（*e.g.*，$\rm HOMO\rightarrow LUMO$ 激发、开壳层双自由基，*etc.*），始终需要对主波函数振幅进行分析。CCMAN 模块会使用其内部的轨道编号方案来打印主要的 EOM/CI 振幅，该编号方案会在输出开头打印出来。典型的 CCMAN EOM-CCSD 输出如下所示：
 
 > ```qchem
 > Root 1 Conv-d yes Tot Ene= -113.722767530 Hartree (Ex Ene 7.9548 eV),
@@ -23,11 +19,7 @@ printed in the beginning. The typical CCMAN EOM-CCSD output looks like:
 >       -0.2278                  7( B2  ) A   ->   18( B2  ) A
 > ```
 
-This means that this state is derived by excitation from occupied orbital #7
-(which has $b_{2}$ symmetry) to virtual orbital #17 (which is also of $b_{2}$
-symmetry). The two leading amplitudes correspond to $\beta\rightarrow\beta$
-and $\alpha\rightarrow\alpha$ excitation (the spin part is denoted by $A$ or
-$B$). The orbital numbering for this job is defined by the following map:
+这意味着该电子态是由占据轨道 #7（具有 $b_{2}$ 对称性）向虚拟轨道 #17（同样具有 $b_{2}$ 对称性）的激发所产生的。两个最大的振幅分别对应于 $\beta\rightarrow\beta$ 和 $\alpha\rightarrow\alpha$ 激发（自旋部分用 $A$ 或 $B$ 表示）。该任务的轨道编号由以下映射表定义：
 
 > ```qchem
 > The orbitals are ordered and numbered as follows:
@@ -66,24 +58,9 @@ $B$). The orbital numbering for this job is defined by the following map:
 >  21      1.491     AVIRT     B2      6B2     30
 > ```
 
-The first column is CCMAN’s internal numbering (*e.g.*, 7 and 17 from the
-example above). This is followed by the orbital energy, orbital type (frozen,
-restricted, active, occupied, virtual), and orbital symmetry. Note that the
-orbitals are blocked by symmetries and then ordered by energy within each
-symmetry block, (*i.e.*, first all occupied $a_{1}$, then all $a_{2}$, *etc.*), and
-numbered starting from 0. The occupied and virtual orbitals are numbered
-separately, and frozen orbitals are excluded from CCMAN numbering. The two
-last columns give numbering in terms of the final ANLMAN printout (starting
-from 1), *e.g.*, our occupied orbital #7 will be numbered as 1$B_{2}$ in the
-final printout. The last column gives the absolute orbital number (all
-occupied and all virtuals together, starting from 1), which is often used by
-external visualization routines.
+第一列是 CCMAN 的内部编号（*e.g.*，上例中的 7 和 17）。其后依次是轨道能量、轨道类型（冻结、限制、活性、占据、虚拟）以及轨道对称性。请注意，轨道先按对称性分块，然后在每个对称性块内按能量排序，（*i.e.*，先是所有占据的 $a_{1}$，然后是所有 $a_{2}$，*etc.*），并从 0 开始编号。占据轨道与虚拟轨道分别编号，并且冻结轨道不纳入 CCMAN 编号。最后两列给出以最终 ANLMAN 打印结果为基准的编号（从 1 开始），*e.g.*，我们的占据轨道 #7 在最终打印结果中将被编号为 1$B_{2}$。最后一列给出绝对轨道编号（所有占据轨道与所有虚拟轨道合在一起，从 1 开始），外部可视化工具通常使用这一编号。
 
-CCMAN2 numbers orbitals by their energy within each irrep keeping the same
-numbering for occupied and virtual orbitals. This numbering is exactly the same
-as in the final printout of the SCF wave function analysis. Orbital energies
-are printed next to the respective amplitudes. For example, a typical CCMAN2
-EOM-CCSD output will look like that:
+CCMAN2 在每个不可约表示（irrep）内按能量对轨道编号，并对占据轨道和虚拟轨道采用统一的编号方案。这一编号与 SCF 波函数分析最终打印结果中的编号完全一致。轨道能量打印在相应振幅的旁边。例如，典型的 CCMAN2 EOM-CCSD 输出如下所示：
 
 > ```qchem
 > EOMEE-CCSD transition 2/A1
@@ -101,23 +78,16 @@ EOM-CCSD output will look like that:
 >               -0.5863                          0.0404
 > ```
 
-which means that for this state, the leading EOM amplitude corresponds to the
-transition from the first b${}_{2}$ orbital (orbital energy $-0.5101$) to the
-second b${}_{2}$ orbital (orbital energy 0.1729).
+这表明对于该电子态，最大的 EOM 振幅对应于从第一个 b${}_{2}$ 轨道（轨道能量 $-0.5101$）到第二个 b${}_{2}$ 轨道（轨道能量 0.1729）的跃迁。
 
-The most complete analysis of EOM-CC calculations is afforded by deploying a
-general wave-function analysis tool contained in the **libwfa** module and
-described in Section [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md). The EOM-CC state analysis is
-activated by setting STATE_ANALYSIS = TRUE. In addition,
-keywords controlling calculations of state and interstate properties should be
-set up accordingly.
+对 EOM-CC 计算最完整的分析可通过部署 **libwfa** 模块中包含的通用波函数分析工具来实现，该工具在第 [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md) 节中介绍。通过设置 STATE_ANALYSIS = TRUE 可启用 EOM-CC 态分析。此外，还应相应地设置用于控制态性质与态间性质计算的关键词。
 
-**Note: 
+**注意：
 
-Wave function analysis is only available for CCMAN2.
+波函数分析仅对 CCMAN2 可用。
 **
 
-???+ example "Example 7.179: Wave function analysis of the EOM-IP states (He ${}_{3}^{+}$ )."
+???+ example "示例 7.179: EOM-IP 态（He ${}_{3}^{+}$ ）的波函数分析。"
     ```qchem
     $molecule
        0 1

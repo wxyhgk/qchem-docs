@@ -1,9 +1,9 @@
 ---
-title: "6.18 Using Single-Precision Arithmetic in Coupled-Cluster Calculations"
+title: "6.18 在耦合簇计算中使用单精度算术"
 ---
 
-# 6.18 Using Single-Precision Arithmetic in Coupled-Cluster Calculations
+# 6.18 在耦合簇计算中使用单精度算术
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-- [6.18.1 Overview](Ch6.S18.SS1.md)
+- [6.18.1 概述](Ch6.S18.SS1.md)

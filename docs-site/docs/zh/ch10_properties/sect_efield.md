@@ -1,9 +1,9 @@
 ---
-title: "10.6 Electric Fields"
+title: "10.6 电场"
 ---
 
-# 10.6 Electric Fields
+# 10.6 电场
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [10.6.1 Overview](Ch10.S6.SS1.md)
+- [10.6.1 概述](Ch10.S6.SS1.md)

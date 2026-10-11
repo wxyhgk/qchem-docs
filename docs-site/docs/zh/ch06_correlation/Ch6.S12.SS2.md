@@ -1,32 +1,22 @@
 ---
-title: "6.12.2 Coupled Cluster Singles and Doubles (CCSD)"
+title: "6.12.2 耦合簇单激发与双激发方法 (CCSD)"
 ---
 
-## 6.12.2 Coupled Cluster Singles and Doubles (CCSD)
+## 6.12.2 耦合簇单激发与双激发方法（Coupled Cluster Singles and Doubles, CCSD）
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-The standard approach for treating pair correlations self-consistently are
-coupled-cluster methods where the cluster operator contains all single and
-double substitutions,[[1138]](../bib_references/bib.md#bib1186)
- abbreviated as CCSD. CCSD yields
-results that are only slightly superior to MP2 for structures and frequencies
-of stable closed-shell molecules. However, it is far superior for reactive
-species, such as transition structures and radicals, for which the performance
-of MP2 is quite erratic.
+以自洽方式处理对关联（pair correlations）的标准方法是耦合簇（coupled-cluster）方法，其簇算符（cluster operator）包含所有单激发与双激发替换，[[1138]](../bib_references/bib.md#bib1186)
+ 简称为 CCSD。对于稳定闭壳层（closed-shell）分子的几何结构与振动频率，CCSD 给出的结果仅略优于 MP2。然而，对于反应性物种，如过渡态结构（transition structures）和自由基（radicals），MP2 的表现相当不稳定，而 CCSD 则具有显著的优势。
 
-A full textbook presentation of CCSD is beyond the scope of this manual, and
-several comprehensive references are available. However, it may be useful to
-briefly summarize the main equations. The CCSD wave function is:
+完整教科书式的 CCSD 阐述超出了本手册的范围，且已有若干全面的参考文献可供查阅。不过，简要概述其主要方程可能仍有所裨益。CCSD 波函数为：
 
 <a id="eq518"></a>
 $$
 \left|{\Psi_{\mathrm{CCSD}}}\right\rangle=\exp\left({\hat{T}_{1}+\hat{T}_{2}}\right)\left|{\Phi_{0}}\right\rangle \tag{6.58}
 $$
 
-where the single and double excitation operators may be defined by their
-actions on the reference single determinant (which is normally taken as the
-Hartree-Fock determinant in CCSD):
+其中单激发与双激发算符可通过其作用于参考单行列式（在 CCSD 中通常取 Hartree-Fock 行列式）的效果来定义：
 
 <a id="eq519"></a>
 $$
@@ -38,39 +28,15 @@ $$
 \hat{T}_{2}\left|{\Phi_{0}}\right\rangle=\frac{1}{4}\sum_{ij}^{\mathrm{occ}}{\sum_{ab}^{\mathrm{virt}}{t_{ij}^{ab}}}\left|{\Phi_{ij}^{ab}}\right\rangle \tag{6.60}
 $$
 
-It is not feasible to determine the CCSD energy by variational minimization of
-$\langle E\rangle_{\mathrm{CCSD}}$ with respect to the singles and doubles amplitudes
-because the expressions terminate at the same level of complexity as full
-configuration interaction (!). So, instead, the Schrödinger equation is
-satisfied in the subspace spanned by the reference determinant, all single
-substitutions, and all double substitutions. Projection with these functions
-and integration over all space provides sufficient equations to determine the
-energy, the singles and doubles amplitudes as the solutions of sets of
-nonlinear equations. These equations may be symbolically written as follows:
+由于 $\langle E\rangle_{\mathrm{CCSD}}$ 表达式终止于与完全组态相互作用（full configuration interaction）相同的复杂度级别（！），因此无法通过对单激发与双激发振幅（amplitudes）进行变分最小化来确定 CCSD 能量。所以，取而代之的是在由参考行列式、所有单激发替换以及所有双激发替换所张成的子空间中满足薛定谔方程（Schrödinger equation）。用这些函数进行投影并对全空间积分，即可提供足够的方程组，将能量以及单、双激发振幅作为一组非线性方程组的解来确定。这些方程可符号化地写为如下形式：
 
 <a id="A3.S8.EGx22"></a>
 $$
 \displaystyle E_{\mathrm{CCSD}} \tag{6.61}
 $$
 
-The result is a set of equations which yield an energy that is not necessarily
-variational (*i.e.*, may not be above the true energy), although it is strictly
-size-consistent. The equations are also exact for a pair of electrons, and, to
-the extent that molecules are a collection of interacting electron pairs, this
-is the basis for expecting that CCSD results will be of useful accuracy.
+其结果是一组方程，由此得到的能量不一定具有变分性（*即*，未必高于真实能量），但它是严格尺寸一致（size-consistent）的。这些方程对于双电子体系也是精确的；并且在分子可视为相互作用电子对集合的程度上，这正是预期 CCSD 结果具有实用精度的依据。
 
-The computational effort necessary to solve the CCSD equations can be shown to
-scale with the 6th power of the molecular size, for fixed choice of basis
-set. Disk storage scales with the 4th power of molecular size, and
-involves a number of sets of doubles amplitudes, as well as two-electron
-integrals in the molecular orbital basis. Therefore the improved accuracy
-relative to MP2 theory comes at a steep computational cost. Given these
-scalings it is relatively straightforward to estimate the feasibility (or
-non feasibility) of a CCSD calculation on a larger molecule (or with a larger
-basis set) given that a smaller trial calculation is first performed.
-**Q-Chem** supports both energies and analytic gradients for CCSD for
-RHF and UHF references (including frozen core). For ROHF, only energies and
-unrelaxed properties are available.
-Available properties include dipole moments, angular momentum projections,
-$\langle\hat{S}^{2}\rangle$, static polarizabilities,
-and g-tensors (see Section [7.9.21](../ch07_excited/sec_EOMGRAD.md) for details).
+在基组（Basis Set）选择固定的情况下，求解 CCSD 方程所需的计算量随分子尺寸的六次方 Scaling。磁盘存储空间随分子尺寸的四次方扩展，涉及多组双激发振幅以及分子轨道基下的双电子积分。因此，相对于 MP2 理论所提升的精度是以高昂的计算代价换来的。基于这些标度关系，若先对较小体系进行试算，则相对容易地估计在更大分子（或更大基组）上进行 CCSD 计算的可行性（或不可行性）。
+**Q-Chem** 针对 RHF 和 UHF 参考（包括冻结核心，frozen core）同时支持 CCSD 能量与解析梯度。对于 ROHF，仅提供能量和非弛豫性质（unrelaxed properties）。
+可用的性质包括偶极矩、角动量投影、$\langle\hat{S}^{2}\rangle$、静态极化率（static polarizabilities）以及 g 张量（详见第 [7.9.21](../ch07_excited/sec_EOMGRAD.md) 节）。

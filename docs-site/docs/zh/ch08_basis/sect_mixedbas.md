@@ -1,9 +1,9 @@
 ---
-title: "8.5 Mixed Basis Sets"
+title: "8.5 混合基组"
 ---
 
-# 8.5 Mixed Basis Sets
+# 8.5 混合基组
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [8.5.1 Overview](Ch8.S5.SS1.md)
+- [8.5.1 概述](Ch8.S5.SS1.md)

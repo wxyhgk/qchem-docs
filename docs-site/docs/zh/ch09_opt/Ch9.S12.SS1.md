@@ -1,34 +1,14 @@
 ---
-title: "9.12.1 Introduction"
+title: "9.12.1 引言"
 ---
 
-## 9.12.1 Introduction
+## 9.12.1 引言
 
 (July 4, 2026)
 
-The potential energy landscape of atomic and molecular clusters can be very
-complex with many minima which can have similar energies, and this complexity
-increases rapidly as the size of the clusters increases. Determining the global
-minimum of these clusters is challenging since it requires extensive searching
-over the potential energy surface. One approach to finding the low energy
-structures of these clusters is to perform many geometry optimizations starting
-at different initial coordinates. **Q-Chem** is able to perform such random
-searches for molecular clusters containing up to two different molecule types.
-In these searches the molecules are subjected to translations and rotations of
-their structure to generate a new starting structure. These searches are
-initiated by the JOBTYPE = RAND and it is necessary to
-specify the number of molecules of the different types and the number of atoms
-in the different types of molecules. For the optimization of atomic clusters,
-SEARCH_ATOMIC = TRUE and the number of atom swops performed
-in the structure generation (N_SWOP) can be specified. Some care has
-to be taken with the specification of the input structure in the
-*$molecule* section. All the atoms of the molecules of molecule type 1
-must come before those of molecule type 2. Furthermore, the atoms of the same
-molecule should be together. For examples of these studies see
-Refs. [[338]](../bib_references/bib.md#bib343)
-.
+原子与分子团簇的势能面景观可能极为复杂，存在许多能量相近的极小值点，并且随着团簇尺寸的增大，这种复杂性会迅速加剧。确定这些团簇的全局极小值是一项颇具挑战性的任务，因为它需要在势能面（potential energy surface, PES）上进行大范围搜索。寻找这类团簇低能结构的一种方法是从不同的初始坐标出发执行多次几何优化。**Q-Chem** 能够对最多包含两种分子类型的分子团簇执行此类随机搜索。在这类搜索中，通过对分子结构施加平移和旋转来生成新的起始结构。这些搜索由 JOBTYPE = RAND 启动，并且需要指定不同种类分子的数量以及各类分子中的原子数。对于原子团簇的优化，可设置 SEARCH_ATOMIC = TRUE，并指定在结构生成过程中执行的原子交换次数（N_SWOP）。在 *$molecule* 段中指定输入结构时需要特别注意：分子类型 1 的所有原子必须排在分子类型 2 的原子之前；此外，同一分子中的原子应当相邻排列。相关研究的示例请参见参考文献 [[338]](../bib_references/bib.md#bib343) 。
 
-???+ example "Example 9.52: A random search geometry optimization of the NO ${}^{+}$ .H ${}_{2}$ O cluster."
+???+ example "示例 9.52：NO ${}^{+}$ .H ${}_{2}$ O 团簇的随机搜索几何优化。"
     ```qchem
     $molecule
        1 1
@@ -65,7 +45,7 @@ Refs. [[338]](../bib_references/bib.md#bib343)
     $end
     ```
 
-???+ example "Example 9.53: A random search geometry optimization of the He ${}_{3}$ Ne ${}_{3}$ cluster."
+???+ example "示例 9.53：He ${}_{3}$ Ne ${}_{3}$ 团簇的随机搜索几何优化。"
     ```qchem
     $molecule
        0 1
@@ -109,29 +89,11 @@ Refs. [[338]](../bib_references/bib.md#bib343)
     $end
     ```
 
-Basin hopping (BH) is a more advanced technique for locating
-the global minimum on complex potential energy surfaces.[[1421]](../bib_references/bib.md#bib1481)
+盆地跳跃（basin hopping, BH）是一种更为先进的技术，用于在复杂势能面上定位全局极小值。[[1421]](../bib_references/bib.md#bib1481)
 
-The BH algorithm is essentially a combination of the Metropolis sampling technique and a
-gradient-based local search method. This has the effect of sampling the energy
-basins, where an energy basin is a certain part of the configuration space
-around a minimum on the PES that contains all the configurations that will
-relax into this minimum using downhill relaxations, instead of sampling the
-configuration space. To enhance the efficiency of the method, BH with
-occasional jumping is used,[[616]](../bib_references/bib.md#bib639)
- which incorporates a jumping
-move in addition to the standard Monte Carlo (MC) moves. Jumping is a MC move
-without local minimization at infinite temperature and, consequently, is always
-accepted. When the usual MC moves are rejected a number of times, the system
-is judged to be trapped at the local minimum. The temperature is raised to $T=\infty$,
-and the MC jumping moves are executed several times to allow the
-system to escape from the local minimum. This provides an efficient way to
-escape from a local minimum and to explore the next basin of the valley when it
-is separated by high barriers. Depending on the size and complexity of the
-system being studied, a large number of MC_STEPS and/or
-MC_CYCLES to ensure the global minimum is found.
+BH 算法本质上是 Metropolis 采样技术与基于梯度的局部搜索方法的结合。其效果是对能量盆地（energy basin）进行采样，而不是对构型空间进行采样；所谓能量盆地，是指势能面上某个极小值周围的一定构型空间区域，其中包含的所有构型经 downhill 弛豫后都会收敛到该极小值。为提高方法效率，可采用带偶发跳跃的 BH（BH with occasional jumping），[[616]](../bib_references/bib.md#bib639) 它在标准蒙特卡洛（Monte Carlo, MC）移动之外引入了一种跳跃移动。跳跃是在无限温度下、不做局部极小化的 MC 移动，因此总是被接受。当常规 MC 移动被连续拒绝多次时，即判定系统被捕获在该局部极小值处。此时将温度升高至 $T=\infty$，并执行若干次 MC 跳跃移动，以使系统得以逃离该局部极小值。这为逃离局部极小值、并在山谷中下一个盆地被高能垒隔开时对其加以探索提供了一种高效途径。根据所研究体系的规模与复杂程度，需要设置大量的 MC_STEPS 和/或 MC_CYCLES，以确保找到全局极小值。
 
-???+ example "Example 9.54: A basin hopping search for the NO ${}^{+}$ (H ${}_{2}$ O) cluster."
+???+ example "示例 9.54：NO ${}^{+}$ (H ${}_{2}$ O) 团簇的盆地跳跃搜索。"
     ```qchem
     $molecule
        1 1

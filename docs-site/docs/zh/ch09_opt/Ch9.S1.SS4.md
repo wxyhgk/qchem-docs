@@ -1,142 +1,58 @@
 ---
-title: "9.1.4 Delocalized Internal Coordinates"
+title: "9.1.4 离域内坐标"
 ---
 
-## 9.1.4 Delocalized Internal Coordinates
+## 9.1.4 离域内坐标
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The choice of coordinate system can have a major influence on the rate of
-convergence during a geometry optimization. For complex potential energy
-surfaces with many stationary points, a different choice of coordinates can
-even result in convergence to a different final structure.
+坐标系的选择会对几何优化过程中的收敛速度产生重大影响。对于具有多个驻点的复杂势能面，不同的坐标选择甚至可能导致收敛到不同的最终结构。
 
-The key attribute of a good set of coordinates for geometry optimization is the
-degree of coupling between the individual coordinates. In general, the less
-coupling the better, as variation of one particular coordinate will then have
-minimal impact on the other coordinates. Coupling manifests itself primarily as
-relatively large partial derivative terms between different coordinates. For
-example, a strong harmonic coupling between two different coordinates, $i$ and
-$j$, results in a large off-diagonal element, $H_{ij}$, in the Hessian
-matrix. Normally this is the only type of coupling that can be
-directly “observed” during an optimization, as third and higher derivatives
-are ignored in almost all optimization algorithms.
+用于几何优化的一组良好坐标的关键属性，在于各个坐标之间的耦合程度。一般来讲，耦合越弱越好，因为此时改变某一个特定坐标对其他坐标的影响最小。耦合主要表现为不同坐标之间相对较大的偏导数项。例如，两个不同坐标 $i$ 和 $j$ 之间存在较强的谐振耦合，就会导致 Hessian 矩阵中出现较大的非对角元素 $H_{ij}$。通常这是优化过程中唯一可以被直接“观测”到的耦合类型，因为几乎所有优化算法都会忽略三阶及更高阶导数。
 
-In the early days of computational quantum chemistry geometry optimizations
-were carried out in Cartesian coordinates. They are an obvious choice as
-they can be defined for all systems and gradients and second derivatives are
-calculated directly in Cartesian coordinates. Unfortunately, Cartesian
-coordinates are often heavily coupled, making them a poor choice for
-optimizations. Despite this, Cartesians have recently returned to favor
-because of their generality, and because it has been clearly demonstrated that
-if reliable second derivative information is available (*i.e.*, a good starting
-Hessian) and the initial geometry is reasonable, then Cartesians can be as
-efficient as any other coordinate set for small to medium-sized
-molecules.[[62]](../bib_references/bib.md#bib47)
- Without good Hessian data, however,
-Cartesians are inefficient, especially for long chain acyclic systems.
+在计算量子化学发展早期，几何优化是在笛卡尔坐标下进行的。笛卡尔坐标是一个显而易见的选择，因为它们可以为所有体系定义，并且梯度和二阶导数都是直接在笛卡尔坐标下计算的。遗憾的是，笛卡尔坐标之间往往存在严重的耦合，使其成为优化的糟糕选择。尽管如此，笛卡尔坐标近来又重新受到青睐，原因在于其通用性，并且已有清楚证明表明：当可靠的二阶导数信息可用（*即*，一个良好的初始 Hessian）且初始几何结构合理时，对于小到中等尺寸的分子，笛卡尔坐标可以和其他任何坐标集一样高效。[[62]](../bib_references/bib.md#bib47)
+ 然而若没有良好的 Hessian 数据，笛卡尔坐标则效率低下，尤其对于长链无环体系更是如此。
 
-In the 1970s Cartesians were replaced by *Z*-matrix coordinates. Initially the
-*Z*-matrix was used simply as a means of geometry input; it is far easier to
-describe a molecule in terms of bond lengths, bond angles and dihedral angles
-(the natural coordinates for a chemist) than to develop a suitable set of
-Cartesian coordinates. It was subsequently found that optimization was
-generally more efficient in *Z*-matrix coordinates than in Cartesians,
-especially for acyclic systems. This is not always the case, and care must be
-taken in constructing a suitable *Z*-matrix. A good general rule is ensure that
-each variable is defined in such a way that changing its value will not change
-the values of any of the other variables. A brief discussion concerning good
-*Z*-matrix construction strategy is given by Schlegel.[[1211]](../bib_references/bib.md#bib1266)
+20 世纪 70 年代，笛卡尔坐标被 *Z*-矩阵坐标所取代。起初 *Z*-矩阵仅被用作几何输入的一种手段；用键长、键角和二面角（化学家的自然坐标）来描述一个分子，比构造一组合适的笛卡尔坐标要容易得多。随后人们发现，在 *Z*-矩阵坐标下进行优化通常比在笛卡尔坐标下更高效，对于无环体系尤其如此。但情况并非总是如此，在构造 *Z*-矩阵时必须小心谨慎。一条普遍适用的良好准则是：确保每个变量的定义方式使得改变其取值时不会改变任何其他变量的取值。Schlegel 对良好的 *Z*-矩阵构造策略进行了简要讨论。[[1211]](../bib_references/bib.md#bib1266)
 
-In 1979 Pulay *et al.* published a key paper introducing what were termed
-natural internal coordinates into geometry optimization.[[1133]](../bib_references/bib.md#bib1181)
+1979 年，Pulay *et al.* 发表了一篇具有里程碑意义的论文，将所谓“自然内坐标”（natural internal coordinates）引入几何优化。[[1133]](../bib_references/bib.md#bib1181)
 
-These coordinates involve the use of individual bond displacements as
-stretching coordinates, but linear combinations of bond angles and torsions as
-deformational coordinates. Suitable linear combinations of bends and torsions
-(the two are considered separately) are selected using group theoretical
-arguments based on local pseudo-symmetry. For example, bond angles around an
-$sp^{3}$ hybridized carbon atom are all approximately tetrahedral, regardless
-of the groups attached, and idealized tetrahedral symmetry can be used to
-generate deformational coordinates around the central carbon atom.
+这些坐标在拉伸坐标方面使用单独的键位移，而在变形坐标方面则使用键角和扭转角的线性组合。 bending（弯曲）和 torsion（扭转）的合适线性组合（二者分别考虑）是基于局域伪对称性的群论论证来选取的。例如，$sp^{3}$ 杂化碳原子周围的键角都近似为四面体型，无论所连接的基团为何，因而可以利用理想化的四面体对称性来生成中心碳原子周围的变形坐标。
 
-The major advantage of natural internal coordinates in geometry optimization is
-their ability to significantly reduce the coupling, both harmonic and
-anharmonic, between the various coordinates. Compared to natural internals,
-*Z*-matrix coordinates arbitrarily omit some angles and torsions (to prevent
-redundancy), and this can induce strong anharmonic coupling between the
-coordinates, especially with a poorly constructed *Z*-matrix. Another advantage
-of the reduced coupling is that successful minimizations can be carried out in
-natural internals with only an approximate (*e.g.*, diagonal) Hessian provided
-at the starting geometry. A good starting Hessian is still needed for a
-transition state search.
+自然内坐标在几何优化中的主要优势在于，它们能够显著减弱各种坐标之间的耦合，无论是谐振耦合还是非谐振耦合。与自然内坐标相比，*Z*-矩阵坐标会任意地省去某些角度和扭转（以避免冗余），而这可能在坐标之间引入强烈的非谐振耦合，尤其是当 *Z*-矩阵构造得不好时。耦合减弱带来的另一个好处是，只需在初始几何结构处提供一个近似的（*例如*，对角的）Hessian，就能在自然内坐标下成功完成极小化。而过渡态搜索仍然需要一个良好的初始 Hessian。
 
-Despite their clear advantages, natural internals have only become widely used
-more recently. This is because, when used in the early programs, it was
-necessary for the user to define them. This situation changed in 1992 with the
-development of computational algorithms capable of automatically generating
-natural internals from input Cartesians.[[396]](../bib_references/bib.md#bib405)
- For minimization,
-natural internals have become the coordinates of first choice.[[396]](../bib_references/bib.md#bib405)
+尽管优势明显，自然内坐标却是在较晚时期才被广泛使用。这是因为在早期程序中使用它们时，必须由用户自行定义。这一情况在 1992 年发生了改变，当时开发出了能够根据输入的笛卡尔坐标自动生成自然内坐标的算法。[[396]](../bib_references/bib.md#bib405)
+ 对于极小化任务，自然内坐标已成为首选坐标。[[396]](../bib_references/bib.md#bib405)
 
-There are some disadvantages to natural internal coordinates as they are
-commonly constructed and used:
+按照通常的构造和使用方式，自然内坐标也存在一些缺点：
 
 - •
 
-Algorithms for the automatic construction of natural internals are
-complicated. There are a large number of structural possibilities, and to
-adequately handle even the most common of them can take several thousand
-lines of code.
+自动构造自然内坐标的算法十分复杂。结构可能性数量庞大，即便只是妥善处理其中最常见的那些，也可能需要数千行代码。
 - •
 
-For the more complex molecular topologies, most assigning algorithms
-generate more natural internal coordinates than are required to
-characterize all possible motions of the system (*i.e.*, the generated
-coordinate set contains redundancies).
+对于较复杂的分子拓扑，大多数指派算法生成的自然内坐标数量会超过表征体系所有可能运动所需的数目（*即*，所生成的坐标集包含冗余）。
 - •
 
-In cases with a very complex molecular topology (*e.g.*, multiply fused
-rings and cage compounds) the assigning algorithm may be unable to
-generate a suitable set of coordinates.
+在分子拓扑非常复杂的情况下（*例如*，多重稠环和笼状化合物），指派算法可能无法生成一组合适的坐标。
 
-The redundancy problem has been addressed in an excellent paper by
-Pulay and Fogarasi,[[1134]](../bib_references/bib.md#bib1184)
- who have developed a scheme for carrying
-out geometry optimization directly in the redundant coordinate space.
+Pulay 和 Fogarasi 的一篇杰出论文针对冗余问题给出了解决方案，[[1134]](../bib_references/bib.md#bib1184)
+ 他们发展了一种直接在冗余坐标空间中进行几何优化的方案。
 
-Baker *et al.*[[63]](../bib_references/bib.md#bib50)
- developed a set of delocalized internal
-coordinates that eliminate all of the above-mentioned
-difficulties. Building on some of the ideas in the redundant optimization
-scheme of Pulay and Fogarasi,[[1134]](../bib_references/bib.md#bib1184)
- delocalized internals form a
-complete, non-redundant set of coordinates which are as good as, if not
-superior to, natural internals, and which can be generated in a simple and
-straightforward manner for essentially any molecular topology, no matter how
-complex.
+Baker *et al.*[[63]](../bib_references/bib.md#bib50)
+ 发展了一组离域内坐标（delocalized internal coordinates），消除了上述所有困难。离域内坐标建立在 Pulay 和 Fogarasi 冗余优化方案[[1134]](../bib_references/bib.md#bib1184)
+ 的部分思想之上，构成一套完整、无冗余的坐标集，其性能与自然内坐标相当甚至更优，并且能够对本质上任意复杂的分子拓扑以简单直接的方式生成。
 
-Consider a set of $n$ internal coordinates $\mathbf{q}=(q_{1},q_{2},\ldots q_{n})^{t}$
-Displacements $\Delta\mathbf{q}$ in $\mathbf{q}$ are related to the corresponding
-Cartesian displacements $\Delta\mathbf{x}$ by means of the usual
-Wilson $\mathbf{B}$-matrix,
+考虑一组 $n$ 个内坐标 $\mathbf{q}=(q_{1},q_{2},\ldots q_{n})^{t}$。$\mathbf{q}$ 中的位移 $\Delta\mathbf{q}$ 与相应的笛卡尔位移 $\Delta\mathbf{x}$ 通过通常的 Wilson $\mathbf{B}$-矩阵相联系，
 
 <a id="Ch9.E15"></a>
 $$
 \Delta\mathbf{q}=\mathbf{B}\Delta\mathbf{x} \tag{9.15}
 $$
 
-If any of the internal coordinates $\mathbf{q}$ are redundant, then the rows
-of the $\mathbf{B}$-matrix will be linearly dependent.
+若内坐标 $\mathbf{q}$ 中存在任何冗余，则 $\mathbf{B}$-矩阵的各将会线性相关。
 
-Delocalized internal coordinates are obtained by constructing and
-diagonalizing the matrix $\mathbf{G}=\mathbf{BB}^{t}$. Diagonalization of $\mathbf{G}$
-results in two sets of eigenvectors; a set of $m$ (typically $3N-6$, where $N$
-is the number of atoms) eigenvectors with eigenvalues $\lambda>0$, and a set
-of $nm$ eigenvectors with eigenvalues $\lambda=0$ (to numerical precision).
-In this way, any redundancies present in the original coordinate set $\mathbf{q}$
-are isolated (they correspond to those eigenvectors with zero eigenvalues).
-The eigenvalue equation of $\mathbf{G}$ can thus be written
+离域内坐标是通过构造并对角化矩阵 $\mathbf{G}=\mathbf{BB}^{t}$ 得到的。对 $\mathbf{G}$ 进行对角化会得到两组本征向量：一组是 $m$ 个（通常为 $3N-6$，其中 $N$ 为原子数）本征值 $\lambda>0$ 的本征向量，另一组是 $nm$ 个本征值 $\lambda=0$（在数值精度意义下）的本征向量。这样，原始坐标集 $\mathbf{q}$ 中存在的任何冗余都被分离出来（它们对应于那些本征值为零的本征向量）。因此 $\mathbf{G}$ 的本征值方程可以写成
 
 <a id="eq:a13"></a>
 $$
@@ -145,63 +61,26 @@ $$
 \end{array}}}\right) \tag{9.16}
 $$
 
-where $\mathbf{U}$ is the set of non-redundant eigenvectors of $\mathbf{G}$ (those with
-$\lambda>0$) and $\mathbf{R}$ is the corresponding redundant set.
+其中 $\mathbf{U}$ 是 $\mathbf{G}$ 的非冗余本征向量集合（那些 $\lambda>0$ 的集合），而 $\mathbf{R}$ 是相应的冗余集合。
 
-The nature of the original set of coordinates $\mathbf{q}$ is unimportant, as long
-as it spans all the degrees of freedom of the system under consideration. We
-include in $\mathbf{q}$, all bond stretches, all planar bends and all proper
-torsions that can be generated based on the atomic connectivity. These
-individual internal coordinates are termed *primitives*. This blanket
-approach generates far more primitives than are necessary, and the set $\mathbf{q}$
-contains much redundancy. This is of little concern, as solution of
-Eq. ([9.16](#eq:a13)) takes care of all redundancies.
+原始坐标集 $\mathbf{q}$ 的性质并不重要，只要它能张满所考虑体系的所有自由度即可。我们在 $\mathbf{q}$ 中纳入所有基于原子连接性可生成的键拉伸、所有平面弯曲以及所有proper 扭转。这些单独的内坐标被称为*基坐标（primitives）*。这种“一网打尽”的做法生成的基坐标远多于必要数量，因此集合 $\mathbf{q}$ 中含有大量冗余。这并无需担忧，因为求解方程 ([9.16](#eq:a13)) 便可处理所有冗余。
 
-Note that eigenvectors in both $\mathbf{U}$ and $\mathbf{R}$ will each be linear
-combinations of potentially all the original primitives. Despite this apparent
-complexity, we take the set of non-redundant vectors $\mathbf{U}$ as our working
-coordinate set. Internal coordinates so defined are much more delocalized than
-natural internal coordinates (which are combinations of a relatively small
-number of bends or torsions) hence, the term delocalized internal coordinates.
+需要注意的是，$\mathbf{U}$ 和 $\mathbf{R}$ 中的本征向量各自都可能是所有原始基坐标的线性组合。尽管表面看似复杂，我们仍取非冗余向量集合 $\mathbf{U}$ 作为工作坐标集。如此定义的内坐标比自然内坐标（它们是相对较少数目弯曲或扭转的组合）离域程度高得多，因此得名“离域内坐标”。
 
-It may appear that because delocalized internals are such a complicated
-mixing of the original primitive internals, they are a poor choice for use
-in an actual optimization. On the contrary, arguments can be made that
-delocalized internals are, in fact, the “best” possible choice, certainly at
-the starting geometry. The interested reader is referred to the original
-literature for more details.[[63]](../bib_references/bib.md#bib50)
+由于离域内坐标是原始基内坐标如此复杂的混合，人们可能认为它们并不适合用于实际的优化。恰恰相反，有论证表明离域内坐标实际上就是“最佳”的选择，至少在初始几何结构处是如此。感兴趣的读者可参阅原始文献以了解更多细节。[[63]](../bib_references/bib.md#bib50)
 
-The situation for geometry optimization, comparing Cartesian, *Z*-matrix and
-delocalized internal coordinates, and assuming a “reasonable” starting
-geometry, is as follows:
+在假设初始几何结构“合理”的前提下，就几何优化而言，比较笛卡尔坐标、*Z*-矩阵坐标和离域内坐标，情况如下：
 
 - •
 
-For small or very rigid medium-sized systems (up to about 15 atoms),
-optimizations in Cartesian and internal coordinates (“good” *Z*-matrix or
-delocalized internals) should perform similarly.
+对于小的或非常刚性、中等尺寸的体系（不超过约 15 个原子），在笛卡尔坐标和在内部坐标（“好的” *Z*-矩阵或离域内坐标）下的优化表现应大致相当。
 - •
 
-For medium-sized systems (say 15–30 atoms) optimizations in Cartesians
-should perform as well as optimizations in internal coordinates, provided
-a reliable starting Hessian is available.
+对于中等尺寸体系（比如 15–30 个原子），只要有可靠的初始 Hessian，笛卡尔坐标下的优化应能与内部坐标下的优化表现相当。
 - •
 
-For large systems (30+ atoms), unless these are very rigid, neither
-Cartesian nor *Z*-matrix coordinates can compete with delocalized
-internals, even with good quality Hessian information. As the system
-increases, and with less reliable starting geometries, the advantage of
-delocalized internals only increases.
+对于大体系（30 个以上原子），除非它们非常刚性，否则无论笛卡尔坐标还是 *Z*-矩阵坐标都无法与离域内坐标相匹敌，即便有高质量的 Hessian 信息也是如此。随着体系增大以及初始几何结构可靠性降低，离域内坐标的优势只会愈加明显。
 
-There is one particular situation in which Cartesian coordinates may be the
-best choice. Natural internal coordinates (and by extension delocalized
-internals) show a tendency to converge to low energy structures.[[61]](../bib_references/bib.md#bib49)
+存在一种特定情形，笛卡尔坐标可能是最佳选择。自然内坐标（进而离域内坐标）表现出收敛到低能量结构的倾向。[[61]](../bib_references/bib.md#bib49)
 
-This is because steps taken in internal coordinate space
-tend to be much larger when translated into Cartesian space As a result,
-higher-energy local minima tend to be “jumped over”, especially if there is
-no reliable Hessian information available (which is generally not needed for a
-successful optimization). Consequently, if the user is looking for a local
-minimum (*i.e.*, a meta-stable structure) and has both a good starting geometry
-and a decent Hessian, the user should carry out the optimization in Cartesian
-coordinates.
+这是因为在内部坐标空间中所迈出的步长，转换到笛卡尔空间后往往会大得多。因此，能量较高的局部极小点往往会被“跳过”，尤其当没有可靠的 Hessian 信息可用时（而成功的优化通常并不需要它）。所以，如果用户寻找的是一个局部极小点（*即*，一个亚稳结构），并且同时具备良好的初始几何结构和不错的 Hessian，那么用户应当在笛卡尔坐标下进行优化。

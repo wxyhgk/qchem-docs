@@ -1,30 +1,15 @@
 ---
-title: "6.12.7 Quadratic Configuration Interaction (QCISD)"
+title: "6.12.7 二次组态相互作用（QCISD）"
 ---
 
-## 6.12.7 Quadratic Configuration Interaction (QCISD)
+## 6.12.7 二次组态相互作用（QCISD）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Quadratic configuration interaction with singles and doubles (QCISD)
-is a widely used alternative to CCSD,[[1113]](../bib_references/bib.md#bib1162)
- which shares its main
-desirable properties of being size-consistent, exact for pairs of electrons,
-as well as being also non variational. Its computational cost also scales in the
-same way with molecule size and basis set as CCSD, although with slightly
-smaller constants. While originally proposed independently of CCSD based on
-correcting configuration interaction equations to be size-consistent, QCISD is
-probably best viewed as approximation to CCSD. The defining equations are given
-below (under the assumption of Hartree-Fock orbitals, which should always be
-used in QCISD). The QCISD equations can clearly be viewed as the CCSD equations
-with a large number of terms omitted, which are evidently not very numerically significant:
-
-<a id="Ch6.E74"></a>
-$$
-\displaystyle E_{\text{QCISD}} \tag{6.74a}
-$$
-
-QCISD energies are available in **Q-Chem**, and are requested with the QCISD
-keyword. As discussed in Section [6.13](topic_ccni.md), the non iterative QCISD(T)
-correction to the QCISD solution is also available to approximately incorporate
-the effect of higher substitutions.
+包含单、双激发的二次组态相互作用（quadratic configuration interaction with singles and doubles，QCISD）
+是耦合簇方法 CCSD[[1113]](../bib_references/bib.md#bib1162) 的一种被广泛使用的替代方案，
+它继承了 CCSD 的主要优良性质，即具有尺寸一致性（size-consistent）、对电子对（electron pairs）精确，
+同时同样属于非变分（non-variational）方法。其计算代价随分子尺寸和基组（Basis Set）的变化规律
+与 CCSD 相同，只是常数因子略小。尽管 QCISD 最初是独立于 CCSD 提出的，其出发点是修正组态
+相互作用（Configuration Interaction，CI）方程使其具备尺寸一致性，但 QCISD 最好被理解为 CCSD
+的一种近似。其定义方程如下所示（假设在此前提下给出）：

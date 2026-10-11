@@ -1,73 +1,39 @@
 ---
-title: "8.10.1 Introduction & Overview"
+title: "8.10.1 简介与概述"
 ---
 
-## 8.10.1 Introduction & Overview
+## 8.10.1 简介与概述
 
 (July 4, 2026)
 
-The application of quantum chemical methods to elements in the lower half of
-the Periodic Table is more difficult than for the lighter atoms. There are
-two key reasons for this:
+将量子化学方法应用于元素周期表下半区的元素要比处理较轻的原子困难得多。其原因主要有两点：
 
-- •
+- 重原子中的电子数目庞大
+- 重原子中的相对论效应往往不可忽略
 
-the number of electrons in heavy atoms is large
-- •
+这两个问题都源于大量内层（core）电子的存在。鉴于这些电子并不在化学行为中扮演显著的*直接*角色，人们自然会问：是否可以用某种更简单的方式来模拟它们的影响。这类探索催生了有效核势（Effective Core Potentials, ECPs）或伪势（pseudopotentials）的发明。现已有许多讨论化学中相对论效应的综述文章可供参考。[[250]](../bib_references/bib.md#bib249)
 
-relativistic effects in heavy atoms are often non-negligible
+如果我们试图用伪势取代给定原子核周围的核外内层电子，同时又使化学性质尽可能不受影响，那么该伪势对邻近价电子的作用应与内层电子的作用相同。最显而易见的作用是内层区域与价层区域之间的简单静电排斥，但价轨道必须与内层轨道保持正交这一要求，又引入了额外的、更为微妙的效应，这些效应同样不可忽略。
 
-Both of these problems stem from the presence of large numbers of core
-electrons and, given that such electrons do not play a significant
-*direct* role in chemical behavior, it is natural to ask whether it is
-possible to model their effects in some simpler way. Such enquiries led to the
-invention of Effective Core Potentials (ECPs) or pseudopotentials.
-Many review articles discussing relativistic effects in chemistry are
-available.[[250]](../bib_references/bib.md#bib249)
-.
+在 ECP 的发展过程中，关键问题之一是“核”（core）的定义。所谓“大核”（large-core）ECP 包含除最外层之外的所有电子壳层，而“小核”（small-core）ECP 则包含除最外*两个*壳层之外的所有壳层。尽管小核 ECP 的使用代价更高（因为需要显式处理的电子更多），但人们通常发现其精度的提升足以证明使用它们是合理的。
 
-If we seek to replace the core electrons around a given nucleus by a
-pseudopotential, while affecting the chemistry as little as possible, the
-pseudopotential should have the same effect on nearby valence electrons as the
-core electrons. The most obvious effect is the simple electrostatic repulsion
-between the core and valence regions but the requirement that valence orbitals
-must be orthogonal to core orbitals introduces additional subtler effects that cannot be neglected.
+构造 ECP 时，通常基于非相对论或准相对论（quasi-relativistic）的全电子计算。正如人们所预期的，准相对论 ECP 往往能比其非相对论的“同类”给出更好的结果，尤其是对 3$d$ 区之后的原子。
 
-One of the key issues in the development of ECPs is the definition
-of the “core”. So-called “large-core” ECPs include all shells except the
-outermost one, but “small-core” ECPs include all except the outermost
-*two* shells. Although the small-core ECPs are more expensive to use
-(because more electrons are treated explicitly), it is often found that their
-enhanced accuracy justifies their use.
+**Q-Chem** 的 ECP 软件包与其电子关联方法及密度泛函理论（Density Functional Theory, DFT）软件包是集成在一起的。当然，在 DFT 方法或关联方法中使用 ECP 时，均不包含来自内层电子的关联能或交换-关联能。
 
-When an ECP is constructed, it is usually based on either non-relativistic or
-quasi-relativistic all-electron calculations. As one might expect, the
-quasi-relativistic ECPs tend to yield better results than their
-non-relativistic brethren, especially for atoms beyond the 3$d$ block
-
-**Q-Chem**’s ECP package is integrated with its electron correlation and DFT
-packages. Of course, no correlation or exchange-correlation energy due to the
-core electrons is included when using an ECP in a DFT or correlated method, respectively.
-
-The most widely used ECPs today are of the form first proposed by Kahn
-*et al.* in the 1970s.[[661]](../bib_references/bib.md#bib685)
- These model the effects of the core by a
-one-electron operator $U(r)$ whose matrix elements are simply added to the
-one-electron Hamiltonian matrix. The ECP operator is given by
+当今使用最广泛的 ECP 属于 Kahn 等人于 20 世纪 70 年代首先提出的形式。[[661]](../bib_references/bib.md#bib685)
+这类模型通过一个单电子算符 $U(r)$ 来描述内层的影响，其矩阵元直接加到单电子哈密顿矩阵上。ECP 算符表示为
 
 <a id="eq800"></a>
 $$
 U(r)=U_{L}(r)+\sum\limits_{\ell=0}^{L-1}{\sum\limits_{m=-l}^{+l}{\left|{Y_{\ell m}}\right\rangle U_{l}(r)\left\langle{Y_{\ell m}}\right|}} \tag{8.6}
 $$
 
-where the radial potentials have the form
+其中径向势的形式为
 
 <a id="eq:radpot"></a>
 $$
 U_{\ell}(r)=\sum_{k=1}^{K_{\ell}}D_{\ell_{k}}\,r^{n_{\ell_{k}}}e^{-\eta_{\ell_{k}}r^{2}} \tag{8.7}
 $$
 
-and $\sum_{m}\left|{Y_{\ell m}}\right\rangle\left\langle{Y_{\ell m}}\right|$ is the
-spherical harmonic projector of angular momentum $\ell$. In practice,
-$n_{\ell_{k}}=-2$, $-1$ or 0 and $L$ rarely exceeds 5. In addition, $U_{L}(r)$ contains a
-Coulombic term $N_{c}/r$, where $N_{c}$ is the number of core electrons.
+而 $\sum_{m}\left|{Y_{\ell m}}\right\rangle\left\langle{Y_{\ell m}}\right|$ 是角动量为 $\ell$ 的球谐投影算符。在实际应用中，$n_{\ell_{k}}=-2$、$-1$ 或 0，且 $L$ 很少超过 5。此外，$U_{L}(r)$ 中包含一个库仑项 $N_{c}/r$，其中 $N_{c}$ 为内层电子数。

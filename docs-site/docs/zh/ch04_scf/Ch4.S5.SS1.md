@@ -1,103 +1,70 @@
 ---
-title: "4.5.1 Introduction"
+title: "4.5.1 引言"
 ---
 
-## 4.5.1 Introduction
+## 4.5.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-As for any numerical optimization procedure, the rate of convergence of the SCF
-procedure is dependent on the initial guess and on the algorithm used to step
-towards the stationary point. **Q-Chem** features a number of SCF optimization
-algorithms which can be selected via the *$rem* variable SCF_ALGORITHM, including:
+与任何数值优化过程一样，自洽场（SCF）过程的收敛速度取决于初始猜测（initial guess）以及用于向驻点迭代的算法。 **Q-Chem** 提供了多种 SCF 优化算法，可通过 *$rem* 变量 SCF_ALGORITHM 进行选择，包括：
 
-Methods that are based on extrapolation or interpolation:
+基于外推或插值的方法：
 
 - •
 
-The highly successful DIIS procedures. These are the default (except
-for restricted open-shell SCF calculations) and are available for all
-orbital types (see Section [4.5.3](sect_diis.md)).
-The damping
+非常成功的 DIIS 过程。它们是默认方法（限制开壳层 SCF 计算除外），并且适用于所有轨道类型（见第 [4.5.3](sect_diis.md) 节）。
+阻尼（damping）
 
- and level-shifting
-technique[[578]](../bib_references/bib.md#bib599)
+ 和能级移动（level-shifting）
+技术[[578]](../bib_references/bib.md#bib599)
 
-can also be invoked together with DIIS (R, U only).
+也可以与 DIIS 结合使用（仅限 R、U）。
 - •
 
-ADIIS: the combination of augmented Roothaan-Hall (ARH) energy function
-and DIIS developed by Hu and Yang,[[601]](../bib_references/bib.md#bib624)
- which is available for
-R and U only.
+ADIIS：由 Hu 和 Yang 开发的增广 Roothaan-Hall（ARH）能量函数与 DIIS 的组合[[601]](../bib_references/bib.md#bib624)，
+ 仅适用于 R 和 U。
 
-Methods that make use of orbital gradient:
+利用轨道梯度的方法：
 
 - •
 
-Direct Minimization (DM), which has been re-implemented as simple
-steepest descent with line search, and is available for all orbital
-types. DM can be invoked after a few DIIS iterations.
+直接极小化（Direct Minimization, DM），已重新实现为带线搜索的简单最速下降法，适用于所有轨道类型。DM 可以在若干次 DIIS 迭代之后调用。
 - •
 
-Limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm (L_BFGS),
-which is a quasi-Newton method using the gradients and steps taken in
-the previous iterations to construct the approximate Hessian.
+有限内存 Broyden-Fletcher-Goldfarb-Shanno 算法（L_BFGS），
+这是一种拟牛顿法，利用前几次迭代中的梯度和步长来构造近似的 Hessian 矩阵。
 - •
 
-Geometric Direct Minimization (GDM) which is an improved and highly
-robust version of DM and is the recommended fall-back when DIIS fails.
-Like DM, It can also be invoked after a few iterations with
-DIIS to improve the initial guess. GDM is the default algorithm for
-restricted open-shell SCF calculations and is available for all
-orbital types (see Section [4.5.7](sect_gdm.md)). GDM comes in three variants:
+几何直接极小化（Geometric Direct Minimization, GDM），它是 DM 的改进版且非常稳健，是 DIIS 失败时推荐使用的备选方法。与 DM 一样，它也可以在若干次 DIIS 迭代之后调用，以改进初始猜测。GDM 是限制开壳层 SCF 计算的默认算法，并适用于所有轨道类型（见第 [4.5.7](sect_gdm.md) 节）。GDM 有三种变体：
 
 - **–**
 
-GDM: the default implementation.
+GDM：默认实现。
 - **–**
 
-GDM_LS: Uses a line search at every iteration.
+GDM_LS：在每次迭代中使用线搜索。
 - **–**
 
-GDM_QLS: Employs a quadratic energy model to perform the
-line search at every iteration.
+GDM_QLS：采用二次能量模型在每次迭代中执行线搜索。
 - •
 
-Square Gradient Minimization (SGM) family: SGM is a GDM-inspired method for
-excited state orbital optimization. Currently, three variants of this approach
-are supported: SGM (for RO and and OS_RO), SGM_LS (for R, U, RO and OS_RO)
-and SGM_QLS (for R and U), which are based upon the corresponding GDM approaches.
-For further details, see Section [4.5.15](sect_SGM-SCF.md).
+平方梯度极小化（Square Gradient Minimization, SGM）系列：SGM 是一种受 GDM 启发、用于激发态轨道优化的方法。目前支持该方法的三种变体：SGM（适用于 RO 和 OS_RO）、SGM_LS（适用于 R、U、RO 和 OS_RO）以及 SGM_QLS（适用于 R 和 U），它们分别基于对应的 GDM 方法。更多细节见第 [4.5.15](sect_SGM-SCF.md) 节。
 
-Methods that require orbital Hessian:
+需要轨道 Hessian 的方法：
 
 - •
 
-NEWTON_CG/NEWTON_MINRES (solve $\mathbf{Hd}=-\mathbf{g}$ for the
-update direction with CG/MINRES solvers).
+NEWTON_CG/NEWTON_MINRES（使用 CG/MINRES 求解器求解 $\mathbf{Hd}=-\mathbf{g}$ 以获得更新方向）。
 - •
 
-SF_NEWTON_CG (the “saddle-free" version of NEWTON_CG).
+SF_NEWTON_CG（NEWTON_CG 的“无鞍点（saddle-free）”版本）。
 
-The analytical orbital Hessian is available for R/U/RO/G/CR unless special
-density functionals (*e.g.*, those nonlocal functionals except for VV10 [[1416]](../bib_references/bib.md#bib1477)
-)
-are used, while the use of finite-difference Hessian is available for all orbital
-types by setting FD_MAT_VEC_PROD = TRUE.
+解析的轨道 Hessian 适用于 R/U/RO/G/CR，除非使用了特殊的密度泛函（*例如*，除 VV10 [[1416]](../bib_references/bib.md#bib1477)
+ 之外的非局域泛函）；而通过设置 FD_MAT_VEC_PROD = TRUE，所有轨道类型均可使用有限差分 Hessian。
 
-In addition to these algorithms, there is also the maximum overlap method (MOM)
-which ensures that DIIS always occupies a continuous set of orbitals and does
-not oscillate between different occupancies. MOM can also be used to obtain
-higher-energy solutions of the SCF equations (see Section [7.7.2](../ch07_excited/ex_OpSing.md)). The
-relaxed constraint algorithm (RCA), which guarantees that the energy goes down
-at every step, is also available via the old SCF code (set
-GEN_SCFMAN = FALSE). Nevertheless, the performance of the
+除上述算法之外，还有最大重叠方法（maximum overlap method, MOM），它确保 DIIS 始终占据一组连续的轨道，而不会在不同占据方案之间振荡。MOM 还可用于求取 SCF 方程的高能量解（见第 [7.7.2](../ch07_excited/ex_OpSing.md) 节）。
+松弛约束算法（relaxed constraint algorithm, RCA）能够保证能量在每一步都下降，它也可以通过旧版 SCF 代码使用（设置 GEN_SCFMAN = FALSE）。不过，
 ADIIS [[601]](../bib_references/bib.md#bib624)
- algorithm should be similar to it.
+ 算法的性能应与之相当。
 
-Since the code in GEN_SCFMAN is highly modular, the availability of different
-SCF algorithms to different SCF (orbital) types is largely extended in general.
-For example, the old ROSCF implementation requires the use of the GWH guess and
-the GDM algorithm exclusively. Such a limitation has been eliminated in
-GEN_SCFMAN based RO calculations.
+由于 GEN_SCFMAN 中的代码高度模块化，不同 SCF 算法对不同 SCF（轨道）类型的适用性在总体上得到了极大扩展。例如，旧版 ROSCF 实现要求只能使用 GWH 猜测和 GDM 算法。这种限制在基于 GEN_SCFMAN 的 RO 计算中已被消除。

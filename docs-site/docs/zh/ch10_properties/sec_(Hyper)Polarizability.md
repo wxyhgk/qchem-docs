@@ -1,13 +1,13 @@
 ---
-title: "10.13 Finite-Field Calculation of (Hyper)Polarizabilities"
+title: "10.13 (超)极化率的有限场计算"
 ---
 
-# 10.13 Finite-Field Calculation of (Hyper)Polarizabilities
+# 10.13 (超)极化率的有限场计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [10.13.1 Introduction](Ch10.S13.SS1.md)
+- [10.13.1 引言](Ch10.S13.SS1.md)
 
-- [10.13.2 Numerical Calculation of Static Polarizabilities](sec_finite-field.md)
+- [10.13.2 静态极化率的数值计算](sec_finite-field.md)
 
-- [10.13.3 Romberg Finite-Field Procedure](sect_Romberg.md)
+- [10.13.3 Romberg 有限场方法](sect_Romberg.md)

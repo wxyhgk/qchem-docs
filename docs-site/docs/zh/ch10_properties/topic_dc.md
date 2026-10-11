@@ -1,25 +1,21 @@
 ---
-title: "10.15.2 Diabatic-State-Based Methods"
+title: "10.15.2 基于绝热态（Diabatic-State-Based）的方法"
 ---
 
-## 10.15.2 Diabatic-State-Based Methods
+## 10.15.2 基于绝热态（Diabatic-State-Based）的方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 10.15.2.1 Electronic coupling in charge transfer
+## 10.15.2.1 电荷转移中的电子耦合
 
-A charge transfer involves a change in the electron numbers in a pair of
-molecular fragments. As an example, we will use the following reaction when
-necessary, and a generalization to other cases is straightforward:
+电荷转移涉及一对分子片段中电子数目的变化。作为示例，必要时我们将使用如下反应，将其推广到其他情形是直接的：
 
 <a id="eq:electron-transfer"></a>
 $$
 \mathrm{D}^{-}\mathrm{A}\longrightarrow\mathrm{D}\mathrm{A}^{-} \tag{10.177}
 $$
 
-where an extra electron is localized to the donor (D) initially, and it becomes
-localized to the acceptor (A) in the final state. The two-state secular
-equation for the initial and final electronic states can be written as
+其中额外的电子初始定域在给体（donor，D）上，而在终态中它定域在受体（acceptor，A）上。初态与终电子态的两态久期方程（secular equation）可写为
 
 <a id="eq:2by2HS"></a>
 $$
@@ -27,170 +23,137 @@ $$
 H_{\mathrm{if}}-S_{\mathrm{if}}E&H_{\mathrm{ff}}-S_{\mathrm{ff}}E\end{array}\right)=0 \tag{10.178}
 $$
 
-This is very close to an eigenvalue problem except for the non-orthogonality
-between the initial and final states. A standard eigenvalue form for
-Eq. ([10.178](#eq:2by2HS)) can be obtained by using the Löwdin transformation:
+除初态与终态之间的非正交性之外，这非常接近一个本征值问题。利用 Löwdin 变换可以得到式 ([10.178](#eq:2by2HS)) 的标准本征值形式：
 
 <a id="Ch10.E179"></a>
 $$
 \mathbf{H}_{\textrm{eff}}=\mathbf{S}^{-1/2}\mathbf{H}\mathbf{S}^{-1/2}, \tag{10.179}
 $$
 
-where the off-diagonal element of the effective Hamiltonian matrix represents
-the *electronic coupling* for the reaction, and it is defined by
+其中有效哈密顿矩阵的非对角元表示该反应的*电子耦合（electronic coupling）*，其定义为
 
 <a id="eq:coupling-normal"></a>
 $$
 V=H^{\textrm{eff}}_{\mathrm{if}}=\frac{H_{\mathrm{if}}-S_{\mathrm{if}}(H_{\mathrm{ii}}+H_{\mathrm{ff}})/2}{1-S^{2}_{\mathrm{if}}} \tag{10.180}
 $$
 
-In a general case where the initial and final states are not normalized, the
-electronic coupling is written as
+在初态与终态未归一化的一般情形下，电子耦合写作
 
 <a id="eq:coupling"></a>
 $$
 V=\sqrt{S_{\mathrm{ii}}S_{\mathrm{ff}}}\times\frac{H_{\mathrm{if}}-S_{\mathrm{if}}(H_{\mathrm{ii}}/S_{\mathrm{ii}}+H_{\mathrm{ff}}/S_{\mathrm{ff}})/2}{S_{\mathrm{ii}}S_{\mathrm{ff}}-S^{2}_{\mathrm{if}}} \tag{10.181}
 $$
 
-Thus, in principle, $V$ can be obtained when the matrix elements for the
-Hamiltonian $H$ and the overlap matrix $S$ are calculated.
+因此，原则上在计算出哈密顿 $H$ 与重叠矩阵 $S$ 的矩阵元之后即可获得 $V$。
 
-The direct coupling (DC) scheme calculates the electronic coupling values via
-Eq. ([10.181](#eq:coupling)), and it is widely used to calculate charge transfer
-coupling.[[1014]](../bib_references/bib.md#bib1056)
- In the DC scheme,
-the coupling matrix element is calculated directly using charge-localized
-determinants (the “diabatic states” in electron transfer literature). In
-electron transfer systems, it has been shown that such charge-localized states
-can be approximated by symmetry-broken unrestricted Hartree-Fock (UHF)
-solutions.[[1014]](../bib_references/bib.md#bib1056)
- The adiabatic eigenstates are
-assumed to be the symmetric and anti-symmetric linear combinations of the two
-symmetry-broken UHF solutions in a DC calculation. Therefore, DC couplings can
-be viewed as a result of two-configuration solutions that may recover the non-dynamical correlation.
+直接耦合（direct coupling，DC）方案通过式 ([10.181](#eq:coupling)) 计算电子耦合值，并被广泛用于电荷转移耦合的计算。[[1014]](../bib_references/bib.md#bib1056)
+ 在 DC 方案中，耦合矩阵元是使用电荷定域的行列式（电子转移文献中的“绝热态”，diabatic states）直接计算的。在电子转移体系中已表明，这类电荷定域态可以由对称性破缺的非限制性 Hartree-Fock（UHF）解来近似。[[1014]](../bib_references/bib.md#bib1056)
+ 在 DC 计算中，假定绝热本征态是两个对称性破缺 UHF 解的对称与反对称线性组合。因此，DC 耦合可以看作两构型（two-configuration）求解的结果，该求解或许能够恢复非动态（non-dynamical）关联。
 
-The core of the DC method is based on the corresponding orbital
-transformation[[689]](../bib_references/bib.md#bib715)
- and a calculation for Slater’s determinants in
-$H_{\mathrm{if}}$ and $S_{\mathrm{if}}$.[[376]](../bib_references/bib.md#bib381)
- Unfortunately, the
-calculation of $H_{\mathrm{if}}$ is not available for DFT method because a functional
-of the two densities $\rho_{\mathrm{i}}$ and $\rho\mathrm{f}$ is unknown and there are no
-existing approximate forms for $H_{\mathrm{if}}$.[[1502]](../bib_references/bib.md#bib1560)
+DC 方法的核心基于相应的轨道变换（corresponding orbital transformation）[[689]](../bib_references/bib.md#bib715)
+ 以及对 Slater 行列式在 $H_{\mathrm{if}}$ 和 $S_{\mathrm{if}}$ 中的计算。[[376]](../bib_references/bib.md#bib381)
+ 遗憾的是，对于密度泛函理论（Density Functional Theory, DFT）方法无法计算 $H_{\mathrm{if}}$，因为两个密度 $\rho_{\mathrm{i}}$ 与 $\rho\mathrm{f}$ 的泛函形式未知，且不存在 $H_{\mathrm{if}}$ 的已有近似形式。[[1502]](../bib_references/bib.md#bib1560)
 
-To calculate charge transfer coupling with DFT, we can use the CDFT-CI method
-(Section [5.11.5](../ch05_dft/sect_CDFT-CI.md)), the frontier molecular orbital (FMO)
-approach (Section [10.15.2.5](#subsubsect:FMO-DC)),[[1384]](../bib_references/bib.md#bib1456)
+为了用 DFT 计算电荷转移耦合，我们可以使用 CDFT-CI 方法（第 [5.11.5](../ch05_dft/sect_CDFT-CI.md) 节）、前线分子轨道（frontier molecular orbital，FMO）方法（第 [10.15.2.5](#subsubsect:FMO-DC) 节）[[1384]](../bib_references/bib.md#bib1456)
+，或者混合方案，即使用 CDFT 波函数的 DC（第 [10.15.2.4](#subsubsect:DC) 节）。
 
-or a hybrid scheme, namely, DC with CDFT wave functions (Section [10.15.2.4](#subsubsect:DC)).
+## 10.15.2.2 相应的轨道变换
 
-## 10.15.2.2 Corresponding orbital transformation
-
-Let $|\Psi_{a}\rangle$ and $|\Psi_{b}\rangle$ be two single Slater-determinant
-wave functions for the initial and final states, and $\mathbf{a}$ and $\mathbf{b}$ be the
-spin-orbital sets, respectively:
+设 $|\Psi_{a}\rangle$ 与 $|\Psi_{b}\rangle$ 为初态和终态的两个单 Slater 行列式波函数，$\mathbf{a}$ 与 $\mathbf{b}$ 分别为其自旋轨道集合：
 
 <a id="A3.S8.EGx91"></a>
 $$
 \displaystyle\mathbf{a} \tag{10.182}
 $$
 
-Since the two sets of spin-orbitals are not orthogonal, the overlap matrix
-$\mathbf{S}$ can be defined as:
+由于两组自旋轨道不正交，可以定义重叠矩阵 $\mathbf{S}$：
 
 <a id="Ch10.E184"></a>
 $$
 \mathbf{S}=\int\mathbf{b}^{\dagger}\mathbf{a}\ d\tau. \tag{10.184}
 $$
 
-We note that $\mathbf{S}$ is not Hermitian in general since the molecular orbitals of
-the initial and final states are separately determined. To calculate the matrix
-elements $H_{ab}$ and $S_{ab}$, two sets of new orthogonal spin-orbitals can be
-used by the corresponding orbital transformation.[[689]](../bib_references/bib.md#bib715)
- In this
-approach, each set of spin-orbitals $\mathbf{a}$ and $\mathbf{b}$ are linearly transformed,
+需要注意的是，由于初态与终态的分子轨道是分别独立确定的，$\mathbf{S}$ 一般来说不是厄米矩阵。为计算矩阵元 $H_{ab}$ 与 $S_{ab}$，可通过相应的轨道变换[[689]](../bib_references/bib.md#bib715)
+ 使用两组新的正交自旋轨道。在此方法中，每组自旋轨道 $\mathbf{a}$ 与 $\mathbf{b}$ 进行线性变换，
 
 <a id="A3.S8.EGx92"></a>
 $$
 \displaystyle\hat{\mathbf{a}} \tag{10.185}
 $$
 
-where $\mathbf{V}$ and $\mathbf{U}$ are the left-singular and right-singular matrices,
-respectively, in the singular value decomposition (SVD) of $\mathbf{S}$:
+其中 $\mathbf{V}$ 与 $\mathbf{U}$ 分别是 $\mathbf{S}$ 的奇异值分解（singular value decomposition，SVD）中的左奇异矩阵与右奇异矩阵：
 
 <a id="Ch10.E187"></a>
 $$
 \mathbf{S}=\mathbf{U}\hat{\mathbf{s}}\mathbf{V}^{\dagger} \tag{10.187}
 $$
 
-The overlap matrix in the new basis is now diagonal
+新基下的重叠矩阵此时为对角矩阵
 
 <a id="Ch10.E188"></a>
 $$
 \int\hat{\mathbf{b}}^{\dagger}\hat{\mathbf{a}}=\mathbf{U}^{\dagger}\left(\int\mathbf{b}^{\dagger}\mathbf{a}\right)\mathbf{V}=\hat{\mathbf{s}} \tag{10.188}
 $$
 
-## 10.15.2.3 Generalized density matrix
+## 10.15.2.3 广义密度矩阵
 
-The Hamiltonian for electrons in molecules are a sum of one-electron and
-two-electron operators. In the following, we derive the expressions for the one- and two-electron operators
+分子中电子的哈密顿量是一电子算符与二电子算符之和。下面推导一电子与二电子算符的表达式
 
 <a id="Ch10.E189"></a>
 $$
 \displaystyle\Omega^{(1)} \tag{10.189a}
 $$
 
-where
+其中
 
 <a id="Ch10.E190"></a>
 $$
 \displaystyle\omega(i) \tag{10.190a}
 $$
 
-Matrix elements of the Hamiltonian can then be expressed as $H_{ab}=\Omega^{(1)}_{ab}+\Omega^{(2)}_{ab}$, where
+于是哈密顿的矩阵元可表示为 $H_{ab}=\Omega^{(1)}_{ab}+\Omega^{(2)}_{ab}$，其中
 
 <a id="Ch10.E191"></a>
 $$
 \Omega^{(1)}_{ab}=\langle\Psi_{b}|\Omega^{(1)}|\Psi_{a}\rangle=\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\sum^{N}_{i=1}\langle\hat{b}_{i}|\omega(1)|\hat{a}_{i}\rangle\prod^{N}_{j\neq i}\hat{s}_{jj} \tag{10.191}
 $$
 
-and
+以及
 
 <a id="eq:2par"></a>
 $$
 \Omega^{(2)}_{ab}=\langle\Psi_{b}|\Omega^{(2)}|\Psi_{a}\rangle=\frac{1}{2}\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\sum^{N}_{ij}\langle\hat{b}_{i}\hat{b}_{j}|\omega(1,2)(1-P_{12})|\hat{a}_{i}\hat{a}_{j}\rangle\prod^{N}_{k\neq{i,j}}\hat{s}_{kk}\;. \tag{10.192}
 $$
 
-Overlap integrals are
+重叠积分为
 
 <a id="eq:1par"></a>
 $$
 S_{ab}=\langle\Psi_{b}|\Psi_{a}\rangle=\det(\mathbf{U})\det(\mathbf{V}^{\dagger})\prod_{i=1}^{N}\hat{s}_{ii}\;. \tag{10.193}
 $$
 
-In an atomic orbital basis set, $\{\chi\}$, we can expand the molecular spin orbitals $\mathbf{a}$ and $\mathbf{b}$,
+在原子轨道基组（atomic orbital basis set）$\{\chi\}$ 中，我们可以将分子自旋轨道 $\mathbf{a}$ 与 $\mathbf{b}$ 展开，
 
 <a id="A3.S8.EGx95"></a>
 $$
 \displaystyle\mathbf{a}=\chi\mathbf{A},\qquad\hat{\mathbf{a}}=\chi\mathbf{A}\mathbf{V}=\chi\hat{\mathbf{A}} \tag{10.194}
 $$
 
-The one-electron terms, Eq. ([10.193](#eq:1par)), can be expressed as
+一电子项，即式 ([10.193](#eq:1par))，可以表示为
 
 <a id="A3.S8.EGx96"></a>
 $$
 \displaystyle\Omega^{(1)}_{ab} \tag{10.196}
 $$
 
-where $\displaystyle T_{ii}=S_{ab}/\hat{s}_{ii}$ and define a
-generalized density matrix, $\mathbf{G}$:
+其中 $\displaystyle T_{ii}=S_{ab}/\hat{s}_{ii}$，并定义广义密度矩阵（generalized density matrix）$\mathbf{G}$：
 
 <a id="eq:g-density"></a>
 $$
 \mathbf{G}=\hat{\mathbf{A}}\mathbf{T}\hat{\mathbf{B}}^{\dagger}\;. \tag{10.197}
 $$
 
-Similarly, the two-electron terms, Eq. ([10.192](#eq:2par)), are
+类似地，二电子项，即式 ([10.192](#eq:2par))，为
 
 <a id="A3.S8.EGx97"></a>
 $$
@@ -198,11 +161,9 @@ $$
 &\displaystyle=\sum_{\lambda\sigma\mu\nu}G^{\text{L}}_{\lambda\mu}G^{\text{R}}_{\sigma\nu}\langle\mu\nu||\lambda\sigma\rangle\end{aligned} \tag{10.198}
 $$
 
-where $\mathbf{G}^{\text{R}}$ and $\mathbf{G}^{\text{L}}$ are generalized density matrices as defined
-in Eq. ([10.197](#eq:g-density)) except $T_{ii}$ in $\mathbf{G}^{\text{L}}$ is replaced by $1/(2s_{ii})$.
+其中 $\mathbf{G}^{\text{R}}$ 与 $\mathbf{G}^{\text{L}}$ 是如式 ([10.197](#eq:g-density)) 所定义的广义密度矩阵，只是 $\mathbf{G}^{\text{L}}$ 中的 $T_{ii}$ 被替换为 $1/(2s_{ii})$。
 
-The $\alpha$- and $\beta$-spin orbitals are treated explicitly. In terms of the
-spatial orbitals, the one- and two-electron contributions can be reduced to
+$\alpha$ 自旋与 $\beta$ 自旋轨道被显式处理。用空间轨道表示时，一电子与二电子贡献可化简为
 
 <a id="eq:1par-g-ab"></a>
 $$
@@ -215,34 +176,21 @@ $$
 &\displaystyle\qquad+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\alpha}_{\lambda\mu}G^{\text{R}\beta}_{\sigma\nu}\langle\mu\nu|\lambda\sigma\rangle+\sum_{\lambda\sigma\mu\nu}G^{\text{L}\beta}_{\lambda\mu}G^{\text{R}\beta}_{\sigma\nu}(\langle\mu\nu|\lambda\sigma\rangle-\langle\mu\nu|\sigma\lambda\rangle)\end{aligned} \tag{10.200}
 $$
 
-The resulting one- and two-electron contributions, Eqs. ([10.199](#eq:1par-g-ab))
-and ([10.200](#eq:2par-g-ab)) can be easily computed in terms of generalized density matrices
-using standard one- and two-electron integral routines in **Q-Chem**.
+所得的一电子与二电子贡献，即式 ([10.199](#eq:1par-g-ab)) 与式 ([10.200](#eq:2par-g-ab))，可以很方便地借助广义密度矩阵，使用 **Q-Chem** 中标准的一电子与二电子积分程序计算得到。
 
-## 10.15.2.4 Direct coupling method for electronic coupling
+## 10.15.2.4 用于电子耦合的直接耦合方法
 
-It is important to obtain proper charge-localized initial and final states for
-the DC scheme, and this step determines the quality of the coupling values.
-**Q-Chem** provides three approaches to construct charge-localized states:
+对 DC 方案而言，获得合适的电荷定域初态与终态十分重要，这一步骤决定了耦合值的质量。**Q-Chem** 提供三种构造电荷定域态的途径：
 
 - •
 
-**The “1+1” approach
+**“1+1”方法
 
-**Since the system consists of donor and acceptor molecules or fragments, with a
-charge being localized either donor or acceptor, it is intuitive to combine
-wave functions of individual donor and acceptor fragments to form a
-charge-localized wave function. We call this approach “1+1” since the zeroth
-order wave functions are composed of the HF wave functions of the two fragments.
+**由于体系由给体与受体分子或片段组成，且电荷定域在给体或受体上，因此将各个给体片段与受体片段的波函数组合成电荷定域波函数是直观的做法。我们称此方法为“1+1”，因为零级波函数由两个片段的 Hartree-Fock（HF）波函数构成。
 
-For example, for the case shown in Example ([10.177](#eq:electron-transfer)), we can
-use **Q-Chem** to calculate two HF wave functions: those of anionic donor and of
-neutral acceptor and they jointly form the initial state. For the final state,
-wave functions of neutral donor and anionic acceptor are used. Then the
-coupling value is calculated via Eq. ([10.181](#eq:coupling)).
+例如，对于式 ([10.177](#eq:electron-transfer)) 所示的情形，我们可以用 **Q-Chem** 计算两个 HF 波函数：阴离子给体与中性受体的波函数，二者共同构成初态。对于终态，则使用中性给体与阴离子受体的波函数。随后通过式 ([10.181](#eq:coupling)) 计算耦合值。
 
-???+ example "Example 10.74: Calculate the electron-transfer coupling for ethylene dimer
-with “1+1” charge-localized states"
+???+ example "示例 10.74：使用“1+1”电荷定域态计算乙烯二聚体的电子转移耦合"
     ```qchem
     $molecule
       -1  2
@@ -274,55 +222,23 @@ with “1+1” charge-localized states"
     $end
     ```
 
-In the *$molecule* subsection, the first line is for the charge and
-multiplicity of the whole system. The following blocks are two inputs for the
-two molecular fragments (donor and acceptor). In each block the first line
-consists of the charge and spin multiplicity in the initial state of the
-corresponding fragment, a comma, then the charge and multiplicity in the final
-state. Next lines are nuclear species and their positions of the fragment.
-For example, in the above example, the first block indicates that the electron
-donor is a doublet ethylene anion initially, and it becomes a singlet neutral
-species in the final state. The second block is for another ethylene going from
-a singlet neutral molecule to a doublet anion.
+在 *$molecule* 小节中，第一行给出整个体系的电荷与多重度。随后的各块是两个分子片段（给体与受体）的输入。在每一块中，第一行依次给出对应片段在初态中的电荷与自旋多重度、一个逗号，然后是终态中的电荷与多重度。接下来的行是该片段的核种类及其位置。例如在上述示例中，第一块表示电子给体初始为双重态的乙烯阴离子，在终态中变为单重态的中性粒子。第二块对应另一个乙烯，从单重态中性分子变为双重态阴离子。
 
-Note that the last three *$rem* variables in this example,
-POINT_GROUP_SYMMETRY, SCF_GUESS and STS_DC must be set to
-be the values as in the example in order to perform DC calculation with “1+1”
-charge-localized states. An additional *$rem* variable,
-SCF_PRINT_FRGM is included. When it is TRUE a detailed
-output for the fragment HF self-consistent field calculation is given.
+请注意，本例中最后三个 *$rem* 变量 POINT_GROUP_SYMMETRY、SCF_GUESS 与 STS_DC 必须设置为示例中所示的取值，才能使用“1+1”电荷定域态执行 DC 计算。此外还包含一个额外的 *$rem* 变量 SCF_PRINT_FRGM。当它设为 TRUE 时，会给出片段 HF 自洽场（self-consistent field，SCF）计算的详细输出。
 - •
 
-**The “relaxed” approach
+**“弛豫”（relaxed）方法
 
-**In “1+1” approach, the intermolecular interaction is neglected in the initial
-and final states, and so the final electronic coupling can be underestimated.
-As a second approach, **Q-Chem** can use “1+1” wave function as an initial
-guess to look for the charge-localized wave function by further HF
-self-consistent field calculation. This approach would ‘relax’ the wave
-function constructed by “1+1” method and include the intermolecular
-interaction effects in the initial and final wave functions. However, this
-method may sometimes fail, leading to either convergence problems or a
-resulting HF wave function that cannot represent the desired charge-localized
-states. This is more likely to be a problem when calculations are performed
-with diffusive basis functions, or when the donor and acceptor molecules are
-very close to each other.
+**在“1+1”方法中，初态与终态忽略了分子间相互作用，因此最终的电子耦合可能被低估。作为第二种方法，**Q-Chem** 可以使用“1+1”波函数作为初始猜测，通过进一步的 HF 自洽场计算来寻找电荷定域波函数。此方法会“弛豫”由“1+1”方法构造的波函数，并在初态与终态波函数中纳入分子间相互作用效应。然而，该方法有时会失败，导致收敛问题，或得到一个无法表示所需电荷定域态的 HF 波函数。当使用扩散性基函数进行计算，或给体与受体分子彼此非常接近时，更有可能出现此问题。
 
-To perform relaxed DC calculation, set STS_DC = RELAX.
+要执行弛豫 DC 计算，设置 STS_DC = RELAX。
 - •
 
-**Hybrid scheme: Constrained DFT charge-localized states
+**混合方案：约束 DFT 电荷定域态
 
-**Constrained (C)DFT (Section [5.11](../ch05_dft/topic_cdft.md)) can be used to obtain
-charge-localized states. It is recommended to set both charge and spin
-constraints in order to generate proper charge localization. To perform DC
-calculation with CDFT states, set SAVE_SUBSYSTEM = 10 and
-SAVE_SUBSYSTEM = 20 to save CDFT molecular orbitals in the first two
-jobs of a batch jobs, and then in the third job of the batch job, set
-SCF_GUESS = READ and STS_DC = TRUE to
-compute electronic coupling values.
+**约束 DFT（constrained DFT，CDFT）（第 [5.11](../ch05_dft/topic_cdft.md) 节）可用于获得电荷定域态。建议同时设置电荷约束与自旋约束，以产生正确的电荷定域。要用 CDFT 态执行 DC 计算，在批作业（batch job）的前两个作业中设置 SAVE_SUBSYSTEM = 10 与 SAVE_SUBSYSTEM = 20 以保存 CDFT 分子轨道，然后在批作业的第三个作业中设置 SCF_GUESS = READ 与 STS_DC = TRUE 来计算电子耦合值。
 
-???+ example "Example 10.10.75: Calculate the electron-transfer coupling for ethylene dimer using CDFT charge-localized states"
+???+ example "示例 10.10.75：使用 CDFT 电荷定域态计算乙烯二聚体的电子转移耦合"
     ```qchem
     $molecule
      -1  2
@@ -391,73 +307,53 @@ compute electronic coupling values.
     $end
     ```
 
-## 10.15.2.5 The frontier molecular orbital approach
+## 10.15.2.5 前线分子轨道方法
 
-The frontier molecular orbital (FMO) approach is often used with DFT to
-calculate ET coupling.[[1384]](../bib_references/bib.md#bib1456)
- FMO coupling value is
-essentially an off-diagonal Kohn-Sham matrix element that accounts for overlap,
+前线分子轨道（FMO）方法常与 DFT 一起用于计算电子转移（electron transfer，ET）耦合。[[1384]](../bib_references/bib.md#bib1456)
+ FMO 耦合值本质上是一个考虑了重叠的 Kohn-Sham 矩阵非对角元，
 
 <a id="eq:coupling-FMO"></a>
 $$
 V^{\mathrm{FMO}}=\frac{f_{\mathrm{DA}}-S\left(f_{\mathrm{DD}}+f_{\mathrm{AA}}\right)/2}{1-S^{2}} \tag{10.201}
 $$
 
-where $f_{\mathrm{DA}}=\langle\phi^{\mathrm{D}}_{\mathrm{FMO}}|\hat{f}|\phi^{\mathrm{A}}_{\mathrm{FMO}}\rangle$, with
-$\hat{f}$ being the Kohn-Sham operator of the donor-acceptor system. The quantities
-$\phi^{\text{D}}_{\text{FMO}}$ and $\phi^{\text{A}}_{\text{FMO}}$
-are the Kohn-Sham frontier MOs for the donor and acceptor fragments, respectively,
-which represents one-particle scheme of a charge transfer process.
+其中 $f_{\mathrm{DA}}=\langle\phi^{\mathrm{D}}_{\mathrm{FMO}}|\hat{f}|\phi^{\mathrm{A}}_{\mathrm{FMO}}\rangle$，$\hat{f}$ 为给体-受体体系的 Kohn-Sham 算符。量 $\phi^{\text{D}}_{\text{FMO}}$ 与 $\phi^{\text{A}}_{\text{FMO}}$ 分别是给体片段与受体片段的 Kohn-Sham 前线分子轨道，它代表电荷转移过程的一粒子图像。
 
-In this approach, computations are often performed separately in the two
-fragments, and the off-diagonal Kohn-Sham operator (and the overlap matrix) in
-the FMOs is subsequently calculated. To compute FMO couplings, **Q-Chem** has
-a setup that is similar to the “1+1” approach.
+在此方法中，计算通常分别在两个片段上进行，随后计算 FMO 下的非对角 Kohn-Sham 算符（以及重叠矩阵）。为计算 FMO 耦合，**Q-Chem** 的设置方式与“1+1”方法类似。
 
-It may be of interest to compute couplings for frontier orbitals beyond the HOMO of the donor
-and the LUMO of the acceptor. They *$rem* options
-STS_TRANS_DONOR and STS_TRANS_ACCEPTOR can be used to select a
-range of occupied and virtual orbitals for FMO coupling calculations.
+有时人们希望计算超越“给体 HOMO 与受体 LUMO”的前线轨道之间的耦合。可使用 *$rem* 选项 STS_TRANS_DONOR 与 STS_TRANS_ACCEPTOR 为 FMO 耦合计算选取一定范围的占据轨道与虚轨道。
 
 STS_TRANS_DONOR
 
 ### `STS_TRANS_DONOR`
 
-> **Control the range of frontier MOs for the donor in the FMO approach to ET couplings.**
+> **在 ET 耦合的 FMO 方法中控制给体前线分子轨道的范围。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`NONE`
+> * **选项**：
 >     * $o$
 >     * -
 >     * $v$
->     * Compute couplings between
->     * $o$
->     * and
->     * $v$
->     * occupied and virtual MOs, respectively.
-> * **Recommendation**: None
+>     * 分别计算 $o$ 与 $v$ 所指定的占据分子轨道与虚分子轨道之间的耦合。
+> * **建议**：无
 
 STS_TRANS_ACCEPTOR
 
 ### `STS_TRANS_ACCEPTOR`
 
-> **Control the range of frontier MOs for the acceptor in the FMO approach to ET couplings.**
+> **在 ET 耦合的 FMO 方法中控制受体前线分子轨道的范围。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`NONE`
+> * **选项**：
 >     * $o$
 >     * -
 >     * $v$
->     * Compute couplings between
->     * $o$
->     * and
->     * $v$
->     * occupied and virtual MOs, respectively.
-> * **Recommendation**: None
+>     * 分别计算 $o$ 与 $v$ 所指定的占据分子轨道与虚分子轨道之间的耦合。
+> * **建议**：无
 
-???+ example "Example 10.76: Calculate the electron-transfer coupling for a stacked ethylene dimer with the FMO approach"
+???+ example "示例 10.76：使用 FMO 方法计算堆积型乙烯二聚体的电子转移耦合"
     ```qchem
     $molecule
      0  1
@@ -481,18 +377,6 @@ STS_TRANS_ACCEPTOR
     
     $rem
        METHOD              =  lrcwpbe
-       OMEGA               =  370
-       BASIS               =  dz*
-       SCF_PRINT_FRGM      =  true
-       SCF_GUESS           =  fragmo
-       STS_DC              =  fock
-       STS_TRANS_DONOR     =  2-3  ! use HOMO, HOMO-1 and LUMO, LUMO+1, LUMO+2 of donor
-       STS_TRANS_ACCEPTOR  =  1-2  ! use HOMO and LUMO, LUMO+1 of acceptor
-       POINT_GROUP_SYMMETRY= False
+       OMEGA               =  
     $end
-    
-    $rem_frgm
-     print_orbitals = 5
-    $end
-    
     ```

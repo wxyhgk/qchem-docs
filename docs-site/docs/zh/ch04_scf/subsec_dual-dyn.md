@@ -1,25 +1,21 @@
 ---
-title: "4.7.3 Dual-Basis Dynamics"
+title: "4.7.3 双基组动力学"
 ---
 
-## 4.7.3 Dual-Basis Dynamics
+## 4.7.3 双基组动力学
 
 (July 4, 2026)
 
-The ability to compute SCF and MP2 energies and forces at reduced cost makes dual-basis calculations
-attractive for *ab initio* molecular dynamics simulations, which are described in Section [9.9](../ch09_opt/topic_aimd.md).
-Dual-basis BOMD has demonstrated[[1301]](../bib_references/bib.md#bib1359)
+由于能够以降低的开销计算 SCF 与 MP2 的能量和受力，双基组（dual-basis）计算在*从头算*（*ab initio*）分子动力学模拟中颇具吸引力，相关内容见第 [9.9](../ch09_opt/topic_aimd.md) 节。双基组 BOMD 已展现出[[1301]](../bib_references/bib.md#bib1359)
 
-savings of 58%, even relative to state-of-the-art, Fock-extrapolated BOMD. Savings are further
-increased to 71% for dual-basis RI-MP2 dynamics. Notably, these timings outperform estimates
-of extended Lagrangian (“Car-Parrinello”) dynamics, without detrimental energy conservation
-artifacts that are sometimes observed in the latter.[[558]](../bib_references/bib.md#bib572)
+58% 的节省，即便相对于采用 Fock 外推的最先进 BOMD 也是如此；对于双基组 RI-MP2 动力学，节省幅度进一步提升至
 
-Two algorithm improvements make modest but worthwhile improvements to dual-basis dynamics. First,
-the iterative, small-basis calculation can benefit from Fock matrix extrapolation.[[558]](../bib_references/bib.md#bib572)
+71%。值得注意的是，这些计时优于扩展拉格朗日（“Car-Parrinello”）动力学的估计值，且不存在后者有时出现的能量守恒劣化等不利伪影。[[558]](../bib_references/bib.md#bib572)
 
-Second, extrapolation of the response equations (“$Z$-vector” equations) for
-nuclear forces further increases efficiency.[[1304]](../bib_references/bib.md#bib1360)
- (See Section [9.9](../ch09_opt/topic_aimd.md).)
-**Q-Chem** automatically
-adjusts to extrapolate in the proper basis set when DUAL_BASIS_ENERGY is activated.
+两项算法改进为双基组动力学带来了幅度不大但确有价值的提升。首先，
+
+迭代式的小基组计算可从 Fock 矩阵外推中获益。[[558]](../bib_references/bib.md#bib572)
+
+其次，对外推响应方程（“$Z$ 矢量”方程）以求核受力，可进一步提升效率。[[1304]](../bib_references/bib.md#bib1360)
+（见第 [9.9](../ch09_opt/topic_aimd.md) 节。）
+当启用 DUAL_BASIS_ENERGY 时，**Q-Chem** 会自动调整，在适当的基组中进行外推。

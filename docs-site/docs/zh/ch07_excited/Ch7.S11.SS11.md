@@ -1,467 +1,451 @@
 ---
-title: "7.11.11 Job Control for the RASCI1 Implementation"
+title: "7.11.11 RASCI1 实现的作业控制"
 ---
 
-## 7.11.11 Job Control for the RASCI1 Implementation
+## 7.11.11 RASCI1 实现的作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-At present the RASCI1 and RASCI2 implementations employ different keywords
-(which will be reconciled in a future version). This subsection applies to
-RASCI1 (spin adapted algorithm using exact integrals).
+目前 RASCI1 与 RASCI2 实现采用不同的关键字（将在未来版本中统一）。本小节适用于 RASCI1（使用精确积分的自旋适配算法）。
 
-The use of the RASCI1 methodology is controlled by setting the *$rem* variable
-CORRELATION to RASCI and EXCHANGE should be set to
-HF. The RASCI1 implementation is only compatible with the use of
-restricted orbitals, *i.e.*, UNRESTRICTED = FALSE.
+RASCI1 方法的使用通过在 *$rem* 变量中将 CORRELATION 设置为 RASCI 来控制，且 EXCHANGE 应设置为 HF。RASCI1 实现仅与限制轨道（restricted orbitals）兼容，*即*，UNRESTRICTED = FALSE。
 
-The minimum input also requires specifying the desired (non-zero) value for
-RAS_ROOTS, the number of electrons in the “active” RAS2 space and
-the number of orbitals in RAS1 and RAS2 subspaces.
+最小输入还要求指定 RAS_ROOTS 的期望（非零）值、"活跃" RAS2 空间中的电子数，以及 RAS1 和 RAS2 子空间中的轨道数。
 
 RAS_ROOTS
 
 ### `RAS_ROOTS`
 
-> **Sets the number of RAS-CI roots to be computed.**
+> **设置要计算的 RAS-CI 根（roots）数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **选项**：
 >     * $n$
 >     * $n>0$
->     * Compute
+>     * 计算
 >     * $n$
->     * RAS-CI states
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 个 RAS-CI 态
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_ELEC
 
 ### `RAS_ELEC`
 
-> **Sets the number of electrons in RAS2 (active electrons).**
+> **设置 RAS2 中的电子数（活跃电子）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **选项**：
 >     * $n$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n>0$
-> * **Recommendation**: None. Only works with RAS-CI.
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_ELEC_ALPHA
 
 ### `RAS_ELEC_ALPHA`
 
-> **Sets the number of spin- $\alpha$ electrons in RAS2 (active electrons).**
+> **设置 RAS2 中自旋-$\alpha$ 电子数（活跃电子）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **选项**：
 >     * $n$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n>0$
-> * **Recommendation**: None. Only works with RAS-CI.
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_ELEC_BETA
 
 ### `RAS_ELEC_BETA`
 
-> **Sets the number of spin- $\beta$ electrons in RAS2 (active electrons).**
+> **设置 RAS2 中自旋-$\beta$ 电子数（活跃电子）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **选项**：
 >     * $n$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n>0$
-> * **Recommendation**: None. Only works with RAS-CI.
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_ACT
 
 ### `RAS_ACT`
 
-> **Sets the number of orbitals in RAS2 (active orbitals).**
+> **设置 RAS2 中的轨道数（活跃轨道）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **选项**：
 >     * $n$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n>0$
-> * **Recommendation**: None. Only works with RAS-CI.
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_OCC
 
 ### `RAS_OCC`
 
-> **Sets the number of orbitals in RAS1**
+> **设置 RAS1 中的轨道数**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n>0$
-> * **Recommendation**: These are the initial doubly occupied orbitals (RAS1) before including $hole$ type of excitations. The RAS1 space starts from the lowest orbital up to , i.e. no frozen orbitals option available yet. Only works with RAS-CI.
+> * **建议**：这些是在引入 $hole$（空穴）类型激发之前最初双占据的轨道（RAS1）。RAS1 空间从最低轨道开始直至该数目，即目前尚不支持冻结轨道选项。仅适用于 RAS-CI。
 
 RAS_DO_HOLE
 
 ### `RAS_DO_HOLE`
 
-> **Controls the presence of hole excitations in the RAS-CI wave function.**
+> **控制 RAS-CI 波函数中是否包含空穴（hole）激发。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **选项**：
 >     * TRUE
->     * Include hole configurations (RAS1 to RAS2 excitations)
+>     * 包含空穴组态（RAS1 到 RAS2 的激发）
 >     * FALSE
->     * Do not include hole configurations
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 不包含空穴组态
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_DO_PART
 
 ### `RAS_DO_PART`
 
-> **Controls the presence of particle excitations in the RAS-CI wave function.**
+> **控制 RAS-CI 波函数中是否包含粒子（particle）激发。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **选项**：
 >     * TRUE
->     * Include particle configurations (RAS2 to RAS3 excitations)
+>     * 包含粒子组态（RAS2 到 RAS3 的激发）
 >     * FALSE
->     * Do not include particle configurations
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 不包含粒子组态
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_AMPL_PRINT
 
 ### `RAS_AMPL_PRINT`
 
-> **Defines the absolute threshold ( $\times 10^{2}$ ) for the CI amplitudes to be printed.**
+> **定义打印 CI 振幅时使用的绝对阈值（$\times 10^{2}$）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`10`
+> * **选项**：
 >     * $n$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n\geq 0$
-> * **Recommendation**: None. Only works with RAS-CI.
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_ACT_ORB
 
 ### `RAS_ACT_ORB`
 
-> **Sets the user-selected active orbitals (RAS2 orbitals).**
+> **设置用户选择的活跃轨道（RAS2 轨道）。**
 >
-> * **Type**: `INTEGER ARRAY`
-> * **Default**: `From`
-> * **Options**:
+> * **类型**：`INTEGER ARRAY`
+> * **默认值**：`From`（自动生成）
+> * **选项**：
 >     * $[i,j,k...]$
->     * The number of orbitals must be equal to the
+>     * 轨道数目必须等于
 >     * RAS_ACT
->     * variable
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 变量的值
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_NATORB
 
 ### `RAS_NATORB`
 
-> **Controls the computation of the natural orbital occupancies.**
+> **控制自然轨道占据数的计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Compute natural orbital occupancies for all states
+>     * 为所有态计算自然轨道占据数
 >     * FALSE
->     * Do not compute natural orbital occupancies
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 不计算自然轨道占据数
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_NATORB_STATE
 
 ### `RAS_NATORB_STATE`
 
-> **Saves the natural orbitals of the $i$ th RAS-CI computed state into the .fchk file.**
+> **将第 $i$ 个计算得到的 RAS-CI 态的自然轨道保存到 .fchk 文件中。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $i$
->     * Saves the natural orbitals for the
+>     * 保存第
 >     * $i$
->     * th state
-> * **Recommendation**: None. Only works with RAS-CI and if GUI = 2.
+>     * 个态的自然轨道
+> * **建议**：无。仅适用于 RAS-CI，且需 GUI = 2。
 
 RAS_GUESS_CS
 
 ### `RAS_GUESS_CS`
 
-> **Controls the number of closed shell guess configurations in RAS-CI.**
+> **控制 RAS-CI 中闭壳层猜测组态（guess configuration）的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * Imposes to start with
+>     * 强制以
 >     * $n$
->     * closed shell guesses
-> * **Recommendation**: Only relevant for the computation of singlet states. Only works with RAS-CI.
+>     * 个闭壳层猜测组态开始
+> * **建议**：仅对单重态的计算有意义。仅适用于 RAS-CI。
 
 RAS_SPIN_MULT
 
 ### `RAS_SPIN_MULT`
 
-> **Specifies the spin multiplicity of the roots to be computed**
+> **指定要计算的根的自旋多重度**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * 0
->     * Compute any spin multiplicity
+>     * 计算任意自旋多重度
 >     * $2n+1$
->     * User-defined integer,
+>     * 用户定义的整数，
 >     * $n\geq 0$
-> * **Recommendation**: option is only available for $M_{S}=0$ systems, that is, with the same number of $\alpha$ and $\beta$ electrons.
+> * **建议**：该选项仅适用于 $M_{S}=0$ 的体系，即 $\alpha$ 与 $\beta$ 电子数相同的情况。
 
 RAS_PT2
 
 ### `RAS_PT2`
 
-> **Perform second-order perturbative correction to RAS-CI energy**
+> **对 RAS-CI 能量执行二阶微扰修正**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Compute RASCI(2) energy corrections
+>     * 计算 RASCI(2) 能量修正
 >     * FALSE
->     * Do not compute RASCI(2) energy corrections
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 不计算 RASCI(2) 能量修正
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_PT2_PARTITION
 
 ### `RAS_PT2_PARTITION`
 
-> **Specifies the partitioning scheme in RASCI(2)**
+> **指定 RASCI(2) 中的分割方案（partitioning scheme）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * 2
->     * Epstein-Nesbet (EN) partitioning
+>     * Epstein-Nesbet (EN) 分割
 >     * 0
->     * Do both DK and EN partitionings
-> * **Recommendation**: Only for RAS-CI if RAS_PT2 is set to true.
+>     * 同时执行 DK 分割和 EN 分割
+> * **建议**：仅适用于设置了 RAS_PT2 为 true 的 RAS-CI。
 
 RAS_PT2_VSHIFT
 
 ### `RAS_PT2_VSHIFT`
 
-> **Defines the energy level shift ( $\times 10^{3}~{}au$ ) in RASCI(2)**
+> **定义 RASCI(2) 中的能级位移（$\times 10^{3}~{}au$）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * User-defined integer
-> * **Recommendation**: Only for RAS-CI if RAS_PT2 is set to true.
+>     * 用户定义的整数
+> * **建议**：仅适用于设置了 RAS_PT2 为 true 的 RAS-CI。
 
 RAS_SRDFT
 
 ### `RAS_SRDFT`
 
-> **Perform short-range density functional RAS-CI calculation**
+> **执行短程密度泛函 RAS-CI（short-range density functional RAS-CI）计算**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Compute RASCI-
+>     * 计算 RASCI-
 >     * $sr$
->     * DFT states and energies
+>     * DFT 态和能量
 >     * FALSE
->     * Do not perform a RASCI-
+>     * 不执行 RASCI-
 >     * $sr$
->     * DFT calculation
-> * **Recommendation**: None. Only works with RAS-CI. RAS_SRDFT_EXC and RAS_SRDFT_COR need to be set.
+>     * DFT 计算
+> * **建议**：无。仅适用于 RAS-CI。需要设置 RAS_SRDFT_EXC 和 RAS_SRDFT_COR。
 
 RAS_SRDFT_EXC
 
 ### `RAS_SRDFT_EXC`
 
-> **Define short-range exchange functional**
+> **定义短程交换泛函**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`无默认值`
+> * **选项**：
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is
->     * one of the short-range exchange functionals listed in
->     * Section
+>     * 是第
 >     * 5.3.3
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 节列出的短程交换泛函之一
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_SRDFT_COR
 
 ### `RAS_SRDFT_COR`
 
-> **Define short-range correlation functional**
+> **定义短程关联泛函**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`无默认值`
+> * **选项**：
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is
->     * one of the short-range correlation functionals listed in Section
+>     * 是第
 >     * 5.3.4
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 节列出的短程关联泛函之一
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_OMEGA
 
 ### `RAS_OMEGA`
 
-> **Sets the Coulomb range-separation parameter within the RAS-CI- $sr$ DFT method.**
+> **在 RAS-CI-$sr$ DFT 方法中设置库仑程分离（range-separation）参数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `400`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`400`
+> * **选项**：
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $\omega=n/1000$
->     * , in units of bohr
+>     * ，单位为 bohr
 >     * ${}^{-1}$
-> * **Recommendation**: None. Range-separation parameter is typical indicated by $\omega$ or $\mu$ . Only works with RAS-CI.
+> * **建议**：无。程分离参数通常记为 $\omega$ 或 $\mu$。仅适用于 RAS-CI。
 
 RAS_SRDFT_DAMP
 
 ### `RAS_SRDFT_DAMP`
 
-> **Sets damping factor ( $\alpha<1$ ) in the RAS-CI- $sr$ DFT method.**
+> **在 RAS-CI-$sr$ DFT 方法中设置阻尼因子（$\alpha<1$）。**
 >
-> * **Type**: `REAL`
-> * **Default**: `0.5`
-> * **Options**:
+> * **类型**：`REAL`
+> * **默认值**：`0.5`
+> * **选项**：
 >     * $\alpha$
->     * Damping factor
+>     * 阻尼因子
 >     * $0<\alpha<1$
-> * **Recommendation**: Modify in case of convergence issues along the RAS-CI- $sr$ DFT iterations. Only works with RAS-CI
+> * **建议**：当 RAS-CI-$sr$ DFT 迭代出现收敛问题时进行调整。仅适用于 RAS-CI
 
 RAS_SRDFT_SA_ROOTS
 
 ### `RAS_SRDFT_SA_ROOTS`
 
-> **Sets the list of roots used to build the state averaged reference density in RAS-CI- sr DFT.**
+> **设置在 RAS-CI-$sr$ DFT 中用于构建态平均（state averaged）参考密度的根列表。**
 >
-> * **Type**: `INTEGER ARRAY`
-> * **Default**: `All computed states`
-> * **Options**:
+> * **类型**：`INTEGER ARRAY`
+> * **默认值**：`所有计算得到的态`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * List of states.
-> * **Recommendation**: None. Only works with RAS-CI
+>     * 态列表。
+> * **建议**：无。仅适用于 RAS-CI
 
 RAS_NFRAG
 
 ### `RAS_NFRAG`
 
-> **If $n>0$ activates the excitation analysis in RAS-CI**
+> **若 $n>0$，则激活 RAS-CI 中的激发分析（excitation analysis）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * Number of fragments to be considered
-> * **Recommendation**: Only for RAS-CI. The printed information level is controlled by RAS_PRINT .
+>     * 要考虑的片段（fragment）数目
+> * **建议**：仅适用于 RAS-CI。打印信息的详细程度由 RAS_PRINT 控制。
 
 RAS_NFRAG_ATOMS
 
 ### `RAS_NFRAG_ATOMS`
 
-> **Sets the number of atoms in each fragment.**
+> **设置每个片段中的原子数。**
 >
-> * **Type**: `INTEGER ARRAY`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER ARRAY`
+> * **默认值**：`None`
+> * **选项**：
 >     * $[i,j,k...]$
->     * The sum of the numbers must be equal to the total number
->     * of atoms in the systems
-> * **Recommendation**: None. Only works with RAS-CI.
+>     * 各数值之和必须等于
+>     * 体系中的原子总数
+> * **建议**：无。仅适用于 RAS-CI。
 
 RAS_FRAG_SETS
 
 ### `RAS_FRAG_SETS`
 
-> **Defines the number of orbitals in each disjoint set to perform orbital localization.**
+> **定义每个不相交集合（disjoint set）中用于轨道定域化的轨道数。**
 >
-> * **Type**: `INTEGER ARRAY`
-> * **Default**: `[NOcc,NAct,NVir]`
-> * **Options**:
+> * **类型**：`INTEGER ARRAY`
+> * **默认值**：`[NOcc,NAct,NVir]`
+> * **选项**：
 >     * $[i,j,k...]$
->     * Defines sets of canonical MOs to be localized into
+>     * 定义要定域化到
 >     * $n$
->     * fragments
-> * **Recommendation**: Setting within RAS1, RAS2 and RAS3 spaces alleviates the computational cost of the localization procedure. It might also result in improved fragment orbitals. Only works with RAS-CI.
+>     * 个片段中的正则分子轨道（canonical MOs）集合
+> * **建议**：在 RAS1、RAS2 和 RAS3 空间内设置可降低定域化过程的计算开销，还可能得到质量更好的片段轨道。仅适用于 RAS-CI。
 
 CALC_SOC
 
 ### `CALC_SOC`
 
-> **Controls whether to calculate the SOC constants for EOM-CC, RAS-CI, TDDFT/TDA and TDDFT.**
+> **控制是否为 EOM-CC、RAS-CI、TDDFT/TDA 及 TDDFT 计算自旋-轨道耦合（SOC）常数。**
 >
-> * **Type**: `INTEGER/LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`INTEGER/LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * FALSE
->     * Do not perform the SOC calculation.
+>     * 不执行 SOC 计算。
 >     * TRUE
->     * Perform the SOC calculation.
-> * **Recommendation**: In addition to TRUE and FALSE , the EOM-CC code has more variants of SOC evaluation; see Section 7.9.21.4 .
+>     * 执行 SOC 计算。
+> * **建议**：除 TRUE 和 FALSE 之外，EOM-CC 程序还支持更多 SOC 评估变体；见第 7.9.21.4 节。
 
 RAS_SOC_2E
 
 ### `RAS_SOC_2E`
 
-> **Controls whether to compute two-electron mean-field contribution to RAS-CI SOC.**
+> **控制是否计算 RAS-CI SOC 的双电子平均场（mean-field）贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **选项**：
 >     * FALSE
->     * Do not compute two-electron mean-field contribution.
+>     * 不计算双电子平均场贡献。
 >     * TRUE
->     * Compute two-electron mean-field contribution.
-> * **Recommendation**: None.
+>     * 计算双电子平均场贡献。
+> * **建议**：无。
 
 RAS_SOC_SYM_DENS
 
 ### `RAS_SOC_SYM_DENS`
 
-> **Controls whether to perform averaging of $\alpha$ and $\beta$ densities.**
+> **控制是否计算对称密度（symmetric density）形式的 SOC。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **选项**：
 >     * FALSE
->     * Do not average
->     * $\alpha$
->     * and
->     * $\beta$
->     * densities .
+>     * 不采用对称密度方案。
 >     * TRUE
->     * Average
->     * $\alpha$
->     * and
->     * $\beta$
->     * densities.
-> * **Recommendation**: None.
+>     * 采用对称密度方案。
+> * **建议**：无。

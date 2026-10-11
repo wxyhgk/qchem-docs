@@ -1,65 +1,33 @@
 ---
-title: "10.5.3 Visualization of Natural Transition Orbitals"
+title: "10.5.3 自然跃迁轨道的可视化"
 ---
 
-## 10.5.3 Visualization of Natural Transition Orbitals
+## 10.5.3 自然跃迁轨道的可视化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-For excited states calculated using the CIS, RPA, TDDFT, EOM-CC, and ADC
-methods, construction of Natural Transition Orbitals (NTOs), as described in
-Sections [7.13.3](../ch07_excited/sect_NTOs.md) and [10.2.12](ex_StateAnal_MolDen.md), is requested using the
-*$rem* variable NTO_PAIRS. This variable also determines the number
-of hole/particle NTO pairs that are output for each excited state and the
-number of natural orbitals or natural difference orbitlas. Although the total
-number of hole/particle pairs is equal to the number of occupied MOs, typically
-only a very small number of these pairs (often just one pair) have significant
-amplitudes. (Additional large-amplitude NTOs may be encountered in cases of
-strong electronic coupling between multiple chromophores or where there is
-significant multireference character in the excited state.[[572]](../bib_references/bib.md#bib586)
-)
+对于使用 CIS、RPA、TDDFT、EOM-CC 和 ADC 方法计算的激发态，自然跃迁轨道（Natural Transition Orbitals, NTOs）的构建（如第 [7.13.3](../ch07_excited/sect_NTOs.md) 节和第 [10.2.12](ex_StateAnal_MolDen.md) 节所述）通过 *$rem* 变量 NTO_PAIRS 来请求。该变量还决定了每个激发态输出的空穴/粒子（hole/particle）NTO 对数，以及自然轨道或自然差值轨道（natural difference orbitals）的数目。尽管空穴/粒子对的总数等于占据分子轨道（MO）的数目，但通常只有极少数这些对（往往仅一对）具有显著的振幅。（在多个生色团之间存在强电子耦合，或激发态具有显著多参考特征的情况下，可能会遇到额外的大振幅 NTO。[[572]](../bib_references/bib.md#bib586)）
 
 NTO_PAIRS
 
 ### `NTO_PAIRS`
 
-> **Controls the writing of hole/particle NTO pairs for excited state.**
+> **控制激发态空穴/粒子 NTO 对的写出。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $N$
 >     * Write
 >     * $N$
 >     * NTO pairs per excited state.
-> * **Recommendation**: If activated ( $N>0$ ), a minimum of two NTO pairs will be printed for each state. Increase the value of $N$ if additional NTOs are desired.
+> * **建议**：若启用（$N>0$），每个态至少会打印两对 NTO。如果需要更多的 NTO，请增大 $N$ 的值。
 
-When NTO_PAIRS $>0$, **Q-Chem** will generate the NTOs in **MolDen**
-format. The NTOs are state-specific, in the sense that each excited state has
-its own NTOs, and therefore a separate **MolDen** file is required for each
-excited state. These files are written to the job’s scratch directory, in a
-sub-directory called *NTOs*, so to obtain the NTOs the scratch directory
-must be saved using the *–save* option that is described in
-Section [2.2](../ch02_install/sect_running.md). The output files in the *NTOs* directory have
-an obvious file-naming convention. The “hole” NTOs (which are linear
-combinations of the occupied MOs) are printed to the **MolDen** files in order
-of increasing importance, with the corresponding excitation amplitudes
-replacing the canonical MO eigenvalues. (This is a formatting convention only;
-the excitation amplitudes are unrelated to the MO eigenvalues.) Following the
-holes are the “particle” NTOs, which represent the excited electron and are
-linear combinations of the virtual MOs. These are written in order of
-decreasing amplitude. To aid in distinguishing the two sets within the
-**MolDen** files, the amplitudes of the holes are listed with negative signs,
-while the corresponding NTO for the excited electron has the same amplitude
-with a positive sign.
+当 NTO_PAIRS $>0$ 时，**Q-Chem** 将以 **MolDen** 格式生成 NTO。NTO 是态特定的（state-specific），即每个激发态都有其自身的 NTO，因此每个激发态需要一个独立的 **MolDen** 文件。这些文件被写入作业的暂存（scratch）目录中一个名为 *NTOs* 的子目录，因此若要获取 NTO，必须使用第 [2.2](../ch02_install/sect_running.md) 节中描述的 *–save* 选项来保存暂存目录。*NTOs* 目录中的输出文件具有显而易见的文件命名约定。“空穴”NTO（即占据 MO 的线性组合）按重要性递增的顺序打印到 **MolDen** 文件中，并以相应的激发振幅取代正则 MO 的本征值。（这仅仅是一种格式约定；激发振幅与 MO 本征值无关。）在空穴之后是“粒子”NTO，它们代表被激发的电子，是虚 MO 的线性组合，按振幅递减的顺序写出。为便于在 **MolDen** 文件中区分这两组轨道，空穴的振幅以负号列出，而对应被激发电子的 NTO 则带有相同数值的正号振幅。
 
-Due to the manner in which the NTOs are constructed (see
-Section [7.13.3](../ch07_excited/sect_NTOs.md)), NTO analysis is available only when the number of
-virtual orbitals exceeds the number of occupied orbitals, which may not be the
-case for minimal basis sets.
+由于 NTO 的构建方式（见第 [7.13.3](../ch07_excited/sect_NTOs.md) 节），只有当虚轨道数目超过占据轨道数目时才能进行 NTO 分析，而对于最小基组这未必成立。
 
-???+ example "Example 10.23: Generating MolDen -formatted natural transition orbitals
-for several excited states of uracil."
+???+ example "示例 10.23: 为尿嘧啶（uracil）的几个激发态生成 MolDen 格式的自然跃迁轨道"
     ```qchem
     $molecule
        0 1

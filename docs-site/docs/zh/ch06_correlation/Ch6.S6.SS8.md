@@ -1,34 +1,18 @@
 ---
-title: "6.6.8 RI-TRIM MP2 Energies"
+title: "6.6.8 RI-TRIM MP2 能量"
 ---
 
-## 6.6.8 RI-TRIM MP2 Energies
+## 6.6.8 RI-TRIM MP2 能量
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The triatomics in molecules (TRIM) local correlation approximation to MP2
-theory[[790]](../bib_references/bib.md#bib819)
- was described in detail in Section [6.5.1](sect_trim.md), which
-also discussed our implementation of this approach based on conventional
-four-center two-electron integrals. Starting from **Q-Chem** v. 3.0, an auxiliary
-basis implementation of the TRIM model is available.
-The new RI-TRIM MP2 energy algorithm[[331]](../bib_references/bib.md#bib334)
+MP2 理论的分子内三原子体（triatomics in molecules, TRIM）局域相关近似[[790]](../bib_references/bib.md#bib819)已在第 [6.5.1](sect_trim.md) 节中详细描述，该节同时讨论了本程序基于常规四中心双电子积分对这一方法的实现。自 **Q-Chem** v. 3.0 起，提供了 TRIM 模型的辅助基组（auxiliary basis）实现。
+新的 RI-TRIM MP2 能量算法[[331]](../bib_references/bib.md#bib334)
 
-greatly accelerates these local correlation calculations
-(often by an order of magnitude or more for the correlation part), which scale
-with the 4th power of molecule size. The electron correlation part of
-the calculation is speeded up over normal RI-MP2 by a factor proportional to
-the number of atoms in the molecule. For a hexadecapeptide, for instance, the
-speedup is approximately a factor of 4.[[331]](../bib_references/bib.md#bib334)
- The TRIM model
-can also be applied to the scaled opposite spin models discussed above. As for
-the other RI-based models discussed in this section, we recommend using
-RI-TRIM MP2 instead of the conventional TRIM MP2 code whenever run-time of the
-job is a significant issue. As for RI-MP2 itself, TRIM MP2 is invoked by
-adding AUX_BASIS *$rem*s to the input deck,
-in addition to requesting CORRELATION = RILMP2.
+极大地加速了这些局域相关计算（对相关能部分，通常可加速一个数量级甚至更多），其计算量随分子尺寸的四次方（4th power）增长。与常规 RI-MP2 相比，计算中电子相关部分的加速倍率与分子中的原子数成正比。例如，对于一个十六肽（hexadecapeptide），加速倍率约为 4。[[331]](../bib_references/bib.md#bib334)
+TRIM 模型同样可以应用于上文讨论的缩放反平行自旋（scaled opposite spin）模型。与本节讨论的其他基于 RI 的模型一样，当任务的运行时间是一个重要考量因素时，我们建议使用 RI-TRIM MP2 而非常规的 TRIM MP2 代码。与 RI-MP2 本身类似，调用 TRIM MP2 的方式是在请求 CORRELATION = RILMP2 之余，在 `$rem` 中加入 AUX_BASIS。
 
-???+ example "Example 6.19: Example of RI-TRIM MP2 energy evaluation"
+???+ example "示例 6.19: RI-TRIM MP2 能量计算示例"
     ```qchem
     $molecule
        0 3

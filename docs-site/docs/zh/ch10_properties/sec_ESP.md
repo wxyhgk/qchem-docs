@@ -1,66 +1,60 @@
 ---
-title: "10.5.8 Electrostatic Potentials"
+title: "10.5.8 静电势"
 ---
 
-## 10.5.8 Electrostatic Potentials
+## 10.5.8 静电势
 
 (July 4, 2026)
 
-**Q-Chem** can evaluate electrostatic potentials on a grid of points.
-Electrostatic potential (ESP) evaluation is controlled by the *$rem* variable ESP_GRID.
+**Q-Chem** 可以在一组网格点上计算静电势。静电势（Electrostatic Potential, ESP）的求值由 *$rem* 变量 ESP_GRID 控制。
 
-**Note: 
+**注意：
 
-For backwards compatibility with the **Q-Chem**/**Charmm** interface, the name IGDESP is equivalent to ESP_GRID.
+为了与 **Q-Chem**/**Charmm** 接口保持向后兼容，名称 IGDESP 与 ESP_GRID 等价。
 **
 
 ESP_GRID
 
 ### `ESP_GRID`
 
-> **Controls evaluation of the electrostatic potential on a grid of points. If enabled, the output is in an ASCII file, plot.esp , in the format $x,y,z,\phi(x,y,z)$ for each point, where $\phi$ is the ESP.**
+> **控制在网格点上静电势的求值。若启用，输出将以 $x,y,z,\phi(x,y,z)$ 的形式（对每一个点）写入 ASCII 文件 plot.esp，其中 $\phi$ 为静电势。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `-4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `-4`
+> * **选项**:
 >     * $-1$
->     * read grid input via the
+>     * 通过输入文件的
 >     * $plots
->     * section of the input deck
+>     * 部分读取网格输入
 >     * $-2$
->     * same as the option
+>     * 与选项
 >     * $-1$
->     * , plus evaluate the ESP of the
+>     * 相同，此外还计算
 >     * $external_charges
+>     * 的静电势
 >     * $-3$
->     * same as the option
+>     * 与选项
 >     * $-1$
->     * but in connection with
+>     * 相同，但需配合
 >     * STATE_ANALYSIS
 >     * =
 >     * TRUE
->     * .
->     * This computes the ESP for all excited-state densities, transition densities, and electron/hole densities.
+>     * 使用。
+>     * 该选项会为所有激发态密度、跃迁密度以及电子/空穴密度计算静电势。
 >     * $-4$
->     * No ESP evaluation
+>     * 不进行静电势求值
 >     * $0$
->     * Generate the ESP values at all nuclear positions
+>     * 在所有核位置处生成静电势值
 >     * +
 >     * $n$
->     * read
->     * $n$
->     * grid points
->     * in bohr
->     * from the ASCII file
+>     * 从 ASCII 文件
 >     * ESPGrid
-> * **Recommendation**: For the $+n$ option, the user should also specify NO_REORIENT = TRUE . This forces Q-Chem to use the user’s coordinate frame (as established in the $molecule section), which should be the same coordinate frame used in the ESPGrid file.
+>     * 中读取 $n$ 个以 bohr 为单位的网格点
+> * **建议**: 对于 $+n$ 选项，用户还应指定 NO_REORIENT = TRUE 。这会强制 **Q-Chem** 使用用户的坐标系（在 $molecule 部分中确立），该坐标系应当与 ESPGrid 文件中所使用的坐标系一致。
 
-The following example illustrates the evaluation of electrostatic potentials on
-a grid. Note that IANLTY must also be set to 200.
+下面的示例演示了在网格上求值静电势。注意 IANLTY 也必须设置为 200。
 
-???+ example "Example 10.32: A job that evaluates the electrostatic potential for H ${}_{2}$ on a 1 by 1 by 15
-grid, along the bond axis. The output is in an ASCII file called plot.esp , which lists for each grid point, $x$ , $y$ , $z$ , and the
-electrostatic potential."
+???+ example "示例 10.32: 一个沿键轴方向在 1×1×15 网格上计算 H ${}_{2}$ 静电势的作业。输出写入名为 plot.esp 的 ASCII 文件，其中对每个网格点列出 $x$ 、 $y$ 、 $z$ 以及静电势。"
     ```qchem
     $molecule
        0  1
@@ -85,12 +79,9 @@ electrostatic potential."
     $end
     ```
 
-The example below evaluates ESP on a plotting grid and generates a cube file,
-which can be loaded by IQmol to visualize ESP on a molecular surface (*e.g.* vdW
-surface or electron density isosurface).
+下面的示例在绘图网格上计算静电势并生成一个 cube 文件，该文件可被 IQmol 加载，用于可视化分子表面（*例如* vdW 表面或电子密度等值面）上的静电势。
 
-???+ example "Example 10.33: Calculating the ESP of acetyl chloride on a user-specified grid and generate a
-cube file as the result; the new format for the $plots section is used"
+???+ example "示例 10.33: 在用户指定的网格上计算乙酰氯的静电势，并生成 cube 文件作为结果；此处使用 $plots 部分的新格式"
     ```qchem
     $molecule
      0 1
@@ -121,50 +112,36 @@ cube file as the result; the new format for the $plots section is used"
     $end
     ```
 
-We can also compute the electrostatic potential for the transition density,
-which can be used, for example, to compute the Coulomb coupling in excitation energy transfer.
+我们还可以计算跃迁密度的静电势，例如可用于计算激发能量转移（excitation energy transfer）中的库仑耦合（Coulomb coupling）。
 
 ESP_TRANS
 
 ### `ESP_TRANS`
 
-> **Controls the calculation of the electrostatic potential of the transition density**
+> **控制跃迁密度静电势的计算**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * compute the electrostatic potential of the excited state transition density
+>     * 计算激发态跃迁密度的静电势
 >     * FALSE
->     * compute the electrostatic potential of the excited state electronic density
-> * **Recommendation**: NONE
+>     * 计算激发态电子密度的静电势
+> * **建议**: 无（NONE）
 
-The electrostatic potential is a complicated object and it is not uncommon to
-model it using a simplified representation based on atomic charges. For this
-purpose it is well known that Mulliken charges perform very poorly. Several
-definitions of ESP-derived atomic charges have been given in the literature,
-however, most of them rely on a least-squares fitting of the ESP evaluated on a
-selection of grid points. Although these grid points are usually chosen so
-that the ESP is well modeled in the “chemically important” region, it still
-remains that the calculated charges will change if the molecule is rotated.
-Recently an efficient rotationally invariant algorithm was proposed that sought
-to model the ESP not by direct fitting, but by fitting to the multipole
-moments.[[1255]](../bib_references/bib.md#bib1308)
- By doing so it was found that the fit to the ESP
-was superior to methods that relied on direct fitting of the ESP. The
-calculation requires the traceless form of the multipole moments and these are
-also printed out during the course of the calculations. To request these
-multipole-derived charges, set MM_CHARGES = TRUE in the *$rem* section.
+静电势是一个复杂的对象，通常使用基于原子电荷的简化表示来对其进行建模。为此，人们早已知道 Mulliken 电荷的表现非常差。文献中给出了多种由静电势导出（ESP-derived）原子电荷的定义，然而其中大多数依赖于在选定的一组网格点上对静电势进行最小二乘拟合。尽管这些网格点通常都被精心挑选，以使静电势在“化学上重要的”区域得到良好建模，但计算得到的电荷仍会随分子的旋转而改变。近期提出了一种高效的旋转不变算法，它不是通过直接拟合来建模静电势，而是通过对多极矩（multipole moments）进行拟合来实现。[[1255]](../bib_references/bib.md#bib1308)
+ 通过这种方式，人们发现对静电势的拟合效果优于那些依赖直接拟合静电势的方法。
+该计算需要采用无迹（traceless）形式的多极矩，这些多极矩在计算过程中也会被打印出来。若要求解这些由多极矩导出的电荷（multipole-derived charges, MDCs），请在 *$rem* 部分设置 MM_CHARGES = TRUE 。
 
 MM_CHARGES
 
 ### `MM_CHARGES`
 
-> **Requests the calculation of multipole-derived charges (MDCs).**
+> **请求计算多极矩导出电荷（MDCs）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Calculates the MDCs and also the traceless form of the multipole moments
-> * **Recommendation**: Set to TRUE if MDCs or the traceless form of the multipole moments are desired. The calculation does not take long.
+>     * 计算 MDCs，同时计算多极矩的无迹形式
+> * **建议**: 若需要 MDCs 或多极矩的无迹形式，请设置为 TRUE 。该计算耗时不长。

@@ -1,64 +1,54 @@
 ---
-title: "5.3.8 Semi-Empirical Functionals"
+title: "5.3.8 半经验泛函"
 ---
 
-## 5.3.8 Semi-Empirical Functionals
+## 5.3.8 半经验泛函
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 5.3.8.1 Grimme “3c” Methods
+## 5.3.8.1 Grimme "3c" 方法
 
-The following methods are available in **Q-Chem**:
+**Q-Chem** 中提供以下方法：
 
 - •
 
-**HF-3c**: It is an HF-based semi-empirical method which is used with a
-minimal basis called MINIX. All the elements from H to Xe are supported. For the elements
-from Rb ($Z=37$) to Xe ($Z=54$), def2-ECP must be used.[[1329]](../bib_references/bib.md#bib1388)
+**HF-3c**：这是一种基于 HF（Hartree-Fock，哈特里-福克）的半经验方法，配合名为 MINIX 的最小基组（Minimal Basis Set）使用。支持从 H 到 Xe 的所有元素。对于从 Rb（$Z=37$）到 Xe（$Z=54$）的元素，必须使用 def2-ECP。[[1329]](../bib_references/bib.md#bib1388)
 - •
 
-**PBEh-3c**: It is a DFT based method which is used with def2-mSVP basis
-set.This is available for all the elements from H to Rn. For the elements from Rb
-($Z=37$) to Rn ($Z=86$), def2-ECP has to be used. It is a more accurate
-method than HF-3c as it has correlation,[[487]](../bib_references/bib.md#bib508)
+**PBEh-3c**：这是一种基于 DFT（Density Functional Theory，密度泛函理论）的方法，配合 def2-mSVP 基组使用。支持从 H 到 Rn 的所有元素。对于从 Rb（$Z=37$）到 Rn（$Z=86$）的元素，必须使用 def2-ECP。由于该方法包含电子相关效应，[[487]](../bib_references/bib.md#bib508)
 
-although the double-$\zeta$ basis set makes it more expensive for large molecules.
+其精度高于 HF-3c，但双-$\zeta$（double-$\zeta$）基组使其在处理大分子时计算代价更高。
 
-**Note: 
+**注意：
 
 •
 
-The HF-3c and PBEh-3c methods were parameterized for use with the aforementioned
-basis sets. Although **Q-Chem** does not enforce this, other basis sets should not be
-used unless there is a good reason for doing so, and only then with caution as the
-results may not match published accuracy.
+HF-3c 和 PBEh-3c 方法是针对上述基组进行参数化的。虽然 **Q-Chem** 并不强制这一限制，但除非有充分理由，否则不应使用其他基组；即便如此也应谨慎使用，因为结果可能无法达到文献报道的精度。
 
 •
 
-Analytic frequencies are available for these DFT-3c methods,
+这些 DFT-3c 方法支持解析频率计算，
 
-with derivatives of the “3c” term computed numerically. In most cases this should be
-invisible to the user; see Section [5.3.8.2](#sec:3c-JobControl) for job control settings related
-to semi-numerical calculation of the Hessian.
+其中"3c"项的导数采用数值方法计算。在大多数情况下，用户无需关心此细节；有关半数值 Hessian（Hessian matrix，黑塞矩阵）计算的任务控制设置，请参见第 [5.3.8.2](#sec:3c-JobControl) 节。
 
 **
 
-## 5.3.8.2 Job Control and Examples for DFT-3c
+## 5.3.8.2 DFT-3c 的任务控制与示例
 
 FDIFF_STENCIL_3C
 
 ### `FDIFF_STENCIL_3C`
 
-> **Specifies whether to use a 5-point stencil for derivatives of the “3c” part of DFT-3c.**
+> **指定是否对 DFT-3c 中"3c"部分的导数使用 5 点差分模板（5-point stencil）。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`无默认值`
+> * **选项**：
 >     * 5
->     * Use the 5-point stencil
-> * **Recommendation**: If this variable is not specified then Q-Chem will use a 3-point stencil, which has proven adequate in previous testing. Use the 5-point stencil only if questions arise about the accuracy of the semi-numerical frequencies.
+>     * 使用 5 点差分模板
+> * **建议**：若未指定此变量，Q-Chem 将使用 3 点差分模板，此前的测试已证明其精度足够。仅当对半数值频率的精度存有疑问时，才使用 5 点差分模板。
 
-???+ example "Example 5.4: HF-3c calculation on the I ${}^{-}$ (H ${}_{2}$ O) complex."
+???+ example "示例 5.4：I ${}^{-}$ (H ${}_{2}$ O) 复合物的 HF-3c 计算。"
     ```qchem
     $rem
      method  hf-3c
@@ -76,7 +66,7 @@ FDIFF_STENCIL_3C
     
     ```
 
-???+ example "Example 5.5: PBEh-3c calculation on (H ${}_{2}$ O) ${}_{2}$ ."
+???+ example "示例 5.5：(H ${}_{2}$ O) ${}_{2}$ 的 PBEh-3c 计算。"
     ```qchem
     $molecule
        0 1

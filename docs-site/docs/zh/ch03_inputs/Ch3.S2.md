@@ -1,9 +1,9 @@
 ---
-title: "3.2 General Form"
+title: "3.2 一般形式"
 ---
 
-# 3.2 General Form
+# 3.2 一般形式
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [3.2.1 Overview](Ch3.S2.SS1.md)
+- [3.2.1 概述](Ch3.S2.SS1.md)

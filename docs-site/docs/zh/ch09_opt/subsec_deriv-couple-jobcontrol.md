@@ -1,13 +1,8 @@
----
-title: "9.8.2 Job Control and Examples"
----
+## 9.8.2 作业控制与示例
 
-## 9.8.2 Job Control and Examples
+（2026 年 7 月 4 日）
 
-(July 4, 2026)
-
-In order to perform nonadiabatic coupling calculations, the
-*$derivative_coupling* section must be given:
+为了执行非绝热耦合（nonadiabatic coupling）计算，必须给出 *$derivative_coupling* 段：
 
 > ```qchem
 > $derivative_coupling
@@ -16,60 +11,56 @@ In order to perform nonadiabatic coupling calculations, the
 > $end
 > ```
 
-Nonadiabatic couplings will then be computed between all pairs of the states
-$i,j,k,\ldots$; use “0” to request the HF or DFT reference state, “1”
-for the first excited state, etc. Note that the derivative couplings are have
-dimensions of inverse length and are printed in atomic units, *i.e.*, bohr${}^{-1}$.
+随后将在所列状态 $i,j,k,\ldots$ 之间所有两两组合上计算非绝热耦合；使用 “0” 表示请求 HF 或 DFT 参考态，“1” 表示第一激发态，依此类推。注意，导数耦合（derivative coupling）的量纲为长度的倒数，并以原子单位（atomic unit）打印输出，*即*，bohr${}^{-1}$。
 
 CALC_NAC
 
 ### `CALC_NAC`
 
-> **Determines whether we are calculating nonadiabatic couplings.**
+> **决定是否计算非绝热耦合。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Calculate nonadiabatic couplings.
+>     * 计算非绝热耦合。
 >     * FALSE
->     * Do not calculate nonadiabatic couplings.
-> * **Recommendation**: None.
+>     * 不计算非绝热耦合。
+> * **建议**：无。
 
 CIS_DER_NUMSTATE
 
 ### `CIS_DER_NUMSTATE`
 
-> **Determines among how many states we calculate nonadiabatic couplings. These states must be specified in the $derivative_coupling section.**
+> **决定在多少个状态之间计算非绝热耦合。这些状态必须在 $derivative_coupling 段中指定。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * Do not calculate nonadiabatic couplings.
+>     * 不计算非绝热耦合。
 >     * $n$
->     * Calculate
+>     * 计算
 >     * $n(n-1)/2$
->     * pairs of nonadiabatic couplings.
-> * **Recommendation**: None.
+>     * 组非绝热耦合。
+> * **建议**：无。
 
 SET_QUADRATIC
 
 ### `SET_QUADRATIC`
 
-> **Determines whether to include full quadratic response contributions for TDDFT.**
+> **决定是否为含时密度泛函理论（TD-DFT）计算包含完整的二次响应（quadratic response）贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Include full quadratic response contributions for TDDFT.
+>     * 为 TD-DFT 包含完整的二次响应贡献。
 >     * FALSE
->     * Use pseudo-wave function approach.
-> * **Recommendation**: The pseudo-wave function approach is usually accurate enough and is free of accidental singularities. Consult Refs. 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . Link and 1029 Ou Q. et al. J. Chem. Phys. (2015) , 142 , pp. 064114 . Link for additional guidance.
+>     * 采用伪波函数（pseudo-wave function）方法。
+> * **建议**：伪波函数方法通常已具有足够的精度，并且不存在偶然奇点（accidental singularity）。更多指导请参阅文献 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . 链接 以及 1029 Ou Q. et al. J. Chem. Phys. (2015) , 142 , pp. 064114 . 链接。
 
-???+ example "Example 9.26: Nonadiabatic couplings among the lowest five singlet states of ethylene,
-computed at the TD-B3LYP level using the pseudo-wave function approach."
+???+ example "示例 9.26: 在 TD-B3LYP 层次上采用伪波函数方法计算乙烯最低五个单重态之间的非绝热耦合。"
     ```qchem
     $molecule
        0 1
@@ -97,8 +88,7 @@ computed at the TD-B3LYP level using the pseudo-wave function approach."
     $end
     ```
 
-???+ example "Example 9.27: Nonadiabatic couplings between $S_{1}$ and $S_{3}$ states of ethylene using
-BH&HLYP and spin-flip TDDFT."
+???+ example "示例 9.27: 使用 BH&HLYP 与自旋反转 TD-DFT（spin-flip TDDFT）计算乙烯 $S_{1}$ 与 $S_{3}$ 态之间的非绝热耦合。"
     ```qchem
     $molecule
        0 3
@@ -128,8 +118,7 @@ BH&HLYP and spin-flip TDDFT."
     $end
     ```
 
-???+ example "Example 9.28: Nonadiabatic couplings between $S_{1}$ and $S_{2}$ states of ethylene computed via
-quadratic response theory at the TD-B3LYP level."
+???+ example "示例 9.28: 在 TD-B3LYP 层次上通过二次响应理论计算乙烯 $S_{1}$ 与 $S_{2}$ 态之间的非绝热耦合。"
     ```qchem
     $molecule
        0 1

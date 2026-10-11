@@ -1,149 +1,120 @@
 ---
-title: "6.14.6 Convergence Strategies and More Advanced Options"
+title: "6.14.6 收敛策略与更多高级选项"
 ---
 
-## 6.14.6 Convergence Strategies and More Advanced Options
+## 6.14.6 收敛策略与更多高级选项
 
 (July 4, 2026)
 
-These optimized orbital coupled-cluster active space methods enable the use of
-the full valence space for larger systems than is possible with conventional
-complete active space codes. However, we should note at the outset that often
-there are substantial challenges in converging valence active space
-calculations (and even sometimes optimized orbital coupled cluster calculations
-without an active space). Active space calculations cannot be regarded as
-“routine” calculations in the same way as SCF calculations, and often require
-a considerable amount of computational trial and error to persuade them to
-converge. These difficulties are largely because of strong coupling between the
-orbital degrees of freedom and the amplitude degrees of freedom, as well as the
-fact that the energy surface is often quite flat with respect to the orbital
-variations defining the active space.
+这些优化轨道耦合簇活性空间方法（optimized orbital coupled-cluster active space methods）能够处理比常规完整活性空间（complete active space）程序所能处理的更大的体系，并可在其中使用完整的价层空间（full valence space）。不过我们一开始就应当指出，价层活性空间计算（甚至有时包括不带活性空间的优化轨道耦合簇计算）的收敛往往面临巨大挑战。活性空间计算不能像自洽场（Self-Consistent Field, SCF）计算那样被视为“例行公事”式的计算，它们通常需要大量的计算试错（trial and error）才能说服其收敛。这些困难在很大程度上源于轨道自由度与振幅（amplitude）自由度之间的强耦合，同时也因为相对于定义活性空间的轨道变化而言，能量曲面往往相当平坦。
 
-Being aware of this at the outset, and realizing that the program has nothing
-against you personally is useful information for the uninitiated user of these
-methods. What the program does have, to assist in the struggle to achieve a
-converged solution, are accordingly many convergence options, fully documented
-in Appendix [B](../app_b_quickref/app_quick_ref.md). In this section, we describe the basic options
-and the ideas behind using them as a starting point. Experience plays a
-critical role, however, and so we encourage you to experiment with toy jobs
-that give rapid feedback in order to become proficient at diagnosing problems.
+事先了解这一点，并认识到程序并不是专门跟你个人作对，对于这些方法的新手用户来说是非常有用的信息。为帮助你在追求收敛解的斗争中取胜，程序相应地提供了许多收敛选项，全部详细记录在附录 [B](../app_b_quickref/app_quick_ref.md) 中。本节我们介绍这些基本选项以及将它们作为起点使用的思路。不过经验起着至关重要的作用，因此我们鼓励你通过能快速给出反馈的“玩具任务”（toy jobs）多做练习，从而熟练掌握问题诊断的能力。
 
-If the default procedure fails to converge, the first useful option to employ
-is CC_PRECONV_T2Z, with a value of between 10 and 50. This is useful
-for jobs in which the MP2 amplitudes are very poor guesses for the converged
-cluster amplitudes, and therefore initial iterations varying only the
-amplitudes will be beneficial:
+如果默认流程无法收敛，第一个值得采用的有用选项是 CC_PRECONV_T2Z，取值在 10 到 50 之间。这对于那些 MP2 振幅作为收敛簇振幅的初 guess 非常差的任务很有用，因此仅变动振幅的初始迭代将是有益的：
 
 CC_PRECONV_T2Z
 
 ### `CC_PRECONV_T2Z`
 
-> **Whether to pre-converge the cluster amplitudes before beginning orbital optimization in optimized orbital cluster methods.**
+> **是否在优化轨道簇方法中开始轨道优化之前预收敛簇振幅。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * No pre-convergence before orbital optimization.
+>     * 轨道优化之前不进行预收敛。
 >     * $n$
->     * Up to
+>     * 在该预收敛流程中最多进行
 >     * $n$
->     * iterations in this pre-convergence procedure.
-> * **Recommendation**: Experiment with this option in cases of convergence failure.
+>     * 次迭代。
+> * **建议**: 在收敛失败的情况下尝试此选项。
 
-Other options that are useful include those that permit some damping of step
-sizes, and modify or disable the standard DIIS procedure. The main choices are
-as follows.
+其他有用的选项包括允许对步长进行一定阻尼（damping）的选项，以及修改或禁用标准直接迭代子空间反演（Direct Inversion of the Iterative Subspace, DIIS）流程的选项。主要选择如下。
 
 CC_DIIS
 
 ### `CC_DIIS`
 
-> **Specify the version of Pulay’s Direct Inversion of the Iterative Subspace (DIIS) convergence accelerator to be used in the coupled-cluster code.**
+> **指定在耦合簇代码中使用的 Pulay 直接迭代子空间反演（DIIS）收敛加速器的版本。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Activates procedure 2 initially, and procedure 1 when gradients are smaller
->     * than
+>     * 初始启用流程 2，当梯度小于
 >     * DIIS12_SWITCH
->     * .
+>     * 时切换为流程 1。
 >     * 1
->     * Uses error vectors defined as differences between parameter vectors from
->     * successive iterations. Most efficient near convergence.
+>     * 误差向量定义为相邻迭代间参数向量的差。在接近收敛时效率最高。
 >     * 2
->     * Error vectors are defined as gradients scaled by square root of the
->     * approximate diagonal Hessian. Most efficient far from convergence.
-> * **Recommendation**: DIIS1 can be more stable. If DIIS problems are encountered in the early stages of a calculation (when gradients are large) try DIIS1.
+>     * 误差向量定义为由近似对角 Hessian 的平方根加权的梯度。在远离收敛时效率最高。
+> * **建议**: DIIS1 可能更稳定。如果在计算早期阶段（梯度较大时）遇到 DIIS 问题，请尝试 DIIS1。
 
 CC_DIIS_START
 
 ### `CC_DIIS_START`
 
-> **Iteration number when DIIS is turned on. Set to a large number to disable DIIS.**
+> **启用 DIIS 的迭代步数。设置为很大的数值即可禁用 DIIS。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * $n$
->     * User-defined
-> * **Recommendation**: Occasionally DIIS can cause optimized orbital coupled-cluster calculations to diverge through large orbital changes. If this is seen, DIIS should be disabled.
+>     * 用户自定义
+> * **建议**: 有时 DIIS 会通过引起大的轨道变化而导致优化轨道耦合簇计算发散。若出现这种情况，应当禁用 DIIS。
 
 CC_DOV_THRESH
 
 ### `CC_DOV_THRESH`
 
-> **Specifies minimum allowed values for the coupled-cluster energy denominators. Smaller values are replaced by this constant during early iterations only, so the final results are unaffected, but initial convergence is improved when the guess is poor.**
+> **指定耦合簇能量分母允许的最小值。较小的值仅在早期迭代中被该常数替代，因此最终结果不受影响，但在初 guess 较差时可改善初始收敛。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$2502$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$2502$`
+> * **选项**:
 >     * $abcde$
->     * Integer code is mapped to
+>     * 整数编码映射为
 >     * $abc\times 10^{-de}$
-> * **Recommendation**: Increase to 0.5 or 0.75 for non convergent coupled-cluster calculations.
+> * **建议**: 对于不收敛的耦合簇计算，将其提高到 0.5 或 0.75。
 
-**Note: 
+**注意：
 
-Works only for CCMAN jobs, not enabled in CCMAN2.
+仅适用于 CCMAN 任务，在 CCMAN2 中未启用。
 **
 
 CC_THETA_STEPSIZE
 
 ### `CC_THETA_STEPSIZE`
 
-> **Scale factor for the orbital rotation step size. The optimal rotation steps should be approximately equal to the gradient vector.**
+> **轨道旋转步长的缩放因子。最优旋转步长应大致等于梯度向量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$100$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$100$`
+> * **选项**:
 >     * $abcde$
->     * Integer code is mapped to
+>     * 整数编码映射为
 >     * $abc\times 10^{-de}$
->     * If the initial step is smaller than 0.5, the program will increase step
->     * when gradients are smaller than the value of
+>     * 如果初始步长小于 0.5，当梯度小于
 >     * THETA_GRAD_THRESH
->     * ,
->     * up to a limit of 0.5.
-> * **Recommendation**: Try a smaller value in cases of poor convergence and very large orbital gradients. For example, a value of 01001 translates to 0.1
+>     * 的取值时，程序会增大步长，
+>     * 上限为 0.5。
+> * **建议**: 在收敛不佳且轨道梯度非常大的情况下尝试更小的值。例如，取值 01001 对应 0.1。
 
-An even stronger—and more-or-less last resort—option permits iteration of the
-cluster amplitudes without changing the orbitals:
+还有一个更强力——大致是最后手段——的选项，它允许在不改变轨道的情况下迭代簇振幅：
 
 CC_PRECONV_T2Z_EACH
 
 ### `CC_PRECONV_T2Z_EACH`
 
-> **Whether to pre-converge the cluster amplitudes before each change of the orbitals in optimized orbital coupled-cluster methods. The maximum number of iterations in this pre-convergence procedure is given by the value of this parameter.**
+> **是否在优化轨道耦合簇方法中每次改变轨道之前都预收敛簇振幅。该预收敛流程的最大迭代次数由此参数的取值给出。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * No pre-convergence before orbital optimization.
+>     * 轨道优化之前不进行预收敛。
 >     * $n$
->     * Up to
+>     * 在该预收敛流程中最多进行
 >     * $n$
->     * iterations in this pre-convergence procedure.
-> * **Recommendation**: A very slow last resort option for jobs that do not converge.
+>     * 次迭代。
+> * **建议**: 对于无法收敛的任务，这是一个非常缓慢的最后手段选项。

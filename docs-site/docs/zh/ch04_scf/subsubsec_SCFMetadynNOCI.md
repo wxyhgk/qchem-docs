@@ -1,55 +1,28 @@
 ---
-title: "4.9.3 Multiple SCF Solutions for Non-Orthogonal CI"
+title: "4.9.3 非正交 CI 的多个 SCF 解"
 ---
 
-## 4.9.3 Multiple SCF Solutions for Non-Orthogonal CI
+## 4.9.3 非正交 CI 的多个 SCF 解
 
 (July 4, 2026)
 
-The solutions found through metadynamics often appear to be good approximations
-to diabatic surfaces, where the electronic structure does not significantly
-change with geometry. In situations where there are such multiple electronic
-states close in energy, an adiabatic state may be produced by diagonalizing a
-matrix of these states, *i.e.*, through a configuration interaction (CI)
-procedure. As they are distinct solutions of the SCF equations, these states
-are non-orthogonal (*i.e.* one cannot be constructed as a single determinant
-made out of the orbitals of another), and so the CI is a little more
-complicated and corresponds to a non-orthogonal CI (NOCI). More information on
-NOCI can be found in Section [7.5](../ch07_excited/subsec_NOCI.md).
+通过元动力学（metadynamics）找到的解通常是对非绝热（diabatic）势能面的良好近似，在这些势能面上，电子结构随几何构型的变化并不显著。当存在多个能量相近的电子态时，可以通过对这些态构成的矩阵进行对角化来得到绝热态，*即*通过组态相互作用（Configuration Interaction, CI） procedure。由于它们是 SCF 方程的不同解，这些态是非正交的（*即*其中一个无法由另一个的轨道构成的单个行列式得到），因此 CI 会稍复杂一些，对应于非正交 CI（Non-Orthogonal CI, NOCI）。有关 NOCI 的更多信息参见第 [7.5](../ch07_excited/subsec_NOCI.md) 节。
 
-Version 5.2 of **Q-Chem** introduces a new NOCI package, **libnoci**, for locating
-multiple SCF solutions and running NOCI calculations (see
-Section [7.5.2](../ch07_excited/subsec_LIBNOCI.md)), including a new implementation of SCF
-metadynamics. The **libnoci** implementation of SCF metadynamics can be accessed
-using USE_LIBNOCI = TRUE in combination with NOCI_DETGEN = 3.
-In addition to the original SCF metadynamics features available in **Q-Chem**, this new implementation includes:
+**Q-Chem** 5.2 版本引入了一个新的 NOCI 程序包 **libnoci**，用于定位多个 SCF 解并运行 NOCI 计算（见第 [7.5.2](../ch07_excited/subsec_LIBNOCI.md) 节），其中包括 SCF 元动力学的全新实现。**libnoci** 对 SCF 元动力学的实现可通过 USE_LIBNOCI = TRUE 结合 NOCI_DETGEN = 3 来使用。除了 **Q-Chem** 中原有的 SCF 元动力学功能之外，这一新实现还包括：
 
 - •
 
-An active space approach where orbital mixing and optimization
-occurs only in a user-defined subset of orbitals.
+一种活性空间（active space）方法，其中轨道混合与优化仅在用户定义的轨道子集中进行。
 - •
 
-Full support for restricted, unrestricted and generalized orbital types, along
-with complex (Hermitian) and holomorphic (non-Hermitian) orbitals; see Section [4.9.4](sec_HoloHF.md).
+对限制（restricted）、非限制（unrestricted）以及广义（generalized）轨道类型的完整支持，同时支持复（Hermite）轨道与全纯（非 Hermite）轨道；见第 [4.9.4](sec_HoloHF.md) 节。
 
-Multiple Hartree-Fock states of particular relevance for NOCI are often
-related to varying orbital occupations in a dominant subset of molecular
-orbitals. For example, important multiple solutions may correspond to excited
-determinants whose orbitals have been individually relaxed at the SCF level, or
-symmetry-broken states formed from strong mixing in a dominant active space.
-**libnoci** allows multiple solutions to be identified by allowing orbital mixing
-and relaxation only in a subset of orbitals defined using the *$active_orbitals* input section
-By default, the multiple solutions located are then
-subsequently optimized in the full orbital space, although this can be skipped
-using SKIP_SCFMAN = TRUE.
+对于 NOCI 特别相关的多个 Hartree-Fock 态，通常源于在占主导地位的分子轨道子集中改变轨道占据数。例如，重要的多个解可能对应于其轨道在 SCF 级别上分别弛豫过的激发行列式，或由主导活性空间中的强混合形成的对称性破缺态。**libnoci** 允许仅在用 *$active_orbitals* 输入段所定义的轨道子集中进行轨道混合与弛豫，从而识别出多个解。
+默认情况下，所定位到的多个解随后会在完整的轨道空间中进一步优化，不过可以使用 SKIP_SCFMAN = TRUE 跳过这一步。
 
-Finally, **libnoci** introduces easier control over reading initial guesses from
-previous calculations. Using the input NOCI_REFGEN = 1, all previous
-solutions are read from file (if available), while a particular subset can be chosen
-using SCF_READMINIMA.
+最后，**libnoci** 让从先前计算中读取初始猜测（initial guess）的控制更加便捷。使用输入项 NOCI_REFGEN = 1 可以从文件中读取所有先前的解（如果可用），而通过 SCF_READMINIMA 则可以选择特定的子集。
 
-???+ example "Example 4.29: Example of using the libnoci implementation of SCF metadynamics."
+???+ example "示例 4.29: 使用 libnoci 实现的 SCF 元动力学示例。"
     ```qchem
     $molecule
        0 1
@@ -72,10 +45,9 @@ using SCF_READMINIMA.
     $end
     ```
 
-Active orbitals can be specified for SCF metadynamics in **libnoci**.
-Indices for $\beta$ orbitals are offset by the number of $\alpha$ MOs, *i.e.*
-the case selects $\alpha$ orbitals 1 and 2, and $\beta$ orbitals 1 and 2, with
-a total of 10 $\alpha$ molecular orbitals (including occupied and virtual).
+在 **libnoci** 中可以为 SCF 元动力学指定活性轨道。
+$\beta$ 轨道的索引以 $\alpha$ 分子轨道（MO）的数目为偏移量，*即*
+该示例选取了 $\alpha$ 轨道 1 和 2，以及 $\beta$ 轨道 1 和 2，其中共有 10 个 $\alpha$ 分子轨道（包括占据轨道和虚轨道）。
 
 > > ```qchem
 > > $active_orbitals
@@ -83,7 +55,7 @@ a total of 10 $\alpha$ molecular orbitals (including occupied and virtual).
 > > $end
 > > ```
 
-The initial guess coefficients can also be read in as follows:
+初始猜测系数也可以按如下方式读入：
 
 > > ```qchem
 > > $scf_read

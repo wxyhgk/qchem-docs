@@ -1,83 +1,64 @@
 ---
-title: "4.5.14 Maximum Overlap Method (MOM)"
+title: "4.5.14 最大重叠方法（MOM）"
 ---
 
-## 4.5.14 Maximum Overlap Method (MOM)
+## 4.5.14 最大重叠方法（Maximum Overlap Method, MOM）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In general, the DIIS procedure (Section [4.5.3](sect_diis.md)) is remarkably successful. One difficulty that is
-occasionally encountered is the problem of an SCF that occupies two different
-sets of orbitals on alternating iterations, and therefore oscillates and fails
-to converge. This can be overcome by choosing orbital occupancies that
-maximize the overlap of the new occupied orbitals with the set previously
-occupied. **Q-Chem** contains the maximum overlap method
-(MOM),[[443]](../bib_references/bib.md#bib455)
- developed by Andrew Gilbert and Peter Gill. With
-GEN_SCFMAN, the MOM algorithm can be applied to R, U, and RO SCF calculations when
-paired with the DIIS algorithm.
+一般而言，DIIS  procedure（第 [4.5.3](sect_diis.md) 节）的成功率非常高。偶尔会遇到的一种困难是：自洽场（SCF）在交替的迭代步中占据两组不同的轨道，从而导致振荡并无法收敛。这一问题可以通过选择新的占据轨道与先前占据轨道集合重叠度（overlap）最大的占据方式来解决。**Q-Chem** 实现了由 Andrew Gilbert 和 Peter Gill 提出的最大重叠方法（MOM）[[443]](../bib_references/bib.md#bib455)。借助 GEN_SCFMAN，MOM 算法可以与 DIIS 算法配合使用，应用于 R、U 和 RO 自洽场计算。
 
-MOM is therefore is a useful adjunct to DIIS in convergence problems involving
-flipping of orbital occupancies. It is controlled by the *$rem* variable
-MOM_START, which specifies the SCF iteration on which the MOM
-procedure is first enabled. There are two strategies that are useful in setting
-a value for MOM_START. To help maintain an initial configuration it
-should be set to start on the first cycle. On the other hand, to assist
-convergence it should come on later to avoid holding on to an initial
-configuration that may be far from the converged one.
+因此，在涉及轨道占据翻转（flipping of orbital occupancies）的收敛问题中，MOM 是 DIIS 的一个有用补充。它由 *$rem* 变量 MOM_START 控制，该变量指定首次启用 MOM 过程的 SCF 迭代步。在设置 MOM_START 的取值时，有两种有用的策略：若希望保持初始组态，应将其设置为从第一步循环开始启用；反之，若希望辅助收敛，则应在较晚的迭代步才启用，以避免一直锁定可能与收敛组态相差甚远的初始组态。
 
-The MOM-related *$rem* variables in full are the following:
+与 MOM 相关的 *$rem* 变量完整列表如下：
 
 MOM_PRINT
 
 ### `MOM_PRINT`
 
-> **Switches printing on within the MOM procedure.**
+> **控制 MOM 过程内部是否输出打印信息。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Printing is turned off
+>     * 关闭打印输出
 >     * TRUE
->     * Printing is turned on.
-> * **Recommendation**: None
+>     * 开启打印输出。
+> * **建议**: 无
 
 MOM_START
 
 ### `MOM_START`
 
-> **Determines when MOM is switched on to stabilize DIIS iterations.**
+> **决定在何时启用 MOM 以稳定 DIIS 迭代。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 (FALSE)`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0 (FALSE)`
+> * **可选值**:
 >     * 0 (FALSE)
->     * MOM is not used
+>     * 不使用 MOM
 >     * $n$
->     * MOM begins on cycle
->     * $n$
+>     * MOM 从第 $n$ 步循环开始启用
 >     * .
-> * **Recommendation**: Set to 1 if preservation of initial orbitals is desired. If MOM is to be used to aid convergence, an SCF without MOM should be run to determine when the SCF starts oscillating. MOM should be set to start just before the oscillations.
+> * **建议**: 若希望保留初始轨道，设置为 1。若要用 MOM 辅助收敛，应先运行一次不使用 MOM 的 SCF，以确定 SCF 从哪一步开始振荡，并将 MOM 设置为在振荡开始之前稍早处启用。
 
 MOM_METHOD
 
 ### `MOM_METHOD`
 
-> **Determines the target orbitals with which to maximize the overlap on each SCF cycle.**
+> **确定在每一步 SCF 循环中用于最大化重叠度的目标轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `MOM`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `MOM`
+> * **可选值**:
 >     * MOM
->     * Maximize overlap with the orbitals from the previous SCF cycle.
+>     * 最大化与上一步 SCF 循环轨道的重叠度。
 >     * IMOM
->     * Maximize overlap with the initial guess orbitals.
-> * **Recommendation**: If appropriate guess orbitals can be obtained, then IMOM can provide more reliable convergence to the desired solution. 75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , pp. 1501 . Link
+>     * 最大化与初始猜测（initial guess）轨道的重叠度。
+> * **建议**: 若能获得合适的猜测轨道，则 IMOM 可以更可靠地收敛到所需解。75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , 第 1501 页。链接
 
-???+ example "Example 4.4.17: An example showing how to converge a ROHF calculation on the ${}^{3}\!A_{2}$ state
-of DMX. Note the use of reading in orbitals from a previous closed-shell
-calculation and the use of MOM to maintain the orbital occupancies. The ${}^{3}B_{1}$ is obtained if MOM is not used."
+???+ example "示例 4.4.17：一个演示如何收敛 DMX 的 ${}^{3}\!A_{2}$ 态 ROHF 计算的例子。注意其中从先前的闭壳层（closed-shell）计算读入轨道，以及使用 MOM 来维持轨道占据。若不使用 MOM，得到的是 ${}^{3}B_{1}$ 态。"
     ```qchem
     $molecule
       +1 1

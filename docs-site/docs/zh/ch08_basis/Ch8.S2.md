@@ -1,9 +1,11 @@
 ---
-title: "8.2 Built-In Basis Sets"
+title: "8.2 内置基组"
 ---
 
-# 8.2 Built-In Basis Sets
+# 8.2 内置基组（Built-In Basis Sets）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [8.2.1 Overview](Ch8.S2.SS1.md)
+- [8.2.1 概述](Ch8.S2.SS1.md)
+
+已同时将该译文保存至 `Ch8.S2_zh.md`，与目录中其他章节译文的命名约定保持一致。

@@ -1,24 +1,13 @@
 ---
-title: "3.1.1 Overview"
+title: "3.1.1 概述"
 ---
 
-## 3.1.1 Overview
+## 3.1.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The easiest way to run **Q-Chem** is by using the **IQmol** interface which can be
-downloaded for free from `http://www.iqmol.org`. Before submitting a **Q-Chem** job
-from you will need to configure a **Q-Chem** server and details on how to do this
-are given in Section [2.2.2](../ch02_install/sect_iqmolinstall.md) of this manual.
+运行 **Q-Chem** 最简单的方式是使用 **IQmol** 界面，可从 `http://www.iqmol.org` 免费下载。在提交 **Q-Chem** 作业之前，你需要配置一个 **Q-Chem** 服务器，具体方法见本手册第 [2.2.2 节](../ch02_install/sect_iqmolinstall.md)。
 
-**IQmol** provides a free-form molecular builder and a comprehensive interface
-for setting up the input for **Q-Chem** jobs. Additionally calculations can be
-submitted to either the local or a remote machine and monitored using the built
-in job monitor. The output can also be analyzed allowing visualization of
-molecular orbitals and densities, and animation of vibrational modes and
-reaction pathways. A more complete list of features can be found at
-`http://www.iqmol.org/features.html`.
+**IQmol** 提供了一个自由形式的分子构建器，以及用于设置 **Q-Chem** 作业输入的综合性界面。此外，计算可以提交到本地或远程机器，并使用内置的作业监视器进行监控。输出结果也可以进行分析，支持分子轨道和电子密度的可视化，以及振动模式和反应路径的动画演示。更完整的功能列表可在 `http://www.iqmol.org/features.html` 查看。
 
-The **IQmol** program comes with a built-in help system that details how to set
-up and submit **Q-Chem** calculations. This help can be accessed via the
-Help$\rightarrow$Show Help menu option.
+**IQmol** 程序自带一个内置帮助系统，详细介绍了如何设置和提交 **Q-Chem** 计算。可通过 Help$\rightarrow$Show Help 菜单选项访问该帮助。

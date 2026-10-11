@@ -1,22 +1,11 @@
 ---
-title: "8.4.1 Introduction"
+title: "8.4.1 引言"
 ---
 
-## 8.4.1 Introduction
+## 8.4.1 引言
 
 (July 4, 2026)
 
-Users may, on occasion, prefer to use non-standard basis, and it is possible
-to declare user-defined basis sets in **Q-Chem** input (see Chapter [3](../ch03_inputs/chap_inputs.md)
-on **Q-Chem** inputs). The format for inserting a non-standard
-user-defined basis set is both logical and flexible, and is described in
-detail in the job control section below.
+用户有时可能希望使用非标准基组（Basis Set），并且可以在 **Q-Chem** 输入中声明用户自定义基组（参见关于 **Q-Chem** 输入的[第 3 章](../ch03_inputs/chap_inputs.md)）。插入非标准用户自定义基组的格式既合乎逻辑又灵活，其详细信息见下文的任务控制（job control）部分。
 
-Note that the SAD guess is not currently supported with non-standard or
-user-defined basis sets. The current default is to use SCF_GUESS = AUTOSAD,
-unless a mixed basis is specified. When using a mixed basis, the
-simplest alternative is to specify the GWH or CORE options
-for SCF_GUESS, but these are relatively ineffective other than for
-small basis sets. The recommended alternative is to employ basis set
-projection by specifying a standard basis set for the BASIS2
-keyword. See Section [4.4](../ch04_scf/sect_initialguess.md) on initial guesses for more information.
+请注意，目前 SAD 初始猜测（guess）不支持非标准或用户自定义基组。当前的默认设置是使用 SCF_GUESS = AUTOSAD，除非指定了混合基组（mixed basis）。使用混合基组时，最简单的替代方案是为 SCF_GUESS 指定 GWH 或 CORE 选项，但这些选项的效果相对有限。

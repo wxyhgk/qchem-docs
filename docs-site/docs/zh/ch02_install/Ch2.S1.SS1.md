@@ -1,42 +1,21 @@
 ---
-title: "2.1.1 Downloading and Licensing"
+title: "2.1.1 下载与许可"
 ---
 
-## 2.1.1 Downloading and Licensing
+## 2.1.1 下载与许可
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Users are referred to the detailed installation instructions available at
-`https://www.q-chem.com/install/`.
+请参阅 `https://www.q-chem.com/install/` 提供的详细安装说明。
 
-An encrypted license file must be obtained from your vendor before you will be
-able to use **Q-Chem**. Q-Chem licenses can be issued in one of two ways.
-In the first method, node-locked licensing, **Q-Chem** will only operate correctly
-on the machine for which the license file(s) have been generated.
-In the second method, FlexNet licensing, the license is issued for one node,
-and the other nodes check out licenses in order to run Q-Chem.
-These licensing types are described in further detail below, and information
-about obtaining these files can be found in the installation section.
+在使用 **Q-Chem** 之前，必须从你的供应商处获取加密的许可证文件。Q-Chem 许可证有两种签发方式。第一种方式为节点锁定许可（node-locked licensing），**Q-Chem** 只能在为其生成许可证文件的机器上正确运行。第二种方式为 FlexNet 许可（FlexNet licensing），许可证只针对一个节点签发，其他节点通过检出（check out）许可证来运行 Q-Chem。这些许可类型在下文中将有更详细的描述，获取这些文件的相关信息可在安装章节中找到。
 
-**Do not alter the license file unless directed by **Q-Chem**, Inc.**
+**除非 **Q-Chem**, Inc. 另有指示，请勿修改许可证文件。**
 
-## 2.1.1.1 Node-locked Licensing
+## 2.1.1.1 节点锁定许可（Node-locked Licensing）
 
-Node-locked licensing requires obtaining a license for each machine that will
-be running **Q-Chem**. On a supercomputing cluster, for example, host IDs need
-to be generated for each individual node, and the license file must be
-regenerated whenever nodes are added or removed from the cluster.
-This licensing option works best for running Q-Chem on workstations, and in
-some special cases where FlexNet licensing is untenable.
+节点锁定许可要求为每台运行 **Q-Chem** 的机器分别获取许可证。例如，在超级计算集群上，需要为每一个独立节点生成主机标识（host ID），并且每当集群增加或移除节点时，都必须重新生成许可证文件。这种许可方式最适合在工作站上运行 Q-Chem，也适用于某些无法使用 FlexNet 许可的特殊情况。
 
-## 2.1.1.2 FlexNet Licensing
+## 2.1.1.2 FlexNet 许可（FlexNet Licensing）
 
-FlexNet (formerly known as flexlm) is a convenient option for managing Q-Chem
-licenses in a computer cluster or supercomputer setting. One node (for example,
-the head node in a cluster or another dedicated node) runs the licensing server
-software and provides access to the Q-Chem license to all client compute nodes.
-This method requires coordination with the administrator of the cluster to set up,
-but information only needs to be collected for one node, and you can easily add or
-remove nodes from the cluster without needing to reissue the license.
-The FlexNet server licensing option is available free of charge to eligible
-users running Q-Chem for Linux.
+FlexNet（前身为 flexlm）是在计算机集群或超级计算环境中管理 Q-Chem 许可证的便捷选择。由一个节点（例如集群的头节点或其他专用节点）运行许可服务器软件，并向所有客户端计算节点提供 Q-Chem 许可证的访问。这种方式需要与集群管理员协同完成设置，但只需收集一个节点的信息，即可轻松地从集群中添加或移除节点，而无需重新签发许可证。对于在 Linux 上运行 Q-Chem 的符合条件的用户，FlexNet 服务器许可选项可免费获得。

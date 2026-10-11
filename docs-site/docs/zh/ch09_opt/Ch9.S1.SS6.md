@@ -1,101 +1,49 @@
 ---
-title: "9.1.6 Constrained Optimization in Delocalized Internal Coordinates"
+title: "9.1.6 离域内坐标下的约束优化"
 ---
 
-## 9.1.6 Constrained Optimization in Delocalized Internal Coordinates
+## 9.1.6 离域内坐标下的约束优化
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-Imposing constraints in delocalized internal coordinates is far simpler
-than in Cartesian, so we will give no further details on the latter.
+在离域内坐标（Delocalized Internal Coordinates）中施加固束（Constraints）要比在笛卡尔坐标（Cartesian Coordinates）中简单得多，因此我们不再对后者作进一步说明。
 
-At first glance, imposing any constraints in delocalized coordinates appears
-problematic, given that each coordinate is potentially a linear combination of
-all possible primitives. However, this is deceptive, and in fact all standard
-constraints can be imposed by a relatively simple Schmidt orthogonalization
-procedure. Consider a unit vector with only one non-zero component
-corresponding to the primitive internal (stretch, bend or torsion) that one
-wishes to keep constant. This vector is projected on to the full set, $\mathbf{U}$,
-of active delocalized coordinates and normalized. All $n$ delocalized
-coordinates are then Schmidt orthogonalized with respect to this normalized,
-projected constraint vector. The last coordinate orthogonalized in this way
-will be linearly dependent on the constraint vector and previous $n-1$ active
-vectors, and can be removed from the active space.
+乍看之下，在离域坐标中施加固束似乎存在困难，因为每一个坐标都可能是所有可能原始内坐标（Primitive Internals）的线性组合。然而这种印象具有误导性，实际上所有标准固束都可以通过一个相对简单的施密特正交化（Schmidt Orthogonalization）流程来施加。考虑一个单位矢量，它只有一个非零分量，对应于人们希望保持固定的那个原始内坐标（伸缩、弯曲或扭转）。将该矢量投影到完整的活跃离域坐标集 $\mathbf{U}$ 上并作归一化。随后，所有 $n$ 个离域坐标都相对于这个归一化、投影后的固束矢量进行施密特正交化。以这种方式最后被正交化的那个坐标，必然与固束矢量以及先前的 $n-1$ 个活跃矢量线性相关，因而可以从活跃空间中移除。
 
-In more detail, the procedure is as follows (taken directly from
-Ref. [[63]](../bib_references/bib.md#bib50)
-). The initial (usually unit) constraint vector $\mathbf{C}$ is
-projected on to the set $\mathbf{U}$ of delocalized internal coordinates according to
+更详细地说，该流程如下（直接引自文献 Ref. [[63]](../bib_references/bib.md#bib50)）。初始（通常为单位）固束矢量 $\mathbf{C}$ 按如下方式投影到离域内坐标集 $\mathbf{U}$ 上：
 
 <a id="Ch9.E27"></a>
 $$
 \mathbf{C}^{\text{proj}}=\sum_{k=1}^{n}\bigl{\langle}\mathbf{C}\bigl{|}\mathbf{CU}_{k}\mathbf{U}_{k}\bigr{\rangle}\mathbf{U}_{k}\;, \tag{9.27}
 $$
 
-where the summation is over all active coordinates $\mathbf{U}_{k}$. The
-projected vector $\mathbf{C}^{\rm proj}$ is then normalized and an $n+l$
-dimensional vector space $\mathbf{V}$ is formed, comprising the normalized,
-projected constraint vector together with all active delocalized coordinates
+其中求和遍历所有活跃坐标 $\mathbf{U}_{k}$。然后将投影后的矢量 $\mathbf{C}^{\rm proj}$ 归一化，并构造一个 $n+l$ 维矢量空间 $\mathbf{V}$，它由归一化、投影后的固束矢量与所有活跃离域坐标共同组成
 
 <a id="Ch9.E28"></a>
 $$
 \mathbf{V}=\left\{\mathbf{C}^{\rm proj},~{}\mathbf{U}_{k}(k=1,\ldots,n)\right\}\;. \tag{9.28}
 $$
 
-This set of vectors is Schmidt orthogonalized according to the standard procedure,
+按照标准流程对这组矢量进行施密特正交化：
 
 <a id="eq:a21"></a>
 $$
 \widetilde{\mathbf{V}}_{k}=\alpha_{k}\left(\mathbf{V}_{k}-\sum_{\ell=1}^{k-1}\bigl{\langle}\mathbf{V}_{k}\bigl{|}\mathbf{V}_{k}\widetilde{\mathbf{V}}_{\ell}\widetilde{\mathbf{V}}_{\ell}\bigr{\rangle}\widetilde{\mathbf{V}}_{\ell}\right)\;, \tag{9.29}
 $$
 
-where the first vector is $\mathbf{V}_{1}$, is taken to be $\mathbf{C}^{\rm proj}$.
-The coefficient $\alpha_{k}$ is a normalization factor. As noted above, the last vector
-taken, $\mathbf{V}_{n+1}\equiv\mathbf{U}_{k}$, will drop out, leaving a fully orthonormal set
-of $n-1$ active vectors and one constraint vector.
+其中第一个矢量 $\mathbf{V}_{1}$ 取为 $\mathbf{C}^{\rm proj}$，系数 $\alpha_{k}$ 是归一化因子。如前所述，最后被处理的矢量 $\mathbf{V}_{n+1}\equiv\mathbf{U}_{k}$ 会被舍弃，从而留下一组完全正交归一的 $n-1$ 个活跃矢量以及一个固束矢量。
 
-After the Schmidt orthogonalization the constraint vector will contain all the
-weight in the active space of the primitive to be fixed, which will have a zero
-component in all of the other $n-1$ vectors. The fixed primitive has thus
-been isolated entirely in the constraint vector which can now be removed from
-the active subspace for the geometry optimization step.
+施密特正交化之后，固束矢量将包含待固定原始坐标在活跃空间中的全部权重，而该原始坐标在其余 $n-1$ 个矢量中的分量都为零。这样，被固定的原始坐标就完全分离（隔离）到了固束矢量之中，于是在几何优化步中即可将该矢量从活跃子空间中移除。
 
-Extension of the above procedure to multiple constraints is straightforward.
-In addition to constraints on individual primitives, it is also possible to
-impose combinatorial constraints. For example, if, instead of a unit vector,
-one started the constraint procedure with a vector in which two components were
-set to unity, then this would impose a constraint in which the sum of the two
-relevant primitives were always constant. In theory any desired linear
-combination of any primitives could be constrained.
+将上述流程推广到多重固束情形十分直接。除了对单个原始坐标施加的固束之外，还可以施加组合式固束。例如，如果不使用单位矢量，而是以一个分量为 1 的矢量（其中有两个分量设为 1）作为固束流程的起点，那么就施加了一个要求两个相关原始坐标之和恒为常数的固束。从理论上讲，可以对任意原始坐标的任意期望线性组合施加约束。
 
-Note further that imposed constraints are not confined to those primitive
-internals generated from the initial atomic connectivity. If we wish to
-constrain a distance, angle or torsion between atoms that are not formally
-connected, then all we need to do is add that particular coordinate to our
-primitive set. It can then be isolated and constrained in exactly the same way
-as a formal connectivity constraint.
+还需注意，所施加的固束并不局限于由初始原子连接关系生成的原始内坐标。如果我们希望对形式上并未键连的原子之间的距离、键角或扭转角施加约束，所需要做的只是把该特定坐标加入原始坐标集合中。然后便可以用与形式键连固束完全相同的方式将其分离并约束。
 
-Everything discussed thus far regarding the imposition of constraints in
-delocalized internal coordinates has involved isolating each constraint in one
-vector which is then eliminated from the optimization space. This is very
-similar in effect to a *Z*-matrix optimization, in which constraints are
-imposed by elimination. This, of course, can only be done if the desired
-constraint is satisfied in the starting geometry. We have already seen that the
-Lagrange multiplier algorithm, used to impose distance, angle and torsion
-constraints in Cartesian coordinates, can be used even when the constraint is
-not satisfied initially. The Lagrange multiplier method can also be used with
-delocalized internals, and its implementation with internal coordinates brings
-several simplifications and advantages.
+到此为止，关于在离域内坐标中施加固束的所有讨论，都涉及把每一项固束分离到单个矢量中，再从优化空间中将其消去。这在效果上非常类似于 *Z*-矩阵（Z-matrix）优化，其中固束也是通过消去来实现的。当然，只有当起始几何结构已满足期望固束时，才能这样做。我们已经看到，用于在笛卡尔坐标中施加距离、键角和扭转角约束的拉格朗日乘子（Lagrange Multiplier）算法，即使在固束最初未被满足时也可以使用。拉格朗日乘子方法同样可以用于离域内坐标，而其在内坐标中的实现带来了若干简化与优势。
 
-As already noted, standard internal constraints (bond distances, angles and
-torsions) are non-linear functions of the Cartesian coordinates of the atoms
-involved. A torsion, for example, which involves four atoms, is a function of
-twelve different coordinates. In internals each constraint is a coordinate in
-its own right and is therefore a simple linear function of a single coordinate.
+如前所述，标准的内坐标固束（键长、键角和扭转角）是关于所涉原子笛卡尔坐标的非线性函数。例如，涉及四个原子的扭转角是十二个不同坐标的函数。而在内坐标中，每一项固束本身就是一个独立的坐标，因此它只是单个坐标的简单线性函数。
 
-If we denote a general internal coordinate by $R$, then the constraint function
-$C_{i}(\mathbf{R})$ is a function of one coordinate, $R_{i}$, and it and its
-derivatives can be written
+若以 $R$ 表示一般的内坐标，则固束函数 $C_{i}(\mathbf{R})$ 仅是单个坐标 $R_{i}$ 的函数，该函数及其导数可写为
 
 <a id="eq:a22a"></a>
 $$
@@ -112,42 +60,10 @@ $$
 d^{2}C_{i}(R_{i})/dR_{i}dR_{j}=0 \tag{9.32}
 $$
 
-where $R_{0}$ is the desired value of the constrained coordinate, and $R_{i}$ is
-its current value. From Eq. ([9.31](#eq:a22b)) we see that the constraint normals,
-$dC_{i}(\mathbf{R})/dR_{i}$, are simply unit vectors and the Lagrangian Hessian matrix,
-Eq. ([9.21](sec_geom_opt_theory_constrained.md#eq:a17)), can be obtained from the normal Hessian matrix by adding
-$m$ columns (and $m$ rows) of unit vectors.
+其中 $R_{0}$ 是被约束坐标的目标值，$R_{i}$ 是其当前值。由 Eq. ([9.31](#eq:a22b)) 可见，固束法矢 $dC_{i}(\mathbf{R})/dR_{i}$  simply 就是单位矢量；而拉格朗日海森（Lagrangian Hessian）矩阵，即 Eq. ([9.21](sec_geom_opt_theory_constrained.md#eq:a17))，可以通过在普通海森矩阵上添加 $m$ 列（以及 $m$ 行）单位矢量而得到。
 
-A further advantage, in addition to the considerable simplification, is the
-handling of $0^{\circ}$ and $180^{\circ}$ dihedral angle constraints. In
-Cartesian coordinates it is not possible to formally constrain bond angles and
-torsions to exactly $0^{\circ}$ or $180^{\circ}$ because the corresponding
-constraint normal is a zero vector. Similar difficulties do not arise in
-internal coordinates, at least for torsions, because the constraint normals are
-unit vectors regardless of the value of the constraint; thus $0^{\circ}$ and
-$180^{\circ}$ dihedral angle constraints can be imposed just as easily as any
-other value. $180^{\circ}$ bond angles still cause difficulties, but
-near-linear arrangements of atoms require special treatment even in
-unconstrained optimizations. A typical solution involves replacing a near
-$180^{\circ}$ bond angle by two special linear co-planar and perpendicular
-bends,
+除上述显著的简化之外，还有一项优势是对 $0^{\circ}$ 和 $180^{\circ}$ 二面角固束的处理。在笛卡尔坐标中，无法将键角和扭转角形式化地精确约束到 $0^{\circ}$ 或 $180^{\circ}$，因为相应的固束法矢是零矢量。在内坐标中则至少对扭转角而言不会出现类似困难，因为无论约束取何值，固束法矢都是单位矢量；因此 $0^{\circ}$ 和 $180^{\circ}$ 二面角固束可以像其他任意取值一样轻松地施加。$180^{\circ}$ 键角仍会造成困难，但即使在无约束优化中，近线性的原子排布也需要特殊处理。一种典型的解决办法是用两个特殊的线性共面弯曲（co-planar bend）与垂直弯曲（perpendicular bend）来替代接近 $180^{\circ}$ 的键角，
 
- and modifying the torsions where necessary. A
-linear arrangement can be enforced by constraining the co-planar and
-perpendicular bends.
+ 并在必要时修改相应的扭转角。通过将共面弯曲与垂直弯曲约束起来，即可强制实现线性排布。
 
-One other advantage over Cartesians is that in internals the constraint
-coordinate can be eliminated once the constraint is satisfied to the desired
-accuracy (the default tolerance is $10^{-6}$ in atomic units: bohr and
-radians). This is not possible in Cartesians due to the functional form of the
-constraint. In Cartesians, therefore, the Lagrange multiplier algorithm must be
-used throughout the entire optimization, whereas in delocalized internal
-coordinates it need only be used until all desired constraints are satisfied.
-As constraints become satisfied they can be simply eliminated from the
-optimization space and, once all constraint coordinates have been eliminated,
-standard algorithms can be used in the space of the remaining unconstrained
-coordinates. Unless the starting geometry is particularly poor, constraints are
-usually satisfied early in the optimization and at more or less the same time
-for multiple constraints. Therefore, Lagrange multipliers only need to be used
-in the first half-dozen or so cycles of a constrained optimization in internal
-coordinates.
+相对于笛卡尔坐标的另一项优势是：在内坐标中，一旦固束达到期望精度（默认容差为原子单位下的 $10^{-6}$，即 bohr 与弧度）即可消去该固束坐标。而在笛卡尔坐标中，由于固束的函数形式，这是做不到的。因此在笛卡尔坐标中，整个优化过程都必须使用拉格朗日乘子算法；而在离域内坐标中，只需在尚未满足全部期望固束之前使用它。随着各项固束被满足，就可以简单地将它们从优化空间中消去；当所有固束坐标都被消去之后，便可在剩余的无约束坐标空间中使用标准算法。除非起始几何结构特别糟糕，固束通常会在优化的前期阶段被满足，并且对于多重固束而言，各项大致在同一时间被满足。因此，在内坐标的约束优化中，拉格朗日乘子只需在前大约六个循环周期内使用。

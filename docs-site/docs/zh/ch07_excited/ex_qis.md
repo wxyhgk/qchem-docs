@@ -1,38 +1,37 @@
 ---
-title: "7.9.31 Interface with OpenFermion Package for Quantum Computing"
+title: "7.9.31 与量子计算软件包 OpenFermion 的接口"
 ---
 
-## 7.9.31 Interface with OpenFermion Package for Quantum Computing
+## 7.9.31 与量子计算软件包 OpenFermion 的接口
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** provides a capability to dump all quantities required for interfacing with the OpenFermion package[[617]](../bib_references/bib.md#bib969)
+**Q-Chem** 提供了一项功能，可以转储（dump）与 OpenFermion 软件包[[617]](../bib_references/bib.md#bib969)
 
-(and similar softwares) for quantum computation. This feature is controlled by the PRINT_QIS keyword.
-Setting it to TRUE activates the dump: Fock operator, two-electron integrals, and energies of molecular orbitals
-are saved in separate files in the home directory. OpenFermion
-(development version, soon to be checked into official github repository) contains an import module, which understands how to read these files, and several unit tests.
-Example 7.9.31 illustrates this capability for water molecule.
+（及类似软件）进行接口对接以用于量子计算所需的全部量。该功能由关键字 PRINT_QIS 控制。
+将其设置为 TRUE 即可激活转储操作：Fock 算符、双电子积分以及分子轨道能量会被保存为主目录（home directory）下的独立文件。OpenFermion
+（开发版本，即将合并入官方 github 仓库）包含一个导入模块，该模块能够识别并读取这些文件，同时还附带若干单元测试。
+示例 7.9.31 以水分子为例演示了这一功能。
 
-**Note: 
+**注意：
 
-Core should not be frozen.
+不应冻结核心电子（Core should not be frozen）。
 **
 
 PRINT_QIS
 
 ### `PRINT_QIS`
 
-> **Requests to dump stuff needed for OpenFermion.**
+> **请求转储 OpenFermion 所需的数据。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * TRUE
->     * Print stuff for QIS in user directory.
-> * **Recommendation**: Beware of size of the files.
+>     * 将 QIS 所需的数据输出到用户目录中。
+> * **建议**: 请注意生成文件的体积大小。
 
-???+ example "Example 7.180: CCSD/STO-3G calculation of water molecule with print-out for OpenFermion."
+???+ example "示例 7.180：水分子的 CCSD/STO-3G 计算，并输出供 OpenFermion 使用的数据。"
     ```qchem
     $comment
     Water molecule in STO-3G basis

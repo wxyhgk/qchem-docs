@@ -1,24 +1,15 @@
 ---
-title: "6.19.5 Other GVBMAN Methods and Options"
+title: "6.19.5 其他 GVBMAN 方法与选项"
 ---
 
-## 6.19.5 Other GVBMAN Methods and Options
+## 6.19.5 其他 GVBMAN 方法与选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In **Q-Chem**, the unrestricted and restricted GVB methods are implemented with a
-resolution of the identity (RI) algorithm that makes them computationally very
-efficient.[[1392]](../bib_references/bib.md#bib1454)
- They can be applied to systems
-with more than 100 active electrons, and both energies and analytical gradients
-are available. These methods are requested via the standard CORRELATION
-keyword. If AUX_BASIS is not specified, the calculation uses
-four-center two-electron integrals by default. Much faster auxiliary basis
-algorithms (see Section [6.6](topic_rimp2.md) for an introduction), which are used for the
-correlation energy (not the reference SCF energy), can be enabled by specifying
-a valid string for AUX_BASIS. The example below illustrates a simple IP calculation.
+在 **Q-Chem** 中，非限制（unrestricted）与限制（restricted）GVB 方法均采用分辨率恒等（Resolution of the Identity, RI）算法实现，因此计算效率极高。[[1392]](../bib_references/bib.md#bib1454)
+ 它们可以应用于具有超过 100 个活性电子的体系，并且能量和解析梯度均可获取。这些方法通过标准的 CORRELATION 关键字来调用。若未指定 AUX_BASIS，计算默认使用四中心双电子积分。通过为 AUX_BASIS 指定一个有效的字符串，可以启用速度快得多的辅助基组算法（简介见第 [6.6](topic_rimp2.md) 节），该算法仅用于关联能（而非参考 SCF 能量）。下面的示例演示了一个简单的 IP 计算。
 
-???+ example "Example 6.54: Imperfect pairing with auxiliary basis set for geometry optimization."
+???+ example "示例 6.54: 使用辅助基组进行不完全配对（imperfect pairing）的几何优化。"
     ```qchem
     $molecule
        0 1
@@ -34,414 +25,331 @@ a valid string for AUX_BASIS. The example below illustrates a simple IP calculat
     $end
     ```
 
-If further improvement in the orbitals are needed, the GVB_SIP, GVB_DIP, OP, NP
-and 2P models are also included.[[774]](../bib_references/bib.md#bib807)
- The GVB_SIP model
-includes all the amplitudes of GVB_IP plus a set of quadratic
-amplitudes the represent the single ionization of a pair. The GVB_DIP
-model includes the GVB_SIP models amplitudes and the doubly ionized
-pairing amplitudes which are analogous to the correlation of the occupied
-electrons of the $i$th pair exciting into the virtual orbitals of
-the $j$th pair. These two models have the implementation limit of no
-analytic orbital gradient, meaning that a slow finite differences calculation
-must be performed to optimize their orbitals, or they must be computed using
-orbitals from a different method. The 2P model is the same as the GVB_DIP model,
-except it only allows the amplitudes to couple via integrals that span only two
-pairs. This allows for a fast implementation of it’s analytic orbital gradient
-and enables the optimization of it’s own orbitals. The OP method is like the
-2P method except it removes the “direct”-like IP amplitudes and all of the
-same-spin amplitudes. The NP model is the GVB_IP model with the DIP amplitudes.
-This model is the one that works best with the symmetry breaking corrections
-that will be discussed later. All GVB methods except GVB_SIP and
-GVB_DIP have an analytic nuclear gradient implemented for both regular
-and RI four-center two-electron integrals.
+如果需要对轨道做进一步改进，程序还包含了 GVB_SIP、GVB_DIP、OP、NP 和 2P 模型。[[774]](../bib_references/bib.md#bib807)
+ GVB_SIP 模型在 GVB_IP 的所有振幅基础上，额外包含一组描述电子对单电离（single ionization）的二次振幅。GVB_DIP 模型在 GVB_SIP 的振幅基础上，又加入了双电离配对振幅，它类似于第 $i$ 对电子中的已占电子激发到第 $j$ 对电子的虚轨道所产生的关联。这两个模型的实现限制是没有解析轨道梯度，这意味着必须通过缓慢的有限差分计算来优化其轨道，或者必须使用来自其他方法的轨道来计算。2P 模型与 GVB_DIP 模型相同，不同之处在于其振幅仅允许通过跨度只涉及两个电子对的积分进行耦合。这使得 2P 模型的解析轨道梯度可以实现高效计算，从而能够优化其自身的轨道。OP 方法与 2P 方法类似，不同之处在于它移除了类“直接（direct）”的 IP 振幅以及所有同自旋振幅。NP 模型则是在 GVB_IP 模型的基础上加入 DIP 振幅。该模型与后文将讨论的对称性破缺校正配合使用时效果最佳。除 GVB_SIP 和 GVB_DIP 之外，所有 GVB 方法针对常规四中心双电子积分和 RI 四中心双电子积分都实现了解析核梯度。
 
-There are often considerable challenges in converging the orbital optimization
-associated with these GVB-type calculations. The situation is somewhat
-analogous to SCF calculations but more severe because there are more orbital
-degrees of freedom that affect the energy (for instance, mixing occupied active
-orbitals amongst each other, mixing active virtual orbitals with each other, mixing
-core and active occupied, mixing active virtual and inactive virtual).
-Furthermore, the energy changes associated with many of these new orbital
-degrees of freedom are rather small and delicate. As a consequence, in cases
-where the correlations are strong, these GVB-type jobs often require many more
-iterations than the corresponding GDM calculations at the SCF level. This is a
-reflection of the correlation model itself. To deal with convergence issues, a
-number of REM values are available to customize the calculations, as listed below.
+对于这类 GVB 计算，轨道优化的收敛往往存在相当大的挑战。这种情况与 SCF 计算有些类似，但更为严重，因为影响能量的轨道自由度更多（例如，已占活性轨道之间的相互混合、活性虚轨道之间的相互混合、芯层轨道与已占活性轨道的混合、活性虚轨道与非活性虚轨道的混合）。此外，许多这些新增轨道自由度所对应的能量变化相当微小而微妙。因此，在关联较强的情况下，这些 GVB 类型的计算往往需要比相应 SCF 层面的 GDM 计算多得多的迭代次数。这是关联模型本身特性的反映。为应对收敛问题，程序提供了若干 REM 变量来自定义计算，列举如下。
 
 GVB_ORB_MAX_ITER
 
 ### `GVB_ORB_MAX_ITER`
 
-> **Controls the number of orbital iterations allowed in GVB-CC calculations. Some jobs, particularly unrestricted PP jobs can require 500–1000 iterations.**
+> **控制 GVB-CC 计算中允许的轨道迭代次数。某些任务，特别是非限制 PP 任务，可能需要 500–1000 次迭代。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `256`
-> * **Options**:
->     * User-defined number of iterations.
-> * **Recommendation**: Default is typically adequate, but some jobs, particularly UPP jobs, can require 500–1000 iterations if converged tightly.
+> * **类型**: `INTEGER`
+> * **默认值**: `256`
+> * **选项**:
+>     * 用户自定义的迭代次数。
+> * **建议**: 默认值通常足够，但某些任务，特别是 UPP 任务，在严格收敛要求下可能需要 500–1000 次迭代。
 
 GVB_ORB_CONV
 
 ### `GVB_ORB_CONV`
 
-> **The GVB-CC wave function is considered converged when the root-mean-square orbital gradient and orbital step sizes are less than $10^{-\mathrm{GVB\_ORB\_CONV}}$ . Adjust THRESH simultaneously.**
+> **当轨道梯度和轨道步长的均方根（root-mean-square）小于 $10^{-\mathrm{GVB\_ORB\_CONV}}$ 时，认为 GVB-CC 波函数已收敛。需同时调整 THRESH。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * $n$
->     * User-defined
-> * **Recommendation**: Use 6 for PP(2) jobs or geometry optimizations. Tighter convergence ( i.e. 7 or higher) cannot always be reliably achieved.
+>     * 用户自定义
+> * **建议**: 对于 PP(2) 任务或几何优化，使用 6。更严格的收敛（即 7 或更高）并非总能可靠达到。
 
 GVB_ORB_SCALE
 
 ### `GVB_ORB_SCALE`
 
-> **Scales the default orbital step size by $n$ /1000.**
+> **将默认轨道步长缩放 $n$ /1000。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1000`
+> * **选项**:
 >     * $n$
->     * User-defined, 0–1000
-> * **Recommendation**: Default is usually fine, but for some stretched geometries it can help with convergence to use smaller values.
+>     * 用户自定义，0–1000
+> * **建议**: 默认值通常即可，但对于某些拉伸（stretched）几何构型，使用较小的值有助于收敛。
 
 GVB_AMP_SCALE
 
 ### `GVB_AMP_SCALE`
 
-> **Scales the default orbital amplitude iteration step size by $n$ /1000 for IP/RCC. PP amplitude equations are solved analytically, so this parameter does not affect PP.**
+> **对于 IP/RCC，将默认轨道振幅迭代步长缩放 $n$ /1000。PP 振幅方程是解析求解的，因此该参数不影响 PP。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1000`
+> * **选项**:
 >     * $n$
->     * User-defined, 0–1000
-> * **Recommendation**: Default is usually fine, but in some highly-correlated systems it can help with convergence to use smaller values.
+>     * 用户自定义，0–1000
+> * **建议**: 默认值通常即可，但在某些强关联体系中，使用较小的值有助于收敛。
 
 GVB_RESTART
 
 ### `GVB_RESTART`
 
-> **Restart a job from previously-converged GVB-CC orbitals.**
+> **从先前已收敛的 GVB-CC 轨道重启计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
 > * **Options**:
 >     * TRUE/FALSE
-> * **Recommendation**: Useful when trying to converge to the same GVB solution at slightly different geometries, for example.
+> * **建议**: 例如，在略微不同的几何构型下试图收敛到同一 GVB 解时非常有用。
 
 GVB_REGULARIZE
 
 ### `GVB_REGULARIZE`
 
-> **Coefficient for GVB_IP exchange type amplitude regularization to improve the convergence of the amplitude equations especially for spin-unrestricted amplitudes near dissociation. This is the leading coefficient for an amplitude dampening term ${-(c/10000)(e^{t_{ij}^{p}}-1)/(e^{1}-1)}$**
+> **用于 GVB_IP 交换型振幅正则化的系数，用以改善振幅方程的收敛性，尤其适用于解离附近自旋非限制的振幅。这是振幅阻尼项 ${-(c/10000)(e^{t_{ij}^{p}}-1)/(e^{1}-1)}$ 的前置系数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $c$
->     * User-defined
-> * **Recommendation**: Should be increased if unrestricted amplitudes do not converge or converge slowly at dissociation. Set this to zero to remove all dynamically-valued amplitude regularization.
+>     * 用户自定义
+> * **建议**: 如果非限制振幅在解离时不收敛或收敛缓慢，应增大该值。将其设为零可移除所有动态取值的振幅正则化。
 
 GVB_POWER
 
 ### `GVB_POWER`
 
-> **Coefficient for GVB_IP exchange type amplitude regularization to improve the convergence of the amplitude equations especially for spin-unrestricted amplitudes near dissociation. This is the leading coefficient for an amplitude dampening term included in the energy denominator: -( $c$ /10000) $(e^{t_{ij}^{p}}-1)/(e^{1}-1)$**
+> **用于 GVB_IP 交换型振幅正则化的系数，用以改善振幅方程的收敛性，尤其适用于解离附近自旋非限制的振幅。这是包含在能量分母中的振幅阻尼项 -( $c$ /10000) $(e^{t_{ij}^{p}}-1)/(e^{1}-1)$ 的前置系数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $p$
->     * User-defined
-> * **Recommendation**: Should be decreased if unrestricted amplitudes do not converge or converge slowly at dissociation, and should be kept even valued.
+>     * 用户自定义
+> * **建议**: 如果非限制振幅在解离时不收敛或收敛缓慢，应减小该值，并且应保持为偶数。
 
 GVB_SHIFT
 
 ### `GVB_SHIFT`
 
-> **Value for a statically valued energy shift in the energy denominator used to solve the coupled cluster amplitude equations, $n$ /10000.**
+> **用于求解耦合簇振幅方程的能量分母中静态能量位移的值，为 $n$ /10000。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined
-> * **Recommendation**: Default is fine, can be used in lieu of the dynamically valued amplitude regularization if it does not aid convergence.
+>     * 用户自定义
+> * **建议**: 默认值即可，当动态取值的振幅正则化无助于收敛时，可用此项替代。
 
-Another issue that a user of these methods should be aware of is the fact that
-there is a multiple minimum challenge associated with GVB calculations. In SCF
-calculations it is sometimes possible to converge to more than one set of
-orbitals that satisfy the SCF equations at a given geometry. The same problem
-can arise in GVB calculations, and based on our experience to date, the problem
-in fact is more commonly encountered in GVB calculations than in SCF
-calculations. A user may therefore want to (or have to!) tinker with the
-initial guess used for the calculations. One way is to set GVB_RESTART
-= TRUE (see above), to replace the default initial guess (the converged SCF
-orbitals which are then localized). Another way is to change the localized
-orbitals that are used in the initial guess, which is controlled by the
-GVB_LOCAL variable, described below. Sometimes different localization
-criteria, and thus different initial guesses, lead to different converged
-solutions. Using the new amplitude regularization keywords enables some control
-over the solution GVB optimizes.[[773]](../bib_references/bib.md#bib806)
- A calculation can be
-performed with amplitude regularization to find a desired solution, and then
-the calculation can be rerun with GVB_RESTART = TRUE and the
-regularization turned off to remove the energy penalty of regularization.
+使用这些方法时，用户还应注意另一个问题：GVB 计算存在多极小值（multiple minimum）挑战。在 SCF 计算中，有时可以在给定几何构型下收敛到多组满足 SCF 方程的轨道。同样的问题也可能出现在 GVB 计算中，而且根据我们目前的经验，这一问题在 GVB 计算中实际上比在 SCF 计算中更为常见。因此，用户可能希望（或不得不！）对计算所使用的初始猜测进行调整。一种方法是设置 GVB_RESTART = TRUE（见上文），以替代默认初始猜测（即已收敛的 SCF 轨道，随后对其进行定域化）。另一种方法是改变初始猜测中所使用的定域化轨道，这由 GVB_LOCAL 变量控制，详见下文。有时不同的定域化判据、从而不同的初始猜测，会收敛到不同的解。使用新的振幅正则化关键字可以对 GVB 优化所得的解施加一定控制。[[773]](../bib_references/bib.md#bib806)
+ 可以先在开启振幅正则化的情况下进行计算以找到所需的解，然后将 GVB_RESTART = TRUE 并关闭正则化重新运行计算，以消除正则化带来的能量惩罚。
 
 GVB_LOCAL
 
 ### `GVB_LOCAL`
 
-> **Sets the localization scheme used in the initial guess wave function.**
+> **设置初始猜测波函数中所使用的定域化方案。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
 >     * 0
->     * No Localization
+>     * 不做定域化
 >     * 1
->     * Boys localized orbitals
+>     * Boys 定域化轨道
 >     * 2
->     * Pipek-Mezey orbitals
-> * **Recommendation**: Different initial guesses can sometimes lead to different solutions. It can be helpful to try both to ensure the global minimum has been found.
+>     * Pipek-Mezey 轨道
+> * **建议**: 不同的初始猜测有时会导致不同的解。两种方案都尝试一下有助于确认是否找到了全局极小值。
 
 GVB_DO_SANO
 
 ### `GVB_DO_SANO`
 
-> **Sets the scheme used in determining the active virtual orbitals in a Unrestricted-in-Active Pairs GVB calculation.**
+> **设置在非限制活性对（Unrestricted-in-Active Pairs）GVB 计算中确定活性虚轨道所用的方案。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
 >     * 0
->     * No localization or Sano procedure
+>     * 不做定域化，也不使用 Sano 程序
 >     * 1
->     * Only localizes the active virtual orbitals
+>     * 仅对活性虚轨道做定域化
 >     * 2
->     * Uses the Sano procedure
-> * **Recommendation**: Different initial guesses can sometimes lead to different solutions. Disabling sometimes can aid in finding more non-local solutions for the orbitals.
+>     * 使用 Sano 程序
+> * **建议**: 不同的初始猜测有时会导致不同的解。有时禁用该选项有助于找到更多非定域化的轨道解。
 
-Other *$rem* variables relevant to GVB calculations are given below. It is
-possible to explicitly set the number of active electron pairs using the
-GVB_N_PAIRS variable. The default is to make all valence electrons
-active. Other reasonable choices are certainly possible. For instance all
-electron pairs could be active ($n_{\mathrm{active}}=n_{\beta})$. Or
-alternatively one could make only formal bonding electron pairs active
-($n_{\mathrm{active}}=N_{\mathrm{STO-3G}}-n_{\alpha})$. Or in some cases, one might
-want only the most reactive electron pair to be active ($n_{\mathrm{active}}=$1).
-Clearly making physically appropriate choices for this variable is essential
-for obtaining physically appropriate results!
+其他与 GVB 计算相关的 *$rem* 变量列于下文。可以使用 GVB_N_PAIRS 变量显式设置活性电子对数。默认是将所有价电子设为活性。当然也可以做出其他合理的选择。例如，可以让所有电子对都成为活性对（$n_{\mathrm{active}}=n_{\beta}$）。或者，也可以只让形式成键的电子对成为活性对（$n_{\mathrm{active}}=N_{\mathrm{STO-3G}}-n_{\alpha}$）。又或在某些情况下，可能只希望最活泼的那一对电子成为活性对（$n_{\mathrm{active}}=$1）。显然，为该变量做出物理上合理的选择，对于获得物理上合理的结果至关重要！
 
 GVB_N_PAIRS
 
 ### `GVB_N_PAIRS`
 
-> **Alternative to CC_REST_OCC and CC_REST_VIR for setting active space size in GVB and valence coupled cluster methods.**
+> **作为 CC_REST_OCC 和 CC_REST_VIR 的替代方案，用于设置 GVB 及价层耦合簇方法的活性空间大小。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `PP active space (1 occ and 1 virt for each valence electron pair)`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `PP active space (1 occ and 1 virt for each valence electron pair)`
+> * **选项**:
 >     * $n$
->     * user-defined
-> * **Recommendation**: Use the default unless one wants to study a special active space. When using small active spaces, it is important to ensure that the proper orbitals are incorporated in the active space. If not, use the $reorder_mo feature to adjust the SCF orbitals appropriately.
+>     * 用户自定义
+> * **建议**: 除非想研究特殊的活性空间，否则使用默认值。使用小活性空间时，务必确保正确的轨道被纳入了活性空间。如果不是，请使用 $reorder_mo 功能来适当调整 SCF 轨道。
 
 GVB_PRINT
 
 ### `GVB_PRINT`
 
-> **Controls the amount of information printed during a GVB-CC job.**
+> **控制 GVB-CC 任务运行期间输出信息的详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined
-> * **Recommendation**: Should never need to go above 0 or 1.
+>     * 用户自定义
+> * **建议**: 通常无需设置高于 0 或 1 的值。
 
 GVB_TRUNC_OCC
 
 ### `GVB_TRUNC_OCC`
 
-> **Controls how many pairs’ occupied orbitals are truncated from the GVB active space.**
+> **控制从 GVB 活性空间中截断（截去）多少个电子对的已占轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined
-> * **Recommendation**: This allows for asymmetric GVB active spaces removing the $n$ lowest energy occupied orbitals from the GVB active space while leaving their paired virtual orbitals in the active space. Only the models including the SIP and DIP amplitudes ( i.e. NP and 2P) benefit from this all other models this equivalent to just reducing the total number of pairs.
+>     * 用户自定义
+> * **建议**: 该选项可实现非对称的 GVB 活性空间，从 GVB 活性空间中移除能量最低的 $n$ 个已占轨道，同时保留它们配对的虚轨道在活性空间中。只有包含 SIP 和 DIP 振幅的模型（即 NP 和 2P）能从中受益；对于所有其他模型，这等价于直接减少总的电子对数。
 
 GVB_TRUNC_VIR
 
 ### `GVB_TRUNC_VIR`
 
-> **Controls how many pairs’ virtual orbitals are truncated from the GVB active space.**
+> **控制从 GVB 活性空间中截断多少个电子对的虚轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined
-> * **Recommendation**: This allows for asymmetric GVB active spaces removing the $n$ highest energy occupied orbitals from the GVB active space while leaving their paired virtual orbitals in the active space. Only the models including the SIP and DIP amplitudes ( i.e. NP and 2P) benefit from this all other models this equivalent to just reducing the total number of pairs.
+>     * 用户自定义
+> * **建议**: 该选项可实现非对称的 GVB 活性空间，从 GVB 活性空间中移除能量最高的 $n$ 个已占轨道，同时保留它们配对的虚轨道在活性空间中。只有包含 SIP 和 DIP 振幅的模型（即 NP 和 2P）能从中受益；对于所有其他模型，这等价于直接减少总的电子对数。
 
 GVB_REORDER_PAIRS
 
 ### `GVB_REORDER_PAIRS`
 
-> **Tells the code how many GVB pairs to switch around.**
+> **告诉程序需要重新调换多少个 GVB 电子对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
 >     * $0\leq n\leq 5$
-> * **Recommendation**: This allows for the user to change the order the active pairs are placed in after the orbitals are read in or are guessed using localization and the Sano procedure. Up to 5 sequential pair swaps can be made, but it is best to leave this alone.
+> * **建议**: 该选项允许用户在轨道读入后，或通过定域化与 Sano 程序生成猜测后，改变活性电子对的排列顺序。最多可进行 5 次连续的电子对交换，但最好不要改动此项。
 
 GVB_REORDER_1
 
 ### `GVB_REORDER_1`
 
-> **Tells the code which two pairs to swap first.**
+> **告诉程序第一次交换哪两个电子对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined XXXYYY
-> * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 1 .
+>     * 用户自定义 XXXYYY
+> * **建议**: 格式为两个三位数的电子对索引，指示程序将电子对 XXX 与 YYY 交换。例如，交换电子对 1 和 2 应输入 001002。必须在 GVB_REORDER_PAIRS $\geq$ 1 时指定。
 
 GVB_REORDER_2
 
 ### `GVB_REORDER_2`
 
-> **Tells the code which two pairs to swap second.**
+> **告诉程序第二次交换哪两个电子对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined XXXYYY
-> * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 2 .
+>     * 用户自定义 XXXYYY
+> * **建议**: 格式为两个三位数的电子对索引，指示程序将电子对 XXX 与 YYY 交换。例如，交换电子对 1 和 2 应输入 001002。必须在 GVB_REORDER_PAIRS $\geq$ 2 时指定。
 
 GVB_REORDER_3
 
 ### `GVB_REORDER_3`
 
-> **Tells the code which two pairs to swap third.**
+> **告诉程序第三次交换哪两个电子对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined XXXYYY
-> * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 3 .
+>     * 用户自定义 XXXYYY
+> * **建议**: 格式为两个三位数的电子对索引，指示程序将电子对 XXX 与 YYY 交换。例如，交换电子对 1 和 2 应输入 001002。必须在 GVB_REORDER_PAIRS $\geq$ 3 时指定。
 
 GVB_REORDER_4
 
 ### `GVB_REORDER_4`
 
-> **Tells the code which two pairs to swap fourth.**
+> **告诉程序第四次交换哪两个电子对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined XXXYYY
-> * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 4 .
+>     * 用户自定义 XXXYYY
+> * **建议**: 格式为两个三位数的电子对索引，指示程序将电子对 XXX 与 YYY 交换。例如，交换电子对 1 和 2 应输入 001002。必须在 GVB_REORDER_PAIRS $\geq$ 4 时指定。
 
 GVB_REORDER_5
 
 ### `GVB_REORDER_5`
 
-> **Tells the code which two pairs to swap fifth.**
+> **告诉程序第五次交换哪两个电子对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * User-defined XXXYYY
-> * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 5 .
+>     * 用户自定义 XXXYYY
+> * **建议**: 格式为两个三位数的电子对索引，指示程序将电子对 XXX 与 YYY 交换。例如，交换电子对 1 和 2 应输入 001002。必须在 GVB_REORDER_PAIRS $\geq$ 5 时指定。
 
-It is known that symmetry breaking of the orbitals to favor localized solutions
-over non-local solutions is an issue with GVB methods in general. A combined
-coupled-cluster perturbation theory approach to solving symmetry breaking (SB)
-using perturbation theory level double amplitudes that connect up to three
-pairs has been examined in the literature,[[771]](../bib_references/bib.md#bib804)
- and
-it seems to alleviate the SB problem to a large extent. It works in
-conjunction with the GVB_IP, NP, and 2P levels of correlation for both
-restricted and unrestricted wave functions (barring that there is no restricted
-implementation of the 2P model, but setting GVB_DO_ROHF to the same number as
-the number of pairs in the system is equivalent).
+已知轨道发生对称性破缺、从而倾向于定域化解而非非定域解，是 GVB 方法普遍存在的问题。文献中研究了一种将耦合簇与微扰理论相结合的方法（SB），它利用最多跨度三个电子对的二阶微扰级别振幅来解决对称性破缺（symmetry breaking, SB）问题，[[771]](../bib_references/bib.md#bib804)
+ 该方法似乎能在很大程度上缓解 SB 问题。它可以与 GVB_IP、NP 和 2P 关联级别配合使用，适用于限制和非限制波函数（唯一的例外是 2P 模型没有限制形式的实现，但将 GVB_DO_ROHF 设为与体系中电子对数相同的数值即可达到等效效果）。
 
 GVB_SYMFIX
 
 ### `GVB_SYMFIX`
 
-> **Should GVB use a symmetry breaking fix.**
+> **GVB 是否使用对称性破缺修正。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * no symmetry breaking fix
+>     * 不做对称性破缺修正
 >     * 1
->     * symmetry breaking fix with virtual orbitals spanning the active space
+>     * 使用活性空间内的虚轨道进行对称性破缺修正
 >     * 2
->     * symmetry breaking fix with virtual orbitals spanning the whole virtual space
-> * **Recommendation**: It is best to stick with type 1 to get a symmetry breaking correction with the best results coming from CORRELATION = NP and = 1.
+>     * 使用整个虚空间内的虚轨道进行对称性破缺修正
+> * **建议**: 最好使用类型 1 来获得对称性破缺校正，配合 CORRELATION = NP 和 = 1 可取得最佳效果。
 
 GVB_SYMPEN
 
 ### `GVB_SYMPEN`
 
-> **Sets the pre-factor for the amplitude regularization term for the SB amplitudes.**
+> **设置 SB 振幅正则化项的前置因子。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `160`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `160`
+> * **选项**:
 >     * $\gamma$
->     * User-defined
-> * **Recommendation**: Sets the pre-factor for the amplitude regularization term for the SB amplitudes: $-(\gamma/1000)(e^{(c*100)*t^{2}}-1)$ .
+>     * 用户自定义
+> * **建议**: 设置 SB 振幅正则化项的前置因子：$-(\gamma/1000)(e^{(c*100)*t^{2}}-1)$ 。
 
 GVB_SYMSCA
 
 ### `GVB_SYMSCA`
 
-> **Sets the weight for the amplitude regularization term for the SB amplitudes.**
+> **设置 SB 振幅正则化项的权重。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `125`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `125`
+> * **选项**:
 >     * $c$
->     * User-defined
-> * **Recommendation**: Sets the weight for the amplitude regularization term for the SB amplitudes: $-(\gamma/1000)(e^{(c*100)*t^{2}}-1)$ .
+>     * 用户自定义
+> * **建议**: 设置 SB 振幅正则化项的权重：$-(\gamma/1000)(e^{(c*100)*t^{2}}-1)$ 。
 
-We have already mentioned a few issues associated with the GVB calculations:
-the neglect of dynamic correlation [which can be remedied with PP(2)], the
-convergence challenges and the multiple minimum issues. Another weakness of
-these GVB methods is the occasional symmetry-breaking artifacts that are a
-consequence of the limited number of retained pair correlation amplitudes. For
-example, benzene in the PP approximation prefers D${}_{3h}$ symmetry over
-D${}_{6h}$ by 3 kcal/mol (with a 2o distortion), while in IP, this difference
-is reduced to 0.5 kcal/mol and less than 1o.[[1387]](../bib_references/bib.md#bib1449)
+前文我们已经提到了与 GVB 计算相关的若干问题：动态关联的忽略（可用 PP(2) 弥补）、收敛挑战以及多极小值问题。这些 GVB 方法的另一个弱点是偶尔出现的对称性破缺假象（symmetry-breaking artifacts），这是所保留的对关联振幅数目有限所致。例如，在 PP 近似下，苯更倾向于 $D_{3h}$ 对称性而非 $D_{6h}$ 对称性，相差 3 kcal/mol（伴随 2o 畸变），而在 IP 近似下，这一差值缩小到 0.5 kcal/mol 且小于 1o。[[1387]](../bib_references/bib.md#bib1449)
 
-Likewise the allyl radical breaks symmetry in the unrestricted PP
-model,[[110]](../bib_references/bib.md#bib98)
- although to a lesser extent than in restricted open
-shell HF. Another occasional weakness is the limitation to the perfect pairing
-active space, which is not necessarily appropriate for molecules with expanded
-valence shells, such as in some transition metal compounds (*e.g.* expansion
-from $4s3d$ into $4s4p3d$) or possibly hyper-valent molecules (expansion from
-$3s3p$ into $3s3p3d$). The singlet strongly orthogonal geminal method (see the
-next section) is capable of dealing with expanded valence shells and could be
-used for such cases. The perfect pairing active space is satisfactory for most
-organic and first row inorganic molecules.
+同样，烯丙基（allyl）自由基在非限制 PP 模型中也会破缺对称性，[[110]](../bib_references/bib.md#bib98)
+ 但其程度小于限制开壳层（ROHF）情形。另一个偶发的弱点是限于完美配对（perfect pairing）活性空间，这对于具有扩张价层的分子并不一定合适，例如某些过渡金属化合物（*例如* 从 $4s3d$ 扩张到 $4s4p3d$）或可能是超价分子（从 $3s3p$ 扩张到 $3s3p3d$）。单重态强正交优极基（singlet strongly orthogonal geminal，见下一节）方法能够处理扩张价层的情形，可用于这类体系。对于大多数有机分子和第一周期无机分子，完美配对活性空间是令人满意的。
 
-To summarize, while these GVB methods are powerful and can yield much insight
-when used properly, they do have enough pitfalls for not to be considered true
-“black box” methods.
+总而言之，虽然这些 GVB 方法功能强大，在正确使用时能提供深刻的洞察，但它们的陷阱也多得不能被视为真正意义上的“黑箱（black box）”方法。

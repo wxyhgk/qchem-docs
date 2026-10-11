@@ -1,9 +1,9 @@
 ---
-title: "8.9 Ghost Atoms and Basis Set Superposition Error"
+title: "8.9 鬼原子与基组重叠误差"
 ---
 
-# 8.9 Ghost Atoms and Basis Set Superposition Error
+# 8.9 鬼原子（Ghost Atoms）与基组重叠误差（Basis Set Superposition Error, BSSE）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [8.9.1 Overview](Ch8.S9.SS1.md)
+- [8.9.1 概述](Ch8.S9.SS1.md)

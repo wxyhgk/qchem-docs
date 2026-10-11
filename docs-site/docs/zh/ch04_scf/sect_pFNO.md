@@ -1,151 +1,134 @@
 ---
-title: "4.5.6 Pseudo-Fractional Occupation Number Method (pFON)"
+title: "4.5.6 伪分数占据数方法（pFON）"
 ---
 
-## 4.5.6 Pseudo-Fractional Occupation Number Method (pFON)
+## 4.5.6 伪分数占据数方法（Pseudo-Fractional Occupation Number Method, pFON）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-An alternative to level-shifting for cases exhibiting small (or zero)
-HOMO/LUMO gaps is the pseudo-fraction occupation number (pFON)
-approach,[[1140]](../bib_references/bib.md#bib1192)
- which corresponds to a “smearing out” of the
-occupation numbers at the HOMO level. Often, this improves the stability and
-accelerates the convergence by eliminating the discontinuous occupancy changes
-(from one SCF iteration to the next) that can arise in small-gap systems.
-Essentially, more than one electron configuration is allowed during the same
-orbital optimization, with fractional occupancies. This is formally equivalent
-to a finite-temperature formalism.
+对于最高占据分子轨道/最低未占分子轨道（HOMO/LUMO）能隙很小（或为零）的情形，除能级移动（level-shifting）之外的另一种选择是伪分数占据数（pseudo-fraction occupation number, pFON）方法，[[1140]](../bib_references/bib.md#bib1192)
+ 该方法相当于对 HOMO 能级处的占据数进行“抹平”处理。通常情况下，这可以消除小能隙体系中可能出现的（从一次自洽场（SCF）迭代到下一次迭代的）不连续占据变化，从而改善稳定性并加速收敛。本质上，在同一次轨道优化过程中允许存在多种电子组态，并带有分数占据。这在形式上等价于有限温度形式体系。
 
-The pFON method introduces a density matrix
+pFON 方法引入如下的密度矩阵
 
 <a id="Ch4.E37"></a>
 $$
 P_{\mu\nu}=\sum_{p=1}^{N}\;n_{p}C_{\mu p}C_{\nu p} \tag{4.37}
 $$
 
-with occupancies $0\leq n_{p}\leq 1$ that can be fractional, whereas for a
-conventional SCF calculation either $n_{p}=1$ (occupied) or $n_{p}=0$ (virtual).
-In pFON, the occupation numbers follow a Fermi-Dirac distribution,
+其占据数 $0\leq n_{p}\leq 1$ 可以取分数值；而在常规的 SCF 计算中，要么 $n_{p}=1$（占据），要么 $n_{p}=0$（虚轨道）。在 pFON 中，占据数遵循费米-狄拉克（Fermi-Dirac）分布，
 
 <a id="Ch4.E38"></a>
 $$
 n_{p}=\bigl{(}1+e^{(\epsilon_{p}-\epsilon_{\mathrm{F}})/kT}\bigr{)}^{-1}\;, \tag{4.38}
 $$
 
-where $\epsilon_{p}$ is an SCF eigenvalue (orbital energy) and $T$ is a
-temperature. In **Q-Chem**’s implementation, the Fermi energy is set to
-$\epsilon_{\mathrm{F}}=(\epsilon_{\mathrm{HOMO}}+\epsilon_{\mathrm{LUMO}})/2$. To
-ensure conservation of the total number of electrons, the pFON approach
-re-scales the occupation numbers so that $\sum_{p}\;n_{p}=N_{\mathrm{el}}$.
+其中 $\epsilon_{p}$ 是 SCF 本征值（轨道能量），$T$ 是温度。在 **Q-Chem** 的实现中，费米能设为 $\epsilon_{\mathrm{F}}=(\epsilon_{\mathrm{HOMO}}+\epsilon_{\mathrm{LUMO}})/2$。为保证总电子数守恒，pFON 方法会对占据数重新缩放，使得 $\sum_{p}\;n_{p}=N_{\mathrm{el}}$。
 
-There are several parameters to control the electronic temperature $T$
-throughout a pFON SCF run. The temperature can either be held constant at
-finite temperature ($T_{\mathrm{init}}$ = $T_{\mathrm{final}}$), or the system can be cooled
-from a higher temperature down to the final temperature. So far, no
-zero-temperature extrapolation has been implemented.
+有多个参数可用于在整个 pFON SCF 计算过程中控制电子温度 $T$。温度既可以保持为恒定的有限温度（$T_{\mathrm{init}}$ = $T_{\mathrm{final}}$），也可以让体系从较高温度逐步冷却至最终温度。目前尚未实现零温度外推。
 
 OCCUPATIONS
 
 ### `OCCUPATIONS`
 
-> **Activates pFON calculation.**
+> **激活 pFON 计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Integer occupation numbers
+>     * 整数占据数
 >     * 1
->     * Not yet implemented
+>     * 尚未实现
 >     * 2
->     * Pseudo-fractional occupation numbers (pFON)
-> * **Recommendation**: Use pFON to improve convergence for small-gap systems.
+>     * 伪分数占据数（pFON）
+> * **建议**: 对小能隙体系，使用 pFON 以改善收敛。
 
 FON_T_START
 
 ### `FON_T_START`
 
-> **Initial electronic temperature (in K) for FON calculation.**
+> **FON 计算的初始电子温度（单位为 K）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
->     * Any desired initial temperature.
-> * **Recommendation**: Pick the temperature to either reproduce experimental conditions ( e.g. room temperature) or as low as possible to approach zero-temperature.
+> * **类型**: `INTEGER`
+> * **默认值**: `1000`
+> * **可选值**:
+>     * 任意所需的初始温度。
+> * **建议**: 选取温度时，要么用于复现实验条件（例如室温），要么尽可能低以逼近零温度。
 
 FON_T_END
 
 ### `FON_T_END`
 
-> **Final electronic temperature for FON calculation.**
+> **FON 计算的最终电子温度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * Any desired final temperature.
-> * **Recommendation**: Pick the temperature to either reproduce experimental conditions ( e.g. room temperature) or as low as possible to approach zero-temperature.
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
+>     * 任意所需的最终温度。
+> * **建议**: 选取温度时，要么用于复现实验条件（例如室温），要么尽可能低以逼近零温度。
 
 FON_NORB
 
 ### `FON_NORB`
 
-> **Number of orbitals above and below the Fermi level that are allowed to have fractional occupancies.**
+> **允许取分数占据的、位于费米能级之上和之下的轨道数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **可选值**:
 >     * $n$
->     * number of active orbitals
-> * **Recommendation**: The number of valence orbitals is a reasonable choice.
+>     * 活性轨道数目
+> * **建议**: 选择价层轨道的数目是一个合理的做法。
 
 FON_T_SCALE
 
 ### `FON_T_SCALE`
 
-> **Determines the step size for the cooling.**
+> **决定冷却的步长。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `90`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `90`
+> * **可选值**:
 >     * $n$
->     * temperature is scaled by
+>     * 温度在每一循环中按
 >     * $0.01\cdot n$
->     * in each cycle (cooling method 1)
+>     * 进行缩放（冷却方式 1）
 >     * $n$
->     * temperature is decreased by n K in each cycle (cooling method 2)
-> * **Recommendation**: The cooling rate should be neither too slow nor too fast. Too slow may lead to final energies that are at undesirably high temperatures. Too fast may lead to convergence issues. Reasonable choices for methods 1 and 2 are 98 and 50, respectively. When in doubt, use constant temperature.
+>     * 温度在每一循环中降低 n K（冷却方式 2）
+> * **建议**: 冷却速率不宜过慢也不宜过快。过慢可能导致最终能量对应于不理想的高温状态；过快则可能导致收敛问题。对方式 1 和方式 2，合理的取值分别为 98 和 50。如有疑虑，请使用恒温方式。
 
 FON_E_THRESH
 
 ### `FON_E_THRESH`
 
-> **DIIS error below which occupations will be kept constant.**
+> **当 DIIS 误差低于该值时，占据数将被保持恒定。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **可选值**:
 >     * $n$
->     * freeze occupations below DIIS error of
+>     * 当 DIIS 误差低于
 >     * $10^{-n}$
-> * **Recommendation**: This should be one or two numbers bigger than the desired SCF convergence threshold.
+>     * 时冻结占据数
+> * **建议**: 该值应比期望的 SCF 收敛阈值大一到两个数量级。
 
 FON_T_METHOD
 
 ### `FON_T_METHOD`
 
-> **Selects cooling algorithm.**
+> **选择冷却算法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **可选值**:
 >     * 1
->     * temperature is scaled by a factor in each cycle
+>     * 温度在每一循环中按某一因子缩放
 >     * 2
->     * temperature is decreased by a constant number in each cycle
-> * **Recommendation**: We have made slightly better experience with a constant cooling rate. However, choose constant temperature when in doubt.
+>     * 温度在每一循环中减少一个恒定的数值
+> * **建议**: 我们使用恒定冷却速率的经验略好一些。不过，如有疑虑，请选择恒温方式。
 
-???+ example "Example 4.11: pFON calculation of a metal cluster."
+???+ example "示例 4.11: 金属团簇的 pFON 计算。"
     ```qchem
     $molecule
        0 1

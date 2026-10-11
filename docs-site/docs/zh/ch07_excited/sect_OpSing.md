@@ -1,54 +1,39 @@
 ---
-title: "7.7.3 Approximate Spin Purification"
+title: "7.7.3 近似自旋纯化"
 ---
 
-## 7.7.3 Approximate Spin Purification
+## 7.7.3 近似自旋纯化
 
 (July 4, 2026)
 
-Singlet biradicals are an important special case, whose description within a single-determinant SCF formalism is typical
-characterized by significant spin contamination, $\langle\hat{S}^{2}\rangle\approx 1$ (in atomic units), indicating an approximately
-equal mixture of singlet ($\langle\hat{S}^{2}\rangle=0$) and triplet ($\langle\hat{S}^{2}\rangle=2$) wave functions. This is a result
-of the fact that a proper description of two electrons in two half-filled orbitals requires a minimum of two determinants.
-A simple means to correct for this is to use the approximate spin-purification
-formula,[[1580]](../bib_references/bib.md#bib1643)
+单重态双自由基（singlet biradicals）是一类重要的特殊情况，其在单行列式自洽场（SCF）框架下的描述通常以显著的自旋污染（spin contamination）为特征，$\langle\hat{S}^{2}\rangle\approx 1$（原子单位），这表明波函数近似为单重态（$\langle\hat{S}^{2}\rangle=0$）与三重态（$\langle\hat{S}^{2}\rangle=2$）的等比例混合。这一现象的根源在于：要对两个半占据轨道中的两个电子给出恰当的描述，至少需要两个行列式。一种简单的修正手段是使用近似自旋纯化（approximate spin-purification）公式，[[1580]](../bib_references/bib.md#bib1643)
 
 <a id="eq:OpSing"></a>
 $$
 E_{\text{OSS}}\approx 2E_{\text{BS}}-E_{\text{trip}}\;, \tag{7.78}
 $$
 
-which expresses the energy of the open-shell singlet state ($E_{\text{OSS}}$) in terms of the energy of the broken-symmetry
-solution ($E_{\text{BS}}$, meaning the state with $\langle\hat{S}^{2}\rangle\approx 1$) and the triplet energy ($E_{\text{trip}}$).
-This formula was originally suggested by Ziegler, Rauk, and Baerends,[[1580]](../bib_references/bib.md#bib1643)
- but was popularized by
-Noodleman in application to metalloenzymes.
+该公式用破缺对称性（broken-symmetry）解的能量（$E_{\text{BS}}$，即 $\langle\hat{S}^{2}\rangle\approx 1$ 的状态）与三重态能量（$E_{\text{trip}}$）来表示开壳层单重态（open-shell singlet）状态的能量（$E_{\text{OSS}}$）。此公式最初由 Ziegler、Rauk 和 Baerends 提出，[[1580]](../bib_references/bib.md#bib1643)
+ 但经由 Noodleman 将其应用于金属酶而广为流传。
 
-Evaluation of Eq. ([7.78](#eq:OpSing)) requires two separate SCF calculations and these can be performed together,
-automatically, by specifying SPIN_PROJ = NOODLEMAN in the *$rem* section; see Example [7.7.2](ex_OpSing.md).
-Analytic gradients have been implemented for this approximate spin-purification approach, which again requires
-two separate SCF gradient computations. (Hessians are not available, however, even by finite-difference.)
-For the specific case of open-shell singlets, the ROKS method that is discussed in Section [7.7.4](ex_ESROKS.md)
-can be understood as a fully self-consistent or orbital-optimized version of the formula in
-Eq. ([7.78](#eq:OpSing)),
+对公式 ([7.78](#eq:OpSing)) 的求值需要两次独立的 SCF 计算，通过在 *$rem* 段中指定 SPIN_PROJ = NOODLEMAN，即可自动地完成这两次计算；参见示例 [7.7.2](ex_OpSing.md)。该近似自旋纯化方法已实现了解析梯度，同样需要两次独立的 SCF 梯度计算。（不过，即使采用有限差分法也无法获得 Hessian。）对于开壳层单重态这一特定情形，第 [7.7.4](ex_ESROKS.md) 节讨论的 ROKS 方法可以被理解为公式 ([7.78](#eq:OpSing)) 的完全自洽（self-consistent）或轨道优化（orbital-optimized）版本，
 
- using a consistent set of orbitals for both terms in Eq. ([7.78](#eq:OpSing)).
-In contrast, Noodleman’s approximate spin purification procedure performs two independent SCF
-calculations with different orbitals in each.
+ 因为其对公式 ([7.78](#eq:OpSing)) 中的两项采用同一组自洽轨道。
+相比之下，Noodleman 的近似自旋纯化流程则执行两次独立的 SCF 计算，各自使用不同的轨道。
 
 SPIN_PROJ
 
 ### `SPIN_PROJ`
 
-> **Controls whether approximate spin purification is performed.**
+> **控制是否执行近似自旋纯化。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Spin purification is not performed.
+>     * 不执行自旋纯化。
 >     * NOODLEMAN
->     * Spin purification is performed using Noodleman’s formula, Eq. (
+>     * 使用 Noodleman 公式执行自旋纯化，即公式 (
 >     * 7.78
->     * ).
-> * **Recommendation**: Set to NOODLEMAN if spin purification is desired. Make sure that UNRESTRICTED is set to TRUE . Gradients are available but Hessians are not.
+>     * )。
+> * **建议**: 若需要自旋纯化，请设置为 NOODLEMAN。务必确保 UNRESTRICTED 设置为 TRUE。梯度可用，但 Hessian 不可用。

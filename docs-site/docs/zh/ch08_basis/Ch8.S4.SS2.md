@@ -1,25 +1,14 @@
 ---
-title: "8.4.2 Job Control"
+title: "8.4.2 任务控制"
 ---
 
-## 8.4.2 Job Control
+## 8.4.2 任务控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In order to use a user-defined basis set, the BASIS *$rem* must be
-set to GENERAL or GEN.
+若要使用用户自定义的基组（Basis Set），必须将 BASIS *$rem* 变量设置为 GENERAL 或 GEN。
 
-When using a non-standard basis set which incorporates $d$ or higher angular
-momentum basis functions, the *$rem* variable PURECART needs to be
-set. This *$rem* variable indicates to the **Q-Chem** program how to handle the
-angular form of the basis functions. As indicated above, each integer
-represents an angular momentum type which can be defined as either pure (1) or
-Cartesian (2). For example, 1111 specifies that $d$, $f$, $g$ and $h$ basis
-functions should have pure form whereas 1121 indicates that $d$- $g$- and
-$h$-functions are pure but $f$ functions are Cartesian. These four-digit
-codes can be used even if the basis does not contain $g$ or $h$ functions;
-PURECART = 1111 (or 2222) specifies to use pure (or Cartesian)
-functions for all angular momentum types.
+当使用包含 $d$ 或更高角动量基函数的非标准基组时，需要设置 *$rem* 变量 PURECART。该 *$rem* 变量用于告知 **Q-Chem** 程序如何处理基函数的角动量形式。如上文所述，每个整数代表一种角动量类型，其可被定义为纯函数（pure，取值 1）或笛卡尔函数（Cartesian，取值 2）。例如，1111 表示 $d$、$f$、$g$ 和 $h$ 基函数应采用纯形式；而 1121 则表示 $d$、$g$ 和 $h$ 函数为纯形式，但 $f$ 函数为笛卡尔形式。即使基组中不含 $g$ 或 $h$ 函数，也可以使用这些四位编码；PURECART = 1111（或 2222）表示对所有角动量类型均使用纯函数（或笛卡尔函数）。
 
 PURECART
 
@@ -27,18 +16,13 @@ PURECART
 
 > **INTEGER**
 >
-> * **Type**: `Controls the use of pure (spherical harmonic) or Cartesian angular forms`
-> * **Default**: `1111`
-> * **Options**:
+> * **类型**：`控制纯形式（球谐函数）或笛卡尔形式的角动量写法`
+> * **默认值**：`1111`
+> * **选项**：
 >     * $hgfd$
->     * Use 1 for pure and 2 for Cartesian.
-> * **Recommendation**: This is pre-defined for all standard basis sets
+>     * 纯形式使用 1，笛卡尔形式使用 2。
+> * **建议**：所有标准基组均已预定义该设置
 
-In standard basis sets all functions are pure, except for the $d$ functions
-in $n$-21G–type bases (*e.g.*, 3-21G) and $n$-31G bases (*e.g.*, 6-31G,
-6-31G*,6-31+G*, $\ldots$). In particular, the 6-311G series uses pure
-functions for both $d$ and $f$.[[718]](../bib_references/bib.md#bib750)
+在标准基组中，所有函数均为纯形式，例外情况是 $n$-21G 型基组（*例如* 3-21G）以及 $n$-31G 型基组（*例如* 6-31G、6-31G*、6-31+G*、$\ldots$）中的 $d$ 函数。特别地，6-311G 系列对 $d$ 和 $f$ 函数均使用纯形式。[[718]](../bib_references/bib.md#bib750)
 
-Note that other electronic structure codes may use Cartesian functions
-for basis sets of the same name, in which case absolute energies will differ.
-Set PURECART = 2222 to request Cartesian Gaussian functions, if desired.
+请注意，其他电子结构程序可能对同名基组使用笛卡尔函数，此时绝对能量会有所差异。如有需要，可设置 PURECART = 2222 以请求使用笛卡尔高斯函数。

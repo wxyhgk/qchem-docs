@@ -1,148 +1,121 @@
----
-title: "7.8.6 CIS(D) Job Control and Examples"
----
+## 7.8.6 CIS(D) 任务控制与示例
 
-## 7.8.6 CIS(D) Job Control and Examples
+（2026 年 7 月 4 日）
 
-(July 4, 2026)
+**Q-Chem** 中的传统（legacy）CIS(D) 算法由 **Q-Chem** 的 CCMAN/CCMAN2 模块处理，并共享许多 *$rem* 选项。RI-CIS(D)、SOS-CIS(D) 和 SOS-CIS(D${}_{0}$) 不依赖于耦合簇程序例程。不使用此传统 CIS(D) 方法的用户可直接跳至第 [7.8.7](subsect_RI-CIS(D).md) 节。
 
-The legacy CIS(D) algorithm in **Q-Chem** is handled by the CCMAN/CCMAN2
-modules of **Q-Chem**’s and shares many of the *$rem* options.
-RI-CIS(D), SOS-CIS(D), and SOS-CIS(D${}_{0}$) do not depend on the coupled-cluster
-routines. Users who will not use this legacy CIS(D) method may skip to
-Section [7.8.7](subsect_RI-CIS(D).md).
+与所有 post-HF（后 Hartree-Fock）计算一样，确保有足够的资源用于必要的积分计算和积分变换至关重要。对于 CIS(D)，这些资源通过 *$rem* 变量 CC_MEMORY、MEM_STATIC 和 MEM_TOTAL 控制（参见第 [6.12.12](../ch06_correlation/sec_CCcontrols.md) 节）。
 
-As with all post-HF calculations, it is important to ensure there are
-sufficient resources available for the necessary integral calculations and
-transformations. For CIS(D), these resources are controlled using the *$rem*
-variables CC_MEMORY, MEM_STATIC and MEM_TOTAL
-(see Section [6.12.12](../ch06_correlation/sec_CCcontrols.md)).
-
-To request a CIS(D) calculation the METHOD *$rem* should be set to
-CIS(D) and the number of excited states to calculate should be
-specified by EE_STATES (or EE_SINGLETS and
-EE_TRIPLETS when appropriate). Alternatively, CIS(D) will be
-performed when EXCHANGE = HF, CORRELATION = CI
-and EOM_CORR = CIS(D). The SF-CIS(D) is invoked by using
-SF_STATES.
+要请求 CIS(D) 计算，应将 METHOD *$rem* 变量设置为 CIS(D)，并通过 EE_STATES（或在适当情况下使用 EE_SINGLETS 和 EE_TRIPLETS）指定要计算的激发态数目。或者，当 EXCHANGE = HF、CORRELATION = CI 且 EOM_CORR = CIS(D) 时也会执行 CIS(D)。SF-CIS(D) 通过使用 SF_STATES 调用。
 
 EE_STATES
 
 ### `EE_STATES`
 
-> **Sets the number of excited state roots to find. For closed-shell reference, defaults into EE_SINGLETS . For open-shell references, specifies all low-lying states.**
+> **设置要查找的激发态根（roots）数目。对于闭壳层参考态，默认归入 EE_SINGLETS。对于开壳层参考态，指定所有低能态。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示（irrep）中查找
 >     * $i$
->     * excited states in the first irrep,
+>     * 个激发态，
+>     * 在第二个不可约表示中查找
 >     * $j$
->     * states in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EE_SINGLETS
 
 ### `EE_SINGLETS`
 
-> **Sets the number of singlet excited state roots to find. Valid only for closed-shell references.**
+> **设置要查找的单重态（singlet）激发态根数目。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中查找
 >     * $i$
->     * excited states in the first irrep,
+>     * 个激发态，
+>     * 在第二个不可约表示中查找
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**：无
 
 EE_TRIPLETS
 
 ### `EE_TRIPLETS`
 
-> **Sets the number of triplet excited state roots to find. Valid only for closed-shell references.**
+> **设置要查找的三重态（triplet）激发态根数目。仅对闭壳层参考态有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中查找
 >     * $i$
->     * excited states in the first irrep,
+>     * 个激发态，
+>     * 在第二个不可约表示中查找
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**：无
 
 SF_STATES
 
 ### `SF_STATES`
 
-> **Sets the number of spin-flip target states roots to find.**
+> **设置要查找的自旋翻转（spin-flip）目标态根数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER/INTEGER ARRAY`
+> * **默认值**：`0`
+> * **选项**：
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中查找
 >     * $i$
->     * SF states in the first irrep,
+>     * 个 SF 态，
+>     * 在第二个不可约表示中查找
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**：无
 
-**Note: 
+**注意：**
 
-It is a symmetry of a *transition* rather than that of a *target state*
-that is specified in excited state calculations. The symmetry of the
-target state is a product of the symmetry of the reference state and the
-transition. For closed-shell molecules, the former is fully symmetric and the
-symmetry of the target state is the same as that of transition, however, for
-open-shell references this is not so.
+在激发态计算中，指定的是*跃迁（transition）*的对称性，而非*目标态（target state）*的对称性。目标态的对称性等于参考态对称性与跃迁对称性的直积。对于闭壳层分子，参考态是全对称的，因此目标态的对称性与跃迁的对称性相同；但对于开壳层参考态，情况则并非如此。
 **
 
 CC_STATE_TO_OPT
 
 ### `CC_STATE_TO_OPT`
 
-> **Specifies which state to optimize.**
+> **指定要优化哪个态。**
 >
-> * **Type**: `INTEGER ARRAY`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`INTEGER ARRAY`
+> * **默认值**：`None`
+> * **选项**：
 >     * [
 >     * $i$
 >     * ,
 >     * $j$
 >     * ]
->     * optimize the
->     * $j$
->     * th state of the
+>     * 优化第
 >     * $i$
->     * th irrep.
-> * **Recommendation**: None
+>     * 个不可约表示中的第
+>     * $j$
+>     * 个态。
+> * **建议**：无
 
-**Note: 
+**注意：**
 
-Since there are no analytic gradients for CIS(D), the symmetry should be
-turned off for geometry optimization and frequency calculations, and
-CC_STATE_TO_OPT should be specified assuming $C_{1}$ symmetry, *i.e.*,
-as [1,N] where N is the number of state to optimize (the states are numbered
-from 1).
+由于 CIS(D) 没有解析梯度，在进行几何优化和频率计算时应关闭对称性，并且在假设 $C_{1}$ 对称性的前提下指定 CC_STATE_TO_OPT，*即*写为 [1,N]，其中 N 为要优化的态的编号（态从 1 开始编号）。
 **
 
-???+ example "Example 7.64: CIS(D) excitation energy calculation for ozone at the experimental ground
-state geometry $C_{2v}$"
+???+ example "示例 7.64: 在实验测得的基态几何构型（$C_{2v}$ 对称性）下，臭氧的 CIS(D) 激发能计算"
     ```qchem
     $molecule
        0 1
@@ -164,8 +137,7 @@ state geometry $C_{2v}$"
     $end
     ```
 
-???+ example "Example 7.65: CIS(D) geometry optimization for the lowest triplet state of water. The
-symmetry is automatically turned off for finite difference calculations"
+???+ example "示例 7.65: 水的最低三重态的 CIS(D) 几何优化。对于有限差分计算，对称性会被自动关闭"
     ```qchem
     $molecule
        0 1
@@ -186,8 +158,7 @@ symmetry is automatically turned off for finite difference calculations"
     $end
     ```
 
-???+ example "Example 7.66: CIS(D) excitation energy and transition property calculation (between all
-states) for ozone at the experimental ground state geometry $C_{2v}$"
+???+ example "示例 7.66: 在实验测得的基态几何构型（$C_{2v}$ 对称性）下，臭氧的 CIS(D) 激发能与跃迁性质计算（在所有态之间）"
     ```qchem
     $molecule
        0 1

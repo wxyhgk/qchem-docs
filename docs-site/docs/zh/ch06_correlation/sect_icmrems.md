@@ -1,20 +1,20 @@
 ---
-title: "6.21.3 Job Control for iFCI"
+title: "6.21.3 iFCI 的任务控制"
 ---
 
-## 6.21.3 Job Control for iFCI
+## 6.21.3 iFCI 的任务控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 IFCI_TUPLES
 
 ### `IFCI_TUPLES`
 
-> **Level of $n$ -body expansion to solve. Note that $n>2$ can be computationally costly.**
+> **要求解的 $n$ 体展开阶数。注意 $n>2$ 可能带来高昂的计算代价。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Must be set.`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`必须设置。`
+> * **可选值**：
 >     * 1
 >     * $n=1$
 >     * 2
@@ -23,210 +23,209 @@ IFCI_TUPLES
 >     * $n=3$
 >     * 4
 >     * $n=4$
-> * **Recommendation**: Use $n=2$ for initial system analysis, $n>2$ for higher accuracy.
+> * **建议**：初始体系分析使用 $n=2$，更高精度使用 $n>2$。
 
 IFCI_READ
 
 ### `IFCI_READ`
 
-> **Restarts iFCI with existing TUPLES_1E_DATA file , if it exists.**
+> **若已存在 TUPLES_1E_DATA 文件，则利用该文件重启 iFCI 计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Start from scratch
+>     * 从头开始计算
 >     * 1
->     * Restart from previous file
-> * **Recommendation**: Use 0 if no previous run files exist. Use 1 if intending to restart from previous data.
+>     * 从先前文件重启
+> * **建议**：若不存在先前运行的文件则使用 0；若希望基于先前数据重启则使用 1。
 
 IFCI_TRIPLETS
 
 ### `IFCI_TRIPLETS`
 
-> **Set state to solve.**
+> **设置要求解的态（自旋多重度）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Singlet
+>     * 单重态（Singlet）
 >     * 1
->     * Triplet
+>     * 三重态（Triplet）
 >     * 2
->     * Quintet
-> * **Recommendation**: None
+>     * 五重态（Quintet）
+> * **建议**：无
 
 IFCI_ZETA
 
 ### `IFCI_ZETA`
 
-> **Convergence for each iFCI increment. Note that the format is $\zeta=$ $/10$ .**
+> **每个 iFCI 增量（increment）的收敛阈值。注意其格式为 $\zeta=$ $/10$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `55`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`55`
+> * **可选值**：
 >     * 45
->     * Loose
+>     * 宽松（Loose）
 >     * 55
->     * Moderate
+>     * 中等（Moderate）
 >     * 65
->     * Tight
+>     * 严格（Tight）
 >     * 75
->     * Tighter
+>     * 更严格（Tighter）
 >     * 85
->     * Quite tight
+>     * 非常严格（Quite tight）
 >     * 95
->     * Maximum
-> * **Recommendation**: Use 65 and increase to 75 to check convergence.
+>     * 最严格（Maximum）
+> * **建议**：使用 65，并增大到 75 以检验收敛性。
 
 HBCI_EPS1
 
 ### `HBCI_EPS1`
 
-> **Determines dimension of HBCI space.**
+> **决定 HBCI 空间的维数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1000`
+> * **可选值**：
 >     * $N$
 >     * HBCI
 >     * $\varepsilon_{1}$
->     * in
+>     * 单位为
 >     * $\mu$
 >     * E
 >     * ${}_{\mathrm{h}}$
-> * **Recommendation**: Use default or 500 for tighter convergence.
+> * **建议**：使用默认值，或采用 500 以获得更严格的收敛。
 
 IFCI_TUPLE_THRESH
 
 ### `IFCI_TUPLE_THRESH`
 
-> **Collapse near-degenerate geminals within threshold into one body.**
+> **将阈值内的近简并 geminal（孪生函数）收缩为一个体（one body）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2500`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2500`
+> * **可选值**：
 >     * $n$
->     * in
+>     * 单位为
 >     * $\mu$
 >     * E
 >     * ${}_{\mathrm{h}}$
-> * **Recommendation**: Use default unless there are sets of highly correlating occupied orbitals.
+> * **建议**：使用默认值，除非存在一组高度相关的占据轨道。
 
 IFCI_TRIPLES_SCREEN
 
 ### `IFCI_TRIPLES_SCREEN`
 
-> **Cutoff ( $\mathcal{C}_{3}$ ) for determining if a 3-body term is significant.**
+> **用于判定一个三体项是否显著的截断阈值（ $\mathcal{C}_{3}$ ）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1000`
+> * **可选值**：
 >     * $n$
->     * where
+>     * 其中
 >     * $\mathcal{C}_{3}=10^{-\zeta}\times n$
->     * in E
+>     * 单位为 E
 >     * ${}_{\mathrm{h}}$
-> * **Recommendation**: Use the default unless looser (higher $n$ ) or tighter (lower $n$ ) consideration of triads for a given system is desired. Setting to 0 computes all triads (costly).
+> * **建议**：使用默认值，除非希望对给定体系的三重积（triads）采用更宽松（$n$ 更大）或更严格（$n$ 更小）的考虑。设为 0 将计算所有三重积（代价高昂）。
 
 IFCI_QUAD_SCREEN
 
 ### `IFCI_QUAD_SCREEN`
 
-> **Cutoff ( $\mathcal{C}_{4}$ ) for determining if a 4-body term is significant.**
+> **用于判定一个四体项是否显著的截断阈值（ $\mathcal{C}_{4}$ ）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `IFCI_TRIPLES_SCREEN`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`IFCI_TRIPLES_SCREEN`
+> * **可选值**：
 >     * $n$
->     * where
+>     * 其中
 >     * $\mathcal{C}_{4}=10^{-\zeta}\times n$
->     * in E
+>     * 单位为 E
 >     * ${}_{\mathrm{h}}$
-> * **Recommendation**: Same as IFCI_TRIPLES_SCREEN but note that $4$ -body terms are significantly more costly.
+> * **建议**：与 IFCI_TRIPLES_SCREEN 相同，但需注意 $4$ 体项的计算代价显著更高。
 
 IFCI_STATE_ADD
 
 ### `IFCI_STATE_ADD`
 
-> **Adds additional states to HBCI solver when there is degeneracy amongst states.**
+> **当各态之间存在简并时，为 HBCI 求解器添加额外的态。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`10`
+> * **可选值**：
 >     * $n$
->     * Add states within
->     * $n$
+>     * 添加 $n$
 >     * mE
 >     * ${}_{\mathrm{h}}$
-> * **Recommendation**: Use default unless it is known that degenerate states are present.
+>     * 范围内的态
+> * **建议**：使用默认值，除非已知存在简并态。
 
 IFCI_PRINT
 
 ### `IFCI_PRINT`
 
-> **Larger number gives more output.**
+> **数值越大，输出信息越多。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **可选值**：
 >     * 1
->     * Minimal output
+>     * 最简输出
 >     * 2
->     * Readable output
+>     * 可读输出
 >     * 3
->     * Extra output
+>     * 额外输出
 >     * 4
->     * Excessive output
+>     * 过量输出
 >     * 5+
->     * Bug testing output
-> * **Recommendation**: 2 is recommended, 1-3 is appropriate, larger than 4 is unnecessary (consider yourself warned).
+>     * 调试（Bug testing）输出
+> * **建议**：推荐 2，1-3 均合适，大于 4 则无必要（请自行斟酌后果）。
 
 IFCI_NO_THRESH
 
 ### `IFCI_NO_THRESH`
 
-> **Equivalent to HBCI $\varepsilon_{1}$ for increment-specific NO generation step.**
+> **在针对各增量（increment）的自然轨道（NO）生成步骤中，等价于 HBCI 的 $\varepsilon_{1}$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1000`
+> * **可选值**：
 >     * $n$
->     * in
+>     * 单位为
 >     * $\mu$
 >     * E
 >     * ${}_{\mathrm{h}}$
-> * **Recommendation**: Set to equal HBCI_EPS1 .
+> * **建议**：设置为与 HBCI_EPS1 相同。
 
 IFCI_REF_ITER
 
 ### `IFCI_REF_ITER`
 
-> **Use HF or PP reference density.**
+> **使用 HF 或 PP 参考密度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **可选值**：
 >     * 0
 >     * HF
 >     * 1
 >     * PP
-> * **Recommendation**: Use 0.
+> * **建议**：使用 0。
 
 IFCI_OCC
 
 ### `IFCI_OCC`
 
-> **Specifies the number of active occupied orbitals.**
+> **指定活性占据轨道的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Full valence.`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`完整价层（Full valence）。`
+> * **可选值**：
 >     * $n$
->     * Include
->     * $n$
->     * orbitals in the active space
+>     * 将 $n$
+>     * 个轨道纳入活性空间
 >     * $-1$
->     * Full valence
-> * **Recommendation**: Use full valence active space.
+>     * 完整价层
+> * **建议**：使用完整价层活性空间。

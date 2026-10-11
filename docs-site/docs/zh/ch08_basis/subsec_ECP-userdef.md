@@ -1,66 +1,58 @@
+已保存至 `translated/8.10.5_user-defined-ecps_zh.md`
+
 ---
-title: "8.10.5 User-Defined ECPs"
+title: "8.10.5 用户自定义 ECP"
 ---
 
-## 8.10.5 User-Defined ECPs
+## 8.10.5 用户定义的有效核势（ECP）
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-Many users will find that the library of built-in ECPs is adequate
-for their needs. However, if you need to use an ECP that is not built into
-**Q-Chem**, you can enter it in much the same way as you can enter a
-user-defined orbital basis set; see Chapter [8](chap_basis.md).
+许多用户会发现内置的 ECP 库已能满足其需求。不过，如果您需要使用 **Q-Chem** 中未内置的 ECP，可以按照与定义用户自定义轨道基组（orbital basis set）类似的方式输入；参见第 [8](chap_basis.md) 章。
 
-To apply a user-defined ECP, you must set the ECP and
-BASIS keywords in *$rem* to GEN. You then add a *$ecp* block that
-defines your ECP, element by element, and a *$basis* block that defines your
-orbital basis set, separating elements by asterisks.
+要应用用户自定义的 ECP，必须将 *$rem* 中的 ECP 与 BASIS 关键字设置为 GEN。随后添加一个逐元素定义 ECP 的 *$ecp* 块，以及一个定义轨道基组的 *$basis* 块，各元素之间用星号分隔。
 
-The syntax within the *$basis* block is described in Chapter [8](chap_basis.md).
-The syntax for each record within the *$ecp* block is as follows:.
+*$basis* 块中的语法在第 [8](chap_basis.md) 章中描述。*$ecp* 块中每条记录的语法如下：
 
 *$ecp*
 
-For each atom that will bear an ECP: 
+对于每个施加 ECP 的原子：
 
-      Chemical symbol for the atom 
+      该原子的化学符号
 
-      ECP name; the $L$ value for the ECP; number of core electrons removed 
+      ECP 名称；ECP 的 $L$ 值；被移除的芯电子（core electrons）数目
 
-      For each ECP component (in the order unprojected,
-$\hat{P}_{0}$, $\hat{P}_{1}$, …, $\hat{P}_{L-1}$): 
+      对于每个 ECP 分量（按 unprojected、$\hat{P}_{0}$、$\hat{P}_{1}$、…、$\hat{P}_{L-1}$ 的顺序）：
 
-            The component name 
+            该分量的名称
 
-            The number of Gaussians in the component 
+            该分量中高斯函数（Gaussian）的数目
 
-            For each Gaussian in the component 
+            对于该分量中的每个高斯函数
 
-                  The power of $r$ ; the exponent ; the contraction coefficient 
+                  $r$ 的幂次；指数；收缩系数
 
-A sequence of four asterisks (*i.e.*, `****`) 
+一串四个星号（*即* `****`）
 
 *$end*
 
-**Note: 
+**注意：
 
 1.
 
-All of the information in the *$ecp* block is case-insensitive.
+*$ecp* 块中的所有信息均不区分大小写。
 
 2.
 
-The power of $r$ (which includes the Jacobian $r^{2}$ factor) must be 0, 1, or 2.
+$r$ 的幂次（其中已包含雅可比（Jacobian）因子 $r^{2}$）必须为 0、1 或 2。
 
 3.
 
-If an $r^{0}$ or $r^{1}$ term is included you must include the rem keyword
-“ECP_FIT = TRUE”.
+若包含 $r^{0}$ 或 $r^{1}$ 项，则必须加入 rem 关键字 “ECP_FIT = TRUE”。
 
 **
 
-???+ example "Example 8.10: Optimizing the HF geometry of AlH ${}_{3}$ using a user-defined ECP and basis set
-on Al and the 3-21G basis on H."
+???+ example "示例 8.10: 在 Al 上使用用户自定义的 ECP 与基组、在 H 上使用 3-21G 基组，优化 AlH ${}_{3}$ 的 HF 几何结构"
     ```qchem
     $molecule
        0  1

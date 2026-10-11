@@ -1,322 +1,293 @@
 ---
-title: "7.9.9 EOM-CC Calculations of Core-Level States"
+title: "7.9.9 核心能级态的 EOM-CC 计算"
 ---
 
-## 7.9.9 EOM-CC Calculations of Core-Level States
+## 7.9.9 核心能级态的 EOM-CC 计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The core-valence separation (CVS) scheme[[218]](../bib_references/bib.md#bib215)
- allows one
-to extend standard methods for excited and ionized states to the core-level
-states. In this approach, the excitations involving core electrons are
-decoupled from the rest of the configurational space. This allows one to reduce
-computational costs and decouple the highly excited core states from the
-continuum. Currently, CVS is implemented within EOM-EE/SF/IP-CCSD for energies
-and transition properties (oscillator strengths, NTOs, Dyson orbitals, exciton
-descriptors, SOCs, ECD cross sections). CVS-EOM-EE-CCSD can be used to model NEXAFS, while CVS-EOM-IP-CCSD
-can be used to model XPS and XES. These methods can also be used to compute transient
-absorption spectra, *e.g.*, valence pump/x-ray probe experiments.[[1403]](../bib_references/bib.md#bib1463)
+芯价层分离（core-valence separation, CVS）方案[[218]](../bib_references/bib.md#bib215)
+ 使得我们可以将激发态与电离态的标准方法推广至核心能级态。在该方法中，
+涉及核心电子的激发与其余组态空间退耦合。这样可以降低计算成本，
+并将高度激发的核心态与连续态分离。目前，CVS 已在 EOM-EE/SF/IP-CCSD 中实现，
+可用于计算能量和跃迁性质（振子强度、NTO、Dyson 轨道、激子描述符、SOC、ECD 截面）。
+CVS-EOM-EE-CCSD 可用于模拟 NEXAFS，而 CVS-EOM-IP-CCSD
+可用于模拟 XPS 和 XES。这些方法还可用于计算瞬态吸收光谱，
+*e.g.*，泵浦-探测（valence pump/x-ray probe）实验。[[1403]](../bib_references/bib.md#bib1463)
 
-The calculation of non-linear spectra, such as RIXS, is also possible. L-edge spectra
-(XAS and XPS) can be described by using state-interaction
-approach
+也可以计算非线性光谱，例如 RIXS。L 边光谱（XAS 和 XPS）
+可以采用态相互作用（state-interaction）方法来描述，
+其中自旋-轨道耦合使用非相对论性 CVS-EOM-EE 态来计算。[[1404]](../bib_references/bib.md#bib1464)
+ Auger 光谱可以通过 Feshbach–Fano 方法[[1262]](../bib_references/bib.md#bib1316)
+借助 CVS-EOM-EE 计算，既可以结合对连续态的显式处理，也可以使用单中心近似；[[1264]](../bib_references/bib.md#bib1318)
 
-in which spin-orbit coupling is evaluated using non-relativistic CVS-EOM-EE
-states.[[1404]](../bib_references/bib.md#bib1464)
- Auger spectra can be computed using CVS-EOM-EE
-via Feshbach–Fano approach[[1262]](../bib_references/bib.md#bib1316)
-, either combined with
-the explicit treatment of the continuum or using one-center approximation;[[1264]](../bib_references/bib.md#bib1318)
+参见第 [7.9.11](sec_Auger.md) 节。
 
-see Section [7.9.11](sec_Auger.md).
+在 **Q-Chem** 中，实现的 CVS-EOM-EE-CCSD 与 Coriani 和 Koch 的原始理论[[269]](../bib_references/bib.md#bib270)
+ 略有不同：参考耦合簇振幅不包含核心电子。[[1402]](../bib_references/bib.md#bib1462)
 
-In **Q-Chem**, a slightly different version of CVS-EOM-EE-CCSD than the original
-theory by Coriani and Koch[[269]](../bib_references/bib.md#bib270)
- is implemented: the reference
-coupled-cluster amplitudes do not include core electrons.[[1402]](../bib_references/bib.md#bib1462)
+为区别于原始方法，[[269]](../bib_references/bib.md#bib270)
+ 在下文中我们将 **Q-Chem** 的实现称为冻结芯-基态/芯价层分离
+EOM（frozen-core-ground-state/core-valence-separated EOM, FC-CVS-EOM）方法。[[1402]](../bib_references/bib.md#bib1462)
 
-To distinguish this method from the original,[[269]](../bib_references/bib.md#bib270)
- we refer in what follows to
-the **Q-Chem** implementation as frozen-core-ground-state/core-valence-separated
-EOM (FC-CVS-EOM) approach.[[1402]](../bib_references/bib.md#bib1462)
+在 FC-CVS-EOM 方法中，基态参数（振幅与 Lagrangian 乘子）在冻结芯近似下计算，
+而核心激发能和跃迁强度则是通过要求 EOM 激发（及电离）算符中
+至少有一个指标对应核心占据轨道来获得。
+类似地，在 RIXS 响应态的计算中也强制施加 CVS。[[982]](../bib_references/bib.md#bib1022)
 
-In the FC-CVS-EOM approach the ground-state parameters (amplitudes and
-Lagrangian multipliers) are computed within the frozen-core approximation,
-whereas the core-excitation energies and transition strengths
-are obtained imposing that
-at least one index in the EOM excitation (and ionization) operators refer to a
-core occupied orbital.
-Likewise, CVS is enforced in the calculation of the response
-states in RIXS.[[982]](../bib_references/bib.md#bib1022)
+为确保 EOM 方程具有最佳的收敛性，计算是针对能量最高的边
+（即最深处的核心轨道）而做“边特定”（*edge-specific*）处理的：
+对每一条边分别选择冻结芯空间和 CVS 空间，使得激发态计算中所涉及的核心轨道
+在基态计算中被显式冻结，并被专门包含在 EOM 计算中。
+下例 [7.9.9.2](#ex:cvsee1) 和 [7.9.9.2](#ex:cvsee1) 说明了这一点。
 
-To ensure the best convergence of EOM equations, the calculation is
-*edge-specific* with respect to the highest lying edges (or deepest lying
-core orbitals): the frozen-core and CVS spaces are selected for each edge such
-that the core orbitals addressed in the excited state calculations are
-explicitly frozen in the ground-state calculation and specifically included in
-the EOM calculation. Examples [7.9.9.2](#ex:cvsee1) and [7.9.9.2](#ex:cvsee1) below
-illustrate this point.
+尽管 FC-CVS-EOM 的收敛性比常规 EOM-CCSD 稳健得多，有时计算仍会坍缩到低能级的
+人造态（artificial states）。如果发生这种情况，请使用 CVS_EOM_SHIFT
+重新运行计算，以指定边的近似起始能量。
 
-Although the convergence of FC-CVS-EOM is much more robust that that of regular
-EOM-CCSD, sometimes calculations would collapse to low-lying artificial states.
-If this happens, rerun the calculation using CVS_EOM_SHIFT to
-specify an approximate onset of the edge.
+要调用 CVS 方案，请使用 METHOD = CCSD，并用 CVS_EE_STATES
+代替 EE_STATES 来指定期望的目标态（类似地，CVS_EE_SINGLETS 和
+CVS_EE_TRIPLETS 的用法与常规 EOM 计算完全相同）。对于电离态，
+使用 CVS_IP_STATES 或 CVS_IP_ALPHA/CVS_IP_BETA。
+自旋翻转（spin-flip）版本可通过 CVS_SF_STATES 启用
+（计算 SOC 和 L 边光谱时可能需要）。
+可通过 CVS_EOM_PRECONV_SINGLES 调用单激发振幅的预收敛。
+跃迁性质和 Dyson 轨道既可以在 CVS 流形内部计算，也可以在 CVS 与价层流形之间计算
+（Dyson 轨道的定义见第 [7.9.29](topic_dyson.md) 节）。CVS-EOM-CCSD 仅可在 CCMAN2 下使用。
 
-To invoke the CVS scheme, use METHOD = CCSD and
-CVS_EE_STATES instead of EE_STATES to specify the desired
-target states (likewise, CVS_EE_SINGLETS and
-CVS_EE_TRIPLETS can be used in exactly the same way as in regular
-EOM calculations). For ionized states, use CVS_IP_STATES or
-CVS_IP_ALPHA/CVS_IP_BETA. Spin-flip version can be deployed by
-using CVS_SF_STATES (this may be needed for computing SOCs and L-edge spectra).
-Preconverging single amplitudes can be invoked by CVS_EOM_PRECONV_SINGLES.
-Transition properties and
-Dyson orbitals can be computed either within the CVS manifold or between the CVS and
-valence manifolds (see Section [7.9.29](topic_dyson.md) for definition of Dyson
-orbitals). CVS-EOM-CCSD is only available with CCMAN2.
+**注意：
 
-**Note: 
-
-(1) Core electrons must be frozen in CVS-EOM calculations. The exact
-definition of the core depends on the edge, so using default values may be not appropriate.
-(2) The default setting (N_FROZEN_CORE = FC)
-does not work correctly in QM/MM calculations. One should
-specify the number of frozen core orbitals explicitly.
+(1) 在 CVS-EOM 计算中必须冻结核心电子。核心的精确定义取决于所研究的边，
+因此使用默认值可能并不合适。
+(2) 默认设置（N_FROZEN_CORE = FC）在 QM/MM 计算中不能正确工作。
+应当显式指定冻结核心轨道的数目。
 **
 
-It is possible to set up customized CVS calculations for ionization/excitation
-originating from a particular core orbital. To do so, one should first use
-*$reorder_mo* feature to reorder orbitals such that the desired core
-orbital appears the first in the list and then run a CVS-EOM calculation
-with N_FROZEN_CORE = 1.
+可以为源自特定核心轨道的电离/激发设置自定义的 CVS 计算。为此，首先应使用
+*$reorder_mo* 功能对轨道重新排序，使所需的核心轨道出现在列表首位，
+然后以 N_FROZEN_CORE = 1 运行 CVS-EOM 计算。
 
-**Note: 
+**注意：
 
-*$reorder_mo* works only with old SCF code (GEN_SCFMAN=FALSE).
+*$reorder_mo* 仅适用于旧的 SCF 代码（GEN_SCFMAN=FALSE）。
 **
 
-It is also possible to split the frozen-core space into CVS-active and CVS-inactive subspaces
-using the keyword N_FC_CVS_INACTIVE, which defines the size of the CVS-active
-subspace as N_FROZEN_CORE minus N_FC_CVS_INACTIVE.
-These CVS-active orbitals are arranged such that they precede the valence orbital subspace
-but follow the CVS-inactive orbitals in the molecular orbital ordering
-(use *$reorder_mo* section to customize if required).
+还可以使用关键字 N_FC_CVS_INACTIVE 将冻结芯空间拆分为 CVS 活性与 CVS 非活性子空间，
+该关键字将 CVS 活性子空间的大小定义为 N_FROZEN_CORE 减去 N_FC_CVS_INACTIVE。
+这些 CVS 活性轨道的排列顺序为：位于价层轨道子空间之前，但排在 CVS 非活性轨道之后
+（如有需要，可使用 *$reorder_mo* 节自定义排序）。
 
 CVS_EOM_SHIFT
 
 ### `CVS_EOM_SHIFT`
 
-> **Specifies energy shift in CVS-EOM calculations.**
+> **指定 CVS-EOM 计算中的能量平移。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * corresponds to
+>     * 对应
 >     * $n\times 10^{-3}$
->     * hartree shift (
+>     * hartree 的平移量（
 >     * i.e.
->     * , 11000 = 11 hartree); solve for
->     * eigenstates around this value.
-> * **Recommendation**: Improves the stability of the calculations.
+>     * ，11000 = 11 hartree）；在该值附近求解
+>     * 本征态。
+> * **建议**: 可提高计算的稳定性。
 
 N_FC_CVS_INACTIVE
 
 ### `N_FC_CVS_INACTIVE`
 
-> **Number of frozen-core CVS inactive orbitals**
+> **冻结芯中 CVS 非活性轨道的数目**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * n, where 0
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
+>     * n, 其中 0
 >     * $\leq$
 >     * n
 >     * $\leq$
->     * total FC orbitals
-> * **Recommendation**: Useful in cluster calculations.
+>     * 冻结芯轨道总数
+> * **建议**: 在团簇计算中很有用。
 
 CVS_EOM_PRECONV_SINGLES
 
 ### `CVS_EOM_PRECONV_SINGLES`
 
-> **When not zero, singly excited vectors are converged prior to a full excited states calculation (CVS states only). Sets the maximum number of iterations for pre-converging procedure.**
+> **不为零时，在完整的激发态计算（仅限 CVS 态）之前先收敛单激发向量。设置预收敛过程的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * do not pre-converge
+>     * 不进行预收敛
 >     * 1
->     * pre-converge singles
-> * **Recommendation**: Sometimes helps with problematic convergence.
+>     * 对单激发进行预收敛
+> * **建议**: 有时有助于解决收敛困难的问题。
 
 CVS_EE_SINGLETS
 
 ### `CVS_EE_SINGLETS`
 
-> **Sets the number of singlet core-excited state roots to find. Valid only for closed-shell references.**
+> **设置要搜寻的单重态核心激发态根的数目。仅对闭壳层参考有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中搜寻
 >     * $i$
->     * excited states in the first irrep,
+>     * 个激发态，
+>     * 在第二个不可约表示中搜寻
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**: 无
 
 CVS_EE_TRIPLETS
 
 ### `CVS_EE_TRIPLETS`
 
-> **Sets the number of triplet core-excited state roots to find. Valid only for closed-shell references.**
+> **设置要搜寻的三重态核心激发态根的数目。仅对闭壳层参考有效。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中搜寻
 >     * $i$
->     * excited states in the first irrep,
+>     * 个激发态，
+>     * 在第二个不可约表示中搜寻
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**: 无
 
 CVS_SF_STATES
 
 ### `CVS_SF_STATES`
 
-> **Sets the number of core-level spin-flip target states roots to find.**
+> **设置要搜寻的核心能级自旋翻转目标态根的数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中搜寻
 >     * $i$
->     * SF states in the first irrep,
+>     * 个 SF 态，
+>     * 在第二个不可约表示中搜寻
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**: 无
 
 CVS_IP_STATES
 
 ### `CVS_IP_STATES`
 
-> **Sets the number of core-ionized states to find. By default, $\beta$ electron will be removed.**
+> **设置要搜寻的核心电离态的数目。默认移除 $\beta$ 电子。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * [i,j,k…]
->     * Find
+>     * 在第一个不可约表示中搜寻
 >     * $i$
->     * ionized states in the first irrep,
+>     * 个电离态，
+>     * 在第二个不可约表示中搜寻
 >     * $j$
->     * states in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**: 无
 
 CVS_IP_ALPHA
 
 ### `CVS_IP_ALPHA`
 
-> **Sets the number of ionized target states derived by removing $\alpha$ electron ( $M_{S}=-\tfrac{1}{2}$ ).**
+> **设置通过移除 $\alpha$ 电子（$M_{S}=-\tfrac{1}{2}$）得到的电离目标态的数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中搜寻
 >     * $i$
->     * ionized states in the first irrep,
+>     * 个电离态，
+>     * 在第二个不可约表示中搜寻
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**: 无
 
 CVS_IP_BETA
 
 ### `CVS_IP_BETA`
 
-> **Sets the number of ionized target states derived by removing $\beta$ electron ( $M_{S}=\tfrac{1}{2}$ , default for CVS-IP).**
+> **设置通过移除 $\beta$ 电子（$M_{S}=\tfrac{1}{2}$，CVS-IP 的默认选项）得到的电离目标态的数目。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `0`
+> * **选项**:
 >     * $[i,j,k\ldots]$
->     * Find
+>     * 在第一个不可约表示中搜寻
 >     * $i$
->     * ionized states in the first irrep,
+>     * 个电离态，
+>     * 在第二个不可约表示中搜寻
 >     * $j$
->     * states
->     * in the second irrep
->     * etc.
-> * **Recommendation**: None
+>     * 个态，
+>     * 依此类推。
+> * **建议**: 无
 
-## 7.9.9.1 EOM-CC Calculations of RIXS
+## 7.9.9.1 RIXS 的 EOM-CC 计算
 
-RIXS is a coherent two-photon process involving core-level states.[[982]](../bib_references/bib.md#bib1022)
+RIXS 是涉及核心能级态的相干双光子过程。[[982]](../bib_references/bib.md#bib1022)
 
-The calculations of RIXS cross-sections require solving response equations, in the same
-fashion as in calculations of 2PA cross-sections (see Section [7.9.21.6](sec_EOMGRAD.md#sec:2PA)).
-Currently, only calculations of RIXS cross-sections between the CCSD reference and the
-EOM-CCSD target states are possible.
-Because of the resonant
-nature of RIXS, damped response theory is used to handle singularities in the resolvent.
-In addition,
-CVS is enforced on the response vectors to eliminate their coupling with the ionization continuum.
-To set up RIXS calculation, one needs to set METHOD = EOM-CCSD and
-to specify the number of excited states to be included by using EE_STATES (note that only 2PA
-bright states need to be included) and to activate CVS by using CVS_EE_STATES asking for zero states.
-RIXS calculations is deployed by activating CC_EOM_RIXS.
-The option for performing wave-function analysis (*e.g.*, NTO analysis) of
-the complex RIXS one-particle transition density matrices is also available.
-Conceptual details can be found in Ref. [[980]](../bib_references/bib.md#bib1023)
-.
-Finally, one can request to compute REXS (cross-section for the “elastic” peak) by
-CC_REF_PROP = 1 (by default, REXS is not calculated)
-This feature is only available within fc-CVS-EOM-EE-CCSD.
+RIXS 截面的计算需要求解响应方程，其方式与 2PA 截面的计算相同
+（见第 [7.9.21.6](sec_EOMGRAD.md#sec:2PA) 节）。
+目前，仅能计算 CCSD 参考态与 EOM-CCSD 目标态之间的 RIXS 截面。
+由于 RIXS 具有共振特性，需采用阻尼响应理论（damped response theory）
+来处理预解算子（resolvent）中的奇点。
+此外，对响应向量强制施加 CVS，以消除其与电离连续态的耦合。
+要设置 RIXS 计算，需要设定 METHOD = EOM-CCSD，
+并使用 EE_STATES 指定要包含的激发态数目（注意只需包含 2PA 亮态），
+并通过 CVS_EE_STATES（请求零个态）来激活 CVS。
+通过激活 CC_EOM_RIXS 来执行 RIXS 计算。
+也可以选择对复 RIXS 单粒子跃迁密度矩阵进行波函数分析（*e.g.*，NTO 分析）。
+概念性细节可参见文献 [[980]](../bib_references/bib.md#bib1023)。
+最后，可以通过 CC_REF_PROP = 1 请求计算 REXS（“弹性”峰截面）
+（默认情况下不计算 REXS）。
+此功能仅在 fc-CVS-EOM-EE-CCSD 中可用。
 
 CC_EOM_RIXS
 
 ### `CC_EOM_RIXS`
 
-> **Whether or not the RIXS scattering moments and cross-sections will be calculated.**
+> **是否计算 RIXS 散射矩和截面。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * Perform RIXS within fc-CVS-EOM-EE-CCSD using the response wave functions of the CCSD reference state only
+>     * 在 fc-CVS-EOM-EE-CCSD 中执行 RIXS，仅使用 CCSD 参考态的响应波函数
 >     * 2
->     * Perform RIXS within fc-CVS-EOM-EE-CCSD response theory along with the wave-function analysis of RIXS transition density matrices
+>     * 在 fc-CVS-EOM-EE-CCSD 响应理论中执行 RIXS，并对 RIXS 跃迁密度矩阵进行波函数分析
 >     * 11
->     * Perform RIXS within the standard EOM-EE-CCSD using the response wave functions of the CCSD reference state only
+>     * 在标准 EOM-EE-CCSD 中执行 RIXS，仅使用 CCSD 参考态的响应波函数
 >     * 12
->     * Use
+>     * 在标准 EOM-EE-CCSD 的 RIXS 响应计算中使用
 >     * $\sigma$
->     * -intermediates for RIXS response calculations within the standard EOM-EE-CCSD
-> * **Recommendation**: Use 1 to deploy fc-CVS-EOM-EE-CCSD with robust convergence
+>     * 中间量
+> * **建议**: 使用 1 以启用具有稳健收敛性的 fc-CVS-EOM-EE-CCSD
 
-**Note: 
+**注意：
 
-Since the RIXS response solutions within EOM-EE-CCSD often do not converge, fc-CVS-EOM-EE-CCSD RIXS calculations with CC_EOM_RIXS = 1 are recommended for smooth convergence. All other options are experimental.
+由于 EOM-EE-CCSD 中的 RIXS 响应解经常无法收敛，推荐使用 CC_EOM_RIXS = 1
+的 fc-CVS-EOM-EE-CCSD RIXS 计算以获得顺畅的收敛。其他所有选项均为实验性质。
 **
 
-To specify pumping frequencies and damping
-factor $\epsilon$, use *$rixs* section:
+要指定泵浦频率和阻尼因子 $\epsilon$，请使用 *$rixs* 节：
 
 > ```qchem
 > $rixs
@@ -328,101 +299,88 @@ factor $\epsilon$, use *$rixs* section:
 > $end
 > ```
 
-Damping factor (DAMPED_EPSILON) is specified in atomic units (0.005 is a good choice).
-OMEGA_1 specifies the starting pumping frequency (in cm${}^{-1}$), the increment in frequency
-scan (in cm${}^{-1}$), number of frequency points, and the algorithm for response equation (use zero until further notice).
-OMEGA_2 should be specified only for generating 2D RIXS scans.
-Example [7.9.9.2](#ex:cvsee1) illustrates the setup of RIXS calculations.
+阻尼因子（DAMPED_EPSILON）以原子单位指定（0.005 是不错的选择）。
+OMEGA_1 指定起始泵浦频率（单位 cm${}^{-1}$）、频率扫描的增量（单位 cm${}^{-1}$）、
+频率点数目以及响应方程的算法（目前一律使用零）。
+OMEGA_2 仅应在生成二维 RIXS 扫描时指定。
+例 [7.9.9.2](#ex:cvsee1) 说明了 RIXS 计算的设置方式。
 
-By default, the damped RIXS response wave functions are computed using a new
-iterative, Davidson-like subspace procedure called the **Dalton** solver.[[248]](../bib_references/bib.md#bib251)
+默认情况下，阻尼 RIXS 响应波函数采用一种新的、类似 Davidson 的迭代子空间方法
+来计算，即 **Dalton** 求解器。[[248]](../bib_references/bib.md#bib251)
 
-It is controlled by the DALTON_XCONV, DALTON_PRECOND_START,
-DALTON_MAXITER, and DALTON_MAXSPACE keywords.
-Damped RIXS response wave functions can also be computed using the older
-DIIS procedure, by setting DAMPED_DALTON_SOLVER = FALSE.
-The DIIS solver is controlled by the
-CC_MAX_ITER, CC_DIIS_START,
-CC_DIIS_SIZE, CC_EOM_2PA_ECONV, and
-CC_EOM_2PA_XCONV.
+它由 DALTON_XCONV、DALTON_PRECOND_START、
+DALTON_MAXITER 和 DALTON_MAXSPACE 关键字控制。
+阻尼 RIXS 响应波函数也可以使用较旧的 DIIS 流程计算，
+方法是设置 DAMPED_DALTON_SOLVER = FALSE。
+DIIS 求解器由 CC_MAX_ITER、CC_DIIS_START、
+CC_DIIS_SIZE、CC_EOM_2PA_ECONV 和
+CC_EOM_2PA_XCONV 控制。
 
-**Note: 
-
-•
-
-For better convergence of the response equations with DIIS solver,
-increase CC_DIIS_SIZE (25 is recommended) and consider using a larger damping factor.
+**注意：
 
 •
 
-The **Dalton** 
-solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver),
-whereas the DIIS solver uses the norm of the difference of the response vector between iterations.
+为获得 DIIS 求解器下响应方程更好的收敛性，
+请增大 CC_DIIS_SIZE（推荐 25）并考虑使用更大的阻尼因子。
+
+•
+
+**Dalton** 求解器在估计收敛时使用残差范数的平方（与 Davidson 求解器相同），
+而 DIIS 求解器使用的是相邻迭代之间响应向量之差的范数。
 
 **
 
-## 7.9.9.2 Examples
+## 7.9.9.2 示例
 
-The following examples illustrate how to perform these calculations.
+以下示例说明如何执行这些计算。
 
 - •
 
-Example [7.9.9.2](#ex:cvsee1): the $1s$ orbital on the oxygen atom is frozen in
-the CCSD calculation (N_FROZEN_CORE = FC). In the EOM
-calculation, the CVS approximation is invoked (CVS_EE_SINGLETS), so
-that the core-excitation energies are obtained as the lowest excitations. The
-calculation of the oscillator strengths and rotatory strengths is activated
-by selecting CC_TRANS_PROP = 1 and the **libwfa** analysis is invoked by
-STATE_ANALYSIS = TRUE (see Section [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md)).
-Note that rotatory strengths will be zero for non-chiral systems.
+例 [7.9.9.2](#ex:cvsee1)：在 CCSD 计算中冻结氧原子上的 $1s$ 轨道
+（N_FROZEN_CORE = FC）。在 EOM 计算中调用 CVS 近似（CVS_EE_SINGLETS），
+从而将核心激发能作为最低激发获得。通过选择 CC_TRANS_PROP = 1
+激活振子强度和旋转强度的计算，并通过 STATE_ANALYSIS = TRUE
+调用 **libwfa** 分析（见第 [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md) 节）。
+注意，对于非手性体系，旋转强度为零。
 - •
 
-Example [7.9.9.2](#ex:cvsee1): CVS-EOM-EE-CCSD calculations in a two-edge
-molecule (carbon monoxide). In the present implementation, the calculation should be done
-separately for each edge. The first job computes carbon-edge states. Since
-the carbon $1s$ orbital is the highest in energy (among the core $1s$ orbitals
-of the molecule), the input for the C-edge is similar to
-example [7.9.9.2](#ex:cvsee1). Both the oxygen’s and the carbon’s $1s$ orbitals are
-frozen in the reference CCSD calculation. In the EOM part, the carbon
-core-excited states are automatically selected. In this case, using default
-frozen core settings (N_FROZEN_CORE = FC) is equivalent to
-specifying N_FROZEN_CORE = 2. In the second input, the oxygen edge
-is computed. As the core-orbitals of oxygen lie deeper, the frozen core and CVS
-selection specifically targets the oxygen edge by using a smaller core. The
-1$s$ orbital of the oxygen atom is selected by N_FROZEN_CORE = 1. If
-the molecule has other edges, the deepest lying core orbitals, up to and
-including those of the edge of interest, should be selected by an appropriate
-value of N_FROZEN_CORE.
+例 [7.9.9.2](#ex:cvsee1)：在双边分子（一氧化碳）中进行 CVS-EOM-EE-CCSD 计算。
+在当前实现中，应针对每一条边分别进行计算。第一个作业计算碳边态。
+由于碳的 $1s$ 轨道在能量上最高（在该分子的核心 $1s$ 轨道中），
+C 边的输入与例 [7.9.9.2](#ex:cvsee1) 类似。在参考 CCSD 计算中，
+氧和碳的 $1s$ 轨道均被冻结。在 EOM 部分，碳核心激发态被自动选取。
+在这种情况下，使用默认冻结芯设置（N_FROZEN_CORE = FC）
+等价于指定 N_FROZEN_CORE = 2。在第二个输入中，计算氧边。
+由于氧的核心轨道位置更深，冻结芯与 CVS 的选择通过采用更小的芯来
+专门针对氧边。氧原子的 1$s$ 轨道通过 N_FROZEN_CORE = 1 选取。
+若分子还有其他边，则应通过适当的 N_FROZEN_CORE 值，
+选取最深的核心轨道，直至并包括所研究边的轨道。
 - •
 
-Example [7.9.9.2](#ex:cvsee1): calculation of the XAS spectrum of ammonia using
-additional set of Rydberg functions placed on the nitrogen; the exponents of
-the Rydberg functions were generated using Kaufmann’s recipe[[672]](../bib_references/bib.md#bib696)
-.
-Note that when ghost atoms are used, the symmetry is turned off. It can be forced on by using
-FORCE_SYMMETRY_ON keyword.
-Alternatively, this calculation can be set up by adding additional diffuse functions
-to all (or selected) atoms using even-tempered exponents. Users must ensure that the ghost atoms do not lower the symmetry.
+例 [7.9.9.2](#ex:cvsee1)：利用放置在氮原子上的附加 Rydberg 函数组计算氨的 XAS 光谱；
+Rydberg 函数的指数按 Kaufmann 的配方[[672]](../bib_references/bib.md#bib696)
+生成。
+注意，使用虚原子（ghost atoms）时对称性会被关闭。可通过 FORCE_SYMMETRY_ON
+关键字强制开启对称性。
+ alternatively，此计算也可以通过向所有（或所选）原子添加采用偶数 tempered 指数的
+附加弥散函数来设置。用户必须确保虚原子不会降低对称性。
 - •
 
-Example [7.9.9.2](#ex:cvsee1): calculation of the XES spectrum of benzene.
+例 [7.9.9.2](#ex:cvsee1)：计算苯的 XES 光谱。
 - •
 
-Examples [7.9.9.2](#ex:cvsee1) and [7.9.9.2](#ex:cvsee1): calculations of Dyson
-orbitals between core-excited and core-ionized states and between core-excited and valence-ionized states.
+例 [7.9.9.2](#ex:cvsee1) 和 [7.9.9.2](#ex:cvsee1)：分别计算核心激发态与核心电离态之间、
+以及核心激发态与价电离态之间的 Dyson 轨道。
 - •
 
-Example [7.9.9.2](#ex:cvsee1): setup of RIXS calculations.
+例 [7.9.9.2](#ex:cvsee1)：RIXS 计算的设置。
 
-Calculations of L-edge spectra using state-interaction
-approach[[1404]](../bib_references/bib.md#bib1464)
- entails a two-step procedure. First, **Q-Chem** computes necessary CVS-EOM states and SOCs. In the second step, the spin-orbit
-perturbed spectrum is computed by a post-processing script. Scripts, detailed
-instructions, and examples can be found elsewhere.
+采用态相互作用方法[[1404]](../bib_references/bib.md#bib1464)
+计算 L 边光谱需要两步流程。首先，**Q-Chem** 计算所需的 CVS-EOM 态和 SOC。
+在第二步中，由后处理脚本计算受自旋-轨道微扰的光谱。脚本、详细说明和
+示例参见其他资料。
 
-???+ example "Example 7.70: FC-CVS-EOM-EE-CCSD calculation of the first six dipole-allowed core excitation
-energies and their intensities at the oxygen edge of water. Wave-function
-analysis is also performed."
+???+ example "例 7.70: 在水的氧边用 FC-CVS-EOM-EE-CCSD 计算前六个允许的电偶极核心激发能及其强度。同时执行波函数分析。"
     ```qchem
     $molecule
        0 1
@@ -445,9 +403,7 @@ analysis is also performed."
     $end
     ```
 
-???+ example "Example 7.71: FC-CVS-EOM-EE-CCSD calculations of the first two dipole-allowed core
-excitation energies per irreducible representation and their intensities at
-(1) carbon and (2) oxygen edges of carbon monoxide."
+???+ example "例 7.71: 在一氧化碳的 (1) 碳边和 (2) 氧边，用 FC-CVS-EOM-EE-CCSD 计算每个不可约表示中前两个允许的电偶极核心激发能及其强度。"
     ```qchem
     $molecule
        0 1
@@ -481,7 +437,7 @@ excitation energies per irreducible representation and their intensities at
     $end
     ```
 
-???+ example "Example 7.7.72: Calculation of XAS spectrum of ammonia using additional Rydberg functions placed on the ghost atom."
+???+ example "例 7.7.72: 利用放置在虚原子上的附加 Rydberg 函数计算氨的 XAS 光谱。"
     ```qchem
     $comment
     NEXAFS AMMONIA / 6-311++G**+Rydberg functions
@@ -555,7 +511,7 @@ excitation energies per irreducible representation and their intensities at
     
     ```
 
-???+ example "Example 7.73: Calculation of XES spectrum of benzene"
+???+ example "例 7.73: 计算苯的 XES 光谱"
     ```qchem
     $comment
     RI-MP2/cc-pVTZ optimized geometry. XES calculation.
@@ -588,8 +544,7 @@ excitation energies per irreducible representation and their intensities at
     $end
     ```
 
-???+ example "Example 7.74: Calculation of Dyson orbitals between FC-CVS-EOM-EE-CCSD and
-FC-CVS-EOM-IP-CCSD manifolds."
+???+ example "例 7.74: 计算 FC-CVS-EOM-EE-CCSD 与 FC-CVS-EOM-IP-CCSD 流形之间的 Dyson 轨道。"
     ```qchem
     $comment
        CVS-IP/CVS-EE Dyson orbitals, formaldehyde
@@ -614,8 +569,7 @@ FC-CVS-EOM-IP-CCSD manifolds."
     $end
     ```
 
-???+ example "Example 7.75: Calculation of Dyson orbitals between FC-CVS-EOM-EE-CCSD and EOM-IP-CCSD
-manifolds."
+???+ example "例 7.75: 计算 FC-CVS-EOM-EE-CCSD 与 EOM-IP-CCSD 流形之间的 Dyson 轨道。"
     ```qchem
     $comment
        IP/CVS-EE Dyson orbitals, formaldehyde
@@ -640,8 +594,7 @@ manifolds."
     $end
     ```
 
-???+ example "Example 7.76: Calculation of Dyson orbitals between FC-CVS-EOM-EE-CCSD and
-FC-CVS-EOM-IP-CCSD manifolds."
+???+ example "例 7.76: 计算 FC-CVS-EOM-EE-CCSD 与 FC-CVS-EOM-IP-CCSD 流形之间的 Dyson 轨道。"
     ```qchem
     $comment
     CVS-IP/CVS-EE Dyson orbitals, formaldehyde
@@ -666,7 +619,7 @@ FC-CVS-EOM-IP-CCSD manifolds."
     $end
     ```
 
-???+ example "Example 7.77: Calculation of RIXS/REXS for benzene (10 excited states per 2PA active irrep)"
+???+ example "例 7.77: 计算苯的 RIXS/REXS（每个 2PA 活性不可约表示 10 个激发态）"
     ```qchem
     $comment
     RI-MP2/cc-pVTZ optimized geometry.
@@ -707,7 +660,7 @@ FC-CVS-EOM-IP-CCSD manifolds."
     $end
     ```
 
-???+ example "Example 7.78: FC-CVS-EOM-EE-CCSD and FC-CVS-EOM-IP-CCSD calculation for a water dimer with core excitations and ionization arising from the energetically lowest core orbital with the other core orbital kept CVS inactive. The first input reorders MOs. The second input defines CVS active and inactive orbitals before computing core-level states and properties."
+???+ example "例 7.78: 对一个水二聚体进行 FC-CVS-EOM-EE-CCSD 和 FC-CVS-EOM-IP-CCSD 计算，核心激发与电离源自能量最低的核心轨道，另一个核心轨道保持为 CVS 非活性。第一个输入对分子轨道重新排序。第二个输入在计算核心能级态和性质之前定义 CVS 活性与非活性轨道。"
     ```qchem
     $molecule
     0 1
@@ -752,18 +705,9 @@ FC-CVS-EOM-IP-CCSD manifolds."
        CC_MEMORY = 4000
        MEM_STATIC = 600
        BASIS  =  6-31g
+       METHOD  =  hf
+       n_frozen_core = 0
        thresh =  14          Does not converge with defaults
-       n_frozen_core = 2
-       scf_guess = read
-       max_scf_cycles = 0
-       method = eom-ccsd
-       cvs_ee_states = [2]
-       cvs_ip_states = [1]
-       n_fc_cvs_inactive = 1
-       cc_trans_prop = 1
-       cc_ref_prop = 1
-       cc_eom_prop = 1
+       scf_algorithm gdm     Does not converge with defaults
     $end
-    
-    
     ```

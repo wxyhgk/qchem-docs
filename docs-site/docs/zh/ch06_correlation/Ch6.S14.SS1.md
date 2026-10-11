@@ -1,102 +1,81 @@
 ---
-title: "6.14.1 Introduction"
+title: "6.14.1 引言"
 ---
 
-## 6.14.1 Introduction
+## 6.14.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Electron correlation effects can be qualitatively divided into two classes.
-The first class is static or non-dynamical correlation: long wavelength
-low-energy correlations associated with other electron configurations that are
-nearly as low in energy as the lowest energy configuration. These correlation
-effects are important for problems such as homolytic bond breaking, and are the
-hardest to describe because by definition the single configuration
-Hartree-Fock description is not a good starting point. The second class is
-dynamical correlation: short wavelength high-energy correlations associated
-with atomic-like effects. Dynamical correlation is essential for
-*quantitative* accuracy, but a reasonable description of static
-correlation is a prerequisite for a calculation being *qualitatively* correct.
+电子关联效应可定性地分为两类。
+第一类是静态关联（static correlation）或非动力学关联（non-dynamical
+correlation）：即与能量接近最低组态的其他电子组态相关联的、长波长
+低能量的关联。这类关联效应对均裂断键（homolytic bond breaking）等问题
+至关重要，同时也是最难描述的，因为根据定义，单组态的
+Hartree-Fock 描述并不是一个好的起点。第二类是动力学关联
+（dynamical correlation）：与原子尺度效应相关联的、短波长
+高能量的关联。动力学关联对于*定量*精度不可或缺，但对静态关联
+给出合理描述则是计算在*定性*上正确的前提。
 
-In the methods discussed in the previous several subsections, the objective was
-to approximate the total correlation energy. However, in some cases, it is
-useful to model directly the non-dynamical and dynamical correlation
-energies separately. The reasons for this are pragmatic: with approximate
-methods, such a separation can give a more balanced treatment of electron
-correlation along bond-breaking coordinates, or reaction coordinates that
-involve diradicaloid intermediates. The non-dynamical correlation energy is
-conveniently defined as the solution of the Schrödinger equation within a
-small basis set composed of valence bonding, anti-bonding and lone pair
-orbitals: the so-called full valence active space. Solved exactly, this is
-the so-called full valence complete active space SCF (CASSCF),[[1181]](../bib_references/bib.md#bib1234)
+在前面几个小节所讨论的方法中，目标是近似总关联能。然而在某些情况下，
+直接分别建模非动力学关联能与动力学关联能是有益的。其原因在于实用性：
+对于近似方法而言，这种分离可以在断键坐标，或在涉及双自由基型
+（diradicaloid）中间体的反应坐标上，对电子关联给出更均衡的处理。
+非动力学关联能可以便捷地定义为在由价键轨道、反键轨道与
+孤对轨道组成的小基组内求解 Schrödinger 方程所得的结果：即所谓的
+满价层活性空间（full valence active space）。若对此精确求解，
+便是所谓的满价层完整活性空间自洽场（complete active space SCF，CASSCF），[[1181]](../bib_references/bib.md#bib1234)
 
-or equivalently, the fully optimized reaction space (FORS) method.[[1188]](../bib_references/bib.md#bib1242)
+或等价地，即完全优化反应空间（fully optimized reaction space，FORS）方法。[[1188]](../bib_references/bib.md#bib1242)
 
-Full valence CASSCF and FORS involve computational complexity which increases
-exponentially with the number of atoms, and is thus unfeasible beyond systems
-of only a few atoms, unless the active space is further restricted on a
-case-by-case basis. **Q-Chem** includes two relatively economical methods that
-directly approximate these theories using a truncated coupled-cluster doubles
-wave function with optimized orbitals.[[724]](../bib_references/bib.md#bib755)
- They are active space
-generalizations of the OD and QCCD methods discussed previously in
-Sections [6.12.8](topic_odcc.md) and [6.12.9](topic_qccd.md), and are discussed in the following two
-subsections. By contrast with the exponential growth of computational cost with
-problem size associated with exact solution of the full valence CASSCF problem,
-these cluster approximations have only 6th-order growth of computational
-cost with problem size, while often providing useful accuracy.
+满价层 CASSCF 与 FORS 的计算复杂度随原子数呈指数增长，因此除非
+逐例进一步限制活性空间，否则对于仅含少数几个原子的体系之外的
+体系均不可行。**Q-Chem** 包含两种相对经济的方法，它们使用带有
+优化轨道的截断耦合簇双激发（coupled-cluster doubles）波函数
+直接近似这些理论。[[724]](../bib_references/bib.md#bib755)
+它们是前面第 [6.12.8](topic_odcc.md) 节与第 [6.12.9](topic_qccd.md) 节中讨论的 OD 与 QCCD 方法的活性空间
+推广，将在接下来的两个小节中讨论。与精确求解满价层 CASSCF 问题所带来的
+计算成本随问题规模指数增长形成对比，这些簇近似随问题规模仅有
+6 次方的计算成本增长，同时往往能提供有用的精度。
 
-The full valence space is a well-defined theoretical chemical model. For these
-active space coupled-cluster doubles methods, it consists of the union of
-*valence* levels that are occupied in the single determinant reference,
-and those that are empty. The occupied levels that are to be replaced can only
-be the occupied valence and lone pair orbitals, whose number is defined by the
-sum of the valence electron counts for each atom (*i.e.*, 1 for H, 2 for He, 1 for
-Li, *etc.*.). At the same time, the empty virtual orbitals to which the double
-substitutions occur are restricted to be empty (usually anti-bonding) valence
-orbitals. Their number is the difference between the number of valence atomic
-orbitals, and the number of occupied valence orbitals given above. This
-definition (the full valence space) is the default when either of the
-“valence” active space methods are invoked (VOD or VQCCD)
+满价层空间是一个定义明确的理论化学模型。对于这些活性空间耦合簇双激发
+方法，它由单行列式参考中所占据的*价层*能级与空缺能级的并集构成。
+待替换的占据能级只能是占据的价轨道与孤对轨道，其数目由每个原子的
+价电子数之和确定（*即*，H 为 1，He 为 2，Li 为 1，*依此类推*）。
+与此同时，双激发所指向的空虚拟轨道被限制为空缺的（通常是反键的）
+价轨道。其数目等于价原子轨道数与上述占据价轨道数之差。
+当调用任一“价层”活性空间方法（VOD 或 VQCCD）时，
+此定义（满价层空间）即为默认设置。
 
-There is also a second useful definition of a valence active space, which we
-shall call the 1:1 or perfect pairing active space. In this definition, the
-number of occupied valence orbitals remains the same as above. The number of
-empty correlating orbitals in the active space is defined as being exactly the
-same number, so that each occupied orbital may be regarded as being associated
-1:1 with a correlating virtual orbital. In the water molecule,
-for example, this means that the lone pair electrons as well as the
-bond-orbitals are correlated. Generally the 1:1 active space recovers more
-correlation for molecules dominated by elements on the right of the periodic
-table, while the full valence active space recovers more correlation for
-molecules dominated by atoms to the left of the periodic table.
+还有第二种有用的价层活性空间定义，我们称之为 1:1 或
+完美配对（perfect pairing）活性空间。在此定义下，占据价轨道的
+数目与上文相同。活性空间中空的关联轨道数目被定义为恰好等于
+同样的数目，从而每个占据轨道都可视为与一个关联虚拟轨道按
+1:1 配对。例如在水分子中，这意味着孤对电子与成键轨道都被
+关联。一般而言，对于由元素周期表右侧元素主导的分子，1:1 活性空间
+可恢复更多关联；而对于由周期表左侧原子主导的分子，满价层
+活性空间可恢复更多关联。
 
-If you wish to specify either the 1:1 active space as described above, or
-some other choice of active space based on your particular chemical problem,
-then you must specify the numbers of active occupied and virtual orbitals.
-This is done via the standard “window options”, documented earlier in this
-Chapter.
+若您希望指定如上所述的 1:1 活性空间，或基于您的具体化学问题
+选择其他活性空间方案，则必须指定活性占据轨道与活性虚拟轨道的
+数目。这可通过标准的“窗口选项”（window options）完成，
+其说明见本章前文。
 
-Finally we note that the entire discussion of active spaces here leads only
-to specific numbers of active occupied and virtual orbitals. The orbitals
-that are contained within these spaces are optimized by minimizing the trial
-energy with respect to all the degrees of freedom previously discussed: the
-substitution amplitudes, and the orbital rotation angles mixing occupied and
-virtual levels. In addition, there are new orbital degrees of freedom to be
-optimized to obtain the best active space of the chosen size, in the sense
-of yielding the lowest coupled-cluster energy. Thus rotation angles mixing
-active and inactive occupied orbitals must be varied until the energy is
-stationary. Denoting inactive orbitals by primes and active orbitals without
-primes, this corresponds to satisfying
+最后需要指出，此处关于活性空间的全部讨论仅给出活性占据轨道与
+虚拟轨道的具体数目。包含在这些空间之中的轨道，是通过让试探能量
+对先前讨论过的所有自由度——取代振幅（substitution amplitudes），
+以及混合占据能级与虚拟能级的轨道旋转角——取最小值来优化的。
+此外，还有新的轨道自由度需要优化，以便在给出最低耦合簇能量的
+意义上获得所选尺寸下最佳的活性空间。因此，混合活性与惰性占据
+轨道的旋转角必须变化直至能量处于驻定状态。以带撇号表示惰性
+轨道、不带撇号表示活性轨道，这对应于满足
 
 <a id="eq532"></a>
 $$
 \frac{\partial E_{\mathrm{CCD}}}{\partial\theta_{i}^{{j}^{\prime}}}=0 \tag{6.80}
 $$
 
-Likewise, the rotation angles mixing active and inactive virtual orbitals
-must also be varied until the coupled-cluster energy is minimized with
-respect to these degrees of freedom:
+类似地，混合活性与惰性虚拟轨道的旋转角也必须变化，直至耦合簇能量
+对这些自由度取极小值：
 
 <a id="eq533"></a>
 $$

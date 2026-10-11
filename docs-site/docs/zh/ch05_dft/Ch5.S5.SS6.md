@@ -1,87 +1,84 @@
 ---
-title: "5.5.6 Incremental DFT"
+title: "5.5.6 增量式 DFT（Incremental DFT）"
 ---
 
-## 5.5.6 Incremental DFT
+## 5.5.6 增量式 DFT（Incremental DFT）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Incremental DFT (IncDFT) uses the difference density and functional values to improve the
-performance of the DFT quadrature procedure by providing a better screening of negligible
-values. Using this option will yield improved efficiency at each successive iteration
-due to more effective screening.
+增量式 DFT（Incremental DFT, IncDFT）利用差密度（difference density）和泛函值来改进 DFT 数值积分（quadrature）过程的性能，从而对可忽略的值进行更有效的筛除（screening）。启用此选项后，由于筛除更加有效，每次连续迭代的效率都会得到提升。
 
 INCDFT
 
 ### `INCDFT`
 
-> **Toggles the use of the IncDFT procedure for DFT energy calculations.**
+> **控制在 DFT 能量计算中是否使用 IncDFT 过程。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **可选值**：
 >     * FALSE
->     * Do not use IncDFT
+>     * 不使用 IncDFT
 >     * TRUE
->     * Use IncDFT
-> * **Recommendation**: Turning this option on can lead to faster SCF calculations, particularly towards the end of the SCF. Please note that for some systems use of this option may lead to convergence problems.
+>     * 使用 IncDFT
+> * **建议**：开启此选项可以加快 SCF 计算，尤其是在 SCF 迭代的后期阶段。请注意，对于某些体系，使用此选项可能会导致收敛问题。
 
 INCDFT_DENDIFF_THRESH
 
 ### `INCDFT_DENDIFF_THRESH`
 
-> **Sets the threshold for screening density matrix values in the IncDFT procedure.**
+> **设置在 IncDFT 过程中对密度矩阵值进行筛除的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `SCF_CONVERGENCE`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`SCF_CONVERGENCE`
+> * **可选值**：
 >     * $n$
->     * Corresponding to a threshold of
+>     * 对应于阈值为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten the threshold.
+>     * 。
+> * **建议**：如果默认值导致收敛问题，请将此值设置得更高以收紧阈值。
 
 INCDFT_GRIDDIFF_THRESH
 
 ### `INCDFT_GRIDDIFF_THRESH`
 
-> **Sets the threshold for screening functional values in the IncDFT procedure**
+> **设置在 IncDFT 过程中对泛函值进行筛除的阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `SCF_CONVERGENCE`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`SCF_CONVERGENCE`
+> * **可选值**：
 >     * $n$
->     * Corresponding to a threshold of
+>     * 对应于阈值为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten the threshold.
+>     * 。
+> * **建议**：如果默认值导致收敛问题，请将此值设置得更高以收紧阈值。
 
 INCDFT_DENDIFF_VARTHRESH
 
 ### `INCDFT_DENDIFF_VARTHRESH`
 
-> **Sets the lower bound for the variable threshold for screening density matrix values in the IncDFT procedure. The threshold will begin at this value and then vary depending on the error in the current SCF iteration until the value specified by INCDFT_DENDIFF_THRESH is reached. This means this value must be set lower than INCDFT_DENDIFF_THRESH .**
+> **为 IncDFT 过程中筛除密度矩阵值的可变阈值设置下界。阈值将从该值开始，随后根据当前 SCF 迭代的误差而变化，直到达到由 INCDFT_DENDIFF_THRESH 指定的值。这意味着该值必须设置得比 INCDFT_DENDIFF_THRESH 更低。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * $n$
->     * Corresponding to a threshold of
+>     * 对应于阈值为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten accuracy. If this fails, set to 0 and use a static threshold.
+>     * 。
+> * **建议**：如果默认值导致收敛问题，请将此值设置得更高以提高精度。如果仍然无效，则设为 0 并使用静态阈值。
 
 INCDFT_GRIDDIFF_VARTHRESH
 
 ### `INCDFT_GRIDDIFF_VARTHRESH`
 
-> **Sets the lower bound for the variable threshold for screening the functional values in the IncDFT procedure. The threshold will begin at this value and then vary depending on the error in the current SCF iteration until the value specified by INCDFT_GRIDDIFF_THRESH is reached. This means that this value must be set lower than INCDFT_GRIDDIFF_THRESH .**
+> **为 IncDFT 过程中筛除泛函值的可变阈值设置下界。阈值将从该值开始，随后根据当前 SCF 迭代的误差而变化，直到达到由 INCDFT_GRIDDIFF_THRESH 指定的值。这意味着该值必须设置得比 INCDFT_GRIDDIFF_THRESH 更低。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * $n$
->     * Corresponding to a threshold of
+>     * 对应于阈值为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten accuracy. If this fails, set to 0 and use a static threshold.
+>     * 。
+> * **建议**：如果默认值导致收敛问题，请将此值设置得更高以提高精度。如果仍然无效，则设为 0 并使用静态阈值。

@@ -2,77 +2,69 @@
 title: "10.3.1 Interface to the NBO Package"
 ---
 
-## 10.3.1 Interface to the NBO Package
+## 10.3.1 NBO 程序接口
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** incorporates v. 5 of the Natural Bond Orbital (NBO) package for molecular
-properties and wave function analysis,[[459]](../bib_references/bib.md#bib471)
+**Q-Chem** 内置了自然键轨道（Natural Bond Orbital, NBO）程序包的第 5 版（v. 5），用于分子性质与波函数分析[[459]](../bib_references/bib.md#bib471)，
 
-and can interface to v. 6[[459]](../bib_references/bib.md#bib471)
- and v. 7[[460]](../bib_references/bib.md#bib473)
- of the NBO program as well.
-The NBO5 package is invoked simply by setting NBO = TRUE in the *$rem* section
-and is initiated after the SCF wave function is obtained.
-If switched on for a geometry optimization, the NBO5 program will only be
-invoked at the end of the last optimization step.
+并且也可以与 NBO 程序的第 6 版（v. 6）[[459]](../bib_references/bib.md#bib471)
+ 及第 7 版（v. 7）[[460]](../bib_references/bib.md#bib473)
+ 进行接口调用。
+只需在 *$rem* 段中设置 NBO = TRUE 即可调用 NBO5 程序包，它会在求得自洽场（SCF）波函数之后启动。
+若在几何优化过程中开启该选项，NBO5 程序只会在最后一个优化步结束后被调用一次。
 
-To use either NBO6 or NBO7, the desired version of the NBO program must be purchased, downloaded, and installed separately
-from [nbo.chem.wisc.edu](https://nbo.chem.wisc.edu).
-**Q-Chem** can then interface to an external version of the NBO program by:
-(a) setting the `NBOEXE` environment variable appropriately, and
-(b) setting both NBO = TRUE and NBO_EXTERNAL = TRUE in the *$rem*
-section of the **Q-Chem** input file. Note that support for (and new downloads of) the NBO6 program were
-discontinued in 2020. Existing copies should still interface to **Q-Chem**,
-and the newer NBO7 program should interface in the same way. The older NBO5 program continues to be
-a part of **Q-Chem** and the latter is what runs if NBO = TRUE is set without specifying NBO_EXTERNAL.
+若要使用 NBO6 或 NBO7，必须从 [nbo.chem.wisc.edu](https://nbo.chem.wisc.edu) 单独购买、下载并安装所需版本的 NBO 程序。
+随后可通过以下方式让 **Q-Chem** 与外部版本的 NBO 程序进行接口调用：
+(a) 正确设置 `NBOEXE` 环境变量，以及
+(b) 在 **Q-Chem** 输入文件的 *$rem* 段中同时设置 NBO = TRUE 和 NBO_EXTERNAL = TRUE。
+请注意，NBO6 程序的支持（以及新的下载服务）已于 2020 年停止。已有的副本仍应能与 **Q-Chem** 正常接口调用，
+而较新的 NBO7 程序也应以相同的方式进行接口。较旧的 NBO5 程序仍然是 **Q-Chem** 的组成部分，
+如果仅设置 NBO = TRUE 而未指定 NBO_EXTERNAL，则运行的就是 NBO5。
 
-Users should consult the NBO User’s Manual for options and details relating to NBO calculations.
-NBO analysis is also available for excited states calculated using CIS or
-TDDFT. Excited-state NBO analysis is less well-developed, and users should be
-aware that the convergence of the NBO search procedure may be less well-behaved
-for excited states than it is for ground states. Excited state may require specification
-of additional NBO parameters in the *$nbo* section that is described below.
-Consult Ref. 
+用户应查阅 NBO 用户手册（NBO User's Manual）以获取与 NBO 计算相关的选项和详细信息。
+NBO 分析同样可用于采用构型相互作用单激发（CIS）或含时密度泛函理论（TDDFT）计算的激发态。
+激发态的 NBO 分析发展尚不够完善，用户应当注意，激发态下 NBO 搜索过程的收敛性可能不如基态那样良好。
+激发态可能需要在下文所述的 *$nbo* 段中指定额外的 NBO 参数。
+详情请参阅参考文献
 
- for details and suggestions.
+。
 
 NBO
 
 ### `NBO`
 
-> **Controls the use of the NBO package.**
+> **控制是否使用 NBO 程序包。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not invoke the NBO package.
+>     * 不调用 NBO 程序包。
 >     * 1
->     * Do invoke the NBO package, for the ground state.
+>     * 调用 NBO 程序包，针对基态进行分析。
 >     * 2
->     * Invoke the NBO package for the ground state, and also each
->     * CIS, RPA, or TDDFT excited state.
-> * **Recommendation**: None
+>     * 对基态以及每一个 CIS、RPA 或 TDDFT 激发态调用 NBO 程序包。
+> * **建议**: 无
 
 NBOMEMORY
 
 ### `NBOMEMORY`
 
-> **Controls how much memory is allocated to Q-Chem ’s internal NBO (v. 5) package.**
+> **控制为 Q-Chem 内部 NBO（v. 5）程序包分配多少内存。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500000`
+> * **选项**:
 >     * $N$
->     * Allocate
+>     * 分配
 >     * $N$
->     * double-precision words (=
+>     * 个双精度字（即
 >     * $8N$
->     * bytes).
-> * **Recommendation**: This memory comes out of MEM_TOTAL .
+>     * 字节）。
+> * **建议**: 这部分内存从 MEM_TOTAL 中扣除。
 
-The general format for passing options from **Q-Chem** to the NBO program is shown below:
+**Q-Chem** 向 NBO 程序传递选项的通用格式如下所示：
 
 > ```qchem
 > $nbo
@@ -80,32 +72,29 @@ The general format for passing options from **Q-Chem** to the NBO program is sho
 > $end
 > ```
 
-A few usage notes:
+几点使用说明：
 
 1. 1.
 
-*$rem* variable NBO must be set to TRUE before the *$nbo* keyword is recognized.
+在 *$nbo* 关键字被识别之前，*rem* 变量 NBO 必须先设置为 TRUE。
 2. 2.
 
-**Q-Chem** does not support facets of the NBO package which require multiple job runs
+**Q-Chem** 不支持需要多次作业运行（multiple job runs）的 NBO 程序包功能。
 3. 3.
 
-Output of the NBOs can be triggered by the PRINT_ORBITALS
-and MOLDEN_FORMAT keywords. In this case two MOLDEN sections are written to *outfile*.
-The first one corresponds to the regular MOs, the second one to the NBOs.
+可通过 PRINT_ORBITALS 和 MOLDEN_FORMAT 关键字触发 NBO 的输出。此时会向 *outfile* 写入两个 MOLDEN 段。
+第一个对应常规分子轨道（MO），第二个对应自然键轨道（NBO）。
 4. 4.
 
-Print-out of the full set of NAOs, NHOs, NBOs, and NLMOs can be triggered via
-the PLOT keyword in the $nbo section.
-The files of interest are `FILE.31` – `FILE.39` in `$QCSCRATCH/savename`.
-These files can be opened by, *e.g.*, the **ChemCraft** and **JMol** programs.
+可通过在 $nbo 段中使用 PLOT 关键字触发输出完整的自然原子轨道（NAO）、自然杂化轨道（NHO）、自然键轨道（NBO）和自然定域分子轨道（NLMO）集合。
+相关文件为 `$QCSCRATCH/savename` 中的 `FILE.31` – `FILE.39`。
+这些文件可以由 **ChemCraft** 和 **JMol** 等程序打开。
 5. 5.
 
-**Q-Chem**’s internal implementation of NBO v. 5 has an upper limit of 300 atoms and 3,000 basis functions.
+**Q-Chem** 内部实现的 NBO v. 5 最多支持 300 个原子和 3,000 个基函数。
 
-???+ example "Example 10.12: Basic input for NBO computation on formaldehyde.
-The NBOs are printed to outfile in MolDen format and the full set of
-files in native NBO format are written to $QCSCRATCH/savename ."
+???+ example "示例 10.12: 甲醛（formaldehyde）NBO 计算的基本输入。
+NBO 以 MolDen 格式打印到 outfile 中，完整的原生 NBO 格式文件写入 $QCSCRATCH/savename 。"
     ```qchem
     $molecule
        0 1
@@ -128,8 +117,8 @@ files in native NBO format are written to $QCSCRATCH/savename ."
     $end
     ```
 
-???+ example "Example 10.13: NBO calculation that provides the canonical MOs in the natural atomic orbital (NAO) basis.
-This is an easy way to establish the percentage AO character in each canonical MO."
+???+ example "示例 10.13: 以自然原子轨道（NAO）基底给出正则分子轨道（canonical MOs）的 NBO 计算。
+这是确定每个正则 MO 中原子轨道（AO）成分百分比的一种简便方法。"
     ```qchem
     $molecule
        0 1

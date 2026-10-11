@@ -1,13 +1,13 @@
 ---
-title: "8.4 User-Defined Basis Sets ($basis)"
+title: "8.4 用户自定义基组（User-Defined Basis Sets，$basis）"
 ---
 
-# 8.4 User-Defined Basis Sets (*$basis*)
+# 8.4 用户自定义基组（*basis*）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [8.4.1 Introduction](Ch8.S4.SS1.md)
+- [8.4.1 简介](Ch8.S4.SS1.md)
 
-- [8.4.2 Job Control](Ch8.S4.SS2.md)
+- [8.4.2 作业控制](Ch8.S4.SS2.md)
 
-- [8.4.3 Format for User-Defined Basis Sets](Ch8.S4.SS3.md)
+- [8.4.3 用户自定义基组的格式](Ch8.S4.SS3.md)

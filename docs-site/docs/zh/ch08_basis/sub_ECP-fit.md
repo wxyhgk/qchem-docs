@@ -1,27 +1,12 @@
 ---
-title: "8.10.2 ECP Fitting"
+title: "8.10.2 有效核势（ECP）拟合"
 ---
 
-## 8.10.2 ECP Fitting
+## 8.10.2 有效核势（ECP）拟合
 
 (July 4, 2026)
 
-The ECP matrix elements are arguably the most difficult one-electron integrals
-in existence. Indeed, using current methods, the time taken to compute the ECP
-integrals can exceed the time taken to compute the far more numerous electron
-repulsion integrals. **Q-Chem** 5.0 implements a state-of-the-art ECP implementation[[933]](../bib_references/bib.md#bib972)
+有效核势（Effective Core Potential, ECP）矩阵元可以说是最难计算的一电子积分之一。事实上，使用当前方法，计算 ECP 积分所花费的时间可能超过计算数量多得多的电子排斥积分（electron repulsion integrals）所花费的时间。**Q-Chem** 5.0 实现了一套最先进的 ECP 实现方案[[933]](../bib_references/bib.md#bib972)
 
-based on efficient recursion relations and upper bounds.
-This method relies on a restricted radial potential $U_{\ell}(r)$, where the
-radial power is only ever zero, *i.e.* $n=0$. Whilst true for some ECPs, such as
-the Stuttgart-Bonn sets, many other ECPs have radial potentials containing $n=-2$ and $n=-1$ terms. To overcome this challenge, we fit these ECP
-radial potentials using only $n=0$ terms. Each $n=-2$ and $n=-1$ term is
-expanded as a sum of three $n=0$ terms, each with independent contraction
-coefficient $D_{\ell_{k}}$ and Gaussian exponent $\eta_{\ell_{k}}$. The Gaussian
-exponents are given by a predetermined recipe and the contraction coefficients
-are computed in a least squares fitting procedure. The errors introduced by
-the ECP fitting are insignificant and of the same order as those
-introduced by numerical integration present in other ECP methods. For the built-in
-ECPs, fitted variants of each are now provided in the `$QCAUX` directory, *e.g.*,
-`fit-LANL2DZ`. For user-defined ECPs with $n=-2$ or $n=-1$ terms, **Q-Chem** will perform a fit
-at run time with the additional rem keyword ECP_FIT = TRUE.
+其基础是高效的递推关系（recursion relations）与上界（upper bounds）。
+该方法依赖于受限的径向势 $U_{\ell}(r)$，其中径向幂次始终仅为零，*即* $n=0$。虽然这对于某些 ECP（如 Stuttgart-Bonn 基组集合）是成立的，但许多其他 ECP 并不满足这一条件。

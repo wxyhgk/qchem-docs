@@ -1,124 +1,96 @@
 ---
-title: "4.6.6 Resolution of the Identity Fock Matrix Methods"
+title: "4.6.6 恒等式分解 Fock 矩阵方法"
 ---
 
-## 4.6.6 Resolution of the Identity Fock Matrix Methods
+## 4.6.6 恒等式分解 Fock 矩阵方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Evaluation of the Fock matrix (both Coulomb, J, and exchange, K, pieces) can be
-sped up by an approximation known as the resolution-of-the-identity (RI-JK).
-Essentially, the full complexity in common basis sets required to describe
-chemical bonding is not necessary to describe the mean-field Coulomb and
-exchange interactions between electrons. That is, $\rho$ in the left side of
+Fock 矩阵（包括库仑（Coulomb，J）部分与交换（exchange，K）部分）的求值可以通过一种称为恒等式分解（resolution-of-the-identity，RI-JK）的近似来加速。本质上说，在常用基组中描述化学键所需要的完整复杂度，对于描述电子之间的平均场库仑相互作用与交换相互作用而言是不必要的。也就是说，式中等号左侧的 $\rho$ 比单独的 $\lambda\sigma$ 函数对要简单得多。
 
 <a id="A3.S8.EGx4"></a>
 $$
 \displaystyle(\mu\nu|\rho)=\sum_{\lambda\sigma}(\mu\nu|\lambda\sigma)\mathbf{P}_{\lambda\sigma} \tag{4.51}
 $$
 
-is much less complicated than an individual $\lambda\sigma$ function pair. The
-same principle applies to the FTC method in subsection [4.6.5](sect_FTC.md), in which
-case the slowly varying piece of the electron density is replaced with a
-plane-wave expansion.
+同样的原理也适用于第 [4.6.5](sect_FTC.md) 小节中的 FTC 方法，在该方法中是用平面波展开来替代电子密度中变化缓慢的部分。
 
-With the RI-JK approximation, the Coulomb interactions of the function pair
-$\rho(r)=\lambda\sigma(r)P_{\lambda\sigma}$ are fit by a smaller set of
-atom-centered basis functions. In terms of $J$:
+在 RI-JK 近似中，函数对 $\rho(r)=\lambda\sigma(r)P_{\lambda\sigma}$ 的库仑相互作用由一组更小的原子中心辅助基函数来拟合。就 $J$ 而言：
 
 <a id="A3.S8.EGx5"></a>
 $$
 \displaystyle\sum_{\lambda\sigma}\int\textrm{d}^{3}\mathbf{r}_{1}P_{\lambda\sigma}\lambda\sigma(\mathbf{r}_{1})\frac{1}{|\mathbf{r}_{1}-\mathbf{r}|}\approx\sum_{K}\int\textrm{d}^{3}\mathbf{r}_{1}P_{K}K(\mathbf{r}_{1})\frac{1}{|\mathbf{r}_{1}-\mathbf{r}|} \tag{4.52}
 $$
 
-The coefficients $P_{K}$ must be determined to accurately represent the
-potential. This is done by performing a least-squared minimization of the
-difference between $P_{\lambda\sigma}\lambda\sigma(\mathbf{r}_{1})$ and $P_{K}K(\mathbf{r}_{1})$, *with differences measured by the Coulomb metric*. This
-requires a matrix inversion over the space of auxiliary basis functions, which
-may be done rapidly by Cholesky decomposition.
+必须确定系数 $P_{K}$ 以准确表示该势。这是通过对 $P_{\lambda\sigma}\lambda\sigma(\mathbf{r}_{1})$ 与 $P_{K}K(\mathbf{r}_{1})$ 之差做最小二乘极小化来实现的，*且该差值以库仑度规（Coulomb metric）来度量*。这就需要在辅助基函数空间上做一次矩阵求逆，而该求逆可以借助 Cholesky 分解快速完成。
 
-The RI-J can be invoked by either setting RI_J to be true, or (since **Q-Chem** 5.2) specifying
-auxiliary basis set for J using AUX_BASIS_J.
+启用 RI-J 有两种方式：将 RI_J 设为 true，或者（自 **Q-Chem** 5.2 起）通过 AUX_BASIS_J 为 J 指定辅助基组。
 
-The RI method applied to the Fock matrix may be further enhanced by performing
-*local* fitting of a density or function pair element. This is the
-basis of the atomic-RI method (ARI), which has been developed for both Coulomb
-(J) matrix[[1280]](../bib_references/bib.md#bib1333)
- and exchange (K) matrix evaluation.[[1281]](../bib_references/bib.md#bib1334)
+作用于 Fock 矩阵的 RI 方法还可以通过对密度或函数对矩阵元进行*局域*拟合来进一步增强。这就是原子分辨恒等式方法（atomic-RI，ARI）的基础，该方法已针对库仑（J）矩阵[[1280]](../bib_references/bib.md#bib1333) 与交换（K）矩阵[[1281]](../bib_references/bib.md#bib1334) 的求值分别加以发展。
 
-In ARI, only nearby auxiliary functions $K(\mathbf{r})$ are employed to fit the
-target function. This reduces the asymptotic scaling of the matrix-inversion
-step as well as that of many intermediate steps in the digestion of RI
-integrals. Briefly, atom-centered auxiliary functions on nearby atoms are only
-used if they are within the “outer” radius ($R_{1}$) of the fitting region.
-Between $R_{1}$ and the “inner” radius ($R_{0}$), the amplitude of interacting
-auxiliary functions is smoothed by a function that goes from zero to one and
-has continuous derivatives. To optimize efficiency, the van der Waals radius
-of the atom is included in the cutoff so that smaller atoms are dropped from
-the fitting radius sooner. The values of $R_{0}$ and $R_{1}$ are specified as REM
-variables as described below.
+在 ARI 中，仅使用邻近的辅助函数 $K(\mathbf{r})$ 来拟合目标函数。这既降低了矩阵求逆步骤的渐近标度，也降低了 RI 积分处理过程中许多中间步骤的标度。简而言之，只有当邻近原子上以原子为中心的辅助函数位于拟合区域的“外”半径（$R_{1}$）之内时才会被使用。在 $R_{1}$ 与“内”半径（$R_{0}$）之间，相互作用辅助函数的振幅由一个从零平滑变化到一且具有连续导数的函数进行平滑处理。为优化效率，截止条件中包含了原子的范德华半径（van der Waals radius），使得较小的原子更早地被排除在拟合半径之外。$R_{0}$ 与 $R_{1}$ 的取值作为 REM 变量指定，详见下文。
 
 RI_J
 
 ### `RI_J`
 
-> **Toggles the use of the RI algorithm to compute J.**
+> **控制是否使用 RI 算法计算 J。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Turn on RI for J.
-> * **Recommendation**: For large (especially 1D and 2D) molecules the approximation may yield significant improvements in Fock evaluation time when used with ARI .
+>     * 为 J 启用 RI。
+> * **建议**：对于大分子（尤其是一维和二维体系），与 ARI 配合使用时，该近似可显著缩短 Fock 矩阵的求值时间。
 
 RI_K
 
 ### `RI_K`
 
-> **Toggles the use of the RI algorithm to compute K.**
+> **控制是否使用 RI 算法计算 K。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Turn on RI for K.
-> * **Recommendation**: For large (especially 1D and 2D) molecules the approximation may yield significant improvements in Fock evaluation time when used with ARI .
+>     * 为 K 启用 RI。
+> * **建议**：对于大分子（尤其是一维和二维体系），与 ARI 配合使用时，该近似可显著缩短 Fock 矩阵的求值时间。
 
 ARI
 
 ### `ARI`
 
-> **Toggles the use of the atomic resolution-of-the-identity (ARI) approximation.**
+> **控制是否使用原子分辨恒等式（ARI）近似。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Turn on ARI.
-> * **Recommendation**: For large (especially 1D and 2D) molecules the approximation may yield significant improvements in Fock evaluation time.
+>     * 启用 ARI。
+> * **建议**：对于大分子（尤其是一维和二维体系），该近似可显著缩短 Fock 矩阵的求值时间。
 
 ARI_R0
 
 ### `ARI_R0`
 
-> **Determines the value of the inner fitting radius (in Ångstroms)**
+> **确定内拟合半径的数值（单位为埃，Ångstrom）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`4`
+> * **可选值**：
 >     * $n$
->     * User defined radius.
-> * **Recommendation**: For some systems the default value may be too small and the calculation will become unstable.
+>     * 用户自定义半径。
+> * **建议**：对某些体系而言默认值可能过小，从而导致计算不稳定。
 
 ARI_R1
 
 ### `ARI_R1`
 
-> **Determines the value of the outer fitting radius (in Ångstroms)**
+> **确定外拟合半径的数值（单位为埃，Ångstrom）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **可选值**：
 >     * $n$
->     * User defined radius.
-> * **Recommendation**: For some systems the default value may be too small and the calculation will become unstable. This value also determines, in part, the smoothness of the potential energy surface.
+>     * 用户自定义半径。
+> * **建议**：对某些体系而言默认值可能过小，从而导致计算不稳定。该取值还在一定程度上决定了势能面的光滑程度。

@@ -1,12 +1,12 @@
 ---
-title: "5.11.4 Examples"
+title: "5.11.4 示例"
 ---
 
-## 5.11.4 Examples
+## 5.11.4 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 5.25: Charge separation on FAAQ"
+???+ example "示例 5.25: FAAQ 上的电荷分离"
     ```qchem
     $molecule
        0 1
@@ -65,19 +65,14 @@ title: "5.11.4 Examples"
     $end
     ```
 
-The value of 2 under $cdft section in the FAAQ example represents the constraint. The valules,
-1 and -1, represent the coefficients for fragment charges. Suppose the first fragment consists of atom 1–25
-with A excess electrons, and the second fragment consists of atom 26–38 with B excess electrons.
-The $cdft section can be viewd as a system of linear equations as follows:
+在 FAAQ 示例中，`$cdft` 部分下的数值 2 表示约束（constraint）的个数。数值 1 和 -1 表示各片段电荷的系数。假设第一个片段由原子 1–25 组成，带有 A 个多余电子，第二个片段由原子 26–38 组成，带有 B 个多余电子。则 `$cdft` 部分可以看作如下线性方程组：
 
 <a id="A3.S8.EGx19"></a>
 $$
 \displaystyle(\mathbf{1})*A+(\mathbf{-1})*B
 $$
 
-The second equation is zero because the FAAQ is neutral. by solving the system of
-linear equations, one gets A = 1, and B = -1. However, the $cdft section is
-equivalent to the following one.
+第二个方程等于零，因为 FAAQ 是电中性的。求解该线性方程组可得 A = 1，且 B = -1。不过，上述 `$cdft` 部分与下面这个写法是等价的。
 
 > ```qchem
 > $cdft
@@ -88,7 +83,7 @@ equivalent to the following one.
 > $end
 > ```
 
-???+ example "Example 5.26: Cu2-Ox High Spin"
+???+ example "示例 5.26: Cu2-Ox 高自旋态"
     ```qchem
     $molecule
        2 3
@@ -140,7 +135,7 @@ equivalent to the following one.
     $end
     ```
 
-???+ example "Example 5.27: Constrained DFT with FBH charges applied to F ${}^{-}\cdots$ H ${}_{2}$ O interaction"
+???+ example "示例 5.27: 将基于 FBH 电荷的约束密度泛函理论（Constrained DFT）应用于 F ${}^{-}\cdots$ H ${}_{2}$ O 相互作用"
     ```qchem
     $molecule
        -1 1
@@ -150,25 +145,19 @@ equivalent to the following one.
     --
        0 1
        O        -1.2152661043    0.1159898799    0.0000000000
-       H        -0.1545755250    0.1042552996    0.0000000000
-       H        -1.3911772011   -0.8334364448    0.0000000000
+       H        -1.5557250619    1.0945847415    0.0000000000
+       H        -1.5557250619   -0.5546721312    0.8979198369
     $end
     
     $rem
-       METHOD       hf
-       BASIS        aug-cc-pvtz
-       XC_GRID      3
-       CDFT         true
-       CDFT_POP     fbh
-       NO_REORIENT  true
-       POINT_GROUP_SYMMETRY false
-       INTEGRAL_SYMMETRY    false
+       METHOD          B3LYP
+       BASIS           6-31G*
+       SCF_PRINT       TRUE
+       CDFT            TRUE
     $end
     
     $cdft
-       1.0
-       1 1 1
-       0.0
-       1 1 1 s
+       1
+       1  1  1  f
     $end
     ```

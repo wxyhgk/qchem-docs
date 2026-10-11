@@ -1,125 +1,91 @@
 ---
-title: "4.5.5 Level-Shifting"
+title: "4.5.5 能级偏移（Level-Shifting）"
 ---
 
-## 4.5.5 Level-Shifting
+## 4.5.5 能级偏移（Level-Shifting）
 
 (July 4, 2026)
 
-Level-shifting is an old technique that may facilitate SCF convergence in
-systems having small HOMO/LUMO
-gaps.[[578]](../bib_references/bib.md#bib599)
- If the gap is small, a simple
-Fock matrix diagonalization (Roothaan step) may alter the energetic ordering of
-the molecular orbitals, so that after re-populating the electrons according to
-the *aufbau* principle, the overall effect is a discontinuous switch in
-the electron configuration, and the SCF process fails to converge. To remedy
-this fluctuating SCF behavior, one can shift the diagonal elements of the
-virtual block of the Fock matrix (“level-shifting”) to increase the
-calculated HOMO/LUMO gap before diagonalization. With proper
-level-shifting, the energetic ordering of the molecular orbitals is preserved
-during diagonalization and thus the shapes of the orbitals are changed in a
-continuous way at each SCF cycle, leading to a stable iterative process. Using
-perturbation theory, one can show that a proper level shift guarantees that the
-total energy is lowered after Fock matrix
-diagonalization.[[578]](../bib_references/bib.md#bib599)
- It is important to note,
-however, that SCF solutions obtained via level-shifting are not necessarily
-stable ground states. To check the stability of the converged electronic
-state, we recommend invoking the keywords STABILITY_ANALYSIS or
-INTERNAL_STABILITY (see Section [4.3.3](sub_SCF_addOps.md) and
-Section [4.5.17](sub_stability_analysis.md)).
+能级偏移（level-shifting）是一种历史悠久的技术，可帮助 HOMO/LUMO 间隙较小的体系实现自洽场（SCF）收敛[[578]](../bib_references/bib.md#bib599)。
+当间隙较小时，简单的 Fock 矩阵对角化（Roothaan 步骤）可能会改变分子轨道的能量排序，导致按照构造原理（*aufbau* principle）重新填充电子后，整体效果表现为电子组态的不连续切换，从而使 SCF 过程无法收敛。为了解决这种不稳定的 SCF 行为，可以在对角化之前偏移 Fock 矩阵虚块（virtual block）的对角元素（即"能级偏移"），以增大计算得到的 HOMO/LUMO 间隙。通过适当的能级偏移，分子轨道的能量排序在对角化过程中得以保持，从而在每个 SCF 循环中轨道的形状以连续的方式发生变化，形成稳定的迭代过程。利用微扰理论可以证明，恰当的能级偏移能够保证 Fock 矩阵对角化后总能量降低[[578]](../bib_references/bib.md#bib599)。
+但需要注意的是，通过能级偏移获得的 SCF 解未必是稳定的基态。为检验收敛后电子态的稳定性，我们建议使用关键字 STABILITY_ANALYSIS 或 INTERNAL_STABILITY（参见第 [4.3.3](sub_SCF_addOps.md) 节和第 [4.5.17](sub_stability_analysis.md) 节）。
 
-In cases where DIIS or some other SCF algorithm converges quickly, application
-of a level shift usually slows down convergence. In addition, experiences show
-that level-shifting can converge difficult SCF cases to moderate thresholds
-such as $10^{-5}$, but becomes less efficient as the convergence threshold is
-tightened, say, to $10^{-8}$. To obtain tightly-converged solutions,
-level-shifting should be combined with DIIS or another convergence algorithm.
-For difficult SCF cases, invoking level-shifting in the early SCF iterations
-and then turning it off later (in favor of DIIS, say) is often the best
-strategy. As such, **Q-Chem** offers a hybrid SCF algorithm that combines
-level-shifting with DIIS. This is invoked by setting SCF_ALGORITHM =
-LS_DIIS. Level-shifting can also be used on its own (without DIIS),
-by means of the following *$rem* variables.
+在 DIIS 或其他某些 SCF 算法能够快速收敛的情况下，施加能级偏移通常会减慢收敛速度。此外，经验表明，能级偏移可以将困难的 SCF 案例收敛到中等阈值（如 $10^{-5}$），但当收敛阈值收紧（例如收紧到 $10^{-8}$）时，其效率会下降。为获得高精度收敛的解，应将能级偏移与 DIIS 或其他收敛算法结合使用。对于困难的 SCF 案例，常见的最佳策略是在 SCF 迭代早期启用能级偏移，随后再将其关闭（转而使用 DIIS）。因此，**Q-Chem** 提供了一种将能级偏移与 DIIS 相结合的混合 SCF 算法，通过将 SCF_ALGORITHM = LS_DIIS 即可调用。此外，通过以下 *$rem* 变量，也可以单独使用能级偏移（不与 DIIS 联用）。
 
 LEVEL_SHIFT
 
 ### `LEVEL_SHIFT`
 
-> **Determine whether to invoke level-shifting or not together with DIIS.**
+> **确定是否在与 DIIS 联用时启用能级偏移。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Apply level shifting.
+>     * 应用能级偏移。
 >     * FALSE
->     * Do not apply level shifting.
-> * **Recommendation**: Use TRUE if level-shifting is necessary to accelerate SCF convergence.
+>     * 不应用能级偏移。
+> * **建议**: 如果需要能级偏移来加速 SCF 收敛，则使用 TRUE。
 
 GAP_TOL
 
 ### `GAP_TOL`
 
-> **HOMO/LUMO gap threshold to control whether to shift the diagonal elements of the virtual block of the Fock matrix or not. If the HOMO/LUMO gap is less than this threshold, at a given SCF iteration, then the diagonal elements of the virtual block of the Fock matrix are shifted. Otherwise no level-shift is applied.**
+> **HOMO/LUMO 间隙阈值，用于控制是否偏移 Fock 矩阵虚块的对角元素。如果在某次 SCF 迭代中 HOMO/LUMO 间隙小于该阈值，则对 Fock 矩阵虚块的对角元素进行偏移；否则不施加能级偏移。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `300`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: The input number must be an integer between 0 and 9999. The threshold applied is set to /1000 Eh. The default value is provided to make the level-shifting calculation run and should not be taken as optimal for any specific problem. Trial and error may be required to find the optimal threshold. Larger values of generally lead to level-shifting being used more frequently during the SCF convergence process.
+> * **类型**: `INTEGER`
+> * **默认值**: `300`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 输入数值必须是 0 到 9999 之间的整数。实际应用的阈值为 /1000 Eh。默认值的设置只是为了让能级偏移计算能够运行，不应视为任何特定问题的最优值。可能需要通过反复试验来寻找最优阈值。较大的值通常会导致在 SCF 收敛过程中更频繁地使用能级偏移。
 
 LSHIFT
 
 ### `LSHIFT`
 
-> **Constant shift applied to all diagonal elements of the virtual block of the Fock matrix.**
+> **对 Fock 矩阵虚块所有对角元素施加的恒定偏移量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `200`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: The input number must be an integer between 0 and 9999. The actual shift is equal to /1000 Eh. The default value is provided to make the level-shifting calculation run and should not be taken as optimal for any specific problem. Trial and error may be required to find the optimal threshold. Larger level shifts make the SCF process more stable but also slow down convergence, thus requiring more SCF cycles.
+> * **类型**: `INTEGER`
+> * **默认值**: `200`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 输入数值必须是 0 到 9999 之间的整数。实际偏移量等于 /1000 Eh。默认值的设置只是为了让能级偏移计算能够运行，不应视为任何特定问题的最优值。可能需要通过反复试验来寻找最优阈值。较大的偏移量使 SCF 过程更稳定，但同时也会减慢收敛速度，从而需要更多的 SCF 循环。
 
-**Note: 
+**注意：
 
-If either GAP_TOL or LSHIFT or both are explicitly
-specified, then LEVEL_SHIFT is automatically set to TRUE.
-Setting LEVEL_SHIFT = FALSE disables any values of
-GAP_TOL and LSHIFT. Invoking the LS_DIIS algorithm also
-disables any setting of LEVEL_SHIFT.
-**
+如果显式指定了 GAP_TOL 或 LSHIFT 或两者皆指定，则 LEVEL_SHIFT 会自动设置为 TRUE。
+设置 LEVEL_SHIFT = FALSE 会使 GAP_TOL 和 LSHIFT 的任何取值失效。
+调用 LS_DIIS 算法同样会使 LEVEL_SHIFT 的任何设置失效。**
 
 MAX_LS_CYCLES
 
 ### `MAX_LS_CYCLES`
 
-> **The maximum number of DIIS iterations with level-shifting when SCF_ALGORITHM = LS_DIIS . See also THRESH_LS_SWITCH .**
+> **当 SCF_ALGORITHM = LS_DIIS 时，带能级偏移的 DIIS 迭代的最大次数。另见 THRESH_LS_SWITCH。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `MAX_SCF_CYCLES`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `MAX_SCF_CYCLES`
+> * **选项**:
 >     * 1
->     * Only a single DIIS step with level-shifting, and no level-shifting for the remaining DIIS steps.
+>     * 仅执行单步带能级偏移的 DIIS，其余 DIIS 步骤不施加能级偏移。
 >     * $n$
 >     * $n$
->     * DIIS iterations with level-shifting before turning level-shifting off.
-> * **Recommendation**: None
+>     * 在关闭能级偏移之前进行 $n$ 次带能级偏移的 DIIS 迭代。
+> * **建议**: 无
 
 THRESH_LS_SWITCH
 
 ### `THRESH_LS_SWITCH`
 
-> **The threshold for turning off level-shifting in DIIS is $10^{-\mbox{{\small THRESH\_LS\_SWITCH}}}$ when SCF_ALGORITHM is set to LS_DIIS . See also MAX_LS_CYCLES .**
+> **当 SCF_ALGORITHM 设置为 LS_DIIS 时，关闭 DIIS 中能级偏移的阈值为 $10^{-\mbox{{\small THRESH\_LS\_SWITCH}}}$。另见 MAX_LS_CYCLES。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
->     * User-defined.
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **选项**:
+>     * 用户自定义。
+> * **建议**: 无
 
-???+ example "Example 4.9: Input for a RKS calculation using DIIS with level-shifting on a uranium compound."
+???+ example "示例 4.9：在铀配合物上使用带能级偏移的 DIIS 进行 RKS 计算的输入。"
     ```qchem
     $molecule
     0 1
@@ -149,7 +115,7 @@ THRESH_LS_SWITCH
     $end
     ```
 
-???+ example "Example 4.10: Input for a UKS calculation using LS_DIIS on a cobalt compound."
+???+ example "示例 4.10：在钴配合物上使用 LS_DIIS 进行 UKS 计算的输入。"
     ```qchem
     $molecule
        6 2

@@ -1,153 +1,150 @@
 ---
-title: "5.3.3 Exchange Functionals"
+title: "5.3.3 交换泛函"
 ---
 
-## 5.3.3 Exchange Functionals
+## 5.3.3 交换泛函
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Note: 
+**注意：
 
-All exchange functionals in this section can be invoked using the *$rem*
-variable EXCHANGE. Popular and/or recommended functionals within
-each class are listed first and indicated in bold. The rest are in alphabetical order.
+本节中的所有交换泛函均可通过 *$rem* 变量 EXCHANGE 调用。每一类中常用和/或推荐的泛函列在最前面，并以粗体标示。其余泛函按字母顺序排列。
 **
 
 - $\circ$
 
-Local Spin-Density Approximation (LSDA)
+局域自旋密度近似（Local Spin-Density Approximation, LSDA）
 
 - $\bullet$
 
-**Slater**: Slater-Dirac exchange functional (X$\alpha$ method with $\alpha=2/3$)[[329]](../bib_references/bib.md#bib333)
+**Slater**：Slater-Dirac 交换泛函（$\alpha=2/3$ 的 X$\alpha$ 方法）[[329]](../bib_references/bib.md#bib333)
 - $\bullet$
 
-SR_LSDA (BNL): Short-range version of the Slater-Dirac exchange functional[[444]](../bib_references/bib.md#bib464)
+SR_LSDA (BNL)：Slater-Dirac 交换泛函的短程（short-range）版本[[444]](../bib_references/bib.md#bib464)
 - $\circ$
 
-Generalized Gradient Approximation (GGA)
+广义梯度近似（Generalized Gradient Approximation, GGA）
 
 - $\bullet$
 
-**PBE**: Perdew, Burke, and Ernzerhof exchange functional[[1062]](../bib_references/bib.md#bib1112)
+**PBE**：Perdew、Burke 和 Ernzerhof 交换泛函[[1062]](../bib_references/bib.md#bib1112)
 - $\bullet$
 
-**B88**: Becke exchange functional from 1988[[95]](../bib_references/bib.md#bib74)
+**B88**：Becke 1988 年交换泛函[[95]](../bib_references/bib.md#bib74)
 - $\bullet$
 
-**revPBE**: Zhang and Yang one-parameter modification of the PBE exchange functional[[1552]](../bib_references/bib.md#bib1606)
+**revPBE**：Zhang 和 Yang 对 PBE 交换泛函的单参数修正[[1552]](../bib_references/bib.md#bib1606)
 - $\bullet$
 
-AK13: Armiento-Kümmel exchange functional from 2013[[52]](../bib_references/bib.md#bib35)
+AK13：Armiento-Kümmel 2013 年交换泛函[[52]](../bib_references/bib.md#bib35)
 - $\bullet$
 
-B86: Becke exchange functional (X$\alpha\beta\gamma$) from 1986[[92]](../bib_references/bib.md#bib71)
+B86：Becke 1986 年交换泛函（X$\alpha\beta\gamma$）[[92]](../bib_references/bib.md#bib71)
 - $\bullet$
 
-G96: Gill exchange functional from 1996[[453]](../bib_references/bib.md#bib463)
+G96：Gill 1996 年交换泛函[[453]](../bib_references/bib.md#bib463)
 - $\bullet$
 
-mB86: Becke “modified gradient correction” exchange functional from 1986[[93]](../bib_references/bib.md#bib72)
+mB86：Becke 1986 年"修正梯度校正"（modified gradient correction）交换泛函[[93]](../bib_references/bib.md#bib72)
 - $\bullet$
 
-mPW91: modified version (Adamo and Barone) of the 1991 Perdew-Wang exchange functional[[18]](../bib_references/bib.md#bib2)
+mPW91：1991 年 Perdew-Wang 交换泛函的修正版本（Adamo 和 Barone）[[18]](../bib_references/bib.md#bib2)
 - $\bullet$
 
-muB88 ($\mu$B88): Short-range version of the B88 exchange functional by Hirao and coworkers[[609]](../bib_references/bib.md#bib632)
+muB88 ($\mu$B88)：Hirao 及其合作者提出的 B88 交换泛函短程版本[[609]](../bib_references/bib.md#bib632)
 - $\bullet$
 
-muPBE ($\mu$PBE): Short-range version of the PBE exchange functional by Hirao and coworkers[[609]](../bib_references/bib.md#bib632)
+muPBE ($\mu$PBE)：Hirao 及其合作者提出的 PBE 交换泛函短程版本[[609]](../bib_references/bib.md#bib632)
 - $\bullet$
 
-srPBE: Short-range version of the PBE exchange functional by Goll and coworkers[[469]](../bib_references/bib.md#bib481)
+srPBE：Goll 及其合作者提出的 PBE 交换泛函短程版本[[469]](../bib_references/bib.md#bib481)
 - $\bullet$
 
-optB88: Refit version of the original B88 exchange functional (for use with vdW-DF-04) by Michaelides and coworkers[[696]](../bib_references/bib.md#bib728)
+optB88：Michaelides 及其合作者对原始 B88 交换泛函的重新拟合版本（与 vdW-DF-04 配合使用）[[696]](../bib_references/bib.md#bib728)
 - $\bullet$
 
-OPTX: Two-parameter exchange functional by Handy and Cohen[[517]](../bib_references/bib.md#bib531)
+OPTX：Handy 和 Cohen 提出的双参数交换泛函[[517]](../bib_references/bib.md#bib531)
 - $\bullet$
 
-PBEsol: PBE exchange functional modified for solids[[1067]](../bib_references/bib.md#bib1118)
+PBEsol：针对固体体系修正的 PBE 交换泛函[[1067]](../bib_references/bib.md#bib1118)
 - $\bullet$
 
-PW86: Perdew-Wang exchange functional from 1986[[1073]](../bib_references/bib.md#bib1108)
+PW86：Perdew-Wang 1986 年交换泛函[[1073]](../bib_references/bib.md#bib1108)
 - $\bullet$
 
-PW91: Perdew-Wang exchange functional from 1991[[1063]](../bib_references/bib.md#bib1111)
+PW91：Perdew-Wang 1991 年交换泛函[[1063]](../bib_references/bib.md#bib1111)
 - $\bullet$
 
-RPBE: Hammer, Hansen, and Norskov exchange functional (modification of PBE)[[514]](../bib_references/bib.md#bib527)
+RPBE：Hammer、Hansen 和 Norskov 交换泛函（PBE 的修正版本）[[514]](../bib_references/bib.md#bib527)
 - $\bullet$
 
-rPW86: Revised version (Murray *et al.*) of the 1986 Perdew-Wang exchange functional[[969]](../bib_references/bib.md#bib1010)
+rPW86：1986 年 Perdew-Wang 交换泛函的修订版本（Murray *et al.*）[[969]](../bib_references/bib.md#bib1010)
 - $\bullet$
 
-SOGGA: Second-order GGA functional by Zhao and Truhlar[[1567]](../bib_references/bib.md#bib1626)
+SOGGA：Zhao 和 Truhlar 提出的二阶 GGA 泛函[[1567]](../bib_references/bib.md#bib1626)
 - $\bullet$
 
-wPBE ($\omega$PBE): Henderson *et al.* model for the PBE GGA short-range exchange hole[[554]](../bib_references/bib.md#bib569)
+wPBE ($\omega$PBE)：Henderson *et al.* 提出的 PBE GGA 短程交换空穴模型[[554]](../bib_references/bib.md#bib569)
 - $\circ$
 
-Meta-Generalized Gradient Approximation (meta-GGA)
+Meta-广义梯度近似（meta-Generalized Gradient Approximation, meta-GGA）
 
 - $\bullet$
 
-**TPSS**: Tao, Perdew, Staroverov, and Scuseria exchange functional[[1344]](../bib_references/bib.md#bib1402)
+**TPSS**：Tao、Perdew、Staroverov 和 Scuseria 交换泛函[[1344]](../bib_references/bib.md#bib1402)
 - $\bullet$
 
-**revTPSS**: Revised version of the TPSS exchange functional[[1066]](../bib_references/bib.md#bib1120)
+**revTPSS**：TPSS 交换泛函的修订版本[[1066]](../bib_references/bib.md#bib1120)
 - $\bullet$
 
-BLOC: Minor modification of the TPSS exchange functional that works best with TPSSloc correlation
-(both by Della Sala and coworkers)[[264]](../bib_references/bib.md#bib265)
+BLOC：对 TPSS 交换泛函的微小修正（修改），与 TPSSloc 相关泛函配合使用效果最佳
+（两者均由 Della Sala 及其合作者提出）[[264]](../bib_references/bib.md#bib265)
 - $\bullet$
 
-modTPSS: One-parameter version of the TPSS exchange functional[[1069]](../bib_references/bib.md#bib1117)
+modTPSS：TPSS 交换泛函的单参数版本[[1069]](../bib_references/bib.md#bib1117)
 - $\bullet$
 
-oTPSS: TPSS exchange functional with 5 refit parameters (for use with oTPSS correlation)
-by Grimme and coworkers[[462]](../bib_references/bib.md#bib475)
+oTPSS：Grimme 及其合作者提出的带 5 个重新拟合参数的 TPSS 交换泛函（与 oTPSS 相关泛函配合使用）
+[[462]](../bib_references/bib.md#bib475)
 - $\bullet$
 
-PBE-GX: First exchange functional based on a finite uniform electron gas (rather than an infinite UEG)
-by Pierre-François Loos[[860]](../bib_references/bib.md#bib894)
+PBE-GX：Pierre-François Loos 提出的首个基于有限均匀电子气（而非无限均匀电子气 UEG）的交换泛函[[860]](../bib_references/bib.md#bib894)
 - $\bullet$
 
-PKZB: Perdew, Kurth, Zupan, and Blaha exchange functional[[1064]](../bib_references/bib.md#bib1114)
+PKZB：Perdew、Kurth、Zupan 和 Blaha 交换泛函[[1064]](../bib_references/bib.md#bib1114)
 - $\bullet$
 
-regTPSS: Regularized (fixed order of limits issue) version of the TPSS exchange functional[[1191]](../bib_references/bib.md#bib1246)
+regTPSS：TPSS 交换泛函的正则化（regularized）版本（解决极限取值次序问题）[[1191]](../bib_references/bib.md#bib1246)
 - $\bullet$
 
-SCAN: Strongly Constrained and Appropriately Normed exchange functional[[1327]](../bib_references/bib.md#bib1387)
+SCAN：强约束且适当规范化（Strongly Constrained and Appropriately Normed）交换泛函[[1327]](../bib_references/bib.md#bib1387)
 - $\bullet$
 
-rSCAN: Regularized SCAN exchange[[83]](../bib_references/bib.md#bib68)
+rSCAN：正则化的 SCAN 交换泛函[[83]](../bib_references/bib.md#bib68)
 - $\bullet$
 
-r++SCAN: Regularized SCAN with uniform density limit and coordinate scaling behavior[[421]](../bib_references/bib.md#bib430)
+r++SCAN：具有均匀密度极限与坐标缩放行为的正则化 SCAN[[421]](../bib_references/bib.md#bib430)
 - $\bullet$
 
-r2SCAN: Re-Regularized SCAN exchange[[419]](../bib_references/bib.md#bib428)
+r2SCAN：重新正则化的 SCAN 交换泛函[[419]](../bib_references/bib.md#bib428)
 - $\bullet$
 
-r4SCAN: Regularized SCAN with exact constraints obeyed by SCAN[[421]](../bib_references/bib.md#bib430)
+r4SCAN：在满足 SCAN 精确约束条件下的正则化 SCAN[[421]](../bib_references/bib.md#bib430)
 - $\bullet$
 
-revSCAN: Revised SCAN exchange[[944]](../bib_references/bib.md#bib984)
+revSCAN：SCAN 交换泛函的修订版本[[944]](../bib_references/bib.md#bib984)
 - $\bullet$
 
-TM: Tao-Mo exchange functional derived via an accurate modeling of the conventional exchange hole[[1343]](../bib_references/bib.md#bib1403)
+TM：Tao-Mo 交换泛函，通过对常规交换空穴的精确建模推导得到[[1343]](../bib_references/bib.md#bib1403)
 - $\bullet$
 
-regTM: Regularized TM exchange[[1045]](../bib_references/bib.md#bib1090)
+regTM：正则化的 TM 交换泛函[[1045]](../bib_references/bib.md#bib1090)
 - $\bullet$
 
-revTM: Revised TM exchange[[628]](../bib_references/bib.md#bib648)
+revTM：修订的 TM 交换泛函[[628]](../bib_references/bib.md#bib648)
 - $\bullet$
 
-TASK: TASK exchange functional[[53]](../bib_references/bib.md#bib36)
+TASK：TASK 交换泛函[[53]](../bib_references/bib.md#bib36)
 - $\bullet$
 
-mTASK: Modified TASK exchange functional[[989]](../bib_references/bib.md#bib1031)
+mTASK：修正的 TASK 交换泛函[[989]](../bib_references/bib.md#bib1031)

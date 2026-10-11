@@ -1,78 +1,46 @@
 ---
-title: "6.13.4 Job Control Options"
+title: "6.13.4 作业控制选项"
 ---
 
-## 6.13.4 Job Control Options
+## 6.13.4 作业控制选项
 
 (July 4, 2026)
 
-The evaluation of a non-iterative (T) or (2) correction after a coupled-cluster
-singles and doubles level calculation (either CCSD, QCISD or OD) is controlled
-by the correlation keyword, and the specification of any frozen orbitals via
-N_FROZEN_CORE (and possibly N_FROZEN_VIRTUAL).
+在耦合 cluster 单双激发级别计算（CCSD、QCISD 或 OD 均可）之后评估非迭代 (T) 或 (2) 校正，由 `correlation` 关键字控制，而冻结轨道的指定则通过 `N_FROZEN_CORE`（以及可能的 `N_FROZEN_VIRTUAL`）来完成。
 
-For the (2) correction, it is possible to apply the frozen core approximation
-in the reference coupled cluster calculation, and then correlate all orbitals
-in the (2) correction. This is controlled by CC_INCL_CORE_CORR,
-described below.
+对于 (2) 校正，可以在参考耦合 cluster 计算中采用冻结核（frozen core）近似，然后在 (2) 校正中关联所有轨道。该行为由下文描述的 `CC_INCL_CORE_CORR` 控制。
 
-The default is to include core and core-valence correlation automatically in
-the CCSD(2) or OD(2) correction, if the reference CCSD or OD calculation was
-performed with frozen core orbitals. The reason for this choice is that core
-correlation is economical to include via this method (the main cost increase is
-only linear in the number of core orbitals), and such effects are important to
-account for in accurate calculations. This option should be made false if a job
-with explicitly frozen core orbitals is desired. One good reason for freezing
-core orbitals in the correction is if the basis set is physically inappropriate
-for describing core correlation (*e.g.*, standard Pople basis sets, and Dunning
-cc-pV$x$Z basis sets are designed to describe valence-only correlation
-effects). Another good reason is if a direct comparison is desired against
-another method such as CCSD(T) which is always used in the same orbital window
-as the CCSD reference.
+默认情况下，如果参考 CCSD 或 OD 计算使用了冻结核轨道，则 CCSD(2) 或 OD(2) 校正会自动包含核关联及核-价关联。作出这一选择的原因是：通过该方法包含核关联的代价较低（主要计算成本的增加仅与核轨道数成线性关系），而且在精确计算中这些效应非常重要。若希望获得明确冻结核轨道的计算结果，则应将此选项设为 false。在校正中对核轨道进行冻结的一个合理理由是基组在物理上不适合描述核关联（*例如*，标准 Pople 基组和 Dunning cc-pV$x$Z 基组是专为描述仅价层关联效应而设计的）。另一个合理理由是希望与另一种方法（如 CCSD(T)）进行直接比较，而 CCSD(T) 总是使用与 CCSD 参考相同的轨道窗口。
 
-There are several implementations of non-iterative triples available in
-**Q-Chem**. In the original CCMAN suite, (T), (2), and (dT)/(fT) corrections can be computed.
-The parallel scaling of this code is very modest (4 cores max).
-CCMAN2 currently allows only the calculation of (T) and (fT) correction for CCSD wave
-functions. By default, the CCMAN2 code is used for (T); to use the CCMAN code, set CCMAN2 to false.
-There are two versions of (T) in CCMAN2: The default version (native CCMAN2)
-and a new version using **libpt**.
-The implementation based on **libpt** is in-core OpenMP parallel.
-It is significantly faster in most realistic
-calculations, but it does not use point group symmetry, so it might show slower performance for small jobs
-with high symmetry. The **libpt** code is enabled by setting USE_LIBPT=TRUE.
-The CCSD(T) calculation can be restarted using the *$ccsd_pt_restart* data
-printed during the CCSD(T) calculation. To restart the job simply copy the last
-printed *$ccsd_pt_restart* to your **Q-Chem** input file.
+**Q-Chem** 中提供了多种非迭代三激励（non-iterative triples）的实现。在原始的 CCMAN 套件中，可以计算 (T)、(2) 以及 (dT)/(fT) 校正。该代码的并行扩展性非常有限（最多 4 个核心）。CCMAN2 目前仅允许对 CCSD 波函数计算 (T) 和 (fT) 校正。默认使用 CCMAN2 代码来计算 (T)；若要使用 CCMAN 代码，请将 `CCMAN2` 设为 false。CCMAN2 中有两个版本的 (T)：默认版本（原生 CCMAN2）和使用 **libpt** 的新版本。基于 **libpt** 的实现是内存内（in-core）的 OpenMP 并行代码。在大多数实际计算中它显著更快，但它不使用点群对称性，因此对于高对称性的小体系作业，其性能可能反而较慢。通过设置 USE_LIBPT=TRUE 可启用 **libpt** 代码。CCSD(T) 计算可以利用 CCSD(T) 计算过程中打印的 *$ccsd_pt_restart* 数据进行重启。要重启作业，只需将最后一次打印的 *$ccsd_pt_restart* 复制到 **Q-Chem** 输入文件中即可。
 
-**Note: 
+**注意：
 
-For the best performance of **libpt** (T) code, parallel execution should be requested,
-see Section [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel).
+为获得 **libpt** (T) 代码的最佳性能，应请求并行执行，参见第 [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel) 节。
 **
 
 USE_LIBPT
 
 ### `USE_LIBPT`
 
-> **Enable libpt for CCSD(T) calculations in CCMAN2.**
+> **在 CCMAN2 中为 CCSD(T) 计算启用 libpt。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: libpt is now used by default in all real-valued CC/EOM-CC calculations
+> * **建议**: 现在所有实数（real-valued）CC/EOM-CC 计算均默认使用 libpt
 
 CC_INCL_CORE_CORR
 
 ### `CC_INCL_CORE_CORR`
 
-> **Whether to include the correlation contribution from frozen core orbitals in non iterative (2) corrections, such as OD(2) and CCSD(2).**
+> **是否在非迭代 (2) 校正（如 OD(2) 和 CCSD(2)）中包含来自冻结核轨道的关联贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: Use the default unless no core-valence or core correlation is desired ( e.g. , for comparison with other methods or because the basis used cannot describe core correlation).
+> * **建议**: 使用默认值，除非不希望包含核-价关联或核关联（*例如*，为了与其他方法比较，或所用地基组无法描述核关联）。

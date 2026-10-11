@@ -1,61 +1,56 @@
 ---
-title: "11.2.9 SM x Models"
+title: "11.2.9 SM$x$ 模型"
 ---
 
-## 11.2.9 SM$x$ Models
+## 11.2.9 SM$x$ 模型
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-The SM$x$ models were developed by Cramer, Truhlar, and coworkers at the University
-of Minnesota. Versions SM8,[[912]](../bib_references/bib.md#bib942)
- SM12,[[910]](../bib_references/bib.md#bib946)
- and SMD[[909]](../bib_references/bib.md#bib943)
+SM$x$ 模型由明尼苏达大学的 Cramer、Truhlar 及其合作者开发。SM8[[912]](../bib_references/bib.md#bib942)、
+SM12[[910]](../bib_references/bib.md#bib946)
+ 和 SMD[[909]](../bib_references/bib.md#bib943)
 
-are available in **Q-Chem**. Of these, SMD is recommended because it is designed to work with arbitrary basis sets
-(unlike SM8) and it is implemented with both analytic gradients and Hessians (unlike SM8 or SM12).
+版本在 **Q-Chem** 中均可使用。其中推荐使用 SMD，因为它适用于任意基组（与 SM8 不同），
+并且同时实现了解析梯度与 Hessian（与 SM8 和 SM12 均不同）。
 
-Each of these SM$x$ methods is designed as a “universal” solvation model,[[281]](../bib_references/bib.md#bib286)
+这些 SM$x$ 方法中的每一种都被设计为"通用"溶剂化模型，[[281]](../bib_references/bib.md#bib286)
 
-in the sense that it can be applied to any solvent for which a small of descriptors is known.
-The solvent descriptors are:
+其含义是：只要已知某种溶剂的少量描述符（descriptors），该模型就可以应用于该溶剂。
+溶剂描述符包括：
 
 - •
 
-dielectric constant
+介电常数
 - •
 
-refractive index
+折射率
 - •
 
-bulk surface tension
+宏观表面张力
 - •
 
-acidity on the Abraham scale
+Abraham 标度下的酸度
 - •
 
-basicity on the Abraham scale
+Abraham 标度下的碱度
 - •
 
-carbon aromaticity, which equals the fraction of non-hydrogenic
-solvent atoms that are aromatic carbon atoms
+碳芳香性（carbon aromaticity），即非氢溶剂原子中芳香碳原子所占的比例
 - •
 
-electronegative halogenicity, which equals the fraction of
-non-hydrogenic solvent atoms that are F, Cl, or Br).
+电负性卤素性（electronegative halogenicity），即非氢溶剂原子中
+F、Cl 或 Br 所占的比例）。
 
-These models consist of a generalized Born treatment of continuum electrostatic
-interactions, along with nonelectrostatic interactions that are parameterized
-in terms of atomic surface tensions. The nonelectrostatic interactions
-include cavitation, dispersion, and changes in solvent structure, and the
-treatment of these nonelectrostatic effects is crucial to obtaining accurate (free) energies of solvation.
+这些模型由对连续介质静电相互作用的广义 Born（generalized Born）处理，以及以原子表面张力进行参数化的
+非静电相互作用组成。非静电相互作用包括空穴化（cavitation）、色散（dispersion）
+以及溶剂结构变化，对这些非静电效应的正确处理是获得准确溶剂化（自由）能的关键。
 
-An SM$x$ calculation is requested by setting SOLVENT_METHOD = SM8, SM12, or SMD.
-Some method-specific keywords are required (in a *$smx* input section) for some of these models, and these are discussed
-in the sections that follow. At a minimum, each of these models that the solvent be specified in the *$smx* section unless that solvent
-is water. Available solvents are listed in Table [11.7](#table:SMx-solvents). These names should be given in the *$smx* section without
-spaces or hyphens, so that propanoic acid from Table [11.7](#table:SMx-solvents) becomes `propanoicacid` and 1-hexanol becomes `1hexanol`.
+通过设置 SOLVENT_METHOD = SM8、SM12 或 SMD 来请求 SM$x$ 计算。
+其中某些模型需要在 *$smx* 输入节中指定方法专用的关键字，这些关键字在后文各节中讨论。
+至少需要在这类模型的 *$smx* 节中指定溶剂，除非所用溶剂为水。可用溶剂列于表 [11.7](#table:SMx-solvents) 中。
+这些名称在 *$smx* 节中给出时不应包含空格或连字符，因此表 [11.7](#table:SMx-solvents) 中的 propanoic acid 应写作 `propanoicacid`，1-hexanol 应写作 `1hexanol`。
 
-Table 11.7: Solvents available for SM$x$ calculations.${}^{a}$
+表 11.7：可用于 SM$x$ 计算的溶剂。${}^{a}$
 
 <table class="ltx_tabular">
 <tr class="ltx_tr">
@@ -379,80 +374,79 @@ $Z$-1,2-dichloroethene</td>
 </tr>
 <tr class="ltx_tr">
 <td class="ltx_td ltx_align_left ltx_border_tt" colspan="3">
-${}^{a}$<span class="ltx_text" style="font-size:80%;">Solvent names should be specified without hyphens or spaces.</span>
+${}^{a}$<span class="ltx_text" style="font-size:80%;">溶剂名称在指定时不应包含连字符或空格。</span>
 </td>
 </tr>
 </table>
 
-By setting **solvent** = **other**, the user may specify their own solvent. This requires
-specification of the following solvent descriptors:
+通过设置 **solvent** = **other**，用户可以指定自定义溶剂。这需要提供
+以下溶剂描述符：
 
 - •
 
-**Dielec**, the dielectric constant, $\varepsilon$, of the solvent
+**Dielec**，溶剂的介电常数 $\varepsilon$
 - •
 
-**SolN** , the index of refraction at optical frequencies at 293 K, $n_{20}^{D}$
+**SolN**，293 K 下光频折射率 $n_{20}^{D}$
 - •
 
-**SolA** , Abraham’s hydrogen bond acidity, $\sum{\alpha}_{2}^{\text{H}}$
+**SolA**，Abraham 氢键酸度 $\sum{\alpha}_{2}^{\text{H}}$
 - •
 
-**SolB** , Abraham’s hydrogen bond basicity, $\sum{\beta}_{2}^{\text{H}}$
+**SolB**，Abraham 氢键碱度 $\sum{\beta}_{2}^{\text{H}}$
 - •
 
-**SolG** , $\gamma=\gamma_{m}/\gamma^{0}$
-where $\gamma_{m}$ is the macroscopic surface tension at air/solvent
-interface at 298 K and $\gamma^{0}$ is 1 cal mol${}^{-1}$ Å${}^{-2}$
-(1 dyne/cm = 1.43932 cal mol${}^{-1}$ Å${}^{-2}$)
+**SolG**，$\gamma=\gamma_{m}/\gamma^{0}$
+其中 $\gamma_{m}$ 是 298 K 下空气/溶剂界面的宏观表面张力，$\gamma^{0}$ 为 1 cal mol${}^{-1}$ Å${}^{-2}$
+（1 dyne/cm = 1.43932 cal mol${}^{-1}$ Å${}^{-2}$）
 - •
 
-**SolC**, aromaticity ($\phi$), equal to the fraction of non-hydrogen solvent atoms that are aromatic carbon atoms
+**SolC**，芳香性（$\phi$），即非氢溶剂原子中芳香碳原子所占的比例
 - •
 
-**SolH**, electronegative “halogenicity” ($\psi$), equal to the fraction of non-hydrogen solvent atoms that are F, Cl or Br
+**SolH**，电负性"卤素性"（$\psi$），即非氢溶剂原子中 F、Cl 或 Br 所占的比例
 
-These parameters are specified in the *$smx* input section as suggested in Example 11.2.9.
-(Any solvent descriptors that are omitted from the *$smx* section default to zero.)
-Values can be derived from experiment or from
-interpolation or extrapolation of data available for other solvents. Solvent
-parameters for common organic solvents are tabulated in the Minnesota Solvent
-Descriptor Database. The latest version of this database is available at:
+这些参数在 *$smx* 输入节中按示例 11.2.9 所示的方式指定。
+（*​$smx* 节中省略的任何溶剂描述符默认为零。）
+其数值可来自实验，或通过对其他溶剂已有数据进行内插或外推获得。常见有机溶剂的
+溶剂参数收录于 Minnesota 溶剂描述符数据库（Minnesota Solvent
+Descriptor Database）。该数据库的最新版本可通过以下地址获取：
 
 `http://comp.chem.umn.edu/solvation/mnsddb.pdf`
 
-Job controls variables for the *$smx* section that are common to SM8, SM12, and SMD are given below.
+*$smx* 节中对 SM8、SM12 和 SMD 通用的作业控制变量如下所述。
 
 ### `Solvent`
 
-> **Sets the SM $x$ solvent INPUT SECTION: $smx**
+> **设置 SM $x$ 溶剂 输入节：$smx**
 >
-> * **Type**: `STRING`
-> * **Default**: `water`
-> * **Options**:
->     * Any name from the list of solvents given in Table
+> * **类型**: `STRING`
+> * **默认值**: `water`
+> * **可选值**:
+>     * 表
 >     * 11.7
->     * .
-> * **Recommendation**: NONE
+>     * 所列溶剂列表中的任意名称
+>     * 。
+> * **建议**: 无
 
 ### `Print`
 
-> **Controls extra printing for SM $x$ calculations INPUT SECTION: $smx**
+> **控制 SM $x$ 计算的额外输出 输入节：$smx**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Minimal printing
+>     * 最简输出
 >     * 1
->     * Detailed breakdown of energy components (at SCF convergence)
+>     * 能量分项的详细分解（在 SCF 收敛时）
 >     * 2
->     * Additional information, dependent on the specific SM
+>     * 附加信息，取决于具体的 SM
 >     * $x$
->     * model
-> * **Recommendation**: The energy components obtained with print = 1 may be useful, although a summary is printed by default. The value print = 2 is probably only useful for diagnosing problems.
+>     * 模型
+> * **建议**: print = 1 得到的能量分项可能有用，尽管默认情况下已输出摘要。print = 2 的值可能仅用于诊断问题。
 
-???+ example "Example 11.16: SMD model with a user-defined solvent."
+???+ example "示例 11.16: 使用用户自定义溶剂的 SMD 模型。"
     ```qchem
     $comment
     User-defined specification of pentane.
@@ -495,231 +489,176 @@ Job controls variables for the *$smx* section that are common to SM8, SM12, and 
     
     ```
 
-## 11.2.9.1 The SM8 Model
+## 11.2.9.1 SM8 模型
 
-The SM8 model is described in detail in Ref. [[912]](../bib_references/bib.md#bib942)
-. It
-may be employed in conjunction with density functional theory (with any density
-functional available in **Q-Chem**) or with Hartree-Fock theory, but is intended
-for use only with the 6-31G*, 6-31+G*, and 6-31+G** basis sets, for reasons
-discussed below.
+SM8 模型在文献 [[912]](../bib_references/bib.md#bib942)
+ 中有详细描述。
+它可与密度泛函理论（**Q-Chem** 中可用的任意密度泛函）或 Hartree-Fock 理论
+配合使用，但出于下文所述原因，仅 intended 与 6-31G*、6-31+G* 和 6-31+G**
+基组配合使用。
 
-Bulk (continuum) electrostatic interactions in SM8 are described in terms of a
-generalized Born (GB) SCRF,[[569]](../bib_references/bib.md#bib580)
+SM8 中的宏观（连续介质）静电相互作用采用广义 Born（GB）SCRF 描述，[[569]](../bib_references/bib.md#bib580)
 
-using a solute cavity constructed from atom-centered spheres. For the atoms H,
-C, N, O, F, Si, P, S, Cl, and Br, atomic radii have been specifically optimized
-for use with SM8, whereas for other atoms the Bondi radius is
-used,[[146]](../bib_references/bib.md#bib136)
- or else a value of 2.0 Å for atoms not included in
-Bondi’s paper. Geometry-dependent radii are computed from these “intrinsic”
-Coulomb radii via a de-screening approximation.[[912]](../bib_references/bib.md#bib942)
+并使用由原子中心球构造的溶质空穴。对于 H、C、N、O、F、Si、P、S、Cl 和 Br 原子，
+其原子半径是专为 SM8 优化过的，而对于其他原子则使用 Bondi 半径，[[146]](../bib_references/bib.md#bib136)
+若原子未收录在 Bondi 的论文中，则取值为 2.0 Å。
+几何相关的半径通过这些"内禀"库仑半径经去屏蔽（de-screening）近似计算得到。[[912]](../bib_references/bib.md#bib942)
 
-In addition to GB electrostatics, there are several other contributions to the
-SM8 standard-state free energy of solvation. One is the
-electronic-nuclear-polarization (ENP) energy, which is a more descriptive (and precise)
-name for what is often called the electrostatic solvation energy.[[569]](../bib_references/bib.md#bib580)
+除 GB 静电项外，SM8 标准态溶剂化自由能还包括若干其他贡献。其一是
+电子-核-极化（electronic-nuclear-polarization, ENP）能，它是通常所称静电溶剂化能的
+更贴切（且更精确）的名称。[[569]](../bib_references/bib.md#bib580)
 
-Another contribution to the free energy of
-solvation comes from short-range interactions with solvent molecules in the
-first solvation shell, and is sometimes called the cavitation–dispersion–solvent-structure
-(CDS) term. Collectively, the various CDS interactions represent the nonelectrostatic
-contributions to the solvation energy.
+溶剂化自由能的另一贡献来自与第一溶剂化层中溶剂分子的短程相互作用，
+有时称为空穴化-色散-溶剂结构（cavitation–dispersion–solvent-structure, CDS）项。
+各种 CDS 相互作用总体代表溶剂化能中的非静电贡献。
 
-In the SM$x$ models, this nonelectrostatic
-contribution is modeled as a sum of terms proportional to
-the solvent-accessible surface area (SASA) of each individual solute atoms.
-The proportionality constants, which are parameters of the model, have units of
-energy/(area)${}^{2}$ so are sometimes called atomic surface tension parameters.
-The SASA of the solute molecule is the area of a surface generated by the
-center of a spherical effective solvent molecule rolling on the van der Waals
-surface of the solute molecule, as in the solvent-accessible surface that was
-mentioned in Section [11.2.3](topic_pcm-em.md). The SASA is computed using the algorith
-described in Ref. [[835]](../bib_references/bib.md#bib868)
- along with Bondi’s
-values for the van der Waals radii,[[146]](../bib_references/bib.md#bib136)
- or else a value of
-2.0 Å if no Bondi radius is available. (As in the case of
-nonelectrostatic interactions in PCMs, this means that a different molecular
-surface is used for the bulk electrostatics as compared to the
-nonelectrostatic interactions.) The solvent probe radius used to generate the
-SASAs is set to 0.40 Å for all solvents. Note that the solvent-structure
-part of the CDS term includes many aspects of solvent structure that are not
-described by bulk electrostatics, for example, hydrogen bonding, exchange
-repulsion, and the variation of the effective dielectric constant in the first
-solvation shell, relative to its bulk value. The empirical nature of the
-CDS term also makes up for errors due to ($i$) assuming fixed and
-model-dependent values of the intrinsic Coulomb radii, and ($ii$) any
-systematic errors in the description of the solute–solvent electrostatic
-interactions using the GB approximation.
+在 SM$x$ 模型中，这一非静电贡献被建模为与每个溶质原子的溶剂可及表面积
+（solvent-accessible surface area, SASA）成正比的若干项之和。
+这些比例常数是模型的参数，其单位为能量/(面积)${}^{2}$，
+因此有时称为原子表面张力参数。溶质分子的 SASA 是由一个球形有效溶剂分子的球心
+在溶质分子的 van der Waals 表面上滚动所产生的曲面面积，类似于 [11.2.3](topic_pcm-em.md) 节中提到的
+溶剂可及表面。SASA 使用文献 [[835]](../bib_references/bib.md#bib868)
+ 中描述的算法，并配合 Bondi 的
+van der Waals 半径值[[146]](../bib_references/bib.md#bib136)
+ 计算；若无可用的 Bondi 半径，则取
+2.0 Å。（与 PCM 中非静电相互作用的情况一样，这意味着
+宏观静电计算与非静电相互作用计算使用了不同的分子表面。）
+用于生成 SASA 的溶剂探针半径对所有溶剂均设为 0.40 Å。注意，CDS 项中的
+溶剂结构部分包含了诸多未被宏观静电学描述的溶剂结构效应，例如氢键、交换排斥，
+以及第一溶剂化层中有效介电常数相对于其体相值的变化。CDS 项的经验性质
+同时也弥补了以下因素引起的误差：($i$）假设内禀库仑半径取固定且依赖于模型的值，以及
+($ii$）使用 GB 近似描述溶质–溶剂静电相互作用时产生的任何系统误差。
 
-The final component of the SM8 solvation free energy is the concentration
-component. This is zero if the standard-state concentration of the solute is
-the same in the gas and solution phases (*e.g.*, if it is 1 mol/L in the gas
-phase as well as in the solution). Otherwise, this correction can be computed
-using ideal gas formulas, as discussed below.
+SM8 溶剂化自由能的最后一部分是浓度项。若溶质在气相与溶液相中的标准态浓度
+相同（*e.g.*，在气相与溶液相中均为 1 mol/L），则该项为零。
+否则，此校正可按理想气体公式计算，详见下文。
 
-SM8 does not require the user to assign molecular mechanics atom types to atoms
-or groups; all atomic surface tensions in the theory are unique and continuous
-functions of the solute geometry, defined by the model and calculated
-internally within **Q-Chem**. In principle, SM8 can be used with any level of
-electronic structure theory so long as accurate partial charges can be
-computed, but **Q-Chem**’s implementation of SM8 specifically uses
-self-consistently polarized Charge Model 4 (CM4) class IV charges.[[678]](../bib_references/bib.md#bib702)
+SM8 不要求用户为原子或基团指定分子力学原子类型；理论中的所有原子表面张力
+都是溶质几何的唯一且连续函数，由模型定义并在 **Q-Chem** 内部计算。
+原则上，只要能计算准确的partial charges，SM8 可与任意电子结构理论层次配合使用，
+但 **Q-Chem** 对 SM8 的实现专门使用了自洽极化的 Charge Model 4 (CM4) 类 IV 电荷。[[678]](../bib_references/bib.md#bib702)
 
-CM4 charges are obtained from Löwdin population analysis charges, via a
-mapping whose parameters depend on the basis set (and only on the basis set,
-not on the density functional or anything else).
-The supported basis sets in **Q-Chem** are 6-31G*, 6-31+G*, and 6-31+G**;
-other basis sets should not be used in SM8 calculations.
-The charge mapping parameters are given in Ref. [[678]](../bib_references/bib.md#bib702)
-.
+CM4 电荷由 Löwdin 布居分析电荷通过映射获得，映射参数取决于基组
+（且仅取决于基组，与密度泛函或其他因素无关）。
+**Q-Chem** 支持的基组为 6-31G*、6-31+G* 和 6-31+G**；
+其他基组不应在 SM8 计算中使用。
+电荷映射参数见文献 [[678]](../bib_references/bib.md#bib702)
+。
 
-The SM8 solvation free energy is output at $T=298$ K for a standard-state
-concentration of 1 M in both the gas and solution phase. However, solvation
-free energies in the literature are often tabulated using a standard state of
-$P=1$ atm for the gas. To convert 1 M-to1 M solvation free energies at 298 K
-to a standard state consisting of $P=1$ atm for the gas and a 1 M concentration
-in solution, add $+1.89$ kcal/mol to the computed solvation free energy.
+SM8 溶剂化自由能按 $T=298$ K、气相与溶液相标准态浓度均为 1 M 输出。
+然而，文献中的溶剂化自由能常采用气相 $P=1$ atm 的标准态。若要将 298 K 下
+1 M→1 M 的溶剂化自由能转换为气相 $P=1$ atm、溶液相浓度 1 M 的标准态，
+需在计算得到的溶剂化自由能上加上 $+1.89$ kcal/mol。
 
-Solution-phase geometry optimizations can be carried out, but basis sets that
-use spherical harmonic $d$ functions, or angular momentum higher than $d$ ($f$,
-$g$, *etc.*) are not supported. Since, by definition, the 6-31G*, 6-31+G*,
-and 6-31+G** basis sets have Cartesian $d$ shells, they are examples of basis
-sets that may be used for geometry optimization with SM8. Solution-phase
-Hessian calculations can be carried out by numerical differentiation of
-analytical energy gradients or by double differentiation of energies, although
-the former procedure is both more stable and more economical. The analytic
-gradients of SM8 are based on the analytical derivatives of the polarization
-free energy and the analytical derivatives of the CDS terms derived in Ref. [[1577]](../bib_references/bib.md#bib1640)
-.
+可以进行溶液相几何优化，但不支持使用球谐 $d$ 函数或角动量高于 $d$
+（$f$、$g$、*etc.*）的基组。由于按定义 6-31G*、6-31+G* 和 6-31+G**
+基组均采用笛卡尔 $d$ 壳层，因此它们是可配合 SM8 进行几何优化的基组示例。
+溶液相 Hessian 计算可通过对解析能量梯度进行数值微分，或通过对能量进行二次微分来完成，
+不过前一种方法既更稳定又更经济。SM8 的解析梯度基于极化自由能的解析导数
+以及文献 [[1577]](../bib_references/bib.md#bib1640)
+ 中导出的 CDS 项解析导数。
 
-The SM8 test suite contains the following representative examples:
+SM8 测试套件包含以下代表性示例：
 
 - •
 
-single-point solvation energy and analytical gradient calculation for
-2,2-dichloroethenyl dimethyl phosphate in water at the
-M06-2X/6-31G* level;
+2,2-dichloroethenyl dimethyl phosphate 在水中的单点溶剂化能与解析梯度计算，
+方法为 M06-2X/6-31G*；
 - •
 
-single-point solvation energy calculation for 2,2-dichloroethenyl
-dimethyl phosphate in benzene at the M06-2X/6-31G*
-level;
+2,2-dichloroethenyl dimethyl phosphate 在苯中的单点溶剂化能计算，
+方法为 M06-2X/6-31G*；
 - •
 
-single-point solvation energy calculation for 2,2-dichloroethenyl
-dimethyl phosphate in ethanol at the M06-2X/6-31G* level;
+2,2-dichloroethenyl dimethyl phosphate 在乙醇中的单点溶剂化能计算，
+方法为 M06-2X/6-31G*；
 - •
 
-single-point solvation energy calculation for 5-fluorouracil in water at
-the M06/6-31+G* level;
+5-fluorouracil 在水中的单点溶剂化能计算，方法为 M06/6-31+G*；
 - •
 
-single-point solvation energy calculation for 5-fluorouracil in octanol
-at the M06-L/6-31+G* level;
+5-fluorouracil 在辛醇中的单点溶剂化能计算，方法为 M06-L/6-31+G*；
 - •
 
-single-point solvation energy and analytical gradient calculation for
-5-fluorouracil in fluorobenzene at the M06-HF/6-31+G** level;
+5-fluorouracil 在氟苯中的单点溶剂化能与解析梯度计算，方法为 M06-HF/6-31+G**；
 - •
 
-geometry optimization for protonated methanol $\rm CH_{3}OH_{2}^{+}$ in water
-at the B3LYP/6-31G* level;
+质子化甲醇 $\rm CH_{3}OH_{2}^{+}$ 在水中的几何优化，方法为 B3LYP/6-31G*；
 - •
 
-finite-difference frequency (with analytical gradient) calculation for
-protonated methanol $\rm CH_{3}OH_{2}^{+}$ in water at the B3LYP/6-31G* level.
+质子化甲醇 $\rm CH_{3}OH_{2}^{+}$ 在水中的有限差分频率计算（含解析梯度），方法为 B3LYP/6-31G*。
 
-Users who wish to calculate solubilities can calculate them from the free
-energies of solvation by the method described in
-Ref. [[1358]](../bib_references/bib.md#bib1418)
-. The present model can also be used with
-confidence to calculate partition coefficients (*e.g.*, Henry’s Law constants,
-octanol/water partition coefficients, *etc.*) by the method described in
-Ref. 
+希望计算溶解度的用户可以根据溶剂化自由能，采用文献 [[1358]](../bib_references/bib.md#bib1418)
+ 中描述的方法进行计算。
+本模型也可放心地用于计算分配系数（*e.g.*，亨利定律常数、
+正辛醇/水分配系数等），方法见文献
 
-.
+。
 
-The user should note that the free energies of solvation calculated by the SM8
-model in the current version of **Q-Chem** are all what may be called equilibrium
-free energies of solvation. The nonequilibrium algorithm required for
-vertical excitation energies[[813]](../bib_references/bib.md#bib846)
- is not yet available in **Q-Chem**.
-(Nonequilibrium versions of PCMs are available instead; see Section [11.2.3.3](topic_pcm-em.md#subsubsec:noneq-PCM).)
+用户应注意，当前版本 **Q-Chem** 中 SM8 模型计算的溶剂化自由能均为
+所谓平衡溶剂化自由能。用于垂直激发能的非平衡算法[[813]](../bib_references/bib.md#bib846)
 
-## 11.2.9.2 The SM12 Model
+尚未在 **Q-Chem** 中实现。（PCM 提供了相应的非平衡版本，见 [11.2.3.3](topic_pcm-em.md#subsubsec:noneq-PCM) 节。）
 
-The SM12 model[[910]](../bib_references/bib.md#bib946)
- is also available in **Q-Chem**. Similar to
-SM8, it employs (a) the generalized Born approximation for the bulk
-electrostatic contribution to the free energy of solvation, and (b) the same
-formulas (with re-optimized parameters) for CDS contributions. SM12 holds
-several advantages over SM8, and perhaps foremost among these is that it uses
-CM5 charges,[[911]](../bib_references/bib.md#bib945)
- which are based on Hirshfeld population
-analysis, or else charges derived from the electrostatic
-potential,[[1258]](../bib_references/bib.md#bib1310)
- for the bulk electrostatics term.
-These charges are stable with respect to extension of the basis set, and thus
-SM12 can be used with larger basis sets whereas SM8 is limited to 6-31G*,
-6-31+G*, and 6-31+G**, due to instabilities in the Löwdin charges in larger
-basis sets. In addition, SM12 is parameterized using a more diverse training
-set as compared to SM8, and is defined for the entire periodic table. However,
-the SM12 analytic gradient is not available in **Q-Chem** at present.
+## 11.2.9.2 SM12 模型
 
-An SM12 calculation is requested by setting SOLVENT_METHOD =
-SM12 in the *$rem* section. The manner in which the electrostatic
-term is computed is controlled by the **Charges** keyword in the *$smx*
-input section.
+SM12 模型[[910]](../bib_references/bib.md#bib946)
+ 在 **Q-Chem** 中同样可用。与
+SM8 类似，它采用（a）广义 Born 近似处理溶剂化自由能的宏观静电贡献，
+以及（b）相同形式的 CDS 贡献公式（参数经过重新优化）。SM12 相较于 SM8
+具有若干优势，其中最重要的可能是它在宏观静电项中使用了 CM5 电荷，[[911]](../bib_references/bib.md#bib945)
+CM5 电荷基于 Hirshfeld 布居分析，或使用由静电势导出的电荷，[[1258]](../bib_references/bib.md#bib1310)
+这些电荷对基组的扩展是稳定的，因此 SM12 可以使用更大的基组，而 SM8 由于
+Löwdin 电荷在较大基组中的不稳定性，仅限于 6-31G*、6-31+G* 和 6-31+G**。
+此外，与 SM8 相比，SM12 使用更多样化的训练集进行参数化，并且覆盖整个元素周期表。
+然而，**Q-Chem** 目前尚不提供 SM12 的解析梯度。
+
+通过在 *$rem* 节中设置 SOLVENT_METHOD = SM12 来请求 SM12 计算。
+静电项的计算方式由 *$smx* 输入节中的 **Charges** 关键字控制。
 
 ### `Charges`
 
-> **Sets the type of atomic charges for the SM12 electrostatic term. INPUT SECTION: $smx**
+> **设置 SM12 静电项所用原子电荷的类型。输入节：$smx**
 >
-> * **Type**: `STRING`
-> * **Default**: `CM5`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `CM5`
+> * **可选值**:
 >     * CM5
->     * Charge Model 5 charges
->     * 911
->     * Marenich A. V. et al.
->     * J. Chem. Theory Comput.
+>     * Charge Model 5 电荷，
+>     * 参见 911
+>     * Marenich A. V. 等，
+>     * J. Chem. Theory Comput.
 >     * (2012)
->     * ,
->     * 8
->     * ,
->     * pp. 527
->     * .
->     * Link
+>     * ，
+>     * 第 8
+>     * 卷，
+>     * 第 527 页
+>     * 。链接
 >     * MK
->     * Merz-Singh-Kollman charges
->     * 1258
->     * Singh U. C., Kollman P. A.
->     * J. Comput. Chem.
+>     * Merz-Singh-Kollman 电荷，
+>     * 参见 1258
+>     * Singh U. C.、Kollman P. A.，
+>     * J. Comput. Chem.
 >     * (1984)
->     * ,
->     * 5
->     * ,
->     * pp. 129
->     * .
->     * Link
+>     * ，
+>     * 第 5
+>     * 卷，
+>     * 第 129 页
+>     * 。链接
 >     * CHELPG
->     * ChElPG charges
->     * 159
->     * Breneman C. M., Wiberg K. B.
->     * J. Comput. Chem.
+>     * ChElPG 电荷，
+>     * 参见 159
+>     * Breneman C. M.、Wiberg K. B.，
+>     * J. Comput. Chem.
 >     * (1990)
->     * ,
->     * 11
->     * ,
->     * pp. 361
->     * .
->     * Link
-> * **Recommendation**: None. Merz-Singh-Kollman and ChElPG charges are fit to reproduce the molecular electrostatic potential on the van der Waals surface or on a cubic grid, respectively, whereas CM5 is an empirical model based on Hirshfeld population analysis.
+>     * ，
+>     * 第 11
+>     * 卷，
+>     * 第 361 页
+>     * 。链接
+> * **建议**: 无。Merz-Singh-Kollman 电荷和 ChElPG 电荷分别通过拟合以重现 van der Waals 表面上或立方网格上的分子静电势获得，而 CM5 是基于 Hirshfeld 布居分析的经验模型。
 
-???+ example "Example 11.17: SM12CM5 calculation of the solvation free energy of water in the 1-octanol
-solvent."
+???+ example "示例 11.17: 使用 SM12CM5 计算水在 1-octanol 溶剂中的溶剂化自由能。"
     ```qchem
     $molecule
        0 1
@@ -742,60 +681,49 @@ solvent."
     $end
     ```
 
-## 11.2.9.3 The SMD Model
+## 11.2.9.3 SMD 模型
 
-The SMD model[[909]](../bib_references/bib.md#bib943)
- is also available in **Q-Chem**. Within the
-original verion of this model,
-the electrostatic contribution to the free energy solvation is described
-via the IEF-PCM model, where the CDS contributions follow the formulas as SM8
-and SM12 with the parameters re-optimized to be compatible with the IEF-PCM
-electrostatics. Relative to SM8 or SM12, where the electrostatic interactions
-are defined in terms of atomic point charges that are sensitive to the choice
-of basis set (and therefore only certain basis sets are supported for use with
-these models), SMD can be used with any basis set.
+SMD 模型[[909]](../bib_references/bib.md#bib943)
+ 在 **Q-Chem** 中同样可用。在该模型的
+原始版本中，溶剂化自由能的静电贡献通过 IEF-PCM 模型描述，而 CDS 贡献遵循与 SM8
+和 SM12 相同的公式，只是参数经过重新优化以与 IEF-PCM 静电学相容。相对于
+静电相互作用以依赖于基组选择的原子点电荷定义的 SM8 或 SM12（因此这两个模型
+仅支持特定的基组），SMD 可与任意基组配合使用。
 
-The **Q-Chem** implementation of the SMD model uses the simpler C-PCM model by
-default as for SOLVENT_METHOD = PCM. Based on the benchmark
-results shown in Table 4 of Ref. [[569]](../bib_references/bib.md#bib580)
-, the C-PCM results
-essentially have no difference from the IEF-PCM ones in terms of accuracy.
-An SMD energy, gradient, or Hessian calculation is requested by setting
-SOLVENT_METHOD = SMD in the *$rem* section. While **Q-Chem**
-users can vary the parameters for the C-PCM or IEF-PCM part of the SMD calculation, this
-is not recommended because such modifications may be less
-compatible with the CDS parameters and thus lead to less accurate results.
-C-PCM is the preferred electrostatics model for SMD calculations.
-Starting with **Q-Chem** v. 6.3, seminumerical SMD
-Hessians are available, using the C-PCM analytic Hessian[[844]](../bib_references/bib.md#bib876)
- combined
-with a finite-difference evaluation of the CDS contribution.
+**Q-Chem** 对 SMD 模型的实现默认使用更简单的 C-PCM 模型，与 SOLVENT_METHOD = PCM
+相同。基于文献 [[569]](../bib_references/bib.md#bib580)
+ 表 4 中给出的基准测试结果，
+C-PCM 的结果在精度上与 IEF-PCM 的结果基本没有差别。
+通过在 *$rem* 节中设置 SOLVENT_METHOD = SMD 可请求 SMD 的能量、
+梯度或 Hessian 计算。虽然 **Q-Chem** 用户可以修改 SMD 计算中 C-PCM 或 IEF-PCM
+部分的参数，但不推荐这样做，因为此类修改可能与 CDS 参数不够相容，
+从而导致结果精度下降。对于 SMD 计算，C-PCM 是首选的静电学模型。
+从 **Q-Chem** v. 6.3 开始，提供了半数值 SMD Hessian，
+其使用 C-PCM 解析 Hessian[[844]](../bib_references/bib.md#bib876)
+ 并结合 CDS 贡献的有限差分求值。
 
-In **Q-Chem** v. 5.2 and later, the default surface discretization method is changed
-from VTN to SwiG in order to ensure the smoothness of potential energy surface.
-In addition, the gas-phase SCF calculation that takes place before the SM$x$
-calculation is turned off by default. If one wants to obtain the solvation free
-energy, then the gas phase calculation is still required and it can be turned
-on by setting SMX_GAS_PHASE = TRUE. Setting this *$rem*
-variable to TRUE might also be helpful if directly converging SCF with
-the SM$x$ models is difficult.
+在 **Q-Chem** v. 5.2 及更高版本中，默认的表面离散化方法由 VTN 改为 SwiG，
+以保证势能面的光滑性。此外，在 SM$x$ 计算之前进行的气相 SCF 计算默认关闭。
+若需要获得溶剂化自由能，则仍需要进行气相计算，可通过设置 SMX_GAS_PHASE = TRUE
+来开启。若直接使用 SM$x$ 模型收敛 SCF 存在困难，将该 *$rem*
+变量设为 TRUE 也可能有所帮助。
 
 SMX_GAS_PHASE
 
 ### `SMX_GAS_PHASE`
 
-> **Converge the gas-phase SCF first before doing calculations with SM $x$ models**
+> **在使用 SM $x$ 模型进行计算之前先收敛气相 SCF**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Run SMx calculations directly
+>     * 直接运行 SMx 计算
 >     * TRUE
->     * Run gas-phase calculation first
-> * **Recommendation**: Use the default unless solvation free energy is needed. Set it to TRUE if the SCF calculation fails to converge otherwise.
+>     * 先运行气相计算
+> * **建议**: 除非需要溶剂化自由能，否则使用默认值。若 SCF 计算否则无法收敛，则将其设为 TRUE。
 
-???+ example "Example 11.18: SMD force calculation for tetrahydrofuran (THF) in the pentane solvent."
+???+ example "示例 11.18: 四氢呋喃（THF）在戊烷溶剂中的 SMD 力计算。"
     ```qchem
     $molecule
        0 1

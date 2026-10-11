@@ -1,31 +1,11 @@
 ---
-title: "11.5.8 Debugging EFP Jobs"
+title: "11.5.8 调试 EFP 作业"
 ---
 
-## 11.5.8 Debugging EFP Jobs
+## 11.5.8 调试 EFP 作业
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The key advantage of the QM/EFP models is a polarizable self-consistent description
-of a system. However, achieving self-consistent polarization might also create a challenge.
-Polarization catastrophe (induced dipoles on some of the fragments increase infinitely)
-is a frequent scenario in calculations of polar systems. In most cases, however,
-the polarization catastrophe happens due to bad structures (e.g., structures with
-overlapping or closely spaced atoms) or due to bad parameters of effective fragments
-(diverging multipoles, large polarizability values). Keyword EFP_PRINT
-controls the amount of information about the progress of EFP calculation and information
-about fragments. Specifically, EFP_PRINT=1 prints a small number of additional
-details about timings of individual EFP-related steps and convergence of induced dipoles, while
-EFP_PRINT=2 prints warnings in case of large induced dipoles on particular
-fragments and large fragment-fragment electrostatic energies, which might suggest unphyscially
-close contacts between fragments.
+QM/EFP 模型的关键优势在于能够对体系进行可极化的自洽描述。然而，实现自洽极化也可能带来挑战。极化灾难（某些片段上的诱导偶极无限增大）是极性体系计算中常见的情形。不过在大多数情况下，极化灾难的发生是由于结构不佳（例如原子重叠或间距过近的结构）或有效片段的参数不佳（发散的多极矩、过大的极化率值）所致。关键字 EFP_PRINT 用于控制 EFP 计算进度以及片段相关信息的输出量。具体而言，EFP_PRINT=1 会输出少量关于各个 EFP 相关步骤耗时以及诱导偶极收敛情况的附加细节；而 EFP_PRINT=2 则会在特定片段上出现较大的诱导偶极、或片段间静电能过大时输出警告，这些现象可能暗示片段之间存在非物理意义上的过近接触。
 
-Keywords EFP_POL_DAMP and EFP_POL_DAMP_TT_VALUE control polarization
-damping parameters of all fragments in the system. The default value of polarization
-damping (the parameter that takes care of screening electrostatic and polarization fields at
-small inter-fragment distances) is set to 0.6 (see [[1271]](../bib_references/bib.md#bib1324)
- and
-Eq. [11.71](sec_theory.md#eq:pol_damp_1)). EFP_POL_DAMP_TT_VALUE overwrites this default setting,
-with smaller values providing more screening. Polarization damping of individual fragments
-might be further adjusted in fragment parameter file via POLAB setting
-(see `https://libefp2.github.io/parameters.html#additional-efp-parameters`) for detail.
+关键字 EFP_POL_DAMP 和 EFP_POL_DAMP_TT_VALUE 用于控制体系中所有片段的极化阻尼参数。极化阻尼的默认值（该参数用于在片段间距较小时屏蔽静电场和极化场）设为 0.6（见 [[1271]](../bib_references/bib.md#bib1324) 及式 [11.71](sec_theory.md#eq:pol_damp_1)）。EFP_POL_DAMP_TT_VALUE 会覆盖这一默认设置，较小的值提供更强的屏蔽效果。各个片段的极化阻尼还可通过片段参数文件中的 POLAB 设置作进一步调整（详见 `https://libefp2.github.io/parameters.html#additional-efp-parameters`）。

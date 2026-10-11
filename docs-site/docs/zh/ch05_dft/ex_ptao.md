@@ -1,123 +1,109 @@
 ---
-title: "5.12.3 Thermally-Assisted-Occupation DFT (TAO-DFT)"
+title: "5.12.3 热助占据密度泛函理论 (TAO-DFT)"
 ---
 
-## 5.12.3 Thermally-Assisted-Occupation DFT (TAO-DFT)
+## 5.12.3 热助占据密度泛函理论 (TAO-DFT)
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Aiming to study the ground-state properties of large, strongly correlated
-systems with minimum computational complexity, Prof. Jeng-Da Chai recently
-developed thermally-assisted-occupation density functional theory
-(TAO-DFT).[[227]](../bib_references/bib.md#bib222)
- Unlike conventional multi-reference methods, the
-computational complexity of TAO-DFT increases very insignificantly with the
-size of the active space (*i.e.*, an active space restriction is not needed for
-TAO-DFT calculations), and TAO-DFT appears to be very promising for the study
-of large poly-radical systems. TAO-DFT is a DFT scheme with fractional orbital
-occupations produced by the Fermi-Dirac distribution, controlled by a
-fictitious temperature $\theta$, and existing XC functionals (*e.g.*, LDA[[227]](../bib_references/bib.md#bib222)
-,
-GGAs[[228]](../bib_references/bib.md#bib228)
-, global hybrid GGAs[[229]](../bib_references/bib.md#bib229)
- or range-separated hybrid GGAs [[229]](../bib_references/bib.md#bib229)
-) can be used in TAO-DFT.
-The computational cost of the method is similar to that of Kohn-Sham DFT for single-point energy calculations and
-analytical nuclear gradients, and reduces to the cost of Kohn-Sham DFT in the absence
-of strong static correlation effects.
+为了以最小的计算复杂度研究大型强关联体系的基态性质，Jeng-Da Chai 教授最近提出了热助占据密度泛函理论（thermally-assisted-occupation density functional theory, TAO-DFT）。[[227]](../bib_references/bib.md#bib222)
+ 与传统的多参考方法不同，TAO-DFT 的计算复杂度随活性空间大小的增长极为缓慢（*即*，TAO-DFT 计算不需要限制活性空间），因此 TAO-DFT 在大型多自由基体系的研究中非常有前景。TAO-DFT 是一种通过费米-狄拉克（Fermi-Dirac）分布产生分数轨道占据的 DFT 方案，该分布由一个虚拟温度 $\theta$ 控制，并且现有的 XC 泛函（*e.g.*，LDA[[227]](../bib_references/bib.md#bib222)
+、
+GGA[[228]](../bib_references/bib.md#bib228)
+、全局杂化 GGA[[229]](../bib_references/bib.md#bib229)
+ 或 range-separated 杂化 GGA [[229]](../bib_references/bib.md#bib229)
+）均可用于 TAO-DFT。
+该方法在单点能计算和解析核梯度方面的计算代价与 Kohn-Sham DFT 相当，并且在不存在强静态关联效应时，其代价退化为 Kohn-Sham DFT 的代价。
 
-There are several *$rem* variables that are used for TAO-DFT.
+有几个 *$rem* 变量用于 TAO-DFT。
 
 TAO_DFT
 
 ### `TAO_DFT`
 
-> **Controls whether to use TAO-DFT.**
+> **控制是否使用 TAO-DFT。**
 >
-> * **Type**: `Boolean`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `Boolean`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not use TAO-DFT
+>     * 不使用 TAO-DFT
 >     * TRUE
->     * Use TAO-DFT
-> * **Recommendation**: NONE
+>     * 使用 TAO-DFT
+> * **建议**: 无
 
 TAO_DFT_THETA
 
 ### `TAO_DFT_THETA`
 
-> **The parameter $m$ (the mantissa) for the value of the fictitious temperature $\theta=m\times 10^{-n}\ E_{h}$ in TAO-DFT.**
+> **TAO-DFT 中虚拟温度取值 $\theta=m\times 10^{-n}\ E_{h}$ 的参数 $m$（尾数）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `7`
+> * **选项**:
 >     * $m$
->     * Customize the mantissa for the fictitious temperature.
-> * **Recommendation**: NONE
+>     * 自定义虚拟温度的尾数。
+> * **建议**: 无
 
 TAO_DFT_THETA_NDP
 
 ### `TAO_DFT_THETA_NDP`
 
-> **The parameter $n$ (the exponent) for the value of the fictitious temperature $\theta=m\times 10^{-n}\ E_{h}$ in TAO-DFT.**
+> **TAO-DFT 中虚拟温度取值 $\theta=m\times 10^{-n}\ E_{h}$ 的参数 $n$（指数）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * $n$
->     * Customize the exponential power for the fictitious temperature.
-> * **Recommendation**: NONE
+>     * 自定义虚拟温度的指数幂。
+> * **建议**: 无
 
 PTAO
 
 ### `PTAO`
 
-> **Controls whether to perform the pTAO/TDA method.**
+> **控制是否执行 pTAO/TDA 方法。**
 >
-> * **Type**: `Boolean`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `Boolean`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not perform the pTAO/TDA method
+>     * 不执行 pTAO/TDA 方法
 >     * TRUE
->     * Perform the pTAO/TDA method
-> * **Recommendation**: NONE
+>     * 执行 pTAO/TDA 方法
+> * **建议**: 无
 
-Note that setting TAO_DFT_THETA = 0 recovers ordinary
-Kohn-Sham DFT.[[227]](../bib_references/bib.md#bib222)
- In addition to the XC functional, a functional
-$E_{\theta}[\rho]$ is needed in TAO-DFT. Currently available in **Q-Chem** are
-an LDA version[[227]](../bib_references/bib.md#bib222)
- (the ETheta_LDA functional) as well as a
-version based on the gradient expansion approximation[[228]](../bib_references/bib.md#bib228)
- (GEA)
-(the ETheta_GEA functional), and the latter may be substituted for the former in
-the sample jobs below. Furthermore, a functional $E_{x,\theta}[\rho]$ is also
-needed in TAO-DFT for global hybrid (GH) GGAs. Currently available in Q-CHEM is
-an LDA version (the EThetaX_LDA functional) [[229]](../bib_references/bib.md#bib229)
-.
-Moreover, two functionals $E^{\text{SR}}_{x,\theta}[\rho]$ and $E^{\text{LR}}_{x,\theta}[\rho]$ are needed in TAO-DFT for range-separated hybrid (RSH) GGAs, and their LDA versions (the SR_ETHETAX_LDA and LR_ETHETAX_LDA functionals) are now available in Q-CHEM [[815]](../bib_references/bib.md#bib858)
-. Note that both $E^{\text{SR}}_{x,\theta}[\rho]$ and $E^{\text{LR}}_{x,\theta}[\rho]$ depend on the range-separation parameter $\omega$, and $E^{\text{SR}}_{x,\theta}[\rho]$ reduces to $E_{x,\theta}[\rho]$ when $\omega=0$. Therefore, the SR_ETHETAX_LDA functional with $\omega=0$ is another LDA version of $E_{x,\theta}[\rho]$, denoted as ETHETAX19_LDA.
+请注意，将 TAO_DFT_THETA 设为 0 即可恢复普通的 Kohn-Sham DFT。[[227]](../bib_references/bib.md#bib222)
+ 除 XC 泛函外，TAO-DFT 还需要一个泛函
+$E_{\theta}[\rho]$。目前 **Q-Chem** 中可用的有
+一个 LDA 版本[[227]](../bib_references/bib.md#bib222)
+（ETheta_LDA 泛函）以及一个基于
+梯度展开近似（gradient expansion approximation, GEA）的版本[[228]](../bib_references/bib.md#bib228)
+（ETheta_GEA 泛函），在下面的示例作业中，后者可以替换前者。
+此外，对于全局杂化（global hybrid, GH）GGA，TAO-DFT 还需要一个泛函 $E_{x,\theta}[\rho]$。
+目前 Q-CHEM 中可用的是一个 LDA 版本（EThetaX_LDA 泛函）[[229]](../bib_references/bib.md#bib229)
+。
+另外，对于 range-separated 杂化（RSH）GGA，TAO-DFT 还需要两个泛函 $E^{\text{SR}}_{x,\theta}[\rho]$ 和 $E^{\text{LR}}_{x,\theta}[\rho]$，其 LDA 版本（SR_ETHETAX_LDA 和 LR_ETHETAX_LDA 泛函）现已在 Q-CHEM 中提供 [[815]](../bib_references/bib.md#bib858)
+。请注意，$E^{\text{SR}}_{x,\theta}[\rho]$ 和 $E^{\text{LR}}_{x,\theta}[\rho]$ 都依赖于 range-separation 参数 $\omega$，并且当 $\omega=0$ 时，$E^{\text{SR}}_{x,\theta}[\rho]$ 退化为 $E_{x,\theta}[\rho]$。因此，取 $\omega=0$ 的 SR_ETHETAX_LDA 泛函是 $E_{x,\theta}[\rho]$ 的另一个 LDA 版本，记作 ETHETAX19_LDA。
 
-To improve the performance of TAO-DFT functionals, the B97-type functionals with the semi-empirical dispersion correction based on the D4 model are optimized in TAO-DFT using the system-independent fictitious temperatures, resulting in TAO-B97-D4, TAO-B97X-D4 and TAO-$\omega$B97X-D4 [[815]](../bib_references/bib.md#bib858)
-. With the constraint $\theta=0$, the B97-type RSH functional is also optimized in KS-DFT, resulting in KS-$\omega$B97X-D4 [[815]](../bib_references/bib.md#bib858)
- (see Example [5.6.3](ex_ks-wb97xd4.md) for the usage).
+为了提升 TAO-DFT 泛函的性能，采用基于 D4 模型的半经验色散校正的 B97 型泛函在 TAO-DFT 框架下使用与体系无关的虚拟温度进行了优化，得到了 TAO-B97-D4、TAO-B97X-D4 和 TAO-$\omega$B97X-D4 [[815]](../bib_references/bib.md#bib858)
+。在约束 $\theta=0$ 下，B97 型 RSH 泛函也在 KS-DFT 中进行了优化，得到了 KS-$\omega$B97X-D4 [[815]](../bib_references/bib.md#bib858)
+（用法参见示例 [5.6.3](ex_ks-wb97xd4.md)）。
 
-Spurious excitations may arise in the time-dependent extension of TAO-DFT with the adiabatic xc kernel (TDTAO-DFT) when $\theta>0$ [[1523]](../bib_references/bib.md#bib1587)
-, similar to time-dependent density-matrix functional theory (TDDMFT) using the adiabatic approximation [[442]](../bib_references/bib.md#bib453)
-. To address this issue, a post-TAO/TDA method (pTAO/TDA) was proposed [[815]](../bib_references/bib.md#bib858)
-. In the pTAO/TDA method, the energy of state X relative to the ground state (i.e., the excitation energy of state X) is given by Eq. (85) in Ref. [[815]](../bib_references/bib.md#bib858)
-:
+当 $\theta>0$ 时，使用绝热 xc 核的 TAO-DFT 含时推广（TDTAO-DFT）中可能出现虚假激发（spurious excitations）[[1523]](../bib_references/bib.md#bib1587)
+，这与采用绝热近似的含时密度矩阵泛函理论（TDDMFT）类似 [[442]](../bib_references/bib.md#bib453)
+。为解决这一问题，人们提出了一种 post-TAO/TDA 方法（pTAO/TDA）[[815]](../bib_references/bib.md#bib858)
+。在 pTAO/TDA 方法中，态 X 相对于基态的能量（即态 X 的激发能）由文献 [[815]](../bib_references/bib.md#bib858)
+ 中的公式 (85) 给出：
 
 <a id="eq:excitationX"></a>
 $$
 \omega_{\text{pTAO/TDA}}[\text{X}]=(\omega[\text{X}]-\omega[\text{A}_{1}])+(E_{\text{A}_{1}}-E_{\text{GS}}). \tag{5.76}
 $$
 
-Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state, which is available in Q-CHEM through PTAO = TRUE (see Example 5.12.3). In addition, $E_{\text{GS}}$ and $E_{\text{A}_{1}}$ are the ground-state energy and the lowest excitation energy among different spin states of the system, respectively, which are obtained with TAO-DFT. Note that, $(\omega[\text{X}]-\omega[\text{A}_{1}])$ is adopted to suppress the effect of choice of reference state (e.g., the pTAO reference state).
+其中，$\omega[\text{X}]$ 是 X 相对于 pTAO 参考态的能量，可通过在 Q-CHEM 中设置 PTAO = TRUE 获得（参见示例 5.12.3）。此外，$E_{\text{GS}}$ 和 $E_{\text{A}_{1}}$ 分别是通过 TAO-DFT 得到的体系基态能量和不同自旋态之间的最低激发能。请注意，采用 $(\omega[\text{X}]-\omega[\text{A}_{1}])$ 是为了抑制参考态（例如 pTAO 参考态）选择所带来的影响。
 
-???+ example "Example 5.30: TAO-LDA calculation on Be atom"
+???+ example "示例 5.30: Be 原子的 TAO-LDA 计算"
     ```qchem
     $molecule
        0 1
@@ -139,7 +125,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.31: TAO-PBE, spin-restricted calculation on stretched N ${}_{2}$"
+???+ example "示例 5.31: 拉伸 N ${}_{2}$ 的 TAO-PBE 自旋限制计算"
     ```qchem
     $molecule
        0 1
@@ -162,7 +148,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.32: TAO-PBE, spin-unrestricted calculation on stretched N ${}_{2}$"
+???+ example "示例 5.32: 拉伸 N ${}_{2}$ 的 TAO-PBE 自旋非限制计算"
     ```qchem
     $molecule
        0 1
@@ -189,7 +175,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.33: TAO-PBE0 calculation on H ${}_{2}$ molecule"
+???+ example "示例 5.33: H ${}_{2}$ 分子的 TAO-PBE0 计算"
     ```qchem
     $molecule
        0 1
@@ -218,7 +204,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.34: TAO-B3LYP calculation on H ${}_{2}$ molecule"
+???+ example "示例 5.34: H ${}_{2}$ 分子的 TAO-B3LYP 计算"
     ```qchem
     $molecule
        0 1
@@ -249,7 +235,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.35: TAO-B97-D4 calculation on H ${}_{2}$ molecule"
+???+ example "示例 5.35: H ${}_{2}$ 分子的 TAO-B97-D4 计算"
     ```qchem
     $molecule
     0 1
@@ -292,7 +278,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.36: TAO-B97X-D4 calculation on H ${}_{2}$ molecule"
+???+ example "示例 5.36: H ${}_{2}$ 分子的 TAO-B97X-D4 计算"
     ```qchem
     $molecule
     0 1
@@ -337,7 +323,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.37: TAO- $\omega$ B97X-D4 calculation on H ${}_{2}$ molecule"
+???+ example "示例 5.37: H ${}_{2}$ 分子的 TAO- $\omega$ B97X-D4 计算"
     ```qchem
     $molecule
     0 1
@@ -386,7 +372,7 @@ Here, $\omega[\text{X}]$ is the relative energy of X to the pTAO reference state
     $end
     ```
 
-???+ example "Example 5.38: TAO- $\omega$ B97X-D4 using the pTAO/TDA method for the calculation of relative energies with respect to the pTAO reference state for the Ar $\cdots$ S ${}_{3}$ dimer"
+???+ example "示例 5.38: 使用 pTAO/TDA 方法与 TAO- $\omega$ B97X-D4 计算 Ar $\cdots$ S ${}_{3}$ 二聚体相对于 pTAO 参考态的相对能量"
     ```qchem
     $comment
      Ar-S3 in the singlet state with intermolecular distance R = 5 angstrom

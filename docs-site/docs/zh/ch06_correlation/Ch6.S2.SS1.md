@@ -1,116 +1,100 @@
 ---
-title: "6.2.1 Overview"
+title: "6.2.1 概述"
 ---
 
-## 6.2.1 Overview
+## 6.2.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Treatment of core electrons is controlled by N_FROZEN_CORE.
-Starting from **Q-Chem** v. 5.0, the core electrons are frozen by default in
-most post-Hartree–Fock calculations. Selected virtual orbitals can also be
-frozen by using N_FROZEN_VIRTUAL keyword
-(the default for this is zero).
+核心电子的处理由 N_FROZEN_CORE 控制。
+从 **Q-Chem** v. 5.0 开始，在大多数后 Hartree–Fock 计算中，核心电子默认被冻结。
+选定的虚轨道也可以通过 N_FROZEN_VIRTUAL 关键字进行冻结
+（该关键字的默认值为零）。
 
-The number of core electrons in an atom is relatively well-defined, and
-consists of certain atomic shells. (Note that effective core potentials are available in both
-“small-core” and “large-core” varieties; see Section [8.10](../ch08_basis/sec_ECPs.md).)
-For example, in phosphorus the core consists of 1$s$, 2$s$,
-and 2$p$ shells, for a total of ten electrons. In molecular systems, the core
-electrons are usually chosen as those occupying the $n/2$ lowest energy
-orbitals, where $n$ is the number of core electrons in the constituent atoms.
-In some cases, particularly in the lower parts of the periodic table, this
-definition is inappropriate and can lead to significant errors in the
-correlation energy. Vitaly Rassolov has implemented an alternative definition
-of core electrons within **Q-Chem** which is based on a Mulliken population
-analysis, and which addresses this problem.[[1152]](../bib_references/bib.md#bib1204)
+一个原子中核心电子的数目相对明确，由某些原子壳层构成。（注意，有效核势（Effective Core Potentials, ECP）有"小核"（small-core）和"大核"（large-core）两种类型；参见第 [8.10](../ch08_basis/sec_ECPs.md) 节。）
+例如，在磷原子中，核心由 $1s$、$2s$ 和 $2p$ 壳层组成，共计十个电子。在分子体系中，核心电子通常被选为占据能量最低的 $n/2$ 个轨道的电子，其中 $n$ 为各组成原子中核心电子的数目。在某些情况下，特别是元素周期表下方的重元素区域，这种定义并不合适，可能导致关联能出现显著误差。Vitaly Rassolov 在 **Q-Chem** 中实现了一种基于 Mulliken 布居分析的核心电子替代定义，从而解决了这一问题。[[1152]](../bib_references/bib.md#bib1204)
 
-The current implementation is restricted to *n-kl* type basis sets such as
-3-21 or 6-31, and related bases such as 6-31+G(d). There are essentially two
-cases to consider, the outermost 6G functions (or 3G in the case of the 3-21G
-basis set) for Na, Mg, K and Ca, and the 3d functions for the elements Ga—Kr.
-Whether or not these are treated as core or valence is determined by the
-CORE_CHARACTER *$rem*, as summarized in Table [6.1](#tab:corechar).
+目前的实现仅限于 *n-kl* 型基组（basis set），如 3-21 或 6-31，以及相关基组如 6-31+G(d)。本质上需要考虑两种情况：Na、Mg、K 和 Ca 的最外层 6G 函数（在 3-21G 基组的情况下为 3G），以及 Ga—Kr 元素的 3d 函数。这些函数是被视为核心还是价层，由 CORE_CHARACTER *$rem* 决定，具体汇总于表 [6.1](#tab:corechar)。
 
-| CORE_CHARACTER | Outermost 6G (3G) | 3d (Ga–Kr) |
+| CORE_CHARACTER | 最外层 6G (3G) | 3d (Ga–Kr) |
 | --- | --- | --- |
-|  | for Na, Mg, K, Ca |  |
-| 1 | valence | valence |
-| 2 | valence | core |
-| 3 | core | core |
-| 4 | core | valence |
+|  | 针对 Na、Mg、K、Ca |  |
+| 1 | 价层 | 价层 |
+| 2 | 价层 | 核心 |
+| 3 | 核心 | 核心 |
+| 4 | 核心 | 价层 |
 
-Table 6.1:  A summary of the effects of different core definitions
+表 6.1: 不同核心定义效果的汇总
 
 N_FROZEN_CORE
 
 ### `N_FROZEN_CORE`
 
-> **Sets the number of frozen core orbitals in a post-Hartree–Fock calculation.**
+> **设置后 Hartree–Fock 计算中冻结的核心轨道数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `FC`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `FC`
+> * **可选值**:
 >     * FC
->     * Frozen Core approximation (all core orbitals frozen).
+>     * 冻结核心近似（Frozen Core approximation，冻结所有核心轨道）。
 >     * $n$
->     * Freeze
+>     * 冻结
 >     * $n$
->     * core orbitals (if set to 0, all electrons will be active).
-> * **Recommendation**: Correlated calculations calculations are more efficient with frozen core orbitals. Use default if possible.
+>     * 个核心轨道（若设为 0，则所有电子均为活性电子）。
+> * **建议**: 冻结核心轨道可使关联计算更加高效。尽可能使用默认值。
 
-**Note: 
+**注意：
 
-The default setting (N_FROZEN_CORE=FC)
-does not work correctly in QM/MM calculations. One should
-specify the number of frozen core orbitals explicitly.
+默认设置（N_FROZEN_CORE=FC）
+在 QM/MM 计算中无法正确工作。应当
+显式指定冻结核心轨道的数目。
 **
 
 N_FROZEN_VIRTUAL
 
 ### `N_FROZEN_VIRTUAL`
 
-> **Sets the number of frozen virtual orbitals in a post-Hartree–Fock calculation.**
+> **设置后 Hartree–Fock 计算中冻结的虚轨道数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * Freeze
+>     * 冻结
 >     * $n$
->     * virtual orbitals.
-> * **Recommendation**: None
+>     * 个虚轨道。
+> * **建议**: 无
 
 CORE_CHARACTER
 
 ### `CORE_CHARACTER`
 
-> **Selects how the core orbitals are determined in the frozen-core approximation.**
+> **选择在冻结核心近似中如何确定核心轨道。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Use energy-based definition.
+>     * 使用基于能量的定义。
 >     * 1-4
->     * Use Mulliken-based definition (see Table
+>     * 使用基于 Mulliken 的定义（详见表
 >     * 6.1
->     * for details).
-> * **Recommendation**: Use the default, unless performing calculations on molecules with heavy elements.
+>     * ）。
+> * **建议**: 使用默认值，除非对含重元素的分子进行计算。
 
 PRINT_CORE_CHARACTER
 
 ### `PRINT_CORE_CHARACTER`
 
-> **Determines the print level for the CORE_CHARACTER option.**
+> **决定 CORE_CHARACTER 选项的输出打印级别。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * No additional output is printed.
+>     * 不打印额外输出。
 >     * 1
->     * Prints core characters of occupied MOs.
+>     * 打印占据分子轨道（occupied MOs）的核心特征。
 >     * 2
->     * Print level 1, plus prints the core character of AOs.
-> * **Recommendation**: Use the default, unless you are uncertain about what the core character is.
+>     * 在级别 1 的基础上，额外打印原子轨道（AO）的核心特征。
+> * **建议**: 使用默认值，除非你不确定核心特征为何。

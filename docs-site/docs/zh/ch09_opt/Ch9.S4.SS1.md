@@ -1,36 +1,28 @@
 ---
-title: "9.4.1 Introduction"
+title: "9.4.1 引言"
 ---
 
-## 9.4.1 Introduction
+## 9.4.1 引言
 
 (July 4, 2026)
 
-Constrained optimization refers to the optimization of molecular structures
-(transition state or minimum-energy) in which certain parameters such as bond
-lengths, bond angles or dihedral angles are fixed. **Q-Chem** can handle constraints
-directly in delocalized internal coordinates using the method of Lagrange
-multipliers (see Section [9.1.5](sec_geom_opt_theory_constrained.md)). Features of constrained
-optimization in **Q-Chem** are:
+约束优化（Constrained Optimization）是指在优化分子结构（过渡态或能量极小点）时，固定某些参数（如键长、键角或二面角）的优化过程。**Q-Chem** 能够在离域内坐标（Delocalized Internal Coordinates）中直接处理约束，所采用的方法是拉格朗日乘子法（Lagrange Multipliers）（参见第 [9.1.5 节](sec_geom_opt_theory_constrained.md)）。**Q-Chem** 约束优化的特点包括：
 
 - •
 
-Starting geometries need not satisfy the requested constraints.
+起始几何结构无需满足所要求的约束条件。
 - •
 
-Constrained optimization is performed in delocalized internal coordinates, which
-is typically the most efficient coordinate system for optimization of large molecules.
+约束优化在离域内坐标中进行，对于大分子的优化而言，这通常是最高效的坐标系。
 - •
 
-**Q-Chem**’s free-format *$opt* section allows the user to apply constraints with ease.
+**Q-Chem** 的自由格式 *$opt* 输入节（Input Section）使用户能够便捷地施加约束。
 
-Constraints are imposed via the *$opt* input section, whose format is shown
-below, and the various parts of this input section are described below.
+约束通过 *$opt* 输入节来施加，其格式如下所示，该输入节各部分的说明也见下文。
 
-**Note: 
+**注意：
 
-As with the rest of the **Q-Chem** input file, the *$opt* section is
-case-insensitive, but there should be no blank space at the beginning of a line.
+与 **Q-Chem** 输入文件的其余部分一样，*$opt* 节对大小写不敏感，但每行的开头不应有空格。
 **
 
 > ```qchem

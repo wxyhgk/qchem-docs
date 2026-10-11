@@ -1,141 +1,112 @@
 ---
-title: "11.2.5 Linear-Scaling QM/MM/PCM Calculations"
+title: "11.2.5 线性标度 QM/MM/PCM 计算"
 ---
 
-## 11.2.5 Linear-Scaling QM/MM/PCM Calculations
+## 11.2.5 线性标度 QM/MM/PCM 计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Recall that PCM electrostatics calculations require the solution of the set of
-linear equations given in Eq. ([11.2](topic_pcm-em.md#eq:Kq=Rv)), to determine the vector
-$\mathbf{q}$ of apparent surface charges. The precise forms of the matrices
-$\mathbf{K}$ and $\mathbf{R}$ depend upon the particular PCM
-(Table [11.3](topic_pcm-em.md#table:K-matrix)), but in any case they have dimension
-$N_{\text{grid}}\times N_{\text{grid}}$, where $N_{\text{grid}}$ is the number of Lebedev grid
-points used to discretize the cavity surface. Construction of the matrix
-$\mathbf{K}^{-1}\mathbf{R}$ affords a numerically exact solution to
-Eq. ([11.2](topic_pcm-em.md#eq:Kq=Rv)), whose cost scales as ${\cal{O}}({N^{3}_{\text{grid}}})$ in CPU time
-and ${\cal{O}}({N^{2}_{\text{grid}}})$ in memory. This cost is exacerbated by smooth PCMs,
-which discard fewer interior grid points so that $N_{\text{grid}}$ tends to be
-larger, for a given solute, as compared to traditional discretization schemes.
-For QM solutes, the cost of inverting $\mathbf{K}$ is usually negligible
-relative to the cost of the electronic structure calculation, but for the large
-values of $N_{\text{grid}}$ that are encountered in MM/PCM or QM/MM/PCM jobs,
-the ${\cal{O}}({N^{3}_{\text{grid}}})$ cost of inverting $\mathbf{K}$ is often prohibitively expensive.
+回顾可知，PCM 静电学计算需要求解方程 ([11.2](topic_pcm-em.md#eq:Kq=Rv)) 中给出的线性方程组，以确定表观面电荷向量 $\mathbf{q}$。矩阵 $\mathbf{K}$ 和 $\mathbf{R}$ 的具体形式取决于所使用的 PCM（表 [11.3](topic_pcm-em.md#table:K-matrix)），但无论如何，它们的维度都是 $N_{\text{grid}}\times N_{\text{grid}}$，其中 $N_{\text{grid}}$ 是用于离散化空腔表面的 Lebedev 网格点数。构造矩阵 $\mathbf{K}^{-1}\mathbf{R}$ 可对方程 ([11.2](topic_pcm-em.md#eq:Kq=Rv)) 给出数值上精确的解，其代价在 CPU 时间上按 ${\cal{O}}({N^{3}_{\text{grid}}})$ 标度，在内存上按 ${\cal{O}}({N^{2}_{\text{grid}}})$ 标度。这一代价在平滑 PCM（smooth PCM）中更为严重，因为平滑 PCM 舍弃的内部网格点更少，使得对于给定溶质，与传统离散化方案相比 $N_{\text{grid}}$ 往往更大。对于 QM 溶质，求逆 $\mathbf{K}$ 的代价相对于电子结构计算通常可以忽略，但对于 MM/PCM 或 QM/MM/PCM 任务中常见的大 $N_{\text{grid}}$ 值，求逆 $\mathbf{K}$ 的 ${\cal{O}}({N^{3}_{\text{grid}}})$ 代价往往高得令人却步。
 
-To avoid this bottleneck, Lange and Herbert[[561]](../bib_references/bib.md#bib576) have developed
-an iterative conjugate gradient (CG) solver for Eq. ([11.2](topic_pcm-em.md#eq:Kq=Rv)) whose cost
-scales as ${\cal{O}}({N^{2}_{\text{grid}}})$ in CPU time and ${\cal{O}}({N_{\text{grid}}})$ in memory.
-A number of other cost-saving options are available, including efficient
-pre-conditioners and matrix factorizations that speed up convergence of the CG
-iterations, and a fast multipole algorithm for computing the electrostatic
-interactions.[[814]](../bib_references/bib.md#bib849)
- Together, these features lend themselves to a
-solution of Eq. ([11.2](topic_pcm-em.md#eq:Kq=Rv)) whose cost scales as ${\cal{O}}({N_{\text{grid}}})$ in
-both memory and CPU time, for sufficiently large systems.[[561]](../bib_references/bib.md#bib576)
-Currently, these options are available only for C-PCM, not for SS(V)PE or IEF-PCM.
+为避免这一瓶颈，Lange 和 Herbert[[561]](../bib_references/bib.md#bib576) 针对方程 ([11.2](topic_pcm-em.md#eq:Kq=Rv)) 开发了一种迭代共轭梯度（conjugate gradient, CG）求解器，其代价在 CPU 时间上按 ${\cal{O}}({N^{2}_{\text{grid}}})$ 标度，在内存上按 ${\cal{O}}({N_{\text{grid}}})$ 标度。此外还有多种其他节省开销的选项可用，包括高效的预条件子（pre-conditioner）以及可加速 CG 迭代收敛的矩阵分解方法，以及用于计算静电相互作用的快速多极子（fast multipole）算法。[[814]](../bib_references/bib.md#bib849)
+ 综合这些特性，对于足够大的体系，方程 ([11.2](topic_pcm-em.md#eq:Kq=Rv)) 的求解在内存和 CPU 时间上均可按 ${\cal{O}}({N_{\text{grid}}})$ 标度。[[561]](../bib_references/bib.md#bib576)
+目前，这些选项仅对 C-PCM 可用，尚不支持 SS(V)PE 或 IEF-PCM。
 
-Set **Solver** to **CG** in the *$pcm* section in order to invoke the CG solver, as described in
-Section [11.2.4.1](subsec_PCM_job_control.md#subsec:PCM_job_control:PCM-section). Additional options for the CG solver are listed below,
-each of which should also be specified in the *$pcm* input section. Researchers who use this feature
-are asked to cite the original SwiG-PCM references[[754]](../bib_references/bib.md#bib787)
+要在 *$pcm* 段中将 **Solver** 设置为 **CG** 以调用 CG 求解器，如第 [11.2.4.1](subsec_PCM_job_control.md#subsec:PCM_job_control:PCM-section) 节所述。CG 求解器的其他选项列于下文，每一项也应在 *$pcm* 输入段中指定。使用此功能的研究人员被要求引用 SwiG-PCM 的原始文献[[754]](../bib_references/bib.md#bib787)
 
-as well as the reference for the CG solver.[[561]](../bib_references/bib.md#bib576)
+以及 CG 求解器的相关文献。[[561]](../bib_references/bib.md#bib576)
 
 ### `CGThresh`
 
-> **The threshold for convergence of the conjugate gradient solver. INPUT SECTION: $pcm**
+> **共轭梯度求解器的收敛阈值。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`6`
+> * **选项**：
 >     * $n$
->     * Conjugate gradient converges when the maximum residual is less than
+>     * 当最大残差小于
 >     * $10^{-n}$
+>     * 时，共轭梯度收敛
 >     * .
-> * **Recommendation**: The default typically affords PCM energies on par with the precision of matrix inversion for small systems. For systems that have difficulty with SCF convergence, one should increase $n$ or try the matrix inversion solver. For well-behaved or very large systems, a smaller $n$ might be permissible.
+> * **建议**：对于小体系，默认值通常可使 PCM 能量达到与矩阵求逆相当的精度。对于 SCF 收敛困难的体系，应增大 $n$ 或尝试矩阵求逆求解器。对于性质良好或非常大的体系，可以允许使用更小的 $n$。
 
 ### `DComp`
 
-> **Controls decomposition of matrices to reduce the matrix norm for the CG Solver. INPUT SECTION: $pcm**
+> **控制矩阵分解以降低 CG 求解器的矩阵范数。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * 0
->     * Turns off matrix decomposition
+>     * 关闭矩阵分解
 >     * 1
->     * Turns on matrix decomposition
+>     * 开启矩阵分解
 >     * 3
->     * Option 1 plus only stores upper half of matrix and enhances gradient evaluation
-> * **Recommendation**: None
+>     * 在选项 1 的基础上仅存储矩阵的上半部分，并增强梯度计算
+> * **建议**：无
 
 ### `PreCond`
 
-> **Controls the use of the pre-conditioner for the CG solver. INPUT SECTION: $pcm**
+> **控制 CG 求解器是否使用预条件子。输入段：$pcm**
 >
-> * **Type**: `None`
-> * **Default**: `Off`
-> * **Options**:
->     * No options. Specify the keyword to enable pre-conditioning.
-> * **Recommendation**: A Jacobi block-diagonal pre-conditioner is applied during the conjugate gradient algorithm to improve the rate of convergence. This reduces the number of CG iterations, at the expense of some overhead. Pre-conditioning is generally recommended for large systems.
+> * **类型**：`None`
+> * **默认值**：`Off`
+> * **选项**：
+>     * 无选项。指定该关键字以启用预条件处理。
+> * **建议**：在共轭梯度算法过程中施加 Jacobi 块对角预条件子以提高收敛速度。这会以减少 CG 迭代次数为代价，带来一定额外开销。对于大体系，通常建议使用预条件处理。
 
 ### `NoMatrix`
 
-> **Specifies whether PCM matrices should be explicitly constructed and stored. INPUT SECTION: $pcm**
+> **指定是否显式构造并存储 PCM 矩阵。输入段：$pcm**
 >
-> * **Type**: `None`
-> * **Default**: `Off`
-> * **Options**:
->     * No options. Specify the keyword to avoid explicit construction of PCM matrices.
-> * **Recommendation**: Storing the PCM matrices requires ${\cal{O}}({N_{\text{grid}}^{2}})$ memory. If this is prohibitive, the option forgoes explicit construction of the PCM matrices, and instead constructs the matrix elements as needed, reducing the memory requirement to ${\cal{O}}({N_{\text{grid}}})$ at the expense of additional computation.
+> * **类型**：`None`
+> * **默认值**：`Off`
+> * **选项**：
+>     * 无选项。指定该关键字以避免显式构造 PCM 矩阵。
+> * **建议**：存储 PCM 矩阵需要 ${\cal{O}}({N_{\text{grid}}^{2}})$ 内存。若此开销过大，该选项将不再显式构造 PCM 矩阵，而是按需构造矩阵元素，从而以额外计算为代价将内存需求降至 ${\cal{O}}({N_{\text{grid}}})$。
 
 ### `UseMultipole`
 
-> **Controls the use of the adaptive fast multipole method in the CG solver. INPUT SECTION: $pcm**
+> **控制 CG 求解器中是否使用自适应快速多极子方法。输入段：$pcm**
 >
-> * **Type**: `None`
-> * **Default**: `Off`
-> * **Options**:
->     * No options. Specify the keyword in order to enable the fast multipole method.
-> * **Recommendation**: The fast multipole approach formally reduces the CPU time to ${\cal{O}}({N_{\text{grid}}})$ , but is only beneficial for spatially extended systems with several thousand cavity grid points. Requires the use of NoMatrix .
+> * **类型**：`None`
+> * **默认值**：`Off`
+> * **选项**：
+>     * 无选项。指定该关键字以启用快速多极子方法。
+> * **建议**：快速多极子方法在形式上将 CPU 时间降至 ${\cal{O}}({N_{\text{grid}}})$，但仅对具有数千个空腔网格点的空间延展体系有益。需要同时使用 NoMatrix。
 
 ### `MultipoleOrder`
 
-> **Specifies the highest multipole order to use in the FMM. INPUT SECTION: $pcm**
+> **指定 FMM 中使用的最高多极阶数。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`4`
+> * **选项**：
 >     * $n$
->     * The highest order multipole in the multipole expansion.
-> * **Recommendation**: Increasing the multipole order improves accuracy but also adds more computational expense. The default yields satisfactory performance in common QM/MM/PCM applications.
+>     * 多极展开中使用的最高阶多极项。
+> * **建议**：提高多极阶数可以改善精度，但同时也会增加计算开销。对于常见的 QM/MM/PCM 应用，默认值即可提供令人满意的性能。
 
 ### `Theta`
 
-> **The multipole acceptance criterion. INPUT SECTION: $pcm**
+> **多极接受准则（multipole acceptance criterion）。输入段：$pcm**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0.6`
-> * **Options**:
+> * **类型**：`FLOAT`
+> * **默认值**：`0.6`
+> * **选项**：
 >     * $n$
->     * A number between zero and one.
-> * **Recommendation**: The default is recommended for general usage. This variable determines when the use of a multipole expansion is valid. For a given grid point and box center in the FMM, a multipole expansion is accepted when $r/d\leq$ , where $d$ is the distance from the grid point to the box center and $r$ is the radius of the box. Setting to one will accept all multipole expansions, whereas setting it to zero will accept none. If not accepted, the grid point’s interaction with each point inside the box is computed explicitly. A low is more accurate but also more expensive than a higher .
+>     * 介于零与一之间的数值。
+> * **建议**：一般使用建议采用默认值。该变量决定何时可以使用多极展开。对于 FMM 中给定的网格点与盒子中心，当 $r/d\leq$ 时接受多极展开，其中 $d$ 为网格点到盒子中心的距离，$r$ 为盒子的半径。将其设为一将接受所有多极展开，设为零则全部拒绝。若未被接受，则显式计算该网格点与盒子内每个点的相互作用。较低的 比较高的 更精确，但也更昂贵。
 
 ### `NBox`
 
-> **The FMM boxing threshold. INPUT SECTION: $pcm**
+> **FMM 盒子划分阈值。输入段：$pcm**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **选项**：
 >     * $n$
->     * The maximum number of grid points for a leaf box.
-> * **Recommendation**: The default is recommended. This option is for advanced users only. The adaptive FMM boxing algorithm divides space into smaller and smaller boxes until each box has less than or equal to grid points. Modification of the threshold can lead to speedup or slowdown depending on the molecular system and other FMM variables.
+>     * 叶盒子（leaf box）中网格点的最大数目。
+> * **建议**：建议使用默认值。此选项仅供高级用户使用。自适应 FMM 盒子划分算法将空间不断划分为越来越小的盒子，直到每个盒子中的网格点数小于或等于 。阈值的修改可能带来加速或减速，具体取决于分子体系及其他 FMM 变量。
 
-A sample input file for the linear-scaling QM/MM/PCM methodology
-can be found in the `$QC/samples` directory, under the name
-`pcm_qmmm_crambin.in`. This sample involves a QM/MM description of
-a protein (crambin) in which a single tyrosine side chain is taken to be the QM
-region. The entire protein is immersed in a dielectric using C-PCM with SwiG
-discretization.
+线性标度 QM/MM/PCM 方法的示例输入文件可在 `$QC/samples` 目录下找到，文件名为
+`pcm_qmmm_crambin.in`。该示例对一种蛋白质（crambin，克拉姆宾蛋白）采用 QM/MM 描述，其中单个酪氨酸侧链被视为 QM 区域。整个蛋白质浸没在介电连续介质中，使用带 SwiG 离散化的 C-PCM。

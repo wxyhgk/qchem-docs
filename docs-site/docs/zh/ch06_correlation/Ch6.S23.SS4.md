@@ -1,12 +1,12 @@
 ---
-title: "6.23.4 Examples"
+title: "6.23.4 示例"
 ---
 
-## 6.23.4 Examples
+## 6.23.4 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 6.62: Single-point v2RDM/STO-3G energy computation."
+???+ example "示例 6.62: 单点 v2RDM/STO-3G 能量计算。"
     ```qchem
     $molecule
         0 1
@@ -31,7 +31,7 @@ title: "6.23.4 Examples"
     $end
     ```
 
-???+ example "Example 6.63: Single-point v2RDM/STO-3G energy computation with frozen core orbital."
+???+ example "示例 6.63: 含冻结核轨道的单点 v2RDM/STO-3G 能量计算。"
     ```qchem
     $molecule
         0 1
@@ -63,7 +63,7 @@ title: "6.23.4 Examples"
     $end
     ```
 
-???+ example "Example 6.64: Single-point v2RDM-CASSCF/cc-pVDZ energy and gradient computation."
+???+ example "示例 6.64: 单点 v2RDM-CASSCF/cc-pVDZ 能量与梯度计算。"
     ```qchem
     $molecule
         0 1
@@ -99,7 +99,7 @@ title: "6.23.4 Examples"
     $end
     ```
 
-???+ example "Example 6.65: Single-point MC-PDFT/cc-pVDZ energy computation with v2RDM-CASSCF optimized RDMs."
+???+ example "示例 6.65: 使用 v2RDM-CASSCF 优化后的约化密度矩阵（RDM）进行单点 MC-PDFT/cc-pVDZ 能量计算。"
     ```qchem
     $molecule
     0 1

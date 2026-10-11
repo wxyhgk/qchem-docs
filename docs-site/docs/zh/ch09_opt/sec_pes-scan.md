@@ -1,9 +1,9 @@
 ---
-title: "9.6 Potential Energy Scans"
+title: "9.6 势能面扫描（Potential Energy Scans）"
 ---
 
-# 9.6 Potential Energy Scans
+# 9.6 势能面扫描（Potential Energy Scans）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [9.6.1 Overview](ex_Rest-1.md)
+- [9.6.1 概述](ex_Rest-1.md)

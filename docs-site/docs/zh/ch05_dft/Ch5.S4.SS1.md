@@ -1,184 +1,172 @@
 ---
-title: "5.4.1 Overview"
+title: "5.4.1 概述"
 ---
 
-## 5.4.1 Overview
+## 5.4.1 概述
 
 (July 4, 2026)
 
-Basic SCF job control was described in Section [4.3](../ch04_scf/sec_SCF_job-control.md) in the
-context of Hartree-Fock theory and is largely the same for DFT. The keywords
-METHOD and BASIS are required, although for DFT the former
-could be substituted by specifying EXCHANGE and CORRELATION
-instead.
+基本的 SCF（自洽场）作业控制已在第 [4.3](../ch04_scf/sec_SCF_job-control.md) 节中针对 Hartree-Fock 理论进行了描述，对于 DFT（密度泛函理论）而言基本相同。关键字 METHOD 和 BASIS 是必需的，尽管对于 DFT，前者可以通过指定 EXCHANGE 和 CORRELATION 来替代。
 
-Starting Q-Chem v7.0, MPI+OMP-parallel DFT calculations are available with the
-replicated-Fock approach for the RHF, UHF, and ROHF ans̈atze and DIIS, GDM,
-and the robust SCF algorithms, similar to HF SCF calculations
-(Section [4.3](../ch04_scf/sec_SCF_job-control.md)).
+自 Q-Chem v7.0 起，MPI+OMP 并行的 DFT 计算已可用于复制 Fock（replicated-Fock）方法，支持 RHF、UHF 和 ROHF 波函数形式（ansätze），以及 DIIS、GDM 和稳健 SCF（robust SCF）算法，类似于 HF SCF 计算（第 [4.3](../ch04_scf/sec_SCF_job-control.md) 节）。
 
 METHOD
 
 ### `METHOD`
 
-> **Specifies the exchange-correlation functional.**
+> **指定交换-关联泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is either
+>     * 要么是为 Hartree-Fock 理论设置的
 >     * HF
->     * for Hartree-Fock theory or
->     * else one of the DFT methods listed in Section
+>     * ，
+>     * 要么是第
 >     * 5.3.5
->     * .
-> * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations for DFT are indicated in bold in Section 5.3.5 .
+>     * 节中列出的 DFT 方法之一。
+> * **建议**: 一般而言，请参考相关文献来指导您的选择。我们对 DFT 的推荐方法在第 5.3.5 节中以粗体标示。
 
 EXCHANGE
 
 ### `EXCHANGE`
 
-> **Specifies the exchange functional (or most exchange-correlation functionals for backwards compatibility).**
+> **指定交换泛函（或出于向后兼容性而指定大多数交换-关联泛函）。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is either:
->     * 1) One of the exchange functionals listed in Section
+>     * 为以下之一:
+>     * 1) 第
 >     * 5.3.3
->     * 2) One of the XC functionals listed in Section
+>     * 节中列出的交换泛函之一
+>     * 2) 第
 >     * 5.3.5
->     * that is not marked with an
->     * asterisk.
+>     * 节中列出的 XC 泛函之一，且未标有
+>     * 星号。
 >     * 3)
 >     * GEN
->     * , for a user-defined functional (see Section
+>     * ，表示用户自定义泛函（见第
 >     * 5.3.7
->     * ).
-> * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations are indicated in bold in Sections 5.3.5 and 5.3.3 .
+>     * 节）。
+> * **建议**: 一般而言，请参考相关文献来指导您的选择。我们的推荐方法在第 5.3.5 节和第 5.3.3 节中以粗体标示。
 
 CORRELATION
 
 ### `CORRELATION`
 
-> **Specifies the correlation functional.**
+> **指定关联泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is one of the correlation functionals
->     * listed in Section
+>     * 是第
 >     * 5.3.4
->     * .
-> * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations are indicated in bold in Section 5.3.4 .
+>     * 节中列出的关联泛函之一。
+> * **建议**: 一般而言，请参考相关文献来指导您的选择。我们的推荐方法在第 5.3.4 节中以粗体标示。
 
-The following *$rem* variables are related to the choice of the quadrature grid required to integrate the XC part of the
-functional, which does not appear in Hartree-Fock theory. DFT quadrature grids are described in Section [5.5](sect_quadrature.md).
+以下 *$rem* 变量与选择积分泛函 XC 部分所需的求积网格有关，而该部分在 Hartree-Fock 理论中并不存在。DFT 求积网格在第 [5.5](sect_quadrature.md) 节中描述。
 
 FAST_XC
 
 ### `FAST_XC`
 
-> **Controls direct variable thresholds to accelerate exchange-correlation (XC) in DFT.**
+> **控制直接积分变量的阈值，以加速 DFT 中的交换-关联（XC）计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Turn
->     * on.
+>     * 开启。
 >     * FALSE
->     * Do not use
->     * .
-> * **Recommendation**: Caution: improves the speed of a DFT calculation, but may occasionally cause the SCF calculation to diverge.
+>     * 不使用
+>     * 。
+> * **建议**: 注意：该选项可提高 DFT 计算的速度，但偶尔可能导致 SCF 计算发散。
 
 XC_GRID
 
 ### `XC_GRID`
 
-> **Specifies the type of grid to use for DFT calculations.**
+> **指定 DFT 计算所使用的网格类型。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Functional-dependent; see Table`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `依赖于泛函；见表格`
+> * **选项**:
 >     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * 对 H、C、N 和 O 使用 SG-0；对所有其他原子使用 SG-1。
 >     * $n$
->     * Use SG-
+>     * 对所有原子使用 SG-
 >     * $n$
->     * for all atoms,
+>     * ，
 >     * $n=1,2$
->     * , or 3
+>     * 或 3
 >     * $XY$
->     * A string of two six-digit integers
+>     * 由两个六位整数
 >     * $X$
->     * and
+>     * 和
 >     * $Y$
->     * , where
+>     * 组成的字符串，其中
 >     * $X$
->     * is the number of radial points
->     * and
+>     * 是径向点数，
 >     * $Y$
->     * is the number of angular points where possible numbers of Lebedev angular
->     * points, which must be an allowed value from Table
->     * 5.2
->     * in
->     * Section
+>     * 是角向点数，可能的 Lebedev 角向点
+>     * 数必须为第
 >     * 5.5
->     * .
+>     * 节中表
+>     * 5.2
+>     * 所允许的数值。
 >     * $-XY$
->     * Similar format for Gauss-Legendre grids, with the six-digit integer
+>     * Gauss-Legendre 网格采用类似格式，其中六位整数
 >     * $X$
->     * corresponding
->     * to the number of radial points and the six-digit integer
+>     * 对应径向点数，六位整数
 >     * $Y$
->     * providing the number of
->     * Gauss-Legendre angular points,
+>     * 给出
+>     * Gauss-Legendre 角向点数，
 >     * $Y=2N^{2}$
->     * .
-> * **Recommendation**: Use the default unless numerical integration problems arise. Larger grids may be required for optimization and frequency calculations.
+>     * 。
+> * **建议**: 除非出现数值积分问题，否则使用默认值。对于优化和频率计算，可能需要更大的网格。
 
 NL_GRID
 
 ### `NL_GRID`
 
-> **Specifies the grid to use for non-local correlation.**
+> **指定非局部关联计算所使用的网格。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
->     * Same as for XC_GRID
-> * **Recommendation**: Use the default unless computational cost becomes prohibitive, in which case SG-0 may be used. XC_GRID should generally be finer than NL_GRID.
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
+>     * 与 XC_GRID 相同
+> * **建议**: 使用默认值，除非计算成本过高，此时可使用 SG-0。通常 XC_GRID 应比 NL_GRID 更精细。
 
 XC_SMART_GRID
 
 ### `XC_SMART_GRID`
 
-> **Uses SG-0 (where available) for early SCF cycles, and switches to the (larger) target grid specified by XC_GRID for final cycles of the SCF.**
+> **在早期 SCF 循环中使用 SG-0（如可用），并在 SCF 的最终循环中切换到由 XC_GRID 指定的（更大的）目标网格。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * TRUE (or 1)
->     * Use the smaller grid for the initial cycles.
->     * FALSE (or 0)
->     * Use the target grid for all SCF cycles.
-> * **Recommendation**: The use of the smart grid can save some time on initial SCF cycles.
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
+>     * TRUE（或 1）
+>     * 在初始循环中使用较小的网格。
+>     * FALSE（或 0）
+>     * 在所有 SCF 循环中使用目标网格。
+> * **建议**: 使用智能网格（smart grid）可以在初始 SCF 循环中节省一些时间。

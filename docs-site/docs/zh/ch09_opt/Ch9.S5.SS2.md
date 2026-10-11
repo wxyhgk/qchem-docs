@@ -1,43 +1,40 @@
 ---
-title: "9.5.2 Application of Pressure"
+title: "9.5.2 压强的施加"
 ---
 
-## 9.5.2 Application of Pressure
+## 9.5.2 压强的施加
 
 (July 4, 2026)
 
-**Q-Chem** features a number of methods to apply pressure to a chemical system
-during a geometry optimization or an AIMD simulation.[[1298]](../bib_references/bib.md#bib1354)
- The
-following methods are implemented:
+**Q-Chem** 提供了多种方法，可在几何优化或 AIMD（从头算分子动力学）模拟过程中对化学体系施加压强。[[1298]](../bib_references/bib.md#bib1354)
+ 目前已实现的方法如下：
 
-| Hydrostatic Compression Force Field (HCFF) [[1295]](../bib_references/bib.md#bib1352) | Section 9.5.2.1 |
+| 流体静压压缩力场（Hydrostatic Compression Force Field, HCFF）[[1295]](../bib_references/bib.md#bib1352) | 第 9.5.2.1 节 |
 | --- | --- |
-| eXtended Hydrostatic Compression Force Field (X-HCFF) [[1297]](../bib_references/bib.md#bib1353) | Section 9.5.2.2 |
-| Pressure times Volume term (PV) [[1540]](../bib_references/bib.md#bib1604) | Section 9.5.2.3 |
-| Gaussians on Surface Tesserae Simulate HYdrostatic Pressure (GOSTSHYP) [[1206]](../bib_references/bib.md#bib1261) | Section 9.5.2.4 |
+| 扩展流体静压压缩力场（eXtended Hydrostatic Compression Force Field, X-HCFF）[[1297]](../bib_references/bib.md#bib1353) | 第 9.5.2.2 节 |
+| 压强乘体积项（Pressure times Volume term, PV）[[1540]](../bib_references/bib.md#bib1604) | 第 9.5.2.3 节 |
+| 表面面元上的高斯模拟流体静压（Gaussians on Surface Tesserae Simulate HYdrostatic Pressure, GOSTSHYP）[[1206]](../bib_references/bib.md#bib1261) | 第 9.5.2.4 节 |
 
-To invoke one of these methods, set DISTORT = TRUE in the *$rem* section.
-By setting the *$rem* variable SCF_FINAL_PRINT = 1,
-the energy contribution due to pressure is printed in the output.
+要调用上述方法之一，需在 *$rem* 段中设置 DISTORT = TRUE。
+通过将 *$rem* 变量设置为 SCF_FINAL_PRINT = 1，
+可在输出中打印由压强引起的能量贡献。
 
 DISTORT
 
 ### `DISTORT`
 
-> **Specifies whether to apply pressure or external force to a chemical system**
+> **指定是否对化学体系施加压强或外力**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `False`
+> * **选项**:
 >     * False
->     * Do not use pressure or force
+>     * 不使用压强或力
 >     * True
->     * Use pressure or force
-> * **Recommendation**: Set to true to apply pressure or force.
+>     * 使用压强或力
+> * **建议**: 若需施加压强或力，请设置为 true。
 
-The parameters of the jobs are set *via* options specified in the
-*$distort* input section. The format of the *$distort* section is analogous to the *$rem* section:
+作业的相关参数通过 *$distort* 输入段中指定的选项来设置。*$distort* 段的格式与 *$rem* 段类似：
 
 > ```qchem
 > $distort
@@ -45,21 +42,20 @@ The parameters of the jobs are set *via* options specified in the
 > $end
 > ```
 
-**Note: 
+**注意：
 
-The following job control variables belong *only* in the *$distort* 
-section. Do not place them in the *$rem* section.
+以下作业控制变量*仅*属于 *$distort* 段。请勿将其放入 *$rem* 段中。
 **
 
 ### `Model`
 
-> **Specifies which model is used to distort the molecule. INPUT SECTION: $distort**
+> **指定用于使分子畸变的模型。输入段：$distort**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `None`
+> * **选项**:
 >     * HCFF
->     * Hydrostatic Compression Force Field
+>     * Hydrostatic Compression Force Field（流体静压压缩力场）
 >     * 1295
 >     * Stauch T., Chakraborty R., Head-Gordon M.
 >     * ChemPhysChem
@@ -71,10 +67,10 @@ section. Do not place them in the *$rem* section.
 >     * .
 >     * Link
 >     * XHCFF
->     * eXtended Hydrostatic Compression Force Field
+>     * eXtended Hydrostatic Compression Force Field（扩展流体静压压缩力场）
 >     * 1297
 >     * Stauch T.
->     * J. Chem. Phys.
+>     * J. Chem. Phys.
 >     * (2020)
 >     * ,
 >     * 153
@@ -83,10 +79,10 @@ section. Do not place them in the *$rem* section.
 >     * .
 >     * Link
 >     * PV
->     * Add PV term by computing vDW volume
+>     * 通过计算 vDW 体积添加 PV 项
 >     * 1540
 >     * Zeller F., Pracht P., Neudecker T.
->     * J. Phys. Chem. A
+>     * J. Phys. Chem. A
 >     * (2025)
 >     * ,
 >     * 129
@@ -95,10 +91,10 @@ section. Do not place them in the *$rem* section.
 >     * .
 >     * Link
 >     * GOSTSHYP
->     * Gaussians On Surface Tesserae Simulate HYdrostatic Pressure
+>     * Gaussians On Surface Tesserae Simulate HYdrostatic Pressure（表面面元上的高斯模拟流体静压）
 >     * 1206
 >     * Scheurer M. et al.
->     * J. Chem. Theory Comput.
+>     * J. Chem. Theory Comput.
 >     * (2021)
 >     * ,
 >     * 17
@@ -107,108 +103,96 @@ section. Do not place them in the *$rem* section.
 >     * .
 >     * Link
 >     * EFEI
->     * External Force is Explicitly Included (Section
->     * 9.5.1
->     * )
-> * **Recommendation**: Please refer to the following subsections for recommendations on which model to use.
+>     * 显式包含外力（External Force is Explicitly Included，第 9.5.1 节）
+> * **建议**: 关于模型选择的具体建议，请参阅以下各小节。
 
 ### `Pressure`
 
-> **Specifies the pressure (in MPa) used to compress the molecule. INPUT SECTION: $distort**
+> **指定用于压缩分子的压强（单位为 MPa）。输入段：$distort**
 >
-> * **Type**: `DOUBLE`
-> * **Default**: `None`
-> * **Options**:
->     * User defined
-> * **Recommendation**: None
+> * **类型**: `DOUBLE`
+> * **默认值**: `None`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 无
 
 ### `NPoints_Heavy`
 
-> **Specifies the number of tessellation points per non-hydrogen atom. INPUT SECTION: $distort**
+> **指定每个非氢原子的面元剖分点数。输入段：$distort**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `110`
-> * **Options**:
->     * User defined
-> * **Recommendation**: Use the default.
+> * **类型**: `INTEGER`
+> * **默认值**: `110`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 使用默认值。
 
 ### `NPoints_Hydrogen`
 
-> **Specifies the number of tessellation points per hydrogen atom. INPUT SECTION: $distort**
+> **指定每个氢原子的面元剖分点数。输入段：$distort**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `110`
-> * **Options**:
->     * User defined
-> * **Recommendation**: Use the default.
+> * **类型**: `INTEGER`
+> * **默认值**: `110`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 使用默认值。
 
 ### `Scaling`
 
-> **Specifies the scaling factor of the atomic van der Waals radii used in the tessellation of the molecular surface, which is used in the pressure models. INPUT SECTION: $distort**
+> **指定用于分子表面剖分的原子范德华（van der Waals, vDW）半径的缩放因子，该剖分用于各压强模型。输入段：$distort**
 >
-> * **Type**: `DOUBLE`
-> * **Default**: `1.2`
-> * **Options**:
->     * User defined
-> * **Recommendation**: Increase when modeling a chemical complex to make sure that the complex is placed inside a single cavity. 1206 Scheurer M. et al. J. Chem. Theory Comput. (2021) , 17 , pp. 583 . Link A value of 1.0 was suggested to be used in the X-HCFF model. 1297 Stauch T. J. Chem. Phys. (2020) , 153 , pp. 134503 . Link
+> * **类型**: `DOUBLE`
+> * **默认值**: `1.2`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 在模拟化学复合物时增大该值，以确保复合物被置于单一空腔之内。 1206 Scheurer M. et al. J. Chem. Theory Comput. (2021) , 17 , pp. 583 . Link X-HCFF 模型中建议使用 1.0 的取值。 1297 Stauch T. J. Chem. Phys. (2020) , 153 , pp. 134503 . Link
 
 ### `tess_method`
 
-> **Choose method for tessellation INPUT SECTION: $distort**
+> **选择面元剖分方法。输入段：$distort**
 >
-> * **Type**: `STRING`
-> * **Default**: `scrf`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `scrf`
+> * **选项**:
 >     * scrf
->     * use the same tessellation code as implicit solvation models
+>     * 使用与隐式溶剂化模型相同的剖分代码
 >     * distort
->     * use libdistort tessellation routine
+>     * 使用 libdistort 剖分例程
 >     * occ
->     * use outer cavity correction
-> * **Recommendation**: Use distort option for compatibility with implicit solvation models in the same calculation. Scrf option allows for more cavity options. OCC allows to reduce the amount of negative amplitudes - use for GOSTSHYP calculations with bad SCF convergence.
+>     * 使用外空腔校正（outer cavity correction）
+> * **建议**: 若要在同一计算中与隐式溶剂化模型保持兼容，请使用 distort 选项。Scrf 选项支持更多空腔选项。OCC 可减少负振幅的出现量——建议用于 SCF 收敛不佳的 GOSTSHYP 计算。
 
 ### `proberad`
 
-> **Add proberad to vDW radii to resemble the solvent accessible surface (SAS). INPUT SECTION: $distort**
+> **在 vDW 半径上叠加探针半径（proberad），以模拟溶剂可及表面（solvent accessible surface, SAS）。输入段：$distort**
 >
-> * **Type**: `DOUBLE`
-> * **Default**: `0.0`
-> * **Options**:
->     * User defined
+> * **类型**: `DOUBLE`
+> * **默认值**: `0.0`
+> * **选项**:
+>     * 用户自定义
 
 ### `occrad`
 
-> **Distance to outer cavity for OCC GOSTSHYP calculations. INPUT SECTION: $distort**
+> **OCC GOSTSHYP 计算中外空腔的距离。输入段：$distort**
 >
-> * **Type**: `DOUBLE`
-> * **Default**: `0.25`
-> * **Options**:
->     * User defined
-> * **Recommendation**: Smaller values will lead to higher probability of negative amplitudes, larger values lead to discarding many tessellation points.
+> * **类型**: `DOUBLE`
+> * **默认值**: `0.25`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 取值越小，出现负振幅的概率越高；取值越大，则会舍弃大量剖分点。
 
-## 9.5.2.1 Hydrostatic Compression Force Field (HCFF)
+## 9.5.2.1 流体静压压缩力场（HCFF）
 
-The Hydrostatic Compression Force Field (HCFF) model was introduced by Stauch,
-Chakraborty and Head-Gordon.[[1295]](../bib_references/bib.md#bib1352)
- In HCFF, mechanical forces that
-point towards the non-mass-weighted molecular centroid are used to compress a
-molecule. Care must be exercised when modeling extended molecules due to the
-tendency of HCFF to generate spherical geometries under very high
-pressure.[[1298]](../bib_references/bib.md#bib1354)
- Also, the pressure input by the user is only a
-guess for the pressure that is applied to the molecule. The latter is
-calculated *a posteriori* based on the generated geometry and the
-molecular surface and is output as *HCFF Macroscopic Pressure*. Typically,
-the applied pressure is lower than the input pressure. It should be noted that
-the dependence on the nuclear gradient precludes the application of pressure to
-single atoms in HCFF. Moreover, the increase in electronic energy when
-compressing a molecule is typically underestimated by HCFF, since the pressure
-acts only on the nuclei, whereas the compression of electron density is not
-modeled directly. HCFF works with any electronic structure method for which a
-nuclear gradient is available.
+流体静压压缩力场（Hydrostatic Compression Force Field, HCFF）模型由 Stauch、Chakraborty 和 Head-Gordon 提出。[[1295]](../bib_references/bib.md#bib1352)
+ 在 HCFF 中，使用指向非质量加权分子质心的机械力来压缩分子。由于在极高
+压强下 HCFF 倾向于生成球形几何结构，因此在模拟延展型分子时需要谨慎。[[1298]](../bib_references/bib.md#bib1354)
+ 此外，用户输入的压强只是对实际施加于分子上压强的一个猜测值。
+后者是根据生成的几何结构和分子表面*事后*（*a posteriori*）计算得出的，并以 *HCFF Macroscopic Pressure*（HCFF 宏观压强）的形式输出。
+通常，实际施加的压强低于输入的压强。需要注意的是，由于对核梯度的依赖，
+HCFF 无法对单个原子施加压强。而且，由于压强仅作用于原子核，
+并未直接模拟电子密度的压缩，因此在压缩分子时 HCFF 通常会低估电子能量的增加量。
+HCFF 可与任何可获得核梯度的电子结构方法配合使用。
 
-???+ example "Example 9.16: Geometry optimization of diborane under pressure using the
-HCFF model with an input pressure of 3808 MPa"
+???+ example "示例 9.16: 使用 HCFF 模型在输入压强为 3808 MPa 条件下对乙硼烷进行几何优化"
     ```qchem
     $molecule
        0 1
@@ -238,33 +222,25 @@ HCFF model with an input pressure of 3808 MPa"
     $end
     ```
 
-## 9.5.2.2 eXtended Hydrostatic Compression Force Field (X-HCFF)
+## 9.5.2.2 扩展流体静压压缩力场（X-HCFF）
 
-The eXtended Hydrostatic Compression Force Field (X-HCFF) approach was introduced
-by Stauch to solve the problems associated with HCFF.[[1297]](../bib_references/bib.md#bib1353)
- In X-HCFF,
-mechanical forces are used to compress the molecule as well, but, in contrast to
-HCFF, these forces are strictly perpendicular to the tessellated molecular surface,
-thus simulating truly hydrostatic conditions. As a result, chemically feasible
-geometries are retained even at high pressures. In addition, the user is able to
-input the precise pressure that is applied to the molecule during the simulation.
-It was suggested to use the unscaled atomic van der Waals radii in the tessellation
-routine.[[1297]](../bib_references/bib.md#bib1353)
- X-HCFF works with any electronic structure method for
-which a nuclear gradient is available.
-It is also possible to perform an analytic Hessian
-calculation with X-HCFF using JOBTYPE = FREQ, to obtain related
-structural properties such as IR and Raman frequencies.[[1447]](../bib_references/bib.md#bib1509)
+扩展流体静压压缩力场（eXtended Hydrostatic Compression Force Field, X-HCFF）方法由 Stauch 提出，
+用于解决 HCFF 存在的问题。[[1297]](../bib_references/bib.md#bib1353)
+ 与 HCFF 类似，X-HCFF 同样使用机械力来压缩分子，但与 HCFF 不同的是，
+这些力严格垂直于剖分后的分子表面，从而模拟真正的流体静压条件。因此，
+即使在高压力下也能保持化学上合理的几何结构。此外，用户可以
+输入模拟过程中实际施加于分子的精确压强。建议在剖分例程中
+使用未经缩放的原子范德华半径。[[1297]](../bib_references/bib.md#bib1353)
+ X-HCFF 可与任何可获得核梯度的电子结构方法配合使用。
+也可以通过设置 JOBTYPE = FREQ，在 X-HCFF 下进行解析 Hessian 计算，
+从而获得相关的结构性质，如红外（IR）和拉曼（Raman）频率。[[1447]](../bib_references/bib.md#bib1509)
 
-It should be noted that the forces formulated for the X-HCFF model are not
-derived as the derivative of an energy term, but direcctly formulated and added to
-gradient. Thus no corresponding energy term is added to the electronic energy
-and consequently pressure induced increases in electronic energy are typically low.
-The X-HCFF forces can be understood as a approximation to the gradient of the
-vDW volume.[[1540]](../bib_references/bib.md#bib1604)
+需要指出的是，X-HCFF 模型中所构造的力并非由某项能量对几何求导得到，
+而是直接构造并加到梯度上。因此，电子能量中不会加入相应的能量项，
+由此压强引起的电子能量增加通常偏低。
+X-HCFF 的力可以理解为对 vDW 体积梯度的一个近似。[[1540]](../bib_references/bib.md#bib1604)
 
-???+ example "Example 9.17: Geometry optimization of the CO ${}_{2}$ dimer under a pressure of
-100 GPa using the X-HCFF model"
+???+ example "示例 9.17: 使用 X-HCFF 模型在 100 GPa 压强下对 CO ${}_{2}$ 二聚体进行几何优化"
     ```qchem
     $molecule
        0 1
@@ -292,73 +268,62 @@ vDW volume.[[1540]](../bib_references/bib.md#bib1604)
     $end
     ```
 
-## 9.5.2.3 PV term
+## 9.5.2.3 PV 项
 
-The enthalpy $H$ of a molecular system in an arbitrary pressure exerting medium may
-be expressed as the sum of the electronic energy $E_{el}$ and the pressure $P$ times
-the volume $V$ occupied by the molecule.
+处于任意施压介质中的分子体系的焓 $H$ 可表示为电子能量 $E_{el}$ 与
+压强 $P$ 乘以分子所占据体积 $V$ 之和。
 
 <a id="Ch9.E44"></a>
 $$
 H=E_{el}+PV \tag{9.44}
 $$
 
-The probably most simple approximation for the molecular Volume is the vDW Volume,
-which is used here. It can be calculated by numerical integration of the molecular
-vDW surface (see [11.2.3.2](../ch11_env/topic_pcm-em.md#subsubsec:pcm_cavity)) and leads to a well defined contribution
-to the molecular gradient.[[1540]](../bib_references/bib.md#bib1604)
- This approach leads to pressure induced deformations similar
-to the X-HCFF model, however it provides a far more realistic correction to the energy.
+对分子体积最简单的近似大概是 vDW 体积，本文即采用该近似。
+它可以通过对分子 vDW 表面进行数值积分来计算（见 [11.2.3.2](../ch11_env/topic_pcm-em.md#subsubsec:pcm_cavity)），
+并会为分子梯度提供一个定义明确的贡献。[[1540]](../bib_references/bib.md#bib1604)
+ 这种方法产生的压强致形变与 X-HCFF 模型类似，但它为能量提供了远更真实的校正。
 
-A Hessian is available, to obtain IR and Raman frequencies using frequency calculations.
+该方法提供了 Hessian，可通过频率计算获得红外和拉曼频率。
 
-## 9.5.2.4 Gaussians On Surface Tesserae Simulate HYdrostatic Pressure (GOSTSHYP)
+## 9.5.2.4 表面面元上的高斯模拟流体静压（GOSTSHYP）
 
-The Gaussians On Surface Tesserae Simulate HYdrostatic Pressure (GOSTSHYP)
-method, which was introduced by Scheurer and co-workers,[[1206]](../bib_references/bib.md#bib1261)
-
-overcomes the problems associated with the mechanochemical models of pressure,
-*i.e.* HCFF and X-HCFF. GOSTSHYP uses a uniform field of Gaussian potentials
-that is placed on the tessellated molecular surface and that compresses the
-electron density. Each Gaussian potential G${}_{j}$ has the form
+由 Scheurer 及其合作者提出的表面面元上的高斯模拟流体静压
+（Gaussians On Surface Tesserae Simulate HYdrostatic Pressure, GOSTSHYP）方法[[1206]](../bib_references/bib.md#bib1261)
+克服了与压强的机械化学模型（*i.e.* HCFF 和 X-HCFF）相关的问题。
+GOSTSHYP 在剖分后的分子表面放置一个均匀的势场（由一系列高斯势组成），用以压缩
+电子密度。每个高斯势 G${}_{j}$ 的形式为
 
 <a id="Ch9.E45"></a>
 $$
 G_{j}=p_{j}\cdot\exp\left(-w_{j}(\textbf{r}-\textbf{r}_{0})^{2}\right) \tag{9.45}
 $$
 
-During the GOSTSHYP routine, the parameters of the Gaussian potentials, $p_{j}$ and
-$w_{j}$, are adjusted such that a user-defined pressure is applied. Atoms and molecules
-can be treated, and the pressure-induced increase in the electronic energy is
-physically sound. During the SCF, the energy expression takes the form
+在 GOSTSHYP 例程运行过程中，高斯势的参数 $p_{j}$ 和
+$w_{j}$ 会被调整，以施加用户指定的压强。该方法既可处理原子也可处理分子，
+且压强引起的电子能量增加在物理上是合理的。在 SCF 过程中，能量表达式具有以下形式
 
 <a id="A3.S8.EGx72"></a>
 $$
 \displaystyle E_{\text{GOSTSHYP}} \tag{9.46}
 $$
 
-Due to the availability of nuclear gradients, geometry optimizations under pressure
-using the GOSTSHYP model are possible. At present, GOSTSHYP is implemented at the SCF
-level, allowing calculations with Hartree-Fock and Density Functional Theory.
+由于可以获取核梯度，因此可以使用 GOSTSHYP 模型在压强下进行几何优化。
+目前，GOSTSHYP 仅在 SCF 层级实现，可用于 Hartree-Fock（HF）和密度泛函理论（Density Functional Theory, DFT）计算。
 
-For good performance GOSTSHYP needs relatively large amounts of available RAM. If not
-enough available RAM is detected, GOSTSHYP will switch to a memory efficient algorithm
-at the cost of performance, a warning containing the required amount of memory for better
-performance will be printed in the output.
+为了获得良好的性能，GOSTSHYP 需要相对较大的可用内存（RAM）。如果检测到
+可用内存不足，GOSTSHYP 将切换到内存效率更高但以性能为代价的算法，
+并在输出中打印包含最佳性能所需内存量的警告信息。
 
-We found, that at the edges between the tessellation spheres of two atoms "negative amplitudes"
-$p_{j}$ may appear. Since those would lead to nonphysical attractive pressure potentials
-they are generally blacklisted in GOSTSHYP calculations. This however leads to instabilities
-within SCF calculations. We found that negative amplitudes appear very rarely for VDW-scaling
-factors larger than $1.5$ but become more likely to appear for smaller scaling factors.
-Alternaively the solvent accessible surface (SAS) (see [11.2.3.2](../ch11_env/topic_pcm-em.md#subsubsec:pcm_cavity)) may be
-used with a similar effect by defining a proberadius. We recently proposed the outer cavity
-corrextion (OCC),[[1048]](../bib_references/bib.md#bib1093)
- which should lead to a far better convergence.
-To use this correction set tess_method to occ.
+我们发现，在两个原子的剖分球面交界处可能出现"负振幅"
+$p_{j}$。由于它们会导致非物理的吸引性压强势，因此在 GOSTSHYP 计算中通常会被屏蔽（blacklist）。
+然而这会导致 SCF 计算中的不稳定性。我们发现，当 VDW 缩放因子大于 $1.5$ 时，
+负振幅极少出现，但缩放因子越小则越容易出现。
+另一种做法是通过定义探针半径来使用溶剂可及表面（SAS）（见 [11.2.3.2](../ch11_env/topic_pcm-em.md#subsubsec:pcm_cavity)），其效果类似。
+我们近期提出了外空腔校正（outer cavity correction, OCC）[[1048]](../bib_references/bib.md#bib1093)
+，它应能显著改善收敛性。
+要使用该校正，请将 tess_method 设置为 occ。
 
-???+ example "Example 9.18: Geometry optimization of cyclopentadiene and ethylene under a pressure
-of 40 GPa using the GOSTSHYP model"
+???+ example "示例 9.18: 使用 GOSTSHYP 模型在 40 GPa 压强下对环戊二烯与乙烯进行几何优化"
     ```qchem
     $molecule
        0 1

@@ -1,81 +1,58 @@
 ---
-title: "10.5.5 Direct Generation of “Cube” Files"
+title: "10.5.5 直接生成“Cube”文件"
 ---
 
-## 10.5.5 Direct Generation of “Cube” Files
+## 10.5.5 直接生成“Cube”文件
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-As an alternative to the output format discussed above, all of the *$plots*
-data may be output directly to a sub-directory named `plots` in the job’s
-scratch directory, which must therefore be saved using the *–save* option
-described in Section [2.2](../ch02_install/sect_running.md). The plotting data in this
-sub-directory are not written in the `plot.*` format described above, but
-rather in the form of so-called “cube” file, one for each orbital or density
-that is requested. The cube file format is a standard one for volumetric data
-and consists of a small header followed by the orbital or density values at
-each grid point, in ASCII format. (Consult Ref. 
+作为上文所讨论输出格式的一种替代方案，所有 *$plots* 数据都可以直接输出到作业暂存（scratch）目录中一个名为 `plots` 的子目录下，因此必须使用第 [2.2](../ch02_install/sect_running.md) 节中描述的 *–save* 选项来保存该目录。此子目录中的绘图数据并非以上文所述的 `plot.*` 格式写出，而是以所谓“cube”文件的形式写出，每个所请求的轨道或密度对应一个文件。cube 文件格式是体数据（volumetric data）的一种标准格式，由一个很小的文件头后跟每个网格点上的轨道或密度值组成，采用 ASCII 格式。（完整格式规范请参阅参考文献
 
- for
-the complete format specification.) Because the grid coordinates themselves are
-not printed (their locations are implicit from information contained in the
-header), each individual cube file is much smaller than the corresponding
-`plot.*` file would be. Cube files can be read by many standard (and
-freely-available) graphics programs, including
+。）由于网格坐标本身并不打印出来（其位置可由文件头中包含的信息隐含确定），因此每个单独的 cube 文件都比对应的 `plot.*` 文件小得多。许多标准且可免费获得的图形程序都能读取 cube 文件，包括
 **MacMolPlt[[136]](../bib_references/bib.md#bib126)
 [[12]](../bib_references/bib.md#bib16)
-** and **VMD**.[[604]](../bib_references/bib.md#bib627)
+** 以及 **VMD**.[[604]](../bib_references/bib.md#bib627)
 [[15]](../bib_references/bib.md#bib19)
 
-VMD, in particular, is recommended for generation of high-quality images for
-publication. Cube files for the MOs and densities requested in the *$plots*
-section are requested by setting MAKE_CUBE_FILES to TRUE,
-with the *$plots* section specified as described in Section [10.5.4](sect_plot.mo.md).
+特别推荐使用 VMD 来生成用于发表的高质量图像。按照第 [10.5.4](sect_plot.mo.md) 节所述指定 *$plots* 区段，并将 MAKE_CUBE_FILES 设置为 TRUE，即可为 *$plots* 区段中所请求的分子轨道（MO）与密度生成 cube 文件。
 
 MAKE_CUBE_FILES
 
 ### `MAKE_CUBE_FILES`
 
-> **Requests generation of cube files for MOs, NTOs, or NBOs.**
+> **请求为 MO、NTO 或 NBO 生成 cube 文件。**
 >
-> * **Type**: `LOGICAL/STRING`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL/STRING`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Do not generate cube files.
+>     * 不生成 cube 文件。
 >     * TRUE
->     * Generate cube files for MOs and densities.
+>     * 为 MO 和密度生成 cube 文件。
 >     * NTOS
->     * Generate cube files for NTOs.
+>     * 为自然跃迁轨道（Natural Transition Orbitals, NTO）生成 cube 文件。
 >     * NBOS
->     * Generate cube files for NBOs.
-> * **Recommendation**: None
+>     * 为自然键轨道（Natural Bond Orbitals, NBO）生成 cube 文件。
+> * **建议**: 无
 
 PLOT_SPIN_DENSITY
 
 ### `PLOT_SPIN_DENSITY`
 
-> **Requests the generation of spin densities, $\rho_{\alpha}$ and $\rho_{\beta}$ .**
+> **请求生成自旋密度 $\rho_{\alpha}$ 和 $\rho_{\beta}$。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Do not generate spin density cube files.
+>     * 不生成自旋密度 cube 文件。
 >     * TRUE
->     * Generate spin density cube files.
-> * **Recommendation**: Set to TRUE if spin densities are desired in addition to total densities. Requires that MAKE_CUBE_FILES be set to TRUE as well, and that one or more total densities is requested in the $plots input section. The corresponding spin densities will then be generated also.
+>     * 生成自旋密度 cube 文件。
+> * **建议**: 若在总密度之外还需要自旋密度，则将其设置为 TRUE。这要求同时把 MAKE_CUBE_FILES 设置为 TRUE，并且在 $plots 输入区段中请求了一个或多个总密度。相应的自旋密度随后也会被一并生成。
 
-The following example illustrates the generation of cube files for a ground and
-an excited-state density, including the corresponding spin densities. In this
-example, the `plots` sub-directory of the job’s scratch directory should
-contain files named `dens.N.cube` (total density for state $N$, where $N=0$
-or 1 represents the ground and first excited state, respectively), `dens_alpha.N.cube` and `dens_beta.N.cube` ($\rho_{\alpha}$ and $\rho_{\beta}$
-for each state), and `dens_spin.N.cube` ($\rho_{\alpha}-\rho_{\beta}$ for
-each state.)
+下面的示例演示了如何为基态密度和激发态密度生成 cube 文件，其中包括相应的自旋密度。在本例中，作业暂存目录下的 `plots` 子目录应包含名为 `dens.N.cube`（第 $N$ 个态的总密度，其中 $N=0$ 或 1 分别代表基态与第一激发态）、`dens_alpha.N.cube` 和 `dens_beta.N.cube`（每个态的 $\rho_{\alpha}$ 与 $\rho_{\beta}$），以及 `dens_spin.N.cube`（每个态的 $\rho_{\alpha}-\rho_{\beta}$。）
 
-???+ example "Example 10.27: Generating density and spin-density cube files for the ground and first
-excited state of the HOO radical."
+???+ example "示例 10.27: 为 HOO 自由基的基态与第一激发态生成密度及自旋密度 cube 文件。"
     ```qchem
     $molecule
        0 2
@@ -103,48 +80,26 @@ excited state of the HOO radical."
     $end
     ```
 
-Cube files are also available for natural transition orbitals
-(Sections [7.13.3](../ch07_excited/sect_NTOs.md) and [10.5.3](sect_visualize_NTOs.md)) by setting
-MAKE_CUBE_FILES to NTOS, although in this case the
-procedure is somewhat more complicated, due to the state-specific nature of
-these quantities. Cube files for the NTOs are generated only for a single
-excited state, whose identity is specified using CUBEFILE_STATE.
-Cube files for additional states are readily obtained using a sequence of
-**Q-Chem** jobs, in which the second (and subsequent) jobs read in the converged
-ground- and excited-state information using SCF_GUESS and
-SKIP_CIS_RPA.
+将 MAKE_CUBE_FILES 设置为 NTOS，同样可以为自然跃迁轨道（NTO）生成 cube 文件（第 [7.13.3](../ch07_excited/sect_NTOs.md) 节与第 [10.5.3](sect_visualize_NTOs.md) 节），不过在这种情况下过程略显复杂，因为这些量具有态特定（state-specific）的性质。NTO 的 cube 文件只会为单个激发态生成，该态由 CUBEFILE_STATE 指定。若要获取其他态的 cube 文件，只需串联运行若干个 **Q-Chem** 作业即可，其中第二个（及后续）作业通过 SCF_GUESS 和 SKIP_CIS_RPA 读入已收敛的基态与激发态信息。
 
 CUBEFILE_STATE
 
 ### `CUBEFILE_STATE`
 
-> **Determines which excited state is used to generate cube files**
+> **决定使用哪一个激发态来生成 cube 文件**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **可选值**:
 >     * $n$
->     * Generate cube files for the
+>     * 为第
 >     * $n$
->     * th excited state
-> * **Recommendation**: None
+>     * 个激发态生成 cube 文件
+> * **建议**: 无
 
-An additional complication is the manner in which to specify which NTOs will be
-output as cube files. When MAKE_CUBE_FILES is set to TRUE,
-this is specified in the *$plots* section, in the same way that MOs would be
-specified for plotting. However, one must understand the order in which the
-NTOs are stored. For a system with $N_{\alpha}$ $\alpha$-spin MOs, the occupied
-NTOs $1,2,\ldots,N_{\alpha}$ are stored in order of increasing amplitudes, so
-that the $N_{\alpha}$’th occupied NTO is the most important. The virtual NTOs
-are stored next, in order of *decreasing* importance. According to this
-convention, the principle NTO pair consists of the final occupied orbital and
-the first virtual orbital, for any particular excited state. Thus, orbitals
-$N_{\alpha}$ and $N_{\alpha}+1$ represent the most important NTO pair, while
-orbitals $N_{\alpha}-1$ and $N_{\alpha}+2$ represent the second most important NTO
-pair, *etc.*.
+另一个需要注意的复杂之处在于指定哪些 NTO 将作为 cube 文件输出。当 MAKE_CUBE_FILES 设置为 TRUE 时，这在 *$plots* 区段中指定，与指定待绘制的 MO 的方式相同。但必须理解 NTO 的存储顺序。对于一个具有 $N_{\alpha}$ 个 $\alpha$ 自旋 MO 的体系，占据 NTO $1,2,\ldots,N_{\alpha}$ 按振幅递增的顺序存储，因此第 $N_{\alpha}$ 个占据 NTO 是最重要的。虚 NTO 紧随其后存储，并按*递减*的重要性排序。按照这一约定，对于任意特定激发态，主要（principle）NTO 对由最后一个占据轨道和第一个虚轨道组成。因此，轨道 $N_{\alpha}$ 和 $N_{\alpha}+1$ 代表最重要的 NTO 对，而轨道 $N_{\alpha}-1$ 和 $N_{\alpha}+2$ 代表第二重要的 NTO 对，依此类推。
 
-???+ example "Example 10.28: Generating cube files for the excitation between the principle occupied and
-virtual NTOs of the second singlet excited state of uracil. Note that $N_{\alpha}=29$ for uracil."
+???+ example "示例 10.28: 为尿嘧啶（uracil）第二单重激发态的主要占据 NTO 与虚 NTO 之间的跃迁生成 cube 文件。注意尿嘧啶的 $N_{\alpha}=29$。"
     ```qchem
     $molecule
        0 1
@@ -183,22 +138,9 @@ virtual NTOs of the second singlet excited state of uracil. Note that $N_{\alpha
     $end
     ```
 
-Cube files for Natural Bond Orbitals (for either the ground state
-or any CIS, RPA, of TDDFT excited states) can be generated in much the
-same way, by setting MAKE_CUBE_FILES equal to NBOS,
-and using CUBEFILE_STATE to select the desired electronic state.
-CUBEFILE_STATE = 0 selects ground-state NBOs. The particular
-NBOs to be plotted are selected using the *$plots* section, recognizing
-that **Q-Chem** stores the NBOs in order of decreasing occupancies, with
-all $\alpha$-spin NBOs preceding any $\beta$-spin NBOs, in the case of an
-unrestricted SCF calculation. (For ground states, there is typically one
-strongly-occupied
-NBO for each electron.) NBO cube files are saved to the
-`plots` sub-directory of the job’s scratch directory. One final
-caveat: to get NBO cube files, the user must specify the AONBO
-option in the *$nbo* section, as shown in the following example.
+自然键轨道（NBO，可以是基态或任意 CIS、RPA 或 TDDFT 激发态）的 cube 文件也可以用几乎相同的方式生成，只需将 MAKE_CUBE_FILES 设置为 NBOS，并使用 CUBEFILE_STATE 选择所需的电子态。CUBEFILE_STATE = 0 选择基态 NBO。待绘制的具體 NBO 通过 *$plots* 区段来选取，但需认识到 **Q-Chem** 按占据数递减的顺序存储 NBO，并且在非限制（unrestricted）SCF 计算中，所有 $\alpha$ 自旋 NBO 都排在任何 $\beta$ 自旋 NBO 之前。（对于基态，通常每个电子对应一个强占据 NBO。）NBO cube 文件保存在作业暂存目录下的 `plots` 子目录中。最后一点注意事项：要获得 NBO cube 文件，用户必须在 *$nbo* 区段中指定 AONBO 选项，如下例所示。
 
-???+ example "Example 10.29: Generating cube files for the NBOs of the first excited state of $\rm H_{2}O$ ."
+???+ example "示例 10.29: 为 $\rm H_{2}O$ 第一激发态的 NBO 生成 cube 文件。"
     ```qchem
     $rem
        METHOD           CIS
@@ -231,10 +173,9 @@ option in the *$nbo* section, as shown in the following example.
     $end
     ```
 
-???+ example "Example 10.30: NTO and NBO plots with the new format for the $plots section:
-NTOs for the first excited state (two pairs) and five NBOs for
-both the ground and first excited state are plotted.
-The aonbo keyword in the nbo section below is required."
+???+ example "示例 10.30: 使用 *$plots* 区段的新格式绘制 NTO 与 NBO 图：
+绘制第一激发态的 NTO（两对）以及基态和第一激发态各自的五个 NBO。
+下方 nbo 区段中的 aonbo 关键字是必需的。"
     ```qchem
     $molecule
       0 1
@@ -266,27 +207,4 @@ The aonbo keyword in the nbo section below is required."
     $end
     ```
 
-It is also possible to obtain Molecular Orbital (MO) or ground-state electron
-density cube files from Complex-Absorbing-Potential Hartree-Fock (CAP-HF) or
-Density Functional Theory (CAP-DFT) calculations. No adjustment in the plot
-ection is required, however the user should pay attention in order to identify
-which cube file contains which spatial function. For each requested MO with
-index $N$, three files will be printed:
-
-- •
-
-mo.$N$.cube contains the real-valued MO prior to addition of the
-CAP.
-- •
-
-mo.$\left(1000+N\right)$.cube contains the real part of the
-complex MO after convergence of the CAP-SCF calculation.
-- •
-
-mo.$\left(1000+N+o\right)$.cube contains the imaginary part
-of the complex MO after convergence of the CAP-SCF calculation. $o$ is
-equal to the total number of spin orbitals calculated for the molecule.
-
-For the ground-state density, the three files will have indices 0, 1000 and 1001.
-They contain the density prior to CAP addition, and the real and imaginary density
-after CAP-SCF convergence respectively.
+此外，还可以从复数吸收势 Hartree-Fock（Complex-Absorbing-Potential Hartree-Fock, CAP-HF）或复数吸收势密度泛函理论（Complex-Absorbing-Potential Density Functional Theory, CAP-DFT）计算中获得分子轨道（MO）或基态电子密度的 cube 文件。此时 *$plots* 区段无需做任何调整，但用户应当留意加以区分识别。

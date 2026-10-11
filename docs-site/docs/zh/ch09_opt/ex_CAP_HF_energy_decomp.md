@@ -1,128 +1,127 @@
 ---
-title: "9.11.3 CAP-AIMD Job Control and Examples"
+title: "9.11.3 CAP-AIMD 任务控制与示例"
 ---
 
-## 9.11.3 CAP-AIMD Job Control and Examples
+## 9.11.3 CAP-AIMD 任务控制与示例
 
 (July 4, 2026)
 
-The following three assignments are necessary in order to run a CAP-AIMD simulation:
+若要运行 CAP-AIMD（复吸收势 - 从头算分子动力学）模拟，必须设置以下三项：
 
 - •
 
-JOBTYPE = AIMD in *$rem*,
+JOBTYPE = AIMD，位于 *$rem* 中，
 - •
 
-COMPLEX_CCMAN = TRUE in *$rem* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)), and
+COMPLEX_CCMAN = TRUE，位于 *$rem* 中（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节），以及
 - •
 
-CS_HF = 1 in *$complex_ccman* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)).
+CS_HF = 1，位于 *$complex_ccman* 中（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）。
 
-For now, CAP-AIMD simulations are possible only with the cuboid CAP type, so setting CAP_TYPE = 1 is also necessary in the *$complex_ccman* section (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)).
+目前，CAP-AIMD 模拟仅可使用长方体（cuboid）类型的 CAP，因此还需要在 *$complex_ccman* 区段中设置 CAP_TYPE = 1（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）。
 
-With CAP-AIMD simulations, one gets two additional files in the AIMD directory (§[9.9.2](sub_aimd_jobcontrol.md)):
+进行 CAP-AIMD 模拟时，除 [9.9.2](sub_aimd_jobcontrol.md) 节所述内容外，还会在 AIMD 目录中生成两个额外文件：
 
 - •
 
-`CAP_EComponents`: Records for each step the total complex energy, the CAP-corrected total complex energy, and the real and imaginary parts of the CAP contribution to the total complex energy – all in atomic units (a.u.).
+`CAP_EComponents`：记录每一步的总复数能量、经 CAP 修正的总复数能量，以及 CAP 对总复数能量贡献的实部与虚部——全部以原子单位（a.u.）计。
 - •
 
-`CAP_PositionAndWidth`: Records for each step the total complex energy (in a.u.) and the resonance width (in electron-Volt).
+`CAP_PositionAndWidth`：记录每一步的总复数能量（以 a.u. 计）以及共振宽度（以电子伏特 eV 计）。
 
 CAP_AIMD_SWITCH
 
 ### `CAP_AIMD_SWITCH`
 
-> **Sets CAP_ETA to zero during a CAP-AIMD simulation when the real part of the last alpha occupied orbital’s energy is negative**
+> **当最后一个 alpha 占据轨道能量的实部为负时，在 CAP-AIMD 模拟过程中将 CAP_ETA 置为零**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Set
+>     * 当最后一个 alpha 占据轨道能量的实部变为负值时，将
 >     * CAP_ETA
->     * to zero when the real part of the last alpha occupied orbital’s becomes negative.
+>     * 置为零。
 >     * FALSE
->     * Keep user’s
+>     * 在整个模拟过程中保持用户设定的
 >     * CAP_ETA
->     * constant throughout simulation.
-> * **Recommendation**: Use default.
+>     * 恒定不变。
+> * **建议**: 使用默认值。
 
 CS_STRICT
 
 ### `CS_STRICT`
 
-> **Determines Mulliken charges, multipole moments and complex orbital energies for CAP-HF calculations by reading, when applicable, complex density matrix or complex molecular orbital coefficient file**
+> **通过在适用时读取复密度矩阵或复分子轨道系数文件，为 CAP-HF 计算确定 Mulliken 电荷、多极矩和复轨道能量**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * determine Mulliken charges, multipole moments and complex orbital energies for CAP-HF calculations by reading – when applicable – the complex density matrix or complex molecular orbital coefficient file.
+>     * 通过在适用时读取——复密度矩阵或复分子轨道系数文件，为 CAP-HF 计算确定 Mulliken 电荷、多极矩和复轨道能量。
 >     * FALSE
->     * Don’t read the complex density matrix or complex molecular orbital coefficient file when determining Mulliken charges, multipole moments and orbital energies for CAP-HF calculations.
-> * **Recommendation**: Set to ‘TRUE’ for CAP-HF calculations.
+>     * 在为 CAP-HF 计算确定 Mulliken 电荷、多极矩和轨道能量时，不读取复密度矩阵或复分子轨道系数文件。
+> * **建议**: 对于 CAP-HF 计算设为 'TRUE'。
 
 SKIP_OLD_SCFMAN
 
 ### `SKIP_OLD_SCFMAN`
 
-> **Skips only old SCF drivers**
+> **仅跳过旧的 SCF 驱动模块**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Skip
->     * only
->     * old SCF drivers
+>     * 仅
+>     * 跳过旧的 SCF 驱动模块
 >     * FALSE
->     * Do not skip old SCF drivers
-> * **Recommendation**: When performing CAP calculations on temporary anions, it may help setting this variable to FALSE.
+>     * 不跳过旧的 SCF 驱动模块
+> * **建议**: 在对临时阴离子（temporary anions）执行 CAP 计算时，将此变量设为 FALSE 可能有所帮助。
 
 CS_SCF_FINAL_PRINT
 
 ### `CS_SCF_FINAL_PRINT`
 
-> **Controls level of output from CAP-SCF procedure.**
+> **控制 CAP-SCF 过程的输出详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * Print direct breakdown of CAP-SCF energy.
+>     * 打印 CAP-SCF 能量的直接分解结果。
 >     * 2
->     * Print breakdown of CAP-SCF energy based on the complex coefficient matrix.
->     * Also required if the options below are requested.
+>     * 基于复系数矩阵打印 CAP-SCF 能量的分解结果。
+>     * 若请求以下选项，此项也为必需。
 >     * 3
->     * Level 2 plus diagonal elements of complex orbital energy matrix,
+>     * 级别 2 加上复轨道能量矩阵
 >     * F
->     * . Triggered by Level 2.
+>     * 的对角元。由级别 2 触发。
 >     * 4
->     * Level 2 plus diagonal elements of complex kinetic energy matrix,
+>     * 级别 2 加上复动能矩阵
 >     * T
->     * . Triggered by Level 2
+>     * 的对角元。由级别 2 触发
 >     * 5
->     * Level 2 plus diagonal elements of complex electron-nuclear Coulomb potential energy matrix,
+>     * 级别 2 加上复电子-核库仑势能矩阵
 >     * V
->     * . Triggered by Level 2.
+>     * 的对角元。由级别 2 触发。
 >     * 6
->     * Level 2 plus diagonal elements of CAP matrix,
+>     * 级别 2 加上 CAP 矩阵
 >     * W
->     * . Triggered by Level 2.
+>     * 的对角元。由级别 2 触发。
 >     * 7
->     * Level 2 plus diagonal elements of total complex one-electron energy matrix,
+>     * 级别 2 加上复单电子总能量矩阵
 >     * $\textbf{T}+\textbf{V}+\textbf{W}$
->     * . Triggered by Level 2.
+>     * 的对角元。由级别 2 触发。
 >     * 8
->     * Level 2 plus diagonal elements of total complex electronic energy matrix,
+>     * 级别 2 加上复电子总能量矩阵
 >     * $\textbf{T}+\textbf{V}+\textbf{W}+\textbf{F}$
->     * . Triggered by Level 2.
+>     * 的对角元。由级别 2 触发。
 >     * 9
->     * Level 2 to 8. Triggered by Level 2.
-> * **Recommendation**: Level 1 is usually enough. Values for this $rem variable are transformed first into a set of distinct values; thus, for example, “1111” is equivalent to “1” and “28224” is equivalent to “248”. To request Levels 3–9, please remember to request Level 2 as well.
+>     * 级别 2 至 8。由级别 2 触发。
+> * **建议**: 通常级别 1 就足够了。该 $rem 变量的值会先被转换为一组互不相同的取值；因此，例如 "1111" 等价于 "1"，而 "28224" 等价于 "248"。若请求级别 3–9，请记得同时请求级别 2。
 
-???+ example "Example 9.9.49: CAP-HF single point job for N ${}_{2}^{-}$ , with energy decomposition of the complex energy. Basis set is cc-PVTZ+3p."
+???+ example "示例 9.9.49: N ${}_{2}^{-}$ 的 CAP-HF 单点计算，含复数能量的能量分解。基组为 cc-PVTZ+3p。"
     ```qchem
     $molecule
     -1 2
@@ -199,7 +198,7 @@ CS_SCF_FINAL_PRINT
     $end
     ```
 
-???+ example "Example 9.9.50: CAP-AIMD simulation for N ${}_{2}^{-}$ . Basis set is cc-PVTZ+3p."
+???+ example "示例 9.9.50: N ${}_{2}^{-}$ 的 CAP-AIMD 模拟。基组为 cc-PVTZ+3p。"
     ```qchem
     $molecule
     -1 2
@@ -287,7 +286,7 @@ CS_SCF_FINAL_PRINT
     $end
     ```
 
-???+ example "Example 9.9.51: CAP-AIMD simulation for C ${}_{2}$ H ${}_{4}^{-}$ . Basis set is cc-PVTZ+3p(C). A CAP single point calculation is first done. The CAP-SCF solution is then read as the initial guess for the CAP-AIMD part. This procedure is useful, for example, when one wants to use the MOM_START option (§ 4.5.14 ) to preserve orbital occupation in the course of the simulation."
+???+ example "示例 9.9.51: C ${}_{2}$ H ${}_{4}^{-}$ 的 CAP-AIMD 模拟。基组为 cc-PVTZ+3p(C)。先执行一次 CAP 单点计算，然后将 CAP-SCF 解读入作为 CAP-AIMD 部分的初始猜测。该流程很有用，例如当希望使用 MOM_START 选项（第 4.5.14 节）以在模拟过程中保持轨道占据数不变时。"
     ```qchem
     $molecule
     -1 2

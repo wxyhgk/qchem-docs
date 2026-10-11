@@ -1,75 +1,69 @@
 ---
-title: "6.16.1 Overview"
+title: "6.16.1 概述"
 ---
 
-## 6.16.1 Overview
+## 6.16.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Analytic gradients are available for CCSD, OO-CCD/VOD, CCD, and QCCD/VQCCD
-methods for both closed- and open-shell references (UHF and RHF only),
-including frozen core and/or virtual functionality, as well as RI/Cholesky
-representations of the electron-repulsion integrals.
-Analytic gradients are available for CCVB-SD for only closed-shell references (RHF).
-In addition, gradients for selected GVB models are available.
+CCSD、OO-CCD/VOD、CCD 以及 QCCD/VQCCD 方法的解析梯度（analytic gradients）已可用，适用于闭壳层和开壳层参考（仅限 UHF 和 RHF），
+包括冻结核心（frozen core）和/或冻结虚轨道功能，以及电子排斥积分（electron-repulsion integrals）的 RI/Cholesky 表示。
+CCVB-SD 的解析梯度仅适用于闭壳层参考（RHF）。
+此外，部分选定的 GVB 模型的梯度也已可用。
 
-For the CCSD and OO-CCD wave functions, **Q-Chem** can also calculate dipole
-moments, $\langle r^{2}\rangle$ (as well as $\langle x^{2}\rangle$, $\langle y^{2}\rangle$,
-and $\langle z^{2}\rangle$ moments separately, which
-is useful for assigning different Rydberg states, *e.g.*, $3p_{x}$ vs. $3s$,
-*etc.*), and the $\langle\hat{S}^{2}\rangle$ values. Interface of the CCSD and (V)OO-CCD
-codes with the NBO 5.0 package is also available. This code is closely related
-to EOM-CCSD properties/gradient calculations (Section [7.9.21](../ch07_excited/sec_EOMGRAD.md)).
-Solvent models available for CCSD are described in Chapter [11.2](../ch11_env/topic_solvation.md).
-For CCSD, analytic calculation of g-tensors is also available (see Section [7.9.21](../ch07_excited/sec_EOMGRAD.md)).
+对于 CCSD 和 OO-CCD 波函数，**Q-Chem** 还可以计算偶极矩、
+$\langle r^{2}\rangle$（以及分开的 $\langle x^{2}\rangle$、$\langle y^{2}\rangle$
+和 $\langle z^{2}\rangle$ 矩，这对于指认不同的里德堡（Rydberg）态很有用，*e.g.*，$3p_{x}$ 与 $3s$
+*etc.*），以及 $\langle\hat{S}^{2}\rangle$ 值。
+CCSD 和 (V)OO-CCD 程序与 NBO 5.0 软件包的接口也已可用。该程序与 EOM-CCSD
+性质/梯度计算（第 [7.9.21](../ch07_excited/sec_EOMGRAD.md) 节）密切相关。
+CCSD 可用的溶剂模型（solvent models）在第 [11.2](../ch11_env/topic_solvation.md) 章中描述。
+对于 CCSD，g 张量（g-tensors）的解析计算也已可用（参见第 [7.9.21](../ch07_excited/sec_EOMGRAD.md) 节）。
 
-Limitations: Gradients and fully relaxed properties for ROHF and non-HF (*e.g.*,
-B3LYP or FNO) orbitals as well as RI approximation are not yet available.
+局限性：目前尚不支持 ROHF 和非 HF（*e.g.*，B3LYP 或 FNO）轨道以及 RI 近似的梯度和完全弛豫性质。
 
-**Note: 
+**注意：**
 
-If gradients or properties are computed with frozen core/virtual,
-the algorithm will replace frozen orbitals to restricted. This will not affect
-the energies, but will change the orbital numbering in the CCMAN printout.
-**
+**若使用冻结核心/虚轨道计算梯度或性质，算法会将冻结轨道替换为限制性（restricted）轨道。
+这不会影响能量，但会改变 CCMAN 输出中的轨道编号。**
 
 CC_REF_PROP
 
 ### `CC_REF_PROP`
 
-> **Whether or not the non-relaxed (expectation value) or full response (including orbital relaxation terms) one-particle CCSD properties will be calculated. The properties currently include permanent dipole moment, the second moments ( $\langle x^{2}\rangle$ , $\langle y^{2}\rangle$ , and $\langle z^{2}\rangle$ ) of the electron density along with $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$ . This option is incompatible with JOBTYPE = FORCE , OPT , or FREQ .**
+> **是否计算非弛豫（期望值）或完整响应（包含轨道弛豫项）的单粒子 CCSD 性质。当前包含的性质有永久偶极矩、电子密度沿各方向的二阶矩（$\langle x^{2}\rangle$、$\langle y^{2}\rangle$ 和 $\langle z^{2}\rangle$）以及 $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$。此选项与 JOBTYPE = FORCE、OPT 或 FREQ 不兼容。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * FALSE, TRUE
-> * **Recommendation**: Additional equations need to be solved ( $\lambda$ -CCSD equations) for properties with the cost approximately the same as CCSD equations. Use the default if you do not need properties. The cost of the properties calculation itself is low. The CCSD one-particle density can be analyzed with NBO package by specifying NBO = TRUE , = TRUE , and JOBTYPE = FORCE .
+> * **建议**：计算性质需要求解额外的方程（$\lambda$-CCSD 方程），其开销与 CCSD 方程大致相同。如果不需要性质，请使用默认值。性质计算本身的开销较低。通过指定 NBO = TRUE、= TRUE 以及 JOBTYPE = FORCE，可以用 NBO 软件包分析 CCSD 单粒子密度。
 
 CC_REF_PROP_TE
 
 ### `CC_REF_PROP_TE`
 
-> **Request for calculation of non-relaxed two-particle CCSD properties. The two-particle properties currently include $\langle\hat{S}^{2}\rangle$ . The one-particle properties also will be calculated, since the additional cost of the one-particle properties calculation is small compared to the cost of $\langle\hat{S}^{2}\rangle$ . The variable CC_REF_PROP must be also set to TRUE .**
+> **请求计算非弛豫的双粒子 CCSD 性质。目前包含的双粒子性质有 $\langle\hat{S}^{2}\rangle$。单粒子性质也将一并计算，因为与 $\langle\hat{S}^{2}\rangle$ 的开销相比，单粒子性质计算的额外开销很小。变量 CC_REF_PROP 也必须设置为 TRUE。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * FALSE, TRUE
-> * **Recommendation**: The two-particle properties are computationally expensive, since they require calculation and use of the two-particle density matrix (the cost is approximately the same as the cost of an analytic gradient calculation). Do not request the two-particle properties unless you really need them.
+> * **建议**：双粒子性质的计算开销很大，因为需要计算并使用双粒子密度矩阵（开销大致相当于一次解析梯度计算的开销）。除非确实需要，否则请勿请求双粒子性质。
 
 CC_FULLRESPONSE
 
 ### `CC_FULLRESPONSE`
 
-> **Fully relaxed properties (including orbital relaxation terms) will be computed. The variable CC_REF_PROP must be also set to TRUE .**
+> **计算完全弛豫性质（包含轨道弛豫项）。变量 CC_REF_PROP 也必须设置为 TRUE。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * FALSE, TRUE
-> * **Recommendation**: Not available for non UHF/RHF references and for the methods that do not have analytic gradients ( e.g. , QCISD).
+> * **建议**：不适用于非 UHF/RHF 参考，也不适用于没有解析梯度的方法（e.g.，QCISD）。
 
-???+ example "Example 6.50: CCSD geometry optimization of HHeF followed up by properties calculations"
+???+ example "示例 6.50：HHeF 的 CCSD 几何优化及后续性质计算"
     ```qchem
     $molecule
        0 1

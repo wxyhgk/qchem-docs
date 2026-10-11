@@ -1,109 +1,95 @@
 ---
-title: "11.2.2 Kirkwood-Onsager Multipole Expansion Method"
+title: "11.2.2 Kirkwood-Onsager 多极展开方法"
 ---
 
-## 11.2.2 Kirkwood-Onsager Multipole Expansion Method
+## 11.2.2 Kirkwood-Onsager 多极展开方法
 
 (July 4, 2026)
 
-The simplest implicit solvation model available in **Q-Chem** is the
-multipolar expansion model,[[690]](../bib_references/bib.md#bib716)
+**Q-Chem** 中最简单的隐式溶剂化模型是多极展开模型，[[690]](../bib_references/bib.md#bib716)
 
-which has also been called the Kirkwood-Onsager model or sometimes the generalized Kirkwood
-model.[[569]](../bib_references/bib.md#bib580)
+该模型也被称为 Kirkwood-Onsager 模型，有时称作广义 Kirkwood 模型。[[569]](../bib_references/bib.md#bib580)
 
-In this approach, the solute is placed inside of a spherical cavity of radius $a$ that is surrounded by a
-homogeneous dielectric medium whose dielectric constant is $\varepsilon$, and these constitute the only
-parameters of the model. The term *Onsager model* is sometimes synonymous with a point-dipole
-approximation for the solute’s charge density, but **Q-Chem**’s version uses a single-center multipole
-expansion of the density (which can be extended to arbitrarily high order), in order to obtain an essentially
-exact description of the solute’s electrostatic potential. The model then consists of using Kirkwood’s
-analytic expressions for the solvation energy of each spherical harmonic function, in a spherical cavity inside
-of a dielectric continuum.[[569]](../bib_references/bib.md#bib580)
+在这种方法中，溶质被置于半径为 $a$ 的球形空腔内，空腔外围是介电常数为 $\varepsilon$ 的均匀介电介质，这两者构成了该模型的全部参数。*Onsager 模型*这一术语有时与溶质电荷密度的点偶极近似同义，但 **Q-Chem** 的版本使用对密度的单中心多极展开（可以推广到任意高阶），从而获得对溶质静电势的近乎精确的描述。该模型的核心是使用 Kirkwood 关于介电连续体内部球形空腔中各球谐函数溶剂化能的解析表达式。[[569]](../bib_references/bib.md#bib580)
 
-Regarding the cavity radius $a$,
-Onsager’s original suggestion is based on the molar volume $V_{m}$ of the pure solute,
+关于空腔半径 $a$，Onsager 的原始建议基于纯溶质的摩尔体积 $V_{m}$，
 
 <a id="eq:OnsagerRadius"></a>
 $$
 a=(3V_{m}/4\pi N_{A})^{1/3} \tag{11.1}
 $$
 
-where $N_{A}$ is Avogadro’s constant. This was later shown to be a poor choice in the context of
-modern quantum chemistry calculations.[[569]](../bib_references/bib.md#bib580)
+其中 $N_{A}$ 为阿伏伽德罗常数。后来的研究表明，在现代量子化学计算的语境下，这是一个欠佳的选择。[[569]](../bib_references/bib.md#bib580)
 
-It is also common to add 0.5 Å to the value of $a$ in Eq. ([11.1](#eq:OnsagerRadius)) in
-order to account for the first solvation shell,[[1490]](../bib_references/bib.md#bib1550)
- or to set $a$ equal to
-the maximum distance between the solute center of
-mass and the solute atoms, plus the relevant van der Waals radii. A third
-option is to set $2a$ (the cavity diameter) equal to the largest
-solute–solvent internuclear distance, plus the van der Waals radii of the relevant atoms.
-Clearly, there is quite a bit of arbitrariness in this choice and solvation energies are quite
-sensitive to the value of $a$,[[569]](../bib_references/bib.md#bib580)
- and the PCMs that are described in
-Section [11.2.3](topic_pcm-em.md) have largely made the multipolar expansion method obsolete, since
-the PCMs employ the exact electron density and can be used (if desired) with a spherical cavity,
-although the more typical choice is a molecule-shaped van der Waals cavity.
+也常见的做法是在式 ([11.1](#eq:OnsagerRadius)) 中 $a$ 的值上加 0.5 Å，
+以考虑第一溶剂化壳层的影响，[[1490]](../bib_references/bib.md#bib1550)
+或者将 $a$ 设置为溶质质心与溶质各原子之间的最大距离，再加上相关的范德华半径。第三种
+选择是将 $2a$（空腔直径）设置为最大的溶质–溶剂核间距离，
+再加上相关原子的范德华半径。
+显然，这一选择带有相当大的任意性，且溶剂化能对 $a$ 的取值非常
+敏感，[[569]](../bib_references/bib.md#bib580)
+而第 [11.2.3](topic_pcm-em.md) 节所描述的 PCM 方法在很大程度上已使多极展开方法
+过时，因为 PCM 采用精确的电子密度，并且（如有需要）也可使用球形空腔，
+尽管更典型的选择是分子形状的范德华空腔。
 
-The Kirkwood-Onsager SCRF is requested by setting SOLVENT_METHOD =
-KIRKWOOD in the *$rem* section.
-Some additional options can be specified in the *$solvent* section,
-as described below, of which only **CavityRadius** is required.
-Energies and analytic gradients for the Kirkwood-Onsager solvent model are
-available for Hartree-Fock, DFT, and CCSD calculations. It is often advisable
-to perform a gas-phase calculation of the solute molecule first, which can
-serve as the initial guess for a subsequent Kirkwood-Onsager implicit solvent calculation.
-For coupled-cluster calculations using this model, one may set
-CC_SAVEAMPL = TRUE to retain the CC amplitudes from the gas-phase calculation, which
-will save some time in the subsequent solution-phase calculation.
+Kirkwood-Onsager SCRF 通过在 *$rem* 部分设置 SOLVENT_METHOD =
+KIRKWOOD 来请求使用。
+ additional 一些额外选项可以在 *$solvent* 部分指定，
+如下文所述，其中只有 **CavityRadius** 是必需的。
+Kirkwood-Onsager 溶剂模型的能量与解析梯度
+可用于 Hartree-Fock、DFT 以及 CCSD 计算。通常建议
+先对溶质分子进行一次气相计算，其结果
+可作为后续 Kirkwood-Onsager 隐式溶剂计算的初始猜测。
+对于使用该模型的耦合簇计算，可以设置
+CC_SAVEAMPL = TRUE 以保留气相计算中的 CC 振幅，
+这将节省后续溶液相计算的一些时间。
 
-**Note: 
+**注意：
 
-For CCSD calculations the Kirkwood-Onsager model works only with CCMAN2 = FALSE.
+对于 CCSD 计算，Kirkwood-Onsager 模型只能与 CCMAN2 = FALSE 配合使用。
 **
 
-The following job-control options belong in the *$solvent* section, not the *$rem* section.
-As with other parts of the **Q-Chem** input file, this input section is not case-sensitive.
+以下作业控制选项应放在 *$solvent* 部分，而不是 *$rem* 部分。
+与 **Q-Chem** 输入文件的其他部分一样，此输入部分不区分大小写。
 
 ### `CavityRadius`
 
-> **Sets the radius of the spherical solute cavity. INPUT SECTION: $solvent**
+> **设置球形溶质空腔的半径。输入部分：$solvent**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `No default.`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `无默认值。`
+> * **选项**:
 >     * $a$
->     * Cavity radius in Å.
-> * **Recommendation**: None
+>     * 空腔半径，单位为 Å。
+> * **建议**: 无
 
 ### `Dielectric`
 
-> **Sets the dielectric constant of the solvent continuum. INPUT SECTION: $solvent**
+> **设置溶剂连续介质的介电常数。输入部分：$solvent**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `78.39`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `78.39`
+> * **选项**:
 >     * $\varepsilon$
->     * Use a (dimensionless) value of
+>     * 使用（无量纲的）值
 >     * $\varepsilon$
->     * .
-> * **Recommendation**: The default value corresponds to water at 25 ${}^{\circ}$ C.
+>     * 。
+> * **建议**: 默认值对应于 25 ${}^{\circ}$ C 下的水。
 
 ### `MultipoleOrder`
 
-> **Determines the order to which the multipole expansion of the solute charge density is carried out. INPUT SECTION: $solvent**
+> **决定对溶质电荷密度的多极展开进行到哪一阶。输入部分：$solvent**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `15`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `15`
+> * **选项**:
 >     * $\ell$
->     * Include up to
+>     * 包含最高至
 >     * $\ell$
->     * th order multipoles.
-> * **Recommendation**: Use the default. The multipole expansion is usually converged by order $\ell$ = 15.
+>     * 阶的多极子。
+> * **建议**: 使用默认值。多极展开通常在 $\ell$ = 15 阶即已收敛。
 
-???+ example "Example 11.1: Multipole expansion model at the Hartree-Fock level; H ${}_{2}$ O in acetonitrile"
+???+ example "示例 11.1: Hartree-Fock 级别的多极展开模型；乙腈中的 H ${}_{2}$ O"
     ```qchem
     $molecule
        0 1
@@ -125,8 +111,8 @@ As with other parts of the **Q-Chem** input file, this input section is not case
     $end
     ```
 
-???+ example "Example 11.2: Kirkwood-Onsager SCRF applied to hydrogen fluoride in water, performing a
-gas-phase calculation first."
+???+ example "示例 11.2: 将 Kirkwood-Onsager SCRF 应用于水中的氟化氢，先执行
+气相计算。"
     ```qchem
     $molecule
        0 1

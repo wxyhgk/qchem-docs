@@ -1,68 +1,65 @@
 ---
-title: "7.6.3 One-Center NOCIS (1C-NOCIS)"
+title: "7.6.3 单中心 NOCIS（1C-NOCIS）"
 ---
 
-## 7.6.3 One-Center NOCIS (1C-NOCIS)
+## 7.6.3 单中心 NOCIS（1C-NOCIS）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 7.6.3.1 One-electron M${}_{S}$ = 1/2 doublet and two-electron M${}_{S}$ = 1 triplet references
+## 7.6.3.1 单电子 M${}_{S}$ = 1/2 双重态与两电子 M${}_{S}$ = 1 三重态参考态
 
-There is also another approximate method, one-center NOCIS (1C-NOCIS),[[1023]](../bib_references/bib.md#bib1068)
+除此之外，还有一种近似方法，即单中心 NOCIS（1C-NOCIS），[[1023]](../bib_references/bib.md#bib1068)
 
-which is an intermediate between NOCIS and STEX. The open-shell determinants are separately optimized as in NOCIS, but the coupling between non-orthogonal determinants with core holes on different centers is ignored, and NOCI is used to compute the remaining matrix elements between non-orthogonal determinants. 1C-NOCIS constructs the orthogonal Slater-Condon components of the matrices, and then performs NOCI to obtain the relevant non-orthogonal components. The diagonal blocks are then projected against the ground state. For closed-shell singlet NOCIS, 1C-NOCIS is the same as STEX, since there are no open-shell ground-state orbitals.
+它是介于 NOCIS 与 STEX 之间的一种折中方案。开壳层行列式像 NOCIS 那样被分别优化，但忽略了不同中心上具有空穴的非正交行列式之间的耦合，而剩余的、非正交行列式之间的矩阵元则用 NOCI 来计算。1C-NOCIS 先构造矩阵的正交 Slater-Condon 分量，然后执行 NOCI 以获得相应的非正交分量。之后，对角块会相对于基态进行投影。对于闭壳层单重态 NOCIS，由于不存在开壳层基态轨道，1C-NOCIS 与 STEX 是等价的。
 
-There are two main advantages of 1C-NOCIS. First, it is substantially cheaper to evaluate than NOCIS and so enables the treatment of larger molecules. Second, and in contrast to STEX, it allows the open-shell states to relax separately, which may have a substantial impact on accuracy.
+1C-NOCIS 主要有两个优势。第一，其计算代价远低于 NOCIS，因此能够处理更大的分子。第二，与 STEX 不同，它允许开壳层态各自独立弛豫，这对精度可能有显著影响。
 
-## 7.6.3.2 Two-electron M${}_{S}$ = 0 singlet and triplet references
+## 7.6.3.2 两电子 M${}_{S}$ = 0 单重态与三重态参考态
 
-Inspired by the 1C-NOCIS model, a theory for core excited states out of an M${}_{S}$ = 0, two-electron open-shell (2eOS)
-reference state (either singlet or triplet) was developed.[[51]](../bib_references/bib.md#bib34)
- This theory is appropriate for
-experiments involving an ultrafast UV pump followed by a XUV or x-ray probe, for example. For a 2eOS
-state describable by a single NTO pair, where an electron in occupied orbital $o$ is promoted into a target virtual orbital $t$, the excited-state wave function takes the form
+受 1C-NOCIS 模型的启发，人们发展了一套针对 M${}_{S}$ = 0、两电子开壳层（2eOS）参考态（单重态或三重态）的核心激发态理论。[[51]](../bib_references/bib.md#bib34)
+ 该理论适用于例如先用超快紫外（UV）泵浦、再用极紫外（XUV）或 X 射线探测的实验。对于可用单个自然跃迁轨道（NTO）对描述的 2eOS 态——即占据轨道 $o$ 上的一个电子被激发到目标虚轨道 $t$——其激发态波函数具有如下形式
 
 <a id="Ch7.E74"></a>
 $$
 \big{|}^{1,\;3}\Psi_{i}\big{\rangle}=(2)^{1/2}\left(\big{|}\Phi_{o}^{t}\big{\rangle}\pm\big{|}\Phi_{\bar{o}}^{\bar{t}}\big{\rangle}\right) \tag{7.74}
 $$
 
-where the plus corresponds to the singlet and the minus to the triplet. Subsequently promoting a core electron $c$ into an arbitrary particle level $y$, while remaining within the M${}_{s}$ = 0 manifold, results in eight possible configurations
+其中加号对应单重态，减号对应三重态。随后，在保持处于 M${}_{s}$ = 0 流形的前提下，将一个核心电子 $c$ 激发到任意粒子能级 $y$，可得到八种可能的组态
 
 <a id="Ch7.E75"></a>
 $$
 \big{|}\Phi_{oc}^{to}\big{\rangle},\;\big{|}\Phi_{\bar{o}\bar{c}}^{\bar{t}\bar{o}}\big{\rangle},\;\big{|}\Phi_{oc}^{ty}\big{\rangle},\;\big{|}\Phi_{\bar{o}\bar{c}}^{\bar{t}\bar{y}}\big{\rangle},\;\big{|}\Phi_{\bar{o}c}^{\bar{t}y}\big{\rangle},\;\big{|}\Phi_{o\bar{c}}^{t\bar{y}}\big{\rangle},\;\big{|}\Phi_{\bar{o}c}^{\bar{y}t}\big{\rangle},\;\big{|}\Phi_{o\bar{c}}^{y\bar{t}}\big{\rangle} \tag{7.75}
 $$
 
-Diagonalizing the S${}^{2}$ operator within the span of these configurations results in several possible configuration state fuctions (CSFs). A special one is the 2eOS singlet or triplet CSFs associated with the re-pairing of the core electron $c$ with the electron in the singly-occupied molecular orbital (SOMO) that was formerly fully-occupied in the closed-shell state, $o$.
+在这些组态所张成的空间内对角化 S${}^{2}$ 算符，可得到若干可能的组态态函数（Configuration State Function, CSF）。其中有一类特殊的 CSF，即与核心电子 $c$ 和那个在闭壳层态中原本满占据的单占据分子轨道（SOMO）$o$ 上的电子重新配对相对应的 2eOS 单重态或三重态 CSF。
 
 <a id="Ch7.E76"></a>
 $$
 \big{|}^{1,\;3}\Phi_{o}^{t}\big{\rangle}=(2)^{-1/2}\left(\big{|}\Phi_{c}^{t}\big{\rangle}\pm\big{|}\Phi_{\bar{c}}^{\bar{t}}\big{\rangle}\right) \tag{7.76}
 $$
 
-When the core electron is promoted to an arbitrary virtual orbital (with respect to the closed-shell configuration), the states can be described by the remaining 4eOS singlet, triplet, and quintet CSFs.
+当核心电子被激发到（相对于闭壳层组态而言的）任意虚轨道时，这些态可以用其余的 4eOS 单重态、三重态和五重态 CSF 来描述。
 
 <a id="Ch7.E77"></a>
 $$
 \displaystyle\big{|}^{1_{A}}\Phi_{oc}^{ty}\big{\rangle} \tag{7.77a}
 $$
 
-Note that the special 2eOS CSF associated with repairing of the core electron with the particle SOMO $t$ are included in the 4eOS CSFs presented above as the cases when $y=t$. As per the original 1C-NOCIS and STEX methods, the variant for M${}_{S}$ = 0 2eOS references diagonalizes the Hamiltonian in the subspan of all the aforementioned CSFs. In deviation with the original doublet and triplet 1C-NOCIS implementation, however, the 2eOS variant offers three possible sets of reference orbitals:
+请注意，与核心电子和粒子 SOMO $t$ 重新配对相对应的特殊 2eOS CSF，已包含在上述 4eOS CSF 之中，即 $y=t$ 的情形。与原始的 1C-NOCIS 和 STEX 方法一样，M${}_{S}$ = 0 的 2eOS 参考态变体是在上述所有 CSF 构成的子空间中对角化哈密顿量。然而，与原始的双重态和三重态 1C-NOCIS 实现不同，2eOS 变体提供了三组可能的参考轨道：
 
 - •
 
-The 1eOS, M${}_{S}$ = 1/2 doublet core ion orbitals, with the virtual space rotated into the NTO basis of a standard closed-shell STEX calculation
+1eOS、M${}_{S}$ = 1/2 双重态核心离子轨道，其中虚空间旋转到标准闭壳层 STEX 计算的 NTO 基下
 - •
 
-The 2eOS, M${}_{S}$ = 0 ROKS-optimized orbitals for the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ configuration
+针对 $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ 组态、采用 ROKS 优化的 2eOS、M${}_{S}$ = 0 轨道
 - •
 
-The 3eOS, M${}_{S}$ = 3/2 quartet core ion ROHF-optimized orbitals for the $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ configuration
+针对 $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ 组态、采用 ROHF 优化的 3eOS、M${}_{S}$ = 3/2 四重态核心离子轨道
 
-Crucially, all of these references incorporate relaxation due to the presence of the core hole and hope to provide a well-defined particle state $t$. Since the STEX and 1C-NOCIS models are, in essence, a truncated CI formalism for open-shell systems, the final excited states constructed are sensitive to the underlying choice of orbitals.[[712]](../bib_references/bib.md#bib744)
- By virtue of being occupied in all the CSFs employed to describe the pump-probe states, the quality of the normally-empty $t$ orbital is essential. For the moment, we recommend using the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ orbitals when targeting singlet states and $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ orbitals when targeting triplet states.
+关键在于，所有这些参考态都纳入了由核心空穴存在所导致的弛豫，并期望提供一个定义明确的粒子态 $t$。由于 STEX 与 1C-NOCIS 模型本质上是针对开壳层体系的截断组态相互作用（Configuration Interaction, CI）形式体系，最终构造出的激发态对底层轨道的选择十分敏感。[[712]](../bib_references/bib.md#bib744)
+ 由于轨道 $t$ 在描述泵浦-探测态所采用的所有 CSF 中均被占据，这个通常为空轨道的 $t$ 的质量至关重要。目前，我们建议在以单重态为目标时使用 $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ 轨道，在以三重态为目标时使用 $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ 轨道。
 
-The valence-excited state orbitals are used as a guess for the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ ROKS or $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ ROHF optimization. Alternatively, the code can use the 1eOS, M${}_{S}$ = 1/2 doublet core ion orbitals as a guess. Since HF provides virtual orbitals of poor quality, the doublet core ion calculation can be performed with DFT to provide a better guess for the subsequent calculation. The DFT method is specified with the ENV_METHOD rem variable.
+价层激发态轨道可用作 $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ ROKS 或 $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ ROHF 优化的初始猜测。或者，代码也可以将 1eOS、M${}_{S}$ = 1/2 双重态核心离子轨道用作猜测。由于 Hartree-Fock（HF）提供的虚轨道质量较差，双重态核心离子的计算可以用密度泛函理论（Density Functional Theory, DFT）来执行，从而为后续计算提供更好的猜测。所用的 DFT 方法通过 ENV_METHOD rem 变量指定。
 
-The 1C-NOCIS 2eOS implementation is more flexible than the original 1C-NOCIS implementation for doublets and triplets. It allows to target arbitrary M${}_{S}$ = 0 singlet or triplet states obtained via CIS or ROKS and allows for control of the underlying calculations of the initial state and the SCF optimizations for the reference orbitals. Correspondingly, there is a larger number of $ rem variables available exclusively for 1C-NOCIS calculations for 2eOS references.
+1C-NOCIS 2eOS 实现比针对双重态和三重态的原始 1C-NOCIS 实现更灵活。它可以利用 CIS 或 ROKS 获得的任意 M${}_{S}$ = 0 单重态或三重态作为目标，并允许对初态的底层计算以及参考轨道的 SCF 优化进行控制。相应地，仅用于 2eOS 参考态 1C-NOCIS 计算的 $rem 变量数量也更多。

@@ -1,61 +1,42 @@
 ---
-title: "7.2.3 CIS Methods with Extended Excitation Manifolds"
+title: "7.2.3 具有扩展激发流形的 CIS 方法"
 ---
 
-## 7.2.3 CIS Methods with Extended Excitation Manifolds
+## 7.2.3 具有扩展激发流形的 CIS 方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-A variety of CIS-like methods have been proposed that add a limited number of double excitations to the
-CIS excitation space,
+人们提出了多种类 CIS（CIS-like）方法，它们在 CIS 激发空间中加入了有限数量的双激发，
+以便在克服 CIS 某些固有缺陷的同时，避免像 CISD 或 CCSD 这类包含全部双激发的方法所带来的高昂的
+${\cal{O}}({N^{6}})$ 计算成本。本节将讨论这些"扩展"的 CIS 方法，首先从 Maurice 和 Head-Gordon 提出的原始扩展 CIS（XCIS）方法[[920]](../bib_references/bib.md#bib956)开始。
 
- in order to overcome certain deficiencies of CIS without incurring the prohibitive
-${\cal{O}}({N^{6}})$ cost of a method such as CISD or CCSD that includes the full complement of double excitations.
-These “extended” CIS methods are discussed in this section, starting with the original excited CIS (XCIS) procedure of
-Maurice and Head-Gordon.[[920]](../bib_references/bib.md#bib956)
+## 7.2.3.1 扩展 CIS（XCIS）
 
-## 7.2.3.1 Extended CIS (XCIS)
-
-The motivation for XCIS stems
-from the fact that ROCIS and UCIS are less effective for radicals than CIS is
-for closed shell molecules. Using the attachment/detachment density
-analysis procedure,[[538]](../bib_references/bib.md#bib555)
-
-the failing of ROCIS and UCIS
-methodologies for the nitromethyl radical was traced to the neglect of a
-particular class of double substitution which involves the simultaneous
-promotion of an $\alpha$ spin electron from the singly occupied orbital and the
-promotion of a $\beta$ spin electron into the singly occupied orbital. The
-spin-adapted configurations
+XCIS 的动机源于这样一个事实：ROCIS 和 UCIS 对自由基的效果不如 CIS 对闭壳层分子的效果。
+利用 attaching/detaching density（附着/剥离密度）分析程序[[538]](../bib_references/bib.md#bib555)，
+ROCIS 和 UCIS 方法在硝基甲基自由基（nitromethyl radical）上的失效被追溯到对某一类双替换的忽略，该类双替换涉及同时将一个 $\alpha$ 自旋电子从单占据轨道激发出去，以及将一个 $\beta$ 自旋电子激发进入单占据轨道。
+自旋适配的组态
 
 <a id="eq611"></a>
 $$
 \left|{\tilde{\Psi}_{i}^{a}(1)}\right\rangle=\frac{1}{\sqrt{6}}\left(|\Psi_{\bar{i}}^{\bar{a}}\rangle-|\Psi_{i}^{a}\rangle\right)+\frac{2}{\sqrt{6}}|\Psi_{p\bar{i}}^{a\bar{p}}\rangle \tag{7.12}
 $$
 
-are of crucial importance. (Here, $a,b,c,\ldots$ are virtual orbitals;
-$i,j,k,\ldots$ are occupied orbitals; and $p,q,r,\ldots$ are singly-occupied orbitals.)
-It is quite likely that similar excitations are
-also very significant in other radicals of interest.
+具有至关重要的意义。（这里，$a,b,c,\ldots$ 表示虚轨道；$i,j,k,\ldots$ 表示占据轨道；$p,q,r,\ldots$ 表示单占据轨道。）
+类似地，其他受关注的自由基中类似的激发很可能也非常重要。
 
-The XCIS proposal, a more satisfactory generalization of CIS to open shell
-molecules, is to simultaneously include a restricted class of double
-substitutions similar to those in Eq. ([7.12](#eq611)). To illustrate this, consider
-the resulting orbital spaces of an ROHF calculation: doubly occupied ($d$),
-singly occupied ($s$) and virtual ($v$). From this starting point we can
-distinguish three types of single excitations of the same multiplicity as the
-ground state: $d\rightarrow s$, $s\rightarrow v$ and $d\rightarrow v$. Thus, the spin-adapted
-ROCIS wave function is
+XCIS 方案是 CIS 向开壳层分子更令人满意的一种推广，其做法是同时纳入一类受限的双替换，
+这些双替换与式 ([7.12](#eq611)) 中的类似。为说明这一点，考虑限制开壳层 Hartree-Fock（ROHF）计算所得的轨道空间：
+双占据（$d$）、单占据（$s$）和虚轨道（$v$）。以此为出发点，我们可以区分三类与基态具有相同多重度的单激发：
+$d\rightarrow s$、$s\rightarrow v$ 和 $d\rightarrow v$。于是，自旋适配的 ROCIS 波函数为
 
 <a id="eq612"></a>
 $$
 \left|{\Psi_{\mathrm{ROCIS}}}\right\rangle=\frac{1}{\sqrt{2}}\sum_{ia}^{dv}a_{i}^{a}\left(|\Psi_{i}^{a}\rangle+|\Psi_{\bar{i}}^{\bar{a}}\rangle\right)+\sum_{pa}^{sv}a_{p}^{a}|\Psi_{p}^{a}\rangle+\sum_{ip}^{ds}a_{\bar{i}}^{\bar{p}}|\Psi_{\bar{i}}^{\bar{p}}\rangle \tag{7.13}
 $$
 
-The extension of CIS theory to incorporate higher excitations maintains the
-ROHF as the ground state reference and adds terms to the ROCIS wave function
-similar to that of Eq. ([7.13](#eq612)), as well as those where the double
-excitation occurs through different orbitals in the $\alpha$ and $\beta$ space:
+将 CIS 理论扩展到纳入更高阶激发时，仍以 ROHF 作为基态参考，并在 ROCIS 波函数中加入与式 ([7.13](#eq612)) 类似的项，
+以及那些双激发在 $\alpha$ 和 $\beta$ 空间中经由不同轨道发生的项：
 
 <a id="eq613"></a>
 $$
@@ -64,37 +45,21 @@ $$
 \end{array} \tag{7.14}
 $$
 
-XCIS is defined only from a restricted open shell Hartree-Fock ground state
-reference, as it would be difficult to uniquely define singly occupied orbitals
-in a UHF wave function. In addition, $\beta$ unoccupied orbitals, through which
-the spin-flip double excitation proceeds, may not match the half-occupied
-$\alpha$ orbitals in either character or even symmetry.
+XCIS 只能从限制开壳层 Hartree-Fock 基态参考来定义，因为在 UHF 波函数中难以唯一地定义单占据轨道。
+此外，自旋翻转双激发所经由的 $\beta$ 空轨道，在轨道特征甚至对称性上都可能与半占据的 $\alpha$ 轨道不匹配。
 
-For molecules with closed shell ground states, both the HF ground and CIS
-excited states emerge from diagonalization of the Hamiltonian in the space of
-the HF reference and singly excited substituted configuration state functions.
-The XCIS case is different because the restricted class of double excitations
-included could mix with the ground state and lower its energy. This mixing is
-avoided to maintain the size consistency of the ground state energy.
+对于具有闭壳层基态的分子，HF 基态和 CIS 激发态都通过对哈密顿量在 HF 参考态与单激发组态状态函数（configuration state functions）空间中进行对角化而得到。
+XCIS 的情况则不同，因为它所纳入的那类受限双激发可能与基态发生混合并降低其能量。为避免这种混合，以保持基态能量的尺寸一致性（size consistency）。
 
-With the inclusion of the restricted set of doubles excitations in the excited
-states, but not in the ground state, it could be expected that some fraction of
-the correlation energy be recovered, resulting in anomalously low excited state
-energies. However, the fraction of the total number of doubles excitations
-included in the XCIS wave function is very small and those introduced cannot
-account for the pair correlation of any pair of electrons. Thus, the XCIS
-procedure can be considered one that neglects electron correlation.
+由于在激发态中纳入了受限集合的双激发而基态中未纳入，人们可能会预期能回收一部分相关能，从而导致激发态能量异常偏低。
+然而，XCIS 波函数中所包含的双激发占全部双激发总数的比例非常小，且这些引入的组态无法描述任意电子对的对相关（pair correlation）。
+因此，XCIS 方法可以被视为一种忽略电子相关的方法。
 
-The computational cost of XCIS is approximately four times greater than CIS and
-ROCIS, and its accuracy for open shell molecules is generally comparable to
-that of the CIS method for closed shell molecules. In general, it achieves
-qualitative agreement with experiment. XCIS is available for doublet and
-quartet excited states beginning from a doublet ROHF treatment of the ground
-state, for excitation energies only.
+XCIS 的计算成本大约比 CIS 和 ROCIS 高四倍，其对开壳层分子的精度通常与 CIS 方法对闭壳层分子的精度相当。
+总体而言，它能与实验结果达到定性一致。XCIS 可从双重态（doublet）ROHF 基态处理出发，用于双重态和四重态（quartet）激发态，且仅适用于激发能的计算。
 
-???+ example "Example 7.5: An XCIS calculation of excited states of an unsaturated radical,
-the phenyl radical, for which double substitutions make considerable
-contributions to low-lying excited states."
+???+ example "示例 7.5: 对一个不饱和自由基——苯基自由基（phenyl radical）——进行 XCIS 激发态计算，
+其中双替换对低能激发态有相当大的贡献。"
     ```qchem
     $comment
        C6H5 phenyl radical C2v symmetry MP2(full)/6-31G* = -230.7777459
@@ -139,31 +104,20 @@ contributions to low-lying excited states."
     $end
     ```
 
-## 7.2.3.2 Spin-Flip Extended CIS (SF-XCIS)
+## 7.2.3.2 自旋翻转扩展 CIS（SF-XCIS）
 
-Spin-flip extended CIS (SF-XCIS)[[202]](../bib_references/bib.md#bib199)
- is a
-spin-complete extension of the spin-flip single excitation configuration
-interaction (SF-CIS) method.[[727]](../bib_references/bib.md#bib758)
+自旋翻转扩展 CIS（spin-flip extended CIS，SF-XCIS）[[202]](../bib_references/bib.md#bib199)
+是自旋翻转单激发组态相互作用（SF-CIS）方法[[727]](../bib_references/bib.md#bib758)的自旋完备扩展。
 
-The method includes all configurations in which no more
-than one virtual level of the high spin triplet reference
-becomes occupied and no more than one doubly occupied level becomes vacant.
+该方法包含所有满足如下条件的组态：高自旋三重态（triplet）参考中至多一个虚能级被占据，且至多一个双占据能级变为空。
 
-SF-XCIS is defined only from a restricted open shell Hartree-Fock triplet
-ground state reference. The final SF-XCIS wave functions correspond to
-spin-pure $M_{S}=0$ (singlet or triplet) states. The fully balanced treatment of
-the half-occupied reference orbitals makes it very suitable for applications
-with two strongly correlated electrons, such as single bond dissociation,
-systems with important diradical character or the study of excited states with
-significant double excitation character.
+SF-XCIS 只能从限制开壳层 Hartree-Fock 三重态基态参考来定义。最终的 SF-XCIS 波函数对应自旋纯的 $M_{S}=0$（单重态或三重态）态。
+由于对半占据参考轨道采用了完全平衡的处理方式，该方法非常适用于存在两个强相关电子的体系，例如单键解离、具有显著双基态（diradical）特征的体系，或研究具有显著双激发特征的激发态。
 
-The computational cost of SF-XCIS scales in the same way with molecule size as
-CIS itself, with a pre-factor 13 times larger.
+SF-XCIS 的计算成本随分子尺寸的标度方式与 CIS 本身相同，只是前置因子大 13 倍。
 
-???+ example "Example 7.6: A SF-XCIS calculation of ground and excited states of trimethylenemethane
-(TMM) diradical, for which double substitutions make considerable
-contributions to low-lying excited states."
+???+ example "示例 7.6: 对三亚甲基甲烷（trimethylenemethane，TMM）双自由基的基态和激发态进行 SF-XCIS 计算，
+其中双替换对低能激发态有相当大的贡献。"
     ```qchem
     $molecule
        0 3
@@ -203,30 +157,20 @@ contributions to low-lying excited states."
     $end
     ```
 
-## 7.2.3.3 Spin-Adapted Spin-Flip CIS
+## 7.2.3.3 自旋适配自旋翻转 CIS
 
-Spin-adapted spin-flip CIS (SA-SF-CIS)[[1549]](../bib_references/bib.md#bib1615)
- is a spin-complete
-extension of the spin-flip single excitation configuration interaction (SF-CIS)
-method.[[727]](../bib_references/bib.md#bib758)
- Unlike SF-XCIS, SA-SF-CIS only includes the minimal
-set of electronic configurations needed to remove the spin contamination in
-the conventional SF-CIS method. The target SA-SF-CIS states have spin
-eigenvalues one less than the reference ROHF state, *i.e.*, if singlet states ($S=0$) are targeted then the reference
-state should be a triplet ($S=1$), or if doublet states ($S=1/2$) are targeted then the reference state should be a
-quartet ($S=3/2$). The SA-SF-CIS approach uses a tensor equation-of-motion formalism,[[1185]](../bib_references/bib.md#bib1239)
+自旋适配自旋翻转 CIS（spin-adapted spin-flip CIS，SA-SF-CIS）[[1549]](../bib_references/bib.md#bib1615)
+是自旋翻转单激发组态相互作用（SF-CIS）方法[[727]](../bib_references/bib.md#bib758)的自旋完备扩展。
+与 SF-XCIS 不同，SA-SF-CIS 仅包含消除常规 SF-CIS 方法中自旋污染所需的最小电子组态集合。
+SA-SF-CIS 的目标态的自旋本征值比参考 ROHF 态小一个单位，*即*，若目标为单重态（$S=0$），则参考态应为三重态（$S=1$）；若目标为双重态（$S=1/2$），则参考态应为四重态（$S=3/2$）。
+SA-SF-CIS 方法采用张量形式的运动方程（equation-of-motion）形式体系[[1185]](../bib_references/bib.md#bib1239)，
+使得 SA-SF-CIS 中 CI 矢量的维数与常规 SF-CIS 完全相同[[1549]](../bib_references/bib.md#bib1615)。
 
-such that the dimension of the CI vectors in SA-SF-CIS remains exactly the same as that in conventional
-SF-CIS.[[1549]](../bib_references/bib.md#bib1615)
+可以为 SA-SF-CIS 加上 DFT 修正（*即*，SA-SF-TDDFT）；参见第 [7.3.4](sect_sftddft.md) 节。
+与其他 SF-TDDFT 方法一样，BH&HLYP 泛函实际上已成为事实上的标准选择[[1550]](../bib_references/bib.md#bib1617)。
+该泛函对许多基态问题也是一种足够的选择[[484]](../bib_references/bib.md#bib496)。
 
-A DFT correction to SA-SF-CIS (*i.e.*, SA-SF-TDDFT) can be added; see Section [7.3.4](sect_sftddft.md).
-As with other SF-TDDFT methods,
-the BH&HLYP functional has become something of a *de facto* standard
-choice.[[1550]](../bib_references/bib.md#bib1617)
-
-This functional is an adequate choice for many ground-state problems also.[[484]](../bib_references/bib.md#bib496)
-
-???+ example "Example 7.7: An SA-SF-DFT calculation of singlet ground and excited states of ethylene."
+???+ example "示例 7.7: 对乙烯的单重态基态和激发态进行 SA-SF-DFT 计算。"
     ```qchem
     $molecule
     0 3
@@ -247,17 +191,7 @@ This functional is an adequate choice for many ground-state problems also.[[484]
        A3     121.62604150
        A4     121.62604150
        D1     180.00000000
-       D2       0.00000000
+       D2     180.00000000
        D3     180.00000000
-    $end
-    
-    $rem
-       EXCHANGE       bhhlyp
-       BASIS          cc-pvtz
-       BASIS2         sto-3g
-       UNRESTRICTED   false
-       CIS_N_ROOTS    5
-       SASF_CIS       1
-       CIS_TRIPLETS   false
     $end
     ```

@@ -1,57 +1,32 @@
 ---
-title: "9.4.7 Atomic Confining Potentials as Alternatives to Constrained Optimization"
+title: "9.4.7 原子约束势作为约束优化的替代方案"
 ---
 
-## 9.4.7 Atomic Confining Potentials as Alternatives to Constrained Optimization
+## 9.4.7 原子约束势作为约束优化的替代方案
 
 (July 4, 2026)
 
-In principle, the same effect of constrained optimization using fixed atoms can
-be achieved instead using a soft harmonic confining potentials of the form
+从原理上讲,使用固定原子进行的约束优化所能达到的相同效果,也可以通过如下形式的软谐振约束势（soft harmonic confining potential）来实现
 
 <a id="eq:Vconf_cart"></a>
 $$
 V_{\text{conf}}(\mathbf{r}_{1},\mathbf{r}_{2},\ldots)=\frac{1}{2}\sum_{i}k\|\mathbf{r}_{i}-\mathbf{r}_{i}^{0}\|^{2}\;. \tag{9.42}
 $$
 
-This represents an external potential that confines the *i*th atom (having coodinates
-$\mathbf{r}_{i}$) around the position $\mathbf{r}_{i}^{0}$. The above implementation will be
-referred to as the *cartesian* confiner, as it is based on the cartesian coordinates
-of each confined atom. An alternative way to implement harmonic confiners is to use
-a *pairwise* harmonic confining potential of the form
+该式表示一个外部势场,将第 *i* 个原子（坐标为 $\mathbf{r}_{i}$）约束在位置 $\mathbf{r}_{i}^{0}$ 附近。上述实现方式被称为*笛卡尔（cartesian）*约束器（confiner），因为它基于每个被约束原子的笛卡尔坐标。实现谐振约束器的另一种方式是使用如下形式的*成对（pairwise）*谐振约束势
 
 <a id="eq:Vconf_pair"></a>
 $$
 V_{\text{conf}}(\mathbf{r}_{1},\mathbf{r}_{2},\ldots,\mathbf{r}_{N})=\frac{1}{2}\sum^{N}_{i>j}k\|\mathbf{r}_{ij}-\mathbf{r}_{ij}^{0}\|^{2}\;. \tag{9.43}
 $$
 
-This represents an external potential that confines the $i$th and $j$th atoms (having
-distance between them $\mathbf{r}_{ij}$) to the initial (or specified distance) of
-$\mathbf{r}_{ij}^{0}$. In applications to cluster models of enzymes (as a low-cost
-alternative to QM/MM simulations), it is necessary to lock certain atoms at their
-crystallographic positions in order to relax the geometry (in the gas phase or
-in continuum solvent) without collapsing the active-site
-model.[[1253]](../bib_references/bib.md#bib1306)
+该式表示一个外部势场,将第 $i$ 个与第 $j$ 个原子（二者间距离为 $\mathbf{r}_{ij}$）约束在初始（或指定的）距离 $\mathbf{r}_{ij}^{0}$ 上。在将团簇模型（cluster model）应用于酶体系（作为量子力学/分子力学（QM/MM）模拟的低成本替代方案）时,需要锁定某些原子使其保持在晶体学位置上,以便在气相或连续介质溶剂中弛豫几何结构,同时避免活性位点模型的塌缩。[[1253]](../bib_references/bib.md#bib1306)
 
-Use of a pairwise confining potential between each unique pair of confined atoms
-allows optimizations to proceed in an *unconstrained* manner, using delocalized
-internal coordinates (rather than Cartesian coordinates) for efficiency, yet achieves
-a similar effect as the traditional fixed-atom approach that is widely used in
-cluster models of enzymatic reactions. The fixed atom constraint can be better mimicked
-by tethering an atom to a geometric position, but in doing so the ability to run
-optimization in internal coordinates is lost. [[1253]](../bib_references/bib.md#bib1306)
- Moreover, the use of
-harmonic confining potentials results in fewer imaginary frequencies that plague
-fixed-atom optimizations, making it straightforward to compute zero-point vibrational
-corrections.[[302]](../bib_references/bib.md#bib307)
+在每个被约束原子的唯一原子对之间使用成对约束势,可以让优化以*非约束*方式进行,即为了提高效率而采用离域内坐标（delocalized internal coordinates）（而非笛卡尔坐标）,同时又能达到与酶反应团簇模型中广泛使用的传统固定原子方法相似的效果。通过将原子拴系（tether）在某个几何位置上,可以更好地模拟固定原子约束,但这样做就失去了在内坐标下进行优化的能力。[[1253]](../bib_references/bib.md#bib1306) 此外,使用谐振约束势还能减少困扰固定原子优化的虚频（imaginary frequency）数量,使得计算零点振动校正（zero-point vibrational correction）变得直接简便。[[302]](../bib_references/bib.md#bib307)
 
-Harmonic confining potentials are activated by setting the *$rem* variable
-HARM_OPT to either 1 or 2, listing the indices of the confined atoms in the
-*$harmonic_opt* section. Only one type of confiner can be used for any specific jobs.
-For the cartesian confiners, the equilibrium positions ($\mathbf{r}_{i}^{0}$) must
-be specified in the *$coords* section as shown in the example below.
+谐振约束势通过将 *$rem* 变量 HARM_OPT 设为 1 或 2 来激活,并在 *$harmonic_opt* 区块中列出被约束原子的索引。任何具体任务（job）只能使用一种类型的约束器。对于笛卡尔约束器,平衡位置（$\mathbf{r}_{i}^{0}$）必须在 *$coords* 区块中指定,如下例所示。
 
-???+ example "Example 9.14: Geometry optimization and subsequent frequency calculation using cartesian confining potentials."
+???+ example "示例 9.14: 使用笛卡尔约束势进行几何优化及随后的频率计算。"
     ```qchem
     $molecule
     0 1
@@ -100,16 +75,10 @@ be specified in the *$coords* section as shown in the example below.
     
     ```
 
-For pairwise confiners, pairwise distances between two constrained atoms ($\mathbf{r}_{ij}^{0}$)
-may optionally be placed in these *$coords* section, and if no $\mathbf{r}_{ij}^{0}$ are
-specified, the starting atom distances given in the *$molecule* are used to calculate
-the equilibrium distances. An example of a pairwise confiner optimization followed by a
-frequency calculation is shown below.
+对于成对约束器,两个受约束原子之间的成对距离（$\mathbf{r}_{ij}^{0}$）可以选择性地放入 *$coords* 区块中；若未指定 $\mathbf{r}_{ij}^{0}$,则使用 *$molecule* 中给出的初始原子间距来计算平衡距离。下面展示了一个成对约束器优化及随后频率计算的示例。
 
-???+ example "Example 9.15: Geometry optimization and subsequent frequency calculation using pairwise confining potentials.
-Note the lack of a $coords in the frequency calculation. Compound jobs will carry the
-equilibrium coordinates from one job to the next. Separately run pairwise confiner jobs will need
-specified $coords to maintain the same potential energy surface."
+???+ example "示例 9.15: 使用成对约束势进行几何优化及随后的频率计算。
+注意频率计算中没有 $coords 区块。复合任务（compound job）会将平衡坐标从一个任务传递到下一个任务。而单独运行的成对约束器任务则需要指定 $coords,以维持相同的势能面。"
     ```qchem
     $molecule
     
@@ -170,49 +139,45 @@ specified $coords to maintain the same potential energy surface."
     $end
     ```
 
-After each geometry optimization using a pairwise harmonic confiner, the *$coords*
-section is printed in the output under "Harmonic Coords Print:". This allows users
-to be able to maintain the same potential energy surface between jobs. For example, a
-geometry optimization with pairwise confiners would generate a *$coords* section which
-could then used in a frequency job that needs to match the forces of the optimization job.
+每次使用成对谐振约束器完成几何优化后,*$coords* 区块都会打印在输出文件中 "Harmonic Coords Print:"（谐振坐标打印）标题之下。这使用户能够在不同任务之间维持相同的势能面。例如,使用成对约束器进行几何优化会生成一个 *$coords* 区块,随后可将其用于需要与优化任务受力相匹配的频率计算任务中。
 
 HARM_OPT
 
 ### `HARM_OPT`
 
-> **Controls whether the job uses confining potentials**
+> **控制任务是否使用约束势**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not use the potentials
+>     * 不使用约束势
 >     * 1
->     * Use cartesian confining potential
+>     * 使用笛卡尔约束势
 >     * 2
->     * Use pairwise confining potential
-> * **Recommendation**: False
+>     * 使用成对约束势
+> * **推荐设置**: False
 
 HOATOMS
 
 ### `HOATOMS`
 
-> **Controls the number of confined atom**
+> **控制被约束原子的数目**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
->     * User defined
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
+>     * 用户自定义
+> * **推荐设置**: None
 
 HARM_FORCE
 
 ### `HARM_FORCE`
 
-> **Sets the force constant for harmonic confiner, in units of N/m. For pairwise confiner the force is divided by 1000, so a set value of 5000 applies a force constant of 5 N/m to each spring.**
+> **设置谐振约束器的力常数,单位为 N/m。对于成对约束器,力会除以 1000,因此设定值 5000 相当于对每个弹簧施加 5 N/m 的力常数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `No default`
-> * **Options**:
->     * User defined
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `无默认值`
+> * **选项**:
+>     * 用户自定义
+> * **推荐设置**: None

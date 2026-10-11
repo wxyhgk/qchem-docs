@@ -1,77 +1,35 @@
 ---
-title: "9.9.6 Quasi-Classical Molecular Dynamics"
+title: "9.9.6 准经典分子动力学"
 ---
 
-## 9.9.6 Quasi-Classical Molecular Dynamics
+## 9.9.6 准经典分子动力学
 
 (July 4, 2026)
 
-So-called “quasi-classical”
-trajectories[[668]](../bib_references/bib.md#bib693)
- (QCT) put vibrational
-energy into each mode in the initial velocity setup step, which can improve on
-the results of purely classical simulations, for example in the calculation of
-photoelectron[[747]](../bib_references/bib.md#bib780)
- or infrared
-spectra.[[1142]](../bib_references/bib.md#bib1194)
- Improvements include better agreement of
-spectral linewidths with experiment at lower temperatures and better agreement
-of vibrational frequencies with anharmonic calculations.
+所谓"准经典"（quasi-classical）轨迹[[668]](../bib_references/bib.md#bib693)（QCT）在初始速度设置步骤中向每个振动模式注入振动能，从而可以改善纯经典模拟的结果，例如在计算光电子[[747]](../bib_references/bib.md#bib780)或红外光谱时的表现。[[1142]](../bib_references/bib.md#bib1194) 改进之处包括：在较低温度下光谱线宽与实验符合得更好，以及振动频率与非谐（anharmonic）计算结果符合得更好。
 
-The improvements at low temperatures can be understood by recalling that even
-at low temperature there is nuclear motion due to zero-point motion. This is
-included in the quasi-classical initial velocities, thus leading to finite peak
-widths even at low temperatures. In contrast to that the classical simulations
-yield zero peak width in the low temperature limit, because the thermal kinetic
-energy goes to zero as temperature decreases. Likewise, even at room
-temperature the quantum vibrational energy for high-frequency modes is often
-significantly larger than the classical kinetic energy. QCT-MD therefore
-typically samples regions of the potential energy surface that are higher in
-energy and thus more anharmonic than the low-energy regions accessible to
-classical simulations. These two effects can lead to improved peak widths as
-well as a more realistic sampling of the anharmonic parts of the potential
-energy surface. However, the QCT-MD method also has important limitations which
-are described below and that the user has to monitor for carefully.
+低温下的改进可以这样理解：即便在低温下，由于零点运动（zero-point motion）的存在，原子核仍在运动。准经典初始速度中已经包含了这一零点运动，因此在低温下也能得到有限的峰宽。与之相反，经典模拟在低温极限下给出的峰宽为零，因为热能随温度降低而趋于零。同样地，即使在室温下，高频模式的量子振动能也往往显著大于经典动能。因此 QCT-MD 通常会对势能面上能量更高、非谐性更强的区域进行采样，而经典模拟只能访问低能区域。这两种效应既可以带来更准确的峰宽，也能实现对势能面上非谐部分更真实的采样。不过，QCT-MD 方法也存在重要的局限性，这些局限性将在下文说明，用户需要仔细监控。
 
-In our QCT-MD implementation the initial vibrational quantum numbers are
-generated as random numbers sampled from a vibrational Boltzmann distribution
-at the desired simulation temperature. In order to enable reproducibility of
-the results, each trajectory (and thus its set of vibrational quantum numbers)
-is denoted by a unique number using the AIMD_QCT_WHICH_TRAJECTORY
-variable. In order to loop over different initial conditions, run trajectories
-with different choices for AIMD_QCT_WHICH_TRAJECTORY. It is also
-possible to assign initial velocities corresponding to an average over a
-certain number of trajectories by choosing a negative value. Further technical
-details of our QCT-MD implementation are described in detail in Appendix A of
-Ref. [[747]](../bib_references/bib.md#bib780)
-.
+在我们的 QCT-MD 实现中，初始振动量子数是通过从目标模拟温度下的振动玻尔兹曼（Boltzmann）分布中随机抽样生成的。为了保证结果的可复现性，每条轨迹（及其对应的振动量子数集合）都由 AIMD_QCT_WHICH_TRAJECTORY 变量赋予的唯一编号来标识。若要遍历不同的初始条件，只需使用不同的 AIMD_QCT_WHICH_TRAJECTORY 取值运行多条轨迹。也可以将该变量设为负值，从而指定与一定数量轨迹的平均相对应的初始速度。我们 QCT-MD 实现的更多技术细节详见文献 [[747]](../bib_references/bib.md#bib780) 的附录 A。
 
 AIMD_QCT_WHICH_TRAJECTORY
 
 ### `AIMD_QCT_WHICH_TRAJECTORY`
 
-> **Picks a set of vibrational quantum numbers from a random distribution.**
+> **从随机分布中选取一组振动量子数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **可选值**:
 >     * $n$
->     * Picks the
->     * $n$
->     * th set of random initial velocities.
+>     * 选取第 $n$ 组随机初始速度。
 >     * $-n$
->     * Uses an average over
->     * $n$
->     * random initial velocities.
-> * **Recommendation**: Pick a positive number if you want the initial velocities to correspond to a particular set of vibrational occupation numbers and choose a different number for each of your trajectories. If initial velocities are desired that corresponds to an average over $n$ trajectories, pick a negative number.
+>     * 使用 $n$ 组随机初始速度的平均值。
+> * **建议**: 如果你希望初始速度对应于某一组特定的振动占据数，请选择一个正数，并为每条轨迹选择不同的编号。如果希望初始速度对应于 $n$ 条轨迹的平均，请选择一个负数。
 
-Below is a simple example input for running a QCT-MD simulation of the
-vibrational spectrum of water. Most input variables are the same as for
-classical MD as described above. The use of quasi-classical initial conditions
-is triggered by setting the AIMD_INIT_VELOC variable to
-QUASICLASSICAL.
+下面是一个运行水的振动光谱 QCT-MD 模拟的简单示例输入。大多数输入变量与上文描述的经典 MD 相同。准经典初始条件的启用方式是将 AIMD_INIT_VELOC 变量设置为 QUASICLASSICAL。
 
-???+ example "Example 9.41: Simulating the IR spectrum of water using QCT-MD."
+???+ example "示例 9.41: 使用 QCT-MD 模拟水的红外光谱。"
     ```qchem
     $molecule
        0  1
@@ -114,61 +72,33 @@ QUASICLASSICAL.
     $end
     ```
 
-Other types of spectra can be calculated by calculating spectral properties
-along the trajectories. For example, we observed that photoelectron spectra can
-be approximated quite well by calculating vertical detachment energies (VDEs)
-along the trajectories and generating the spectrum as a histogram of the
-VDEs.[[747]](../bib_references/bib.md#bib780)
- We have included several simple scripts in the
-`$QC/aimdman/tools` subdirectory that we hope the user will find helpful
-and that may serve as the basis for developing more sophisticated tools. For
-example, we include scripts that allow to perform calculations along a
-trajectory (`md_calculate_along_trajectory`) or to calculate vertical
-detachment energies along a trajectory (`calculate_rel_energies`).
+沿着轨迹计算光谱性质，即可得到其他类型的光谱。例如，我们观察到光电子光谱可以很好地通过沿轨迹计算垂直电子脱离能（vertical detachment energies, VDEs）、并将 VDE 生成为直方图的方式来近似[[747]](../bib_references/bib.md#bib780)。我们在 `$QC/aimdman/tools` 子目录中提供了若干简单脚本，希望对用户有所帮助，并可作为开发更复杂工具的基础。例如，我们包含了可沿轨迹执行计算的脚本（`md_calculate_along_trajectory`），以及沿轨迹计算垂直电子脱离能的脚本（`calculate_rel_energies`）。
 
-Another application of the QCT code is to generate random geometries
-sampled from the vibrational wave function via a Monte Carlo algorithm.
-This is triggered by setting both the AIMD_QCT_INITPOS
-and AIMD_QCT_WHICH_TRAJECTORY
-variables to negative numbers, say $-m$ and $-n$, and setting
-AIMD_STEPS to zero. This will generate $m$ random geometries
-sampled from the vibrational wave function corresponding to an average
-over $n$ trajectories at the user-specified simulation temperature.
+QCT 代码的另一个用途是通过蒙特卡洛（Monte Carlo, MC）算法生成从振动波函数中采样的随机几何结构。其触发方式是将 AIMD_QCT_INITPOS 和 AIMD_QCT_WHICH_TRAJECTORY 两个变量都设置为负数（例如 $-m$ 和 $-n$），并将 AIMD_STEPS 设为零。这样将在用户指定的模拟温度下，生成 $m$ 个从振动波函数中采样的随机几何结构，该波函数对应于 $n$ 条轨迹的平均。
 
 AIMD_QCT_INITPOS
 
 ### `AIMD_QCT_INITPOS`
 
-> **Chooses the initial geometry in a QCT-MD simulation.**
+> **选择 QCT-MD 模拟中的初始几何结构。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $0$
->     * Use the equilibrium geometry.
+>     * 使用平衡几何结构。
 >     * $n$
->     * Picks a random geometry according to the harmonic vibrational wave function.
+>     * 按照谐振振动波函数选取一个随机几何结构。
 >     * $-n$
->     * Generates
->     * $n$
->     * random geometries sampled from
->     * the harmonic vibrational wave function.
-> * **Recommendation**: None.
+>     * 生成 $n$ 个从谐振振动波函数中采样的随机几何结构。
+> * **建议**: 无。
 
-For systems that are described well within the harmonic oscillator model and
-for properties that rely mainly on the ground-state dynamics, this simple MC
-approach may yield qualitatively correct spectra. In fact, one may argue that
-it is preferable over QCT-MD for describing vibrational effects at very low
-temperatures, since the geometries are sampled from a true quantum distribution
-(as opposed to classical and quasi-classical MD). We have included another
-script in the *$QC/aimdman/tools* directory to help with the calculation
-of vibrationally averaged properties (`monte_geom`).
+对于在谐振子模型下描述良好的体系，以及主要依赖于基态动力学性质的情形，这种简单的 MC 方法可能给出定性正确的光谱。事实上，可以认为在描述极低温度下的振动效应时，它比 QCT-MD 更可取，因为几何结构是从真正的量子分布中采样的（而经典和准经典 MD 则不然）。我们在 *$QC/aimdman/tools* 目录中还提供了另一个脚本，用于辅助计算振动平均性质（`monte_geom`）。
 
-???+ example "Example 9.42: MC sampling of the vibrational wave function for HCl.
-1000 random geometries for HCl are generated based on the harmonic vibrational
-wave function at 1 Kelvin. The wave function is averaged over 1000
-sets of random vibrational quantum numbers ( i.e. , the ground state in
-this case due to the low temperature)."
+???+ example "示例 9.42: 对 HCl 振动波函数进行 MC 采样。
+基于 1 开尔文下的谐振振动波函数，生成 HCl 的 1000 个随机几何结构。
+该波函数对 1000 组随机振动量子数取平均（ i.e. ，在本例中由于温度极低，
+即对应基态）。"
     ```qchem
     $molecule
        0 1
@@ -205,13 +135,7 @@ this case due to the low temperature)."
     $end
     ```
 
-It is also possible make some modes inactive, *i.e.*, to put vibrational energy
-into a subset of modes (all other are set to zero). The list of active modes
-can be specified using the *$qct_active_modes* section. Furthermore, the
-vibrational quantum numbers for each mode can be specified explicitly using the
-*$qct_vib_distribution* input section. It is also possible to set the phases
-using *$qct_vib_phase* (allowed values are 1 and $-$1). Below is a simple sample
-input:
+也可以将某些模式设为非活跃（inactive），*i.e.*，只向一部分模式注入振动能（其余模式均设为零）。活跃模式的列表可以通过 *$qct_active_modes* 段指定。此外，还可以使用 *$qct_vib_distribution* 输入段为每个模式显式指定振动量子数。也可以用 *$qct_vib_phase* 设置相位（允许取值为 1 和 $-$1）。下面是一个简单的示例输入：
 
 ```qchem
 $qct_active_modes
@@ -228,30 +152,6 @@ $end
 ...
 ```
 
-Finally we turn to a brief description of the limitations of QCT-MD. Perhaps
-the most severe limitation stems from the so-called “kinetic energy spilling”
-problem,[[298]](../bib_references/bib.md#bib302)
- which means that there can be an artificial transfer
-of kinetic energy between modes. This can happen because the initial
-velocities are chosen according to quantum energy levels, which are usually
-much higher than those of the corresponding classical systems. Furthermore, the
-classical equations of motion also allow for the transfer of non-integer
-multiples of the zero-point energy between the modes, which leads to different
-selection rules for the transfer of kinetic energy. Typically, energy spills
-from high-energy into low-energy modes, leading to spurious “hot” dynamics.
-A second problem is that QCT-MD is actually based on classical Newtonian
-dynamics, which means that the probability distribution at low temperatures can
-be qualitatively wrong compared to the true quantum distribution.[[747]](../bib_references/bib.md#bib780)
+最后，我们简要说明 QCT-MD 的局限性。最严重的局限可能来自于所谓的"动能溢出"（kinetic energy spilling）问题[[298]](../bib_references/bib.md#bib302)，即动能可能在各模式之间发生非物理的转移。之所以会出现这种情况，是因为初始速度是按照量子能级选取的，而这些能级通常远高于对应经典系统的能级。此外，经典运动方程还允许各模式之间转移零点能的非整数倍，这导致动能转移的选律（selection rules）有所不同。通常，能量会从高能模式溢出到低能模式，从而产生虚假的"热"动力学。第二个问题在于 QCT-MD 实际上基于经典牛顿（Newtonian）动力学，这意味着在低温下其概率分布与真正的量子分布相比可能出现定性错误[[747]](../bib_references/bib.md#bib780)。
 
-**Q-Chem** implements a routine to monitor the kinetic energy within each normal
-mode along the trajectory and that is automatically switched on for
-quasi-classical simulations. It is thus possible to monitor for trajectories in
-which the kinetic energy in one or more modes becomes significantly larger than
-the initial energy. Such trajectories should be discarded. (Alternatively, see
-Ref. [[298]](../bib_references/bib.md#bib302)
- for a different approach to the zero-point leakage
-problem.) Furthermore, this monitoring routine prints the squares of the
-(harmonic) vibrational wave function along the trajectory. This makes it
-possible to weight low-temperature results with the harmonic quantum
-distribution to alleviate the failure of classical dynamics for low
-temperatures.
+**Q-Chem** 实现了一个用于沿轨迹监控每个简正模式内部动能的程序，并且在准经典模拟中该程序会自动启用。因此，用户可以监控那些某一个或多个模式的动能显著大于初始动能的轨迹，并将这类轨迹剔除。（另一种做法是参见文献 [[298]](../bib_references/bib.md#bib302)，其中提出了处理零点能泄漏问题的不同方法。）此外，该监控程序还会沿轨迹打印（谐振）振动波函数的平方。这使得用户可以利用谐振量子分布对低温结果进行加权。

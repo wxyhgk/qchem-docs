@@ -1,183 +1,166 @@
 ---
-title: "10.7 Finite-Difference Properties"
+title: "10.7 有限差分性质"
 ---
 
-# 10.7 Finite-Difference Properties
+# 10.7 有限差分性质
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Q-Chem offers the option of computing several properties that
-can be expressed as derivatives of static (electric or magnetic) fields
-and/or coordinates. This set of properties include nuclear gradients
-and Hessians (harmonic and anharmonic frequencies), polarizabilities,
-hyperpolarizabilities, dipole moment, NMR shielding, magnetizabilities,
-and more. This option is particularly desirable for methods for which
-analytic derivatives of desired order are unavailable.
+Q-Chem 提供了计算若干性质的选项，这些性质可以表示为对静态（电场或磁场）场和/或坐标的导数。这一组性质包括核梯度与 Hessian（谐频与非谐频率）、极化率、超极化率、偶极矩、核磁共振（NMR）屏蔽常数、磁化率等等。对于无法获得所需阶数解析导数的方法而言，这一选项尤为适用。
 
-Q-Chem also provides options to use predefined stencils for first-
-and second-order finite-difference derivatives
-through the use of the FDIFF_STENCIL keyword.
-For first-order finite-difference derivatives such as gradients or Hessians
-using analytic gradients, stencils yielding ${\cal{O}}({h^{2}})$ and ${\cal{O}}({h^{4}})$
-errors are available; the former through the setting
-FDIFF_STENCIL = 1 or 2 (default) and the latter through the setting
-FDIFF_STENCIL = 3 or 4. Traditionally, in the context of first-order
-derivatives, these are the 3-point and 5-point stencils, respectively.
-For second-order finite-difference derivatives such as
-Hessians using energies, economical ${\cal{O}}({h^{2}})$ (default),
-regular ${\cal{O}}({h^{2}})$, and economical ${\cal{O}}({h^{4}})$
-stencils are available through the setting FDIFF_STENCIL = 1, 2, and 3, respectively.
+Q-Chem 还提供了通过 FDIFF_STENCIL 关键字使用预定义差分模板（stencil）来计算一阶与二阶有限差分导数的选项。
+对于使用解析梯度的一阶有限差分导数（如梯度或 Hessian），
+可获得误差阶为 ${\cal{O}}({h^{2}})$ 与 ${\cal{O}}({h^{4}})$ 的差分模板；前者通过设置
+FDIFF_STENCIL = 1 或 2（默认值）获得，后者通过设置
+FDIFF_STENCIL = 3 或 4 获得。传统上，在一阶导数的语境下，它们分别对应三点模板与五点模板。
+对于使用能量的二阶有限差分导数（如 Hessian），
+可通过设置 FDIFF_STENCIL = 1、2、3 分别使用经济型 ${\cal{O}}({h^{2}})$（默认值）、
+常规型 ${\cal{O}}({h^{2}})$ 以及经济型 ${\cal{O}}({h^{4}})$ 差分模板。
 
-Finite-difference calculations consist of multiple, mutually independent evaluations,
-forming an embarassingly parallel workload. Starting v6.3.0,
-such calculations (except anharmonic frequency calcuations)
-can exploit Q-Chem’s new hybrid MPI+OpenMP approach: the independent
-finite-difference steps are distributed across MPI ranks,
-while each rank exploits OpenMP for shared-memory parallelism within a node.
-This strategy is particularly effective for large systems,
-providing excellent scalability with minimal communication overhead.
+有限差分计算由多个相互独立的求值组成，构成典型的“易并行”（embarrassingly parallel）工作负载。自 v6.3.0 起，
+此类计算（非谐频率计算除外）
+可以利用 Q-Chem 全新的 MPI+OpenMP 混合并行方式：独立的
+有限差分步骤被分配到各个 MPI 秩（rank）上，
+而每个秩则在单个节点内部利用 OpenMP 实现共享内存并行。
+该策略对于大体系尤其有效，能够以极小的通信开销提供出色的可扩展性。
 
 IDERIV
 
 ### `IDERIV`
 
-> **Controls the order of derivatives that are evaluated analytically. The user is not normally required to specify a value, unless numerical derivatives are desired. The derivatives will be evaluated numerically if is set lower than JOBTYPE requires.**
+> **控制以解析方式计算的导数阶数。用户通常无需指定该值，除非希望使用数值导数。若该值设置得低于 JOBTYPE 所要求的阶数，则导数将以数值方式计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Set to the order of derivative that`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`设置为所要求的导数阶数`
+> * **取值选项**：
 >     * 2
->     * Analytic second derivatives of the energy (Hessian)
+>     * 能量的解析二阶导数（Hessian）
 >     * 1
->     * Analytic first derivatives of the energy.
+>     * 能量的解析一阶导数。
 >     * 0
->     * Analytic energies only.
-> * **Recommendation**: Usually set to the maximum possible for efficiency. Note that will be set lower if analytic derivatives of the requested order are not available.
+>     * 仅解析能量。
+> * **建议**：出于效率考虑，通常设置为尽可能大的值。注意，若无法获得所请求阶数的解析导数，该值将被自动调低。
 
 FDIFF_STEPSIZE_QFF
 
 ### `FDIFF_STEPSIZE_QFF`
 
-> **Displacement used for calculating third and fourth derivatives by finite difference.**
+> **以有限差分计算三阶与四阶导数时所使用的位移量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5291`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5291`
+> * **取值选项**：
 >     * $n$
->     * Use a step size of
+>     * 使用步长为
 >     * $n\times 10^{-5}$
->     * .
-> * **Recommendation**: Use the default, unless the potential surface is very flat, in which case a larger value should be used.
+>     * 。
+> * **建议**：使用默认值，除非势能面非常平坦，此时应使用较大的值。
 
 FINITEDIFFSZ_POWER
 
 ### `FINITEDIFFSZ_POWER`
 
-> **The exponent controlling the order of magnitude of the step size used for calculating derivatives by finite difference.**
+> **控制以有限差分计算导数时所用步长数量级的指数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **取值选项**：
 >     * $n$
->     * Use an exponent of
+>     * 使用指数
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: None.
+>     * 。
+> * **建议**：无。
 
 FDIFF_STEPSIZE
 
 ### `FDIFF_STEPSIZE`
 
-> **Displacement used for calculating derivatives by finite difference.**
+> **以有限差分计算导数时所使用的位移量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **取值选项**：
 >     * $n$
->     * Use a step size of
+>     * 使用步长为
 >     * $n\times 10^{-m}$
->     * , where
+>     * ，其中
 >     * $m$
->     * is
+>     * 为
 >     * FINITEDIFFSZ_POWER
->     * .
-> * **Recommendation**: Use the default except in cases where the potential surface is very flat in which case a larger value should be used. See FDIFF_STEPSIZE_QFF for third and fourth derivatives.
+>     * 的值。
+> * **建议**：使用默认值，除非势能面非常平坦，此时应使用较大的值。三阶与四阶导数请参阅 FDIFF_STEPSIZE_QFF。
 
 FDIFF_STEPSIZE_B
 
 ### `FDIFF_STEPSIZE_B`
 
-> **External static magnetic field used for calculating derivatives by finite difference.**
+> **以有限差分计算导数时所用到的外静态磁场。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **取值选项**：
 >     * $n$
->     * Use a step size of
+>     * 使用步长为
 >     * $n\times 10^{-m}$
->     * , where
+>     * ，其中
 >     * $m$
->     * is
+>     * 为
 >     * FINITEDIFFSZ_POWER
->     * .
-> * **Recommendation**: None.
+>     * 的值。
+> * **建议**：无。
 
 FDIFF_STEPSIZE_M
 
 ### `FDIFF_STEPSIZE_M`
 
-> **Nuclear magnetic-moment field used for calculating derivatives by finite difference.**
+> **以有限差分计算导数时所用到的核磁矩场。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **取值选项**：
 >     * $n$
->     * Use a step size of
+>     * 使用步长为
 >     * $n\times 10^{-m}$
->     * , where
+>     * ，其中
 >     * $m$
->     * is
+>     * 为
 >     * FINITEDIFFSZ_POWER
->     * .
-> * **Recommendation**: None.
+>     * 的值。
+> * **建议**：无。
 
 FDIFF_STENCIL
 
 ### `FDIFF_STENCIL`
 
-> **Specifies the stencil to be used in the finite-difference calculation of first- and second-order derivatives.**
+> **指定在一阶与二阶导数的有限差分计算中所使用的差分模板（stencil）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **取值选项**：
 >     * 1
->     * Corresponds to regular
+>     * 对应一阶有限差分计算的常规型
 >     * ${\cal{O}}({h^{2}})$
->     * stencil for first-order
->     * and economical
+>     * 模板，以及二阶
+>     * 有限差分计算的经济型
 >     * ${\cal{O}}({h^{2}})$
->     * stencil for second-order
->     * finite-difference calculation.
+>     * 模板。
 >     * $2$
->     * Corresponds to regular
+>     * 对应一阶有限差分计算的常规型
 >     * ${\cal{O}}({h^{2}})$
->     * stencil for first-order
->     * and regular
+>     * 模板，以及二阶
+>     * 有限差分计算的常规型
 >     * ${\cal{O}}({h^{2}})$
->     * stencil for second-order
->     * finite-difference calculation.
+>     * 模板。
 >     * $3$
->     * Corresponds to regular
+>     * 对应一阶有限差分计算的常规型
 >     * ${\cal{O}}({h^{4}})$
->     * stencil for first-order
->     * and economical
+>     * 模板，以及二阶
+>     * 有限差分计算的经济型
 >     * ${\cal{O}}({h^{4}})$
->     * stencil for second-order
->     * finite-difference calculation.
+>     * 模板。
 >     * $4$
->     * Corresponds to regular
+>     * 对应一阶有限差分计算的常规型
 >     * ${\cal{O}}({h^{4}})$
->     * stencil for first-order
->     * finite-difference calculation. This option is unavailable in v. 6.4 for second-order
->     * finite-difference calculation.
-> * **Recommendation**: None.
+>     * 模板。在 v. 6.4 中，二阶
+>     * 有限差分计算不支持此选项。
+> * **建议**：无。

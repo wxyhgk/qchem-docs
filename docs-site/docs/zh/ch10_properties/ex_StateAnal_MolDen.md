@@ -1,209 +1,131 @@
 ---
-title: "10.2.12 General Excited-State Analysis"
+title: "10.2.12 通用激发态分析"
 ---
 
-## 10.2.12 General Excited-State Analysis
+## 10.2.12 通用激发态分析
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** features a module for extended excited-state analysis via the wave function analysis library **libwfa**.[[1096]](../bib_references/bib.md#bib1146)
-**libwfa** is interfaced to the ADC, CC/EOM-CC, CIS, and TDDFT/SF-TDDFT
-methods. These analyses are based on the state, transition
-and difference density matrices of the excited states. The theoretical
-background for such analysis is given in Chapter [7.13](../ch07_excited/sec_ES_visual.md).
-A more extended discussion of different analysis methods and classification schemes for excited states
-can be found elsewhere,
+**Q-Chem** 具备一个通过波函数分析库 **libwfa** 进行扩展激发态分析的模块。[[1096]](../bib_references/bib.md#bib1146)
+**libwfa** 已与 ADC、CC/EOM-CC、CIS 以及 TDDFT/SF-TDDFT
+方法对接。这些分析基于激发态的态密度矩阵、跃迁密度矩阵和差密度矩阵。此类分析的理论背景见第 [7.13](../ch07_excited/sec_ES_visual.md) 章。
+关于不同激发态分析方法与分类方案的更详细讨论，以及 TDDFT 计算中可视化工具与电荷转移度量的综述，可参阅文献。[[572]](../bib_references/bib.md#bib586)
 
- as can a review of visualization tools and charge-transfer metrics for
-TDDFT calculations.[[572]](../bib_references/bib.md#bib586)
-
-| Descriptor | Explanation |
+| 描述符 | 说明 |
 | --- | --- |
-| Leading singular values | Largest NTO occupation numbers |
-| Sum of singular values (Omega) | $\Omega=\\|\bm{\gamma}^{\text{IF}}\\|^{2}$ , sum of NTO occupation numbers |
-| E(h) | Energy of hole NTO, $E_{I}(\text{h})=\sum_{pq}\alpha_{pI}F_{pq}\alpha_{qI}$ |
-| E(p) | Energy of particle NTO, $E_{I}(\text{p})=\sum_{pq}\beta_{pI}F_{pq}\beta_{qI}$ |
-| PR_NTO | NTO participation ratio $\mbox{PR}_{\text{NTO}}$ |
-| Entanglement entropy (S_HE) | $S_{H\|E}=-\sum_{i}\lambda_{i}\log_{2}\lambda_{i}$ |
-| Nr of entangled states (Z_HE) | $Z_{HE}=2^{S_{H\|E}}$ |
-| Renormalized S_HE/Z_HE | Replace $\lambda_{i}\rightarrow\lambda_{i}/\Omega$ in the above two formulas |
-| <Phe> | Expectation value of the particle-hole permutation |
-|  | operator, measuring de-excitations [[686]](../bib_references/bib.md#bib711) |
-| <r_h> [Ang] | Mean position of hole $\langle\vec{x}_{\text{h}}\rangle_{\text{exc}}$ |
-| <r_e> [Ang] | Mean position of electron $\langle\vec{x}_{\text{e}}\rangle_{\text{exc}}$ |
-| \|<r_e - r_h>\| [Ang] | Electron–hole distance, $\vec{d}_{\text{e-h}}=\\|\langle\vec{x}_{\text{e}}-\vec{x}_{\text{h}}\rangle\\|$ |
-| Hole size [Ang] | RMS hole size: $\sigma_{\text{h}}=(\langle\vec{x}_{\text{h}}^{\,2}\rangle_{\text{exc}}-\langle\vec{x}_{\text{h}}\rangle_{\text{exc}}^{2})^{1/2}$ |
-| Electron size [Ang] | RMS elec. size: $\sigma_{\text{e}}=(\langle\vec{x}_{\text{e}}^{\,2}\rangle_{\text{exc}}-\langle\vec{x}_{\text{e}}\rangle_{\text{exc}}^{2})^{1/2}$ |
-| RMS electron-hole separation [Ang] | $d_{\text{exc}}=\big{(}\big{\langle}\\|\vec{x}_{\text{e}}-\vec{x}_{\text{h}}\\|^{2}\big{\rangle}_{\text{exc}}\big{)}^{1/2}$ |
-| Charge-displacement metric 1 | $d_{\text{CD1}}=d_{\text{e-h}}+\|\sigma_{\text{h}}-\sigma_{\text{e}}\|$ |
-| Charge-displacement metric 2 | $d_{\text{CD2}}=d_{\text{e-h}}-\tfrac{1}{2}\big{(}\sigma_{\text{h}}+\sigma_{\text{e}}\big{)}$ |
-| Charge-displacement metric 3 | $d_{\text{CD3}}=d_{\text{e-h}}+d_{\text{exc}}$ |
-| Covariance(r_h, r_e) [Ang^2] | $\mbox{COV}\left(\vec{x}_{\text{h}},\vec{x}_{\text{e}}\right)=\langle\vec{x}_{\text{h}}\bm{\cdot}\vec{x}_{\text{e}}\rangle_{\text{exc}}-\langle\vec{x}_{\text{h}}\rangle_{\text{exc}}\bm{\cdot}\langle\vec{x}_{\text{e}}\rangle_{\text{exc}}$ |
-| Correlation coefficient | $R_{\text{eh}}=\mbox{COV}\left(\vec{x}_{\text{h}},\vec{x}_{\text{e}}\right)/\sigma_{\text{h}}\bm{\cdot}\sigma_{\text{e}}$ |
-| Center-of-mass size | $\tfrac{1}{2}\big{(}\big{\langle}\\|\vec{x}_{\text{e}}+\vec{x}_{\text{h}}\\|^{2}\big{\rangle}_{\text{exc}}-\langle\vec{x}_{\text{e}}+\vec{x}_{\text{h}}\rangle_{\text{exc}}^{2}\big{)}^{1/2}$ |
+| 主要奇值（Leading singular values） | 最大的 NTO 占据数 |
+| 奇值之和（Omega） | $\Omega=\\|\bm{\gamma}^{\text{IF}}\\|^{2}$ ，NTO 占据数之和 |
+| E(h) | 空穴（hole）NTO 的能量，$E_{I}(\text{h})=\sum_{pq}\alpha_{pI}F_{pq}\alpha_{qI}$ |
+| E(p) | 粒子（particle）NTO 的能量，$E_{I}(\text{p})=\sum_{pq}\beta_{pI}F_{pq}\beta_{qI}$ |
+| PR_NTO | NTO 参与比 $\mbox{PR}_{\text{NTO}}$ |
+| 纠缠熵（S_HE） | $S_{H\|E}=-\sum_{i}\lambda_{i}\log_{2}\lambda_{i}$ |
+| 纠缠态数目（Z_HE） | $Z_{HE}=2^{S_{H\|E}}$ |
+| 重正化的 S_HE/Z_HE | 将上述两个公式中的 $\lambda_{i}\rightarrow\lambda_{i}/\Omega$ 替换 |
+| <Phe> | 粒子-空穴置换算符的期望值，用于度量退激发 |
+|  | （de-excitations）[[686]](../bib_references/bib.md#bib711) |
+| <r_h> [Ang] | 空穴的平均位置 $\langle\vec{x}_{\text{h}}\rangle_{\text{exc}}$ |
+| <r_e> [Ang] | 电子的平均位置 $\langle\vec{x}_{\text{e}}\rangle_{\text{exc}}$ |
+| \|<r_e - r_h>\| [Ang] | 电子–空穴距离，$\vec{d}_{\text{e-h}}=\\|\langle\vec{x}_{\text{e}}-\vec{x}_{\text{h}}\rangle\\|$ |
+| 空穴尺寸 [Ang] | 空穴的均方根（RMS）尺寸：$\sigma_{\text{h}}=(\langle\vec{x}_{\text{h}}^{\,2}\rangle_{\text{exc}}-\langle\vec{x}_{\text{h}}\rangle_{\text{exc}}^{2})^{1/2}$ |
+| 电子尺寸 [Ang] | 电子的均方根尺寸：$\sigma_{\text{e}}=(\langle\vec{x}_{\text{e}}^{\,2}\rangle_{\text{exc}}-\langle\vec{x}_{\text{e}}\rangle_{\text{exc}}^{2})^{1/2}$ |
+| 电子-空穴均方根间距 [Ang] | $d_{\text{exc}}=\big{(}\big{\langle}\\|\vec{x}_{\text{e}}-\vec{x}_{\text{h}}\\|^{2}\big{\rangle}_{\text{exc}}\big{)}^{1/2}$ |
+| 电荷位移度量 1 | $d_{\text{CD1}}=d_{\text{e-h}}+\|\sigma_{\text{h}}-\sigma_{\text{e}}\|$ |
+| 电荷位移度量 2 | $d_{\text{CD2}}=d_{\text{e-h}}-\tfrac{1}{2}\big{(}\sigma_{\text{h}}+\sigma_{\text{e}}\big{)}$ |
+| 电荷位移度量 3 | $d_{\text{CD3}}=d_{\text{e-h}}+d_{\text{exc}}$ |
+| 协方差(r_h, r_e) [Ang^2] | $\mbox{COV}\left(\vec{x}_{\text{h}},\vec{x}_{\text{e}}\right)=\langle\vec{x}_{\text{h}}\bm{\cdot}\vec{x}_{\text{e}}\rangle_{\text{exc}}-\langle\vec{x}_{\text{h}}\rangle_{\text{exc}}\bm{\cdot}\langle\vec{x}_{\text{e}}\rangle_{\text{exc}}$ |
+| 相关系数 | $R_{\text{eh}}=\mbox{COV}\left(\vec{x}_{\text{h}},\vec{x}_{\text{e}}\right)/\sigma_{\text{h}}\bm{\cdot}\sigma_{\text{e}}$ |
+| 质心尺寸 | $\tfrac{1}{2}\big{(}\big{\langle}\\|\vec{x}_{\text{e}}+\vec{x}_{\text{h}}\\|^{2}\big{\rangle}_{\text{exc}}-\langle\vec{x}_{\text{e}}+\vec{x}_{\text{h}}\rangle_{\text{exc}}^{2}\big{)}^{1/2}$ |
 
-Table 10.1: 
-Descriptors output by **Q-Chem** for transition density matrix analysis. Note
-that squares of the singular values, which correspond to the weights of the respective NTO
-pairs, are printed. $\Omega$ equals the square of the norm of the one-electron transition density matrix (1TDM).
-The charge-displacement metrics $d_{\text{CD}n}$ are defined in Ref. [[563]](../bib_references/bib.md#bib587)
-.
+表 10.1：
+**Q-Chem** 针对跃迁密度矩阵分析输出的描述符。注意，打印的是奇值的平方，
+其对应于各 NTO 对的权重。$\Omega$ 等于单电子跃迁密度矩阵（1TDM）范数的平方。
+电荷位移度量 $d_{\text{CD}n}$ 的定义见文献 [[563]](../bib_references/bib.md#bib587)。
 
-One-electron transition-density matrix (1TDM) based analyses include the construction and
-export of natural transition orbitals (NTOs),[[913]](../bib_references/bib.md#bib947)
+基于单电子跃迁密度矩阵（1TDM）的分析包括：自然跃迁轨道（NTO）[[913]](../bib_references/bib.md#bib947)
 
-electron and hole densities,[[1099]](../bib_references/bib.md#bib1142)
+的构造与导出、电子密度和空穴密度 [[1099]](../bib_references/bib.md#bib1142)
 
-evaluation of charge transfer numbers,[[1097]](../bib_references/bib.md#bib1141)
+、电荷转移数（charge transfer numbers）的评估 [[1097]](../bib_references/bib.md#bib1141)
 
-analysis of exciton multipole moments,[[74]](../bib_references/bib.md#bib43)
+、激子多极矩（exciton multipole moments）分析 [[74]](../bib_references/bib.md#bib43)
 
-and quantification of electron–hole entanglement.[[1100]](../bib_references/bib.md#bib1145)
+以及电子–空穴纠缠程度的量化 [[1100]](../bib_references/bib.md#bib1145)。
 
-The NTOs are obtained by singular value decomposition (SVD) of the 1TDM:[[572]](../bib_references/bib.md#bib586)
+NTO 是通过对 1TDM 进行奇异值分解（SVD）获得的：[[572]](../bib_references/bib.md#bib586)
 
 <a id="A3.S8.EGx77"></a>
 $$
 \displaystyle\gamma^{\text{IF}}_{pq} \tag{10.34}
 $$
 
-where $\bm{\sigma}$ is diagonal matrix containing singular values and unitary
-matrices $\bm{\alpha}$ and $\bm{\beta}$ contain the respective particle and hole
-NTOs. Note that:
+其中 $\bm{\sigma}$ 是包含奇值的对角矩阵，酉矩阵 $\bm{\alpha}$ 和 $\bm{\beta}$ 分别包含相应的粒子 NTO 和空穴 NTO。注意：
 
 <a id="Ch10.E36"></a>
 $$
 \|\bm{\gamma}\|^{2}=\sum_{pq}\gamma_{pq}^{2}=\sum_{K}\sigma_{K}^{2}\equiv\Omega \tag{10.36}
 $$
 
-Furthermore, the formation and export of state-averaged NTOs, and the
-decomposition of the excited states into transitions of state-averaged NTOs are
-implemented.[[1099]](../bib_references/bib.md#bib1142)
- The difference and/or state densities
-can be exported themselves, as well as employed to construct and export natural
-orbitals, natural difference orbitals, and attachment and detachment
-densities.[[572]](../bib_references/bib.md#bib586)
- Furthermore, two measures of unpaired
-electrons are computed.[[546]](../bib_references/bib.md#bib560)
- In addition, a Mulliken or
-Löwdin population analysis and an exciton analysis can be performed based on
-the difference/state densities.[[572]](../bib_references/bib.md#bib586)
- The main descriptors of the various
-analyses that are printed for each excited state are given in
-Tables [10.1](#table:TDM-analysis) and [10.2](#table:density-analysis).
-Detailed descriptions with illustrative examples can be found
-elsewhere.[[1099]](../bib_references/bib.md#bib1142)
+此外，还实现了态平均（state-averaged）NTO 的生成与导出，以及将激发态分解为态平均 NTO 之间的跃迁。[[1099]](../bib_references/bib.md#bib1142)
+ 差密度和/或态密度本身既可以导出，也可用于构造并导出自然轨道（natural orbitals）、自然差轨道（natural difference orbitals）以及附着（attachment）与剥离（detachment）密度。[[572]](../bib_references/bib.md#bib586)
+ 另外，还会计算两种未成对电子的度量。[[546]](../bib_references/bib.md#bib560)
+ 此外，还可以基于差密度/态密度进行 Mulliken 或 Löwdin 布居分析以及激子分析。[[572]](../bib_references/bib.md#bib586)
+ 针对每个激发态打印的各项分析的主要描述符见表 [10.1](#table:TDM-analysis) 和表 [10.2](#table:density-analysis)。
+详细说明及示例可参阅文献。[[1099]](../bib_references/bib.md#bib1142)
 
-Note that these descriptions are invariant to orbital rotations,
-unlike some standard metrics for charge-transfer analysis that are discussed in
-Section [7.3.2](../ch07_excited/sec_CT-metrics.md).[[563]](../bib_references/bib.md#bib587)
+注意，这些描述符对轨道旋转是不变的，这与第 [7.3.2](../ch07_excited/sec_CT-metrics.md) 节所讨论的某些标准电荷转移度量不同。[[563]](../bib_references/bib.md#bib587)
 
-| Descriptor | Explanation |
+| 描述符 | 说明 |
 | --- | --- |
-| n_u | Number of unpaired electrons $n_{\text{u}}=\sum_{i}\mbox{min}(n_{i},2-n_{i})$ |
-| n_u,nl | Number of unpaired electrons $n_{\text{u,nl}}=\sum_{i}n_{i}^{2}(2-n_{i})^{2}$ |
-| PR_NO | NO participation ratio $\mbox{PR}_{\text{NO}}$ |
-| p_D and p_A | Promotion number $p_{\text{D}}$ and $p_{\text{A}}$ |
-| PR_D and PR_A | D/A participation ratio $\mbox{PR}_{\text{D}}$ and $\mbox{PR}_{\text{A}}$ |
-| <r_h> [Ang] | Mean position of detachment density $\vec{d}_{\text{D}}$ |
-| <r_e> [Ang] | Mean position of attachment density $\vec{d}_{\text{A}}$ |
-| \|<r_e - r_h>\| [Ang] | Linear D/A distance $\vec{d}_{\text{D}\to\text{A}}=\vec{d}_{\text{A}}-\vec{d}_{\text{D}}$ |
-| Hole size [Ang] | RMS size of detachment density $\sigma_{\text{D}}$ |
-| Electron size [Ang] | RMS size of attachment density $\sigma_{\text{A}}$ |
+| n_u | 未成对电子数 $n_{\text{u}}=\sum_{i}\mbox{min}(n_{i},2-n_{i})$ |
+| n_u,nl | 未成对电子数 $n_{\text{u,nl}}=\sum_{i}n_{i}^{2}(2-n_{i})^{2}$ |
+| PR_NO | 自然轨道（NO）参与比 $\mbox{PR}_{\text{NO}}$ |
+| p_D 和 p_A | 激发数（promotion number）$p_{\text{D}}$ 和 $p_{\text{A}}$ |
+| PR_D 和 PR_A | 给体/受体（D/A）参与比 $\mbox{PR}_{\text{D}}$ 和 $\mbox{PR}_{\text{A}}$ |
+| <r_h> [Ang] | 剥离密度的平均位置 $\vec{d}_{\text{D}}$ |
+| <r_e> [Ang] | 附着密度的平均位置 $\vec{d}_{\text{A}}$ |
+| \|<r_e - r_h>\| [Ang] | 线性给体/受体距离 $\vec{d}_{\text{D}\to\text{A}}=\vec{d}_{\text{A}}-\vec{d}_{\text{D}}$ |
+| 空穴尺寸 [Ang] | 剥离密度的均方根尺寸 $\sigma_{\text{D}}$ |
+| 电子尺寸 [Ang] | 附着密度的均方根尺寸 $\sigma_{\text{A}}$ |
 
-Table 10.2: 
-Descriptors output by **Q-Chem** for difference/state density matrix analysis.
+表 10.2：
+**Q-Chem** 针对差密度/态密度矩阵分析输出的描述符。
 
-**libwfa** also computes descriptors for differentiating between diradical and ionic excited states, as defined within valence-bond theory.
-These descriptors, denoted `LOC`, `LOCa`, `QT`, and `QTa`, are zero for perfect diradical states and increase with the ionic character of the state.[[341]](../bib_references/bib.md#bib355)
+**libwfa** 还计算用于区分双自由基（diradical）激发态与离子型（ionic）激发态的描述符，其定义基于价键（valence-bond）理论。
+这些描述符记为 `LOC`、`LOCa`、`QT` 和 `QTa`，对于理想的双自由基态其值为零，并随态的离子性增强而增大。[[341]](../bib_references/bib.md#bib355)
 
-To activate any excited-state analysis STATE_ANALYSIS has to be set
-to TRUE. For individual analyses there is currently only a limited
-amount of fine grained control. The construction and export of any type of
-orbitals is controlled by MOLDEN_FORMAT to export the orbitals as
-**MolDen** files, and NTO_PAIRS which specifies the number of
-important orbitals to print (note that the same keyword controls the number of
-natural orbitals, the number of natural difference orbitals, and the number of
-NTOs to be printed). Setting MAKE_CUBE_FILES to TRUE
-triggers the construction and export of densities in “cube file”
-format
+要启用任何激发态分析，必须将 STATE_ANALYSIS 设置为 TRUE。对于各项单独的分析，目前仅提供了有限的细粒度控制。任意类型轨道的构造与导出由 MOLDEN_FORMAT 控制（将轨道导出为 **MolDen** 文件），以及由 NTO_PAIRS 指定要打印的重要轨道数目（注意，同一关键字同时控制自然轨道、自然差轨道以及 NTO 的打印数目）。将 MAKE_CUBE_FILES 设置为 TRUE
+会触发以“cube 文件”格式构造并导出密度，
 
-, which requires the specification of the *$plots*
-section in either old or new format (see Sections [10.5.4](sect_plot.mo.md) and
-[10.5.5](sec_cubefiles.md) for details).
-Setting IQMOL_FCHK = TRUE (equivalently, GUI = 2)
-will export data to the “`.fchk`” formatted checkpoint file, and
-switches off the generation of cube files. The population analyses are
-controlled by POP_MULLIKEN and LOWDIN_POPULATION. Setting
-the latter to TRUE will enforce Löwdin population analysis to be
-employed for regular populations as well as CT numbers,
-while by default the Mulliken population analysis is used.
+ 这需要在 *$plots* 区段中以旧格式或新格式进行指定（详见第 [10.5.4](sect_plot.mo.md) 节和第 [10.5.5](sec_cubefiles.md) 节）。
+设置 IQMOL_FCHK = TRUE（等价于 GUI = 2）会将数据导出到“`.fchk`”格式检查点（formatted checkpoint）文件，并关闭 cube 文件的生成。布居分析由 POP_MULLIKEN 和 LOWDIN_POPULATION 控制。将后者设置为 TRUE
+会对常规布居以及电荷转移（CT）数强制采用 Löwdin 布居分析，而默认使用 Mulliken 布居分析。
 
-Any **MolDen** or cube files generated by the excited state analyses can be
-found in the directory `plots` in the job’s scratch directory. Their names
-always start with a unique identifier of the excited state (the exact form of
-this human readable identifier varies with the excited state method). The
-names of **MolDen** files are then followed by either `_no.mo`,
-`_ndo.mo`, or `_nto.mo` depending on the type of orbitals they
-contain. In case of cube files the state identifier is followed by
-`_dens`, `_diff`, `_trans`, `_attach`, `_detach`,
-`_elec`, or `_hole` for state, difference, transition, attachment,
-detachment, electron, or hole densities, respectively. All cube files have the
-suffix `.cube`. In unrestricted calculations an additional part is added
-to the file name before `.cube` which indicates $\alpha$ (`_a`) or
-$\beta$ (`_b`) spin. The only exception is the state density for which
-`_tot` or `_sd` are added indicating the total or spin-density parts
-of the state density.
-Analysis of relaxed CIS or TDDFT densities can be triggered by
-CIS_RELAXED_DENSITY = TRUE.
-The corresponding output files are marked by `_rlx`.
-Computation of ESPs for state, transition, and electron/hole densities (see Ref. [[686]](../bib_references/bib.md#bib711)
-) can be
-triggered by setting ESP_GRID = $-3$.
-These are indicated by `_esp` as part of the file name.
+由激发态分析生成的任何 **MolDen** 或 cube 文件均位于作业临时（scratch）目录下的 `plots` 目录中。其文件名总是以激发态的唯一标识符开头（该可读标识符的确切形式随激发态方法而异）。**MolDen** 文件的名称随后根据其所含轨道类型分别以 `_no.mo`、`_ndo.mo` 或 `_nto.mo` 结尾。对于 cube 文件，态标识符之后依次为 `_dens`、`_diff`、`_trans`、`_attach`、`_detach`、`_elec` 或 `_hole`，分别对应态密度、差密度、跃迁密度、附着密度、剥离密度、电子密度或空穴密度。所有 cube 文件的后缀均为 `.cube`。在非限制性（unrestricted）计算中，文件名在 `.cube` 之前还会附加一部分以指示 $\alpha$（`_a`）或 $\beta$（`_b`）自旋。唯一的例外是态密度，其文件名附加 `_tot` 或 `_sd` 以指示态密度的总密度部分或自旋密度部分。对松弛（relaxed）CIS 或 TDDFT 密度的分析可通过 CIS_RELAXED_DENSITY = TRUE 触发。
+相应的输出文件以 `_rlx` 标记。对态密度、跃迁密度以及电子/空穴密度计算静电势（ESP）（见文献 [[686]](../bib_references/bib.md#bib711)）可通过
+设置 ESP_GRID = $-3$ 触发。
+这些文件以文件名中包含 `_esp` 来标识。
 
-The `ctnum_*.om` file created in the main directory serves as input
-for a charge transfer number analysis, as explained, *e.g.*, in
-Refs. [[1097]](../bib_references/bib.md#bib1141)
-. Use the
-external `TheoDORE` program (`theodore-qc.sourceforge.net`) to
-create electron/hole correlation plots and to compute fragment based descriptors.
+主目录下生成的 `ctnum_*.om` 文件用作电荷转移数分析的输入，具体说明可参见文献，*e.g.*，[[1097]](../bib_references/bib.md#bib1141)。
+使用外部程序 `TheoDORE`（`theodore-qc.sourceforge.net`）可以创建电子/空穴关联图并计算基于片段（fragment）的描述符。
 
-**Note: 
+**注意：
 
 •
 
-When doing excited-state calculations from an open-shell reference, **libwfa** will perform the analysis for both $\alpha\alpha$ and $\beta\beta$ transition
-densities. Make sure you look at the correct one. The way to figure it out is
-to remember that in open-shell references $N_{\alpha}>N_{\beta}$, *e.g.*, in
-doublet references, the unpaired electron is $\alpha$ and the hole is $\beta$.
-Thus, for transitions of the unpaired electron into the unoccupied orbitals
-you need $\alpha\alpha$ block, whereas for the transitions from doubly occupied orbitals
-into the singly unoccupied orbital (the hole) you need the $\beta\beta$ block.
+当从开壳层（open-shell）参考态进行激发态计算时，**libwfa** 会同时对 $\alpha\alpha$ 和 $\beta\beta$ 跃迁密度执行分析。请务必查看正确的部分。判断方法是记住：在开壳层参考态中 $N_{\alpha}>N_{\beta}$，*e.g.*，在双重态（doublet）参考态中，未成对电子为 $\alpha$ 自旋，空穴为 $\beta$ 自旋。因此，对于未成对电子跃迁到未占据轨道的跃迁，需要查看 $\alpha\alpha$ 块；而对于从双占据轨道跃迁到 singly unoccupied 轨道（即空穴）的跃迁，需要查看 $\beta\beta$ 块。
 
 •
 
-To activate all types of analyses in CCMAN2 jobs, you have to activate CC_REF_PROP,
-CC_EOM_PROP, and CC_TRANS_PROP.
-This is shown in Example [7.9.30](../ch07_excited/ex_eomip-wfa.md).
+要在 CCMAN2 作业中启用所有类型的分析，必须激活 CC_REF_PROP、CC_EOM_PROP 和 CC_TRANS_PROP。
+示例 [7.9.30](../ch07_excited/ex_eomip-wfa.md) 展示了这一点。
 
 •
 
-In Hermitian formalisms, $\gamma^{\text{IF}}$ is a Hermitian conjugate
-of $\gamma^{\text{FI}}$, but in non-Hermitian approaches, such as
-coupled-cluster theory, the two are slightly different. While for quantitative
-interstate properties both $\gamma^{\text{IF}}$ and $\gamma^{\text{FI}}$ are
-computed, the qualitative trends in exciton properties derived from
-$(\gamma^{\text{IF}})^{\dagger}$ and $\gamma^{\text{FI}}$ are very similar. Only
-one 1TDM is analyzed for EOM-CC.
+在厄米（Hermitian）形式体系中，$\gamma^{\text{IF}}$ 是 $\gamma^{\text{FI}}$ 的厄米共轭；但在非厄米方法（如耦合簇理论）中，两者略有不同。虽然对于定量的态间性质会同时计算 $\gamma^{\text{IF}}$ 和 $\gamma^{\text{FI}}$，但由 $(\gamma^{\text{IF}})^{\dagger}$ 与 $\gamma^{\text{FI}}$ 导出的激子性质定性趋势非常相似。对于 EOM-CC，仅分析一个 1TDM。
 
 •
 
-In spin-restricted calculations, the **libwfa** module computes NTOs for
-the $\alpha\alpha$ block of transition density. Thus, when computing NTOs for
-the transitions between open-shell EOM-IP/EA states make sure to specify
-correct spin states. For example, use EOM_EA_ALPHA to visualize
-transitions involving the extra electron.
+在限制性（spin-restricted）计算中，**libwfa** 模块仅对跃迁密度的 $\alpha\alpha$ 块计算 NTO。因此，在计算开壳层 EOM-IP/EA 态之间跃迁的 NTO 时，请务必指定正确的自旋态。例如，使用 EOM_EA_ALPHA 来可视化涉及额外电子的跃迁。
 
 **
 
@@ -211,97 +133,94 @@ STATE_ANALYSIS
 
 ### `STATE_ANALYSIS`
 
-> **Triggers the general state analysis via libwfa .**
+> **通过 libwfa 触发通用态分析。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not run excited state analysis.
+>     * 不运行激发态分析。
 >     * TRUE
->     * Activate excited state analysis.
-> * **Recommendation**: This analysis produces only minimal computational overhead (as long as no cube files are produced) and can be activated whenever some additional information about the excited state is required.
+>     * 激活激发态分析。
+> * **建议**: 该分析仅产生极小的计算开销（在不生成 cube 文件的情况下），当需要有关激发态的额外信息时即可启用。
 
 WFA_LEVEL
 
 ### `WFA_LEVEL`
 
-> **Master variable for controlling the amount of output produced by libwfa .**
+> **控制 libwfa 输出量的主控变量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * 1
->     * Only perform some population analyses.
+>     * 仅执行部分布居分析。
 >     * 2
->     * Also perform exciton analysis and compute natural (transition/difference) orbitals.
+>     * 同时执行激子分析并计算自然（跃迁/差）轨道。
 >     * 3
->     * Also perform charge transfer number analysis.
+>     * 同时执行电荷转移数分析。
 >     * 4
->     * Maximal output including cube files for NTOs (this is needed to reproduce Ref.
+>     * 最大输出，包括 NTO 的 cube 文件（复现文献
 >     * 686
 >     * Kimber P., Plasser F.
->     * Phys. Chem. Chem. Phys.
+>     * Phys. Chem. Chem. Phys.
 >     * (2020)
 >     * ,
 >     * 22
 >     * ,
 >     * pp. 6058
->     * .
->     * Link
->     * )
-> * **Recommendation**: Reduce if you want less print-out.
+>     * 链接
+>     * 时需要此级别）
+> * **建议**: 若希望减少打印输出，请降低该值。
 
 NTO_PAIRS
 
 ### `NTO_PAIRS`
 
-> **Controls how many hole/particle NTO pairs and frontier natural orbital pairs and natural difference orbital pairs are printed in the standard output.**
+> **控制在标准输出中打印多少对空穴/粒子 NTO、前线自然轨道对以及自然差轨道对。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $N$
->     * Write
+>     * 为每个激发态写出
 >     * $N$
->     * NTO/NO/NDO pairs per excited state.
-> * **Recommendation**: This controls the print-out to the standard output. Use WFA_ORB_THRESH if you want to modify the number of orbitals exported.
+>     * 对 NTO/NO/NDO。
+> * **建议**: 该关键字控制标准输出的打印内容。若想修改导出的轨道数目，请使用 WFA_ORB_THRESH。
 
 WFA_ORB_THRESH
 
 ### `WFA_ORB_THRESH`
 
-> **Controls the number of hole/particle NTO pairs and frontier natural orbital pairs and natural difference orbital pairs exported to the Molden files.**
+> **控制导出到 Molden 文件中的空穴/粒子 NTO 对、前线自然轨道对以及自然差轨道对的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * $N$
->     * Export all NTO/NO/NDO pairs with a weight above
+>     * 导出所有权重大于
 >     * $10^{-N}$
->     * .
+>     * 的 NTO/NO/NDO 对。
 
 WFA_REF_STATE
 
 ### `WFA_REF_STATE`
 
-> **Controls the reference state for the transition and difference density matrices used by libwfa . This keyword works for CIS/TDDFT/SF-TDDFT computations. Use CC_STATE_TO_OPT for EOM-CC.**
+> **控制 libwfa 所使用的跃迁密度矩阵和差密度矩阵的参考态。该关键字适用于 CIS/TDDFT/SF-TDDFT 计算。EOM-CC 请使用 CC_STATE_TO_OPT。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `-1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `-1`
+> * **选项**:
 >     * -1
->     * Use default: ground-state for standard CIS/TDDFT computations,
->     * first response state for SF-TDDFT.
+>     * 使用默认值：标准 CIS/TDDFT 计算使用基态，
+>     * SF-TDDFT 使用第一个响应态。
 >     * 0
->     * Reference state
+>     * 参考态
 >     * N
->     * $N$
->     * th excited state/response state.
-> * **Recommendation**: NONE
+>     * 第 $N$ 个激发态/响应态。
+> * **建议**: 无
 
-???+ example "Example 10.7: Basic excited-state analysis example for formaldehyde at the ADC(2)/def2-SV(P) level:
-computation of various descriptors and output of NOs, NTOs, and NDOs in MolDen format. libwfa used in this basic mode does usually not add notable computational cost."
+???+ example "示例 10.7: 甲醛在 ADC(2)/def2-SV(P) 水平下的基本激发态分析示例：计算各种描述符，并以 MolDen 格式输出 NO、NTO 和 NDO。libwfa 在此基本模式下通常不会增加明显的计算成本。"
     ```qchem
     $molecule
        0 1
@@ -321,9 +240,9 @@ computation of various descriptors and output of NOs, NTOs, and NDOs in MolDen f
     $end
     ```
 
-???+ example "Example 10.8: Analysis of two TDDFT excited states of formaldehyde using libwfa including output of cube files.
-This uses the new $plots format (see Section 10.5.4.1 ) with grid points specified.
-The cubes files of HOMO and LUMO will also be generated."
+???+ example "示例 10.8: 使用 libwfa 分析甲醛的两个 TDDFT 激发态，包括 cube 文件输出。
+本例使用新版 $plots 格式（见第 10.5.4.1 节），并指定了网格点。
+HOMO 和 LUMO 的 cube 文件也会生成。"
     ```qchem
     $molecule
     0 1
@@ -349,18 +268,18 @@ The cubes files of HOMO and LUMO will also be generated."
     $end
     ```
 
-**Note: 
+**注意：
 
-For the output of orbitals and densities it is possible to use either the MOLDEN_FORMAT = TRUE
-(see Example 10.2.12),
+对于轨道和密度的输出，可以使用 MOLDEN_FORMAT = TRUE
+（见示例 10.2.12）、
 MAKE_CUBE_FILES = TRUE
-(see Example 10.2.12),
-or GUI = 2 options.
-These options are mutually exclusive when STATE_ANALYSIS is activated.
+（见示例 10.2.12）
+或 GUI = 2 选项。
+当 STATE_ANALYSIS 被激活时，这些选项互斥。
 **
 
-???+ example "Example 10.9: Uracil computed at the PBE0/def2-SV(P) level. Activation of extended libwfa functionality including export of NTOs and densities in cube format and computation of the ESPs of these densities.
-This extended libwfa mode can add significant computational cost, especially if a fine grid is chosen."
+???+ example "示例 10.9: 尿嘧啶（Uracil）在 PBE0/def2-SV(P) 水平下的计算。启用 libwfa 的扩展功能，包括以 cube 格式导出 NTO 和密度，并计算这些密度的 ESP。
+libwfa 的这种扩展模式会显著增加计算成本，尤其是在选择精细网格时。"
     ```qchem
     $molecule
        0 1
@@ -403,20 +322,17 @@ This extended libwfa mode can add significant computational cost, especially if 
     $end
     ```
 
-Other examples of **libwfa** uses:
+**libwfa** 应用的其他示例：
 
 - •
 
-Example [7.3.4.2](../ch07_excited/sect_sftddft.md#ex:MRSFDFT) illustrates wave-function analysis of the SF-DFT
-states in para-benzyne;
+示例 [7.3.4.2](../ch07_excited/sect_sftddft.md#ex:MRSFDFT) 展示了对位苯双自由基（para-benzyne）中 SF-DFT 态的波函数分析；
 - •
 
-Example [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) illustrates wave-function analysis of XAS transitions
-within CVS-EOM-EE;
+示例 [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) 展示了 CVS-EOM-EE 中 XAS 跃迁的波函数分析；
 - •
 
-Example [7.9.30](../ch07_excited/ex_eomip-wfa.md) illustrates wave-function analysis for transitions between EOM-IP states;
+示例 [7.9.30](../ch07_excited/ex_eomip-wfa.md) 展示了 EOM-IP 态之间跃迁的波函数分析；
 - •
 
-Example [7.9.19](../ch07_excited/ex_CAPlibwfa.md) illustrates wave-function analysis of complex-valued densities
-within CAP-EOM-CCSD.
+示例 [7.9.19](../ch07_excited/ex_CAPlibwfa.md) 展示了 CAP-EOM-CCSD 中复值密度的波函数分析。

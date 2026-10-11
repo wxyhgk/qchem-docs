@@ -1,72 +1,45 @@
 ---
-title: "4.9.1 Polarized Atomic Orbital (PAO) Calculations"
+title: "4.9.1 极化原子轨道（PAO）计算"
 ---
 
-## 4.9.1 Polarized Atomic Orbital (PAO) Calculations
+## 4.9.1 极化原子轨道（Polarized Atomic Orbital, PAO）计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Polarized atomic orbital (PAO) calculations are an interesting unconventional
-SCF method, in which the molecular orbitals and the density matrix are not
-expanded directly in terms of the basis of atomic orbitals. Instead, an
-intermediate molecule-optimized minimal basis of polarized atomic orbitals
-(PAOs) is used.[[787]](../bib_references/bib.md#bib816)
- The polarized atomic orbitals are defined by
-an atom-blocked linear transformation from the fixed atomic orbital basis,
-where the coefficients of the transformation are optimized to minimize the
-energy, at the same time as the density matrix is obtained in the PAO
-representation. Thus a PAO-SCF calculation is a constrained variational
-method, whose energy is above that of a full SCF calculation in the same basis.
-However, a molecule optimized minimal basis is a very compact and useful
-representation for purposes of chemical analysis, and it also has potential
-computational advantages in the context of MP2 or local MP2 calculations, as
-can be done after a PAO-HF calculation is complete to obtain the PAO-MP2 energy.
+极化原子轨道（PAO）计算是一种有趣而非常规的自洽场（SCF）方法，在该方法中，分子轨道和密度矩阵并不直接在原子轨道基组下展开。取而代之的是，使用一个针对分子优化过的、由极化原子轨道（PAO）构成的中间极小基组[[787]](../bib_references/bib.md#bib816)。
+极化原子轨道通过对固定的原子轨道基组进行原子分块（atom-blocked）线性变换来定义，其中变换系数在 PAO 表示下求得密度矩阵的同时被优化以使能量极小化。因此，PAO-SCF 计算是一种受约束的变分方法，其能量高于在同一基组下进行的完整 SCF 计算。然而，针对分子优化的极小基组是用于化学分析的一种非常紧凑且有用的表示，并且在 MP2 或局域 MP2（local MP2）计算的语境下也具有潜在的計算优势——在 PAO-HF 计算完成之后可以进行这类计算以获得 PAO-MP2 能量。
 
-PAO-SCF calculations tend to systematically underestimate binding energies
-(since by definition the exact result is obtained for atoms, but not for
-molecules). In tests on the G2 database, PAO-B3LYP/6-311+G(2df,p) atomization
-energies deviated from full B3LYP/6-311+G(2df,p) atomization energies by
-roughly 20 kcal/mol, with the error being essentially extensive with the number
-of bonds. This deviation can be reduced to only 0.5 kcal/mol
-with the use of a simple non-iterative second order
-correction for “beyond-minimal basis” effects.[[788]](../bib_references/bib.md#bib818)
- The second
-order correction is evaluated at the end of each PAO-SCF calculation, as it
-involves negligible computational cost. Analytical gradients are available
-using PAOs, to permit structure optimization. For additional discussion of the
-PAO-SCF method and its uses, see the references cited above.
+PAO-SCF 计算往往系统性地低估结合能（因为按定义，对原子可以得到精确结果，而对分子则不能）。在对 G2 数据库的测试中，PAO-B3LYP/6-311+G(2df,p) 原子化能与完整 B3LYP/6-311+G(2df,p) 原子化能的偏差约为 20 kcal/mol，且该误差基本上随化学键数目呈外延（extensive）增长。借助一种简单的、非迭代的二阶修正来处理"超越极小基组"（beyond-minimal basis）效应，可将此偏差降低至仅 0.5 kcal/mol[[788]](../bib_references/bib.md#bib818)。
+二阶修正在每次 PAO-SCF 计算结束时求值，因为其计算开销可以忽略不计。PAO 还解析梯度可用，从而支持结构优化。关于 PAO-SCF 方法及其应用的更多讨论，请参见上文引用的文献。
 
-Calculations with PAOs are determined controlled by the following *$rem*
-variables. PAO_METHOD = PAO invokes PAO-SCF calculations,
-while the algorithm used to iterate the PAOs can be controlled with
-PAO_ALGORITHM.
+使用 PAO 的计算由以下 *$rem* 变量控制。PAO_METHOD = PAO 启动 PAO-SCF 计算，而用于迭代 PAO 的算法可通过 PAO_ALGORITHM 控制。
 
 PAO_ALGORITHM
 
 ### `PAO_ALGORITHM`
 
-> **Algorithm used to optimize polarized atomic orbitals (see PAO_METHOD )**
+> **用于优化极化原子轨道的算法（参见 PAO_METHOD）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Use efficient (and riskier) strategy to converge PAOs.
+>     * 使用高效（但风险较大）的策略收敛 PAO。
 >     * 1
->     * Use conservative (and slower) strategy to converge PAOs.
-> * **Recommendation**: None
+>     * 使用保守（但较慢）的策略收敛 PAO。
+> * **建议**：无
 
 PAO_METHOD
 
 ### `PAO_METHOD`
 
-> **Controls evaluation of polarized atomic orbitals (PAOs).**
+> **控制极化原子轨道（PAO）的求值方式。**
 >
-> * **Type**: `STRING`
-> * **Default**: `EPAO`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`EPAO`
+> * **可选值**：
 >     * PAO
->     * Perform PAO-SCF instead of conventional SCF.
+>     * 执行 PAO-SCF 而非常规 SCF。
 >     * EPAO
->     * Obtain EPAOs after a conventional SCF.
-> * **Recommendation**: None
+>     * 在常规 SCF 之后获取 EPAO。
+> * **建议**：无

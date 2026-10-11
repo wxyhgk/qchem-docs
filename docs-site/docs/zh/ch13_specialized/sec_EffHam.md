@@ -1,9 +1,9 @@
 ---
-title: "13.6 Construction of Effective Hamiltonians from EOM-CC Wave Functions"
+title: "13.6 从 EOM-CC 波函数构造有效哈密顿量"
 ---
 
-# 13.6 Construction of Effective Hamiltonians from EOM-CC Wave Functions
+# 13.6 从 EOM-CC 波函数构造有效哈密顿量
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [13.6.1 Overview](Ch13.S6.SS1.md)
+- [13.6.1 概述](Ch13.S6.SS1.md)

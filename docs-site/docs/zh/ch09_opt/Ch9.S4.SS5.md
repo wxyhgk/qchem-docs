@@ -1,27 +1,16 @@
 ---
-title: "9.4.5 Dummy Atom Placement in Dihedral Constraints"
+title: "9.4.5 二面角约束中虚拟原子的放置"
 ---
 
-## 9.4.5 Dummy Atom Placement in Dihedral Constraints
+## 9.4.5 二面角约束中虚拟原子的放置
 
 (July 4, 2026)
 
-Bond and dihedral angles cannot be constrained in Cartesian optimizations to
-exactly $0^{\circ}$ or $\pm 180^{\circ}$. This is because the corresponding
-constraint normals are zero vectors. Also, dihedral constraints near these two
-limiting values (within, say $20^{\circ}$) tend to oscillate and are difficult
-to converge.
+在笛卡尔坐标优化中，键角和二面角无法被精确约束到 $0^{\circ}$ 或 $\pm 180^{\circ}$。这是因为相应的约束法向量为零矢量。此外，接近这两个极限值（例如在 $20^{\circ}$ 范围内）的二面角约束往往会产生振荡，难以收敛。
 
-These difficulties can be overcome by defining dummy atoms and redefining the
-constraints with respect to the dummy atoms. For example, a dihedral constraint
-of $180^{\circ}$ can be redefined to two constraints of $90^{\circ}$ with
-respect to a suitably positioned dummy atom. The same thing can be done with a
-$180^{\circ}$ bond angle (long a familiar use in *Z*-matrix construction).
+这些困难可以通过定义虚拟原子（dummy atom）并相对于虚拟原子重新定义约束来克服。例如，一个 $180^{\circ}$ 的二面角约束可以重新定义为相对于某个位置合适的虚拟原子的两个 $90^{\circ}$ 约束。对于 $180^{\circ}$ 的键角也可以采用同样的做法（这在 *Z*-矩阵构造中是一种广为人知的常用技巧）。
 
-Typical usage is as shown in Table [9.3](#tab9.2). Note that the
-order of atoms is important to obtain the correct signature on the dihedral
-angles. For a $0^{\circ}$ dihedral constraint, atoms J and K should be switched in
-the definition of the second torsion constraint in Cartesian coordinates.
+典型用法如表 [9.3](#tab9.2) 所示。注意原子的顺序对于获得正确的二面角符号至关重要。对于一个 $0^{\circ}$ 的二面角约束，在笛卡尔坐标下定义第二个扭转（torsion）约束时，应当交换原子 J 和 K 的位置。
 
 | Internal Coordinates | Cartesian Coordinates |
 | --- | --- |
@@ -35,12 +24,9 @@ the definition of the second torsion constraint in Cartesian coordinates.
 |  | ENDCONSTRAINT |
 |  | $end |
 
-Table 9.3: 
-Comparison of dihedral angle constraint method for adopted coordinates.
+表 9.3: 
+采用坐标下二面角约束方法的比较。
 
-**Note: 
+**注意：
 
-In almost all cases the above discussion is somewhat academic, as
-internal coordinates are now best imposed using delocalized internal
-coordinates and there is no restriction on the constraint values.
-**
+在绝大多数情况下，上述讨论多少有些偏于理论性，因为现在最好使用内坐标来施加约束。

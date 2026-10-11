@@ -1,42 +1,39 @@
 ---
-title: "6.12.5 Stochastic CC2 and CCSD"
+title: "6.12.5 随机化 CC2 与 CCSD"
 ---
 
-## 6.12.5 Stochastic CC2 and CCSD
+## 6.12.5 随机化 CC2 与 CCSD
 
 (July 4, 2026)
 
-An implementation of stochastic RI-CC2 (sRI-CC2) is available in **libgmbpt**.
-Currently, codes support RI-CC2 and sRI-CC2 property calculations, including ground- and excited-state (singlet and triplet) energies, analytical gradients for ground and excited states, oscillator strengths, and derivative couplings.
-The main advantage of sRI-CC2 is its reduced scaling (${\cal{O}}({N^{3}})$, to be compared
-with ${\cal{O}}({N^{5}})$ of RI-CC2), which facilitates applications to much larger molecules.
-These codes are under development. Users are advised to refer to the sample jobs
-named `libgmbpt_sricc$\ast$` and `libgmbpt_thc_sricc$\ast$` for guidance.
+**libgmbpt** 中提供了随机化 RI-CC2（sRI-CC2）的实现。
+目前，代码支持 RI-CC2 与 sRI-CC2 的性质计算，包括基态与激发态（单重态和三重态）能量、基态与激发态的解析梯度、振子强度以及导数耦合（derivative couplings）。
+sRI-CC2 的主要优势在于其更低的计算标度（scaling）——${\cal{O}}({N^{3}})$，相比之下 RI-CC2 为 ${\cal{O}}({N^{5}})$——这使得该方法可以应用于大得多的分子体系。
+这些代码仍在开发之中。建议用户参考名为 `libgmbpt_sricc$\ast$` 和 `libgmbpt_thc_sricc$\ast$` 的示例作业以获取使用指导。
 
-**Note: 
+**注意：
 
-sRI-CC2 currently does not support frozen core: N_FROZEN_CORE must be set to zero.
+sRI-CC2 目前不支持冻结芯层（frozen core）：N_FROZEN_CORE 必须设为零。
 **
 
-**Note: 
+**注意：
 
-sRI-CC2 currently does not support geometry optimization and can only be used with JOBTYPE=SP.
+sRI-CC2 目前不支持几何结构优化，只能与 JOBTYPE=SP 配合使用。
 **
 
-RI-CC2 and sRI-CC2 are deployed by setting METHOD = CC2 *and* specifying
-AIX_BASIS appropriately.
-SRI-CC2 is only available in **libgmbpt**, so one should set CCMAN2 = -1 in the *$rem* section, and add
-do_sri = 1 in the *$development* section.
-Then, in the *$development* section, add the keyword sri to control the use of sRI: 0 for deterministic
-RI calculations, 1 for sRI calculations with an ${\cal{O}}({N^{3}})$ scaling, and 2 for partial sRI calculations.
-In some cases, such as gradient calculations, the sRI approach introduces significant noise.
-To mitigate such problems, one can use the partial sRI scheme with a suboptimal ${\cal{O}}({N^{4}})$ scaling but improved
-accuracy.
+RI-CC2 与 sRI-CC2 通过设置 METHOD = CC2 *并且* 适当指定
+AIX_BASIS 来启用。
+SRI-CC2 仅在 **libgmbpt** 中可用，因此应在 *$rem* 段中设置 CCMAN2 = -1，并在
+*$development* 段中添加 do_sri = 1。
+然后，在 *$development* 段中，添加关键字 sri 以控制 sRI 的使用：0 表示确定性
+RI 计算，1 表示具有 ${\cal{O}}({N^{3}})$ 标度的 sRI 计算，2 表示部分 sRI（partial sRI）计算。
+在某些情况下（例如梯度计算），sRI 方法会引入显著噪声。
+为缓解此类问题，可以采用部分 sRI 方案，其标度次优（为 ${\cal{O}}({N^{4}})$），但精度有所提升。
 
-The keyword sri_ntheta indicates the number of sRI orbitals. It acts as a prefactor in the scaling and
-larger values give better accuracy.
+关键字 sri_ntheta 指定 sRI 轨道的数目。它相当于标度中的前置因子，
+较大的取值可带来更好的精度。
 
-???+ example "Example 6.31: sRI-CC2 excitation energy of the water molecule."
+???+ example "示例 6.31: 水分子的 sRI-CC2 激发能。"
     ```qchem
     $molecule
         0 1
@@ -66,12 +63,12 @@ larger values give better accuracy.
     
     ```
 
-Further improvements of sRI-CC2 are afforded by a tensor hypercontraction implementation (THC-sRI-CC2)
-with an ${\cal{O}}({N^{3}})$ scaling and reduced stochastic noise for the same set of properties.
-THC-sRI-CC2 is invoked by adding thc = $1$ in the *$rem* section and setting sri = $2$
-in the *$development* section. The rest of the keywords are the same as in sRI-CC2.
+THC（张量超收缩，tensor hypercontraction）实现（THC-sRI-CC2）为 sRI-CC2 提供了进一步改进，
+在同样的性质集合上具有 ${\cal{O}}({N^{3}})$ 标度并降低了随机噪声。
+通过在 *$rem* 段中添加 thc = $1$ 并在 *$development* 段中设置 sri = $2$ 即可调用
+THC-sRI-CC2。其余关键字与 sRI-CC2 相同。
 
-???+ example "Example 6.32: THC-sRI-CC2 ground-state analytical gradient of the water molecule."
+???+ example "示例 6.32: 水分子的 THC-sRI-CC2 基态解析梯度。"
     ```qchem
     $molecule
         0 1
@@ -102,11 +99,11 @@ in the *$development* section. The rest of the keywords are the same as in sRI-C
     
     ```
 
-Finally, THC-sRI-CCSD is available for calculations of
-ground- and excited-state energies with an ${\cal{O}}({N^{3}})$ scaling.
-One can invoke THC-sRI-CCSD by adding sriccsd = 1 in the *$development* section.
+最后，THC-sRI-CCSD 可用于以 ${\cal{O}}({N^{3}})$ 标度计算
+基态与激发态能量。
+通过在 *$development* 段中添加 sriccsd = 1 即可调用 THC-sRI-CCSD。
 
-???+ example "Example 6.33: THC-sRI-CCSD ground-state energy of the water molecule."
+???+ example "示例 6.33: 水分子的 THC-sRI-CCSD 基态能量。"
     ```qchem
     $molecule
         0 1
@@ -136,5 +133,5 @@ One can invoke THC-sRI-CCSD by adding sriccsd = 1 in the *$development* section.
     
     ```
 
-For further technical details, see Refs. [[1554]](../bib_references/bib.md#bib1632)
+更多技术细节，参见参考文献 [[1554]](../bib_references/bib.md#bib1632)
 .

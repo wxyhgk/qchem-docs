@@ -1,184 +1,183 @@
 ---
-title: "1.3.19 Summary of Features in Q-Chem Versions 3. x"
+title: "1.3.19 Q-Chem 3.$\,$*x* 版本功能汇总"
 ---
 
-## 1.3.19 Summary of Features in **Q-Chem** Versions 3.$\,$*x*
+## 1.3.19 **Q-Chem** 3.$\,$*x* 版本功能汇总
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
 - •
 
-DFT functionals and algorithms:
+密度泛函理论（DFT）泛函与算法：
 
 - **–**
 
-Long-ranged corrected (LRC) functionals, also known as range-separated hybrid functionals (M. A. Rohrdanz and J. M. Herbert)
+长程校正（Long-Ranged Corrected, LRC）泛函，亦称 range-separated 杂化泛函（M. A. Rohrdanz 和 J. M. Herbert）
 - **–**
 
-Constrained DFT (Q. Wu and T. Van Voorhis)
+约束密度泛函理论（Constrained DFT）（Q. Wu 和 T. Van Voorhis）
 - **–**
 
-Grimme’s “DFT-D” empirical dispersion corrections (C.-D. Sherrill)
+Grimme 的 "DFT-D" 经验色散校正（C.-D. Sherrill）
 - **–**
 
-“Incremental” DFT method that significantly accelerates exchange-correlation quadrature in later SCF cycles (S. T. Brown)
+"增量式"（Incremental）DFT 方法，可显著加速后续自洽场（SCF）循环中的交换-关联求积（S. T. Brown）
 - **–**
 
-Efficient SG-0 quadrature grid with approximately half the number of grid points relative to SG-1 (S.-H. Chien)
+高效的 SG-0 求积网格，其网格点数约为 SG-1 的一半（S.-H. Chien）
 - •
 
-Solvation models:
+溶剂化模型：
 
 - **–**
 
-SM8 model
-(A. V. Marenich, R. M. Olson, C. P. Kelly, C. J. Cramer, and D. G. Truhlar)
+SM8 模型
+（A. V. Marenich, R. M. Olson, C. P. Kelly, C. J. Cramer 和 D. G. Truhlar）
 - **–**
 
-Kirkwood-Onsager reaction-field model
-(C.-L. Cheng, T. Van Voorhis, K. Thanthiriwatte, and S. R. Gwaltney)
+Kirkwood-Onsager 反应场模型
+（C.-L. Cheng, T. Van Voorhis, K. Thanthiriwatte 和 S. R. Gwaltney）
 - **–**
 
-Chipman’s SS(V)PE model (S. T. Brown)
+Chipman 的 SS(V)PE 模型（S. T. Brown）
 - •
 
-Second-order perturbation theory algorithms for ground and excited states:
+基态与激发态的二阶微扰理论算法：
 
 - **–**
 
-Dual-basis RIMP2 energy and analytical gradient (R. P. Steele, R. A. DiStasio Jr., and M. Head-Gordon)
+双基组 RIMP2 能量与解析梯度（R. P. Steele, R. A. DiStasio Jr. 和 M. Head-Gordon）
 - **–**
 
-O2 energy and gradient (R. C. Lochan and M. Head-Gordon)
+O2 能量与梯度（R. C. Lochan 和 M. Head-Gordon）
 - **–**
 
-SOS-CIS(D), SOS-CIS(D${}_{0}$), and RI-CIS(D) for excited states (D. Casanova, Y. M. Rhee, and M. Head-Gordon)
+用于激发态的 SOS-CIS(D)、SOS-CIS(D${}_{0}$) 和 RI-CIS(D)（D. Casanova, Y. M. Rhee 和 M. Head-Gordon）
 - **–**
 
-Efficient resolution-of-identity (RI) implementations of MP2 and SOS-MP2 (including both energies and gradients),
-and of RI-TRIM and RI-CIS(D) energies (Y. Jung, R. A. DiStasio, Jr., R. C. Lochan, and Y. M. Rhee)
+MP2 与 SOS-MP2 的高效分解恒等（Resolution-of-Identity, RI）实现（包括能量与梯度），
+以及 RI-TRIM 与 RI-CIS(D) 能量的实现（Y. Jung, R. A. DiStasio, Jr., R. C. Lochan 和 Y. M. Rhee）
 - •
 
-Coupled-cluster methods (P. A. Pieniazek, E. Epifanovsky, A. I. Krylov):
+耦合簇（Coupled-Cluster, CC）方法（P. A. Pieniazek, E. Epifanovsky, A. I. Krylov）：
 
 - **–**
 
-IP-CISD and EOM-IP-CCSD energy and gradient
+IP-CISD 与 EOM-IP-CCSD 能量及梯度
 - **–**
 
-Multi-threaded (OpenMP) parallel coupled-cluster calculations
+多线程（OpenMP）并行耦合簇计算
 - **–**
 
-Potential energy surface crossing minimization with CCSD and EOM-CCSD methods (E. Epifanovsky)
+采用 CCSD 与 EOM-CCSD 方法的势能面交叉最小化（E. Epifanovsky）
 - **–**
 
-Dyson orbitals for ionization from the ground and excited states within CCSD and EOM-CCSD methods (M. Oana)
+在 CCSD 与 EOM-CCSD 方法中用于基态及激发态电离的戴森轨道（Dyson Orbitals）（M. Oana）
 - •
 
-QM/MM methods (H. L. Woodcock, A. Ghysels, Y. Shao, J. Kong, and H. B. Brooks)
+量子力学/分子力学（QM/MM）方法（H. L. Woodcock, A. Ghysels, Y. Shao, J. Kong 和 H. B. Brooks）
 
 - **–**
 
-**Q-Chem**/**Charmm** interface (H. L. Woodcock)
+**Q-Chem**/**Charmm** 接口（H. L. Woodcock）
 - **–**
 
-Full QM/MM Hessian evaluation and approximate mobile-block-Hessian evaluation
+完整的 QM/MM 黑塞矩阵（Hessian）求值及近似移动块黑塞矩阵（mobile-block-Hessian）求值
 - **–**
 
-Two-layer ONIOM model (Y. Shao).
+两层 ONIOM 模型（Y. Shao）。
 - **–**
 
-Integration with the **Molaris** simulation package (E. Rosta).
+与 **Molaris** 模拟程序包的集成（E. Rosta）。
 - •
 
-Improved two-electron integrals package
+改进的双电子积分程序包
 
 - **–**
 
-Rewrite of the Head-Gordon–Pople algorithm for modern computer architectures (Y. Shao)
+针对现代计算机体系结构重写 Head-Gordon–Pople 算法（Y. Shao）
 - **–**
 
-Fourier Transform Coulomb method for linear-scaling construction of the Coulomb matrix, even for basis sets
-with high angular moment and diffuse functions (L. Fusti-Molnar)
+傅里叶变换库仑（Fourier Transform Coulomb, FTC）方法，可线性标度地构建库仑矩阵，即使对于高角动量
+及含弥散函数的基组同样适用（L. Fusti-Molnar）
 - •
 
-Dual basis self-consistent field calculations, offering an order-of-magnitude reduction in the cost of large-basis
-DFT calculations (J. Kong and R. P. Steele)
+双基组自洽场（SCF）计算，可将大基组 DFT 计算的成本降低一个数量级（J. Kong 和 R. P. Steele）
 - •
 
-Enhancements to the correlation package including:
+关联（correlation）程序包的增强，包括：
 
 - **–**
 
-Most extensive range of EOM-CCSD methods available including
-EOM-SF-CCSD, EOM-EE-CCSD, EOM-DIP-CCSD, EOM-IP/EA-CCSD (A. I. Krylov).
+提供最为齐全的 EOM-CCSD 方法族，包括
+EOM-SF-CCSD、EOM-EE-CCSD、EOM-DIP-CCSD、EOM-IP/EA-CCSD（A. I. Krylov）。
 - **–**
 
-Available for RHF, UHF, and ROHF references.
+可用于 RHF、UHF 及 ROHF 参考态。
 - **–**
 
-Analytic gradients and properties calculations (permanent and transition dipoles *etc.*.).
+解析梯度与性质计算（永久偶极矩、跃迁偶极矩*等*）。
 - **–**
 
-Full use of Abelian point-group symmetry.
+充分利用阿贝尔点群对称性（Abelian point-group symmetry）。
 - •
 
-Coupled-cluster perfect-paring methods applicable to systems with $>100$ active electrons (M. Head-Gordon)
+耦合簇完美配对（perfect-pairing）方法，适用于活性电子数 $>100$ 的体系（M. Head-Gordon）
 - •
 
-Transition structure search using the “growing string” algorithm (A. Heyden and B. Peters):
+采用"生长字符串"（growing string）算法进行过渡态结构搜索（A. Heyden 和 B. Peters）：
 - •
 
-*Ab initio* molecular dynamics (J. M. Herbert)
+*从头算*（*Ab initio*）分子动力学（J. M. Herbert）
 - •
 
-Linear scaling properties for large systems (J. Kussmann, C. Ochsenfeld):
+适用于大体系的线性标度性质计算（J. Kussmann, C. Ochsenfeld）：
 
 - **–**
 
-NMR chemical shifts
+核磁共振（NMR）化学位移
 - **–**
 
-Static and dynamic polarizabilities
+静态与动态极化率
 - **–**
 
-Static hyper-polarizabilities, optical rectification, and electro-optical Pockels effect
+静态超极化率、光整流（optical rectification）及电光普克尔斯效应（electro-optical Pockels effect）
 - •
 
-Anharmonic frequencies (C. Y. Lin)
+非谐频率（C. Y. Lin）
 - •
 
-Wave function analysis tools:
+波函数分析工具：
 
 - **–**
 
-Analysis of intermolecular interactions with ALMO-EDA (R. Z. Khaliullin and M. Head-Gordon)
+采用自适应局域分子轨道能量分解分析（ALMO-EDA）进行分子间相互作用分析（R. Z. Khaliullin 和 M. Head-Gordon）
 - **–**
 
-Electron transfer analysis (Z.-Q. You and C.-P. Hsu)
+电子转移分析（Z.-Q. You 和 C.-P. Hsu）
 - **–**
 
-Spin densities at the nuclei (V. A. Rassolov)
+原子核处自旋密度（V. A. Rassolov）
 - **–**
 
-Position, momentum, and Wigner intracules (N. A. Besley and D. P. O’Neill)
+位置、动量及 Wigner 内函数（intracules）（N. A. Besley 和 D. P. O’Neill）
 - •
 
-Graphical user interface (GUI) options:
+图形用户界面（GUI）选项：
 
 - **–**
 
-**IQmol**, a fully integrated GUI. **IQmol** includes input file generator and contextual help, molecular builder,
-job submission tool, and visualization kit (molecular orbital and density viewer, frequencies, etc).
-For the latest version and download/installation instructions, please see the **IQmol** homepage
-(`http://www.iqmol.org`).
+**IQmol**，一个完全集成的 GUI。**IQmol** 包含输入文件生成器与上下文帮助、分子构建器、
+任务提交工具以及可视化套件（分子轨道与电子密度查看器、频率等）。
+如需获取最新版本及下载/安装说明，请访问 **IQmol** 主页
+（`http://www.iqmol.org`）。
 - **–**
 
-Seamless integration with the **Spartan** package
-(see `www.wavefun.com`).
+与 **Spartan** 程序包的无缝集成
+（参见 `www.wavefun.com`）。
 - **–**
 
-Support for several other public-domain visualization programs:
+支持多个其他公有领域的可视化程序：
 
 - *
 
@@ -197,7 +196,7 @@ Support for several other public-domain visualization programs:
 `http://www.cmbi.ru.nl/molden`
 - *
 
-**MacMolPlt** (via a **MolDen**-formatted input file) 
+**MacMolPlt**（通过 **MolDen** 格式的输入文件）
 
 `https://brettbode.github.io/wxmacmolplt`
 - *

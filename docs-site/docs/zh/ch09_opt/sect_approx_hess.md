@@ -1,44 +1,31 @@
 ---
-title: "9.3.3 Hessian-Free Transition-State Search"
+title: "9.3.3 无 Hessian 过渡态搜索"
 ---
 
-## 9.3.3 Hessian-Free Transition-State Search
+## 9.3.3 无 Hessian 过渡态搜索
 
 (July 4, 2026)
 
-Once a guess structure to the transition state is obtained, standard
-eigenvector-following methods such as Baker’s partitioned rational-function
-optimization (P-RFO) algorithm[[64]](../bib_references/bib.md#bib46)
- can be employed to refine the
-guess to the exact transition state. The reliability of P-RFO depends on the
-quality of the Hessian input, which enables the method to distinguish between
-the reaction coordinate (characterized by a negative eigenvalue) and the
-remaining degrees of freedom. In routine calculations therefore, an exact
-Hessian is determined via frequency calculation prior to the P-RFO search.
-Since the cost of evaluating an exact Hessian typically scales one power of
-system size higher than the energy or the gradient, this step becomes
-impractical for systems containing large number of atoms.
+一旦获得过渡态的猜测结构，即可采用标准的本征矢跟随（eigenvector-following）方法，
+例如 Baker 的分式有理函数优化（partitioned rational-function optimization, P-RFO）
+算法[[64]](../bib_references/bib.md#bib46)，
+将猜测结构精修到精确的过渡态。P-RFO 的可靠性依赖于 Hessian 输入的质量，
+正是 Hessian 使得该方法能够区分反应坐标（以一个负本征值为特征）与其余自由度。
+因此在常规计算中，会在 P-RFO 搜索之前通过频率计算求得精确的 Hessian。
+由于计算精确 Hessian 的成本通常比能量或梯度多出一个体系规模的数量级，
+这一步骤对于含有大量原子的体系而言变得不切实际。
 
-The exact Hessian calculation can be avoided by constructing an approximate
-Hessian based on the output of FSM.[[1243]](../bib_references/bib.md#bib1297)
- The tangent direction at
-the transition state guess on the FSM string is a good approximation to the
-Hessian eigenvector corresponding to the reaction coordinate. The tangent is
-therefore used to calculate the correct eigenvalue and corresponding
-eigenvector by variationally minimizing the Rayleigh-Ritz
-ratio.[[739]](../bib_references/bib.md#bib1482)
- The reaction coordinate information is then
-incorporated into a guess matrix which, in turn, is obtained by transforming a
-diagonal matrix in delocalized internal
-coordinates[[63]](../bib_references/bib.md#bib50)
- to Cartesian coordinates.
-The resulting approximate Hessian, by design, has a single negative eigenvalue
-corresponding to the reaction coordinate. This matrix is then used in place of
-the exact Hessian as input to the P-RFO method.
+通过基于 FSM 的输出构造近似的 Hessian，可以避免精确 Hessian 的计算。[[1243]](../bib_references/bib.md#bib1297)
+在 FSM 柔性字符串（FSM string）上，过渡态猜测点处的切线方向是反应坐标所对应的
+Hessian 本征矢的良好近似。因此利用该切线，通过变分地极小化 Rayleigh-Ritz
+比[[739]](../bib_references/bib.md#bib1482)
+来计算正确的本征值及对应的本征矢。随后将反应坐标信息并入一个猜测矩阵，
+而该猜测矩阵本身则是通过将离域内坐标[[63]](../bib_references/bib.md#bib50)
+下的对角矩阵变换到笛卡尔坐标而得到的。
+如此得到的近似 Hessian 按其设计只含一个对应于反应坐标的负本征值。
+然后以该矩阵取代精确 Hessian，作为 P-RFO 方法的输入。
 
-???+ example "Example 9.10: An example one-shot, Hessian-free approach that combines the FSM and P-RFO
-methods in order to determine the exact transition state from reactant and
-product structures."
+???+ example "示例 9.10: 结合 FSM 与 P-RFO 方法的一步式（one-shot）无 Hessian 方案，从反应物与产物结构直接确定精确过渡态"
     ```qchem
     $molecule
        0  1

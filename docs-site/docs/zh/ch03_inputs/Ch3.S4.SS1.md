@@ -1,34 +1,26 @@
 ---
-title: "3.4.1 Overview"
+title: "3.4.1 概述"
 ---
 
-## 3.4.1 Overview
+## 3.4.1 概述
 
 (July 4, 2026)
 
-The *$rem* section in the input file is the means by which users specify the
-type of calculation that they wish to perform (*i.e.*, level of theory, basis
-set, convergence criteria, additional special features, *etc.*). The keyword
-*$rem* signals the beginning of the overall job specification. Within the
-*$rem* section the user inserts **$rem**** variables** (one per line) which
-define the essential details of the calculation. The allowed format is either
+输入文件中的 *$rem* 部分是用户用来指定所要执行的计算类型(*即*理论级别、基组（Basis Set）、收敛判据、附加的特殊功能，*等等*)的手段。关键字 *$rem* 标志着整个作业定义的起始。在 *$rem* 部分中，用户插入 **$rem** **变量**（每行一个），用以定义计算的基本细节。允许的格式可以是
 
 > ```qchem
 > REM_VARIABLE     VALUE    [ comment ]
 > ```
 
-or alternatively
+也可以采用另一种形式
 
 > ```qchem
 > REM_VARIABLE   =  VALUE   [ comment ]
 > ```
 
-The “=” sign is automatically discarded and only the first two remaining
-arguments are read, so that all remaining text is ignored and can be used to
-place comments in the input file. Thus the *$rem* section that provides
-**Q-Chem** job control takes the form shown in the following example.
+“=”号会被自动丢弃，并且只读取剩下的前两个参数，因此其余所有文本都会被忽略，可以用来在输入文件中放置注释。于是，负责 **Q-Chem** 作业控制的 *$rem* 部分具有如下示例所示的形式。
 
-The general format of the *$rem* section of the text input file is
+文本输入文件中 *$rem* 部分的通用格式为
 
 > ```qchem
 > $rem
@@ -38,82 +30,51 @@ The general format of the *$rem* section of the text input file is
 > $end
 > ```
 
-**Note: 
+**注意：**
 
 1.
 
-Tab stops can be used to format input.
+可以使用制表符（Tab）来编排输入格式。
 
 2.
 
-A line prefixed with an exclamation mark ‘!’ is treated as a comment
-and will be ignored by the program.
+以感叹号‘!’开头的行被视为注释，程序将忽略该行。
 
 3.
 
-*$rem* variables are case-insensitive (as is the whole **Q-Chem** input file).
+*$rem* 变量不区分大小写（整个 **Q-Chem** 输入文件同样如此）。
 
 4.
 
-Depending on the particular *$rem* variable, “`value`” may be a
-keyword (string), an integer, or a logical value (true or false).
+取决于具体的 *$rem* 变量，“`value`”可以是关键字（字符串）、整数或逻辑值（true 或 false）。
 
 5.
 
-A complete list of *$rem* variables can be found in Appendix [B](../app_b_quickref/app_quick_ref.md).
+完整的 *$rem* 变量列表可见附录 [B](../app_b_quickref/app_quick_ref.md)。
 
 **
 
-In this manual, *$rem* variables will be described using the following format:
-
-REM_VARIABLE_NAME
-
-### `REM_VARIABLE_NAME`
-
-> **A short description of what the variable controls.**
->
-> * **Type**: `The type of variable (INTEGER, LOGICAL or STRING)`
-> * **Default**: `The default value, if any.`
-> * **Options**:
->     * A list of the options available to the user.
-> * **Recommendation**: A brief recommendation, where appropriate.
-
-For example:
+在本手册中，*$rem* 变量将按以下格式描述：
 
 IQMOL_FCHK
 
 ### `IQMOL_FCHK`
 
-> **Controls printing of a formatted checkpoint file that can be read by the IQmol program.**
+> **控制是否打印可被 IQmol 程序读取的格式化检查点文件（formatted checkpoint file）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型（Type）**：`LOGICAL`
+> * **默认值（Default）**：`FALSE`
+> * **选项（Options）**：
 >     * TRUE
->     * Generate a checkpoint file named
+>     * 生成名为
 >     * inputfilename.fchk
->     * .
-> * **Recommendation**: For many Q-Chem jobs there is no reason not to generate the checkpoint file. Note that GUI = 2 (used by IQmol ) is synonymous with = TRUE .
+>     * 的检查点文件
+>     * 。
+> * **建议（Recommendation）**：对于许多 Q-Chem 作业而言，没有理由不生成检查点文件。注意 GUI = 2（IQmol 所使用）与 = TRUE 含义相同。
 
-If a default setting is indicated for a particular *$rem* variable, then it is
-not necessary to declare that variable in order for the default setting to be
-used. For example, the default value for the variable JOBTYPE is
-SP, indicating a single-point energy calculation, so to perform such a
-calculation the user does **not** need to set the JOBTYPE
-variable. To perform a geometry optimization, however, it is necessary to
-override this default by setting JOBTYPE = OPT. System
-administrator preferences for default *$rem* settings can be specified in the
-`$QC/config/preferences` file, and user preferences in a
-`$HOME/.qchemrc` file, both of which are described in
-Section [2.1.6](../ch02_install/sect_customization.md).
+若某个特定的 *$rem* 变量已指明默认设置，则无需声明该变量即可使用该默认设置。例如，变量 JOBTYPE 的默认值为 SP，表示单点能计算，因此要执行此类计算，用户**并****不**需要设置 JOBTYPE 变量。而要执行几何结构优化，则必须通过设置 JOBTYPE = OPT 来覆盖这一默认值。管理员对默认 *$rem* 设置的偏好可在 `QC/config/preferences` 文件中指定，用户的偏好则可在 `$HOME/.qchemrc` 文件中指定，这两者均在第 [2.1.6](../ch02_install/sect_customization.md) 节中说明。
 
-**Q-Chem** provides defaults for most *$rem* variables, but the user will always
-have to stipulate a few others. In a single point energy calculation, for
-example, the minimum requirements will be BASIS (defining the basis
-set) and METHOD (defining the level of theory for correlation and
-exchange). For example, METHOD = HF invokes a Hartree-Fock
-calculation, whereas METHOD = CIS specifies a CIS
-excited-state calculation.
+**Q-Chem** 为大多数 *$rem* 变量提供了默认值，但用户始终必须自行指定其中少数几个。例如在单点能计算中，最低要求是 BASIS（定义基组）与 METHOD（定义交换与关联的理论级别）。例如，METHOD = HF 调用 Hartree-Fock 计算，而 METHOD = CIS 则指定 CIS 激发态计算。
 
 ```qchem
 $rem
@@ -122,19 +83,6 @@ $rem
 $end
 ```
 
-The level of theory can alternatively be specified by setting values for two
-other *$rem* variables, EXCHANGE (defining the level of theory to
-treat exchange) and CORRELATION (defining the level of theory to treat
-electron correlation, if required). For excited states computed using
-equation-of-motion (EOM) methods (Chapter [7](../ch07_excited/chap_excited.md)), there is a third
-*$rem* variable, EOM_CORR, which specifies the level of correlation
-for the target states.
+理论级别也可以由另外两个 *$rem* 变量取值来指定，即 EXCHANGE（定义处理交换的理论级别）与 CORRELATION（定义处理电子关联的理论级别，如有需要）。对于用运动方程（equation-of-motion, EOM）方法计算的激发态（第 [7](../ch07_excited/chap_excited.md) 章），还有第三个 *$rem* 变量 EOM_CORR，用于指定目标态的关联级别。
 
-For DFT calculations, METHOD specifies an exchange-correlation
-functional; see Section [5.4](../ch05_dft/sect_DFT_METHOD.md) for a list of supported
-functionals. For wave function approaches, supported values of METHOD
-can be found in Section [6.1](../ch06_correlation/sect_c5Intro.md) for ground-state methods and in
-Section [7.1](../ch07_excited/sect_ExStatesSummary.md) for excited-state methods. If a wave
-function-based correlation treatment such as MP2 or CC is requested using the
-CORRELATION keyword, then HF is taken as the default for
-EXCHANGE.
+对于密度泛函理论（Density Functional Theory, DFT）计算，METHOD 指定某个交换-关联泛函；支持的泛函列表见第 [5.4](../ch05_dft/sect_DFT_METHOD.md) 节。对于波函数方法，METHOD 支持的取值可在第 [6.1](../ch06_correlation/sect_c5Intro.md) 节（基态方法）与第 [7.1](../ch07_excited/sect_ExStatesSummary.md) 节（激发态方法）中查到。如果使用 CORRELATION 关键字请求诸如 MP2 或 CC 这样的波函数关联处理，则 EXCHANGE 默认取 HF。

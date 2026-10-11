@@ -1,22 +1,22 @@
 ---
-title: "6.10.2 dRPA Job Control"
+title: "6.10.2 dRPA 作业控制"
 ---
 
-## 6.10.2 dRPA Job Control
+## 6.10.2 dRPA 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 CLENSHAW_NGRID
 
 ### `CLENSHAW_NGRID`
 
-> **Number of grid points for the Curtis-Clenshaw quadrature.**
+> **用于 Curtis-Clenshaw 求积的网格点数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `40`
-> * **Recommendation**: Use default.
+> * **类型**：`INTEGER`
+> * **默认值**：`40`
+> * **建议**：使用默认值。
 
-???+ example "Example 6.27: Example of RI-DRPA with RHF orbitals applied to a water dimer"
+???+ example "示例 6.27：采用 RHF 轨道的 RI-DRPA 应用于水二聚体"
     ```qchem
     $molecule
        0  1
@@ -38,8 +38,8 @@ CLENSHAW_NGRID
        SCF_CONVERGENCE   8
        SCF_ALGORITHM     gdm
        MAXSCF            1000
-       SCF_GUESS         sad
-       CLENSHAW_NGRID    40 !number of grid points for the Curtis-Clenshaw quadrature
-       INTEGRAL_SYMMETRY false
+       SCF_GUESS         gdm
+       MAXSCF            1000
+       SCF_GUESS         1000
     $end
     ```

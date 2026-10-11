@@ -1,92 +1,40 @@
 ---
-title: "2.1.2 Installation Requirements"
+title: "2.1.2 安装要求"
 ---
 
-## 2.1.2 Installation Requirements
+## 2.1.2 安装要求
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 2.1.2.1 Execution Environment
+## 2.1.2.1 运行环境
 
-**Q-Chem** is shipped as a single executable along with several scripts. No
-compilation is required. Once the package is installed it is ready to run.
-Please refer to the installation notes for your particular platform, which are
-distributed with the software. The system software required to run **Q-Chem** on
-your platform is minimal, and includes:
+**Q-Chem** 以单个可执行文件以及若干脚本的形式发布，无需编译。安装包部署完成后即可运行。请参阅随软件一同发布的、针对您所使用平台的安装说明。在您所用平台上运行 **Q-Chem** 所需的系统软件极为精简，仅包括：
 
 - •
 
-A suitable operating system.
+合适的操作系统。
 - •
 
-Run-time libraries (usually provided with your operating system).
+运行时库（通常由操作系统自带）。
 
-Please check the **Q-Chem** web site (`www.q-chem.com`) or contact **Q-Chem** support
-(`support@q-chem.com`) if further details are
-required.
+如需了解更多细节，请访问 **Q-Chem** 网站（`www.q-chem.com`）或联系 **Q-Chem** 技术支持（`support@q-chem.com`）。
 
-## 2.1.2.2 Hardware Platforms and Operating Systems
+## 2.1.2.2 硬件平台与操作系统
 
-**Q-Chem** runs on a wide variety of computer systems, ranging from Intel and
-AMD microprocessor-based PCs and workstations, to high-performance server nodes
-used in clusters and supercomputers. **Q-Chem** supports the Linux, Mac, and
-Windows operating systems. To determine the availability of a specific
-platform or operating system, please contact
-`support@q-chem.com`.
+**Q-Chem** 可运行于各类计算机系统之上，从基于 Intel 和 AMD 微处理器的个人电脑与工作站，到用于集群和超级计算机的高性能服务器节点。**Q-Chem** 支持 Linux、Mac 和 Windows 操作系统。如需确认某一特定平台或操作系统的可用性，请联系 `support@q-chem.com`。
 
-## 2.1.2.3 Memory and Disk Requirements
+## 2.1.2.3 内存与磁盘需求
 
-**Memory**
+**内存**
 
-**Q-Chem**, Inc. has endeavored to minimize memory requirements and maximize the
-efficiency of memory usage. Still, the larger the structure or the higher the level
-of theory, the more memory is needed. Although **Q-Chem** can be run successfully
-in very small-memory environments, this is seldom an issue nowadays and we
-recommend 2 GB per CPU core as a minimum.
-**Q-Chem** also offers the ability for user control of important,
-memory-intensive aspects of the program. In general, the more memory your
-system has, the larger the calculation you will be able to perform.
+**Q-Chem**, Inc. 一直致力于降低内存需求并最大化内存使用效率。但尽管如此，体系越大或理论级别越高，所需的内存就越多。虽然 **Q-Chem** 也能在内存极小的环境中成功运行，但如今这已很少成为问题，我们建议每个 CPU 核心至少配备 2 GB 内存。此外，**Q-Chem** 还提供了用户对程序中若干内存密集型关键功能进行控制的能力。一般而言，系统的内存越大，能够完成的计算规模也就越大。
 
-**Q-Chem** uses two types of memory: a chunk of static memory that is used by
-multiple data sets and managed by the code, and dynamic memory which is
-allocated using system calls. The size of the static memory is specified by the
-user through the *$rem* variable MEM_STATIC and has a default value
-of 192 MB.
+**Q-Chem** 使用两类内存：由代码管理、供多个数据集共用的静态内存块，以及通过系统调用分配的动态内存。静态内存的大小由用户通过 *$rem* 变量 MEM_STATIC 指定，其默认值为 192 MB。
 
-The *$rem* variable MEM_TOTAL specifies the limit of the total memory the
-user’s job can use. The default value is sufficiently large that on most
-machines it will allow **Q-Chem** to use all the available memory. This value
-should be reduced on machines where this is undesirable (for example if the
-machine is used by multiple users). The limit for the dynamic memory allocation
-is given by (MEM_TOTAL $-$ MEM_STATIC). The amount of
-MEM_STATIC needed depends on the size of the user’s particular job.
-Please note that one should not specify an excessively large value for
-MEM_STATIC, otherwise it will reduce the available memory for dynamic
-allocation. Memory settings in CC, EOM, and ADC calculations are described in
-Section [6.17](../ch06_correlation/CCparallel.md). The use of *$rem* variables will be discussed in the
-next Chapter.
+*$rem* 变量 MEM_TOTAL 指定用户作业可使用的总内存上限。其默认值足够大，在大多数机器上可让 **Q-Chem** 利用全部可用内存。在不希望如此的情况下（例如机器为多用户共用时），应调低该值。动态内存分配的上限为 (MEM_TOTAL $-$ MEM_STATIC)。所需 MEM_STATIC 的大小取决于用户具体作业的规模。请注意，不应为 MEM_STATIC 指定过大的值，否则将减少可用于动态分配的内存。CC、EOM 和 ADC 计算中的内存设置在第 [6.17](../ch06_correlation/CCparallel.md) 节中描述。*$rem* 变量的使用将在下一章中讨论。
 
-**Disk**
+**磁盘**
 
-The **Q-Chem** executables, shell scripts, auxiliary files, samples and
-documentation require about 1.4GB of disk space, depending on the
-platform. The default **Q-Chem** output, which is printed to the designated
-output file, is usually only a few kilobytes. This will be exceeded, of course,
-in difficult geometry optimizations, QM/MM and QM/EFP jobs, as well as in cases
-where users invoke non-default print options. In order to maximize the
-capabilities of your copy of **Q-Chem**, additional disk space is required for
-scratch files created during execution, and these are automatically deleted upon
-normal termination of a job. The amount of disk space required for scratch
-files depends critically on the type of job, the size of the molecule and the
-basis set chosen.
+**Q-Chem** 的可执行文件、shell 脚本、辅助文件、示例及文档约需 1.4 GB 磁盘空间，具体数量因平台而异。**Q-Chem** 的默认输出写入指定的输出文件，通常仅几 KB。当然，在困难的几何优化、QM/MM 及 QM/EFP 作业中，或用户启用了非默认的输出选项时，输出会超出这一大小。为了充分发挥您所拥有的 **Q-Chem** 的能力，还需要额外的磁盘空间来存放运行期间创建的临时文件（scratch files），这些文件会在作业正常结束后自动删除。临时文件所需的磁盘空间关键取决于作业类型、分子大小以及所选基组（Basis Set）。
 
-**Q-Chem** uses direct methods for Hartree-Fock and density functional theory
-calculations, which do not require a large amount of scratch disk space.
-Wave function-based correlation methods, such as MP2 and coupled-cluster theory,
-require substantial amounts of temporary (scratch) disk storage, and the faster
-the access speeds, the better these jobs will perform. With the low cost of
-disk drives, it is feasible to have between 100 and 1000 GB of scratch space
-available as a dedicated file system for these large temporary job files. The
-more you have available, the larger the jobs you will be able to run. In the
-case of some jobs, like MP2, the jobs will also run faster as two-electron
-integrals are computed less often.
+**Q-Chem** 对 Hartree-Fock 和密度泛函理论（Density Functional Theory, DFT）计算采用直接法（direct methods），不需要大量的临时磁盘空间。基于波函数的相关方法，如 MP2 和耦合簇（coupled-cluster）理论，则需要相当规模的临时（scratch）磁盘存储，且访问速度越快，这些作业的性能就越好。鉴于磁盘价格低廉，为这些大型临时作业文件预留 100 至 1000 GB 的专用文件系统作为临时空间是可行的。可用的临时空间越多，能够运行的作业规模就越大。对于某些作业（如 MP2），由于双电子积分的计算频次降低，作业也会运行得更快。

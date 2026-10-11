@@ -1,9 +1,9 @@
 ---
-title: "5.4 Basic DFT Job Control"
+title: "5.4 DFT 作业的基本控制"
 ---
 
-# 5.4 Basic DFT Job Control
+# 5.4 DFT 作业的基本控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [5.4.1 Overview](Ch5.S4.SS1.md)
+- [5.4.1 概述](Ch5.S4.SS1.md)

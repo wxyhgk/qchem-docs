@@ -1,98 +1,92 @@
 ---
-title: "9.9.3 Additional Job Control and Examples"
+title: "9.9.3 附加任务控制与示例"
 ---
 
-## 9.9.3 Additional Job Control and Examples
+## 9.9.3 附加任务控制与示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 AIMD_INIT_VELOC
 
 ### `AIMD_INIT_VELOC`
 
-> **Specifies the method for selecting initial nuclear velocities.**
+> **指定选取初始核速度的方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **可选值**：
 >     * THERMAL
->     * Random sampling of nuclear velocities from a Maxwell-Boltzmann
->     * distribution. The user must specify the temperature in Kelvin via
->     * the
+>     * 从麦克斯韦-玻尔兹曼（Maxwell-Boltzmann）
+>     * 分布中随机抽样核速度。用户必须通过
 >     * $rem
->     * variable
+>     * 变量
 >     * AIMD_TEMP
->     * .
+>     * 指定以开尔文（Kelvin）为单位的温度。
 >     * ZPE
->     * Choose velocities in order to put zero-point vibrational energy into
->     * each normal mode, with random signs. This option requires that a
->     * frequency job to be run beforehand.
+>     * 选取速度使得每个简正模式都被赋予零点振动能量（zero-point vibrational energy），符号随机。该选项要求事先运行一次频率计算任务。
 >     * QUASICLASSICAL
->     * Puts vibrational energy into each normal mode. In contrast to the
->     * ZPE option, here the vibrational energies are sampled from a
->     * Boltzmann distribution at the desired simulation temperature. This
->     * also triggers several other options, as described below.
+>     * 将振动能分配到每个简正模式中。与 ZPE 选项不同，这里的振动能量是在目标模拟温度下从玻尔兹曼（Boltzmann）分布中抽样的。该选项还会触发以下描述的其他若干选项。
 >     * OLD
->     * Use the same initial velocities as the immediately preceding AIMD job.
+>     * 使用紧接的前一个 AIMD 任务的相同初始速度。
 >     * RESTART
->     * Use the final velocities from a previous AIMD job,
->     * reading them from disk.
-> * **Recommendation**: This variable need only be specified in the event that velocities are not specified explicitly in a $velocity section.
+>     * 使用前一个 AIMD 任务的最终速度，
+>     * 从磁盘读取。
+> * **建议**：仅当未在 $velocity 区段中显式指定速度时，才需要设置此变量。
 
 AIMD_INIT_VELOC_NANO_RANDOM
 
 ### `AIMD_INIT_VELOC_NANO_RANDOM`
 
-> **Uses a more precise random seed for generating random initial velocities.**
+> **使用更精确的随机种子来生成随机初始速度。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **可选值**：
 >     * FALSE
->     * Use a less precise random seed.
-> * **Recommendation**: Leave this set to TRUE unless necessary. This option determines the source of the random seed used for sampling random initial velocities when AIMD_INIT_VELOC requires such. Setting the option to FALSE will have the seed based on the system time in seconds, meaning that two otherwise identical simulations starting in the same second will produce identical initial velocities. With the option set to TRUE, such collisions are virtually impossible. The option is kept for legacy purposes. There should rarely ever be a need to set it to FALSE.
+>     * 使用精度较低的随机种子。
+> * **建议**：除非必要，请保持此选项为 TRUE。当 AIMD_INIT_VELOC 需要抽样随机初始速度时，此选项决定所用随机种子的来源。若将该选项设为 FALSE，则种子基于以秒为单位的系统时间，这意味着在同一秒内启动的两个otherwise完全相同的模拟将产生相同的初始速度。设为 TRUE 时，此类碰撞几乎不可能发生。保留该选项是出于历史兼容目的，通常几乎没有必要将其设为 FALSE。
 
 AIMD_MOMENTS
 
 ### `AIMD_MOMENTS`
 
-> **Requests that multipole moments be output at each time step.**
+> **请求在每个时间步输出多极矩（multipole moments）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * $n$
->     * Output the first
+>     * 输出前
 >     * $n$
->     * multipole moments.
-> * **Recommendation**: None
+>     * 阶多极矩。
+> * **建议**：无
 
 AIMD_TEMP
 
 ### `AIMD_TEMP`
 
-> **Specifies a temperature (in Kelvin) for Maxwell-Boltzmann velocity sampling.**
+> **指定用于麦克斯韦-玻尔兹曼速度抽样的温度（以开尔文为单位）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
->     * User-specified number of Kelvin.
-> * **Recommendation**: This variable is only useful in conjunction with AIMD_INIT_VELOC = THERMAL . Note that the simulations are run at constant energy, rather than constant temperature, so the mean nuclear kinetic energy will fluctuate in the course of the simulation.
+> * **类型**：`INTEGER`
+> * **默认值**：`None`
+> * **可选值**：
+>     * 用户指定的开尔文数值。
+> * **建议**：此变量仅与 AIMD_INIT_VELOC = THERMAL 配合使用时才有意义。注意，模拟是在恒定能量而非恒定温度下进行的，因此核平均动能会在模拟过程中波动。
 
 DEUTERATE
 
 ### `DEUTERATE`
 
-> **Requests that all hydrogen atoms be replaces with deuterium.**
+> **请求将所有氢原子替换为氘。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Replace hydrogens with deuterium.
-> * **Recommendation**: Replacing hydrogen atoms reduces the fastest vibrational frequencies by a factor of 1.4, which allow for a larger fictitious mass and time step in ELMD calculations. There is no reason to replace hydrogens in BOMD calculations.
+>     * 用氘替换氢原子。
+> * **建议**：替换氢原子可使最快的振动频率降低约 1.4 倍，从而允许在 ELMD 计算中使用更大的虚设质量和时间步长。在 BOMD 计算中没有理由替换氢原子。
 
-???+ example "Example 9.34: Simulating thermal fluctuations of the water dimer at 298 K."
+???+ example "示例 9.34：在 298 K 下模拟水二聚体的热涨落。"
     ```qchem
     $molecule
        0  1
@@ -118,8 +112,7 @@ DEUTERATE
     $end
     ```
 
-???+ example "Example 9.35: Propagating $\rm F^{-}(H_{2}O)_{4}$ on its first excited-state potential energy
-surface, calculated at the CIS level."
+???+ example "示例 9.35：在 CIS 级别计算的第一激发态势能面上模拟 $\rm F^{-}(H_{2}O)_{4}$ 的动力学演化。"
     ```qchem
     $comment
       Note, only a few time steps are taken, a more appropriate
@@ -161,7 +154,7 @@ surface, calculated at the CIS level."
     $end
     ```
 
-???+ example "Example 9.36: Simulating vibrations of the NaCl molecule using ELMD."
+???+ example "示例 9.36：使用 ELMD 模拟 NaCl 分子的振动。"
     ```qchem
     $molecule
        0  1
@@ -195,11 +188,11 @@ surface, calculated at the CIS level."
     $end
     ```
 
-**Q-Chem** has the ability to do AIMD with frozen bonds by using RATTLE
-algorithm.[[45]](../bib_references/bib.md#bib28)
- It can be requested by setting the rem variable
-AIMD_INTEGRATION to RATTLE. Constraints are imposed via the
-*$rattle* input section, whose format is shown below.
+**Q-Chem** 能够使用 RATTLE 算法[[45]](../bib_references/bib.md#bib28)
+进行带冻结键的 AIMD 模拟。
+通过将 rem 变量
+AIMD_INTEGRATION 设置为 RATTLE 即可请求该功能。约束条件通过
+*$rattle* 输入区段施加，其格式如下所示。
 
 > ```qchem
 > $rattle
@@ -208,16 +201,14 @@ AIMD_INTEGRATION to RATTLE. Constraints are imposed via the
 > $end
 > ```
 
-**Note: 
+**注意：
 
-The bond length values should be in Ångstrom units.
+键长数值应以埃（Ångstrom）为单位。
 **
 
-The convergence threshold and the number of maximum iterations for RATTLE steps
-are controlled by the following *$rem* variables: RATTLE_THRESH (with
-a default value of 6) and RATTLE_MAXIT (with a default value of 100).
+RATTLE 步的收敛阈值和最大迭代次数由以下 *$rem* 变量控制：RATTLE_THRESH（默认值为 6）和 RATTLE_MAXIT（默认值为 100）。
 
-???+ example "Example 9.37: Simulating water molecule using RATTLE algorithm."
+???+ example "示例 9.37：使用 RATTLE 算法模拟水分子。"
     ```qchem
     $molecule
        0 1
@@ -246,7 +237,7 @@ a default value of 6) and RATTLE_MAXIT (with a default value of 100).
     $end
     ```
 
-???+ example "Example 9.38: Excited-state AIMD with exciton analysis at each step."
+???+ example "示例 9.38：在每一步进行激子分析（exciton analysis）的激发态 AIMD。"
     ```qchem
     $comment
     AIMD trajectory with wave-function analysis performed at each step.
@@ -256,24 +247,7 @@ a default value of 6) and RATTLE_MAXIT (with a default value of 100).
     $molecule
     0 1
       O   -2.1904701    0.5202006    0.0237374
-      H   -1.2011437    0.4799213    0.0090967
-      H   -2.4798356   -0.3698583   -0.2997841
+      H   -1.2011437    0.4799213    0.0237374
+      H   -1.2011437    0.4799213    0.0237374
     $end
-    
-    $rem
-       JOBTYPE              aimd
-       METHOD               hf
-       BASIS                6-31+G*
-       CIS_N_ROOTS          3
-       CIS_TRIPLETS         false
-       AIMD_STEPS           5
-       TIME_STEP            40
-       AIMD_INIT_VELOC      thermal
-       AIMD_TEMP            500
-       AIMD_INTEGRATION     vverlet
-       CIS_STATE_DERIV      1
-       STATE_ANALYSIS       true
-       AIMD_PRINT           2
-    $end
-    
     ```

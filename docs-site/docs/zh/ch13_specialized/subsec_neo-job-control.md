@@ -1,107 +1,103 @@
 ---
-title: "13.5.4 Job Control for the NEO methods"
+title: "13.5.4 NEO 方法的任务控制"
 ---
 
-## 13.5.4 Job Control for the NEO methods
+## 13.5.4 NEO 方法的任务控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 13.5.4.1 General Keywords
+## 13.5.4.1 通用关键字
 
-The NEO method is a natural extension of the SCF method and it inherits many of its functionalities.
-Some keywords that are used in the SCF Job Control are used in the NEO methods with a few additional keywords.
-The following *$rem* variables must be specified in order to run NEO calculations:
+NEO 方法是自洽场（SCF）方法的一种自然扩展，并继承了其诸多功能。SCF 任务控制中使用的一些关键字同样适用于 NEO 方法，此外还有若干额外的关键字。要运行 NEO 计算，必须指定以下 *$rem* 变量：
 
-**Note: 
+**注意：
 
-Some *$rem* variables, which we find mostly self-explanatory but not discussed below, that
-also influence NEO jobs in regards to geometry and symmetry considerations include
-INPUT_BOHR, SYM_IGNORE, and POINT_GROUP_SYMMETRY.
+以下是一些 *$rem* 变量，我们认为它们大多不言自明，故未在下方详细讨论，但它们也会在几何结构和对称性方面影响 NEO 任务，包括 INPUT_BOHR、SYM_IGNORE 和 POINT_GROUP_SYMMETRY。
 **
 
 NEO
 
 ### `NEO`
 
-> **Enable a NEO-SCF calculation.**
+> **启用 NEO-SCF 计算。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Enable a NEO-SCF calculation.
+>     * 启用 NEO-SCF 计算。
 >     * FALSE
->     * Disable a NEO-SCF calculation.
-> * **Recommendation**: Set to TRUE if desired.
+>     * 禁用 NEO-SCF 计算。
+> * **建议**: 如有需要，设置为 TRUE。
 
 JOBTYPE
 
 ### `JOBTYPE`
 
-> **Specifies the type of calculation.**
+> **指定计算类型。**
 >
-> * **Type**: `STRING`
-> * **Default**: `SP`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `SP`
+> * **选项**:
 >     * SP
->     * Single point energy.
+>     * 单点能计算。
 >     * FORCE
->     * Analytical force calculation.
+>     * 解析力计算。
 >     * OPT
->     * Geometry minimization.
+>     * 几何结构优化。
 >     * TS
->     * Transition structure search.
+>     * 过渡态搜索。
 >     * FREQ
->     * Frequency calculation.
-> * **Recommendation**: Application-dependent. Always use POINT_GROUP_SYMMETRY = FALSE with geometry optimization.
+>     * 频率计算。
+> * **建议**: 视具体应用而定。进行几何结构优化时，请始终使用 POINT_GROUP_SYMMETRY = FALSE。
 
 METHOD
 
 ### `METHOD`
 
-> **Specifies the exchange-correlation functional.**
+> **指定交换-关联泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is one of the following:
+>     * 为下列之一：
 >     * HF
->     * for Hartree-Fock theory;
->     * one of the DFT methods listed in Section
+>     * 表示 Hartree-Fock 理论；
+>     * 第
 >     * 5.3.5
->     * .;
-> * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations for DFT are indicated in bold in Section 5.3.5 .
+>     * 节列出的密度泛函理论（DFT）方法之一。；
+> * **建议**: 一般而言，请参考相关文献来指导您的选择。我们对 DFT 方法的推荐在第 5.3.5 节中以粗体标出。
 
 BASIS
 
 ### `BASIS`
 
-> **Specifies the electronic basis sets to be used.**
+> **指定所使用的电子基组（Basis Set）。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default basis set`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认基组`
+> * **选项**:
 >     * General, Gen
->     * User defined (
+>     * 用户自定义（必须提供
 >     * $basis
->     * keyword required).
+>     * 关键字）。
 >     * Symbol
->     * Use standard basis sets as per Chapter
+>     * 按照第
 >     * 8
->     * .
+>     * 章使用标准基组。
 >     * Mixed
->     * Use a mixture of basis sets (see Chapter
+>     * 使用混合基组（参见第
 >     * 8
->     * ).
-> * **Recommendation**: Consult literature and reviews to aid your selection.
+>     * 章）。
+> * **建议**: 请参考相关文献和综述以辅助您的选择。
 
-The format for the user-defined basis section is as follows:
+用户自定义基组段的格式如下：
 
 > | $basis |  |  |  |  |  |
 > | --- | --- | --- | --- | --- | --- |
@@ -114,28 +110,21 @@ The format for the user-defined basis section is as follows:
 > | **** |  |  |  |  |  |
 > | $end |  |  |  |  |  |
 
-where
+其中
 
-| $X$ | Atomic symbol of the atom (atomic number not accepted) |
+| $X$ | 原子的元素符号（不接受原子序数） |
 | --- | --- |
-| $L$ | Angular momentum symbol (S, P, SP, D, F, G) |
-| $K$ | Degree of contraction of the shell (integer) |
-| $scale$ | Scaling to be applied to exponents (default is 1.00) |
-| $\alpha_{i}$ | Gaussian primitive exponent (positive real number) |
-| $C_{i}^{L}$ | Contraction coefficient for each angular momentum (non-zero real numbers). |
+| $L$ | 角动量符号（S、P、SP、D、F、G） |
+| $K$ | 壳层的收缩阶数（整数） |
+| $scale$ | 施加于指前因子的缩放系数（默认值为 1.00） |
+| $\alpha_{i}$ | 高斯原函数指数（正实数） |
+| $C_{i}^{L}$ | 各角动量的收缩系数（非零实数）。 |
 
-Atoms are terminated with `****` and the complete basis set is
-terminated with the *$end* keyword terminator. No blank lines can be
-incorporated within the general basis set input. Note that more than one
-contraction coefficient per line is required for compound shells like SP.
-As with all **Q-Chem** input deck information, all input is case-insensitive.
+每个原子以 `****` 结尾，整个基组以 *$end* 关键字终止符结束。通用基组输入中不得包含空行。请注意，对于 SP 这类复合壳层，每行需要提供多个收缩系数。与所有 **Q-Chem** 输入组信息一样，所有输入均不区分大小写。
 
-Additionally, the NEO-SCF methods require definition of the nuclear basis sets.
-Refer to Ref. [[1536]](../bib_references/bib.md#bib1600)
- for selection of the protonic basis sets. Note that the pure (spherical harmonic) and Cartesian angular forms for the protonic basis sets are found
-in the main article and in the supported information, respectively. Also, see details about the NEO_PURECART variable described in the next section.
+此外，NEO-SCF 方法还要求定义核基组。关于质子基组的选择，请参考文献 [[1536]](../bib_references/bib.md#bib1600) 。请注意，质子基组的纯函数（球谐函数）形式和笛卡尔角动量形式分别可在正文和补充材料中找到。另外，请参见下一节中关于 NEO_PURECART 变量的详细说明。
 
-The format for the user-defined neo_basis section is as follows:
+用户自定义 neo_basis 段的格式如下：
 
 > | $neo_basis |  |  |  |  |  |
 > | --- | --- | --- | --- | --- | --- |
@@ -148,43 +137,40 @@ The format for the user-defined neo_basis section is as follows:
 > | **** |  |  |  |  |  |
 > | $end |  |  |  |  |  |
 
-**Note: 
+**注意：
 
-Several of the post-NEO-HF methods utilizing density fitting also require
-the nuclear auxiliary basis set to be defined. The format for such user-defined *$neo_aux_basis*
-section is identical to the *$basis* and *$neo_basis* input sections. See examples in Section [13.5.6](subsec_neo-examples.md) for more details.
+若干使用密度拟合（density fitting）的后-NEO-HF 方法还要求定义核辅助基组。此类用户定义的 *$neo_aux_basis* 段的输入格式与 *$basis* 和 *$neo_basis* 段完全相同。更多细节请参见第 [13.5.6](subsec_neo-examples.md) 节中的示例。
 **
 
-## 13.5.4.2 Additional Keywords
+## 13.5.4.2 附加关键字
 
-More *$rem* variables that can be used to customize the calculation. Some of these are NEO specific variables,
-while others are shared with other **Q-Chem** modules:
+以下更多的 *$rem* 变量可用于定制计算。其中一些是 NEO 专用变量，而另一些则与 **Q-Chem** 的其他模块共用：
 
 BASIS_LIN_DEP_THRESH
 
 ### `BASIS_LIN_DEP_THRESH`
 
-> **Sets the threshold for determining linear dependence in the basis set**
+> **设置判断基组线性相关性的阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $n$
->     * Sets the threshold to
+>     * 将阈值设置为
 >     * $10^{-n}$
-> * **Recommendation**: Set to 5 or smaller if you have a poorly behaved SCF and you suspect linear dependence in you basis set. Lower values (larger thresholds) may affect the accuracy of the calculation.
+> * **建议**: 如果 SCF 收敛表现不佳，且您怀疑基组中存在线性相关性，请设置为 5 或更小的值。较低的值（较大的阈值）可能会影响计算的精度。
 
 NEO_BASIS_LIN_DEP_THRESH
 
 ### `NEO_BASIS_LIN_DEP_THRESH`
 
-> **This keyword is used to set the liner dependency threshold for nuclear basis sets. It is defined as $10^{-\mathrm{NEO\_BASIS\_LIN\_DEP\_THRESH}}$ .**
+> **该关键字用于设置核基组的线性相关性阈值。其定义为 $10^{-\mathrm{NEO\_BASIS\_LIN\_DEP\_THRESH}}$ 。**
 >
-> * **Type**: `DOUBLE`
-> * **Default**: `5.0`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: No recommendation.
+> * **类型**: `DOUBLE`
+> * **默认值**: `5.0`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 无特别建议。
 
 PURECART
 
@@ -192,390 +178,377 @@ PURECART
 
 > **INTEGER**
 >
-> * **Type**: `Controls the use of pure (spherical harmonic) or Cartesian angular forms`
-> * **Default**: `1111`
-> * **Options**:
+> * **类型**: `控制使用纯函数（球谐函数）形式还是笛卡尔角动量形式`
+> * **默认值**: `1111`
+> * **选项**:
 >     * $hgfd$
->     * Use 1 for pure and 2 for Cartesian.
-> * **Recommendation**: This is pre-defined for all standard basis sets
+>     * 纯函数形式使用 1，笛卡尔形式使用 2。
+> * **建议**: 所有标准基组均已预先定义此值。
 
 NEO_PURECART
 
 ### `NEO_PURECART`
 
-> **This keyword is used to specify Cartesian or spherical Gaussians for nuclear basis functions.**
+> **该关键字用于指定核基函数使用笛卡尔高斯函数还是球谐高斯函数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2222`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: The default value corresponds to the use of Cartesian Gaussians for all angular momentum classes. The value = 1111 would use spherical Gaussians instead, similar to the use of PURECART .
+> * **类型**: `INTEGER`
+> * **默认值**: `2222`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 默认值表示对所有角动量类别均使用笛卡尔高斯函数。若将该值设为 1111，则改用球谐高斯函数，类似于 PURECART 的用法。
 
 NEO_ISOTOPE
 
 ### `NEO_ISOTOPE`
 
-> **Enable calculations of different types of isotopes. Only one type of isotope is allowed at present.**
+> **启用不同类型同位素的计算。目前仅允许使用一种类型的同位素。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 1
->     * This NEO calculation uses protons.
+>     * 该 NEO 计算使用质子。
 >     * 2
->     * This NEO calculation uses deuterons.
+>     * 该 NEO 计算使用氘核。
 >     * 3
->     * This NEO calculation uses tritons.
-> * **Recommendation**: Refer to the NEO literature for the best performance on the isotope effects calculations.
+>     * 该 NEO 计算使用氚核。
+> * **建议**: 关于同位素效应计算的最佳性能表现，请参阅 NEO 相关文献。
 
 NEO_VPP
 
 ### `NEO_VPP`
 
-> **This keyword is used to control whether to remove $J-K$ terms from the nuclear Fock matrix and the corresponding kernel terms for NEO excited state methods. The purpose for the removal of these terms in the case of one quantum proton is to save on computational cost. Note that the ground state NEO-HF or NEO-DFT energy is the same with or without removal of these nuclear $J-K$ terms. The nuclear virtual orbitals will however be different, which may affect the results for perturbative methods ( i.e. , multicomponent excited-state methods and post-NEO-HF wave function methods).**
+> **该关键字用于控制在 NEO 激发态方法中是否从核 Fock 矩阵及相应的核项（kernel terms）中移除 $J-K$ 项。在单个量子化质子的情况下移除这些项的目的是节省计算成本。请注意，基态 NEO-HF 或 NEO-DFT 能量在移除或不移除这些核 $J-K$ 项时是相同的。但核虚轨道会有所不同，这可能会影响微扰方法（即多组分激发态方法和后-NEO-HF 波函数方法）的结果。**
 >
-> * **Type**: `LOGICAL/INTEGER`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL/INTEGER`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE (or 1)
->     * Enable this option (include nuclear
+>     * 启用此选项（包含核
 >     * $J-K$
->     * terms).
+>     * 项）。
 >     * FALSE (or 0)
->     * Disable this option (remove nuclear
+>     * 禁用此选项（移除核
 >     * $J-K$
->     * terms).
-> * **Recommendation**: Set = 0 only in the case of one quantum hydrogen.
+>     * 项）。
+> * **建议**: 仅在单个量子化氢的情况下设置为 = 0。
 
 XC_GRID
 
 ### `XC_GRID`
 
-> **Specifies the type of grid to use for DFT calculations.**
+> **指定 DFT 计算所使用的网格类型。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Functional-dependent; see Table`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `与泛函相关，见表`
+> * **选项**:
 >     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * 对 H、C、N 和 O 使用 SG-0；对其余原子使用 SG-1。
 >     * $n$
->     * Use SG-
+>     * 对所有原子使用 SG-
 >     * $n$
->     * for all atoms,
+>     * ，其中
 >     * $n=1,2$
->     * , or 3
+>     * 或 3
 >     * $XY$
->     * A string of two six-digit integers
+>     * 由两个六位整数
 >     * $X$
->     * and
+>     * 和
 >     * $Y$
->     * , where
+>     * 组成的字符串，其中
 >     * $X$
->     * is the number of radial points
->     * and
+>     * 为径向点数，
 >     * $Y$
->     * is the number of angular points where possible numbers of Lebedev angular
->     * points, which must be an allowed value from Table
->     * 5.2
->     * in
->     * Section
+>     * 为角向点数，角向点数必须取自第
 >     * 5.5
->     * .
+>     * 节表
+>     * 5.2
+>     * 中的 Lebedev 角向点数的允许值。
 >     * $-XY$
->     * Similar format for Gauss-Legendre grids, with the six-digit integer
+>     * Gauss-Legendre 网格的类似格式，其中六位整数
 >     * $X$
->     * corresponding
->     * to the number of radial points and the six-digit integer
+>     * 对应径向点数，六位整数
 >     * $Y$
->     * providing the number of
->     * Gauss-Legendre angular points,
+>     * 给出 Gauss-Legendre 角向点数，
 >     * $Y=2N^{2}$
->     * .
-> * **Recommendation**: We strongly recommend using an unpruned, Euler-Maclaurin-Lebedev grid type for NEO-DFT calculations. Larger grids may be required for optimization and frequency calculations.
+>     * 。
+> * **建议**: 我们强烈建议在 NEO-DFT 计算中使用未修剪（unpruned）的 Euler-Maclaurin-Lebedev 网格类型。几何结构优化和频率计算可能需要更大的网格。
 
 UNRESTRICTED
 
 ### `UNRESTRICTED`
 
-> **Controls the use of restricted or unrestricted orbitals.**
+> **控制使用限制轨道还是非限制轨道。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
 > * **Options**:
 >     * FALSE
->     * Constrain the spatial part of the alpha and beta orbitals to be the same.
+>     * 约束 alpha 和 beta 轨道的空间部分相同。
 >     * TRUE
->     * Do not Constrain the spatial part of the alpha and beta orbitals.
-> * **Recommendation**: The ROHF method is not available. Note that for unrestricted calculations on systems with an even number of electrons it is usually necessary to break $\alpha$ / $\beta$ symmetry in the initial guess, by using SCF_GUESS_MIX or providing $occupied information (see Section 4.4 on initial guesses).
+>     * 不约束 alpha 和 beta 轨道的空间部分。
+> * **建议**: ROHF 方法不可用。请注意，对于具有偶数个电子的体系进行非限制计算时，通常需要在初始猜测中打破 $\alpha$ / $\beta$ 对称性，可通过使用 SCF_GUESS_MIX 或提供 $occupied 信息来实现（参见第 4.4 节关于初始猜测的内容）。
 
 S2THRESH
 
 ### `S2THRESH`
 
-> **Cutoff for neglect of overlap integrals, defined via a two-electron shell-pair threshold of $10^{-\mathrm{S2THRESH}}$ ( $\leq 14$ ).**
+> **忽略重叠积分的截断值，通过双电子壳层对（shell-pair）阈值 $10^{-\mathrm{S2THRESH}}$ ( $\leq 14$ ) 定义。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Same as`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `与以下相同`
+> * **选项**:
 >     * $n$
->     * for a threshold of
+>     * 对应阈值
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Increase the value of if the program finds negative eigenvalues for the overlap matrix.
+>     * 。
+> * **建议**: 如果程序发现重叠矩阵存在负特征值，请增大 的值。
 
 THRESH
 
 ### `THRESH`
 
-> **Cutoff for neglect of two electron integrals. $10^{-\mathrm{THRESH}}$ ( $\leq 14$ ).**
+> **忽略双电子积分的截断值。$10^{-\mathrm{THRESH}}$ ( $\leq 14$ )。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `8`
+> * **选项**:
 >     * $n$
->     * for a threshold of
+>     * 对应阈值
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: The value should satisfy $\geq$ 3 + SCF_CONVERGENCE , although = 4 + SCF_CONVERGENCE is the default (in most cases) since Q-Chem v. 6.0. See Ref. 479 Gray M., Bowling P. E., Herbert J. M. J. Phys. Chem. A (2024) , 128 , pp. 7739 . Link for recommended values of in the presence of diffuse basis functions, where tighter thresholds are often required and too-loose thresholds may lead to slower convergence or convergence failure.
+>     * 。
+> * **建议**: 该值应满足 $\geq$ 3 + SCF_CONVERGENCE ；不过，自 Q-Chem v. 6.0 起，默认值（在大多数情况下）为 = 4 + SCF_CONVERGENCE。参见文献 479 Gray M., Bowling P. E., Herbert J. M. J. Phys. Chem. A (2024) , 128 , pp. 7739 。链接给出了在存在弥散基组时 的推荐值，此时通常需要更严格的阈值，而过松的阈值可能导致收敛变慢或收敛失败。
 
 MEM_STATIC
 
 ### `MEM_STATIC`
 
-> **Sets the memory for AO-integral evaluations and their transformations in Q-Chem 4.1 or older versions.**
+> **在 Q-Chem 4.1 及更早版本中，设置用于原子轨道（AO）积分评估及其变换的内存。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `192`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `192`
+> * **选项**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: Use the default.
+>     * 用户自定义的内存大小（兆字节）。
+> * **建议**: 使用默认值。
 
 MEM_TOTAL
 
 ### `MEM_TOTAL`
 
-> **Sets the total memory available to Q-Chem , in megabytes.**
+> **设置 Q-Chem 可用的总内存（兆字节）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2000`
+> * **选项**:
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: Use the default, or set to the physical memory of your machine. The minimum requirement is $3X^{2}$ .
+>     * 用户自定义的内存大小（兆字节）。
+> * **建议**: 使用默认值，或设置为机器的物理内存。最低要求为 $3X^{2}$ 。
 
-## 13.5.4.3 NEO-SCF Specific Keywords
+## 13.5.4.3 NEO-SCF 专用关键字
 
-The following *$rem* variables can be used to specify the tolerances for NEO-SCF convergence.
-Some of these *$rem* variables are inherited from conventional SCF calculations:
+以下 *$rem* 变量可用于指定 NEO-SCF 收敛的容差。其中一些 *$rem* 变量继承自常规 SCF 计算：
 
 SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 
-> **NEO-SCF is considered converged when the electronic wave function error is less that $10^{-\mathrm{SCF\_CONVERGENCE}}$ . Adjust the value of THRESH at the same time. (Starting with Q-Chem 3.0, the DIIS error is measured by the maximum error rather than the RMS error as in earlier versions.)**
+> **当电子波函数误差小于 $10^{-\mathrm{SCF\_CONVERGENCE}}$ 时，认为 NEO-SCF 已收敛。请同时调整 THRESH 的值。（自 Q-Chem 3.0 起，DIIS 误差以最大误差而非早期版本中的均方根（RMS）误差来衡量。）**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: None.
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 无。
 
 NEO_N_SCF_CONVERGENCE
 
 ### `NEO_N_SCF_CONVERGENCE`
 
-> **NEO-SCF is considered converged when the nuclear wave function error is less that $10^{-\mathrm{NEO\_N\_SCF\_CONVERGENCE}}$ .**
+> **当核波函数误差小于 $10^{-\mathrm{NEO\_N\_SCF\_CONVERGENCE}}$ 时，认为 NEO-SCF 已收敛。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: None.
+> * **类型**: `INTEGER`
+> * **默认值**: `7`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 无。
 
 NEO_E_CONV
 
 ### `NEO_E_CONV`
 
-> **Energy convergence criteria in the NEO-SCF calculations so that the difference in energy between consecutive iterations is less than $10^{-\mathrm{NEO\_E\_CONV}}$ .**
+> **NEO-SCF 计算中的能量收敛判据，要求相邻两次迭代之间的能量差小于 $10^{-\mathrm{NEO\_E\_CONV}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: Tighter criteria for geometry optimization are recommended. Note that for stepwise calculations, this convergence criteria checks the difference in energy between electronic and protonic microiterations blocks.
+> * **类型**: `INTEGER`
+> * **默认值**: `8`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 对于几何结构优化，建议使用更严格的判据。请注意，对于分步（stepwise）计算，该收敛判据检查的是电子与质子微迭代（microiterations）块之间的能量差。
 
 MAX_SCF_CYCLES
 
 ### `MAX_SCF_CYCLES`
 
-> **Controls the maximum number of SCF iterations permitted.**
+> **控制允许的最大 SCF 迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **选项**:
 >     * $n$
 >     * $n>0$
->     * User-selected.
-> * **Recommendation**: Increase for slowly converging systems such as those containing transition metals.
+>     * 用户自选。
+> * **建议**: 对于收敛缓慢的体系（例如含有过渡金属的体系），请增大该值。
 
 NEO_E_MAX_SCF_CYCLES
 
 ### `NEO_E_MAX_SCF_CYCLES`
 
-> **Controls the maximum number of electronic SCF micoiterations permitted. This variable is only used for stepwise NEO-SCF optimizations.**
+> **控制允许的电子 SCF 微迭代的最大次数。该变量仅用于分步 NEO-SCF 优化。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `150`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `150`
+> * **选项**:
 >     * $n$
 >     * $n>0$
->     * User-selected.
-> * **Recommendation**: None.
+>     * 用户自选。
+> * **建议**: 无。
 
 NEO_N_MAX_SCF_CYCLES
 
 ### `NEO_N_MAX_SCF_CYCLES`
 
-> **Controls the maximum number of nuclear SCF micoiterations permitted. This variable is only used for stepwise NEO-SCF optimizations.**
+> **控制允许的核 SCF 微迭代的最大次数。该变量仅用于分步 NEO-SCF 优化。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `150`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `150`
+> * **选项**:
 >     * $n$
 >     * $n>0$
->     * User-selected.
-> * **Recommendation**: None.
+>     * 用户自选。
+> * **建议**: 无。
 
-The NEO-SCF iteration procedure has traditionally involved solving the
-electronic and quantum nuclear Roothaan/Kohn-Sham equations in alternating fashion until convergence to the variational solution is
-reached. This approach can become computationally expensive, especially when many SCF iterations are required to achieve self-consistency.
-To accelerate this procedure, those equations may instead be solved simultaneously at every step of the NEO-SCF iteration procedure.
-This is now the default scheme for solving the NEO-SCF equations. We support the simultaneous implementation of the Direct Inversion in the Iterative Subspace (DIIS) algorithm[[837]](../bib_references/bib.md#bib883)
-
-as well as the Geometric Direct Minimization (GDM)[[1391]](../bib_references/bib.md#bib1453)
- approach. The following *$rem* variables permit some customization of the NEO-SCF iterations:
+NEO-SCF 迭代过程传统上采用交替求解电子与量子核 Roothaan/Kohn-Sham 方程的方式，直至达到变分解的收敛。这种做法可能计算代价高昂，尤其是当达到自洽需要大量 SCF 迭代时。为了加速这一过程，也可以在 NEO-SCF 迭代过程的每一步同时求解这些方程。目前这已是求解 NEO-SCF 方程的默认方案。我们支持迭代子空间直接逆（Direct Inversion in the Iterative Subspace, DIIS）算法[[837]](../bib_references/bib.md#bib883) 以及几何直接最小化（Geometric Direct Minimization, GDM）[[1391]](../bib_references/bib.md#bib1453) 方法的联合同时实现。以下 *$rem* 变量允许对 NEO-SCF 迭代进行一定的定制：
 
 NEO_SIMULTANEOUS_SCF
 
 ### `NEO_SIMULTANEOUS_SCF`
 
-> **Enables simultaneous optimization algorithm.**
+> **启用同时优化算法。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: Use the default unless issues with convergence are observed, in which cause set to FALSE to utilize the traditional stepwise approach.
+> * **建议**: 使用默认值，除非观察到收敛问题；若出现收敛问题，则设置为 FALSE 以采用传统的分步方法。
 
 SCF_ALGORITHM
 
 ### `SCF_ALGORITHM`
 
-> **Algorithm used for converging the SCF.**
+> **用于 SCF 收敛的算法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `DIIS`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `DIIS`
+> * **选项**:
 >     * DIIS
->     * Pulay DIIS.
+>     * Pulay DIIS。
 >     * GDM
->     * Geometric Direct Minimization.
+>     * 几何直接最小化。
 >     * DIIS_GDM
->     * Use DIIS and then later switch to geometric direct minimization.
-> * **Recommendation**: In the NEO methods, the GDM procedure is recommended. Note that DIIS_GDM is only supported for simultaneous optimizations.
+>     * 先使用 DIIS，之后切换为几何直接最小化。
+> * **建议**: 在 NEO 方法中，推荐使用 GDM 过程。请注意，DIIS_GDM 仅支持同时优化。
 
 NEO_SCF_GUESS_N
 
 ### `NEO_SCF_GUESS_N`
 
-> **Specifies the initial guess procedure for the nuclear orbitals in a NEO-SCF calculation.**
+> **指定 NEO-SCF 计算中核轨道的初始猜测方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `TIGHT`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `TIGHT`
+> * **选项**:
 >     * CORE
->     * Diagonalize the nuclear core Hamiltonian
+>     * 对角化核芯（core）Hamilton 矩阵
 >     * TIGHT
->     * Occupies the least diffuse nuclear MO
+>     * 占据弥散程度最小的核分子轨道（MO）
 >     * AUTOSAD
->     * On-the-fly superposition of nuclear atomic densities from an atomic NEO calculation
+>     * 由原子 NEO 计算在线叠加（on-the-fly superposition）核原子密度
 >     * READ
->     * Read previous nuclear MOs from disk
-> * **Recommendation**: Use the default. Note that if is set to READ , only the nuclear MOs from a previous NEO-SCF job are read from disk. The starting guess for the electronic MOs in a NEO calculation remains the converged result from the conventional electronic calculation of the current job. To read in both the electronic and nuclear MOs from a previous NEO-SCF job, must be set to READ in conjunction with SKIP_SCFMAN set to TRUE .
+>     * 从磁盘读取先前的核分子轨道
+> * **建议**: 使用默认值。请注意，若 设置为 READ，则仅从磁盘读取先前 NEO-SCF 任务的核分子轨道。NEO 计算中电子分子轨道的初始猜测仍为当前任务常规电子计算收敛后的结果。若要从先前 NEO-SCF 任务同时读取电子和核分子轨道，必须将 设置为 READ，并将 SKIP_SCFOAN 设为 TRUE。
 
 NEO_STEPWISE_SCF_STEPS
 
 ### `NEO_STEPWISE_SCF_STEPS`
 
-> **Specifies the number of NEO-SCF stepwise/alternating macro-iterations to perform before switching to simultaneous algorithm.**
+> **指定在切换到同时算法之前执行的 NEO-SCF 分步/交替宏迭代（macro-iteration）次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: The rate of convergence of the NEO-SCF procedure is dependent on the initial guess for the electronic and protonic orbitals. For especially difficult systems, it may be helpful to do stepwise optimization before switching to simultaneous.
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: NEO-SCF 过程的收敛速度取决于电子轨道和质子轨道的初始猜测。对于特别困难的体系，先进行分步优化再切换到同时优化可能会有帮助。
 
-**Note: 
+**注意：
 
-The following variables are specific to SCF_ALGORITHM = DIIS.
+以下变量专用于 SCF_ALGORITHM = DIIS。
 **
 
 DIIS_SUBSPACE_SIZE
 
 ### `DIIS_SUBSPACE_SIZE`
 
-> **Controls the size of the DIIS subspace during the SCF.**
+> **控制 SCF 过程中 DIIS 子空间的大小。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
->     * User-defined
-> * **Recommendation**: None.
+> * **类型**: `INTEGER`
+> * **默认值**: `10`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 无。
 
 DIIS_ERR_RMS
 
 ### `DIIS_ERR_RMS`
 
-> **Changes the DIIS convergence metric from the maximum to the RMS error.**
+> **将 DIIS 收敛判据从最大误差更改为均方根（RMS）误差。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: Use the default, the maximum error provides a more reliable criterion.
+> * **建议**: 使用默认值，最大误差提供了更可靠的判据。
 
-**Note: 
+**注意：
 
-The following variables are specific to SCF_ALGORITHM = DIIS_GDM.
+以下变量专用于 SCF_ALGORITHM = DIIS_GDM。
 **
 
 MAX_DIIS_CYCLES
 
 ### `MAX_DIIS_CYCLES`
 
-> **The maximum number of DIIS iterations before switching to (geometric) direct minimization.**
+> **切换到（几何）直接最小化之前的最大 DIIS 迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **选项**:
 >     * 1
->     * Only a single Roothaan step before switching to (G)DM
+>     * 在切换到 (G)DM 之前仅执行一次 Roothaan 步
 >     * $n$
 >     * $n$
->     * DIIS iterations before switching to (G)DM.
-> * **Recommendation**: None
+>     * 次 DIIS 迭代后切换到 (G)DM。
+> * **建议**: 无
 
 THRESH_DIIS_SWITCH
 
 ### `THRESH_DIIS_SWITCH`
 
-> **The threshold for switching between DIIS extrapolation and direct minimization of the SCF energy is $10^{-\mbox{{\small THRESH\_DIIS\_SWITCH}}}$ .**
+> **在 DIIS 外推与 SCF 能量直接最小化之间切换的阈值为 $10^{-\mbox{{\small THRESH\_DIIS\_SWITCH}}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
->     * User-defined.
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
+>     * 用户自定义
+> * **建议**: 无

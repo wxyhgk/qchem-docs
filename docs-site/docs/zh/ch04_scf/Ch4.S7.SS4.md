@@ -1,46 +1,29 @@
 ---
-title: "4.7.4 Basis-Set Pairings"
+title: "4.7.4 基组配对"
 ---
 
-## 4.7.4 Basis-Set Pairings
+## 4.7.4 基组配对
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-We recommend using basis pairings in which the small basis set is a proper
-subset of the target basis (6-31G into 6-31G*, for example). They not only
-produce more accurate results; they also lead to more efficient integral
-screening in both energies and gradients. Subsets for many standard basis sets
-(including Dunning-style cc-pV$X$Z basis sets and their augmented analogs) have
-been developed and thoroughly tested for these purposes. A summary of the
-pairings is provided in Table [4.2](#tab:DBsummary); details of these truncations
-are provided in Figure [4.1](#fig:DBfig).
+我们建议使用小基组为目标基组真子集的基组配对（例如 6-31G 配对 6-31G*）。这类配对不仅能产生更精确的结果，而且在能量和梯度的计算中都能实现更高效的积分筛选。针对许多标准基组（包括 Dunning 型的 cc-pV$X$Z 基组及其增广变体）已经开发并充分测试了相应的子集。配对方案汇总于表 [4.2](#tab:DBsummary)；这些截断方案的详细信息见图 [4.1](#fig:DBfig)。
 
-A new pairing for 6-31G*-type calculations is also available. The 6-4G subset
-(named r64G in **Q-Chem**) is a subset by *primitive* functions and provides
-a smaller, faster alternative for this basis set regime.[[1302]](../bib_references/bib.md#bib1357)
- A
-case-dependent switch in the projection code (still OVPROJECTION)
-properly handles 6-4G. For DB-HF, the calculations proceed as described above.
-For DB-DFT, empirical scaling factors (see Ref. [[1302]](../bib_references/bib.md#bib1357)
- for
-details) are applied to the dual-basis correction. This scaling is handled
-automatically by the code and prints accordingly.
+针对 6-31G* 型计算还有一种新的配对方案。6-4G 子集（在 **Q-Chem** 中命名为 r64G）是按*原始（primitive）*函数取子集得到的，为该基组区间提供了一个更小、更快的替代选择。[[1302]](../bib_references/bib.md#bib1357)
+投影代码中（仍为 OVPROJECTION）一个依具体情况而定的开关可以正确处理 6-4G。
+对于 DB-HF，计算按上文所述进行。
+对于 DB-DFT，需对双基组（dual-basis）校正施加经验缩放因子（详见文献 [[1302]](../bib_references/bib.md#bib1357)）。
+该缩放由代码自动处理并相应输出。
 
-As of **Q-Chem** version 3.2, the basis set projection code has also been adapted
-to properly account for linear dependence,[[1299]](../bib_references/bib.md#bib1358)
- which can often be
-problematic for large, augmented (aug-cc-pVTZ, *etc.*) basis set calculations.
-The same standard keyword (LIN_DEP_THRESH) is used to determine
-linear dependence in the projection code. Because of the scheme used to
-account for linear dependence, only proper-subset pairings are now allowed.
+自 **Q-Chem** 3.2 版起，基组投影代码还经过改造以正确处理线性相关性问题，[[1299]](../bib_references/bib.md#bib1358)
+ 而线性相关性在大型增广基组（aug-cc-pVTZ，*等等*）计算中常常会带来麻烦。
+投影代码中使用相同的标准关键字 LIN_DEP_THRESH 来判定线性相关性。
+由于处理线性相关性的方案所限，现在仅允许真子集配对。
 
-Like single-basis calculations, user-specified general or mixed basis sets may
-be employed (see Chapter [8](../ch08_basis/chap_basis.md)) with dual-basis calculations. The
-target basis specification occurs in the standard *$basis* section. The
-smaller, secondary basis is placed in a similar *$basis*2 section; the syntax
-within this section is the same as the syntax for *$basis*. General and mixed
-small basis sets are activated by BASIS2 = BASIS2_GEN and
-BASIS2 = BASIS2_MIXED, respectively.
+与单基组计算一样，用户指定的通用基组（general）或混合基组（mixed basis set）也可用于双基组计算（见第 [8](../ch08_basis/chap_basis.md) 章）。
+目标基组在标准的 *$basis* 区块中指定。
+较小的次基组放在类似的 *$basis*2 区块中；该区块内的语法与 *$basis* 的语法相同。
+通用与混合小基组分别通过 BASIS2 = BASIS2_GEN 和
+BASIS2 = BASIS2_MIXED 启用。
 
 | BASIS | BASIS2 |
 | --- | --- |
@@ -54,7 +37,7 @@ BASIS2 = BASIS2_MIXED, respectively.
 | 6-31++G** | 6-31G* |
 | 6-311++G(3df,3pd) | 6-311G*, 6-311+G* |
 
-Table 4.2: Summary and nomenclature of recommended dual-basis pairings
+表 4.2: 推荐的双基组配对汇总与命名
 
 <a id="Ch4.Ex5"></a>
 $$
@@ -233,9 +216,6 @@ s^{\prime}\end{array}\\
 \end{array}
 $$
 
-Figure 4.1: Structure of the truncated basis set pairings for cc-pV(T,Q)Z and
-aug-cc-pV(D,T,Q)Z. The most compact functions are listed at the top. Primed
-functions depict diffuse function augmentation. Dashes indicate eliminated
-functions, relative to the paired standard basis set. In each case, the
-truncations for hydrogen and heavy atoms are shown, along with the nomenclature
-used in **Q-Chem**.
+图 4.1: cc-pV(T,Q)Z 与 aug-cc-pV(D,T,Q)Z 截断基组配对的结构。最紧凑的函数列于顶部。
+带撇号的函数表示弥散函数增广。破折号表示相对于配对的标准基组所删除的函数。
+每一组均展示了氢与重原子的截断方式，以及在 **Q-Chem** 中使用的命名。

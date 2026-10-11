@@ -1,59 +1,57 @@
 ---
-title: "4.8.2 Job Control"
+title: "4.8.2 作业控制"
 ---
 
-## 4.8.2 Job Control
+## 4.8.2 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-HFPC/DFPC calculations are controlled with the following *$rem*. HFPT
-turns on the HFPC/DFPC approximation. Note that HFPT_BASIS specifies
-the secondary basis set.
+HFPC/DFPC 计算通过以下 *$rem* 变量进行控制。HFPT 用于开启 HFPC/DFPC 近似。注意 HFPT_BASIS 用于指定辅助基组（secondary basis set）。
 
 HFPT
 
 ### `HFPT`
 
-> **Activates HFPC/DFPC calculation.**
+> **激活 HFPC/DFPC 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * Single-point energy only
-> * **Recommendation**: Use Dual-Basis to capture large-basis effects at smaller basis cost. See reference for recommended basis set, functional, and grid pairings.
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * 仅单点能（Single-point energy only）
+> * **建议**：使用双重基组（Dual-Basis）以较小的基组代价捕捉大基组效应。推荐的基组、泛函与网格搭配请参阅参考文献。
 
 HFPT_BASIS
 
 ### `HFPT_BASIS`
 
-> **Specifies the secondary basis in a HFPC/DFPC calculation.**
+> **指定 HFPC/DFPC 计算中所用的辅助基组。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **选项**：
 >     * None
-> * **Recommendation**: See reference for recommended basis set, functional, and grid pairings.
+> * **建议**：推荐的基组、泛函与网格搭配请参阅参考文献。
 
 DFPT_XC_GRID
 
 ### `DFPT_XC_GRID`
 
-> **Specifies the secondary grid in a HFPC/DFPC calculation.**
+> **指定 HFPC/DFPC 计算中所用的辅助网格。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **选项**：
 >     * None
-> * **Recommendation**: See reference for recommended basis set, functional, and grid pairings.
+> * **建议**：推荐的基组、泛函与网格搭配请参阅参考文献。
 
 DFPT_EXCHANGE
 
 ### `DFPT_EXCHANGE`
 
-> **Specifies the secondary functional in a HFPC/DFPC calculation.**
+> **指定 HFPC/DFPC 计算中所用的辅助泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **选项**：
 >     * None
-> * **Recommendation**: See reference for recommended basis set, functional, and grid pairings.
+> * **建议**：推荐的基组、泛函与网格搭配请参阅参考文献。

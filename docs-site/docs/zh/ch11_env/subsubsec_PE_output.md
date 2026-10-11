@@ -1,13 +1,12 @@
 ---
-title: "11.8.3 Interpreting the Output"
+title: "11.8.3 解读输出结果"
 ---
 
-## 11.8.3 Interpreting the Output
+## 11.8.3 解读输出结果
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-After SCF convergence, the PE module prints a summary of PE energy
-contributions, for example:
+自洽场（SCF）收敛之后，极化嵌入（Polarizable Embedding, PE）模块会打印 PE 能量贡献的汇总信息，例如：
 
 ```qchem
 ----------------------------------------------------------------------
@@ -29,8 +28,7 @@ Polarizable Embedding Summary:
 ----------------------------------------------------------------------
 ```
 
-If a PE-ADC calculation is carried out, the perturbative corrections are
-printed together with the excitation energies:
+如果执行了 PE-ADC 计算，微扰修正会与激发能一起打印输出：
 
 ```qchem
 Excited state 1 (singlet, A)                                     [converged]
@@ -41,9 +39,6 @@ Excited state 1 (singlet, A)                                     [converged]
   Excitation energy:                                               3.906651 eV
   -------------------------------------------
   PE ptSS energy correction:                                      -0.001804 eV
-  Corrected Excitation Energy (ptSS):                              3.904847 eV
-  -------------------------------------------
-  PE ptLR energy correction:                                      -0.000096 eV
-  Corrected Excitation Energy (ptLR):                              3.906554 eV
-  -------------------------------------------
+  Corrected Excitation Energy (ptSS):                              3.906651 eV
+  ----------------------------------------------------------------------------
 ```

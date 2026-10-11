@@ -1,390 +1,383 @@
 ---
-title: "7.9.22 EOM-CC Optimization and Properties Job Control"
+title: "7.9.22 EOM-CC 优化与性质作业控制"
 ---
 
-## 7.9.22 EOM-CC Optimization and Properties Job Control
+## 7.9.22 EOM-CC 优化与性质作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 CC_STATE_TO_OPT
 
 ### `CC_STATE_TO_OPT`
 
-> **Specifies which state to optimize (or from which state compute EOM-EOM inter-state properties).**
+> **指定要优化哪个态（或从哪个态计算 EOM-EOM 态间性质）。**
 >
-> * **Type**: `INTEGER ARRAY`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER ARRAY`（整型数组）
+> * **默认值**: `None`
+> * **选项**:
 >     * [
 >     * $i$
 >     * ,
 >     * $j$
 >     * ]
->     * optimize the
->     * $j$
->     * th state of the
+>     * 优化第
 >     * $i$
->     * th irrep.
-> * **Recommendation**: None
+>     * 个不可约表示（irrep）中的第
+>     * $j$
+>     * 个态。
+> * **建议**: 无
 
-**Note: 
+**注意：
 
-The state number should be smaller or equal to the number of excited
-states calculated in the corresponding irrep.
+态编号应小于或等于相应不可约表示中计算得到的激发态数目。
 **
 
-**Note: 
+**注意：
 
-If analytic gradients are not available, the finite difference
-calculations will be performed and the symmetry will be turned off. In this
-case, CC_STATE_TO_OPT should be specified assuming C${}_{1}$ symmetry,
-*i.e.*, as [1,N] where N is the number of state to optimize (the EOM states are
-numbered from 1).
+若解析梯度不可用，则执行有限差分计算，并且对称性会被关闭。在这种情况下，
+CC_STATE_TO_OPT 应在假定 C${}_{1}$ 对称性的前提下指定，*即*，写作 [1,N] 的形式，
+其中 N 为要优化的态数（EOM 态从 1 开始编号）。
 **
 
 CC_EOM_PROP
 
 ### `CC_EOM_PROP`
 
-> **Whether or not the non-relaxed (expectation value) one-particle EOM-CCSD target state properties will be calculated. Available properties currently include permanent dipole moment, angular momentum projections, the second moments ( $\langle x^{2}\rangle$ , $\langle y^{2}\rangle$ , and $\langle z^{2}\rangle$ ) of the electron density along with $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$ . This option is incompatible with JOBTYPE = FORCE , OPT , or FREQ .**
+> **控制是否计算 EOM-CCSD 目标态的非弛豫（期望值）单粒子性质。当前可用的性质包括永久偶极矩、角动量投影、电子密度沿各轴的二次矩（ $\langle x^{2}\rangle$ 、 $\langle y^{2}\rangle$ 和 $\langle z^{2}\rangle$ ）以及 $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$ 。该选项与 JOBTYPE = FORCE 、OPT 或 FREQ 不兼容。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (no one-particle properties will be calculated)`
-> * **Options**:
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `FALSE (no one-particle properties will be calculated)`（FALSE，不计算单粒子性质）
+> * **选项**:
 >     * FALSE, TRUE
-> * **Recommendation**: Additional equations (EOM-CCSD equations for the left eigenvectors) need to be solved for properties, approximately doubling the cost of calculation for each irrep. The cost of the one-particle properties calculation itself is low. The one-particle density of an EOM-CCSD target state can be analyzed with NBO or libwfa packages by specifying the state with CC_STATE_TO_OPT and requesting NBO = TRUE and = TRUE .
+> * **建议**: 计算性质需要求解额外的方程（用于左本征向量的 EOM-CCSD 方程），这会使每个不可约表示的计算代价约增加一倍。单粒子性质计算本身的代价很低。可通过 CC_STATE_TO_OPT 指定态并请求 NBO = TRUE 以及 = TRUE，使用 NBO 或 libwfa 软件包分析 EOM-CCSD 目标态的单粒子密度。
 
 CC_TRANS_PROP
 
 ### `CC_TRANS_PROP`
 
-> **Whether or not the transition dipole moment (in atomic units) and oscillator strength and rotatory strength (in atomic units) for the EOM-CCSD target states will be calculated. By default, the transition dipole moment, angular momentum matrix elements, and rotatory strengths are calculated between the CCSD reference and the EOM-CCSD target states. In order to calculate transition dipole moment, angular momentum matrix elements, and rotatory strengths between a set of EOM-CCSD states and another EOM-CCSD state, the CC_STATE_TO_OPT must be specified for this state.**
+> **控制是否计算 EOM-CCSD 目标态的跃迁偶极矩（原子单位）、振子强度和旋转强度（原子单位）。默认情况下，跃迁偶极矩、角动量矩阵元及旋转强度在 CCSD 参考态与 EOM-CCSD 目标态之间计算。若要计算一组 EOM-CCSD 态与另一个 EOM-CCSD 态之间的跃迁偶极矩、角动量矩阵元及旋转强度，必须为该态指定 CC_STATE_TO_OPT。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 (no transition properties will be calculated)`
-> * **Options**:
->     * 1 (calculate transition properties between all computed EOM state and the reference state)
->     * 2 (calculate transition properties between all pairs of EOM states)
-> * **Recommendation**: Additional equations (for the left EOM-CCSD eigenvectors plus lambda CCSD equations in case of transition properties between the CCSD reference and EOM-CCSD target states are requested) need to be solved for transition properties, approximately doubling the computational cost. The cost of the transition properties calculation itself is low.
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0 (no transition properties will be calculated)`（0，不计算跃迁性质）
+> * **选项**:
+>     * 1（计算所有已计算 EOM 态与参考态之间的跃迁性质）
+>     * 2（计算所有 EOM 态对之间的跃迁性质）
+> * **建议**: 计算跃迁性质需要求解额外的方程（左 EOM-CCSD 本征向量方程，若请求 CCSD 参考态与 EOM-CCSD 目标态之间的跃迁性质，还需加上 lambda CCSD 方程），这会使计算代价约增加一倍。跃迁性质计算本身的代价很低。
 
-**Note: 
+**注意：
 
-When the *$trans_prop* section is present in the input, it overrides the
-setting of the CC_TRANS_PROP *$rem* variable. However, for
-*$trans_prop* to work, CC_TRANS_PROP *does* need to be set.
+当输入文件中存在 *$trans_prop* 区段时，它会覆盖 CC_TRANS_PROP *$rem* 变量的设置。
+但 *$trans_prop* 要生效，CC_TRANS_PROP *确实* 需要被设置。
 **
 
 CC_EOM_ECD
 
 ### `CC_EOM_ECD`
 
-> **Whether or not the ECD transition moments will be calculated. By default, the transition moments are calculated between the CCSD reference and the EOM-CCSD target states. In order to calculate transition moments between a set of EOM-CCSD states and another EOM-CCSD state, the CC_STATE_TO_OPT must be specified for this state.**
+> **控制是否计算 ECD（电子圆二色性）跃迁矩。默认情况下，跃迁矩在 CCSD 参考态与 EOM-CCSD 目标态之间计算。若要计算一组 EOM-CCSD 态与另一个 EOM-CCSD 态之间的跃迁矩，必须为该态指定 CC_STATE_TO_OPT。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (do not compute ECD transition moments)`
-> * **Options**:
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `FALSE (do not compute ECD transition moments)`（FALSE，不计算 ECD 跃迁矩）
+> * **选项**:
 >     * TRUE
->     * Compute ECD transition moments.
-> * **Recommendation**: Activate for chiral molecules only.
+>     * 计算 ECD 跃迁矩。
+> * **建议**: 仅对手性分子启用。
 
 CC_EOM_2PA
 
 ### `CC_EOM_2PA`
 
-> **Whether or not the transition moments and cross-sections for two-photon absorption will be calculated. By default, the transition moments are calculated between the CCSD reference and the EOM-CCSD target states. In order to calculate transition moments between a set of EOM-CCSD states and another EOM-CCSD state, the CC_STATE_TO_OPT must be specified for this state. If 2PA NTO analysis is requested, the value is redundant as long as $>0$ .**
+> **控制是否计算双光子吸收（2PA）的跃迁矩和截面积。默认情况下，跃迁矩在 CCSD 参考态与 EOM-CCSD 目标态之间计算。若要计算一组 EOM-CCSD 态与另一个 EOM-CCSD 态之间的跃迁矩，必须为该态指定 CC_STATE_TO_OPT。若请求了 2PA NTO 分析，只要取值 $>0$ ，该值便是冗余的。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 (do not compute 2PA transition moments)`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0 (do not compute 2PA transition moments)`（0，不计算 2PA 跃迁矩）
+> * **选项**:
 >     * 1
->     * Compute 2PA using the fastest algorithm (use
+>     * 使用最快的算法计算 2PA（对正则（canonical）计算使用
 >     * $\tilde{\sigma}$
->     * -intermediates for
->     * canonical
->     * and
+>     * 中间量，对
+>     * RI/CD
+>     * 响应计算使用
 >     * $\sigma$
->     * -intermediates for RI/CD response calculations).
+>     * 中间量）。
 >     * 2
->     * Use
+>     * 在 2PA 响应方程计算中使用
 >     * $\sigma$
->     * -intermediates for 2PA response equation calculations.
+>     * 中间量。
 >     * 3
->     * Use
+>     * 在 2PA 响应方程计算中使用
 >     * $\tilde{\sigma}$
->     * -intermediates for 2PA response equation calculations.
-> * **Recommendation**: Additional response equations (6 for each target state) will be solved, which increases the cost of calculations. The cost of 2PA moments is about 10 times that of energy calculation. Use the default algorithm. Setting $>0$ turns on CC_TRANS_PROP .
+>     * 中间量。
+> * **建议**: 将求解额外的响应方程（每个目标态 6 个），从而增加计算代价。2PA 矩的计算代价约为能量计算的 10 倍。建议使用默认算法。设置 $>0$ 会同时开启 CC_TRANS_PROP。
 
 CC_EOM_2PA_XCONV
 
 ### `CC_EOM_2PA_XCONV`
 
-> **Convergence criterion for the response vectors (norm of the difference) of the DIIS solver for damped response equations in 2PA and RIXS calculations.**
+> **2PA 和 RIXS 计算中阻尼响应方程 DIIS 求解器响应向量（差值范数）的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5 Corresponding to`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `5 Corresponding to`（5，对应于）
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
->     * convergence criterion.
-> * **Recommendation**: Use the default in double precision. May reduce in single precision.
+>     * 收敛判据。
+> * **建议**: 双精度计算时使用默认值。单精度计算时可放宽。
 
 DAMPED_DALTON_SOLVER
 
 ### `DAMPED_DALTON_SOLVER`
 
-> **Boolean for using the new Davidson-like solver ( Dalton ) for damped (CCSD polarizabilities and hyperpolarizabilities and EOM-CCSD 2PA and RIXS cross sections) response equations.**
+> **布尔开关，控制是否在阻尼响应方程（CCSD 极化率与超极化率，以及 EOM-CCSD 2PA 和 RIXS 截面积）中使用新的类 Davidson 求解器（Dalton）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE (Use the new`
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `TRUE (Use the new`（TRUE，使用新求解器）
 > * **Options**:
 >     * FALSE
->     * If the old DIIS solver is desired for the above properties.
-> * **Recommendation**: Use the new solver for faster convergence relative to DIIS.
+>     * 若希望对上述性质使用旧的 DIIS 求解器。
+> * **建议**: 使用新求解器，其收敛速度相对 DIIS 更快。
 
 DALTON_XCONV
 
 ### `DALTON_XCONV`
 
-> **Convergence criterion for the residuals (square norm) of the Dalton solver for response equations.**
+> **响应方程 Dalton 求解器残差（平方范数）的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6 Corresponding to`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `6 Corresponding to`（6，对应于）
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
->     * convergence criterion.
-> * **Recommendation**: Use the default in double precision. May reduce to 5 in single precision.
+>     * 收敛判据。
+> * **建议**: 双精度计算时使用默认值。单精度计算时可放宽至 5。
 
 DALTON_MAXITER
 
 ### `DALTON_MAXITER`
 
-> **Maximum number of iteration allowed for the Dalton solver for response equations.**
+> **响应方程 Dalton 求解器允许的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `100`
+> * **选项**:
 >     * $n$
->     * User-defined number of iterations.
-> * **Recommendation**: Default is usually sufficient
+>     * 用户自定义的迭代次数。
+> * **建议**: 默认值通常已足够。
 
 DALTON_MAXSPACE
 
 ### `DALTON_MAXSPACE`
 
-> **Specifies maximum number of vectors in the subspace for the Dalton solver for response equations.**
+> **指定响应方程 Dalton 求解器子空间中向量的最大数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `200`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `200`
+> * **选项**:
 >     * $n$
->     * Up to
+>     * 在子空间重置之前，每个根最多
 >     * $n$
->     * vectors per root before the subspace is reset.
-> * **Recommendation**: Larger values increase disk storage but accelerate and stabilize convergence.
+>     * 个向量。
+> * **建议**: 较大的值会增加磁盘存储占用，但能加快并稳定收敛。
 
 DALTON_PRECOND_START
 
 ### `DALTON_PRECOND_START`
 
-> **Specifies the iteration number in the Dalton procedure for response equations from which the preconditioner is applied to the residuals.**
+> **指定在响应方程的 Dalton 过程中，从第几次迭代开始对残差应用预处理器。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `1`
+> * **选项**:
 >     * $n$
->     * User-defined iteration number.
-> * **Recommendation**: Use default.
+>     * 用户自定义的迭代次数。
+> * **建议**: 使用默认值。
 
 CALC_SOC
 
 ### `CALC_SOC`
 
-> **Whether or not the spin-orbit couplings between CC/EOM/ADC/CIS/TDDFT electronic states will be calculated. In the CC/EOM-CC suite, by default the couplings are calculated between the CCSD reference and the EOM-CCSD target states. In order to calculate couplings between EOM states, CC_STATE_TO_OPT must specify the initial EOM state. If NTO analysis is requested, analysis of spinless transition density matrices will be performed and the spin-orbit integrals over NTO pairs will be printed.**
+> **控制是否计算 CC/EOM/ADC/CIS/TDDFT 电子态之间的自旋-轨道耦合（Spin-Orbit Coupling, SOC）。在 CC/EOM-CC 方法族中，默认在 CCSD 参考态与 EOM-CCSD 目标态之间计算耦合。若要计算 EOM 态之间的耦合，CC_STATE_TO_OPT 必须指定初始 EOM 态。若请求了 NTO 分析，则将对无自旋跃迁密度矩阵进行分析，并打印 NTO 对上的自旋-轨道积分。**
 >
-> * **Type**: `INTEGER/LOGICAL`
-> * **Default**: `FALSE (no spin-orbit couplings will be calculated)`
-> * **Options**:
+> * **类型**: `INTEGER/LOGICAL`（整型/逻辑型）
+> * **默认值**: `FALSE (no spin-orbit couplings will be calculated)`（FALSE，不计算自旋-轨道耦合）
+> * **选项**:
 >     * 0/FALSE
->     * (no spin-orbit couplings will be calculated)
+>     * （不计算自旋-轨道耦合）
 >     * 1/TRUE
->     * Activates SOC calculation. EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the new code with L+/L- averaging
+>     * 启用 SOC 计算。仅限 EOM-CC/EOM-MP2：使用带 L+/L- 平均的新代码计算自旋-轨道耦合
 >     * 2
->     * EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the new code without L+/L- averaging
+>     * 仅限 EOM-CC/EOM-MP2：使用不带 L+/L- 平均的新代码计算自旋-轨道耦合
 >     * 3
->     * EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the legacy code
+>     * 仅限 EOM-CC/EOM-MP2：使用旧版代码计算自旋-轨道耦合
 >     * 4
->     * One-electron spin-orbit couplings will be computed with effective nuclear charges (with L+/L- averaging
->     * for EOM-CC/MP2)
-> * **Recommendation**: CCMAN2 supports several variants of SOC calculation for EOM-CC/EOM-MP2 methods. One-electron and mean-field two-electron SOCs will be computed by default. To enable full two-electron SOCs, two-particle EOM properties must be turned on (see CC_EOM_PROP_TE ).
+>     * 使用有效核电荷计算单电子自旋-轨道耦合（对 EOM-CC/MP2 带 L+/L- 平均）
+> * **建议**: CCMAN2 为 EOM-CC/EOM-MP2 方法支持多种 SOC 计算变体。默认计算单电子和平均场双电子 SOC。若要启用完整的双电子 SOC，必须开启双粒子 EOM 性质（参见 CC_EOM_PROP_TE）。
 
 CALC_NAC
 
 ### `CALC_NAC`
 
-> **Whether or not nonadiabatic couplings will be calculated for the EOM-CC, CIS, and TDDFT wave functions.**
+> **控制是否为 EOM-CC、CIS 和 TDDFT 波函数计算非绝热耦合（Nonadiabatic Couplings, NAC）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 (do not compute NAC)`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0 (do not compute NAC)`（0，不计算 NAC）
+> * **选项**:
 >     * 1
->     * NYI for EOM-CC
+>     * 对 EOM-CC 尚未实现（NYI）
 >     * 2
->     * Compute NACs using Szalay’s approach (this what needs to be specified for EOM-CC).
-> * **Recommendation**: Additional response equations will be solved and gradients for all EOM states and for summed states will be computed, which increases the cost of calculations. Request only when needed and do not ask for too many EOM states.
+>     * 使用 Szalay 的方法计算 NAC（EOM-CC 需指定此项）。
+> * **建议**: 将求解额外的响应方程，并计算所有 EOM 态及求和态的梯度，从而增加计算代价。仅在需要时请求，且不要请求过多的 EOM 态。
 
 CC_POL
 
 ### `CC_POL`
 
-> **Specifies the approach for calculating the polarizability of the CCSD wave function.**
+> **指定计算 CCSD 波函数极化率的方法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * (analytic-derivative or response-theory mixed symmetric-asymmetric approach)
+>     * （解析导数或响应理论的对称-非对称混合方法）
 >     * 2
->     * (analytic-derivative or response-theory asymmetric approach)
+>     * （解析导数或响应理论的非对称方法）
 >     * 3
->     * (expectation-value approach with right response intermediates)
+>     * （使用右响应中间量的期望值方法）
 >     * 4
->     * (expectation-value approach with left response intermediates)
+>     * （使用左响应中间量的期望值方法）
 >     * 13
->     * (damped-response expectation-value approach with right response intermediates)
+>     * （使用右响应中间量的阻尼响应期望值方法）
 >     * 14
->     * (damped-response expectation-value approach with left response intermediates)
+>     * （使用左响应中间量的阻尼响应期望值方法）
 >     * 15
->     * (damped-response expectation-value approach with first-order response density matrices)
+>     * （使用一阶响应密度矩阵的阻尼响应期望值方法）
 >     * 23
->     * (expectation-value approach with right response intermediates and imaginary frequencies)
-> * **Recommendation**: CCSD polarizabilities are expensive since they require solving three/six (for static) or six/twelve (for dynamic) additional response equations. Do no request this property unless you need it.
+>     * （使用右响应中间量和虚频率的期望值方法）
+> * **建议**: CCSD 极化率的计算代价很高，因为需求解三个/六个（静态）或六个/十二个（动态）额外的响应方程。非必要请勿请求该性质。
 
 EOM_POL
 
 ### `EOM_POL`
 
-> **Specifies the approach for calculating the polarizability of the EOM-CCSD wave function.**
+> **指定计算 EOM-CCSD 波函数极化率的方法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * (analytic-derivative or response-theory mixed symmetric-asymmetric approach)
+>     * （解析导数或响应理论的对称-非对称混合方法）
 >     * 2
->     * (analytic-derivative or response-theory asymmetric approach)
+>     * （解析导数或响应理论的非对称方法）
 >     * 3
->     * (expectation-value approach with right response intermediates)
+>     * （使用右响应中间量的期望值方法）
 >     * 4
->     * (expectation-value approach with left response intermediates)
+>     * （使用左响应中间量的期望值方法）
 >     * 23
->     * (expectation-value approach with right response intermediates and imaginary frequencies)
-> * **Recommendation**: EOM-CCSD polarizabilities are expensive since they require solving three/nine (for static) or six/eighteen (for dynamic) additional response equations. Do no request this property unless you need it.
+>     * （使用右响应中间量和虚频率的期望值方法）
+> * **建议**: EOM-CCSD 极化率的计算代价很高，因为需求解三个/九个（静态）或六个/十八个（动态）额外的响应方程。非必要请勿请求该性质。
 
 CC_1HPOL
 
 ### `CC_1HPOL`
 
-> **Specifies the approach for calculating the first hyperpolarizability of the CCSD wave function.**
+> **指定计算 CCSD 波函数一阶超极化率（first hyperpolarizability）的方法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * (damped-response expectation-value approach with only first-order response wave functions)
+>     * （仅使用一阶响应波函数的阻尼响应期望值方法）
 >     * 3
->     * (damped-response expectation-value approach with second-order response density matrices for wave-function and natural orbital analyses)
-> * **Recommendation**: CCSD first hyperpolarizabilities are expensive since they require solving a huge number of first- and second-order response equations. Do no request this property unless you need it.
+>     * （使用二阶响应密度矩阵进行波函数与自然轨道分析的阻尼响应期望值方法）
+> * **建议**: CCSD 一阶超极化率的计算代价很高，因为需求解大量一阶和二阶响应方程。非必要请勿请求该性质。
 
 CC_EOM_PROP_TE
 
 ### `CC_EOM_PROP_TE`
 
-> **Request for calculation of non-relaxed two-particle EOM-CC properties. The two-particle properties currently include $\langle\hat{S}^{2}\rangle$ . The one-particle properties also will be calculated, since the additional cost of the one-particle properties calculation is inferior compared to the cost of $\langle\hat{S}^{2}\rangle$ . The variable CC_EOM_PROP must be also set to TRUE . Alternatively, CC_CALC_SSQ can be used to request $\langle\hat{S}^{2}\rangle$ calculation.**
+> **请求计算非弛豫双粒子 EOM-CC 性质。双粒子性质目前包括 $\langle\hat{S}^{2}\rangle$ 。单粒子性质也将一并计算，因为与 $\langle\hat{S}^{2}\rangle$ 的代价相比，单粒子性质计算的额外代价可以忽略。变量 CC_EOM_PROP 也必须同时设置为 TRUE。或者，可以使用 CC_CALC_SSQ 来请求计算 $\langle\hat{S}^{2}\rangle$ 。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE, TRUE
-> * **Recommendation**: The two-particle properties are computationally expensive since they require calculation and use of the two-particle density matrix (the cost is approximately the same as the cost of an analytic gradient calculation). Do not request the two-particle properties unless you really need them.
+> * **建议**: 双粒子性质的计算代价很高，因为需要计算并使用双粒子密度矩阵（代价约等于一次解析梯度计算的代价）。除非确实需要，请勿请求双粒子性质。
 
 CC_FULLRESPONSE
 
 ### `CC_FULLRESPONSE`
 
-> **Fully relaxed properties (with or without orbital relaxation terms) will be computed. The variable CC_EOM_PROP must be also set to TRUE .**
+> **计算完全弛豫的性质（含或不含轨道弛豫项）。变量 CC_EOM_PROP 也必须同时设置为 TRUE。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`（整型）
+> * **默认值**: `0`
+> * **选项**:
 >     * 1
->     * (both amplitude and orbital response will be calculated)
+>     * （同时计算振幅响应和轨道响应）
 >     * 2
->     * (only amplitude response will be calculated)
-> * **Recommendation**: Not available for non-UHF/RHF references. Only available for EOM/CI methods for which analytic gradients are available.
+>     * （仅计算振幅响应）
+> * **建议**: 非 UHF/RHF 参考态不可用。仅对拥有解析梯度的 EOM/CI 方法可用。
 
 CC_SYMMETRY
 
 ### `CC_SYMMETRY`
 
-> **Controls the use of symmetry in coupled-cluster calculations**
+> **控制耦合簇计算中对称性的使用**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Use the point group symmetry of the molecule
+>     * 使用分子的点群对称性
 >     * FALSE
->     * Do not use point group symmetry (all states will be of
+>     * 不使用点群对称性（所有态均为
 >     * $A$
->     * symmetry).
-> * **Recommendation**: It is automatically turned off for any finite difference calculations, e.g. second derivatives.
+>     * 对称性）。
+> * **建议**: 任何有限差分计算（例如二阶导数）都会自动关闭该选项。
 
-**Note: 
+**注意：
 
-Only Abelian groups are supported. For molecules from non-Abelian groups,
-USE_ABELIAN_SUBGROUP must be set to TRUE (this is currently a default for all CCMAN and CCMAN2 jobs).
+仅支持阿贝尔群。对于属于非阿贝尔群的分子，必须将 USE_ABELIAN_SUBGROUP 设置为
+TRUE（这目前是 CCMAN 和 CCMAN2 所有作业的默认设置）。
 **
 
 STATE_ANALYSIS
 
 ### `STATE_ANALYSIS`
 
-> **Activates excited state analyses using libwfa .**
+> **激活使用 libwfa 进行的激发态分析。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE (no excited state analyses)`
-> * **Options**:
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `FALSE (no excited state analyses)`（FALSE，不进行激发态分析）
+> * **选项**:
 >     * TRUE, FALSE
-> * **Recommendation**: Set to TRUE if excited state analysis is required, but also if plots of densities or orbitals are needed. For details see Section 10.2.12 .
+> * **建议**: 若需要激发态分析则设置为 TRUE，若需要绘制密度或轨道图也应设置。详见第 10.2.12 节。
 
 G_TENSOR
 
 ### `G_TENSOR`
 
-> **Activates g-tensor calculation.**
+> **激活 g 张量计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate g-tensor
->     * TRUE (or 1)
->     * Calculate g-tensor.
-> * **Recommendation**: None.
+> * **类型**: `LOGICAL`（逻辑型）
+> * **默认值**: `FALSE`
+> * **选项**:
+>     * FALSE（或 0）
+>     * 不计算 g 张量
+>     * TRUE（或 1）
+>     * 计算 g 张量。
+> * **建议**: 无。
 
-**Note: 
+**注意：
 
-g-Tensor calculations are only available for CCSD.
+g 张量计算仅对 CCSD 可用。
 **
 
-## 7.9.22.1 Examples
+## 7.9.22.1 示例
 
-???+ example "Example 7.127: Geometry optimization for the excited open-shell singlet state, ${}^{1}$ B ${}_{2}$ , of
-methylene followed by the calculations of the fully relaxed one-electron
-properties using EOM-EE-CCSD."
+???+ example "示例 7.127: 使用 EOM-EE-CCSD 对亚甲基（methylene）的激发开壳单重态 ${}^{1}$ B ${}_{2}$ 进行几何优化，随后计算完全弛豫的单电子性质。"
     ```qchem
     $molecule
        0 1
@@ -425,8 +418,7 @@ properties using EOM-EE-CCSD."
     $end
     ```
 
-???+ example "Example 7.128: Property and transition property calculation on the lowest singlet
-state of CH ${}_{2}$ using EOM-SF-CCSD."
+???+ example "示例 7.128: 使用 EOM-SF-CCSD 对 CH ${}_{2}$ 的最低单重态进行性质与跃迁性质计算。"
     ```qchem
     $molecule
        0 3
@@ -450,7 +442,7 @@ state of CH ${}_{2}$ using EOM-SF-CCSD."
     $end
     ```
 
-???+ example "Example 7.129: Calculation of EOM transition strength using length, momentum, and mixed gauges."
+???+ example "示例 7.129: 使用长度规范、动量规范和混合规范计算 EOM 跃迁强度。"
     ```qchem
     $comment
     EOM-CC oscillator strength using three gauges
@@ -485,7 +477,7 @@ state of CH ${}_{2}$ using EOM-SF-CCSD."
     $end
     ```
 
-???+ example "Example 7.130: Calculation of ECD using EOM-CCSD wave functions."
+???+ example "示例 7.130: 使用 EOM-CCSD 波函数计算 ECD。"
     ```qchem
     $comment
     Calculation of ECD  using EOM-CC wave-functions
@@ -547,9 +539,7 @@ state of CH ${}_{2}$ using EOM-SF-CCSD."
     $end
     ```
 
-???+ example "Example 7.7.131: Geometry optimization with tight convergence for the ${}^{2}$ A ${}_{1}$ excited state
-of CH ${}_{2}$ Cl, followed by calculation of non-relaxed and fully relaxed permanent
-dipole moment and $\langle\hat{S}^{2}\rangle$ ."
+???+ example "示例 7.7.131: 对 CH ${}_{2}$ Cl 的 ${}^{2}$ A ${}_{1}$ 激发态进行严格收敛的几何优化，随后计算非弛豫与完全弛豫的永久偶极矩和 $\langle\hat{S}^{2}\rangle$ 。"
     ```qchem
     $molecule
        0 2
@@ -613,9 +603,7 @@ dipole moment and $\langle\hat{S}^{2}\rangle$ ."
     $end
     ```
 
-???+ example "Example 7.132: CCSD calculation on three A ${}_{2}$ and one B ${}_{2}$ state of formaldehyde.
-Transition properties will be calculated between the third A ${}_{2}$ state and all
-other EOM states."
+???+ example "示例 7.132: 对甲醛（formaldehyde）的三个 A ${}_{2}$ 态和一个 B ${}_{2}$ 态进行 CCSD 计算。将在第三个 A ${}_{2}$ 态与所有其他 EOM 态之间计算跃迁性质。"
     ```qchem
     $molecule
        0  1
@@ -634,7 +622,7 @@ other EOM states."
     $end
     ```
 
-???+ example "Example 7.133: EOM-IP-CCSD geometry optimization of X ${}^{2}$ B ${}_{2}$ state of $\rm H_{2}O^{+}$ ."
+???+ example "示例 7.133: 对 $\rm H_{2}O^{+}$ 的 X ${}^{2}$ B ${}_{2}$ 态进行 EOM-IP-CCSD 几何优化。"
     ```qchem
     $molecule
        0 1
@@ -652,9 +640,7 @@ other EOM states."
     $end
     ```
 
-???+ example "Example 7.7.134: CAP-EOM-EA-CCSD geometry optimization of the ${}^{2}B_{1}$ anionic resonance state
-of formaldehyde. The applied basis is aug-cc-pVDZ augmented by 3s3p diffuse
-functions on heavy atoms."
+???+ example "示例 7.7.134: 对甲醛的 ${}^{2}B_{1}$ 阴离子共振态进行 CAP-EOM-EA-CCSD 几何优化。所采用的基组为 aug-cc-pVDZ，并在重原子上附加了 3s3p 弥散函数。"
     ```qchem
     $molecule
        0 1
@@ -801,7 +787,7 @@ functions on heavy atoms."
     $end
     ```
 
-???+ example "Example 7.135: Calculating resonant 2PA with degenerate photons."
+???+ example "示例 7.135: 使用简并光子计算共振 2PA。"
     ```qchem
     $molecule
        0 1
@@ -819,7 +805,7 @@ functions on heavy atoms."
     $end
     ```
 
-???+ example "Example 7.136: Non-degenerate, resonant 2PA scan over a range of frequency pairs."
+???+ example "示例 7.136: 在非简并的共振 2PA 中，对一定范围的频率对进行扫描。"
     ```qchem
     $molecule
        0 1
@@ -842,7 +828,7 @@ functions on heavy atoms."
     $end
     ```
 
-???+ example "Example 7.137: Resonant 2PA with degenerate photons between two excited states."
+???+ example "示例 7.137: 两个激发态之间使用简并光子的共振 2PA。"
     ```qchem
     $molecule
        0 1
@@ -861,8 +847,7 @@ functions on heavy atoms."
     $end
     ```
 
-???+ example "Example 7.138: Calculation of 1st hyperpolarizability for CCSD wave function for LiH using the framework of damped response theory and
-the expectation-value approach for a range of frequencies."
+???+ example "示例 7.138: 基于阻尼响应理论框架和期望值方法，在一定频率范围内计算 LiH 的 CCSD 波函数的一阶超极化率。"
     ```qchem
     $comment
     Calculation of static and dynamical first hyperpolarizability for CCSD wave function
@@ -901,8 +886,7 @@ the expectation-value approach for a range of frequencies."
     
     ```
 
-???+ example "Example 7.139: Mean-field spin-orbit calculation between two excited triplets in
-acetylene-O intermediate."
+???+ example "示例 7.139: 乙炔-O 中间体（acetylene-O intermediate）中两个激发三重态之间的平均场自旋-轨道计算。"
     ```qchem
     $molecule
        0 1
@@ -925,8 +909,7 @@ acetylene-O intermediate."
     $end
     ```
 
-???+ example "Example 7.140: Mean-field spin-orbit calculation between the reference singlet and excited
-triplet states for acetylene-O intermediate."
+???+ example "示例 7.140: 乙炔-O 中间体中参考单重态与激发三重态之间的平均场自旋-轨道计算。"
     ```qchem
     $molecule
     0 1
@@ -948,7 +931,7 @@ triplet states for acetylene-O intermediate."
     $end
     ```
 
-???+ example "Example 7.141: Computation of spin-orbit couplings between closed-shell singlet and $M_{S}=1$ triplet state in NH using EOM-SF-CCSD."
+???+ example "示例 7.141: 使用 EOM-SF-CCSD 计算 NH 中闭壳单重态与 $M_{S}=1$ 三重态之间的自旋-轨道耦合。"
     ```qchem
     $molecule
        0 3
@@ -966,7 +949,7 @@ triplet states for acetylene-O intermediate."
     $end
     ```
 
-???+ example "Example 7.142: SOC calculations between EOM-DEA states."
+???+ example "示例 7.142: EOM-DEA 态之间的 SOC 计算。"
     ```qchem
     $comment
     SOC calculations between EOM-DEA states.
@@ -993,8 +976,7 @@ triplet states for acetylene-O intermediate."
     
     ```
 
-???+ example "Example 7.143: Computation of spin-orbit couplings in neutral hextet (tpa)Fe complex (stripped ligands)
-by EOM-EA-MP2 method using pseudopotentials and effective nuclear charges."
+???+ example "示例 7.143: 使用赝势和有效核电荷，通过 EOM-EA-MP2 方法计算中性六重态 (tpa)Fe 配合物（去除配体）中的自旋-轨道耦合。"
     ```qchem
     $comment
     Spin-orbit coupling calculation with SBKJC ecp using default effective nuclear
@@ -1035,10 +1017,7 @@ by EOM-EA-MP2 method using pseudopotentials and effective nuclear charges."
     
     ```
 
-???+ example "Example 7.144: Computation of
-spin-orbit coupling in ClO using all-electron basis set,
-user-provided effective nuclear charges, and
-EOM-IP wave-functions."
+???+ example "示例 7.144: 使用全电子基组、用户提供的有效核电荷以及 EOM-IP 波函数计算 ClO 中的自旋-轨道耦合。"
     ```qchem
     $comment
     Spin-orbit coupling calculation using all-electron basis set
@@ -1074,8 +1053,7 @@ EOM-IP wave-functions."
     $end
     ```
 
-???+ example "Example 7.145: Computation of nonadiabatic couplings between EOM-EE states within triplet
-(first job) and singlet (second job) manifolds."
+???+ example "示例 7.145: 计算三重态（第一个作业）和单重态（第二个作业）流形内部 EOM-EE 态之间的非绝热耦合。"
     ```qchem
     $molecule
        +1 1
@@ -1117,7 +1095,7 @@ EOM-IP wave-functions."
     $end
     ```
 
-???+ example "Example 7.146: Calculation of the static dipole polarizability of the CCSD wave function of Helium."
+???+ example "示例 7.146: 计算氦（Helium）的 CCSD 波函数的静态偶极极化率。"
     ```qchem
     $molecule
        0 1
@@ -1134,8 +1112,7 @@ EOM-IP wave-functions."
     $end
     ```
 
-???+ example "Example 7.147: Water molecule: Calculating photoionization cross-section and photoelectron angular distribution
-with averaging over molecular orientations."
+???+ example "示例 7.147: 水分子：在对分子取向进行平均的情况下计算光电离截面与光电子角分布。"
     ```qchem
     $comment
     Calculating photoionization cross-section and photoelectron angular distribution
@@ -1172,9 +1149,7 @@ with averaging over molecular orientations."
     
     ```
 
-???+ example "Example 7.148: Water molecule:
-Calculating photoionization cross-section, asymmetry parameter and photoelectron angular
-distribution with a Z-polarized light."
+???+ example "示例 7.148: 水分子：使用 Z 方向偏振光计算光电离截面、不对称参数与光电子角分布。"
     ```qchem
     $comment
     Calculating photoionization cross-section, asymmetry parameter, and PAD
@@ -1214,8 +1189,7 @@ distribution with a Z-polarized light."
     
     ```
 
-???+ example "Example 7.149: Water molecule: Calculating photoionization cross-section and photoelectron angular distribution
-with averaging over molecular orientations."
+???+ example "示例 7.149: 水分子：在对分子取向进行平均的情况下计算光电离截面与光电子角分布。"
     ```qchem
     $comment
     Calculating photoionization cross-section and PAD
@@ -1252,8 +1226,7 @@ with averaging over molecular orientations."
     
     ```
 
-???+ example "Example 7.150: Calculating photoionization cross-sections for the ionization of oxygen 1s (core)
-of water with Z-polarized light."
+???+ example "示例 7.150: 使用 Z 方向偏振光计算水中氧 1s（内层）电子电离的光电离截面。"
     ```qchem
     $comment
     Calculating photoionization cross-sections for the ionization of oxygen 1s (core)
@@ -1293,8 +1266,7 @@ of water with Z-polarized light."
     $end
     ```
 
-???+ example "Example 7.151: Calculating photoionization cross-section, asymmetry parameter, and
-PAD with a circularly polarized light."
+???+ example "示例 7.151: 使用圆偏振光计算光电离截面、不对称参数与光电子角分布（PAD）。"
     ```qchem
     $comment
     Calculating photoionization cross-section, asymmetry parameter, and

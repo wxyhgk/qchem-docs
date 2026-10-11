@@ -1,29 +1,17 @@
 ---
-title: "9.6.1 Overview"
+title: "9.6.1 概述"
 ---
 
-## 9.6.1 Overview
+## 9.6.1 概述
 
 (July 4, 2026)
 
-It is often useful to scan the potential energy surface (PES), optimizing all
-other degrees of freedom for each particular value of the scanned variable(s).
-Such a “relaxed” scan may provide a rough estimate of a pathway between
-reactant and product—assuming the coordinate(s) for the scan has been chosen
-wisely—and is often used in development of classical force fields to optimize
-dihedral angle parameters. Ramachandran plots, for example, are key tools for
-studying conformational changes of peptides and proteins, and are essentially
-two-dimensional torsional scans.
+扫描势能面（Potential Energy Surface, PES）时常很有用，即在每个被扫描变量的特定取值下优化其余所有自由度。这种"弛豫"（relaxed）扫描可以粗略估计反应物与产物之间的反应路径——前提是扫描坐标选择得当——并常用于经典力场（classical force field）的开发中，以优化二面角参数。例如，拉马克兰（Ramachandran）图是研究肽和蛋白质构象变化的关键工具，本质上就是二维扭转（torsional）扫描。
 
-In certain cases, relaxed scans might encounter some difficulties on
-optimizations. A “frozen” scan can be easier to perform because of no
-geometry optimizations although it provides less information of real dynamics.
+在某些情况下，弛豫扫描在几何优化时可能会遇到一些困难。而"冻结"（frozen）扫描由于不进行几何优化，可能更易于执行，尽管它提供的真实动力学信息较少。
 
-**Q-Chem** supports one- and two-dimensional PES scans, by setting
-JOBTYPE = PES_SCAN in the *$rem* section. In
-addition, a *$scan* input section with the following format should be
-specified, in the format below but with no more than two bond-length,
-bond-angle, or torsional variables specified.
+**Q-Chem** 支持一维和二维 PES 扫描，方法是在 *$rem* 段中设置 JOBTYPE = PES_SCAN。
+此外，还应指定一个 *$scan* 输入段，格式如下所示，但其中指定的键长（bond-length）、键角（bond-angle）或扭转（torsional）变量不得超过两个。
 
 > ```qchem
 > $scan
@@ -36,19 +24,15 @@ bond-angle, or torsional variables specified.
 > $end
 > ```
 
-**Note: 
+**注意：
 
-Potential scans with JOBTYPE = PES_SCAN are available for ground-state potential
-energy surfaces only, although one may compute excitation energies along the scanned coordinate(s) by including
-appropriate keywords for vertical excitation in the *$rem* section, *e.g.*, CIS_N_ROOTS for CIS/TDDFT excited states.
+使用 JOBTYPE = PES_SCAN 的势能扫描仅适用于基态势能面，不过可以在 *$rem* 段中包含适当的垂直激发（vertical excitation）关键字，沿扫描坐标计算激发能，*e.g.*，用于 CIS/TDDFT 激发态的 CIS_N_ROOTS。
 **
 
-The first example below demonstrates how to scan the torsional potential of butane,
-which is a sequence of constrained optimizations with
-the C1–C2–C3–C4 dihedral angle fixed at $-$180${}^{\circ}$, $-$165${}^{\circ}$, $-$150${}^{\circ}$,
-$\ldots$, 165${}^{\circ}$, 180${}^{\circ}$.
+下面第一个示例演示如何扫描丁烷的扭转势，其本质是一系列约束优化，其中 C1–C2–C3–C4 二面角依次固定为 $-$180${}^{\circ}$、$-$165${}^{\circ}$、$-$150${}^{\circ}$、
+$\ldots$、165${}^{\circ}$、180${}^{\circ}$。
 
-???+ example "Example 9.19: One-dimensional torsional scan of butane"
+???+ example "示例 9.19: 丁烷的一维扭转扫描"
     ```qchem
     $molecule
        0 1
@@ -79,12 +63,9 @@ $\ldots$, 165${}^{\circ}$, 180${}^{\circ}$.
     $end
     ```
 
-The next example is a two-dimension potential scan. The first dimension is a
-scan of the C1–C2–C3–C4 dihedral angle from $-$180${}^{\circ}$ to 180${}^{\circ}$
-degree in 30${}^{\circ}$ intervals; the second dimension is a scan of the
-C2–C3 bond length from 1.5 Å to 1.6 Å in 0.05 Å increments.
+下一个示例是二维势能扫描。第一个维度扫描 C1–C2–C3–C4 二面角，从 $-$180${}^{\circ}$ 到 180${}^{\circ}$，间隔为 30${}^{\circ}$；第二个维度扫描 C2–C3 键长，从 1.5 Å 到 1.6 Å，步长为 0.05 Å。
 
-???+ example "Example 9.20: Two-dimensional torsional scan of butane"
+???+ example "示例 9.20: 丁烷的二维扭转扫描"
     ```qchem
     $molecule
        0 1
@@ -116,11 +97,9 @@ C2–C3 bond length from 1.5 Å to 1.6 Å in 0.05 Å increments.
     $end
     ```
 
-To perform a frozen PES scan, set FROZEN_SCAN to be TRUE and
-use input geometry in *Z*-matrix format. The example demonstrates a frozen PES
-of the C1–C2 bond stretching from 1.0 Å to 2.0 Å for methanol.
+要执行冻结 PES 扫描，请将 FROZEN_SCAN 设置为 TRUE，并使用 *Z*-矩阵（*Z*-matrix）格式的输入几何结构。下面的示例演示甲醇的 C1–C2 键从 1.0 Å 拉伸到 2.0 Å 的一维冻结 PES 扫描。
 
-???+ example "Example 9.21: One-dimensional frozen PES scan of methanol"
+???+ example "示例 9.21: 甲醇的一维冻结 PES 扫描"
     ```qchem
     $molecule
       0 1
@@ -155,23 +134,16 @@ of the C1–C2 bond stretching from 1.0 Å to 2.0 Å for methanol.
     $end
     ```
 
-**Q-Chem** supports one-dimensional restrained PES scans including bond-length,
-bond-angle, torsional, atom to center of mass of two atoms, and atom to a set
-of atoms. Note that the set of atoms is defined as the atoms with indices from
-`atom2` to `atom3`, where the atoms indexed at `atom2` and
-`atom3` are included in the set. These restrained scans apply a harmonic
-potential to bias geometry optimization.
-**Q-Chem** also supports restrained PES scans for transition state
-search of typical S${}_{\rm N}$2 reactions where the geometry restraints have the form
+**Q-Chem** 支持一维约束（restrained）PES 扫描，包括键长、键角、扭转、原子到两个原子质心的距离，以及原子到一组原子的距离。注意，原子组定义为索引从 `atom2` 到 `atom3` 的原子，其中索引为 `atom2` 和 `atom3` 的原子也包含在该组内。这些约束扫描会施加一个谐振势（harmonic potential）来影响几何优化。
+**Q-Chem** 还支持用于典型 S${}_{\rm N}$2 反应过渡态搜索的约束 PES 扫描，其几何约束形式为
 
 <a id="Ch9.E47"></a>
 $$
 f(R)=k\left(R_{12}\pm R_{34}-R\right)^{2}\;. \tag{9.47}
 $$
 
-Here, $R_{12}$ and $R_{34}$ are two bond lengths in the reaction coordinate and
-$k$ is a force constant for restraining $R$ in the range of $R_{12}\pm R_{34}$.
-To perform a restrained PES scan, the following format should be specified.
+其中，$R_{12}$ 和 $R_{34}$ 是反应坐标中的两个键长，$k$ 是将 $R$ 约束在 $R_{12}\pm R_{34}$ 范围内的力常数。
+要执行约束 PES 扫描，应采用以下格式指定。
 
 > ```qchem
 > $scan
@@ -192,7 +164,7 @@ To perform a restrained PES scan, the following format should be specified.
 > $end
 > ```
 
-???+ example "Example 9.22: One-dimensional restrained PES scan of chloromethane S ${}_{\text{N}}$ 2 reaction"
+???+ example "示例 9.22: 氯甲烷 S ${}_{\text{N}}$ 2 反应的一维约束 PES 扫描"
     ```qchem
     $molecule
       -1 1
@@ -215,7 +187,7 @@ To perform a restrained PES scan, the following format should be specified.
     $end
     ```
 
-???+ example "Example 9.23: One-dimensional restrained torsional PES scan of butane"
+???+ example "示例 9.23: 丁烷的一维约束扭转 PES 扫描"
     ```qchem
     $molecule
      0 1
@@ -246,7 +218,7 @@ To perform a restrained PES scan, the following format should be specified.
     $end
     ```
 
-???+ example "Example 9.24: One-dimensional restrained PES scan pulling Na+ to benzene"
+???+ example "示例 9.24: 将 Na+ 拉向苯环的一维约束 PES 扫描"
     ```qchem
     $molecule
      1 1

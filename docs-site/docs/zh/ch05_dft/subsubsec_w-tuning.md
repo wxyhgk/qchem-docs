@@ -1,192 +1,138 @@
 ---
-title: "5.6.4 Tuned RSH Functionals"
+title: "5.6.4 调优型 RSH 泛函"
 ---
 
-## 5.6.4 Tuned RSH Functionals
+## 5.6.4 调优型 RSH 泛函
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Whereas the range-separation parameters for the functionals described in
-Section [5.6.2](subsec_wb97series.md) are wholly empirical in nature and should not
-be adjusted, for the functionals described in
-Section [5.6.3](ex_ks-wb97xd4.md) some adjustment *was* suggested,
-especially for TDDFT calculations and for any properties that require
-interpretation of orbital energies, such as HOMO/LUMO gaps. This
-adjustment can be performed in a non-empirical (albeit system-specific) way,[[60]](../bib_references/bib.md#bib45)
+对于 [5.6.2](subsec_wb97series.md) 节所描述的泛函，其 range-separation（程分离）参数完全属于经验性质，不应加以调整；而对于 [5.6.3](ex_ks-wb97xd4.md) 节所描述的泛函，则确实*建议*进行一定程度的调整，尤其是在含时密度泛函理论（Time-Dependent Density Functional Theory, TDDFT）计算中，以及任何需要解读轨道能量的性质（例如 HOMO/LUMO 能隙）。这种调整可以以一种非经验（但依赖于具体体系）的方式来完成，[[60]](../bib_references/bib.md#bib45)
 
-by “tuning” the value of $\omega$ in order to satisfy the Koopmans-like ionization energy criterion
+即通过“调优”（tuning）$\omega$ 的取值，使其满足类 Koopmans 电离能判据
 
 <a id="eq:IP-tuning"></a>
 $$
 -\epsilon_{\rm HOMO}(\omega)=\mbox{IE}(\omega) \tag{5.18}
 $$
 
-where $\mbox{IE}=E(N-1)-E(N)$ is the $\Delta$SCF value of the ionization energy for the
-$N$-electron system of interest. The condition $\epsilon_{\rm HOMO}=-\mbox{IE}$ is a theorem
-in exact DFT,[[1065]](../bib_references/bib.md#bib1113)
- but this condition is often badly violated by approximate functionals.
-When an RSH functional is used, both sides of Eq. ([5.18](#eq:IP-tuning)) are $\omega$-dependent and
-this parameter is adjusted until the condition in Eq. ([5.18](#eq:IP-tuning)) is
-met, which requires a sequence of SCF calculations on both the neutral and
-ionized species, using different values of $\omega$. The value that is obtained has come to be called
-the “optimally tuned” value of $\omega$.
-Formally speaking, there is no guarantee
-that an approximate density functional can be made to satisfy
-Eq. ([5.18](#eq:IP-tuning)) for any given molecule, thus the optimally-tuned value need not exist.
-In practice it is usually possible to find such a value, although it should be noted that the optimally-tuned
-value of $\omega$ depends on system size, and as a result this tuning procedure formally violates
-size-consistency.[[667]](../bib_references/bib.md#bib692)
+其中 $\mbox{IE}=E(N-1)-E(N)$ 是所关注的 $N$ 电子体系电离能（Ionization Energy, IE）的 $\Delta$SCF 值。条件 $\epsilon_{\rm HOMO}=-\mbox{IE}$ 在精确的密度泛函理论（Density Functional Theory, DFT）中是一条定理，[[1065]](../bib_references/bib.md#bib1113)
+ 但近似泛函往往严重违背该条件。当使用 range-separated hybrid（RSH，程分离杂化）泛函时，Eq. ([5.18](#eq-IP-tuning)) 的两侧都依赖于 $\omega$，于是需要不断调整该参数，直到 Eq. ([5.18](#eq:IP-tuning)) 中的条件得到满足为止；这就需要对中性物种和电离物种分别使用不同的 $\omega$ 值进行一系列自洽场（Self-Consistent Field, SCF）计算。如此获得的取值通常被称为 $\omega$ 的“最优调优”（optimally tuned）值。
+严格来说，并不能保证某个近似密度泛函对任意给定分子都能满足 Eq. ([5.18](#eq:IP-tuning))，因此最优调优值未必存在。
+实践中通常能够找到这样一个值，但需要注意的是，$\omega$ 的最优调优值依赖于体系大小，因而这一调优过程在形式上破坏了尺寸一致性（size-consistency）。[[667]](../bib_references/bib.md#bib692)
 
-A few variations on the simple “IE tuning” criterion in Eq. ([5.18](#eq:IP-tuning)) are possible.
-For proper description
-of charge-transfer states, Baer and co-workers[[60]](../bib_references/bib.md#bib45)
- suggest finding
-the value of $\omega$ that (to the extent possible) satisfies
-Eq. ([5.18](#eq:IP-tuning)) for both the neutral donor molecule and (separately) for the *anion*
-of the acceptor species. Along similar lines, in an effort to set both the HOMO
-and LUMO energy levels such that the fundamental gap ($\mbox{IE}-\mbox{EA}$) is equal to the HOMO/LUMO
-gap, Kronik *et al.*[[720]](../bib_references/bib.md#bib751)
- suggest minimizing the function
+在 Eq. ([5.18](#eq:IP-tuning)) 这一简单的“IE 调优”判据基础上，还可以有若干变体。
+为了正确描述电荷转移（charge-transfer）激发态，Baer 及其合作者[[60]](../bib_references/bib.md#bib45)
+ 建议寻找这样的 $\omega$ 值，使其（在尽可能大的程度上）同时对中性供体分子以及（另行计算的）受体物种的*阴离子*满足 Eq. ([5.18](#eq:IP-tuning))。沿类似思路，为了同时设定 HOMO 与 LUMO 的能级，使基本能隙（fundamental gap，即 $\mbox{IE}-\mbox{EA}$）等于 HOMO/LUMO 能隙，Kronik 等人[[720]](../bib_references/bib.md#bib751)
+ 建议最小化如下函数
 
 <a id="eq:J(w)"></a>
 $$
 J(\omega)=\big{[}\epsilon_{\rm HOMO}(\omega)+\mbox{IE}(\omega)\big{]}^{2}+\big{[}\epsilon_{\rm LUMO}(\omega)+\mbox{EA}(\omega)\big{]}^{2} \tag{5.19}
 $$
 
-with respect to $\omega$, where $\mbox{EA}=E(N+1)-E(N)$. Minimization of $J(\omega)$ represents an attempt
-to satisfy the IE theorem of Eq. ([5.18](#eq:IP-tuning)) for both the $N$-electron molecule and its ($N+1$)-electron anion,
-assuming that the latter is bound.
-Published benchmarks suggest that these system-specific approaches afford the
-most accurate values of IEs and TDDFT excitation
-energies.[[851]](../bib_references/bib.md#bib885)
+其中相对于 $\omega$ 进行最小化，且 $\mbox{EA}=E(N+1)-E(N)$。最小化 $J(\omega)$ 代表了一种尝试：在假定 ($N+1$) 电子阴离子是束缚态的前提下，同时对 $N$ 电子分子及其阴离子满足 Eq. ([5.18](#eq:IP-tuning)) 中的 IE 定理。
+已发表的基准测试表明，这些依赖于具体体系的方法能够给出最准确的 IE 值和 TDDFT 激发能。[[851]](../bib_references/bib.md#bib885)
 
-A script that optimizes $\omega$, called `OptOmegaIPEA.pl`, is located in
-the `$QC/bin/tools` directory. The script scans $\omega$ over the range
-0.1–0.8 bohr${}^{-1}$, corresponding to values of the *$rem* variable
-OMEGA in the range 100–800. See the script for the instructions how
-to modify the script to scan over a wider range.
-To execute the script, the user must create three inputs for an RSH single-point energy calculation,
-using the same geometry and basis
-set: one for a neutral molecule (`N.in`), one for its anion (`M.in`), and one for the molecule’s
-cation (`P.in`). The user should then run the command
+有一个用于优化 $\omega$ 的脚本，名为 `OptOmegaIPEA.pl`，位于
+`$QC/bin/tools` 目录中。该脚本在 0.1–0.8 bohr${}^{-1}$ 的范围内扫描 $\omega$，
+对应于 *$rem* 变量 OMEGA 在 100–800 范围内的取值。有关如何修改脚本以在更宽范围内扫描的说明，请参阅脚本本身。
+运行该脚本之前，用户需要为 RSH 单点能计算创建三个输入文件，使用相同的几何结构和基组（Basis Set）：
+一个用于中性分子（`N.in`），一个用于其阴离子（`M.in`），一个用于其阳离子（`P.in`）。然后用户应运行命令
 
 > ```qchem
 > OptOmegaIPEA.pl >& optomega
 > ```
 
-This command both generates the input files (`N_*`, `P_*`, `M_*`) and also
-runs **Q-Chem** on these input files, writing the optimization output into `optomega`.
-This script applies the IE condition to both the neutral molecule and its
-anion, minimizing $J(\omega)$ in Eq. ([5.19](#eq:J(w))).
-A similar script, `OptOmegaIP.pl`, uses Eq. ([5.18](#eq:IP-tuning)) for the neutral molecule only.
+该命令既生成输入文件（`N_*`、`P_*`、`M_*`），也对这些输入文件运行 **Q-Chem**，并将优化输出写入 `optomega`。
+该脚本对中性分子及其阴离子同时施加 IE 条件，最小化 Eq. ([5.19](#eq:J(w))) 中的 $J(\omega)$。
+另有一个类似的脚本 `OptOmegaIP.pl`，仅对中性分子使用 Eq. ([5.18](#eq:IP-tuning))。
 
-**Note: 
+**注意：**
 
 1.
 
-If the system does not have positive EA, then the tuning should be done
-according to the IP condition only. The IP/EA script will yield an
-incorrect value of $\omega$ in such cases.
+若体系不具有正的电子亲和能（Electron Affinity, EA），则应仅按照 IP 条件进行调优。
+在这种情况下，IP/EA 脚本会给出错误的 $\omega$ 值。
 
 2.
 
-In order for the scripts to work, one must specify
-SCF_FINAL_PRINT = 1 in the inputs. The scripts look for
-specific regular expressions and will not work correctly without this
-keyword.
+为了使脚本正常工作，必须在输入文件中指定
+SCF_FINAL_PRINT = 1。脚本会查找特定的正则表达式，
+缺少该关键字将无法正确运行。
 
 **
 
-Although the tuning procedure was originally developed by Baer and co-workers
-using the BNL functional,[[851]](../bib_references/bib.md#bib885)
- it can equally well be applied to any RSH
-functional, as for example LRC-$\omega$PBE (see,
-Ref. [[1380]](../bib_references/bib.md#bib1441)
-). The aforementioned scripts will work with these other RSH functionals as well.
+尽管调优过程最初由 Baer 及其合作者基于 BNL 泛函开发，[[851]](../bib_references/bib.md#bib885)
+ 但它同样适用于任何 RSH 泛函，例如 LRC-$\omega$PBE（参见
+Ref. [[1380]](../bib_references/bib.md#bib1441)
+）。上述脚本也可以与这些其他 RSH 泛函配合使用。
 
-Unfortunately, optimally-tuned values of “$\omega_{\text{IE}}$”, obtained by satisfying the criterion in Eq. ([5.18](#eq:IP-tuning))
-exhibit a troubling dependence on system
-size,[[710]](../bib_references/bib.md#bib742)
+遗憾的是，通过满足 Eq. ([5.18](#eq:IP-tuning)) 中的判据所获得的最优调优值“$\omega_{\text{IE}}$”
+对体系大小表现出令人不安的依赖性，[[710]](../bib_references/bib.md#bib742)
 
-leading to a loss of size-extensivity.[[667]](../bib_references/bib.md#bib692)
- For example, the optimally-tuned
-value for the cluster anion (H${}_{2}$O)${}^{-}_{6}$ is very different than the one tuned for (H${}_{2}$O)${}^{-}_{70}$,[[1380]](../bib_references/bib.md#bib1441)
+从而导致尺寸可加性（size-extensivity）的丧失。[[667]](../bib_references/bib.md#bib692)
+例如，团簇阴离子 (H${}_{2}$O)${}^{-}_{6}$ 的最优调优值与针对 (H${}_{2}$O)${}^{-}_{70}$ 调优所得的值差异很大，[[1380]](../bib_references/bib.md#bib1441)
 
-and the optimally-tuned value also varies with conjugation length for
-$\pi$-conjugated systems.[[710]](../bib_references/bib.md#bib742)
- An alternative to the IE-based criterion in Eq. ([5.18](#eq:IP-tuning))
-is the global density-dependent (GDD)
-tuning procedure,[[956]](../bib_references/bib.md#bib997)
- in which the optimal value
+而且对于 $\pi$ 共轭体系，最优调优值还会随共轭长度而变化。[[710]](../bib_references/bib.md#bib742)
+作为基于 IE 的 Eq. ([5.18](#eq:IP-tuning)) 判据的一种替代方案，
+有所谓的全局密度依赖（Global Density-Dependent, GDD）调优程序，[[956]](../bib_references/bib.md#bib997)
+其中最优值
 
 <a id="eq:wgdd"></a>
 $$
 \omega_{\text{GDD}}=C\langle d^{2}_{\text{x}}\rangle^{-1/2} \tag{5.20}
 $$
 
-is related to the average of the distance $d_{\text{x}}$ between an electron in
-the outer regions of a molecule and the exchange hole in the region of
-localized valence orbitals. The quantity $C$ is an empirical parameter for a
-given LRC functional, which was determined for LRC-$\omega$PBE ($C=0.90$) and
-LRC-$\omega$PBEh ($C=0.75$),[[956]](../bib_references/bib.md#bib997)
- in order to ensure that $\omega_{\text{GDD}}\approx\omega_{\text{IE}}$
-in small molecules. (A slightly different value, $C=0.885$, was
-determined for **Q-Chem**’s implementation of LRC-$\omega$PBE.[[764]](../bib_references/bib.md#bib798)
-)
-For TD-DFT calculations in small molecules, the choice of $\omega_{\text{GDD}}$ versus $\omega_{\text{IE}}$ makes
-essentially no difference, while the former can be considerably cheaper (and more convenient) as compared to searching
-for the value $\omega_{\text{IE}}$.[[880]](../bib_references/bib.md#bib915)
+与距离 $d_{\text{x}}$ 的平均值相关联，该距离指分子外围区域中的电子与局域化价轨道区域的交换空穴（exchange hole）之间的距离。量 $C$ 是针对给定 LRC 泛函的经验参数，
+已针对 LRC-$\omega$PBE（$C=0.90$）和
+LRC-$\omega$PBEh（$C=0.75$）确定，[[956]](../bib_references/bib.md#bib997)
+ 目的是在小分子中确保 $\omega_{\text{GDD}}\approx\omega_{\text{IE}}$。
+（对于 **Q-Chem** 实现的 LRC-$\omega$PBE，确定了一个略有不同的值，$C=0.885$。[[764]](../bib_references/bib.md#bib798)
+）
+对于小分子的 TD-DFT 计算，选择 $\omega_{\text{GDD}}$ 还是 $\omega_{\text{IE}}$ 基本上没有差别，
+而与前者的计算相比，搜索 $\omega_{\text{IE}}$ 值要昂贵得多（也不那么方便）。[[880]](../bib_references/bib.md#bib915)
 
-Since LRC-$\omega_{\text{GDD}}$PBE provides a better description of
-polarizabilities in polyacetylene as compared to
-$\omega_{\text{IE}}$,[[526]](../bib_references/bib.md#bib540)
- it is anticipated that using $\omega_{\text{GDD}}$ in
-place of $\omega_{\text{IE}}$ may afford more accurate molecular properties,
-especially in conjugated systems where IE tuning sometimes encounters problems related to vanishing
-HOMO/LUMO gaps.[[480]](../bib_references/bib.md#bib491)
+由于与 $\omega_{\text{IE}}$ 相比，LRC-$\omega_{\text{GDD}}$PBE 对聚乙炔的极化率给出了更好的描述，[[526]](../bib_references/bib.md#bib540)
+ 因此可以预期，用 $\omega_{\text{GDD}}$ 代替 $\omega_{\text{IE}}$
+可能会给出更准确的分子性质，尤其是在共轭体系中——在这些体系里 IE 调优有时会遇到 HOMO/LUMO 能隙趋于零的问题。[[480]](../bib_references/bib.md#bib491)
 
-GDD tuning of an RSH functional is
-involving by setting the *$rem* variable OMEGA_GDD = TRUE.
-The electron density is needed to compute $\omega_{\text{GDD}}$ in
-Eq. ([5.20](#eq:wgdd)) and this is accomplished using the converged SCF density
-computed using the RSH functional with the value of $\omega$ given by the
-*$rem* variable OMEGA. The value of $\omega_{\text{GDD}}$ therefore
-depends, in principle, upon the value of OMEGA, although in practice
-it is not very sensitive to this value and results obtained in this way are similar to fully self-consistent values
-of $\omega_{\text{GDD}}$.[[956]](../bib_references/bib.md#bib997)
+通过将 *$rem* 变量 OMEGA_GDD = TRUE 进行设置，即可对 RSH 泛函实施 GDD 调优。
+计算 Eq. ([5.20](#eq:wgdd)) 中的 $\omega_{\text{GDD}}$ 需要电子密度，
+这是通过使用由 *$rem* 变量 OMEGA 所给定 $\omega$ 值的 RSH 泛函计算得到的收敛 SCF 密度来实现的。
+因此，原则上 $\omega_{\text{GDD}}$ 的取值依赖于 OMEGA 的设定值，尽管实际上它对该值并不十分敏感，
+以此方式获得的结果与完全自洽的 $\omega_{\text{GDD}}$ 值相近。[[956]](../bib_references/bib.md#bib997)
 
 OMEGA_GDD
 
 ### `OMEGA_GDD`
 
-> **Controls the application of $\omega_{\text{GDD}}$ tuning for long-range corrected DFT**
+> **控制对长程校正 DFT 应用 $\omega_{\text{GDD}}$ 调优**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Do not apply GDD tuning.
->     * TRUE (or 1)
->     * Use GDD tuning.
-> * **Recommendation**: The $rem variable OMEGA must also be specified, in order to set the initial range-separation parameter.
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
+>     * FALSE（或 0）
+>     * 不应用 GDD 调优。
+>     * TRUE（或 1）
+>     * 使用 GDD 调优。
+> * **建议**: 还必须指定 $rem 变量 OMEGA，以设定初始的 range-separation 参数。
 
 OMEGA_GDD_SCALING
 
 ### `OMEGA_GDD_SCALING`
 
-> **Sets the empirical constant $C$ in the GDD tuning procedure.**
+> **设定 GDD 调优程序中的经验常数 $C$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `885`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `885`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $C=n/1000$
->     * .
-> * **Recommendation**: The quantity $C=0.885$ ( $n=885$ ) was determined in Ref. 764 Lao K. U., Herbert J. M. J. Chem. Theory Comput. (2018) , 14 , pp. 2955 . Link using LRC- $\omega$ PBE/hpTZVPP calculations.
+>     * 。
+> * **建议**: 量 $C=0.885$（即 $n=885$）是在 Ref. 764 Lao K. U., Herbert J. M. J. Chem. Theory Comput. (2018) , 14 , pp. 2955 . 中基于 LRC-$\omega$PBE/hpTZVPP 计算确定的。
 
-???+ example "Example 5.9: Sample input illustrating a calculation to determine the $\omega$ value for
-LRC- $\omega$ PBE based on the GDD tuning procedure."
+???+ example "示例 5.9: 示例输入，演示基于 GDD 调优程序确定 LRC-$\omega$PBE 所用 $\omega$ 值的计算。"
     ```qchem
     $comment
        The initial omega value has to set.
@@ -214,40 +160,32 @@ LRC- $\omega$ PBE based on the GDD tuning procedure."
     $end
     ```
 
-However the tuning is accomplished, these tuned functionals are generally thought to work by
-reducing self-interaction error in approximate DFT.
-A convenient way to quantify—or at least depict—this
-error is by plotting the DFT energy as a function of the (fractional) number of
-electrons, $N$, because $E(N)$ should in principle consist of a sequence of
-line segments with abrupt changes in slope (the so-called derivative
-discontinuity[[261]](../bib_references/bib.md#bib262)
-) at integer values of $N$,
-but in practice these $E(N)$ plots bow away from straight-line
-segments.[[261]](../bib_references/bib.md#bib262)
- Examination of such plots has been suggested as a
-means to adjust the fraction of short-range exchange in an RSH
-functional,[[58]](../bib_references/bib.md#bib41)
- while the $\omega$ parameter is set by tuning.
+无论调优是如何实现的，这些经过调优的泛函通常被认为之所以有效，是因为它们减少了近似 DFT 中的自相互作用误差（self-interaction error）。
+量化——或至少直观呈现——该误差的一种便捷方式，是将 DFT 能量作为（分数）电子数 $N$ 的函数绘制出来，
+因为原则上 $E(N)$ 应由一系列线段组成，并在 $N$ 取整数值处出现斜率的突变（即所谓的导数不连续性（derivative discontinuity）[[261]](../bib_references/bib.md#bib262)
+），
+但实际绘出的 $E(N)$ 曲线会偏离直线段而向外弯曲。[[261]](../bib_references/bib.md#bib262)
+有人建议通过检查这类图来调整 RSH 泛函中短程交换的成分比例，[[58]](../bib_references/bib.md#bib41)
+ 而 $\omega$ 参数则由调优来确定。
 
 FRACTIONAL_ELECTRON
 
 ### `FRACTIONAL_ELECTRON`
 
-> **Add or subtract a fraction of an electron.**
+> **增加或减少分数个电子。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Use an integer number of electrons.
+>     * 使用整数个电子。
 >     * $n$
->     * Add
+>     * 向体系添加
 >     * $n/1000$
->     * electrons to the system.
-> * **Recommendation**: Use only if trying to generate $E(N)$ plots. If $n<0$ , a fraction of an electron is removed from the system.
+>     * 个电子。
+> * **建议**: 仅在试图生成 $E(N)$ 图时使用。若 $n<0$，则从体系中移除相应分数的电子。
 
-???+ example "Example 5.10: Example of a DFT job with a fractional number of electrons. Here, we make the $-1.x$ anion of fluoride by subtracting a fraction of an electron from the HOMO
-of F ${}^{2-}$ ."
+???+ example "示例 5.10: 具有分数电子数的 DFT 作业示例。此处通过从 F${}^{2-}$ 的 HOMO 中减去分数个电子，构造氟的 $-1.x$ 价阴离子。"
     ```qchem
     $comment
        Subtracting a whole electron recovers the energy of F-.
@@ -267,19 +205,19 @@ of F ${}^{2-}$ ."
     $end
     ```
 
-Another, alternative to IE-based tuning is the effective (EFF) tuning procedure [[1257]](../bib_references/bib.md#bib1312)
-, in which the optimal value of the range-separation parameter is given by
+IE 调优的另一种替代方案是有效（Effective, EFF）调优程序 [[1257]](../bib_references/bib.md#bib1312)
+，其中 range-separation 参数的最优值由下式给出
 
 <a id="mu-eff"></a>
 $$
 \omega=\frac{a_{1}}{\langle r_{s}\rangle}+\frac{a_{2}\langle r_{s}\rangle}{1+a_{3}\langle r_{s}\rangle^{2}}~{}, \tag{5.21}
 $$
 
-where $a_{1}=1.91718$, $a_{2}=-0.02817$, and $a_{3}=0.14954$. The local Seitz radius is defined as
-$r_{s}=\left(\frac{3}{4\pi n}\right)^{1/3}$, with $n=n_{\uparrow}+n_{\downarrow}$. The quantity $\langle r_{s}\rangle$ denotes the volume-averaged Seitz radius.
+其中 $a_{1}=1.91718$，$a_{2}=-0.02817$，$a_{3}=0.14954$。局域 Seitz 半径定义为
+$r_{s}=\left(\frac{3}{4\pi n}\right)^{1/3}$，其中 $n=n_{\uparrow}+n_{\downarrow}$。量 $\langle r_{s}\rangle$ 表示按体积平均的 Seitz 半径。
 
-While $\langle r_{s}\rangle$ is straightforward to compute for bulk solids, special care is required for finite systems such as atoms and molecules, where $r_{s}$ diverges in the low-density tail.
-To address this issue, a weighted average of $r_{s}$ is employed:
+虽然对于体相固体而言 $\langle r_{s}\rangle$ 的计算很直接，但对于原子和分子这类有限体系则需要特别小心，因为在低密度尾部 $r_{s}$ 会发散。
+为解决这一问题，采用了 $r_{s}$ 的加权平均：
 
 <a id="eq:rs-average"></a>
 $$
@@ -287,32 +225,32 @@ $$
 w(\mathbf{r})\,d^{3}r}\;. \tag{5.22}
 $$
 
-Here, the weight function $w(\mathbf{r})$ is constructed to emphasize regions where the electron density is significant (i.e., core and valence regions).
-For further details on the construction of the weight function and its derivation, we refer to Ref. [[1257]](../bib_references/bib.md#bib1312)
-.
+此处，权重函数 $w(\mathbf{r})$ 的构造旨在突出电子密度显著的区域（即芯层和价层区域）。
+关于权重函数的构造及其推导的更多细节，请参见 Ref. [[1257]](../bib_references/bib.md#bib1312)
+。
 
-The LRC-$\omega_{\text{EFF}}$PBE functional has been shown to provide an improved description of charge-transfer excitations, HOMO-LUMO gaps, and excitonic properties.
+已证明 LRC-$\omega_{\text{EFF}}$PBE 泛函能够更好地描述电荷转移激发、HOMO-LUMO 能隙以及激子（excitonic）性质。
 
-In practice, EFF tuning of an RSH functional is enabled by setting the *$rem* variable OMEGA_EFF = TRUE.
-The evaluation of $\omega_{\text{EFF}}$ in Eq. ([5.21](#mu-eff)) requires the electron density, which is obtained from a converged SCF calculation.
-When using an RSH functional, an initial value of $\omega$ must be specified via the *$rem* variable OMEGA. In contrast, for semilocal or global hybrid functionals (e.g., PBE or B3LYP), specifying OMEGA is not required.
+实践中，通过将 *$rem* 变量 OMEGA_EFF = TRUE 进行设置，即可对 RSH 泛函实施 EFF 调优。
+Eq. ([5.21](#mu-eff)) 中 $\omega_{\text{EFF}}$ 的求值需要电子密度，这是从收敛的 SCF 计算中获得的。
+使用 RSH 泛函时，必须通过 *$rem* 变量 OMEGA 指定 $\omega$ 的初始值。相比之下，对于半局域泛函或全局杂化泛函（例如 PBE 或 B3LYP），则无需指定 OMEGA。
 
 OMEGA_EFF
 
 ### `OMEGA_EFF`
 
-> **Controls the application of $\omega_{\text{EFF}}$ tuning for long-range corrected DFT**
+> **控制对长程校正 DFT 应用 $\omega_{\text{EFF}}$ 调优**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Do not apply EFF tuning.
->     * TRUE (or 1)
->     * Apply EFF tuning.
-> * **Recommendation**: The $rem variable OMEGA must also be specified to provide an initial value for the range-separation parameter.
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
+>     * FALSE（或 0）
+>     * 不应用 EFF 调优。
+>     * TRUE（或 1）
+>     * 应用 EFF 调优。
+> * **建议**: 还必须指定 $rem 变量 OMEGA，为 range-separation 参数提供初始值。
 
-???+ example "Example 5.11: Sample input illustrating a calculation to determine the $\omega$ value using EFF tuning procedure."
+???+ example "示例 5.11: 示例输入，演示使用 EFF 调优程序确定 $\omega$ 值的计算。"
     ```qchem
     $comment
     w_EFF tuning for anthracene molecule

@@ -1,226 +1,223 @@
 ---
-title: "7.11.14 Job Control Options for librassf"
+title: "7.11.14 librassf 的作业控制选项"
 ---
 
-## 7.11.14 Job Control Options for **librassf**
+## 7.11.14 librassf 的作业控制选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The **librassf** module can be enabled by setting EXCHANGE = HF,
-CORRELATION = RASCI2, and LIBRASSF = 1 in the
-*$rem* variable section. One should also indicate the number of roots
-by setting RAS_N_ROOTS appropriately. Although the module
-is called through RASCI2, most job control options are more similar to
-those found in RASCI1, with the exception of RAS_N_ROOTS.
+**librassf** 模块可以通过在 *$rem* 变量段中设置 EXCHANGE = HF、
+CORRELATION = RASCI2 以及 LIBRASSF = 1 来启用。用户还应通过适当设置 RAS_N_ROOTS
+来指明所求根（roots）的数目。尽管该模块是通过 RASCI2 调用的，
+但大多数作业控制选项与 RASCI1 中的选项更为相似，唯有 RAS_N_ROOTS 例外。
 
-The number of spin-flips and IP/EA are determined by the *$rem* variables
-RASSF_DELTA_ALPHA (the number of alpha electrons removed) and
-RASSF_DELTA_BETA (the number of beta electrons added). Hole
-and particle excitations can be added by setting the RAS_DO_HOLE
-and RAS_DO_PART keywords. Additionally, text files containing
-eigenvalues and eigenvectors can be printed via the
-RASSF_WRITE_EVALS and RASSF_WRITE_EVECS keywords.
+自旋翻转（spin-flip）以及 IP/EA 的数目由 *$rem* 变量
+RASSF_DELTA_ALPHA（移除的 alpha 电子数）和
+RASSF_DELTA_BETA（添加的 beta 电子数）决定。
+空穴（hole）和粒子（particle）激发可以通过设置 RAS_DO_HOLE
+和 RAS_DO_PART 关键字来添加。此外，包含本征值和本征向量的
+文本文件可以通过 RASSF_WRITE_EVALS 和 RASSF_WRITE_EVECS 关键字进行输出。
 
 RAS_N_ROOTS
 
 ### `RAS_N_ROOTS`
 
-> **Sets the number of RAS-CI roots to be computed.**
+> **设置所要计算的 RAS-CI 根的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
 >     * $n$
 >     * $n>0$
->     * Compute
+>     * 计算
 >     * $n$
->     * RAS-CI states
-> * **Recommendation**: None.
+>     * 个 RAS-CI 态
+> * **建议**: 无。
 
 RASSF_DELTA_ALPHA
 
 ### `RASSF_DELTA_ALPHA`
 
-> **Sets the number of alpha electrons to remove relative to the reference.**
+> **设置相对于参考态移除的 alpha 电子数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
 >     * $0$
->     * Remove no alpha electrons (use for EA)
+>     * 不移除 alpha 电子（用于 EA）
 >     * $1$
->     * Remove one alpha electron (use for 1SF, IP)
+>     * 移除一个 alpha 电子（用于 1SF、IP）
 >     * $2$
->     * Remove two alpha electrons (use for 2SF, 1SF-IP)
-> * **Recommendation**: None.
+>     * 移除两个 alpha 电子（用于 2SF、1SF-IP）
+> * **建议**: 无。
 
 RASSF_DELTA_BETA
 
 ### `RASSF_DELTA_BETA`
 
-> **Sets the number of beta electrons to add relative to the reference.**
+> **设置相对于参考态添加的 beta 电子数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
 >     * $0$
->     * Add no beta electrons (use for IP)
+>     * 不添加 beta 电子（用于 IP）
 >     * $1$
->     * Add one beta electron (use for 1SF, EA)
+>     * 添加一个 beta 电子（用于 1SF、EA）
 >     * $2$
->     * Add two beta electrons (use for 2SF, 1SF-EA)
-> * **Recommendation**: None.
+>     * 添加两个 beta 电子（用于 2SF、1SF-EA）
+> * **建议**: 无。
 
 RAS_DO_HOLE
 
 ### `RAS_DO_HOLE`
 
-> **Enables hole excitations.**
+> **启用空穴激发。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * No hole excitations (use for CAS or RAS(p))
+>     * 不进行空穴激发（用于 CAS 或 RAS(p)）
 >     * $1$
->     * Single hole excitations (use for RAS(h) or RAS(h,p))
-> * **Recommendation**: None.
+>     * 单空穴激发（用于 RAS(h) 或 RAS(h,p)）
+> * **建议**: 无。
 
 RAS_DO_PART
 
 ### `RAS_DO_PART`
 
-> **Enables particle excitations.**
+> **启用粒子激发。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * No particle excitations (use for CAS or RAS(h))
+>     * 不进行粒子激发（用于 CAS 或 RAS(h)）
 >     * $1$
->     * Single particle excitations (use for RAS(p) or RAS(h,p))
-> * **Recommendation**: None.
+>     * 单粒子激发（用于 RAS(p) 或 RAS(h,p)）
+> * **建议**: 无。
 
 N_FROZEN_CORE
 
 ### `N_FROZEN_CORE`
 
-> **Number of frozen core orbitals.**
+> **冻结的核心轨道数目。**
 >
-> * **Type**: `SIZE_T`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `SIZE_T`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
 >     * $n\geq 0$
->     * Number of frozen core orbitals.
-> * **Recommendation**: None.
+>     * 冻结的核心轨道数目。
+> * **建议**: 无。
 
 N_FROZEN_VIRTUAL
 
 ### `N_FROZEN_VIRTUAL`
 
-> **Number of frozen virtual orbitals.**
+> **冻结的虚拟轨道数目。**
 >
-> * **Type**: `SIZE_T`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `SIZE_T`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
 >     * $n\geq 0$
->     * Number of frozen virtual orbitals.
-> * **Recommendation**: None.
+>     * 冻结的虚拟轨道数目。
+> * **建议**: 无。
 
 RASSF_GUESS
 
 ### `RASSF_GUESS`
 
-> **Determines which initial set of guess vectors to use for Davidson.**
+> **决定在 Davidson 算法中使用哪一组初始猜测向量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$2$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$2$`
+> * **选项**:
 >     * $0$
->     * Random orthonormal guess (default for CAS)
+>     * 随机正交归一猜测（CAS 的默认设置）
 >     * $1$
->     * Identity guess
+>     * 单位矩阵猜测（identity guess）
 >     * $2$
->     * CAS guess (default for RAS)
-> * **Recommendation**: Starting from a CAS guess is recommended for larger molecules. If Davidson encounters issues with linearly dependent eigenvectors, consider using identity. The random orthonormal guess requires building a large $NxN$ matrix and is therefore only recommended for calculations with fewer determinants.
+>     * CAS 猜测（RAS 的默认设置）
+> * **建议**: 对于较大的分子，建议从 CAS 猜测开始计算。如果 Davidson 算法遇到本征向量线性相关的问题，可考虑使用单位矩阵猜测。随机正交归一猜测需要构建一个大型 $NxN$ 矩阵，因此仅适用于行列式数目较少的计算。
 
 RASSF_WRITE_EVALS
 
 ### `RASSF_WRITE_EVALS`
 
-> **Determines whether to write eigenvalues to an output file.**
+> **决定是否将本征值写入输出文件。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * Do not write eigenvalues to an output file
+>     * 不将本征值写入输出文件
 >     * $1$
->     * Write eigenvalues to an output file
-> * **Recommendation**: None.
+>     * 将本征值写入输出文件
+> * **建议**: 无。
 
 RASSF_WRITE_EVECS
 
 ### `RASSF_WRITE_EVECS`
 
-> **Determines whether to write eigenvectors to an output file.**
+> **决定是否将本征向量写入输出文件。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * Do not write eigenvectors to an output file
+>     * 不将本征向量写入输出文件
 >     * $1$
->     * Write eigenvectors to an output file
-> * **Recommendation**: None.
+>     * 将本征向量写入输出文件
+> * **建议**: 无。
 
 CAS_LOCAL
 
 ### `CAS_LOCAL`
 
-> **Determines whether to do localization.**
+> **决定是否进行轨道定域化。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * No localization
+>     * 不做定域化
 >     * $1$
->     * Boys localization
+>     * Boys 定域化
 >     * $2$
->     * Pipek-Mezey localization
-> * **Recommendation**: None.
+>     * Pipek-Mezey 定域化
+> * **建议**: 无。
 
 CAS_LOCAL_ALGO
 
 ### `CAS_LOCAL_ALGO`
 
-> **Passed into localizer. Set to 1 if doing Boys localization.**
+> **传递给定域化程序。若进行 Boys 定域化则设置为 1。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * No localization
+>     * 不做定域化
 >     * $1$
->     * Boys localization
+>     * Boys 定域化
 >     * $2$
->     * Pipek-Mezey localization
-> * **Recommendation**: None.
+>     * Pipek-Mezey 定域化
+> * **建议**: 无。
 
 RASSF_DO_BLOCH
 
 ### `RASSF_DO_BLOCH`
 
-> **Determines whether to do effective Hamiltonian analysis.**
+> **决定是否进行有效哈密顿量（effective Hamiltonian）分析。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $0$
->     * Skip analysis
+>     * 跳过分析
 >     * $1$
->     * Do effective Hamiltonian analysis
-> * **Recommendation**: None.
+>     * 进行有效哈密顿量分析
+> * **建议**: 无。

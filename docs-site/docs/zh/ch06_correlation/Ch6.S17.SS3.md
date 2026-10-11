@@ -1,49 +1,49 @@
 ---
-title: "6.17.3 Summary of Keywords"
+title: "6.17.3 关键字汇总"
 ---
 
-## 6.17.3 Summary of Keywords
+## 6.17.3 关键字汇总
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 MEM_STATIC
 
 ### `MEM_STATIC`
 
-> **Sets the memory for individual Fortran program modules**
+> **为各个 Fortran 程序模块设置内存**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `240`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`240`
+> * **可选值**：
 >     * $n$
->     * User-defined number of megabytes.
-> * **Recommendation**: For direct and semi-direct MP2 calculations, this must exceed OVN + requirements for AO integral evaluation (32–160 MB). Up to 2000 MB for large coupled-clusters calculations.
+>     * 用户自定义的内存大小（单位：MB）。
+> * **建议**：对于直接（direct）和半直接（semi-direct）MP2 计算，该值必须大于 OVN 加上 AO 积分求值所需的内存（32–160 MB）。对于大型耦合簇（coupled-cluster）计算，可高达 2000 MB。
 
 CC_MEMORY
 
 ### `CC_MEMORY`
 
-> **Specifies the maximum size, in MB, of the buffers for in-core storage of block-tensors in CCMAN and CCMAN2.**
+> **指定 CCMAN 和 CCMAN2 中用于块张量（block-tensor）核内存储的缓冲区最大大小（单位：MB）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50% of`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`内存总量的 50%`
+> * **可选值**：
 >     * $n$
->     * Integer number of MB
-> * **Recommendation**: Larger values give better I/O performance and are recommended for systems with large memory (add to your .qchemrc file. When running CCMAN2 exclusively on a node, should be set to $\sim$ 80% of the total available RAM. )
+>     * 以 MB 为单位的整数值
+> * **建议**：较大的值可带来更好的 I/O 性能，推荐用于大内存系统（可写入 .qchemrc 文件）。当在单个节点上专门运行 CCMAN2 时，应设置为总可用 RAM 的 $\sim$ 80%。
 
 CC_BACKEND
 
 ### `CC_BACKEND`
 
-> **Used to specify the computational back-end of CCMAN2.**
+> **用于指定 CCMAN2 的计算后端。**
 >
-> * **Type**: `STRING`
-> * **Default**: `VM`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`VM`
+> * **可选值**：
 >     * XM
 >     * libxm
->     * shared-memory disk-based back-end
+>     * 基于共享内存的磁盘后端
 >     * INCORE
->     * in-core memory back-end
-> * **Recommendation**: Use XM for large jobs with limited memory or when the performance of the default disk-based back-end is not satisfactory, INCORE for small jobs that fit in main memory.
+>     * 核内（in-core）内存后端
+> * **建议**：对于内存有限的大型作业，或当默认磁盘后端性能不理想时使用 XM；对于可放入主内存的小型作业使用 INCORE。

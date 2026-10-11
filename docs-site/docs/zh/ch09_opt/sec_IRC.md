@@ -1,9 +1,9 @@
 ---
-title: "9.7 Intrinsic Reaction Coordinate"
+title: "9.7 内禀反应坐标"
 ---
 
-# 9.7 Intrinsic Reaction Coordinate
+# 9.7 内禀反应坐标（Intrinsic Reaction Coordinate, IRC）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [9.7.1 Overview](Ch9.S7.SS1.md)
+- [9.7.1 概述](Ch9.S7.SS1.md)

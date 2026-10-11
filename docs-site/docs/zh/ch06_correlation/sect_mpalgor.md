@@ -1,110 +1,94 @@
 ---
-title: "6.4.1 Algorithm"
+title: "6.4.1 算法"
 ---
 
-## 6.4.1 Algorithm
+## 6.4.1 算法
 
 (July 4, 2026)
 
-Second-order Møller-Plesset theory[[957]](../bib_references/bib.md#bib998)
- (MP2) is probably the
-simplest useful wave function-based electron correlation method. Revived in
-the mid-1970s, it remains highly popular today, because it offers systematic
-improvement in optimized geometries and other molecular properties relative to
-Hartree-Fock (HF) theory.
+二阶 Møller-Plesset 理论[[957]](../bib_references/bib.md#bib998)
+ (MP2) 可能是
+最简单且实用的基于波函数的电子相关方法。该方法于 20 世纪 70 年代中期复兴，
+至今仍广受欢迎，因为它相对于 Hartree-Fock (HF) 理论，能在优化几何构型
+及其他分子性质上提供系统性的改进。
 
- Indeed, in a recent comparative
-study of small closed-shell molecules,[[548]](../bib_references/bib.md#bib565)
- MP2 outperformed
-much more expensive singles and doubles coupled-cluster theory for such
-properties! Relative to state-of-the-art Kohn-Sham density functional
-theory (DFT) methods, which are the most economical methods to account for
-electron correlation effects, MP2 has the advantage of properly incorporating
-long-range dispersion forces. The principal weaknesses of MP2 theory are for
-open shell systems, and other cases where the HF determinant is a poor starting point.
+ 实际上，在一项针对小闭壳层分子的近期比较
+研究中，[[548]](../bib_references/bib.md#bib565)
+ 对于此类性质，MP2 的表现甚至优于
+计算代价高得多的单双激发耦合簇（coupled-cluster singles and doubles）理论！相对于最先进的
+Kohn-Sham 密度泛函理论（Density Functional Theory, DFT）方法——这是考虑
+电子相关效应最经济的方法——MP2 的优势在于能够正确纳入长程色散力。
+MP2 理论的主要弱点在于开壳层体系，以及其他 HF 行列式作为起始点不佳的情形。
 
-**Q-Chem** contains an efficient conventional semi-direct method to evaluate the
-MP2 energy and gradient.[[545]](../bib_references/bib.md#bib558)
- These methods require $OVN$ memory
-($O$, $V$, $N$ are the numbers of occupied, virtual and total orbitals,
-respectively), and disk space which is bounded from above by $OVN^{2}/2$. The
-latter can be reduced to $IVN^{2}/2$ by treating the occupied orbitals in batches
-of size $I$, and re-evaluating the two-electron integrals $O/I$ times. This
-approach is tractable on modern workstations for energy and gradient
-calculations of at least 500 basis functions or so, or molecules of between 15
-and 30 first row atoms, depending on the basis set size. The computational cost
-increases between the 3rd and 5th power of the size of the molecule,
-depending on which part of the calculation is time-dominant.
+**Q-Chem** 包含一种高效的常规半直接（semi-direct）方法，用于计算
+MP2 能量和梯度。[[545]](../bib_references/bib.md#bib558)
+ 这些方法需要 $OVN$ 内存
+（其中 $O$、$V$、$N$ 分别为占据轨道、虚轨道和总轨道数目），以及磁盘空间，
+其上限为 $OVN^{2}/2$。通过将占据轨道按大小为 $I$ 的批次（batch）进行处理，
+并将二电子积分重新计算 $O/I$ 次，磁盘需求量可降至 $IVN^{2}/2$。
+对于至少约 500 个基函数、或 15 到 30 个第一行原子组成的分子（具体取决于基组大小）的
+能量与梯度计算，这种方法在现代工作站上都是可行的。
+计算代价随分子尺寸的 3 次方到 5 次方增长，具体取决于计算中哪一部分占用时间主导。
 
-The algorithm and implementation in **Q-Chem** is improved over earlier
-methods,[[542]](../bib_references/bib.md#bib552)
- particularly in the following areas:
+**Q-Chem** 中的算法与实现在早期方法[[542]](../bib_references/bib.md#bib552)
+的基础上有所改进，
+尤其在以下方面：
 
 - •
 
-Uses pure functions, as opposed to Cartesians, for all fifth-order steps.
-This leads to large computational savings for basis sets containing pure
-functions.
+所有五阶步骤均使用纯函数（pure functions）而非 Cartesian 高斯函数。
+对于包含纯函数的基组，这能带来巨大的计算节省。
 - •
 
-Customized loop unrolling for improved efficiency.
+定制化的循环展开（loop unrolling）以提高效率。
 - •
 
-The sort-less semi-direct method avoids a read and write operation
-resulting in a large I/O savings.
+免排序（sort-less）半直接方法避免了一次读写操作，从而大幅节省 I/O。
 - •
 
-Reduction in disk and memory usage.
+磁盘和内存占用的降低。
 - •
 
-No extra integral evaluation for gradient calculations.
+梯度计算无需额外的积分求值。
 - •
 
-Full exploitation of frozen core approximation.
+充分利用冻结芯层（frozen core）近似。
 
-The implementation offers the user the following alternatives:
-
-- •
-
-Direct algorithm (energies only).
-- •
-
-Disk-based sort-less semi-direct algorithm (energies and gradients).
-- •
-
-Local occupied orbital method (energies only).
-
-The semi-direct algorithm is the only choice for gradient calculations. It is
-also normally the most efficient choice for energy calculations. There are two
-classes of exceptions:
+该实现为用户提供以下备选方案：
 
 - •
 
-If the amount of disk space available is not significantly larger than
-the amount of memory available, then the direct algorithm is preferred.
+直接（Direct）算法（仅限能量）。
 - •
 
-If the calculation involves a very large basis set, then the local
-orbital method may be faster, because it performs the transformation in a
-different order. It does not have the large memory requirement (no
-$OVN$ array needed), and always evaluates the integrals four times.
+基于磁盘的免排序半直接算法（能量和梯度）。
+- •
 
-There are three important options that should be wisely chosen by the user in
-order to exploit the full efficiency of **Q-Chem**’s direct and semi-direct MP2
-methods (as discussed above, the LOCAL_OCCUPIED method has different
-requirements).
+局域占据轨道（Local occupied orbital）方法（仅限能量）。
+
+对于梯度计算，半直接算法是唯一选择。它通常也是能量计算
+最高效的选择。例外情形有两类：
 
 - •
 
-MEM_STATIC: The value specified for this *$rem* variable must be
-sufficient to permit efficient integral evaluation (10-80MB) and to hold
-a large temporary array whose size is $OVN$, the product of the number of
-occupied, virtual and total numbers of orbitals.
+如果可用的磁盘空间并不显著大于可用内存，则优先选用直接算法。
 - •
 
-N_FROZEN_CORE: The computational requirements for MP2 are
-proportional to the number of occupied orbitals for some steps, and the
-square of that number for other steps. Therefore the CPU time can be
-significantly reduced if your job employs the frozen core approximation.
-Additionally the memory and disk requirements are reduced when the frozen
-core approximation is employed.
+如果计算涉及非常大的基组，则局域轨道方法可能更快，因为它以
+不同的顺序执行积分变换。它没有大的内存需求（无需
+$OVN$ 数组），并且总是将积分求值四次。
+
+为了充分发挥 **Q-Chem** 直接和半直接 MP2 方法的效率（如前所述，
+LOCAL_OCCUPIED 方法有不同的需求），用户应明智地选择以下三个重要选项。
+
+- •
+
+MEM_STATIC：为此 *$rem* 变量指定的值必须足够大，以支持高效的
+积分求值（10-80MB），并容纳一个大小为 $OVN$ 的大型临时数组，
+其中 $O$、$V$、$N$ 分别为占据轨道、虚轨道和总轨道数目的乘积。
+- •
+
+N_FROZEN_CORE：MP2 的计算需求在某些步骤中与占据轨道数目
+成正比，而在其他步骤中则与其平方成正比。因此，如果作业采用
+冻结芯层近似，CPU 时间可显著减少。
+此外，采用冻结芯层近似还能降低内存和磁盘需求。

@@ -1,100 +1,67 @@
 ---
-title: "10.13.3 Romberg Finite-Field Procedure"
+title: "10.13.3 Romberg 有限场方法"
 ---
 
-## 10.13.3 Romberg Finite-Field Procedure
+## 10.13.3 Romberg 有限场方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Whereas the FF procedure described in Section [10.13.2](sec_finite-field.md) is a
-straightforward, finite-difference implementation of the derivatives suggested
-in Eq. ([10.152](Ch10.S13.SS1.md#eqn:E_F)), in the Romberg procedure[[311]](../bib_references/bib.md#bib328)
- one
-combines energy values obtained for a succession of $k$ external electric
-fields with amplitudes that form a geometric progression:
+[10.13.2 节](sec_finite-field.md)中描述的有限场（FF）方法是对公式 ([10.152](Ch10.S13.SS1.md#eqn:E_F)) 中所建议导数的一种直接的有限差分实现，而在 Romberg 方法[[311]](../bib_references/bib.md#bib328)中，则将 $k$ 个不同外加电场下获得的能量值进行组合，这些电场的振幅构成一个几何级数：
 
 <a id="Ch10.E153"></a>
 $$
 F(k)=a^{k}F_{0}\;. \tag{10.153}
 $$
 
-The FF expressions are obtained by combining truncated Taylor expansions of the
-energy with different amplitudes and/or external field directions. For
-example, in the case of the diagonal $\bm{\beta}$-tensor components the Romberg
-FF expression is
+FF 表达式是通过将具有不同振幅和/或不同外场方向的能量的截断 Taylor 展开组合而得到的。例如，对于对角 $\bm{\beta}$ 张量分量，Romberg FF 表达式为
 
 <a id="Ch10.E154"></a>
 $$
 \beta_{iii}(k,0)=3\left(\frac{\bigl{[}E(F_{-i}(k+1)-E(F_{i}(k+1))\bigr{]}-a\bigl{[}E(F_{-i}(k)-E(F_{i}(k))\bigr{]}}{a(a^{2}-1)(a^{k}F_{0})^{3}}\right)\;. \tag{10.154}
 $$
 
-The field index $\pm i$ refers to the possible field directions, *i.e.*, $\pm x$, $\pm y$ or $\pm z$. Truncation of the Taylor expansions means that the
-results are contaminated by higher-order hyperpolarizabilities, and to remove
-this contamination, successive “Romberg iterations” are performed using a
-recursive expression. For a component of a (hyper)polarizability tensor
-$\bm{\zeta}$, the recursive expression is
+电场下标 $\pm i$ 指可能的电场方向，*即*，$\pm x$、$\pm y$ 或 $\pm z$。Taylor 展开的截断意味着结果会受到高阶超极化率的污染，为了消除这种污染，使用递归表达式执行连续的“Romberg 迭代”。对于（超）极化率张量 $\bm{\zeta}$ 的一个分量，递归表达式为
 
 <a id="Ch10.E155"></a>
 $$
 \zeta(k,n)=\frac{a^{2n}\zeta(k,n-1)-\zeta(k+1,n-1)}{a^{2n}-1}\;. \tag{10.155}
 $$
 
-This expression leads to a triangular Romberg table enabling monitoring of the
-convergence of the numerical derivative.[[311]](../bib_references/bib.md#bib328)
+该表达式导出一个三角形的 Romberg 表，从而可以监测数值导数的收敛性[[311]](../bib_references/bib.md#bib328)。
 
-As with any finite-difference procedure, the FF method for computing
-(hyper)polarizabilities is sensitive to the details of numerical
-differentiation. The Romberg procedure allows one to find a field window,
-defined by its upper and lower bounds, where the finite-difference procedure is
-stable. Energy values for field amplitudes below that window suffer from
-too-large round-off errors, which are proportional to the energy convergence
-threshold. The upper bound is imposed by the critical field amplitude
-corresponding to the intersection between the ground and excited-state
-energies. In the Romberg procedure, this stability window defines a
-sub-triangle, determination of which is the primary goal in analyzing Romberg
-tables.
+与任何有限差分方法一样，用于计算（超）极化率的 FF 方法对数值微分的细节十分敏感。Romberg 方法允许人们找到一个由上下界定义的“场窗口”，在该窗口内有限差分过程是稳定的。低于该窗口的场振幅下的能量值会受到过大舍入误差的影响，这些误差与能量收敛阈值成正比。上界则由对应于基态与激发态能量相交处的临界场振幅所限定。在 Romberg 方法中，这个稳定性窗口定义了一个子三角形，确定该子三角形是分析 Romberg 表时的首要目标。
 
-The automatic procedure based on the analysis of field amplitude errors is
-implemented in scripts provided with **Q-Chem**’s distribution. The field
-amplitude error is defined as the difference between $\zeta$-values obtained
-for consecutive field amplitudes at the same Romberg iteration:
+基于场振幅误差分析的自动化过程已实现在 **Q-Chem** 发行版附带的脚本中。场振幅误差定义为在同一 Romberg 迭代下，对连续场振幅所得到的 $\zeta$ 值之差：
 
 <a id="Ch10.E156"></a>
 $$
 \epsilon_{k}(n)=\zeta(k+1,n)-\zeta(k,n)\;. \tag{10.156}
 $$
 
-By virtue of Romberg’s recursive expression, the field error is expected to
-decrease with each iteration. Convergence of the Romberg procedure can be
-probed using the iteration (order) error, defined as
+根据 Romberg 的递归表达式，场误差预计随着每次迭代而减小。可以使用迭代（阶）误差来检测 Romberg 过程的收敛性，其定义为
 
 <a id="Ch10.E157"></a>
 $$
 \epsilon_{n}(k)=\zeta(k,n+1)-\zeta(k,n)\;. \tag{10.157}
 $$
 
-Automatic analysis of these quantities is described in detail in
-Ref. [[311]](../bib_references/bib.md#bib328)
-.
+对这些量的自动化分析在文献 [[311]](../bib_references/bib.md#bib328) 中有详细描述。
 
-**Note: 
+**注意： 
 
 •
 
-The automatic procedure can fail if the field window is not chosen wisely.
+如果场窗口选择不当，自动化过程可能会失败。
 
 •
 
-The Romberg procedure can be performed either for one specific diagonal
-direction or for all Cartesian components. In the case of the second
-hyperpolarizability, only the $iiii$, $iijj$ components are available.
+Romberg 过程可以针对某一个特定的对角方向执行，也可以针对所有笛卡尔分量执行。对于二阶超极化率，仅可获得 $iiii$、$iijj$ 分量。
 
 **
 
-## 10.13.3.1 How to execute Romberg’s differentiation procedure
+## 10.13.3.1 如何执行 Romberg 微分过程
 
-To perform Romberg calculations of (hyper)polarizabilities, the following
-utilities are in the `$QC/bin/tools/Romberg` directory:
+要执行（超）极化率的 Romberg 计算，可在 `$QC/bin/tools/Romberg` 目录中使用以下工具：
 
 > `input-Q-Chem-t-rex.sh`
 > 
@@ -113,8 +80,7 @@ utilities are in the `$QC/bin/tools/Romberg` directory:
 > 
 > `T-REX-3.0.3`
 
-and this directory must be manually added to the `$PATH` environment
-variable depending on the shell being used:
+需要根据所使用的 shell，将此目录手动添加到 `$PATH` 环境变量中：
 
 > ```qchem
 > # bash syntax for ~/.bashrc:
@@ -123,25 +89,21 @@ variable depending on the shell being used:
 > set path=($QC/bin/tools/Romberg $path)
 > ```
 
-To run the calculation, create an input called `input` that specifies
-your molecule, an electronic structure method, and several additional *$rem*
-variables that
+要运行计算，请创建一个名为 `input` 的输入文件，指定分子、电子结构方法以及若干额外的 *$rem* 变量，这些变量用于
 
 - •
 
-turn off symmetry (INTEGRAL_SYMMETRY and CC_SYMMETRY for
-CC/EOM calculations),
+关闭对称性（对于 CC/EOM 计算，设置 INTEGRAL_SYMMETRY 和 CC_SYMMETRY），
 - •
 
-request higher-precision printing (CC_PRINT_PREC), and
+请求更高精度的输出（CC_PRINT_PREC），以及
 - •
 
-set up very tight convergence (SCF_CONVERGENCE,
-CC_CONVERGENCE, EOM_DAVIDSON_CONVERGENCE, *etc.*).
+设置非常严格的收敛条件（SCF_CONVERGENCE、CC_CONVERGENCE、EOM_DAVIDSON_CONVERGENCE，*等等*）。
 
-An example of an input file is given below.
+下面给出一个输入文件的示例。
 
-???+ example "Example 10.66: Input for Romberg calculations of the ethylene molecule using B3LYP."
+???+ example "示例 10.66：使用 B3LYP 对乙烯分子进行 Romberg 计算的输入文件"
     ```qchem
     $molecule
     0 1
@@ -163,50 +125,26 @@ An example of an input file is given below.
     $end
     ```
 
-Run the script `input-Q-Chem-t-rex.sh` and answer the questions
-regarding the parameters of the geometrical progression of field amplitudes
-(see example below). The script will create multiple input files for the FF
-calculations based on the input file template that you provided. The file
-name that is requested serves as a prefix to each automatically-generated FF
-input file. For example, if you specify the filename as `water`, input
-files named `water001.inp`, `water002.inp`, … will be
-generated. These must be run independently of the Romberg procedure, such as
-on a computing cluster, or locally with GNU parallel or xargs. For example,
-with GNU parallel, to run 6 **Q-Chem** jobs at a time, each with 4 threads,
+运行脚本 `input-Q-Chem-t-rex.sh`，并根据提示回答有关场振幅几何级数参数的问题（见下面示例）。该脚本会基于您提供的输入文件模板为 FF 计算生成多个输入文件。所请求的文件名将作为每个自动生成 FF 输入文件的前缀。例如，如果指定文件名为 `water`，则会生成名为 `water001.inp`、`water002.inp`、……的输入文件。这些文件必须在 Romberg 过程之外独立运行，例如在计算集群上运行，或在本地使用 GNU parallel 或 xargs 运行。例如，使用 GNU parallel，每次运行 6 个 **Q-Chem** 作业，每个作业使用 4 个线程：
 
 > ```qchem
 > ls hello*.inp | parallel -j6 ’qchem -nt 4 {.}.inp {.}.out’
 > ```
 
-After running the calculations, parse the output files using the script
-`parse-t-rex.sh`. Then run the `T-REX` program. Answer the the
-questions to compute the dipole moment and (hyper)polarizabilities (see
-example below).
+运行完计算后，使用脚本 `parse-t-rex.sh` 解析输出文件。然后运行 `T-REX` 程序。根据提示回答问题，以计算偶极矩和（超）极化率（见下面示例）。
 
-Romberg differentiation is only available for methods where printing the total
-energy to high precision has been enabled. In the current version of **Q-Chem**,
-CC_PRINT_PREC is implemented for the following methods: HF, DFT,
-MP2, RI-MP2, MP3, CCD, CCSD, CCSD(T), QCISD, QCISD(T), TDDFT, and EOM-CCSD.
+Romberg 微分仅适用于已启用高精度总能量输出的方法。在当前版本的 **Q-Chem** 中，CC_PRINT_PREC 已对以下方法实现：HF、DFT、MP2、RI-MP2、MP3、CCD、CCSD、CCSD(T)、QCISD、QCISD(T)、TDDFT 和 EOM-CCSD。
 
-**Note: 
+**注意： 
 
-When using excited-state methods such as TDDFT, CIS, and EOM-CC, state
-ordering may switch when the external field is large.
+当使用激发态方法（如 TDDFT、CIS 和 EOM-CC）时，在外电场较大时态序（state ordering）可能会发生交换。
 **
 
-With the T-REX program, you can compute the static dipole moment,
-polarizability, and first and second hyperpolarizabilities for one specific
-diagonal direction or for all Cartesian components, except that second
-hyperpolarizabilities are limited to $iiii$ and $iijj$ components. When
-computing all the components, you can obtain the norm of the dipole moment and
-polarizability, the Hyper-Rayleigh scattering first hyperpolarizability, the
-mean of the second hyperpolarizability, and other information
+使用 T-REX 程序，可以计算静态势偶极矩、极化率、一阶和二阶超极化率，可针对某一个特定的对角方向或所有笛卡尔分量，不过二阶超极化率仅限于 $iiii$ 和 $iijj$ 分量。在计算所有分量时，您可以获得偶极矩和极化率的范数、超瑞利散射（Hyper-Rayleigh scattering）一阶超极化率、二阶超极化率的平均值以及其他信息。
 
-## 10.13.3.2 Step-by-step Example of a Finite-Field Calculation
+## 10.13.3.2 有限场计算的分步示例
 
-Put the sample `input` file (given above) for a DFT calculation in the
-new directory; the name of the input file should be `input`. Run the
-`input-Q-Chem-t-rex.sh` script. The following questions are asked:
+将上面给出的用于 DFT 计算的示例 `input` 文件放入一个新目录中；输入文件的名称应为 `input`。运行脚本 `input-Q-Chem-t-rex.sh`。程序会提出以下问题：
 
 > ```qchem
 > Components: x=1 y=2 z=3 all_beta=4 all_alpha=5
@@ -222,18 +160,11 @@ new directory; the name of the input file should be `input`. Run the
 > Number of files created         101
 > ```
 
-In this example, the answers correspond to FF calculations for
-$F(k)=2.0^{k}\times 0.0004$ and for a geometric progression ($k=0,1,2,3,4,5$)
-of external field amplitudes. The calculation is set up for all the
-components, with the input files `eth-001.inp`, `eth-002.inp`,
-`eth-003.inp`, …, generated, where the exact number of inputs
-generated depends on the chosen geometric progression.
+在本例中，这些回答对应于 $F(k)=2.0^{k}\times 0.0004$ 的 FF 计算，以及外场振幅的几何级数（$k=0,1,2,3,4,5$）。该计算针对所有分量进行设置，生成了输入文件 `eth-001.inp`、`eth-002.inp`、`eth-003.inp`、……，其中所生成输入文件的准确数量取决于所选的几何级数。
 
-After the individual FF calculations (*i.e.*, after executing **Q-Chem** jobs for all
-generated inputs), parse the outputs using the `parse-t-rex.sh` script.
-The energies are written in a file called `prelogfile`.
+在各 FF 计算完成之后（*即*对所有生成的输入执行 **Q-Chem** 作业之后），使用脚本 `parse-t-rex.sh` 解析输出。能量被写入一个名为 `prelogfile` 的文件。
 
-Run the `T-REX` program and answer the questions:
+运行 `T-REX` 程序并根据提示回答问题：
 
 > ```qchem
 > Components: x=1 y=2 z=3 all_beta=4
@@ -248,5 +179,4 @@ Run the `T-REX` program and answer the questions:
 > 2.0
 > ```
 
-The energies are ordered in a file called `logfile` and the results are
-printed in the `results` file.
+能量被排序写入一个名为 `logfile` 的文件中，计算结果则打印在 `results` 文件里。

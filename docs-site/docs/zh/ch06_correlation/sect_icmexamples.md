@@ -1,12 +1,12 @@
 ---
-title: "6.21.4 Example"
+title: "6.21.4 示例"
 ---
 
-## 6.21.4 Example
+## 6.21.4 示例
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-???+ example "Example 6.6.59: iFCI $n=2$ calculation for triplet ethylene. PP triplet is used as reference."
+???+ example "示例 6.6.59: 三重态乙烯的 iFCI $n=2$ 计算。使用 PP 三重态作为参考。"
     ```qchem
     $molecule
        0 1

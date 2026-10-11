@@ -1,134 +1,117 @@
 ---
-title: "2.2.2 Integration with IQmol"
+title: "2.2.2 与 IQmol 的集成"
 ---
 
-## 2.2.2 Integration with **IQmol**
+## 2.2.2 与 **IQmol** 的集成
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 2.2.2.1 Installation and Server Setup
+## 2.2.2.1 安装与服务器配置
 
-**IQmol** provides a fully integrated molecular builder and viewer for the
-**Q-Chem** package. It is available for the Windows, Linux, and Mac OS X
-platforms and instructions for downloading and installing the latest version
-can be found at `http://www.iqmol.org/downloads.html`.
+**IQmol** 为 **Q-Chem** 程序包提供了完全集成的分子构建器与查看器。
+它支持 Windows、Linux 和 Mac OS X 平台，下载与安装最新版本的说明可参阅
+`http://www.iqmol.org/downloads.html`。
 
-**IQmol** can be run as a stand-alone package which is able to open existing
-**Q-Chem** input/output files, but it can also be used as a fully functional
-front end which is able to submit and monitor **Q-Chem** jobs, and to analyze the
-resulting output. By default, **IQmol** submits **Q-Chem** jobs to a server that
-is owned by **Q-Chem**, Inc., which provides prospective users with the
-opportunity to run short **Q-Chem** demonstration jobs for free simply by
-downloading **IQmol**, without the need to install **Q-Chem**.
+**IQmol** 既可作为独立程序运行，用于打开已有的 **Q-Chem** 输入/输出文件，
+也可作为一个功能完备的前端使用，能够提交并监控 **Q-Chem** 作业，
+以及对生成的输出结果进行分析。默认情况下，**IQmol** 会将 **Q-Chem**
+作业提交到由 **Q-Chem** 公司拥有的服务器上，该服务器为潜在用户提供了
+免费运行简短 **Q-Chem** 演示作业的机会——只需下载 **IQmol** 即可，
+无需安装 **Q-Chem**。
 
-For customers who own **Q-Chem**, it is necessary to configure **IQmol** to submit
-jobs to an appropriate server. To do this, first ensure **Q-Chem** has been
-correctly installed on the target machine and can be run from the command line.
-Second, open **IQmol** and carry out the following steps:
+对于已拥有 **Q-Chem** 的客户，则需要配置 **IQmol**，使其将作业提交到
+相应的服务器。为此，首先要确保 **Q-Chem** 已在目标机器上正确安装，
+并能够从命令行运行。其次，打开 **IQmol** 并执行以下步骤：
 
 1. 1.
 
-Select the Calculation$\rightarrow$Edit Servers menu option. A dialog
-will appear with a list of configured servers (which will initially be
-empty).
+选择 Calculation$\rightarrow$Edit Servers 菜单选项。此时会出现一个
+对话框，其中列出已配置的服务器（初始时为空）。
 2. 2.
 
-Click the Add New Server button with the ‘+’ icon. This opens a dialog
-which allows the new server to be configured. The server is the machine
-which has your **Q-Chem** installation.
+点击带 ‘+’ 图标的 Add New Server 按钮。这会打开一个用于配置
+新服务器的对话框。此处所说的服务器即装有 **Q-Chem** 的机器。
 3. 3.
 
-Give the server a name (this is simply used to identify the current
-server configuration and does not have to match the actual machine name)
-and select if the machine is local (*i.e.* the same machine as **IQmol** is
-running on) or remote.
+为服务器命名（该名称仅用于标识当前的服务器配置，不必与实际
+机器名一致），并选择该机器是本地机器（*即*与 **IQmol** 运行在同一台
+机器上）还是远程机器。
 4. 4.
 
-If there is PBS software running on the server, select the PBS ‘Type’
-option, otherwise in most cases the Basic option should be sufficient.
-Please note that the server must be Linux based and cannot be a Windows
-server.
+如果服务器上运行有 PBS 软件，则选择 PBS 的 ‘Type’ 选项，否则
+在大多数情况下 Basic 选项即可满足需求。请注意，服务器必须基于
+Linux，不能是 Windows 服务器。
 5. 5.
 
-If required, the server can be further configured using the Configure
-button. Details on this can be found in the embedded **IQmol** help which
-can be accessed via the Help$\rightarrow$Show Help menu option.
+如有需要，可通过 Configure 按钮对服务器进行进一步配置。
+相关详情可参阅内置的 **IQmol** 帮助文档，可通过
+Help$\rightarrow$Show Help 菜单选项访问。
 6. 6.
 
-For non-PBS servers the number of concurrent **Q-Chem** jobs can be limited
-using a simple inbuilt queuing system. The maximum number of jobs is set
-by the Job Limit control. If the Job Limit is set to zero the queue is
-disabled and any number of jobs can be run concurrently. Please note
-that this limit applies to the current **IQmol** session and does not
-account for jobs submitted by other users or by other **IQmol** sessions.
+对于非 PBS 服务器，可通过一个简单的内置排队系统来限制并发
+**Q-Chem** 作业的数量。作业的最大数目由 Job Limit 控件设置。
+若将 Job Limit 设为零，则禁用该队列，可同时运行任意数量的作业。
+请注意，该限制仅作用于当前 **IQmol** 会话，不会计入其他用户或
+其他 **IQmol** 会话提交的作业。
 7. 7.
 
-The `$QC` environment variable should be entered in the given box.
+应在给定的输入框中填入 `$QC` 环境变量。
 8. 8.
 
-For remote servers the address of the machine and your user name are also
-required. **IQmol** uses SSH2 to connect to remote machines and the most
-convenient way to set this up is by using authorized keys
-(`)`
-for details on how these can be set up). **IQmol** can then connect via
-the SSH Agent and will not have to prompt you for your password. If you
-are not able to use an SSH Agent, several other authentication methods
-are offered:
+对于远程服务器，还需要提供机器地址与用户名。**IQmol** 使用
+SSH2 连接远程机器，最方便的设置方式是使用授权密钥
+（`)`
+以了解如何配置这些密钥的详情）。之后 **IQmol** 即可通过
+SSH Agent 进行连接，而无需提示您输入密码。如果您无法使用
+SSH Agent，则提供了其他几种认证方式：
 
 - •
 
-**Public Key** This requires you to enter your SSH passphrase (if
-any) to unlock your private key file. The passphrase is stored in
-memory, not disk, so you will need to re-enter this each time
-**IQmol** is run.
+**Public Key（公钥）** 这种方式要求您输入 SSH 口令短语（如有），
+以解锁私钥文件。该口令短语保存在内存中而非磁盘上，因此每次
+运行 **IQmol** 时都需要重新输入。
 - •
 
-**Password Prompt** This requires each server password to be
-entered each time **IQmol** is run. Once the connection has been
-established the memory used to hold the password is overwritten to
-reduce the risk of recovery from a core dump.
+**Password Prompt（密码提示）** 这种方式要求每次运行 **IQmol** 时
+输入各服务器的密码。一旦连接建立，用于保存密码的内存即被覆写，
+以降低从核心转储（core dump）中恢复密码的风险。
 
-Further configuration of SSH options should not be required unless your
-public/private keys are stored in a non-standard location.
+除非您的公钥/私钥存储在非标准位置，否则一般不需要进一步配置
+SSH 选项。
 
-It is recommended that you test the server configuration to ensure everything
-is working before attempting to submit a job. Multiple servers can be
-configured if you have access to more than one copy of **Q-Chem** or have
-different account configurations. In this case the default server is the first
-on the list and if you want to change this you should use the arrow buttons in
-the Server List dialog. The list of configured servers will be displayed when
-submitting **Q-Chem** jobs and you will be able to select the desired server for
-each job.
+建议您先测试服务器配置，确认一切正常后再尝试提交作业。
+如果您可以访问多份 **Q-Chem** 副本或拥有不同的账户配置，
+则可以配置多个服务器。在这种情况下，默认服务器为列表中的第一项；
+若想更改默认服务器，应使用 Server List 对话框中的箭头按钮。
+已配置服务器的列表会在提交 **Q-Chem** 作业时显示，您可以为每个
+作业选择所需的服务器。
 
-Please note that while **Q-Chem** is file-based, as of version 2.1 **IQmol** uses
-a directory to keep the various files from a calculation. More details can be
-found in the **IQmol** `user manual`.
+请注意，尽管 **Q-Chem** 是基于文件的程序，但从 2.1 版开始，
+**IQmol** 使用一个目录来保存一次计算产生的各种文件。更多细节
+可参阅 **IQmol** 的 `user manual`（用户手册）。
 
-## 2.2.2.2 Reading **Q-Chem** Outputs
+## 2.2.2.2 读取 **Q-Chem** 输出
 
-In addition to having IQmol communicate with **Q-Chem**, it can work standalone
-by reading output files directly. A number of file formats are supported:
+除了让 IQmol 与 **Q-Chem** 进行通信之外，它还可以直接读取输出文件，
+以独立方式工作。IQmol 支持多种文件格式：
 
 - •
 
-**Q-Chem** outputs produced by running the *qchem* shell script
-(Section [2.2.1](ssect_general-usage.md))
+运行 *qchem* shell 脚本所产生的 **Q-Chem** 输出文件
+（见第 [2.2.1](ssect_general-usage.md) 节）
 - •
 
-Formatted checkpoint (`.fchk`) files: A formatted checkpoint file
-can be requested by setting GUI = 2 in the *$rem* section of the
-input, or equivalently by setting IQMOL_FCHK = TRUE. The
-checkpoint file name is determined by the `$GUIFILE` environment
-variable which by default is set to `${input}.fchk`.
+格式化检查点（`.fchk`）文件：可通过在输入的 *$rem* 段中设置
+GUI = 2 来请求生成格式化检查点文件，或等价地设置
+IQMOL_FCHK = TRUE。检查点文件的名称由 `$GUIFILE` 环境变量
+决定，其默认值设为 `${input}.fchk`。
 - •
 
-*qarchive* files: We have created a new file format designed to
-overcome limitations of using text-based formats with post-processing and
-visualization tools. The *qarchive* format is HDF5-based, supports
-more of **Q-Chem**’s novel feature set than fchk files, and is tightly
-integrated with **IQmol**. In order to create this file in your working
-directory, pass the *-archive* flag to the *qchem* shell script and
-add the following to the input:
+*qarchive* 文件：我们设计了一种新的文件格式，用以克服基于文本的
+格式在后处理与可视化工具中的局限性。*qarchive* 格式基于 HDF5，
+相比 fchk 文件能支持更多 **Q-Chem** 的新颖功能，并与 **IQmol**
+紧密集成。若要在您的工作目录中创建该文件，请在运行 *qchem*
+shell 脚本时传递 *-archive* 标志，并在输入文件中添加如下内容：
 
 > ```qchem
 > $archive
@@ -136,6 +119,6 @@ add the following to the input:
 >     $end
 > ```
 
-The archive file is also always present in each job’s scratch directory when the *-save*
-flag is used. It appears under the file name
+当使用 *-save* 标志时，归档文件（archive file）也总是存在于每个
+作业的暂存（scratch）目录中，其文件名为
 `$QCSCRATCH/savename/qarchive.h5`

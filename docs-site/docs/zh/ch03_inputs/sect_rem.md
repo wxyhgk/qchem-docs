@@ -1,9 +1,9 @@
 ---
-title: "3.4 Job Specification: The $rem Input Section"
+title: "3.4 作业说明：*$rem* 输入段"
 ---
 
-# 3.4 Job Specification: The *$rem* Input Section
+# 3.4 作业说明：*$rem* 输入段
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [3.4.1 Overview](Ch3.S4.SS1.md)
+- [3.4.1 概述](Ch3.S4.SS1.md)

@@ -1,11 +1,11 @@
 ---
-title: "Chapter 2 Installation, Customization, and Execution"
+title: "第 2 章 安装、定制与执行"
 ---
 
-# Chapter 2 Installation, Customization, and Execution
+# 第 2 章 安装、定制与执行
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [2.1 Installing **Q-Chem**](Ch2.S1.md)
+- [2.1 安装 **Q-Chem**](Ch2.S1.md)
 
-- [2.2 Running **Q-Chem**](sect_running.md)
+- [2.2 运行 **Q-Chem**](sect_running.md)

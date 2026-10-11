@@ -1,13 +1,12 @@
 ---
-title: "11.7.6 Examples"
+title: "11.7.6 示例"
 ---
 
-## 11.7.6 Examples
+## 11.7.6 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 11.48: Input for a FDE-HF/cc-pVDZ calculation with monomer expansion of CO
-embedded in one water molecule, using LDA functionals for the embedding potential."
+???+ example "示例 11.48：嵌入在一个水分子中的 CO 的 FDE-HF/cc-pVDZ 计算输入，采用单体（monomer）展开方式，并使用 LDA 泛函构造嵌入势。"
     ```qchem
     $molecule
        0 1
@@ -40,7 +39,7 @@ embedded in one water molecule, using LDA functionals for the embedding potentia
     $end
     ```
 
-???+ example "Example 11.49: Input for a superposition of molecular densities with HF/cc-pVDZ of 5 water molecules."
+???+ example "示例 11.49：5 个水分子在 HF/cc-pVDZ 下分子密度叠加（superposition）计算的输入。"
     ```qchem
     $rem
        METHOD        = HF
@@ -89,9 +88,7 @@ embedded in one water molecule, using LDA functionals for the embedding potentia
     $end
     ```
 
-???+ example "Example 11.50: Input for a FDE-ADC(2)/cc-pVDZ calculation in supermolecular expansion of CO
-embedded in one water molecule. For the embedding potential, the selected functionals are:
-Thomas-Fermi kinetic energy, and PBE for the exchange-correlation term."
+???+ example "示例 11.50：嵌入在一个水分子中的 CO 的 FDE-ADC(2)/cc-pVDZ 计算输入，采用超分子（supermolecular）展开方式。嵌入势所选用的泛函为：Thomas-Fermi 动能泛函，以及用于交换-关联项的 PBE 泛函。"
     ```qchem
     $molecule
        0 1
@@ -126,7 +123,7 @@ Thomas-Fermi kinetic energy, and PBE for the exchange-correlation term."
     $end
     ```
 
-???+ example "Example 11.51: Input for a Externally generated potential file to be read in any DFT calculation."
+???+ example "示例 11.51：在任意密度泛函理论（Density Functional Theory, DFT）计算中读取外部生成的势文件的输入。"
     ```qchem
     $comment
     First: Generates the DFTGRID for the the projection of the potential indicating

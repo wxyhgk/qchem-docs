@@ -1,12 +1,12 @@
 ---
-title: "4.8.3 Examples"
+title: "4.8.3 示例"
 ---
 
-## 4.8.3 Examples
+## 4.8.3 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 4.27: Input for a HFPC single-point calculation."
+???+ example "示例 4.27：HFPC 单点计算的输入。"
     ```qchem
     $molecule
        0 1
@@ -24,7 +24,7 @@ title: "4.8.3 Examples"
     $end
     ```
 
-???+ example "Example 4.28: Input for a DFPC single-point calculation."
+???+ example "示例 4.28：DFPC 单点计算的输入。"
     ```qchem
     $molecule
        0 1
@@ -44,3 +44,5 @@ title: "4.8.3 Examples"
        GEN_SCFMAN       false
     $end
     ```
+
+（已同时保存至 `4.8.3-examples.zh.md`）

@@ -1,108 +1,44 @@
 ---
-title: "6.23.1 Introduction"
+title: "6.23.1 引言"
 ---
 
-## 6.23.1 Introduction
+## 6.23.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The methods described in this section involve the direct variational
-optimization of the two-electron reduced-density matrix (2-RDM, ${}^{2}\mathbf{D}$),
-subject to necessary ensemble $N$-representability
-conditions.[[431]](../bib_references/bib.md#bib441)
+本节所介绍的方法涉及对二电子约化密度矩阵（two-electron reduced-density matrix，2-RDM，${}^{2}\mathbf{D}$）的直接变分优化，并施加必要的系综 $N$-可表示性（ensemble $N$-representability）条件。[[431]](../bib_references/bib.md#bib441)
 
-Such conditions place restrictions on the 2-RDM in order to ensure that it
-is derivable from an ensemble of $N$-electron density matrices. In the
-limit that the $N$-representability of the 2-RDM is exactly enforced, the
-variational 2-RDM (v2RDM) approach is equivalent to full configuration
-interaction (CI). Such computations are, in general, computationally
-infeasible, so the v2RDM optimization is typically carried out under a
-subset of two- or three-particle conditions. When only partially
-enforcing $N$-representability, the v2RDM approach yields a lower bound to
-the full CI energy.
+此类条件对 2-RDM 施加限制，以确保其可由 $N$ 电子密度矩阵的系综导出。若对 2-RDM 的 $N$-可表示性加以精确强制，则变分 2-RDM（variational 2-RDM，v2RDM）方法与全组态相互作用（full configuration interaction，全 CI）等价。这类计算通常在计算上不可行，因此 v2RDM 优化一般只在若干二粒子或三粒子条件的子集下进行。当仅部分强制 $N$-可表示性时，v2RDM 方法给出全 CI 能量的下界。
 
-In **Q-Chem**, all v2RDM optimizations are carried out under the following
-conditions:
+在 **Q-Chem** 中，所有 v2RDM 优化均在以下条件下进行：
 
 - •
 
-the 2-RDM is positive semidefinite
+2-RDM 是半正定的
 - •
 
-the one-electron reduced-density matrix (1-RDM) is positive semidefinite
+单电子约化密度矩阵（one-electron reduced-density matrix，1-RDM）是半正定的
 - •
 
-the trace of the 2-RDM is equal to the number of pairs of electrons, $N(N-1)$
+2-RDM 的迹等于电子对数 $N(N-1)$
 - •
 
-each spin block of the 2-RDM properly contracts to the appropriate spin block of the
-1-RDM
+2-RDM 的每个自旋块能正确地收缩到 1-RDM 相应的自旋块
 - •
 
-the expectation value of $\hat{M}_{S}$ is
-$\frac{1}{2}(N_{\alpha}-N_{\beta})$ (the maximal spin projection)
+$\hat{M}_{S}$ 的期望值为 $\frac{1}{2}(N_{\alpha}-N_{\beta})$（最大自旋投影）
 
-Additionally, an optional spin constraint can be placed on the 2-RDM such
-that $\langle\hat{S}^{2}\rangle=S(S+1)$ (in units of $\hbar^{2}$), where the $S$ is the spin quantum
-number. Note that this constraint on the expectation value of $\hat{S}^{2}$
-does not strictly guarantee that the 2-RDM corresponds to an eigenfunction
-of $\hat{S}^{2}$. Without additional constraints, a v2RDM optimization
-would yield poor-quality 2-RDMs with energies far below those of full CI.
-Reasonable results require, at a minimum, that one enforce the positivity
-of additional pair-probability density matrices, including the two-hole
-reduced-density matrix (${}^{2}\mathbf{Q}$) and the particle-hole reduced-density
-matrix (${}^{2}\mathbf{G}$). The positivity of ${}^{2}\mathbf{D}$, ${}^{2}\mathbf{Q}$, and
-${}^{2}\mathbf{G}$ constitute the DQG constraints of Garrod and
-Percus.[[430]](../bib_references/bib.md#bib442)
- For many systems, the DQG constraints yield a
-reasonable description of the electronic structure. However, if high
-accuracy is desired, it is sometimes necessary to consider constraints on
-higher-order reduced-density matrices (*e.g.* the three-electron
-reduced-density matrix [3-RDM]). In **Q-Chem**, v2RDM optimizations can be
-performed under the T1 and T2 partial three-particle
-conditions,[[369]](../bib_references/bib.md#bib372)
- which do not explicitly depend
-upon the 3-RDM; or the full 3-positivity conditions, which include
-the three-particle reduced-density matrix (${}^{3}\mathbf{D}$), the three-hole
-reduced-density matrix (${}^{3}\mathbf{Q}$), the two-particle-one-hole
-reduced-density matrix (${}^{3}\mathbf{E}$), and the one-particle-two-hole
-reduced-density matrix (${}^{3}\mathbf{F}$). The full 3-positivity conditions
-guarantee partial conditions automatically.[[929]](../bib_references/bib.md#bib967)
+此外，可以对 2-RDM 施加可选的自旋约束，使得 $\langle\hat{S}^{2}\rangle=S(S+1)$（以 $\hbar^{2}$ 为单位），其中 $S$ 为自旋量子数。请注意，对 $\hat{S}^{2}$ 期望值的这一约束并不能严格保证 2-RDM 对应于 $\hat{S}^{2}$ 的本征函数。若没有额外的约束，v2RDM 优化会得到质量低劣的 2-RDM，其能量远低于全 CI 的结果。要获得合理的结果，至少需要强制额外的对概率密度矩阵（pair-probability density matrices）的正性，包括两空穴约化密度矩阵（two-hole reduced-density matrix，${}^{2}\mathbf{Q}$）和粒子-空穴约化密度矩阵（particle-hole reduced-density matrix，${}^{2}\mathbf{G}$）。${}^{2}\mathbf{D}$、${}^{2}\mathbf{Q}$ 与 ${}^{2}\mathbf{G}$ 的正性构成了 Garrod 与 Percus 提出的 DQG 约束。[[430]](../bib_references/bib.md#bib442)
+ 对许多体系而言，DQG 约束能够给出对电子结构的合理描述。然而，若追求高精度，有时需要考虑对更高阶约化密度矩阵的约束（*例如* 三电子约化密度矩阵 [3-RDM]）。在 **Q-Chem** 中，v2RDM 优化可以在 T1 与 T2 部分三粒子条件（partial three-particle conditions）[[369]](../bib_references/bib.md#bib372)
+ 下进行，这些条件并不显式依赖于 3-RDM；也可以在全 3-正性（full 3-positivity）条件下进行，后者包括三粒子约化密度矩阵（${}^{3}\mathbf{D}$）、三空穴约化密度矩阵（${}^{3}\mathbf{Q}$）、二粒子-一空穴约化密度矩阵（${}^{3}\mathbf{E}$）以及一粒子-二空穴约化密度矩阵（${}^{3}\mathbf{F}$）。全 3-正性条件可自动保证各部分条件成立。[[929]](../bib_references/bib.md#bib967)
 
-The positivity conditions imposed in v2RDM computations are controlled through the
-*$rem* variable RDM_POSITIVITY.
+v2RDM 计算中所施加的正性条件通过 *$rem* 变量 RDM_POSITIVITY 控制。
 
-The main utility of the v2RDM approach is in the context of
-active-space-based descriptions of strong or nondynamical correlation.
-The most common active-space-based approach for strong correlation is the
-compete active space self-consistent field (CASSCF) method. By performing
-a v2RDM computation within an active space and coupling v2RDM to an
-orbital optimization procedure, one can achieve a v2RDM-driven CASSCF
-procedure[[441]](../bib_references/bib.md#bib452)
- that
-provides a lower bound the conventional CI-based CASSCF energy. Because
-the v2RDM-CASSCF method scales polynomially with respect to the number of
-active orbitals, v2RDM-CASSCF can handle much larger active spaces (*e.g.*,
-50 electrons in 50 orbitals) compared to CI-CASSCF (*e.g.*, 18 electrons in 18 orbitals).
+v2RDM 方法的主要用途在于基于活性空间（active space）的强关联（非动力学关联）描述。描述强关联最常用的活性空间方法是完备活性空间自洽场（complete active space self-consistent field，CASSCF）方法。通过在活性空间内进行 v2RDM 计算，并将 v2RDM 与轨道优化程序相耦合，可以得到一种 v2RDM 驱动的 CASSCF 程序[[441]](../bib_references/bib.md#bib452)
+，它给出常规基于 CI 的 CASSCF 能量的下界。由于 v2RDM-CASSCF 方法相对于活性轨道数目呈多项式标度，与 CI-CASSCF（*例如*，18 个电子分布在 18 个轨道中）相比，v2RDM-CASSCF 能够处理大得多的活性空间（*例如*，50 个电子分布在 50 个轨道中）。
 
-Note that v2RDM-CASSCF only describes electron correlations among the
-active orbitas. A computationally inexpensive estimate of the remaining
-correlation effects can be achieved with the multiconfiguration
-pair-density functional theory (MC-PDFT)
-approach,[[886]](../bib_references/bib.md#bib920)
+请注意，v2RDM-CASSCF 仅描述活性轨道之间的电子关联。对其余关联效应，可以通过多组态对密度泛函理论（multiconfiguration pair-density functional theory，MC-PDFT）方法[[886]](../bib_references/bib.md#bib920)
+获得计算代价低廉的估计，该方法将能量表示为于顶对密度（on-top pair density，OTPD）的泛函。在 **Q-Chem** 的 MC-PDFT 实现中，OTPD 由变分优化后的 2-RDM 导出，如文献 [[966]](../bib_references/bib.md#bib1007)
+ 所述。
 
-which evaluates the energy
-as a functional of the on-top pair density (OTPD). In the MC-PDFT
-implementation in **Q-Chem**, the OTPD is derived from a variationally optimized
-2-RDM as described in Ref. [[966]](../bib_references/bib.md#bib1007)
-.
-
-The current v2RDM, v2RDM-CASSCF, and MC-PDFT implementations must make use of the
-density fitting (DF) approximation to the two-electron integrals. The use
-of DF integrals is particularly advantageous for v2RDM-CASSCF computations
-with large active spaces because of the increased efficiency in the
-orbital optimization/integral transformation step. The v2RDM computation
-will fail without the *$rem* keyword AUX_BASIS.
-Analytic gradients are not available when frozen molecular orbitals are
-requested. Specification of the active space is demonstrated in the examples
-below. When the formatted checkpoint file is requested, natural orbitals are saved in it.
+目前的 v2RDM、v2RDM-CASSCF 与 MC-PDFT 实现必须对二电子积分使用密度拟合（density fitting，DF）近似。对于具有大活性空间的 v2RDM-CASSCF 计算，由于轨道优化/积分变换步骤的效率提升，使用 DF 积分尤其有利。若未设置 *$rem* 关键字 AUX_BASIS，v2RDM 计算将会失败。当请求冻结分子轨道（frozen molecular orbitals）时，无法使用解析梯度。活性空间的指定方式在下方的示例中演示。当请求格式化检查点文件（formatted checkpoint file）时，自然轨道会保存在其中。

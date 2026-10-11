@@ -1,88 +1,67 @@
 ---
-title: "4.5.4 Damping"
+title: "4.5.4 阻尼"
 ---
 
-## 4.5.4 Damping
+## 4.5.4 阻尼（Damping）
 
 (July 4, 2026)
 
 damping
 
-Damping may be the oldest SCF acceleration scheme which was proposed by Hartree
-in the early days of applying quantum mechanics to study atomic
-structure.
+阻尼可能是最古老的 SCF 加速方案，最初由 Hartree 在用量子力学研究原子结构的早期阶段提出。
 
- In this simple scheme, the density matrix (or
-Fock matrix) of the current SCF iteration is linearly mixed with the density
-matrix of the previous iteration to generate a damped density matrix as the
-input for the next SCF iteration:
+在这一简单的方案中，当前 SCF 迭代的密度矩阵（或 Fock 矩阵）与上一次迭代的密度矩阵进行线性混合，生成一个阻尼密度矩阵，作为下一次 SCF 迭代的输入：
 
 <a id="Ch4.E36"></a>
 $$
 P_{n}^{\text{damped}}=(1-\alpha)P_{n}+\alpha P_{n-1}, \tag{4.36}
 $$
 
-where $\alpha$ is the mixing factor with $0\leqslant\alpha\leqslant 1$.
-During the SCF process, if density matrix changes drastically between
-consecutive iterations (usually this happens in the early stage of the SCF
-process), the total energy and occupied molecular orbitals are also strongly
-fluctuating, which may lead to slow SCF convergence or even divergence. In this
-scenario mixing the density (or Fock) matrix with its counterpart in the last
-iteration could reduce (damp) the energy and molecular orbital fluctuation and
-stabilize the SCF process. On the other hand, if the SCF process converges
-smoothly and quickly, apply damping would only slow down its convergence.
-Therefore damping is seldom applied solely in the full SCF process and often
-invoked only in the early stage of the SCF process and turned off later.
+其中 $\alpha$ 是混合因子，满足 $0\leqslant\alpha\leqslant 1$。在 SCF 计算过程中，如果密度矩阵在相邻迭代之间发生剧烈变化（通常发生在 SCF 过程的早期阶段），总能量和占据分子轨道也会强烈波动，这可能导致 SCF 收敛缓慢甚至发散。在这种情况下，将密度（或 Fock）矩阵与上一次迭代中的对应矩阵进行混合，可以减弱（阻尼）能量和分子轨道的波动，从而稳定 SCF 过程。另一方面，如果 SCF 过程平滑且快速地收敛，施加阻尼只会减慢其收敛速度。因此，阻尼很少在整个 SCF 过程中单独使用，通常只在 SCF 过程的早期阶段启用，之后再关闭。
 
-Density matrix damping is offered as an option (the DAMP algorithm) to
-handle difficult SCF cases in **Q-Chem** (RHF and UHF only). Damping is often
-combined with DIIS and GDM (the DP_DIIS and DP_GDM
-algorithms) in practical calculations. In order to invoke damping, the *$rem*
-variable SCF_ALGORITHM should be set to DAMP,
-DP_DIIS or DP_GDM. The other relevant *$rem* variables are
-as the following:
+在 **Q-Chem** 中，密度矩阵阻尼作为一种处理困难 SCF 案例的选项（DAMP 算法）提供（仅限 RHF 和 UHF）。在实际计算中，阻尼常常与 DIIS 和 GDM 结合使用（DP_DIIS 和 DP_GDM 算法）。要启用阻尼，需将 *$rem* 变量 SCF_ALGORITHM 设置为 DAMP、DP_DIIS 或 DP_GDM。其他相关的 *$rem* 变量如下所示：
 
 NDAMP
 
 ### `NDAMP`
 
-> **Determine the mixing coefficient. $\alpha$ = /100.**
+> **确定混合系数。$\alpha$ = /100。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `75`
-> * **Options**:
->     * User-defined. Integers between 0 and 100.
-> * **Recommendation**: Increase if strong fluctuations happen during the SCF process.
+> * **类型**: `INTEGER`
+> * **默认值**: `75`
+> * **选项**:
+>     * 用户自定义。0 到 100 之间的整数。
+> * **建议**: 如果 SCF 过程中出现强烈波动，则增大该值。
 
 MAX_DP_CYCLES
 
 ### `MAX_DP_CYCLES`
 
-> **The maximum number of SCF iterations with damping when SCF_ALGORITHM = DP_DIIS and DP_GDM . See also THRESH_DP_SWITCH .**
+> **当 SCF_ALGORITHM = DP_DIIS 和 DP_GDM 时，使用阻尼的 SCF 迭代的最大次数。另见 THRESH_DP_SWITCH 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * 1
->     * Only a single SCF step with damping, and no damping for the remaining SCF steps.
+>     * 仅对单个 SCF 步施加阻尼，其余 SCF 步不使用阻尼。
 >     * $n$
 >     * $n$
->     * SCF iterations with damping before turning damping off.
-> * **Recommendation**: Increase this number if strong fluctuation continues after damping is turned off.
+>     * 在关闭阻尼之前，使用阻尼的 SCF 迭代次数。
+> * **建议**: 如果在关闭阻尼后仍然持续出现强烈波动，则增大该数值。
 
 THRESH_DP_SWITCH
 
 ### `THRESH_DP_SWITCH`
 
-> **The threshold for turning off damping in SCF iterations is $10^{-\mbox{{\small THRESH\_DP\_SWITCH}}}$ when SCF_ALGORITHM is set to DP_DIIS or DP_GDM . See also MAX_DP_CYCLES .**
+> **当 SCF_ALGORITHM 设置为 DP_DIIS 或 DP_GDM 时，关闭阻尼的 SCF 迭代阈值是 $10^{-\mbox{{\small THRESH\_DP\_SWITCH}}}$。另见 MAX_DP_CYCLES 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
->     * User-defined.
-> * **Recommendation**: None
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
+>     * 用户自定义。
+> * **建议**: 无
 
-???+ example "Example 4.8: Input for a UKS calculation of water cation using DIIS after damping in the early stage of the SCF process."
+???+ example "示例 4.8：水阳离子的 UKS 计算输入，在 SCF 过程早期阶段使用阻尼，之后使用 DIIS。"
     ```qchem
     $molecule
       1 2

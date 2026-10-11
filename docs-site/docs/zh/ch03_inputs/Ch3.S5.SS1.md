@@ -1,60 +1,34 @@
 ---
-title: "3.5.1 Overview"
+title: "3.5.1 概述"
 ---
 
-## 3.5.1 Overview
+## 3.5.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-It is sometimes useful to place a sequence of jobs into a single **Q-Chem** input
-file, where the individual inputs should be separated from one another by a
-line consisting of the string `@@@`. The output from these jobs is
-then appended sequentially to a single output file. This is useful to (a) use
-information obtained in a prior job (*i.e.*, an optimized geometry) in a
-subsequent job; or (b) keep related calculations together in a single output
-file.
+有时将一系列作业（job）放入单个 **Q-Chem** 输入文件中会很有用，各个独立输入之间用仅包含字符串 `@@@` 的一行来分隔。这些作业的输出随后会按顺序追加到单个输出文件中。这样做的好处是（a）在后续作业中使用先前作业获得的信息（*即*，优化后的几何结构）；或（b）将相关的计算保留在同一个输出文件中。
 
-Some limitations should be kept in mind:
+应当注意以下几点限制：
 
 - •
 
-The first job will overwrite any existing output file of the same name in
-the working directory. Restarting the job will also overwrite any
-existing file.
+第一个作业会覆盖工作目录中同名的任何已有输出文件。重启（Restarting）该作业同样会覆盖任何已有文件。
 - •
 
-**Q-Chem** reads all the jobs from the input file immediately and stores
-them. Therefore no changes can be made to the details of subsequent jobs
-following command-line initiation of **Q-Chem**, even if these subsequent jobs have not yet run.
+**Q-Chem** 会在启动时立即从输入文件中读取所有作业并存储起来。因此，在通过命令行启动 **Q-Chem** 之后，无法再对后续作业的细节做任何修改，即使这些后续作业尚未运行。
 - •
 
-If any single job fails, **Q-Chem** proceeds to the next job in the batch
-file, for good or ill.
+如果其中某个作业失败，**Q-Chem** 无论后果如何都会继续执行批处理文件（batch file）中的下一个作业。
 - •
 
-No check is made to ensure that dependencies are satisfied, or that
-information is consistent. For example, in a geometry optimization
-followed by a frequency calculation, no attempt is made by the latter to
-check that the optimization was successful. When reading MO coefficients
-from a previous job, it is the user’s responsibility to ensure that the
-basis set is the same in both calculations, as this is assumed by the
-program.
+程序不会检查依赖关系是否满足，也不会检查信息是否一致。例如，在几何优化之后进行频率计算时，后者不会尝试检查优化是否成功。当从先前作业读取分子轨道（MO）系数时，确保两次计算使用相同基组（Basis Set）是用户的责任，因为程序默认它们是一致的。
 - •
 
-Scratch files are saved from one job to the next in a batch job, so that
-information from previous jobs can be shared with subsequent ones, but
-are deleted upon completion of the entire batch job unless the
-*–save* command-line argument is supplied, as discussed in
-Chapter [2](../ch02_install/chap_install.md).
+在批处理作业中，暂存文件（Scratch File）会从一个作业保留到下一个作业，以便先前作业的信息能与后续作业共享；但在整个批处理作业完成后这些文件会被删除，除非提供了 *–save* 命令行参数，如第 [2 章](../ch02_install/chap_install.md) 所述。
 
-The following example requests a batch job consisting of ($i$) a HF/6-31G*
-geometry optimization; followed by ($ii$) a frequency calculation at the same
-level of theory that uses the previously-optimized geometry (and also reads in
-the final MOs from the optimization job); and finally ($iii$) a single-point
-calculation at the same geometry but at a higher level of theory,
-MP2/6-311G(d,p).
+下面的示例请求一个批处理作业，它由（$i$）HF/6-31G* 水平的几何优化；随后是（$ii$）在同一理论水平下、使用先前优化几何结构（并读入优化作业最终得到的分子轨道）的频率计算；最后是（$iii$）在相同几何结构下、但在更高理论水平 MP2/6-311G(d,p) 上的单点计算。
 
-???+ example "Example 3.11: Example of using information from previous jobs in a single input file."
+???+ example "示例 3.11：在单个输入文件中使用先前作业信息的示例。"
     ```qchem
     $comment
        Optimize H-H at HF/6-31G*

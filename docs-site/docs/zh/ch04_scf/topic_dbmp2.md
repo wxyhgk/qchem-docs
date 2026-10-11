@@ -1,25 +1,12 @@
 ---
-title: "4.7.2 Dual-Basis MP2"
+title: "4.7.2 双基组 MP2"
 ---
 
-## 4.7.2 Dual-Basis MP2
+## 4.7.2 双基组 MP2
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The dual-basis approximation can also be used for the reference energy of a
-correlated second-order Møller-Plesset (MP2)
-calculation.[[1300]](../bib_references/bib.md#bib1355)
- When activated, the dual-basis HF
-energy is first calculated as described above; subsequently, the MO
-coefficients and orbital energies are used to calculate the correlation energy
-in the large basis. This technique is particularly effective for RI-MP2
-calculations (see Section [6.6](../ch06_correlation/topic_rimp2.md)), in which the cost of the
-underlying SCF calculation often dominates.
+双基组近似（dual-basis approximation）也可用于关联微扰二阶（second-order Møller-Plesset, MP2）计算的参考能[[1300]](../bib_references/bib.md#bib1355)。
+ 启用该近似后，首先按照上文所述计算双基组 HF 能量；随后利用分子轨道（MO）系数和轨道能量，在大基组下计算关联能。该技术对于 RI-MP2 计算尤为有效（见第 [6.6](../ch06_correlation/topic_rimp2.md) 节），在这类计算中，底层自洽场（SCF）计算的开销往往占主导地位。
 
-Furthermore, efficient analytic gradients
-of the DB-RI-MP2 energy have been developed[[332]](../bib_references/bib.md#bib335)
- and added to **Q-Chem**.
-These gradients allow for the optimization of molecular structures with RI-MP2 near the
-basis set limit. Typical computational savings are on the order of 50% (aug-cc-pVDZ) to 71% (aug-cc-pVTZ).
-Resulting dual-basis errors are only 0.001 Å in molecular structures and are, again,
-significantly less than use of a smaller basis set alone.
+此外，DB-RI-MP2 的解析梯度（analytic gradients）计算也很高效。

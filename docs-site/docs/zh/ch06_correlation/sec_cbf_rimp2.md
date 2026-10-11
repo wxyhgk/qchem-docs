@@ -1,40 +1,22 @@
 ---
-title: "6.6.10 RI-MP2 Method for Complex Basis Functions"
+title: "6.6.10 复数基函数的 RI-MP2 方法"
 ---
 
-## 6.6.10 RI-MP2 Method for Complex Basis Functions
+## 6.6.10 复数基函数的 RI-MP2 方法
 
 (July 4, 2026)
 
-Based on the general implementation of complex basis functions in libqints by
-White, Head-Gordon, and McCurdy,[[1457]](../bib_references/bib.md#bib1525)
+基于 White、Head-Gordon 和 McCurdy 在 libqints 中对复数基函数（complex basis functions）的通用实现[[1457]](../bib_references/bib.md#bib1525)
 
-(see Section [4.9.5](../ch04_scf/sec_cbfscf.md)) an RI-MP2 method for
-complex resonance energies has been implemented.[[1397]](../bib_references/bib.md#bib592)
+（见第 [4.9.5](../ch04_scf/sec_cbfscf.md) 节），现已实现一种用于复数共振能的 RI-MP2 方法。[[1397]](../bib_references/bib.md#bib592)
 
-This method is currently limited to closed-shell cases. The RI approximation
-can be applied to the complex MP2 energy as well as to the Coulomb
-and exchange parts of the complex HF energy. The use of the RI approximation is
-particularly advantageous for electronic resonances since their treatment using
-complex-scaled methods requires large bases with many diffuse functions.
-In many cases, RI reduces computation times by a factor of 10 or more.
-Also, there is no need to include complex-scaled functions in the auxiliary basis set;
-standard auxiliary bases provide excellent results.[[1398]](../bib_references/bib.md#bib593)
+该方法目前仅适用于闭壳层（closed-shell）体系。RI 近似既可以应用于复数 MP2 能量，也可以应用于复数 HF 能量的库仑（Coulomb）部分与交换（exchange）部分。对于电子共振而言，使用 RI 近似尤其具有优势，因为采用复标度（complex-scaled）方法处理这类问题需要使用包含大量弥散函数的大基组。在许多情况下，RI 可将计算时间缩短 10 倍甚至更多。此外，辅助基组（auxiliary basis set）中无需包含复标度函数，使用标准的辅助基组即可获得极好的结果。[[1398]](../bib_references/bib.md#bib593)
 
-The full basis set is supplied through the keyword COMPLEX_BASIS,
-while BASIS specifies the unscaled part thereof. This process is described in Section [8.7](../ch08_basis/sect_zbas.md). In complete analogy,
-the auxiliary basis set is specified using the keywords COMPLEX_AUX_BASIS
-and AUX_BASIS. The keyword COMPLEX_RI_JK
-controls whether the RI approximation is invoked only for the MP2 part or for the
-HF reference as well.
+完整基组通过关键字 COMPLEX_BASIS 指定，而 BASIS 指定其中未标度的部分。这一流程在第 [8.7](../ch08_basis/sect_zbas.md) 节中有详细描述。与之完全类似地，辅助基组通过关键字 COMPLEX_AUX_BASIS 和 AUX_BASIS 指定。关键字 COMPLEX_RI_JK 用于控制 RI 近似是仅应用于 MP2 部分，还是同时应用于 HF 参考。
 
-See Sections [4.9.5](../ch04_scf/sec_cbfscf.md) and [7.9.10](../ch07_excited/sub_cc_cs_cap.md) for more information about
-electronic resonances, functionalities offered by **Q-Chem** in this context,
-and the corresponding keywords.
+关于电子共振、**Q-Chem** 在此方面提供的功能以及相关关键字的更多信息，请参见第 [4.9.5](../ch04_scf/sec_cbfscf.md) 节和第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节。
 
-???+ example "Example 6.20: Q-Chem input for an RI-MP2 calculation of the complex resonance energy (=
-Stark-shifted energy and tunnel ionization rate) of N ${}_{2}$ in a static electric
-field of a strength of 0.1 a.u."
+???+ example "示例 6.20: 在强度为 0.1 a.u. 的静电场中，对 N ${}_{2}$ 的复数共振能（即 Stark 移动后的能量与隧穿电离速率）进行 RI-MP2 计算的 Q-Chem 输入"
     ```qchem
     $molecule
        0 1

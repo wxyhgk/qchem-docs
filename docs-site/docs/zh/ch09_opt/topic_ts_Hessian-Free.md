@@ -1,64 +1,28 @@
+```markdown
 ---
-title: "9.2.3 Hessian-Free Characterization of Stationary Points"
+title: "9.2.3 免 Hessian 的驻点表征"
 ---
 
-## 9.2.3 Hessian-Free Characterization of Stationary Points
+## 9.2.3 免 Hessian 的驻点表征
 
 (July 4, 2026)
 
-**Q-Chem** allows the user to characterize the stationary point found by a
-geometry optimization or transition state search without performing a full
-analytical Hessian calculation, which is sometimes unavailable or
-computationally unaffordable. This is achieved via a finite difference Davidson
-procedure developed by Sharada *et al.*[[1243]](../bib_references/bib.md#bib1297)
- For a geometry
-optimization, it solves for the lowest eigenvalue of the Hessian ($\lambda_{1}$)
-and checks if $\lambda_{1}>0$ (a negative $\lambda_{1}$ indicates a saddle
-point); for a TS search, it solves for the lowest two eigenvalues, and
-$\lambda_{1}<0$ and $\lambda_{2}>0$ indicate a transition state. The lowest
-eigenvectors of the updated P-RFO (approximate) Hessian at convergence are used
-as the initial guess for the Davidson solver.
+**Q-Chem** 允许用户在对几何结构优化或过渡态搜索所找到的驻点进行表征时，无需执行完整的解析 Hessian 计算——后者有时不可用或在计算上负担过高。该功能通过 Sharada *et al.*[[1243]](../bib_references/bib.md#bib1297)
+ 开发的有限差分 Davidson 过程实现。
+对于几何结构优化，它求解 Hessian 的最低本征值（$\lambda_{1}$），并检查是否满足 $\lambda_{1}>0$（负的 $\lambda_{1}$ 表明存在鞍点）；对于过渡态（TS）搜索，它求解最低两个本征值，若 $\lambda_{1}<0$ 且 $\lambda_{2}>0$，则表明为过渡态。在收敛时，将更新后的 P-RFO（近似）Hessian 的最低本征向量用作 Davidson 求解器的初始猜测。
 
-The cost of this Hessian-free characterization method depends on the rate of
-convergence of the Davidson solver. For example, to characterize an energy
-minimum, it requires $2\times N_{\mathrm{iter}}$ total energy + gradient calculations,
-where $N_{\mathrm{iter}}$ is the number of iterations that the Davidson algorithm
-needs to converge, and “2" is for forward and backward displacements on each
-iteration. According to Ref. [[1243]](../bib_references/bib.md#bib1297)
-, this method can be much
-more efficient than exact Hessian calculation for substantially large systems.
+这种免 Hessian 表征方法的计算成本取决于 Davidson 求解器的收敛速度。例如，要对能量极小点进行表征，需要 $2\times N_{\mathrm{iter}}$ 次总能量 + 梯度计算，其中 $N_{\mathrm{iter}}$ 是 Davidson 算法收敛所需的迭代次数，而系数 “2” 对应每次迭代中的正向和负向位移。根据文献 [[1243]](../bib_references/bib.md#bib1297)
+，对于较大的体系，该方法可能比精确的 Hessian 计算高效得多。
 
-**Note: 
-
-At the moment, this method does not support QM/MM or systems with fixed atoms.
-**
+???+ note "注意"
+    目前，该方法不支持 QM/MM 或包含固定原子的体系。
 
 GEOM_OPT_CHARAC
 
 ### `GEOM_OPT_CHARAC`
 
-> **Use the finite difference Davidson method to characterize the resulting energy minimum/transition state.**
->
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE
->     * do not characterize the resulting stationary point.
->     * TRUE
->     * perform a characterization of the stationary point.
-> * **Recommendation**: Set it to TRUE when the character of a stationary point needs to be verified, especially for a transition structure.
+> **使用有限差分 Davidson 方法对所得到的能量极小点/过渡态进行表征。**
+```
+</think>
 
-GEOM_OPT_CHARAC_CONV
-
-### `GEOM_OPT_CHARAC_CONV`
-
-> **Overide the built-in convergence criterion for the Davidson solver.**
->
-> * **Type**: `INTEGER`
-> * **Default**: `0 (use the built-in default value 10`
-> * **Options**:
->     * $n$
->     * Set the convergence criterion to 10
->     * ${}^{-n}$
->     * .
-> * **Recommendation**: Use the default. If it fails to converge, consider loosening the criterion with caution.
+??

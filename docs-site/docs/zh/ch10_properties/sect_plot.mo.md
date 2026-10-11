@@ -1,41 +1,21 @@
 ---
-title: "10.5.4 Generation of Volumetric Data Using $plots"
+title: "10.5.4 使用 *$plots* 生成体数据（Volumetric Data）"
 ---
 
-## 10.5.4 Generation of Volumetric Data Using *$plots*
+## 10.5.4 使用 *$plots* 生成体数据
 
 (July 4, 2026)
 
-The simplest way to visualize the charge densities and molecular orbitals that
-**Q-Chem** evaluates is via a graphical user interface, such as those described
-in the preceding section. An alternative procedure, which is often useful for
-generating high-quality images for publication, is to evaluate certain
-densities and orbitals on a user-specified grid of points. This is
-accomplished by invoking the *$plots* option, which is itself enabled by
-requesting IANLTY = 200.
+可视化 **Q-Chem** 所计算的电荷密度与分子轨道的最简单方式，是借助图形用户界面（GUI），如前一节所述的那些工具。另一种在生成用于发表的高质量图像时常常有用的做法是，在用户指定的网格点集上求值某些密度与轨道。这通过调用 *$plots* 选项来实现，而该选项本身需要通过设置 IANLTY = 200 来启用。
 
-The format of the *$plots* input is documented below. It permits plotting of
-molecular orbitals, the SCF ground-state density, and excited-state densities
-obtained from CIS, RPA or TDDFT/TDA, or TDDFT calculations. Also in connection
-with excited states, either transition densities, attachment/detachment
-densities, or natural transition orbitals (at the same levels of theory given
-above) can be plotted as well. See Ref. [[572]](../bib_references/bib.md#bib586)
- for descriptions
-of these various possibilities.
-Please note that plotting complex-valued orbitals and electron densities from
-Complex-Absorbing-Potential Hartree-Fock calculations is so far only possible
-by direct generation of cube files (see Section [10.5.5](sec_cubefiles.md)).
+*$plots* 输入的格式记录如下。它允许绘制分子轨道、SCF 基态密度，以及由 CIS、RPA 或 TDDFT/TDA 或 TDDFT 计算得到的激发态密度。此外，与激发态相关的跃迁密度（transition densities）、附着/脱离密度（attachment/detachment densities）或自然跃迁轨道（natural transition orbitals，NTO）（在与上述相同的理论级别上）也可以绘制。关于这些不同可能性的描述，请参见文献 [[572]](../bib_references/bib.md#bib586)。
+请注意，目前绘制复值轨道以及复吸收势 Hartree-Fock（Complex-Absorbing-Potential Hartree-Fock）计算的电子密度，只能通过直接生成 cube 文件来实现（参见第 [10.5.5](sec_cubefiles.md) 节）。
 
-By default, the output from the *$plots* command is one (or several) plain text
-files in the working directory, named `plot.mo`, *etc.*. The results
-then must be visualized with a third-party program capable of making
-3-D plots. (Some suggestions are given in Section [10.5.5](sec_cubefiles.md).)
+默认情况下，*$plots* 命令的输出是工作目录中的一个（或多个）纯文本文件，命名为 `plot.mo`、*etc.*。随后必须使用能够进行三维绘图的第三方程序来可视化这些结果。（第 [10.5.5](sec_cubefiles.md) 节给出了一些建议。）
 
-An example of the use of the *$plots* option is the following input deck:
+使用 *$plots* 选项的一个示例输入组（input deck）如下：
 
-???+ example "Example 10.24: A job that evaluates the H ${}_{2}$ HOMO and LUMO on a $1\times 1\times 15$ grid,
-along the bond axis. The plotting output is in an ASCII file called plot.mo , which lists for each grid point, $x$ , $y$ , $z$ , and the value
-of each requested MO."
+???+ example "示例 10.24: 在沿键轴的 $1\times 1\times 15$ 网格上求值 H ${}_{2}$ 的 HOMO 和 LUMO 的作业。绘图输出保存在名为 plot.mo 的 ASCII 文件中，该文件为每个网格点列出 $x$ 、 $y$ 、 $z$ 以及每个所请求 MO 的值。"
     ```qchem
     $molecule
        0  1
@@ -59,15 +39,15 @@ of each requested MO."
     $end
     ```
 
-General format for the *$plots* section of the **Q-Chem** input deck.
+**Q-Chem** 输入组中 *$plots* 段的一般格式。
 
 > *$plots*
 > 
 > 
->         One comment line 
+>         一行注释 
 > 
 > 
->         Specification of the 3-D mesh of points on 3 lines: 
+>         用 3 行指定三维网格点集： 
 > 
 > 
 >                $N_{x}\quad x_{\mathrm{min}}\quad x_{\mathrm{max}}$ 
@@ -79,69 +59,57 @@ General format for the *$plots* section of the **Q-Chem** input deck.
 >                $N_{z}\quad z_{\mathrm{min}}\quad z_{\mathrm{max}}$ 
 > 
 > 
->         A line with 4 integers indicating how many things to plot: 
+>         一行包含 4 个整数，指示要绘制的项目数量： 
 > 
 > 
 >                $N_{\mathrm{MO}}\quad N_{\mathrm{Rho}}\quad N_{\mathrm{Trans}}\quad N_{\mathrm{DA}}$ 
 > 
 > 
->         An optional line with the integer list of MO’s to evaluate
-> (only if $N_{\mathrm{MO}}>0$)
+>         一行可选的整数列表，给出要求值的 MO
+> （仅当 $N_{\mathrm{MO}}>0$ 时）
 > 
 > 
->                MO(1)  MO(2) $\ldots$ MO($N_{\mathrm{MO}}$) 
+>                MO(1)  MO(2) $\ldots$ MO($N_{\mathrm{MO}}$) 
 > 
 > 
->         An optional line with the integer list of densities to evaluate
-> (only if $N_{\mathrm{Rho}}>0$) 
+>         一行可选的整数列表，给出要求值的密度
+> （仅当 $N_{\mathrm{Rho}}>0$ 时） 
 > 
 > 
->                Rho(1)  Rho(2) $\ldots$ Rho($N_{\mathrm{Rho}}$) 
+>                Rho(1)  Rho(2) $\ldots$ Rho($N_{\mathrm{Rho}}$) 
 > 
 > 
->         An optional line with the integer list of transition densities
-> (only if $N_{\mathrm{Trans}}>0$) 
+>         一行可选的整数列表，给出要求值的跃迁密度
+> （仅当 $N_{\mathrm{Trans}}>0$ 时） 
 > 
 > 
->                Trans(1)  Trans(2) $\ldots$ Trans($N_{\mathrm{Trans}}$) 
+>                Trans(1)  Trans(2) $\ldots$ Trans($N_{\mathrm{Trans}}$) 
 > 
 > 
->         An optional line with states for detachment/attachment densities
-> (if $N_{\mathrm{DA}}>0$) 
+>         一行可选的、用于脱离/附着密度的态编号
+> （若 $N_{\mathrm{DA}}>0$） 
 > 
 > 
->                DA(1)  DA(2) $\ldots$ DA($N_{\mathrm{DA}}$) 
+>                DA(1)  DA(2) $\ldots$ DA($N_{\mathrm{DA}}$) 
 > 
 > 
 > *$end*
 
-Line 1 of the *$plots* keyword section is reserved for comments. Lines 2–4
-list the number of one dimension points and the range of the grid (note that
-coordinate ranges are in Ångstroms if INPUT_BOHR is not set,
-while all output is in atomic units). Line 5 must contain 4 non-negative
-integers indicating the number of: molecular orbitals ($N_{\mathrm{MO}}$), electron
-densities ($N_{\mathrm{Rho}}$), transition densities and attach/detach
-densities ($N_{\mathrm{DA}}$), to have mesh values calculated.
+*$plots* 关键字段的第一行保留给注释。第 2–4 行列出单一维度的点数以及网格的范围（注意：若未设置 INPUT_BOHR，则坐标范围以埃（Ångstroms）为单位，而所有输出均以原子单位给出）。第 5 行必须包含 4 个非负整数，分别指示需要进行网格值计算的：分子轨道（$N_{\mathrm{MO}}$）、电子密度（$N_{\mathrm{Rho}}$）、跃迁密度以及附着/脱离密度（$N_{\mathrm{DA}}$）的数量。
 
-The final lines specify which MOs, electron densities, transition densities and
-CIS attach/detach states are to be plotted (the line can be left blank, or
-removed, if the number of items to plot is zero). Molecular orbitals are
-numbered $1\ldots N_{\alpha},N_{\alpha}+1\ldots N_{\alpha}+N_{\beta}$; electron
-densities numbered where 0= ground state, 1 = first excited state, 2 = second
-excited state, *etc.*; and attach/detach specified from state $1\rightarrow N_{\mathrm{DA}}$.
+最后一行指定要绘制哪些 MO、电子密度、跃迁密度以及 CIS 附着/脱离态（若某类要绘制的项目数量为零，该行可以留空或删除）。分子轨道按 $1\ldots N_{\alpha},N_{\alpha}+1\ldots N_{\alpha}+N_{\beta}$ 编号；电子密度编号方式为 0 = 基态，1 = 第一激发态，2 = 第二激发态，*etc.*；而附着/脱离则由态 $1\rightarrow N_{\mathrm{DA}}$ 指定。
 
-By default, all output data are printed to files in the working directory, overwriting any
-existing file of the same name.
+默认情况下，所有输出数据都打印到工作目录中的文件，并覆盖任何同名的现有文件。
 
 - •
 
-Molecular orbital data is printed to a file called `plot.mo`.
+分子轨道数据打印到名为 `plot.mo` 的文件。
 - •
 
-Densities are plotted to `plots.hf`.
+密度绘制到 `plots.hf`。
 - •
 
-Restricted unrelaxed attachment/detachment analysis is sent to:
+限制性非弛豫（Restricted unrelaxed）附着/脱离分析输出到：
 
 - **–**
 
@@ -151,7 +119,7 @@ Restricted unrelaxed attachment/detachment analysis is sent to:
 `plot.detach.alpha`
 - •
 
-Unrestricted unrelaxed attachment/detachment analysis is sent to:
+非限制性非弛豫（Unrestricted unrelaxed）附着/脱离分析输出到：
 
 - **–**
 
@@ -167,7 +135,7 @@ Unrestricted unrelaxed attachment/detachment analysis is sent to:
 `plot.detach.beta`
 - •
 
-Restricted relaxed attachments/detachment analysis is plotted in:
+限制性弛豫（Restricted relaxed）附着/脱离分析绘制到：
 
 - **–**
 
@@ -177,7 +145,7 @@ Restricted relaxed attachments/detachment analysis is plotted in:
 `plot.detach.rlx.alpha`
 - •
 
-Unrestricted relaxed attachment/detachment analysis is sent to:
+非限制性弛豫（Unrestricted relaxed）附着/脱离分析输出到：
 
 - **–**
 
@@ -192,7 +160,7 @@ Unrestricted relaxed attachment/detachment analysis is sent to:
 
 `plot.detach.rlx.beta`
 
-Output is printed in atomic units, with coordinates first followed by item value, as shown below:
+输出以原子单位打印，先给出坐标，随后是各项目的值，如下所示：
 
 > ```qchem
 > x1   y1   z1      a1   a2  ...  aN
@@ -200,10 +168,7 @@ Output is printed in atomic units, with coordinates first followed by item value
 > ...
 > ```
 
-Instead of a standard one-, two-, or three-dimensional Cartesian grid, a user
-may wish to plot orbitals or densities on a set of grid points of his or her
-choosing. Such points are specified using a *$grid* input section whose format
-is simply the Cartesian coordinates of all user-specified grid points:
+除了标准的一维、二维或三维笛卡尔网格之外，用户可能希望在其自选的一组网格点上绘制轨道或密度。这些点通过 *$grid* 输入段指定，其格式 simply 是所有用户指定网格点的笛卡尔坐标：
 
 > ```qchem
 > x1   y1   z1
@@ -211,44 +176,27 @@ is simply the Cartesian coordinates of all user-specified grid points:
 > ...
 > ```
 
-The *$plots* section must still be specified as described above, but if the
-*$grid* input section is present, then these user-specified grid points will
-override the ones specified in the *$plots* section.
+*$plots* 段仍须按上述方式指定，但如果存在 *$grid* 输入段，那么这些用户指定的网格点将覆盖 *$plots* 段中所指定的网格点。
 
-The **Q-Chem** *$plots* utility allows the user to plot transition densities and
-detachment/attachment densities directly from amplitudes saved from a previous
-calculation, without having to solve the post-SCF (CIS, RPA, TDA, or TDDFT)
-equations again. To take advantage of this feature, the same **Q-Chem** scratch
-directory must be used, and the SKIP_CIS_RPA *$rem* variable must be
-set to TRUE. To further reduce computational time, the
-SCF_GUESS *$rem* can be set to READ.
+**Q-Chem** 的 *$plots* 工具允许用户直接利用上一次计算保存的振幅（amplitudes）来绘制跃迁密度和脱离/附着密度，而无需重新求解 post-SCF（CIS、RPA、TDA 或 TDDFT）方程。要利用此功能，必须使用同一个 **Q-Chem** scratch 目录，并且 *$rem* 变量 SKIP_CIS_RPA 必须设置为 TRUE。为进一步减少计算时间，*Srem* 变量 SCF_GUESS 可以设置为 READ。
 
 SKIP_CIS_RPA
 
 ### `SKIP_CIS_RPA`
 
-> **Skips the solution of the CIS, RPA, TDA or TDDFT equations for wave function analysis.**
+> **在波函数分析时跳过 CIS、RPA、TDA 或 TDDFT 方程的求解。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE / FALSE
-> * **Recommendation**: Set to true to speed up the generation of plot data if the same calculation has been run previously with the scratch files saved.
+> * **建议**: 若同一计算此前已运行过且保留了 scratch 文件，则将其设置为 true 以加速绘图数据的生成。
 
-## 10.5.4.1 New *$plots* input
+## 10.5.4.1 新的 *$plots* 输入
 
-New format for the *$plots* section provides readable and friendly input for
-generation of volumetric data. The input section can be divided into three
-parts. The first part contains basic plot options which define the 3-D mesh of
-points. The second part contains the selection of densities or orbitals. The
-advanced options are included in the last part.
+新版 *$plots* 段格式为体数据的生成提供了可读且友好的输入。该输入段可分为三个部分。第一部分包含定义三维网格点集的基本绘图选项。第二部分是密度或轨道的选择。高级选项包含在最后一部分。
 
-With new plot format, there are multiple ways to define 3-D mesh points. If no
-plot option is given, the boundaries of the mesh box are the maximum/minimum
-molecular coordinates $\pm~{}3.0$ Å. The default box can be simply enlarged or
-reduced by setting `grid_range` to a value larger or smaller than
-$3.0$ (negative number is accepted), respectively. To customize the mesh box,
-set `grid_range` to desired boundaries:
+在新绘图格式下，有多种定义三维网格点的方式。如果未给出任何绘图选项，则网格盒（mesh box）的边界为分子坐标的最大值/最小值 $\pm~{}3.0$ Å。只需将 `grid_range` 设置为大于或小于 $3.0$ 的值（也接受负数），即可相应地简单放大或缩小默认盒子。若要自定义网格盒，请将 `grid_range` 设置为所需的边界：
 
 > ```qchem
 > $plots
@@ -256,37 +204,31 @@ set `grid_range` to desired boundaries:
 > $end
 > ```
 
-This defines a 2$\times$2$\times$2 mesh box centered at the molecular
-coordinate origin. Note that there is no space in the parentheses.
+这定义了一个以分子坐标原点为中心、尺寸为 2$\times$2$\times$2 的网格盒。注意括号内没有空格。
 
-The number of one dimension points is the value of the box length divided by
-`grid_spacing`. The default grid point spacing is $0.3$ Å. To override
-the usage of `grid_spacing` and customize the number of 3-D points, set
-`grid_points` to desired values.
+单一维度的点数等于盒长除以 `grid_spacing`。默认的网格点间距为 $0.3$ Å。若要绕过 `grid_spacing` 的使用并自定义三维点的数量，请将 `grid_points` 设置为所需的值。
 
-To generate cube file (Section [10.5.5](sec_cubefiles.md)) using new plot format, just
-set MAKE_CUBE_FILES = TRUE in *$rem* section. The new plot
-format is enabled by requesting PLOTS = 1.
+要在新绘图格式下生成 cube 文件（第 [10.5.5](sec_cubefiles.md) 节），只需在 *$rem* 段中设置 MAKE_CUBE_FILES = TRUE。新绘图格式通过请求 PLOTS = 1 来启用。
 
-Table 10.3: Options for new *$plots* input section
+表 10.3: 新版 *$plots* 输入段的选项
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <tbody class="ltx_tbody">
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Option</span></th>
-<td class="ltx_td ltx_align_left ltx_border_tt">Explanation</td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">选项</span></th>
+<td class="ltx_td ltx_align_left ltx_border_tt">说明</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">Basic plot options</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">基本绘图选项</span></th>
 <td class="ltx_td ltx_border_t"></td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">grid_range</th>
-<td class="ltx_td ltx_wrap ltx_align_left">boundaries${}^{\dagger}$ of the mesh box or increment/decrement in the default boundaries${}^{\dagger\dagger}$ in Å</td>
+<td class="ltx_td ltx_wrap ltx_align_left">以 Å 为单位的网格盒边界${}^{\dagger}$，或在默认边界${}^{\dagger\dagger}$上的增量/减量</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">grid_spacing</th>
-<td class="ltx_td ltx_align_left">grid point spacing${}^{\dagger\dagger\dagger}$ in Å</td>
+<td class="ltx_td ltx_align_left">以 Å 为单位的网格点间距${}^{\dagger\dagger\dagger}$</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">grid_points</th>
@@ -295,92 +237,88 @@ $N_{x}$ $N_{y}$ $N_{z}$
 </td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">Density/orbital selection${}^{\star}$</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">密度/轨道选择${}^{\star}$</span></th>
 <td class="ltx_td ltx_border_t"></td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">alpha_molecular_orbital</th>
-<td class="ltx_td ltx_align_left">an integer range of alpha MO’s to evaluate</td>
+<td class="ltx_td ltx_align_left">要评价的 alpha MO 的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">beta_molecular_orbital</th>
-<td class="ltx_td ltx_align_left">an integer range of beta MO’s to evaluate</td>
+<td class="ltx_td ltx_align_left">要评价的 beta MO 的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">total_density</th>
-<td class="ltx_td ltx_align_left">an integer range of total densities to evaluate</td>
+<td class="ltx_td ltx_align_left">要评价的总密度的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">spin_density</th>
-<td class="ltx_td ltx_align_left">an integer range of spin densities to evaluate</td>
+<td class="ltx_td ltx_align_left">要评价的自旋密度的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">transition_density</th>
-<td class="ltx_td ltx_align_left">an integer range of transition densities to evaluate</td>
+<td class="ltx_td ltx_align_left">要评价的跃迁密度的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">natural_transition_orbital</th>
-<td class="ltx_td ltx_align_left">an integer range of excited states whose NTOs are evaluated</td>
+<td class="ltx_td ltx_align_left">要评价其 NTO 的激发态的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">attachment_detachment_density</th>
-<td class="ltx_td ltx_align_left">an integer range of det.-att. densities to evaluate</td>
+<td class="ltx_td ltx_align_left">要评价的脱离-附着密度的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">natural_bond_orbital</th>
-<td class="ltx_td ltx_align_left">an integer range of NBOs for each state to evaluate</td>
+<td class="ltx_td ltx_align_left">每个态要评价的 NBO 的整数范围</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">nbo_state</th>
-<td class="ltx_td ltx_align_left">an integer range of states whose NBOs are evaluated</td>
+<td class="ltx_td ltx_align_left">要评价其 NBO 的态的整数范围</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">Advanced options</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_bold">高级选项</span></th>
 <td class="ltx_td ltx_border_t"></td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">reduced_density_gradient</th>
-<td class="ltx_td ltx_align_left">invoke non-covalent interaction (NCI) plot</td>
+<td class="ltx_td ltx_align_left">调用非共价相互作用（NCI）图</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">orbital_laplacians</th>
-<td class="ltx_td ltx_align_left">evaluate orbital Laplacians</td>
+<td class="ltx_td ltx_align_left">评价轨道的拉普拉斯量（Laplacians）</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">average_local_ionization</th>
-<td class="ltx_td ltx_wrap ltx_align_left">evaluate average local ionization energies[[1261]](../bib_references/bib.md#bib1314)
- with a given contour value of the electron density. The default is $0.0135e/\textrm{\AA}^{3}$ ($\approx 0.002e/a^{3}_{0}$).</td>
+<td class="ltx_td ltx_wrap ltx_align_left">在给定电子密度等值面值下评价平均局域电离能[[1261]](../bib_references/bib.md#bib1314)。默认值为 $0.0135e/\textrm{\AA}^{3}$（$\approx 0.002e/a^{3}_{0}$）。</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">elf</th>
-<td class="ltx_td ltx_align_left">invoke electron localization function (ELF) plots</td>
+<td class="ltx_td ltx_align_left">调用电子局域化函数（electron localization function，ELF）图</td>
 </tr>
 </tbody>
 <tfoot class="ltx_tfoot">
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt" colspan="2">
-${}^{\dagger}$the format: $(x_{\mathrm{min}},x_{\mathrm{max}})(y_{\mathrm{min}},y_{\mathrm{max}})(z_{\mathrm{min}},z_{\mathrm{max}})$
+${}^{\dagger}$格式为：$(x_{\mathrm{min}},x_{\mathrm{max}})(y_{\mathrm{min}},y_{\mathrm{max}})(z_{\mathrm{min}},z_{\mathrm{max}})$
 </th>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row" colspan="2">
-${}^{\dagger\dagger}$the default is $3.0$ Å increment in the boundaries derived from the molecular coordinates</th>
+${}^{\dagger\dagger}$默认值是在由分子坐标导出的边界上增加 $3.0$ Å</th>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row" colspan="2">
-${}^{\dagger\dagger\dagger}$the default is $0.3$ Å; it can be overridden by option ’grid_points’</th>
+${}^{\dagger\dagger\dagger}$默认值为 $0.3$ Å；可被选项 ’grid_points’ 覆盖</th>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row" colspan="2">
-${}^{\star}$input format: n-m or n, indicating n-th oribtal or state; use $0$ for the ground-state</th>
+${}^{\star}$输入格式：n-m 或 n，表示第 n 个轨道或态；基态使用 $0$</th>
 </tr>
 </tfoot>
 </table>
 
-???+ example "Example 10.25: Generating the cube files: the total densities of the ground and the first
-two excited states, the transition and detachment/attachment densities of the
-first two excited states, and the 28th to 31th alpha molecular orbitals, with
-customized 3-D mesh box and points."
+???+ example "示例 10.25: 生成 cube 文件：基态及前两个激发态的总密度、前两个激发态的跃迁密度和脱离/附着密度，以及第 28 至 31 个 alpha 分子轨道，并使用自定义的三维网格盒与网格点。"
     ```qchem
     $molecule
     0 1
@@ -409,8 +347,7 @@ customized 3-D mesh box and points."
     $end
     ```
 
-???+ example "Example 10.26: Generating the cube files of the average local ionization energies and the
-total density for the ground state of aniline."
+???+ example "示例 10.26: 生成苯胺（aniline）基态的平均局域电离能与总密度的 cube 文件。"
     ```qchem
     $molecule
     0 1

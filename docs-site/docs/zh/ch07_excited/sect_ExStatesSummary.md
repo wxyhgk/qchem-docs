@@ -1,9 +1,9 @@
 ---
-title: "7.1 General Excited-State Features"
+title: "7.1 激发态通用功能"
 ---
 
-# 7.1 General Excited-State Features
+# 7.1 激发态通用功能
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [7.1.1 Overview](Ch7.S1.SS1.md)
+- [7.1.1 概述](Ch7.S1.SS1.md)

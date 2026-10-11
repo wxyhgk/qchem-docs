@@ -1,79 +1,51 @@
 ---
-title: "4.5.18 Orbital Energy Scaling in Canonical ROSCF Calculations"
+title: "4.5.18 正则 ROSCF 计算中的轨道能量缩放"
 ---
 
-## 4.5.18 Orbital Energy Scaling in Canonical ROSCF Calculations
+## 4.5.18 正则 ROSCF 计算中的轨道能量缩放
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-For high-spin half-filled open-shell systems, canonical ROSCF calculations
-according to Plakhutin and Davidson[[1094]](../bib_references/bib.md#bib1140)
- can be performed by
-setting ROSCF_DODS = TRUE. The canonical ROSCF method
-provides the same total wave function and, thus, total energy and correct
-$\langle\hat{S}^{2}\rangle$ behavior as “conventional” ROSCF.
-Other than “conventional” ROSCF, it features two different sets of orbitals for
-$\alpha$ and $\beta$ electrons, as unrestrcited SCF does, which fulfill
-Koopmans’ theorem. Because of this, canonical ROSCF is also called ROSCF-DODS,
-where DODS stands for “different orbitals for different spins”.
+对于高自旋半充满开壳层体系，通过设置 ROSCF_DODS = TRUE，可以按照 Plakhutin 和 Davidson[[1094]](../bib_references/bib.md#bib1140) 的方法执行正则 ROSCF 计算。正则 ROSCF 方法给出的总波函数与"常规" ROSCF 完全相同，因而也具有相同的总能量和正确的 $\langle\hat{S}^{2}\rangle$ 表现。与"常规" ROSCF 不同的是，它像非限制自洽场（unrestricted SCF）那样，为 $\alpha$ 电子和 $\beta$ 电子提供两套不同的轨道，并且这些轨道满足 Koopmans 定理。正因如此，正则 ROSCF 也被称为 ROSCF-DODS，其中 DODS 代表"different orbitals for different spins"（不同自旋使用不同轨道）。
 
-In general, ROSCF calculations can be hard to converge, often because of
-violations of the aufbau principle. In ROSCF calculations, these situations
-can be avoided when applying an intermediary scaling to the open-shell
-diagonal blocks of the $\alpha$ and $\beta$ RO Fock matrices, chosen such that
-the “correct” orbital ordering is restored during the SCF iterations. The
-procedure is similar to level-shifting (Section [4.5.5](sect_lshift.md)) but much
-simpler. It exploits the fact that in ROSCF calculations, the diagonal blocks
-of the RO Fock matrices can be arbitrarily scaled without affecting the total
-wave function.
+一般而言，ROSCF 计算往往难以收敛，通常是因为出现了违背构造原理（aufbau principle）的情况。在 ROSCF 计算中，可以通过对 $\alpha$ 和 $\beta$ 的 RO Fock（自旋受限 Fock）矩阵的开壳层对角块施加中间缩放（intermediary scaling）来避免这些情况，所选的缩放方式能够在 SCF 迭代过程中恢复"正确的"轨道排序。该 procedures 与能级平移（level-shifting，见第 [4.5.5](sect_lshift.md) 节）类似，但要简单得多。它利用了这样一个事实：在 ROSCF 计算中，可以任意缩放 RO Fock 矩阵的对角块，而不会影响总波函数。
 
-As an example, consider a system with a single unpaired $\alpha$ electron,
-where the highest $\alpha$ MO belongs to the doubly-occupied orbital space
-and the lowest $\alpha$ MO belonging to the (doubly-) unoccupied orbital space.
-Suppose that these orbitals have energies of
-$-0.5$ and $0.5~{}E_{h}$, respectively. If the unpaired
-electron has an orbital energy of $-0.6~{}E_{h}$, it might be arbitrarily shifted, *e.g.*,
-to $0.3~{}E_{h}$ by scaling its energy with a factor of $0.5~{}E_{h}$,
-corresponding to a setting of ROSCF_DIAG_SCALE_A = 50.
-This makes life easier for the SCF algorithm.
+举个例子，考虑一个只含一个未配对 $\alpha$ 电子的体系，其中能量最高的 $\alpha$ 分子轨道（MO）属于双占据轨道空间，而属于（双）占据轨道空间的最低 $\alpha$ MO 属于（双）未占据轨道空间。假设这两个轨道的能量分别为 $-0.5$ 和 $0.5~{}E_{h}$。如果未配对电子的轨道能量为 $-0.6~{}E_{h}$，则可以对其进行任意平移，*例如*，通过将其能量乘以 $0.5~{}E_{h}$ 的因子，将其移至 $0.3~{}E_{h}$，这对应于设置 ROSCF_DIAG_SCALE_A = 50。这使得 SCF 算法更容易收敛。
 
-The obvious caveat of this procedure is that the converged orbital energies
-need to be known in order to choose the correct scaling factors. In practice,
-one can try different combinations of ROHF_DIAG_SCALE_A and
-ROHF_DIAG_SCALE_B, if poor convergence behavior is encountered.
+该方法明显的局限在于：必须已知收敛后的轨道能量，才能选择正确的缩放因子。在实际操作中，如果遇到收敛不佳的情况，可以尝试 ROHF_DIAG_SCALE_A 与 ROHF_DIAG_SCALE_B 的不同组合。
 
-## 4.5.18.1 Job Control
+### 作业控制（Job Control）
 
 ROSCF_DIAG_SCALE_A
 
 ### `ROSCF_DIAG_SCALE_A`
 
-> **When performing canonical restricted open-shell SCF calculations, scale the open-shell diagonal $\alpha$ Fock matrix block (and, thus, singly occupied $\alpha$ orbital energies) during the SCF iterations in order to mitigate aufbau principle violations in case of poorly converging systems. After convergence, proper canonical orbital energies are restored.**
+> **在执行正则限制开壳层自洽场（restricted open-shell SCF）计算时，在 SCF 迭代过程中对开壳层对角 $\alpha$ Fock 矩阵块（从而对单占据 $\alpha$ 轨道能量）进行缩放，以缓解收敛困难体系中违背构造原理的问题。收敛之后，会恢复正确的正则轨道能量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`50`
+> * **选项**：
 >     * $n$
->     * Scale
+>     * 将
 >     * $\alpha$
->     * orbital energies by a factor of
+>     * 轨道能量缩放的因子为
 >     * $n\cdot 10^{-}2$
->     * .
-> * **Recommendation**: In case of convergence issues, try series of different values, e.g., $\pm 800$ , $\pm 400$ , $\pm 200$ , $\pm 100$ , $\pm 50$ , $\pm 20$ , $\pm 10$ .
+>     * 。
+> * **建议**：若出现收敛问题，可尝试一系列不同的取值，例如 $\pm 800$ 、 $\pm 400$ 、 $\pm 200$ 、 $\pm 100$ 、 $\pm 50$ 、 $\pm 20$ 、 $\pm 10$ 。
 
 ROSCF_DIAG_SCALE_B
 
 ### `ROSCF_DIAG_SCALE_B`
 
-> **The same as ROSCF_DIAG_SCALE_A , except that singly unpccupied $\beta$ orbital energies are manipulated during the SCF iterations.**
+> **与 ROSCF_DIAG_SCALE_A 相同，只不过在 SCF 迭代过程中被操控的是单未占据 $\beta$ 轨道能量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`50`
+> * **选项**：
 >     * $n$
->     * Scale
+>     * 将
 >     * $\beta$
->     * orbital energies by a factor of
+>     * 轨道能量缩放的因子为
 >     * $n\cdot 10^{-}2$
->     * .
-> * **Recommendation**: See ROSCF_DIAG_SCALE_A for recommendations.
+>     * 。
+> * **建议**：参见 ROSCF_DIAG_SCALE_A 中的建议。

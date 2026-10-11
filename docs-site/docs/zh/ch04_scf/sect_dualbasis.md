@@ -1,17 +1,17 @@
 ---
-title: "4.7 Dual-Basis Self-Consistent Field Calculations"
+title: "4.7 双基组自洽场计算"
 ---
 
-# 4.7 Dual-Basis Self-Consistent Field Calculations
+# 4.7 双基组自洽场（Dual-Basis Self-Consistent Field）计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [4.7.1 Introduction](Ch4.S7.SS1.md)
+- [4.7.1 引言](Ch4.S7.SS1.md)
 
-- [4.7.2 Dual-Basis MP2](topic_dbmp2.md)
+- [4.7.2 双基组 MP2](topic_dbmp2.md)
 
-- [4.7.3 Dual-Basis Dynamics](subsec_dual-dyn.md)
+- [4.7.3 双基组动力学](subsec_dual-dyn.md)
 
-- [4.7.4 Basis-Set Pairings](Ch4.S7.SS4.md)
+- [4.7.4 基组配对方案](Ch4.S7.SS4.md)
 
-- [4.7.5 Job Control and Example](Ch4.S7.SS5.md)
+- [4.7.5 作业控制与示例](Ch4.S7.SS5.md)

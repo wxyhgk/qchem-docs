@@ -1,11 +1,11 @@
 ---
-title: "6.2 Treatment and the Definition of Core Electrons"
+title: "6.2 芯电子的处理与定义"
 ---
 
-# 6.2 Treatment and the Definition of Core Electrons
+# 6.2 芯电子的处理与定义
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-frozen core
+frozen core（冻结芯）
 
-- [6.2.1 Overview](Ch6.S2.SS1.md)
+- [6.2.1 概述](Ch6.S2.SS1.md)

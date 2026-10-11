@@ -1,71 +1,40 @@
 ---
-title: "8.3.2 Customization"
+title: "8.3.2 自定义"
 ---
 
-## 8.3.2 Customization
+## 8.3.2 自定义
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** offers a number of standard and special customization features. One
-of the most important is that of supplying additional diffuse functions.
-Diffuse functions are often important for studying anions and excited states of
-molecules, and for the latter several sets of additional diffuse functions may
-be required. These extra diffuse functions can be generated from the standard
-diffuse functions by applying a scaling factor to the exponent of the original
-diffuse function. This yields a geometric series of exponents for the diffuse
-functions which includes the original standard functions along with more diffuse functions.
+**Q-Chem** 提供了许多标准及特殊的自定义功能。其中最重要的一项功能便是补充添加弥散函数（Diffuse Functions）。弥散函数对于研究阴离子以及分子的激发态往往非常重要，而后者的研究可能需要若干组附加的弥散函数。这些额外的弥散函数可以由标准弥散函数生成，方法是对原始弥散函数的指数施加一个缩放因子。这样就得到弥散函数指数的一个几何级数，其中既包含原始的標準函数，也包含更加弥散的函数。
 
-When using very large basis sets, especially those that include many diffuse
-functions, or if the system being studied is very large, linear dependence in
-the basis set may arise. This results in an over-complete description of the
-space spanned by the basis functions, and can cause a loss of uniqueness in the
-molecular orbital coefficients. Consequently, the SCF may be slow to converge
-or behave erratically. **Q-Chem** will automatically check for linear dependence
-in the basis set, and will project out the near-degeneracies, if they exist.
-This will result in there being slightly fewer molecular orbitals than there are
-basis functions. **Q-Chem** checks for linear dependence by considering the
-eigenvalues of the overlap matrix. Very small eigenvalues are an indication
-that the basis set is close to being linearly dependent. The size at which the
-eigenvalues are considered to be too small is governed by the *$rem* variable
-BASIS_LIN_DEP_THRESH. By default this is set to 6, corresponding to
-a threshold of $10^{-6}$. This has been found to give reliable results, however SCF
-convergence failure (especially for large molecules or those with highly diffuse basis sets)
-may be a symptom of linear dependencies. The smallest
-overlap matrix eigenvalue is printed in the **Q-Chem** output file, and usually when
-this number goes below $10^{-5}$, numerical issues caused by basis function linear
-dependence may occur and the SCF calculation may not give reasonable solutions.
-If the smallest overlap matrix eigenvalue is less than the
-square root of the integral threshold, a warning message will be printed urging the
-use to set THRESH = 14. Especially for larger molecules, and in basis sets
-that contain diffuse functions, tightening the integral threshold sometimes has the nonintuitive
-effect of *decreasing* the time-to-solution, by significantly reducing the number of SCF cycles
-at only a modest per-cycle increase in cost.[[479]](../bib_references/bib.md#bib495)
+当使用非常大的基组（Basis Set）时——尤其是包含许多弥散函数的基组——或者所研究的体系非常大时，基组中可能出现线性相关（Linear Dependence）问题。这会导致对基函数所张成空间的过完备（Over-complete）描述，并使分子轨道系数失去唯一性。其结果是自洽场（SCF）收敛缓慢或行为异常。**Q-Chem** 会自动检查基组中的线性相关性，并在存在近似简并时将其投影剔除。这使得分子轨道的数量略少于基函数的数量。**Q-Chem** 通过考察重叠矩阵（Overlap Matrix）的本征值来检查线性相关性。极小的本征值表明基组接近线性相关。判定本征值过小的阈值由 *$rem* 变量 BASIS_LIN_DEP_THRESH 控制。该变量默认设置为 6，对应阈值 $10^{-6}$。实践表明这一设置能给出可靠的结果，然而 SCF 收敛失败（尤其是对于大分子或采用高度弥散基组的体系）可能正是线性相关的征兆。最小的重叠矩阵本征值会打印在 **Q-Chem** 的输出文件中，通常当该数值低于 $10^{-5}$ 时，就可能出现由基函数线性相关引起的数值问题，SCF 计算可能无法给出合理的解。如果最小的重叠矩阵本征值小于积分阈值的平方根，程序将打印警告信息，敦促用户设置 THRESH = 14。特别是在处理较大分子以及包含弥散函数的基组时，收紧积分阈值有时会产生一个违反直觉的效果——*缩短*求解时间，因为它能显著减少 SCF 的迭代循环次数，而每次循环的成本仅略有增加。[[479]](../bib_references/bib.md#bib495)
 
 PRINT_GENERAL_BASIS
 
 ### `PRINT_GENERAL_BASIS`
 
-> **Controls print out of built in basis sets in input format**
+> **控制以内置输入格式打印内置基组**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Print out standard basis set information
+>     * 打印标准基组信息
 >     * FALSE
->     * Do not print out standard basis set information
-> * **Recommendation**: Useful for modification of standard basis sets.
+>     * 不打印标准基组信息
+> * **建议**: 适用于对标准基组进行修改。
 
 BASIS_LIN_DEP_THRESH
 
 ### `BASIS_LIN_DEP_THRESH`
 
-> **Sets the threshold for determining linear dependence in the basis set**
+> **设置判定基组线性相关的阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **选项**:
 >     * $n$
->     * Sets the threshold to
+>     * 将阈值设置为
 >     * $10^{-n}$
-> * **Recommendation**: Set to 5 or smaller if you have a poorly behaved SCF and you suspect linear dependence in you basis set. Lower values (larger thresholds) may affect the accuracy of the calculation.
+> * **建议**: 如果 SCF 表现异常且怀疑基组存在线性相关，请将此值设为 5 或更小。较低的值（即较大的阈值）可能会影响计算的精度。

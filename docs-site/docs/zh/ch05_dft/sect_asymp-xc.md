@@ -1,15 +1,15 @@
 ---
-title: "5.10 Asymptotically Corrected Exchange-Correlation Potentials"
+title: "5.10 渐近修正的交换关联势（Asymptotically Corrected Exchange-Correlation Potentials）"
 ---
 
-# 5.10 Asymptotically Corrected Exchange-Correlation Potentials
+# 5.10 渐近修正的交换关联势
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-asymptotically corrected
+渐近修正（asymptotically corrected）
 
-- [5.10.1 Introduction](Ch5.S10.SS1.md)
+- [5.10.1 引言](Ch5.S10.SS1.md)
 
-- [5.10.2 LB94 Scheme](sect_LB94.md)
+- [5.10.2 LB94 格式](sect_LB94.md)
 
-- [5.10.3 Localized Fermi-Amaldi (LFA) Schemes](sect_LFA.md)
+- [5.10.3 局域 Fermi-Amaldi（LFA）格式](sect_LFA.md)

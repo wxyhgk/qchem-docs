@@ -1,84 +1,58 @@
 ---
-title: "4.10.1 Introduction"
+title: "4.10.1 引言"
 ---
 
-## 4.10.1 Introduction
+## 4.10.1 引言
 
 (July 4, 2026)
 
-The xTB family of semiempirical tight-binding methods offers an efficient route
-to low-cost electronic-structure calculations for large molecular systems. The
-present **Q-Chem** implementation is based on the GFN2-xTB Hamiltonian of
-Bannwarth, Ehlert, and Grimme,[[73]](../bib_references/bib.md#bib58)
- which combines an extended
-Hückel-like zeroth-order Hamiltonian with self-consistent isotropic and
-anisotropic electrostatic and exchange-correlation contributions. For
-open-shell systems, **Q-Chem** also supports an unrestricted spin-polarized
-variant in the spirit of the spGFN2-xTB developments described in
-Refs. [[986]](../bib_references/bib.md#bib1030)
-, [[959]](../bib_references/bib.md#bib999)
-, and
-[[958]](../bib_references/bib.md#bib1000)
-.
+xTB 系列半经验紧束缚（semiempirical tight-binding）方法为大分子体系提供了一种高效的低成本电子结构计算途径。当前的 **Q-Chem** 实现基于 Bannwarth、Ehlert 和 Grimme 提出的 GFN2-xTB 哈密顿量[[73]](../bib_references/bib.md#bib58)，
+ 该哈密顿量将类扩展 Hückel（extended Hückel-like）零级哈密顿量与自洽的各向同性及各向异性静电与交换-关联贡献相结合。
+对于开壳层体系，**Q-Chem** 还支持一种非限制自旋极化（unrestricted spin-polarized）变体，其思路源自
+Refs. [[986]](../bib_references/bib.md#bib1030)、[[959]](../bib_references/bib.md#bib999) 和
+[[958]](../bib_references/bib.md#bib1000) 中描述的 spGFN2-xTB 发展。
 
-## 4.10.1.1 Theoretical Background
+## 4.10.1.1 理论背景
 
-GFN2-xTB belongs to the density-functional tight-binding (DFTB)
-family,
+GFN2-xTB 属于密度泛函紧束缚（density-functional tight-binding, DFTB）家族，
 
- in which the Kohn–Sham DFT energy is expanded
-around a superposition of neutral atomic reference densities,
+ 其中 Kohn–Sham DFT 能量围绕中性原子参考密度叠加进行展开，
 
 <a id="Ch4.E77"></a>
 $$
 \rho_{0}(\mathbf{r})=\sum_{A}\rho_{A}^{0}(\mathbf{r}), \tag{4.77}
 $$
 
-with the density fluctuation defined as $\delta\rho=\rho-\rho_{0}$. In
-schematic form, the energy expansion is
+密度涨落定义为 $\delta\rho=\rho-\rho_{0}$。以示意形式书写，能量展开为
 
 <a id="Ch4.E78"></a>
 $$
 E[\rho]=E^{(0)}[\rho_{0}]+E^{(1)}[\rho_{0},\delta\rho]+E^{(2)}[\rho_{0},(\delta\rho)^{2}]+E^{(3)}[\rho_{0},(\delta\rho)^{3}]+\cdots. \tag{4.78}
 $$
 
-The zeroth-order term defines the reference atomic energies together with a
-short-range repulsion model, the first-order term yields the extended
-Hückel-like valence Hamiltonian, and the higher-order terms account for the
-self-consistent response to charge-density fluctuations.[[73]](../bib_references/bib.md#bib58)
+零级项定义了参考原子能量以及一个短程排斥模型，一级项给出类扩展 Hückel 的价层哈密顿量，高阶项则描述对电荷密度涨落的自洽响应。[[73]](../bib_references/bib.md#bib58)
 
-In GFN2-xTB, the higher-order response includes isotropic shell-charge terms as
-well as anisotropic multipole corrections.
+在 GFN2-xTB 中，高阶响应包括各向同性的壳层电荷项以及各向异性的多极修正。
 
-The working GFN2-xTB energy expression is[[73]](../bib_references/bib.md#bib58)
+GFN2-xTB 的实用能量表达式为[[73]](../bib_references/bib.md#bib58)
 
 <a id="Ch4.E79"></a>
 $$
 E_{\mathrm{GFN2-xTB}}=E_{\mathrm{rep}}+E_{\mathrm{disp}}+E_{\mathrm{EHT}}+E_{\mathrm{IES}}+E_{\mathrm{IXC}}+E_{\mathrm{AES}}+E_{\mathrm{AXC}}+G_{\mathrm{Fermi}}. \tag{4.79}
 $$
 
-Here, $E_{\mathrm{rep}}$ is a classical short-range repulsion term,
-$E_{\mathrm{EHT}}$ is the extended Hückel covalent-bonding contribution,
-$E_{\mathrm{IES}}$ and $E_{\mathrm{IXC}}$ are the isotropic electrostatic and
-exchange-correlation terms, $E_{\mathrm{AES}}$ and $E_{\mathrm{AXC}}$ are the
-anisotropic multipole electrostatic and exchange-correlation corrections, and
-$G_{\mathrm{Fermi}}$ is the finite-temperature entropy term that allows
-fractional occupations. In the original standalone GFN2-xTB model,
-$E_{\mathrm{disp}}$ is the self-consistent D4 dispersion contribution. For
-open-shell systems, the spin-polarized extension adds a shell-wise
-spin-polarization energy based on Mulliken spin populations and atomic spin
-constants.[[986]](../bib_references/bib.md#bib1030)
+其中，$E_{\mathrm{rep}}$ 是经典的短程排斥项，
+$E_{\mathrm{EHT}}$ 是扩展 Hückel 共价键贡献，
+$E_{\mathrm{IES}}$ 和 $E_{\mathrm{IXC}}$ 是各向同性静电项与交换-关联项，$E_{\mathrm{AES}}$ 和 $E_{\mathrm{AXC}}$ 是各向异性多极静电与交换-关联修正，而
+$G_{\mathrm{Fermi}}$ 是允许分数占据的有限温度熵项。在原始的独立 GFN2-xTB 模型中，
+$E_{\mathrm{disp}}$ 是自洽的 D4 色散贡献。
+对于开壳层体系，自旋极化扩展基于 Mulliken 自旋布居数和原子自旋常数增加了逐壳层的自旋极化能。[[986]](../bib_references/bib.md#bib1030)
 
-This implementation is intended for rapid screening, structure refinement, and
-inexpensive single-point calculations. In practice it is most useful as a
-fast preoptimization or exploratory tool before higher-level calculations are
-carried out.
+该实现旨在用于快速筛选、结构精修和廉价的单点计算。在实际应用中，它最适合作为在更高精度级别计算之前进行的快速预优化或探索性工具。
 
-**Note: 
+**注意：**
 
-The present **Q-Chem** implementation does *not* include the D4
-dispersion contribution that is part of the original standalone
-GFN2-xTB model. Consequently, total energies and optimized structures can
-differ from those obtained with the reference `xtb` program,
-especially for systems where dispersion interactions are important.
+当前的 **Q-Chem** 实现*不*包含原始独立 GFN2-xTB 模型中的 D4
+色散贡献。因此，总能量和优化结构可能与使用参考程序 `xtb`
+得到的结果不同，对于色散相互作用重要的体系尤其如此。
 **

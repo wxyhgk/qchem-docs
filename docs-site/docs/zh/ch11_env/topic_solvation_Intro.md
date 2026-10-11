@@ -1,211 +1,163 @@
 ---
-title: "11.2.1 Introduction"
+title: "11.2.1 引言"
 ---
 
-## 11.2.1 Introduction
+## 11.2.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-*Ab initio* quantum chemistry makes possible the study of gas-phase
-molecular properties from first principles. In liquid solution, however, these
-properties may change significantly, especially in polar solvents. Although it
-is possible to model solvation effects by including explicit solvent molecules
-in the quantum-chemical calculation (*e.g.*, a supramolecular cluster
-calculation, averaged over different configurations of the molecules in the
-first solvation shell), such calculations are very computationally demanding.
-Furthermore, cluster calculations typically do not afford accurate solvation
-energies, owing to the importance of long-range electrostatic interactions.
-(Hybrid discrete/continuum models, which contain *some* explicit solvent,
-can be quite effective, however.[[1101]](../bib_references/bib.md#bib1147)
-)
-Accurate prediction of solvation free energies is crucial for
-modeling of chemical reactions but also for relative conformational energies in solution.
+*从头算（ab initio）*量子化学使得从第一性原理出发研究气相分子性质成为可能。然而在液相溶液中，这些性质可能会发生显著变化，在极性溶剂中尤为如此。尽管可以通过在量子化学计算中显式地包含溶剂分子来模拟溶剂化效应（*例如*，超分子团簇计算，并对第一溶剂化层中分子的不同构型进行平均），但这类计算对计算资源的要求极高。此外，由于长程静电相互作用的重要性，团簇计算通常无法给出准确的溶剂化能。（不过，包含*部分*显式溶剂的离散/连续杂化模型可以非常有效。[[1101]](../bib_references/bib.md#bib1147)）
+准确预测溶剂化自由能对于化学反应建模至关重要，对溶液中相对构象能的预测同样如此。
 
-**Q-Chem** contains several different implicit solvent models, which differ
-greatly in their level of sophistication. These are generally known as
-self-consistent reaction field (SCRF) models, because the continuum solvent
-establishes a “reaction field” (additional terms in the solute Hamiltonian)
-that depends upon the solute electron density, and must therefore be updated
-self-consistently during the iterative convergence of the wave function.
-The simplest and oldest of these models that is available in **Q-Chem** is the
-multipole expansion method, also known as a Kirkwood-Onsager model,[[569]](../bib_references/bib.md#bib580)
+**Q-Chem** 包含若干不同的隐式溶剂模型，它们在精细程度上差异很大。这些模型通常被称为自洽反应场（Self-Consistent Reaction Field, SCRF）模型，因为连续介质溶剂会建立一个依赖于溶质电子密度的“反应场”（溶质哈密顿量中的附加项），因此在波函数迭代收敛过程中必须以自洽的方式对其进行更新。**Q-Chem** 中可用的最简单、最古老的模型是 multipole expansion method（多极展开方法），也称为 Kirkwood-Onsager 模型，[[569]](../bib_references/bib.md#bib580)
 
-in which the solute molecule is placed inside of a spherical cavity and its
-electrostatic potential is represented in terms of a single-center multipole expansion.
-(This should not be confused with the *Onsager model*, in which a dipole approximation is used,
-and to avoid confusion the *multipolar expansion method* is better terminology.)
-More sophisticated models, which use a molecule-shaped cavity and
-the full molecular electrostatic potential, include the
-conductor-like PCM (C-PCM),[[79]](../bib_references/bib.md#bib61)
+在该模型中，溶质分子被置于一个球形空腔内，其静电势用单中心多极展开来表示。
+（这不应与 *Onsager 模型*混淆——后者使用的是偶极近似；为避免混淆，使用 *多极展开方法* 这一术语更为恰当。）更复杂的模型使用分子形状的空腔和完整的分子静电势，包括类导体 PCM（Conductor-like PCM, C-PCM）、[[79]](../bib_references/bib.md#bib61)
 
-the conductor-like screening model (COSMO),
+类导体屏蔽模型（Conductor-like Screening Model, COSMO）、
 
-the “surface and simulation of volume polarization for electrostatics”
-[SS(V)PE] model,[[245]](../bib_references/bib.md#bib245)
- and the closely-related
-“integral equation formalism” (IEF-PCM).[[187]](../bib_references/bib.md#bib181)
+“静电表面与体积极化模拟”[SS(V)PE] 模型，[[245]](../bib_references/bib.md#bib245)
+ 以及与之密切相关的
+“积分方程形式体系”（Integral Equation Formalism, IEF-PCM）。[[187]](../bib_references/bib.md#bib181)
 
-For an overview of all of these methods and their interconnections, see the review by Herbert.[[569]](../bib_references/bib.md#bib580)
+关于所有这些方法及其相互关系的综述，请参见 Herbert 的综述文章。[[569]](../bib_references/bib.md#bib580)
 
-The C-PCM, IEF-PCM, and SS(V)PE are examples of what are called “apparent
-surface charge” SCRF models, and the term *polarizable continuum
-models* (PCMs), as popularized by Tomasi and coworkers,[[1363]](../bib_references/bib.md#bib1425)
- is
-now used almost universally to refer to this class of solvation models.
-**Q-Chem** employs a Switching/Gaussian or “SwiG” implementation of these
-PCMs,[[753]](../bib_references/bib.md#bib786)
-which resolves a long-standing (though little-publicized) problem with
-standard PCMs, namely, that the boundary-element methods used to discretize the
-solute/continuum interface may lead to discontinuities in the potential
-energy surface for the solute molecule. These discontinuities inhibit
-convergence of geometry optimizations, introduce serious artifacts in
-vibrational frequency calculations, and make *ab initio* molecular
-dynamics calculations virtually impossible.[[753]](../bib_references/bib.md#bib786)
+C-PCM、IEF-PCM 和 SS(V)PE 都是所谓“表观面电荷（apparent surface charge）”SCRF 模型的例子，而由 Tomasi 及其合作者推广开的 *可极化连续介质模型（Polarizable Continuum Models, PCM）* 这一术语，如今几乎被普遍用于指代这一类溶剂化模型。
+**Q-Chem** 采用的是这些 PCM 的 Switching/Gaussian（“SwiG”）实现方式，[[753]](../bib_references/bib.md#bib786)
+它解决了标准 PCM 中一个长期存在（却鲜为人知）的问题，即：用于离散化溶质/连续介质界面的边界元方法可能导致溶质分子势能面出现不连续性。这些不连续性会阻碍几何优化的收敛，在振动频率计算中引入严重的人为假象，并使 *从头算*分子动力学计算几乎无法进行。[[753]](../bib_references/bib.md#bib786)
 
-In contrast, **Q-Chem**’s SwiG-PCMs afford potential energy surfaces that are
-rigorously continuous and smooth. Unlike earlier attempts to obtain smooth
-PCMs, the SwiG approach largely preserves the properties of the underlying
-integral-equation solvent models, so that solvation energies and molecular
-surface areas are hardly affected by the smoothing procedure.
+相比之下，**Q-Chem** 的 SwiG-PCM 提供了严格连续且光滑的势能面。与早期获得光滑 PCM 的尝试不同，SwiG 方法在很大程度上保留了底层积分方程溶剂模型的性质，因此溶剂化能和分子表面积几乎不受平滑处理的影响。
 
-Other solvent models available in **Q-Chem** include the “Langevin dipoles”
-model;[[394]](../bib_references/bib.md#bib402)
- as well as the
-SM8,[[912]](../bib_references/bib.md#bib942)
- SM12,[[910]](../bib_references/bib.md#bib946)
- and SMD models.[[909]](../bib_references/bib.md#bib943)
+**Q-Chem** 中可用的其他溶剂模型包括“Langevin 偶极子（Langevin dipoles）”模型；[[394]](../bib_references/bib.md#bib402)
+ 以及
+SM8、[[912]](../bib_references/bib.md#bib942)
+ SM12、[[910]](../bib_references/bib.md#bib946)
+ 和 SMD 模型。[[909]](../bib_references/bib.md#bib943)
 
-SM8 and SM12 are based upon the generalized Born method for electrostatics, augmented with
-atomic surface tensions intended to capture nonelectrostatic effects
-(cavitation, dispersion, exchange repulsion, and changes in solvent structure).
-These models have been carefully parameterized to reproduce experimental free energies of solvation.[[281]](../bib_references/bib.md#bib286)
+SM8 和 SM12 基于广义 Born（generalized Born）静电方法，并辅以原子表面张力项以捕获非静电效应（空穴形成、色散、交换排斥以及溶剂结构的变化）。
+这些模型经过精心参数化，以重现实验测得的溶剂化自由能。[[281]](../bib_references/bib.md#bib286)
 
-The SMD model, in which the “D” is for “density”,
-combines IEF-PCM with similar nonelectrostatic corrections. Statistically speaking,
-SMD is not any more or less accurate than other SM$x$ models,[[569]](../bib_references/bib.md#bib580)
- but has
-the advantage of being based on rigorous electrostatics derived from the solute’s exact SCF density.
-The SM12 and SMD models can each be used in arbitrary basis sets. The SM8 model
-uses generalized Born electrostatics based on “CM4” charges,[[678]](../bib_references/bib.md#bib702)
+SMD 模型中的“D”代表“density（密度）”，
+它将 IEF-PCM 与类似的非静电校正相结合。从统计学上讲，
+SMD 的准确性并不高于或低于其他 SM$x$ 模型，[[569]](../bib_references/bib.md#bib580)
+ 但其优势在于基于严格静电学，由溶质精确的 SCF 密度导出。
+SM12 和 SMD 模型均可在任意基组中使用。SM8 模型
+使用基于“CM4”电荷的广义 Born 静电学，[[678]](../bib_references/bib.md#bib702)
 
-which are themselves based on Löwdin atomic charges, and as such this model should only be used in the basis sets
-for which it was parameterized: 6-31G*, 6-31+G*, or 6-31+G**. (Other basis sets, if requested will use the 6-31G* parameters
-but this is not recommended.) The SM12 model also uses generalized Born electrostatics but substitutes CM4 charges for
-Hirshfeld charges; the latter are more stable with respect to changes in basis set and therefore SM12 is available in arbitrary
-basis sets. The trade-off is that an analytic gradient is available for SM8 but not SM12; see Table [11.2](#table:solvent_model_derivatives).
-For SMD, both analytic first and second derivatives (frequencies) are available.
+而 CM4 电荷本身又基于 Löwdin 原子电荷，因此该模型只能在其参数化所使用的基组中使用：6-31G*、6-31+G* 或 6-31+G**。（若请求其他基组，将使用 6-31G* 的参数，但不建议这样做。）SM12 模型同样使用广义 Born 静电学，但以 Hirshfeld 电荷替代 CM4 电荷；后者对基组变化更加稳定，因此 SM12 可在任意基组中使用。其代价是 SM8 有解析梯度而 SM12 没有；见表 [11.2](#table:solvent_model_derivatives)。
+对于 SMD，一阶和二阶解析导数（频率）均可用。
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <tbody class="ltx_tbody">
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Model</span></th>
-<td class="ltx_td ltx_align_center ltx_border_tt" colspan="2"><span class="ltx_text ltx_font_bold">Cavity</span></td>
-<td class="ltx_td ltx_align_center ltx_border_tt"><span class="ltx_text ltx_font_bold">Non-</span></td>
-<td class="ltx_td ltx_align_center ltx_border_tt"><span class="ltx_text ltx_font_bold">Basis</span></td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">模型</span></th>
+<td class="ltx_td ltx_align_center ltx_border_tt" colspan="2"><span class="ltx_text ltx_font_bold">空腔</span></td>
+<td class="ltx_td ltx_align_center ltx_border_tt"><span class="ltx_text ltx_font_bold">非静电</span></td>
+<td class="ltx_td ltx_align_center ltx_border_tt"><span class="ltx_text ltx_font_bold">基组</span></td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_th ltx_th_row"></th>
-<td class="ltx_td ltx_align_center ltx_border_t">Construction</td>
-<td class="ltx_td ltx_align_center ltx_border_t">Discretization</td>
-<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">Electrostatic</span></td>
-<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">Sets</span></td>
+<td class="ltx_td ltx_align_center ltx_border_t">构造方式</td>
+<td class="ltx_td ltx_align_center ltx_border_t">离散化方式</td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">项？</span></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">支持情况</span></td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_th ltx_th_row"></th>
 <td class="ltx_td"></td>
 <td class="ltx_td"></td>
-<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">Terms?</span></td>
-<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold">Supported</span></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold"></span></td>
+<td class="ltx_td ltx_align_center"><span class="ltx_text ltx_font_bold"></span></td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Kirkwood-Onsager</th>
-<td class="ltx_td ltx_align_center ltx_border_t">spherical</td>
-<td class="ltx_td ltx_align_center ltx_border_t">point charges</td>
-<td class="ltx_td ltx_align_center ltx_border_t">no</td>
-<td class="ltx_td ltx_align_center ltx_border_t">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t">球形</td>
+<td class="ltx_td ltx_align_center ltx_border_t">点电荷</td>
+<td class="ltx_td ltx_align_center ltx_border_t">否</td>
+<td class="ltx_td ltx_align_center ltx_border_t">全部</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">Langevin Dipoles</th>
-<td class="ltx_td ltx_align_center ltx_border_t">atomic spheres</td>
-<td class="ltx_td ltx_align_center ltx_border_t">dipoles in</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">no</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">Langevin 偶极子</th>
+<td class="ltx_td ltx_align_center ltx_border_t">原子球</td>
+<td class="ltx_td ltx_align_center ltx_border_t">三维空间中的</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">否</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
-<td class="ltx_td ltx_align_center">(user-definable)</td>
-<td class="ltx_td ltx_align_center">3-d space</td>
+<td class="ltx_td ltx_align_center">（用户可自定义）</td>
+<td class="ltx_td ltx_align_center">偶极子</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Poisson Equation</th>
-<td class="ltx_td ltx_align_center ltx_border_t">atomic spheres</td>
-<td class="ltx_td ltx_align_center ltx_border_t">grid in</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">no</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">泊松方程</th>
+<td class="ltx_td ltx_align_center ltx_border_t">原子球</td>
+<td class="ltx_td ltx_align_center ltx_border_t">三维空间中的</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">否</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row">Solver</th>
-<td class="ltx_td ltx_align_center">(user-definable)</td>
-<td class="ltx_td ltx_align_center">3-d space</td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">求解器</th>
+<td class="ltx_td ltx_align_center">（用户可自定义）</td>
+<td class="ltx_td ltx_align_center">网格</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">C-PCM</th>
-<td class="ltx_td ltx_align_center ltx_border_t">atomic spheres</td>
-<td class="ltx_td ltx_align_center ltx_border_t">point charges or</td>
-<td class="ltx_td ltx_align_center ltx_border_t">user-</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t">原子球</td>
+<td class="ltx_td ltx_align_center ltx_border_t">点电荷或</td>
+<td class="ltx_td ltx_align_center ltx_border_t">用户</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
-<td class="ltx_td ltx_align_center">(user-definable)</td>
-<td class="ltx_td ltx_align_center">smooth Gaussians</td>
-<td class="ltx_td ltx_align_center">specified</td>
+<td class="ltx_td ltx_align_center">（用户可自定义）</td>
+<td class="ltx_td ltx_align_center">平滑高斯函数</td>
+<td class="ltx_td ltx_align_center">指定</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">SS(V)PE/</th>
-<td class="ltx_td ltx_align_center ltx_border_t">atomic spheres</td>
-<td class="ltx_td ltx_align_center ltx_border_t">point charges or</td>
-<td class="ltx_td ltx_align_center ltx_border_t">user-</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t">原子球</td>
+<td class="ltx_td ltx_align_center ltx_border_t">点电荷或</td>
+<td class="ltx_td ltx_align_center ltx_border_t">用户</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row">IEF-PCM</th>
-<td class="ltx_td ltx_align_center">(user-definable)</td>
-<td class="ltx_td ltx_align_center">smooth Gaussians</td>
-<td class="ltx_td ltx_align_center">specified</td>
+<td class="ltx_td ltx_align_center">（用户可自定义）</td>
+<td class="ltx_td ltx_align_center">平滑高斯函数</td>
+<td class="ltx_td ltx_align_center">指定</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">COSMO</th>
-<td class="ltx_td ltx_align_center ltx_border_t">predefined</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">point charges</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">none</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t">预定义的</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">点电荷</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">无</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
-<td class="ltx_td ltx_align_center">atomic spheres</td>
+<td class="ltx_td ltx_align_center">原子球</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">Isodensity SS(V)PE</th>
-<td class="ltx_td ltx_align_center ltx_border_t">isodensity contour</td>
-<td class="ltx_td ltx_align_center ltx_border_t">point charges</td>
-<td class="ltx_td ltx_align_center ltx_border_t">none</td>
-<td class="ltx_td ltx_align_center ltx_border_t">all</td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">等密度 SS(V)PE</th>
+<td class="ltx_td ltx_align_center ltx_border_t">等密度轮廓</td>
+<td class="ltx_td ltx_align_center ltx_border_t">点电荷</td>
+<td class="ltx_td ltx_align_center ltx_border_t">无</td>
+<td class="ltx_td ltx_align_center ltx_border_t">全部</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">CMIRS</th>
-<td class="ltx_td ltx_align_center ltx_border_t">isodensity contour</td>
-<td class="ltx_td ltx_align_center ltx_border_t">point charges</td>
-<td class="ltx_td ltx_align_center ltx_border_t">automatic</td>
-<td class="ltx_td ltx_align_center ltx_border_t">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t">等密度轮廓</td>
+<td class="ltx_td ltx_align_center ltx_border_t">点电荷</td>
+<td class="ltx_td ltx_align_center ltx_border_t">自动</td>
+<td class="ltx_td ltx_align_center ltx_border_t">全部</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="3">SM8</th>
-<td class="ltx_td ltx_align_center ltx_border_t">predefined</td>
+<td class="ltx_td ltx_align_center ltx_border_t">预定义的</td>
 <td class="ltx_td ltx_border_t"></td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="3">automatic</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="3">自动</td>
 <td class="ltx_td ltx_align_center ltx_border_t">6-31G*</td>
 </tr>
 <tr class="ltx_tr">
-<td class="ltx_td ltx_align_center">atomic spheres</td>
-<td class="ltx_td ltx_align_center">N/A${}^{a}$
+<td class="ltx_td ltx_align_center">原子球</td>
+<td class="ltx_td ltx_align_center">不适用${}^{a}$
 </td>
 <td class="ltx_td ltx_align_center">6-31+G*</td>
 </tr>
@@ -216,70 +168,59 @@ For SMD, both analytic first and second derivatives (frequencies) are available.
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">SM12</th>
-<td class="ltx_td ltx_align_center ltx_border_t">predefined</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">N/A${}^{a}$
+<td class="ltx_td ltx_align_center ltx_border_t">预定义的</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">不适用${}^{a}$
 </td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">automatic</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">自动</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
-<td class="ltx_td ltx_align_center">atomic spheres</td>
+<td class="ltx_td ltx_align_center">原子球</td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t" rowspan="2">SMD</th>
-<td class="ltx_td ltx_align_center ltx_border_t">predefined</td>
-<td class="ltx_td ltx_align_center ltx_border_t">point charges</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">automatic</td>
-<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">all</td>
+<td class="ltx_td ltx_align_center ltx_border_t">预定义的</td>
+<td class="ltx_td ltx_align_center ltx_border_t">点电荷</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">自动</td>
+<td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">全部</td>
 </tr>
 <tr class="ltx_tr">
-<td class="ltx_td ltx_align_center">atomic spheres</td>
+<td class="ltx_td ltx_align_center">原子球</td>
 <td class="ltx_td"></td>
 </tr>
 </tbody>
 <tfoot class="ltx_tfoot">
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt" colspan="5">
-${}^{a}$<span class="ltx_text" style="font-size:80%;">Generalized Born electrostatic model; does not require cavity construction.</span>
+${}^{a}$<span class="ltx_text" style="font-size:80%;">广义 Born 静电模型；不需要构造空腔。</span>
 </th>
 </tr>
 </tfoot>
 </table>
 
-Table 11.1: 
-Summary of implicit solvation models available in **Q-Chem**,
-indicating how the solute cavity is constructed and discretized, whether
-nonelectrostatic terms are (or can be) included, and which basis sets are
-available for use with each model.
+表 11.1: 
+**Q-Chem** 中可用隐式溶剂模型的汇总，
+展示了溶质空腔的构造与离散化方式、是否（或能否）包含非静电项，以及各模型
+可用的基组。
 
-Table [11.1](#table:solvent_models) summarizes the implicit solvent models that
-are available in **Q-Chem**. Solvent models are invoked via the
-SOLVENT_METHOD keyword, as shown below. Additional details about
-each particular solvent model can be found in the sections that follow. In
-general, these methods are available for any SCF level of electronic structure
-theory, with the aforementioned caveat about basis sets for SM8.
-Post-Hartree–Fock calculations (such as MP2 or EOM-CC) can be performed by first running an SCF + PCM
-job, in which case the correlated wave function will employ MOs and
-Hartree-Fock energy levels that are polarized by the solvent. This represents a
-“zeroth-order” inclusion of the solvent effects at the correlated level of theory, but is perfectly
-adequate for many applications as higher-order corrections are usually small.[[939]](../bib_references/bib.md#bib982)
+表 [11.1](#table:solvent_models) 汇总了 **Q-Chem** 中可用的隐式溶剂模型。溶剂模型通过
+SOLVENT_METHOD 关键字调用，如下所示。有关各个特定溶剂模型的更多细节可以在后续章节中找到。
+一般而言，这些方法可用于任意 SCF 级别的电子结构理论，但需注意前文关于 SM8 基组的限制。
+后 Hartree–Fock 计算（如 MP2 或 EOM-CC）可以通过先运行 SCF + PCM 计算来实现，此时关联波函数将采用被溶剂极化了的分子轨道（MO）和 Hartree-Fock 能级。这代表在关联理论级别上对溶剂效应的“零阶”包含，但由于高阶修正通常很小，对于许多应用而言这已经完全足够。[[939]](../bib_references/bib.md#bib982)
 
-Table [11.2](#table:solvent_model_derivatives) also summarizes the availability of analytical energy
-gradients for implicit solvent models. (Finite-difference gradients and Hessians are requested automatically
-for calculations where the requisite analytic derivatives are not available.)
+表 [11.2](#table:solvent_model_derivatives) 还汇总了隐式溶剂模型解析能量梯度的可用性。（对于无法提供所需解析导数的计算，会自动请求有限差分梯度和 Hessian。）
 
-**Note: 
+**注意：
 
-The format for specifying implicit solvent models changed
-significantly starting in **Q-Chem** v. 4.2.1. This change was made in an
-attempt to simply and unify the input notation for a large number of different models.
+从 **Q-Chem** v. 4.2.1 开始，隐式溶剂模型的指定方式发生了重大
+变化。做出这一改动是为了简化和统一大量不同模型的输入表示法。
 **
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <tbody class="ltx_tbody">
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt" rowspan="3"><span class="ltx_text ltx_font_bold">Energy Derivatives</span></th>
-<td class="ltx_td ltx_align_center ltx_border_tt" colspan="9"><span class="ltx_text ltx_font_bold">Solvent Model</span></td>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt" rowspan="3"><span class="ltx_text ltx_font_bold">能量导数</span></th>
+<td class="ltx_td ltx_align_center ltx_border_tt" colspan="9"><span class="ltx_text ltx_font_bold">溶剂模型</span></td>
 </tr>
 <tr class="ltx_tr">
 <td class="ltx_td ltx_align_center ltx_border_t" rowspan="2">C-PCM</td>
@@ -296,78 +237,78 @@ attempt to simply and unify the input notation for a large number of different m
 <td class="ltx_td ltx_align_center ltx_border_t">SM8</td>
 <td class="ltx_td ltx_align_center ltx_border_t">SM12</td>
 <td class="ltx_td ltx_align_center ltx_border_t">SMD</td>
-<td class="ltx_td ltx_align_center">Dipoles</td>
+<td class="ltx_td ltx_align_center">偶极子</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">SCF energy gradient</th>
-<td class="ltx_td ltx_align_center ltx_border_t">yes${}^{a}$
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t">SCF 能量梯度</th>
+<td class="ltx_td ltx_align_center ltx_border_t">是${}^{a}$
 </td>
-<td class="ltx_td ltx_align_center ltx_border_t">yes${}^{a}$
+<td class="ltx_td ltx_align_center ltx_border_t">是${}^{a}$
 </td>
-<td class="ltx_td ltx_align_center ltx_border_t">no</td>
-<td class="ltx_td ltx_align_center ltx_border_t">yes</td>
-<td class="ltx_td ltx_align_center ltx_border_t">yes</td>
-<td class="ltx_td ltx_align_center ltx_border_t">no</td>
-<td class="ltx_td ltx_align_center ltx_border_t">yes</td>
-<td class="ltx_td ltx_align_center ltx_border_t">no</td>
-<td class="ltx_td ltx_align_center ltx_border_t">yes</td>
+<td class="ltx_td ltx_align_center ltx_border_t">否</td>
+<td class="ltx_td ltx_align_center ltx_border_t">是</td>
+<td class="ltx_td ltx_align_center ltx_border_t">是</td>
+<td class="ltx_td ltx_align_center ltx_border_t">否</td>
+<td class="ltx_td ltx_align_center ltx_border_t">是</td>
+<td class="ltx_td ltx_align_center ltx_border_t">否</td>
+<td class="ltx_td ltx_align_center ltx_border_t">是</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row">SCF energy Hessian</th>
-<td class="ltx_td ltx_align_center">yes${}^{a}$
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">SCF 能量 Hessian</th>
+<td class="ltx_td ltx_align_center">是${}^{a}$
 </td>
-<td class="ltx_td ltx_align_center">no</td>
-<td class="ltx_td ltx_align_center">no</td>
-<td class="ltx_td ltx_align_center">yes${}^{b}$
+<td class="ltx_td ltx_align_center">否</td>
+<td class="ltx_td ltx_align_center">否</td>
+<td class="ltx_td ltx_align_center">是${}^{b}$
 </td>
-<td class="ltx_td ltx_align_center">no</td>
-<td class="ltx_td ltx_align_center">no</td>
-<td class="ltx_td ltx_align_center">yes${}^{c}$
+<td class="ltx_td ltx_align_center">否</td>
+<td class="ltx_td ltx_align_center">否</td>
+<td class="ltx_td ltx_align_center">是${}^{c}$
 </td>
-<td class="ltx_td ltx_align_center">no</td>
-<td class="ltx_td ltx_align_center">no</td>
+<td class="ltx_td ltx_align_center">否</td>
+<td class="ltx_td ltx_align_center">否</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row">CIS/TDDFT energy gradient</th>
-<td class="ltx_td ltx_align_center">yes${}^{a}$
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">CIS/TDDFT 能量梯度</th>
+<td class="ltx_td ltx_align_center">是${}^{a}$
 </td>
-<td class="ltx_td ltx_align_center">no</td>
+<td class="ltx_td ltx_align_center">否</td>
 <td class="ltx_td ltx_align_center">—</td>
 <td class="ltx_td ltx_align_center">—</td>
-<td class="ltx_td ltx_align_center" colspan="3">— unsupported —</td>
-<td class="ltx_td ltx_align_center">—</td>
-<td class="ltx_td ltx_align_center">—</td>
-</tr>
-<tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row">CIS/TDDFT energy Hessian</th>
-<td class="ltx_td ltx_align_center">yes${}^{a}$
-</td>
-<td class="ltx_td ltx_align_center">no</td>
-<td class="ltx_td ltx_align_center">—</td>
-<td class="ltx_td ltx_align_center">—</td>
-<td class="ltx_td ltx_align_center" colspan="3">— unsupported —</td>
+<td class="ltx_td ltx_align_center" colspan="3">— 不支持 —</td>
 <td class="ltx_td ltx_align_center">—</td>
 <td class="ltx_td ltx_align_center">—</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row">MP2 &amp; double-hybrid${}^{d}$
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">CIS/TDDFT 能量 Hessian</th>
+<td class="ltx_td ltx_align_center">是${}^{a}$
+</td>
+<td class="ltx_td ltx_align_center">否</td>
+<td class="ltx_td ltx_align_center">—</td>
+<td class="ltx_td ltx_align_center">—</td>
+<td class="ltx_td ltx_align_center" colspan="3">— 不支持 —</td>
+<td class="ltx_td ltx_align_center">—</td>
+<td class="ltx_td ltx_align_center">—</td>
+</tr>
+<tr class="ltx_tr">
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row">MP2 与双杂化${}^{d}$
 </th>
 <td class="ltx_td ltx_align_center">—</td>
 <td class="ltx_td ltx_align_center">—</td>
 <td class="ltx_td ltx_align_center">—</td>
 <td class="ltx_td ltx_align_center">—</td>
-<td class="ltx_td ltx_align_center" colspan="3">— unsupported —</td>
+<td class="ltx_td ltx_align_center" colspan="3">— 不支持 —</td>
 <td class="ltx_td ltx_align_center">—</td>
 <td class="ltx_td ltx_align_center">—</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb">Coupled cluster methods${}^{d}$
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_bb">耦合簇方法${}^{d}$
 </th>
 <td class="ltx_td ltx_align_center ltx_border_bb">—</td>
 <td class="ltx_td ltx_align_center ltx_border_bb">—</td>
 <td class="ltx_td ltx_align_center ltx_border_bb">—</td>
 <td class="ltx_td ltx_align_center ltx_border_bb">—</td>
-<td class="ltx_td ltx_align_center ltx_border_bb" colspan="3">— unsupported —</td>
+<td class="ltx_td ltx_align_center ltx_border_bb" colspan="3">— 不支持 —</td>
 <td class="ltx_td ltx_align_center ltx_border_bb">—</td>
 <td class="ltx_td ltx_align_center ltx_border_bb">—</td>
 </tr>
@@ -376,141 +317,113 @@ attempt to simply and unify the input notation for a large number of different m
 
 - •
 
-${}^{a}$Gradients available for vdW cavities and SAS cavity surfaces only.
+${}^{a}$仅对 vdW 空腔和 SAS 空腔表面提供梯度。
 - •
 
-${}^{b}$Hessians for COSMO with the outlying charge correction are not supported.
+${}^{b}$带外围电荷校正的 COSMO 不支持 Hessian。
 - •
 
-${}^{c}$Seminumerical Hessian, with a step size controllable via FDIFF_STEPSIZE.
+${}^{c}$半数值 Hessian，步长可通过 FDIFF_STEPSIZE 控制。
 - •
 
-${}^{d}$Gradients are not supported but single-point calculations can be performed using solvent-polarized MOs.
+${}^{d}$不支持梯度，但可以使用溶剂极化的 MO 进行单点计算。
 
-Table 11.2: 
-Summary of analytic energy gradient and Hessian capabilities with implicit solvent models.
+表 11.2: 
+隐式溶剂模型下解析能量梯度与 Hessian 功能的汇总。
 
 SOLVENT_METHOD
 
 ### `SOLVENT_METHOD`
 
-> **Sets the preferred solvent method.**
+> **设置所选用的溶剂方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not use a solvation model.
+>     * 不使用溶剂化模型。
 >     * KIRKWOOD
->     * Use the Kirkwood-Onsager model (Section
+>     * 使用 Kirkwood-Onsager 模型（第
 >     * 11.2.2
->     * ).
+>     * 节）。
 >     * PCM
->     * Use an apparent surface charge, polarizable continuum model
->     * (Section
+>     * 使用表观面电荷可极化连续介质模型（第
 >     * 11.2.3
->     * ).
+>     * 节）。
 >     * ISOSVP
->     * Use the isodensity implementation of the SS(V)PE model
->     * (Section
+>     * 使用 SS(V)PE 模型的等密度实现方式（第
 >     * 11.2.6
->     * ).
+>     * 节）。
 >     * COSMO
->     * Use COSMO (Section
+>     * 使用 COSMO（第
 >     * 11.2.8
->     * ).
+>     * 节）。
 >     * SM8
->     * Use version 8 of the Cramer-Truhlar SM
+>     * 使用 Cramer-Truhlar SM
 >     * $x$
->     * model (Section
+>     * 模型的第 8 版（第
 >     * 11.2.9.1
->     * ).
+>     * 节）。
 >     * SM12
->     * Use version 12 of the SM
+>     * 使用 SM
 >     * $x$
->     * model (Section
+>     * 模型的第 12 版（第
 >     * 11.2.9.2
->     * ).
+>     * 节）。
 >     * SMD
->     * Use SMD (Section
+>     * 使用 SMD（第
 >     * 11.2.9.3
->     * ).
+>     * 节）。
 >     * CHEM_SOL
->     * Use the Langevin Dipoles model (Section
+>     * 使用 Langevin 偶极子模型（第
 >     * 11.2.10
->     * ).
+>     * 节）。
 >     * PEQS
->     * Use the Poisson Equation Solver (Section
+>     * 使用泊松方程求解器（Poisson Equation Solver）（第
 >     * 11.2.11
->     * ).
-> * **Recommendation**: Consult the literature ( e.g. , Ref. 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link ). PCM is a collective name for a family of models and additional input options may be required in this case, in order to fully specify the model; see Section 11.2.3 . Several versions of SM12 are available as well, as discussed in Section 11.2.9.2 .
+>     * 节）。
+> * **建议**: 参阅文献（*例如*，参考文献 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021), 11, pp. e1519. Link）。PCM 是一族模型的统称，在这种情况下可能需要额外的输入选项才能完整指定该模型；见第 11.2.3 节。SM12 也有若干版本可用，详见第 11.2.9.2 节。
 
-Before going into detail about each of these models, a few potential points of
-confusion warrant mention, with regards to nomenclature. First, “PCM” is used frequently (and sometimes ambiguously)
-to a family of models that includes COSMO, C-PCM, SS(V)PE, and IEF-PCM. The latter two models are formally
-equivalent at the level of integral equations,[[188]](../bib_references/bib.md#bib183)
- but exhibit some
-some differences in their numerical implementation.[[756]](../bib_references/bib.md#bib789)
+在详细介绍各个模型之前，就命名法而言，有几个容易引起混淆之处值得一提。首先，“PCM”一词被频繁（有时含混地）用于指代包括 COSMO、C-PCM、SS(V)PE 和 IEF-PCM 在内的一族模型。后两种模型在积分方程层面是形式等价的，[[188]](../bib_references/bib.md#bib183)
+ 但在数值实现上存在一些
+差异。[[756]](../bib_references/bib.md#bib789)
 
-One or the other of these models can be selected by additional job control variables in a *$pcm* input
-section, as described in Section [11.2.3](topic_pcm-em.md). COSMO is very similar to
-C-PCM but includes a correction for that part of the solute’s electron density
-that penetrates beyond the cavity (the so-called “outlying charge”),[[692]](../bib_references/bib.md#bib721)
+可以在 *$pcm* 输入段中通过额外的作业控制变量选择这两种模型之一，如第 [11.2.3](topic_pcm-em.md) 节所述。COSMO 与 C-PCM 非常相似，但包含了对溶质电子密度穿透空腔之外部分（所谓“外围电荷（outlying charge）”）的校正，[[692]](../bib_references/bib.md#bib721)
+尽管后来的工作对该校正以及其他 *ad hoc*
+电荷重归一化 procedures 的理论依据提出了质疑。[[244]](../bib_references/bib.md#bib244)
 
-although later work cast doubt on the theoretical justification for this and other *ad hoc*
-charge renormalization procedures.[[244]](../bib_references/bib.md#bib244)
+[IEF-PCM 和 SS(V)PE 方法本身已经包含了对
+外围电荷的*隐式*校正，作为这些模型近似而导出的 C-PCM 方法同样如此，[[244]](../bib_references/bib.md#bib244)
+尽管这一点在 COSMO 被提出时并未被认识到。
+关于这些发展的历史讨论，参见文献 [[569]](../bib_references/bib.md#bib580)。]
+无论如何，COSMO 在第 [11.2.8](subsec_COSMO-Klamt.md) 节中介绍。
 
-[The IEF-PCM and SS(V)PE methods already contain an *implicit* correction for outlying charge, as does the
-C-PCM method that is derived as an approximation to these models,[[244]](../bib_references/bib.md#bib244)
+SS(V)PE 模型也有两种实现方式可用。PCM
+实现方式（通过在 *$pcm* 输入段中配合相应的作业控制变量设置 SOLVENT_METHOD = PCM
+来请求）使用由原子中心球构造的溶质空腔，与其他 PCM 保持一致。
+另一方面，设置 SOLVENT_METHOD =
+ISOSVP 则请求一种 SS(V)PE 计算，其中溶质空腔由溶质自身电子密度的等值线（isocontour）定义。[[242]](../bib_references/bib.md#bib247)
 
-although this was not recognized at the time that COSMO was formulated.
-See Ref. [[569]](../bib_references/bib.md#bib580)
- for a historical discussion of these developments.]
-In any case, COSMO is described in Section [11.2.8](subsec_COSMO-Klamt.md).
+这是一种颇具吸引力的单参数空腔构造方式，避免了由原子中心球构造的“van der Waals”空腔表面上的尖点所带来的诸多问题，而 SS(V)PE 的等密度实现方式构成了一种名为 CMIRS 的物理连续介质溶剂化模型的基础，详见第 [11.2.7](example_CMIRS-water.md) 节。[[1108]](../bib_references/bib.md#bib1155)
 
-Two implementations of the SS(V)PE model are also available. The PCM
-implementation (which is requested by setting SOLVENT_METHOD = PCM in
-conjunction with appropriate job-control variables in the *$pcm* input section)
-uses a solute cavity constructed from atom-centered spheres, in keeping with other PCMs.
-On the other hand, setting SOLVENT_METHOD =
-ISOSVP requests an SS(V)PE calculation in which the solute cavity is
-defined by an isocontour of the solute’s own electron density.[[242]](../bib_references/bib.md#bib247)
+尽管使用的拟合参数少得多，CMIRS 在（溶剂化自由能的）准确性上可与最先进的 SM$x$ 溶剂化模型
+相媲美。[[569]](../bib_references/bib.md#bib580)
 
-This is an appealing, one-parameter cavity construction that avoid many of the problems with cusps
-in “van der Waals” cavity surfaces that are constructed from atom-centered spheres, and the isodensity
-implementation of SS(V)PE forms the basis of a physics-based continuum solvation model
-called CMIRS that is described in
-Section [11.2.7](example_CMIRS-water.md).[[1108]](../bib_references/bib.md#bib1155)
+然而，等密度空腔构造没有解析能量梯度，因此 CMIRS 也没有解析梯度；而当空腔表面由原子中心球构造时，这些梯度是可用的。
 
-CMIRS is competitive in accuracy (for solvation free energies)
-with the best-available SM$x$ solvation models,[[569]](../bib_references/bib.md#bib580)
+关于这些模型在溶剂化自由能（$\Delta G_{298}$）方面的准确性，
+与大规模实验值数据库的比较表明，SM$x$ 模型对中性分子通常能达到亚 kcal/mol 级别的精度，而离子的平均误差则在 4 kcal/mol 左右。[[281]](../bib_references/bib.md#bib286)
 
-despite using far fewer fitting parameters.
-However, analytic energy gradients are not available for the isodensity cavity construction and therefore
-not available for CMIRS, whereas these gradients are available when the cavity surface is constructed from atom-centered spheres.
+（注意，从统计意义上讲，SM12 和 SMD 模型总体上并没有比 SM8 改进太多，[[909]](../bib_references/bib.md#bib943)
+ 但确实将这些模型扩展到了任意基组，而
+SM8 仅限于少数几个小基组。此外，SMD 同时包含梯度和频率。
 
-Regarding the accuracy of these models for solvation free energies ($\Delta G_{298}$),
-the SM$x$ models generally achieve
-sub-kcal/mol accuracy for neutral molecules, based on
-comparison to a large database of experimental values, although average errors
-for ions are more like 4 kcal/mol.[[281]](../bib_references/bib.md#bib286)
+）
+若要在 PCM 类溶剂模型中达到与 SM$x$ 模型相当的精度，必须添加非静电项。[[569]](../bib_references/bib.md#bib580)
 
-(Note that the SM12 and SMD models generally do not improve too much upon SM8 in any statistical
-sense,[[909]](../bib_references/bib.md#bib943)
- but do extend these models to arbitrary basis sets whereas
-SM8 is limited to a few small basis sets. Furthermore, SMD includes both gradients and frequencies.
+在上述各种 PCM 中，唯一构成溶剂化能“黑箱（black box）”模型的是 CMIRS，它在统计意义上略优于 SM$x$ 模型，[[1527]](../bib_references/bib.md#bib1594)
+尽管它仅适用于少数几种溶剂。
 
-)
-To achieve accuracy comparable to the SM$x$ models within the
-PCM class of solvent models, nonelectrostatic terms must be added.[[569]](../bib_references/bib.md#bib580)
-
-Among the various PCMs described above, the only one that constitutes a “black box” model for
-solvation energies is CMIRS, which slightly outperforms the SM$x$ models in a statistical
-sense,[[1527]](../bib_references/bib.md#bib1594)
- although it is only available for a few solvents.
-
-The following sections provide more details regarding theory and job control
-for the various implicit solvent models that are available in **Q-Chem**.
-Ref. [[569]](../bib_references/bib.md#bib580)
- contains both formal comparisons amongst these
-models as well as a side-by-side comparison of the accuracy of solvation free energies.
+以下各节将就 **Q-Chem** 中可用的各种隐式溶剂模型的理论细节与作业控制给出更多说明。
+参考文献 [[569]](../bib_references/bib.md#bib580)
+ 既包含这些模型之间的形式比较，也包含溶剂化自由能准确性的并列对比。

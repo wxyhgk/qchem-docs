@@ -1,180 +1,164 @@
 ---
-title: "6.12.12 Job Control Options"
+title: "6.12.12 作业控制选项"
 ---
 
-## 6.12.12 Job Control Options
+## 6.12.12 作业控制选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-There are a large number of options for the coupled-cluster singles and doubles
-methods. They are documented in Appendix [B](../app_b_quickref/app_quick_ref.md), and, as the
-reader will find upon following this link, it is an extensive list indeed.
-Fortunately, many of them are not necessary for routine jobs. Most of the
-options for non-routine jobs concern altering the default iterative procedure,
-which is most often necessary for optimized orbital calculations (OD, QCCD), as
-well as the active space and EOM methods discussed later in Section
-[6.14](sect_ccactive.md). The more common options relating to convergence control
-are discussed there, in Section [6.14.6](sect_activeopt.md). Below we list the options
-that one should be aware of for routine calculations.
+耦合簇单激发（coupled-cluster singles and doubles, CCSD）方法有大量的选项。这些选项记录在附录 [B](../app_b_quickref/app_quick_ref.md) 中，读者顺着该链接查看便会发现，这确实是一份极为冗长的清单。幸运的是，其中许多选项对于常规计算而言并无必要。非常规计算的多数选项涉及修改默认的迭代过程，这在优化轨道（OD、QCCD）计算，以及后文 [6.14](sect_ccactive.md) 节讨论的活性空间方法和 EOM 方法中最为常见。与收敛控制相关的较常用选项也在该处讨论，即 [6.14.6](sect_activeopt.md) 节。下面我们列出常规计算中应当了解的若干选项。
 
-For memory options and parallel execution, see Section [6.17](CCparallel.md).
+关于内存选项与并行执行，请参见 [6.17](CCparallel.md) 节。
 
 CC_CONVERGENCE
 
 ### `CC_CONVERGENCE`
 
-> **Overall convergence criterion for the coupled-cluster codes. This is designed to ensure at least $n$ significant digits in the calculated energy, and automatically sets the other convergence-related variables ( CC_E_CONV , CC_T_CONV , CC_THETA_CONV , CC_THETA_GRAD_CONV ) [ $10^{-n}$ ].**
+> **耦合簇程序的整体收敛判据。其设计目的是保证所计算能量至少有 $n$ 位有效数字，并自动将其他与收敛相关的变量（CC_E_CONV、CC_T_CONV、CC_THETA_CONV、CC_THETA_GRAD_CONV）设置为 [ $10^{-n}$ ]。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`6`
+> * **取值选项**：
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
->     * convergence criterion. Amplitude convergence is set
->     * automatically to match energy convergence.
-> * **Recommendation**: Use the default
+>     * 收敛判据。振幅收敛会被自动设置以匹配能量收敛。
+> * **建议**：使用默认值
 
-**Note: 
+**注意：**
 
-For single-point calculations, CC_E_CONV = 6 and CC_T_CONV = 4.
-Tighter amplitude convergence (CC_T_CONV = 5) is used for gradients and EOM
-calculations. When using single-precision calculations, the thresholds should be adjusted
-accordingly (see section [6.18](sec_SP_CC.md)).
-**
+**对于单点能计算，CC_E_CONV = 6 且 CC_T_CONV = 4。对于梯度（gradients）和 EOM 计算，则使用更严格的振幅收敛（CC_T_CONV = 5）。使用单精度计算时，应相应地调整这些阈值（参见 [6.18](sec_SP_CC.md) 节）。**
 
 CC_DOV_THRESH
 
 ### `CC_DOV_THRESH`
 
-> **Specifies minimum allowed values for the coupled-cluster energy denominators. Smaller values are replaced by this constant during early iterations only, so the final results are unaffected, but initial convergence is improved when the HOMO-LUMO gap is small or when non-conventional references are used.**
+> **指定耦合簇能量分母所允许的最小值。仅在早期迭代中，小于该值的分母会被此常数替换，因此最终结果不受影响；但当 HOMO-LUMO 能隙较小或使用非标准参考态时，可以改善初始收敛。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **取值选项**：
 >     * $abcde$
->     * Integer code is mapped to
+>     * 整数编码被映射为
 >     * $ab\times 10^{-de}$
->     * ,
->     * e.g.
->     * ,
+>     * ，
+>     * 例如
+>     * ，
 >     * $2501$
->     * corresponds to 0.025,
+>     * 对应 0.025，
 >     * $99001$
->     * corresponds to 0.99, etc.
-> * **Recommendation**: Increase to 0.25, 0.5 or 0.75 for non convergent coupled-cluster calculations.
+>     * 对应 0.99，依此类推。
+> * **建议**：对于不收敛的耦合簇计算，可提高至 0.25、0.5 或 0.75。
 
-**Note: 
+**注意：**
 
-Works only for CCMAN jobs, not enabled in CCMAN2.
-**
+**仅对 CCMAN 作业有效，在 CCMAN2 中未启用。**
 
 CC_SCALE_AMP
 
 ### `CC_SCALE_AMP`
 
-> **If not 0, scales down the step for updating coupled-cluster amplitudes in cases of problematic convergence.**
+> **若不为 0，则在收敛出现问题时缩小更新耦合簇振幅的步长。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **取值选项**：
 >     * $abcd$
->     * Integer code is mapped to
+>     * 整数编码被映射为
 >     * $abcd\times 10^{-2}$
->     * ,
->     * e.g.
->     * ,
+>     * ，
+>     * 例如
+>     * ，
 >     * $90$
->     * corresponds to 0.9
-> * **Recommendation**: Use 0.9 or 0.8 for non convergent coupled-cluster calculations.
+>     * 对应 0.9
+> * **建议**：对于不收敛的耦合簇计算，使用 0.9 或 0.8。
 
-**Note: 
+**注意：**
 
-Now available for both CCMAN and CCMAN2.
-**
+**现已同时支持 CCMAN 和 CCMAN2。**
 
 CC_MAX_ITER
 
 ### `CC_MAX_ITER`
 
-> **Maximum number of iterations to optimize the coupled-cluster energy.**
+> **优化耦合簇能量时的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `200`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`200`
+> * **取值选项**：
 >     * $n$
->     * up to
+>     * 最多进行
 >     * $n$
->     * iterations to achieve convergence.
-> * **Recommendation**: None
+>     * 次迭代以达到收敛。
+> * **建议**：无
 
 CC_PRINT
 
 ### `CC_PRINT`
 
-> **Controls the output from post-MP2 coupled-cluster module of Q-Chem**
+> **控制 Q-Chem 中后-MP2 耦合簇模块的输出量**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **取值选项**：
 >     * $0-7$
->     * higher values can lead to deforestation…
-> * **Recommendation**: Increase if you need more output and don’t like trees
+>     * 较大的值会导致森林被砍光……
+> * **建议**：如果你需要更多输出且不在乎树木，就调大它
 
 CHOLESKY_TOL
 
 ### `CHOLESKY_TOL`
 
-> **Tolerance of Cholesky decomposition of two-electron integrals**
+> **双电子积分 Cholesky 分解的容差**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`3`
+> * **取值选项**：
 >     * $n$
->     * Corresponds to a tolerance of
+>     * 对应容差
 >     * $10^{-n}$
-> * **Recommendation**: 2 - qualitative calculations, 3 - appropriate for most cases, 4 - quantitative (error in total energy typically less than 1 $\mu$ hartree)
+> * **建议**：2 - 定性计算，3 - 适用于大多数情况，4 - 定量计算（总能量误差通常小于 1 $\mu$ hartree）
 
 CHOLESKY_TWOSTEP
 
 ### `CHOLESKY_TWOSTEP`
 
-> **Activates two-step procedure for Cholesky decomposition**
+> **启用 Cholesky 分解的两步法流程**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **取值选项**：
 >     * FALSE
->     * use original decomposition procedure
+>     * 使用原始的分解流程
 >     * TRUE
->     * use two-step procedure
-> * **Recommendation**: The two-step procedure is more efficient.
+>     * 使用两步法流程
+> * **建议**：两步法流程效率更高。
 
 CD_TS_SPAN_FACTOR
 
 ### `CD_TS_SPAN_FACTOR`
 
-> **Controls the span factor used in the pivoting procedure in Step I of the two-step Cholesky decomposition**
+> **控制两步法 Cholesky 分解第 I 步中主元选取（pivoting）过程所使用的 span factor**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **取值选项**：
 >     * $n$
->     * Corresponds to a tolerance of
+>     * 对应容差
 >     * $10^{-n}$
-> * **Recommendation**: Using larger value (e.g., 3) may improve accuracy of the decomposition step.
+> * **建议**：使用较大的值（例如 3）可能提高分解步骤的精度。
 
 CC_DIRECT_RI
 
 ### `CC_DIRECT_RI`
 
-> **Controls use of RI and Cholesky integrals in conventional (undecomposed) form**
+> **控制是否以未分解的传统（conventional）形式使用 RI 积分与 Cholesky 积分**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **取值选项**：
 >     * FALSE
->     * use all integrals in decomposed format
+>     * 全部以分解后的格式使用积分
 >     * TRUE
->     * transform all RI or Cholesky integral back to conventional format
-> * **Recommendation**: By default all integrals are used in decomposed format allowing significant reduction of memory use. If all integrals are transformed back (TRUE option) no memory reduction is achieved and decomposition error is introduced, however, the integral transformation is performed significantly faster and conventional CC/EOM algorithms are used.
+>     * 将所有 RI 或 Cholesky 积分变换回传统格式
+> * **建议**：默认情况下所有积分均以分解格式使用，从而显著降低内存占用。若将所有积分变换回传统形式（TRUE 选项），则无法获得内存节省，并且会引入分解误差，但积分变换的速度会显著提升，且可使用传统的 CC/EOM 算法。

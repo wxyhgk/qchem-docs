@@ -1,14 +1,9 @@
 ---
-title: "9.3.1 Introduction"
+title: "9.3.1 引言"
 ---
 
-## 9.3.1 Introduction
+## 9.3.1 引言
 
 (July 4, 2026)
 
-Transition-structure searches tend to be more difficult (meaning, more likely
-to be unsuccessful) as compared to minimum-energy (equilibrium) geometry
-optimizations. Odds of success can be enhanced via an initial guess structure
-that is determined in an automated way, rather than simply “guessed” by the
-user. Several such automated algorithms are available in **Q-Chem**, and are
-described in this section.
+与极小能量（平衡）几何结构优化相比，过渡态搜索往往更加困难（也就是说，失败的可能性更高）。通过采用以自动化方式确定的初始猜测结构，而非仅由用户简单“猜测”，可以提高搜索的成功率。**Q-Chem** 中提供了若干此类自动化算法，将在本节中进行介绍。

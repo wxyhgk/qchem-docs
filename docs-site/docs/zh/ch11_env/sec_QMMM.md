@@ -1,21 +1,19 @@
 ---
-title: "11.3 Stand-Alone QM/MM Calculations"
+title: "11.3 独立的 QM/MM 计算"
 ---
 
-# 11.3 Stand-Alone QM/MM Calculations
+# 11.3 独立的 QM/MM 计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** can perform hybrid quantum mechanics/molecular mechanics (QM/MM)
-calculations either as a stand-alone program, which is described in this
-section, or in conjunction with the **Charmm** package.[[1492]](../bib_references/bib.md#bib1551)
+**Q-Chem** 可以执行杂化量子力学/分子力学（Quantum Mechanics/Molecular Mechanics, QM/MM）计算，既可作为独立程序运行（本节将对此进行介绍），也可与 **Charmm** 软件包配合使用。[[1492]](../bib_references/bib.md#bib1551)
 
-See Section [11.4](sect_CHARMM.md) for a description of a latter approach.
+有关后一种方法的说明，请参见第 [11.4](sect_CHARMM.md) 节。
 
-- [11.3.1 Available QM/MM Methods and Features](Ch11.S3.SS1.md)
+- [11.3.1 可用的 QM/MM 方法与功能](Ch11.S3.SS1.md)
 
-- [11.3.2 Using the Stand-Alone QM/MM Features](Ch11.S3.SS2.md)
+- [11.3.2 使用独立的 QM/MM 功能](Ch11.S3.SS2.md)
 
-- [11.3.3 Additional Job Control Variables](Ch11.S3.SS3.md)
+- [11.3.3 附加的任务控制变量](Ch11.S3.SS3.md)
 
-- [11.3.4 QM/MM Examples](Ch11.S3.SS4.md)
+- [11.3.4 QM/MM 示例](Ch11.S3.SS4.md)

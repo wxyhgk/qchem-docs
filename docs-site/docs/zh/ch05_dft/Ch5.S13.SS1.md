@@ -1,25 +1,22 @@
 ---
-title: "5.13.1 Introduction"
+title: "5.13.1 引言"
 ---
 
-## 5.13.1 Introduction
+## 5.13.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Modeling metastable electronic states such as temporary anions poses a challenge for self-consistent field (SCF) methods.
-These anions are subject to autodetachment (AB${}^{-}\ \rightarrow\$AB $+$ e${}^{-}$)
-and the autodetaching unbound electron is often placed in a very diffuse molecular orbital.
-The final SCF solution then represents the neutral molecule and an isolated electron rather than the desired temporary anion.
-One approach for overcoming this issue is augmenting the molecular Hamiltonian $\hat{H}$ with a Complex Absorbing Potential (CAP, see also Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)):
-$\hat{H}\rightarrow\hat{H}_{\eta}=\hat{H}-\text{i}\eta\hat{W}$.
-Here, $\hat{W}$ and $\eta$ determine the CAP shape and strength respectively.
+对亚稳态电子态（例如临时阴离子）进行建模，是自洽场（Self-Consistent Field, SCF）方法面临的一项挑战。
+这类阴离子会发生自剥离（autodetachment）过程（AB${}^{-}\ \rightarrow\$AB $+$ e${}^{-}$），
+而自剥离出来的未束缚电子往往被放置在一个非常弥散的分子轨道中。
+这样，最终的 SCF 解描述的是中性分子加一个孤立电子，而非所期望的临时阴离子。
+克服这一问题的一种方法是在分子哈密顿量 $\hat{H}$ 上引入复吸收势（Complex Absorbing Potential, CAP，另见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）：
+$\hat{H}\rightarrow\hat{H}_{\eta}=\hat{H}-\text{i}\eta\hat{W}$。
+其中，$\hat{W}$ 和 $\eta$ 分别决定 CAP 的形状和强度。
 
-The combination of CAPs and Density Functional Theory methods (CAP-DFT)
-allows for modeling large temporary anions which are out of reach of post-Hartree-Fock methods,
-and at a higher accuracy as compared to CAP-Hartree Fock (CAP-HF) theory.[[1359]](../bib_references/bib.md#bib1419)
+将 CAP 与密度泛函理论（Density Functional Theory, DFT）方法相结合（CAP-DFT），
+可以对超出后 Hartree-Fock（post-Hartree-Fock）方法处理能力范围的大型临时阴离子进行建模，
+并且相比 CAP-Hartree-Fock（CAP-HF）理论具有更高的精度。[[1359]](../bib_references/bib.md#bib1419)
 
-Building upon the theoretical work by Ernzerhof and Zhou,
-who reported CAP-DFT calculations using Local Density Approximation,[[372]](../bib_references/bib.md#bib376)
-
-the current implementation in **Q-Chem** offers a selection of functionals from the Local Density Approximation,
-Generalized Gradient Approximation and Hybrid Functional rungs (see Section [5.13.3](sub_XCfuncs_CAP.md)).
+在 Ernzerhof 和 Zhou 的理论工作基础上——他们报道了采用局域密度近似（Local Density Approximation）的 CAP-DFT 计算[[372]](../bib_references/bib.md#bib376)——
+**Q-Chem** 当前的实现提供了来自局域密度近似（LDA）、广义梯度近似（Generalized Gradient Approximation, GGA）以及杂化泛函（Hybrid Functional）层级的一系列泛函供选择（见第 [5.13.3](sub_XCfuncs_CAP.md) 节）。

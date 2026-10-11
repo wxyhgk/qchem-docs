@@ -1,277 +1,267 @@
 ---
-title: "9.2.2 Optimize Job Control"
+title: "9.2.2 Optimize（优化）作业控制"
 ---
 
-## 9.2.2 **Optimize** Job Control
+## 9.2.2 **Optimize（优化）**作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 GEOM_OPT_HESSIAN
 
 ### `GEOM_OPT_HESSIAN`
 
-> **Determines the initial Hessian status.**
+> **决定初始 Hessian（黑塞矩阵）的状态。**
 >
-> * **Type**: `STRING/INTEGER`
-> * **Default**: `$-$`
-> * **Options**:
+> * **类型**: `STRING/INTEGER`
+> * **默认值**: `$-$`
+> * **选项**:
 >     * $-$
 >     * 1
->     * Approximate Hessian based on the force constant matrix (same as the
->     * “Model” option in
+>     * 基于力常数矩阵（force constant matrix）的近似 Hessian（与
 >     * Libopt3
->     * )
+>     * 中的 “Model” 选项相同）
 >     * READ
->     * Have exact or initial Hessian. Use as is if Cartesian, or transform
->     * if internals.
-> * **Recommendation**: An accurate initial Hessian will improve the performance of the optimizer, but it may be expensive to compute. Note that more options for the initial Hessian are available in Libopt3 , controlled by INITIAL_HESSIAN under the $geom_opt section (see Sec. 9.2.5 ).
+>     * 具有精确或初始 Hessian。若为笛卡尔坐标则直接使用，若为内坐标则进行转换。
+> * **建议**: 精确的初始 Hessian 可提升优化器的性能，但计算代价可能较高。注意 Libopt3 中提供了更多初始 Hessian 选项，由 $geom_opt 段下的 INITIAL_HESSIAN 控制（见第 9.2.5 节）。
 
 GEOM_OPT_COORDS
 
 ### `GEOM_OPT_COORDS`
 
-> **Controls the type of optimization coordinates.**
+> **控制优化所用坐标的类型。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `$-$`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `$-$`
+> * **选项**:
 >     * 0
->     * Optimize in Cartesian coordinates.
+>     * 在笛卡尔坐标（Cartesian coordinates）中进行优化。
 >     * 1
->     * Generate and optimize in internal coordinates, if this fails abort.
+>     * 生成内坐标（internal coordinates）并在其中优化，若失败则中止。
 >     * $-$
 >     * 1
->     * Generate and optimize in internal coordinates, if this fails at any stage of the
->     * optimization, switch to Cartesian and continue.
+>     * 生成内坐标并在其中优化，若在优化的任何阶段失败，则切换为笛卡尔坐标并继续。
 >     * 2
->     * Optimize in
->     * $Z$
->     * -matrix coordinates, if this fails abort.
+>     * 在 $Z$ 矩阵坐标（$Z$-matrix coordinates）中优化，若失败则中止。
 >     * $-$
 >     * 2
->     * Optimize in
->     * $Z$
->     * -matrix coordinates, if this fails during any stage of the
->     * optimization switch to Cartesians and continue.
-> * **Recommendation**: Use the default, as delocalized internals are more efficient. Note that optimization in $Z$ -matrix coordinates requires that the input be specified in $Z$ -matrix format.
+>     * 在 $Z$ 矩阵坐标中优化，若在优化的任何阶段失败，则切换为笛卡尔坐标并继续。
+> * **建议**: 使用默认值，因为离域内坐标（delocalized internals）更高效。注意在 $Z$ 矩阵坐标中优化要求输入以 $Z$ 矩阵格式给出。
 
 GEOM_OPT_TOL_GRADIENT
 
 ### `GEOM_OPT_TOL_GRADIENT`
 
-> **Convergence on maximum gradient component.**
+> **基于最大梯度分量的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `300`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `300`
+> * **选项**:
 >     * $n$
->     * Integer value (tolerance =
+>     * 整数值（容差 =
 >     * $n\times 10^{-6}$
->     * ).
-> * **Recommendation**: Use the default. To converge and one of GEOM_OPT_TOL_DISPLACEMENT and GEOM_OPT_TOL_ENERGY must be satisfied.
+>     * ）。
+> * **建议**: 使用默认值。要判定收敛，必须满足 GEOM_OPT_TOL_GRADIENT 以及 GEOM_OPT_TOL_DISPLACEMENT 和 GEOM_OPT_TOL_ENERGY 中的至少一个。
 
 GEOM_OPT_TOL_DISPLACEMENT
 
 ### `GEOM_OPT_TOL_DISPLACEMENT`
 
-> **Convergence on maximum atomic displacement.**
+> **基于最大原子位移的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1200`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1200`
+> * **选项**:
 >     * $n$
->     * Integer value (tolerance =
+>     * 整数值（容差 =
 >     * $n\times 10^{-6}$
->     * ).
-> * **Recommendation**: Use the default. To converge GEOM_OPT_TOL_GRADIENT and one of and GEOM_OPT_TOL_ENERGY must be satisfied.
+>     * ）。
+> * **建议**: 使用默认值。要判定收敛，必须满足 GEOM_OPT_TOL_GRADIENT 以及 GEOM_OPT_TOL_DISPLACEMENT 和 GEOM_OPT_TOL_ENERGY 中的至少一个。
 
 GEOM_OPT_TOL_ENERGY
 
 ### `GEOM_OPT_TOL_ENERGY`
 
-> **Convergence on energy change of successive optimization cycles.**
+> **基于相邻优化循环能量变化的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `100`
+> * **选项**:
 >     * $n$
->     * Integer value (tolerance = value
+>     * 整数值（容差 = 值
 >     * $n\times 10^{-8}$
->     * ).
-> * **Recommendation**: Use the default. To converge GEOM_OPT_TOL_GRADIENT and one of GEOM_OPT_TOL_DISPLACEMENT and must be satisfied.
+>     * ）。
+> * **建议**: 使用默认值。要判定收敛，必须满足 GEOM_OPT_TOL_GRADIENT 以及 GEOM_OPT_TOL_DISPLACEMENT 和 GEOM_OPT_TOL_ENERGY 中的至少一个。
 
 GEOM_OPT_MAX_CYCLES
 
 ### `GEOM_OPT_MAX_CYCLES`
 
-> **Maximum number of optimization cycles.**
+> **最大优化循环次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **选项**:
 >     * $n$
->     * User defined positive integer.
-> * **Recommendation**: The default should be sufficient for most cases. Increase if the initial guess geometry is poor, or for systems with shallow potential wells.
+>     * 用户自定义的正整数。
+> * **建议**: 默认值对大多数情况已经足够。若初始猜测几何构型较差，或体系势能面较平缓，可适当增大。
 
 GEOM_OPT_PRINT
 
 ### `GEOM_OPT_PRINT`
 
-> **Controls the amount of Optimize print output.**
+> **控制 Optimize（优化）的输出详细信息量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * 0
->     * Error messages only.
+>     * 仅输出错误信息。
 >     * 1
->     * Level 0 plus summary and warning print out.
+>     * 在级别 0 基础上增加摘要和警告信息输出。
 >     * 2
->     * Level 1 plus standard information.
+>     * 在级别 1 基础上增加标准信息。
 >     * 3
->     * Level 2 plus gradient print out.
+>     * 在级别 2 基础上增加梯度（gradient）输出。
 >     * 4
->     * Level 3 plus Hessian print out.
+>     * 在级别 3 基础上增加 Hessian 输出。
 >     * 5
->     * Level 4 plus iterative print out.
+>     * 在级别 4 基础上增加迭代信息输出。
 >     * 6
->     * Level 5 plus internal generation print out.
+>     * 在级别 5 基础上增加内坐标生成信息输出。
 >     * 7
->     * Debug print out.
-> * **Recommendation**: Use the default.
+>     * 调试（Debug）信息输出。
+> * **建议**: 使用默认值。
 
 GEOM_OPT_SYMFLAG
 
 ### `GEOM_OPT_SYMFLAG`
 
-> **Controls the use of symmetry in Optimize .**
+> **控制在 Optimize（优化）中是否使用对称性。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Make use of point group symmetry.
+>     * 使用点群对称性（point group symmetry）。
 >     * FALSE
->     * Do not make use of point group symmetry.
-> * **Recommendation**: Use the default.
+>     * 不使用点群对称性。
+> * **建议**: 使用默认值。
 
 GEOM_OPT_MODE
 
 ### `GEOM_OPT_MODE`
 
-> **Determines Hessian mode followed during a transition state search.**
+> **决定过渡态搜索（transition state search）过程中遵循的 Hessian 模式。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Mode following off.
+>     * 关闭模式遵循（mode following）。
 >     * $n$
->     * Maximize along mode
+>     * 沿模式
 >     * $n$
->     * .
-> * **Recommendation**: Use the default, for geometry optimizations.
+>     * 求极大值。
+> * **建议**: 对于几何优化，使用默认值。
 
 GEOM_OPT_MAX_DIIS
 
 ### `GEOM_OPT_MAX_DIIS`
 
-> **Controls maximum size of subspace for GDIIS.**
+> **控制 GDIIS 子空间的最大规模。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not use GDIIS.
+>     * 不使用 GDIIS。
 >     * -1
->     * Default size = min(NDEG, NATOMS, 4) NDEG = number of molecular
->     * degrees of freedom.
+>     * 默认规模 = min(NDEG, NATOMS, 4)，其中 NDEG = 分子自由度数目。
 >     * $n$
->     * Size specified by user.
-> * **Recommendation**: Use the default or do not set $n$ too large.
+>     * 由用户指定的规模。
+> * **建议**: 使用默认值，或不要将 $n$ 设置得过大。
 
 GEOM_OPT_DMAX
 
 ### `GEOM_OPT_DMAX`
 
-> **Maximum allowed step size. Value supplied is multiplied by 10 ${}^{-3}$ .**
+> **允许的最大步长。所给数值将乘以 10 ${}^{-3}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `300`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `300`
+> * **选项**:
 >     * $n$
->     * User-defined cutoff.
-> * **Recommendation**: Use the default.
+>     * 用户自定义的截断值。
+> * **建议**: 使用默认值。
 
 GEOM_OPT_UPDATE
 
 ### `GEOM_OPT_UPDATE`
 
-> **Controls the Hessian update algorithm.**
+> **控制 Hessian 更新算法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `-1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `-1`
+> * **选项**:
 >     * -1
->     * Use the default update algorithm.
+>     * 使用默认的更新算法。
 >     * 0
->     * Do not update the Hessian (not recommended).
+>     * 不更新 Hessian（不推荐）。
 >     * 1
->     * Murtagh-Sargent update.
+>     * Murtagh-Sargent 更新。
 >     * 2
->     * Powell update.
+>     * Powell 更新。
 >     * 3
->     * Powell/Murtagh-Sargent update (TS default).
+>     * Powell/Murtagh-Sargent 更新（TS 默认）。
 >     * 4
->     * BFGS update (OPT default).
+>     * BFGS 更新（OPT 默认）。
 >     * 5
->     * BFGS with safeguards to ensure retention of positive definiteness
->     * (GDIIS default).
-> * **Recommendation**: Use the default.
+>     * 带保障措施以确保保持正定性的 BFGS 更新（GDIIS 默认）。
+> * **建议**: 使用默认值。
 
 GEOM_OPT_LINEAR_ANGLE
 
 ### `GEOM_OPT_LINEAR_ANGLE`
 
-> **Threshold for near linear bond angles (degrees).**
+> **近线性键角（near linear bond angles）的阈值（单位：度）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `165 degrees.`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `165 degrees.`
+> * **选项**:
 >     * $n$
->     * User-defined level.
-> * **Recommendation**: Use the default.
+>     * 用户自定义的级别。
+> * **建议**: 使用默认值。
 
 FINITEDIFFSZ_POWER
 
 ### `FINITEDIFFSZ_POWER`
 
-> **The exponent controlling the order of magnitude of the step size used for calculating derivatives by finite difference.**
+> **控制有限差分法计算导数时所用步长数量级的指数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * $n$
->     * Use an exponent of
+>     * 使用指数
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: None.
+>     * 。
+> * **建议**: 无。
 
 FDIFF_STEPSIZE
 
 ### `FDIFF_STEPSIZE`
 
-> **Displacement used for calculating derivatives by finite difference.**
+> **有限差分法计算导数时所使用的位移量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `100`
+> * **选项**:
 >     * $n$
->     * Use a step size of
+>     * 使用步长
 >     * $n\times 10^{-m}$
->     * , where
+>     * ，其中
 >     * $m$
->     * is
+>     * 为
 >     * FINITEDIFFSZ_POWER
->     * .
-> * **Recommendation**: Use the default except in cases where the potential surface is very flat in which case a larger value should be used. See FDIFF_STEPSIZE_QFF for third and fourth derivatives.
+>     * 的值。
+> * **建议**: 使用默认值；但当势能面非常平坦时应使用较大的值。三阶和四阶导数参见 FDIFF_STEPSIZE_QFF。

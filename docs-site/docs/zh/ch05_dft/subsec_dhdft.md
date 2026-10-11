@@ -1,9 +1,9 @@
 ---
-title: "5.9 Double-Hybrid Density Functional Theory"
+title: "5.9 双杂化密度泛函理论"
 ---
 
-# 5.9 Double-Hybrid Density Functional Theory
+# 5.9 双杂化密度泛函理论
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [5.9.1 Overview](Ch5.S9.SS1.md)
+- [5.9.1 概述](Ch5.S9.SS1.md)

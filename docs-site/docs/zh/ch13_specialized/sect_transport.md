@@ -1,9 +1,9 @@
 ---
-title: "13.4 Molecular Junctions"
+title: "13.4 分子结（Molecular Junctions）"
 ---
 
-# 13.4 Molecular Junctions
+# 13.4 分子结（Molecular Junctions）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [13.4.1 Overview](Ch13.S4.SS1.md)
+- [13.4.1 概述](Ch13.S4.SS1.md)

@@ -1,13 +1,13 @@
 ---
-title: "Appendix B Q-Chem Quick Reference"
+title: "附录 B Q-Chem 快速参考"
 ---
 
-# Appendix B **Q-Chem** Quick Reference
+# 附录 B **Q-Chem** 快速参考
 
 (July 4, 2026)
 
-- [B.1 Text Input Summary](A2.S1.md)
+- [B.1 文本输入格式概览](A2.S1.md)
 
-- [B.2 Geometry Optimization, Frequencies, & Properties](A2.S2.md)
+- [B.2 几何优化、频率计算与性质计算](A2.S2.md)
 
-- [B.3 Alphabetical Listing of *$rem* Variables](A2.S3.md)
+- [B.3 *$rem* 变量按字母顺序列表](A2.S3.md)

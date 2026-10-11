@@ -1,9 +1,9 @@
 ---
-title: "6.1 Introduction"
+title: "6.1 引言"
 ---
 
-# 6.1 Introduction
+# 6.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [6.1.1 Overview](Ch6.S1.SS1.md)
+- [6.1.1 概述](Ch6.S1.SS1.md)

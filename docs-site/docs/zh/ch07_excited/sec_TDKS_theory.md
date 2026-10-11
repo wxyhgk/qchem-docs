@@ -1,125 +1,105 @@
 ---
-title: "7.4.1 Introduction & Theory"
+title: "7.4.1 引言与理论"
 ---
 
-## 7.4.1 Introduction & Theory
+## 7.4.1 引言与理论
 
 (July 4, 2026)
 
-Although the theory discussed in Section [7.3](sect_tddft.md) is known universally as “time-dependent” DFT (TDDFT),
-in truth it is the frequency-domain transformation of linear-response (LR) DFT,[[418]](../bib_references/bib.md#bib427)
+尽管第 [7.3](sect_tddft.md) 节所讨论的理论被普遍称为“含时”密度泛函理论（Time-Dependent Density Functional Theory, TDDFT），
+但事实上它是线性响应（Linear-Response, LR）DFT 在频率域中的变换形式，[[418]](../bib_references/bib.md#bib427)
+有时会被额外冠以 LR-TDDFT 的名称，以便与本节所描述的“实时”（Real Time, RT）版本的 TDDFT 相区分。“实时含时密度泛函理论”
+（real-time time-dependent DFT, RT-TDDFT）这一说法足够拗口，因此此处描述的理论也被称为*含时 Kohn-Sham*（Time-Dependent Kohn-Sham, TDKS）
+理论，[[1578]](../bib_references/bib.md#bib1641)
+ 这一术语实际上与 Gross 及其合作者在发展基于含时 Kohn-Sham 方程的理论时
+所使用的原始表述更为一致。[[498]](../bib_references/bib.md#bib511)
 
-and is sometimes given the additional designation of LR-TDDFT in order to distinguish it from the “real time” (RT)
-version of TDDFT that is described in this section. The phrase “real-time time-dependent DFT” (RT-TDDFT) is
-sufficiently awkward that the theory described here is also known as *time-dependent Kohn-Sham* (TDKS)
-theory,[[1578]](../bib_references/bib.md#bib1641)
- terminology that is actually more consistent with the original language used by
-Gross and co-workers developing a theory based on the time-dependent Kohn-Sham equation.[[498]](../bib_references/bib.md#bib511)
+TDKS 方法是显式含时的，其本质是在基态密度受到微扰之后，对含时的 Kohn-Sham 分子轨道（Molecular Orbitals, MOs）进行传播。
 
-The TDKS approach is explicitly time-dependent, and amounts to propagation of
-time-dependent Kohn-Sham MOs following a perturbation of the ground-state density.
+当只需要求解少数几个低激发态时，LR-TDDFT 计算往往是预测共振电子响应频率和强度最高效的方式。
+然而，若要获得宽带谱（例如在 X 射线区域），可能需要数百个激发态。
+在这种情况下，实时方法可能更为可取，因为它可以通过对含时偶极矩函数进行傅里叶变换，获得整个吸收谱
+（覆盖所有激发能），而无需逐态计算谱线。这正是*实时*
+电子结构方法在理论上的通用基础。[[1124]](../bib_references/bib.md#bib1171)
 
-LR-TDDFT calculations are often the most efficient way to predict resonant
-electronic response frequencies and intensities when only a small number of low-lying excited states are desired.
-To obtain broadband spectra (in the x-ray regime, say), hundreds of excited states may be required, however.
-In such cases, the real-time approach may be preferable because it can be used to obtain the entire absorption
-spectrum (at all excitation energies) via Fourier transform of the time-dependent dipole moment function, without
-the need to compute the spectrum state-by-state. This is the theoretical basis of *real-time*
-electronic structure methods in general.[[1124]](../bib_references/bib.md#bib1171)
+微扰会产生所有（对称性允许的）激发的叠加态，随之而来的时间演化的傅里叶分量则包含了全部的激发能信息。下一节将对
+该理论进行更详细的描述，随后第 [7.4.2](sec_TDKS_JobControl.md) 节将介绍 TDKS 的作业控制变量。
+利用 TDKS 方法计算宽带吸收谱的内容在第 [7.4.3](sec_TDKS_Spectra.md) 节中讨论。
 
-A perturbation creates a superposition of all (symmetry-allowed) excitations, and the Fourier components of the
-ensuing time evolution encode all of the excitation energies. This theory is described in somewhat more detail in
-the next section, following which the TDKS job control variables are described in Section [7.4.2](sec_TDKS_JobControl.md).
-Calculation of broadband absorption spectra using the TDKS approach is discussed in Section [7.4.3](sec_TDKS_Spectra.md).
+自 v. 5.3 版本起，**Q-Chem** 的 TDKS 模块经过大幅重写，新增了对高级传播子、[[1578]](../bib_references/bib.md#bib1641)
+复吸收势（Complex Absorbing Potentials）[[1579]](../bib_references/bib.md#bib1642)
+ 以及 Padé 近似
+的支撑，以加速傅里叶变换后偶极矩函数的收敛。[[566]](../bib_references/bib.md#bib585)
 
-Starting with v. 5.3, **Q-Chem**’s TDKS module has been substantially rewritten, including support for
-advanced propagators,[[1578]](../bib_references/bib.md#bib1641)
- complex absorbing potentials,[[1579]](../bib_references/bib.md#bib1642)
- and Padé approximants
-to accelerate convergence of the Fourier-transformed dipole moment function.[[566]](../bib_references/bib.md#bib585)
+使用 TDKS/RT-TDDFT 代码的用户请引用文献 [[1579]](../bib_references/bib.md#bib1642)
+ 和 [[566]](../bib_references/bib.md#bib585)
+。
 
-Users of the TDKS/RT-TDDFT code are asked to cite Refs. [[1579]](../bib_references/bib.md#bib1642)
- and [[566]](../bib_references/bib.md#bib585)
-.
-
-Following a perturbation to the ground-state MOs $\phi_{k}(\mathbf{r},0)$ at $t=0$, these MOs
-evolve in time according to the time-dependent Schrödinger equation. For an SCF level of theory, this is a one-electron equation
+在 $t=0$ 时刻对基态分子轨道 $\phi_{k}(\mathbf{r},0)$ 施加微扰之后，这些分子轨道按照含时薛定谔方程随时间演化。对于自洽场（Self-Consistent Field, SCF）级别的理论，
+这是一个单电子方程
 
 <a id="eq:TDKS"></a>
 $$
 \text{i}\hbar\frac{d\phi_{k}(\mathbf{r},t)}{dt}=\hat{F}(t)\phi_{k}(\mathbf{r},t)\;. \tag{7.58}
 $$
 
-This time evolution can equivalently be expressed in terms of the
-Liouville-von Neumann equation for the time evolution of the density $\rho(\mathbf{r},t)$:
+这一时间演化可以等价地用密度 $\rho(\mathbf{r},t)$ 时间演化的 Liouville-von Neumann 方程来表示：
 
 <a id="eq:LvN"></a>
 $$
 \text{i}\hbar\frac{d\rho(\mathbf{r},t)}{dt}=\bigl{[}\hat{F}(t),\;\rho(\mathbf{r},t)]\;. \tag{7.59}
 $$
 
-In addition to obtaining broadband spectra, real-time SCF methods can be used to simulate attosecond
-dynamics of electrons, perhaps in the presence of strong fields. Note that the dynamics that is simulated by
-integrating either Eq. ([7.58](#eq:TDKS)) or Eq. ([7.59](#eq:LvN)) is *electron* dynamics, the fundamental
-timescale of which is attoseconds, as can be estimated by the magnitude of the atomic unit of time
-($\hbar/E_{h}\approx 2.4\times 10^{-17}$ s). The finite integration time step $\Delta t$
-must be small compared to this value, and the default in **Q-Chem** is set to $\Delta t=0.02~{}\mbox{a.u.}=4.8\times 10^{-4}$ fs.
-The maximum timescale that can therefore reasonably
-be simulated is likely only picoseconds, and at present this time propagation is available only within the clamped-nuclei
-approximation, *i.e.*, it is not possible to simulate the couple electron–nuclear dynamics.
+除了获得宽带谱之外，实时 SCF 方法还可用于模拟电子的阿秒（attosecond）动力学，例如在强场存在的情况下。需要注意
+的是，通过积分方程 ([7.58](#eq:TDKS)) 或方程 ([7.59](#eq:LvN)) 所模拟的动力学是*电子*动力学，其基本时间
+尺度为阿秒量级，这可以由时间原子单位的大小
+（$\hbar/E_{h}\approx 2.4\times 10^{-17}$ s）估计得出。有限积分时间步长 $\Delta t$
+必须远小于该值，**Q-Chem** 中的默认设置为 $\Delta t=0.02~{}\mbox{a.u.}=4.8\times 10^{-4}$ fs。
+因此，可以合理模拟的最大时间尺度可能仅为皮秒量级，且目前这种时间传播仅在夹核近似（clamped-nuclei
+approximation）内可用，*即*，无法模拟电子与核的耦合动力学。
 
-Because the Fock operator $\hat{F}$ depends on its own (time-evolving) eigenfunctions $\phi_{i}(\mathbf{r},t)$,
-the operator $\hat{F}(t)$ that governs the time evolution in Eq. ([7.58](#eq:TDKS)) or Eq. ([7.59](#eq:LvN)) is time-dependent,
-which complicates the integration of these equations.[[1578]](../bib_references/bib.md#bib1641)
- The simplest possible algorithm to integrate
-these equations (over a finite time step $\Delta t$ is the *modified midpoint unitary transformation* (MMUT)
-procedure,[[819]](../bib_references/bib.md#bib848)
- which approximates the operator $\hat{F}(t+\Delta t/2)$. When the MMUT algorithm is used,
-the cost of a single electron dynamics time step is comparable to the cost of a single SCF cycle of a ground-state
-SCF calculation, *i.e.*, it requires a single construction and diagonalization of the Fock matrix. The memory footprint
-is about twice that of the ground state, because the time-dependent MOs are complex-valued, but this is usually
-considerably smaller than the memory footprint for linear-response (LR-)TDDFT, especially of the number of roots
-requested in the LR-TDDFT calculation is large (as required for broadband spectra), or if the density of states is
-high (as in models of semiconductors).[[962]](../bib_references/bib.md#bib1004)
+由于 Fock 算符 $\hat{F}$ 依赖于其自身（随时间演化的）本征函数 $\phi_{i}(\mathbf{r},t)$，
+支配方程 ([7.58](#eq:TDKS)) 或方程 ([7.59](#eq:LvN)) 中时间演化的算符 $\hat{F}(t)$ 是含时的，
+这使这些方程的积分变得复杂。[[1578]](../bib_references/bib.md#bib1641)
+ 积分这些方程（在有限时间步长 $\Delta t$ 上）的最简单算法是*修正中点酉变换*（Modified Midpoint Unitary Transformation, MMUT）
+方法，[[819]](../bib_references/bib.md#bib848)
+ 该方法对算符 $\hat{F}(t+\Delta t/2)$ 进行近似。当使用 MMUT 算法时，
+单电子动力学一个时间步长的开销与基态 SCF 计算中单个 SCF 循环的开销相当，*即*，只需构造并
+对角化一次 Fock 矩阵。内存占用约为基态计算的两倍，因为含时分子轨道是复数值的，但这通常
+比线性响应（LR-）TDDFT 的内存占用小得多，尤其是在 LR-TDDFT 计算中请求的根数较多时（宽带谱所需），
+或者态密度较高时（如半导体模型）。[[962]](../bib_references/bib.md#bib1004)
 
-As compared to the first-order MMUT algorithm, higher-order predictor/corrector algorithms to integrate
-the dynamics are also available.[[1578]](../bib_references/bib.md#bib1641)
+与一阶 MMUT 算法相比，还可使用更高阶的预测/校正（predictor/corrector）算法来积分动力学方程。[[1578]](../bib_references/bib.md#bib1641)
 
-These algorithms enable the use of larger time steps $\Delta t$ at a cost of a few Fock builds per time step.
-Perhaps more importantly, the predictor/corrector algorithms iterate the Fock operators $\hat{F}(t)$ and
-$\hat{F}(t+\Delta t)$ to self-consistency over each time step, which guarantees stable time propagation (assuming
-that the self-consistent procedure converges). Stable dynamics is *not* guaranteed by the MMUT algorithm,
-and total energy conservation turns out to be a necessary but not sufficient criterion to ensure that the trajectory has
-been integrated accurately. Using MMUT, examples can be found where energy is conserved yet spectra are still shifted
-(with respect to benchmarks results obtained using very small time steps) due to the use of a too-large value of $\Delta t$
-that is undetected and undiagnosed by non-self-consistent MMUT algorithm.[[1578]](../bib_references/bib.md#bib1641)
+这些算法允许使用更大的时间步长 $\Delta t$，代价是每个时间步长需要几次 Fock 矩阵构造。
+或许更重要的是，预测/校正算法在每个时间步长内将 Fock 算符 $\hat{F}(t)$ 和
+$\hat{F}(t+\Delta t)$ 迭代至自洽，从而保证时间传播的稳定性（前提是自洽过程收敛）。MMUT 算法并
+*不*保证动力学稳定，而总能量守恒只是轨迹被精确积分的必要而非充分条件。使用 MMUT 时，可以找到
+这样的例子：能量虽然守恒，但由于使用了过大的 $\Delta t$ 值，谱线仍然发生偏移
+（相对于使用极小时间步长获得的基准结果），而非自洽的 MMUT 算法无法检测和诊断这一问题。[[1578]](../bib_references/bib.md#bib1641)
 
-Propagation of the electron dynamics requires only ground-state computational machinery (albeit with complex-valued
-orbitals), and thus is available at any SCF level of theory, including Hartree-Fock theory or DFT. The name “TDKS”
-(in contrast to the cumbersome “RT-TDDFT”) emphasizes that
-Eq. ([7.58](#eq:TDKS)) is the Kohn-Sham analogue of the time-dependent Schrödinger equation.
-The cost per time step for a TDKS calculation should be no larger than a few times the cost of a ground-state SCF cycle.
-**Q-Chem**’s implementation exploits shared-memory parallelism and the use of at least 8 (but possibly more) processor
-cores is highly recommended, since the number of required time steps (and thus the number of Fock builds) is likely to be
-quite large. (The use of multiple cores is requested using the `-nt` flag.)
+电子动力学的传播只需要基态计算引擎（尽管使用的是复数值轨道），因此可在任何 SCF 级别的理论下使用，
+包括 Hartree-Fock 理论或密度泛函理论（Density Functional Theory, DFT）。名称“TDKS”
+（相对于笨拙的“RT-TDDFT”）强调方程 ([7.58](#eq:TDKS)) 是含时薛定谔方程的 Kohn-Sham 类似形式。
+TDKS 计算每个时间步长的开销不应超过基态 SCF 循环开销的几倍。
+**Q-Chem** 的实现利用了共享内存并行，强烈建议至少使用 8 个（也可以更多）处理器核心，
+因为所需的时间步长数（从而 Fock 矩阵构造的次数）可能非常大。（使用多核心需通过 `-nt` 标志指定。）
 
-A TDKS calculation is requested by setting TDKS = TRUE in the *$rem* input section, and other
-job control options are discussed in Section [7.4.2](sec_TDKS_JobControl.md).
-Section [7.4.3](sec_TDKS_Spectra.md) discusses how to compute broadband spectra from TDKS simulations of electron dynamics.
-Section [7.4.4](sec_TDKS_HHG_Spectra.md) discusses how to compute high-harmonic generation (HHG) spectra from TDKS simulations
-of electron dynamics.
+通过在 *$rem* 输入段中设置 TDKS = TRUE 即可请求 TDKS 计算，其他作业控制选项在第 [7.4.2](sec_TDKS_JobControl.md) 节中讨论。
+第 [7.4.3](sec_TDKS_Spectra.md) 节讨论如何从电子动力学的 TDKS 模拟中计算宽带谱。
+第 [7.4.4](sec_TDKS_HHG_Spectra.md) 节讨论如何从电子动力学的 TDKS 模拟中计算高次谐波产生（High-Harmonic Generation, HHG）谱。
 
 TDKS
 
 ### `TDKS`
 
-> **Job control keyword to turn on TDKS calculation**
+> **用于开启 TDKS 计算的作业控制关键字**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Perform a TDKS calculation following a ground-state SCF calculation
+>     * 在基态 SCF 计算之后执行 TDKS 计算
 >     * FALSE
->     * Do not perform a TDKS calculation
-> * **Recommendation**: None.
+>     * 不执行 TDKS 计算
+> * **建议**: 无。

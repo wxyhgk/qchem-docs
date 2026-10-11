@@ -1,17 +1,17 @@
 ---
-title: "6.13 Non-Iterative Corrections to Coupled Cluster Energies"
+title: "6.13 耦合簇能量的非迭代修正"
 ---
 
-# 6.13 Non-Iterative Corrections to Coupled Cluster Energies
+# 6.13 耦合簇能量的非迭代修正
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [6.13.1 (T) Triples Corrections](Ch6.S13.SS1.md)
+- [6.13.1 (T) 三激发修正](Ch6.S13.SS1.md)
 
-- [6.13.2 (2) Triples and Quadruples Corrections](Ch6.S13.SS2.md)
+- [6.13.2 (2) 三激发与四激发修正](Ch6.S13.SS2.md)
 
-- [6.13.3  (dT) and (fT) corrections](sec_dT.md)
+- [6.13.3  (dT) 与 (fT) 修正](sec_dT.md)
 
-- [6.13.4 Job Control Options](Ch6.S13.SS4.md)
+- [6.13.4 作业控制选项](Ch6.S13.SS4.md)
 
-- [6.13.5 Examples](Ch6.S13.SS5.md)
+- [6.13.5 示例](Ch6.S13.SS5.md)

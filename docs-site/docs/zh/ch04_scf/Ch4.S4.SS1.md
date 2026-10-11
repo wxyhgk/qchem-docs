@@ -1,66 +1,48 @@
 ---
-title: "4.4.1 Introduction"
+title: "4.4.1 引言"
 ---
 
-## 4.4.1 Introduction
+## 4.4.1 引言
 
 (July 4, 2026)
 
-The Roothaan-Hall and Pople-Nesbet equations of SCF theory are non-linear in
-the molecular orbital coefficients. Like many mathematical problems involving
-non-linear equations, prior to the application of a technique to search for a
-numerical solution, an initial guess for the solution must be generated. If the
-guess is poor, the iterative procedure applied to determine the numerical
-solutions may converge very slowly, requiring a large number of iterations, or
-at worst, the procedure may diverge.
+自洽场（SCF）理论中的 Roothaan-Hall 方程与 Pople-Nesbet 方程对于分子轨道系数而言是非线性的。与许多涉及非线性方程的数学问题一样，在采用某种技术搜索数值解之前，必须先生成一个初始猜测（initial guess）。如果猜测质量较差，用于求解数值解的迭代过程可能会收敛得非常缓慢，需要大量迭代；最坏的情况下，该过程甚至可能发散。
 
-Thus, in an *ab initio* SCF procedure, the quality of the initial guess
-is of utmost importance for (at least) two main reasons:
+因此，在 *ab initio* SCF 计算中，初始猜测的质量至关重要（至少）出于以下两个主要原因：
 
 - •
 
-To ensure that the SCF converges to an appropriate ground state. Often
-SCF calculations can converge to different local minima in wave function
-space, depending upon which part of “LCAO space” in which the initial guess lands.
+确保 SCF 收敛到合适的基态。SCF 计算往往会收敛到波函数空间中的不同局部极小值，具体取决于初始猜测落在"LCAO 空间"的哪个区域。
 - •
 
-When considering jobs with many basis functions requiring the
-recalculation of ERIs at each iteration, using a good initial guess that
-is close to the final solution can reduce the total job time
-significantly by decreasing the number of SCF iterations.
+对于基函数数目众多、每次迭代都需重新计算电子排斥积分（ERIs）的任务，使用一个接近最终解的高质量初始猜测，可以通过减少 SCF 迭代次数而显著缩短总计算时间。
 
-For these reasons, sooner or later most users will find it helpful to have some
-understanding of the different options available for customizing the initial
-guess. **Q-Chem** currently offers six options for the initial guess:
+基于上述原因，几乎所有用户迟早都会希望了解用于定制初始猜测的各种可选项。
+**Q-Chem** 目前提供以下几种初始猜测选项：
 
 - •
 
-Superposition of Atomic Densities (SAD)
+原子密度叠加（Superposition of Atomic Densities, SAD）
 - •
 
-Superposition of Atomic Potentials (SAP, only available with GEN_SCFMAN = TRUE)
+原子势叠加（Superposition of Atomic Potentials, SAP，仅在 GEN_SCFMAN = TRUE 时可用）
 - •
 
-On-the-fly (automated) Superposition of Atomic Densities (AUTOSAD)
+实时（自动化）原子密度叠加（On-the-fly (automated) Superposition of Atomic Densities, AUTOSAD）
 - •
 
-Purified SAD guess (provides molecular orbitals; SADMO)
+纯化的 SAD 猜测（提供分子轨道；SADMO）
 - •
 
-Core Hamiltonian (CORE)
+核心哈密顿量（Core Hamiltonian, CORE）
 - •
 
-Generalized Wolfsberg-Helmholtz (GWH)
+广义 Wolfsberg-Helmholtz（Generalized Wolfsberg-Helmholtz, GWH）
 - •
 
-Reading previously obtained MOs from disk. (READ)
+从磁盘读取先前求得的分子轨道（MOs）。（READ）
 - •
 
-Basis set projection (BASIS2)
+在这些猜测中，前六种（SAD、SAP、AUTOSAD、SADMO、CORE、GWH）由程序自动生成，而 READ 选项则允许用户复用以往计算的结果。
 
-The first six of these guesses are built-in, and are briefly described in
-Section [4.4.2](sect_guess.md). The option of reading MOs from disk is described in
-Section [4.4.3](sect_readmos.md). The initial guess MOs can be modified, either by
-mixing, or altering the order of occupation. These options are discussed in
-Section [4.4.4](sect_occupied.md). Finally, **Q-Chem**’s novel basis set projection
-method is discussed in Section [4.4.5](sect_projection.md).
+关于这些初始猜测的详细讨论，请分别参阅后续各节。

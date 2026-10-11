@@ -1,81 +1,50 @@
 ---
-title: "5.11.1 Introduction"
+title: "5.11.1 引言"
 ---
 
-## 5.11.1 Introduction
+## 5.11.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Under certain circumstances it is desirable to apply constraints to the
-electron density during an SCF calculation. For example, in a transition metal
-complex it may be desirable to constrain the net spin density on a particular
-metal atom to integrate to a value consistent with the $M_{S}$ value expected
-from ligand field theory. Similarly, in a donor/acceptor complex one might be
-interested in constraining the total density on the acceptor group so that the
-formal charge on the acceptor is either neutral or negatively charged,
-depending as the molecule is in its neutral or its charge-transfer state. In
-these situations, one is interested in controlling the average value of some
-observable, $O(\mathbf{r})$, to take on a given value, $N$:
+在某些情况下，人们希望在自洽场（SCF）计算过程中对电子密度施加约束。例如，在一个过渡金属配合物中，可能希望将某个特定金属原子上的净自旋密度约束为某个与配体场理论所预期的 $M_{S}$ 值相一致的积分值。类似地，在一个给体/受体（donor/acceptor）配合物中，人们可能希望约束受体基团上的总密度，使得受体上的形式电荷呈电中性或带负电，具体取决于分子处于电中性态还是电荷转移态。在这类情形中，我们关心的是控制某个可观测量 $O(\mathbf{r})$ 的平均值，使其取给定值 $N$：
 
 <a id="Ch5.E69"></a>
 $$
 \int\rho(\mathbf{r})\,O(\mathbf{r})\;d\mathbf{r}=N \tag{5.69}
 $$
 
-There are of course many states that satisfy such a constraint, but in practice
-one is usually looking for the lowest energy such state. To solve the
-resulting constrained minimization problem, one introduces a Lagrange
-multiplier, $V$, and solves for the stationary point of
+当然，满足此类约束的态有很多，但在实践中人们通常寻找的是其中能量最低的态。为求解由此产生的约束极小化问题，需要引入一个拉格朗日乘子（Lagrange multiplier）$V$，并求解下式的驻点：
 
 <a id="Ch5.E70"></a>
 $$
 V[\rho,V]=E[\rho]-V\left(\int\rho(\mathbf{r})\,O(\mathbf{r})\;d\mathbf{r}-N\right) \tag{5.70}
 $$
 
-where $E[\rho]$ is the energy of the system described using density functional
-theory (DFT). At convergence, the functional $W$ gives the density, $\rho$,
-that satisfies the constraint exactly (*i.e.*, it has exactly the prescribed
-number of electrons on the acceptor or spins on the metal center) but has the
-lowest energy possible. The resulting self-consistent procedure can be
-efficiently solved by ensuring at every SCF step the constraint is satisfied
-exactly. The **Q-Chem** implementation of these equations closely parallels
-those in Ref. [[1499]](../bib_references/bib.md#bib1557)
-.
+其中 $E[\rho]$ 是用密度泛函理论（Density Functional Theory, DFT）描述的系统能量。收敛时，泛函 $W$ 给出精确满足约束的密度 $\rho$（*即*，受体上恰好具有规定的电子数，或金属中心上恰好具有规定的自旋数），同时其能量尽可能低。由此得到的自洽过程可以被高效求解，其做法是在每一步 SCF 中都保证约束被精确满足。**Q-Chem** 对这些方程的实现与文献 [[1499]](../bib_references/bib.md#bib1557)
+ 中的方法紧密对应。
 
-The first step in any constrained DFT calculation is the specification of the
-constraint operator, $O(\mathbf{r})$. Within **Q-Chem**, the user is free to
-specify any constraint operator that consists of a linear combination of the
-Becke’s atomic partitioning functions[[94]](../bib_references/bib.md#bib73)
- or else the fragment-based
-Hirshfeld partition:[[1160]](../bib_references/bib.md#bib1214)
+任何约束 DFT（cDFT）计算的第一步都是指定约束算符 $O(\mathbf{r})$。在 **Q-Chem** 中，用户可以自由指定由 Becke 原子划分函数[[94]](../bib_references/bib.md#bib73)
+ 的线性组合构成的约束算符，也可使用基于片段的 Hirshfeld 划分[[1160]](../bib_references/bib.md#bib1214)
+：
 
 <a id="Ch5.E71"></a>
 $$
 O(\mathbf{r})=\sum_{A}^{\rm atoms}\sum_{\sigma=\alpha,\beta}C^{\sigma}_{A}\,w_{A}(\mathbf{r}) \tag{5.71}
 $$
 
-Here the summation runs over the atoms in the system and over electron spins.
-The weight function $w_{A}$ is designed to be $\approx 1$ near the nucleus of
-atom $A$ and rapidly fall to zero near the nucleus of any other atom in the system.[[94]](../bib_references/bib.md#bib73)
+此处求和遍历系统中的各个原子以及电子自旋。权重函数 $w_{A}$ 被设计为在原子 $A$ 的原子核附近约为 $1$，而在系统中任何其他原子的原子核附近迅速衰减为零。[[94]](../bib_references/bib.md#bib73)
 
-The original implementation of cDFT in **Q-Chem** used a Becke partition in which the
-Voronoi polyhedra are defined by the midpoints of the internuclear vectors,[[1497]](../bib_references/bib.md#bib1561)
+**Q-Chem** 中 cDFT 的原始实现采用了一种 Becke 划分，其中 Voronoi 多面体由各核间矢量的中点定义，[[1497]](../bib_references/bib.md#bib1561)
 
-but this affords unphysical results.[[556]](../bib_references/bib.md#bib579)
+但这样会得到非物理的结果。[[556]](../bib_references/bib.md#bib579)
 
-As such,the default value of BECKE_SHIFT
-is now set to use the “atomic size corrections” suggested by Becke,[[94]](../bib_references/bib.md#bib73)
+因此，BECKE_SHIFT 的默认值现已被设置为使用 Becke 建议的“原子尺寸修正”（atomic size corrections），[[94]](../bib_references/bib.md#bib73)
 
-in which a set of empirical atomic radii[[1268]](../bib_references/bib.md#bib1321)
- are used to shift the Voronoi
-polyhedra away from the bond midpoints and towards
-something more realistic for bonds between atoms
-of very different size. This correction is most important for cDFT calculations that
-are sensitive to the charges on the hydrogen atoms, and cDFT with Becke populations
-should probably never be used with these atomic size corrections.[[564]](../bib_references/bib.md#bib582)
+即利用一组经验原子半径[[1268]](../bib_references/bib.md#bib1321)
 
-The user-specified coefficients $C^{\sigma}_{A}$ are
-input using a *$cdft* input section having the following format.
+，将 Voronoi 多面体从键的中点移开，使之对于尺寸差异很大的原子之间的化学键而言更符合实际。这一修正对氢原子电荷敏感的 cDFT 计算最为重要；使用 Becke 布居数的 cDFT 计算则大概绝不应与这些原子尺寸修正同时使用。[[564]](../bib_references/bib.md#bib582)
+
+用户指定的系数 $C^{\sigma}_{A}$ 通过名为 *$cdft* 的输入段进行输入，其格式如下。
 
 > ```qchem
 > $cdft
@@ -90,98 +59,39 @@ input using a *$cdft* input section having the following format.
 > $end
 > ```
 
-Here, each CONSTRAINT_VALUE is a real number that specifies the
-desired average value ($N$) of the ensuing linear combination of atomic
-partition functions. Each COEFFICIENT specifies the coefficient of a partition
-function or group of partition functions in the constraint operator $O$. For
-each coefficient, all the atoms between the integers FIRST_ATOM and
-LAST_ATOM contribute with the specified weight in the constraint
-operator. Finally, TYPE specifies the type of constraint being
-applied—either “CHARGE” or “SPIN”. For a CHARGE constraint the spin up
-and spin down densities contribute equally ($C_{A}^{\alpha}=C_{A}^{\beta}=C_{A}$)
-yielding the total number of electrons on the atom A. For a SPIN constraint,
-the spin up and spin down densities contribute with opposite sign
-($C_{A}^{\alpha}-C_{A}^{\beta}=C_{A}$) resulting in a measure of the net spin on
-the atom A. Each separate CONSTRAINT_VALUE creates a new operator
-whose average is to be constrained—for instance, the example above includes
-several independent constraints: `X`, `Y`, $\ldots$. **Q-Chem** can handle an
-arbitrary number of constraints and will minimize the energy subject to all of
-these constraints simultaneously.
+这里，每个 CONSTRAINT_VALUE 都是一个实数，用于指定后续原子划分函数线性组合所期望的平均值（$N$）。每个 COEFFICIENT 指定约束算符 $O$ 中某个划分函数或一组划分函数的系数。对于每个系数，位于整数 FIRST_ATOM 与 LAST_ATOM 之间的所有原子都以指定的权重参与约束算符。最后，TYPE 指定所施加约束的类型——“CHARGE”（电荷）或“SPIN”（自旋）。对于 CHARGE 约束，自旋向上与自旋向下的密度以相等的权重参与（$C_{A}^{\alpha}=C_{A}^{\beta}=C_{A}$），
+从而给出原子 A 上的总电子数。对于 SPIN 约束，自旋向上与自旋向下的密度以相反的符号参与（$C_{A}^{\alpha}-C_{A}^{\beta}=C_{A}$），
+从而给出原子 A 上净自旋的度量。每个独立的 CONSTRAINT_VALUE 都会创建一个平均值得到约束的新算符——例如，上面的示例中包含若干彼此独立的约束：`X`、`Y`、$\ldots$。**Q-Chem** 可以处理任意数量的约束，并在同时满足所有这些约束的条件下使能量极小化。
 
-If an atom is not included in a particular operator, then the coefficient of
-that atoms partition function is set to zero for that operator. The TYPE
-specification is optional, and the default is to perform a charge constraint.
-Further, note that any charge constraint is on the *net* atomic charge.
-That is, the constraint is on the difference between the average number of
-electrons on the atom and the nuclear charge. Thus, to constrain CO to be
-negative, the constraint value would be 1 and not 15.
+如果某个原子未被包含在某个特定算符中，则对该算符而言该原子划分函数的系数被设为零。TYPE 指定是可选项，默认执行电荷约束。此外请注意，任何电荷约束针对的都是*净*原子电荷，也就是说，约束针对的是原子上电子的平均数目与核电荷之差。因此，若要使 CO 带负电，约束值应为 1 而不是 15。
 
-**Note: 
+**注意：
 
-Constraint in *$cdft* specifies the number of excess electrons on a
-fragment, not the total charge, *i.e.*, the value 1.0 means charge $=-1$,
-whereas charge constraint of $-$1.0 corresponds to the total $+$1 charge.
+*$cdft* 中的约束指定的是片段上多余电子的数目，而非总电荷，*即*，值 1.0 表示电荷 $=-1$，
+而约束值 $-$1.0 对应于总电荷 $+$1。
 **
 
-The choice of which atoms to include in different constraint regions is left
-entirely to the user and in practice must be based somewhat on chemical
-intuition. Thus, for example, in an electron transfer reaction the user must
-specify which atoms are in the “donor” and which are in the “acceptor”. In
-practice, the most stable choice is typically to make the constrained region as
-large as physically possible. Thus, for the example of electron transfer
-again, it is best to assign *every* atom in the molecule to one or the
-other group (donor or acceptor), recognizing that it makes no sense to assign
-any atoms to both groups. On the other end of the spectrum, constraining the
-formal charge on a single atom is highly discouraged. The problem is that
-while our chemical intuition tells us that the lithium atom in LiF should have
-a formal charge of +1, in practice the quantum mechanical charge is much closer
-to +0.5 than +1. Only when the fragments are far enough apart do our intuitive
-pictures of formal charge actually become quantitative.
+在不同约束区域中包含哪些原子完全由用户决定，实践中必须在一定程度上依赖化学直觉。因此，例如在电子转移反应中，用户必须指定哪些原子属于“给体”、哪些属于“受体”。实践中，最稳妥的做法通常是让约束区域在物理上尽可能大。仍就电子转移的例子而言，最好将分子中*每一个*原子都指派给两组（给体或受体）中的一组，同时要认识到把任何原子同时指派给两组是没有意义的。在另一个极端，强烈不建议只约束单个原子上的形式电荷。问题在于，尽管化学直觉告诉我们 LiF 中的锂原子应具有 +1 的形式电荷，但实际量子力学电荷更接近 +0.5 而非 +1。只有当各片段彼此足够远离时，我们对形式电荷的直观图像才真正成为定量的。
 
-Note that the atomic populations that **Q-Chem** prints out are Mulliken
-populations, not the Becke weight populations. As a result, the printed
-populations will not generally add up to the specified constrained values, even
-though the constraint is exactly satisfied. The *$rem* variable CDFT_BECKE_POP
-requests that the Becke populations be printed as well, so that the user may confirm that
-the computed states have the desired charge and/or spin character.
+请注意，**Q-Chem** 输出的原子布居数是 Mulliken 布居数，而非 Becke 权重布居数。因此，即使约束已被精确满足，打印出的布居数通常也不会恰好等于指定的约束值。*$rem* 变量 CDFT_BECKE_POP 用于请求同时打印 Becke 布居数，以便用户确认所计算的状态确实具有预期的电荷和/或自旋特征。
 
-Finally, we note that SCF convergence is typically more challenging in
-constrained DFT calculations as compared to their unconstrained counterparts.
-This effect arises because applying the constraint typically leads to a broken
-symmetry, diradicaloid state. As SCF convergence for these cases is known to
-be difficult even for unconstrained states, it is perhaps not surprising that
-there are additional convergence difficulties in this case. See
-Section [4.5](../ch04_scf/sect_convergence.md) on SCF convergence algorithms for ideas on how
-to improve convergence for constrained calculations. Also, CDFT is more
-sensitive to grid size than ground-state DFT, so sometimes increasing the
-integration grid improves the convergence. If convergence is problematic,
-try using the SG-2 or SG-3 grid (Section [5.5.3](sect_standard-quad.md)).
+最后需要指出，与无约束计算相比，约束 DFT 计算的 SCF 收敛通常更具挑战性。产生这一效应的原因是，施加约束通常会导致对称性破缺的双自由基型（diradicaloid）态。而人们已知即使对于无约束态，这类情形的 SCF 收敛也很困难，因此此处出现额外的收敛困难并不令人意外。有关如何改善约束计算收敛的思路，请参见第 [4.5](../ch04_scf/sect_convergence.md) 节关于 SCF 收敛算法的内容。此外，CDFT 对积分网格尺寸的敏感性高于基态 DFT，因此有时增大积分网格可以改善收敛。如果收敛困难，可尝试使用 SG-2 或 SG-3 网格（第 [5.5.3](sect_standard-quad.md) 节）。
 
-**Note: 
+**注意：
 
 1.
 
-To improve convergence, use the fewest possible constraints. For
-example, if your system consists of two fragments, specify the constrains
-for one of them only. The overall charge and multiplicity will force the
-“unconstrained” fragment to attain the right charge and multiplicity.
+为提高收敛性，请使用尽可能少的约束。例如，若体系由两个片段组成，则只对其中一个施加约束。
+总电荷与自旋多重度会迫使“未受约束”的片段取得正确的电荷与自旋多重度。
 
 2.
 
-The direct minimization methods are not available for constrained
-calculations. Hence, some combination of DIIS and RCA must be used to
-obtain convergence. Further, it is often necessary to break symmetry in
-the initial guess (using SCF_GUESS_MIX) to ensure that the
-lowest energy solution is obtained.
+直接极小化（direct minimization）方法不能用于约束计算。因此必须使用 DIIS 与 RCA 的某种组合来获得收敛。
+此外，通常有必要在初始猜测中破坏对称性（使用 SCF_GUESS_MIX），以确保得到能量最低的解。
 
 **
 
-Analytic gradients are available for constrained DFT
-calculations.[[1500]](../bib_references/bib.md#bib1558)
- Second derivatives are only available by finite
-difference of analytic gradients. For details on how to apply constrained DFT
-to compute magnetic exchange couplings, see Ref. [[1187]](../bib_references/bib.md#bib1241)
-. For
-details on using constrained DFT to compute electron transfer parameters, see
-Ref. [[1501]](../bib_references/bib.md#bib1559)
-.
+约束 DFT 计算已有解析梯度可用。[[1500]](../bib_references/bib.md#bib1558)
+ 二阶导数只能通过解析梯度的有限差分获得。关于如何将约束 DFT 应用于计算磁交换耦合的详细讨论，参见文献 [[1187]](../bib_references/bib.md#bib1241)
+。关于如何使用约束 DFT 计算电子转移参数的详细讨论，参见文献 [[1501]](../bib_references/bib.md#bib1559)
+。

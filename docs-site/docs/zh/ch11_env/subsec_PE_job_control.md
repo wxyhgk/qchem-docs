@@ -1,46 +1,45 @@
 ---
-title: "11.8.2 Job Control"
+title: "11.8.2 作业控制"
 ---
 
-## 11.8.2 Job Control
+## 11.8.2 作业控制
 
 (July 4, 2026)
 
-The PE job control is accomplished in two sections, *$rem* and *$pe*.
-To enabling PE-ADC, specification of the ADC method and other ADC job control
-parameters (thresholds, max. iterations *etc.*) should be set in the *$rem*
-section. PE-ADC supports the excited state analysis
-(STATE_ANALYSIS) carried out by the **libwfa** module.
+PE 的作业控制通过两个部分来实现，即 *$rem* 和 *$pe*。
+要启用 PE-ADC，应在 *$rem* 部分中指定 ADC 方法以及其他 ADC
+作业控制参数（阈值、最大迭代次数等）。PE-ADC 支持由 **libwfa** 模块执行的
+激发态分析（STATE_ANALYSIS）。
 
 PE
 
 ### `PE`
 
-> **Turns PE on.**
+> **开启 PE。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Perform a PE calculation.
+>     * 执行 PE 计算。
 >     * False
->     * Don’t perform a PE calculation.
-> * **Recommendation**: Set the $rem variable to TRUE to start a PE calculation.
+>     * 不执行 PE 计算。
+> * **建议**: 将 $rem 变量设置为 TRUE 以启动 PE 计算。
 
-**Note: 
+**注意：
 
-Turning PE on disables symmetry by setting POINT_GROUP_SYMMETRY to FALSE.
+开启 PE 会通过将 POINT_GROUP_SYMMETRY 设置为 FALSE 来禁用对称性。
 
 **
 
-**Note: 
+**注意：
 
-Setting the REM variables USE_LIBQINTS and GEN_SCFMAN
-to TRUE is required to run PE.
+运行 PE 时，必须将 REM 变量 USE_LIBQINTS 和 GEN_SCFMAN
+设置为 TRUE。
 **
 
-The PE-specific options can be set in the *$pe* input section. The format of the *$pe* section
-requires key and value pairs separated by a space character:
+PE 专用的选项可以在 *$pe* 输入部分中设置。*$pe* 部分的格式
+要求关键字与取值之间用空格分隔，形成键值对：
 
 > ```qchem
 > $pe
@@ -48,142 +47,141 @@ requires key and value pairs separated by a space character:
 > $end
 > ```
 
-**Note: 
+**注意：
 
-The following job control variables belong *only* in the *$pe*
-section. Do not place them in the *$rem* section.
+以下作业控制变量*只能*放在 *$pe*
+部分中。请勿将其放置在 *$rem* 部分。
 **
 
 ### `POTFILE`
 
-> **Path of the potential file. INPUT SECTION: $pe**
+> **势文件（potential file）的路径。INPUT SECTION: $pe**
 >
-> * **Type**: `STRING`
-> * **Default**: `potfile.pot`
-> * **Options**:
->     * Provide the path/name of the potential file.
-> * **Recommendation**: None
+> * **类型**: `STRING`
+> * **默认值**: `potfile.pot`
+> * **选项**:
+>     * 提供势文件的路径/名称。
+> * **建议**: 无
 
 ### `DIIS`
 
-> **Use DIIS acceleration to obtain induced moments. INPUT SECTION: $pe**
+> **使用 DIIS 加速以求解诱导矩。INPUT SECTION: $pe**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Turns DIIS acceleration on.
+>     * 开启 DIIS 加速。
 >     * FALSE
->     * Turns DIIS acceleration off (normal Jacobi solver is used).
-> * **Recommendation**: TRUE
+>     * 关闭 DIIS 加速（使用常规的 Jacobi 求解器）。
+> * **建议**: TRUE
 
 ### `CONVERGENCE_INDUCED`
 
-> **Threshold for induced moments convergence. Converge induced moments to a residual norm of $10^{-\text{CONVERGENCE\_INDUCED}}$ . INPUT SECTION: $pe**
+> **诱导矩收敛阈值。将诱导矩收敛至残差范数 $10^{-\text{CONVERGENCE\_INDUCED}}$ 。INPUT SECTION: $pe**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `8`
+> * **选项**:
 >     * $n\leq 12$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
-> * **Recommendation**: Use the default unless higher accuracy is desired.
+> * **建议**: 除非需要更高的精度，否则使用默认值。
 
 ### `MAXITER`
 
-> **Maximum number of iterations for induced moments. INPUT SECTION: $pe**
+> **诱导矩的最大迭代次数。INPUT SECTION: $pe**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **选项**:
 >     * $n\geq 1$
-> * **Recommendation**: Use the default. If more iterations are required to converge the induced moments, there might be an error in the system setup.
+> * **建议**: 使用默认值。如果需要更多迭代次数才能使诱导矩收敛，则体系设置中可能存在错误。
 
 ### `BORDER`
 
-> **Activate border redistribution/removal options for sites in proximity to the QM/MM border. INPUT SECTION: $pe**
+> **对靠近 QM/MM 边界区域的位点启用边界重分布/移除选项。INPUT SECTION: $pe**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Enable border options.
+>     * 启用边界选项。
 >     * FALSE
->     * Disable border options.
-> * **Recommendation**: None
+>     * 禁用边界选项。
+> * **建议**: 无
 
 ### `BORDER_TYPE`
 
-> **Remove or redistribute multipole moments/polarizabilities. INPUT SECTION: $pe**
+> **移除或重分布多极矩/极化率。INPUT SECTION: $pe**
 >
-> * **Type**: `STRING`
-> * **Default**: `REMOVE`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `REMOVE`
+> * **选项**:
 >     * REMOVE
->     * remove multipole moments/polarizabilities.
+>     * 移除多极矩/极化率。
 >     * REDIST
->     * redistribute multipole moments/polarizabilities.
-> * **Recommendation**: None
+>     * 重分布多极矩/极化率。
+> * **建议**: 无
 
 ### `BORDER_RMIN`
 
-> **Minimum distance from QM atoms to MM sites to be taken into account for removal/redistribution INPUT SECTION: $pe**
+> **在移除/重分布时需要考虑的 QM 原子与 MM 位点之间的最小距离 INPUT SECTION: $pe**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `2.2`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `2.2`
+> * **选项**:
 >     * $r>0$
->     * (Unit depends on BORDER_RMIN_UNIT)
-> * **Recommendation**: None
+>     * （单位取决于 BORDER_RMIN_UNIT）
+> * **建议**: 无
 
 ### `BORDER_RMIN_UNIT`
 
-> **Unit of BORDER_RMIN, default is atomic units (AU) INPUT SECTION: $pe**
+> **BORDER_RMIN 的单位，默认为原子单位（AU） INPUT SECTION: $pe**
 >
-> * **Type**: `STRING`
-> * **Default**: `AU`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `AU`
+> * **选项**:
 >     * AU
->     * Use atomic units.
+>     * 使用原子单位。
 >     * AA
->     * Use Angstrom.
-> * **Recommendation**: None
+>     * 使用埃（Angstrom）。
+> * **建议**: 无
 
 ### `BORDER_REDIST_ORDER`
 
-> **Order from which on moments are removed. For example, if set to 1 (default), only charges are redistributed and all higher order moments are removed. INPUT SECTION: $pe**
+> **从此阶数开始的矩将被移除。例如，若设置为 1（默认值），则只重分布电荷，所有更高阶的矩均被移除。INPUT SECTION: $pe**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * $n=0,1,2,3,...$
-> * **Recommendation**: None
+> * **建议**: 无
 
 ### `BORDER_N_REDIST`
 
-> **Number of neighbor sites to redistribute multipole moments/polarizabilities to. The default (-1) redistributes to all sites which are not in the border region. INPUT SECTION: $pe**
+> **多极矩/极化率重分布的目标邻近位点数。默认值（-1）表示重分布到所有不处于边界区域的位点。INPUT SECTION: $pe**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `-1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `-1`
+> * **选项**:
 >     * $n=-1,1,2,3,...,\text{number of MM sites}$
-> * **Recommendation**: Use the default value.
+> * **建议**: 使用默认值。
 
 ### `BORDER_REDIST_POL`
 
-> **Redistribute polarizabilities? If set to FALSE, polarizabilities are removed. INPUT SECTION: $pe**
+> **是否重分布极化率？若设置为 FALSE，则移除极化率。INPUT SECTION: $pe**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Redistribute polarizabilities.
+>     * 重分布极化率。
 >     * FALSE
->     * Remove polarizabilities.
-> * **Recommendation**: None
+>     * 移除极化率。
+> * **建议**: 无
 
-???+ example "Example 11.52: Input for a PE-HF calculation of 4-Nitroaniline in presence of six water
-molecules"
+???+ example "示例 11.52: 在六个水分子存在下对对硝基苯胺（4-Nitroaniline）进行 PE-HF 计算的输入"
     ```qchem
     $comment
     The potential file \texttt{gen\_scfman\_pe\_potfile.pot} can be

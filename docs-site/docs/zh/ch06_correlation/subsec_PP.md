@@ -1,136 +1,96 @@
 ---
-title: "6.19.2 Perfect Pairing (PP)"
+title: "6.19.2 完美配对（Perfect Pairing, PP）"
 ---
 
-## 6.19.2 Perfect Pairing (PP)
+## 6.19.2 完美配对（Perfect Pairing, PP）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-To be more specific, the coupled cluster PP wave function is written as
+更具体地说，耦合簇完美配对（PP）波函数写作
 
 <a id="eqn:PP"></a>
 $$
 \left|\Psi\right\rangle=\exp\left({\sum_{i=1}^{n_{\mathrm{active}}}{t_{i}\hat{a}_{i\ast}^{{\dagger}}\hat{a}_{\bar{i}\ast}^{{\dagger}}\hat{a}_{\bar{i}}\hat{a}_{i}}}\right)\left|\Phi\right\rangle \tag{6.84}
 $$
 
-where $n_{\mathrm{active}}$ is the number of active electrons, and the $t_{i}$ are the
-linear number of unknown cluster amplitudes, corresponding to exciting the two
-electrons in the $i$th electron pair from their bonding orbital pair to their
-anti-bonding orbital pair. In addition to $t_{i}$, the core and the active orbitals
-are optimized as well to minimize the PP energy. The algorithm used for this is
-a slight modification of the GDM method, described for SCF calculations in
-Section [4.5.7](../ch04_scf/sect_gdm.md). Despite the simplicity of the PP wave function, with
-only a linear number of correlation amplitudes, it is still a useful
-theoretical model chemistry for exploring strongly correlated systems.
-This is because it is exact for a single electron pair in the PP active space,
-and it is also exact for a collection of non-interacting electron pairs in
-this active space. Molecules, after all, are in a sense a collection of
-interacting electron pairs! In practice, PP on molecules recovers between 60%
-and 80% of the correlation energy in its active space.
+其中 $n_{\mathrm{active}}$ 是活性电子数，$t_{i}$ 为线性数目的未知簇振幅（cluster amplitudes），对应于将第 $i$ 个电子对中的两个电子从其成键轨道对激发到反键轨道对。除 $t_{i}$ 之外，核心轨道和活性轨道同样会被优化以最小化 PP 能量。所使用的算法是对梯度下降法（Gradient Descent Method, GDM）的略微改进，该方法在[第 4.5.7 节](../ch04_scf/sect_gdm.md)中针对自洽场（SCF）计算进行了描述。尽管 PP 波函数形式简洁，仅包含线性数目的关联振幅，它仍然是探索强关联体系时有用的理论模型化学（model chemistry）。这是因为对于 PP 活性空间中的单个电子对，它是精确的；对于该活性空间中一组无相互作用的电子对，它同样是精确的。毕竟，从某种意义上说，分子正是由一组相互作用的电子对构成的！在实际应用中，PP 对分子可恢复其活性空间中 60% 到 80% 的关联能。
 
-If the calculation is perfect pairing (CORRELATION = PP), it is
-possible to look for unrestricted solutions in addition to restricted ones.
-Unrestricted orbitals are the default for molecules with odd numbers of
-electrons, but can also be specified for molecules with even numbers of
-electrons. This is accomplished by setting GVB_UNRESTRICTED = TRUE.
-Given a restricted guess, this will, however usually converge to a restricted
-solution anyway, so additional REM variables should be specified to ensure an
-initial guess that has broken spin symmetry. This can be accomplished by using
-an unrestricted SCF solution as the initial guess, using the techniques
-described in Chapter [4](../ch04_scf/chap_scf.md). Alternatively a restricted set of guess
-orbitals can be explicitly symmetry broken just before the calculation starts
-by using GVB_GUESS_MIX, which is described below. There is also the
-implementation of Unrestricted-in-Active Pairs (UAP),[[774]](../bib_references/bib.md#bib807)
- which
-is the default unrestricted implementation for GVB methods. This method
-simplifies the process of unrestriction by optimizing only one set of ROHF MO
-coefficients and a single rotation angle for each occupied-virtual pair. These
-angles are used to construct a series of $2\times 2$ Givens rotation matrices which
-are applied to the ROHF coefficients to determine the $\alpha$ spin MO
-coefficients and their transpose is applied to the ROHF coefficients to
-determine the $\beta$ spin MO coefficients. This algorithm is fast and
-eliminates many of the pathologies of the unrestricted GVB methods near the
-dissociation limit. To generate a full potential curve we find it is best to
-start at the desired UHF dissociation solution as a guess for GVB and follow it
-inwards to the equilibrium bond distance.
+若计算为完美配对（CORRELATION = PP），则除了限制解之外，还可以寻找非限制解。对于电子数为奇数的分子，默认使用非限制轨道，但电子数为偶数的分子也可以指定使用非限制轨道。这通过设置 GVB_UNRESTRICTED = TRUE 来实现。然而，若给定限制初始猜测，通常仍会收敛到限制解，因此需要额外指定 REM 变量以确保初始猜测具有破缺的自旋对称性。这可以通过使用非限制 SCF 解作为初始猜测来实现，相关技术见[第 4 章](../ch04_scf/chap_scf.md)。或者，也可以在计算开始之前，使用下面描述的 GVB_GUESS_MIX 显式地对一组限制猜测轨道进行对称性破缺。此外还有活性对内非限制（Unrestricted-in-Active Pairs, UAP）的实现[[774]](../bib_references/bib.md#bib807)，这是 GVB 方法的默认非限制实现。该方法通过仅优化一组 ROHF 分子轨道系数以及每个占据-虚轨道对的单一旋转角来简化非限制化过程。这些角度用于构造一系列 $2\times 2$ 的 Givens 旋转矩阵，将其应用于 ROHF 系数以确定 $\alpha$ 自旋分子轨道系数，而其转置则应用于 ROHF 系数以确定 $\beta$ 自旋分子轨道系数。该算法速度快，并消除了非限制 GVB 方法在解离极限附近的许多病态行为。为了生成完整的势能曲线，我们发现最好的做法是从所需的 UHF 解离解出发作为 GVB 的猜测，然后向平衡键长方向追踪。
 
 GVB_UNRESTRICTED
 
 ### `GVB_UNRESTRICTED`
 
-> **Controls restricted versus unrestricted PP jobs. Usually handled automatically.**
+> **控制 PP 计算使用限制还是非限制模式。通常自动处理。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `same value as UNRESTRICTED`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`与 UNRESTRICTED 取值相同`
+> * **选项**：
 >     * TRUE/FALSE
-> * **Recommendation**: Set this variable explicitly only to do a UPP job from an RHF or ROHF initial guess. Leave this variable alone and specify UNRESTRICTED = TRUE to access the new unrestricted-in-active-pairs GVB code which can return an RHF or ROHF solution if used with GVB_DO_ROHF
+> * **建议**：仅在需要从 RHF 或 ROHF 初始猜测执行 UPP 计算时才显式设置此变量。若要保持默认并使用新的活性对内非限制 GVB 代码（该代码在与 GVB_DO_ROHF 配合使用时可返回 RHF 或 ROHF 解），则无需设置此变量，只需指定 UNRESTRICTED = TRUE。
 
 GVB_DO_ROHF
 
 ### `GVB_DO_ROHF`
 
-> **Sets the number of Unrestricted-in-Active Pairs to be kept restricted.**
+> **设置活性对内非限制（Unrestricted-in-Active Pairs）中保持限制状态的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * User-Defined
-> * **Recommendation**: If $n$ is the same value as GVB_N_PAIRS returns the ROHF solution for GVB, only works with the UNRESTRICTED = TRUE implementation of GVB with GVB_OLD_UPP = 0 (its default value)
+>     * 用户自定义
+> * **建议**：若 $n$ 的值与 GVB_N_PAIRS 相同，则返回 GVB 的 ROHF 解。仅适用于 UNRESTRICTED = TRUE 的 GVB 实现且 GVB_OLD_UPP = 0（其默认值）。
 
 GVB_OLD_UPP
 
 ### `GVB_OLD_UPP`
 
-> **Which unrestricted algorithm to use for GVB.**
+> **GVB 使用哪种非限制算法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * Use Unrestricted-in-Active Pairs described in Ref.
+>     * 使用文献
 >     * 774
 >     * Lawler K. V., Small D. W., Head-Gordon M.
->     * J. Phys. Chem. A
+>     * J. Phys. Chem. A
 >     * (2010)
 >     * ,
 >     * 114
 >     * ,
 >     * pp. 2930
 >     * .
->     * Link
+>     * 链接
+>     * 中描述的活性对内非限制（Unrestricted-in-Active Pairs）方法
 >     * 1
->     * Use Unrestricted Implementation described in Ref.
+>     * 使用文献
 >     * 110
 >     * Beran G. J. O. et al.
->     * J. Phys. Chem. A
+>     * J. Phys. Chem. A
 >     * (2005)
 >     * ,
 >     * 109
 >     * ,
 >     * pp. 9183
 >     * .
->     * Link
-> * **Recommendation**: Only works for Unrestricted PP and no other GVB model.
+>     * 链接
+>     * 中描述的非限制实现
+> * **建议**：仅适用于非限制 PP，不适用于其他 GVB 模型。
 
 GVB_GUESS_MIX
 
 ### `GVB_GUESS_MIX`
 
-> **Similar to SCF_GUESS_MIX , it breaks alpha/beta symmetry for UPP by mixing the alpha HOMO and LUMO orbitals according to the user-defined fraction of LUMO to add the HOMO. 100 corresponds to a 1:1 ratio of HOMO and LUMO in the mixed orbitals.**
+> **与 SCF_GUESS_MIX 类似，通过按用户定义的 LUMO 混入 HOMO 的比例来混合 $\alpha$ 的 HOMO 和 LUMO 轨道，从而对 UPP 进行 $\alpha/\beta$ 对称性破缺。设置为 100 对应于混合轨道中 HOMO 和 LUMO 的 1:1 比例。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * User-defined,
+>     * 用户自定义，
 >     * $0\leq n\leq 100$
-> * **Recommendation**: 25 often works well to break symmetry without overly impeding convergence.
+> * **建议**：设置为 25 通常能在不过度阻碍收敛的情况下有效破缺对称性。
 
-Whilst all of the description in this section refers to PP solved via
-projection, it is also possible, as described in Section [6.19.3](subsec_CCVB.md) below,
-to solve variationally for the PP energy. This variational PP solution is the
-reference wave function for the CCVB method. In most cases use of spin-pure
-CCVB is preferable to attempting to improve restricted PP by permitting the
-orbitals to spin polarize.
+虽然本节中的所有描述均涉及通过投影法求解 PP，但如[第 6.19.3 节](subsec_CCVB.md)所述，也可以变分地求解 PP 能量。这种变分 PP 解是 CCVB 方法的参考波函数。在大多数情况下，使用自旋纯（spin-pure）CCVB 比试图通过允许轨道自旋极化来改进限制 PP 更为可取。

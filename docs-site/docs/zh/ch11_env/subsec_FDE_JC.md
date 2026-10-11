@@ -1,14 +1,12 @@
 ---
-title: "11.7.3 FDE-Man Job Control"
+title: "11.7.3 FDE-Man 作业控制"
 ---
 
-## 11.7.3 FDE-Man Job Control
+## 11.7.3 FDE-Man 作业控制
 
 (July 4, 2026)
 
-The FDE-Man job control with respect to embedding parameters is accomplished
-via options in the *$fde* input section. The format of the *$fde* section
-requires key and value pairs separated by a space character:
+FDE-Man 针对嵌入参数的作业控制是通过 *$fde* 输入段中的选项来实现的。*$fde* 段的格式要求关键字与值之间以空格分隔:
 
 > ```qchem
 > $fde
@@ -16,264 +14,237 @@ requires key and value pairs separated by a space character:
 > $end
 > ```
 
-**Note: 
+**注意:
 
-The following job control variables belong *only* in the *$fde*
-section. Do not place them in the *$rem* section.
+以下作业控制变量*仅*属于 *$fde* 段。请勿将它们放在 *$rem* 段中。
 **
 
-The supermolecular expansion (SE) uses the full basis set of the supersystem
-for calculations on each fragment. Because of the computational cost this
-option should only be used for small to medium sized supersystems.
-Note that for visualization of orbitals or densities SE only
-supports the generation of volumetric data via MAKE_CUBE_FILES
-(**MolDen** files are not supported, *i.e.* MOLDEN_FORMAT should be
-avoided). On the other hand, the monomer expansion (ME) only uses the basis set of
-each individual fragment.
-This choice of basis expansion is recommended for daily basis embedding calculations.
+超分子展开(Supermolecular Expansion, SE)对每个片段(fragment)的计算使用整个超体系(supersystem)的完整基组(Basis Set)。由于计算代价高昂,此选项只应应用于小型到中型的超体系。
+注意,在可视化轨道或密度时,SE 仅支持通过 MAKE_CUBE_FILES 生成体积数据(**不支持 MolDen** 文件,*即*应避免使用 MOLDEN_FORMAT)。
+另一方面,单体展开(Monomer Expansion, ME)仅使用每个独立片段的基组。
+对于日常的基于嵌入(embedding)的计算,推荐选择这种基组展开方式。
 
-Analogous to a regular DFT calculation in **Q-Chem** (by using METHOD)
-the exchange-correlation functional combination can either be selected with one
-keyword **XC_Func**,or by defining **X_Func** and **C_Func**
-(similar to EXCHANGE and CORRELATION). To include only the
-electrostatic terms in the embedding potential one can set all the functional
-keywords to **None**.
+与 **Q-Chem** 中的常规密度泛函理论(Density Functional Theory, DFT)计算类似(通过 METHOD 实现),
+交换-关联泛函的组合既可以通过单个关键字 **XC_Func** 选择,也可以通过分别定义 **X_Func** 和 **C_Func**
+(类似于 EXCHANGE 和 CORRELATION)。若要在嵌入势中只包含静电项,可以将所有泛函关键字设为 **None**。
 
-It is recommended to employ the same level of approximation for the non-additive kinetic and
-exchange-correlation functional, for instance TF/SVWN or PW91k/PW91.
+建议对非附加(non-additive)动能泛函与交换-关联泛函采用相同级别的近似,例如 TF/SVWN 或 PW91k/PW91。
 
-The *minimal specifications required* to successfully run a FDET calculation are:
+成功运行 FDET 计算所*要求的最少配置*为:
 
 - •
 
-Functionals for embedding potential: **T_Func**, **XC_Func** (or **X_Func** and **C_Func**),
+嵌入势的泛函:**T_Func**、**XC_Func**(或 **X_Func** 和 **C_Func**),
 - •
 
-Basis expansion: **Expansion**,
+基组展开方式:**Expansion**,
 - •
 
-Method for environment density: **rhoB_method**
+环境密度的计算方法:**rhoB_method**
 
 ### `T_Func`
 
-> **Kinetic energy functional used for the construction of the embedding potential. INPUT SECTION: $fde**
+> **用于构造嵌入势的动能泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * TF
->     * Use Thomas-Fermi kinetic energy functional.
+>     * 使用 Thomas-Fermi 动能泛函。
 >     * PW91k / LC94
->     * Use kinetic energy functional based on PW91.
+>     * 使用基于 PW91 的动能泛函。
 >     * None
->     * Do not include any kinetic energy functional.
-> * **Recommendation**: Use the same level of approximation as for the non-additive exchange-correlation energy functional.
+>     * 不包含任何动能泛函。
+> * **建议**:使用与非附加交换-关联能泛函相同级别的近似。
 
 ### `XC_Func`
 
-> **Exchange-Correlation functional used for the construction of the embedding potential. INPUT SECTION: $fde**
+> **用于构造嵌入势的交换-关联泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * NAME
 >     * NAME
->     * can be any of the LDA or GGA exchange-correlation functionals available in
->     * Q-Chem
->     * .
+>     * 可以是 **Q-Chem** 中可用的任意局域密度近似(Local Density Approximation, LDA)或广义梯度近似(Generalized Gradient Approximation, GGA)交换-关联泛函。
 >     * None
->     * Do not include any exchange-correlation energy functional.
-> * **Recommendation**: Only use LDA or GGA-type functionals.
+>     * 不包含任何交换-关联能泛函。
+> * **建议**:仅使用 LDA 或 GGA 型泛函。
 
 ### `X_Func`
 
-> **Exchange functional used for the construction of the embedding potential. INPUT SECTION: $fde**
+> **用于构造嵌入势的交换泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * NAME
 >     * NAME
->     * can be any of the LDA or GGA exchange functionals available in
->     * Q-Chem
->     * .
+>     * 可以是 **Q-Chem** 中可用的任意 LDA 或 GGA 交换泛函。
 >     * None
->     * Do not include any exchange energy functional.
-> * **Recommendation**: Only use LDA or GGA-type functionals. XC_Func and are mutually exclusive.
+>     * 不包含任何交换能泛函。
+> * **建议**:仅使用 LDA 或 GGA 型泛函。该关键字与 XC_Func 互斥。
 
 ### `C_Func`
 
-> **Exchange-Correlation functional used for the construction of the embedding potential. INPUT SECTION: $fde**
+> **用于构造嵌入势的交换-关联泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * NAME
 >     * NAME
->     * can be any of the LDA or GGA correlation functionals available in
->     * Q-Chem
->     * .
+>     * 可以是 **Q-Chem** 中可用的任意 LDA 或 GGA 关联泛函。
 >     * None
->     * Do not include any exchange energy functional.
-> * **Recommendation**: Only use LDA or GGA-type functionals. XC_Func and are mutually exclusive.
+>     * 不包含任何交换能泛函。
+> * **建议**:仅使用 LDA 或 GGA 型泛函。该关键字与 XC_Func 互斥。
 
 ### `Expansion`
 
-> **Specifies which basis set expansion should be used. INPUT SECTION: $fde**
+> **指定应使用哪种基组展开方式。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * SE/super/supermolecular
->     * Supermolecular basis is used for both System A and B.
+>     * 体系 A 和 B 均使用超分子基组。
 >     * ME/mono/monomer
->     * Monomer expansion basis is used on each System A and B.
-> * **Recommendation**: SE should be used for testing purposes only, since it is more expensive. Use the ME as standard choice, particularly for large systems.
+>     * 体系 A 和 B 各自使用单体展开基组。
+> * **建议**:SE 仅应用于测试目的,因为其代价更高。使用 ME 作为标准选择,尤其是对大型体系。
 
 ### `rhoA_method`
 
-> **Method to calculate reference density $\rho_{A}^{\text{ref}}(\mathbf{r})$ of the core fragment (A). If DFT is requested, the respective exchange-correlation functional is the same as defined for the embedding calculation, i.e. with the keywords XC_FUNC or X_FUNC and C_FUNC . INPUT SECTION: $fde**
+> **计算核心片段(A)的参考密度 $\rho_{A}^{\text{ref}}(\mathbf{r})$ 所使用的方法。若请求使用 DFT,则相应的交换-关联泛函与嵌入计算中所定义的相同,即通过关键字 XC_FUNC 或 X_FUNC 和 C_FUNC 定义。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `HF`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`HF`
+> * **可选值**:
 >     * HF
->     * Use Hartree-Fock method.
+>     * 使用 Hartree-Fock(HF,哈特里-福克)方法。
 >     * DFT
->     * Use Density Functional Theory.
+>     * 使用密度泛函理论。
 >     * MP
->     * Use Second-Order Møller-Plesset perturbation theory.
-> * **Recommendation**: Use either HF or DFT.
+>     * 使用二阶 Møller-Plesset(MP2,瑟尔-普莱塞)微扰理论。
+> * **建议**:使用 HF 或 DFT。
 
 ### `rhoB_method`
 
-> **Method to calculate the environment density (B). If DFT is requested, the respective exchange-correlation functional has to be defined using the keyword XC_FUNC_B or X_FUNC_B and C_FUNC_B . INPUT SECTION: $fde**
+> **计算环境密度(B)所使用的方法。若请求使用 DFT,则必须通过关键字 XC_FUNC_B 或 X_FUNC_B 和 C_FUNC_B 定义相应的交换-关联泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * HF
->     * Use Hartree-Fock method.
+>     * 使用 Hartree-Fock 方法。
 >     * DFT
->     * Use Density Functional Theory.
+>     * 使用密度泛函理论。
 >     * MP
->     * Use Second-Order Moller-Pleset method.
-> * **Recommendation**: Use either HF or DFT.
+>     * 使用二阶 Møller-Plesset 方法。
+> * **建议**:使用 HF 或 DFT。
 
 ### `XC_Func_B`
 
-> **Exchange-Correlation functional used for the environment DFT calculation. INPUT SECTION: $fde**
+> **用于环境 DFT 计算的交换-关联泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * NAME
 >     * NAME
->     * can be any of the LDA, GGA, or global hybrid-GGA exchange-correlation functionals available in
->     * Q-Chem
->     * .
-> * **Recommendation**: None
+>     * 可以是 **Q-Chem** 中可用的任意 LDA、GGA 或全局杂化(global hybrid)GGA 交换-关联泛函。
+> * **建议**:无
 
 ### `X_Func_B`
 
-> **Exchange functional used for the environment DFT calculation. INPUT SECTION: $fde**
+> **用于环境 DFT 计算的交换泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * NAME
 >     * NAME
->     * can be any of the LDA or GGA exchange functionals available in
->     * Q-Chem
->     * .
-> * **Recommendation**: XC_Func_B and are mutually exclusive.
+>     * 可以是 **Q-Chem** 中可用的任意 LDA 或 GGA 交换泛函。
+> * **建议**:该关键字与 XC_Func_B 互斥。
 
 ### `C_Func_B`
 
-> **Correlation functional used for the environment DFT calculation. INPUT SECTION: $fde**
+> **用于环境 DFT 计算的关联泛函。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * NAME
 >     * NAME
->     * can be any of the LDA or GGA correlation functionals available in
->     * Q-Chem
->     * .
-> * **Recommendation**: XC_Func_B and are mutually exclusive.
+>     * 可以是 **Q-Chem** 中可用的任意 LDA 或 GGA 关联泛函。
+> * **建议**:该关键字与 XC_Func_B 互斥。
 
 ### `PrintLevel`
 
-> **Print level for FDE-Man output. INPUT SECTION: $fde**
+> **FDE-Man 输出的打印级别。输入段:$fde**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**:`INTEGER`
+> * **默认值**:`0`
+> * **可选值**:
 >     * 0
->     * minimum print level
+>     * 最小打印级别
 >     * 1
->     * extended print level
+>     * 扩展打印级别
 >     * 2
->     * maximum print level
+>     * 最大打印级别
 >     * 3
->     * maximum print level and additional text files (densities, etc.)
-> * **Recommendation**: Use minimal print level.
+>     * 最大打印级别及附加文本文件(密度等)
+> * **建议**:使用最小打印级别。
 
-## 11.7.3.1 Superposition of Molecular Densities
+## 11.7.3.1 分子密度的叠加
 
-When the selected environment comprises many atoms and molecules, a sensible
-approximation is to construct the total environment density as the sum of
-the densities of the individual molecules. This can be done with the keywords **Superposition_B**
-or **Import_Superposition_B**. In the first case, the molecular densities are computed
-in the same calculation, and assembled into one single density matrix.
-The molecular densities and the superposed density matrices are saved into text files.
+当所选环境包含大量原子和分子时,一个合理的近似是将总环境密度构造为各个分子密度之和。
+这可以通过关键字 **Superposition_B** 或 **Import_Superposition_B** 实现。
+在前一种情况下,分子密度在同一次计算中求出,并组装成单一密度矩阵。
+分子密度及叠加后的密度矩阵会保存为文本文件。
 
 ### `Superposition_B`
 
-> **Compute the density of fragment B as a superposition of molecular densities. INPUT SECTION: $fde**
+> **以分子密度叠加的方式计算片段 B 的密度。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Do a superposition of molecular densities to build the density of fragment B.
+>     * 对分子密度进行叠加以构建片段 B 的密度。
 >     * FALSE
->     * Don’t do a superposition, use the whole fragment B.
-> * **Recommendation**: The molecular densities are calculated with the method specified with the keyword: rhoB_method .
+>     * 不进行叠加,使用整个片段 B。
+> * **建议**:分子密度使用关键字 rhoB_method 所指定的方法计算。
 
-In the second case, the individual density matrices are expected to be already calculated independently
-and are required to be present in the same folder of the calculation.
+在后一种情况下,各个密度矩阵应已在外部独立计算完成,并且需要位于计算所在的同一文件夹中。
 
 ### `Import_Superposition_B`
 
-> **Assemble the density of fragment B from molecular densities. INPUT SECTION: $fde**
+> **从分子密度组装片段 B 的密度。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Read and superpose the molecular densities to build the density of fragment B.
+>     * 读取并叠加分子密度以构建片段 B 的密度。
 >     * FALSE
->     * Don’t do a superposition, use the whole fragment B.
-> * **Recommendation**: The files with the molecular density matrices should be .txt files, numerated from 0, with the prefix SCF_Dens_B_Subfrag_ .
+>     * 不进行叠加,使用整个片段 B。
+> * **建议**:存放分子密度矩阵的文件应为 .txt 文件,从 0 开始编号,前缀为 SCF_Dens_B_Subfrag_。
 
-**Note: 
+**注意:
 
-No embedding calculation is performed if these functions are selected. In both cases,
-only the geometry of fragment B has to be given, and each molecule needs to be specified as independent
-fragment in the MOLECULE section.
+选择这些功能时不会执行嵌入计算。在两种情况下,
+只需给出片段 B 的几何结构,并且每个分子都需要在 MOLECULE 段中指定为独立片段。
 **
 
-When using the *superposition* options, the file of the superposed density matrix of the environment (B)
-is saved with the name `Densmat_B.txt`, and can be used with the **import_rhoB** option
-to subsequently perform an embedding calculation (see Sec. [11.7.3.2](#subsubsec:FDE-import) below).
+使用*叠加(superposition)*选项时,环境(B)叠加后的密度矩阵文件将以 `Densmat_B.txt` 命名保存,
+随后可配合 **import_rhoB** 选项用于执行嵌入计算(见下文第 [11.7.3.2](#subsubsec:FDE-import) 节)。
 
-## 11.7.3.2 Import Densities
+## 11.7.3.2 导入密度
 
-In FDE-Man the user has the option to import the density matrices used to generate the embedding potential.
-This alternative is particularly useful if the desired method to generate the densities for the embedding potential
-is not available in the current version, for instance, or when the superposition of densities is used to generate $\rho_{B}(\mathbf{r})$.
-The density matrices must be given *in AO basis* in a text file with the following format:
+在 FDE-Man 中,用户可以选择导入用于生成嵌入势的密度矩阵。
+当所需版本的生成嵌入势密度方法尚不可用,或者使用密度叠加来生成 $\rho_{B}(\mathbf{r})$ 时,
+这种替代方案尤其有用。
+密度矩阵必须*以原子轨道(AO)基*给出,存放于具有如下格式的文本文件中:
 
 > ```qchem
 > <nspin> <nbas> <nbas>
@@ -282,166 +253,165 @@ The density matrices must be given *in AO basis* in a text file with the followi
 > ...
 > ```
 
-where `<nspin>` has two possible values (1 or 2) depending on the number of spin densities contained in the file.
-The first line should also contain the dimensions of the density matrix (`<nbas>`).
+其中 `<nspin>` 有两个可能的取值(1 或 2),取决于文件中包含的自旋密度数目。
+第一行还应包含密度矩阵的维度(`<nbas>`)。
 
 ### `import_rhoA`
 
-> **Import density of subsystem A used for the embedding potential. The file must be named Densmat_A.txt and located in the calculation folder. INPUT SECTION: $fde**
+> **导入用于嵌入势的子体系 A 的密度。文件必须命名为 Densmat_A.txt 并位于计算文件夹中。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Read the density for subsystem A from file.
+>     * 从文件读取子体系 A 的密度。
 >     * FALSE
->     * Do not use density from file.
-> * **Recommendation**: None
+>     * 不使用文件中的密度。
+> * **建议**:无
 
 ### `import_rhoB`
 
-> **Import density of subsystem B used for the embedding potential. The file must be named Densmat_B.txt and located in the calculation folder. INPUT SECTION: $fde**
+> **导入用于嵌入势的子体系 B 的密度。文件必须命名为 Densmat_B.txt 并位于计算文件夹中。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Read the environment density from file.
+>     * 从文件读取环境密度。
 >     * FALSE
->     * Do not use density from file.
-> * **Recommendation**: None
+>     * 不使用文件中的密度。
+> * **建议**:无
 
-## 11.7.3.3 Pre-Polarization of the Environment Density
+## 11.7.3.3 环境密度的预极化
 
-Formally the exactness of FDET equations requires the condition
-$\forall\mathbf{r}\left(\rho_{0}(\mathbf{r})\leq\rho_{B}(\mathbf{r})\right)$ to be satisfied,
-whereby $\rho_{0}(\mathbf{r})$ denotes the exact density of the supersystem.[[1453]](../bib_references/bib.md#bib1515)
+从形式上看,FDET 方程的精确性要求满足条件
+$\forall\mathbf{r}\left(\rho_{0}(\mathbf{r})\leq\rho_{B}(\mathbf{r})\right)$,
+其中 $\rho_{0}(\mathbf{r})$ 表示超体系的精确密度。[[1453]](../bib_references/bib.md#bib1515)
 
-This condition can, however, not be assured *a priori*.
-In practice, deficiencies with the initial choice of $\rho_{B}(\mathbf{r})$ can be cured to some extent by
-pre-polarizing the environment density.[[1166]](../bib_references/bib.md#bib1219)
+然而,该条件无法*事先*(a priori)保证。
+在实践中,可通过对环境密度进行预极化(pre-polarization),在一定程度上弥补初始 $\rho_{B}(\mathbf{r})$ 选择上的不足。[[1166]](../bib_references/bib.md#bib1219)
 
-Pre-polarization schemes available in FDE-Man can be turn on
-with the **prepol** keyword. The different pre-polarization options are described below.
+FDE-Man 中可用的预极化方案可通过 **prepol** 关键字开启。
+不同的预极化选项将在下文描述。
 
 ### `prepol`
 
-> **Pre-polarize $\rho_{B}(\mathbf{r})$ in the field of the embedded species represented by point charges or a charge density. INPUT SECTION: $fde**
+> **在由点电荷或电荷密度表示的嵌入物种场中对 $\rho_{B}(\mathbf{r})$ 进行预极化。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Turn on pre-polarization of
+>     * 开启对
 >     * $\rho_{B}(\mathbf{r})$
->     * .
+>     * 的预极化。
 >     * FALSE
->     * Do not pre-polarize the environment density.
-> * **Recommendation**: See Ref. 1166 Ricardi N. et al. Phys. Chem. Chem. Phys. (2018) , 20 , pp. 26053 . Link for a review of FDET polarization schemes.
+>     * 不对环境密度进行预极化。
+> * **建议**:参见文献 1166 Ricardi N. et al. Phys. Chem. Chem. Phys. (2018) , 20 , pp. 26053 。其中对 FDET 极化方案进行了综述。
 
 ### `prepol_type`
 
-> **Type of pre-polarization scheme. INPUT SECTION: $fde**
+> **预极化方案的类型。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `Mulliken`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`Mulliken`
+> * **可选值**:
 >     * Mulliken
->     * Use Mulliken charges of system A to pre-polarize
+>     * 使用体系 A 的 Mulliken 电荷对
 >     * $\rho_{B}(\mathbf{r})$
->     * .
+>     * 进行预极化。
 >     * CHELPG
->     * Use ChElPG charges of system A to pre-polarize
+>     * 使用体系 A 的 ChElPG 电荷对
 >     * $\rho_{B}(\mathbf{r})$
->     * .
+>     * 进行预极化。
 >     * elstat / Coulomb
->     * Use electrostatic embedding potential (using density and nuclear charges of A) to pre-polarize
+>     * 使用静电嵌入势(利用 A 的密度和核对电荷)对
 >     * $\rho_{B}(\mathbf{r})$
->     * .
-> * **Recommendation**: None
+>     * 进行预极化。
+> * **建议**:无
 
 ### `root_Aref`
 
-> **Defines which electronic state is considered for $\rho_{A}^{\text{ref}}(\mathbf{r})$ in the pre-polarization scheme. INPUT SECTION: $fde**
+> **定义在预极化方案中计算 $\rho_{A}^{\text{ref}}(\mathbf{r})$ 时考虑哪个电子态。输入段:$fde**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**:`INTEGER`
+> * **默认值**:`0`
+> * **可选值**:
 >     * n
->     * Use
+>     * 使用 A 的第
 >     * n
->     * th state of A for pre-polarization scheme (ground state = 0).
-> * **Recommendation**: None
+>     * 个态进行预极化(基态 = 0)。
+> * **建议**:无
 
-## 11.7.3.4 Miscellaneous Options
+## 11.7.3.4 杂项选项
 
 ### `Debug`
 
-> **Request additional printings as well as saving the separate components of the embedding potential (in AO basis) to disk. INPUT SECTION: $fde**
+> **请求额外的打印输出,并将嵌入势的各个分量(以 AO 基表示)保存到磁盘。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Print extra options and save components to disk.
+>     * 打印额外信息并将分量保存到磁盘。
 >     * FALSE
->     * Do not print extra info.
-> * **Recommendation**: This option creates multiple files and additional details in the output. Use only for debugging purposes.
+>     * 不打印额外信息。
+> * **建议**:此选项会生成多个文件并在输出中增加细节。仅用于调试目的。
 
 ### `rhoB_basis`
 
-> **Use a different basis set for fragment B than the one for the embedded system A, specified in the $rem section. Basis sets can be requested in the same way as in the BASIS section. However, contrary to the standard definition inside the input file, the user-defined basis and mixed basis must be defined without $basis and $end , in a text file called fde_genbasB and located in the calculation folder. INPUT SECTION: $fde**
+> **为片段 B 使用与嵌入体系 A 不同的基组(A 的基组在 $rem 段中指定)。基组的请求方式与 BASIS 段中相同。但与输入文件内的标准定义相反,用户自定义基组(mixed basis)必须在不带 $basis 和 $end 的情况下定义,存放于名为 fde_genbasB 的文本文件中,并位于计算文件夹内。输入段:$fde**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**:`STRING`
+> * **默认值**:`None`
+> * **可选值**:
 >     * General, Gen
->     * User-defined. See Section
+>     * 用户自定义。参见第
 >     * 8.4
->     * .
+>     * 节。
 >     * Symbol
->     * Use standard basis sets as in the tables in Section
+>     * 使用第
 >     * 8.3
->     * .
+>     * 节表格中的标准基组。
 >     * Mixed
->     * Use a combination of different built-in basis sets (see Section
+>     * 使用不同内置基组的组合(参见第
 >     * 8.5
->     * ).
-> * **Recommendation**: Smaller basis for fragment B can be used to improve the performance of embedding calculations.
+>     * 节)。
+> * **建议**:为片段 B 使用较小的基组可以提升嵌入计算的性能。
 
-**Note: 
+**注意:
 
-All basis used within the FDE-Man module use PURECART = 2111.
+FDE-Man 模块中使用的所有基组均采用 PURECART = 2111。
 **
 
 ### `print_props`
 
-> **Print molecular properties (multipole moments, Mulliken charges) associated with the reference fragment densities used to construct the embedding potential. INPUT SECTION: $fde**
+> **打印与用于构造嵌入势的参考片段密度相关的分子性质(多极矩、Mulliken 电荷)。输入段:$fde**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**:`INTEGER`
+> * **默认值**:`1`
+> * **可选值**:
 >     * 0
->     * Do not print molecular properties.
+>     * 不打印分子性质。
 >     * 1
->     * Print molecular properties only for fragment A.
+>     * 仅打印片段 A 的分子性质。
 >     * 2
->     * Print molecular properties for both fragments A and B.
-> * **Recommendation**: None
+>     * 打印片段 A 和 B 二者的分子性质。
+> * **建议**:无
 
-If the user desires to *only* save the embedding potential without performing an embedding calculation, it can be done
-by setting to *TRUE* simultaneously the variables **debug** and **Vemb_only**. In this case, the individual components
-of the embedding potential are saved to disk into text files as mentioned above in the **debug**.
+如果用户希望*仅*保存嵌入势而不执行嵌入计算,可以同时
+将变量 **debug** 和 **Vemb_only** 设为 *TRUE*。在这种情况下,如上所述 **debug** 一样,
+嵌入势的各个分量将以文本文件形式保存到磁盘。
 
 ### `Vemb_only`
 
-> **Only generate the embedding potential and save its components to disk. INPUT SECTION: $fde**
+> **仅生成嵌入势并将其分量保存到磁盘。输入段:$fde**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**:`BOOLEAN`
+> * **默认值**:`FALSE`
+> * **可选值**:
 >     * TRUE
->     * Generate embedding potential and exit FDE-Man.
+>     * 生成嵌入势并退出 FDE-Man。
 >     * FALSE
->     * Perform regular embedding calculation.
-> * **Recommendation**: None
+>     * 执行常规嵌入计算。
+> * **建议**:无

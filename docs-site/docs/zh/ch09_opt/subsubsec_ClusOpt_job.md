@@ -1,274 +1,274 @@
 ---
-title: "9.12.2 Cluster Optimization Job Control"
+title: "9.12.2 团簇优化作业控制"
 ---
 
-## 9.12.2 Cluster Optimization Job Control
+## 9.12.2 团簇优化作业控制
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
 NSEARCH
 
 ### `NSEARCH`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of structures that are generated and optimized.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置生成并优化的结构数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 SEARCH_ATOMIC
 
 ### `SEARCH_ATOMIC`
 
-> **Perform an optimization for atomic cluster.**
+> **对原子团簇执行优化。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `BOOLEAN（布尔值）`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Atomic cluster search will be performed.
+>     * 将执行原子团簇搜索。
 >     * False
->     * Molecular clusters search will be performed.
-> * **Recommendation**: Use N_SWOP to specify atomic number of atom swops in structure generation.
+>     * 将执行分子团簇搜索。
+> * **建议**: 使用 N_SWOP 指定在结构生成过程中进行原子交换的原子序数。
 
 N_SWOP
 
 ### `N_SWOP`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number atom coordinate swops for atomic cluster search.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined
-> * **Recommendation**: None
+> * **类型**: `设置原子团簇搜索中坐标交换（swop）的原子数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义
+> * **建议**: 无
 
 N_MOL_TYPE
 
 ### `N_MOL_TYPE`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of different atom or molecule types.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined : can be 1 or 2.
-> * **Recommendation**: None
+> * **类型**: `设置不同原子或分子类型的数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义：可取 1 或 2。
+> * **建议**: 无
 
 NMOL1
 
 ### `NMOL1`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of molecules of type 1.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置类型 1 分子的数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 N_ATOM_TYPE_1
 
 ### `N_ATOM_TYPE_1`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number atoms in molecule type 1.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置类型 1 分子中的原子数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 NMOL2
 
 ### `NMOL2`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of molecules of type 2.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置类型 2 分子的数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 N_ATOM_TYPE_2
 
 ### `N_ATOM_TYPE_2`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number atoms in molecule type 2.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置类型 2 分子中的原子数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 MAXBOX
 
 ### `MAXBOX`
 
-> **Sets the size of the box which the molecules are kept within.**
+> **设置分子被限制在其中的盒（box）尺寸。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `20000`
-> * **Options**:
+> * **类型**: `INTEGER（整数）`
+> * **默认值**: `20000`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * =
 >     * $n/1000$
->     * bohr.
-> * **Recommendation**: Need to ensure that the cluster can fit within this box.
+>     * bohr。
+> * **建议**: 需要确保团簇能够容纳在该盒子内。
 
 MIN_SEPARATION
 
 ### `MIN_SEPARATION`
 
-> **Reject initial structures where the closest approach of molecules is less than this value.**
+> **当分子间最短距离小于该值时，拒绝初始结构。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `300`
-> * **Options**:
+> * **类型**: `INTEGER（整数）`
+> * **默认值**: `300`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * =
 >     * $n/100$
->     * bohr.
-> * **Recommendation**: of approximately 2.5 bohr.
+>     * bohr。
+> * **建议**: 约为 2.5 bohr。
 
 MAX_DISPLACE
 
 ### `MAX_DISPLACE`
 
-> **Sets the maximum distance a molecule will be moved during a translation.**
+> **设置平移过程中分子移动的最大距离。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER（整数）`
+> * **默认值**: `500`
+> * **选项**:
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * =
 >     * $n/100$
->     * bohr.
-> * **Recommendation**: None.
+>     * bohr。
+> * **建议**: 无。
 
 SCF_NOCRASH
 
 ### `SCF_NOCRASH`
 
-> **Ensure the calculations continues if the SCF fails to converge for a given structure.**
+> **确保当某个结构的 SCF（自洽场）计算不收敛时，整体计算仍继续进行。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `BOOLEAN（布尔值）`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Ensure calculation will continue with next structure.
+>     * 确保计算继续处理下一个结构。
 >     * False
->     * Calculation will stop.
-> * **Recommendation**: Use = TRUE .
+>     * 计算将停止。
+> * **建议**: 设置为 = TRUE。
 
 TIGHTEN_CONVERG
 
 ### `TIGHTEN_CONVERG`
 
-> **At the end of the search re-calculate the energies of the optimized structures with tighter SCF convergence criteria.**
+> **在搜索结束后，使用更严格的 SCF 收敛标准重新计算已优化结构的能量。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `BOOLEAN（布尔值）`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Additional calculations with tighter SCF convergence performed.
+>     * 执行使用更严格 SCF 收敛标准的附加计算。
 >     * False
->     * No additional calculations performed.
-> * **Recommendation**: None.
+>     * 不执行附加计算。
+> * **建议**: 无。
 
 USE_INITIAL
 
 ### `USE_INITIAL`
 
-> **Include input structure as part of the search.**
+> **将输入结构包含在搜索过程中。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `BOOLEAN（布尔值）`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Input structure is included in the search.
+>     * 输入结构被包含在搜索中。
 >     * False
->     * Input structure is not included in the search.
-> * **Recommendation**: None.
+>     * 输入结构不被包含在搜索中。
+> * **建议**: 无。
 
 SEARCH_MOM
 
 ### `SEARCH_MOM`
 
-> **Allows the search to be performed in conjunction with MOM to explore excited states.**
+> **允许结合 MOM（最大占据方法，Maximum Occupied Method）进行搜索，以探索激发态。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `BOOLEAN（布尔值）`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * A search with MOM is performed.
+>     * 执行结合 MOM 的搜索。
 >     * False
->     * Normal calculation without MOM.
-> * **Recommendation**: None.
+>     * 执行不使用 MOM 的常规计算。
+> * **建议**: 无。
 
 MC_CYCLES
 
 ### `MC_CYCLES`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of cycles in a basin hopping search.`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置势垒跳跃（basin hopping）搜索中的循环数目。`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 MC_STEPS
 
 ### `MC_STEPS`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of Monte Carlo steps in each`
-> * **Default**: `No default.`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置每个循环中的蒙特卡洛（Monte Carlo）步数`
+> * **默认值**: `无默认值。`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 MC_TEMP
 
 ### `MC_TEMP`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the temperature (in Kelvin).`
-> * **Default**: `300`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置温度（以开尔文为单位）。`
+> * **默认值**: `300`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 N_MOVES
 
 ### `N_MOVES`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of structural changes/moves on each step.`
-> * **Default**: `2`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置每一步中的结构变化/移动数目。`
+> * **默认值**: `2`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无
 
 MAX_JUMP
 
 ### `MAX_JUMP`
 
-> **INTEGER**
+> **INTEGER（整数）**
 >
-> * **Type**: `Sets the number of moves accepted on jumping.`
-> * **Default**: `10`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: None
+> * **类型**: `设置跳跃（jumping）时接受的移动数目。`
+> * **默认值**: `10`
+> * **选项**:
+>     * 由用户定义。
+> * **建议**: 无

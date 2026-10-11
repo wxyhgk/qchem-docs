@@ -1,25 +1,13 @@
 ---
-title: "2.2.4 Testing and Exploring Q-Chem"
+title: "2.2.4 测试与探索 Q-Chem"
 ---
 
-## 2.2.4 Testing and Exploring **Q-Chem**
+## 2.2.4 测试与探索 **Q-Chem**
 
 (July 4, 2026)
 
-**Q-Chem** is shipped with a small number of test jobs which are located in the
-`$QC/samples` directory. If you wish to test your version of
-**Q-Chem**, run the test jobs in the samples directory and compare the output
-files with the reference files of the same name, having suffixes `.out`.
+**Q-Chem** 随附了少量测试作业（test jobs），位于 `$QC/samples` 目录中。如果您希望测试自己安装的 **Q-Chem** 版本，请运行 samples 目录中的测试作业，并将输出文件与同名的、带有 `.out` 后缀的参考文件进行比较。
 
-These test jobs are not an exhaustive quality control test (a small subset of
-the test suite used at **Q-Chem** Inc.), but they should all run correctly on
-your platform. If any fault is identified in these, or any output files created
-by your version, do not hesitate to contact customer service immediately.
+这些测试作业并不是详尽的质量控制测试（它们只是 **Q-Chem** 公司所用测试套件的一小部分），但它们都应该能在您的平台上正确运行。如果在这测试作业中，或在您的版本生成的任何输出文件中发现任何问题，请立即联系客服部门。
 
-These jobs are also an excellent way to begin learning about **Q-Chem**’s
-text-based input and output formats in detail. In many cases you can use these
-inputs as starting points for building your own input files, if you wish to
-avoid reading the rest of this manual.
-
-Please check the **Q-Chem** web page (`www.q-chem.com`) and the
-README files in the `$QC/doc` directory for updated information.
+这些测试作业也是开始学习使用 **Q-Chem** 的绝佳途径。

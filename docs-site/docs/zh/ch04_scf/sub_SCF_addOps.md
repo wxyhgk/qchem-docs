@@ -1,142 +1,136 @@
 ---
-title: "4.3.3 Additional Options"
+title: "4.3.3 附加选项"
 ---
 
-## 4.3.3 Additional Options
+## 4.3.3 附加选项
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Listed below are a number of useful options to customize an SCF
-calculation. This is only a short summary of the function of these *$rem*
-variables. A full list of all SCF-related variables is provided in Appendix [B](../app_b_quickref/app_quick_ref.md).
-Several important sub-topics are discussed separately, including ${\cal{O}}({N})$ methods for large molecules
-(Section [4.6](sec_O(N).md)), customizing the initial guess (Section [4.4](sect_initialguess.md)), and converging
-the SCF calculation (Section [4.5](sect_convergence.md)).
+下面列出的是若干用于自定义 SCF 计算的实用选项。这里仅对这些 *$rem* 变量的功能作简要概述。所有与 SCF 相关的变量完整列表见附录 [B](../app_b_quickref/app_quick_ref.md)。另有几个重要子主题单独讨论，包括用于大分子的 ${\cal{O}}({N})$ 方法（第 [4.6](sec_O(N).md) 节）、自定义初始猜测（第 [4.4](sect_initialguess.md) 节），以及 SCF 计算的收敛（第 [4.5](sect_convergence.md) 节）。
 
 INTEGRALS_BUFFER
 
 ### `INTEGRALS_BUFFER`
 
-> **Controls the size of in-core integral storage buffer.**
+> **控制内存内（in-core）积分存储缓冲区的大小。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `15`
-> * **Options**:
->     * User defined size.
-> * **Recommendation**: Use the default, or consult your systems administrator for hardware limits.
+> * **类型**：`INTEGER`
+> * **默认值**：`15`
+> * **选项**：
+>     * 由用户自定义大小。
+> * **建议**：使用默认值，或就硬件限制咨询系统管理员。
 
 DIRECT_SCF
 
 ### `DIRECT_SCF`
 
-> **Controls direct SCF.**
+> **控制直接 SCF（direct SCF）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `Determined by program.`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`由程序决定。`
+> * **选项**：
 >     * TRUE
->     * Forces direct SCF.
+>     * 强制使用直接 SCF。
 >     * FALSE
->     * Do not use direct SCF.
-> * **Recommendation**: Use the default; direct SCF switches off in-core integrals.
+>     * 不使用直接 SCF。
+> * **建议**：使用默认值；直接 SCF 会关闭内存内积分。
 
 METECO
 
 ### `METECO`
 
-> **Sets the threshold criteria for discarding shell-pairs.**
+> **设置丢弃壳层对（shell-pair）的阈值判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **选项**：
 >     * 1
->     * Discard shell-pairs four orders of magnitude below machine precision.
+>     * 丢弃比机器精度低四个数量级的壳层对。
 >     * 2
->     * Discard shell-pairs below 10
+>     * 丢弃低于 10
 >     * ${}^{-\mathrm{THRESH}}$
->     * .
-> * **Recommendation**: Use the default.
+>     * 的壳层对。
+> * **建议**：使用默认值。
 
 S2THRESH
 
 ### `S2THRESH`
 
-> **Cutoff for neglect of overlap integrals, defined via a two-electron shell-pair threshold of $10^{-\mathrm{S2THRESH}}$ ( $\leq 16$ ).**
+> **忽略重叠积分的截断值，通过 $10^{-\mathrm{S2THRESH}}$（$\leq 16$）的二电子壳层对阈值来定义。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Same as`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`与` THRESH `相同`
+> * **选项**：
 >     * $n$
->     * for a threshold of
+>     * 对应阈值为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Increase the value of if the program finds negative eigenvalues for the overlap matrix.
+>     * 。
+> * **建议**：如果程序发现重叠矩阵出现负本征值，则增大该值。
 
 THRESH
 
 ### `THRESH`
 
-> **Cutoff for neglect of two electron integrals. $10^{-\mathrm{THRESH}}$ ( $\leq 16$ ).**
+> **忽略二电子积分的截断值。$10^{-\mathrm{THRESH}}$（$\leq 16$）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`8`
+> * **选项**：
 >     * $n$
->     * for a threshold of
+>     * 对应阈值为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: The value should satisfy $\geq$ 3 + SCF_CONVERGENCE , although = 4 + SCF_CONVERGENCE is the default (in most cases) since Q-Chem v. 6.0. See Ref. 479 Gray M., Bowling P. E., Herbert J. M. J. Phys. Chem. A (2024) , 128 , pp. 7739 . Link for recommended values of in the presence of diffuse basis functions, where tighter thresholds are often required and too-loose thresholds may lead to slower convergence or convergence failure.
+>     * 。
+> * **建议**：该值应满足 $\geq$ 3 + SCF_CONVERGENCE，尽管自 Q-Chem 6.0 起（在大多数情况下）默认值为 = 4 + SCF_CONVERGENCE。参见文献 479 Gray M., Bowling P. E., Herbert J. M. J. Phys. Chem. A (2024) , 128 , pp. 7739 。该文献给出了在存在弥散基函数时 THRESH 的推荐取值——此时通常需要更严格的阈值，而过松的阈值可能导致收敛变慢或收敛失败。
 
 STABILITY_ANALYSIS
 
 ### `STABILITY_ANALYSIS`
 
-> **Performs stability analysis for a HF or DFT solution.**
+> **对 HF 或 DFT 解执行稳定性分析。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Perform stability analysis.
+>     * 执行稳定性分析。
 >     * FALSE
->     * Do not perform stability analysis.
-> * **Recommendation**: Set to TRUE when a HF or DFT solution is suspected to be unstable.
+>     * 不执行稳定性分析。
+> * **建议**：当怀疑 HF 或 DFT 解不稳定时，设置为 TRUE。
 
 SCF_PRINT
 
 ### `SCF_PRINT`
 
-> **Controls level of output from SCF procedure to Q-Chem output file.**
+> **控制 SCF 过程写入 Q-Chem 输出文件的输出详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * Minimal, concise, useful and necessary output.
+>     * 最精简、简洁、有用且必要的输出。
 >     * 1
->     * Level 0 plus component breakdown of SCF electronic energy.
+>     * 在级别 0 基础上增加 SCF 电子能量的分项 breakdown。
 >     * 2
->     * Level 1 plus density, Fock and MO matrices on each cycle.
+>     * 在级别 1 基础上增加每一步（cycle）的密度矩阵、Fock 矩阵和 MO 矩阵。
 >     * 3
->     * Level 2 plus two-electron Fock matrix components (Coulomb, HF exchange
->     * , orbital kinetic energies, and DFT exchange-correlation matrices) on each cycle.
-> * **Recommendation**: Proceed with care; can result in extremely large output files at level 2 or higher. Output of all information is only available in scfman ( GEN_SCFMAN = FALSE). If GEN_SCFMAN is set to TRUE and > 1, only level 1 plus MO matrices are available in the output. These levels are primarily for program debugging.
+>     * 在级别 2 基础上增加每一步的二电子 Fock 矩阵分量（Coulomb、HF 交换、轨道动能以及 DFT 交换-关联矩阵）。
+> * **建议**：谨慎使用；级别 2 或更高可能产生极大的输出文件。只有在 scfman 中（GEN_SCFMAN = FALSE）才能输出全部信息。若 GEN_SCFMAN 设为 TRUE 且 SCF_PRINT > 1，输出中仅包含级别 1 信息加上 MO 矩阵。这些级别主要用于程序调试。
 
 SCF_FINAL_PRINT
 
 ### `SCF_FINAL_PRINT`
 
-> **Controls level of output from SCF procedure to Q-Chem output file at the end of the SCF.**
+> **控制 SCF 结束时 SCF 过程写入 Q-Chem 输出文件的输出详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * No extra print out.
+>     * 不额外输出。
 >     * 1
->     * Orbital energies and break-down of SCF energy.
+>     * 轨道能量及 SCF 能量的分项 breakdown。
 >     * 2
->     * Level 1 plus MOs and density matrices.
+>     * 在级别 1 基础上增加分子轨道（MO）和密度矩阵。
 >     * 3
->     * Level 2 plus Fock matrix.
-> * **Recommendation**: The break-down of energies is often useful (level 1).
+>     * 在级别 2 基础上增加 Fock 矩阵。
+> * **建议**：能量的分项 breakdown 通常很有用（级别 1）。

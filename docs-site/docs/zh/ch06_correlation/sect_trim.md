@@ -1,164 +1,65 @@
 ---
-title: "6.5.1 Local Triatomics in Molecules (TRIM) Model"
+title: "6.5.1 分子中的局域三原子（TRIM）模型"
 ---
 
-## 6.5.1 Local Triatomics in Molecules (TRIM) Model
+## 6.5.1 分子中的局域三原子（TRIM）模型
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The development of what may be called “fast methods” for evaluating electron
-correlation is a problem of both fundamental and practical importance, because
-of the unphysical increases in computational complexity with molecular size
-which afflict “exact” implementations of electron correlation methods.
-Ideally, the development of fast methods for treating electron correlation
-should not impact either model errors or numerical errors associated with the
-original electron correlation models. Unfortunately this is not possible at
-present, as may be appreciated from the following rough argument. *Spatial locality*
-is what permits re-formulations of electronic structure methods that
-yield the same answer as traditional methods, but faster. The one-particle
-density matrix decays exponentially with a rate that relates to the HOMO/LUMO
-gap in periodic systems. When length scales longer than this characteristic
-decay length are examined, sparsity will emerge in both the one-particle
-density matrix and also pair correlation amplitudes expressed in terms of
-localized functions. Very roughly, such a length scale is about 5 to 10 atoms
-in a line, for good insulators such as alkanes. Hence sparsity emerges beyond
-this number of atoms in 1-D, beyond this number of atoms squared in 2-D, and
-this number of atoms cubed in 3-D. Thus for three-dimensional systems,
-locality only begins to emerge for systems of between hundreds and thousands of atoms.
+发展用于评估电子关联的所谓"快速方法"，是一个兼具基础意义与实用重要性的课题，原因在于电子关联方法的"精确"实现，其计算复杂度随分子尺寸的增大而呈现非物理式的增长。理想情况下，处理电子关联的快速方法之发展，不应影响原有电子关联模型所带来的模型误差与数值误差。遗憾的是，目前尚无法做到这一点，以下粗略的论证可以帮助理解这一困境。*空间局域性*（spatial locality）使得我们对电子结构方法进行重新表述成为可能，从而以更快的速度得到与传统方法相同的结果。单粒子密度矩阵以指数形式衰减，其衰减速率与周期性体系中的 HOMO/LUMO 间隙相关。当考察的长度尺度超过这一特征衰减长度时，单粒子密度矩阵以及以局域化函数表示的对关联振幅（pair correlation amplitudes）都会呈现稀疏性。非常粗略地说，对于烷烃这类良好的绝缘体，这样的长度尺度大约是线型排列的 5 到 10 个原子。因此在 1-D 中，稀疏性出现在超过该原子数之处；在 2-D 中，超过该原子数的平方；在 3-D 中，超过该原子数的立方。所以对于三维体系，局域性只有当体系达到数百到数千个原子时才开始显现。
 
-If we wish to accelerate calculations on systems below this size regime, we
-must therefore introduce additional errors into the calculation, either as
-numerical noise through looser tolerances, or by modifying the theoretical
-model, or perhaps both. **Q-Chem**’s approach to local electron correlation is
-based on modifying the theoretical models describing correlation with an
-additional well-defined local approximation. We do not attempt to accelerate
-the calculations by introducing more numerical error because of the
-difficulties of controlling the error as a function of molecule size, and the
-difficulty of achieving reproducible significant results. From this
-perspective, local correlation becomes an integral part of specifying the
-electron correlation treatment. This means that the considerations necessary
-for a correlation treatment to qualify as a well-defined theoretical model
-chemistry apply equally to local correlation modeling. The local approximations should be
+如果我们希望对处于这一尺寸范围以下的体系加速计算，那么就必须在计算中引入额外的误差——或者通过更宽松的收敛容差引入数值噪声，或者修改理论模型，抑或两者兼有。**Q-Chem** 处理局域电子关联的方法是修改描述关联的理论模型，在其中加入一个额外且定义明确的局域近似。我们并不试图通过引入更多数值误差来加速计算，因为误差难以随分子尺寸加以控制，也难以获得可复现的有意义结果。从这个角度来看，局域关联便成为电子关联处理方案指定工作中不可分割的一部分。这意味着，一个关联处理要称得上是定义明确的理论模型化学（model chemistry），其所需满足的考量同样适用于局域关联建模。局域近似应当满足：
 
 - •
 
-*Size-consistent:* meaning that the energy of a super-system of two
-non-interacting molecules should be the sum of the energy obtained from
-individual calculations on each molecule.
+*尺寸一致性*（Size-consistent）：即两个无相互作用分子组成的超体系的能量，应等于分别对每个分子单独计算所得能量之和。
 - •
 
-*Uniquely defined:* Require no input beyond nuclei, electrons, and
-an atomic orbital basis set. In other words, the model should be uniquely
-specified without customization for each molecule.
+*唯一确定*（Uniquely defined）：除原子核、电子以及一组原子轨道基（atomic orbital basis set）之外，不需要任何额外输入。换言之，该模型应当能被唯一地指定，而无需针对每个分子进行定制。
 - •
 
-*Yield continuous potential energy surfaces:* The model
-approximations should be smooth, and not yield energies that exhibit
-jumps as nuclear geometries are varied.
+*给出连续的势能面*（Yield continuous potential energy surfaces）：模型的近似应当是光滑的，不应在核几何构型连续变化时出现能量的跳跃。
 
-To ensure that these model chemistry criteria are met, **Q-Chem**’s local MP2
-methods[[790]](../bib_references/bib.md#bib819)
- express the double substitutions (*i.e.*, the
-pair correlations) in a redundant basis of atom-labeled functions. The
-advantage of doing this is that local models satisfying model chemistry
-criteria can be defined by performing an *atomic truncation* of the double
-substitutions. A general substitution in this representation will then involve
-the replacement of occupied functions associated with two given atoms by empty
-(or virtual) functions on two other atoms, coupling together four different
-atoms. We can force one occupied to virtual substitution (of the two that
-comprise a double substitution) to occur only between functions on the same
-atom, so that only three different atoms are involved in the double
-substitution. This defines the *triatomics in molecules* (TRIM) local
-model for double substitutions. The TRIM model offers the potential for
-reducing the computational requirements of exact MP2 theory by a factor
-proportional to the number of atoms. We could also force each occupied to
-virtual substitution to be on a given atom, thereby defining a more drastic
-*diatomics in molecules* (DIM) local correlation model.
+为确保满足上述模型化学准则，**Q-Chem** 的局域 MP2 方法[[790]](../bib_references/bib.md#bib819)
+ 将双替换（double substitutions）（*即*，对关联）用一组带原子标记的、冗余的函数基来展开。这样做的优势在于，可以通过对双替换执行*原子截断*（atomic truncation）来定义满足模型化学准则的局域模型。在此表示中，一个一般的替换涉及将归属于某两个给定原子的占据函数，替换为另外两个原子上的空（即虚）函数，从而将四个不同原子耦合在一起。我们可以强制双替换中的两个占据到虚的替换之一只发生在同一原子的函数之间，这样一来双替换就只涉及三个不同的原子。这就定义了双替换的*分子中的三原子*（triatomics in molecules，TRIM）局域模型。TRIM 模型有望将精确 MP2 理论的计算需求降低一个与原子数成正比的倍数。我们甚至可以强制每一个占据到虚的替换都发生在给定原子上，从而定义一个更为激进的*分子中的双原子*（diatomics in molecules，DIM）局域关联模型。
 
-The simplest atom-centered basis that is capable of spanning the occupied
-space is a *minimal basis* of core and valence atomic orbitals on each
-atom. Such a basis is necessarily redundant because it also contains sufficient
-flexibility to describe the empty valence anti-bonding orbitals necessary to
-correctly account for non-dynamical electron correlation effects such as
-bond-breaking. This redundancy is actually important for the success of the
-atomic truncations because occupied functions on adjacent atoms to some extent
-describe the same part of the occupied space. The minimal functions we use to
-span the occupied space are obtained at the end of a large basis set
-calculation, and are called *extracted polarized atomic orbitals*
-(EPAOs).[[789]](../bib_references/bib.md#bib820)
- We discuss them briefly below. It is even possible to
-explicitly perform an SCF calculation in terms of a molecule-optimized minimal
-basis of *polarized atomic orbitals* (PAOs); see Chapter [4](../ch04_scf/chap_scf.md).
-To span the virtual space, we use the full set of atomic orbitals,
-appropriately projected into the virtual space.
+能够张成占据空间的最简单的原子中心基，是每个原子上核心与价层原子轨道构成的*最小基*（minimal basis）。这样的基必然是冗余的，因为它同时包含足够的灵活性，用以描述正确考虑非动力学电子关联效应（如键断裂）所必需的空价反键轨道。这种冗余性对原子截断的成功其实至关重要，因为相邻原子上的占据函数在某种程度上描述了占据空间的同一部分。我们用来张成占据空间的最小函数是在大基组计算结束时获得的，称为*抽极化原子轨道*（extracted polarized atomic orbitals，EPAOs）。[[789]](../bib_references/bib.md#bib820)
+ 我们在下文对其作简要讨论。我们甚至可以显式地用一组分子优化的*极化原子轨道*（polarized atomic orbitals，PAOs）最小基来完成 SCF 计算；参见第 4 章 [4](../ch04_scf/chap_scf.md)。
+为张成虚空间，我们使用完整的原子轨道集合，并将其适当投影到虚空间。
 
-We summarize the situation. The number of functions spanning the occupied
-subspace will be the minimal basis set dimension, $M$, which is greater than
-the number of occupied orbitals, $O$, by a factor of up to about two. The
-virtual space is spanned by the set of projected atomic orbitals whose number
-is the atomic orbital basis set size $N$, which is fractionally greater than
-the number of virtuals $VNO$. The number of double substitutions in such a
-redundant representation will be typically three to five times larger than the
-usual total. This will be more than compensated by reducing the number of
-retained substitutions by a factor of the number of atoms, $A$, in the local
-triatomics in molecules model, or a factor of $A^{2}$ in the diatomics in
-molecules model.
+我们对上述情形作一总结。张成占据子空间的函数数目为最小基组的维数 $M$，它比占据轨道数 $O$ 至多大约两倍。虚空间由投影原子轨道集合张成，其数目为原子轨道基组的大小 $N$，略大于虚轨道数 $VNO$。在这样的冗余表示中，双替换的数目通常比通常的总数大三到五倍。而在分子中的局域三原子模型中，保留的替换数目会减少为原来的 $1/A$（$A$ 为原子数）；在分子中的局域双原子模型中则减少为 $1/A^{2}$，这足以补偿上述增加。
 
-The local MP2 energy in the TRIM and DIM models are given by the following
-expressions, which can be compared against the full MP2 expression given
-earlier in Eq. ([6.13](Ch6.S3.SS1.md#eq512)). First, for the DIM model:
+TRIM 与 DIM 模型中的局域 MP2 能量由下列表达式给出，可与前文式 ([6.13](Ch6.S3.SS1.md#eq512)) 给出的完整 MP2 表达式相比较。首先，DIM 模型：
 
 <a id="eq516"></a>
 $$
 E_{\mathrm{DIM\,MP2}}=-\frac{1}{2}\sum_{\bar{P},\bar{Q}}\frac{(\bar{P}|\bar{Q})(\bar{P}||\bar{Q})}{\Delta_{\bar{P}}+\Delta_{\bar{Q}}} \tag{6.17}
 $$
 
-The sums run over the linear number of atomic single excitations after they
-have been canonicalized. Each term in the denominator is thus an energy
-difference between occupied and virtual levels in this local basis.
-Similarly, the TRIM model corresponds to the following local MP2 energy:
+求和遍历线性数目的原子单替换（canonicalize 之后）。因此分母中的每一项都是该局域基下占据能级与虚能级之间的能量差。类似地，TRIM 模型对应的局域 MP2 能量为：
 
 <a id="eq517"></a>
 $$
 E_{\mathrm{TRIM\,MP2}}=-\sum_{\bar{P},jb}\frac{(\bar{P}|jb)(\bar{P}||jb)}{\Delta_{\bar{P}}+\varepsilon_{b}-\varepsilon_{j}}-E_{\mathrm{DIM\,MP2}} \tag{6.18}
 $$
 
-where the sum is now mixed between atomic substitutions $\bar{P}$, and non-local
-occupied $j$ to virtual $b$ substitutions. See
-Refs. [[790]](../bib_references/bib.md#bib819)
- for a full derivation and discussion.
+其中求和现在混合了原子替换 $\bar{P}$ 与非局域的占据 $j$ 到虚 $b$ 的替换。完整推导与讨论见参考文献 [[790]](../bib_references/bib.md#bib819)。
 
-The accuracy of the local TRIM and DIM models has been tested in a series of
-calculations.[[790]](../bib_references/bib.md#bib819)
- In particular, the TRIM model
-has been shown to be quite faithful to full MP2 theory via the following tests:
+TRIM 与 DIM 局域模型的精度已通过一系列计算得到检验。[[790]](../bib_references/bib.md#bib819)
+ 特别地，以下测试表明 TRIM 模型与完整 MP2 理论高度吻合：
 
 - •
 
-The TRIM model recovers around 99.7% of the MP2 correlation energy for
-covalent bonding. This is significantly higher than the roughly 98–99%
-correlation energy recovery typically exhibited by the Saebo-Pulay local
-correlation method.[[1194]](../bib_references/bib.md#bib1249)
- The DIM model recovers around
-95% of the correlation energy.
+对于共价键合，TRIM 模型可恢复约 99.7% 的 MP2 关联能。这显著高于 Saebo-Pulay 局域关联方法通常所表现的大约 98–99% 的关联能恢复率。[[1194]](../bib_references/bib.md#bib1249)
+ DIM 模型可恢复约 95% 的关联能。
 - •
 
-The performance of the TRIM model for relative energies is very robust,
-as shown in Ref. [[790]](../bib_references/bib.md#bib819)
- for the challenging case of
-torsional barriers in conjugated molecules. The RMS error in these
-relative energies is only 0.031 kcal/mol, as compared to around 1
-kcal/mol when electron correlation effects are completely neglected.
+TRIM 模型在处理相对能量时表现非常稳健，文献 [[790]](../bib_references/bib.md#bib819)
+ 中针对共轭分子扭转势垒这一棘手情形的结果即说明了这一点。这些相对能量的均方根误差仅为 0.031 kcal/mol，而完全忽略电子关联效应时误差约为 1 kcal/mol。
 - •
 
-For the water dimer with the aug-cc-pVTZ basis, 96% of the MP2
-contribution to the binding energy is recovered with the TRIM model, as
-compared to 62% with the Saebo-Pulay local correlation method.
+对于使用 aug-cc-pVTZ 基组的水二聚体，TRIM 模型可恢复 MP2 对结合能贡献的 96%，而 Saebo-Pulay 局域关联方法仅恢复 62%。
 - •
 
-For calculations of the MP2 contribution to the G3 and G3(MP2) energies
-with the larger molecules in the G3-99 database,[[294]](../bib_references/bib.md#bib300)
-
-introduction of the TRIM approximation results in an RMS error relative
-to full MP2 theory of only 0.3 kcal/mol, even though the absolute
-magnitude of these quantities is on the order of tens of kcal/mol.
+在对 G3-99 数据库[[294]](../bib_references/bib.md#bib300)
+ 中较大分子的 G3 与 G3(MP2) 能量里的 MP2 贡献进行计算时，引入 TRIM 近似相对于完整 MP2 理论的均方根误差仅为 0.3 kcal/mol，尽管这些量的绝对数值达到数十 kcal/mol 的数量级。

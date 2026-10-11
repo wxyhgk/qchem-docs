@@ -1,148 +1,145 @@
 ---
-title: "5.3.4 Correlation Functionals"
+title: "5.3.4 相关泛函"
 ---
 
-## 5.3.4 Correlation Functionals
+## 5.3.4 相关泛函
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Note: 
+**注意：
 
-All correlation functionals in this section can be invoked using the
-*$rem* variable CORRELATION. Popular and/or recommended
-functionals within each class are listed first and indicated in bold. The rest
-are in alphabetical order.
+本节中的所有相关泛函均可通过 *$rem* 变量 CORRELATION 来调用。每个类别中流行和/或推荐的泛函列在最前面，并以粗体标示。其余泛函按字母顺序排列。
 **
 
 - $\circ$
 
-Local Spin-Density Approximation (LSDA)
+局域自旋密度近似（Local Spin-Density Approximation, LSDA）
 
 - $\bullet$
 
-**PW92**: Perdew-Wang parameterization of the LSDA correlation energy from 1992[[1074]](../bib_references/bib.md#bib1110)
+**PW92**：Perdew-Wang 于 1992 年提出的 LSDA 相关能参数化形式[[1074]](../bib_references/bib.md#bib1110)
 - $\bullet$
 
-**VWN5** (VWN): Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #5[[1410]](../bib_references/bib.md#bib1470)
+**VWN5**（VWN）：Vosko-Wilk-Nusair LSDA 相关能参数化形式 #5[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-srVWN: Short-range version of the VWN correlation functional by Toulouse and coworkers[[1366]](../bib_references/bib.md#bib1426)
+srVWN：Toulouse 及其合作者提出的 VWN 相关泛函的短程（short-range）版本[[1366]](../bib_references/bib.md#bib1426)
 - $\bullet$
 
-Liu-Parr: Liu-Parr $\rho^{1/3}$ model from the functional expansion formulation[[848]](../bib_references/bib.md#bib870)
+Liu-Parr：源自泛函展开表述的 Liu-Parr $\rho^{1/3}$ 模型[[848]](../bib_references/bib.md#bib870)
 - $\bullet$
 
-PK09: Proynov-Kong parameterization of the LSDA correlation energy from 2009[[1127]](../bib_references/bib.md#bib1176)
+PK09：Proynov-Kong 于 2009 年提出的 LSDA 相关能参数化形式[[1127]](../bib_references/bib.md#bib1176)
 - $\bullet$
 
-PW92RPA: Perdew-Wang parameterization of the LSDA correlation energy from 1992 with RPA values[[1074]](../bib_references/bib.md#bib1110)
+PW92RPA：采用 RPA 数值的 Perdew-Wang 1992 年 LSDA 相关能参数化形式[[1074]](../bib_references/bib.md#bib1110)
 - $\bullet$
 
-srPW92: Short-range version of the PW92 correlation functional by Paziani and coworkers[[1056]](../bib_references/bib.md#bib1101)
+srPW92：Paziani 及其合作者提出的 PW92 相关泛函的短程版本[[1056]](../bib_references/bib.md#bib1101)
 - $\bullet$
 
-PZ81: Perdew-Zunger parameterization of the LSDA correlation energy from 1981[[1075]](../bib_references/bib.md#bib1107)
+PZ81：Perdew-Zunger 于 1981 年提出的 LSDA 相关能参数化形式[[1075]](../bib_references/bib.md#bib1107)
 - $\bullet$
 
-VWN1: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #1[[1410]](../bib_references/bib.md#bib1470)
+VWN1：Vosko-Wilk-Nusair LSDA 相关能参数化形式 #1[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-VWN1RPA: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #1 with RPA values[[1410]](../bib_references/bib.md#bib1470)
+VWN1RPA：采用 RPA 数值的 Vosko-Wilk-Nusair LSDA 相关能参数化形式 #1[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-VWN2: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #2[[1410]](../bib_references/bib.md#bib1470)
+VWN2：Vosko-Wilk-Nusair LSDA 相关能参数化形式 #2[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-VWN3: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #3[[1410]](../bib_references/bib.md#bib1470)
+VWN3：Vosko-Wilk-Nusair LSDA 相关能参数化形式 #3[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-VWN4: Vosko-Wilk-Nusair parameterization of the LSDA correlation energy #4[[1410]](../bib_references/bib.md#bib1470)
+VWN4：Vosko-Wilk-Nusair LSDA 相关能参数化形式 #4[[1410]](../bib_references/bib.md#bib1470)
 - $\bullet$
 
-Wigner:Wigner correlation functional (simplification of LYP)[[1467]](../bib_references/bib.md#bib1530)
+Wigner：Wigner 相关泛函（LYP 的简化形式）[[1467]](../bib_references/bib.md#bib1530)
 - $\circ$
 
-Generalized Gradient Approximation (GGA)
+广义梯度近似（Generalized Gradient Approximation, GGA）
 
 - $\bullet$
 
-BOP: “one-parameter progressive” correlation functional with parameters appropriate for B88 exchange[[1377]](../bib_references/bib.md#bib1438)
+BOP：采用适合 B88 交换的参数化的“单参数渐进式（one-parameter progressive）”相关泛函[[1377]](../bib_references/bib.md#bib1438)
 - $\bullet$
 
-**PBE**: Perdew, Burke, and Ernzerhof correlation functional[[1062]](../bib_references/bib.md#bib1112)
+**PBE**：Perdew、Burke 和 Ernzerhof 相关泛函[[1062]](../bib_references/bib.md#bib1112)
 - $\bullet$
 
-**LYP**: Lee-Yang-Parr opposite-spin correlation functional[[780]](../bib_references/bib.md#bib813)
+**LYP**：Lee-Yang-Parr 反平行自旋（opposite-spin）相关泛函[[780]](../bib_references/bib.md#bib813)
 - $\bullet$
 
-P86: Perdew-Wang correlation functional from 1986 based on the PZ81 LSDA functional[[1076]](../bib_references/bib.md#bib1109)
+P86：基于 PZ81 LSDA 泛函的 Perdew-Wang 1986 年相关泛函[[1076]](../bib_references/bib.md#bib1109)
 - $\bullet$
 
-P86VWN5: Perdew-Wang correlation functional from 1986 based on the VWN5 LSDA functional[[1076]](../bib_references/bib.md#bib1109)
+P86VWN5：基于 VWN5 LSDA 泛函的 Perdew-Wang 1986 年相关泛函[[1076]](../bib_references/bib.md#bib1109)
 - $\bullet$
 
-PBEloc: PBE correlation functional with a modified beta term by Della Sala and coworkers
+PBEloc：由 Della Sala 及其合作者对 beta 项进行修改后的 PBE 相关泛函
 - $\bullet$
 
-PBEBOP: “one-parameter progressive” correlation functional with parameters appropriate for PBE exchange[[1377]](../bib_references/bib.md#bib1438)
+PBEBOP：采用适合 PBE 交换的参数化的“单参数渐进式”相关泛函[[1377]](../bib_references/bib.md#bib1438)
 - $\bullet$
 
-PBEsol: PBE correlation functional modified for solids[[1067]](../bib_references/bib.md#bib1118)
+PBEsol：针对固体体系改进的 PBE 相关泛函[[1067]](../bib_references/bib.md#bib1118)
 - $\bullet$
 
-srPBE: Short-range version of the PBE correlation functional by Goll and coworkers[[469]](../bib_references/bib.md#bib481)
+srPBE：Goll 及其合作者提出的 PBE 相关泛函的短程版本[[469]](../bib_references/bib.md#bib481)
 - $\bullet$
 
-PW91: Perdew-Wang correlation functional from 1991[[1063]](../bib_references/bib.md#bib1111)
+PW91：Perdew-Wang 于 1991 年提出的相关泛函[[1063]](../bib_references/bib.md#bib1111)
 - $\bullet$
 
-regTPSS: Slight modification of the PBE correlation functional (also called vPBEc)[[1191]](../bib_references/bib.md#bib1246)
+regTPSS：对 PBE 相关泛函的轻微改进（也称为 vPBEc）[[1191]](../bib_references/bib.md#bib1246)
 - $\circ$
 
-Meta-Generalized Gradient Approximation (meta-GGA)
+元广义梯度近似（Meta-Generalized Gradient Approximation, meta-GGA）
 
 - $\bullet$
 
-**TPSS**:Tao, Perdew, Staroverov, and Scuseria correlation functional[[1344]](../bib_references/bib.md#bib1402)
+**TPSS**：Tao、Perdew、Staroverov 和 Scuseria 相关泛函[[1344]](../bib_references/bib.md#bib1402)
 - $\bullet$
 
-**revTPSS**: Revised version of the TPSS correlation functional[[1066]](../bib_references/bib.md#bib1120)
+**revTPSS**：TPSS 相关泛函的修订版本[[1066]](../bib_references/bib.md#bib1120)
 - $\bullet$
 
-B95: Becke’s two-parameter correlation functional from 1995[[98]](../bib_references/bib.md#bib80)
+B95：Becke 于 1995 年提出的两参数相关泛函[[98]](../bib_references/bib.md#bib80)
 - $\bullet$
 
-oTPSS: TPSS correlation functional with 2 refit parameters (for use with oTPSS exchange) by Grimme and coworkers[[462]](../bib_references/bib.md#bib475)
+oTPSS：由 Grimme 及其合作者提出、带 2 个重新拟合参数的 TPSS 相关泛函（与 oTPSS 交换泛函配合使用）[[462]](../bib_references/bib.md#bib475)
 - $\bullet$
 
-PK06: Proynov-Kong “tLap” functional with $\tau$ and Laplacian dependence[[1125]](../bib_references/bib.md#bib1173)
+PK06：Proynov-Kong 的“tLap”泛函，同时依赖于 $\tau$ 和拉普拉斯算符（Laplacian）[[1125]](../bib_references/bib.md#bib1173)
 - $\bullet$
 
-PKZB: Perdew, Kurth, Zupan, and Blaha correlation functional[[1064]](../bib_references/bib.md#bib1114)
+PKZB：Perdew、Kurth、Zupan 和 Blaha 相关泛函[[1064]](../bib_references/bib.md#bib1114)
 - $\bullet$
 
-SCAN: Strongly Constrained and Appropriately Normed correlation functional[[1327]](../bib_references/bib.md#bib1387)
+SCAN：强约束且适当归一化（Strongly Constrained and Appropriately Normed）相关泛函[[1327]](../bib_references/bib.md#bib1387)
 - $\bullet$
 
-rSCAN: Regularized SCAN correlation[[83]](../bib_references/bib.md#bib68)
+rSCAN：正则化（Regularized）的 SCAN 相关[[83]](../bib_references/bib.md#bib68)
 - $\bullet$
 
-r++SCAN: Regularized SCAN with uniform density limit and coordinate scaling behavior[[421]](../bib_references/bib.md#bib430)
+r++SCAN：具有均匀密度极限与坐标缩放行为的正则化 SCAN[[421]](../bib_references/bib.md#bib430)
 - $\bullet$
 
-r2SCAN: Re-Regularized SCAN correlation[[419]](../bib_references/bib.md#bib428)
+r2SCAN：重新正则化的 SCAN 相关[[419]](../bib_references/bib.md#bib428)
 - $\bullet$
 
-revSCAN: Revised SCAN correlation[[944]](../bib_references/bib.md#bib984)
+revSCAN：修订的 SCAN 相关[[944]](../bib_references/bib.md#bib984)
 - $\bullet$
 
-TM: Tao-Mo correlation functional, representing a minor modification to the TPSS correlation functional[[1343]](../bib_references/bib.md#bib1403)
+TM：Tao-Mo 相关泛函，是对 TPSS 相关泛函的轻微改进[[1343]](../bib_references/bib.md#bib1403)
 - $\bullet$
 
-revTM: Revised TM correlation[[628]](../bib_references/bib.md#bib648)
+revTM：修订的 TM 相关[[628]](../bib_references/bib.md#bib648)
 - $\bullet$
 
-rregTM: Revised regularized TM correlation[[625]](../bib_references/bib.md#bib649)
+rregTM：修订的正则化 TM 相关[[625]](../bib_references/bib.md#bib649)
 - $\bullet$
 
-TPSSloc: The TPSS correlation functional with the PBE component replaced by the PBEloc correlation functional
+TPSSloc：将其中的 PBE 成分替换为 PBEloc 相关泛函后的 TPSS 相关泛函

@@ -1,18 +1,12 @@
 ---
-title: "5.3.7 User-Defined Density Functionals"
+title: "5.3.7 用户自定义密度泛函（User-Defined Density Functionals）"
 ---
 
-## 5.3.7 User-Defined Density Functionals
+## 5.3.7 用户自定义密度泛函（User-Defined Density Functionals）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Users can also request a customized density functional consisting of any linear
-combination of exchange and/or correlation functionals available in
-**Q-Chem**. A “general” density functional of this sort is requested by
-setting EXCHANGE = GEN and then specifying the functional by
-means of an *$xc_functional* input section consisting of one line for each
-desired exchange (X) or correlation (C) component of the functional, and having
-the format shown below.
+用户还可以请求由 **Q-Chem** 中可用的任意交换与/或关联泛函线性组合构成的自定义密度泛函。这种“通用（general）”密度泛函通过设置 EXCHANGE = GEN 请求，并通过 *$xc_functional* 输入节指定，该输入节中每一行对应泛函的一个所需交换（X）或关联（C）组分，其格式如下所示。
 
 > ```qchem
 > $xc_functional
@@ -26,14 +20,9 @@ the format shown below.
 > $end
 > ```
 
-Each line requires three variables: X or C to designate whether this is an
-exchange or correlation component; the symbolic representation of the
-functional, as would be used for the EXCHANGE or CORRELATION
-keywords variables as described above; and a real number coefficient for each
-component. Note that Hartree-Fock exchange can be designated either as “X"
-or as “K". Examples are shown below.
+每一行需要三个变量：X 或 C，用于指明该组分是交换组分还是关联组分；泛函的符号表示，即如上所述在 EXCHANGE 或 CORRELATION 关键字变量中所使用的名称；以及每个组分的实数系数。注意，Hartree-Fock 交换既可以表示为 “X”，也可以表示为 “K”。示例如下。
 
-???+ example "Example 5.2: Q-Chem input for H ${}_{2}$ O with the B3tLap functional."
+???+ example "示例 5.2: 使用 B3tLap 泛函计算 H ${}_{2}$ O 的 Q-Chem 输入。"
     ```qchem
     $molecule
        0  1
@@ -60,7 +49,7 @@ or as “K". Examples are shown below.
     $end
     ```
 
-???+ example "Example 5.3: Q-Chem input for H ${}_{2}$ O with the BR89B94hyb functional."
+???+ example "示例 5.3: 使用 BR89B94hyb 泛函计算 H ${}_{2}$ O 的 Q-Chem 输入。"
     ```qchem
     $molecule
        0  1

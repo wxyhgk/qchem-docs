@@ -1,13 +1,12 @@
 ---
-title: "10.14.4 Examples Including $response Section"
+title: "10.14.4 包含 $response$ 段的示例"
 ---
 
-## 10.14.4 Examples Including *$response* Section
+## 10.14.4 包含 *$response* 段的示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 10.67: Input for calculating all components of the static (dipole) polarizability at
-the Cartesian origin for tryptophan. All of the options given are defaults."
+???+ example "示例 10.67: 计算色氨酸（tryptophan）在笛卡尔坐标原点处静态（偶极）极化率所有分量的输入文件。所给出的所有选项均为默认值。"
     ```qchem
     $molecule
     0 1
@@ -65,8 +64,7 @@ the Cartesian origin for tryptophan. All of the options given are defaults."
     $end
     ```
 
-???+ example "Example 10.68: Functionally identical input for calculating all components of
-the static (dipole) polarizability at the Cartesian origin for tryptophan."
+???+ example "示例 10.68: 在功能上完全等价的输入文件，用于计算色氨酸在笛卡尔坐标原点处静态（偶极）极化率的所有分量。"
     ```qchem
     $molecule
        0 1
@@ -97,13 +95,5 @@ the static (dipole) polarizability at the Cartesian origin for tryptophan."
        H     -0.5302278747   -0.5823989653    0.4084507634
        O      1.4575846656    0.5996887308    2.4093500287
        H      0.5990015339    0.8842421241    2.0047830456
-    $end
-    
-    $rem
-       JOBTYPE         =  polarizability
-       METHOD          =  hf
-       BASIS           =  sto-3g
-       SCF_CONVERGENCE =  9
-       THRESH          =  12
-    $end
+       $end
     ```

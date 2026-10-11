@@ -1,69 +1,20 @@
 ---
-title: "7.5.1 Introduction"
+title: "7.5.1 引言"
 ---
 
-## 7.5.1 Introduction
+## 7.5.1 引言
 
 (July 4, 2026)
 
-Systems such as transition metals, open-shell species, and molecules with
-highly-stretched bonds often exhibit multiple, near-degenerate solutions to the
-SCF equations. Multiple solutions can be located using SCF metadynamics
-(Section [4.9.2](../ch04_scf/sec_SCF-meta-dyn.md)), but given the approximate nature of the SCF
-calculation in the first place, there is in such cases no clear reason to
-choose one of these solutions over another. These SCF solutions are not
-subject to any non-crossing rule, and often do cross (*i.e.*, switch energetic
-order) as the geometry is changed. Consequently, the lowest energy state may switch
-abruptly with consequent discontinuities in the energy gradients. It is
-therefore desirable to have a method that treats all of these near-degenerate
-SCF solutions on an equal footing and might yield a smoother, qualitatively
-correct potential energy surface. This can be achieved by using multiple SCF
-solutions (obtained, *via* *e.g.* SCF metadynamics) as a basis for a
-configuration interaction (CI) calculation. Since the various SCF solutions
-are not orthogonal to one another — meaning that one solution cannot be
-constructed as a single determinant composed of orbitals from another
-solution — this CI is a bit more complicated and is denoted as a non-orthogonal
-CI (NOCI).[[1356]](../bib_references/bib.md#bib1417)
+诸如过渡金属、开壳层物种以及含有高度拉伸键的分子等体系，常常在 SCF 方程中表现出多个近简并的解。可以利用 SCF 元动力学（SCF metadynamics，见第 [4.9.2](../ch04_scf/sec_SCF-meta-dyn.md) 节）来定位多个解，但考虑到 SCF 计算本身就具有近似性质，在这种情况下并没有明确的理由在这些解中选取某一个而非其他。这些 SCF 解不受任何非交叉规则（non-crossing rule）的约束，并且随着几何构型的改变，它们常常会发生交叉（*i.e.*，能量次序互换）。因此，最低能量态可能会突然切换，从而导致能量梯度出现不连续性。所以，人们希望有一种方法能够在同等基础上处理所有这些近简并的 SCF 解，并可能给出更平滑、定性正确的势能面。这可以通过将多个 SCF 解（例如通过 SCF 元动力学获得）作为组态相互作用（Configuration Interaction, CI）计算的基来实现。由于各个 SCF 解彼此不正交——即某一个解无法用另一解的轨道所构成的单个行列式来表示——这种 CI 略显复杂，被称为非正交组态相互作用（Non-Orthogonal CI, NOCI）。[[1356]](../bib_references/bib.md#bib1417)
 
-NOCI can be viewed as an alternative to CASSCF within an “active space”
-consisting of the SCF states of interest, and has the advantage that the SCF
-states, and thus the NOCI wave functions, are size-consistent. In common with
-CASSCF, it is able to describe complicated phenomena such as avoided crossings
-(where states mix instead of passing through each other) as well as conical
-intersections (whereby via symmetry or else accidental reasons, there is no
-coupling between the states, and they pass cleanly through each other at a
-degeneracy).
+NOCI 可以视为在由感兴趣的 SCF 态构成的"活性空间"内 CASSCF 的一种替代方案，其优点在于 SCF 态（从而 NOCI 波函数）具有尺寸一致性（size-consistent）。与 CASSCF 相同，它能够描述诸如避免交叉（avoided crossings，即各态相互混合而非彼此穿过）以及锥形 intersection（conical intersections，即由于对称性或偶然原因，各态之间没有耦合，在简并处干净地彼此穿过）等复杂现象。
 
-Another use for a NOCI calculation is that of symmetry restoration. At some
-geometries, the SCF states break spatial or spin symmetry to achieve a lower
-energy single determinant than if these symmetries were conserved. As these
-symmetries still exist within the proper electronic Hamiltonian, its exact
-eigenfunctions should preserve them. In the case of spin, this manifests as
-spin contamination, while for spatial symmetries it usually manifests as
-artefactual localization. To recover a (yet lower energy) wave function
-retaining the correct symmetries, one can include these broken-symmetry states
-(with all relevant symmetry permutations) in a NOCI calculation; the resultant
-eigenfunction will have the true symmetries restored, as a linear combination
-of the broken-symmetry states.
+NOCI 计算的另一个用途是 symmetry restoration。在某些几何构型下，SCF 态会破坏空间对称性或自旋对称性，以获得比保持这些对称性时能量更低的单行列式。由于这些对称性在正确的电子哈密顿量中依然存在，其精确本征函数应当保持这些对称性。就自旋而言，这表现为自旋污染（spin contamination）；而对于空间对称性，通常表现为虚假的定域化（artefactual localization）。为了恢复一个（能量更低的）保持正确对称性的波函数，可以将这些破缺对称性的态（连同所有相关的对称性置换）纳入 NOCI 计算；所得的本征函数作为破缺对称性态的线性组合，将恢复真实的对称性。
 
-A common example occurs in the case of a spin-contaminated UHF reference state.
-Performing a NOCI calculation in a basis consisting of this state, plus a
-second state in which all $\alpha$ and $\beta$ orbitals have been switched,
-often reduces spin contamination in the same way as the half-projected
-Hartree-Fock method,[[924]](../bib_references/bib.md#bib960)
- although there is no guarantee that the
-resulting wave function is an eigenfunction of $\hat{S}^{2}$. Another example
-consists of using a UHF wave function with $M_{S}=0$, along with its
-spin-exchanged version (wherein all $\alpha\leftrightarrow\beta$ orbitals are
-switched), resulting in two new NOCI eigenfunctions, one with even $S$ (a
-mixture of $S=0,2,\ldots$), and one with odd $S$ (mixing $S=1,3,\ldots$).
-These may be used to approximate singlet and triplet wave functions.
+一个常见的例子出现在自旋污染的 UHF 参考态的情形。由该态以及一个所有 $\alpha$ 与 $\beta$ 轨道均已互换的第二态所构成的基上进行 NOCI 计算，往往能够以与半投影 Hartree-Fock 方法（half-projected Hartree-Fock method）[[924]](../bib_references/bib.md#bib960) 相同的方式减小自旋污染，尽管并不能保证所得波函数是 $\hat{S}^{2}$ 的本征函数。另一个例子是使用 $M_{S}=0$ 的 UHF 波函数，连同其自旋交换版本（其中所有 $\alpha\leftrightarrow\beta$ 轨道互换），从而得到两个新的 NOCI 本征函数，一个具有偶数 $S$（为 $S=0,2,\ldots$ 的混合），另一个具有奇数 $S$（为 $S=1,3,\ldots$ 的混合）。它们可用于近似单重态和三重态波函数。
 
-NOCI can be enabled by specifying CORRELATION = NOCI, and will
-automatically use all of the states located with SCF metadynamics. Two
-spin-exchanged versions of a UHF wave function can be requested simply by
-*not* turning on metadynamics. For more customization, a *$noci* input
-section can be included having, *e.g.*, the following format:
+通过指定 CORRELATION = NOCI 即可启用 NOCI，它将自动使用通过 SCF 元动力学定位到的所有态。只需*不*开启元动力学，即可请求 UHF 波函数的两个自旋交换版本。若需更多自定义，可以包含一个 *$noci* 输入节，其格式例如：
 
 > ```qchem
 > $noci
@@ -72,12 +23,6 @@ section can be included having, *e.g.*, the following format:
 > $end
 > ```
 
-In this particular case, the first line specifies that states 1, 2, and 4 are
-to be included in the NOCI calculation, along with state “$-$2”, which
-indicates the spin-exchanged version of state 2. The second (optional) line
-indicates which eigenvalue is to be returned to **Q-Chem**, with the convention
-that 0 indicates the lowest state so the *$noci* input section above is
-requesting the third state.
+在这个具体例子中，第一行指定将态 1、2 和 4 纳入 NOCI 计算，同时还包括态"$-$2"，它表示态 2 的自旋交换版本。第二行（可选）指明要返回给 **Q-Chem** 的本征值，按照约定 0 表示最低的态，因此上述 *$noci* 输入节请求的是第三个态。
 
-Analytic gradients are not available for NOCI but geometry optimizations (if requested) will be
-performed automatically using finite-difference gradients.
+NOCI 没有解析梯度，但（如有请求）几何优化将自动使用有限差分梯度进行。

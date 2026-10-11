@@ -1,79 +1,76 @@
 ---
-title: "10.8.3 Treatment of Low-Frequency Vibrational Modes"
+title: "10.8.3 低频振动模式的处理"
 ---
 
-## 10.8.3 Treatment of Low-Frequency Vibrational Modes
+## 10.8.3 低频振动模式的处理
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Low-frequency vibrational modes usually emerge due to hindered or near-free rotations around a single bond within a molecule. The harmonic approximation is problematic for such internal rotations and yields an infinite vibrational entropy $S_{\mathrm{vib}}$ in the limit of vanishing frequencies.
+低频振动模式通常源于分子内围绕单键的受阻旋转或近自由旋转。对于此类内部旋转，谐振子近似存在问题：当频率趋于零时，它会给出无限大的振动熵 $S_{\mathrm{vib}}$。
 
- To fix this issue, Grimme[[496]](../bib_references/bib.md#bib507)
- proposed to enforce a finite vibrational entropy by interpolating between the entropy of the free rotor $S_{\mathrm{FR}}$ and the harmonic vibrational entropy $S_{\mathrm{HO}}$ as
+为解决这一问题，Grimme[[496]](../bib_references/bib.md#bib507)
+提出通过在自由转子熵 $S_{\mathrm{FR}}$ 与谐振子振动熵 $S_{\mathrm{HO}}$ 之间进行插值，来强制给出有限的振动熵，即
 
 <a id="eq:Grimme_interpolation"></a>
 $$
 S_{\mathrm{vib}}(\nu_{i})=\big{(}1-\omega(\nu_{i})\big{)}S_{\mathrm{FR}}(\nu_{i})+\omega(\nu_{i})S_{\mathrm{HO}}(\nu_{i}), \tag{10.71}
 $$
 
-where
+其中
 
 <a id="eq:Chai_MHG_interpolator"></a>
 $$
 \omega(\nu_{i})=\frac{1}{1+(\nu_{0}/\nu_{i})^{\alpha}} \tag{10.72}
 $$
 
-is the damping function of Chai and Head-Gordon,[[224]](../bib_references/bib.md#bib219)
+是 Chai 和 Head-Gordon 提出的阻尼函数，[[224]](../bib_references/bib.md#bib219)
 
-with $\alpha$ and $\nu_{0}$ as fixed parameters.
-It is used as a weighting function and allows for a smooth transition from the free rotor entropy at small frequencies
-to the harmonic vibrational entropy for frequencies $\nu_{i}$ above the cutoff $\nu_{0}$.
-This was later extended to interpolate the vibrational enthalpy contributions between a free rotor
-$H_{\mathrm{FR}}$ and a harmonic oscillator $H_{\mathrm{HO}}$ with zero-point vibrational energy
-$H_{\mathrm{ZPVE}}$, as[[822]](../bib_references/bib.md#bib853)
+其中 $\alpha$ 和 $\nu_{0}$ 为固定参数。
+该函数被用作权重函数，可实现从低频下的自由转子熵到频率 $\nu_{i}$ 高于截断值 $\nu_{0}$ 时的谐振子振动熵的平滑过渡。
+后来该方法被进一步扩展，用于在自由转子 $H_{\mathrm{FR}}$ 与包含零点振动能
+$H_{\mathrm{ZPVE}}$ 的谐振子 $H_{\mathrm{HO}}$ 之间对振动焓贡献进行插值，如[[822]](../bib_references/bib.md#bib853)
 
 <a id="eq:MHG_interpolation"></a>
 $$
 H_{\mathrm{vib}}(\nu_{i})=\big{[}1-\omega(\nu_{i})\big{]}H_{\mathrm{FR}}(\nu_{i})+\omega(\nu_{i})\big{[}H_{\mathrm{HO}}(\nu_{i})+H_{\mathrm{ZPVE}}(\nu_{i})\big{]}\;. \tag{10.73}
 $$
 
-This again reduces the error associated with treating translational and rotational degrees of freedom as
-low-frequency vibrations, which is especially important for the adsorption or association of larger molecules.
-This procedure is known as the quasi-rigid-rotor-harmonic-oscillator (qRRHO) approach.
+这同样减小了将平动和转动自由度当作低频振动来处理所带来的误差，对于较大分子的吸附或缔合过程尤其重要。
+该处理方式被称为准刚性转子-谐振子（quasi-rigid-rotor-harmonic-oscillator，qRRHO）方法。
 
-The qRRHO scheme is the default in **Q-Chem**, and all thermodynamic quantities are printed for the RRHO (without interpolations) and qRRHO schemes at standard temperature and pressure (298.15 K
-and 1.00 atm). To change the latter, the user can specify an *$isotopes* section (see examples and Section [10.8.2](ex_Isotope-Mass.md) for details). $\alpha$ and $\omega_{0}$ for both interpolator functions can be modified through QRRHO_ALPHA and QRRHO_OMEGA_CUTOFF respectively.
+qRRHO 方案是 **Q-Chem** 中的默认设置，所有热力学量都会分别在标准温度和压力（298.15 K
+和 1.00 atm）下按 RRHO（不进行插值）和 qRRHO 方案输出。若要更改后者，用户可以指定一个 *$isotopes* 段（详见示例及第 [10.8.2](ex_Isotope-Mass.md) 节）。两个插值函数所使用的 $\alpha$ 和 $\omega_{0}$ 可分别通过 QRRHO_ALPHA 和 QRRHO_OMEGA_CUTOFF 进行修改。
 
 QRRHO_ALPHA
 
 ### `QRRHO_ALPHA`
 
-> **Specifies the exponent in the damping function of Chai and Head-Gordon, used for interpolating the vibrational enthalpy and entropy in the qRRHO scheme. Specify MRRHO_ALPHA to change the exponent for the entropy interpolation separately.**
+> **指定 Chai 和 Head-Gordon 阻尼函数中的指数，用于在 qRRHO 方案中对振动焓和熵进行插值。若要单独更改熵插值的指数，请指定 MRRHO_ALPHA。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`4`
+> * **选项**：
 >     * $\alpha$
->     * Dimensionless interpolator exponent used in the qRRHO scheme.
-> * **Recommendation**: Use the default.
+>     * qRRHO 方案中使用的无量纲插值指数。
+> * **建议**：使用默认值。
 
 QRRHO_OMEGA_CUTOFF
 
 ### `QRRHO_OMEGA_CUTOFF`
 
-> **Sets the frequency cutoff in the Chai-Head-Gordon damping function for interpolating the vibrational enthalpy and entropy in the qRRHO scheme. Specify MRRHO_OMEGA_CUTOFF to change the frequency cutoff for the entropy interpolation separately.**
+> **设置 Chai-Head-Gordon 阻尼函数中的频率截断值，用于在 qRRHO 方案中对振动焓和熵进行插值。若要单独更改熵插值的频率截断值，请指定 MRRHO_OMEGA_CUTOFF。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`100`
+> * **选项**：
 >     * $\omega_{0}$
->     * Interpolator cutoff frequency used in the qRRHO scheme in cm
+>     * qRRHO 方案中使用的插值截断频率，单位为 cm
 >     * ${}^{-1}$
->     * .
-> * **Recommendation**: Use the default.
+>     * 。
+> * **建议**：使用默认值。
 
-???+ example "Example 10.41: Harmonic vibrational analysis at the HF/3-21G level of theory, where the thermodynamic properties for RRHO and
-qRRHO are printed at 298.15 K and 1.00 atm."
+???+ example "示例 10.41：在 HF/3-21G 理论水平上进行谐振子振动分析，其中 RRHO 和
+qRRHO 的热力学性质在 298.15 K 和 1.00 atm 下输出。"
     ```qchem
     $molecule
     0 1
@@ -108,9 +105,9 @@ qRRHO are printed at 298.15 K and 1.00 atm."
     $end
     ```
 
-???+ example "Example 10.42: Harmonic vibrational analysis at the HF/3-21G level of theory, where the thermodynamic properties for RRHO and
-qRRHO are printed at standard temperature and pressure as well as two additional temperatures (273.15 K and 313.15 K).
-Please see Section 10.8.2 for further details on the $isotopes section."
+???+ example "示例 10.42：在 HF/3-21G 理论水平上进行谐振子振动分析，其中 RRHO 和
+qRRHO 的热力学性质在标准温度和压力以及两个附加温度（273.15 K 和 313.15 K）下输出。
+关于 $isotopes 段的更多细节，请参见第 10.8.2 节。"
     ```qchem
     $molecule
     0 1

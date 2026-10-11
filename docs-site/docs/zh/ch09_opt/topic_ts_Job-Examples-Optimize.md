@@ -1,14 +1,12 @@
 ---
-title: "9.2.4 Optimize Job Examples"
+title: "9.2.4 Optimize 作业示例"
 ---
 
-## 9.2.4 **Optimize** Job Examples
+## 9.2.4 **Optimize** 作业示例
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-???+ example "Example 9.1: Optimization in $Z$ -matrix coordinates. The input must be specified in $Z$ -matrix format with coordinates specified. In the example below there are
-two coordinates representing the bond length and bond angle of a water
-molecule."
+???+ example "示例 9.1: 在 $Z$ 矩阵坐标下进行优化。输入必须以 $Z$ 矩阵格式给出, 并指定坐标。在下面的示例中, 有两个坐标分别表示水分子的键长和键角。"
     ```qchem
     $molecule
        0 1
@@ -28,9 +26,7 @@ molecule."
     $end
     ```
 
-???+ example "Example 9.2: Geometry optimization of a triflate anion that converges to an eclipsed
-conformation, which is a first order saddle point. This is verified via the
-finite difference Davidson method by setting GEOM_OPT_CHARAC to TRUE ."
+???+ example "示例 9.2: 三氟甲磺酸根阴离子（triflate anion）的几何结构优化, 其收敛到重叠式构象, 这是一个一阶鞍点。通过将 GEOM_OPT_CHARAC 设置为 TRUE, 采用有限差分 Davidson 方法对此进行了验证。"
     ```qchem
     $molecule
        -1 1
@@ -60,9 +56,7 @@ finite difference Davidson method by setting GEOM_OPT_CHARAC to TRUE ."
     $end
     ```
 
-???+ example "Example 9.3: TS search for alanine dipeptide rearrangement reaction beginning with a guess structure
-converges correctly. The resulting TS structure is verified using the finite difference
-Davidson method."
+???+ example "示例 9.3: 丙氨酸二肽（alanine dipeptide）重排反应的过渡态（TS）搜索, 从一个猜测结构出发能够正确收敛。所得的过渡态结构使用有限差分 Davidson 方法进行了验证。"
     ```qchem
     $molecule
        0    1

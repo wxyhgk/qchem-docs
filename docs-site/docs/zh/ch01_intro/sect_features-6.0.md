@@ -1,421 +1,419 @@
 ---
-title: "1.3.7 New Features in Q-Chem 6.0"
+title: "1.3.7 Q-Chem 6.0 新特性"
 ---
 
-## 1.3.7 New Features in **Q-Chem** 6.0
+## 1.3.7 **Q-Chem** 6.0 新特性
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-## 1.3.7.1 Features in 6.0.2
-
-- •
-
-**General features and improvements:**
-
-- **–**
-
-Enabled Molden support for the new default geometry optimizer
-- **–**
-
-Improved output for rxn path (IRC) calculations (John Herbert)
-- **–**
-
-Improved formatting of output for orbital radii of gyration (John Herbert)
-- **–**
-
-Improved error-catching for input section (John Herbert)
-- **–**
-
-Inlcuded one-electron matrices in fchk and archive
-- **–**
-
-Resolved pure and Cartesian assignment of nuclear-electronic orbital (NEO) basis (Mathew Chow, Sharon Hammes-Schiffer)
-- **–**
-
-Resolved issues with:
-
-- *
-
-AUTOSAD/I-Hirshfeld multiplicities for highly-charged transition metal atoms (Kevin Carter-Fenk)
-- *
-
-molden output for penalty function optimization
-- *
-
-calculations of the exact gradients and derivative couplings of CIS Boys diabatic states (Vishikh Athavale, Joseph Subotnik)
-- *
-
-immutable SOS_UFACTOR in SOS-CIS(D) calculations
-- *
-
-inconsistent charges and multipole moments in DUAL_BASIS_ENERGY calculations
-- *
-
-SCF_GUESS_MIX calculations with SAD guess (Yuezhi Mao)
-- •
-
-**Density functional theory and self-consistent field:**
-
-- **–**
-
-Improved algorithm for RI-JK derivatives
-- •
-
-**Correlated methods:**
-
-- **–**
-
-Enabled plotting of RAS-CI properties in cube, **MolDen**, and FChk files (Abel Carreras, David Casanova)
-- •
-
-**Molecular dynamics, non-adiabatic dynamics, embedding, and solvation:**
-
-- **–**
-
-Added printing of single-atom thermodynamic information for PCM jobs (John Herbert)
-- •
-
-**Fragment and energy decomposition analysis improvements:**
-
-- **–**
-
-Resolved issues with erroneous interaction energies with mixed basis sets for fragments (Yihan Shao, Yuezhi Mao)
-- •
-
-**Miscellaneous:**
-
-- **–**
-
-Added sample jobs for SCF_ALGORITHM options NEWTON_CG and NEWTON_MINRES (Yuezhi Mao)
-- **–**
-
-Added sample job for EDA2 calculation with external charges (Yuezhi Mao, Yihan Shao)
-- **–**
-
-Renamed sample jobs for variational PA/CTA based on GEN_SCFMAN_EDA2 (Yuezhi Mao, Hengyuan Shen)
-- **–**
-
-Added SOC-NTO analysis for TDDDFT and SF-TDDFT (Saikiran Kotaru, Anna Krylov)
-
-## 1.3.7.2 Features in 6.0.1
+## 1.3.7.1 6.0.2 版本特性
 
 - •
 
-**General features and improvements:**
+**通用功能与改进：**
 
 - **–**
 
-Restored support for IGDESP used by CHARMM (John Herbert)
+为新的默认几何优化器启用 Molden 支持
 - **–**
 
-Implemented a memory-efficient GOSTSHYP algorithm (Felix Zeller)
+改进反应路径（IRC）计算的输出（John Herbert）
 - **–**
 
-Enabled finite-field chemical shielding and magnetizability calculations using gauge-independent atomic orbitals (GIAOs) for HF and MP2 (Jonathan Wong, Brad Ganoe, Tim Neudecker, Adam Rettig, Xiao Liu, Joonho Lee)
+改进轨道回转半径（radii of gyration）输出的格式（John Herbert）
 - **–**
 
-Resolved issues with:
+改进输入区块的错误捕获（John Herbert）
+- **–**
+
+在 fchk 和 archive 文件中包含单电子矩阵
+- **–**
+
+解决核-电子轨道（nuclear-electronic orbital, NEO）基组的纯函数与 Cartesian 函数指定问题（Mathew Chow, Sharon Hammes-Schiffer）
+- **–**
+
+解决以下问题：
 
 - *
 
-molden output for optimization in **Libopt3**
+高电荷过渡金属原子的 AUTOSAD/I-Hirshfeld 多重度问题（Kevin Carter-Fenk）
 - *
 
-**Libopt3** Hessian calculations using PCM
+惩罚函数（penalty function）优化的 molden 输出问题
 - *
 
-writing MO coefficients and energies to qarchive file
+CIS Boys 绝热态（diabatic states）精确梯度与导数耦合的计算问题（Vishikh Athavale, Joseph Subotnik）
 - *
 
-cleaned up topology checking printing
+SOS-CIS(D) 计算中 SOS_UFACTOR 不可变的问题
 - *
 
-fixed printing of RMS of step size during geometry optimization
+DUAL_BASIS_ENERGY 计算中电荷和多极矩不一致的问题
+- *
+
+使用 SAD 初始猜测的 SCF_GUESS_MIX 计算问题（Yuezhi Mao）
 - •
 
-**Molecular dynamics, non-adiabatic dynamics, embedding, and solvation improvements:**
+**密度泛函理论（Density Functional Theory, DFT）与自洽场（Self-Consistent Field, SCF）：**
 
 - **–**
 
-Implemented state-specific PCM with RAS-SF (Bushra Alam, Hanjie Jiang, John Herbert, Paul Zimmerman)
+改进 RI-JK 导数算法
 - •
 
-**Fragment and energy decomposition analysis improvements:**
+**相关方法：**
 
 - **–**
 
-Resolved issues with projection-based embedding calculations where frozen (environment) occupied orbitals are not ordered based on energies (Yuezhi Mao)
+支持将 RAS-CI 性质绘制到 cube、**MolDen** 和 FChk 文件中（Abel Carreras, David Casanova）
 - •
 
-**Miscellaneous:**
+**分子动力学、非绝热动力学、嵌入与溶剂化：**
 
 - **–**
 
-Added comments to DFT SOC calculations for identifying the progress of the job (Saikiran Kotaru)
+为 PCM 任务增加单原子热力学信息的打印（John Herbert）
+- •
+
+**片段与能量分解分析改进：**
+
 - **–**
 
-Added warning about not having analytic Hessians for some optimization jobs
+解决片段使用混合基组时相互作用能错误的问题（Yihan Shao, Yuezhi Mao）
+- •
+
+**其他：**
+
 - **–**
 
-Added printing to distinguish CPCM1 from CPCM2
+为 SCF_ALGORITHM 选项 NEWTON_CG 和 NEWTON_MINRES 添加示例任务（Yuezhi Mao）
+- **–**
 
-## 1.3.7.3 Features in 6.0.0
+添加带外部电荷的 EDA2 计算示例任务（Yuezhi Mao, Yihan Shao）
+- **–**
+
+重命名基于 GEN_SCFMAN_EDA2 的变分 PA/CTA 示例任务（Yuezhi Mao, Hengyuan Shen）
+- **–**
+
+为 TDDDFT 和 SF-TDDFT 添加 SOC-NTO 分析（Saikiran Kotaru, Anna Krylov）
+
+## 1.3.7.2 6.0.1 版本特性
 
 - •
 
-**Changes to default behavior:**
+**通用功能与改进：**
 
 - **–**
 
-Tightened default integral threshold (THRESH) to SCF_CONVERGENCE + 4 and used same threshold for DIIS and GDM
+恢复对 IGDESP 的支持（供 CHARMM 使用）（John Herbert）
 - **–**
 
-Set default of FD_MAT_VEC_PROD to FALSE for VV10 functional (Yuezhi Mao)
+实现内存高效的 GOSTSHYP 算法（Felix Zeller）
 - **–**
 
-Turned off automatic evaluation of electrostatic potentils on a grid (Felix Plasser)
+针对 HF 和 MP2，实现使用规范无关原子轨道（gauge-independent atomic orbitals, GIAOs）的有限场化学屏蔽与磁化率计算（Jonathan Wong, Brad Ganoe, Tim Neudecker, Adam Rettig, Xiao Liu, Joonho Lee）
 - **–**
 
-Set finite difference as default for energy derivatives in electric field (Yuezhi Mao)
+解决以下问题：
+
+- *
+
+**Libopt3** 中优化的 molden 输出问题
+- *
+
+使用 PCM 的 **Libopt3** Hessian 计算问题
+- *
+
+将分子轨道（MO）系数和能量写入 qarchive 文件的问题
+- *
+
+清理拓扑检查的打印输出
+- *
+
+修复几何优化过程中步长均方根（RMS）的打印
 - •
 
-**General features and improvements:**
+**分子动力学、非绝热动力学、嵌入与溶剂化改进：**
 
 - **–**
 
-Next-generation interface of Q-Chem with external tools (generation of archive files in the HDF5 format)
-- **–**
-
-Implemented the nuclear-electronic orbital CCSD (NEO-CCSD) method (Fabijan Pavosevic, Sharon Hammes-Schiffer)
-- **–**
-
-Implemented NEO-TDDFT analytical gradient and Hessian (Zhen (Coraline) Tao, Patrick E. Schneider, Sharon Hammes-Schiffer)
-- **–**
-
-Enabled subset selection of atoms in NMR $J$-coupling calculations (JOBTYPE = ISSC)
-via *$spin-spin* input section
-- **–**
-
-Disabled steepest descent in geometry optimization with fixed atoms
-- **–**
-
-Added delocalized natural internal coordinate optimization in new optimizer
-- **–**
-
-Updated geometry in the **MolDen** file for each step in finite difference optimizations (John Herbert)
-- **–**
-
-Stabilized density fitting for JK and MP2
-- **–**
-
-Set new optimizer as default for unconstrained optimization (GEOM_OPT_DRIVER = LIBOPT3)
-- **–**
-
-Added the minimal-augmented and heavy-augmented versions of the Karlsruhe basis sets (John Herbert)
-- **–**
-
-Removed MPI support
-- **–**
-
-Resolved issues with:
-
-- *
-
-incorrect Hirshfeld charges based on molecule input orders (Abdulrahman Aldossary)
-- *
-
-not-a-number (NAN) errors in SOC calculations
-- *
-
-missing nuclear repulsion energies in Fock projection (BASIS2) calculations
-- *
-
-removed restriction on number of atoms (MAX_ATOM) that can be included in random search and basin hopping
-- *
-
-ordering of localized MOs in formatted checkpoint files (Abdulrahman Aldossary)
-- *
-
-missing ECP for the def2-SVPD basis set
-- *
-
-failure to compute NMR properties with linearly dependent basis sets
-- *
-
-parsing input files with 100k+ lines
-- *
-
-character table of C3 point group
+实现结合 RAS-SF 的定态（state-specific）PCM（Bushra Alam, Hanjie Jiang, John Herbert, Paul Zimmerman）
 - •
 
-**Density functional theory and self-consistent field:**
+**片段与能量分解分析改进：**
 
 - **–**
 
-Accelerated convergence of the SCF algorithm ADIIS and add a new combined algorithm option ADIIS_DIIS. (Yuezhi Mao)
-- **–**
-
-Enabled gauge-independent atomic orbitals (GIAOs) in SCF calculations using GEN_SCFMAN (Brad Ganoe, Tim Neudecker, Joonho Lee, Adam Rettig, Jonathan Wong)
-- **–**
-
-Disabled user setting of coefficients (via HFK_LR_COEF and HFK_SR_COEF),
-if using built-in range-separated functionals
-- **–**
-
-Implemented frequency calculation and analytic Hessian for the VV10 functional (Jiashu Liang)
-- **–**
-
-Enabled generation of formatted checkpoint files in CIS/TDDFT calculations with frozen occupied/virtual orbitals via GUI = 2 (Yuezhi Mao)
-- **–**
-
-Enabled STATE_ANALYSIS for the new plot section (PLOT = 1) (Yuezhi Mao)
-- **–**
-
-Performed consistency check on TDKS Fock matrices based on the SCF convergence threshold
-instead of the field amplitude (John Herbert)
-- **–**
-
-Added new energy density functionals: revSCAN, regSCAN, r++SCAN, r2SCAN, r4SCAN, TASK, mTASK, regTM, rregTM, revTM
-- **–**
-
-Enabled computing spin-orbit couplings (SOC) (1-electron and 2-electron mean-field) with TDDFT (both restricted and unrestricted) and spin-flip TDDFT (SF-TDDFT) (Saikiran Kotaru, Ana Krylov)
-- **–**
-
-Implemented analytic gradient for density-corrected DFT (DC-DFT) for self-interaction correction (Marc Coons, Bhaskar Rana, John Herbert)
-- **–**
-
-Resolved issues with:
-
-- *
-
-incorrect results of fractional electron SCF calculations using GEN_SCFMAN (Yuezhi Mao)
-- *
-
-hanging qints (USE_LIBQINTS = TRUE) jobs with large number of OpenMP threads
-- *
-
-non-variational initial SCF guess for ADIIS (Yuezhi Mao)
-- *
-
-incorrect memory estimation in TDDFT/TDA calculations
-- *
-
-crash of TDA excited state frequency jobs
-- *
-
-crash of geometry optimization with fixed atoms
-- *
-
-frequency calculations using basis functions with g or higher angular momenta
-- *
-
-sign error with TDDFT spin-orbit coupling calculations (Nicole Bellonzi)
-- *
-
-crash of projection-based embedding calculations (Yuezhi Mao)
-- *
-
-incorrect result of RPA TDDFT frequency using non-Pople basis set
-- *
-
-insufficient memory allocation for NMR calculations with meta-GGA functionals
-- *
-
-erroneous results in DC-DFT calculations using hybrid functionals with larger basis sets (Marc Coons, Bhaskar Rana, John Herbert)
-- *
-
-crash of excited state potential energy surface scans with CIS/TDDFT (John Herbert)
+解决基于投影的嵌入（projection-based embedding）计算中冻结的环境占据轨道未按能量排序的问题（Yuezhi Mao）
 - •
 
-**Correlated methods:**
+**其他：**
 
 - **–**
 
-Implemented EOM oscillator strengths in velocity and mixed gauges (Josefine Andersen, Sonia Coriani)
+为 DFT SOC 计算添加注释以标识任务进度（Saikiran Kotaru）
 - **–**
 
-Implemented CCSD optical rotation evaluation (Josefine Andersen, Kaushik Nanda)
+为某些优化任务缺少解析 Hessian 添加警告
 - **–**
 
-Implemented the fragment charge difference (FCD) scheme in RASMAN2 (Chou-Hsun (Jeff) Yang, Aaditya Manjanath, Chao-Ping (Cherri) Hsu)
-- **–**
+添加打印以区分 CPCM1 与 CPCM2
 
-Implemented complex-valued CC2, RI-CC2, and RI-CCSD (Cansu Utku, Garrette Paran, Thomas Jagau)
-- **–**
+## 1.3.7.3 6.0.0 版本特性
 
-Implemented the complex absorption potential (CAP) method in AIMD calculations (Jerryman A. Gyamfi, Thomas Jagau)
-- **–**
-
-Implemented the v2RDM-CASSCF-PDFT method using density fitted basis sets (Mohammad Mostafanejad, Run Li, A. Eugene DePrince III)
-- **–**
-
-Resolved formatting error in output of SOC calculation with RAS-CI method (Abel Carreras, David Casanova)
 - •
 
-**Molecular dynamics, non-adiabatic dynamics, embedding, and solvation:**
+**默认行为变更：**
 
 - **–**
 
-Implemented projection-based embedding with complex basis functions (Valentina Parravicini, Thomas Jagau)
+将默认积分阈值（THRESH）收紧为 SCF_CONVERGENCE + 4，并对 DIIS 和 GDM 使用相同阈值
 - **–**
 
-Enabled user-defined permittivity grid for Poisson equation solver (PEqS) (Suranjan Paul)
+针对 VV10 泛函，将 FD_MAT_VEC_PROD 的默认值设为 FALSE（Yuezhi Mao）
 - **–**
 
-Improved PCM printing (John Herbert)
+关闭在网格上自动计算静电势（Felix Plasser）
 - **–**
 
-Implemented CIS and TDDFT wave function overlaps including their spin-flip variants for (A)FSSH (Theta Chen, Junhan Chen, Zuxin Jin, Vishikh Athavale, Vale Cofer-Shabica, Joe Subotnik)
-- **–**
-
-Resolved issues with QM/MM optimzation not reading previous MOs as a guess for the next cycle
+将电场中能量导数的默认计算方法设为有限差分（Yuezhi Mao）
 - •
 
-**Fragment and energy decomposition analysis:**
+**通用功能与改进：**
 
 - **–**
 
-Implemented pairwise fragment excitation energy decomposition analysis (EDA) in QM/EFP calculations (Lyudmila Slipchenko)
+Q-Chem 与外部工具的下一代接口（以 HDF5 格式生成 archive 文件）
 - **–**
 
-Increased the maximum angular momentum of basis functions to 5 for XSAPT calculations
+实现核-电子耦合簇 CCSD（NEO-CCSD）方法（Fabijan Pavosevic, Sharon Hammes-Schiffer）
 - **–**
 
-Implemented SPADE- and ALMO-based partitioning schemes for electric field calculations (Yuezhi Mao)
+实现 NEO-TDDFT 解析梯度与 Hessian（Zhen (Coraline) Tao, Patrick E. Schneider, Sharon Hammes-Schiffer）
 - **–**
 
-Implemented a new MP2 EDA scheme and added a non-perturbative polarization analysis for DFT EDA (Kevin Ikeda, Hengyuan Shen)
+在 NMR $J$-耦合计算（JOBTYPE = ISSC）中支持原子子集选择，
+通过 *$spin-spin* 输入区块实现
 - **–**
 
-Enabled ALMO-CIS/TDA calculations with excitation amplitudes localized on one fragment (Yuezhi Mao)
+在含固定原子的几何优化中禁用最速下降法
 - **–**
 
-Enabled ALMO-CIS/TDA calculations with excitation from one fragment’s occupied orbitals to all virtuals in the system (Yuezhi Mao)
+在新优化器中添加离域自然内坐标（delocalized natural internal coordinate）优化
 - **–**
 
-Enabled ALMO-CIS/TDA calculations with excitation from one fragment’s occupied orbitals to another’s virtual orbitals (Yuezhi Mao)
+在有限差分优化的每一步中更新 **MolDen** 文件的几何结构（John Herbert）
 - **–**
 
-Enabled user-defined occupied-virtual pairs in ALMO-CIS/TDA calculations (Yuezhi Mao)
+稳定 JK 和 MP2 的密度拟合（density fitting）
 - **–**
 
-Resolved miscellaneous issues with ALMO-CIS and excited-state ALMO-EDA calculations (Yuezhi Mao)
+将新优化器设为无约束优化的默认选项（GEOM_OPT_DRIVER = LIBOPT3）
+- **–**
+
+添加 Karlsruhe 基组的最小增强版（minimal-augmented）与重原子增强版（heavy-augmented）（John Herbert）
+- **–**
+
+移除 MPI 支持
+- **–**
+
+解决以下问题：
+
+- *
+
+基于分子输入顺序导致 Hirshfeld 电荷不正确的问题（Abdulrahman Aldossary）
+- *
+
+SOC 计算中出现非数字（NAN）错误的问题
+- *
+
+Fock 投影（BASIS2）计算中缺少核排斥能的问题
+- *
+
+移除随机搜索和盆地跳跃（basin hopping）可包含原子数（MAX_ATOM）的限制
+- *
+
+格式化检查点文件中局域化 MO 排序问题（Abdulrahman Aldossary）
+- *
+
+def2-SVPD 基组缺少有效核势（ECP）的问题
+- *
+
+使用线性相关基组时无法计算 NMR 性质的问题
+- *
+
+解析超过 10 万行输入文件的问题
+- *
+
+C3 点群的特征标表问题
 - •
 
-**Miscellaneous:**
+**密度泛函理论（DFT）与自洽场（SCF）：**
 
 - **–**
 
-Printed orbital kinetic energies using SCF_PRINT = 3
+加速 SCF 算法 ADIIS 的收敛，并添加新的组合算法选项 ADIIS_DIIS（Yuezhi Mao）
 - **–**
 
-Enabled EXTERNAL_CHARGES specification in an external file (Vale Cofer-Shabica, Joseph Subotnik)
+在使用 GEN_SCFMAN 的 SCF 计算中启用规范无关原子轨道（GIAOs）（Brad Ganoe, Tim Neudecker, Joonho Lee, Adam Rettig, Jonathan Wong）
 - **–**
 
-Added parameter check for many-body dispersion calculations (John Herbert)
+若使用内置的 range 分离泛函（range-separated functionals），禁止用户设置系数（通过 HFK_LR_COEF 和 HFK_SR_COEF）
 - **–**
 
-Restored finite difference for $\omega$B97M-2 and the XYG series of energy functionals
+实现 VV10 泛函的频率计算与解析 Hessian（Jiashu Liang）
 - **–**
 
-Restored finite difference banner for SA-SF-RPA
+在 CIS/TDDFT 计算中（含冻结占据/虚轨道），通过 GUI = 2 支持生成格式化检查点文件（Yuezhi Mao）
+- **–**
+
+在新的绘图区块（PLOT = 1）中启用 STATE_ANALYSIS（Yuezhi Mao）
+- **–**
+
+基于 SCF 收敛阈值而非场振幅对 TDKS Fock 矩阵执行一致性检查（John Herbert）
+- **–**
+
+添加新的能量密度泛函：revSCAN、regSCAN、r++SCAN、r2SCAN、r4SCAN、TASK、mTASK、regTM、rregTM、revTM
+- **–**
+
+支持在 TDDFT（限制式与非限制式）以及自旋翻转 TDDFT（SF-TDDFT）中计算自旋-轨道耦合（SOC）（单电子与双电子平均场）（Saikiran Kotaru, Ana Krylov）
+- **–**
+
+为实现自相互作用校正（self-interaction correction）的密度校正 DFT（DC-DFT）解析梯度（Marc Coons, Bhaskar Rana, John Herbert）
+- **–**
+
+解决以下问题：
+
+- *
+
+使用 GEN_SCFMAN 的分数电子 SCF 计算结果不正确的问题（Yuezhi Mao）
+- *
+
+大量 OpenMP 线程下 qints（USE_LIBQINTS = TRUE）任务挂起的问题
+- *
+
+ADIIS 非变分初始 SCF 猜测问题（Yuezhi Mao）
+- *
+
+TDDFT/TDA 计算中内存估计不正确的问题
+- *
+
+TDA 激发态频率计算任务崩溃问题
+- *
+
+含固定原子的几何优化崩溃问题
+- *
+
+使用 g 或更高角动量基函数的频率计算问题
+- *
+
+TDDFT 自旋-轨道耦合计算中的符号错误（Nicole Bellonzi）
+- *
+
+基于投影的嵌入计算崩溃问题（Yuezhi Mao）
+- *
+
+使用非 Pople 基组时 RPA TDDFT 频率结果不正确的问题
+- *
+
+使用 meta-GGA 泛函进行 NMR 计算时内存分配不足的问题
+- *
+
+使用大基组的杂化泛函进行 DC-DFT 计算时结果错误的问题（Marc Coons, Bhaskar Rana, John Herbert）
+- *
+
+CIS/TDDFT 激发态势能面扫描崩溃问题（John Herbert）
+- •
+
+**相关方法：**
+
+- **–**
+
+实现速度规范与混合规范下的 EOM 振子强度（Josefine Andersen, Sonia Coriani）
+- **–**
+
+实现 CCSD 光学旋光（optical rotation）计算（Josefine Andersen, Kaushik Nanda）
+- **–**
+
+在 RASMAN2 中实现片段电荷差（fragment charge difference, FCD）方案（Chou-Hsun (Jeff) Yang, Aaditya Manjanath, Chao-Ping (Cherri) Hsu）
+- **–**
+
+实现复数值的 CC2、RI-CC2 和 RI-CCSD（Cansu Utku, Garrette Paran, Thomas Jagau）
+- **–**
+
+在 AIMD 计算中实现复吸收势（complex absorption potential, CAP）方法（Jerryman A. Gyamfi, Thomas Jagau）
+- **–**
+
+实现使用密度拟合基组的 v2RDM-CASSCF-PDFT 方法（Mohammad Mostafanejad, Run Li, A. Eugene DePrince III）
+- **–**
+
+修复 RAS-CI 方法 SOC 计算输出中的格式错误（Abel Carreras, David Casanova）
+- •
+
+**分子动力学、非绝热动力学、嵌入与溶剂化：**
+
+- **–**
+
+实现基于复基函数的投影嵌入（projection-based embedding）（Valentina Parravicini, Thomas Jagau）
+- **–**
+
+支持为泊松方程求解器（PEqS）自定义介电常数网格（Suranjan Paul）
+- **–**
+
+改进 PCM 打印输出（John Herbert）
+- **–**
+
+实现 CIS 和 TDDFT 波函数重叠（含其自旋翻转变体）用于 (A)FSSH（Theta Chen, Junhan Chen, Zuxin Jin, Vishikh Athavale, Vale Cofer-Shabica, Joe Subotnik）
+- **–**
+
+解决 QM/MM 优化未将上一轮 MO 作为下一轮初始猜测读取的问题
+- •
+
+**片段与能量分解分析：**
+
+- **–**
+
+在 QM/EFP 计算中实现成对片段激发能分解分析（EDA）（Lyudmila Slipchenko）
+- **–**
+
+将 XSAPT 计算中基函数的最大角动量提高到 5
+- **–**
+
+实现基于 SPADE 和 ALMO 的电场计算划分方案（Yuezhi Mao）
+- **–**
+
+实现新的 MP2 EDA 方案，并为 DFT EDA 添加非微扰极化分析（Kevin Ikeda, Hengyuan Shen）
+- **–**
+
+支持激发振幅局域在单一片段上的 ALMO-CIS/TDA 计算（Yuezhi Mao）
+- **–**
+
+支持从一个片段的占据轨道激发到体系中所有虚轨道的 ALMO-CIS/TDA 计算（Yuezhi Mao）
+- **–**
+
+支持从一个片段的占据轨道激发到另一片段虚轨道的 ALMO-CIS/TDA 计算（Yuezhi Mao）
+- **–**
+
+支持在 ALMO-CIS/TDA 计算中自定义占据-虚轨道对（Yuezhi Mao）
+- **–**
+
+解决 ALMO-CIS 与激发态 ALMO-EDA 计算中的各种问题（Yuezhi Mao）
+- •
+
+**其他：**
+
+- **–**
+
+使用 SCF_PRINT = 3 打印轨道动能
+- **–**
+
+支持在外部文件中指定 EXTERNAL_CHARGES（Vale Cofer-Shabica, Joseph Subotnik）
+- **–**
+
+为多体色散（many-body dispersion）计算添加参数检查（John Herbert）
+- **–**
+
+恢复 $\omega$B97M-2 和 XYG 系列泛函的有限差分方法
+- **–**
+
+恢复 SA-SF-RPA 的有限差分提示横幅

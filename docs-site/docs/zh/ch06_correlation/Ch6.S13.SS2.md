@@ -1,69 +1,21 @@
 ---
-title: "6.13.2 (2) Triples and Quadruples Corrections"
+title: "6.13.2 (2) 三激发与四激发修正（Triples and Quadruples Corrections）"
 ---
 
-## 6.13.2 (2) Triples and Quadruples Corrections
+## 6.13.2 (2) 三激发与四激发修正
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-While the (T) corrections discussed above have been extraordinarily successful,
-there is nonetheless still room for further improvements in accuracy, for at
-least some important classes of problems. They contain judiciously chosen terms
-from 4th- and 5th-order Møller-Plesset perturbation
-theory, as well as higher order terms that result from the fact that the
-converged cluster amplitudes are employed to evaluate the 4th- and 5th-order
-order terms. The (T) correction therefore depends upon the bare
-reference orbitals and orbital energies, and in this way its effectiveness
-still depends on the quality of the reference determinant. Since we are
-correcting a coupled-cluster solution rather than a single determinant, this is
-an aspect of the (T) corrections that can be improved. Deficiencies of the (T)
-corrections show up computationally in cases where there are near-degeneracies
-between orbitals, such as stretched bonds, some transition states, open shell
-radicals, and diradicals.
+尽管上文讨论的 (T) 修正已经取得了非凡的成功，但至少对于某些重要类别的问题，在精度方面仍有进一步提升的空间。(T) 修正中包含了从四阶和五阶 Møller-Plesset 微扰理论中精心挑选的项，同时也包含了因使用已收敛的簇振幅（cluster amplitudes）来计算四阶和五阶项而产生的高阶项。因此，(T) 修正依赖于裸参考轨道（bare reference orbitals）和轨道能，就此而言，其有效性仍然取决于参考行列式（reference determinant）的质量。由于我们修正的是耦合簇（coupled-cluster）解而非单个行列式，这正是 (T) 修正中可以改进的一个方面。(T) 修正的不足在计算上体现为轨道间存在近简并（near-degeneracies）的情形，例如拉长的化学键、某些过渡态（transition states）、开壳层自由基（open shell radicals）以及双自由基（diradicals）。
 
-Prof. Steve Gwaltney, while working at Berkeley with Martin Head-Gordon, has
-suggested a new class of non iterative correction that offers the prospect of
-improved accuracy in problem cases of the types identified above.[[507]](../bib_references/bib.md#bib520)
-**Q-Chem** contains Gwaltney’s implementation of this new
-method, for energies only. The new correction is a true second-order correction
-to a coupled-cluster starting point, and is therefore denoted as (2). It is
-available for two of the cluster methods discussed above, as OD(2) and
-CCSD(2).[[507]](../bib_references/bib.md#bib520)
- Only energies are available at present.
+Steve Gwaltney 教授在 Berkeley 与 Martin Head-Gordon 合作工作期间，提出了一类全新的非迭代修正（non iterative correction），有望在上述类型的问题案例中提升精度。[[507]](../bib_references/bib.md#bib520)
+**Q-Chem** 包含了 Gwaltney 对这一新方法的实现，且仅支持能量计算。这一新修正是对耦合簇起始点的真正二阶修正（second-order correction），因此被记为 (2)。它可用于上文讨论的两种簇方法，即 OD(2) 和 CCSD(2)。[[507]](../bib_references/bib.md#bib520)
+目前仅可计算能量。
 
-The basis of the (2) method is to partition not the regular Hamiltonian into
-perturbed and unperturbed parts, but rather to partition a
-similarity-transformed Hamiltonian, defined as $\tilde{H}=e^{-\hat{T}}\hat{H}e^{\hat{T}}$. In the truncated space (call it the $p$-space)
-within which the cluster problem is solved (*e.g.*, singles and doubles for
-CCSD), the coupled-cluster wave function is a true eigenvalue of $\tilde{H}$.
-Therefore we take the zero order Hamiltonian, $\tilde{H}^{(0)}$,
-to be the full $\tilde{H}$ in the p-space, while in the space of
-excluded substitutions (the q-space) we take only the one-body part of $\tilde{H}$
-(which can be made diagonal). The fluctuation potential describing
-electron correlations in the $q$-space is $\tilde{H}-\tilde{H}^{(0)}$,
-and the (2) correction then follows from second-order perturbation
-theory.
+(2) 方法的基础在于：不是将常规哈密顿量（Hamiltonian）拆分为微扰部分与非微扰部分，而是对一个相似变换后的哈密顿量（similarity-transformed Hamiltonian）进行拆分，其定义为 $\tilde{H}=e^{-\hat{T}}\hat{H}e^{\hat{T}}$。在求解簇问题所使用的截断空间（称为 $p$-空间）内（*e.g.*，对于 CCSD 为单激发与双激发空间），耦合簇波函数是 $\tilde{H}$ 的真正本征值。因此，我们将零阶哈密顿量 $\tilde{H}^{(0)}$ 取为 p-空间中的完整 $\tilde{H}$，而在被排除的取代（substitutions）所构成的空间（q-空间）中，我们仅取 $\tilde{H}$ 的一体部分（该部分可以被对角化）。描述 $q$-空间中电子关联的涨落势（fluctuation potential）为 $\tilde{H}-\tilde{H}^{(0)}$，而 (2) 修正随之由二阶微扰理论得出。
 
-The new partitioning of terms between the perturbed and unperturbed
-Hamiltonians inherent in the (2) correction leads to a correction that shows
-both similarities and differences relative to the existing (T) corrections.
-There are two types of higher correlations that enter at second-order: not only
-triple substitutions, but also quadruple substitutions. The quadruples are
-treated with a factorization ansatz, that is exact in 5th order
-Møller-Plesset theory,[[731]](../bib_references/bib.md#bib764)
- to reduce their computational
-cost from $N^{9}$ to $N^{6}$. For large basis sets this can still be larger
-than the cost of the triples terms, which scale as the 7th power of
-molecule size, with a factor twice as large as the usual (T) corrections.
+(2) 修正所固有的、微扰与非微扰哈密顿量之间项的重新划分，使得该修正与现有的 (T) 修正相比既表现出相似之处，也表现出差异。在二阶层次上有两类高阶关联进入：不仅有三取代（triple substitutions），还有四取代（quadruple substitutions）。四取代采用因子化 ansatz（factorization ansatz）处理，该处理在五阶 Møller-Plesset 理论中是精确的，[[731]](../bib_references/bib.md#bib764)
+从而将其计算成本从 $N^{9}$ 降至 $N^{6}$。对于大基组（basis sets），这一成本仍可能高于三取代项的成本——三取代项随分子尺寸的 7 次方标度增长，且其前置因子是通常 (T) 修正的两倍。
 
-These corrections are feasible for molecules containing between four and ten
-first row atoms, depending on computer resources, and the size of the basis set
-chosen. There is early evidence that the (2) corrections are superior to the
-(T) corrections for highly correlated systems.[[507]](../bib_references/bib.md#bib520)
- This shows
-up in improved potential curves, particularly at long range and may also extend
-to improved energetic and structural properties at equilibrium in problematical
-cases. It will be some time before sufficient testing on the new (2)
-corrections has been done to permit a general assessment of the performance of
-these methods. However, they are clearly very promising, and for this reason
-they are available in **Q-Chem**.
+这些修正可用于包含 4 到 10 个第一行原子的分子，具体可行性取决于计算资源以及所选基组的大小。早期证据表明，对于强关联（highly correlated）体系，(2) 修正优于 (T) 修正。[[507]](../bib_references/bib.md#bib520)
+这体现在改进的势能曲线（potential curves）上，尤其是在长程区域，并且也可能延伸到问题案例中平衡态能量性质与结构性质的改善。要对新的 (2) 修正进行充分测试以对其性能做出总体评估，还需要一段时间。然而，它们显然极具前景，正因如此，**Q-Chem** 中提供了这些方法。

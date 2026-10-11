@@ -1,267 +1,219 @@
 ---
-title: "4.9.2 SCF Metadynamics"
+title: "4.9.2 SCF 元动力学（SCF Metadynamics）"
 ---
 
-## 4.9.2 SCF Metadynamics
+## 4.9.2 SCF 元动力学
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-As the SCF equations are non-linear in the electron density, there are in
-theory very many solutions, *i.e.*, sets of orbitals where the energy is
-stationary with respect to changes in the orbital subset. Most often sought
-is the solution with globally minimal energy as this is a variational upper
-bound to the true eigenfunction in this basis. The SCF methods available in
-**Q-Chem** allow the user to converge upon an SCF solution, and (using
-STABILITY_ANALYSIS) ensure it is a minimum, but there is no known
-method of ensuring that the found solution is a global minimum; indeed in
-systems with many low-lying energy levels the solution converged upon may vary
-considerably with initial guess.
+由于 SCF 方程关于电子密度是非线性的，理论上存在非常多的解，*即*，使能量相对于轨道子集的变化保持平稳（stationary）的一组轨道。人们最常寻求的是全局能量最低的解，因为在给定基组下，它是真实本征函数的变分上界。**Q-Chem** 中提供的 SCF 方法可以让用户收敛到一个 SCF 解，并且（使用 STABILITY_ANALYSIS）确保它是一个极小值，但目前没有已知方法能够保证所找到的解是全局极小值；事实上，在具有大量低能级体系中，所收敛到的解可能随初始猜测的不同而有很大差异。
 
-SCF metadynamics[[1355]](../bib_references/bib.md#bib1415)
- is a technique which can be used to locate
-multiple SCF solutions, and thus gain some confidence that the calculation has
-converged upon the global minimum. It works by searching out a solution to the
-SCF equations. Once found, the solution is stored, and a biasing potential
-added so as to avoid re-converging to the same solution. More formally, the
-distance between two solutions, $w$ and $x$, can be expressed as
-$d_{wx}^{2}=\langle{{}^{w}\!\Psi|^{w}\!\hat{\rho}-{{}^{x}}\!\hat{\rho}}|^{w}\!\Psi\rangle$, where ${}^{w}\!\Psi$ is a Slater determinant formed from the
-orthonormal orbitals, ${}^{w}\!\phi_{i}$, of solution $w$, and ${}^{w}\!\hat{\rho}$ is
-the one-particle density operator for ${}^{w}\!\Psi$. This definition is
-equivalent to
+SCF 元动力学[[1355]](../bib_references/bib.md#bib1415)
+ 是一种可用于定位多个 SCF 解的技术，从而让人对计算已收敛到全局极小值具有一定的信心。其工作原理是先搜索 SCF 方程的一个解。一旦找到，就将该解存储起来，并添加一个偏置势（biasing potential），以避免再次收敛到同一个解。更形式化地说，两个解 $w$ 和 $x$ 之间的距离可以表示为
+$d_{wx}^{2}=\langle{{}^{w}\!\Psi|^{w}\!\hat{\rho}-{{}^{x}}\!\hat{\rho}}|^{w}\!\Psi\rangle$，其中 ${}^{w}\!\Psi$ 是由解 $w$ 的正交归一轨道 ${}^{w}\!\phi_{i}$ 构成的 Slater 行列式，${}^{w}\!\hat{\rho}$ 是 ${}^{w}\!\Psi$ 的单粒子密度算符。此定义等价于
 $d_{wx}^{2}=N-{{}^{w}}\!P^{\mu\nu}S_{\nu\sigma}\cdot{{}^{x}}\!P^{\sigma\tau}S_{\tau\mu}.$
-and is easily calculated. The function $d_{wx}^{2}$ is between zero and the
-number of electrons, and can be taken as the distance between two solutions.
-As an example, any singly-excited determinant (which will not in general be
-another SCF solution) is a distance 1 away from the reference (unexcited)
-determinant.
+且易于计算。函数 $d_{wx}^{2}$ 的取值范围在零与电子数之间，可以视为两个解之间的距离。举例来说，任意单激发行列式（它一般不会恰好是另一个 SCF 解）与参考（未激发）行列式之间的距离为 1。
 
-In a manner analogous to classical metadynamics, to bias against the set of
-previously located solutions, $x$, we create a new Lagrangian,
+与经典元动力学类似，为了对先前已定位的解集合 $x$ 施加偏置，我们构造一个新的拉格朗日量（Lagrangian），
 
 <a id="A3.S8.EGx13"></a>
 $$
 \displaystyle\tilde{E}=E+\sum_{x}N_{x}e^{-\lambda_{x}d_{0x}^{2}} \tag{4.68}
 $$
 
-where $0$ represents the present density.
-From this we may derive a new effective Fock matrix,
+其中 $0$ 表示当前的密度。由此我们可以导出一个新的有效 Fock 矩阵，
 
 <a id="A3.S8.EGx14"></a>
 $$
 \displaystyle\tilde{F}_{\mu\nu}=F_{\mu\nu}+\sum_{x}{{}^{x}\!P}_{\mu\nu}N_{x}\lambda_{x}e^{-\lambda_{x}d_{0x}^{2}} \tag{4.69}
 $$
 
-This may be used with very little modification within a standard DIIS procedure
-to locate multiple solutions. When close to a new solution, the biasing
-potential is removed so the location of that solution is not affected by it.
-If the calculation ends up re-converging to the same solution, $N_{x}$ and
-$\lambda_{x}$ can be modified to avert this. Once a solution is found it is
-added to the list of solutions, and the orbitals mixed to provide a new guess
-for locating a different solution.
+只需极少的修改，它即可嵌入标准的 DIIS 流程中使用，以定位多个解。当接近一个新解时，偏置势会被移除，从而该解的定位不受其影响。如果计算最终又收敛到同一个解，可以修改 $N_{x}$ 和 $\lambda_{x}$ 来避免这种情况。一旦找到一个解，就将其加入解列表中，并对轨道进行混合，以提供用于定位另一个不同解的新初始猜测。
 
-This process can be customized by the REM variables below. Both DIIS and GDM
-methods can be used, but it is advisable to turn on MOM when using DIIS to
-maintain the orbital ordering. Post-HF correlation methods can also be
-applied. By default they will operate for the last solution located, but this
-can be changed with the SCF_MINFIND_RUNCORR variable.
+此过程可以通过下面的 REM 变量进行定制。DIIS 和 GDM 方法均可使用，但建议在使用 DIIS 时开启 MOM，以保持轨道的排序。后 HF（Post-HF）关联方法也可以应用。默认情况下，它们作用于最后定位到的那个解，但可以通过 SCF_MINFIND_RUNCORR 变量更改。
 
 SCF_SAVEMINIMA
 
 ### `SCF_SAVEMINIMA`
 
-> **Turn on SCF metadynamics and specify how many solutions to locate.**
+> **开启 SCF 元动力学并指定要定位的解的数量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not use SCF metadynamics
+>     * 不使用 SCF 元动力学
 >     * $n$
->     * Attempt to find
+>     * 尝试寻找
 >     * $n$
->     * distinct SCF solutions.
-> * **Recommendation**: Perform SCF Orbital metadynamics and attempt to locate $n$ different SCF solutions. Note that these may not all be minima. Many saddle points are often located. The last one located will be the one used in any post-SCF treatments. In systems where there are infinite point groups, this procedure cannot currently distinguish between spatial rotations of different densities, so will likely converge on these multiply.
+>     * 个不同的 SCF 解。
+> * **建议**: 执行 SCF 轨道元动力学并尝试定位 $n$ 个不同的 SCF 解。注意这些解不一定都是极小值，通常会找到许多鞍点。最后一个被定位到的解将用于任何 SCF 后续处理。在具有无限点群的体系中，目前该过程无法区分不同密度的空间旋转，因此很可能多次收敛到这些（通过旋转相关联的）解上。
 
 SCF_READMINIMA
 
 ### `SCF_READMINIMA`
 
-> **Read in solutions from a previous SCF metadynamics calculation**
+> **从先前的 SCF 元动力学计算中读入解**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * $n$
->     * Read in
+>     * 读入
 >     * $n$
->     * previous solutions and attempt to locate them all.
+>     * 个先前的解，并尝试将它们全部定位。
 >     * $-n$
->     * Read in
+>     * 读入
 >     * $n$
->     * previous solutions, but only attempt to locate solution
+>     * 个先前的解，但仅尝试定位第
 >     * $n$
->     * (not available in
+>     * 个解（在
 >     * libnoci
->     * ).
-> * **Recommendation**: This may not actually locate all solutions required and will probably locate others too. The SCF will also stop when the number of solutions specified in SCF_SAVEMINIMA are found. Solutions from other geometries may also be read in and used as starting orbitals. If a solution is found and matches one that is read in within SCF_MINFIND_READDISTTHRESH , its orbitals are saved in that position for any future calculations. The algorithm works by restarting from the orbitals and density of a the minimum it is attempting to find. After 10 failed restarts (defined by SCF_MINFIND_RESTARTSTEPS ), it moves to another previous minimum and attempts to locate that instead. If there are no minima to find, the restart does random mixing (with 10 times the normal random mixing parameter). Note that in libnoci , previous minima are read using NOCI_REFGEN = 1, whilst the exact solutions are specified as described in Section 4.9.3
+>     * 中不可用）。
+> * **建议**: 该选项实际上未必能定位所有所需的解，而且可能还会找到其他解。当找到 SCF_SAVEMINIMA 中指定的解数量时，SCF 也会停止。其他几何构型下的解也可以被读入并用作起始轨道。如果找到的某个解与读入的某个解在 SCF_MINFIND_READDISTTHRESH 的阈值范围内匹配，则其轨道会被保存在对应位置，供以后计算使用。该算法的工作原理是从正在寻找的极小值所对应的轨道和密度出发重新起步。在经历 10 次失败的重启（由 SCF_MINFIND_RESTARTSTEPS 定义）之后，算法会转向另一个先前的极小值并尝试定位它。如果没有需要查找的极小值，重启时会进行随机混合（随机混合参数为正常值的 10 倍）。注意在 libnoci 中，先前的极小值通过 NOCI_REFGEN = 1 读入，而精确解的指定方式如第 4.9.3 节所述
 
 SCF_MINFIND_WELLTHRESH
 
 ### `SCF_MINFIND_WELLTHRESH`
 
-> **Specify what SCF_MINFIND believes is the basin of a solution**
+> **指定 SCF_MINFIND 认为的解所在盆地（basin）的判据**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **取值选项**:
 >     * $n$
->     * for a threshold of
+>     * 对应阈值为
 >     * $10^{-n}$
-> * **Recommendation**: When the DIIS error is less than $10^{-n}$ , penalties are switched off to see whether it has converged to a new solution.
+> * **建议**: 当 DIIS 误差小于 $10^{-n}$ 时，关闭惩罚项，以观察是否已收敛到一个新解。
 
 SCF_MINFIND_RESTARTSTEPS
 
 ### `SCF_MINFIND_RESTARTSTEPS`
 
-> **Restart with new orbitals if no minima have been found within this many steps**
+> **如果在此步数内未找到极小值，则用新轨道重启**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `300`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `300`
+> * **取值选项**:
 >     * $n$
->     * Restart after
+>     * 在
 >     * $n$
->     * steps.
-> * **Recommendation**: If the SCF calculation spends many steps not finding a solution, lowering this number may speed up solution-finding. If the system converges to solutions very slowly, then this number may need to be raised.
+>     * 步后重启。
+> * **建议**: 如果 SCF 计算花费大量步数仍未找到解，降低此数值可能加快解的搜索。如果体系收敛到解的速度非常慢，则可能需要提高此数值。
 
 SCF_MINFIND_INCREASEFACTOR
 
 ### `SCF_MINFIND_INCREASEFACTOR`
 
-> **Controls how the height of the penalty function changes when repeatedly trapped at the same solution**
+> **控制当反复陷入同一解时，惩罚函数的高度如何变化**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10100 meaning 1.01`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `10100 表示 1.01`
+> * **取值选项**:
 >     * $abcde$
->     * corresponding to
+>     * 对应
 >     * $a.bcde$
-> * **Recommendation**: If the algorithm converges to a solution which corresponds to a previously located solution, increase both the normalization N and the width lambda of the penalty function there. Then do a restart.
+> * **建议**: 如果算法收敛到一个与先前已定位解相对应的解，则同时增大该处惩罚函数的归一化系数 N 和宽度参数 lambda。然后执行一次重启。
 
 SCF_MINFIND_INITLAMBDA
 
 ### `SCF_MINFIND_INITLAMBDA`
 
-> **Control the initial width of the penalty function.**
+> **控制惩罚函数的初始宽度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `02000 meaning 2.000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `02000 表示 2.000`
+> * **取值选项**:
 >     * $abcde$
->     * corresponding to
+>     * 对应
 >     * $ab.cde$
-> * **Recommendation**: The initial inverse-width ( i.e. , the inverse-variance) of the Gaussian to place to fill solution’s well. Measured in electrons ${}^{(}-1)$ . Increasing this will repeatedly converging on the same solution.
+> * **建议**: 用于填充某个解所在势阱（well）的高斯函数的初始逆宽度（*即*，逆方差）。以电子数 ${}^{(}-1)$ 为单位度量。增大该值有助于避免反复收敛到同一个解。
 
 SCF_MINFIND_INITNORM
 
 ### `SCF_MINFIND_INITNORM`
 
-> **Control the initial height of the penalty function.**
+> **控制惩罚函数的初始高度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `01000 meaning 1.000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `01000 表示 1.000`
+> * **取值选项**:
 >     * $abcde$
->     * corresponding to
+>     * 对应
 >     * $ab.cde$
-> * **Recommendation**: The initial normalization of the Gaussian to place to fill a well. Measured in hartrees.
+> * **建议**: 用于填充势阱的高斯函数的初始归一化系数。以 Hartree（原子单位能量）为单位度量。
 
 SCF_MINFIND_RANDOMMIXING
 
 ### `SCF_MINFIND_RANDOMMIXING`
 
-> **Control how to choose new orbitals after locating a solution**
+> **控制在定位到一个解之后如何选择新轨道**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `00200 meaning .02 radians`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `00200 表示 0.02 弧度`
+> * **取值选项**:
 >     * $abcde$
->     * corresponding to
+>     * 对应
 >     * $a.bcde$
->     * radians
-> * **Recommendation**: After locating an SCF solution, the orbitals are mixed randomly to move to a new position in orbital space. For each occupied and virtual orbital pair picked at random and rotate between them by a random angle between 0 and this. If this is negative then use exactly this number, e.g. , $-15708$ will almost exactly swap orbitals. Any number $<-15708$ will cause the orbitals to be swapped exactly.
+>     * 弧度
+> * **建议**: 定位到一个 SCF 解后，对轨道进行随机混合，使其在轨道空间中移动到新的位置。每次随机选取一对占据轨道和虚轨道，并在二者之间按 0 到此值之间的随机角度旋转。如果该值为负，则恰好执行此数目的操作，*例如*，$-15708$ 几乎正好交换两个轨道。任何 $<-15708$ 的数值都会使轨道被完全精确地交换。
 
 SCF_MINFIND_NRANDOMMIXES
 
 ### `SCF_MINFIND_NRANDOMMIXES`
 
-> **Control how many random mixes to do to generate new orbitals**
+> **控制为生成新轨道而进行多少次随机混合**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `10`
+> * **取值选项**:
 >     * $n$
->     * Perform
+>     * 执行
 >     * $n$
->     * random mixes.
-> * **Recommendation**: This is the number of occupied/virtual pairs to attempt to mix, per separate density ( i.e. , for unrestricted calculations both alpha and beta space will get this many rotations). If this is negative then only mix the highest 25% occupied and lowest 25% virtuals.
+>     * 次随机混合。
+> * **建议**: 这是每个独立密度中尝试混合的占据/虚轨道对数目（*即*，对于非限制计算，alpha 和 beta 空间各自都会进行这么多次旋转）。如果该值为负，则只混合能量最高的 25% 占据轨道和能量最低的 25% 虚轨道。
 
 SCF_MINFIND_READDISTTHRESH
 
 ### `SCF_MINFIND_READDISTTHRESH`
 
-> **The distance threshold at which to consider two solutions the same**
+> **判定两个解为同一解的距离阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `00100 meaning 0.1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `00100 表示 0.1`
+> * **取值选项**:
 >     * $abcde$
->     * corresponding to
+>     * 对应
 >     * $ab.cde$
-> * **Recommendation**: The threshold to regard a minimum as the same as a read in minimum. Measured in electrons. If two minima are closer together than this, reduce the threshold to distinguish them.
+> * **建议**: 判断某个极小值与读入的极小值是否为同一解的阈值。以电子数为单位度量。如果两个极小值彼此之间的距离小于此值，应降低该阈值以区分它们。
 
 SCF_MINFIND_MIXMETHOD
 
 ### `SCF_MINFIND_MIXMETHOD`
 
-> **Specify how to select orbitals for random mixing**
+> **指定随机混合时轨道的选取方式**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Random mixing: select from any orbital to any orbital.
+>     * 随机混合（Random mixing）：任意轨道之间均可选取。
 >     * 1
->     * Active mixing: select based on energy, decaying with distance from the Fermi level.
+>     * 活性混合（Active mixing）：基于能量选取，选取概率随与费米（Fermi）能级的距离而衰减。
 >     * 2
->     * Active Alpha space mixing: select based on energy, decaying with distance from the
->     * Fermi level only in the alpha space.
-> * **Recommendation**: Random mixing will often find very high energy solutions. If lower energy solutions are desired, use 1 or 2.
+>     * 活性 Alpha 空间混合（Active Alpha space mixing）：基于能量选取，仅在 alpha 空间中随与费米能级的距离而衰减。
+> * **建议**: 随机混合往往会找到能量非常高的解。如果希望得到较低能量的解，请使用 1 或 2。
 
 SCF_MINFIND_MIXENERGY
 
 ### `SCF_MINFIND_MIXENERGY`
 
-> **Specify the active energy range when doing Active mixing**
+> **指定进行活性混合（Active mixing）时的活性能量范围**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `00200 meaning 00.200`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `00200 表示 00.200`
+> * **取值选项**:
 >     * $abcde$
->     * corresponding to
+>     * 对应
 >     * $ab.cde$
-> * **Recommendation**: The standard deviation of the Gaussian distribution used to select the orbitals for mixing (centered on the Fermi level). Measured in Hartree. To find less-excited solutions, decrease this value
-
-SCF_MINFIND_RUNCORR
-
-### `SCF_MINFIND_RUNCORR`
-
-> **Run post-SCF correlated methods on multiple SCF solutions**
->
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * If this is set
->     * $>0$
->     * , then run correlation methods for all found SCF solutions.
-> * **Recommendation**: Post-HF correlation methods should function correctly with excited SCF solutions, but their convergence is often much more difficult owing to intruder states.
+> * **建议**:

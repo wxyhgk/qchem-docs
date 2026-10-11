@@ -1,148 +1,148 @@
 ---
-title: "4.9.5 Non-Hermitian SCF with complex basis functions"
+title: "4.9.5 使用复基函数的非厄米 SCF"
 ---
 
-## 4.9.5 Non-Hermitian SCF with complex basis functions
+## 4.9.5 使用复基函数的非厄米 SCF
 
 (July 4, 2026)
 
-Metastable electronic states can be characterized by a complex Siegert energy,
+亚稳态电子态可以用一个复的 Siegert 能量来表征，
 
 <a id="Ch4.E74"></a>
 $$
 E=E_{r}-i\Gamma/2, \tag{4.74}
 $$
 
-where the width, $\Gamma$, is proportional to the inverse lifetime of the state: $\Gamma=\hbar/\tau$. Complex coordinate methods aim to compute this complex energy as an eigenvalue of an effective non-Hermitian Hamiltonian. One such method is the method of complex basis functions (CBFs) where a basis of Gaussians with complex exponents is used in conjunction with a symmetric (not complex-conjugated) inner product to effictively produce a finite-basis representation of a non-Hermitian operators.[[931]](../bib_references/bib.md#bib970)
- In cases, such as temporary anions, where the decay channel is of 1-electron character, a mean-field theory can provide approximate Siegert energies for a many-electron system.
+其中宽度 $\Gamma$ 与该态寿命的倒数成正比：$\Gamma=\hbar/\tau$。复坐标方法（complex coordinate methods）旨在将该复能量作为有效非厄米哈密顿量的本征值来计算。其中一种方法是复基函数（complex basis functions, CBFs）方法，即使用具有复指数的高斯函数作为基组，并配合对称（而非复共轭）内积，从而有效地构造出非厄米算符的有限基组表示。[[931]](../bib_references/bib.md#bib970)
+ 在衰减通道具有单电子特征的情形下（例如临时阴离子），平均场理论可以为多电子体系提供近似的 Siegert 能量。
 
-The simplest such approximation is the static-exchange approximation. In this approximation the Siegert energies of an ($N+1$)-electron state are computed by diagonalizing a Fock operator computed from the density of an $N$-electron state.[[1457]](../bib_references/bib.md#bib1525)
- This approximation neglects orbital relaxation effects which can be included by a non-Hermitian self-consistent-field (NH-SCF) procedure.[[931]](../bib_references/bib.md#bib970)
- In practice the NH-SCF energy functional is the same as the Holomorphic Hartree-Fock energy functional (Eq. [4.70](sec_HoloHF.md#eq:HoloHFEnergy)), though it is used for a different purpose. Both static-exchange and NH-SCF theories using complex basis functions (CBFs) are available in **Q-Chem**. Specification of the complex basis set is described in Section [8.7](../ch08_basis/sect_zbas.md).
+最简单的此类近似是静态交换（static-exchange）近似。在该近似中，($N+1$) 电子态的 Siegert 能量是通过对角化由 $N$ 电子态密度所构建的 Fock 算符来计算的。[[1457]](../bib_references/bib.md#bib1525)
+ 该近似忽略了轨道弛豫效应，而轨道弛豫效应可以通过非厄米自洽场（non-Hermitian self-consistent-field, NH-SCF）程序来纳入。[[931]](../bib_references/bib.md#bib970)
+ 实际上，NH-SCF 能量泛函与全纯 Hartree-Fock（Holomorphic Hartree-Fock）能量泛函（式 [4.70](sec_HoloHF.md#eq:HoloHFEnergy)）相同，只是用途不同。使用复基函数（CBFs）的静态交换理论和 NH-SCF 理论在 **Q-Chem** 中均可用。复基组的指定方法在第 [8.7](../ch08_basis/sect_zbas.md) 节中描述。
 
 COMPLEX_EXPONENTS
 
 ### `COMPLEX_EXPONENTS`
 
-> **Enable a non-Hermitian calculation with CBFs.**
+> **启用使用 CBFs 的非厄米计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Perform a non-Hermitian calculation with CBFs
-> * **Recommendation**: Set to TRUE if a non-Hermitian calculation using CBFs is desired.
+>     * 执行使用 CBFs 的非厄米计算
+> * **建议**: 若希望进行使用 CBFs 的非厄米计算，则设为 TRUE。
 
 COMPLEX_SPIN_STATE
 
 ### `COMPLEX_SPIN_STATE`
 
-> **Spin state for non-Hermitian calculation**
+> **非厄米计算的自旋态**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * $2S+1$
->     * A state of spin
+>     * 一个自旋态
 >     * $S$
-> * **Recommendation**: None
+> * **建议**: 无
 
 COMPLEX_N_ELECTRON
 
 ### `COMPLEX_N_ELECTRON`
 
-> **Add electrons for non-Hermitian calculation.**
+> **为非厄米计算添加电子数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Perform the non-Hermitian calculation on an
+>     * 在
 >     * $N+n$
->     * electron system
-> * **Recommendation**: None
+>     * 电子体系上执行非厄米计算
+> * **建议**: 无
 
 COMPLEX_STATIC_EXCHANGE
 
 ### `COMPLEX_STATIC_EXCHANGE`
 
-> **Perform a CBF static-exchange calculation.**
+> **执行 CBF 静态交换计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Perform a static exchange calculation
+>     * 执行静态交换计算
 >     * FALSE
->     * Do not perform a static exchange calculation
-> * **Recommendation**: Set to TRUE if a static-exchange calculation is desired.
+>     * 不执行静态交换计算
+> * **建议**: 若希望进行静态交换计算，则设为 TRUE。
 
 COMPLEX_SCF
 
 ### `COMPLEX_SCF`
 
-> **Perform a non-Hermitian SCF calculation with CBFs**
+> **执行使用 CBFs 的非厄米 SCF 计算**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not perform an NH-SCF calculation
+>     * 不执行 NH-SCF 计算
 >     * 1
->     * Perform a restricted NH-SCF calculation
+>     * 执行限制性（restricted）NH-SCF 计算
 >     * 2
->     * Perform an unrestricted NH-SCF calculation
+>     * 执行非限制性（unrestricted）NH-SCF 计算
 >     * 3
->     * Perform a restricted, open-shell NH-SCF calculation
-> * **Recommendation**: None
+>     * 执行开壳层限制性（restricted, open-shell）NH-SCF 计算
+> * **建议**: 无
 
 COMPLEX_METSCF
 
 ### `COMPLEX_METSCF`
 
-> **Specify the NH-SCF solver**
+> **指定 NH-SCF 求解器**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 0
->     * Roothaan iterations
+>     * Roothaan 迭代
 >     * 1
 >     * DIIS
 >     * 3
 >     * ADIIS
 >     * 21
 >     * Newton-MINRES
-> * **Recommendation**: Use the default (DIIS).
+> * **建议**: 使用默认值（DIIS）。
 
 COMPLEX_SCF_GUESS
 
 ### `COMPLEX_SCF_GUESS`
 
-> **Specify the NH-SCF guess**
+> **指定 NH-SCF 初始猜测**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Use a guess from a static-exchange calculation
+>     * 使用来自静态交换计算的猜测
 >     * 1
->     * Read real-basis MO coefficients
+>     * 读取实基组的 MO 系数
 >     * 2
->     * Read real-basis density matrix
+>     * 读取实基组的密度矩阵
 >     * 1000
->     * Read guess from a previous calculation
-> * **Recommendation**: Use a guess from a static exchange calculation. Note that for temporary anions, this requires the specification of COMPLEX_TARGET .
+>     * 从先前的计算读取猜测
+> * **建议**: 使用来自静态交换计算的猜测。注意，对于临时阴离子，这需要指定 COMPLEX_TARGET。
 
 COMPLEX_TARGET
 
 ### `COMPLEX_TARGET`
 
-> **Specify the orbital index to be occupied for a temporary anion**
+> **指定临时阴离子中要被占据的轨道索引**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $n$
->     * Orbital index (starting at zero) for the additional electron
-> * **Recommendation**: $n$ should always be greater than $N_{\text{occ}}-1$ .
+>     * 附加电子的轨道索引（从零开始）
+> * **建议**: $n$ 应始终大于 $N_{\text{occ}}-1$。

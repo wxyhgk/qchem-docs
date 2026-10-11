@@ -1,9 +1,9 @@
 ---
-title: "8.8 Auxiliary Basis Sets for RI (Density Fitting)"
+title: "8.8 用于 RI（密度拟合）的辅助基组"
 ---
 
-# 8.8 Auxiliary Basis Sets for RI (Density Fitting)
+# 8.8 用于 RI（密度拟合）的辅助基组
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [8.8.1 Overview](Ch8.S8.SS1.md)
+- [8.8.1 概述](Ch8.S8.SS1.md)

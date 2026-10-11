@@ -1,313 +1,311 @@
 ---
-title: "6.9.2 MPR-BWs2 Job Control"
+title: "6.9.2 MPR-BWs2 任务控制"
 ---
 
-## 6.9.2 MPR-BWs2 Job Control
+## 6.9.2 MPR-BWs2 任务控制
 
 (July 4, 2026)
 
-MPR-BWs2 has been implemented as a specific partition of the RI-BW-s2 program.
-It is invoked by setting METHOD = RIBWS2 in the *$rem* section
-and writing METHOD = MPR-BWS2 in the *$bws2* section.
-Iterative and non-iterative parameters as well as additional variables to
-control the convergence behaviour of the iterative method are also defined
-in the *$bws2* section. See [6.8](topic_bws2.md) for variables unrelated to
-MPR-BWs2
+MPR-BWs2 已作为 RI-BW-s2 程序的一个特定分支实现。
+其调用方式为：在 *$rem* 段中设置 METHOD = RIBWS2，
+并在 *$bws2* 段中写入 METHOD = MPR-BWS2。
+迭代与非迭代参数，以及用于控制迭代方法收敛行为的附加变量，
+同样在 *$bws2* 段中定义。与 MPR-BWs2 无关的变量请参见 [6.8](topic_bws2.md)。
 
 ### `METHOD`
 
-> **Defines the correlation energy expression to be used. INPUT SECTION: $bws2**
+> **定义所使用的关联能表达式。输入段：$bws2**
 >
-> * **Type**: `STRING`
-> * **Default**: `BWS2`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `BWS2`
+> * **可选值**:
 >     * MPR-BWS2
-> * **Recommendation**: In order to activate MPR-BWs2, the method keyword has to be set to MPR-BWS2 or MPRBWS2
+> * **建议**: 若要启用 MPR-BWs2，需将 method 关键字设置为 MPR-BWS2 或 MPRBWS2
 
 ### `MPR_A0`
 
-> **Controls the value of the $A_{0}$ parameter. INPUT SECTION: $bws2**
+> **控制 $A_{0}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1000`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $A_{0}$
->     * .
-> * **Recommendation**: Since $A_{0}$ is equal to $\alpha$ in BW-s2 theory, its standard value is set to $\alpha=A_{0}=1$ and recreates BW-s2. If both MPR_A0 and ALPHA are defined in the input file, the last read takes priority.
+>     * 的取值。
+> * **建议**: 由于在 BW-s2 理论中 $A_{0}$ 等于 $\alpha$，其标准值设为 $\alpha=A_{0}=1$，此时可重现 BW-s2。如果输入文件中同时定义了 MPR_A0 和 ALPHA，则以最后读取到的为准。
 
 ### `MPR_A1`
 
-> **Controls the value of the $A_{1}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $A_{1}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $A_{1}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_A2`
 
-> **Controls the value of the $A_{2}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $A_{2}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $A_{2}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_A3`
 
-> **Controls the value of the $A_{3}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $A_{3}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $A_{3}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_A4`
 
-> **Controls the value of the $A_{4}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $A_{4}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $A_{4}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_B0`
 
-> **Controls the value of the $B_{0}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $B_{0}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $B_{0}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_B1`
 
-> **Controls the value of the $B_{1}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $B_{1}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $B_{1}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_B3`
 
-> **Controls the value of the $B_{3}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $B_{3}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $B_{3}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_B4`
 
-> **Controls the value of the $B_{4}$ parameter.. INPUT SECTION: $bws2**
+> **控制 $B_{4}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the value of
+>     * 即为
 >     * $B_{4}$
->     * .
-> * **Recommendation**: Large values lead to convergence issues.
+>     * 的取值。
+> * **建议**: 取值过大会导致收敛问题。
 
 ### `MPR_A0_NONITER`
 
-> **Controls the value of the $A_{0}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $A_{0}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $A_{0}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_A1_NONITER`
 
-> **Controls the value of the $A_{1}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $A_{1}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $A_{1}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_A2_NONITER`
 
-> **Controls the value of the $A_{2}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $A_{2}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $A_{2}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_A3_NONITER`
 
-> **Controls the value of the $A_{3}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $A_{3}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $A_{3}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_A4_NONITER`
 
-> **Controls the value of the $A_{4}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $A_{4}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $A_{4}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_B0_NONITER`
 
-> **Controls the value of the $B_{0}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $B_{0}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $B_{0}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_B1_NONITER`
 
-> **Controls the value of the $B_{1}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $B_{1}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $B_{1}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_B3_NONITER`
 
-> **Controls the value of the $B_{3}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $B_{3}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $B_{3}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `MPR_B4_NONITER`
 
-> **Controls the value of the $B_{4}$ parameter for non-iterative contributions. INPUT SECTION: $bws2**
+> **控制非迭代贡献中 $B_{4}$ 参数的取值。输入段：$bws2**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $n$
->     * where
+>     * 其中
 >     * $n/1000$
->     * is the non-iterative value of
+>     * 即为
 >     * $B_{4}$
->     * .
-> * **Recommendation**: Arbitrary values are possible.
+>     * 的非迭代取值。
+> * **建议**: 可取任意值。
 
 ### `PARAM_GRADIENT`
 
-> **Controls whether or not to compute the derivative of the energy with respect to parameters. INPUT SECTION: $bws2**
+> **控制是否计算能量对各参数的导数。输入段：$bws2**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * TRUE
->     * Computes the iterative and non-iterative parameter gradient.
+>     * 计算迭代与非迭代参数的梯度。
 >     * FALSE
->     * Does not compute the parameter gradient.
-> * **Recommendation**: If required, set to TRUE.
+>     * 不计算参数梯度。
+> * **建议**: 如有需要，设置为 TRUE。
 
-???+ example "Example 6.24: MPR-BWs2 calculation on formaldehyde with $A_{0}=1$ and $B_{0}=-1$ ."
+???+ example "示例 6.24：在甲醛上进行 $A_{0}=1$、$B_{0}=-1$ 的 MPR-BWs2 计算。"
     ```qchem
     $comment
         Standard MPR-BWs2 calculation
@@ -338,7 +336,7 @@ MPR-BWs2
     $end
     ```
 
-???+ example "Example 6.25: MPR-BWs2 calculation on formaldehyde with non-iterative contributions."
+???+ example "示例 6.25：包含非迭代贡献的甲醛 MPR-BWs2 计算。"
     ```qchem
     $comment
         MPR-BWs2 calculation with non-iterative contributions
@@ -369,7 +367,7 @@ MPR-BWs2
     $end
     ```
 
-???+ example "Example 6.26: MPR-BWs2 calculation on formaldehyde including the parameter gradient."
+???+ example "示例 6.26：包含参数梯度的甲醛 MPR-BWs2 计算。"
     ```qchem
     $comment
         MPR-BWs2 calculation with parameter gradient

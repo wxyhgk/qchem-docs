@@ -1,44 +1,43 @@
 ---
-title: "11.9.2 AIRBED Job Control"
+title: "11.9.2 AIRBED 作业控制"
 ---
 
-## 11.9.2 AIRBED Job Control
+## 11.9.2 AIRBED 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 AIRBED
 
 ### `AIRBED`
 
-> **Perform an AIRBED calculation.**
+> **执行 AIRBED 计算。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**：`BOOLEAN`
+> * **默认值**：`False`
+> * **可选值**：
 >     * True
->     * Perform an AIRBED calculation.
+>     * 执行 AIRBED 计算。
 >     * False
->     * Don’t perform an AIRBED calculation.
-> * **Recommendation**: Set the $rem variable DFT_D to EMPIRICAL_GRIMME.
+>     * 不执行 AIRBED 计算。
+> * **建议**：将 $rem 变量 DFT_D 设置为 EMPIRICAL_GRIMME。
 
 AIRBED_ALPHA
 
 ### `AIRBED_ALPHA`
 
-> **Sets the value of $\alpha$ .**
+> **设定 $\alpha$ 的数值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * $n$
->     * Corresponding to
+>     * 对应的
 >     * $\alpha$
 >     * =
 >     * $n/1000$
-> * **Recommendation**: 0 or -1200 for hBN surface
+> * **建议**：对于 hBN（六方氮化硼）表面，取 0 或 -1200。
 
-???+ example "Example 11.53: AIRBED geometry optimisation calculation for a CO ${}_{2}$ molecule between two
-benzene molecules."
+???+ example "示例 11.53：两个苯分子之间 CO ${}_{2}$ 分子的 AIRBED 几何优化计算。"
     ```qchem
     $molecule
        0 1

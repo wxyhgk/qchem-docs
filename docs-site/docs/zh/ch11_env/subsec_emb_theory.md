@@ -1,28 +1,17 @@
 ---
-title: "11.6.1 Introduction and Theory"
+title: "11.6.1 引言与理论"
 ---
 
-## 11.6.1 Introduction and Theory
+## 11.6.1 引言与理论
 
 (July 4, 2026)
 
-The formally exact density embedding method developed by Manby, Miller and
-coworkers[[878]](../bib_references/bib.md#bib913)
- affords a step further than electrostatic embedding
-in the description of chemical environment. This embedding scheme allows for the
-partition of a system into two interacting subsystems that are treated at two different
-levels of QM theories, *e.g.*, coupled cluster embedded in
-DFT. This type of embedding fully accounts for polarization as well as quantum
-mechanical exchange, as calculated from the super-molecular embedding density
-and the exchange correlation functional used. The goal of this embedding
-theory is to perform a higher-level QM calculation in an environment
-described by a lower-level QM theory.
+由 Manby、Miller 及其合作者发展的形式精确密度嵌入方法（formally exact density embedding method）[[878]](../bib_references/bib.md#bib913)
+ 在描述化学环境时比静电嵌入（electrostatic embedding）更进了一步。该嵌入方案允许将一个系统划分为两个相互作用的子系统，并分别用两种不同的量子力学（QM）理论层次进行处理，*e.g.*，将耦合簇（coupled cluster）嵌入密度泛函理论（Density Functional Theory, DFT）之中。这种类型的嵌入能够充分考虑极化效应以及量子力学交换作用，这些效应由超分子嵌入密度（super-molecular embedding density）和所使用的交换关联泛函计算得到。该嵌入理论的目标是：在由较低层次 QM 理论所描述的环境中，执行较高层次 QM 计算。
 
-## 11.6.1.1 Working Equations
+## 11.6.1.1 工作方程
 
-For a system whose total density can be represented as $\boldsymbol{\gamma}=\boldsymbol{\gamma}^{A}+\boldsymbol{\gamma}^{B}$, *i.e.*, the molecular
-orbitals on fragments $A$ and $B$ are orthogonal to each other, its total
-energy can be expressed as
+对于一个总密度可表示为 $\boldsymbol{\gamma}=\boldsymbol{\gamma}^{A}+\boldsymbol{\gamma}^{B}$ 的系统，*i.e.*，片段 $A$ 与 $B$ 上的分子轨道（MO）彼此正交，其总能量可表示为
 
 <a id="A3.S8.EGx111"></a>
 $$
@@ -30,27 +19,21 @@ $$
 &\displaystyle\qquad+\underbrace{J[\boldsymbol{\gamma}^{A},\boldsymbol{\gamma}^{B}]+E_{\text{xc}}[\boldsymbol{\gamma}^{A},\boldsymbol{\gamma}^{B}]}_{\text{Non-additive terms}}\end{aligned} \tag{11.99}
 $$
 
-where $\mathbf{h}$ is the core-Hamiltonian matrix, $J$ and $E_{\text{xc}}$
-are the Coulomb and XC energies (exact exchange $K$ will also be present
-if a hybrid functional is employed). In an embedding calculation where the
-electron density of $A$ (denoted as $\tilde{\gamma}^{A}$) is optimized at a high-level
-theory in the presence of $\gamma^{B}$ (which is obtained at a low-level theory and
-then fixed), the total energy can be expressed as
+其中 $\mathbf{h}$ 是核心哈密顿（core-Hamiltonian）矩阵，$J$ 和 $E_{\text{xc}}$ 分别是库仑（Coulomb）能与交换关联（XC）能（若采用杂化泛函，精确交换 $K$ 也会存在）。在一次嵌入计算中，$A$ 的电子密度（记为 $\tilde{\gamma}^{A}$）在 $\gamma^{B}$（由低层次理论获得并随后固定不动）存在的条件下，用高层次理论进行优化，此时总能量可表示为
 
 <a id="eq:Etot_dft_in_dft"></a>
 $$
 E_{\text{tot}}[\tilde{\gamma}^{A},\gamma^{B}]=E^{\text{high}}[\tilde{\gamma}^{A}]+E^{\text{low}}[\tilde{\gamma}^{A}+\gamma^{B}]-E^{\text{low}}[\tilde{\gamma}^{A}]. \tag{11.100}
 $$
 
-Differentiating Eq. ([11.100](#eq:Etot_dft_in_dft)) with respect to $\tilde{\gamma}^{A}$ gives the
-Fock matrix for the embedding calculation:
+对式 ([11.100](#eq:Etot_dft_in_dft)) 关于 $\tilde{\gamma}^{A}$ 求变分，即得到嵌入计算的 Fock 矩阵：
 
 <a id="Ch11.E101"></a>
 $$
 \mathbf{f}^{\text{A-in-B}}=\frac{\delta}{\delta\tilde{\gamma}^{A}}E_{\text{tot}}[\tilde{\gamma}^{A},\gamma^{B}]=\mathbf{F}^{\text{high}}[\tilde{\gamma}^{A}]+\mathbf{v}_{\text{emb}}[\tilde{\gamma}^{A},\gamma^{B}], \tag{11.101}
 $$
 
-where the embedding potential
+其中嵌入势（embedding potential）
 
 <a id="A3.S8.EGx112"></a>
 $$
@@ -59,200 +42,141 @@ $$
 &\displaystyle=(\mathbf{J}[\boldsymbol{\gamma}^{A}+\boldsymbol{\gamma}^{B}]-\mathbf{J}[\boldsymbol{\gamma}^{A}])+(\mathbf{v}^{\text{low}}_{\text{xc}}[\boldsymbol{\gamma}^{A}+\boldsymbol{\gamma}^{B}]-\mathbf{v}^{\text{low}}_{\text{xc}}[\boldsymbol{\gamma}^{A}])+\mu\mathbf{P}^{B},\end{aligned} \tag{11.102}
 $$
 
-where $\mathbf{P}^{B}=\mathbf{S}\boldsymbol{\gamma}^{B}\mathbf{S}$ is the
-projector formed by $B$’s orbitals and $\mu$ is a large enough constant
-(*e.g.* 10${}^{6}$ a.u.) that effectively elevates the energies of $B$’s orbitals
-and thereby enforces the orthogonality between MOs
-on $A$ and $B$. In the **Q-Chem** implementation (with GEN_SCFMAN_EMBED
-= TRUE), an alternative approach is employed, where one diagonalizes a
-modified Fock matrix from which the variational degrees of freedom spanned by $B$’s orbitals are
-projected out:
+其中 $\mathbf{P}^{B}=\mathbf{S}\boldsymbol{\gamma}^{B}\mathbf{S}$ 是由 $B$ 的轨道构成的投影算符，$\mu$ 是一个足够大的常数（*e.g.* 10${}^{6}$ a.u.），它有效地抬升 $B$ 轨道的能量，从而强制 $A$ 与 $B$ 上的 MO 之间保持正交。在 **Q-Chem** 的实现中（设置 GEN_SCFMAN_EMBED = TRUE），采用了另一种途径：对一个修正的 Fock 矩阵进行对角化，并从其中投影掉由 $B$ 的轨道所垂张的变分自由度：
 
 <a id="Ch11.E103"></a>
 $$
 \tilde{\mathbf{f}}^{\text{A-in-B}}=(\mathbf{I}-\mathbf{S}\boldsymbol{\gamma}^{B})\mathbf{f}^{\text{A-in-B}}(\mathbf{I}-\boldsymbol{\gamma}^{B}\mathbf{S}), \tag{11.103}
 $$
 
-where $\mathbf{S}$ is the AO overlap matrix.
+其中 $\mathbf{S}$ 是原子轨道（AO）重叠矩阵。
 
-One disadvantage of using the energy expression given by Eq. ([11.100](#eq:Etot_dft_in_dft)) is that
-the embedding potential [Eq. ([11.102](#eq:v_emb))] depends on $\tilde{\gamma}^{A}$, which needs to
-be updated in every iteration of the embedding calculation. Thus this scheme affords no savings
-in computational cost for DFT-in-DFT calculations. To address this limitation, a linearized
-approximation was suggested,[[792]](../bib_references/bib.md#bib827)
- which is based on the following expansion
-(to the first order of $\tilde{\gamma}^{A}-\gamma^{A}$):
+使用式 ([11.100](#eq:Etot_dft_in_dft)) 给出的能量表达式有一个缺点：嵌入势[式 ([11.102](#eq:v_emb))]依赖于 $\tilde{\gamma}^{A}$，而后者在嵌入计算的每一次迭代中都需要更新。因此，对于 DFT-in-DFT 计算，该方案并不能节省计算成本。为解决这一局限，人们提出了一种线性化近似[[792]](../bib_references/bib.md#bib827)，
+ 其基于如下展开（对 $\tilde{\gamma}^{A}-\gamma^{A}$ 取至一阶）：
 
 <a id="eq:linear_expansion"></a>
 $$
 E^{\text{low}}[\tilde{\gamma}^{A}+\gamma^{B}]-E^{\text{low}}[\tilde{\gamma}^{A}]\approx E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]+\mathrm{Tr}\left((\tilde{\gamma}^{A}-\gamma^{A})\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]\right), \tag{11.104}
 $$
 
-where
+其中
 
 <a id="Ch11.E105"></a>
 $$
 \mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]=\frac{\delta}{\delta\gamma^{A}}\left(E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]\right)=\mathbf{F}^{\text{low}}[\gamma^{A}+\gamma^{B}]-\mathbf{F}[\gamma^{A}] \tag{11.105}
 $$
 
-Based on this linearized approximation, the total energy of the entire system is approximately given by
+基于此线性化近似，整个系统的总能量可近似表示为
 
 <a id="eq:Etot_dft_in_dft_approx"></a>
 $$
 E_{\text{tot}}[\tilde{\gamma}^{A};\gamma^{A},\gamma^{B}]=E^{\text{high}}[\tilde{\gamma}^{A}]+E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]+\mathrm{Tr}\left((\tilde{\gamma}^{A}-\gamma^{A})\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]\right), \tag{11.106}
 $$
 
-and the Fock matrix for embedding calculation:
+而嵌入计算的 Fock 矩阵为：
 
 <a id="Ch11.E107"></a>
 $$
 \mathbf{f}^{\text{A-in-B}}=\frac{\delta}{\delta\tilde{\gamma}^{A}}E_{\text{tot}}[\tilde{\gamma}^{A};\gamma^{A},\gamma^{B}]=\mathbf{F}^{\text{high}}[\tilde{\gamma}^{A}]+\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}] \tag{11.107}
 $$
 
-where the embedding potential stays unchanged during the embedding calculation.
-In **Q-Chem** 5.4.1 and versions after, this linearized approximation is used by default in projection-based
-embedding calculations.
+其中嵌入势在整个嵌入计算过程中保持不变。在 **Q-Chem** 5.4.1 及其后续版本中，基于投影的嵌入计算默认使用这一线性化近似。
 
-For wave function-in-DFT calculations, one can absorb the embedding potential
-$\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]$ into the Hamiltonian that is used
-for the correlated wave function calculation, converting Eq. ([11.106](#eq:Etot_dft_in_dft_approx)) into
+对于波函数-in-DFT（wave function-in-DFT）计算，可以将嵌入势 $\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]$ 吸收到用于关联波函数计算的哈密顿量中，从而将式 ([11.106](#eq:Etot_dft_in_dft_approx)) 改写为
 
 <a id="eq:Etot_wft_in_dft_approx"></a>
 $$
 E[\Psi^{A};\gamma^{A},\gamma^{B}]=\langle\Psi^{A}|\hat{H}^{\text{A-in-B}}|\Psi^{A}\rangle+E^{\text{low}}[\gamma^{A}+\gamma^{B}]-E^{\text{low}}[\gamma^{A}]-\mathrm{Tr}\left(\gamma^{A}\mathbf{v}_{\text{emb}}[\gamma^{A},\gamma^{B}]\right)\;. \tag{11.108}
 $$
 
-## 11.6.1.2 Partition of the Occupied Space
+## 11.6.1.2 占据空间的划分
 
-An embedding calculation usually starts from an SCF calculation of the full
-system at the lower level of theory, which yields canonical MOs. Therefore, it
-is necessary to partition the occupied space and assign orbitals to fragments
-$A$ and $B$ (without losing generality, assuming $A$ is the embedded fragment).
-In the original work by Manby *et al.*,[[878]](../bib_references/bib.md#bib913)
- this was achieved by
+嵌入计算通常从整个系统在较低理论层次上的自洽场（SCF）计算开始，得到正则分子轨道（canonical MOs）。因此，有必要对占据空间进行划分，并将轨道分配给片段 $A$ 与 $B$（不失一般性地，假设 $A$ 为被嵌入的片段）。在 Manby *et al.* 的原始工作中[[878]](../bib_references/bib.md#bib913)，
+ 这一划分是通过以下步骤实现的：
 
 - •
 
-Performing a Pipek-Mezey localization[[1093]](../bib_references/bib.md#bib1138)
- of the canonical
-occupied orbitals;
+对正则占据轨道执行 Pipek-Mezey 定域化[[1093]](../bib_references/bib.md#bib1138)
+；
 - •
 
-Assigning a PM-localized orbital to the “active” fragment $A$ if its
-Mulliken population on $A$ is greater than 0.4.
+若某个 PM 定域轨道在 $A$ 上的 Mulliken 布居数大于 0.4，则将其分配给“活性”片段 $A$。
 
-This approach has been adopted as the default occupied space partition method
-in **Q-Chem**.
+该方法已被 **Q-Chem** 采用为默认的占据空间划分方法。
 
-Recently a parameter-free and more robust partition scheme was proposed by
-Claudino and Mayhall, which is known as the Subsystem Projected AO
-Decomposition (SPADE) procedure.[[253]](../bib_references/bib.md#bib254)
+近来，Claudino 与 Mayhall 提出了一种无参数且更稳健的划分方案，称为子系统投影 AO 分解（Subsystem Projected AO Decomposition, SPADE）程序[[253]](../bib_references/bib.md#bib254)。
 
-In this approach, one first transforms the occupied orbitals into the symmetrically
-orthogonalized AO basis:
+在该方法中，首先将占据轨道变换到对称正交化的 AO 基下：
 
 <a id="Ch11.E109"></a>
 $$
 \bar{\mathbf{C}}_{\text{occ}}=\mathbf{S}^{1/2}\mathbf{C}_{\text{occ}} \tag{11.109}
 $$
 
-and then denotes the rows in $\bar{\mathbf{C}}_{\text{occ}}$ that correspond to
-fragment $A$ as $\bar{\mathbf{C}}_{\text{occ}}^{A}$. A singular value
-decomposition (SVD) is then applied to $\bar{\mathbf{C}}_{\text{occ}}^{A}$:
-$\bar{\mathbf{C}}_{\text{occ}}^{A}=\mathbf{U}^{A}\Sigma^{A}(\mathbf{V}^{A})^{T}$,
-and the SPADE orbitals are then obtained by rotating the original
-$\mathbf{C}_{\text{occ}}$:
+然后将 $\bar{\mathbf{C}}_{\text{occ}}$ 中对应于片段 $A$ 的行记为 $\bar{\mathbf{C}}_{\text{occ}}^{A}$。接着对 $\bar{\mathbf{C}}_{\text{occ}}^{A}$ 施加奇异值分解（SVD）：$\bar{\mathbf{C}}_{\text{occ}}^{A}=\mathbf{U}^{A}\Sigma^{A}(\mathbf{V}^{A})^{T}$，随后通过旋转原来的 $\mathbf{C}_{\text{occ}}$ 得到 SPADE 轨道：
 
 <a id="Ch11.E110"></a>
 $$
 \mathbf{C}_{\text{occ}}^{\text{SPADE}}=\mathbf{C}_{\text{occ}}\mathbf{V}^{A}. \tag{11.110}
 $$
 
-The largest gap in the singular value spectrum determines the most appropriate
-occupied orbital partition under the given fragmentation.
+奇异值谱中的最大间隙决定了在给定 fragmentation 下最合适的占据轨道划分。
 
-## 11.6.1.3 Truncation of the Virtual Space Using Concentric Localization
+## 11.6.1.3 使用同心定域化截断虚空间
 
-A wave function-in-DFT calculation requires not only the occupied orbitals on the
-“active” fragment but also the virtual orbitals. Unlike the occupied orbitals,
-the virtual orbitals obtained from a projection-based embedding calculation
-are not assigned to fragments but stay delocalized. If the full virtual space is
-used in the post-SCF calculation, the savings on computational cost will be
-rather limited since only the number of occupied orbitals is reduced. Therefore,
-it is desirable to further truncate the virtual space so that one can significantly
-reduce the computational cost of wave function-in-DFT calculations.
+波函数-in-DFT 计算不仅需要“活性”片段上的占据轨道，还需要虚轨道。与占据轨道不同，基于投影的嵌入计算所得到的虚轨道并不分配给各片段，而是保持离域状态。若在 post-SCF 计算中使用完整的虚空间，那么计算成本的节省将相当有限，因为被减少的只是占据轨道的数目。因此，进一步截断虚空间是可取的，这样才能显著降低波函数-in-DFT 计算的成本。
 
-Claudino and Mayhall recently proposed a simple and efficient approach to
-truncate the virtual space based on concentric localization (CL),[[254]](../bib_references/bib.md#bib255)
+Claudino 与 Mayhall 近来提出了一种简单而高效的方法，基于同心定域化（concentric localization, CL）来截断虚空间[[254]](../bib_references/bib.md#bib255)，
 
-which shares the same spirit as the SPADE partition scheme for occupied space. As
-the first step, the original set of delocalized virtual orbitals ($\mathbf{C}_{\text{vir}}$)
-represented in the working basis (WB) are projected onto the embedded fragment
-$A$ in a user-specified projection basis (PB):
+其核心思想与占据空间的 SPADE 划分方案一致。第一步，将工作基组（working basis, WB）下表示的原始离域虚轨道集合（$\mathbf{C}_{\text{vir}}$）在用户指定的投影基组（projection basis, PB）下投影到被嵌入片段 $A$ 上：
 
 <a id="Ch11.E111"></a>
 $$
 {}^{A}\mathbf{C}_{\text{vir}}^{\prime}=(\mathbf{S}_{\text{PB},A}^{-1})(^{A}\mathbf{S}_{\text{PB,WB}})\mathbf{C}_{\text{vir}} \tag{11.111}
 $$
 
-where the superscript “$A$” indicates that only the rows corresponding to
-fragment $A$’s basis functions are included and $\mathbf{S}_{\text{PB},A}$
-denotes the overlap matrix for PB functions on fragment $A$ only. One can
-choose PB to be the same as WB or even a smaller basis set. A particular set of virtual
-orbitals denoted as $\mathbf{C}_{0}$ can then be selected by performing an SVD
-on the overlap between ${}^{A}\mathbf{C}_{\text{vir}}^{\prime}$ and $\mathbf{C}_{\text{vir}}$:
+其中上标“$A$”表示仅包含对应于片段 $A$ 基函数的行，而 $\mathbf{S}_{\text{PB},A}$ 表示仅含片段 $A$ 上 PB 函数的重叠矩阵。可以选择 PB 与 WB 相同，甚至选用更小的基组（Basis Set）。随后，通过对 ${}^{A}\mathbf{C}_{\text{vir}}^{\prime}$ 与 $\mathbf{C}_{\text{vir}}$ 之间的重叠矩阵执行 SVD，可选出一组记为 $\mathbf{C}_{0}$ 的特定虚轨道：
 
 <a id="eq:cl_step1"></a>
 $$
 (^{A}\mathbf{C}_{\text{vir}}^{\prime})^{T}(^{A}\mathbf{S}_{\text{PB,WB}})\mathbf{C}_{\text{vir}}=\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{T} \tag{11.112}
 $$
 
-with
+其中
 
 <a id="Ch11.E113"></a>
 $$
 \displaystyle\mathbf{V} \tag{11.113a}
 $$
 
-By construction, $\mathbf{C}_{0}$ should consist of the virtual valence
-shell of the WB. In order to achieve higher accuracy for the embedded
-correlated method, one can select more virtual orbitals from
-$\mathbf{C}_{\text{null},0}$ in a stepwise fashion. A recommended way[[254]](../bib_references/bib.md#bib255)
+按构造方式，$\mathbf{C}_{0}$ 应当由 WB 的虚价层（virtual valence shell）组成。为了在嵌入的关联方法中获得更高精度，可以从 $\mathbf{C}_{\text{null},0}$ 中逐步选取更多虚轨道。一种推荐的做法[[254]](../bib_references/bib.md#bib255)
 
-is to singular value decompose the matrix
-$\mathbf{C}^{T}\mathbf{F}\mathbf{C}_{\text{null},0}$, *i.e.*, the coupling
-between $\mathbf{C}_{0}$ and $\mathbf{C}_{\text{null},0}$ through the Fock operator
+是对矩阵 $\mathbf{C}^{T}\mathbf{F}\mathbf{C}_{\text{null},0}$ 进行奇异值分解，*i.e.*，即 $\mathbf{C}_{0}$ 与 $\mathbf{C}_{\text{null},0}$ 之间通过 Fock 算符的耦合：
 
 <a id="eq:cl_step2"></a>
 $$
 \mathbf{C}_{0}^{T}\mathbf{F}\mathbf{C}_{\text{null},0}=\mathbf{U}_{0}\boldsymbol{\Sigma}_{0}\mathbf{V}_{0}^{T} \tag{11.114}
 $$
 
-where
+其中
 
 <a id="Ch11.E115"></a>
 $$
 \displaystyle\mathbf{V}_{0} \tag{11.115a}
 $$
 
-As the size of $\mathbf{C}_{1}$ is the same as $\mathbf{C}_{0}$, going through
-the procedure given by Eq. ([11.114](#eq:cl_step2)) doubles the number of active
-virtual orbitals. This procedure can be carried on iteratively, rendering the
-accuracy of this method tunable:
+由于 $\mathbf{C}_{1}$ 的规模与 $\mathbf{C}_{0}$ 相同，经过式 ([11.114](#eq:cl_step2)) 给出的流程后，活性虚轨道的数目翻了一倍。该流程可以迭代进行，从而使本方法的精度可调：
 
 <a id="eq:cl_iter"></a>
 $$
 \mathbf{C}_{n}^{\top}\mathbf{F}\mathbf{C}_{\text{null},n}=\mathbf{U}_{n}\boldsymbol{\Sigma}_{n}\mathbf{V}_{n}^{T} \tag{11.116}
 $$
 
-where
+其中
 
 <a id="Ch11.E117"></a>
 $$
 \displaystyle\mathbf{V}_{n} \tag{11.117a}
 $$
 
-The virtual orbitals that span the null space, $\mathbf{C}_{\text{null},n+1}$, will
-remain inactive in the post-SCF calculations. In practice, one is often able to
-obtain sub-kcal/mol accuracy by only including $\mathbf{C}_{0}$ and $\mathbf{C}_{1}$,
-which is known as the “double-$\zeta$” CL shell model.
+垂张零空间的虚轨道 $\mathbf{C}_{\text{null},n+1}$ 在 post-SCF 计算中将保持非活性。实践中，通常只需包含 $\mathbf{C}_{0}$ 与 $\mathbf{C}_{1}$ 即可达到亚 kcal/mol 量级的精度，这被称为“双-$\zeta$”（double-$\zeta$）CL 壳层模型。

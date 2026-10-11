@@ -1,48 +1,23 @@
 ---
-title: "8.5.1 Overview"
+title: "8.5.1 概述"
 ---
 
-## 8.5.1 Overview
+## 8.5.1 概述
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-In addition to defining a custom basis set, it is also possible to specify
-different standard basis sets for different atoms. For example, in a large
-alkene molecule the hydrogen atoms could be modeled by the STO-3G basis, while
-the carbon atoms have the larger 6-31G(d) basis. This can be specified within
-the *$basis* block using the more familiar basis set labels.
+除了定义自定义基组（Basis Set）之外，还可以为不同的原子指定不同的标准基组。例如，在一个大型烯烃分子中，氢原子可以用 STO-3G 基组来描述，而碳原子则使用更大的 6-31G(d) 基组。这可以在 *$basis* 块中使用更为常见的基组标签来指定。
 
-**Note: 
+**注意：
 
-(1) It is not possible to augment a standard basis set in this way; the whole
-basis needs to be inserted as for a user-defined basis (angular
-momentum, exponents, contraction coefficients) and additional functions
-added. Standard basis set exponents and coefficients can be easily
-obtained by setting the PRINT_GENERAL_BASIS *$rem* variable to TRUE.
-(2) The PURECART flag must be set for *all* general basis
-input containing $d$ angular momentum or higher functions, regardless of
-whether standard basis sets are entered in this non-standard manner.
-**
+(1) 无法以这种方式对标准基组进行增广（augmentation）；需要像用户自定义基组那样插入整个基组（角动量、指数、收缩系数），然后再添加额外的函数。通过将 *$rem* 变量 PRINT_GENERAL_BASIS 设置为 TRUE，可以轻松获取标准基组的指数和系数。
+(2) 对于所有包含 $d$ 角动量或更高角动量函数的 general basis（通用基组）输入，都必须设置 PURECART 标志，无论是否以这种非标准方式输入标准基组。**
 
-The user can also specify different basis sets for atoms of the same type, but
-in different parts of the molecule. This allows a larger basis set to be used
-for the active region of a system, and a smaller basis set to be used in the
-less important regions. To enable this the BASIS keyword must be set
-to MIXED and a *$basis* section included in the input deck that gives a
-complete specification of the basis sets to be used. The format is exactly the
-same as for the user-defined basis, except that the atom number (as ordered in
-the *$molecule* section) must be specified in the field after the atomic
-symbol. A basis set must be specified for every atom in the input, even if the
-same basis set is to be used for all atoms of a particular element. Custom
-basis sets can be entered, and the shorthand labeling of basis sets is also supported.
+用户还可以为分子中不同部分、同一类型的原子指定不同的基组。这样就可以在体系的活性区域使用较大的基组，而在次要区域使用较小的基组。要启用此功能，必须将 BASIS 关键字设置为 MIXED，并在输入文件中包含一个 *$basis* 节，给出所用基组的完整说明。其格式与用户自定义基组完全相同，只不过必须在原子符号后面的字段中指定原子编号（按 *$molecule* 节中的顺序）。必须为输入中的每一个原子都指定基组，即使某种元素的所有原子都使用相同的基组也是如此。也可以输入自定义基组，同时支持基组的简写标签。
 
-The use of different basis sets for a particular element means the global
-potential energy surface is no longer unique. The user should exercise caution
-when using this feature of mixed basis sets, especially during geometry
-optimizations and transition state searches.
+对某一元素使用不同的基组意味着全局势能面（Potential Energy Surface）不再是唯一的。用户在使用混合基组这一功能时应格外谨慎，尤其是在几何优化和过渡态搜索过程中。
 
-???+ example "Example 8.2: Example of adding a user defined non-standard basis set. The user is able to
-specify different standard basis sets for different atoms."
+???+ example "示例 8.2: 添加用户自定义非标准基组的示例。用户可以为不同的原子指定不同的标准基组。"
     ```qchem
     $molecule
        0  1
@@ -71,14 +46,7 @@ specify different standard basis sets for different atoms."
     $end
     ```
 
-???+ example "Example 8.3: Example of using a mixed basis set for methanol. The user is able to specify
-different standard basis sets for some atoms and supply user-defined exponents
-and contraction coefficients for others. This might be particularly useful in
-cases where the user has constructed exponents and contraction coefficients for
-atoms not defined in a standard basis set so that only the non-defined atoms
-need have the exponents and contraction coefficients entered. Note that a
-basis set has to be specified for every atom in the molecule, even if the same
-basis is to be used on an atom type."
+???+ example "示例 8.3: 在甲醇中使用混合基组的示例。用户可以为部分原子指定不同的标准基组，并为其余原子提供用户自定义的指数和收缩系数。在某些情况下这可能特别有用：例如用户已针对标准基组中未定义的原子构造了指数和收缩系数，那么只需为这些未定义的原子输入指数和收缩系数即可。注意，必须为分子中的每一个原子都指定基组，即使某类原子使用相同的基组也是如此。"
     ```qchem
     $molecule
       0  1

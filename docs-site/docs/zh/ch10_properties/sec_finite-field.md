@@ -1,61 +1,32 @@
 ---
-title: "10.13.2 Numerical Calculation of Static Polarizabilities"
+title: "10.13.2 静态极化率的数值计算"
 ---
 
-## 10.13.2 Numerical Calculation of Static Polarizabilities
+## 10.13.2 静态极化率的数值计算
 
 (July 4, 2026)
 
-Where analytic gradients are not available, static polarizabilities (only) can
-be computed via finite-difference in the applied field, which is known as the
-*finite field* (FF) approach. Beginning with **Q-Chem** 5.1, a
-sophisticated “Romberg” approach to FF differentiation is available, which
-includes procedures for assessing the stability of the results with respect to
-the finite-difference step size. The Romberg approach is described in
-Section [10.13.3](sect_Romberg.md). This section describes **Q-Chem**’s older approach
-to FF calculations based on straightforward application of small electric
-fields along the appropriate Cartesian directions.
+在无法使用解析梯度的情况下，可以（仅）通过对外加场的有限差分来计算静态极化率，这种方法称为*有限场*（Finite Field, FF）方法。从 **Q-Chem** 5.1 版本开始，提供了一种精巧的 FF 微分“Romberg”方法，其中包括评估结果相对于有限差分步长稳定性的流程。Romberg 方法在第 [10.13.3](sect_Romberg.md) 节中描述。本节介绍的是 **Q-Chem** 较早的 FF 计算方法，其基本原理是沿相应的笛卡尔方向施加小电场并进行直接应用。
 
-Dipole moments can be calculated numerically as the first derivative of the
-energy with respect to $\vec{F}$ by setting JOBTYPE = DIPOLE and
-IDERIV = 0. If IDERIV is not specified explicitly, the dipole
-moment will be calculated analytically, which for post-Hartree–Fock levels of
-theory invokes a gradient calculation in order to utilize the relaxed wave function.
+偶极矩可以通过设置 JOBTYPE = DIPOLE 和 IDERIV = 0，数值计算能量对 $\vec{F}$ 的一阶导数来获得。如果未显式指定 IDERIV，则偶极矩将以解析方式计算，而对于后 Hartree–Fock（post-Hartree–Fock）理论级别，这会调用梯度计算以利用弛豫后的波函数。
 
-Similarly, set JOBTYPE = POLARIZABILITY for numerical
-evaluation of the static polarizability tensor
-$\mathord{\buildrel{\lower 3.0pt\hbox{$\scriptscriptstyle\leftrightarrow$}}\over{\alpha}}$. This is performed by either first-order finite difference, taking
-first-order field derivatives of analytic dipole moments, or by second-order
-finite difference of the energy. The latter is useful (indeed, required) for
-methods where analytic gradients are not available, such as CCSD(T) for
-example. Note, however, that the electron cloud is formally unbound in the
-presence of static electric fields and therefore a bound solution is a
-consequence of using a finite basis set. (With analytic derivative techniques
-the perturbing field is infinitesimal so this is not an issue.) This fact,
-along with the overall sensitivity of numerical derivatives to the
-finite-difference step size, means that care must be taken in choosing the
-strength of the applied finite field.
+类似地，设置 JOBTYPE = POLARIZABILITY 可对静态极化率张量
+$\mathord{\buildrel{\lower 3.0pt\hbox{$\scriptscriptstyle\leftrightarrow$}}\over{\alpha}}$ 进行数值求解。该计算可通过两种方式完成：一阶有限差分（即对解析偶极矩取一阶场导数），或对能量进行二阶有限差分。后者对于那些没有解析梯度的方法（例如 CCSD(T)）而言既是有用的，也是必需的。但请注意，在静态电场存在的情况下，电子云在形式上是不受束缚的，因此能够获得束缚解是使用有限基组的结果。（而在解析导数技术中，微扰场是无穷小的，因此不存在这一问题。）这一事实，加上数值导数对有限差分步长的整体敏感性，意味着在选择所施加的有限场强度时必须谨慎。
 
-To control the order for numerical differentiation with respect to the applied
-electric field, use IDERIV in the same manner as for geometric
-derivatives, *i.e.*, for polarizabilties use IDERIV = 0 for second-order
-finite-difference of the energy and IDERIV = 1 for first-order finite
-difference of gradients. In addition, for numerical polarizabilities at the
-Hartree-Fock or DFT level set RESPONSE_POLAR = $-1$ in order to disable
-the analytic polarizability code.
+要控制对外加电场的数值微分阶数，可以像处理几何导数一样使用 IDERIV，*即*（i.e.），对于极化率，使用 IDERIV = 0 表示对能量进行二阶有限差分，使用 IDERIV = 1 表示对梯度进行一阶有限差分。此外，对于在 Hartree-Fock 或密度泛函理论（Density Functional Theory, DFT）级别的数值极化率计算，请设置 RESPONSE_POLAR = $-1$ 以禁用解析极化率代码。
 
 RESPONSE_POLAR
 
 ### `RESPONSE_POLAR`
 
-> **Control the use of analytic or numerical polarizabilities.**
+> **控制使用解析还是数值极化率。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 or`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0 or`
+> * **选项**:
 >     * 0
->     * Perform an analytic polarizability calculation.
+>     * 执行解析极化率计算。
 >     * $-$
 >     * 1
->     * Perform a numeric polarizability calculation even when analytic 2nd derivatives are available.
-> * **Recommendation**: None
+>     * 即使在可用解析二阶导数的情况下，也执行数值极化率计算。
+> * **建议**: 无

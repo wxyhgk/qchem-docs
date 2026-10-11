@@ -1,23 +1,14 @@
 ---
-title: "5.10.3 Localized Fermi-Amaldi (LFA) Schemes"
+title: "5.10.3 局域 Fermi-Amaldi (LFA) 方案"
 ---
 
-## 5.10.3 Localized Fermi-Amaldi (LFA) Schemes
+## 5.10.3 局域 Fermi-Amaldi (LFA) 方案
 
 (July 4, 2026)
 
-Another alternative, proposed by Pan, Fang and Chai,[[1037]](../bib_references/bib.md#bib226)
- is to
-use a *localized* version of Fermi-Amaldi exchange-correlation functional.
-The resulting exchange density functional, whose functional derivative has the
-correct $-1/r$ asymptotic behavior, can be directly added to any semi-local
-density functional. Three variants of this method were proposed in
-Ref. [[1037]](../bib_references/bib.md#bib226)
-. The simplest of these, the strictly-localized
-Fermi-Amaldi (LFAs) scheme, is implemented in **Q-Chem**, for molecules
-consisting of atoms with $Z\leq 55$.
+另一种由 Pan、Fang 和 Chai 提出的替代方案[[1037]](../bib_references/bib.md#bib226)，是使用 Fermi-Amaldi 交换关联泛函的*局域*版本。由此得到的交换密度泛函（其泛函导数具有正确的 $-1/r$ 渐近行为）可以直接添加到任何半局域密度泛函之上。文献 [[1037]](../bib_references/bib.md#bib226) 提出了该方法的三种变体。其中最简单的一种——严格局域 Fermi-Amaldi（LFAs）方案——已在 **Q-Chem** 中实现，适用于由 $Z\leq 55$ 的原子组成的分子。
 
-???+ example "Example 5.24: LFAs-PBE single-point TD-DFT calculation with water molecule"
+???+ example "示例 5.24: 使用 LFAs-PBE 对水分子进行单点 TD-DFT 计算"
     ```qchem
     $comment
        Use LFAs-PBE potential for ground-state calculations, followed by

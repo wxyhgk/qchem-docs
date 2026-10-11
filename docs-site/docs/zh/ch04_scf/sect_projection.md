@@ -1,92 +1,68 @@
 ---
-title: "4.4.5 Basis Set Projection"
+title: "4.4.5 基组投影"
 ---
 
-## 4.4.5 Basis Set Projection
+## 4.4.5 基组投影
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-**Q-Chem** also includes a novel basis set projection method developed by Dr Jing
-Kong of **Q-Chem** Inc. It permits a calculation in a large basis set to
-bootstrap itself up *via* a calculation in a small basis set that is
-automatically spawned when the user requests this option. When basis set
-projection is requested (by providing a valid small basis for BASIS2),
-the program executes the following steps:
+**Q-Chem** 还包含一种由 **Q-Chem** 公司的 Jing Kong 博士开发的全新基组投影方法。它使得在一个大基组中进行的计算能够借助一个小基组中的计算来自举（bootstrap）收敛——当用户请求此选项时，该小基组计算会被自动派生执行。当请求基组投影时（通过为 BASIS2 提供一个有效的小基组），程序执行以下步骤：
 
 - •
 
-A simple DFT calculation is performed in the small basis,
-BASIS2, yielding a converged density matrix in this basis.
+首先在小基组 BASIS2 中执行一个简单的密度泛函理论（Density Functional Theory, DFT）计算，得到该基组中收敛的密度矩阵。
 - •
 
-The large basis set SCF calculation (with different values of
-EXCHANGE and CORRELATION set by the input) begins by
-constructing the DFT Fock operator in the large basis but with the
-density matrix obtained from the small basis set.
+大基组的自洽场（SCF）计算（由输入设置不同的 EXCHANGE 和 CORRELATION 值）从在大基组中构建 DFT Fock 算符开始，但使用从小基组获得的密度矩阵。
 - •
 
-By diagonalizing this matrix, an accurate initial guess for the density
-matrix in the large basis is obtained, and the target SCF calculation
-commences.
+通过对该矩阵进行对角化，得到大基组中密度矩阵的精确初始猜测，随后开始目标 SCF 计算。
 
-Two different methods of projection are available and can be set using the
-BASISPROJTYPE *$rem*. The OVPROJECTION option expands the MOs
-from the BASIS2 calculation in the larger basis, while the
-FOPPROJECTION option constructs the Fock matrix in the larger basis
-using the density matrix from the initial, smaller basis set calculation. Basis
-set projection is a very effective option for general basis sets, where the SAD
-guess is not available. In detail, this initial guess is controlled by the
-following *$rem* variables:
+有两种不同的投影方法可用，可通过 *$rem* 中的 BASISPROJTYPE 设置。OVPROJECTION 选项在大基组中展开来自 BASIS2 计算的分子轨道（MO），而 FOPPROJECTION 选项则使用初始较小基组计算的密度矩阵在大基组中构建 Fock 矩阵。对于无法使用对称匹配泛函（SAD）初始猜测的一般基组而言，基组投影是一个非常有效的选项。具体而言，该初始猜测由以下 *$rem* 变量控制：
 
 BASIS2
 
 ### `BASIS2`
 
-> **Sets the small basis set to use in basis set projection.**
+> **设置在基组投影中使用的小基组。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No second basis set default.`
-> * **Options**:
->     * Symbol. Use standard basis sets as per Chapter
+> * **类型**: `STRING`
+> * **默认值**: `无第二基组默认设置。`
+> * **选项**:
+>     * 符号。按照第
 >     * 8
->     * .
+>     * 章使用标准基组。
 >     * BASIS2_GEN
->     * General BASIS2
+>     * 一般（General）BASIS2
 >     * BASIS2_MIXED
->     * Mixed BASIS2
-> * **Recommendation**: BASIS2 should be smaller than BASIS. There is little advantage to using a basis larger than a minimal basis when BASIS2 is used for initial guess purposes. Larger, standardized BASIS2 options are available for dual-basis calculations (see Section 4.7 ).
+>     * 混合（Mixed）BASIS2
+> * **建议**: BASIS2 应比 BASIS 更小。当 BASIS2 仅用于初始猜测目的时，使用比极小基组更大的基组几乎没有好处。更大的标准化 BASIS2 选项可用于双基组计算（参见第 4.7 节）。
 
 BASISPROJTYPE
 
 ### `BASISPROJTYPE`
 
-> **Determines which method to use when projecting the density matrix of BASIS2**
+> **决定在投影 BASIS2 的密度矩阵时使用哪种方法**
 >
-> * **Type**: `STRING`
-> * **Default**: `OVPROJECTION`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `OVPROJECTION`
+> * **选项**:
 >     * FOPPROJECTION
->     * Construct the Fock matrix in the second basis
+>     * 在第二基组中构建 Fock 矩阵
 >     * OVPROJECTION
->     * Projects MOs from
+>     * 将 MO 从
 >     * BASIS2
->     * to
+>     * 投影到
 >     * BASIS
->     * .
-> * **Recommendation**: None
+>     * 。
+> * **建议**: 无
 
-**Note: 
+**注意：
 
-BASIS2 sometimes affects post-Hartree-Fock calculations. It is
-recommended to split such jobs into two subsequent one, such that in the first
-job a desired Hartree-Fock solution is found using BASIS2, and in the
-second job, which performs a post-HF calculation,
-SCF_GUESS = READ is invoked.
+BASIS2 有时会影响后 Hartree-Fock（post-Hartree-Fock）计算。建议将此类任务拆分为两个先后执行的任务：在第一个任务中利用 BASIS2 求得所需的 Hartree-Fock 解，而在执行 post-HF 计算的第二个任务中调用 SCF_GUESS = READ。
 **
 
-???+ example "Example 4.7: Input where basis set projection is used to generate a good initial guess for
-a calculation employing a general basis set, for which the default initial
-guess is not available."
+???+ example "示例 4.7：使用基组投影为采用一般基组的计算生成良好的初始猜测（该情况下默认初始猜测不可用）的输入文件。"
     ```qchem
     $molecule
        0  1

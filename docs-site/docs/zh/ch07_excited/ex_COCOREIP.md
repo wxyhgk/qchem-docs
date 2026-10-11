@@ -1,72 +1,23 @@
 ---
-title: "7.12.4 Calculations of Core Excitations with ROKS"
+title: "7.12.4 使用 ROKS 计算核心激发"
 ---
 
-## 7.12.4 Calculations of Core Excitations with ROKS
+## 7.12.4 使用 ROKS 计算核心激发
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The restricted open-shell Kohn-Sham (ROKS) approach is a
-highly accurate method for estimating core-excitation energies of closed-shell
-molecules,[[510]](../bib_references/bib.md#bib525)
+限制开壳层 Kohn-Sham（restricted open-shell Kohn-Sham, ROKS）方法是一种估算闭壳层分子核心激发（core-excitation） energies 的高精度方法[[510]](../bib_references/bib.md#bib525)，如第 [7.7.4](ex_ESROKS.md) 节所述。此处我们简要回顾其关键要点，详细内容请读者参阅文献 [[510]](../bib_references/bib.md#bib525)。
+采用 SCAN 泛函的 ROKS 能够以 0.2 eV 的均方根（RMS）误差和 0.5 eV 的最大绝对误差重现 40 个第二周期元素（C、N、O 和 F）的实验核心激发能（来自 1s 轨道，*即*，K 边）。$\omega$B97X-V 泛函也提供与之相当（略差）的精度。第三周期元素 Si、P、S 和 Cl 的 L${}_{2,3}$ 边也表现出类似的行为。其他广泛使用的泛函（如 PBE）表现稍差，但与使用相同泛函的含时密度泛函理论（Time-Dependent Density Functional Theory, TDDFT）相比，其误差仍低得多。最近，我们通过纳入标量相对论效应（如第 [4.9.6](../ch04_scf/sec_x2c.md) 节所述），将 ROKS 的适用范围扩展到了较重元素的核心激发态。使用 SCAN 泛函可以对 $Z=24$ 以内元素的 K 边进行精确建模[[292]](../bib_references/bib.md#bib296)。
 
-as described in Section [7.7.4](ex_ESROKS.md). Here, we briefly recapitulate
-the key aspects and refer the reader to Ref. [[510]](../bib_references/bib.md#bib525)
- for details
-ROKS with the SCAN functional is found to reproduce
-40 experimental core excitation energies (from the 1s orbital, *i.e.*, K-edge) of
-second-period elements (C, N, O, and F) to an RMS error of 0.2 eV and a maximum
-absolute error of 0.5 eV. The $\omega$B97X-V functional provides
-similar (if a little worse) accuracy as well. Similar behavior is observed for
-the L${}_{2,3}$ edges of third-period elements Si, P, S and Cl. Other widely used
-functionals like PBE fare somewhat worse, but still predict much lower error
-as compared to TDDFT using the same functionals. Recently, we extended the applicability for
-ROKS for core excited states of heavier elements by including scalar
-relativistic effects as described in Section [4.9.6](../ch04_scf/sec_x2c.md). Accurate modeling of K-edge of elements
-up to $Z=24$ can be achieved with the SCAN functional.[[292]](../bib_references/bib.md#bib296)
+需要说明的是，ROKS 方法是态特定（state-specific）的，它一次只能预测一个态，并且需要指明所要 targets 的态（通过 *$reorder_mo* 部分指定，如示例 [7.7.5](ex_BEDSCF.md) 所示）。这使得它不如 TDDFT 那样"黑箱"，因为必须*先验地*（a priori）确定终态轨道，在没有其他信息可用时，或许可以通过一次先导 TDDFT 计算来识别（对于核心能级激发，初始轨道通常凭直觉即可明确）。ROKS 还可以用于双位点双核心电离（doubly core-ionized）态，或其他总共只有一个电子对被打破的体系。
 
-That said, the ROKS approach is state-specific in
-that it can only predict a single state at a time and needs to be told which
-state to target (via the *$reorder_mo* section, as shown in
-Example [7.7.5](ex_BEDSCF.md)). This makes it less black-box than TDDFT as the final
-orbital needs to be identified *a priori*, perhaps via a pilot TDDFT job if
-no other information is available. (For core-level excitations, the initial
-orbital is usually intuitively obvious.) ROKS can also
-be used for two-site doubly core-ionized states, or other systems with one
-broken electron pair in total.
+ROKS 的精度源于三个因素：密度泛函的选择（SCAN 或 $\omega$B97X-V）、激发态轨道优化（对于核心激发，仅能通过 SGM 实现，如第 [4.5.15](../ch04_scf/sect_SGM-SCF.md) 节所述）以及足够灵活的基组（Basis Set）。最后一点至关重要，因为需要使用分裂核心（split-core）函数（由 cc-pCV$n$Z 等基组提供），而 cc-pV$n$Z 等只有分裂价层函数的标准基组则不够。事实上，需要三-$\zeta$（triple-$\zeta$）品质的基组（如 cc-pCVTZ）才能充分描述空穴（core-hole）弛豫，较小的基组会导致激发能的系统性高估。不过，核心空穴的高度局域性保证了只有 ROKS 计算的目标原子才需要大基组，其余所有原子使用较小的基组（双-$\zeta$（double-$\zeta$）品质，如 cc-pVDZ）就已足够。这种混合基组策略的示例见下文示例 7.12.4。关于使用混合基组的一般性细节，请参见第 [8.5](../ch08_basis/sect_mixedbas.md) 节。
 
-The accuracy of ROKS stems from three factors: choice of density functional
-(SCAN or $\omega$B97X-V), excited state orbital optimization (only available
-via SGM for core excitations, as described in Section [4.5.15](../ch04_scf/sect_SGM-SCF.md)) and a
-sufficiently flexible basis set. The last is key, as the split-core functions
-(as provided by basis sets like cc-pCV$n$Z) are needed instead of standard basis
-sets like cc-pV$n$Z that only have split valence functions. Indeed, a basis of
-triple-$\zeta$ quality like cc-pCVTZ is necessary to fully account for the
-core-hole relaxation and smaller basis sets lead to systematic overestimation
-of excitation energies. However, the highly local nature of the core-hole
-ensures that a large basis is only needed for the target atom of the ROKS
-calculation, and a smaller basis (of double-$\zeta$ quality, like cc-pVDZ) is
-adequate for all other atoms. An example of this mixed basis strategy is given
-below in Example 7.12.4. Details about using mixed basis sets in
-general can be found in Section [8.5](../ch08_basis/sect_mixedbas.md).
+通过将核心空穴弛豫与其余的轨道优化解耦，还可以显著减少 ROKS 计算所需的循环次数。具体做法是先对核心电离态进行一次限制开壳层的 $\Delta$SCF 计算，并将所得轨道用作 ROKS 的初始猜测。示例 [7.7.5](ex_BEDSCF.md) 是此类计算应如何进行的一个代表性案例。
 
-The number of cycles needed for ROKS calculations can also be considerably
-reduced by decoupling the core hole relaxation from the rest of the orbital
-optimization. This entails a restricted open-shell $\Delta$SCF calculation of
-the core-ionized state first, and use of those orbitals as guess for ROKS.
-Example [7.7.5](ex_BEDSCF.md) is a representative case for how such calculations
-should proceed.
+高精度与低计算成本（得益于价格低廉的 SCAN -meta-GGA 泛函和混合基组策略）相结合，使 ROKS 成为计算大型闭壳层体系核心谱的极具吸引力的方法——对于这些体系，更昂贵的波函数理论（wave function theory）无法承受。使用 ROKS 计算核心激发时，请引用文献 [[510]](../bib_references/bib.md#bib525)；进行包含标量相对论效应的计算时，请引用文献 [[292]](../bib_references/bib.md#bib296)。
 
-The conjunction of high accuracy and low computational cost (due to the affordability of the SCAN
-meta-GGA and the mixed basis strategy) makes ROKS a very attractive
-approach for computing core spectra of large, closed-shell systems where more
-expensive wave function theories are unaffordable. Users are requested to cite
-Ref. [[510]](../bib_references/bib.md#bib525)
- when using ROKS for core excitations and Ref. [[292]](../bib_references/bib.md#bib296)
-
-when performing calculations that include scalar relativistic effects.
-
-???+ example "Example 7.215: RO- $\Delta$ SCF core-ionization at C for CO, using SGM. The mixed basis strategy is used as the core-hole is local to C."
+???+ example "示例 7.215：使用 SGM 对 CO 在 C 上进行 RO-$\Delta$SCF 核心电离。由于核心空穴局域在 C 上，采用混合基组策略。"
     ```qchem
     $molecule
        0 1
@@ -122,8 +73,7 @@ when performing calculations that include scalar relativistic effects.
     $end
     ```
 
-???+ example "Example 7.7.216: Combined RO- $\Delta$ SCF core-ionization and $1s\rightarrow\text{LUMO}$ ROKS core-excited state for HCl including scalar relativistic effects.
-The uncontracted aug-pcX-2 basis has to be supplied by the user"
+???+ example "示例 7.7.216：对 HCl 联合进行 RO-$\Delta$SCF 核心电离与 $1s\rightarrow\text{LUMO}$ ROKS 核心激发态计算，包含标量相对论效应。非收缩（uncontracted）的 aug-pcX-2 基组需由用户自行提供"
     ```qchem
     $molecule
     0 1

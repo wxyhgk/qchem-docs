@@ -1,14 +1,12 @@
 ---
-title: "6.12.13 Examples"
+title: "6.12.13 示例"
 ---
 
-## 6.12.13 Examples
+## 6.12.13 示例
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-???+ example "Example 6.34: A series of jobs evaluating the correlation energy (with core orbitals frozen)
-of the ground state of the NH ${}_{2}$ radical with three methods of
-coupled-cluster singles and doubles type: CCSD itself, CC2, OD, and QCCD."
+???+ example "示例 6.34: 一系列作业，使用三种耦合簇单双激发（coupled-cluster singles and doubles）类型方法计算 NH ${}_{2}$ 自由基基态的相关能（冻结核心轨道）：CCSD 本身、CC2、OD 和 QCCD。"
     ```qchem
     $molecule
        0  2
@@ -60,7 +58,7 @@ coupled-cluster singles and doubles type: CCSD itself, CC2, OD, and QCCD."
     $end
     ```
 
-???+ example "Example 6.35: A job for single point CCSDT energy of water with (core orbitals frozen)"
+???+ example "示例 6.35: 单点 CCSDT 能量计算作业，对象为水分子（冻结核心轨道）"
     ```qchem
     $molecule
     0 1
@@ -79,7 +77,7 @@ coupled-cluster singles and doubles type: CCSD itself, CC2, OD, and QCCD."
     $end
     ```
 
-???+ example "Example 6.36: A job evaluating CCSD energy of water using RI-CCSD"
+???+ example "示例 6.36: 使用 RI-CCSD 计算水分子 CCSD 能量的作业"
     ```qchem
     $molecule
       0 1
@@ -98,7 +96,7 @@ coupled-cluster singles and doubles type: CCSD itself, CC2, OD, and QCCD."
     $end
     ```
 
-???+ example "Example 6.37: A job evaluating the RI-CC2 energy of water"
+???+ example "示例 6.37: 计算水分子 RI-CC2 能量的作业"
     ```qchem
     $molecule
       0 1
@@ -117,7 +115,7 @@ coupled-cluster singles and doubles type: CCSD itself, CC2, OD, and QCCD."
     $end
     ```
 
-???+ example "Example 6.38: A job evaluating CCSD energy of water using CD-CCSD (tolerance = $10^{-3}$ )"
+???+ example "示例 6.38: 使用 CD-CCSD 计算水分子 CCSD 能量的作业（容差 = $10^{-3}$）"
     ```qchem
     $molecule
       0 1
@@ -136,8 +134,7 @@ coupled-cluster singles and doubles type: CCSD itself, CC2, OD, and QCCD."
     $end
     ```
 
-???+ example "Example 6.39: A job evaluating CCSD energy of water using CD-CCSD (tolerance = $10^{-3}$ )
-with FNO"
+???+ example "示例 6.39: 使用 CD-CCSD（容差 = $10^{-3}$）结合 FNO 计算水分子 CCSD 能量的作业"
     ```qchem
     $comment
     CCSD energy with Cholesky and FNO
@@ -161,7 +158,7 @@ with FNO"
     $end
     ```
 
-???+ example "Example 6.40: CD-CCSD geometry optimization with two-step and one-step Cholesky decomposition algorithm"
+???+ example "示例 6.40: 使用两步（two-step）和一步（one-step）Cholesky 分解算法进行 CD-CCSD 几何优化"
     ```qchem
     $comment
     Water optimization with CCSD and two-step Cholesky decomposition using default two-step algorithm and a tight span factor
@@ -207,7 +204,7 @@ with FNO"
     $end
     ```
 
-???+ example "Example 6.41: A job evaluating the BWs-CC2 energy of formaldehyde with $\alpha=1$"
+???+ example "示例 6.41: 计算甲醛（formaldehyde）BWs-CC2 能量的作业，其中 $\alpha=1$"
     ```qchem
     $molecule
     0 1
@@ -234,8 +231,7 @@ with FNO"
     $end
     ```
 
-???+ example "Example 6.42: A job evaluating the BWs-CC2 energy of formaldehyde using the MPR-BWs2
-partitioning with $A_{0}=1$ and $B_{0}=-1$ ."
+???+ example "示例 6.42: 使用 MPR-BWs2 分区（partitioning）计算甲醛 BWs-CC2 能量的作业，其中 $A_{0}=1$ 且 $B_{0}=-1$。"
     ```qchem
     $molecule
     0 1

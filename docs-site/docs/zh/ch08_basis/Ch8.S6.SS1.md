@@ -1,54 +1,43 @@
 ---
-title: "8.6.1 Overview"
+title: "8.6.1 概述"
 ---
 
-## 8.6.1 Overview
+## 8.6.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-There are several types of calculation that can be performed within **Q-Chem**
-using *two* atomic orbital basis sets instead of just one as we have been
-assuming in this chapter so far. Such calculations are said to involve
-*dual* basis sets. Typically iterations are performed in a smaller,
-primary, basis, which is specified by the *$rem* keyword BASIS2.
-Examples of calculations that can be performed using dual basis sets include:
+在 **Q-Chem** 中有若干类型的计算可以使用*两*套原子轨道基组（atomic orbital basis set）来完成，而不是本章到目前为止所假设的仅使用一套。这类计算被称为涉及*双*基组（dual basis sets）。迭代通常在较小的主基组（primary basis）中进行，该基组由 *$rem* 关键字 BASIS2 指定。可以使用双基组执行的计算示例包括：
 
 - •
 
-An improved initial guess for an SCF calculation in the large basis. See
-Section [4.4.5](../ch04_scf/sect_projection.md).
+为大基组中的自洽场（SCF）计算提供更好的初始猜测。参见第 [4.4.5](../ch04_scf/sect_projection.md) 节。
 - •
 
-Dual basis self-consistent field calculations (Hartree-Fock and density
-functional theory). See discussion in Section [4.7](../ch04_scf/sect_dualbasis.md).
+双基组自洽场计算（Hartree-Fock 与密度泛函理论（Density Functional Theory, DFT））。相关讨论参见第 [4.7](../ch04_scf/sect_dualbasis.md) 节。
 - •
 
-Density functional perturbative corrections by “triple jumping”.
-See Section [4.8](../ch04_scf/sect_HFPC.md).
+通过 “triple jumping”（三重跳跃）方式进行密度泛函的微扰修正。参见第 [4.8](../ch04_scf/sect_HFPC.md) 节。
 - •
 
-Dual basis MP2 calculations. See discussion in Section [6.6.2](../ch06_correlation/sect_rimp2.md).
+双基组 MP2 计算。相关讨论参见第 [6.6.2](../ch06_correlation/sect_rimp2.md) 节。
 
 BASIS2
 
 ### `BASIS2`
 
-> **Defines the (small) second basis set.**
+> **定义（较小的）第二套基组。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default for the second basis set.`
-> * **Options**:
->     * Symbol
->     * Use standard basis sets as for
->     * BASIS
->     * .
+> * **类型**：`STRING`
+> * **默认值**：`第二基组没有默认值。`
+> * **选项**：
+>     * 符号
+>     * 与 BASIS
+>     * 一样使用标准基组
+>     * 。
 >     * BASIS2_GEN
->     * General
+>     * 通用
 >     * BASIS2_MIXED
->     * Mixed
-> * **Recommendation**: should be smaller than BASIS . There is little advantage to using a basis larger than a minimal basis when is used for initial guess purposes. Larger, standardized options are available for dual-basis calculations as discussed in Section 4.7 and summarized in Table 4.2 .
+>     * 混合
+> * **建议**：应当比 BASIS 指定的基组更小。当仅用于提供初始猜测时，使用比极小基组（minimal basis）更大的基组几乎没有优势。双基组计算可使用更大的标准化选项，如第 4.7 节所述，并在表 4.2 中总结。
 
-In addition to built-in basis sets for BASIS2, it is also possible to
-enter user-defined second basis sets using an additional *$basis2* input
-section, whose syntax generally follows the *$basis* input section documented
-above in Section [8.4](sect_userbasis.md).
+除了 BASIS2 内置的基组之外，还可以通过额外的 *$basis2* 输入节（input section）来输入用户自定义的第二套基组，其语法一般遵循上文第 [8.4](sect_userbasis.md) 节中记录的 *$basis* 输入节的规范。

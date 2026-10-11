@@ -1,99 +1,80 @@
 ---
-title: "6.6.4 GPU Implementation of RI-MP2"
+title: "6.6.4 RI-MP2 的 GPU 实现"
 ---
 
-## 6.6.4 GPU Implementation of RI-MP2
+## 6.6.4 RI-MP2 的 GPU 实现
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** currently offers the possibility of accelerating RI-MP2 calculations
-using graphics processing units (GPUs). Currently, this is implemented for
-CUDA-enabled NVIDIA graphics cards only, such as (in historical order from
-2008) the GeForce, Quadro, Tesla and Fermi cards. More information about
-CUDA-enabled cards is available at
+**Q-Chem** 目前提供了使用图形处理器（Graphics Processing Units, GPU）加速 RI-MP2 计算的可能性。当前该功能仅支持支持 CUDA 的 NVIDIA 显卡，例如（按自 2008 年以来的历史顺序）GeForce、Quadro、Tesla 和 Fermi 系列显卡。有关支持 CUDA 的显卡的更多信息，可访问
 
 `http://www.nvidia.com/object/cuda_gpus.html`
 
-It should be noted that these GPUs have specific power and motherboard
-requirements.
+需要注意的是，这些 GPU 有特定的电源与主板要求。
 
-Software requirements include the installation of the appropriate NVIDIA CUDA
-driver (at least version 1.0, currently 3.2) and linear algebra library, CUBLAS
-(at least version 1.0, currently 2.0). These can be downloaded jointly in
-NVIDIA’s developer website:
+软件要求包括安装合适的 NVIDIA CUDA 驱动程序（至少 1.0 版本，当前为 3.2）以及线性代数库 CUBLAS（至少 1.0 版本，当前为 2.0）。这些可以一并从 NVIDIA 的开发者网站下载：
 
 `http://developer.nvidia.com/object/cuda_3_2_downloads.html`
 
-We have implemented a mixed-precision algorithm in order to get *better than*
-single precision when users only have single-precision GPUs. This is
-accomplished by noting that RI-MP2 matrices have a *large* fraction of
-numerically “small” elements and a *small* fraction of numerically
-“large” ones. The latter can greatly affect the accuracy of the calculation
-in single-precision only calculations, but calculation involves a relatively
-small number of compute cycles. So, given a threshold value $\delta$, we
-perform a separation between “small” and “large” elements and accelerate
-the former compute-intensive operations using the GPU (in single-precision) and
-compute the latter on the CPU (using double-precision). We are thus able to
-determine how much double-precision we desire by tuning the $\delta$
-parameter, and tailoring the balance between computational speed and accuracy.
+为了让仅拥有单精度 GPU 的用户也能获得*优于*单精度的结果，我们实现了一种混合精度算法。其基本思路是注意到 RI-MP2 矩阵中包含*大量*数值上“小”的元素和*少量*数值上“大”的元素。后者在仅使用单精度的计算中会极大地影响计算精度，但其计算所涉及的计算周期相对较少。因此，给定阈值 $\delta$，我们对“小”元素与“大”元素进行分离，并使用 GPU（以单精度）加速那些计算密集型的前者运算，而在 CPU（使用双精度）上计算后者。这样，我们就可以通过调节 $\delta$ 参数来决定所需的双精度成分多少，从而在计算速度与精度之间权衡取舍。
 
 CUDA_RI-MP2
 
 ### `CUDA_RI-MP2`
 
-> **Enables GPU implementation of RI-MP2**
+> **启用 RI-MP2 的 GPU 实现**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **取值选项**：
 >     * FALSE
->     * GPU-enabled MGEMM off
+>     * GPU 启用，MGEMM 关闭
 >     * TRUE
->     * GPU-enabled MGEMM on
-> * **Recommendation**: Necessary to set to 1 in order to run GPU-enabled RI-MP2
+>     * GPU 启用，MGEMM 开启
+> * **建议**：若要用 GPU 运行 RI-MP2，必须将其设置为 1
 
 USECUBLAS_THRESH
 
 ### `USECUBLAS_THRESH`
 
-> **Sets threshold of matrix size sent to GPU (smaller size not worth sending to GPU).**
+> **设置发送到 GPU 的矩阵规模阈值（规模过小则不值得发送到 GPU）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `250`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`250`
+> * **取值选项**：
 >     * n
->     * user-defined threshold
-> * **Recommendation**: Use the default value. Anything less can seriously hinder the GPU acceleration
+>     * 用户自定义阈值
+> * **建议**：使用默认值。更小的设置可能会严重阻碍 GPU 加速效果
 
 USE_MGEMM
 
 ### `USE_MGEMM`
 
-> **Use the mixed-precision matrix scheme (MGEMM) if you want to make calculations in your card in single-precision (or if you have a single-precision-only GPU), but leave some parts of the RI-MP2 calculation in double precision)**
+> **使用混合精度矩阵方案（MGEMM）。如果希望在单精度下进行计算（或者拥有仅支持单精度的 GPU），但要将 RI-MP2 计算的某些部分保留在双精度下，则开启此项）**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **取值选项**：
 >     * FALSE
->     * MGEMM disabled
+>     * MGEMM 禁用
 >     * TRUE
->     * MGEMM enabled
-> * **Recommendation**: Use when having single-precision cards
+>     * MGEMM 启用
+> * **建议**：在使用单精度显卡时启用
 
 MGEMM_THRESH
 
 ### `MGEMM_THRESH`
 
-> **Sets MGEMM threshold to determine the separation between “large” and “small” matrix elements. A larger threshold value will result in a value closer to the single-precision result. Note that the desired factor should be multiplied by 10000 to ensure an integer value.**
+> **设置 MGEMM 阈值，用于确定矩阵元素中“大”与“小”的分离界限。较大的阈值将使结果更接近单精度结果。注意，期望的系数应乘以 10000 以确保其为整数值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10000`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`10000`
+> * **取值选项**：
 >     * $n$
->     * User-specified threshold
-> * **Recommendation**: For small molecules and basis sets up to triple- $\zeta$ , the default value suffices to not deviate too much from the double-precision values. Care should be taken to reduce this number for larger molecules and also larger basis-sets.
+>     * 用户指定阈值
+> * **建议**：对于小分子以及至三重 $\zeta$（triple-$\zeta$）规模的基组，默认值即可保证结果与双精度值偏差不大。对于更大的分子以及更大的基组，则应谨慎地减小该数值。
 
-???+ example "Example 6.6: RI-MP2 double-precision calculation"
+???+ example "示例 6.6：RI-MP2 双精度计算"
     ```qchem
     $molecule
        0 1
@@ -112,7 +93,7 @@ MGEMM_THRESH
     $end
     ```
 
-???+ example "Example 6.7: RI-MP2 calculation with MGEMM"
+???+ example "示例 6.7：使用 MGEMM 的 RI-MP2 计算"
     ```qchem
     $molecule
        0 1

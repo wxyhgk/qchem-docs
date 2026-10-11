@@ -1,12 +1,12 @@
 ---
-title: "13.5.6 Examples"
+title: "13.5.6 示例"
 ---
 
-## 13.5.6 Examples
+## 13.5.6 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 13.7: Input for the NEO-HF calculation on H ${}_{2}$ O molecule with the second proton treated quantum mechanically. The electronic basis set is cc-pVDZ and the protonic is an uncontracted 2s2p2d basis set with exponents 4.0 and 8.0."
+???+ example "示例 13.7：H ${}_{2}$ O 分子的 NEO-HF 计算输入，其中第二个质子按量子力学方式处理。电子基组为 cc-pVDZ，质子基组为未经缩合（uncontracted）的 2s2p2d 基组，指数为 4.0 和 8.0。"
     ```qchem
     $molecule
        0 1
@@ -39,12 +39,7 @@ title: "13.5.6 Examples"
     $end
     ```
 
-???+ example "Example 13.8: Input for the NEO-DFT/epc17-2 calculation of CH ${}_{2}$ O molecule treating both protons quantum mechanically and using simultaneous DIIS
-algorithm to perform NEO-SCF. The electronic basis set is cc-pVDZ and the protonic basis set is an uncontracted 1s1p basis set with exponents
-4.0 and 4.0. A maximum of 10 previous Fock matrices is used to form the next guess in interpolation/extrapolation, and the NEO wave function
-is considered converged when all three criteria are met (all in atomic units): (1) the largest element of the electronic error vector is below the
-cutoff threshold of $10^{-8}$ , (2) the largest element of the protonic error vector is below the cutoff threshold of $10^{-7}$ , and (3) the energy
-difference between two consecutive steps is below $10^{-8}$ ."
+???+ example "示例 13.8：CH ${}_{2}$ O 分子的 NEO-DFT/epc17-2 计算输入，两个质子均按量子力学方式处理，并采用同时 DIIS（simultaneous DIIS）算法执行 NEO-SCF。电子基组为 cc-pVDZ，质子基组为未经缩合的 1s1p 基组，指数为 4.0 和 4.0。在插值/外推构造下一轮初始猜测时，最多使用之前 10 个 Fock 矩阵；当以下三个判据全部满足时（均以原子单位计），认为 NEO 波函数已收敛：(1) 电子误差向量的最大元素低于截止阈值 $10^{-8}$ ，(2) 质子误差向量的最大元素低于截止阈值 $10^{-7}$ ，且 (3) 相邻两步之间的能量差低于 $10^{-8}$ 。"
     ```qchem
     $molecule
     0 1
@@ -89,10 +84,7 @@ difference between two consecutive steps is below $10^{-8}$ ."
     $end
     ```
 
-???+ example "Example 13.9: Input for the NEO-DFT/epc17-2 geometry optimization calculation of all centers on CH ${}_{2}$ O molecule with both protons treated quantum
-mechanically. The electronic exchange-correlation functional is PBE0. The electronic basis set is STO-3G and the protonic is an uncontracted
-1s1p basis set with exponents 4.0. This calculation utilizes DFT grid with 99 radial and 302 spherical quadrature points along with the DIIS
-algorithm."
+???+ example "示例 13.9：CH ${}_{2}$ O 分子所有中心的 NEO-DFT/epc17-2 几何结构优化计算输入，两个质子均按量子力学方式处理。电子交换-关联泛函为 PBE0。电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。该计算采用具有 99 个径向和 302 个球面求积点的 DFT 网格，并结合 DIIS 算法。"
     ```qchem
     $molecule
        0 1
@@ -131,9 +123,7 @@ algorithm."
     $end
     ```
 
-???+ example "Example 13.10: Input for the NEO-DFT/epc19 geometry optimization calculation of the NEO center only on open-shell OH radical molecule with a proton treated
-quantum mechanically. The electronic exchange-correlation functional is PBE0. The electronic basis set is 6-31G and the protonic is an uncontracted
-1s1p basis set with exponents 4.0. This calculation utilizes DFT grid with 99 radial and 230 spherical quadrature points along with the DIIS algorithm."
+???+ example "示例 13.10：仅对开壳层 OH 自由基分子的 NEO 中心进行几何结构优化的 NEO-DFT/epc19 计算输入，其中质子按量子力学方式处理。电子交换-关联泛函为 PBE0。电子基组为 6-31G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。该计算采用具有 99 个径向和 230 个球面求积点的 DFT 网格，并结合 DIIS 算法。"
     ```qchem
     $molecule
        0 2
@@ -172,11 +162,11 @@ quantum mechanically. The electronic exchange-correlation functional is PBE0. Th
     $end
     ```
 
-???+ example "Example 13.11: Input for a NEO-MSDFT calculation on FHF ${}^{-}$ with a fixed F–F distance of 2.70 Å.
-The proton in between the two F atoms is quantized and the proton basis function centers are optimized on the NEO-MSDFT ground state.
-The electronic basis set is STO-3G, and the protonic basis set is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic exchange-correlation functional is B3LYP, and the electron-proton correlation functional is epc17-2.
-The second basis function center for the quantum proton is input as a ghost center."
+???+ example "示例 13.11：FHF ${}^{-}$ 的 NEO-MSDFT 计算输入，其中 F–F 距离固定为 2.70 Å。
+两个 F 原子之间的质子被量子化，质子基函数中心在 NEO-MSDFT 基态上加以优化。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子交换-关联泛函为 B3LYP，电子-质子关联泛函为 epc17-2。
+量子质子的第二个基函数中心以虚中心（ghost center）的形式输入。"
     ```qchem
     $molecule
     -1  1
@@ -225,11 +215,11 @@ The second basis function center for the quantum proton is input as a ghost cent
     $end
     ```
 
-???+ example "Example 13.12: Input for a NEO-MSDFT calculation on a fixed average reactant-product structure of the formic acid dimer with a C–C distance of
-3.86 Å, where both transferring protons are quantized. The electronic basis set is STO-3G, and the protonic basis set is an uncontracted
-1s1p basis set with exponents 4.0. The electronic exchange-correlation functional is B3LYP, and the electron-proton correlation functional is
-epc17-2. Only the two trans states are included in the adiabatic state expansion (note the spaces between the ones and zeros of the $neo_msdft_diabat_control section). The second center for each quantum proton is input as a ghost center. Proton density plotting for both the ground and
-first excited state has been enabled."
+???+ example "示例 13.12：甲酸二聚体固定平均反应物-产物结构的 NEO-MSDFT 计算输入，其中 C–C 距离为
+3.86 Å，两个转移质子均被量子化。电子基组为 STO-3G，质子基组为未经缩合的
+1s1p 基组，指数为 4.0。电子交换-关联泛函为 B3LYP，电子-质子关联泛函为
+epc17-2。绝热态展开（adiabatic state expansion）中仅包含两个反式（trans）态（注意 $neo_msdft_diabat_control 段中 1 与 0 之间的空格）。每个量子质子的第二个中心以虚中心的形式输入。已启用基态和
+第一激发态的质子密度绘图。"
     ```qchem
     $molecule
     0  1
@@ -300,13 +290,13 @@ first excited state has been enabled."
     $end
     ```
 
-???+ example "Example 13.13: Input for a NEO-MSDFT calculation on a protonated water dimer with a fixed O–O distance of 2.80 Å,
-where all protons in the system are quantized, but only the proton between the two oxygen atoms is treated as transferring.
-The two centers for the transferring proton are written consecutively in the $molecule section, with the first one written as an H
-atom center and the second one is written as a ghost H atom center. The other centers do not have corresponding ghost centers
-and are therefore not recognized as being transferring. The electronic basis set is STO-3G, and the protonic basis set is an
-uncontracted 1s1p basis set with exponents 4.0. The electronic exchange-correlation functional is B3LYP, and the electron-proton
-correlation functional is epc17-2."
+???+ example "示例 13.13：质子化水二聚体的 NEO-MSDFT 计算输入，其中 O–O 距离固定为 2.80 Å，
+体系中所有质子均被量子化，但仅两个氧原子之间的质子被视为转移质子。
+转移质子的两个中心在 $molecule 段中连续书写，第一个写成 H
+原子中心，第二个写成虚 H 原子中心。其他中心没有对应的虚中心，
+因此不会被识别为转移质子。电子基组为 STO-3G，质子基组为未经缩合的
+1s1p 基组，指数为 4.0。电子交换-关联泛函为 B3LYP，电子-质子
+关联泛函为 epc17-2。"
     ```qchem
     $molecule
     1  1
@@ -376,12 +366,9 @@ correlation functional is epc17-2."
     $end
     ```
 
-???+ example "Example 13.14: Input for the NEO-DFT/epc17-2 geometry optimization calculation of a CH ${}_{2}$ O molecule in C-PCM water. A van der Waals surface
-is constructed around the fixed, classical nuclear point charge positions and the nuclear basis function
-center positions of the two quantum hydrogens. Here, the Bondi radii for hydrogen is used in the construction
-of the spherical cavity surrounding the delocalized proton densities, but the user has the option to specify
-a custom-defined atomic radii in a $van_der_waals input section. The entire cavity is scaled by a factor of $\alpha_{\text{vdW}}=1.2$ ,
-and is then discretized via the SwiG approach."
+???+ example "示例 13.14：水溶液 C-PCM 中 CH ${}_{2}$ O 分子的 NEO-DFT/epc17-2 几何结构优化计算输入。围绕固定的经典核点电荷位置以及两个量子氢的核基函数中心位置构建范德华（van der Waals）表面。
+此处，在包围离域质子密度的球形空腔的构建中使用氢的 Bondi 半径，但用户可以选择在 $van_der_waals 输入段中指定自定义原子半径。整个空腔按因子 $\alpha_{\text{vdW}}=1.2$ 缩放，
+随后通过 SwiG 方法进行离散化。"
     ```qchem
     $molecule
     0 1
@@ -436,8 +423,8 @@ and is then discretized via the SwiG approach."
     $end
     ```
 
-???+ example "Example 13.15: Input for the NEO-DFT/epc17-2 geometry optimization calculation of a Au ${}_{2}$ H, C ${}_{\infty\text{v}}$ molecule utilizing
-the fit-LANL2DZ effective core potential for the gold atoms."
+???+ example "示例 13.15：Au ${}_{2}$ H、C ${}_{\infty\text{v}}$ 分子的 NEO-DFT/epc17-2 几何结构优化计算输入，金原子使用
+fit-LANL2DZ 有效核势（effective core potential）。"
     ```qchem
     $molecule
     1 1
@@ -502,8 +489,8 @@ the fit-LANL2DZ effective core potential for the gold atoms."
     $end
     ```
 
-???+ example "Example 13.16: Input for NEO-HF analytic Hessian calculation on HCN molecule with a proton treated quantum mechanically.
-The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents 4.0."
+???+ example "示例 13.16：HCN 分子的 NEO-HF 解析 Hessian（海森矩阵）计算输入，其中质子按量子力学方式处理。
+电子基组为 STO-3G，质子基组为 1s1p，指数为 4.0。"
     ```qchem
     $molecule
     0 1
@@ -533,7 +520,7 @@ The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents
     
     ```
 
-???+ example "Example 13.17: Input to simulate the intramolecular proton transfer in malonaldehyde on the NEO-DFT vibronic ground-state surface with NEO-BOMD. Note the inclusion of the $neo_gs_dynamics , $neo_gs_dynamics_donor_acceptor_indices , and $neo_gs_dynamics_velocities input sections. Also note that the protonic basis function center, the first entry of the $molecule section, has zero velocity in the $neo_gs_dynamics_velocities input section."
+???+ example "示例 13.17：使用 NEO-BOMD 在 NEO-DFT 振动基态面上模拟丙二醛（malonaldehyde）分子内质子转移的输入。注意包含了 $neo_gs_dynamics 、 $neo_gs_dynamics_donor_acceptor_indices 和 $neo_gs_dynamics_velocities 输入段。另外注意，质子基函数中心（$molecule 段的第一项）在 $neo_gs_dynamics_velocities 输入段中的速度为零。"
     ```qchem
     $molecule
     0 1
@@ -598,7 +585,7 @@ The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents
     $end
     ```
 
-???+ example "Example 13.18: Input to simulate the intramolecular proton transfer in malonaldehyde on the NEO-DFT extended vibronic ground-state surface with NEO-ELMD(4). Note the inclusion of the $neo_gs_dynamics , $neo_gs_dynamics_donor_acceptor_indices , and $neo_gs_dynamics_velocities input sections. Also note that the protonic basis function center, the first entry of the $molecule section, has zero velocity in the $neo_gs_dynamics_velocities input section."
+???+ example "示例 13.18：使用 NEO-ELMD(4) 在 NEO-DFT 扩展振动基态面上模拟丙二醛分子内质子转移的输入。注意包含了 $neo_gs_dynamics 、 $neo_gs_dynamics_donor_acceptor_indices 和 $neo_gs_dynamics_velocities 输入段。另外注意，质子基函数中心（$molecule 段的第一项）在 $neo_gs_dynamics_velocities 输入段中的速度为零。"
     ```qchem
     $molecule
     0 1
@@ -665,8 +652,7 @@ The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents
     $end
     ```
 
-???+ example "Example 13.19: Input for NEO-HF(V) on HCN molecule with a proton treated quantum mechanically. The electronic basis set is STO-3G and the protonic
-basis is 1s1p with exponents 4.0."
+???+ example "示例 13.19：HCN 分子的 NEO-HF(V) 计算输入，其中质子按量子力学方式处理。电子基组为 STO-3G，质子基组为 1s1p，指数为 4.0。"
     ```qchem
     $molecule
     0 1
@@ -697,9 +683,9 @@ basis is 1s1p with exponents 4.0."
     
     ```
 
-???+ example "Example 13.20: Input for CNEO-DFT analytic Hessian calculation on HCN molecule with a proton treated quantum mechanically.
-The electronic basis set is STO-3G, and the protonic basis set is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic exchange-correlation functional is BLYP, and the electron-proton correlation functional is epc17-2."
+???+ example "示例 13.20：HCN 分子的 CNEO-DFT 解析 Hessian 计算输入，其中质子按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子交换-关联泛函为 BLYP，电子-质子关联泛函为 epc17-2。"
     ```qchem
     $molecule
     0 1
@@ -728,10 +714,9 @@ The electronic exchange-correlation functional is BLYP, and the electron-proton 
     $end
     ```
 
-???+ example "Example 13.21: Input for NEO-DFT energy calculation on CH ${}_{2}$ O molecule with the two protons treated quantum mechanically
-using the nuclear Hartree product approximation.
-The electronic basis set is STO-3G, and the protonic basis set is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic exchange-correlation functional is BLYP, and the electron-proton correlation functional is epc17-2."
+???+ example "示例 13.21：CH ${}_{2}$ O 分子的 NEO-DFT 能量计算输入，两个质子使用核 Hartree 积（nuclear Hartree product）近似按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子交换-关联泛函为 BLYP，电子-质子关联泛函为 epc17-2。"
     ```qchem
     $molecule
     0 1
@@ -772,9 +757,7 @@ The electronic exchange-correlation functional is BLYP, and the electron-proton 
     
     ```
 
-???+ example "Example 13.22: Input for the LR-NEO-TDDFT/epc19 calculation on CH ${}_{2}$ O molecule (both protons treated quantum mechanically) of the first five roots
-obtained with the Davidson algorithm. The electronic exchange-correlation functional is PBE0. The electronic basis set is STO-3G and the
-protonic is an uncontracted 1s1p basis set with exponents 4.0. This calculation utilizes DFT grid with 99 radial and 302 spherical quadrature points."
+???+ example "示例 13.22：CH ${}_{2}$ O 分子（两个质子均按量子力学方式处理）的前五个根的 LR-NEO-TDDFT/epc19 计算输入，使用 Davidson（戴维森）算法求解。电子交换-关联泛函为 PBE0。电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。该计算采用具有 99 个径向和 302 个球面求积点的 DFT 网格。"
     ```qchem
     $molecule
        0 1
@@ -815,8 +798,8 @@ protonic is an uncontracted 1s1p basis set with exponents 4.0. This calculation 
     
     ```
 
-???+ example "Example 13.23: Input for the LR-NEO-TDHF calculation on the FDF ${}^{-}$ molecule treating quantum nuclei as deuterium and employing the NO_VPP option.
-The electronic basis set is cc-pVDZ and the protonic is an uncontracted even-tempered 8s8p basis set."
+???+ example "示例 13.23：FDF ${}^{-}$ 分子的 LR-NEO-TDHF 计算输入，其中量子核按氘处理，并启用 NO_VPP 选项。
+电子基组为 cc-pVDZ，质子基组为未经缩合的等指数（even-tempered）8s8p 基组。"
     ```qchem
     $molecule
        -1 1
@@ -879,11 +862,10 @@ The electronic basis set is cc-pVDZ and the protonic is an uncontracted even-tem
     $end
     ```
 
-???+ example "Example 13.24: Input for the analytic LR-NEO-TDDFT gradient calculation on the CH ${}_{2}$ molecule with both protons treated quantum mechanically.
-A total of four excited states are requested and the gradient is computed for the 3rd excited state. The electronic exchange-correlation
-functional is CAM-B3LYP, and electron-proton correlation functional epc17-2 is used. The electronic basis set is STO-3G and the protonic
-basis is 1s1p with exponents 4.0. This calculation utilizes DFT grid with 99 radial and 302 spherical quadrature points along with the GDM
-algorithm."
+???+ example "示例 13.24：CH ${}_{2}$ 分子的 LR-NEO-TDDFT 解析梯度计算输入，两个质子均按量子力学方式处理。
+共请求四个激发态，并对第 3 个激发态计算梯度。电子交换-关联
+泛函为 CAM-B3LYP，并使用电子-质子关联泛函 epc17-2。电子基组为 STO-3G，质子基组为 1s1p，指数为 4.0。该计算采用具有 99 个径向和 302 个球面求积点的 DFT 网格，并结合 GDM
+算法。"
     ```qchem
     $molecule
     0 3
@@ -926,11 +908,11 @@ algorithm."
     
     ```
 
-???+ example "Example 13.25: Input for LR-NEO-TDDFT geometry optimization on the C ${}_{2}$ H ${}_{2}$ molecule with both protons treated quantum mechanically.
-A total of three excited states are requested and the geometry optimization is computed for the 1st excited state.
-The electronic exchange-correlation functional is B3LYP, and electron-proton correlation functional epc17-2 is used.
-The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents 4.0. This calculation utilizes DFT grid with 99 radial
-and 302 spherical quadrature points along with the GDM algorithm."
+???+ example "示例 13.25：C ${}_{2}$ H ${}_{2}$ 分子的 LR-NEO-TDDFT 几何结构优化输入，两个质子均按量子力学方式处理。
+共请求三个激发态，并对第 1 个激发态进行几何结构优化。
+电子交换-关联泛函为 B3LYP，并使用电子-质子关联泛函 epc17-2。
+电子基组为 STO-3G，质子基组为 1s1p，指数为 4.0。该计算采用具有 99 个径向
+和 302 个球面求积点的 DFT 网格，并结合 GDM 算法。"
     ```qchem
     $molecule
     0 1
@@ -975,11 +957,11 @@ and 302 spherical quadrature points along with the GDM algorithm."
     
     ```
 
-???+ example "Example 13.26: Input for LR-NEO-TDDFT on the C ${}_{2}$ H ${}_{2}$ molecule with both protons treated quantum mechanically. A total of 12 excited states are requested.
-Ground-state protonic and electronic densities are printed in the cube files. Protonic and electronic transition densities of the first and the second vibronic excitations with electronic dominant characters are also printed in the cube files.
-The electronic exchange-correlation functional is B3LYP, and electron-proton correlation functional epc17-2 is used.
-The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents 4.0. This calculation utilizes DFT grid with 99 radial and
-302 spherical quadrature points along with the GDM algorithm."
+???+ example "示例 13.26：C ${}_{2}$ H ${}_{2}$ 分子的 LR-NEO-TDDFT 计算输入，两个质子均按量子力学方式处理。共请求 12 个激发态。
+基态质子密度和电子密度以 cube 文件形式输出。前两个以电子激发为主的振动态（vibronic）激发的质子与电子跃迁密度同样以 cube 文件形式输出。
+电子交换-关联泛函为 B3LYP，并使用电子-质子关联泛函 epc17-2。
+电子基组为 STO-3G，质子基组为 1s1p，指数为 4.0。该计算采用具有 99 个径向和
+302 个球面求积点的 DFT 网格，并结合 GDM 算法。"
     ```qchem
     $molecule
     0 1
@@ -1034,7 +1016,7 @@ The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents
     
     ```
 
-???+ example "Example 13.27: Formate ion simulated with RT-NEO-TDHF and excited by a Gaussian impulse response from all three orthogonal directions, $x$ , $y$ , and $z$ ."
+???+ example "示例 13.27：使用 RT-NEO-TDHF 模拟的甲酸根离子（formate ion），并受到来自 $x$ 、 $y$ 、 $z$ 三个正交方向的高斯脉冲响应激发。"
     ```qchem
     $molecule
     -1 1
@@ -1098,10 +1080,10 @@ The electronic basis set is STO-3G and the protonic basis is 1s1p with exponents
     $end
     ```
 
-???+ example "Example 13.28: Excited-state intramolecular proton transfer in $o$ -hydroxylbenzaldehyde simulated with RT-NEO-TDDFT-Ehrenfest
-utilzing the B3LYP electronic exchange-correlation functional and epc17-2 electron-proton correlation functional.
-Two additional basis function centers are added along the proton transfer path, the total simulation time was
-specified to be 19.35 fs, and an electronic HOMO to LUMO swap was performed to prepare the initial state."
+???+ example "示例 13.28：使用 RT-NEO-TDDFT-Ehrenfest 模拟的 $o$ -羟基苯甲醛（o-hydroxylbenzaldehyde）激发态分子内质子转移，
+采用 B3LYP 电子交换-关联泛函和 epc17-2 电子-质子关联泛函。
+沿质子转移路径添加了两个额外的基函数中心，总模拟时间
+指定为 19.35 fs，并执行了电子 HOMO 到 LUMO 的交换以制备初始态。"
     ```qchem
     $molecule
     0 1
@@ -1167,9 +1149,8 @@ specified to be 19.35 fs, and an electronic HOMO to LUMO swap was performed to p
     $end
     ```
 
-???+ example "Example 13.29: Ground-state intramolecular proton transfer in malonaldehyde simulated with BO-RT-NEO-TDDFT-Ehrenfest. Minimal
-basis sets are employed as a proof of principle. Note the large time step of 4.2 atomic units is employed since the
-electronic dynamics are no longer being propagated."
+???+ example "示例 13.29：使用 BO-RT-NEO-TDDFT-Ehrenfest 模拟的丙二醛基态分子内质子转移。作为原理验证，
+采用了最小基组。注意由于电子动力学不再被传播（propagate），此处使用了 4.2 原子单位的大时间步长。"
     ```qchem
     $molecule
     0 1
@@ -1214,8 +1195,8 @@ electronic dynamics are no longer being propagated."
     $end
     ```
 
-???+ example "Example 13.30: Ground-state intramolecular proton transfer in malonaldehyde simulated with BO-RT-NEO-TDDFT-Ehrenfest,
-and utilizing the B3LYP-D3(0) empirical dispersion correction with custom parameters."
+???+ example "示例 13.30：使用 BO-RT-NEO-TDDFT-Ehrenfest 模拟的丙二醛基态分子内质子转移，
+并采用带自定义参数的 B3LYP-D3(0) 经验色散校正。"
     ```qchem
     $molecule
     0 1
@@ -1265,9 +1246,9 @@ and utilizing the B3LYP-D3(0) empirical dispersion correction with custom parame
     $end
     ```
 
-???+ example "Example 13.31: Input for the NEO-RICCSD calculation on H ${}_{2}$ O molecule with the second proton treated quantum mechanically.
-The electronic basis set is STO-3G and the protonic is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic auxiliary basis set is RIMP2-aug-cc-pVDZ and the protonic auxiliary basis set is an uncontracted even-tempered 8s8p basis set."
+???+ example "示例 13.31：H ${}_{2}$ O 分子的 NEO-RICCSD 计算输入，其中第二个质子按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子辅助基组（auxiliary basis set）为 RIMP2-aug-cc-pVDZ，质子辅助基组为未经缩合的等指数 8s8p 基组。"
     ```qchem
     $molecule
     0 1
@@ -1330,10 +1311,10 @@ The electronic auxiliary basis set is RIMP2-aug-cc-pVDZ and the protonic auxilia
     $end
     ```
 
-???+ example "Example 13.32: Input for the NEO-SCS ${}^{\prime}$ -MP2 calculation on CH ${}_{2}$ O molecule with the both protons treated quantum mechanically.
-The electronic basis set is STO-3G and the protonic is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic auxiliary basis set is RIMP2-aug-cc-pVDZ and the protonic auxiliary basis set is an uncontracted even-tempered 8s8p basis set.
-SCS scaling corresponds to $c_{\text{ss}}=0.33$ , $c_{\text{os}}=1.2$ and $c_{\text{ep}}=1.2$ ."
+???+ example "示例 13.32：CH ${}_{2}$ O 分子的 NEO-SCS ${}^{\prime}$ -MP2 计算输入，两个质子均按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子辅助基组为 RIMP2-aug-cc-pVDZ，质子辅助基组为未经缩合的等指数 8s8p 基组。
+SCS 缩放对应 $c_{\text{ss}}=0.33$ 、 $c_{\text{os}}=1.2$ 和 $c_{\text{ep}}=1.2$ 。"
     ```qchem
     $molecule
     0 1
@@ -1476,9 +1457,9 @@ SCS scaling corresponds to $c_{\text{ss}}=0.33$ , $c_{\text{os}}=1.2$ and $c_{\t
     $end
     ```
 
-???+ example "Example 13.33: Input for the NEO-OOMP2 calculation on H ${}_{2}$ O molecule with the second proton treated quantum mechanically.
-The electronic basis set is STO-3G and the protonic is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic auxiliary basis set is RIMP2-aug-cc-pVDZ and the protonic auxiliary basis set is an uncontracted even-tempered 8s8p basis set."
+???+ example "示例 13.33：H ${}_{2}$ O 分子的 NEO-OOMP2 计算输入，其中第二个质子按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子辅助基组为 RIMP2-aug-cc-pVDZ，质子辅助基组为未经缩合的等指数 8s8p 基组。"
     ```qchem
     $molecule
     0 1
@@ -1565,10 +1546,10 @@ The electronic auxiliary basis set is RIMP2-aug-cc-pVDZ and the protonic auxilia
     $end
     ```
 
-???+ example "Example 13.34: Input for the NEO-SOS ${}^{\prime}$ -OOMP2 calculation on H ${}_{2}$ O molecule with the second proton treated quantum mechanically.
-The electronic basis set is STO-3G and the protonic is an uncontracted 1s1p basis set with exponents 4.0.
-The electronic auxiliary basis set is RIMP2-aug-cc-pVDZ and the protonic auxiliary basis set is an uncontracted even-tempered 8s8p basis set.
-SOS scaling corresponds to $c_{\text{ss}}=0.0$ and $c_{\text{os}}=1.2$ , with a custom value of $c_{\text{ep}}=1.5$ ."
+???+ example "示例 13.34：H ${}_{2}$ O 分子的 NEO-SOS ${}^{\prime}$ -OOMP2 计算输入，其中第二个质子按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+电子辅助基组为 RIMP2-aug-cc-pVDZ，质子辅助基组为未经缩合的等指数 8s8p 基组。
+SOS 缩放对应 $c_{\text{ss}}=0.0$ 和 $c_{\text{os}}=1.2$ ，并采用自定义值 $c_{\text{ep}}=1.5$ 。"
     ```qchem
     $molecule
     0 1
@@ -1657,10 +1638,9 @@ SOS scaling corresponds to $c_{\text{ss}}=0.0$ and $c_{\text{os}}=1.2$ , with a 
     $end
     ```
 
-???+ example "Example 13.35: Input for the NEO-SOS ${}^{\prime}$ -CC2 excited-state calculation on the HCN molecule with the proton treated quantum mechanically.
-The electronic basis set is STO-3G and the protonic is an uncontracted 1s1p basis set with exponents 4.0.
-SOS scaling corresponds to $c_{\text{ss}}=0.0$ and $c_{\text{os}}=1.3$ , with ground-state electron–proton correlation scaling $c_{\text{ep}}=0.94$ and
-excited-state electron–proton correlation scaling $c^{\text{ex}}_{\text{ep}}=1.0$ . Set to calculate the first six excited states, which correspond to protonic excitations."
+???+ example "示例 13.35：HCN 分子的 NEO-SOS ${}^{\prime}$ -CC2 激发态计算输入，其中质子按量子力学方式处理。
+电子基组为 STO-3G，质子基组为未经缩合的 1s1p 基组，指数为 4.0。
+SOS 缩放对应 $c_{\text{ss}}=0.0$ 和 $c_{\text{os}}=1.3$ ，基态电子–质子关联缩放 $c_{\text{ep}}=0.94$ ，激发态电子–质子关联缩放 $c^{\text{ex}}_{\text{ep}}=1.0$ 。设置为计算前六个激发态，它们对应于质子激发。"
     ```qchem
     $molecule
      0 1
@@ -1700,7 +1680,7 @@ excited-state electron–proton correlation scaling $c^{\text{ex}}_{\text{ep}}=1
     $end
     ```
 
-???+ example "Example 13.36: Input for NEO-SA-MCSCF on HeHHe ${}^{+}$ molecule with the proton treated quantum mechanically. 3 states are averaged. The NEO-CASSCF uses AH/GDM."
+???+ example "示例 13.36：HeHHe ${}^{+}$ 分子的 NEO-SA-MCSCF 计算输入，其中质子按量子力学方式处理。对 3 个态进行平均。NEO-CASSCF 使用 AH/GDM。"
     ```qchem
     $molecule
     1  1
@@ -1826,7 +1806,7 @@ excited-state electron–proton correlation scaling $c^{\text{ex}}_{\text{ep}}=1
     $end
     ```
 
-???+ example "Example 13.37: Input for NEO-SD ${}_{\text{en}}$ CI on HeHHe ${}^{+}$ molecule with the proton treated quantum mechanically, solving for 7 roots."
+???+ example "示例 13.37：HeHHe ${}^{+}$ 分子的 NEO-SD ${}_{\text{en}}$ CI 计算输入，其中质子按量子力学方式处理，求解 7 个根。"
     ```qchem
     $molecule
     1  1

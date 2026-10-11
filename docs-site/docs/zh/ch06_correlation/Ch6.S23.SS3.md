@@ -1,280 +1,277 @@
 ---
-title: "6.23.3 v2RDM Job Control"
+title: "6.23.3 v2RDM 作业控制"
 ---
 
-## 6.23.3 v2RDM Job Control
+## 6.23.3 v2RDM 作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 RDM_POSITIVITY
 
 ### `RDM_POSITIVITY`
 
-> **Indicates positivity conditions enforced in the v2RDM optimization.**
+> **指定在 v2RDM 优化中强制执行的 positivity（正性）条件。**
 >
-> * **Type**: `STRING`
-> * **Default**: `DQG`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `DQG`
+> * **选项**:
 >     * DQG,
->     * Two-electron conditions
+>     * 双电子条件
 >     * DQGT1
->     * Two-electron conditions plus the T1 partial three-electron conditions
+>     * 双电子条件加上 T1 部分三电子条件
 >     * DQGT2
->     * Two-electron conditions plus the T2 partial three-electron conditions
+>     * 双电子条件加上 T2 部分三电子条件
 >     * DQGT1T2
->     * Two-electron conditions plus the T1 and T2 partial three-electron conditions
+>     * 双电子条件加上 T1 和 T2 部分三电子条件
 >     * DQG3POS
->     * Two-electron conditions plus the full three-electron conditions
-> * **Recommendation**: For high-accuracy, use DQG3POS or DQGT2 , although such computations become impractical for large active spaces. For large active spaces ( e.g. , n > 16 for CAS(n, n)), use DQG.
+>     * 双电子条件加上完整的三电子条件
+> * **建议**: 若追求高精度，请使用 DQG3POS 或 DQGT2，但对于大活性空间而言此类计算会变得不切实际。对于大活性空间（例如 CAS(n, n) 中 n > 16），请使用 DQG。
 
 RDM_CONSTRAIN_SPIN
 
 ### `RDM_CONSTRAIN_SPIN`
 
-> **Indicates if the spin-constraints are enforced.**
+> **指示是否强制执行自旋约束。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Enforce spin-constraints.
+>     * 强制执行自旋约束。
 >     * FALSE
->     * Do not enforce spin-constraints.
-> * **Recommendation**: Use default.
+>     * 不强制执行自旋约束。
+> * **建议**: 使用默认值。
 
 PDFT_EXCHANGE
 
 ### `PDFT_EXCHANGE`
 
-> **Specifies the exchange functional to be used in MC-PDFT calculation.**
+> **指定在 MC-PDFT 计算中使用的交换泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * must be one of the LDA or GGA exchange
->     * functionals listed in Section
+>     * 必须是第
 >     * 5.3.3
->     * . This keyword is only invoked when
->     * method is set to RDM(PDFT).
-> * **Recommendation**: In general, consult the literature to guide your selection.
+>     * 节中列出的 LDA 或 GGA 交换
+>     * 泛函之一。该关键字仅在方法设置为 RDM(PDFT) 时生效。
+> * **建议**: 一般而言，请参考相关文献以指导选择。
 
 PDFT_CORRELATION
 
 ### `PDFT_CORRELATION`
 
-> **Specifies the correlation functional to be used in MC-PDFT calculation.**
+> **指定在 MC-PDFT 计算中使用的关联泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `NONE`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `NONE`
+> * **选项**:
 >     * NAME
->     * Use
+>     * 使用
 >     * =
 >     * NAME
->     * , where
+>     * ，其中
 >     * NAME
->     * is one of the LDA or GGA correlation
->     * functionals listed in Section
+>     * 是第
 >     * 5.3.4
->     * . This keyword is only invoked when
->     * method is set to RDM(PDFT).
-> * **Recommendation**: In general, consult the literature to guide your selection.
+>     * 节中列出的 LDA 或 GGA 关联泛函之一。该关键字仅在方法设置为 RDM(PDFT) 时生效。
+> * **建议**: 一般而言，请参考相关文献以指导选择。
 
 RDM_E_CONVERGENCE
 
 ### `RDM_E_CONVERGENCE`
 
-> **The threshold for the primal-dual energy gap.**
+> **原始-对偶（primal-dual）能量差的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **选项**:
 >     * $N$
->     * for a threshold of
+>     * 表示阈值
 >     * $10^{-N}$
-> * **Recommendation**: Increase for gradient computations.
+> * **建议**: 进行梯度计算时应提高（即加大收敛要求）。
 
 RDM_EPS_CONVERGENCE
 
 ### `RDM_EPS_CONVERGENCE`
 
-> **The threshold for the error in the primal and dual constraints.**
+> **原始约束与对偶约束误差的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **选项**:
 >     * $N$
->     * for a threshold of
+>     * 表示阈值
 >     * $10^{-N}$
-> * **Recommendation**: Increase for gradient computations.
+> * **建议**: 进行梯度计算时应提高（即加大收敛要求）。
 
 RDM_MAXITER
 
 ### `RDM_MAXITER`
 
-> **Maximum number of diagonalization steps in the BPSDP solver.**
+> **BPSDP 求解器中对角化步骤的最大次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50000`
+> * **选项**:
 >     * $N>0$
-> * **Recommendation**: Increase for computations that are difficult to converge.
+> * **建议**: 对于难以收敛的计算，应增大该值。
 
 RDM_CG_CONVERGENCE
 
 ### `RDM_CG_CONVERGENCE`
 
-> **The minimum threshold for the conjugate gradient solver.**
+> **共轭梯度（conjugate gradient）求解器的最小阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `12`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `12`
+> * **选项**:
 >     * $N$
->     * for a threshold of
+>     * 表示阈值
 >     * $10^{-N}$
-> * **Recommendation**: Should be at least ( RDM_EPS_CONVERGENCE +2).
+> * **建议**: 应至少为（RDM_EPS_CONVERGENCE + 2）。
 
 RDM_CG_MAXITER
 
 ### `RDM_CG_MAXITER`
 
-> **Maximum number of iterations for each conjugate gradient computations in the BPSDP algorithm.**
+> **BPSDP 算法中每次共轭梯度计算的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1000`
+> * **选项**:
 >     * $N>0$
-> * **Recommendation**: Use default unless problems arise.
+> * **建议**: 除非出现问题，否则使用默认值。
 
 RDM_TAU
 
 ### `RDM_TAU`
 
-> **Step-length parameter used in the BPSDP solver.**
+> **BPSDP 求解器中使用的步长参数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `10`
+> * **选项**:
 >     * $N$
->     * for a value of 0.1 *
+>     * 表示值为 0.1 *
 >     * $N$
-> * **Recommendation**: should range between 10 and 16 for $1.0\leq\tau\leq 1.6$ .
+> * **建议**: 对于 $1.0\leq\tau\leq 1.6$，该值应在 10 到 16 之间。
 
 RDM_MU_UPDATE_FREQUENCY
 
 ### `RDM_MU_UPDATE_FREQUENCY`
 
-> **The number of v2RDM iterations after which the penalty parameter $\mu$ is updated.**
+> **更新惩罚参数 $\mu$ 之前所执行的 v2RDM 迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `200`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `200`
+> * **选项**:
 >     * $N>0$
-> * **Recommendation**: Change if convergence problems arise.
+> * **建议**: 出现收敛问题时可修改。
 
 RDM_TPDM_GUESS
 
 ### `RDM_TPDM_GUESS`
 
-> **Initial guess for the RDMs**
+> **RDM（约化密度矩阵）的初始猜测**
 >
-> * **Type**: `STRING`
-> * **Default**: `HF_GUESS`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `HF_GUESS`
+> * **选项**:
 >     * HF_GUESS
->     * Use RDMs from Hartree-Fock calculations as the initial density for the semidefinite solver
+>     * 使用 Hartree-Fock 计算得到的 RDM 作为半定规划求解器的初始密度
 >     * RANDOM_GUESS
->     * Use random numbers as the initial density for the semidefinite solver
-> * **Recommendation**: Use default unless convergence problems arise.
+>     * 使用随机数作为半定规划求解器的初始密度
+> * **建议**: 除非出现收敛问题，否则使用默认值。
 
 RDM_DIAGONALIZER
 
 ### `RDM_DIAGONALIZER`
 
-> **The algorithm used to diagonalize matrices inside semidefinite programming.**
+> **在半定规划（semidefinite programming）内部用于矩阵对角化的算法。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `11`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `11`
+> * **选项**:
 >     * 0
->     * Use parallel LAPACK function DSYEV
+>     * 使用并行 LAPACK 函数 DSYEV
 >     * 1
->     * Use parallel LAPACK function DSYEVD
+>     * 使用并行 LAPACK 函数 DSYEVD
 >     * 10
->     * Use multiple simultaneous calls to serial LAPACK function DSYEV
+>     * 对串行 LAPACK 函数 DSYEV 进行多次并行调用
 >     * 11
->     * Use multiple simultaneous calls to serial LAPACK function DSYEVD
-> * **Recommendation**: Use default. Under certain circumstances ( e.g. , low symmetry), algorithm 1 may be faster.
+>     * 对串行 LAPACK 函数 DSYEVD 进行多次并行调用
+> * **建议**: 使用默认值。在某些情况下（例如低对称性），算法 1 可能更快。
 
 RDM_PRINT
 
 ### `RDM_PRINT`
 
-> **Controls the amount of printing.**
+> **控制输出信息的详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Print minimal information.
+>     * 仅输出最少的信息。
 >     * 1
->     * Print information about all iterations.
-> * **Recommendation**: Use 1 to analyze convergence issues.
+>     * 输出所有迭代的详细信息。
+> * **建议**: 使用 1 来分析收敛问题。
 
 RDM_ORBOPT_GRADIENT_CONVERGENCE
 
 ### `RDM_ORBOPT_GRADIENT_CONVERGENCE`
 
-> **The threshold for the orbital gradient during orbital optimization.**
+> **轨道优化过程中轨道梯度的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **选项**:
 >     * $N$
->     * for threshold of
+>     * 表示阈值
 >     * $10^{-N}$
-> * **Recommendation**: Tighten for gradient computations.
+> * **建议**: 进行梯度计算时应收紧（即加大收敛要求）。
 
 RDM_ORBOPT_ENERGY_CONVERGENCE
 
 ### `RDM_ORBOPT_ENERGY_CONVERGENCE`
 
-> **The threshold for energy convergence during orbital optimization.**
+> **轨道优化过程中能量收敛的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `8`
+> * **选项**:
 >     * $N$
->     * for threshold of
+>     * 表示阈值
 >     * $10^{-N}$
-> * **Recommendation**: Tighten for gradient computations.
+> * **建议**: 进行梯度计算时应收紧（即加大收敛要求）。
 
 RDM_ORBOPT_MAXITER
 
 ### `RDM_ORBOPT_MAXITER`
 
-> **The maximum number of orbital optimization steps each time the orbital optimization routine is called.**
+> **每次调用轨道优化例程时执行轨道优化步骤的最大次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `20`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `20`
+> * **选项**:
 >     * $N>0$
-> * **Recommendation**: Use default unless convergence problems arise.
+> * **建议**: 除非出现收敛问题，否则使用默认值。
 
 RDM_ORBOPT_FREQUENCY
 
 ### `RDM_ORBOPT_FREQUENCY`
 
-> **The number of v2RDM iterations after which the orbital optimization routine is called.**
+> **调用轨道优化例程之前所执行的 v2RDM 迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **选项**:
 >     * $N>0$
-> * **Recommendation**: Use default unless convergence problems arise.
+> * **建议**: 除非出现收敛问题，否则使用默认值。

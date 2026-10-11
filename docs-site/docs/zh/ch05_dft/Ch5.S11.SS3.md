@@ -1,117 +1,114 @@
 ---
-title: "5.11.3 Job Control"
+title: "5.11.3 作业控制"
 ---
 
-## 5.11.3 Job Control
+## 5.11.3 作业控制
 
 (July 4, 2026)
 
-A CDFT calculation is requested by setting CDFT = TRUE in the
-*$rem* section. A *$cdft* input section needs to be specified as described above.
-Three SCF algorithms are currently available for CDFT calculations: DIIS, RCA,
-and the combined RCA-DIIS algorithm. Additional job control variables are described below.
+通过在 *$rem* 段中设置 CDFT = TRUE 来请求进行约束密度泛函理论（Constrained Density Functional Theory, CDFT）计算。需要按照上文所述指定 *$cdft* 输入段。目前 CDFT 计算有三种自洽场（SCF）算法可用：DIIS、RCA，以及 RCA-DIIS 组合算法。其他作业控制变量说明如下。
 
 CDFT
 
 ### `CDFT`
 
-> **Initiates a constrained DFT calculation**
+> **发起一次约束 DFT 计算**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Perform a Constrained DFT Calculation
+>     * 执行约束 DFT 计算
 >     * FALSE
->     * No Density Constraint
-> * **Recommendation**: Set to TRUE if a Constrained DFT calculation is desired.
+>     * 不施加密度约束
+> * **建议**: 若希望进行约束 DFT 计算，则设置为 TRUE。
 
 CDFT_POSTDIIS
 
 ### `CDFT_POSTDIIS`
 
-> **Controls whether the constraint is enforced after DIIS extrapolation.**
+> **控制是否在 DIIS 外推之后强制执行约束。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Enforce constraint after DIIS
+>     * 在 DIIS 之后强制执行约束
 >     * FALSE
->     * Do not enforce constraint after DIIS
-> * **Recommendation**: Use the default unless convergence problems arise, in which case it may be beneficial to experiment with setting to FALSE . With this option set to TRUE , energies should be variational after the first iteration.
+>     * 在 DIIS 之后不强制执行约束
+> * **建议**: 使用默认值，除非出现收敛问题，此时尝试将其设置为 FALSE 可能有所裨益。当此选项设置为 TRUE 时，自第一次迭代之后能量应当具有变分性。
 
 CDFT_PREDIIS
 
 ### `CDFT_PREDIIS`
 
-> **Controls whether the constraint is enforced before DIIS extrapolation.**
+> **控制是否在 DIIS 外推之前强制执行约束。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Enforce constraint before DIIS
+>     * 在 DIIS 之前强制执行约束
 >     * FALSE
->     * Do not enforce constraint before DIIS
-> * **Recommendation**: Use the default unless convergence problems arise, in which case it may be beneficial to experiment with setting to TRUE . Note that it is possible to enforce the constraint both before and after DIIS by setting both and CDFT_POSTDIIS to TRUE .
+>     * 在 DIIS 之前不强制执行约束
+> * **建议**: 使用默认值，除非出现收敛问题，此时尝试将其设置为 TRUE 可能有所裨益。注意，通过将本选项与 CDFT_POSTDIIS 同时设置为 TRUE，可以在 DIIS 之前和之后都强制执行约束。
 
 CDFT_THRESH
 
 ### `CDFT_THRESH`
 
-> **Threshold that determines how tightly the constraint must be satisfied.**
+> **决定约束需被满足到何种精度的阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * N
->     * Constraint is satisfied to within
+>     * 约束在
 >     * $10^{-N}$
->     * .
-> * **Recommendation**: Default value is set to match SCF_CONVERGENCE . Use the default unless problems occur.
+>     * 精度范围内得到满足。
+> * **建议**: 默认值与 SCF_CONVERGENCE 相匹配。除非出现问题，否则使用默认值。
 
 CDFT_MAXITER
 
 ### `CDFT_MAXITER`
 
-> **Maximum number of iterations for converging the constraint.**
+> **用于收敛约束的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `20`
+> * **类型**: `INTEGER`
+> * **默认值**: `20`
 > * **Options**:
 >     * N
->     * A maximum of
+>     * 最多将尝试
 >     * N
->     * microiterations will be attempted.
-> * **Recommendation**: Default value is expected to be sufficient in most situations.
+>     * 次微迭代（microiterations）。
+> * **建议**: 在大多数情况下，默认值应当已经足够。
 
 CDFT_PRINT
 
 ### `CDFT_PRINT`
 
-> **Whether detailed information about CDFT iterations should be printed in the output file.**
+> **控制是否在输出文件中打印有关 CDFT 迭代的详细信息。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Print detailed information.
+>     * 打印详细信息。
 >     * FALSE
->     * Do not print detailed information.
-> * **Recommendation**: Use the default and invoke additional printing for troubleshooting.
+>     * 不打印详细信息。
+> * **建议**: 使用默认值，并在排查问题时启用额外的打印输出。
 
 CDFT_BECKE_POP
 
 ### `CDFT_BECKE_POP`
 
-> **Whether the calculation should print the Becke atomic charges at convergence**
+> **控制在收敛时是否打印 Becke 原子电荷**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
->     * Print populations
+>     * 打印布居数
 >     * FALSE
->     * Do not print them
-> * **Recommendation**: Use the default. Note that the Mulliken populations printed at the end of an SCF run will not typically add up to the prescribed constraint value. Only the Becke populations are guaranteed to satisfy the user-specified constraints.
+>     * 不打印布居数
+> * **建议**: 使用默认值。注意，在 SCF 计算结束时打印的 Mulliken 布居数通常不会加和到用户指定的约束值。只有 Becke 布居数保证满足用户指定的约束。

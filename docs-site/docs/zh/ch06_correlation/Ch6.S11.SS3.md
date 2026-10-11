@@ -1,12 +1,12 @@
 ---
-title: "6.11.3 Examples"
+title: "6.11.3 示例"
 ---
 
-## 6.11.3 Examples
+## 6.11.3 示例
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-???+ example "Example 6.28: RI-MP3 with RHF orbitals applied to a water dimer."
+???+ example "示例 6.28：将使用 RHF 轨道的 RI-MP3 应用于水二聚体。"
     ```qchem
     $molecule
        0  1
@@ -32,7 +32,7 @@ title: "6.11.3 Examples"
     $end
     ```
 
-???+ example "Example 6.29: Scaled RI-MP3 (RI-MP2.5) with BLYP orbitals applied to the water-ammonia dimer."
+???+ example "示例 6.29：将使用 BLYP 轨道的标度 RI-MP3（RI-MP2.5）应用于水-氨二聚体。"
     ```qchem
     $molecule
        0  1
@@ -84,7 +84,7 @@ title: "6.11.3 Examples"
     $end
     ```
 
-???+ example "Example 6.30: Scaled RI-MP3 (RI-MP2.8) with $\kappa$ -OOMP2 orbitals applied to the hydrogen fluoride dimer."
+???+ example "示例 6.30：将使用 $\kappa$ -OOMP2 轨道的标度 RI-MP3（RI-MP2.8）应用于氟化氢二聚体。"
     ```qchem
     $molecule
        0  1

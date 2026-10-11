@@ -1,134 +1,108 @@
 ---
-title: "10.2.7 Oxidation State Localized Orbitals"
+title: "10.2.7 氧化态定域轨道"
 ---
 
-## 10.2.7 Oxidation State Localized Orbitals
+## 10.2.7 氧化态定域轨道（Oxidation State Localized Orbitals, OSLO）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Oxidation State Localized Orbitals (OSLO) is a new localization scheme focused
-on molecular fragments for the purposes of oxidation state assignment.
+氧化态定域轨道（OSLO）是一种新的定域化方案，它以分子片段（fragment）为对象，用于氧化态的指认。
 [[455]](../bib_references/bib.md#bib468)
- The method has been developed to avoid some pitfalls
-encountered in the LOBA method ([10.2.6](sect_LOBA.md)) where the Pipek-Mezey orbitals
-can spread across many fragments without reaching the 60%
-threshold[[456]](../bib_references/bib.md#bib467)
-. OSLO starts by looking at fragments’ centers of
-charge and localizing on the radial spread (in the real space) to those centers.
-Then, it admits orbitals to its list of orbitals if they are above a slowly
-increasing threshold of a criterion called the
-*fragment orbital localization index* (FOLI). To understand this criterion,
-one needs to know Pipek’s delocalization measure. This is defined as
+ 开发该方法是为了避免 LOBA 方法（[10.2.6](sect_LOBA.md)）中遇到的一些陷阱：在 LOBA 中，Pipek-Mezey 轨道
+可能分散在多个片段上而无法达到 60% 的阈值[[456]](../bib_references/bib.md#bib467)
+。OSLO 首先考察各片段的电荷中心，并针对到这些中心的径向展宽（在实空间中）进行定域化。
+随后，当轨道在称为*片段轨道定域化指数*（fragment orbital localization index, FOLI）的判据上超过一个缓慢递增的阈值时，就将其纳入轨道列表。
+要理解这一判据，需要先了解 Pipek 的离域化度量。其定义为
 
 <a id="pipek-deloc"></a>
 $$
 d_{i}=\left[\sum_{A}(N_{A}^{i})^{2}\right]^{-1} \tag{10.20}
 $$
 
-where the $N_{A}^{i}$ is the population of the $i$th orbital on center $A$ and the
-summation runs over all centers. When an orbital is entirely localized on a
-given center, its delocalization measure is $d_{i}=1$. If the orbital is perfectly
-delocalized among two centers $A$ and $B$ then $N_{A}=N_{B}=1/2$ and the
-delocalization measure is $d_{i}=2$, etc. The square helps make it less sensitive
-to the ratio of the population to each other (insensitive to bond polarization)
-compared to how many are related. In fact, minimizing the sum over all occupied
-orbitals is precisely what leads to the Pipek-Mezey localization procedure.
+其中 $N_{A}^{i}$ 是第 $i$ 个轨道在中心 $A$ 上的布居数，求和遍历所有中心。
+当一个轨道完全定域在某个给定中心上时，其离域化度量为 $d_{i}=1$。
+若该轨道在两个中心 $A$ 和 $B$ 之间完全离域，则 $N_{A}=N_{B}=1/2$，离域化度量为 $d_{i}=2$，依此类推。其中的平方项使得该度量对各个布居数之间比值的敏感性（即对键极化不敏感）低于对其涉及多少个中心的敏感性。
+事实上，对所有占据轨道上的该求和进行最小化，正是导出 Pipek-Mezey 定域化程序的原理。
 [[1093]](../bib_references/bib.md#bib1138)
- However, for our purposes, out of the localized orbitals
-generated from fragment $A$ with low delocalization measure, we are interested
-in those that are also highly localized on fragment $A$. Defining the
-*fragment orbital localization index* (FOLI),
+ 然而，就我们的目的而言，在由片段 $A$ 生成的、离域化度量较低的定域轨道中，我们关心的是那些同时在片段 $A$ 上高度定域的轨道。定义*片段轨道定域化指数*（FOLI），
 
 <a id="foli"></a>
 $$
 d_{i}^{A}=\left(\frac{d_{i}}{N_{A}}\right)^{1/2}\;, \tag{10.21}
 $$
 
-it is easy to see $d_{i}^{A}$ tends to unity for fragment $A$ when orbital $i$ is
-perfectly localized on $A$ ($d_{i}=N_{A}=1$), tends to 2 when the localized orbital
-is perfectly delocalized over two fragments ($d_{i}=2,N_{A}=0.5$), and
-gradually increases as the orbital becomes more delocalized as well as less
-centered on fragment $A$. Thus, among the redundant set of $Mn_{occ}$ localized
-orbitals, one selects all orbitals above the smallest FOLI by a threshold (0.01
-by default) and assigns each orbital to the originator fragment. The orbitals
-are then symmetrically orthogonalized and projected out from the remaining space
-of (unassigned) occupied space. In case a set of orbitals is redundant due to
-symmetry in the system or simple covalency, then the orbitals are split over all
-contributing fragments (originators). After the iterative process, each
-molecular fragment has an associated set of localized orbitals derived from the
-simplest orbital spread criterion, which in turn determines the fragment’s
-formal charge or oxidation state in a natural manner.
+容易看出，当轨道 $i$ 完全定域在 $A$ 上时（$d_{i}=N_{A}=1$），$d_{i}^{A}$ 对于片段 $A$ 趋于 1；当定域轨道在两个片段之间完全离域时（$d_{i}=2,N_{A}=0.5$），该指数趋于 2；并且随着轨道变得越离域、越不以片段 $A$ 为中心，该指数也逐渐增大。
+因此，在这组冗余的 $Mn_{occ}$ 个定域轨道中，选出所有 FOLI 低于最小值加上一个阈值（默认为 0.01）的轨道，并将每个轨道指认给其起源片段（originator fragment）。
+然后对这些轨道进行对称正交化，并从剩余的（未指认的）占据空间中将它们投影剔除。
+若由于体系的对称性或简单的共价性导致某组轨道出现冗余，则将这些轨道拆分到所有贡献的片段（起源片段）上。经过迭代过程之后，每个分子片段都拥有一组基于最简单的轨道展宽判据导出的定域轨道，而这反过来又以自然的方式确定了片段的电荷，即形式电荷或氧化态。
 
-The new method expects fragments. Otherwise, it localizes on atomic centers
-instead. Although this method was developed for oxidation state, it produces a
-set of localized orbitals on fragments or atoms that can be used like any other
-localization method.
+该新方法期望输入片段。否则，它会在原子中心上进行定域化。
+尽管该方法是为氧化态分析而开发的，但它产生的一组位于片段或原子上的定域轨道可以像其他任何定域化方法的输出一样使用。
 
 OSLO
 
 ### `OSLO`
 
-> **Triggers OSLO procedure after a converged SCF**
+> **在 SCF 收敛后触发 OSLO 程序**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Don’t perform OSLO
+>     * 不执行 OSLO
 >     * 1
->     * Perform the OSLO procedure
-> * **Recommendation**: None
+>     * 执行 OSLO 程序
+> * **建议**: 无
 
-More precise control of OSLO goes under the *$loco* input section, with keywords that are introduced below.
-See the example for reference.
+更精细的 OSLO 控制在 *$loco* 输入节中进行，下面介绍相关关键字。
+请参考示例。
 
 ### `OSLO_POPANALTYPE`
 
-> **Specifies which population analysis is used for OSLOs. INPUT SECTION: $loco**
+> **指定 OSLO 使用哪种布居分析方法。输入节：$loco**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **可选值**:
 >     * 0
 >     * Mulliken
 >     * 1
 >     * Lowdin
 >     * 2
->     * IAOs
-> * **Recommendation**: Use IAOs since they are insenstive to the basis set. When using IAOs, use AUTOSAD = TRUE in the $loco input section to use the new AUTOSAD-IAO algorithm, which uses AUTOSAD atomic densities instead of some minimal basis.
+>     * IAO
+> * **建议**: 推荐使用 IAO，因为它们对基组不敏感。使用 IAO 时，请在 $loco 输入节中设置 AUTOSAD = TRUE，以使用新的 AUTOSAD-IAO 算法，该算法采用 AUTOSAD 原子密度，而非某种最小基组。
 
 ### `OSLO_THRESH`
 
-> **Specifies the threshold for FOLI when adding new orbitals for each iteration. INPUT SECTION: $loco**
+> **指定每次迭代中新增轨道时的 FOLI 阈值。输入节：$loco**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Use the default, 0.01
+>     * 使用默认值 0.01
 >     * $c$
->     * Use threshold of
+>     * 使用阈值
 >     * $c$
 >     * /1000
-> * **Recommendation**: Use the default
+> * **建议**: 使用默认值
 
 ### `OSLO_BRANCHING`
 
-> **Specifies which iteration with too much overlap between its orbitals and next sets orbitals to choose the next set. The input here can be $abcdf\ldots$ , which is a binary string for which iteration (only consider those with warning prints) to branch in, e.g. , 010011, means to branch in iterations 2, 5, and 6. INPUT SECTION: $loco**
+> **指定当某次迭代中其轨道与下一组轨道重叠过多时，选择哪次迭代来决定下一组轨道。这里的输入可以是 $abcdf\ldots$ ，它是一个二进制字符串，指明在哪次迭代中进行分支（仅考虑那些有警告输出的迭代），例如 010011 表示在第 2、5、6 次迭代中进行分支。输入节：$loco**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * $abcd\ldots$
->     * , for each digit:
+>     * ，对每一位数字：
 >     * 0
->     * Follow the default behavior
+>     * 遵循默认行为
 >     * 1
->     * Favor the next set of orbitals over the current set
-> * **Recommendation**: Use the default, and only worry about this if the system involves multiple Lewis structures
+>     * 优先选择下一组轨道而非当前这组轨道
+> * **建议**: 使用默认值，仅当体系涉及多种路易斯结构（Lewis structure）时才需要考虑此项
 
-???+ example "Example 10.3: An OSLO job to analyze the oxidation state (or formal charges) of the water
-molecule, $\rm H_{2}O$"
+???+ example "示例 10.3: 使用 OSLO 作业分析水分子 $\rm H_{2}O$ 的氧化态（或形式电荷）"
     ```qchem
     $molecule
     0 1

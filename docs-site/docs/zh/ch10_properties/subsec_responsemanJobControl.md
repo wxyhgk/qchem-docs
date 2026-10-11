@@ -1,241 +1,239 @@
 ---
-title: "10.14.2 Job Control"
+title: "10.14.2 任务控制"
 ---
 
-## 10.14.2 Job Control
+## 10.14.2 任务控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Only one keyword is necessary in the *$rem* section to activate the response
-module. All other options are controlled through the *$response* input section.
+在 *$rem* 区段中只需一个关键字即可激活响应（response）模块。所有其他选项均通过 *$response* 输入区段进行控制。
 
 RESPONSE
 
 ### `RESPONSE`
 
-> **Activate the general response property module.**
+> **激活通用响应性质模块。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Don’t activate the general response property module.
->     * TRUE (or 1)
->     * Activate the general response property module.
-> * **Recommendation**: None.
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
+>     * FALSE（或 0）
+>     * 不激活通用响应性质模块。
+>     * TRUE（或 1）
+>     * 激活通用响应性质模块。
+> * **建议**：无。
 
 ### `ORDER`
 
-> **Sets the maximum order of response theory to perform. INPUT SECTION: $response**
+> **设置要执行的响应理论最高阶数。输入区段：$response**
 >
-> * **Type**: `STRING`
-> * **Default**: `LINEAR`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`LINEAR`
+> * **可选值**：
 >     * LINEAR
->     * Perform up through linear response.
-> * **Recommendation**: None. Currently, only linear response is implemented.
+>     * 执行至线性响应（linear response）为止。
+> * **建议**：无。目前仅实现了线性响应。
 
 ### `SOLVER`
 
-> **Sets the algorithm for solving the response equations. INPUT SECTION: $response**
+> **设置求解响应方程所用的算法。输入区段：$response**
 >
-> * **Type**: `STRING`
-> * **Default**: `DIIS`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`DIIS`
+> * **可选值**：
 >     * LINEAR
->     * Iteratively solve the response equations without convergence acceleration.
+>     * 迭代求解响应方程，不使用收敛加速。
 >     * DIIS
->     * Iteratively solve the response equations using DIIS for convergence acceleration.
-> * **Recommendation**: DIIS
+>     * 迭代求解响应方程，并使用 DIIS 进行收敛加速。
+> * **建议**：DIIS
 
 ### `HAMILTONIAN`
 
-> **Sets the approximation used for the orbital Hessian. INPUT SECTION: $response**
+> **设置轨道 Hessian（orbital Hessian）所采用的近似。输入区段：$response**
 >
-> * **Type**: `STRING`
-> * **Default**: `RPA`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`RPA`
+> * **可选值**：
 >     * RPA
->     * No approximations.
+>     * 不作任何近似。
 >     * TDA
->     * Same as the CIS approximation.
+>     * 与 CIS 近似相同。
 >     * CIS
->     * Synonym for TDA.
-> * **Recommendation**: None.
+>     * TDA 的同义写法。
+> * **建议**：无。
 
 ### `SPIN`
 
-> **Does the operator access same spin (singlet) or different spin (triplet) states? INPUT SECTION: $response**
+> **算符作用于同自旋（单重态）还是不同自旋（三重态）的激发态？输入区段：$response**
 >
-> * **Type**: `STRING`
-> * **Default**: `SINGLET`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`SINGLET`
+> * **可选值**：
 >     * SINGLET
->     * Operator is spin-conserving.
+>     * 算符保持自旋不变（spin-conserving）。
 >     * TRIPLET
->     * Operator is not spin-conserving.
-> * **Recommendation**: None. Care must be taken as all operators in a single calculation will be forced to follow this option.
+>     * 算符不保持自旋不变。
+> * **建议**：无。需谨慎使用，因为单次计算中的所有算符都会强制遵循此选项。
 
 ### `MAXITER`
 
-> **Maximum number of iterations. INPUT SECTION: $response**
+> **最大迭代次数。输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `60`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`60`
+> * **可选值**：
 >     * $n$
->     * Maximum number of iterations.
-> * **Recommendation**: Use the default value.
+>     * 最大迭代次数。
+> * **建议**：使用默认值。
 
 ### `CONV`
 
-> **Convergence threshold. For the DIIS solver, this is the DIIS error norm. For the linear solver, this is the response vector RMSD between iterations. INPUT SECTION: $response**
+> **收敛阈值。对于 DIIS 求解器，这是 DIIS 误差范数；对于线性求解器，这是相邻迭代间响应向量的均方根偏差（RMSD）。输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`8`
+> * **可选值**：
 >     * $n$
->     * Sets the convergence threshold to
+>     * 将收敛阈值设置为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Use the default value.
+>     * 。
+> * **建议**：使用默认值。
 
 ### `DIIS_START`
 
-> **Iteration number to start DIIS. Before this, linear iterations are performed. INPUT SECTION: $response**
+> **启动 DIIS 的迭代步数。在此之前执行线性迭代。输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **可选值**：
 >     * $n$
->     * Iteration number to start DIIS.
-> * **Recommendation**: Use the default value.
+>     * 启动 DIIS 的迭代步数。
+> * **建议**：使用默认值。
 
 ### `DIIS_VECTORS`
 
-> **Maximum number of DIIS vectors to keep. INPUT SECTION: $response**
+> **保留的 DIIS 向量最大数目。输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`7`
+> * **可选值**：
 >     * $n>0$
->     * Maximum number of DIIS vectors to keep.
-> * **Recommendation**: Use the default value.
+>     * 保留的 DIIS 向量最大数目。
+> * **建议**：使用默认值。
 
 ### `RHF_AS_UHF`
 
-> **Should the response equations be solved as though an unrestricted reference is being used? INPUT SECTION: $response**
+> **是否应像使用非限制（unrestricted）参考波函数那样求解响应方程？输入区段：$response**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Treat an RHF wave function as though it were UHF.
+>     * 将 RHF 波函数按 UHF 处理。
 >     * FALSE
->     * Treat an RHF wave function as RHF.
-> * **Recommendation**: Use the default value. Only useful for debugging.
+>     * 将 RHF 波函数按 RHF 处理。
+> * **建议**：使用默认值。仅用于调试。
 
 ### `PRINT_LEVEL`
 
-> **Sets a general printing level across the response module. INPUT SECTION: $response**
+> **设置整个响应模块的通用打印级别。输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **可选值**：
 >     * 1
->     * Print the initial guess and the final results.
+>     * 打印初始猜测和最终结果。
 >     * 2
->     * 1 + iterations and comments.
+>     * 级别 1 加上迭代过程和评注。
 >     * 10
->     * Kill trees.
-> * **Recommendation**: Use the default value.
+>     * 海量输出（“砍树”级别）。
+> * **建议**：使用默认值。
 
 ### `RUN_TYPE`
 
-> **Should a single response calculation be performed, or should all permutations of the orbital Hessian and excitation type be performed? INPUT SECTION: $response**
+> **是执行单次响应计算，还是对轨道 Hessian 与激发类型的所有组合逐一执行？输入区段：$response**
 >
-> * **Type**: `STRING`
-> * **Default**: `SINGLE`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`SINGLE`
+> * **可选值**：
 >     * SINGLE
->     * Use only the orbital Hessian and excitation type specified in
->     * their respective keywords.
+>     * 仅使用各自关键字中指定的轨道 Hessian 近似与激发类型。
 >     * ALL
->     * Use all permutations of RPA/TDA and singlet/triplet.
-> * **Recommendation**: Use the default value, unless a comparison between approximations and excitation types is desired.
+>     * 使用 RPA/TDA 与单重态/三重态的所有组合。
+> * **建议**：使用默认值，除非需要对比不同近似和激发类型。
 
 ### `SAVE`
 
-> **Save any quantities to disk? INPUT SECTION: $response**
+> **是否将某些量保存到磁盘？输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Don’t save any quantities to disk.
+>     * 不将任何量保存到磁盘。
 >     * 1
->     * Save quantities in MO basis.
+>     * 以分子轨道（MO）基保存各量。
 >     * 2
->     * Save quantities in MO and AO bases.
-> * **Recommendation**: None.
+>     * 以分子轨道（MO）基和原子轨道（AO）基保存各量。
+> * **建议**：无。
 
 ### `READ`
 
-> **Read any quantities from disk? INPUT SECTION: $response**
+> **是否从磁盘读取某些量？输入区段：$response**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Don’t read any quantities from disk.
+>     * 不从磁盘读取任何量。
 >     * 1
->     * Read quantities in MO basis.
+>     * 读取 MO 基下的各量。
 >     * 2
->     * Read quantities in AO basis.
-> * **Recommendation**: None.
+>     * 读取 AO 基下的各量。
+> * **建议**：无。
 
 ### `DUMP_AO_INTEGRALS`
 
-> **Should AO-basis property integrals be saved to disk? INPUT SECTION: $response**
+> **是否将 AO 基的性质积分保存到磁盘？输入区段：$response**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Save AO-basis property integrals to disk.
+>     * 将 AO 基性质积分保存到磁盘。
 >     * FALSE
->     * Don’t save AO-basis property integrals to disk.
-> * **Recommendation**: None.
+>     * 不将 AO 基性质积分保存到磁盘。
+> * **建议**：无。
 
 ### `FORCE_NOT_NONORTHOGONAL`
 
-> **Should the canonical response equations be solved, ignoring the identity of the underlying orbitals? INPUT SECTION: $response**
+> **是否忽略底层轨道的性质，直接求解正则（canonical）响应方程？输入区段：$response**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: Leave as false. Using the standard (canonical) response equations with non-orthogonal MOs will give incorrect results.
+> * **建议**：保持为 false。若对非正交 MO 使用标准（正则）响应方程，将得到错误结果。
 
 ### `FORCE_NONORTHOGONAL`
 
-> **Should the non-orthogonal response equations be solved, ignoring the identity of the underlying orbitals? INPUT SECTION: $response**
+> **是否忽略底层轨道的性质，直接求解非正交响应方程？输入区段：$response**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: Leave as false. When used with canonical MOs, this should give the same answer as with the standard equations, but at greater computational cost.
+> * **建议**：保持为 false。与正则 MO 一起使用时，其结果应与标准方程一致，但计算代价更高。
 
 ### `FREQUENCY`
 
-> **Strength of one or more incident fields in atomic units. A separate response calculation will be performed for every field strength. 0.0 corresponds to the static limit. INPUT SECTION: $response**
+> **一个或多个入射场的场强，以原子单位表示。对每个场强都会单独执行一次响应计算。0.0 对应静态极限。输入区段：$response**
 >
-> * **Type**: `DOUBLE`
-> * **Default**: `0.0`
-> * **Options**:
+> * **类型**：`DOUBLE`
+> * **默认值**：`0.0`
+> * **可选值**：
 >     * $l\,m\,n\,\dots$
->     * One or more field strengths separated by spaces.
-> * **Recommendation**: None.
+>     * 一个或多个场强，以空格分隔。
+> * **建议**：无。

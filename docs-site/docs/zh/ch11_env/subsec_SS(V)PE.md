@@ -1,153 +1,109 @@
 ---
-title: "11.2.6 Isodensity Implementation of SS(V)PE"
+title: "11.2.6 SS(V)PE 的等密度实现"
 ---
 
-## 11.2.6 Isodensity Implementation of SS(V)PE
+## 11.2.6 SS(V)PE 的等密度实现
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 11.2.6.1 Basic Job Control
+## 11.2.6.1 基本作业控制
 
-As discussed above, results obtained various types of PCMs are quite sensitive
-to the details of the cavity construction. **Q-Chem**’s implementation of PCMs,
-using Lebedev grids, simplifies this construction somewhat, but leaves the
-radii of the atomic spheres as empirical parameters (albeit ones for which
-widely-used default values are provided). An alternative implementation of the
-SS(V)PE solvation model is also available,[[242]](../bib_references/bib.md#bib247)
- which attempts
-to further eliminate empiricism associated with cavity construction by taking
-the cavity surface to be a specified iso-contour of the solute’s electron
-density. [We call this the isodensity implementation of SS(V)PE in
-Table [11.3](topic_pcm-em.md#table:K-matrix), and it is based on Chipman’s “symmetrized” form
-of the $\mathbf{K}$ matrix,[[242]](../bib_references/bib.md#bib247)
+如上所述，各类 PCM（极化连续介质模型，Polarizable Continuum Model, PCM）所得结果对空腔构建的细节非常敏感。**Q-Chem** 使用 Lebedev 网格实现 PCM，在一定程度上简化了这一构建过程，但原子球的半径仍作为经验参数保留（尽管提供了广泛使用的默认值）。SS(V)PE 溶剂化模型还有一种替代实现方式，[[242]](../bib_references/bib.md#bib247)
+ 它试图通过将空腔表面取为溶质电子密度的指定等值线（iso-contour）来进一步消除空腔构建所涉及的经验性。[我们在表 [11.3](topic_pcm-em.md#table:K-matrix) 中将其称为 SS(V)PE 的等密度实现，它基于 Chipman 给出的 $\mathbf{K}$ 矩阵的"对称化"形式，[[242]](../bib_references/bib.md#bib247)
 
-although the difference between symmetric and asymmetric forms is essentially negligible
-when an isodensity cavity construction is used.[[242]](../bib_references/bib.md#bib247)
+尽管在使用等密度空腔构建时，对称形式与非对称形式之间的差异基本上可以忽略不计。[[242]](../bib_references/bib.md#bib247)
 ]
-In this case, the
-cavity surface is discretized by projecting a single-center Lebedev grid onto
-the iso-contour surface. Unlike the PCM implementation discussed in
-Section [11.2.3](topic_pcm-em.md), for which point-group symmetry is disabled, this
-implementation of SS(V)PE supports full symmetry for all Abelian point groups.
-The larger and/or the less spherical the solute molecule is, the more points
-are needed to get satisfactory precision in the results. Further experience
-will be required to develop detailed recommendations for this parameter.
-Values as small as 110 points are usually sufficient for diatomic or triatomic
-molecules. The default value of 1202 points is adequate to converge the energy
-within 0.1 kcal/mol for solutes the size of mono-substituted benzenes.
+在这种情况下，空腔表面通过将单中心 Lebedev 网格投影到等值线曲面上进行离散化。与 [11.2.3](topic_pcm-em.md) 节讨论的 PCM 实现（该实现禁用了点群对称性）不同，此 SS(V)PE 实现支持所有阿贝尔（Abelian）点群的完全对称性。溶质分子越大和/或越不对称，就需要越多的点来获得令人满意的结果精度。要为该参数制定详细建议还需更多经验积累。对于双原子或三原子分子，少至 110 个点的取值通常就已足够。默认值 1202 个点足以使单取代苯大小的溶质的能量收敛到 0.1 kcal/mol 以内。
 
-Energy gradients are also not available for this implementation of SS(V)PE,
-although they are available for the implementation described in
-Section [11.2.3](topic_pcm-em.md) in which the cavity is constructed from atom-centered
-spheres. As with the PCMs discussed in that section, the solute may be
-described using Hartree-Fock theory or DFT; post-Hartree–Fock correlated wave
-functions can also take advantage of molecular orbitals that are polarized
-using SS(V)PE. Researchers who use the isodensity SS(V)PE feature are asked to
-cite Ref. [[245]](../bib_references/bib.md#bib245)
-.
+此 SS(V)PE 实现也无法提供能量梯度，尽管 [11.2.3](topic_pcm-em.md) 节中描述的实现（其空腔由原子中心球构建）可以提供梯度。与该节讨论的 PCM 一样，溶质可以用 Hartree-Fock 理论或密度泛函理论（Density Functional Theory, DFT）描述；后 Hartree–Fock 相关波函数也可以利用经 SS(V)PE 极化的分子轨道。使用等密度 SS(V)PE 功能的研究者被要求引用文献 [[245]](../bib_references/bib.md#bib245)
+。
 
-In related work, Pomogaeva and
-Chipman[[1108]](../bib_references/bib.md#bib1155)
+在相关工作中，Pomogaeva 和 Chipman[[1108]](../bib_references/bib.md#bib1155)
 
-recently introduced a “composite method for implicit representation of
-solvent” (CMIRS) that is based on SS(V)PE electrostatics but adds
-nonelectrostatic terms. This model is available in **Q-Chem[[1527]](../bib_references/bib.md#bib1594)
-** and
-is discussed in Section [11.2.7](example_CMIRS-water.md). In its current
-implementation, CMIRS requires an isodensity SS(V)PE calculation, However, the
-current implementation computes the nonelectrostatic interactions using the
-cavity and the solute’s charge density generated from the isodensity SS(V)PE.
-To use the CMIRS model, an isodensity SS(V)PE calculation must be requested (as
-described below), and the keywords **IDEFESR** and **IPnRF** must both be set to 1 in the *$svp* input section. The CMIRS model is further described in Section [11.2.6.2](#subsec:SVP).
+近期提出了一种"溶剂隐式表示的组合方法"（composite method for implicit representation of solvent, CMIRS），它基于 SS(V)PE 静电学，但增加了非静电项。该模型在 **Q-Chem[[1527]](../bib_references/bib.md#bib1594)
+** 中可用，并在 [11.2.7](example_CMIRS-water.md) 节中讨论。在其当前实现中，CMIRS 需要先进行一次等密度 SS(V)PE 计算，不过，当前实现使用由等密度 SS(V)PE 生成的空腔和溶质电荷密度来计算非静电相互作用。要使用 CMIRS 模型，必须请求一次等密度 SS(V)PE 计算（如下所述），并且在 *$svp* 输入段中将关键字 **IDEFESR** 和 **IPnRF** 都设置为 1。CMIRS 模型的更多描述见 [11.2.6.2](#subsec:SVP) 节。
 
-An isodensity SS(V)PE calculation is requested by setting
-SOLVENT_METHOD = ISOSVP in the *$rem* section, in addition
-to normal job control variables for a single-point energy calculation. Whereas
-the other solvation models described in this chapter use specialized input
-sections (*e.g.*, *$pcm*) in lieu of a slew of *$rem* variables, the isodensity
-SS(V)PE code is an interface between **Q-Chem** and a code written by
-Chipman,[[242]](../bib_references/bib.md#bib247)
- so some *$rem* variables are used for
-job control of isodensity SS(V)PE calculations. These are listed below.
+通过在 *$rem* 段中设置 SOLVENT_METHOD = ISOSVP 即可请求等密度 SS(V)PE 计算，此外还需为单点能计算提供正常的作业控制变量。本章中描述的其他溶剂化模型使用专门的输入段（*e.g.*，*$pcm*）来代替大量 *$rem* 变量，而等密度 SS(V)PE 代码是 **Q-Chem** 与 Chipman 编写的程序[[242]](../bib_references/bib.md#bib247)
+ 之间的接口，因此某些 *$rem* 变量用于等密度 SS(V)PE 计算的作业控制。这些变量列示如下。
 
 SVP_MEMORY
 
 ### `SVP_MEMORY`
 
-> **Specifies the amount of memory for use by the solvation module.**
+> **指定溶剂化模块使用的内存量。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `125`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `125`
+> * **选项**:
 >     * $n$
->     * corresponds to the amount of memory in MB.
-> * **Recommendation**: The default should be fine for medium size molecules with the default Lebedev grid, only increase if needed.
+>     * 表示以 MB 为单位的内存量。
+> * **建议**: 对于使用默认 Lebedev 网格的中等大小分子，默认值应该足够，仅在需要时才增加。
 
 SVP_PATH
 
 ### `SVP_PATH`
 
-> **Specifies whether to run a gas phase computation prior to performing the solvation procedure.**
+> **指定在执行溶剂化流程之前是否先进行一次气相计算。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Run a gas-phase calculation and upon convergence run the SS(V)PE computation.
+>     * 先运行气相计算，收敛后再运行 SS(V)PE 计算。
 >     * 1
->     * Do not run a gas-phase calculation.
-> * **Recommendation**: Running the gas-phase calculation provides a good guess to start the solvation stage and provides a more complete set of solvated properties.
+>     * 不运行气相计算。
+> * **建议**: 运行气相计算可为溶剂化阶段提供良好的初始猜测，并提供一套更完整的溶剂化性质。
 
 SVP_CHARGE_CONV
 
 ### `SVP_CHARGE_CONV`
 
-> **Determines the convergence value for the charges on the cavity. When the change in charges fall below this value, if the electron density is converged, then the calculation is considered converged.**
+> **确定空腔上电荷的收敛值。当电荷变化低于该值且电子密度已收敛时，即认为计算已收敛。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `7`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `7`
+> * **选项**:
 >     * $n$
->     * Convergence threshold set to
+>     * 收敛阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: The default value unless convergence problems arise.
+>     * 。
+> * **建议**: 除非出现收敛问题，否则使用默认值。
 
 SVP_CAVITY_CONV
 
 ### `SVP_CAVITY_CONV`
 
-> **Determines the convergence value of the iterative isodensity cavity procedure.**
+> **确定迭代等密度空腔流程的收敛值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `10`
+> * **选项**:
 >     * $n$
->     * Convergence threshold set to
+>     * 收敛阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: The default value unless convergence problems arise.
+>     * 。
+> * **建议**: 除非出现收敛问题，否则使用默认值。
 
 SVP_GUESS
 
 ### `SVP_GUESS`
 
-> **Specifies how and if the SS(V)PE model will use a given guess for the charges and cavity points.**
+> **指定 SS(V)PE 模型是否使用以及如何使用给定的电荷与空腔点初始猜测。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * No guessing.
+>     * 不使用猜测。
 >     * 1
->     * Read a guess from a previous isodensity SS(V)PE calculation.
+>     * 从先前的等密度 SS(V)PE 计算中读取猜测。
 >     * 2
->     * Use a guess specified by the
+>     * 使用输入中
 >     * $svpirf
->     * section from the input.
-> * **Recommendation**: It is helpful to also set SCF_GUESS to READ when using a guess from a previous Q-Chem run. Set IPnRF = 1 in the $svp section of the previous Q-Chem job, in order to save the reaction field for subsequent reading (see Section 11.2.6.2 ).
+>     * 段指定的猜测。
+> * **建议**: 当使用来自先前 Q-Chem 运行的猜测时，最好同时将 SCF_GUESS 设置为 READ。在上一个 Q-Chem 作业的 $svp 段中设置 IPnRF = 1，以便保存反应场供后续读取（见 11.2.6.2 节）。
 
-This last *$rem* variable requires specification of a *$svpirf* input section, the format for which is the following:
+最后这个 *$rem* 变量需要指定一个 *$svpirf* 输入段，其格式如下：
 
 > ```qchem
 > $svpirf
@@ -156,12 +112,11 @@ This last *$rem* variable requires specification of a *$svpirf* input section, t
 > $end
 > ```
 
-## 11.2.6.2 The *$svp* Input Section
+## 11.2.6.2 *$svp* 输入段
 
-More refined control over SS(V)PE jobs is obtained using a *$svp* input section.
-These are read directly by Chipman’s SS(V)PE solvation module
-and therefore must be specified in the context of a Fortran namelist.
-The format is as follows:
+使用 *$svp* 输入段可以对 SS(V)PE 作业进行更精细的控制。
+这些内容直接由 Chipman 的 SS(V)PE 溶剂化模块读取，因此必须以 Fortran namelist 的格式给出。
+格式如下：
 
 > ```qchem
 > $svp
@@ -170,7 +125,7 @@ The format is as follows:
 > $end
 > ```
 
-For example, the section may look like this:
+例如，该段可以写成这样：
 
 > ```qchem
 > $svp
@@ -178,289 +133,274 @@ For example, the section may look like this:
 > $end
 > ```
 
-The following keywords are supported in the *$svp* section:
+*$svp* 段支持以下关键字：
 
 ### `DielSt`
 
-> **The static dielectric constant. INPUT SECTION: $svp**
+> **静态介电常数。INPUT SECTION: $svp**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `78.39`
-> * **Options**:
->     * real number specifying the constant.
-> * **Recommendation**: The default value 78.39 is appropriate for water solvent.
+> * **类型**: `FLOAT`
+> * **默认值**: `78.39`
+> * **选项**:
+>     * 指定该常数的实数。
+> * **建议**: 默认值 78.39 适用于水溶剂。
 
 ### `IDEFESR`
 
-> **Specifies whether to request a CMIRS calculation. INPUT SECTION: $svp**
+> **指定是否请求 CMIRS 计算。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not invoke a CMIRS calculation.
+>     * 不调用 CMIRS 计算。
 >     * 1
->     * Invoke a CMIRS calculation.
-> * **Recommendation**: None. Need to set IPnRF = 1 in the $svp section if CMIRS is desired.
+>     * 调用 CMIRS 计算。
+> * **建议**: 无。若需要 CMIRS，必须在 $svp 段中设置 IPnRF = 1。
 
 ### `IPnRF`
 
-> **Specifies whether to save the SS(V)PE reaction field. INPUT SECTION: $svp**
+> **指定是否保存 SS(V)PE 反应场。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Do not save the reaction field.
+>     * 不保存反应场。
 >     * 1
->     * Save the reaction field.
-> * **Recommendation**: None. = 1 is required for CMIRS ( i.e. , if IDEFESR = 1).
+>     * 保存反应场。
+> * **建议**: 无。CMIRS 要求设置为 1（*i.e.*，当 IDEFESR = 1 时）。
 
 ### `IShape`
 
-> **A flag to set the shape of the cavity surface. INPUT SECTION: $svp**
+> **用于设置空腔表面形状的标志。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * use the electronic isodensity surface.
+>     * 使用电子等密度表面。
 >     * 1
->     * use a spherical cavity surface.
-> * **Recommendation**: Use the default surface.
+>     * 使用球形空腔表面。
+> * **建议**: 使用默认表面。
 
 ### `RhoIso`
 
-> **Value of the electronic isodensity contour used to specify the cavity surface. (Only relevant for IShape = 0.) INPUT SECTION: $svp**
+> **用于指定空腔表面的电子等密度线数值。（仅与 IShape = 0 相关。）INPUT SECTION: $svp**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0.001`
-> * **Options**:
->     * Real number specifying the density in electrons/bohr
+> * **类型**: `FLOAT`
+> * **选项**:
+>     * 以电子/bohr
 >     * ${}^{3}$
->     * .
-> * **Recommendation**: The default value is optimal for most situations. Increasing the value produces a smaller cavity which ordinarily increases the magnitude of the solvation energy.
+>     * 为单位指定密度的实数。
+> * **默认值**: `0.001`
+> * **建议**: 默认值在大多数情况下都是最优的。增大该值会产生更小的空腔，通常会使溶剂化能的绝对值增大。
 
 ### `RadSph`
 
-> **Sphere radius used to specify the cavity surface (Only relevant for IShape =1.) INPUT SECTION: $svp**
+> **用于指定空腔表面的球半径（仅与 IShape = 1 相关。）INPUT SECTION: $svp**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `Half the distance between the outermost atoms plus 1.4 Å.`
-> * **Options**:
->     * Real number specifying the radius in Bohr (if positive) or in Å(if negative).
-> * **Recommendation**: Make sure that the cavity radius is larger than the length of the molecule.
+> * **类型**: `FLOAT`
+> * **默认值**: `最外侧原子间距的一半加 1.4 Å。`
+> * **选项**:
+>     * 以 Bohr 为单位的实数（正值）或以 Å 为单位的实数（负值）。
+> * **建议**: 确保空腔半径大于分子长度。
 
 ### `IntCav`
 
-> **A flag to select the surface integration method. INPUT SECTION: $svp**
+> **用于选择面积分方法的标志。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Single center Lebedev integration.
+>     * 单中心 Lebedev 积分。
 >     * 1
->     * Single center spherical polar integration.
-> * **Recommendation**: The Lebedev integration is by far the more efficient.
+>     * 单中心球坐标积分。
+> * **建议**: Lebedev 积分的效率远高于另一种方法。
 
 ### `NPtLeb`
 
-> **The number of points used in the Lebedev grid for the single-center surface integration. (Only relevant if IntCav = 0.) INPUT SECTION: $svp**
+> **单中心面积分的 Lebedev 网格所用点数。（仅与 IntCav = 0 相关。）INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1202`
-> * **Options**:
->     * Valid choices are:
+> * **类型**: `INTEGER`
+> * **默认值**: `1202`
+> * **选项**:
+>     * 有效取值为:
 >     * 6, 18, 26, 38, 50, 86, 110, 146, 170, 194, 302, 350, 434, 590, 770,
 >     * 974, 1202, 1454, 1730, 2030, 2354, 2702, 3074, 3470, 3890, 4334,
->     * 4802, or 5294.
-> * **Recommendation**: The default value has been found adequate to obtain the energy to within 0.1 kcal/mol for solutes the size of mono-substituted benzenes.
+>     * 4802, 或 5294。
+> * **建议**: 实践表明默认值足以使单取代苯大小溶质的能量收敛到 0.1 kcal/mol 以内。
 
 ### `NPtThe, NPtPhi`
 
-> **The number of ( $\theta$ , $\phi$ ) points used for single-centered surface integration (relevant only if IntCav = 1.) INPUT SECTION: $svp**
+> **单中心面积分所用的 ($\theta$ , $\phi$) 点数（仅与 IntCav = 1 相关。）INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8,16`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `8,16`
+> * **选项**:
 >     * $\theta$
->     * ,
+>     * 、
 >     * $\phi$
->     * specifying the number of points.
-> * **Recommendation**: These should be multiples of 2 and 4 respectively, to provide symmetry sufficient for all Abelian point groups. Defaults are too small for all but the tiniest and simplest solutes.
+>     * 指定点数。
+> * **建议**: 二者应分别为 2 和 4 的倍数，以提供满足所有阿贝尔点群所需的对称性。除最小、最简单的溶质外，默认值都太小。
 
 ### `LinEq`
 
-> **Flag to select the method for solving the linear equations that determine the apparent point charges on the cavity surface. INPUT SECTION: $svp**
+> **用于选择求解确定空腔表面表观点电荷的线性方程组方法的标志。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 0
->     * use LU decomposition in memory if space permits, else switch to
+>     * 若内存允许，在内存中使用 LU 分解，否则切换为
 >     * = 2
 >     * 1
->     * use conjugate gradient iterations in memory if space permits, else use
+>     * 若内存允许，在内存中使用共轭梯度迭代，否则使用
 >     * = 2
 >     * 2
->     * use conjugate gradient iterations with the system matrix stored externally on disk.
-> * **Recommendation**: The default should be sufficient in most cases.
+>     * 使用共轭梯度迭代，并将系统矩阵外部存储于磁盘上。
+> * **建议**: 大多数情况下默认值即可满足需求。
 
 ### `CvgLin`
 
-> **Convergence criterion for solving linear equations by the conjugate gradient iterative method (relevant if LinEq = 1 or 2.) INPUT SECTION: $svp**
+> **共轭梯度迭代法求解线性方程组的收敛判据（与 LinEq = 1 或 2 相关。）INPUT SECTION: $svp**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `1.0E-7`
-> * **Options**:
->     * Real number specifying the actual criterion.
-> * **Recommendation**: The default value should be used unless convergence problems arise.
+> * **类型**: `FLOAT`
+> * **默认值**: `1.0E-7`
+> * **选项**:
+>     * 指定实际判据的实数。
+> * **建议**: 除非出现收敛问题，否则应使用默认值。
 
-Note that the single-center surface integration approach that is used to find
-the isodensity surface may fail for certain very non-spherical solute
-molecules. The program will automatically check for this, aborting with a
-warning message if necessary. The single-center approach succeeds only for what
-is called a “star surface”, meaning that an observer sitting at the center
-has an unobstructed view of the entire surface. Said another way, for a star
-surface any ray emanating out from the center will pass through the surface
-only once. Some cases of failure may be fixed by simply moving to a new center
-with the **ITrnGr** parameter described below. But some surfaces are
-inherently non-star surfaces and cannot be treated with this program until more
-sophisticated surface integration approaches are developed and implemented.
+注意，用于寻找等密度表面的单中心面积分方法对某些非常不对称的溶质分子可能失效。
+程序会自动检查这种情况，必要时会中止并给出警告信息。单中心方法仅对所谓的"星形表面（star surface）"有效，
+即位于中心的观察者能够无遮挡地看到整个表面。换句话说，对于星形表面，
+从中心发出的任意射线只会穿过该表面一次。某些失效情况可以通过 **ITrnGr** 参数
+（见下文）简单地将中心移动到新位置来解决。但有些表面本质上不是星形表面，
+在更复杂的面积分方法被开发和实现之前，本程序无法处理这些表面。
 
 ### `ITrnGr`
 
-> **Translation of the cavity surface integration grid. INPUT SECTION: $svp**
+> **空腔面积分网格的平移。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
 >     * 0
->     * No translation (
+>     * 不平移（
 >     * i.e.
->     * , center of the cavity at the origin
->     * of the atomic coordinate system)
+>     * ，空腔中心位于原子坐标系的原点
+>     * ）
 >     * 1
->     * Translate to the center of nuclear mass.
+>     * 平移至原子核质量中心。
 >     * 2
->     * Translate to the center of nuclear charge.
+>     * 平移至原子核电荷中心。
 >     * 3
->     * Translate to the midpoint of the outermost atoms.
+>     * 平移至最外侧原子的中点。
 >     * 4
->     * Translate to midpoint of the outermost non-hydrogen atoms.
+>     * 平移至最外侧非氢原子的中点。
 >     * 5
->     * Translate to user-specified coordinates in Bohr.
+>     * 平移至用户指定坐标（以 Bohr 为单位）。
 >     * 6
->     * Translate to user-specified coordinates in Ångstroms.
-> * **Recommendation**: The default value is recommended unless the single-center integrations procedure fails. If cavity construction fails for a small, high-symmetry system, consider setting = 0.
+>     * 平移至用户指定坐标（以 Å 为单位）。
+> * **建议**: 除非单中心积分流程失败，否则推荐使用默认值。如果小型高对称体系的空腔构建失败，可考虑将其设为 0。
 
 ### `TranX, TranY, TranZ`
 
-> **$x$ , $y$ , and $z$ value of user-specified translation (only relevant if ITrnGr is set to 5 or 6). INPUT SECTION: $svp**
+> **用户指定平移的 $x$ 、 $y$ 、 $z$ 分量（仅与 ITrnGr 设为 5 或 6 相关）。INPUT SECTION: $svp**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0, 0, 0`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `0, 0, 0`
+> * **选项**:
+>     * 以相应单位给出的、相对于原点的
 >     * $x$
->     * ,
+>     * 、
 >     * $y$
->     * , and
+>     * 和
 >     * $z$
->     * relative to the origin in the appropriate units.
-> * **Recommendation**: None.
+>     * 值。
+> * **建议**: 无。
 
 ### `IRotGr`
 
-> **Rotation of the cavity surface integration grid. INPUT SECTION: $svp**
+> **空腔面积分网格的旋转。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `2`
+> * **选项**:
 >     * 0
->     * No rotation.
+>     * 不旋转。
 >     * 1
->     * Rotate initial
+>     * 将积分网格的初始
 >     * $xyz$
->     * axes of the integration grid to coincide
->     * with principal moments of nuclear inertia (relevant if
+>     * 轴旋转至与原子核惯量的主轴重合（与
 >     * ITrnGr
->     * = 1)
+>     * = 1 相关）
 >     * 2
->     * Rotate initial
+>     * 将积分网格的初始
 >     * $xyz$
->     * axes of integration grid to coincide with
->     * principal moments of nuclear charge (relevant if
+>     * 轴旋转至与原子核电荷的主轴重合（与
 >     * ITrnGr
->     * = 2)
+>     * = 2 相关）
 >     * 3
->     * Rotate initial
+>     * 按 Wilson、Decius 和 Cross 定义的用户指定欧拉角旋转积分网格的初始
 >     * $xyz$
->     * axes of the integration grid through user-specified
->     * Euler angles as defined by Wilson, Decius, and Cross.
-> * **Recommendation**: The default is recommended unless the knowledgeable user has good reason otherwise. If cavity construction fails for a small, high-symmetry system, consider setting = 0.
+>     * 轴。
+> * **建议**: 推荐使用默认值，除非熟悉情况的用户有充分理由作其他选择。如果小型高对称体系的空腔构建失败，可考虑将其设为 0。
 
-### `RotThe  RotPhi  RotChi`
+### `RotThe  RotPhi  RotChi`
 
-> **Euler angles ( $\theta$ , $\phi$ , $\chi$ ) in degrees for user-specified rotation of the cavity surface (relevant if IRotGr = 3). INPUT SECTION: $svp**
+> **用于用户指定空腔表面旋转的欧拉角（$\theta$ 、 $\phi$ 、 $\chi$ ），以度为单位（与 IRotGr = 3 相关）。INPUT SECTION: $svp**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0,0,0`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `0,0,0`
+> * **选项**:
+>     * 以度为单位的
 >     * $\theta$
->     * ,
+>     * 、
 >     * $\phi$
->     * ,
+>     * 、
 >     * $\chi$
->     * in degrees
-> * **Recommendation**: None.
+> * **建议**: 无。
 
 ### `IOpPrd`
 
-> **Specifies the choice of system operator-product form. INPUT SECTION: $svp**
+> **指定系统算符-乘积形式的选择。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Symmetric form.
+>     * 对称形式。
 >     * 1
->     * Non-symmetric form.
-> * **Recommendation**: The default uses more memory but is generally more efficient, we recommend its use unless there is shortage of memory available.
+>     * 非对称形式。
+> * **建议**: 默认形式占用更多内存但通常效率更高，除非内存不足，否则推荐使用默认值。
 
-By default, **Q-Chem** will check the validity of the single-center expansion by
-searching for the isodensity surface in two different ways: first, working
-inwards from a large distance, and next by working outwards from the origin.
-If the same result is obtained (within tolerances) using both procedures, then
-the cavity is accepted. If the two results do not agree, then the program
-exits with an error message indicating that the inner isodensity surface is
-found to be too far from the outer isodensity surface.
+默认情况下，**Q-Chem** 会以两种不同方式搜索等密度表面，从而检查单中心展开的有效性：首先从较大距离向内搜索，然后从原点向外搜索。
+若两种流程得到相同结果（在容差范围内），则接受该空腔。若两种结果不一致，
+程序将退出并给出错误信息，指出内等密度表面与外等密度表面相距过远。
 
-**Note: 
+**注意：
 
-For some small molecules (such as atoms and diatomics), construction of the isodensity
-cavity may fail with the default parameters. In such cases, we recommend setting ITrnGr = 0
-and also IRotGr = 0, with the molecule centered at the origin of the grid (*i.e.*, in the standard
-nuclear orientation).
+对于某些小分子（如原子和双原子分子），使用默认参数构建等密度空腔可能失败。在这种情况下，我们建议设置 ITrnGr = 0
+并同时设置 IRotGr = 0，将分子置于网格原点（*i.e.*，采用标准的原子核取向）。
 **
 
-Some molecules, for example C${}_{60}$, can have a hole in the middle. Such
-molecules have two different “legal” isodensity surfaces, a small inner one
-inside the “hole”, and a large outer one that is the desired surface for
-solvation. In such cases, the cavity check described in the preceding
-paragraph causes the program to exit. To avoid this, one can consider turning
-off the cavity check that works out from the origin, leaving only the outer
-cavity determined by working in from large distances.
+有些分子，例如 C${}_{60}$，中间可能有一个孔。这类分子
+有两个不同的"合法"等密度表面，一个是位于孔内部的小表面，
+另一个是作为溶剂化所期望表面的大外表面。在这种情况下，前一段描述的空腔检查
+会导致程序退出。为避免这一问题，可以考虑关闭从原点向外进行的空腔检查，
+只保留由从远处向内搜索确定的外空腔。
 
 ### `ICvICk`
 
-> **Specifies whether to perform cavity check INPUT SECTION: $svp**
+> **指定是否执行空腔检查。INPUT SECTION: $svp**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 0
->     * no cavity check, use only the outer cavity
+>     * 不进行空腔检查，仅使用外空腔
 >     * 1
->     * cavity check, generating both the inner and outer cavities and compare.
-> * **Recommendation**: Consider turning off cavity check only if the molecule has a hole and if a star (outer) surface is expected.
+>     * 进行空腔检查，同时生成内、外空腔并进行比较。
+> * **建议**: 仅当分子有空洞且预期外表面为星形表面时，才考虑关闭空腔检查。

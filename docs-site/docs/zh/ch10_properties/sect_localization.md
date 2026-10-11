@@ -1,111 +1,83 @@
 ---
-title: "10.3.2 Orbital Localization"
+title: "10.3.2 轨道定域化"
 ---
 
-## 10.3.2 Orbital Localization
+## 10.3.2 轨道定域化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 10.3.2.1 Overview
+## 10.3.2.1 概述
 
-The concept of localized orbitals has already been visited in this manual in
-the context of perfect-pairing and methods. As the SCF energy is independent
-of the partitioning of the electron density into orbitals, there is
-considerable flexibility as to how this may be done. The canonical picture,
-where the orbitals are eigenfunctions of the Fock operator is useful in
-determining reactivity, for, through Koopmans’ theorem, the orbital energy
-eigenvalues give information about the corresponding ionization energies and
-electron affinities. As a consequence, the HOMO and LUMO are very informative
-as to the reactive sites of a molecule. In addition, in small molecules, the
-canonical orbitals lead us to the chemical description of $\sigma$ and $\pi$ bonds.
+关于定域化轨道的概念，本手册在完美配对（perfect-pairing）及相关方法的章节中已经有所讨论。由于自洽场（SCF）能量与电子密度向轨道的划分方式无关，因此这种划分具有很大的灵活性。正则（canonical）图像——即轨道是 Fock 算符的本征函数——在判断反应性时非常有用，因为通过 Koopmans 定理，轨道本征能量能够提供对应电离能和电子亲和能的信息。因此，最高占据分子轨道（HOMO）和最低未占分子轨道（LUMO）对于判断分子的反应活性位点极具价值。此外，在小分子中，正则轨道还能引导我们得出 $\sigma$ 键和 $\pi$ 键的化学描述。
 
-In large molecules, however, the canonical orbitals are often very delocalized,
-and so information about chemical bonding is not readily available from them.
-Here, orbital localization techniques can be of great value in visualizing the
-bonding, as localized orbitals often correspond to the chemically intuitive
-orbitals which might be expected.
+然而在较大分子中，正则轨道往往高度离域，因而难以从中直接获取化学成键信息。此时，轨道定域化技术在可视化成键方面就具有重要价值，因为定域化轨道通常与人们化学直觉中所预期的轨道相对应。
 
-**Q-Chem** has three post-SCF localization methods available. These can be
-performed separately over both occupied and virtual spaces. The localization
-scheme attributed to Boys[[154]](../bib_references/bib.md#bib146)
- minimizes the radial
-extent of the localized orbitals, *i.e.*, the second moment $\sum_{i}\langle ii||{\bf r}_{1}-{\bf r}_{2}|^{2}|ii\rangle$, and although is relatively fast, does not separate
-$\sigma$ and $\pi$ orbitals, leading to two “banana-orbitals” in the case of a
-double bond.[[1093]](../bib_references/bib.md#bib1138)
- Pipek-Mezey localized
-orbitals[[1093]](../bib_references/bib.md#bib1138)
- maximize the locality of Mulliken populations, and
-are of a similar cost to Boys localized orbitals, but maintain $\sigma-\pi$
-separation. Edmiston-Ruedenberg localized orbitals[[361]](../bib_references/bib.md#bib366)
+**Q-Chem** 提供了三种 SCF 后定域化方法。这些方法可以分别对占据轨道空间和虚轨道空间执行。归于 Boys[[154]](../bib_references/bib.md#bib146)
+ 名下的定域化方案使定域化轨道的径向范围最小化，*即*，使二阶矩 $\sum_{i}\langle ii||{\bf r}_{1}-{\bf r}_{2}|^{2}|ii\rangle$ 最小化。该方法虽然相对快速，但不能分离 $\sigma$ 和 $\pi$ 轨道，导致在双键情形下出现两个“香蕉轨道（banana-orbitals）”。[[1093]](../bib_references/bib.md#bib1138)
+ Pipek-Mezey 定域化轨道[[1093]](../bib_references/bib.md#bib1138)
+ 使 Mulliken 布居的定域性最大化，其计算代价与 Boys 定域化轨道相当，但能保持 $\sigma-\pi$ 分离。Edmiston-Ruedenberg 定域化轨道[[361]](../bib_references/bib.md#bib366)
 
-maximize the self-repulsion of the orbitals, $\sum_{i}\langle ii|\frac{1}{r}|ii\rangle$. This is more computationally expensive to calculate
-as it requires a two-electron property to be evaluated, but can be reduced to
-cubic-scaling cost (with respect to the number of occupied orbitals),
-via the resolution of identity approximation.[[1320]](../bib_references/bib.md#bib1378)
+使轨道的自排斥能 $\sum_{i}\langle ii|\frac{1}{r}|ii\rangle$ 最大化。由于需要计算双电子性质，该方法的计算代价更高，但可以通过分辨率恒等（resolution of identity, RI）近似[[1320]](../bib_references/bib.md#bib1378)
+ 将其代价（相对于占据轨道数目）降为三次方标度。
 
 BOYSCALC
 
 ### `BOYSCALC`
 
-> **Specifies how Boys localized orbitals are to be calculated**
+> **指定 Boys 定域化轨道的计算方式**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Do not perform any Boys localization.
+>     * 不执行任何 Boys 定域化。
 >     * 1
->     * Localize core and valence together.
+>     * 将芯层轨道与价层轨道一起定域化。
 >     * 2
->     * Do separate localizations on core and valence.
-> * **Recommendation**: None
+>     * 分别对芯层轨道与价层轨道进行定域化。
+> * **建议**: 无
 
 ERCALC
 
 ### `ERCALC`
 
-> **Specifies how Edmiston-Ruedenberg localized orbitals are to be calculated**
+> **指定 Edmiston-Ruedenberg（ER）定域化轨道的计算方式**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `06000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `06000`
+> * **可选值**:
 >     * $aabcd$
 >     * $aa$
->     * specifies the convergence threshold.
->     * If
+>     * 指定收敛阈值。
+>     * 若
 >     * $aa>3$
->     * , the threshold is set to
+>     * ，则阈值设为
 >     * $10^{-aa}$
->     * . The default is 6.
->     * If
+>     * 。默认值为 6。
+>     * 若
 >     * $aa=1$
->     * , the calculation is aborted after the guess, allowing Pipek-Mezey
->     * orbitals to be extracted.
+>     * ，则在初始猜测（guess）完成后即中止计算，从而可以提取 Pipek-Mezey 轨道。
 >     * $b$
->     * specifies the guess:
->     * 0 Boys localized orbitals. This is the default
->     * 1 Pipek-Mezey localized orbitals.
+>     * 指定初始猜测：
+>     * 0 Boys 定域化轨道。此为默认值
+>     * 1 Pipek-Mezey 定域化轨道。
 >     * $c$
->     * specifies restart options (if restarting from an ER calculation):
->     * 0 No restart. This is the default
->     * 1 Read in MOs from last ER calculation.
->     * 2 Read in MOs and RI integrals from last ER calculation.
+>     * 指定重启选项（若从此前的 ER 计算重启）：
+>     * 0 不重启。此为默认值
+>     * 1 读取上一次 ER 计算的分子轨道（MO）。
+>     * 2 读取上一次 ER 计算的分子轨道（MO）及 RI 积分。
 >     * $d$
->     * specifies how to treat core orbitals
->     * 0 Do not perform ER localization. This is the default.
->     * 1 Localize core and valence together.
->     * 2 Do separate localizations on core and valence.
->     * 3 Localize only the valence electrons.
->     * 4 Use the
+>     * 指定芯层轨道的处理方式
+>     * 0 不执行 ER 定域化。此为默认值。
+>     * 1 将芯层轨道与价层轨道一起定域化。
+>     * 2 分别对芯层轨道与价层轨道进行定域化。
+>     * 3 仅定域化价层电子。
+>     * 4 使用
 >     * $localize
->     * section.
-> * **Recommendation**: ERCALC 1 will usually suffice, which uses threshold $10^{-6}$ .
+>     * 节。
+> * **建议**: 通常 `ERCALC 1` 即可满足需求，其使用阈值 $10^{-6}$ 。
 
-The *$localize* section may be used to specify orbitals subject to ER
-localization if require. It contains a list of the orbitals to include in the
-localization. These may span multiple lines. If the user wishes to specify
-separate beta orbitals to localize, include a zero before listing the beta
-orbitals, which acts as a separator, *e.g.*,
+如有需要，可使用 *$localize* 节来指定参与 ER 定域化的轨道。该节包含要纳入定域化的轨道列表，可以跨多行书写。若用户希望分别为 β 自旋指定要定域化的轨道，则在列出 β 轨道之前放入一个零作为分隔符，*例如*，
 
 > ```qchem
 > $localize
@@ -114,60 +86,43 @@ orbitals, which acts as a separator, *e.g.*,
 > $end
 > ```
 
-## 10.3.2.2 Virtual Orbital Localization
+## 10.3.2.2 虚轨道定域化
 
-Virtual orbitals can be advantageous to be localized in many scenarios. One
-scenario where this is useful is generalized valence bond (GVB) methods, where
-each bonding orbital is paired with its antibonding orbital through Sano
-procedure. Currently this is done in GVBMAN when PP or CCVB is run. An
-improved guess has been proposed that has been shown to converge
-faster.[[37]](../bib_references/bib.md#bib20)
- The new subroutine is a stand-alone version that
-can generate these antibonding orbitals and exit without initiating a GVB
-calculation. It can do Boys, Pipek-Mezey, or Edmiston-Rudenberg localization
-for the occupied space depending on GVB_LOCAL = 1, 2, or 3,
-respectively, while 0 performs it on the canonical orbitals. The subroutine
-also prints out each occupied orbital’s Mulliken charge, delocalization
-measure, and variance, in which it automatically detects the bonding orbitals
-and generates an antibonding guess for each. A population analysis based on
-this effective minimal basis can also be done using EDA_POP_ANAL = 1.
-The number of bonds can be enforced by taking the highest
-GVB_N_PAIRS specified, with no guarantee of them being bonding,
-*i.e.* they can be core or lone pairs. This is currently implemented for
-restricted and restricted Open-shell spin symmetries; work on the unrestricted case is underway.
+在许多场景中，对虚轨道进行定域化是有益的。一个有用的场景是广义价键（generalized valence bond, GVB）方法，其中每个成键轨道通过 Sano  procedure（Sano 方法）与其反键轨道配对。目前这一操作在运行 PP 或 CCVB 时由 GVBMAN 完成。已有文献提出了一种改进的初始猜测，被证明能够更快收敛。[[37]](../bib_references/bib.md#bib20)
+ 新的子程序是一个独立版本，可以生成这些反键轨道并退出，而无需启动 GVB 计算。根据 GVB_LOCAL = 1、2 或 3，它可以分别对占据空间执行 Boys、Pipek-Mezey 或 Edmiston-Ruedenberg 定域化，而 0 则在正则轨道上执行。该子程序还会打印每个占据轨道的 Mulliken 电荷、离域度量和方差，并自动检测成键轨道，为每个成键轨道生成反键初始猜测。基于这一有效最小基组的布居分析也可以通过 EDA_POP_ANAL = 1 完成。键的数目可以通过取最高 GVB_N_PAIRS 个指定的轨道来强制确定，但不保证它们一定是成键轨道，*即*，它们可能是芯层轨道或孤对电子。该功能目前仅支持闭壳层（restricted）和受限开壳层（restricted Open-shell）自旋对称性；非限制（unrestricted）情形的实现工作正在进行中。
 
 ANTIBOND
 
 ### `ANTIBOND`
 
-> **Triggers Antibond subroutine to generate antibonding orbitals after a converged SCF**
+> **在 SCF 收敛后触发 ANTIBOND 子程序以生成反键轨道**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Does not localize the virtual space.
+>     * 不对虚空间进行定域化。
 >     * 1
->     * Localizes the virtual space, one antibonding for every bond.
+>     * 对虚空间进行定域化，每个键对应一个反键轨道。
 >     * 2,3
->     * Fill the virtual space with antibonding orbitals-like guesses.
+>     * 用类反键轨道的猜测填充虚空间。
 >     * 4
->     * Does Frozen Natural Orbitals and leaves them on scratch for future jobs or visualization.
-> * **Recommendation**: None
+>     * 执行冻结自然轨道（Frozen Natural Orbitals），并将其保留在暂存区（scratch）中，供后续作业或可视化使用。
+> * **建议**: 无
 
 DOMODSANO
 
 ### `DOMODSANO`
 
-> **Specifies whether to do modified Sano or the original one**
+> **指定使用改进版 Sano 方法还是原始 Sano 方法**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Does original Sano procedure (similar to GVBMAN).
+>     * 执行原始 Sano 方法（与 GVBMAN 类似）。
 >     * 1
->     * Does an improved Sano procedure that’s more localized.
+>     * 执行改进的、定域性更好的 Sano 方法。
 >     * 2
->     * Does another variation of Sano.
-> * **Recommendation**: 1 is always better
+>     * 执行 Sano 方法的另一种变体。
+> * **建议**: 1 总是更优

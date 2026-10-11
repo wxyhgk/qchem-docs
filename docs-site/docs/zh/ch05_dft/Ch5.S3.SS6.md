@@ -1,73 +1,61 @@
 ---
-title: "5.3.6 Specialized Functionals"
+title: "5.3.6 专用泛函"
 ---
 
-## 5.3.6 Specialized Functionals
+## 5.3.6 专用泛函
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 - •
 
-SRC1-R1: TDDFT short-range corrected functional
-[Eq. (1) in Ref. [[123]](../bib_references/bib.md#bib112)
-, 1st row atoms]
+SRC1-R1：TDDFT 短程校正（short-range corrected）泛函
+[Ref. [[123]](../bib_references/bib.md#bib112) 中的式 (1)，第一行原子]
 - •
 
-SRC1-R2: TDDFT short-range corrected functional
-[Eq. (1) in Ref. [[123]](../bib_references/bib.md#bib112)
-, 2nd row atoms]
+SRC1-R2：TDDFT 短程校正泛函
+[Ref. [[123]](../bib_references/bib.md#bib112) 中的式 (1)，第二行原子]
 - •
 
-SRC2-R1: TDDFT short-range corrected functional
-[Eq. (2) in Ref. [[123]](../bib_references/bib.md#bib112)
-, 1st row atoms]
+SRC2-R1：TDDFT 短程校正泛函
+[Ref. [[123]](../bib_references/bib.md#bib112) 中的式 (2)，第一行原子]
 - •
 
-SRC2-R2: TDDFT short-range corrected functional
-[Eq. (2) in Ref. [[123]](../bib_references/bib.md#bib112)
-, 2nd row atoms]
+SRC2-R2：TDDFT 短程校正泛函
+[Ref. [[123]](../bib_references/bib.md#bib112) 中的式 (2)，第二行原子]
 - •
 
-BR89: Becke-Roussel meta-GGA exchange functional modeled after the hydrogen atom[[91]](../bib_references/bib.md#bib75)
+BR89：Becke-Roussel 元广义梯度近似（meta-GGA）交换泛函，仿照氢原子建模[[91]](../bib_references/bib.md#bib75)
 - •
 
-B94: meta-GGA correlation functional by Becke that uses the BR89
-exchange functional to compute the Coulomb potential[[97]](../bib_references/bib.md#bib79)
+B94：Becke 提出的 meta-GGA 关联泛函，利用 BR89 交换泛函计算库仑势[[97]](../bib_references/bib.md#bib79)
 - •
 
-B94hyb: modified version of the B94 correlation functional for use with
-the BR89B94hyb exchange-correlation functional[[97]](../bib_references/bib.md#bib79)
+B94hyb：B94 关联泛函的改进版本，与 BR89B94hyb 交换-关联泛函配合使用[[97]](../bib_references/bib.md#bib79)
 - •
 
-BR89B94h: 15.4% HF exchange + 84.6% BR89 meta-GGA exchange + BR89hyb
-meta-GGA correlation[[97]](../bib_references/bib.md#bib79)
+BR89B94h：15.4% HF 交换 + 84.6% BR89 meta-GGA 交换 + BR89hyb meta-GGA 关联[[97]](../bib_references/bib.md#bib79)
 - •
 
-BRSC: Exchange component of the original B05 exchange-correlation functional[[101]](../bib_references/bib.md#bib85)
+BRSC：原始 B05 交换-关联泛函的交换组分[[101]](../bib_references/bib.md#bib85)
 - •
 
-MB05: Exchange component of the modified B05 (BM05) exchange-correlation functional[[1128]](../bib_references/bib.md#bib1179)
+MB05：改进版 B05（BM05）交换-关联泛函的交换组分[[1128]](../bib_references/bib.md#bib1179)
 - •
 
-B05: A full exact-exchange Kohn-Sham scheme of Becke that uses the exact-exchange energy density (RI) and accounts for static correlation[[101]](../bib_references/bib.md#bib85)
+B05：Becke 提出的完整精确交换 Kohn-Sham 方案，使用精确交换能量密度（RI）并考虑静态关联[[101]](../bib_references/bib.md#bib85)
 - •
 
-BM05 (XC): Modified B05 hyper-GGA scheme that uses MB05 instead of BRSC as the exchange functional[[1128]](../bib_references/bib.md#bib1179)
+BM05 (XC)：改进的 B05 超广义梯度近似（hyper-GGA）方案，采用 MB05 取代 BRSC 作为交换泛函[[1128]](../bib_references/bib.md#bib1179)
 - •
 
-PSTS: Hyper-GGA (100% HF exchange) exchange-correlation functional of Perdew, Staroverov, Tao, and Scuseria[[1072]](../bib_references/bib.md#bib1119)
+PSTS：Perdew、Staroverov、Tao 和 Scuseria 提出的 hyper-GGA（100% HF 交换）交换-关联泛函[[1072]](../bib_references/bib.md#bib1119)
 - •
 
-MCY2: Mori-Sánchez-Cohen-Yang adiabatic connection-based hyper-GGA exchange-correlation functional[[960]](../bib_references/bib.md#bib1001)
+MCY2：基于绝热连接（adiabatic connection）的 Mori-Sánchez-Cohen-Yang hyper-GGA 交换-关联泛函[[960]](../bib_references/bib.md#bib1001)
 
-This example illustrate the use of the RI-B05 and RI-PSTS functionals.
-These are presently available only for single-point calculations, and
-convergence is greatly facilitated by obtaining converged SCF orbitals from,
-*e.g.*, an LDA or HF calculation first. (LDA is used in the example below but
-HF can be substituted.) Use of the RI approximation (Section [6.6](../ch06_correlation/topic_rimp2.md))
-requires specification of an auxiliary basis set.
+本示例演示 RI-B05 与 RI-PSTS 泛函的用法。目前这些泛函仅可用于单点能计算，并且先通过（*例如*）LDA 或 HF 计算获得收敛的 SCF 轨道可以极大地促进收敛（下面的示例使用了 LDA，也可以替换为 HF）。使用 RI 近似（第 [6.6](../ch06_correlation/topic_rimp2.md) 节）需要指定辅助基组（auxiliary basis set）。
 
-???+ example "Example 5.1: Q-Chem input of H ${}_{2}$ using RI-B05."
+???+ example "示例 5.1：使用 RI-B05 计算 H ${}_{2}$ 的 Q-Chem 输入"
     ```qchem
     $comment
        H2, example of SP RI-B05.  First do a well-converged LSD, G3LARGE is the

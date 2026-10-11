@@ -1,135 +1,106 @@
 ---
-title: "10.11.3 Linear-Scaling NMR Chemical Shift Calculations"
+title: "10.11.3 线性标度 NMR 化学位移计算"
 ---
 
-## 10.11.3 Linear-Scaling NMR Chemical Shift Calculations
+## 10.11.3 线性标度 NMR 化学位移计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-In conventional implementations, the cost for computation of NMR chemical
-shifts within even the simplest quantum chemical methods such as Hartree-Fock
-of DFT increases cubically with molecular size $M$, ${\cal{O}}({M^{3}})$. As such,
-NMR chemical shift calculations have largely been limited to molecular systems
-on the order of 100 atoms, assuming no symmetry. For larger systems it is
-crucial to reduce the increase of the computational effort to linear, which is
-possible for systems with a nonzero HOMO/LUMO gaps and was reported for
-the first time by Kussmann and Ochsenfeld.[[1010]](../bib_references/bib.md#bib1054)
+在传统实现方案中，即使采用最简单的量子化学方法（如 Hartree-Fock 或 DFT），核磁共振（NMR）化学位移的计算成本也随分子体系尺寸 $M$ 呈立方增长，即 ${\cal{O}}({M^{3}})$。因此，在不考虑对称性的情况下，NMR 化学位移计算大多局限于约 100 个原子量级的分子体系。对于更大的体系，将计算量的增长降低至线性标度至关重要；这对于具有非零 HOMO/LUMO 能隙的体系是可行的，并由 Kussmann 与 Ochsenfeld 首次报道。[[1010]](../bib_references/bib.md#bib1054)
 
-This approach incurs no loss of accuracy with respect to traditional
-cubic-scaling implementations, and makes feasible NMR chemical shift
-calculations using Hartree-Fock or DFT approaches in molecular systems with
-1,000+ atoms. For many molecular systems the Hartree-Fock (GIAO-HF) approach
-provides typically an accuracy of 0.2–0.4 ppm for the computation of ${}^{1}$H NMR
-chemical shifts, for example.[[1013]](../bib_references/bib.md#bib1051)
- GIAO-HF/6-31G* calculations
-with 1,003 atoms and 8,593 basis functions, without symmetry, have been
-reported.[[1010]](../bib_references/bib.md#bib1054)
- GIAO-DFT calculations are even simpler and
-faster for density functionals that do not contain Hartree-Fock exchange.
+该方法相对于传统立方标度实现不会损失任何精度，并使采用 Hartree-Fock 或 DFT 方法对含 1,000 个以上原子的分子体系进行 NMR 化学位移计算成为可能。例如，对于许多分子体系，Hartree-Fock（GIAO-HF）方法在计算 ${}^{1}$H NMR 化学位移时通常可达到 0.2–0.4 ppm 的精度。[[1013]](../bib_references/bib.md#bib1051) 已有文献报道在不利用对称性的情况下，对含 1,003 个原子、8,593 个基函数的体系执行 GIAO-HF/6-31G* 计算。[[1010]](../bib_references/bib.md#bib1054) 对于不含 Hartree-Fock 交换项的密度泛函，GIAO-DFT 计算甚至更为简单快捷。
 
-The present implementation of NMR shieldings employs the LinK (linear Hartree-Fock exchange)
-method[[1011]](../bib_references/bib.md#bib1049)
- for the formation of
-exchange contributions.[[1010]](../bib_references/bib.md#bib1054)
- Since the derivative of the
-density matrix with respect to the magnetic field is skew-symmetric, its
-Coulomb-type contractions vanish. For the remaining Coulomb-type matrices the
-CFMM method[[1463]](../bib_references/bib.md#bib1518)
- is used.[[1010]](../bib_references/bib.md#bib1054)
- In addition, a
-multitude of different approaches for the solution of the CPSCF equations can
-be selected within **Q-Chem**.
+**Q-Chem** 中 NMR 磁屏蔽的各向异性（shieldings）实现采用 LinK（线性 Hartree-Fock 交换，linear Hartree-Fock exchange）方法[[1011]](../bib_references/bib.md#bib1049) 来构建交换贡献项。[[1010]](../bib_references/bib.md#bib1054) 由于密度矩阵对磁场的导数是反对称（skew-symmetric）的，其库仑型（Coulomb-type）收缩项为零。对于剩余的库仑型矩阵，采用 CFMM 方法。[[1463]](../bib_references/bib.md#bib1518) [[1010]](../bib_references/bib.md#bib1054) 此外，**Q-Chem** 中还提供了多种求解 CPSCF 方程的方法可供选择。
 
-To request a NMR chemical shift calculation using the density matrix approach,
-set JOBTYPE to NMR in the *$rem* section.
-Additional job-control variables can be found below.
+若要通过密度矩阵方法请求 NMR 化学位移计算，需在 *$rem* 段中将 JOBTYPE 设置为 NMR。
+其他作业控制变量列于下方。
 
 D_CPSCF_PERTNUM
 
 ### `D_CPSCF_PERTNUM`
 
-> **Specifies whether to do the perturbations one at a time, or all together.**
+> **指定是逐个处理微扰，还是将所有微扰一并处理。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Perturbed densities to be calculated all together.
+>     * 一并计算所有微扰密度。
 >     * 1
->     * Perturbed densities to be calculated one at a time.
-> * **Recommendation**: None
+>     * 逐个计算微扰密度。
+> * **建议**: 无
 
 D_SCF_CONV_1
 
 ### `D_SCF_CONV_1`
 
-> **Sets the convergence criterion for the level-1 iterations. This preconditions the density for the level-2 calculation, and does not include any two-electron integrals.**
+> **设置 level-1 迭代的收敛判据。该步骤为 level-2 计算对密度进行预条件处理，不包含任何双电子积分。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **选项**:
 >     * $n<10$
->     * Sets convergence threshold to
+>     * 将收敛阈值设置为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: The criterion for level-1 convergence must be less than or equal to the level-2 criterion, otherwise the D-CPSCF will not converge.
+>     * 。
+> * **建议**: level-1 收敛判据必须小于或等于 level-2 判据，否则 D-CPSCF 将无法收敛。
 
 D_SCF_CONV_2
 
 ### `D_SCF_CONV_2`
 
-> **Sets the convergence criterion for the level-2 iterations.**
+> **设置 level-2 迭代的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `4`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `4`
+> * **选项**:
 >     * $n<10$
->     * Sets convergence threshold to
+>     * 将收敛阈值设置为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: None
+>     * 。
+> * **建议**: 无
 
 D_SCF_MAX_1
 
 ### `D_SCF_MAX_1`
 
-> **Sets the maximum number of level-1 iterations.**
+> **设置 level-1 迭代的最大次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `100`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `100`
+> * **选项**:
 >     * $n$
->     * User defined.
-> * **Recommendation**: Use the default.
+>     * 由用户自定义。
+> * **建议**: 使用默认值。
 
 D_SCF_MAX_2
 
 ### `D_SCF_MAX_2`
 
-> **Sets the maximum number of level-2 iterations.**
+> **设置 level-2 迭代的最大次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `30`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `30`
+> * **选项**:
 >     * $n$
->     * User defined.
-> * **Recommendation**: Use the default.
+>     * 由用户自定义。
+> * **建议**: 使用默认值。
 
 D_SCF_DIIS
 
 ### `D_SCF_DIIS`
 
-> **Specifies the number of matrices to use in the DIIS extrapolation in the D-CPSCF.**
+> **指定在 D-CPSCF 的 DIIS 外推中使用的矩阵数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `11`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `11`
+> * **选项**:
 >     * $n$
 >     * $n$
->     * = 0 specifies no DIIS extrapolation is to be used.
-> * **Recommendation**: Use the default.
+>     * = 0 表示不使用 DIIS 外推。
+> * **建议**: 使用默认值。
 
-???+ example "Example 10.61: NMR chemical shifts via the D-CPSCF method, showing all input options."
+???+ example "示例 10.61：通过 D-CPSCF 方法计算 NMR 化学位移，展示所有输入选项。"
     ```qchem
      $molecule
      0  1

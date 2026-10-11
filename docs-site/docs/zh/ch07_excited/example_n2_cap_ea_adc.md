@@ -1,14 +1,12 @@
 ---
-title: "7.10.14 Examples"
+title: "7.10.14 示例"
 ---
 
-## 7.10.14 Examples
+## 7.10.14 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 7.181: Input for an ADC(2)-s calculation of singlet exited states of methane with D2
-symmetry. In total six excited states are requested corresponding to four (two)
-electronic transitions with irreducible representation $B_{1}$ ( $B_{2}$ )."
+???+ example "示例 7.181: 采用 $D_{2}$ 对称性对甲烷单重激发态进行 ADC(2)-s 计算的输入文件。共请求六个激发态，对应于不可约表示 $B_{1}$（$B_{2}$）的四个（两个）电子跃迁。"
     ```qchem
     $molecule
        0 1
@@ -32,9 +30,7 @@ electronic transitions with irreducible representation $B_{1}$ ( $B_{2}$ )."
     $end
     ```
 
-???+ example "Example 7.182: Input for an unrestricted RI-ADC(2)-s calculation with $C_{1}$ symmetry using
-DIIS. In addition, excited state properties and state-to-state properties are
-computed."
+???+ example "示例 7.182: 采用 $C_{1}$ 对称性并使用 DIIS 的非限制 RI-ADC(2)-s 计算的输入文件。此外，还计算了激发态性质及态-态（state-to-state）性质。"
     ```qchem
     $molecule
        0 2
@@ -57,8 +53,7 @@ computed."
     $end
     ```
 
-???+ example "Example 7.183: Input for a restricted CVS-ADC(2)-x calculation with $C_{1}$ symmetry using 4
-parallel CPU cores."
+???+ example "示例 7.183: 采用 $C_{1}$ 对称性、使用 4 个并行 CPU 核的限制性 CVS-ADC(2)-x 计算的输入文件。"
     ```qchem
     $molecule
        0 1
@@ -87,8 +82,7 @@ parallel CPU cores."
     $end
     ```
 
-???+ example "Example 7.184: Input for a restricted SF-ADC(2)-s calculation of the first three spin-flip
-target states of cyclobutadiene without point group symmetry."
+???+ example "示例 7.184: 在无点群对称性条件下对环丁二烯的前三个自旋翻转（spin-flip）目标态进行限制性 SF-ADC(2)-s 计算的输入文件。"
     ```qchem
     $molecule
        0 3
@@ -112,8 +106,7 @@ target states of cyclobutadiene without point group symmetry."
     $end
     ```
 
-???+ example "Example 7.185: Computation of the first 5 singlet and triplet states of each irrep with BWs-ADC(2).
-The regularisation parameters are chosen to be $A_{0}=4$ and $B_{0}=0$ ."
+???+ example "示例 7.185: 使用 BWs-ADC(2) 计算每个不可约表示的前 5 个单重态和三重态。正则化参数选取为 $A_{0}=4$ 和 $B_{0}=0$ 。"
     ```qchem
     $comment
     Calculation of the first 5 singlet and triplet states of formaldehyde.
@@ -157,17 +150,17 @@ The regularisation parameters are chosen to be $A_{0}=4$ and $B_{0}=0$ ."
     $end
     ```
 
-The following example demonstrates a CAP/EA-ADC(3)
-calculation of the ${}^{2}\Pi_{g}$ resonance of the dinitrogen anion, employing the
-$\Sigma(4+)$ static self-energy. In this
-calculation, a series of smoothed Voronoi CAPs with onsets between 2.0 a.u. and 5.0 a.u. is projected onto the subspace of the lowest five converged
-EA-ADC(3) vectors of $B_{2g}$ symmetry (the largest Abelian subgroup of
-$D_{\infty h}$, which is $D_{2h}$, is used in the calculation).
-The basis set employed is aug-cc-pVQZ on nitrogen and additional
-$3s3p3d$ diffuse functions on the molecular center.
+下面的示例演示了对双氮阴离子（dinitrogen anion）的 ${}^{2}\Pi_{g}$ 共振态进行的
+CAP/EA-ADC(3) 计算，其中采用了
+$\Sigma(4+)$ 静态自能（static self-energy）。在该计算中，
+一系列起始位置介于 2.0 a.u. 与 5.0 a.u. 之间的平滑 Voronoi 复吸收势（Complex Absorbing
+Potential, CAP）被投影到 $B_{2g}$ 对称性下最低五个已收敛
+EA-ADC(3) 向量的子空间中（计算使用了 $D_{\infty h}$ 的最大阿贝尔子群
+$D_{2h}$）。
+所用基组为氮原子上的 aug-cc-pVQZ，并在分子中心额外添加了
+$3s3p3d$ 弥散函数。
 
-???+ example "Example 7.186: Input for a standard CAP/EA-ADC(3) calculation of the ${}^{2}\Pi_{g}$ resonance of the
-dinitrogen anion."
+???+ example "示例 7.186: 对双氮阴离子的 ${}^{2}\Pi_{g}$ 共振态进行标准 CAP/EA-ADC(3) 计算的输入文件。"
     ```qchem
     $molecule
        0 1
@@ -222,13 +215,13 @@ dinitrogen anion."
     $end
     ```
 
-The next example provides input for a restricted ADC(2)-x calculation of water
-with $C_{s}$ symmetry. Four singlet $A^{\prime\prime}$ excited states and two triplet $A^{\prime}$
-excited states are requested. For the first two states (1 ${}^{1}\!A^{\prime\prime}$ and
-1 ${}^{3}\!A^{\prime}$) the transition densities as well as the attachment and detachment
-densities are exported into cube files.
+下一个示例提供了具有 $C_{s}$ 对称性的水分子的限制性 ADC(2)-x 计算的输入文件。请求了四个单重态
+$A^{\prime\prime}$ 激发态和两个三重态 $A^{\prime}$
+激发态。对于前两个态（1 ${}^{1}\!A^{\prime\prime}$ 和
+1 ${}^{3}\!A^{\prime}$），其跃迁密度（transition densities）以及附着和脱离密度（attachment and detachment
+densities）被导出为 cube 文件。
 
-???+ example "Example 7.187: Restricted ADC(2)-x calculation of water with $C_{s}$ symmetry."
+???+ example "示例 7.187: 具有 $C_{s}$ 对称性的水分子的限制性 ADC(2)-x 计算。"
     ```qchem
     $molecule
        0 1
@@ -260,12 +253,11 @@ densities are exported into cube files.
     $end
     ```
 
-The next sample provides input for a ADC(2)-s/ptSS-PCM calculation of the
-five lowest singlet-excited states of $N,N$-dimethylnitroaniline in diethyl
-ether. The PCM settings are all default values except **Theory**, which
-is set to **IEFPCM** instead of the default **CPCM**.
+下一个示例提供了在乙醚（diethyl
+ether）中对 $N,N$-二甲基硝基苯胺的五个最低单重激发态进行 ADC(2)-s/ptSS-PCM 计算的输入文件。PCM
+设置除 **Theory** 外均采用默认值，其中 **Theory** 被设为 **IEFPCM**，而非默认的 **CPCM**。
 
-???+ example "Example 7.188: ADC(2)-s/ptSS-PCM calculation of $N,N$ -dimethylnitroaniline in diethyl ether."
+???+ example "示例 7.188: 在乙醚中对 $N,N$ -二甲基硝基苯胺进行的 ADC(2)-s/ptSS-PCM 计算。"
     ```qchem
     $molecule
        0 1
@@ -320,23 +312,15 @@ is set to **IEFPCM** instead of the default **CPCM**.
     $end
     ```
 
-The next job requires a rather complicated compound input file. The sample
-job computes ADC/SS-PCM EqS solvent-field equilibration for the first
-excited singlet state of peroxinitrite in water, which can be used to compute
-the fluorescence energy. After generating a starting point in the first job
-(using a smaller basis and lower ADC convergence criteria), the solvent-field
-iterations are carried out until convergence in the second job. In the third
-job, ADC(2) excited states are computed in the converged solvent field that was
-left on disk by the second Job. In the fourth job, we additionally compute
-ADC(3) excited states. This mixed approach should in general be used with great
-caution. If the self-ptSS term of the reference state becomes too large
-($>$0.01 eV) like it is the case here, the fully consistent approach should be
-used, meaning that the solvent reaction field should also be computed at the
-ADC(3) level. PCM settings are all default values except **Theory**, which
-is set to IEFPCM instead of the default CPCM.
+下一个作业需要一个相当复杂的复合输入文件。该示例作业计算水中过氧亚硝酸根（peroxinitrite）第一激发单重态的
+ADC/SS-PCM EqS 溶剂场平衡，其结果可用于计算荧光能。第一个作业（使用较小的基组和较低的 ADC
+收敛标准）生成起始点后，第二个作业持续进行溶剂场迭代直至收敛。第三个作业在第二个作业留在磁盘上的已收敛溶剂场中计算
+ADC(2) 激发态。第四个作业额外计算 ADC(3)
+激发态。一般而言，对此类混合方法应持极为谨慎的态度。若参考态的 self-ptSS 项过大（$>0.01$ eV）——正如本例中的情况——则应采用完全自洽的方法，即在 ADC(3)
+级别下同样计算溶剂反应场（reaction field）。PCM 设置除 **Theory**
+外均采用默认值，其中 **Theory** 被设为 IEFPCM，而非默认的 CPCM。
 
-???+ example "Example 7.7.189: ADC/SS-PCM EQS solvent-field equilibration for the first excited singlet
-state of peroxinitrite in water."
+???+ example "示例 7.7.189: 水中过氧亚硝酸根第一激发单重态的 ADC/SS-PCM EQS 溶剂场平衡。"
     ```qchem
     $comment
        ADC(2)/ptSS-PCM to generate starting point for the EqS
@@ -478,23 +462,17 @@ state of peroxinitrite in water."
     $end
     ```
 
-The next sample job provides the input for a RI-ADC(2)/ptSS-PCM(PTED)
-calculation for the five lowest excited states of peroxinitrite in water. After
-generating a starting point in the first job, which also provides the ptSS(PTE)
-and ptSS(PTD) results for comparison, the solvent-field is equilibrated for the
-MP density in the second job. During the iterations, the calculation of excited
-states is disabled to speed up the calculation. In the third job, five excited
-states are computed at the RI-ADC(2)/ptSS(PTED) level of theory. Although
-the PTD corrections for this molecule are unusually large, a comparison of the
-PTE, PTD and PTD* results from the first job with the PTED results from the
-third job will reveal a reasonable agreement between the fully consistent PTED
-and the perturbative PTD approaches. In the fourth job, excited states are
-calculated with a larger basis set. The self-ptSS term of the MP ground state
-will be quite small, showing that the solvent-field computed with the smaller
-SVP basis is a good approximation.
+下一个示例作业提供了在水中用过氧亚硝酸根五个最低激发态进行 RI-ADC(2)/ptSS-PCM(PTED)
+计算的输入文件。第一个作业生成起始点，同时给出 ptSS(PTE) 和 ptSS(PTD)
+结果以供比较；第二个作业针对 MP 密度对溶剂场进行平衡。在迭代过程中，为加快计算而关闭了激发态的求解。第三个作业在
+RI-ADC(2)/ptSS(PTED)
+理论水平下计算五个激发态。尽管该分子的 PTD 校正异常之大，但将第一个作业中 PTE、PTD 和 PTD*
+的结果与第三个作业中的 PTED
+结果进行比较，仍可以看出完全自洽的 PTED 方法与微扰式的 PTD 方法之间具有合理的一致性。第四个作业使用更大的基组计算激发态。此时 MP
+基态的 self-ptSS 项会相当小，表明用较小的 SVP
+基组计算的溶剂场是一个很好的近似。
 
-???+ example "Example 7.7.190: RI-ADC(2)/ptSS-PCM(PTED) calculation for the five lowest excited states of
-peroxinitrite in water."
+???+ example "示例 7.7.190: 在水中用过氧亚硝酸根五个最低激发态进行的 RI-ADC(2)/ptSS-PCM(PTED) 计算。"
     ```qchem
     $comment
        RI-ADC(2)/ptSS-PCM to generate starting point for
@@ -636,6 +614,6 @@ peroxinitrite in water."
     
     $solvent
        dielectric 78.4
-       dielectric_infi 1.76
+       dielectric_infi  1.76
     $end
     ```

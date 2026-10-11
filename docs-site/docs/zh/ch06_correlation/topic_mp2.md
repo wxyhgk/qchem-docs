@@ -1,9 +1,9 @@
 ---
-title: "6.3 Møller-Plesset Perturbation Theory"
+title: "6.3 默勒-普莱塞特微扰理论（Møller-Plesset Perturbation Theory）"
 ---
 
-# 6.3 Møller-Plesset Perturbation Theory
+# 6.3 默勒-普莱塞特微扰理论（Møller-Plesset Perturbation Theory）
 
-(July 4, 2026)
+（2026年7月4日）
 
-- [6.3.1 Overview](Ch6.S3.SS1.md)
+- [6.3.1 概述](Ch6.S3.SS1.md)

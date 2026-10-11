@@ -1,72 +1,62 @@
 ---
-title: "10.11.4 Additional Magnetic Field-Related Properties"
+title: "10.11.4 其他与磁场相关的性质"
 ---
 
-## 10.11.4 Additional Magnetic Field-Related Properties
+## 10.11.4 其他与磁场相关的性质
 
 (July 4, 2026)
 
-In addition to NMR chemical shieldings and spin-spin couplings, other magnetic
-properties available in **Q-Chem** are
+除核磁共振（NMR）化学屏蔽常数和自旋-自旋耦合常数之外，**Q-Chem** 还可计算其他一些磁学性质，包括
 
 - •
 
-hyperfine interaction tensors,
+超精细相互作用张量（hyperfine interaction tensors），
 - •
 
-the nuclear quadrupole interaction from electric field gradient tensors, and
+由电场梯度（Electric Field Gradient, EFG）张量得到的核四极相互作用（nuclear quadrupole interaction），以及
 - •
 
-the electronic *g*-tensor,
+电子 *g*-张量（electronic *g*-tensor），
 
-## 10.11.4.1 Hyperfine Interaction
+## 10.11.4.1 超精细相互作用
 
-The hyperfine interaction tensor describes the interaction the interaction of
-unpaired electron spin with an atom’s nuclear spin levels:
+超精细相互作用张量描述未配对电子自旋与原子核自旋能级之间的相互作用：
 
 <a id="eq:hyperfine-hamiltonian"></a>
 $$
 \hat{H}_{\text{HFI}}/h=\mathbf{\hat{S}}\cdot\mathbf{A}\cdot\mathbf{\hat{I}}, \tag{10.119}
 $$
 
-which is broken down into Fermi contact (FC), spin-dipole (SD), and orbital Zeeman/spin-orbit coupling (OZ/SOC) terms:
+该张量可分解为费米接触（Fermi Contact, FC）项、自旋-偶极（spin-dipole, SD）项以及轨道塞曼/自旋-轨道耦合（OZ/SOC）项：
 
 <a id="eq:hyperfine-tensor"></a>
 $$
 A_{ab}^{\text{tot}}(N)=A_{ab}^{\text{FC}}(N)\delta_{ab}+A_{ab}^{\text{SD}}(N)+A_{ab}^{\text{OZ/SOC}}, \tag{10.120}
 $$
 
-where the Fermi contact (FC) contribution is
+其中费米接触（FC）贡献为
 
 <a id="eq:hyperfine-fermi-contact"></a>
 $$
 A^{\text{FC}}(N)=\frac{\alpha}{2}\frac{1}{S}\frac{8\pi}{3}g_{\text{e}}g_{N}\mu_{N}\sum_{\mu\nu}P_{\mu\nu}^{\alpha-\beta}\left\langle\chi_{\mu}|\delta(\mathbf{r}_{N})|\chi_{\nu}\right\rangle \tag{10.121}
 $$
 
-and the spin-dipole (SD) contribution is
+自旋-偶极（SD）贡献为
 
 <a id="eq:hyperfine-spin-dipole"></a>
 $$
 A_{ab}^{\text{SD}}(N)=\frac{\alpha}{2}\frac{1}{S}g_{e}g_{N}\mu_{N}\sum_{\mu\nu}P_{\mu\nu}^{\alpha-\beta}\left\langle\chi_{\mu}\left|\frac{3r_{N,a}r_{N,b}-\delta_{ab}r_{N}^{2}}{r_{N}^{5}}\right|\chi_{\nu}\right\rangle \tag{10.122}
 $$
 
-for a nucleus $N$. The orbital Zeeman/spin-orbit coupling cross-term
-(OZ/SOC) is currently not available.
+式中 $N$ 为某个原子核。轨道塞曼/自旋-轨道耦合交叉项（OZ/SOC）目前尚不可用。
 
-Hyperfine interaction tensors are available for all SCF-based methods with an
-unrestricted (not restricted open-shell) reference. Post-HF methods are unavailable.
+超精细相互作用张量对所有基于自洽场（SCF）的方法均可用，但要求采用非限制（unrestricted，而非限制开壳层 restricted open-shell）参考。后 Hartree-Fock（Post-HF）方法不可用。
 
-Calculation of excited state (CIS/TDA-TDDFT) singlet–triplet hyperfine couplings are also available,
-but formatted differently than the ground state
-unrestricted counterpart. Excited state couplings are printed as contributions from FC and SD for each pair of
-excited states and for each spin operator $S_{x},S_{y},S_{z}$. For this method,
-the nuclear spin states are averaged to get final coupling contributions.[[44]](../bib_references/bib.md#bib961)
+激发态（CIS/TDA-TDDFT）单重态–三重态超精细耦合常数同样可以计算，但其输出格式与基态非限制方法的结果不同。激发态耦合常数按每一对激发态以及每个自旋算符 $S_{x},S_{y},S_{z}$ 的 FC 与 SD 贡献分别打印。对于该方法，通过对核自旋态取平均得到最终的耦合贡献。[[44]](../bib_references/bib.md#bib961)
 
-## 10.11.4.2 Nuclear Quadrupole Interaction
+## 10.11.4.2 核四极相互作用
 
-Another sensitive probe of the individual nuclear environments in a molecule
-is the nuclear quadrupole interaction (NQI), which is a measure of how a nuclear
-quadrupole moment interacts with the local electric field gradient:
+探测分子中各个原子核所处环境的另一种灵敏探针是核四极相互作用（Nuclear Quadrupole Interaction, NQI），它衡量核四极矩与局部电场梯度的相互作用：
 
 <a id="eq:nqi-hamiltonian"></a>
 $$
@@ -78,208 +68,195 @@ $$
 \displaystyle Q_{ab}(N) \tag{10.124}
 $$
 
-for a nucleus $N$. Diagonalizing the tensor gives three principal values,
-ordered $|Q_{1}|\leq|Q_{2}|\leq|Q_{3}|$, which are components of the
-asymmetry parameter eta:
+式中 $N$ 为某个原子核。对该张量对角化可得到三个主值，按 $|Q_{1}|\leq|Q_{2}|\leq|Q_{3}|$ 排序，它们是不对称参数（asymmetry parameter）eta 的组成部分：
 
 <a id="eq:nqi-eta"></a>
 $$
 \eta=\frac{Q_{1}-Q_{2}}{Q_{3}} \tag{10.125}
 $$
 
-## 10.11.4.3 Electronic *g*-tensor
+## 10.11.4.3 电子 *g*-张量
 
-The electronic *g*-tensor is a measure of the electron describes the coupling of unpaired electron spins with an external magnetic field,
-represented by the phenomenological Hamiltonian
+电子 *g*-张量描述未配对电子自旋与外磁场的耦合，由唯象哈密顿量表示
 
 <a id="Ch10.E126"></a>
 $$
 \hat{H}^{\text{g-tensor}}=\mu_{\text{B}}\mathbf{S}\cdot\mathbf{g}\cdot\mathbf{B}, \tag{10.126}
 $$
 
-where $\mu_{\text{B}}$ is the Bohr magneton, $\mathbf{S}$ is the intrinsic molecular spin vector,
-and $\mathbf{B}$ is the incident magnetic field vector.
+其中 $\mu_{\text{B}}$ 为玻尔磁子（Bohr magneton），$\mathbf{S}$ 为分子内禀自旋矢量，$\mathbf{B}$ 为入射磁场矢量。
 
-The $g$-tensor is comprised of the spin–Zeeman term and the $g$-tensor shift that includes the relativistic mass correction
-$\mathbf{g}^{\text{rmc}}$, diamagnetic spin-orbit coupling $\mathbf{g}^{\text{dso}}$ and paramagnetic spin–orbit coupling
-$\mathbf{g}^{\text{pso}}$ terms:
+$g$-张量由自旋–塞曼（spin–Zeeman）项以及 $g$-张量平移（shift）组成，后者包括相对论质量校正 $\mathbf{g}^{\text{rmc}}$、抗磁自旋-轨道耦合 $\mathbf{g}^{\text{dso}}$ 和顺磁自旋–轨道耦合 $\mathbf{g}^{\text{pso}}$ 项：
 
 <a id="Ch10.E127"></a>
 $$
 \mathbf{g}=g_{\text{e}}\mathbf{I}+\mathbf{g}^{\text{rmc}}+\mathbf{g}^{\text{dso}}+\mathbf{g}^{\text{pso}}\;. \tag{10.127}
 $$
 
-For the spin–Zeeman term the contribution is isotropic and equals the free electron $g$-factor, $g_{\text{e}}$.
-The relativistic interaction terms are added as perturbations following the Breit-Pauli *ansatz*, resulting in the expressions given below.
-The relativistic mass correction shift term $g^{\text{rmc}}$ is
+对于自旋–塞曼项，其贡献是各向同性的，等于自由电子 $g$-因子 $g_{\text{e}}$。相对论相互作用项按照 Breit-Pauli *ansatz* 以微扰方式加入，得到如下表达式。相对论质量校正平移项 $g^{\text{rmc}}$ 为
 
 <a id="Ch10.E128"></a>
 $$
 g^{\text{rmc}}_{pq}=-\frac{\alpha^{2}g_{\text{e}}}{2S}\delta_{pq}\sum_{\mu\nu}P^{\alpha-\beta}_{\mu\nu}T_{\mu\nu} \tag{10.128}
 $$
 
-with $\alpha$ as the fine-structure constant, $P^{\alpha-\beta}_{\mu\nu}$ as the spin density matrix, and $T_{\mu\nu}$ as kinetic energy integrals.
-The diamagnetic spin-orbit term $g^{\text{dso}}$ is currently not implemented in **Q-Chem** and therefore excluded but typically
-also only of minor importance for lighter elements or first to second row transition metal systems.
+其中 $\alpha$ 为精细结构常数，$P^{\alpha-\beta}_{\mu\nu}$ 为自旋密度矩阵，$T_{\mu\nu}$ 为动能积分。抗磁自旋-轨道项 $g^{\text{dso}}$ 目前尚未在 **Q-Chem** 中实现，因此被排除在外；不过对于较轻元素或第一至第二过渡系的金属体系，该项通常也只具有次要的重要性。
 
-The paramagnetic spin-orbit coupling term $g^{\text{pso}}$ is a second-order term in the perturbation series but constitutes the main contribution to the $g$-tensor shift
+顺磁自旋-轨道耦合项 $g^{\text{pso}}$ 是微扰级数中的二阶项，但构成了 $g$-张量平移的主要贡献
 
 <a id="Ch10.E129"></a>
 $$
 g^{\text{pso}}=\frac{1}{\alpha S}\sum_{N}\frac{\left\langle\Psi_{0}\left|h^{\text{SO}}\right|\Psi_{N}\right\rangle\left\langle\Psi_{N}\left|h^{\text{OZ}}\right|\Psi_{0}\right\rangle}{E_{N}-E_{0}} \tag{10.129}
 $$
 
-where $h^{\text{SO}}$ is the spin-orbit coupling interaction where a spin-orbit mean-field approach
-is used by default,[[364]](../bib_references/bib.md#bib370)
- and $h^{\text{OZ}}$ the orbital Zeeman interaction,
+其中 $h^{\text{SO}}$ 为自旋-轨道耦合相互作用，默认采用自旋-轨道平均场（spin-orbit mean-field）方法，[[364]](../bib_references/bib.md#bib370)
+ 而 $h^{\text{OZ}}$ 为轨道塞曼相互作用，
 
 <a id="Ch10.E130"></a>
 $$
 h^{\text{OZ}}=\mu_{\text{B}}\mathbf{L}\cdot\mathbf{B}\;, \tag{10.130}
 $$
 
-with $\mathbf{L}$ as angular momentum.
+其中 $\mathbf{L}$ 为角动量。
 
-In this implementation the paramagnetic spin-orbit coupling term is evaluated using a response theory approach,
-as first demonstrated by Gauss *et al.*,[[432]](../bib_references/bib.md#bib444)
+在本实现中，顺磁自旋-轨道耦合项采用响应理论（response theory）方法进行求值，该方法最早由 Gauss *et al.* 演示，[[432]](../bib_references/bib.md#bib444)
 
-but with a computational approach following that used in the **Q-Chem** polarization code.[[978]](../bib_references/bib.md#bib1019)
+但其计算方法遵循 **Q-Chem** 极化率代码中所使用的方案。[[978]](../bib_references/bib.md#bib1019)
 
-At the moment the $g$-tensor is only implemented at the CCSD level.
+目前 $g$-张量仅在耦合簇单双（CCSD）级别上实现。
 
-## 10.11.4.4 Job Control and Examples
+## 10.11.4.4 作业控制与示例
 
-Only one keyword is necessary in the *$rem* section to activate the magnetic property module.
-
-MAGNET
-
-### `MAGNET`
-
-> **Activate the magnetic property module.**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Don’t activate the magnetic property module.
->     * TRUE (or 1)
->     * Activate the magnetic property module.
-> * **Recommendation**: None.
-
-All other options are controlled through the *$magnet* input section, which has
-the same key-value format as the *$rem* section (see section [3.4](../ch03_inputs/sect_rem.md)).
-Current options are:
-
-### `Hyperfine`
-
-> **Activate the calculation of hyperfine interaction tensors. INPUT SECTION: $magnet**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate hyperfine interaction tensors.
->     * TRUE (or 1)
->     * Calculate hyperfine interaction tensors.
-> * **Recommendation**: None. Due to the nature of the property, which requires the spin density, this is not meaningful for restricted (RHF) references. Only UHF (not ROHF) is available.
-
-### `Electric`
-
-> **Activate the calculation of electric field gradient tensors. INPUT SECTION: $magnet**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate EFG tensors and nuclear quadrupole parameters.
->     * TRUE (or 1)
->     * Calculate EFG tensors and nuclear quadrupole parameters.
-> * **Recommendation**: None.
-
-For both hyperfine and EFG tensors, the results for all nuclei are automatically calculated.
-
-### `Hyperfine_Full`
-
-> **Activate calculation of excited state hyperfine couplings. INPUT SECTION: $magnet**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * False (or 0)
->     * Don’t calculate excited state hyperfine couplings.
->     * True (or 1)
->     * Calculate excited state hyperfine couplings.
-> * **Recommendation**: None.
-
-### `Hyperfine_Full_NRoots`
-
-> **Specify number of roots for excited state hyperfine calculation. INPUT SECTION: $magnet**
->
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
->     * n
->     * Calculate hyperfine couplings between lowest n CIS/TDA-TDDFT states.
-> * **Recommendation**: None.
-
-### `Hyperfine_Full_Root_Offset`
-
-> **Specify offset for roots for excited state hyperfine calculation. INPUT SECTION: $magnet**
->
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
->     * m
->     * Calculate hyperfine couplings between lowest n CIS/TDA-TDDFT states, starting at m
->     * ${}^{\text{th}}$
->     * root.
-> * **Recommendation**: None.
-
-### `Hyperfine_Full_Singlet_Other_Singlet`
-
-> **Specify whether to calculate couplings between singlet excited states. INPUT SECTION: $magnet**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * False (or 0)
->     * Don’t calculate excited state hyperfine couplings between singlets.
->     * True (or 1)
->     * Calculate excited state hyperfine couplings between singlets.
-> * **Recommendation**: None.
-
-### `Hyperfine_Full_Triplet_Other_Triplet`
-
-> **Specify whether to calculate couplings between triplet excited states. INPUT SECTION: $magnet**
->
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * False (or 0)
->     * Don’t calculate excited state hyperfine couplings between triplets.
->     * True (or 1)
->     * Calculate excited state hyperfine couplings between triplets.
-> * **Recommendation**: None.
-
-Calculation of g-tensor is activated by specifying the G_TENSOR keyword in the *$rem* section.
-Example [10.11.4.4](#ex:CCSD-gtensor) illustrates g-tensor calculation for water cation.
+只需在 *$rem* 段中设置一个关键字即可激活磁学性质模块。
 
 G_TENSOR
 
+### `MAGNET`
+
+> **激活磁学性质模块。**
+>
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * FALSE（或 0）
+>     * 不激活磁学性质模块。
+>     * TRUE（或 1）
+>     * 激活磁学性质模块。
+> * **建议**：无。
+
+所有其他选项均通过 *$magnet* 输入段进行控制，该段与 *$rem* 段具有相同的键-值格式（见第 [3.4](../ch03_inputs/sect_rem.md) 节）。
+当前选项有：
+
+### `Hyperfine`
+
+> **激活超精细相互作用张量的计算。输入段：$magnet**
+>
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * FALSE（或 0）
+>     * 不计算超精细相互作用张量。
+>     * TRUE（或 1）
+>     * 计算超精细相互作用张量。
+> * **建议**：无。由于该性质需要自旋密度，对于限制（RHF）参考而言没有意义。仅支持 UHF（不支持 ROHF）。
+
+### `Electric`
+
+> **激发电场梯度张量的计算。输入段：$magnet**
+>
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * FALSE（或 0）
+>     * 不计算 EFG 张量和核四极参数。
+>     * TRUE（或 1）
+>     * 计算 EFG 张量和核四极参数。
+> * **建议**：无。
+
+对于超精细张量和 EFG 张量，均会自动计算所有原子核的结果。
+
+### `Hyperfine_Full`
+
+> **激活激发态超精细耦合常数的计算。输入段：$magnet**
+>
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * False（或 0）
+>     * 不计算激发态超精细耦合常数。
+>     * True（或 1）
+>     * 计算激发态超精细耦合常数。
+> * **建议**：无。
+
+### `Hyperfine_Full_NRoots`
+
+> **指定激发态超精细计算的根数。输入段：$magnet**
+>
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
+>     * n
+>     * 计算最低 n 个 CIS/TDA-TDDFT 态之间的超精细耦合常数。
+> * **建议**：无。
+
+### `Hyperfine_Full_Root_Offset`
+
+> **指定激发态超精细计算根数的偏移量。输入段：$magnet**
+>
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
+>     * m
+>     * 计算最低 n 个 CIS/TDA-TDDFT 态之间的超精细耦合常数，从第 m
+>     * ${}^{\text{th}}$
+>     * 个根开始。
+> * **建议**：无。
+
+### `Hyperfine_Full_Singlet_Other_Singlet`
+
+> **指定是否计算单重激发态之间的耦合。输入段：$magnet**
+>
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * False（或 0）
+>     * 不计算单重态之间的激发态超精细耦合常数。
+>     * True（或 1）
+>     * 计算单重态之间的激发态超精细耦合常数。
+> * **建议**：无。
+
+### `Hyperfine_Full_Triplet_Other_Triplet`
+
+> **指定是否计算三重激发态之间的耦合。输入段：$magnet**
+>
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * False（或 0）
+>     * 不计算三重态之间的激发态超精细耦合常数。
+>     * True（或 1）
+>     * 计算三重态之间的激发态超精细耦合常数。
+> * **建议**：无。
+
+通过在 *$rem* 段中指定 G_TENSOR 关键字来激活 $g$-张量的计算。
+示例 [10.11.4.4](#ex:CCSD-gtensor) 演示了水阳离子的 $g$-张量计算。
+
+MAGNET
+
 ### `G_TENSOR`
 
-> **Activates g-tensor calculation.**
+> **激活 $g$-张量计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate g-tensor
->     * TRUE (or 1)
->     * Calculate g-tensor.
-> * **Recommendation**: None.
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * FALSE（或 0）
+>     * 不计算 $g$-张量
+>     * TRUE（或 1）
+>     * 计算 $g$-张量。
+> * **建议**：无。
 
-???+ example "Example 10.62: Calculating hyperfine and EFG tensors for the glycine cation."
+???+ example "示例 10.62：计算甘氨酸阳离子的超精细张量和 EFG 张量。"
     ```qchem
     $molecule
        1 2
@@ -311,7 +288,7 @@ G_TENSOR
     $end
     ```
 
-???+ example "Example 10.63: Calculating g-tensor for the water cation."
+???+ example "示例 10.63：计算水阳离子的 $g$-张量。"
     ```qchem
     $molecule
        1 2
@@ -338,7 +315,7 @@ G_TENSOR
     $end
     ```
 
-Excited state HFC values are printed as
+激发态超精细耦合常数（HFC）值的打印格式为
 
 > `Nucleus: IDX`
 > 
@@ -357,7 +334,7 @@ Excited state HFC values are printed as
 > 
 > …
 
-???+ example "Example 10.64: Calculating excited state hyperfine coupling for Pyrene-Dimethylaniline radical pair."
+???+ example "示例 10.64：计算芘-二甲基苯胺（Pyrene-Dimethylaniline）自由基对的激发态超精细耦合常数。"
     ```qchem
     $molecule
        READ    pydma_xyz.txt

@@ -1,90 +1,40 @@
 ---
-title: "6.17.2 Serial and Shared Memory Parallel Jobs"
+title: "6.17.2 串行与共享内存并行作业"
 ---
 
-## 6.17.2 Serial and Shared Memory Parallel Jobs
+## 6.17.2 串行与共享内存并行作业
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Parallelization on multiple CPUs or CPU cores is achieved by breaking down
-tensor operations into batches and running each batch in a separate thread.
-Because each thread occupies one CPU core entirely, the maximum number of
-threads must not exceed the total available number of CPU cores. If multiple
-computations are performed simultaneously, they together should not run
-more threads than available cores. For example, an eight-core node can
-accommodate one eight-thread calculation, two four-thread calculations, and so on.
+在多 CPU 或 CPU 核心上实现并行化的方式，是将张量运算拆分为若干批次（batch），并在独立的线程中运行每一个批次。由于每个线程会完全占用一个 CPU 核心，线程总数不得超过可用的 CPU 核心总数。若同时运行多个计算任务，它们所使用的线程总数之和也不应超过可用核心数。例如，一个八核心的节点可以容纳一个八线程的计算、两个四线程的计算，依此类推。
 
-The number of threads to be used in a calculation is specified as a command
-line option (*-nt nthreads*). Here, *nthreads* should be given a
-positive integer value. If this option is not specified, the job will run
-in the serial mode.
+计算中使用的线程数通过命令行选项（*-nt nthreads*）指定。其中 *nthreads* 应取正整数值。若未指定该选项，作业将以串行模式运行。
 
-Both CCMAN (old version of the couple-cluster codes) and CCMAN2 (default)
-have shared-memory parallel capabilities. However, they have different memory
-requirements as described below.
+CCMAN（老版本的耦合簇代码）和 CCMAN2（默认版本）都具备共享内存并行能力。但如下文所述，二者对内存的要求各不相同。
 
-Setting the memory limit correctly is very important for attaining high
-performance when running large jobs. To roughly estimate the amount of memory
-required for a coupled-cluster calculation use the following formula:
+在运行大型作业时，正确设置内存上限对于获得高性能至关重要。若要粗略估算耦合簇（coupled-cluster）计算所需的内存量，可使用以下公式：
 
 <a id="Ch6.E83"></a>
 $$
 \textrm{Memory}=\frac{(\textrm{Number of basis set functions})^{4}}{131072}~{}\textrm{MB} \tag{6.83}
 $$
 
-If CCMAN2 is used and the calculation is based on a RHF reference, the amount
-of memory needed is a half of that given by the formula. If forces or excited
-states are calculated, the amount should be multiplied by a factor of two.
-Because the size of data increases steeply with the size of the molecule
-computed, both CCMAN and CCMAN2 use disk space to supplement
-physical RAM if so required. The strategies of memory management in CCMAN and
-CCMAN2 slightly differ, and that should be taken into account when specifying
-memory-related keywords in the input file.
+如果使用 CCMAN2 且计算基于 RHF（限制性 Hartree-Fock）参考态，则所需内存量为上述公式给出值的一半。如果计算的是力（forces）或激发态（excited states），则该数值应乘以 2。由于数据规模随所计算分子的大小急剧增长，CCMAN 和 CCMAN2 在需要时都会使用磁盘空间来补充物理内存（RAM）。CCMAN 与 CCMAN2 的内存管理策略略有不同，在输入文件中指定与内存相关的关键字时应予以考虑。
 
-The MEM_STATIC keyword specifies the amount of memory in megabytes
-to be made available to routines that run prior to coupled-clusters
-calculations: Hartree-Fock and electronic repulsion integrals evaluation.
-A safe recommended value is 500 MB. The value of MEM_STATIC should
-not exceed 2000 MB even for very large jobs.
+MEM_STATIC 关键字用于指定在耦合簇计算之前的例程（Hartree-Fock 计算和电子排斥积分求值）中可用的内存量（以兆字节 MB 为单位）。一个安全且被推荐的值为 500 MB。即使是对于非常大的作业，MEM_STATIC 的值也不应超过 2000 MB。
 
-The memory limit for coupled-clusters calculations is set by
-CC_MEMORY. When running CCMAN, CC_MEMORY value is used as
-the recommended amount of memory, and the calculation can in fact use less
-or run over the limit. If the job is to run exclusively on a node,
-CC_MEMORY should be given 50% of all RAM. If the calculation runs
-out of memory, the amount of CC_MEMORY should be *reduced*
-forcing CCMAN to use memory-saving algorithms.
+耦合簇计算的内存上限由 CC_MEMORY 设置。在运行 CCMAN 时，CC_MEMORY 的值仅作为推荐内存量，计算实际使用的内存可能少于该值，也可能超出该限制。如果作业将在某个节点上独占运行，CC_MEMORY 应设为全部 RAM 的 50%。若计算出现内存不足（out of memory），则应当*降低* CC_MEMORY 的量，迫使 CCMAN 采用节省内存的算法。
 
-CCMAN2 uses a different strategy. It allocates the entire amount of RAM given
-by CC_MEMORY before the calculation and treats that as a strict
-memory limit. While that significantly improves the stability of larger jobs,
-it also requires the user to set the correct value of CC_MEMORY to
-ensure the best performance. The default value is computed automatically based on
-the job size, but may not always be appropriate for large calculations,
-especially if the node has more resources available. When running CCMAN2
-exclusively on a node, CC_MEMORY should be set to $\sim$80% of the
-total available RAM.
+CCMAN2 采用不同的策略。它在计算开始之前一次性分配 CC_MEMORY 所指定的全部 RAM，并将其视为严格的内存上限。这一做法显著提高了较大作业的稳定性，但同时也要求用户设置正确的 CC_MEMORY 值以确保最佳性能。默认值会根据作业规模自动计算，但对于大型计算未必总是合适，尤其是当节点具备更多可用资源时。当在节点上独占运行 CCMAN2 时，CC_MEMORY 应设为总可用 RAM 的约 80%（$\sim$80%）。
 
-**Note: 
+**注意：
 
-When running small jobs, using too large CC_MEMORY in CCMAN2
-is not recommended because **Q-Chem** will allocate more resources than needed
-for the calculation, which may affect other jobs that you may wish to run on
-the same node.
+在运行小型作业时，不建议在 CCMAN2 中使用过大的 CC_MEMORY，因为 **Q-Chem** 会分配超出计算所需的资源，这可能影响你希望在同一节点上运行的其他作业。
 **
 
-For large disk-based coupled cluster calculations it is recommended to use a
-new tensor contraction code available in CCMAN2 via libxm, which can
-significantly speed up calculations on Linux nodes. Use the
-CC_BACKEND variable to switch on libxm. The new algorithm
-represents tensor contractions as multiplications of large matrices, which are
-performed using efficient BLAS routines. Tensor data is stored on disk
-and is asynchronously prefetched to fast memory before evaluating contractions.
-The performance of the code is not affected by the amount of RAM after about
-128 GB if fast disks (such as SAS array in RAID0) are available on the system.
+对于基于磁盘（disk-based）的大型耦合簇计算，推荐使用 CCMAN2 中通过 libxm 提供的新型张量收缩（tensor contraction）代码，它可以显著加快 Linux 节点上的计算速度。使用 CC_BACKEND 变量来启用 libxm。新算法将张量收缩表示为大型矩阵的乘法，并利用高效的 BLAS 例程来完成这些乘法运算。张量数据存储于磁盘上，并在执行收缩计算之前以异步方式预取（prefetch）到快速内存中。只要系统配备了高速磁盘（例如 RAID0 配置的 SAS 磁盘阵列），当 RAM 超过约 128 GB 后，代码性能不再受内存量的影响。
 
-**Note: 
+**注意：
 
-When using libxm CC_BACKEND, sufficient
-MEM_TOTAL should be specified for integral transofromation (e.g., about 10 GB for a job with 500-700 basis functions).
+使用 libxm 的 CC_BACKEND 时，应为积分变换（integral transformation）指定充足的 MEM_TOTAL（例如，对于基函数个数为 500–700 的作业，约需 10 GB）。
 **

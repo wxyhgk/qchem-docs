@@ -1,100 +1,86 @@
 ---
-title: "4.5.10 Augmented Roothaan Hall Energy DIIS (ADIIS)"
+title: "4.5.10 增强型 Roothaan-Hall 能量 DIIS（ADIIS）"
 ---
 
-## 4.5.10 Augmented Roothaan Hall Energy DIIS (ADIIS)
+## 4.5.10 增强型 Roothaan-Hall 能量 DIIS（ADIIS）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Similar to RCA/EDIIS,[[186]](../bib_references/bib.md#bib182)
+与 RCA/EDIIS 类似，[[186]](../bib_references/bib.md#bib182)
 
-the ADIIS algorithm proposed by Hu and Yang [[601]](../bib_references/bib.md#bib624)
- is also supposed to
-accelerate SCF convergence in cases where DIIS performs poorly in the initial
-iterations. This algorithm also involves a Fock matrix extrapolation scheme:
+Hu 和 Yang 提出的 [[601]](../bib_references/bib.md#bib624) ADIIS 算法同样旨在
+DIIS 初始迭代表现不佳的情况下加速 SCF 收敛。该算法同样涉及一种 Fock 矩阵外推格式：
 
 <a id="eq:adiis_fock"></a>
 $$
 \tilde{\mathbf{F}}_{n+1}=\sum_{i=1}^{n}c_{i}\mathbf{F}_{i} \tag{4.42}
 $$
 
-where $\tilde{\mathbf{F}}_{n+1}$ is the extrapolated Fock matrix to be diagonalized to generate
-the updated MOs and electron density, $\mathbf{F}_{i}=\mathbf{F}[\mathbf{P}_{i}]$ is
-the Fock matrix constructed from the density matrix of the $i$-th iteration, and $\{c_{i}\}$
-are the extrapolation coefficients, which are obtained by minimizing the augmented
-Roothaan-Hall (ARH) energy function of an extrapolated density
-$\tilde{\mathbf{P}}_{i+1}=\sum_{i=1}^{n}\mathbf{P}_{i}$
+其中 $\tilde{\mathbf{F}}_{n+1}$ 是待对角化以生成更新分子轨道（MO）与电子密度的外推 Fock 矩阵，$\mathbf{F}_{i}=\mathbf{F}[\mathbf{P}_{i}]$ 是由第 $i$ 次迭代的密度矩阵构造的 Fock 矩阵，而 $\{c_{i}\}$ 是外推系数，其通过对如下外推密度
+$\tilde{\mathbf{P}}_{i+1}=\sum_{i=1}^{n}\mathbf{P}_{i}$ 的增强型 Roothaan-Hall（ARH）能量函数进行极小化而得到
 
 <a id="A3.S8.EGx3"></a>
 $$
 \displaystyle f^{\mathrm{ADIIS}}(c_{1},\dots,c_{n})=E[\mathbf{P}_{n}]+\sum_{i=1}^{n}c_{i}(\mathbf{P}_{i}-\mathbf{P}_{n})\cdot\mathbf{F}_{n} \tag{4.43}
 $$
 
-while subjected to the constraint $\sum_{i=1}^{n}c_{i}=1,c_{i}\geq 0$ for all $i$.
-As suggested in the original literature, [[601]](../bib_references/bib.md#bib624)
- variable substitutions are conducted
-($c_{i}=t_{i}^{2}/\sum_{i}t_{i}^{2}$) to convert the constrained optimization to a standard,
-unconstrained optimization problem (optimizers such as L-BFGS can be used to solve the latter).
-Note that while the sums in Eqs. [4.42](#eq:adiis_fock) and [4.43](#eq:adiis_obj) runs from 1 to $n$, in
-practice it is unnecessary to extrapolate using all $\mathbf{P}_{i}$ and $\mathbf{F}_{i}$ obtained
-in the previous SCF cycles. In the **Q-Chem** implementation of ADIIS, the number of
-$\mathbf{P}_{i}$’s and $\mathbf{F}_{i}$’s used in the extrapolation has a maximum of 6.
+同时需满足约束 $\sum_{i=1}^{n}c_{i}=1,c_{i}\geq 0$（对所有 $i$）。如原始文献所建议的，[[601]](../bib_references/bib.md#bib624)
+ 通过变量替换
+（$c_{i}=t_{i}^{2}/\sum_{i}t_{i}^{2}$）将带约束优化转化为标准的无约束优化问题（后者可用 L-BFGS 等优化器求解）。
+注意，虽然式 [4.42](#eq:adiis_fock) 和式 [4.43](#eq:adiis_obj) 中的求和从 1 到 $n$，但实际计算中
+没有必要使用此前 SCF 循环中得到的所有 $\mathbf{P}_{i}$ 和 $\mathbf{F}_{i}$ 来进行外推。在 **Q-Chem** 的 ADIIS 实现中，
+外推所使用的 $\mathbf{P}_{i}$ 与 $\mathbf{F}_{i}$ 数量最多为 6。
 
-The ADIIS algorithm is known to become less efficient in the region close to SCF
-convergence. Therefore, it is desirable to use the “ADIIS+DIIS” algorithm, which carries out
-ADIIS when the SCF error is below a threshold or the number of ADIIS iterations reaches a
-certain value. This hybrid algorithm, which can be invoked by setting “SCF_ALGORITHM
-= ADIIS_DIIS” in **Q-Chem**, was shown to afford accelerated convergence for cases
-where DIIS alone was unable or took much longer to converge the SCF problem. [[601]](../bib_references/bib.md#bib624)
+已知 ADIIS 算法在接近 SCF 收敛的区域效率会有所下降。因此，使用“ADIIS+DIIS”算法更为理想：当 SCF 误差低于某一阈值，或 ADIIS 迭代次数达到某个设定值时，即切换为 DIIS。这种混合算法可通过在 **Q-Chem** 中设置 “SCF_ALGORITHM
+= ADIIS_DIIS” 来调用。已有结果表明，在单独使用 DIIS 无法收敛或收敛耗时过长的情况下，该算法能够显著加速收敛。[[601]](../bib_references/bib.md#bib624)
 
 ADIIS_INNER_CONV
 
 ### `ADIIS_INNER_CONV`
 
-> **Convergence criterion for the ADIIS inner loops (L-BFGS optimization of Eq. 4.43 )**
+> **ADIIS 内层循环（式 4.43 的 L-BFGS 优化）的收敛判据**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `12`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`12`
+> * **选项**：
 >     * $n$
->     * Using 10
+>     * 以 10
 >     * ${}^{-n}$
->     * as the convergence criterion for the ADIIS inner loops
-> * **Recommendation**: Use the default
+>     * 作为 ADIIS 内层循环的收敛判据
+> * **建议**：使用默认值
 
 THRESH_ADIIS_SWITCH
 
 ### `THRESH_ADIIS_SWITCH`
 
-> **The threshold for switching from ADIIS to DIIS in a ADIIS-DIIS calculations**
+> **在 ADIIS-DIIS 计算中从 ADIIS 切换到 DIIS 的阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`3`
+> * **选项**：
 >     * $n$
->     * Switching from ADIIS to DIIS when the SCF error is below
+>     * 当 SCF 误差低于
 >     * $10^{-n}$
-> * **Recommendation**: 3 or 4 is suitable
+>     * 时，从 ADIIS 切换到 DIIS
+> * **建议**：3 或 4 较为合适
 
 MAX_ADIIS_CYCLES
 
 ### `MAX_ADIIS_CYCLES`
 
-> **The maximum number of ADIIS cycles before switching to DIIS in a ADIIS-DIIS calculations**
+> **在 ADIIS-DIIS 计算中，切换到 DIIS 之前 ADIIS 循环的最大次数**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `30`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`30`
+> * **选项**：
 >     * $N$
->     * Doing at most
+>     * 在切换到 DIIS 之前最多执行
 >     * $N$
->     * ADIIS iterations before switching to DIIS
-> * **Recommendation**: Use the default; typically there is no benefit of doing ADIIS for too many iterations
+>     * 次 ADIIS 迭代
+> * **建议**：使用默认值；通常而言，ADIIS 迭代次数过多并无益处
 
-???+ example "Example 4.14: B3LYP/3-21G calculation for the Cd(II)-imidazole
-complex using the ADIIS_DIIS algorithm (switching
-to DIIS when the error is below 10 ${}^{-3}$ ). The SADMO
-guess is used."
+???+ example "示例 4.14：使用 ADIIS_DIIS 算法对 Cd(II)-咪唑配合物进行 B3LYP/3-21G 计算（当误差低于 10 ${}^{-3}$ 时
+切换至 DIIS）。采用 SADMO 初猜。"
     ```qchem
     $molecule
     2 1

@@ -1,113 +1,84 @@
 ---
-title: "9.3.2 Freezing String Method"
+title: "9.3.2 冻结弦方法（Freezing String Method）"
 ---
 
-## 9.3.2 Freezing String Method
+## 9.3.2 冻结弦方法（Freezing String Method）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Perhaps the most significant difficulty in locating transition states is to
-obtain a good initial guess of the geometry to feed into a surface-walking
-algorithm. This difficulty becomes especially relevant for large systems, for
-which the dimensionality of the search space is large. Interpolation
-algorithms are promising for locating good guesses of the minimum-energy
-pathway connecting reactant and product states as well as approximate
-saddle-point geometries. For example, the
-*nudged elastic band method*[[949]](../bib_references/bib.md#bib990)
+在搜寻过渡态时，最关键的困难之一 perhaps 是为面行走（surface-walking）算法提供一个良好的初始几何猜测结构。对于大型体系而言，这一困难尤为突出，因为其搜索空间的维度非常大。插值（Interpolation）算法在定位连接反应物态与产物态的最低能量路径（minimum-energy pathway）的良好猜测、以及近似鞍点（saddle-point）几何结构方面颇具前景。例如，*弹性带推动法（nudged elastic band method）*[[949]](../bib_references/bib.md#bib990)
 
-and the *string method*[[360]](../bib_references/bib.md#bib365)
- start from a certain initial reaction pathway
-connecting the reactant and the product state, and then optimize in discretized
-path space towards the minimum-energy pathway. The highest-energy point on the
-approximate minimum-energy pathway becomes a good initial guess for the
-saddle-point configuration that can subsequently be used with any local
-surface-walking algorithm.
+与*弦方法（string method）*[[360]](../bib_references/bib.md#bib365)
+ 均从连接反应物态与产物态的某条初始反应路径出发，随后在离散化的路径空间中优化，直至得到最低能量路径。该近似最低能量路径上能量最高的点，即可作为鞍点构型的良好初始猜测，进而配合任何局部面行走算法使用。
 
-Inevitably, the performance of any interpolation method heavily relies on the
-choice of the initial reaction pathway, and a poorly-chosen initial pathway can
-cause slow convergence, or possibly convergence to an incorrect pathway. The
-growing-string method[[1079]](../bib_references/bib.md#bib1124)
- and freezing-string
-method[[104]](../bib_references/bib.md#bib91)
- offer solutions to this problem, in which
-two string fragments (one representing the reactant state and the other
-representing the product state) are “grown” (*i.e.*, increasingly-finely
-defined) until the two fragments join. The freezing-string method offers a
-choice between Cartesian interpolation and linear synchronous transit (LST)
-interpolation. It also allows the user to choose between conjugate gradient
-and quasi-Newton optimization techniques.
+不可避免的是，任何插值方法的性能都高度依赖于初始反应路径的选择；选择不当的初始路径可能导致收敛缓慢，甚至收敛到错误的路径。生长弦方法（growing-string method）[[1079]](../bib_references/bib.md#bib1124)
 
-Freezing-string calculations are requested by setting JOBTYPE =
-FSM in the *$rem* section. Additional job-control keywords are
-described below, along with examples. Consult Refs. [[104]](../bib_references/bib.md#bib91)
- and
-[[1245]](../bib_references/bib.md#bib1296)
- for a guide to a typical use of this method.
+与冻结弦方法（freezing-string method）[[104]](../bib_references/bib.md#bib91)
+
+为这一问题提供了解决方案：在这两种方法中，两个弦片段（一个代表反应物态，另一个代表产物态）被不断"生长"（*即*，其定义逐渐细化），直至两个片段相接。冻结弦方法可在笛卡尔（Cartesian）插值与线性同步过渡（linear synchronous transit, LST）插值之间进行选择，同时也允许用户共轭梯度（conjugate gradient）法与准牛顿（quasi-Newton）优化技术之间进行选择。
+
+通过在 *$rem* 段中设置 JOBTYPE = FSM 来请求冻结弦计算。其他作业控制关键字连同示例在下文说明。有关该方法典型用法的指南，请参阅文献 [[104]](../bib_references/bib.md#bib91)
+
+ 与 [[1245]](../bib_references/bib.md#bib1296)
+。
 
 FSM_NNODE
 
 ### `FSM_NNODE`
 
-> **Specifies the number of nodes along the string**
+> **指定沿弦的节点数目**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `12`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`12`
+> * **选项**：
 >     * $N$
->     * number of nodes in FSM calculation
-> * **Recommendation**: $N=15$ . Use 10 to 20 nodes for a typical calculation. Reaction paths that connect multiple elementary steps should be separated into individual elementary steps, and one FSM job run for each pair of intermediates. Use a higher number when the FSM is followed by an approximate-Hessian based transition state search (Section 9.3.3 ).
+>     * FSM 计算中的节点数目
+> * **建议**：$N=15$ 。典型计算使用 10 到 20 个节点。连接多个基元步骤的反应路径应拆分为各个独立的基元步骤，并对每一对中间体分别运行一次 FSM 计算。当 FSM 之后紧接基于近似 Hessian 的过渡态搜索（第 9.3.3 节）时，应使用较多的节点数。
 
 FSM_NGRAD
 
 ### `FSM_NGRAD`
 
-> **Specifies the number of perpendicular gradient steps used to optimize each node**
+> **指定用于优化每个节点的垂直梯度步数**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`3`
+> * **选项**：
 >     * $N$
->     * Number of perpendicular gradients per node
-> * **Recommendation**: Anything between 2 and 6 should work, where increasing the number is only needed for difficult reaction paths.
+>     * 每个节点使用的垂直梯度数目
+> * **建议**：2 到 6 之间的任意取值均可奏效，只有对困难反应路径才有必要增大该数值。
 
 FSM_MODE
 
 ### `FSM_MODE`
 
-> **Specifies the method of interpolation**
+> **指定插值方法**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **选项**：
 >     * 1
->     * Cartesian
+>     * 笛卡尔（Cartesian）插值
 >     * 2
->     * LST
-> * **Recommendation**: In most cases, LST is superior to Cartesian interpolation.
+>     * LST 插值
+> * **建议**：在大多数情况下，LST 插值优于笛卡尔插值。
 
 FSM_OPT_MODE
 
 ### `FSM_OPT_MODE`
 
-> **Specifies the method of optimization**
+> **指定优化方法**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **选项**：
 >     * 1
->     * Conjugate gradients
+>     * 共轭梯度法（Conjugate gradients）
 >     * 2
->     * Quasi-Newton method with BFGS Hessian update
-> * **Recommendation**: The quasi-Newton method is more efficient when the number of nodes is high.
+>     * 采用 BFGS Hessian 更新的准牛顿法（Quasi-Newton method）
+> * **建议**：当节点数目较多时，准牛顿法效率更高。
 
-An example input appears below. Note that the *$molecule* section includes
-geometries for two optimized intermediates, separated by `****`. The
-order of the atoms is important, as **Q-Chem** assumes that the $n$th atom in the
-reactant moves toward the $n$th atom in the product. The FSM string is printed
-out in the file `stringfile.txt`, which contains Cartesian coordinates of
-the structures that connect reactant to product. Each node along the path is
-labeled in this file, and its energy is provided. The geometries and energies
-are also printed at the end of the **Q-Chem** output file, where they are labeled:
+下面给出一个输入示例。注意 *$molecule* 段中包含两个已优化中间体的几何结构，以 `****` 分隔。原子顺序十分重要，因为 **Q-Chem** 假定反应物中的第 $n$ 个原子朝向产物中的第 $n$ 个原子移动。FSM 弦会被打印到文件 `stringfile.txt` 中，该文件包含连接反应物与产物各结构的笛卡尔坐标。路径上的每个节点在该文件中都有标注，并给出其能量。几何结构与能量同时会在 **Q-Chem** 输出文件的末尾打印，标注形式为：
 
 ```qchem
 ----------------------------------------
@@ -115,14 +86,9 @@ are also printed at the end of the **Q-Chem** output file, where they are label
 ----------------------------------------
 ```
 
-Finally, if MOLDEN_FORMAT is set to TRUE, then geometries
-along the string are printed in a **MolDen**-readable format at the end of the
-**Q-Chem** output file. The highest-energy node can be taken from this file and
-used to run a transition structure search as described in
-Section [9.1.1](topic_ts_Overview.md). If the string returns a pathway that is unreasonable,
-check whether the atoms in the two input geometries are in the correct order.
+最后，若将 MOLDEN_FORMAT 设置为 TRUE，则沿弦的各几何结构会以 **MolDen** 可识别的格式打印在 **Q-Chem** 输出文件的末尾。可从该文件中取出能量最高的节点，用于按照第 [9.1.1](topic_ts_Overview.md) 节所述运行过渡结构搜索。如果弦给出的路径不合理，请检查两个输入几何结构中的原子顺序是否正确。
 
-???+ example "Example 9.9: Example of the freezing-string method."
+???+ example "示例 9.9：冻结弦方法示例。"
     ```qchem
     $molecule
        0  1

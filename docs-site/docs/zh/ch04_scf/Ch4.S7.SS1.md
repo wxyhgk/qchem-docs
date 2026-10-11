@@ -1,44 +1,25 @@
 ---
-title: "4.7.1 Introduction"
+title: "4.7.1 引言"
 ---
 
-## 4.7.1 Introduction
+## 4.7.1 引言
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-The dual-basis
-approximation[[825]](../bib_references/bib.md#bib859)
-
-to self-consistent field (HF or DFT) energies provides an efficient means for
-obtaining large basis set effects at vastly less cost than a full SCF
-calculation in a large basis set. First, a full SCF calculation is performed
-in a chosen small basis (specified by BASIS2). Second, a single
-SCF-like step in the larger, target basis (specified, as usual, by
-BASIS) is used to perturbatively approximate the large basis energy.
-This correction amounts to a first-order approximation in the change in density
-matrix, after the single large-basis step:
+对自洽场（Self-Consistent Field, SCF）能量（HF 或 DFT）而言，双基组（dual-basis）近似[[825]](../bib_references/bib.md#bib859)
+提供了一种高效的方法，能够以远低于在大基组中进行完整 SCF 计算的成本，获得大基组效应。首先，在选定的小基组（由 BASIS2 指定）中执行一次完整的 SCF 计算。然后，在较大的目标基组（照例由 BASIS 指定）中执行一步类 SCF（SCF-like）计算，以微扰方式近似大基组能量。该修正相当于在单步大基组计算之后，对密度矩阵变化量的一阶近似：
 
 <a id="Ch4.E64"></a>
 $$
 E_{\text{total}}=E_{\text{small basis}}+\mbox{tr}[(\Delta\mathbf{P})\mathbf{F}]_{\text{large basis}}\;. \tag{4.64}
 $$
 
-Here $\mathbf{F}$ (in the large basis) is built from the converged (small basis)
-density matrix. Thus, only a single Fock build is required in the large basis
-set. Currently, HF and DFT energies (SP) as well as analytic first derivatives
-(FORCE or OPT) are available.
+这里的 $\mathbf{F}$（在大基组中）由已收敛的（小基组）密度矩阵构建。因此，在大基组中只需要构建一次 Fock 矩阵。目前可用的是 HF 与 DFT 能量（SP）以及解析一阶导数（FORCE 或 OPT）。
 
-**Note: 
+**注意：
 
-As of version 4.0, first derivatives of unrestricted dual-basis DFT
-energies—though correct—require a code-efficiency fix. We do not recommend
-use of these derivatives until this improvement has been made.
+自 4.0 版起，非限制（unrestricted）双基组 DFT 能量的一阶导数虽然结果正确，但代码效率上尚需改进。在该改进完成之前，我们不建议使用这些导数。
 **
 
-Across the G3 set[[296]](../bib_references/bib.md#bib297)
- of 223
-molecules, using cc-pVQZ, dual-basis errors for B3LYP are 0.04 kcal/mol
-(energy) and 0.03 kcal/mol (atomization energy per bond) and are at least an
-order of magnitude less than using a smaller basis set alone. These errors are
-obtained at roughly an order of magnitude savings in cost, relative to the
-full, target-basis calculation.
+在包含 223 个分子的 G3 集[[296]](../bib_references/bib.md#bib297)
+上，使用 cc-pVQZ 时，B3LYP 的双基组误差为 0.04 kcal/mol（能量）和 0.03 kcal/mol（梯度）。

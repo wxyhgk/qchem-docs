@@ -1,9 +1,9 @@
 ---
-title: "8.7 Complex Basis Sets"
+title: "8.7 复数基组"
 ---
 
-# 8.7 Complex Basis Sets
+# 8.7 复数基组
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [8.7.1 Overview](Ch8.S7.SS1.md)
+- [8.7.1 概述](Ch8.S7.SS1.md)

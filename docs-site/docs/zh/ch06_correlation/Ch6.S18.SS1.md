@@ -1,162 +1,144 @@
 ---
-title: "6.18.1 Overview"
+title: "6.18.1 概述"
 ---
 
-## 6.18.1 Overview
+## 6.18.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Memory footprint and execution time of coupled-cluster calculations can be
-reduced by approximately a factor of 2 by using single-precision
-arithmetic.[[1102]](../bib_references/bib.md#bib1149)
- The errors due to using single precision
-are small and comparable with typical convergence thresholds.[[1102]](../bib_references/bib.md#bib1149)
+通过使用单精度（single-precision）算术，耦合簇（coupled-cluster）计算的内存占用量与执行时间可以减少大约 2 倍。[[1102]](../bib_references/bib.md#bib1149)
+ 使用单精度所引入的误差很小，与典型的收敛阈值处于同一量级。[[1102]](../bib_references/bib.md#bib1149)
 
-If loss of accuracy is undesirable, one can follow up a converged single-precision
-calculation with a small number of “clean-up” iterations in double precision,
-which recover the full accuracy of a double-precision calculation.
-Eventually, single-precision execution of
-coupled-cluster calculations will become the default, however, for now setting
-the single precision calculation needs to be done manually, as described below.
+如果不希望损失精度，可以在一个已收敛的单精度计算之后，再跟进执行少量（a small number of）"清理"（clean-up）迭代（采用双精度），
+从而恢复与双精度计算完全相同的精度。
+最终，耦合簇计算的单精度执行将成为默认设置，但就目前而言，单精度计算仍需按下文所述手动设置。
 
-Single-precision capabilities are only available for the CCMAN2 suite. They work
-with both variants of the tensor-contraction backend (controlled by
-CC_BACKEND). Currently enabled features include energies, gradients,
-and properties calculations for both canonical and RI/CD versions. Single-precision
-versions of most EOM-CC methods are also available; the respective keywords are
-described in Section [7.9.15](../ch07_excited/sec_SP_EOM_CC.md).
+单精度功能仅对 CCMAN2 套件可用。它与张量收缩后端（tensor-contraction backend）的两种变体均可配合使用
+（由 CC_BACKEND 控制）。当前已启用的功能包括正则（canonical）版本以及 RI/CD 版本的能量、梯度与性质计算。
+大多数 EOM-CC 方法的单精度版本也已可用；相应的关键字在第 7.9.15 节 [7.9.15](../ch07_excited/sec_SP_EOM_CC.md) 中介绍。
 
-**Note: 
+**注意：
 
-When using single-precision, the thresholds need to be adjusted accordingly, as
-explained below. Using too tight convergence thresholds in single precision
-results in a non-convergent behavior.
+使用单精度时，需要如下文所述相应地调整阈值。
+在单精度下使用过于严格的收敛阈值会导致无法收敛的行为。
 **
 
-**Note: 
+**注意：
 
-In rare cases, slow performance of the current code in single precision
-with default CC_BACKEND was noted; this issue is being investigated.
-Please monitor the performance and report any issues you encounter.
+在少数情况下，人们发现当前代码在单精度下、使用默认 CC_BACKEND 时性能较慢；该问题正在调查之中。
+请留意性能表现，并报告您遇到的任何问题。
 **
 
-Webinar showing how to use the single-precision functionality in **Q-Chem**,
-including the monitoring of errors.
+网络研讨会（Webinar）演示了如何在 **Q-Chem** 中使用单精度功能，包括对误差的监控。
 
-To deploy a single- or a mixed-precision coupled-cluster calculation, use
-CC_SINGLE_PREC. Its possible values are: $0$ (default corresponding to
-double-precision calculation), $1$ (single-precision calculation), and $2$
-(single-precision calculation followed by a couple of iterations in
-double precision, to recover full accuracy).
+若要启用单精度或混合精度（mixed-precision）的耦合簇计算，请使用
+CC_SINGLE_PREC。其可选取值为：$0$（默认值，对应双精度计算）、$1$（单精度计算），以及 $2$
+（先进行单精度计算，随后执行几次双精度迭代，以恢复完整精度）。
 
-To adjust the convergence thresholds in single-precision calculation, use
-CC_SP_T_CONV (threshold for $T$ and $\Lambda$ amplitudes)
-and CC_SP_E_CONV (threshold for energies).
-Because too tight convergence criteria can cause non-convergent behavior,
-these thresholds should not be tighter than $10^{-6}$ a.u. for energies and
-$10^{-4}$ for amplitudes.
+若要调整单精度计算中的收敛阈值，请使用
+CC_SP_T_CONV（$T$ 与 $\Lambda$ 振幅的阈值）
+以及 CC_SP_E_CONV（能量的阈值）。
+由于过于严格的收敛判据可能导致无法收敛的行为，
+这些阈值对于能量不应严于 $10^{-6}$ a.u.，对于振幅不应严于 $10^{-4}$。
 
-Calculations of intermediates, density matrices, and $\langle\hat{S}^{2}\rangle$ can also
-be done in single precision, leading to negligible errors
-in energies and optimized geometries. This is controlled by the CC_SP_DM variable: $0$ corresponds to calculation in
-double precision, $1$ corresponds to calculation in single precision.
+中间量（intermediates）、密度矩阵以及 $\langle\hat{S}^{2}\rangle$ 的计算同样可以在单精度下完成，
+这会在能量与优化后的几何结构中引入可忽略不计的误差。该行为由 CC_SP_DM 变量控制：$0$ 对应以
+双精度计算，$1$ 对应以单精度计算。
 
-Calculation of perturbative triples corrections, (T) and (fT),
-can be executed in single precision using **libpt**; additional keywords
-deploying these features are USE_LIBPT and LIBPT_MIXED_PRECISION.
+微扰三重激发修正 (T) 与 (fT) 的计算可以借助 **libpt** 以单精度执行；
+用于启用这些功能的附加关键字是 USE_LIBPT 和 LIBPT_MIXED_PRECISION。
 
-**Note: 
+**注意：
 
-Calculation of numerical derivatives in single precision, such as
-finite difference evaluation of nuclear gradients and finite-field calculations,
-require using larger step sizes or field strengths, respectively.
+在单精度下计算数值导数，例如核梯度的有限差分求值以及有限场计算，
+分别需要使用更大的步长或更大的场强。
 **
 
 CC_SINGLE_PREC
 
 ### `CC_SINGLE_PREC`
 
-> **Precision selection for CCSD calculation. Available in CCMAN2 only.**
+> **CCSD 计算的精度选择。仅在 CCMAN2 中可用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 1
->     * single-precision calculation
+>     * 单精度计算
 >     * 2
->     * single-precision calculation followed by double-precision clean-up iterations
-> * **Recommendation**: Do not set too tight convergence thresholds when using single precision
+>     * 先进行单精度计算，随后执行双精度清理（clean-up）迭代
+> * **建议**：使用单精度时，请勿设置过于严格的收敛阈值
 
 CC_SP_T_CONV
 
 ### `CC_SP_T_CONV`
 
-> **Amplitude convergence threshold in single precision in CCSD calculations.**
+> **CCSD 计算中单精度下的振幅收敛阈值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`3`
+> * **可选值**：
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
->     * convergence criterion
-> * **Recommendation**: Set 4 to be consistent with the default threshold in double precision in a pure single-precision run. When used with clean-up version, it should be smaller than double-precision threshold not to introduce extra iterations.
+>     * 收敛判据
+> * **建议**：在纯单精度计算中，设为 4 以与双精度的默认阈值保持一致。与清理（clean-up）版本一起使用时，它应小于双精度阈值，以免引入额外的迭代。
 
 CC_SP_E_CONV
 
 ### `CC_SP_E_CONV`
 
-> **Energy convergence criterion in single precision in CCSD calculations.**
+> **CCSD 计算中单精度下的能量收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **可选值**：
 >     * $n$
->     * Corresponding to
+>     * 对应于
 >     * $10^{-n}$
->     * convergence criterion
-> * **Recommendation**: Set 6 to be consistent with the default threshold in double precision in a pure single-precision calculation. When used with clean-up version, it should be smaller than double-precision threshold not to introduce extra iterations.
+>     * 收敛判据
+> * **建议**：在纯单精度计算中，设为 6 以与双精度的默认阈值保持一致。与清理（clean-up）版本一起使用时，它应小于双精度阈值，以免引入额外的迭代。
 
 CC_SP_DM
 
 ### `CC_SP_DM`
 
-> **Precision selection for CCSD and EOM-CCSD intermediates, density matrices, gradients, and $\langle\hat{S}^{2}\rangle$ .**
+> **CCSD 与 EOM-CCSD 中间量、密度矩阵、梯度以及 $\langle\hat{S}^{2}\rangle$ 计算的精度选择。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 1
->     * single-precision calculation
-> * **Recommendation**: NONE
+>     * 单精度计算
+> * **建议**：无（NONE）
 
 CC_ERASE_DP_INTEGRALS
 
 ### `CC_ERASE_DP_INTEGRALS`
 
-> **Controls storage of requisite objects computed with double precision in a single-precision calculation.**
+> **控制在单精度计算中是否存储以双精度计算所得的必要对象。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 1
->     * do not store
-> * **Recommendation**: Do not erase integrals if clean-up in double precision is intended.
+>     * 不存储
+> * **建议**：如果打算在双精度下执行清理（clean-up），请勿清除积分。
 
 LIBPT_MIXED_PRECISION
 
 ### `LIBPT_MIXED_PRECISION`
 
-> **Deploys single-precision evaluation of (T) and (fT) within libpt .**
+> **在 libpt 中启用 (T) 与 (fT) 的单精度求值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 1
->     * use single precision
-> * **Recommendation**: Use in combination with USE_LIBPT .
+>     * 使用单精度
+> * **建议**：与 USE_LIBPT 组合使用。
 
-???+ example "Example 6.51: A job evaluating CCSD and CCSD(T) energy using single-precision execution"
+???+ example "示例 6.51：使用单精度执行计算 CCSD 与 CCSD(T) 能量的作业"
     ```qchem
     $comment
        Uracil+H2O cc-pvdz

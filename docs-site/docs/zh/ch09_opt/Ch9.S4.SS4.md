@@ -1,34 +1,26 @@
 ---
-title: "9.4.4 Dummy Atoms"
+title: "9.4.4 虚拟原子（Dummy Atoms）"
 ---
 
-## 9.4.4 Dummy Atoms
+## 9.4.4 虚拟原子（Dummy Atoms）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-DUMMY defines the beginning of the dummy atom section and
-ENDDUMMY its conclusion. Dummy atoms are used to help define constraints
-during constrained optimizations in Cartesian coordinates. They cannot be used
-with delocalized internals.
+`DUMMY` 用于标记虚拟原子（Dummy Atoms）部分的开始，`ENDDUMMY` 则标记其结束。虚拟原子用于在笛卡尔坐标下的约束优化（constrained optimization）过程中辅助定义约束条件。虚拟原子不能与非定域内坐标（delocalized internals）配合使用。
 
-All dummy atoms are defined with reference to a list of real atoms, that is,
-dummy atom coordinates are generated from the coordinates of the real atoms
-from the dummy atoms defining list (see below). There are three types of dummy
-atom:
+所有虚拟原子都是参照一组真实原子（real atoms）列表来定义的，也就是说，虚拟原子的坐标是由定义列表（见下文）中真实原子的坐标生成的。虚拟原子共有三种类型：
 
 1. 1.
 
-Positioned at the arithmetic mean of up to seven real atoms in the defining
-list.
+位于定义列表中至多七个真实原子的算术平均位置。
 2. 2.
 
-Positioned a unit distance along the normal to a plane defined by three
-atoms, centered on the middle atom of the three.
+沿由三个原子所定义平面的法线方向，位于距中心（即三个原子中的中间原子）一个单位距离处。
 3. 3.
 
-Positioned a unit distance along the bisector of a given angle.
+沿给定角的角平分线方向，位于一个单位距离处。
 
-The format for declaring dummy atoms is:
+声明虚拟原子的格式如下：
 
 > ```qchem
 > DUMMY
@@ -36,16 +28,15 @@ The format for declaring dummy atoms is:
 > ENDDUMMY
 > ```
 
-| idum | Center number of defining atom (must be one greater than the total number of real atoms for the first dummy atom, two greater for second etc. ). |
+| idum | 定义原子的中心编号（第一个虚拟原子的编号须比真实原子总数大 1，第二个大 2，依此类推）。 |
 | --- | --- |
-| type | Type of dummy atom (either 1, 2 or 3; see above). |
-| list_length | Number of atoms in the defining list. |
-| defining_list | List of up to seven atoms defining the position of the dummy atom. |
+| type | 虚拟原子的类型（取值为 1、2 或 3；见上文）。 |
+| list_length | 定义列表中的原子数目。 |
+| defining_list | 用于确定虚拟原子位置的、至多七个原子的列表。 |
 
-Once defined, dummy atoms can be used to define standard internal (distance,
-angle) constraints as per the constraints section, above.
+一旦定义完成，即可按照上文约束（constraints）部分的说明，使用虚拟原子来定义标准的内坐标（距离、角度）约束条件。
 
-**Note: 
+**注意：
 
-The use of dummy atoms of type 1 has never progressed beyond the experimental stage.
+类型 1 虚拟原子的使用从未超出实验阶段。
 **

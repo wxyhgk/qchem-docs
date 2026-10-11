@@ -1,43 +1,34 @@
 ---
-title: "4.4.4 Modifying the Occupied Molecular Orbitals"
+title: "4.4.4 修改占据分子轨道"
 ---
 
-## 4.4.4 Modifying the Occupied Molecular Orbitals
+## 4.4.4 修改占据分子轨道
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-It is sometimes useful for the occupied guess orbitals to be other than the
-lowest $N_{\alpha}$ (or $N_{\beta}$) orbitals. Reasons why one may need
-to do this include:
+有时让初始猜测（guess）占据轨道不按最低的 $N_{\alpha}$（或 $N_{\beta}$）个轨道来排布是 useful 的。可能需要这样做的理由包括：
 
-- •
+- -
 
-To converge to a state of different symmetry or orbital occupation.
-- •
+用于收敛到不同对称性或不同轨道占据的态。
+- -
 
-To break spatial symmetry.
-- •
+用于破坏空间对称性。
+- -
 
-To break spin symmetry, as in unrestricted calculations on molecules with
-an even number of electrons.
+用于破坏自旋对称性，例如在电子数为偶数的分子上进行非限制（unrestricted）计算。
 
-There are two mechanisms for modifying a set of guess orbitals: either by
-SCF_GUESS_MIX, or by specifying the orbitals to occupy. **Q-Chem**
-users may define the occupied guess orbitals using the *$occupied* or *$swap_occupied_virtual*
-keywords. In the former, occupied guess orbitals are defined by listing the
-$\alpha$ orbitals to be occupied on the first line and $\beta$ on the second. In the
-former, only pair of orbitals that needs to be swapped is specified.
+有两种机制可以修改一组猜测轨道：要么通过 SCF_GUESS_MIX，要么通过指明确定要占据的轨道。**Q-Chem**
+用户可以借助 *$occupied* 或 *$swap_occupied_virtual* 关键字来定义占据的猜测轨道。在前者中，通过在第一行列出要占据的 $\alpha$ 轨道、第二行列出 $\beta$ 轨道来定义占据的猜测轨道。在后者中，只需指明需要交换（swap）的那一对轨道。
 
-**Note: 
+**注意：
 
-(1) To prevent **Q-Chem** to change orbital occupation during SCF procedure,
-MOM_START option is often used in combination with
-*$occupied* or *$swap_occupied_virtual* keywords.
-(2) The need for orbitals renders these options incompatible with the SAD
-guess. Most often, they are used with SCF_GUESS = READ.
+(1) 为阻止 **Q-Chem** 在 SCF 过程中改变轨道占据，通常将 MOM_START 选项与
+*$occupied* 或 *$swap_occupied_virtual* 关键字配合使用。
+(2) 这些选项对轨道的需求使其与 SAD 猜测不相容。最常见的做法是将其与 SCF_GUESS = READ 一起使用。
 **
 
-The format for modifying occupied guess orbitals is as follows:
+修改占据猜测轨道的格式如下：
 
 > ```qchem
 > $occupied
@@ -46,7 +37,7 @@ The format for modifying occupied guess orbitals is as follows:
 > $end
 > ```
 
-or alternatively
+或者 alternatively 使用
 
 > ```qchem
 > $swap_occupied_virtual
@@ -55,7 +46,7 @@ or alternatively
 > $end
 > ```
 
-Occupied and virtual orbitals can also be swapped
+占据轨道与虚轨道之间也可以进行交换
 
 > ```qchem
 > $swap_occupied_virtual
@@ -64,7 +55,7 @@ Occupied and virtual orbitals can also be swapped
 > $end
 > ```
 
-This is identical to
+这与下面的写法等价
 
 > ```qchem
 > $occupied
@@ -73,7 +64,7 @@ This is identical to
 > $end
 > ```
 
-or
+或者
 
 > ```qchem
 > $occupied
@@ -82,63 +73,61 @@ or
 > $end
 > ```
 
-The other *$rem* variables related to altering the orbital occupancies are:
+*$rem* 中其他与改变轨道占据相关的变量有：
 
 SCF_GUESS_PRINT
 
 ### `SCF_GUESS_PRINT`
 
-> **Controls printing of guess MOs, Fock and density matrices.**
+> **控制猜测分子轨道（MO）、Fock 矩阵与密度矩阵的打印输出。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Do not print guesses.
+>     * 不打印猜测结果。
 >     * SAD
 >     * 1
->     * Atomic density matrices and molecular matrix.
+>     * 原子密度矩阵与分子矩阵。
 >     * 2
->     * Level 1 plus density matrices.
->     * CORE and GWH
+>     * 在级别 1 的基础上增加密度矩阵。
+>     * CORE 和 GWH
 >     * 1
->     * No extra output.
+>     * 无额外输出。
 >     * 2
->     * Level 1 plus Fock and density matrices and, MO coefficients and
->     * eigenvalues.
+>     * 在级别 1 的基础上增加 Fock 矩阵与密度矩阵，以及 MO 系数和本征值。
 >     * READ
 >     * 1
->     * No extra output
+>     * 无额外输出
 >     * 2
->     * Level 1 plus density matrices, MO coefficients and eigenvalues.
-> * **Recommendation**: None
+>     * 在级别 1 的基础上增加密度矩阵、MO 系数和本征值。
+> * **建议**：无
 
 SCF_GUESS_MIX
 
 ### `SCF_GUESS_MIX`
 
-> **Controls mixing of LUMO and HOMO to break symmetry in the initial guess. For unrestricted jobs, the mixing is performed only for the alpha orbitals.**
+> **控制将 LUMO 与 HOMO 混合以在初始猜测中破坏对称性。对于非限制（unrestricted）任务，仅对 alpha 轨道进行混合。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0 (FALSE)`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0 (FALSE)`
+> * **可选值**：
 >     * 0 (FALSE)
->     * Do not mix HOMO and LUMO in SCF guess.
+>     * 不在 SCF 猜测中混合 HOMO 与 LUMO。
 >     * 1 (TRUE)
->     * Add 10% of LUMO to HOMO to break symmetry.
+>     * 向 HOMO 中加入 10% 的 LUMO 以破坏对称性。
 >     * $n$
->     * Add
+>     * 向 HOMO 中加入
 >     * $10n$
->     * % of LUMO to HOMO (
+>     * % 的 LUMO（
 >     * $0<n<10$
->     * ).
-> * **Recommendation**: When performing unrestricted calculations on molecules with an even number of electrons, it is often necessary to break alpha/beta symmetry in the initial guess with this option, or by specifying input for $occupied .
+>     * ）。
+> * **建议**：在对电子数为偶数的分子进行非限制计算时，通常需要用此选项，或在输入中指定 $occupied，来破坏初始猜测中的 alpha/beta 对称性。
 
-???+ example "Example 4.6: Input for an unrestricted HF calculation on H ${}_{2}$ in the
-dissociation limit, showing the use of SCF_GUESS_MIX = 2
-(corresponding to 20% of the alpha LUMO mixed with the alpha HOMO).
-Geometric direct minimization with DIIS is used to converge the SCF, together
-with MAX_DIIS_CYCLES = 1 (using the default value for MAX_DIIS_CYCLES , the DIIS procedure just oscillates)."
+???+ example "示例 4.6: H ${}_{2}$ 在解离极限下非限制 HF 计算的输入，
+演示 SCF_GUESS_MIX = 2 的用法（相当于将 20% 的 alpha LUMO 混合进 alpha HOMO）。
+使用带 DIIS 的几何直接极小化（geometric direct minimization）来收敛 SCF，同时设置
+MAX_DIIS_CYCLES = 1（若使用 MAX_DIIS_CYCLES 的默认值，DIIS 过程只会来回振荡）。"
     ```qchem
     $molecule
        0  1

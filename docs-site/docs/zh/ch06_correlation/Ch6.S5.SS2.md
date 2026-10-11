@@ -1,157 +1,95 @@
 ---
-title: "6.5.2 EPAO Evaluation Options"
+title: "6.5.2 EPAO 评估选项"
 ---
 
-## 6.5.2 EPAO Evaluation Options
+## 6.5.2 EPAO 评估选项
 
 (July 4, 2026)
 
-When a local MP2 job (requested by the LOCAL_MP2 option for
-CORRELATION) is performed, the first new step after the SCF
-calculation is converged is to extract a minimal basis of polarized atomic
-orbitals (EPAOs) that spans the occupied space. There are three valid choices
-for this basis, controlled by the PAO_METHOD and
-EPAO_ITERATE keywords described below.
+当执行局部 MP2（local MP2）计算（通过 CORRELATION 选项设置为 LOCAL_MP2 来请求）时，SCF 计算收敛之后的第一个新步骤是抽取一组张成占据空间（occupied space）的极化原子轨道最小组（extended polarized atomic orbitals, EPAOs）的基组。该基组有三种有效的选择，由下面描述的 PAO_METHOD 和 EPAO_ITERATE 关键字控制。
 
 - •
 
-**Non-iterated EPAOs:** The initial guess EPAOs are the default for
-local MP2 calculations, and are defined as follows. For each atom, the
-covariant density matrix (SPS) is diagonalized, giving eigenvalues which
-are approximate natural orbital occupancies, and eigenvectors which are
-corresponding atomic orbitals. The $m$ eigenvectors with largest
-populations are retained (where $m$ is the minimal basis dimension for
-the current atom). This non-orthogonal minimal basis is symmetrically
-orthogonalized, and then modified as discussed in
-Ref. [[789]](../bib_references/bib.md#bib820)
- to ensure that these functions rigorously span the
-occupied space of the full SCF calculation that has just been performed.
-These orbitals may be denoted as EPAO(0) to indicate that no iterations
-have been performed after the guess. In general, the quality of the local
-MP2 results obtained with this option is very similar to the EPAO option
-below, but it is much faster and fully robust. For the example of the
-torsional barrier calculations discussed above,[[790]](../bib_references/bib.md#bib819)
- the
-TRIM RMS deviations of 0.03 kcal/mol from full MP2 calculations are
-increased to only 0.04 kcal/mol when EPAO(0) orbitals are employed rather
-than EPAOs.
+**非迭代 EPAO（Non-iterated EPAOs）：** 初始猜测 EPAO 是局部 MP2 计算的默认选项，其定义如下。对每个原子，将协变密度矩阵（SPS）对角化，得到的本征值是近似的自然轨道（natural orbital）占据数，得到的本征向量是对应的原子轨道。保留占据数最大的 $m$ 个本征向量（其中 $m$ 为当前原子的最小组维数）。这个非正交的最小组先经过对称正交化（symmetrically orthogonalized），然后再按参考文献 [[789]](../bib_references/bib.md#bib820) 中讨论的方式进行修正，以确保这些函数严格张成刚刚完成的完整 SCF 计算的占据空间。这些轨道可以记作 EPAO(0)，表示在猜测之后没有执行任何迭代。一般而言，采用此选项获得的局部 MP2 结果的质量与下面的 EPAO 选项非常接近，但它要快得多且完全稳健。对于上文讨论的扭转势垒（torsional barrier）计算示例，[[790]](../bib_references/bib.md#bib819)
+ 与完整 MP2 计算相比，TRIM 的 RMS 偏差为 0.03 kcal/mol，当采用 EPAO(0) 轨道而非 EPAOs 时，该偏差仅增大到 0.04 kcal/mol。
 - •
 
-**EPAOs:** EPAOs are defined by minimizing a localization functional
-as described in Ref. [[789]](../bib_references/bib.md#bib820)
-. These functions were designed
-to be suitable for local MP2 calculations, and have yielded excellent
-results in all tests performed so far. Unfortunately the functional is
-difficult to converge for large molecules, at least with the algorithms
-that have been developed to this stage. Therefore it is not the default,
-but is switched on by specifying a (large) value for
-EPAO_ITERATE, as discussed below.
+**EPAO：** EPAO 由最小化一个定域化泛函（localization functional）来定义，如参考文献 [[789]](../bib_references/bib.md#bib820)
+ 所述。这些函数被设计为适用于局部 MP2 计算，并且在迄今进行的所有测试中都取得了极好的结果。遗憾的是，对于大分子而言，该泛函难以收敛，至少用目前发展到此阶段的算法是这样。因此它不是默认选项，而是通过为 EPAO_ITERATE 指定一个（较大的）值来开启，如下所述。
 - •
 
-**PAO:** If the SCF calculation is performed in terms of a
-molecule-optimized minimal basis, as described in Chapter [4](../ch04_scf/chap_scf.md), then the
-resulting PAO-SCF calculation can be corrected with either conventional
-or local MP2 for electron correlation. PAO-SCF calculations alter the
-SCF energy, and are therefore not the default. This can be enabled by
-specifying PAO_METHOD = PAO, in a job with
-CORRELATION = LOCAL_MP2.
+**PAO：** 如果 SCF 计算是在分子优化的最小组（molecule-optimized minimal basis）下进行的（如第 [4 章](../ch04_scf/chap_scf.md)所述），则所得的 PAO-SCF 计算可以用常规 MP2 或局部 MP2 来校正电子相关。PAO-SCF 计算会改变 SCF 能量，因此不是默认选项。在 CORRELATION = LOCAL_MP2 的作业中指定 PAO_METHOD = PAO 即可启用此功能。
 
 PAO_METHOD
 
 ### `PAO_METHOD`
 
-> **Controls the type of PAO calculations requested.**
+> **控制所请求的 PAO 计算类型。**
 >
-> * **Type**: `STRING`
-> * **Default**: `EPAO`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`EPAO`
+> * **选项**：
 >     * EPAO
->     * Find EPAOs by minimizing delocalization function.
+>     * 通过最小化离域化函数（delocalization function）来求取 EPAO。
 >     * PAO
->     * Do SCF in a molecule-optimized minimal basis.
-> * **Recommendation**: None
+>     * 在分子优化的最小组下进行 SCF 计算。
+> * **建议**：无
 
 EPAO_ITERATE
 
 ### `EPAO_ITERATE`
 
-> **Controls iterations for EPAO calculations (see PAO_METHOD ).**
+> **控制 EPAO 计算的迭代次数（参见 PAO_METHOD）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * $n$
->     * Optimize the EPAOs for up to
+>     * 对 EPAO 进行最多
 >     * $n$
->     * iterations.
-> * **Recommendation**: Use the default. For molecules that are not too large, one can test the sensitivity of the results to the type of minimal functions by the use of optimized EPAOs in which case a value of $n=500$ is reasonable.
+>     * 次迭代的优化。
+> * **建议**：使用默认值。对于不太大的分子，可以通过使用优化后的 EPAO 来测试结果对最小组函数类型的敏感性，此时取 $n=500$ 是合理的。
 
 EPAO_WEIGHTS
 
 ### `EPAO_WEIGHTS`
 
-> **Controls algorithm and weights for EPAO calculations (see PAO_METHOD ).**
+> **控制 EPAO 计算的算法与权重（参见 PAO_METHOD）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `115`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`115`
+> * **选项**：
 >     * 15
->     * Standard weights, with 1
+>     * 标准权重，仅进行 1
 >     * ${}^{\mathrm{st}}$
->     * order optimization only.
-> * **Recommendation**: Use the default, unless convergence failure is encountered.
+>     * 阶优化。
+> * **建议**：使用默认值，除非遇到收敛失败。
 
-A local MP2 calculation (requested by the LOCAL_MP2 option for
-CORRELATION) consists of the following steps:
-
-- •
-
-After the SCF is converged, a minimal basis of EPAOs are obtained.
-- •
-
-The TRIM (and DIM) local MP2 energies are then evaluated (gradients are
-not yet available).
-
-Details of the efficient implementation of the local MP2 method described above
-are reported in the recent thesis of Dr. Michael Lee.
-
- Here we
-simply summarize the capabilities of the program. The computational advantage
-associated with these local MP2 methods varies depending upon the size of
-molecule and the basis set. As a rough general estimate, TRIM MP2 calculations
-are feasible on molecule sizes about twice as large as those for which
-conventional MP2 calculations are feasible on a given computer, and this is
-their primary advantage. Our implementation is well suited for large basis set
-calculations. The AO basis two-electron integrals are evaluated four times.
-DIM MP2 calculations are performed as a by-product of TRIM MP2 but no
-separately optimized DIM algorithm has been implemented.
-
-The resource requirements for local MP2 calculations are as follows:
+局部 MP2 计算（通过 CORRELATION 选项设置为 LOCAL_MP2 来请求）由以下步骤组成：
 
 - •
 
-*Memory:* The memory requirement for the integral transformation
-does not exceed $OON$, and is thresholded so that it asymptotically grows
-linearly with molecule size. Additional memory of approximately 32$N^{2}$
-is required to complete the local MP2 energy evaluation.
+SCF 收敛之后，求取一组 EPAO 最小组。
 - •
 
-*Disk:* The disk space requirement is only about $8OVN$, but is
-not governed by a threshold. This is a very large reduction from the case
-of a full MP2 calculation, where, in the case of four integral
-evaluations, $OVN^{2}$/4 disk space is required. As the local MP2 disk
-space requirement is not adjustable.
+随后计算 TRIM（以及 DIM）局部 MP2 能量（梯度目前尚不可用）。
 
-The evaluation of the local MP2 energy does not require any further
-customization. An adequate amount of MEM_STATIC (at least 80 –160 Mb)
-should be specified to permit efficient AO basis two-electron integral
-evaluation, but all large scratch arrays are allocated from
-MEM_TOTAL.
+上述局部 MP2 方法高效实现细节见 Michael Lee 博士近期的博士论文。
 
-???+ example "Example 6.2: A relative energy evaluation using the local TRIM model for MP2 with the
-6-311G** basis set. The energy difference is the internal rotation barrier in
-acrolein, with the first geometry being planar trans, and the second the
-transition structure."
+这里我们仅简要概述该程序的功能。这些局部 MP2 方法所带来的计算优势随分子大小和基组的不同而变化。作为一个粗略的总体估计，TRIM MP2 计算可行的分子尺寸约为在同一台计算机上常规 MP2 计算可行尺寸的两倍，这是它们的主要优势。我们的实现非常适合大基组计算。AO 基双电子积分被求取四次。DIM MP2 计算作为 TRIM MP2 的副产品执行，但尚未单独实现针对 DIM 的优化算法。
+
+局部 MP2 计算的资源需求如下：
+
+- •
+
+*内存（Memory）：* 积分变换的内存需求不超过 $OON$，并经过阈值控制，使其渐近地随分子尺寸线性增长。完成局部 MP2 能量评估还需要约 32$N^{2}$ 的额外内存。
+- •
+
+*磁盘（Disk）：* 磁盘空间需求仅约为 $8OVN$，但不受阈值控制。相比完整 MP2 计算（在四次积分求取的情况下需要 $OVN^{2}$/4 的磁盘空间），这是一个非常大的削减。局部 MP2 的磁盘空间需求不可调。
+
+局部 MP2 能量的评估不需要任何进一步的自定义设置。应指定足够大的 MEM_STATIC（至少 80–160 Mb）以保证 AO 基双电子积分的高效求取，但所有大型临时数组（scratch arrays）都从 MEM_TOTAL 分配。
+
+???+ example "示例 6.2: 使用局部 TRIM 模型对 MP2 进行相对能量评估，采用 6-311G** 基组。能量差为丙烯醛（acrolein）的内旋转势垒，第一个几何构型为平面反式（planar trans），第二个为过渡结构（transition structure）。"
     ```qchem
     $molecule
        0 1

@@ -1,79 +1,61 @@
 ---
-title: "8.10.3 Built-In ECPs"
+title: "8.10.3 内置 ECP"
 ---
 
-## 8.10.3 Built-In ECPs
+## 8.10.3 内置有效核势（ECP）
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-## 8.10.3.1 Introduction
+## 8.10.3.1 简介
 
-**Q-Chem** is equipped with several standard ECP sets which are specified using
-the ECP keyword within the *$rem* block. The built-in ECPs, which are
-described in some detail at the end of this Chapter, fall into four families:
+**Q-Chem** 配备了若干标准的有效核势（Effective Core Potential, ECP）集合，通过在 *$rem* 块中使用 ECP 关键字来指定。本章末尾对这些内置 ECP 进行了较为详细的介绍，它们分为四大族：
 
 - •
 
-The Hay-Wadt (or Los Alamos) sets (fit-HWMB and fit-LANL2DZ)
+Hay-Wadt（即 Los Alamos）系列（fit-HWMB 和 fit-LANL2DZ）
 - •
 
-The Stevens-Basch-Krauss-Jansien-Cundari set (fit-SBKJC)
+Stevens-Basch-Krauss-Jansien-Cundari 系列（fit-SBKJC）
 - •
 
-The Christiansen-Ross-Ermler-Nash-Bursten sets (fit-CRENBS and fit-CRENBL)
+Christiansen-Ross-Ermler-Nash-Bursten 系列（fit-CRENBS 和 fit-CRENBL）
 - •
 
-The Stuttgart-Bonn sets (SRLC and SRSC)
+Stuttgart-Bonn 系列（SRLC 和 SRSC）
 - •
 
-Karlsruhe def2-ECPs, for use with the def2 basis sets
+Karlsruhe def2-ECP，与 def2 基组（Basis Set）配合使用
 
-References and information about the definition and characteristics of most of
-these sets can be found at the Basis Set Exchange:[[1123]](../bib_references/bib.md#bib1170)
+其中大多数系列的参考文献以及其定义与特性信息可在 Basis Set Exchange 上找到：[[1123]](../bib_references/bib.md#bib1170)
 
 `https://www.basissetexchange.org`
 
-Each of the built-in ECPs comes with a matching orbital basis set for the
-valence electrons. In general, it is advisable to use these together and, if
-you select a basis set other than the matching one, **Q-Chem** will print a
-warning message in the output file. If you omit the BASIS *$rem*
-keyword entirely, **Q-Chem** will automatically provide the matching one.
+每个内置 ECP 都配有一个与之匹配的、用于价电子的轨道基组。一般而言，建议将两者搭配使用；如果选择了非匹配基组，**Q-Chem** 会在输出文件中打印一条警告信息。若完全省略 *$rem* 中的 BASIS 关键字，**Q-Chem** 会自动提供与之匹配的基组。
 
-The following *$rem* variable controls which ECP is used:
+以下 *$rem* 变量用于控制所使用的 ECP：
 
 ECP
 
 ### `ECP`
 
-> **Defines the effective core potential and associated basis set to be used**
+> **定义所使用的有效核势及其关联基组**
 >
-> * **Type**: `STRING`
-> * **Default**: `No ECP`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`No ECP`
+> * **可选值**：
 >     * General, Gen
->     * User defined. (
->     * $ecp
->     * keyword required)
+>     * 用户自定义（User defined.，需要 $ecp 关键字）
 >     * Symbol
->     * Use standard ECPs discussed above.
-> * **Recommendation**: ECPs are recommended for first row transition metals and heavier elements. Consult the reviews for more details.
+>     * 使用上文讨论的标准 ECP。
+> * **建议**：推荐对第一排过渡金属及更重的元素使用 ECP。更多细节请参阅相关综述文献。
 
-## 8.10.3.2 Combining ECPs
+## 8.10.3.2 组合使用 ECP
 
-If you wish, you can use different ECP sets for different elements in the
-system. This is especially useful if you would like to use a particular ECP but
-find that it is not available for all of the elements in your molecule. To
-combine different ECP sets, you set the ECP and BASIS
-keywords to “GEN” or (equivalently) “GENERAL”, and then
-add a *$ecp* block and a *$basis* block to your input file. In each of these
-blocks, you must name the ECP and the orbital basis set that you wish to use,
-separating each element by “****”. There is also a built-in combination that
-can be invoked specifying ECP = fit-LACVP. It automatically assigns
-6-31G for atoms H–Ar and fit-LANL2DZ for heavier atoms.
+如果需要，你可以为体系中的不同元素使用不同的 ECP 集合。当你想使用某个特定 ECP，却发现它并非对分子中的所有元素都可用时，这一点尤其有用。要组合不同的 ECP 集合，需将 ECP 和 BASIS 关键字设置为 "GEN"（或等价地设置为 "GENERAL"），然后在输入文件中添加一个 *$ecp* 块和一个 *$basis* 块。在这两个块中，你必须指明希望使用的 ECP 和轨道基组，各元素之间用 "****" 分隔。此外还有一个内置的组合方式，通过指定 ECP = fit-LACVP 即可调用。它会自动为 H–Ar 之间的原子分配 6-31G 基组，为更重的原子分配 fit-LANL2DZ。
 
-## 8.10.3.3 Examples
+## 8.10.3.3 示例
 
-???+ example "Example 8.6: Computing the HF/fit-LANL2DZ energy of AgCl at a bond length of 2.4 Å."
+???+ example "示例 8.6: 在键长 2.4 Å 下计算 AgCl 的 HF/fit-LANL2DZ 能量。"
     ```qchem
     $molecule
        0  1
@@ -90,7 +72,7 @@ can be invoked specifying ECP = fit-LACVP. It automatically assigns
     $end
     ```
 
-???+ example "Example 8.7: Computing the single point energy of HI with B3LYP/def2-SV(P) (using def2-ECP for I)."
+???+ example "示例 8.7: 使用 B3LYP/def2-SV(P) 计算 HI 的单点能（对 I 使用 def2-ECP）。"
     ```qchem
     $molecule
        0 1
@@ -107,8 +89,7 @@ can be invoked specifying ECP = fit-LACVP. It automatically assigns
     $end
     ```
 
-???+ example "Example 8.8: Optimization of the structure of Se ${}_{8}$ using HF/fit-LANL2DZ, followed by a
-single-point energy calculation at the MP2/fit-LANL2DZ level."
+???+ example "示例 8.8: 使用 HF/fit-LANL2DZ 优化 Se ${}_{8}$ 的结构，随后在 MP2/fit-LANL2DZ 水平上进行单点能计算。"
     ```qchem
     $molecule
        0  1
@@ -148,9 +129,8 @@ single-point energy calculation at the MP2/fit-LANL2DZ level."
     $end
     ```
 
-???+ example "Example 8.9: Computing the HF geometry of CdBr ${}_{2}$ using the Stuttgart relativistic ECPs.
-The small-core ECP and basis are employed on the Cd atom and the large-core ECP
-and basis on the Br atoms."
+???+ example "示例 8.9: 使用 Stuttgart 相对论 ECP 计算 CdBr ${}_{2}$ 的 HF 几何结构。
+Cd 原子采用小核（small-core）ECP 与基组，Br 原子采用大核（large-core）ECP 与基组。"
     ```qchem
     $molecule
        0  1

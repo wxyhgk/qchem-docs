@@ -1,9 +1,9 @@
 ---
-title: "6.16 Analytic Gradients and Properties for Coupled-Cluster Methods"
+title: "6.16 耦合簇方法的解析梯度与性质"
 ---
 
-# 6.16 Analytic Gradients and Properties for Coupled-Cluster Methods
+# 6.16 耦合簇方法的解析梯度与性质
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [6.16.1 Overview](Ch6.S16.SS1.md)
+- [6.16.1 概述](Ch6.S16.SS1.md)

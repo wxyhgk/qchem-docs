@@ -1,16 +1,15 @@
 ---
-title: "8.7.1 Overview"
+title: "8.7.1 概述"
 ---
 
-## 8.7.1 Overview
+## 8.7.1 概述
 
 (July 4, 2026)
 
-Complex basis function (CBF) methods for describing meta-stable electronic states (see Section [4.9.5](../ch04_scf/sec_cbfscf.md)) require the user to specify a basis set in which the most diffuse functions have a complex-scaled exponent. The real-valued basis functions are specified using the standard *$rem* keyword BASIS. The complex basis set is specified using the *$rem* keyword COMPLEX_BASIS, and it should be a superset of the real basis.
-If the basis is specified as general or mixed, the user-defined basis should be entered in an an additional *$zbasis* input section in the same format as the *$basis* section.
+用于描述亚稳电子态（meta-stable electronic states）的复基函数（Complex Basis Function, CBF）方法（参见第 [4.9.5](../ch04_scf/sec_cbfscf.md) 节）要求用户指定一个基组（Basis Set），其中最为弥散的函数具有复标度（complex-scaled）指数。实值基函数通过 *$rem* 关键字 BASIS 指定。复基组（complex basis set）通过 *$rem* 关键字 COMPLEX_BASIS 指定，且它应当是实基组的超集。
+若基组被指定为 general 或 mixed 类型，则用户自定义的基组应以与 *$basis* 区段相同的格式录入到一个额外的 *$zbasis* 输入区段中。
 
-**Q-Chem** will automatically determine the additional basis functions in the complex basis and scales the exponents of those functions. For example, if BASIS is specified as “cc-pVTZ” and COMPLEX_BASIS is specified as “aug-cc-pVTZ”, the augmenting functions will have complex-scaled exponents.
-An alternative way to specify the scaled functions is the scaling variable in the *$complex_ccman* section. If a scaling independent of the BASIS is desired, this variable accepts a comma-separated list of the indices of the shells to be scaled. This requires the COMPLEX_CCMAN variable to be set to 1 so that the scaling string is recognized. The indices are referring to the order in which they appear in the basis set file or respectively, in the *$zbasis* section. Furthermore, in the case of multiple centers, basis functions on different centers are enumerated separately, in the order as the centers are listed in the *$molecule* section, which allows different scaling of basis functions even when centered at atoms of the same type. As an example, in a calculation with two atoms which each possess 10 shells, the shells of the first atom would be given the indices 1–10 and the shells of the second atom 11–20. The following *$complex_ccman* section is an example for this, in which the scaling of shells 5, 6, 15 and 16 is requested.
+**Q-Chem** 会自动确定复基组中新增的基函数，并对这些函数的指数进行标度。例如，若 BASIS 指定为 "cc-pVTZ" 而 COMPLEX_BASIS 指定为 "aug-cc-pVTZ"，则这些增弥散（augmenting）函数将具有复标度指数。指定被标度函数的另一种方式是使用 *$complex_ccman* 区段中的 scaling 变量。如果希望标度与 BASIS 无关，该变量接受一个以逗号分隔的、待标度壳层（shell）索引列表。这要求将 COMPLEX_CCMAN 变量设置为 1，以便识别该 scaling 字符串。这些索引指的是各壳层在基组文件中、或分别在 *$zbasis* 区段中出现的顺序。此外，在存在多个中心的情况下，不同中心上的基函数会被分别编号，编号顺序与中心在 *$molecule* 区段中列出的顺序一致，这使得即使位于同类原子上、中心不同的基函数也可以采用不同的标度。举例来说，在某含有两个原子的计算中，若每个原子各有 10 个壳层，则第一个原子的壳层被赋予索引 1–10，第二个原子的壳层被赋予索引 11–20。下面给出的 *$complex_ccman* 区段即为一个示例，其中请求对壳层 5、6、15 和 16 进行标度。
 
 > ```qchem
 > $rem
@@ -26,43 +25,43 @@ An alternative way to specify the scaled functions is the scaling variable in th
 > $end
 > ```
 
-The scaling is done according to
+标度按照如下规则进行
 
 <a id="Ch8.E1"></a>
 $$
 \alpha\rightarrow\alpha e^{-2i\theta} \tag{8.1}
 $$
 
-where $\alpha$ is the exponent of a particular basis function and $\theta$ is specified by the *$rem* keyword COMPLEX_THETA.
+其中 $\alpha$ 是某个基函数的指数，$\theta$ 由 *$rem* 关键字 COMPLEX_THETA 指定。
 
 COMPLEX_BASIS
 
 ### `COMPLEX_BASIS`
 
-> **Defines the complex basis.**
+> **定义复基组。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default complex basis set`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`无默认复基组`
+> * **可选值**：
 >     * Symbol
->     * Use a standard basis set
+>     * 使用标准基组
 >     * ZBASIS_GENERAL, ZBASIS_GEN
->     * User-defined. As for
->     * BASIS
+>     * 用户自定义。与
+>     * BASIS 相同
 >     * ZBASIS_MIXED
->     * User-defined mixed basis
-> * **Recommendation**: Consult Ref. 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link and the Basis Set Exchange.
+>     * 用户自定义混合基组
+> * **建议**：参阅文献 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link 以及 Basis Set Exchange（基组交换库）。
 
 COMPLEX_THETA
 
 ### `COMPLEX_THETA`
 
-> **Sets the value of $\theta$ in degrees for a calculation with complex basis functions.**
+> **设置使用复基函数计算中 $\theta$ 的值（单位为度）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * $n$
 >     * $\theta=n/10$
->     * (degrees)
-> * **Recommendation**: Consult Ref. 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link . Usually calculations at several different values of $\theta$ (a “ $\theta$ -trajectory”) should be performed.
+>     * （度）
+> * **建议**：参阅文献 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link 。通常应在若干不同的 $\theta$ 值下进行计算（即一条 " $\theta$ -trajectory"，$\theta$ 轨迹）。

@@ -1,124 +1,121 @@
 ---
-title: "9.8.4 Job Control and Examples"
+title: "9.8.4 作业控制与示例"
 ---
 
-## 9.8.4 Job Control and Examples
+## 9.8.4 作业控制与示例
 
 (July 4, 2026)
 
-For MECP optimization, set MECP_OPT = TRUE in the *$rem*
-section, and note that the *$derivative_coupling* input section discussed in
-Section [9.8.2](subsec_deriv-couple-jobcontrol.md) is not necessary in this case.
+进行 MECP（最小能量交叉点，Minimum Energy Crossing Point）优化时，在 *$rem* 区段中设置 MECP_OPT = TRUE，并注意本例中不需要第 [9.8.2](subsec_deriv-couple-jobcontrol.md) 节讨论的 *$derivative_coupling* 输入区段。
 
 MECP_OPT
 
 ### `MECP_OPT`
 
-> **Determines whether we are doing MECP optimizations.**
+> **决定是否进行 MECP 优化。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Do MECP optimization.
+>     * 进行 MECP 优化。
 >     * FALSE
->     * Do not do MECP optimization.
-> * **Recommendation**: None.
+>     * 不进行 MECP 优化。
+> * **建议**: 无。
 
 MECP_METHODS
 
 ### `MECP_METHODS`
 
-> **Determines which method to be used.**
+> **决定使用哪种方法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `BRANCHING_PLANE`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `BRANCHING_PLANE`
+> * **选项**:
 >     * BRANCHING_PLANE
->     * Use the branching-plane updating method.
+>     * 使用分支平面（branching-plane）更新方法。
 >     * MECP_DIRECT
->     * Use the direct method.
+>     * 使用直接法（direct method）。
 >     * PENALTY_FUNCTION
->     * Use the penalty-constrained method.
-> * **Recommendation**: The direct method is stable for small molecules or molecules with high symmetry. The branching-plane updating method is more efficient for larger molecules but does not work if the two states have different symmetries. If using the branching-plane updating method, GEOM_OPT_COORDS must be set to 0 in the $rem section, as this algorithm is available in Cartesian coordinates only. The penalty-constrained method converges slowly and is suggested only if other methods fail.
+>     * 使用罚约束（penalty-constrained）方法。
+> * **建议**: 直接法对于小分子或高对称性分子是稳定的。分支平面更新方法对于较大分子更高效，但如果两个态具有不同的对称性则无法使用。若使用分支平面更新方法，必须在 $rem 区段中将 GEOM_OPT_COORDS 设置为 0，因为该算法仅在笛卡尔坐标下可用。罚约束方法收敛缓慢，仅建议在其他方法失败时使用。
 
 MECP_STATE1
 
 ### `MECP_STATE1`
 
-> **Sets the first Born-Oppenheimer state for MECP optimization.**
+> **为 MECP 优化设置第一个 Born-Oppenheimer 态。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `None`
+> * **选项**:
 >     * [
 >     * $i$
 >     * ,
 >     * $j$
 >     * ]
->     * Find the
->     * $j$
->     * th excited state with the total spin
+>     * 查找总自旋为
 >     * $i$
->     * ;
+>     * 的第
+>     * $j$
+>     * 个激发态；
 >     * $j=0$
->     * means the SCF ground state.
-> * **Recommendation**: $i$ is ignored for restricted calculations; for unrestricted calculations, $i$ can only be 0 or 1.
+>     * 表示 SCF 基态。
+> * **建议**: 在受限（restricted）计算中 $i$ 被忽略；在非受限（unrestricted）计算中，$i$ 只能取 0 或 1。
 
 MECP_STATE2
 
 ### `MECP_STATE2`
 
-> **Sets the second Born-Oppenheimer state for MECP optimization.**
+> **为 MECP 优化设置第二个 Born-Oppenheimer 态。**
 >
-> * **Type**: `INTEGER/INTEGER ARRAY`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER/INTEGER ARRAY`
+> * **默认值**: `None`
+> * **选项**:
 >     * [
 >     * $i$
 >     * ,
 >     * $j$
 >     * ]
->     * Find the
->     * $j$
->     * th excited state with the total spin
+>     * 查找总自旋为
 >     * $i$
->     * ;
+>     * 的第
+>     * $j$
+>     * 个激发态；
 >     * $j=0$
->     * means the SCF ground state.
-> * **Recommendation**: $i$ is ignored for restricted calculations; for unrestricted calculations, $i$ can only be 0 or 1.
+>     * 表示 SCF 基态。
+> * **建议**: 在受限（restricted）计算中 $i$ 被忽略；在非受限（unrestricted）计算中，$i$ 只能取 0 或 1。
 
 CIS_S2_THRESH
 
 ### `CIS_S2_THRESH`
 
-> **Determines whether a state is a singlet or triplet in unrestricted calculations.**
+> **决定在非受限计算中某个态是单重态还是三重态。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `120`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `120`
+> * **选项**:
 >     * $n$
->     * Sets the
+>     * 将
 >     * $\langle\hat{S}^{2}\rangle$
->     * threshold to
+>     * 阈值设置为
 >     * $n/100$
-> * **Recommendation**: For the default case, states with $\langle\hat{S}^{2}\rangle>1.2$ are treated as triplet states and other states are treated as singlets.
+> * **建议**: 在默认情况下，$\langle\hat{S}^{2}\rangle>1.2$ 的态被视为三重态，其余态被视为单重态。
 
 MECP_PROJ_HESS
 
 ### `MECP_PROJ_HESS`
 
-> **Determines whether to project out the coupling vector from the Hessian when using branching plane updating method.**
+> **决定在使用分支平面更新方法时，是否从 Hessian 中投影掉耦合矢量。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE
 >     * FALSE
-> * **Recommendation**: Use the default.
+> * **建议**: 使用默认值。
 
-???+ example "Example 9.29: MECP optimization of an intersection between the S ${}_{2}$ and S ${}_{3}$ states of
-NO ${}_{2}^{-}$ , using the direct method at the SOS-CIS(D0) level."
+???+ example "示例 9.29: 使用直接法在 SOS-CIS(D0) 级别下对 NO ${}_{2}^{-}$ 的 S ${}_{2}$ 与 S ${}_{3}$ 态之间的交叉点进行 MECP 优化。"
     ```qchem
     $molecule
        -1 1
@@ -148,7 +145,7 @@ NO ${}_{2}^{-}$ , using the direct method at the SOS-CIS(D0) level."
     $end
     ```
 
-???+ example "Example 9.30: Optimization of the ethylidene MECP between S ${}_{0}$ and S ${}_{1}$ at the SF-TDDFT level using the branching-plane updating method."
+???+ example "示例 9.29: 使用分支平面更新方法在 SF-TDDFT 级别下优化 S ${}_{0}$ 与 S ${}_{1}$ 之间的亚乙基（ethylidene）MECP。"
     ```qchem
     $molecule
        0 3
@@ -178,8 +175,7 @@ NO ${}_{2}^{-}$ , using the direct method at the SOS-CIS(D0) level."
     $end
     ```
 
-???+ example "Example 9.31: Optimization of the twisted-pyramidalized ethylene MECP between S ${}_{0}$ and
-S ${}_{1}$ at the SF-TDDFT level using the penalty-constrained updating method."
+???+ example "示例 9.31: 使用罚约束更新方法在 SF-TDDFT 级别下优化 S ${}_{0}$ 与 S ${}_{1}$ 之间的扭曲-金字塔化（twisted-pyramidalized）乙烯 MECP。"
     ```qchem
     $molecule
        0 3
@@ -207,10 +203,7 @@ S ${}_{1}$ at the SF-TDDFT level using the penalty-constrained updating method."
     $end
     ```
 
-???+ example "Example 9.32: Optimization of the $\tilde{B}^{1}A_{2}$ and $\tilde{A}^{1}B_{2}$ states of
-N ${}_{3}^{+}$ at the EOM-EE-CCSD level using the direct method.
-See Section 7.9.28 for the specifics of performing MECP
-optimization with coupled cluster."
+???+ example "示例 9.32: 使用直接法在 EOM-EE-CCSD 级别下优化 N ${}_{3}^{+}$ 的 $\tilde{B}^{1}A_{2}$ 与 $\tilde{A}^{1}B_{2}$ 态。关于使用耦合簇方法进行 MECP 优化的具体细节，请参见第 7.9.28 节。"
     ```qchem
     $molecule
        1 1
@@ -237,7 +230,7 @@ optimization with coupled cluster."
     $end
     ```
 
-???+ example "Example 9.33: Optimization of the ethylidene MECP between S ${}_{0}$ and S ${}_{1}$ at the SF-TDDFT level with analytic derivative couplings."
+???+ example "示例 9.33: 使用解析导数耦合在 SF-TDDFT 级别下优化 S ${}_{0}$ 与 S ${}_{1}$ 之间的亚乙基（ethylidene）MECP。"
     ```qchem
     $molecule
        0 3

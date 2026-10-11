@@ -1,11 +1,11 @@
 ---
-title: "5.1 Introduction"
+title: "5.1 引言"
 ---
 
-# 5.1 Introduction
+# 5.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 DFT
 
-- [5.1.1 Overview](Ch5.S1.SS1.md)
+- [5.1.1 概述](Ch5.S1.SS1.md)

@@ -1,57 +1,47 @@
 ---
-title: "3.3.2 Specifying the Molecular Coordinates Manually"
+title: "3.3.2 手动指定分子坐标"
 ---
 
-## 3.3.2 Specifying the Molecular Coordinates Manually
+## 3.3.2 手动指定分子坐标
 
 (July 4, 2026)
 
-Coordinates in the *$molecule* section can be given either in Cartesian form or in *Z*-matrix form, as discussed below.
-In either case, **Q-Chem** rotates the user-specified coordinates into the so-called *standard nuclear orientation*,[[448]](../bib_references/bib.md#bib460)
+*$molecule* 区段中的坐标既可以按笛卡尔（Cartesian）形式给出，也可以按 *Z*-矩阵（*Z*-matrix）形式给出，详见下文。无论采用哪种形式，**Q-Chem** 都会将用户指定的坐标旋转至所谓的*标准核取向（standard nuclear orientation）*，[[448]](../bib_references/bib.md#bib460)
 
-defined as the principle axes of nuclear charge. This helps to make outputs more reproducible, because different
-structure-building tools might provide coordinates in different orientations, and quadrature grids used in DFT and some other
-types of calculations are not strictly rotationally invariant.[[301]](../bib_references/bib.md#bib305)
+即核电荷的主轴方向。这有助于使输出结果更具可重复性，因为不同的结构构建工具可能提供不同取向的坐标，而且 DFT（密度泛函理论，Density Functional Theory）及某些其他类型计算中所用的积分网格并非严格具有旋转不变性。[[301]](../bib_references/bib.md#bib305)
 
-Thus, two structures with identical internal coordinates but differing by a rigid rotation can give slightly different energies.
-By rotating the user’s input into a standard orientation, identical structures prepared with different graphical user interfaces
-should afford the same energy. Occassionally, however, one might want to use the absolute (laboratory-fixed) coordinate frame
-that is defined by the coordinates provided in the *$molecule* section. This can be obtained by setting NO_REORIENT = TRUE
-in the *$rem* section, which disables rotation into the standard orientation. The coordinate system that **Q-Chem** uses, whether it is
-the standard one or the user’s, is printed in the **Q-Chem** output file immediately below where the input file is reproduced.
+因此，两个内部坐标相同但仅相差一个刚性旋转的结构，可能给出略微不同的能量。通过将用户的输入旋转到标准取向，使用不同图形用户界面准备的相同结构应当得到相同的能量。不过，有时用户可能希望使用由 *$molecule* 区段中所给坐标定义的绝对（实验室固定）坐标系。这可以通过在 *$rem* 区段中设置 NO_REORIENT = TRUE 来实现，该设置会禁用向标准取向的旋转。**Q-Chem** 所使用的坐标系（无论是标准坐标系还是用户坐标系），会打印在 **Q-Chem** 输出文件中紧跟输入文件回显内容之后的位置。
 
 NO_REORIENT
 
 ### `NO_REORIENT`
 
-> **Disable rotation into the standard nuclear orientation.**
+> **禁用向标准核取向的旋转。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **取值选项**:
 >     * FALSE
->     * Use the standard nuclear orientation.
+>     * 使用标准核取向。
 >     * TRUE
->     * Use the coordinate system defined by the
+>     * 使用由
 >     * $molecule
->     * section.
-> * **Recommendation**: Use the default unless you have a reason to want a different coordinate system.
+>     * 区段定义的坐标系。
+> * **建议**: 除非有理由需要不同的坐标系，否则请使用默认值。
 
-## 3.3.2.1 Cartesian Coordinates
+## 3.3.2.1 笛卡尔坐标
 
-**Q-Chem** can accept a list of $N$ atoms and their $3N$ Cartesian coordinates.
-The atoms can be entered either as atomic numbers or atomic symbols where each
-line corresponds to a single atom. The **Q-Chem** format for declaring a
-molecular geometry using Cartesian coordinates (in Ångstroms) is:
+**Q-Chem** 可以接受 $N$ 个原子及其 $3N$ 个笛卡尔坐标的列表。
+原子既可以按原子序数输入，也可以按元素符号输入，每一行对应一个原子。**Q-Chem** 使用笛卡尔坐标（以埃，Ångstroms 为单位）声明分子几何构型的格式为：
 
 > ```qchem
 > atom  x-coordinate  y-coordinate  z-coordinate
 > ```
 
-**Note: 
+**注意：**
 
-The geometry can by specified in bohr by setting the *$rem* variable
-INPUT_BOHR equal to TRUE.
+通过将 *$rem* 变量 INPUT_BOHR 设置为 TRUE，
+可以以 bohr 为单位指定几何构型。
 **
 
 ```qchem
@@ -72,65 +62,52 @@ $molecule
 $end
 ```
 
-**Note: 
+**注意：**
 
 1.
 
-Atoms can be declared by either atomic number or symbol.
+原子既可以用原子序数声明，也可以用元素符号声明。
 
 2.
 
-Coordinates can be entered either as variables/parameters or real numbers.
+坐标既可以以变量/参数的形式输入，也可以直接以实数输入。
 
 3.
 
-Variables/parameters can be declared in any order.
+变量/参数可以按任意顺序声明。
 
 4.
 
-A single blank line separates parameters from the atom declaration.
+用一个空行将参数与原子的声明分隔开。
 
 **
 
-Once all the molecular Cartesian coordinates have been entered, terminate
-the molecular coordinate input with the *$end* keyword.
+输入完所有分子的笛卡尔坐标后，使用 *$end* 关键字结束分子坐标的输入。
 
-## 3.3.2.2 *Z*-matrix Coordinates
+## 3.3.2.2 *Z*-矩阵坐标
 
-For small molecules, *Z*-matrix notation is a common input format. The
-*Z*-matrix defines the positions of atoms relative to previously defined atoms
-using a length, an angle and a dihedral angle. Again, note that all bond
-lengths and angles must be in Ångstroms and degrees, unless
-INPUT_BOHR is set to TRUE, in which case bond lengths are
-specified in bohr.
+对于小分子，*Z*-矩阵记法是一种常见的输入格式。
+*Z*-矩阵通过一个长度、一个角度和一个二面角，来定义各原子相对于先前已定义原子的位置。同样请注意，所有键长和角度都必须以埃（Ångstroms）和度（degrees）为单位，除非将 INPUT_BOHR 设置为 TRUE，此时键长以 bohr 为单位指定。
 
-The first three atom entries of a *Z*-matrix are different from the subsequent
-entries. The first *Z*-matrix line declares a single atom. The second line of
-the *Z*-matrix input declares a second atom, refers to the first atom and gives
-the distance between them. The third line declares the third atom, refers to
-either the first or second atom, gives the distance between them, refers to the
-remaining atom and gives the angle between them. All subsequent entries begin
-with an atom declaration, a reference atom and a distance, a second reference
-atom and an angle, a third reference atom and a dihedral angle. This can be
-summarized as:
+*Z*-矩阵的前三个原子条目与后续条目有所不同。*Z*-矩阵的第一行声明一个原子。第二行声明第二个原子，引用第一个原子并给出两者之间的距离。第三行声明第三个原子，引用第一个或第二个原子，给出两者之间的距离，再引用剩下的那个原子并给出它们之间的夹角。所有后续条目均以下列形式开始：一个原子声明、一个参考原子及距离、第二个参考原子及角度、第三个参考原子及二面角。这可概括为：
 
 1. 1.
 
-First atom.
+第一个原子。
 2. 2.
 
-Second atom, reference atom, distance.
+第二个原子，参考原子，距离。
 3. 3.
 
-Third atom, reference atom A, distance between A and the third atom,
-reference atom B, angle defined by atoms A, B and the third atom.
+第三个原子，参考原子 A，A 与第三个原子之间的距离，
+参考原子 B，由原子 A、B 和第三个原子所定义的夹角。
 4. 4.
 
-Fourth atom, reference atom A, distance, reference atom B, angle,
-reference atom C, dihedral angle (A, B, C and the fourth atom).
+第四个原子，参考原子 A，距离，参考原子 B，角度，
+参考原子 C，二面角（由 A、B、C 和第四个原子构成）。
 5. 5.
 
-All subsequent atoms follow the same basic form as (4)
+所有后续原子均遵循与 (4) 相同的基本形式
 
 ```qchem
 O1
@@ -139,45 +116,39 @@ O1
   H2   O2   ho   O1   hoo   H1   hooh
 ```
 
-Line 1 declares an oxygen atom (O1). Line 2 declares the second oxygen atom
-(O2), followed by a reference to the first atom (O1) and a distance between
-them denoted `oo`. Line 3 declares the first hydrogen atom (H1), indicates
-it is separated from the first oxygen atom (O1) by a distance HO and makes an
-angle with the second oxygen atom (O2) of `hoo`. Line 4 declares the
-fourth atom and the second hydrogen atom (H2), indicates it is separated from
-the second oxygen atom (O2) by a distance HO and makes an angle with the first
-oxygen atom (O1) of `hoo` and makes a dihedral angle with the first
-hydrogen atom (H1) of `hooh`.
+第 1 行声明一个氧原子 (O1)。第 2 行声明第二个氧原子
+(O2)，随后是对第一个原子 (O1) 的引用，以及以 `oo` 表示的两者之间的距离。
+第 3 行声明第一个氢原子 (H1)，指出它与第一个氧原子 (O1) 相距距离 HO，
+并与第二个氧原子 (O2) 构成 `hoo` 的夹角。第 4 行声明
+第四个原子即第二个氢原子 (H2)，指出它与第二个氧原子 (O2) 相距距离 HO，与第一个
+氧原子 (O1) 构成 `hoo` 的夹角，并与第一个
+氢原子 (H1) 构成 `hooh` 的二面角。
 
-Some further points to note are:
+需要进一步注意的几点如下：
 
 - •
 
-Atoms can be declared by either atomic number or symbol.
+原子既可以用原子序数声明，也可以用元素符号声明。
 
 - **–**
 
-If declared by atomic number, connectivity needs to be indicated
-by *Z*-matrix line number.
+若用原子序数声明，则需要通过 *Z*-矩阵的行号来表示连接关系。
 - **–**
 
-If declared by atomic symbol either number similar atoms (*e.g.*,
-H1, H2, O1, O2 *etc.*) and refer connectivity using this symbol, or
-indicate connectivity by the line number of the referred atom.
+若用元素符号声明，既可以给同类原子编号（*e.g.*,
+H1, H2, O1, O2 *etc.*）并用该符号表示连接关系，也可以用被引用原子的行号来表示连接关系。
 - •
 
-Bond lengths and angles can be entered either as variables/parameters or
-real numbers.
+键长和角度既可以以变量/参数的形式输入，也可以直接以实数输入。
 
 - **–**
 
-Variables/parameters can be declared in any order.
+变量/参数可以按任意顺序声明。
 - **–**
 
-A single blank line separates parameters from the *Z*-matrix.
+用一个空行将参数与 *Z*-矩阵分隔开。
 
-All the following examples are equivalent in the information forwarded to the
-**Q-Chem** program.
+下面所有示例向 **Q-Chem** 程序传递的信息完全等价。
 
 ```qchem
 $molecule
@@ -229,21 +200,14 @@ $molecule
 $end
 ```
 
-Obviously, a number of the formats outlined above are less appealing to the
-eye and more difficult for us to interpret than the others, but each
-communicates *exactly* the same *Z*-matrix to the **Q-Chem** program.
+显然，上述若干格式在视觉上不够美观，也更难为我们所解读，但每一种格式向 **Q-Chem** 程序传达的 *Z*-矩阵都*完全*相同。
 
-## 3.3.2.3 Dummy Atoms
+## 3.3.2.3 虚原子（Dummy Atoms）
 
-Dummy atoms are indicated by the identifier $X$ and followed, if necessary, by
-an integer. (*e.g.*, $X1$, $X2$. Dummy atoms are often useful for molecules
-where symmetry axes and planes are not centered on a real atom, and have also
-been useful in the past for choosing variables for structure optimization and
-introducing symmetry constraints.
+虚原子用标识符 $X$ 表示，必要时后跟一个整数（*e.g.*, $X1$, $X2$）。虚原子常用于对称轴和对称面不落在真实原子上的分子，过去在选择结构优化的变量以及引入对称性约束方面也很有用。
 
-**Note: 
+**注意：**
 
-Dummy atoms play no role in the quantum mechanical calculation, and are
-used merely for convenience in specifying other atomic positions or geometric
-variables.
+虚原子不参与量子力学计算，
+仅是为了便于指定其他原子的位置或几何变量而使用。
 **

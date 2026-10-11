@@ -1,67 +1,38 @@
 ---
-title: "8.9.1 Overview"
+title: "8.9.1 概述"
 ---
 
-## 8.9.1 Overview
+## 8.9.1 概述
 
 (July 4, 2026)
 
-When calculating intermolecular interaction energies, a naïve calculation
-of the energy difference
+在计算分子间相互作用能时，若直接按能量差做朴素计算
 
 <a id="eq:DeltaE_AB"></a>
 $$
 \Delta E_{AB}=E_{AB}-E_{A}-E_{B} \tag{8.5}
 $$
 
-usually results in severe overestimation of the interaction energy, even if all
-three energies in Eq. ([8.5](#eq:DeltaE_AB)) are computed at a good level of
-theory. This phenomenon, known as *basis set superposition error* (BSSE),
-is an artifact of an unbalanced approximation, namely, that the dimer energy
-$E_{AB}$ is computed in a more flexible basis set as compared to the two
-monomer energies. Although BSSE disappears in the complete basis-set limit, it
-does so extremely slowly: in $\rm(H_{2}O)_{6}$, for example, an MP2/aug-cc-pVQZ calculation of the interaction energy is still a bit more than
-1 kcal/mol away from the MP2 complete-basis limit.[[1171]](../bib_references/bib.md#bib1223)
- Short
-of computing all energies in very large basis sets and extrapolating to the
-complete-basis limit, the conventional solution to the BSSE problem is the
-*counterpoise correction*, originally proposed by Boys and
-Bernardi.[[151]](../bib_references/bib.md#bib148)
- Here, one corrects for BSSE by computing the monomer
-energies $E_{A}$ and $E_{B}$ in the dimer basis set, with the idea being that this
-results in a more balanced treatment of $\Delta E_{AB}$.
+通常会严重高估相互作用能，即使式 ([8.5](#eq:DeltaE_AB)) 中的三个能量都在很高的理论水平上计算。这一现象被称为*基组重叠误差*（basis set superposition error, BSSE），它是一种由不平衡近似所导致的赝象（artifact）——具体而言，二聚体能量 $E_{AB}$ 是在比两个单体能量所采用的更为灵活的基组中计算的。尽管 BSSE 在完备基组极限下会消失，但其消失的速度极其缓慢：例如在 $\rm(H_{2}O)_{6}$ 中，即使采用 MP2/aug-cc-pVQZ 计算相互作用能，其结果与 MP2 完备基组极限之间仍相差略超过 1 kcal/mol。[[1171]](../bib_references/bib.md#bib1223)
+ 除非在所有能量计算中都使用非常大的基组并外推至完备基组极限，否则解决 BSSE 问题的传统方法是*反基组叠加校正*（counterpoise correction），该方法最初由 Boys 和 Bernardi 提出。[[151]](../bib_references/bib.md#bib148)
+ 其思想是通过在二聚体基组中计算单体能量 $E_{A}$ 和 $E_{B}$ 来对 BSSE 进行校正，从而对 $\Delta E_{AB}$ 做出更为均衡的处理。
 
-In truth the average of the counterpoise-corrected and uncorrected results is
-often a better approximation than either of them individually, but in any case
-one needs the counterpoise-corrected result. This requires basis functions to
-be placed at arbitrary points in space, not just those defined by the nuclear
-centers; these are usually termed “floating centers” or “ghost atoms”.
-Ghost atoms have zero nuclear charge but can support a user-defined basis set.
-Their positions are specified in the *$molecule* section alongside all the
-other atoms (atomic symbol: Gh), and their intended basis functions are
-specified in one of two ways:
+事实上，经反基组叠加校正的结果与未校正结果的平均值，往往比其中任何一个单独结果都是更好的近似，但无论如何，我们都首先需要那个经过反基组叠加校正的结果。这就要求基函数可以放置在空间中的任意位置，而不仅限于由核中心所定义的位置；这些位于非核中心的基函数通常被称为“浮动中心”（floating centers）或“鬼原子”（ghost atoms）。
+鬼原子的核电荷为零，但可以承载用户定义的基组。
+它们的位置在 *$molecule* 段中与其他所有原子一起指定（原子符号：Gh），而它们所承载的基函数则通过以下两种方式之一来指定：
 
 1. 1.
 
-Via a user-defined *$basis* section, using BASIS = MIXED.
+通过用户自定义的 *$basis* 段，并设置 BASIS = MIXED。
 2. 2.
 
-Placing “$@$” next to an atomic symbol in the *$molecule* section
-designates it as a ghost atom supporting the same basis functions as the
-corresponding atom, so that a *$basis* section is not required.
+在 *$molecule* 段中，在某个原子符号旁边放置“$@$”即可将其标记为鬼原子，并使其承载与相应原子相同的基函数，这样就无需 *$basis* 段。
 
-Examples of either procedure appear below.
+上述两种做法的示例见下文。
 
-The calculation of $\Delta E_{AB}$ in Eq. ([8.5](#eq:DeltaE_AB)) requires three
-separate electronic structure calculations but this process can be performed
-automatically using **Q-Chem**’s BSSE job type based on calculations
-using fragment jobs. This machinery is much more versatile and is
-described in detail later so we will not discuss the automatic procedure here;
-see Section [12.4](../ch12_frag/sect_autoBSSE.md) for that.
+式 ([8.5](#eq:DeltaE_AB)) 中 $\Delta E_{AB}$ 的计算需要三次独立的电子结构计算，但这一过程可以利用 **Q-Chem** 基于片段作业（fragment job）的 BSSE 作业类型来自动完成。这套机制的用途远为广泛，后文将做详细介绍，因此此处不讨论自动流程；相关内容参见第 [12.4](../ch12_frag/sect_autoBSSE.md) 节。
 
-???+ example "Example 8.4: A calculation on a water monomer in the presence of the full
-dimer basis set. The energy will be slightly lower than that without the ghost
-atom functions due to the greater flexibility of the basis set."
+???+ example "示例 8.4: 在完整二聚体基组存在下对水单体进行的计算。由于基组灵活性的提高，其能量将略低于不含鬼原子基函数时的能量。"
     ```qchem
     $molecule
        0  1
@@ -100,7 +71,7 @@ atom functions due to the greater flexibility of the basis set."
     $end
     ```
 
-???+ example "Example 8.5: A calculation on ammonia in the presence of the basis set of ammonia borane."
+???+ example "示例 8.5: 在氨硼烷基组存在下对氨进行的计算。"
     ```qchem
     $molecule
        0 1

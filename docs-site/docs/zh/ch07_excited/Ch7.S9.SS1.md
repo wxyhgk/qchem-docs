@@ -1,13 +1,9 @@
 ---
-title: "7.9.1 Introduction"
+title: "7.9.1 引言"
 ---
 
-## 7.9.1 Introduction
+## 7.9.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-EOM-CC and most of the CI codes are part of CCMAN and CCMAN2. CCMAN is
-a legacy code which is being phased out. All new developments and
-performance-enhancing features are implemented in CCMAN2. Some options
-behave differently in the two modules. Below we make an effort to mark
-which features are available in legacy code only.
+EOM-CC 以及大多数 CI 代码都属于 CCMAN 和 CCMAN2 模块。CCMAN 是一个正逐步被淘汰的遗留（legacy）代码。所有新开发的功能以及提升性能的特性均在 CCMAN2 中实现。某些选项在这两个模块中的行为有所不同。下文我们力求标注出哪些特性仅在遗留代码中可用。

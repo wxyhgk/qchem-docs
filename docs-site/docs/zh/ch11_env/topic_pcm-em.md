@@ -1,74 +1,57 @@
 ---
-title: "11.2.3 Polarizable Continuum Models"
+title: "11.2.3 极化连续介质模型"
 ---
 
-## 11.2.3 Polarizable Continuum Models
+## 11.2.3 极化连续介质模型（Polarizable Continuum Models, PCM）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The multipolar expansion model is based on exact formulas for the solvation energy of a point multipole
-in a spherical cavity,[[948]](../bib_references/bib.md#bib988)
- which is a crude approximation except (or perhaps even)
-for small molecules, and the Kirkwood-Onsager model has been largely superseded by the
-more general class of “apparent surface charge” SCRF solvation models, typically known as
-PCMs.[[1363]](../bib_references/bib.md#bib1425)
- These models improve upon the multipolar expansion method in two ways.
-Most importantly, they provide a much more
-realistic description of molecular shape, typically by constructing the
-“solute cavity” (*i.e.*, the interface between the atomistic region and the
-dielectric continuum) from a union of atom-centered spheres, an aspect of the
-model that is discussed in Section [11.2.3.2](#subsubsec:pcm_cavity). In addition,
-the exact electron density of the solute (rather than a multipole expansion) is
-used to polarize the continuum. Electrostatic interactions between the solute
-and the continuum manifest as an induced charge density on the cavity surface,
-which is discretized into point charges for practical calculations. The
-surface charges are determined based upon the solute’s electrostatic potential
-at the cavity surface, hence the surface charges and the solute wave function
-must be determined self-consistently.
+多极展开模型（multipolar expansion model）基于球形空腔中点多极子溶和能的精确公式[[948]](../bib_references/bib.md#bib988)，
+除了（甚或恰恰）对于小分子而言，这是一种相当粗略的近似；而 Kirkwood-Onsager 模型在很大程度上已被更广义的"表观表面电荷"（apparent surface charge）自洽反应场（SCRF）溶化模型所取代，这类模型通常被称为 PCM[[1363]](../bib_references/bib.md#bib1425)。
+这些模型从两个方面改进了多极展开方法。最重要的是，它们对分子形状给出了远为真实的描述，
+通常是通过由原子中心球的并集来构造"溶质空腔"（*即*，原子尺度区域与介电连续体之间的界面），模型的这一方面将在第 [11.2.3.2](#subsubsec:pcm_cavity) 节中讨论。此外，
+用于使连续体极化的是溶质的精确电子密度（而非多极展开）。溶质与连续体之间的静电相互作用
+表现为空腔表面上的诱导电荷密度，在实际计算中该诱导电荷密度被离散化为点电荷。
+表面电荷由溶质在空腔表面的静电势决定，因此表面电荷与溶质波函数必须自洽地共同确定。
 
-## 11.2.3.1 Formal Theory and Discussion of Different Models
+## 11.2.3.1 形式理论及不同模型的讨论
 
-The PCM literature has a long history[[1363]](../bib_references/bib.md#bib1425)
- and there are several
-different models in widespread use; connections between these models have not always been
-appreciated.[[245]](../bib_references/bib.md#bib245)
+PCM 的文献历史悠久[[1363]](../bib_references/bib.md#bib1425)，
+目前广泛使用的有多种不同模型；这些模型之间的联系并不总是为人所重视[[245]](../bib_references/bib.md#bib245)。
 
 Chipman[[245]](../bib_references/bib.md#bib245)
- has shown how various PCMs can be
-formulated within a common theoretical framework; see
-Ref. [[569]](../bib_references/bib.md#bib580)
- for a review. The PCM takes the form of a set of linear equations,
+展示了如何将各种 PCM 表述在一个统一的理论框架之内；综述可参见
+文献 [[569]](../bib_references/bib.md#bib580)。
+PCM 表现为一组线性方程，
 
 <a id="eq:Kq=Rv"></a>
 $$
 \mathbf{Kq}=\mathbf{Rv}\;, \tag{11.2}
 $$
 
-in which the induced charges $q_{i}$ at the cavity surface discretization points
-[organized into a vector $\mathbf{q}$ in Eq. ([11.2](#eq:Kq=Rv))] are computed
-from the values $v_{i}$ of the solute’s electrostatic potential at those same
-discretization points. The form of the matrices $\mathbf{K}$ and $\mathbf{R}$
-depends upon the particular PCM in question. These matrices are given in
-Table [11.3](#table:K-matrix) for the PCMs that are available in **Q-Chem**.
+其中，空腔离散化点处的诱导电荷 $q_{i}$（在式 ([11.2](#eq:Kq=Rv)) 中组织为向量 $\mathbf{q}$）
+由溶质在这些相同离散化点处的静电势值 $v_{i}$ 计算得到。矩阵 $\mathbf{K}$ 和 $\mathbf{R}$
+的形式取决于所采用的具体 PCM。对于 **Q-Chem** 中可用的各 PCM，这些矩阵已列于
+表 [11.3](#table:K-matrix) 中。
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <tbody class="ltx_tbody">
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Model</span></th>
-<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">Literature</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">模型</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row ltx_border_tt"><span class="ltx_text ltx_font_bold">文献</span></th>
 <td class="ltx_td ltx_align_center ltx_border_tt">
-<span class="ltx_text ltx_font_bold">Matrix</span> $\mathbf{K}$
+<span class="ltx_text ltx_font_bold">矩阵</span> $\mathbf{K}$
 </td>
 <td class="ltx_td ltx_align_center ltx_border_tt">
-<span class="ltx_text ltx_font_bold">Matrix</span> $\mathbf{R}$
+<span class="ltx_text ltx_font_bold">矩阵</span> $\mathbf{R}$
 </td>
 <td class="ltx_td ltx_align_center ltx_border_tt">
-<span class="ltx_text ltx_font_bold">Scalar</span> $f_{\varepsilon}$
+<span class="ltx_text ltx_font_bold">标量</span> $f_{\varepsilon}$
 </td>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_th ltx_th_row"></th>
-<th class="ltx_td ltx_align_center ltx_th ltx_th_row"><span class="ltx_text ltx_font_bold">Refs.</span></th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_row"><span class="ltx_text ltx_font_bold">参考文献</span></th>
 <td class="ltx_td"></td>
 <td class="ltx_td"></td>
 <td class="ltx_td"></td>
@@ -111,318 +94,214 @@ Table [11.3](#table:K-matrix) for the PCMs that are available in **Q-Chem**.
 <tfoot class="ltx_tfoot">
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_tt" colspan="5">
-${}^{a}$<span class="ltx_text" style="font-size:80%;">Also includes a charge renormalization correction; see Section <a class="ltx_ref" href="subsec_COSMO-Klamt.html" title="11.2.8 COSMO ‣ 11.2 Chemical Solvent Models ‣ Chapter 11 Molecules in Complex Environments: Solvent Models, QM/MM, QM/EFP, and Embedding Methods ‣ Q-Chem 7.0 User’s Manual"><span class="ltx_text ltx_ref_tag">11.2.8</span></a>.</span>
+${}^{a}$<span class="ltx_text" style="font-size:80%;">该模型还包含电荷重整化（charge renormalization）校正；参见第&nbsp;<a class="ltx_ref" href="subsec_COSMO-Klamt.html" title="11.2.8 COSMO ‣ 11.2 Chemical Solvent Models ‣ Chapter 11 Molecules in Complex Environments: Solvent Models, QM/MM, QM/EFP, and Embedding Methods ‣ Q-Chem 7.0 User’s Manual"><span class="ltx_text ltx_ref_tag">11.2.8</span></a>&nbsp;节。</span>
 </th>
 </tr>
 </tfoot>
 </table>
 
-Table 11.3: 
-Definition of the matrices in Eq. ([11.2](#eq:Kq=Rv)) for the
-various PCMs that are available in **Q-Chem**. The matrix $\mathbf{S}$ consists
-of Coulomb interactions between the cavity charges and $\mathbf{D}$ is the
-discretized version of the matrix that generates the outward-pointing normal electric field vector. (See
-Refs. [[246]](../bib_references/bib.md#bib246) for
-detailed definitions.) The matrix $\mathbf{A}$ is diagonal and contains the
-surface areas of the cavity discretization elements, and $\mathbf{1}$ is a unit
-matrix.
+表 11.3： 
+对于 **Q-Chem** 中可用的各种 PCM，式 ([11.2](#eq:Kq=Rv)) 中各矩阵的定义。
+矩阵 $\mathbf{S}$ 由空腔电荷之间的库仑相互作用构成，$\mathbf{D}$ 则是
+产生外法向电场矢量的矩阵的离散化形式。（详细定义参见
+文献 [[246]](../bib_references/bib.md#bib246)。）
+矩阵 $\mathbf{A}$ 为对角矩阵，其元素为空腔离散化面元的表面积，$\mathbf{1}$ 为单位矩阵。
 
-The oldest PCM is the so-called D-PCM model of Tomasi and
-coworkers,[[946]](../bib_references/bib.md#bib986)
- but unlike the models listed in
-Table [11.3](#table:K-matrix), D-PCM requires explicit evaluation of the electric
-field normal to the cavity surface. This is undesirable, as evaluation of the
-electric field is both more expensive and more prone to numerical problems as
-compared to evaluation of the electrostatic potential. Moreover, the
-dependence on the electric field can be formally eliminated at the level of the
-integral equation whose discretized form is given in
-Eq. ([11.2](#eq:Kq=Rv)).[[245]](../bib_references/bib.md#bib245)
- As such, D-PCM is essentially
-obsolete, and the PCMs available in **Q-Chem** require only the evaluation of the
-electrostatic potential, not the electric field.
+最古老的 PCM 是所谓 Tomasi 及其合作者提出的 D-PCM 模型[[946]](../bib_references/bib.md#bib986)，
+但与表 [11.3](#table:K-matrix) 中列出的模型不同，D-PCM 需要显式地计算垂直于
+空腔表面的电场。这是不可取的，因为与静电势的计算相比，电场的计算既更昂贵又
+更容易出现数值问题。此外，在式 ([11.2](#eq:Kq=Rv))
+所给出的离散化积分方程层面，对电场的依赖关系可以在形式上被消除[[245]](../bib_references/bib.md#bib245)。
+因此，D-PCM 基本上已经过时，**Q-Chem** 中提供的 PCM 只需要计算静电势，而不需要计算电场。
 
-The simplest PCM that continues to enjoy widespread use is the conductor-like model,
-C-PCM.[[79]](../bib_references/bib.md#bib61)
- Originally derived by Klamt and Schüürmann
+至今仍被广泛使用的最简单的 PCM 是类导体模型 C-PCM[[79]](../bib_references/bib.md#bib61)。
+该模型最初由 Klamt 和 Schüürmann 基于导体极限（$\varepsilon\rightarrow\infty$）的论证推导得出，
 
-based on arguments invoking the conductor limit ($\varepsilon\rightarrow\infty$), this model can also be
-derived as an approximation to more formally correct
-models.[[244]](../bib_references/bib.md#bib244)
+也可以作为对更形式上正确的模型的近似而推导出来[[244]](../bib_references/bib.md#bib244)。
 
-Over the years, the dielectric-dependent factor
+多年来，出现在该模型中的介电依赖因子（见表 [11.3](#table:K-matrix)）
 
 <a id="eq:f_epsilon"></a>
 $$
 f_{\varepsilon}=\frac{\varepsilon-1}{\varepsilon+x} \tag{11.3}
 $$
 
-that appears in this model (see Table [11.3](#table:K-matrix)) has been used with different values of $x$.
-The value $x=0$ is typically used in C-PCM calculations and $x=1/2$ in COSMO calculations, although
-Klamt and co-workers later suggested using $x=1/2$ for neutral solutes and $x=0$ for ions.[[694]](../bib_references/bib.md#bib726)
+曾被取不同的 $x$ 值使用。C-PCM 计算中通常取 $x=0$，而 COSMO 计算中取 $x=1/2$，
+不过 Klamt 及其合作者后来建议对中性溶质取 $x=1/2$、对离子取 $x=0$[[694]](../bib_references/bib.md#bib726)。
 
-The specific choice of $f_{\varepsilon}$ is controllable via the *$pcm* input section that is described in
-Section [11.2.4](subsec_PCM_job_control.md).
+$f_{\varepsilon}$ 的具体选择可通过 *$pcm* 输入段来控制，其说明见第 [11.2.4](subsec_PCM_job_control.md) 节。
 
-Whereas from Table [11.3](#table:K-matrix) the C-PCM and COSMO methods would appear to be the same up
-to a minor rescaling of the surface charge (*i.e.*, up to the precise choice of $f_{\varepsilon}$), historically the
-term “COSMO" has been used by Klamt to mean a particular “dual-cavity” implementation of this model that
-makes it different from other PCMs.[[569]](../bib_references/bib.md#bib580)
- This construction is equivalent to the
-“outlying charge correction” that is discussed in Section [11.2.8](subsec_COSMO-Klamt.md), and was intended
-to account for the effects of the tail of the solute’s charge density that penetrates beyond the
-cavity surface.[[692]](../bib_references/bib.md#bib721)
+从表 [11.3](#table:K-matrix) 来看，C-PCM 和 COSMO 方法除了表面电荷的轻微
+重标定（*即*，取决于 $f_{\varepsilon}$ 的精确选择）之外似乎是相同的，但在历史上，
+"Klamt"所使用的术语"COSMO"指的是该模型的一种特殊的"双空腔"（dual-cavity）实现方式，
+这使其有别于其他 PCM[[569]](../bib_references/bib.md#bib580)。
+这一构造等价于第 [11.2.8](subsec_COSMO-Klamt.md) 节中讨论的"外溢电荷校正"
+（outlying charge correction），其目的是考虑溶质电荷密度穿透到空腔表面之外的尾部效应[[692]](../bib_references/bib.md#bib721)。
 
-Subsequent work cast considerable doubt on the theoretical justification for this
-correction, since the C-PCM/COSMO *ansatz* was shown to include already an *implicit*
-correction for outlying charge.[[244]](../bib_references/bib.md#bib244)
+随后的工作对这一校正的理论依据提出了相当大的怀疑，因为已经证明 C-PCM/COSMO 的
+*假设*（ansatz）已经*隐含*了对外溢电荷的校正[[244]](../bib_references/bib.md#bib244)。
 
-Further discussion of this construction, and of COSMO, is deferred to Section [11.2.8](subsec_COSMO-Klamt.md),
+关于这一构造以及 COSMO 的进一步讨论将留待第 [11.2.8](subsec_COSMO-Klamt.md) 节。
 
-As compared to C-PCM, a more sophisticated treatment of continuum electrostatic
-interactions is afforded by the “surface and simulation of volume polarization
-for electrostatics” [SS(V)PE] approach.[[245]](../bib_references/bib.md#bib245)
- Formally speaking,
-this model provides an exact treatment of the *surface polarization*
-(*i.e.*, the surface charge induced by the solute charge that is contained within
-the solute cavity, which induces a surface polarization owing to the
-discontinuous change in dielectric constant across the cavity boundary) but
-also an approximate treatment of the *volume polarization* (arising from
-the aforementioned outlying charge). The “SS(V)PE” terminology is Chipman’s
-notation,[[245]](../bib_references/bib.md#bib245)
- but this model is formally equivalent, at the
-level of integral equations, to the “integral equation formalism” (IEF-PCM)
-that was developed originally by Cancès *et al.*.[[187]](../bib_references/bib.md#bib181)
+与 C-PCM 相比，"静电表面与体积极化模拟"（surface and simulation of volume polarization
+for electrostatics, SS(V)PE）方法[[245]](../bib_references/bib.md#bib245)
+对连续介质静电相互作用给出了更精细的处理。形式上讲，
+该模型对*表面极化*（*即*，由包含在溶质空腔内部的溶质电荷所诱导的表面电荷，
+由于空腔边界处介电常数的不连续变化而产生的表面极化）给出了精确处理，
+同时对*体积极化*（由前述外溢电荷引起）给出了近似处理。"SS(V)PE"这一术语
+是 Chipman 的记法[[245]](../bib_references/bib.md#bib245)，
+但该模型在积分方程层面与 Cancès *et al.* 最初发展的
+"积分方程形式体系"（integral equation formalism, IEF-PCM）在形式上是等价的[[187]](../bib_references/bib.md#bib181)。
 
-Some difference do arise when the integral equations are discretized to form
-finite-dimensional matrix equations,[[756]](../bib_references/bib.md#bib789)
- and it should be noted
-from Table [11.3](#table:K-matrix) that SS(V)PE uses a symmetrized form of the
-$\mathbf{K}$ matrix as compared to IEF-PCM. The *asymmetric* IEF-PCM is
-the recommended approach,[[756]](../bib_references/bib.md#bib789)
- although only the symmetrized
-version is available in the isodensity implementation of SS(V)PE that is
-discussed in Section [11.2.6](subsec_SS(V)PE.md). That said, differences between symmetry and asymmetric
-versions are only important in the case of van der Waals cavity surfaces; they are insignificant for the
-isodensity cavity construction.[[569]](../bib_references/bib.md#bib580)
+当积分方程被离散化为有限维矩阵方程时确实会出现一些差异[[756]](../bib_references/bib.md#bib789)，
+并且应从表 [11.3](#table:K-matrix) 中注意到，与 IEF-PCM 相比，SS(V)PE 使用了
+$\mathbf{K}$ 矩阵的对称化形式。*非对称*形式的 IEF-PCM 是推荐的方法[[756]](../bib_references/bib.md#bib789)，
+尽管在第 [11.2.6](subsec_SS(V)PE.md) 节讨论的 SS(V)PE 等密度（isodensity）实现中只提供对称化版本。
+话虽如此，对称版本与非对称版本之间的差异只在范德华空腔表面的情况下才重要；对于
+等密度空腔构造而言，这种差异并不显著[[569]](../bib_references/bib.md#bib580)。
 
-As with the obsolete D-PCM
-approach, the original version of IEF-PCM explicitly required evaluation of the
-normal electric field at the cavity surface, but it was later shown that this
-dependence could be eliminated to afford the version described in
-Table [11.3](#table:K-matrix).[[245]](../bib_references/bib.md#bib245)
- This version
-requires only the electrostatic potential, and is thus preferred, and it is
-this version that we designate as IEF-PCM. The C-PCM model becomes equivalent
-to SS(V)PE in the limit
-$\varepsilon\rightarrow\infty$,[[245]](../bib_references/bib.md#bib245)
- which means that
-C-PCM must somehow include an *implicit* correction for volume
-polarization, even if this was not by design.[[692]](../bib_references/bib.md#bib721)
- For
-$\varepsilon\gtrsim 50$, numerical calculations reveal that there is
-essentially no difference between SS(V)PE and C-PCM results.[[756]](../bib_references/bib.md#bib789)
+与已过时的 D-PCM 方法一样，IEF-PCM 的原始版本显式地要求在空腔表面计算
+法向电场，但后来证明这种依赖可以被消除，从而得到表 [11.3](#table:K-matrix)
+中描述的版本[[245]](../bib_references/bib.md#bib245)。该版本
+只需要静电势，因此更受青睐，我们将此版本记为 IEF-PCM。C-PCM 模型在极限
+$\varepsilon\rightarrow\infty$ 下等价于 SS(V)PE[[245]](../bib_references/bib.md#bib245)，
+这意味着 C-PCM 必定以某种方式包含了体积极化的*隐含*校正，即使这并非出于设计[[692]](../bib_references/bib.md#bib721)。
+对于 $\varepsilon\gtrsim 50$，数值计算表明 SS(V)PE 与 C-PCM 的结果之间基本上没有差异[[756]](../bib_references/bib.md#bib789)。
 
-Since C-PCM is less computationally involved as compared to SS(V)PE, it is the
-PCM of choice in high-dielectric solvents. The computational savings relative
-to SS(V)PE may be particularly significant for large QM/MM/PCM jobs.
+由于 C-PCM 的计算量比 SS(V)PE 小，它是高介电常数溶剂中 PCM 的首选。
+相对于 SS(V)PE 节省的计算量对于大型 QM/MM/PCM 计算任务可能尤为显著。
 
-For a more detailed discussion of the history of these models, see the lengthy
-and comprehensive review by Tomasi *et al.*.[[1363]](../bib_references/bib.md#bib1425)
- For a
-briefer discussion of the connections between these models, see
-Refs. [[246]](../bib_references/bib.md#bib246).
+关于这些模型历史的更详细讨论，参见 Tomasi *et al.* 撰写的篇幅冗长而全面的综述[[1363]](../bib_references/bib.md#bib1425)。
+关于这些模型之间联系的简要讨论，参见文献 [[246]](../bib_references/bib.md#bib246)。
 
-## 11.2.3.2 Cavity Construction and Discretization
+## 11.2.3.2 空腔构造与离散化
 
-![Figure 11.1: Illustration of various solute cavity surface definitions for
-PCMs. 751 Lange A. W. et al. Mol. Phys. (2020) , 118 , pp. e1644384 . Link The union of atomic van der Waals spheres
-(shown in gray) defines the van der Waals (vdW) surface, in black. Note that
-actual vdW radii from the literature are sometimes scaled in constructing the
-vdW surface. If a probe sphere (representing the assumed size of a solvent
-molecule) is rolled over the van der Waals surface, then its center point
-traces out the solvent accessible surface (SAS), shown in green; the SAS is
-equivalent to a vdW surface where the atomic radii are increases by the radius
-of the probe sphere. Finally, one can use the probe sphere to smooth out the
-sharp crevasses in the vdW surface using the re-entrant surface elements shown
-in red, resulting in the solvent-excluded surface (SES).](../assets/x2.png)
+![图 11.1：PCM 所用各种溶质空腔表面定义的示意图。
+751 Lange A. W. et al. Mol. Phys. (2020) , 118 , pp. e1644384 . Link 原子范德华球的并集（以灰色显示）
+定义了范德华（vdW）表面（以黑色显示）。请注意，在构造 vdW 表面时，
+文献中的实际 vdW 半径有时会被缩放。若将一个探针球（代表假设的溶剂
+分子尺寸）在范德华表面上滚动，则其中心点描绘出溶剂可及表面（solvent accessible surface, SAS），
+以绿色显示；SAS 等价于将原子半径增加探针球半径后的 vdW 表面。最后，
+可以利用探针球，通过以红色显示的内凹（re-entrant）表面元来平滑 vdW 表面上尖锐的
+裂隙，从而得到溶剂排除表面（solvent-excluded surface, SES）。](../assets/x2.png)
 
-*Figure 11.1: Illustration of various solute cavity surface definitions for
-PCMs. 751 Lange A. W. et al. Mol. Phys. (2020) , 118 , pp. e1644384 . Link The union of atomic van der Waals spheres
-(shown in gray) defines the van der Waals (vdW) surface, in black. Note that
-actual vdW radii from the literature are sometimes scaled in constructing the
-vdW surface. If a probe sphere (representing the assumed size of a solvent
-molecule) is rolled over the van der Waals surface, then its center point
-traces out the solvent accessible surface (SAS), shown in green; the SAS is
-equivalent to a vdW surface where the atomic radii are increases by the radius
-of the probe sphere. Finally, one can use the probe sphere to smooth out the
-sharp crevasses in the vdW surface using the re-entrant surface elements shown
-in red, resulting in the solvent-excluded surface (SES).*
+*图 11.1：PCM 所用各种溶质空腔表面定义的示意图。
+751 Lange A. W. et al. Mol. Phys. (2020) , 118 , pp. e1644384 . Link 原子范德华球的并集（以灰色显示）
+定义了范德华（vdW）表面（以黑色显示）。请注意，在构造 vdW 表面时，
+文献中的实际 vdW 半径有时会被缩放。若将一个探针球（代表假设的溶剂
+分子尺寸）在范德华表面上滚动，则其中心点描绘出溶剂可及表面（solvent accessible surface, SAS），
+以绿色显示；SAS 等价于将原子半径增加探针球半径后的 vdW 表面。最后，
+可以利用探针球，通过以红色显示的内凹（re-entrant）表面元来平滑 vdW 表面上尖锐的
+裂隙，从而得到溶剂排除表面（solvent-excluded surface, SES）。*
 
-Construction of the cavity surface is a crucial aspect of PCMs, as computed
-properties are quite sensitive to the details of the cavity construction. Most
-cavity constructions are based on a union of atom-centered spheres (see
-Fig. [11.1](#fig:PCM_surfs)), but there are yet several different constructions
-whose nomenclature is occasionally confused in the literature. Simplest and
-most common is the van der Waals (vdW) surface consisting of a union of
-atom-centered spheres. The radius for the sphere centered on atom $A$ can be written in the form
+空腔表面的构造是 PCM 的一个至关重要方面，因为计算所得性质对空腔构造的细节
+非常敏感。大多数空腔构造基于原子中心球的并集（见图 [11.1](#fig:PCM_surfs)），
+但还有若干种不同的构造方式，其术语在文献中时常被混淆。最简单也是最常见的
+是由原子中心球的并集构成的范德华（vdW）表面。以原子 $A$ 为中心的球的半径可以写成如下形式
 
 <a id="eq:PCM_atomic_radii"></a>
 $$
 R_{A}=\alpha_{\text{vdW}}R_{\text{vdW},A}+R_{\text{probe}} \tag{11.4}
 $$
 
-where $R_{\text{vdW},A}$ is the vdW radius for atom $A$, taken for example from the set of vdW
-radii published by Bondi.[[146]](../bib_references/bib.md#bib136)
- Traditionally, the vdW radii
-$R_{\text{vdW},A}$ that are extracted from crystallographic data are scaled by a factor
-$\alpha_{\text{vdW}}=1.1$–1.2.[[145]](../bib_references/bib.md#bib135)
+其中 $R_{\text{vdW},A}$ 是原子 $A$ 的 vdW 半径，例如取自 Bondi 发表的 vdW
+半径集合[[146]](../bib_references/bib.md#bib136)。
+传统上，从晶体学数据中提取的 vdW 半径 $R_{\text{vdW},A}$ 会乘以缩放因子
+$\alpha_{\text{vdW}}=1.1$–1.2[[145]](../bib_references/bib.md#bib135)。
 
-This 20% augmentation is intended to mimic the fact that solvent molecules cannot
-approach all the way to the vdW radius of the solute atoms, though it’s not
-altogether clear that the same value ought to be optimal in all cases. (The scaling factor defaults to
-$\alpha_{\text{vdW}}=1.2$ but can be modified by the user.)
+这 20% 的放大旨在模拟这样一个事实：溶剂分子无法一直接近到溶质原子的 vdW
+半径处，尽管并不完全清楚同一个值是否在所有情况下都是最优的。（缩放因子默认为
+$\alpha_{\text{vdW}}=1.2$，但用户可以修改。）
 
-An alternative to scaling
-the atomic radii is to add a certain fixed increment $R_{\text{probe}}$ to each, representing the
-approximate size of a solvent molecule, and leading
-to what is known as the *solvent accessible surface* (SAS).
-The choice $R_{\text{probe}}=1.4$ Å is common for water and represents the approximate
-physical size of a water molecule, although values in the range $R_{\text{probe}}=0.2$–0.5 Å often
-afford better solvation energies.[[569]](../bib_references/bib.md#bib580)
+缩放原子半径的替代方案是给每个半径加上某个固定增量 $R_{\text{probe}}$，代表溶剂分子的
+近似尺寸，由此得到所谓的*溶剂可及表面*（solvent accessible surface, SAS）。
+对于水，常取 $R_{\text{probe}}=1.4$ Å，这大致对应水分子的实际物理尺寸，
+尽管取 $R_{\text{probe}}=0.2$–0.5 Å 范围内的值往往能得到更好的溶和能[[569]](../bib_references/bib.md#bib580)。
 
-In any case, if a nonzero value of $R_{\text{probe}}$ is used, then the scaling factor in
-Eq. ([11.4](#eq:PCM_atomic_radii)) should be set to $\alpha_{\text{vdW}}=1.0$, since these two parameters
-are intended to model the same effect, namely, that a solvent molecule’s finite size prevents it from approaching
-all the way to the vdW radii of the solute.
+无论如何，若使用非零的 $R_{\text{probe}}$ 值，则式 ([11.4](#eq:PCM_atomic_radii))
+中的缩放因子应设为 $\alpha_{\text{vdW}}=1.0$，因为这两个参数意在模拟同一效应，
+即溶剂分子的有限尺寸使其无法一直接近到溶质原子的 vdW 半径处。
 
-Note from Fig. [11.1](#fig:PCM_surfs) that both the vdW surface and the SAS possess cusps
-where the atomic spheres intersect, although these become less pronounced as
-the atomic radii are scaled or augmented. These cusps are eliminated in what
-is known as the *solvent-accessible surface* (SES), sometimes called the
-Connolly surface or the “molecular surface". The SES uses the surface of the
-probe sphere at points where it is simultaneously tangent to two or more atomic
-spheres to define elements of a “re-entrant surface” that smoothly connects
-the atomic (or “contact”) surface.[[751]](../bib_references/bib.md#bib790)
+从图 [11.1](#fig:PCM_surfs) 可以看出，vdW 表面和 SAS 在原子球相交处都存在尖点（cusp），
+尽管随着原子半径被缩放或放大，这些尖点会变得不那么明显。在所谓的
+*溶剂排除表面*（solvent-excluded surface, SES）中（有时称为 Connolly 表面或"分子表面"），
+这些尖点被消除。SES 利用探针球在同时与两个或多个原子球相切处的球面，
+定义"内凹表面"（re-entrant surface）的面元，从而平滑地连接原子（或"接触"）表面[[751]](../bib_references/bib.md#bib790)。
 
-Having chosen a model for the cavity surface, this surface is discretized using
-atom-centered Lebedev grids[[777]](../bib_references/bib.md#bib809)
- of
-the same sort that are used to perform the numerical integrations in DFT.
-(Discretization of the re-entrant facets of the SES is somewhat more
-complicated but similar in spirit.[[751]](../bib_references/bib.md#bib790)
-) Surface charges $q_{i}$
-are located at these grid points and the Lebedev quadrature weights can be used
-to define the surface area associated with each discretization point.[[753]](../bib_references/bib.md#bib786)
+选定空腔表面的模型后，该表面使用以原子为中心的 Lebedev 网格[[777]](../bib_references/bib.md#bib809)
+进行离散化，所用的网格与 DFT 数值积分中使用的网格属于同一类。
+（SES 内凹面的离散化稍微复杂一些，但思路相似[[751]](../bib_references/bib.md#bib790)。）
+表面电荷 $q_{i}$ 位于这些网格点上，Lebedev 求积权重可用于定义与每个离散化
+点相关联的表面积[[753]](../bib_references/bib.md#bib786)。
 
-A long-standing (though not well-publicized) problem with the aforementioned
-discretization procedure is that it fails to afford continuous potential
-energy surfaces as the solute atoms are displaced, because certain surface grid
-points may emerge from, or disappear within, the solute cavity, as the atomic
-spheres that define the cavity are moved. This undesirable behavior can
-inhibit convergence of geometry optimizations and, in certain cases, lead to
-very large errors in vibrational frequency calculations.[[753]](../bib_references/bib.md#bib786)
- It
-is also a fundamental hindrance to molecular dynamics
-calculations.[[754]](../bib_references/bib.md#bib787)
- Building upon earlier work by York and
-Karplus,[[1525]](../bib_references/bib.md#bib1589)
- Lange and
-Herbert[[753]](../bib_references/bib.md#bib786)
- developed a general scheme
-for implementing apparent surface charge PCMs in a manner that affords smooth
-potential energy surfaces, even for *ab initio* molecular dynamics
-simulations involving bond breaking.[[754]](../bib_references/bib.md#bib787)
-Notably, this approach is faithful to the properties of the underlying integral
-equation theory on which the PCMs are based, in the sense that the smoothing
-procedure does not significantly perturb solvation energies or cavity surface
-areas.[[753]](../bib_references/bib.md#bib786)
- The smooth discretization procedure
-combines a switching function with Gaussian blurring of the cavity surface
-charge density, and is thus known as the “Switching/Gaussian” (SwiG)
-implementation of the PCM.
+上述离散化程序存在一个长期存在（但未被广泛报道）的问题：当溶质原子发生位移时，
+它无法给出连续的能量面，因为随着定义空腔的原子球移动，某些表面网格点
+可能会从溶质空腔中出现或消失。这种不良行为会阻碍几何优化的收敛，并且在某些
+情况下会导致振动频率计算出现非常大的误差[[753]](../bib_references/bib.md#bib786)。
+它也是对分子动力学计算的根本性障碍[[754]](../bib_references/bib.md#bib787)。
+Lange 和 Herbert[[753]](../bib_references/bib.md#bib786)
+在 York 和 Karplus 早期工作[[1525]](../bib_references/bib.md#bib1589)的基础上，
+发展了一种通用方案，以能够给出光滑能量面的方式实现表观表面电荷 PCM，
+甚至适用于涉及键断裂的 *从头算*（ab initio）分子动力学模拟[[754]](../bib_references/bib.md#bib787)。
+值得注意的是，该方法忠实地保持了 PCM 所基于的底层积分方程理论的性质，
+即平滑化程序不会显著扰动溶和能或空腔表面积[[753]](../bib_references/bib.md#bib786)。
+这一平滑离散化程序将开关函数（switching function）与空腔表面电荷密度的高斯
+模糊化（Gaussian blurring）相结合，因此被称为 PCM 的"Switching/Gaussian"（SwiG）
+实现。
 
-Both single-point energies and analytic energy gradients are available for SwiG-PCMs,
-when the solute is described using molecular mechanics or an SCF
-(Hartree-Fock or DFT) electronic structure model, except that for the SES
-cavity model only single-point energies are available. Analytic Hessians are
-available for the C-PCM model only. (As usual, vibrational frequencies for
-other models will be computed, if requested, by finite difference of analytic
-energy gradients.) Single-point energy calculations using correlated wave
-functions can be performed in conjunction with these solvent models, in which
-case the correlated wave function calculation will use Hartree-Fock molecular
-orbitals that are polarized in the presence of the continuum dielectric solvent
-(*i.e.*, there is no post-Hartree–Fock PCM correction). This represents a “zeroth-order”
-inclusion of solvent effects that captures the leading-order effect of continuum solvation on
-molecular properties.[[569]](../bib_references/bib.md#bib580)
+当溶质用分子力学或 SCF（Hartree-Fock 或 DFT）电子结构模型描述时，SwiG-PCM 均可
+提供单点能和解析能量梯度，只不过对于 SES 空腔模型只能提供单点能。解析 Hessian
+矩阵仅对 C-PCM 模型可用。（照常，若请求其他模型的振动频率，将通过解析
+能量梯度的有限差分来计算。）相关波函数（correlated wave function）的单点能计算
+可以结合这些溶剂模型进行，此时相关波函数计算将使用在连续介电溶剂存在下被极化的
+Hartree-Fock 分子轨道（*即*，不存在后 Hartree–Fock 层面的 PCM 校正）。这代表了对
+溶剂效应的"零级"处理，能够捕捉连续溶化对分子性质的主导阶效应[[569]](../bib_references/bib.md#bib580)。
 
-Given the crudeness of the model itself, more consistent inclusion of
-post-Hartree–Fock solvation effects is not expected to be important.[[569]](../bib_references/bib.md#bib580)
+鉴于模型本身的粗略性，更自洽地纳入后 Hartree–Fock 溶化效应预计并不重要[[569]](../bib_references/bib.md#bib580)。
 
-Researchers who use these PCMs are asked to cite
-Refs. [[754]](../bib_references/bib.md#bib787)
- and [[756]](../bib_references/bib.md#bib789)
-, which provide the details of
-**Q-Chem**’s implementation; Ref. [[751]](../bib_references/bib.md#bib790)
- if the SES is used, and
-Ref. [[561]](../bib_references/bib.md#bib576) if the conjugate-gradient solver or other linear-scaling options are used.
-We point the reader in particular to Refs. [[754]](../bib_references/bib.md#bib787)
- and [[1530]](../bib_references/bib.md#bib1593)
-, which
-provides an assessment of the discretization errors that can be anticipated
-using various PCMs and Lebedev grids; default grid values in **Q-Chem** were
-established based on these tests. When publishing results based on PCM
-calculations, it is essential to specify both the precise model that is used
-(see Table [11.3](#table:K-matrix)) as well as how the cavity was constructed, and this should be done
-without resorting to software-specific keywords, the use of which has significantly muddled the
-literature on continuum electrostatics.[[282]](../bib_references/bib.md#bib287)
+使用这些 PCM 的研究者被要求引用文献
+[[754]](../bib_references/bib.md#bib787)
+和 [[756]](../bib_references/bib.md#bib789)，
+其中给出了 **Q-Chem** 实现的细节；若使用 SES，则引用文献 [[751]](../bib_references/bib.md#bib790)；
+若使用共轭梯度求解器或其他线性标度选项，则引用文献 [[561]](../bib_references/bib.md#bib576)。
+我们特别提请读者关注文献 [[754]](../bib_references/bib.md#bib787)
+和 [[1530]](../bib_references/bib.md#bib1593)，
+其中评估了使用各种 PCM 和 Lebedev 网格时可以预期的离散化误差；**Q-Chem** 中的
+默认网格值即基于这些测试确定。在发表基于 PCM 计算的结果时，必须同时指明
+所使用的确切模型（见表 [11.3](#table:K-matrix)）以及空腔的构造方式，并且应避免
+使用软件专用的关键字——这类关键字的使用已使连续静电学领域的文献相当混乱[[282]](../bib_references/bib.md#bib287)。
 
-As an example of good practice,
-the default cavity construction in **Q-Chem** is a vdW cavity using Bondi atomic radii,[[146]](../bib_references/bib.md#bib136)
+作为良好实践的示例，**Q-Chem** 中的默认空腔构造是使用 Bondi 原子半径的 vdW 空腔[[146]](../bib_references/bib.md#bib136)，
+只是对氢原子我们采用修正后的半径 1.1 Å，这是遵循一项重新评估的结论——该评估认为
+Bondi 最初给出的氢原子半径 1.2 Å 偏大[[1186]](../bib_references/bib.md#bib1240)。
+随后，式 ([11.4](#eq:PCM_atomic_radii)) 中的每个半径 $R_{\text{vdW},A}$ 都
+乘以因子 $\alpha_{\text{vdW}}=1.2$ 用于空腔构造。Bondi 未提供的
+主族元素半径取自文献 [[889]](../bib_references/bib.md#bib923)。若缺少此类细节，
+PCM 计算结果将难以在其他电子结构程序中被复现。
 
-except that for hydrogen we use the modified radius of 1.1 Å,
-following a reassessment that judged Bondi’s original value of 1.2 Å for hydrogen to be too
-large.[[1186]](../bib_references/bib.md#bib1240)
- Each of these radii $R_{\text{vdW},A}$ in Eq. ([11.4](#eq:PCM_atomic_radii)) is then
-scaled by a factor $\alpha_{\text{vdW}}=1.2$ for use in cavity construction.
-Radii for main-group elements that were not provided by Bondi are
-taken from Ref. [[889]](../bib_references/bib.md#bib923)
-. Absent details such as these,
-PCM calculations will be difficult to reproduce in other electronic structure programs.
+## 11.2.3.3 垂直激发、电离与发射的非平衡溶和
 
-## 11.2.3.3 Nonequilibrium Solvation for Vertical Excitation, Ionization and Emission
+在垂直激发或电离过程中，溶质的电荷分布发生骤然变化。溶剂的各种微观运动
+达到特定极化响应所需的特征时间不同，溶剂响应中的快速部分（电子）能够跟上这样的
+动态过程，而其余自由度（原子核）则保持初态不变。
+溶剂响应的这种分裂导致了非平衡溶和。
+文献中已发展出两种描述非平衡溶剂效应的不同方法：线性响应（linear response, LR）
+方法[[183]](../bib_references/bib.md#bib178)
+和态专化（state-specific, SS）方法[[1365]](../bib_references/bib.md#bib1423)。
+两者均已在 **Q-Chem** 中实现[[1530]](../bib_references/bib.md#bib1593)，
+在 SCF 层面用于垂直电离，在相应的激发态层面（CIS 和 TDDFT，见第 [7.3.7](../ch07_excited/subsec_tddft-cPCM.md) 节，
+或 ADC，见第 [7.10.11](../ch07_excited/topic_abs-adc.md) 节）用于垂直激发。下面对
+这些方法作简要介绍，使用非平衡 PCM 功能的用户被要求引用文献
+[[1530]](../bib_references/bib.md#bib1593)
+和 [[940]](../bib_references/bib.md#bib979)。
+针对长寿命激发态的态专化溶剂场平衡（用于计算*例如*发射能）已针对 ADC 系列方法实现，
+见第 [7.10.11](../ch07_excited/topic_abs-adc.md) 节；针对 TDDFT 的实现见
+第 [7.3.7.2](../ch07_excited/subsec_tddft-cPCM.md#subsubsec:tddft-PCM-iterSS) 节。使用这种平衡溶和
+PCM 的用户请引用并参阅文献 [[939]](../bib_references/bib.md#bib982)。
 
-In vertical excitation or ionization, the solute undergoes a sudden change in
-its charge distribution. Various microscopic motions of the solvent have
-characteristic times to reach certain polarization response, and fast part of
-the solvent response (electrons) can follow such a dynamic process while the
-remaining degrees of freedom (nuclei) remain unchanged as in the initial state.
-Such splitting of the solvent response gives rise to nonequilibrium solvation.
-In the literature, two different approaches have been developed for describing
-nonequilibrium solvent effects: the linear response (LR)
-approach[[183]](../bib_references/bib.md#bib178)
- and the state-specific (SS)
-approach.[[1365]](../bib_references/bib.md#bib1423)
- Both are
-implemented in **Q-Chem**,[[1530]](../bib_references/bib.md#bib1593)
-, at the SCF level for vertical
-ionization and at the corresponding level (CIS and TDDFT, see Section [7.3.7](../ch07_excited/subsec_tddft-cPCM.md), or ADC, see
-Section [7.10.11](../ch07_excited/topic_abs-adc.md)) for vertical excitation. A brief introduction to
-these methods is given below, and users of the nonequilibrium PCM features are
-asked to cite Refs. [[1530]](../bib_references/bib.md#bib1593)
- and [[940]](../bib_references/bib.md#bib979)
-.
-State-specific solvent-field equilibration for long-lived excited states to
-compute *e.g.* emission energies is implemented for the ADC-suite of methods as
-described in Section [7.10.11](../ch07_excited/topic_abs-adc.md) and for TDDFT as described in
-Section [7.3.7.2](../ch07_excited/subsec_tddft-cPCM.md#subsubsec:tddft-PCM-iterSS). Users of this equilibrium-solvation
-PCM please cite and be referred to Ref. [[939]](../bib_references/bib.md#bib982)
-.
-
-The LR approach considers the solvation effects as a coupling between a pair of
-transitions, one for solute and the other for solvent. The transition
-frequencies when the interaction between the solute and solvent is turned on
-may be determined by considering such an interaction as a perturbation. In the
-framework of TDDFT, the interaction between solute and solvent is given by[[599]](../bib_references/bib.md#bib622)
+LR 方法将溶化效应视为一对跃迁之间的耦合，一个属于溶质，另一个属于溶剂。
+当溶质与溶剂之间的相互作用开启时的跃迁频率，可以通过将该相互作用视为微扰
+来确定。在 TDDFT 框架内，溶质与溶剂之间的相互作用由下式给出[[599]](../bib_references/bib.md#bib622)
 
 <a id="eq:LR-term"></a>
 $$
@@ -430,279 +309,233 @@ $$
 &\displaystyle\times\chi^{*}(\mathbf{r}^{\prime},\mathbf{r}^{\prime\prime},\omega)\left(\frac{1}{|\mathbf{r}^{\prime\prime}-\mathbf{r}^{\prime\prime\prime}|}+g_{\mathrm{XC}}(\mathbf{r}^{\prime\prime},\mathbf{r}^{\prime\prime\prime})\right)\rho_{\text{tr}}(\mathbf{r}^{\prime\prime\prime})\;,\end{split} \tag{11.5}
 $$
 
-where $\chi$ is the charge density response function of the solvent and
-$\rho_{\text{tr}}(\mathbf{r})$ is the solute’s transition density. This term accounts
-for a dynamical correction to the transition energy so that it is related to
-the response of the solvent to the charge density of the solute oscillating at
-the solute transition frequency ($\omega$).
-Within a PCM, only classical Coulomb interactions are taken into account, and
-Eq. ([11.5](#eq:LR-term)) becomes
+其中 $\chi$ 是溶剂的电荷密度响应函数，$\rho_{\text{tr}}(\mathbf{r})$ 是溶质的跃迁密度。
+该项给出了对跃迁能的动力学修正，使其与溶剂对以溶质跃迁频率（$\omega$）振荡的
+溶质电荷密度的响应相关联。
+在 PCM 中，只考虑经典库仑相互作用，式 ([11.5](#eq:LR-term)) 变为
 
 <a id="Ch11.E6"></a>
 $$
 \begin{split}\displaystyle\omega^{\prime}_{\mathrm{PCM}}=&\displaystyle\int d\mathbf{r}\int d\mathbf{s}\ \frac{\rho^{\ast}_{\text{tr}}(\mathbf{r})}{|\mathbf{r}-\mathbf{s}|}\int d\mathbf{s}^{\prime}\int d\mathbf{r}^{\prime}\,\mathcal{Q}(\mathbf{s},\mathbf{s}^{\prime},\varepsilon)\frac{\rho_{\text{tr}}(\mathbf{r}^{\prime})}{|\mathbf{s}^{\prime}-\mathbf{r}^{\prime}|}\;,\end{split} \tag{11.6}
 $$
 
-where $\mathcal{Q}$ is PCM solvent response operator for a generic dielectric
-constant, $\varepsilon$. The integral of $\mathcal{Q}$ and the potential of the
-density $\rho_{\text{tr}}(\mathbf{r})$ gives the surface charge density for the solvent polarization.
+其中 $\mathcal{Q}$ 是对应一般介电常数 $\varepsilon$ 的 PCM 溶剂响应算符。
+$\mathcal{Q}$ 与密度 $\rho_{\text{tr}}(\mathbf{r})$ 的势的积分给出溶剂极化的表面电荷密度。
 
-The state-specific approach takes into account the capability of a part of
-the solvent degrees of freedom to respond instantaneously to changes in the
-solute wave function upon excitation. Such an effect is not accounted for in
-the LR approach. In SS, a generic solvated-solute excited state $\Psi_{i}$ is
-obtained as a solution of a nonlinear Schrödinger equation
+SS 方法考虑了溶剂部分自由度能够在激发发生时对溶质波函数的变化作出瞬时响应的能力。
+这种效应在 LR 方法中未被计入。在 SS 方法中，一般的溶剂化溶质激发态 $\Psi_{i}$
+作为如下非线性 Schrödinger 方程的解获得
 
 <a id="eq:SS-sdeq"></a>
 $$
 \left(\hat{H}^{\mathrm{vac}}+\hat{V}^{\mathrm{slow}}_{0}+\hat{V}^{\mathrm{fast}}_{i}\right)|\Psi_{i}\rangle=E^{\mathrm{SS}}_{i}|\Psi_{i}\rangle \tag{11.7}
 $$
 
-that depends upon the solute’s charge distribution. Here $\hat{H}^{\mathrm{vac}}$ is
-the usual Hamiltonian for the solute in vacuum and the reaction field operator
-$\hat{V}_{i}$ generates the electrostatic potential of the apparent surface
-charge density (Section [11.2.3.1](#subsubsec:PCM-theory)), corresponding to
-slow and fast polarization response.
-The solute is polarized self-consistently with respect to the solvent’s
-reaction field. In case of vertical ionization rather than excitation, both the
-ionized and non-ionized states can be treated within a ground-state formalism.
-For vertical excitations, self-consistent SS models have been developed for
-various excited-state methods,[[611]](../bib_references/bib.md#bib634)
- and are
-implemented for both CIS and TDDFT.
+该方程依赖于溶质的电荷分布。这里 $\hat{H}^{\mathrm{vac}}$ 是真空中溶质的常规
+Hamilton 量，反应场算符 $\hat{V}_{i}$ 产生对应于慢极化响应和快极化响应的
+表观表面电荷密度（第 [11.2.3.1](#subsubsec:PCM-theory) 节）的静电势。
+溶质相对于溶剂的反应场自洽地被极化。在垂直电离而非激发的情况下，电离态和
+未电离态都可以在基态形式体系中处理。对于垂直激发，已针对各种激发态方法发展了
+自洽 SS 模型[[611]](../bib_references/bib.md#bib634)，
+并已针对 CIS 和 TDDFT 实现。
 
-In a linear dielectric medium, the solvent polarization is governed by the
-electric susceptibility, $\chi=[\varepsilon(\omega)-1]/4\pi$, where
-$\varepsilon(\omega)$ is the frequency-dependent permittivity.
-In case of very fast vertical transitions, the dielectric response is ruled by
-the optical dielectric constant, $\varepsilon_{\text{opt}}=n^{2}$, where $n$ is
-the solvent’s index of refraction. In both LR and SS, the fast part of the
-solvent’s degrees of freedom is in equilibrium with the solute density change.
-Within PCM, the fast solvent polarization charges for the SS excited state $i$
-can be obtained by solving the following equation:[[271]](../bib_references/bib.md#bib273)
+在线性介电介质中，溶剂极化由电极化率 $\chi=[\varepsilon(\omega)-1]/4\pi$ 决定，
+其中 $\varepsilon(\omega)$ 是频率相关的介电常数。对于非常快的垂直跃迁，
+介电响应由光学介电常数 $\varepsilon_{\text{opt}}=n^{2}$ 支配，其中 $n$ 是溶剂的
+折射率。在 LR 和 SS 方法中，溶剂自由度的快速部分都与溶质密度的变化处于平衡。
+在 PCM 框架内，SS 激发态 $i$ 的快溶剂极化电荷可通过求解下列方程获得[[271]](../bib_references/bib.md#bib273)：
 
 <a id="eq:Kq=Rv-fast"></a>
 $$
 \mathbf{K}_{\varepsilon_{\mathrm{opt}}}\mathbf{q}^{\mathrm{fast,SS}}_{i}=\mathbf{R}_{\varepsilon_{\mathrm{opt}}}\left[\mathbf{v}_{i}+\mathbf{v}(\mathbf{q}^{\mathrm{slow}}_{0})\right]\;. \tag{11.8}
 $$
 
-Here $\mathbf{q}^{\mathrm{fast,SS}}$ is the discretized fast surface charge. The
-dielectric constants in the matrices $\mathbf{K}$ and $\mathbf{R}$
-(Section [11.2.3.1](#subsubsec:PCM-theory)) are replaced with the optical dielectric
-constant, and $\mathbf{v}_{i}$ is the potential of the solute’s excited state density,
-$\rho_{i}$. The quantity $\mathbf{v}(\mathbf{q}^{\mathrm{slow}}_{0})$ is the potential of the
-slow part of the apparent surface charges in the ground state, which
-are given by
+这里 $\mathbf{q}^{\mathrm{fast,SS}}$ 是离散化的快表面电荷。矩阵 $\mathbf{K}$ 和
+$\mathbf{R}$（第 [11.2.3.1](#subsubsec:PCM-theory) 节）中的介电常数被替换为光学介电常数，
+$\mathbf{v}_{i}$ 是溶质激发态密度 $\rho_{i}$ 的势。量
+$\mathbf{v}(\mathbf{q}^{\mathrm{slow}}_{0})$ 是基态下表观表面电荷慢部分的势，这些慢电荷由下式给出
 
 <a id="slow_q"></a>
 $$
 \mathbf{q}^{\mathrm{slow}}_{0}=\left(\frac{\varepsilon-\varepsilon_{\mathrm{opt}}}{\varepsilon-1}\right)\mathbf{q}_{0}\;. \tag{11.9}
 $$
 
-For LR-PCM, the solvent polarization is subjected to the first-order changes to
-the electron density (TDDFT linear density response), and thus
-Eq. ([11.8](#eq:Kq=Rv-fast)) becomes
+对于 LR-PCM，溶剂极化只受电子密度的一阶变化（TDDFT 线性密度响应）作用，因此
+式 ([11.8](#eq:Kq=Rv-fast)) 变为
 
 <a id="Ch11.E10"></a>
 $$
 \mathbf{K}_{\varepsilon_{\mathrm{opt}}}\mathbf{q}^{\mathrm{fast,LR}}_{i}=\mathbf{R}_{\varepsilon_{\mathrm{opt}}}\mathbf{v}(\rho^{\mathrm{tr}}_{i})\;. \tag{11.10}
 $$
 
-The LR approach for CIS/TDDFT excitations and the self-consistent SS
-method (using the ground-state SCF) for vertical ionizations are available in
-**Q-Chem**. The self-consistent SS method is also available for vertical excitations,
-but can be problematic for (near-) degeneracies between excited states,
-such as in the vicinity of a conical intersection.
-The fundamental problem in the SS approach is that each wave
-function $\Psi_{i}$ is an eigenfunction of a *different* Hamiltonian, since
-Eq. ([11.7](#eq:SS-sdeq)) depend upon the specific state of interest. To avoid the
-ordering and the non-orthogonality problems, we compute the vertical
-excitation energy using a first-order, perturbative approximation to the SS
-approach,[[182]](../bib_references/bib.md#bib179)
- in what we have termed the “ptSS”
-method.[[940]](../bib_references/bib.md#bib979)
- The zeroth-order excited-state wave function can be
-calculated using various excited-state methods (currently available for CIS and
-TDDFT in **Q-Chem**) with solvent-relaxed molecular orbitals obtained from a
-ground-state PCM calculation. As mentioned previously, LR and SS describe
-different solvent relaxation features in nonequilibrium solvation. In the
-perturbation scheme, we can calculate the LR contribution using the
-zeroth-order transition density, in what we have called the “ptLR” approach.
-The combination of ptSS and ptLR yields quantitatively good solvatochromatic
-shifts in combination with TDDFT but not with the correlated variants of ADC,
-for which the pure ptSS approach was shown to be superior.[[1530]](../bib_references/bib.md#bib1593)
+**Q-Chem** 提供了用于 CIS/TDDFT 激发的 LR 方法，以及用于垂直电离的自洽 SS 方法
+（使用基态 SCF）。自洽 SS 方法也可用于垂直激发，但当激发态之间存在（近）简并时
+（例如在锥形 intersections 附近）可能会出现问题。SS 方法的根本问题在于，
+每个波函数 $\Psi_{i}$ 都是*不同* Hamilton 量的本征函数，因为
+式 ([11.7](#eq:SS-sdeq)) 依赖于所关心的具体态。为避免态排序和非正交性问题，
+我们采用对 SS 方法的一阶微扰近似[[182]](../bib_references/bib.md#bib179)
+来计算垂直激发能，我们称之为"ptSS"方法[[940]](../bib_references/bib.md#bib979)。
+零级激发态波函数可以使用各种激发态方法计算（**Q-Chem** 中目前支持 CIS 和 TDDFT），
+其中分子轨道来自基态 PCM 计算、并经过溶剂弛豫。如前所述，LR 和 SS 描述非平衡
+溶和中不同的溶剂弛豫特征。在微扰方案中，我们可以利用零级跃迁密度计算 LR 贡献，
+我们称之为"ptLR"方法。ptSS 与 ptLR 的组合在与 TDDFT 结合使用时能给出定量上
+良好的溶剂致变色（solvatochromatic）位移，但与 ADC 的相关变体结合时则不然，
+后者已证明纯 ptSS 方法更优[[1530]](../bib_references/bib.md#bib1593)。
 
-The LR and SS approaches can also be used in the study of photon emission
-processes.[[612]](../bib_references/bib.md#bib635)
- An emission process can be treated as a vertical
-excitation at a stationary point on the excited-state potential surface. The
-basic requirement therefore is to prepare the solvent-relaxed geometry for the
-excited-state of interest. TDDFT/LR-C-PCM analytic gradients and Hessian are available.
+LR 和 SS 方法也可用于光子发射过程的研究[[612]](../bib_references/bib.md#bib635)。
+发射过程可以视为激发态势能面驻点处的垂直激发。因此基本要求是为所关心的
+激发态准备好经溶剂弛豫的几何结构。TDDFT/LR-C-PCM 的解析梯度和 Hessian 均可用。
+关于借助 PCM 进行激发态几何优化的计算细节，请参见第 [7.3.8](../ch07_excited/subsec_tddft-hessian.md) 节。
+发射过程比吸收情形稍微复杂。文献中讨论了两种情形，取决于所涉激发态的寿命。
+在超快激发态衰变的极限情形下，只有溶剂自由度的快速部分与激发态密度达到平衡。在此
+极限下，发射能可以完全按照计算垂直激发能的方式精确计算。此时，激发态几何优化应
+在非平衡极限下进行。另一个极限是长寿命激发态，*例如*强荧光物种和磷光。
+在长寿命情形下，激发态几何优化应在溶剂平衡极限下进行。因此，激发态应使用平衡的
+LR 或 SS 方法计算，而基态则使用非平衡自洽 SS 方法计算。后一种方法已针对 ADC
+系列方法实现（见第 [7.10.11](../ch07_excited/topic_abs-adc.md) 节），并针对 TDDFT 实现
+（见第 [7.3.7.2](../ch07_excited/subsec_tddft-cPCM.md#subsubsec:tddft-PCM-iterSS) 节）。
 
-Section [7.3.8](../ch07_excited/subsec_tddft-hessian.md) for computational details regarding
-excited-state geometry optimization with PCM. An emission process is slightly
-more complicated than the absorption case. Two scenarios are discussed in
-literature, depending on the lifetime of an excited state in question. In the limiting case
-of ultra-fast excited state decay, when only fast solvent degrees of freedom are
-expected to be equilibrated with the excited-state density. In this limit, the
-emission energy can be computed exactly in the same way as the vertical
-excitation energy. In this case, excited state geometry optimization should be
-performed in the nonequilibrium limit.
-The other limit is that of long-lived excited state, *e.g.*, strongly
-fluorescent species and phosphorescence. In the long-lived case, excited state
-geometry optimization should be performed with the solvent equilibrium limit.
-Thus, the excited state should be computed using an equilibrium LR or SS
-approach, and the ground state is calculated using nonequilibrium
-self-consistent SS approach. The latter approach is implemented for the
-ADC-based methods as described in Section [7.10.11](../ch07_excited/topic_abs-adc.md) and
-TDDFT as described in Section [7.3.7.2](../ch07_excited/subsec_tddft-cPCM.md#subsubsec:tddft-PCM-iterSS).
+## 11.2.3.4 基于约束平衡原理的吸收与发射光谱
 
-## 11.2.3.4 Absorption and Emission Spectra Based on the Constrained Equilibrium Principle
-
-For ultrafast processes in solution, such as electron transfer, photo-absorption/emission and photo-ionization,
-a continuum model should combine a proper nonequilibrium solvation theory to account for nonequilibrium solute–solvent interactions.
-In the traditional treatments, the nonequilibrium electrostatic solvation free energy was derived from the so-called reversible electric
-work integration along the path linking the initial equilibrium state (eq) and the intermediate nonequilibrium state (neq),
-*i.e.*,[[901]](../bib_references/bib.md#bib935)
+对于溶液中的超快过程，如电子转移、光吸收/发射和光电离，
+连续介质模型应当结合恰当的非平衡溶化理论，以描述非平衡的溶质–溶剂相互作用。
+在传统处理方法中，非平衡静电溶化自由能是由沿连接初始平衡态（eq）与中间非平衡态（neq）
+的路径对所谓可逆电功进行积分推导出来的，*即*[[901]](../bib_references/bib.md#bib935)：
 
 <a id="Ch11.E11"></a>
 $$
 [\rho=0,\Phi=0]\xrightarrow[]{\varepsilon}[\rho_{1},\Phi^{\mathrm{eq}}_{1}]\xrightarrow[]{\varepsilon_{\mathrm{opt}}}[\rho_{2},\Phi^{\mathrm{neq}}_{2}] \tag{11.11}
 $$
 
-where $\Phi$ denotes the total electric potential including both the potential $\psi$ due to the solute charge $\rho$ in vacuum and polarization potential $\varphi$ due to the medium.
-In order to deal with electron absorption and emission spectra in solution, the numerical expression of nonequilibrium solvation free energy which was established by intuitively collecting a series of energy terms from the interactions of solute charges and polarized charges, has been implemented using TDDFT with PCM model.[[271]](../bib_references/bib.md#bib273)
+其中 $\Phi$ 表示总电势，包括真空中由溶质电荷 $\rho$ 产生的势 $\psi$ 和由介质产生的极化势 $\varphi$。
+为了处理溶液中的电子吸收与发射光谱，这种非平衡溶化自由能的数值表达式（由从溶质电荷与
+极化电荷相互作用中直观地汇集一系列能量项而建立）已在结合 PCM 模型的 TDDFT 中实现[[271]](../bib_references/bib.md#bib273)。
 
-It is easy to verify this numerical form can be achieved through the discretization of analytical expression of nonequilibrium solvation energy by traditional treatments.[[821]](../bib_references/bib.md#bib852)
+容易验证，这一数值形式可以通过对传统处理方法中非平衡溶化能的解析表达式进行离散化而得到[[821]](../bib_references/bib.md#bib852)。
 
-However, there exist a number of doubts on the overestimation of the solvent reorganization energy in ultrafast processes by this reversible electric work method.[[132]](../bib_references/bib.md#bib122)
+然而，这种可逆电功方法在超快过程中会高估溶剂重组能，对此存在诸多质疑[[132]](../bib_references/bib.md#bib122)。
+现在已经清楚，在初始平衡态与中间非平衡态之间不可能找到一条可逆路径，因此
+积分电功不等于静电自由能的变化[[821]](../bib_references/bib.md#bib852)。
 
-It becomes clear now that there is no possibility to find a reversible pathway between the initial equilibrium state and the intermediate nonequilibrium state. Thus, the integrated electric work can not equal to the change of electrostatic free energy.[[821]](../bib_references/bib.md#bib852)
-
-Xiangyuan Li *et al.*[[1495]](../bib_references/bib.md#bib1563)
- established the new theory for nonequilibrium solvation by employing
-the constrained equilibrium principle,
-
- using the following pathway:
+Xiangyuan Li *et al.*[[1495]](../bib_references/bib.md#bib1563)
+运用约束平衡原理（constrained equilibrium principle），
+建立了如下路径的非平衡溶化新理论：
 
 <a id="Ch11.E12"></a>
 $$
 [\rho_{1},\varphi^{\mathrm{eq}}_{1}]\xrightarrow[]{\mathrm{fast}}[\rho_{2},\varphi^{\mathrm{neq}}_{2}]\xrightarrow[]{-\lambda_{\mathrm{s}}}[\rho_{2},\varphi^{\mathrm{eq}}_{2}]\xrightarrow[]{+\rho_{\mathrm{ex}},\mathrm{quasistatic}}C[\rho_{2}+\rho_{\mathrm{ex}},\varphi^{\mathrm{neq}}_{2}] \tag{11.12}
 $$
 
-where C stands for the constrained equilibrium state which is constructed and mapped to the true nonequilibrium state by introducing the proper external charge $\rho_{\mathrm{ex}}$ which is used to equilibrate the “residual” polarization potential, $\varphi^{{}^{\prime}}=\varphi^{\mathrm{neq}}_{2}-\varphi^{\mathrm{eq}}_{2}$. In this way the solvent reorganization energy can be derived as
+其中 C 代表约束平衡态，它是通过引入合适的外电荷 $\rho_{\mathrm{ex}}$ 来构造的，
+该外电荷用于使"残余"极化势 $\varphi^{{}^{\prime}}=\varphi^{\mathrm{neq}}_{2}-\varphi^{\mathrm{eq}}_{2}$ 达到平衡，
+从而将该约束平衡态映射到真实的非平衡态。这样，溶剂重组能可以推导为
 
 <a id="eq:lamuda_re"></a>
 $$
 \lambda_{\mathrm{s}}=-\frac{1}{2}\int_{V}\rho_{\text{ex}}\;\varphi^{\prime}\;dV \tag{11.13}
 $$
 
-Then the nonequilibrium solvation free energy is simply given by
+于是非平衡溶化自由能简单地由下式给出
 
 <a id="eq:neq_sol"></a>
 $$
 F^{\mathrm{neq}}_{2}=\frac{1}{2}\int_{V}\rho_{2}\;\varphi^{\mathrm{eq}}_{2}\;dV+\lambda_{\mathrm{s}} \tag{11.14}
 $$
 
-For more detailed descriptions of the gain of the external (constraining) charge $\rho_{\mathrm{ex}}$, or the equivalent constraining external electric field $\mathbf{E}_{\mathrm{ex}}$, please refer to the review.[[821]](../bib_references/bib.md#bib852)
+关于外（约束）电荷 $\rho_{\mathrm{ex}}$ 或等价的外约束电场 $\mathbf{E}_{\mathrm{ex}}$
+获得的更详细描述，请参阅综述[[821]](../bib_references/bib.md#bib852)。
 
-Within the framework of continuum model, the discretization and numerical solution of Eq. ([11.14](#eq:neq_sol)) is expressed as[[130]](../bib_references/bib.md#bib118)
+在连续介质模型的框架内，式 ([11.14](#eq:neq_sol)) 的离散化与数值求解表示为[[130]](../bib_references/bib.md#bib118)
 
 <a id="Ch11.E15"></a>
 $$
 F^{\mathrm{neq}}_{i}=\sum_{m}V_{i,m}Q^{\mathrm{neq}}_{i,m}-\frac{1}{2}\sum_{m}Q^{\mathrm{neq}}_{i,m}D(\varepsilon)Q^{\mathrm{neq}}_{i,m} \tag{11.15}
 $$
 
-where the subscript $i$ denotes the ground ($i$ = 1) or excited ($i$ = 2) electronic state.
-The value $V_{i,m}$ refers to the solute electrostatic potential at the *m*th tesserae.
-$Q^{\mathrm{neq}}_{i,m}$ is the apparent charge for the nonequilibrium state. The quantity
-$D(\varepsilon)$ is the square matrix arising in PCMs such as C-PCM and IEF-PCM (see Section [11.2.3.1](#subsubsec:PCM-theory)).
+其中下标 $i$ 表示基态（$i$ = 1）或激发态（$i$ = 2）电子态。
+值 $V_{i,m}$ 指溶质在第 $m$ 个面元（tessera）处的静电势。
+$Q^{\mathrm{neq}}_{i,m}$ 是非平衡态的表观电荷。量 $D(\varepsilon)$
+是 C-PCM 和 IEF-PCM 等 PCM 中出现的方阵（见第 [11.2.3.1](#subsubsec:PCM-theory) 节）。
 
-The vertical excitation energy for absorption is defined as
+吸收的垂直激发能定义为
 
 <a id="eq:hv_ab"></a>
 $$
 hv_{\mathrm{ab}}=G^{\mathrm{neq}}_{2}-G^{\mathrm{eq}}_{1} \tag{11.16}
 $$
 
-where $G$ stands for total free energy of the solute in solution,
+其中 $G$ 表示溶液中溶质的总自由能，
 
 <a id="Ch11.E17"></a>
 $$
 G^{\mathrm{eq}}_{1}=E_{1}+F^{\mathrm{eq}}_{1}=E_{1}+\frac{1}{2}\sum_{m}V_{1,m}Q^{\mathrm{eq}}_{1,m}\; \tag{11.17}
 $$
 
-The quantity $G^{\mathrm{eq}}_{1}$ is calculated by the SCRF method based on equilibrium ground-state reaction field and $E_{1}$
-means the ground-state electronic energy of the solute.
-Based on the equilibrium ground-state reaction field, with a self-consistent state-specific method in the framework of TDDFT,
-$G^{\mathrm{neq}}_{2}$ is given by[[130]](../bib_references/bib.md#bib118)
+量 $G^{\mathrm{eq}}_{1}$ 由基于平衡基态反应场的 SCRF 方法计算，$E_{1}$
+表示溶质的基态电子能。
+基于平衡基态反应场，并在 TDDFT 框架内采用自洽的态专化方法，$G^{\mathrm{neq}}_{2}$ 由下式给出[[130]](../bib_references/bib.md#bib118)
 
 <a id="eq:G2_neq"></a>
 $$
 G^{\mathrm{neq}}_{2}=E_{1}+\omega_{\mathrm{ab}}+\sum_{m}V_{1,m}Q^{\mathrm{eq}}_{1,m}+\sum_{m}V_{2,m}(Q^{\mathrm{neq}}_{2,m}-Q^{\mathrm{eq}}_{1,m})-\frac{1}{2}\sum_{m}Q^{\mathrm{neq}}_{2,m}D(\varepsilon)Q^{\mathrm{neq}}_{2,m} \tag{11.18}
 $$
 
-where $\omega_{\mathrm{ab}}$ is the TDDFT excitation energy.
-Alternatively, based on the nonequilibrium excited-state reaction field, $G^{\mathrm{neq}}_{2}$ is given by[[129]](../bib_references/bib.md#bib119)
+其中 $\omega_{\mathrm{ab}}$ 是 TDDFT 激发能。
+另一种方式是，基于非平衡激发态反应场，$G^{\mathrm{neq}}_{2}$ 由下式给出[[129]](../bib_references/bib.md#bib119)
 
 <a id="eq:G2_neq_k"></a>
 $$
 G^{\mathrm{neq}}_{2,k}=E^{k}_{1}+\omega^{k}_{\mathrm{ab}}-\sum_{m}V^{k}_{1,m}Q^{\mathrm{neq},k}_{2,m}-\frac{1}{2}\sum_{m}Q^{\mathrm{neq},k}_{2,m}D(\varepsilon)Q^{\mathrm{neq},k}_{2,m}\;, \tag{11.19}
 $$
 
-where $k$ represents the $k$th iteration of the nonequilibrium excited-state reaction field at the ground-state geometry of solute.
-$\omega^{k}_{\mathrm{ab}}$ is the excitation energy from TDDFT calculation in the presence of the nonequilibrium excited-state reaction field.
-The quantity $E^{k}_{1}$ is the ground-state electronic energy of solute at the $k$th iteration.
-Clearly, Eq. ([11.19](#eq:G2_neq_k)) is more physically-meaningful than Eq. ([11.18](#eq:G2_neq)).
+其中 $k$ 表示在溶质基态几何结构下非平衡激发态反应场的第 $k$ 次迭代。
+$\omega^{k}_{\mathrm{ab}}$ 是在非平衡激发态反应场存在下由 TDDFT 计算得到的激发能。
+量 $E^{k}_{1}$ 是第 $k$ 次迭代时溶质的基态电子能。
+显然，式 ([11.19](#eq:G2_neq_k)) 比式 ([11.18](#eq:G2_neq)) 更具物理意义。
 
-Similarly, the vertical excitation energy for emission is given by[[129]](../bib_references/bib.md#bib119)
+类似地，发射的垂直激发能由下式给出[[129]](../bib_references/bib.md#bib119)
 
 <a id="Ch11.E20"></a>
 $$
 hv_{\mathrm{em}}=G^{\mathrm{eq}}_{2}-G^{\mathrm{neq}}_{1} \tag{11.20}
 $$
 
-where $G^{\mathrm{eq}}_{2}$ and $G^{\mathrm{neq}}_{1}$ represent the free energies of the equilibrium excited state and the nonequilibrium
-ground state at the excited-state equilibrium geometry, respectively. These can be expressed as[[129]](../bib_references/bib.md#bib119)
+其中 $G^{\mathrm{eq}}_{2}$ 和 $G^{\mathrm{neq}}_{1}$ 分别表示在激发态平衡几何结构下的
+平衡激发态自由能和非平衡基态自由能。它们可以表示为[[129]](../bib_references/bib.md#bib119)
 
 <a id="Ch11.E21"></a>
 $$
 \displaystyle G^{\mathrm{neq}}_{1} \tag{11.21a}
 $$
 
-The quantity $\omega^{k}_{\text{em}}$ can be directly obtained by TDDFT calculation in the equilibrium excited-state reaction field
-at the $k$th iteration. The energies ${E^{k}_{1}}^{\prime}$ and $E_{1}^{\prime\prime}$ are, respectively,
-the corresponding ground-state electronic energy of the solute and the ground-state electronic energy of the solute at the
-excited-state equilibrium geometry in the presence of the nonequilibrium ground-state reaction field.
+量 $\omega^{k}_{\text{em}}$ 可以直接由在第 $k$ 次迭代的平衡激发态反应场中进行的
+TDDFT 计算获得。能量 ${E^{k}_{1}}^{\prime}$ 和 $E_{1}^{\prime\prime}$ 分别是在非平衡基态
+反应场存在下对应的溶质基态电子能，以及在激发态平衡几何结构下溶质的基态电子能。
 
-To engage the constrained equilibrium principle for vertical absorption and emission, use the
-**Td_CEq_NonEq** keyword in the *$pcm* section. Users are asked to cite Ref. [[821]](../bib_references/bib.md#bib852)
-.
+要将约束平衡原理应用于垂直吸收和垂直发射，请在 *$pcm* 段中使用
+**Td_CEq_NonEq** 关键字。用户被要求引用文献 [[821]](../bib_references/bib.md#bib852)。
 
-**Note: 
+**注意：
 
-This method is incompatible with spin-flip calculations.
+本方法与自旋翻转（spin-flip）计算不兼容。
 **
 
-## 11.2.3.5 Heterogeneous PCM
+## 11.2.3.5 非均匀 PCM（Heterogeneous PCM）
 
-For modeling proteins and other anisotropic environments, a “heterogeneous PCM” (HetPCM) approach
-has been suggested, which amounts to using a different dielectric constant for each atomic
-sphere.[[613]](../bib_references/bib.md#bib636)
+为模拟蛋白质及其他各向异性环境，有人提出了"非均匀 PCM"（HetPCM）方法，
+其本质是对每个原子球使用不同的介电常数[[613]](../bib_references/bib.md#bib636)。
 
-Unlike the isotropic PCM, which is derivable from
-Maxwell’s equations based on well-defined assumptions,[[569]](../bib_references/bib.md#bib580)
- HetPCM is entirely *ad hoc*.
-However, it has recently been tested (for the first time)
-against exact Poisson boundary conditions, implemented using the PEqS
-approach that is discussed in Section [11.2.11](sect_PEQS.md).[[150]](../bib_references/bib.md#bib143)
+与可基于明确假设由 Maxwell 方程组推导出的各向同性 PCM[[569]](../bib_references/bib.md#bib580)
+不同，HetPCM 完全是*特设的*（ad hoc）。
+不过，近期它首次借助使用第 [11.2.11](sect_PEQS.md) 节讨论的 PEqS 方法实现的
+精确 Poisson 边界条件进行了检验[[150]](../bib_references/bib.md#bib143)。
 
-Considering HetPCM methods that use a pair of distinct dielectric constants (namely, $\varepsilon=78$ to represent
-an aqueous environment and a smaller value, $\varepsilon_{\text{nonp}}$, to represent a nonpolar or hydrophobic region),
-it was determined that the heterogenous model is in reasonable agreement with solution of Poisson’s equation for an
-analogous heterogeneous dielectric environment, provided that $\varepsilon_{\text{nonp}}\gtrsim 4$.[[150]](../bib_references/bib.md#bib143)
+对于采用两个不同介电常数的 HetPCM 方法（即用 $\varepsilon=78$ 表示水环境，
+用较小值 $\varepsilon_{\text{nonp}}$ 表示非极性或疏水区域），
+结果表明，只要 $\varepsilon_{\text{nonp}}\gtrsim 4$，非均匀模型就与相应非均匀介电环境下
+Poisson 方程解 reasonably 吻合[[150]](../bib_references/bib.md#bib143)。
 
-Fortunately, this is consistent with values that are often used to model the hydrophobic interiors of proteins.[[569]](../bib_references/bib.md#bib580)
+这与常用于模拟蛋白质疏水内部的数值相符[[569]](../bib_references/bib.md#bib580)。
 
-See Example [11.2.4.2](subsec_PCM_job_control.md#ex:HetPCM) for instructions on setting up HetPCM calculations.
-The analytic gradient is available for HetPCM.
+关于如何设置 HetPCM 计算的说明，请参见示例 [11.2.4.2](subsec_PCM_job_control.md#ex:HetPCM)。
+HetPCM 提供解析梯度。

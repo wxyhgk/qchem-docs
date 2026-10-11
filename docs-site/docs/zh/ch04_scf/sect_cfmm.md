@@ -1,152 +1,60 @@
 ---
-title: "4.6.2 Continuous Fast Multipole Method (CFMM)"
+title: "4.6.2 连续快速多极子方法 (CFMM)"
 ---
 
-## 4.6.2 Continuous Fast Multipole Method (CFMM)
+## 4.6.2 连续快速多极子方法（Continuous Fast Multipole Method, CFMM）
 
 (July 4, 2026)
 
-The quantum chemical Coulomb problem, perhaps better known as the DFT
-bottleneck, has been at the forefront of many research efforts throughout the
-1990s. The quadratic computational scaling behavior conventionally seen in the
-construction of the Coulomb matrix in DFT or HF calculations has prevented the
-application of *ab initio* methods to molecules containing many hundreds
-of atoms. **Q-Chem** Inc., in collaboration with White and Head-Gordon at the
-University of California at Berkeley, and Gill now at the Australian National
-University, were the first to develop the generalization of Greengard’s Fast
-Multipole Method
+量子化学中的库仑问题——或许更为人知的称呼是密度泛函理论（Density Functional Theory, DFT）瓶颈——在整个 1990 年代一直处于众多研究工作的最前沿。在 DFT 或 HF 计算中，构建库仑矩阵时通常所见的二次方计算标度行为，阻碍了 *ab initio* 方法应用于包含数百个原子的分子。**Q-Chem** 公司与加州大学伯克利分校的 White 和 Head-Gordon，以及现任职于澳大利亚国立大学的 Gill 合作，率先将 Greengard 的快速多极子方法（Fast Multipole Method, FMM）推广到连续电荷物质分布，形成了 CFMM，这是第一个用于 DFT 计算的线性标度算法。这一最初的突破此后催生了越来越多的线性标度替代方法和类比方法，但就库仑相互作用而言，CFMM 仍然是最先进的技术。库仑相互作用有两个计算量密集的组成部分，我们逐一讨论：
 
- (FMM) to continuous charged matter
-distributions in the form of the CFMM, which is the first linear scaling
-algorithm for DFT calculations. This initial breakthrough has since lead to an
-increasing number of linear scaling alternatives and analogies, but for Coulomb
-interactions, the CFMM remains state of the art. There are two computationally
-intensive contributions to the Coulomb interactions which we discuss in turn:
+- 长程相互作用，由 CFMM 处理
+- 短程相互作用，对应于重叠的电荷分布，由专门的"J 矩阵引擎"（J-matrix engine）结合 **Q-Chem** 最先进的双电子积分方法处理
 
-- •
+连续快速多极子方法是最先实现的用于构建 $\mathbf{J}$ 矩阵的线性标度算法。**Q-Chem** 公司与 Chris White 博士合作，通过更高效地推导[[1459]](../bib_references/bib.md#bib1519)原始的快速多极子方法，随后将其推广为 CFMM[[1464]](../bib_references/bib.md#bib1520)。White *et al.* 所采用的推广方式，使得 FMM 成功背后的基本原理得以应用于*任意*（受限于相关积分的求值）连续但定域的粒子分布。White 及其合作者进一步改进了 CFMM 的底层算法[[1460]](../bib_references/bib.md#bib1522)，随后高效地予以实现[[1465]](../bib_references/bib.md#bib1521)，其性能比某些竞争实现快一个数量级。
 
-Long-range interactions, which are treated by the CFMM
-- •
+CFMM 的成功与 FMM 类似，其方法是将电荷体系细分为一个盒子层级结构。然后，定域电荷分布被系统地组织为多极子表示形式，使得每个分布与由所有远处电荷分布产生的势的定域展开式发生相互作用。定域分布与远处分布通过良好分离（well-separated, WS）指标加以区分，该指标是指两簇电荷在被视为"远处"并可通过多极子展开式发生相互作用之前，必须将二者隔开的盒子数目；近场相互作用则必须直接计算。在 CFMM 中，每个分布都被赋予各自的 WS 指标，并依据 WS 指标及其空间中心的位置进行排序。**Q-Chem** 中的实现使得收缩基函数的效率优势得以保持。
 
-Short-range interactions, corresponding to overlapping charge
-distributions, which are treated by a specialized “J-matrix engine”
-together with **Q-Chem**’s state-of-the art two-electron integral methods.
+CFMM 算法可以概括为五个步骤：
 
-The Continuous Fast Multipole Method was the first implemented linear scaling
-algorithm for the construction of the $\mathbf{J}$ matrix. In collaboration with
-**Q-Chem** Inc., Dr. Chris White began the development of the CFMM by more
-efficiently deriving[[1459]](../bib_references/bib.md#bib1519)
- the original Fast Multipole Method
-before generalizing it to the CFMM.[[1464]](../bib_references/bib.md#bib1520)
- The generalization applied
-by White *et al.* allowed the principles underlying the success of the FMM to be
-applied to *arbitrary* (subject to constraints in evaluating the related
-integrals) continuous, but localized, matter distributions. White and
-coworkers further improved the underlying CFMM
-algorithm,[[1460]](../bib_references/bib.md#bib1522)
- then implemented it
-efficiently,[[1465]](../bib_references/bib.md#bib1521)
- achieving performance that is an order of
-magnitude faster than some competing implementations.
+1. 形成并平移多极子。
+2. 将多极子转换为定域泰勒展开式。
+3. 将泰勒信息平移到最低层级。
+4. 求值泰勒展开式以获得远场势。
+5. 对重叠分布执行直接相互作用计算。
 
-The success of the CFMM follows similarly with that of the FMM, in that the
-charge system is subdivided into a hierarchy of boxes. Local charge
-distributions are then systematically organized into multipole representations
-so that each distribution interacts with local expansions of the potential due
-to all distant charge distributions. Local and distant distributions are
-distinguished by a well-separated (WS) index, which is the number of boxes that
-must separate two collections of charges before they may be considered distant
-and can interact through multipole expansions; near-field interactions must be
-calculated directly. In the CFMM each distribution is given its own WS index
-and is sorted on the basis of the WS index, and the position of their space
-centers. The implementation in **Q-Chem** has allowed the efficiency gains of
-contracted basis functions to be maintained.
+通过恰当考虑树的深度、多极子展开式的截断，以及依据严格数学误差界对电荷分布范围的界定，可以精细地控制精度。作为粗略的指导原则，10 个极子足以满足单点能计算，而 25 个极子可为梯度计算提供足够的精度。对于最多约一百个原子的体系，将盒子细分至一维方向上约 8 个盒子的长度效果相当好。更大的分子体系，或沿某一维度延伸的体系，将从增大该数值中获益。程序默认会自动选择合适的盒子数目。
 
-The CFMM algorithm can be summarized in five steps:
+对于其余短程相互作用的求值，**Q-Chem** 纳入了由 White 和 Head-Gordon 首创的高效 J 矩阵引擎[[1462]](../bib_references/bib.md#bib1524)。这些是解析上精确的方法，基于标准的双电子积分方法，但有一个有趣的转变。如果已知双电子积分将被求和为库仑矩阵，就可以追问它们是否确实是完成这一特定任务最有效的中间量。或者说，能否通过将密度矩阵折叠进双电子积分的递推关系中，从而找到一套更紧凑、计算上更高效的中间量。对于那些收缩程度不高的积分（*i.e.*，并非由多于几个高斯函数的线性组合构成），答案是肯定的、且效果显著。这正是 J 矩阵方法的基础，**Q-Chem** 包含了 Yihan Shao 在伯克利与 Martin Head-Gordon 合作为此目的开发的最新算法。Shao 的 J 引擎同时用于能量[[1240]](../bib_references/bib.md#bib1292)和受力[[1241]](../bib_references/bib.md#bib1293)的计算，并且相对于不做任何近似地使用双电子积分，带来了显著的速度提升——在未收缩的 $dddd$ 壳层四重整体的水平上，能量计算约快 10 倍、受力计算约快 30 倍（且随角动量增大而提升）。对于收缩程度低的积分会自动选用该引擎，而当收缩程度较高时则采用常规积分方法，这一做法遵循 Gill 及其合作者最先进的 PRISM 方法[[22]](../bib_references/bib.md#bib6)。
 
-1. 1.
-
-Form and translate multipoles.
-2. 2.
-
-Convert multipoles to local Taylor expansions.
-3. 3.
-
-Translate Taylor information to the lowest level.
-4. 4.
-
-Evaluate Taylor expansions to obtain the far-field potential.
-5. 5.
-
-Perform direct interactions between overlapping distributions.
-
-Accuracy can be carefully controlled by due consideration of tree depth,
-truncation of the multipole expansion and the definition of the extent of
-charge distributions in accordance with a rigorous mathematical error bound.
-As a rough guide, 10 poles are adequate for single point energy calculations,
-while 25 poles yield sufficient accuracy for gradient calculations. Subdivision
-of boxes to yield a one-dimensional length of about 8 boxes works quite well
-for systems of up to about one hundred atoms. Larger molecular systems, or
-ones which are extended along one dimension, will benefit from an increase in
-this number. The program automatically selects an appropriate number of boxes
-by default.
-
-For the evaluation of the remaining short-range interactions, **Q-Chem**
-incorporates efficient J-matrix engines, originated by White and
-Head-Gordon.[[1462]](../bib_references/bib.md#bib1524)
- These are analytically exact methods that are
-based on standard two-electron integral methods, but with an interesting twist.
-If one knows that the two-electron integrals are going to be summed into a
-Coulomb matrix, one can ask whether they are in fact the most efficient
-intermediates for this specific task. Or, can one instead find a more compact
-and computationally efficient set of intermediates by folding the density
-matrix into the recurrence relations for the two-electron integrals. For
-integrals that are not highly contracted (*i.e.*, are not linear combinations of
-more than a few Gaussians), the answer is a dramatic yes. This is the basis of
-the J-matrix approach, and **Q-Chem** includes the latest algorithm developed by
-Yihan Shao working with Martin Head-Gordon at Berkeley for this purpose.
-Shao’s J-engine is employed for both energies[[1240]](../bib_references/bib.md#bib1292)
- and
-forces,[[1241]](../bib_references/bib.md#bib1293)
- and gives substantial speedups relative to the use of
-two-electron integrals without any approximation—roughly a factor of 10 for
-energies and 30 for forces at the level of an uncontracted $dddd$ shell
-quartet, and increasing with angular momentum). Its use is automatically
-selected for integrals with low degrees of contraction, while regular integrals
-are employed when the degree of contraction is high, following the state of the
-art PRISM approach of Gill and coworkers.[[22]](../bib_references/bib.md#bib6)
-
-The CFMM is controlled by the following input parameters:
+CFMM 由以下输入参数控制：
 
 CFMM_ORDER
 
 ### `CFMM_ORDER`
 
-> **Controls the order of the multipole expansions in CFMM calculation.**
+> **控制 CFMM 计算中多极子展开式的阶数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `15`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `15`
+> * **选项**:
 >     * $n$
->     * Use multipole expansions of order
->     * $n$
-> * **Recommendation**: Use the default.
+>     * 使用 $n$ 阶多极子展开式
+> * **建议**: 使用默认值。
 
 GRAIN
 
 ### `GRAIN`
 
-> **Controls the number of lowest-level boxes in one dimension for CFMM.**
+> **控制 CFMM 中一维方向上最低层级盒子的数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `-1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `-1`
+> * **选项**:
 >     * -1
->     * Program decides best value, turning on CFMM when useful
+>     * 由程序决定最佳值，在有用时启用 CFMM
 >     * 1
->     * Do not use CFMM
+>     * 不使用 CFMM
 >     * $n\geq 8$
->     * Use CFMM with
->     * $n$
->     * lowest-level boxes in one dimension
-> * **Recommendation**: This is an expert option; either use the default, or use a value of 1 if CFMM is not desired.
+>     * 使用 CFMM，并在一个维度上设置 $n$ 个最低层级盒子
+> * **建议**: 这是一个专家级选项；要么使用默认值，要么在不希望使用 CFMM 时将其设为 1。

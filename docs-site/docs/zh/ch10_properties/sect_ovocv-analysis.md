@@ -1,21 +1,21 @@
 ---
-title: "10.3.4 Occupied–Virtual Orbitals for Chemical Valence Analysis"
+title: "10.3.4 用于化学价键分析的占据–虚轨道（Occupied–Virtual Orbitals for Chemical Valence Analysis）"
 ---
 
-## 10.3.4 Occupied–Virtual Orbitals for Chemical Valence Analysis
+## 10.3.4 用于化学价键分析的占据–虚轨道
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 10.3.4.1 Overview
+## 10.3.4.1 概述
 
-In mean-field theory such as HF and KS-DFT, the energy of a quantum state is completely determined by the 1-PDM **P**. Therefore, the energy difference between any two quantum states can be completely determined by the density difference $\Delta\textbf{P}$. Insightful interpretations about the orbital interactions can be obtained from the eigen-decomposition of $\Delta\textbf{P}$, which gives the so-called natural orbitals for chemical valence (NOCV)[[954]](../bib_references/bib.md#bib995)
-. The NOCVs appear in pairs $\{|\psi_{\pm i}\rangle\}$ with associated eigenvalues $\pm\lambda_{i}$. However, the NOCVs are mixtures of occupied and virtual orbitals, which makes them hard to interpret; in addition, the associated charge of each NOCV pair is erroneously large[[1250]](../bib_references/bib.md#bib1300)
-. An improvement over NOCV is the recently proposed occupied-virtual orbitals for chemical valence (OVOCV) [[1248]](../bib_references/bib.md#bib1302)
-, whose construction is summarized below.
+在平均场理论（如 HF 和 KS-DFT）中，量子态的能量完全由一阶约化密度矩阵（1-PDM）**P** 决定。因此，任意两个量子态之间的能量差可以完全由密度差 $\Delta\textbf{P}$ 决定。通过对 $\Delta\textbf{P}$ 进行本征分解，可以得到关于轨道相互作用的富有启发性的解释，由此得到的轨道称为化学价键自然轨道（natural orbitals for chemical valence, NOCV）[[954]](../bib_references/bib.md#bib995)
+。NOCV 以成对的形式 $\{|\psi_{\pm i}\rangle\}$ 出现，对应的本征值为 $\pm\lambda_{i}$。然而，NOCV 是占据轨道与虚轨道的混合，这使得它们难以解释；此外，每对 NOCV 所对应的电荷量也被错误地放大了[[1250]](../bib_references/bib.md#bib1300)
+。作为对 NOCV 的改进，最近提出的化学价键占据-虚轨道（occupied-virtual orbitals for chemical valence, OVOCV）[[1248]](../bib_references/bib.md#bib1302)
+，其构造方法总结如下。
 
-## 10.3.4.2 OVOCV analysis between any two single-determinant states
+## 10.3.4.2 任意两个单行列式态之间的 OVOCV 分析
 
-In the orthonormal basis of occupied and virtual orbitals of initial state $I$, the matrix representation of $\hat{P}_{I}$ is
+在初态 $I$ 的占据轨道与虚轨道的正交归一基下，$\hat{P}_{I}$ 的矩阵表示为
 
 <a id="eq:P_I"></a>
 $$
@@ -23,7 +23,7 @@ $$
 0&0\end{pmatrix} \tag{10.52}
 $$
 
-where $1$ is $o\times o$ and the diagonal 0 matrix is $v\times v$ in dimension. Under the same basis, the representation of the final density operator $P_{F}$ can be constructed from $P_{I}$ as $P_{F}=\exp\{X\}P_{I}\exp\{-X\}$, where
+其中 $1$ 的维度为 $o\times o$，对角零矩阵的维度为 $v\times v$。在同一基下，末态密度算符 $P_{F}$ 的表示可由 $P_{I}$ 构造为 $P_{F}=\exp\{X\}P_{I}\exp\{-X\}$，其中
 
 <a id="Ch10.E53"></a>
 $$
@@ -31,14 +31,14 @@ X=\begin{pmatrix}0&X_{ov}\\
 -X_{ov}^{T}&0\end{pmatrix} \tag{10.53}
 $$
 
-With the SVD of $X_{ov}$,
+对 $X_{ov}$ 进行奇异值分解（SVD），
 
 <a id="Xov_SVD"></a>
 $$
 X_{ov}=U\Sigma V^{T} \tag{10.54}
 $$
 
-where $\dim(U)=o\times o,\dim(\Sigma)=o\times v,\dim(V)=v\times v$, we can write $\Delta P$ as
+其中 $\dim(U)=o\times o,\dim(\Sigma)=o\times v,\dim(V)=v\times v$，则可将 $\Delta P$ 写为
 
 <a id="eq:delta_p"></a>
 $$
@@ -49,18 +49,18 @@ $$
 0&V^{T}\end{pmatrix} \tag{10.55}
 $$
 
-where $\Sigma^{\prime}=\mathrm{diag}(\sigma_{1},\sigma_{2},...,\sigma_{o})$, and the diagonal 0 matrix is of dimension $v-o$ (assuming $o<v$, which is the case for most practical calculations).
+其中 $\Sigma^{\prime}=\mathrm{diag}(\sigma_{1},\sigma_{2},...,\sigma_{o})$，对角零矩阵的维度为 $v-o$（假设 $o<v$，这对大多数实际计算而言都成立）。
 
-Since $\Delta P$ is rendered diagonal in each of its blocks in the $U,V$ representation, it is natural to define this choice as the Occupied-Virtual Orbitals for Chemical Valence (OVOCVs).
+由于 $\Delta P$ 在 $U,V$ 表示下的各个分块中均被对角化，自然地，我们将这一选择定义为化学价键占据-虚轨道（Occupied-Virtual Orbitals for Chemical Valence, OVOCVs）。
 
 <a id="A3.S8.EGx78"></a>
 $$
 \displaystyle|\phi^{i}_{\text{occ}}\rangle \tag{10.56}
 $$
 
-Specifically, $|\phi^{i}_{\text{occ}}\rangle$ and $|\phi^{i}_{\text{vir}}\rangle$ are the occupied and virtual orbitals of the $i$th OVOCV pair. Since the OVOCVs are obtained by unitary transformations of an orthonormal basis, they still form an orthonormal basis (with a much smaller dimension, as the virtual orbitals irrelevant to the density deformation are deleted).
+具体而言，$|\phi^{i}_{\text{occ}}\rangle$ 和 $|\phi^{i}_{\text{vir}}\rangle$ 分别是第 $i$ 对 OVOCV 的占据轨道和虚轨道。由于 OVOCVs 是通过对正交归一基进行幺正变换得到的，它们仍然构成一组正交归一基（维度要小得多，因为与密度形变无关的虚轨道已被剔除）。
 
-In the OVOCV basis, $\Delta P$ is:
+在 OVOCV 基下，$\Delta P$ 为：
 
 <a id="eq:delta_p_ovocv"></a>
 $$
@@ -68,123 +68,123 @@ $$
 -\sin{\Sigma^{\prime}}\cos{\Sigma^{\prime}}&\sin^{2}{\Sigma^{\prime}}\end{pmatrix} \tag{10.58}
 $$
 
-The (diagonal) oo block is negative semi-definite, corresponding to $\sin^{2}\sigma_{i}$ electron loss from the $i\text{th}$ of $o$ initially occupied OVOCV levels. By contrast the (diagonal) vv block is equal and opposite, corresponding to promotion of $\sin^{2}\sigma_{i}$ electrons into the $i\text{th}$ of $o$ initially virtual OVOCV levels.
+（对角的）oo 分块是负半定的，对应于从 $o$ 个初始占据的 OVOCV 能级中第 $i$ 个能级损失 $\sin^{2}\sigma_{i}$ 个电子。与之相对，（对角的）vv 分块数值相等、符号相反，对应于将 $\sin^{2}\sigma_{i}$ 个电子提升（promotion）至 $o$ 个初始虚的 OVOCV 能级中第 $i$ 个能级。
 
-The energy difference between any two single-determinant states can be obtained as
+任意两个单行列式态之间的能量差可表示为
 
 <a id="Ch10.E59"></a>
 $$
 \Delta E=\text{Tr}\{\hat{F}^{\text{eff}}\Delta\hat{P}\}, \tag{10.59}
 $$
 
-where $\hat{F}^{\text{eff}}$ is an effective fock operator obtained from a line-integral over the density matrices between the two states. Using the decomposition of $\Delta\hat{P}$ in OVOCV basis, we have
+其中 $\hat{F}^{\text{eff}}$ 是有效 Fock 算符，由对两态之间密度矩阵的线积分（line-integral）得到。利用 $\Delta\hat{P}$ 在 OVOCV 基下的分解，我们有
 
 <a id="Ch10.E60"></a>
 $$
 \displaystyle\Delta E \tag{10.60}
 $$
 
-The OVOCV analysis is coded for the spin polarized calculations, so UNRESTRICTED = TRUE must be set.
+OVOCV 分析是针对自旋极化计算编写的，因此必须设置 UNRESTRICTED = TRUE。
 
 OVOCV_ANALYSIS
 
 ### `OVOCV_ANALYSIS`
 
-> **Perform OVOCV analysis**
+> **执行 OVOCV 分析**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not do OVOCV analysis
+>     * 不进行 OVOCV 分析
 >     * 1
->     * Do OVOCV analysis
-> * **Recommendation**: None
+>     * 进行 OVOCV 分析
+> * **建议**: 无
 
 OVOCV_QUADRATURE
 
 ### `OVOCV_QUADRATURE`
 
-> **Number of quadrature points used for the line-integral of $\hat{F}^{\text{eff}}$ .**
+> **用于 $\hat{F}^{\text{eff}}$ 线积分的求积点（quadrature points）数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **取值选项**:
 >     * -1
->     * Printings for debug purpose
+>     * 出于调试目的的调试输出
 >     * 5
->     * 5 quadratures
+>     * 5 点求积
 >     * 9
->     * 9 quadratures
+>     * 9 点求积
 >     * 13
->     * 13 quadratures
+>     * 13 点求积
 >     * 17
->     * 17 quadratures
+>     * 17 点求积
 >     * 21
->     * 21 quadratures
-> * **Recommendation**: Use 5 for ground state analysis, 9 or 13 for excited state analysis. Increase quadrature numbers to get higher accuracy in $\Delta E$
+>     * 21 点求积
+> * **建议**: 基态分析使用 5，激发态分析使用 9 或 13。增大求积点数可获得更高精度的 $\Delta E$
 
 SAVE_OVOCV_INIT_DATA
 
 ### `SAVE_OVOCV_INIT_DATA`
 
-> **Saves initial state for OVOCV analysis**
+> **为 OVOCV 分析保存初态数据**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not save initial state data
+>     * 不保存初态数据
 >     * 1
->     * Save initial state data
-> * **Recommendation**: Set to 1 at the initial state calculation
+>     * 保存初态数据
+> * **建议**: 在初态计算中设置为 1
 
 LOAD_OVOCV_INIT_DATA
 
 ### `LOAD_OVOCV_INIT_DATA`
 
-> **Load initial state for OVOCV analysis, then do OVOCV analysis using current state as the final state**
+> **加载初态数据用于 OVOCV 分析，然后以当前态作为末态执行 OVOCV 分析**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not load initial state data
+>     * 不加载初态数据
 >     * 1
->     * Load initial state data
-> * **Recommendation**: Set to 1 at the final state calculation
+>     * 加载初态数据
+> * **建议**: 在末态计算中设置为 1
 
 OVOCV_THRESH
 
 ### `OVOCV_THRESH`
 
-> **Specifies the significance above which the OVOCVs will be saved**
+> **指定 OVOCV 保存所要求的显著性阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **取值选项**:
 >     * $N$
->     * OVOCVs that contributes more than
+>     * 对能量降低的贡献超过
 >     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
-> * **Recommendation**: None
+>     * kJ/mol 的 OVOCV 将被保存
+> * **建议**: 无
 
 SAVE_OVOCV
 
 ### `SAVE_OVOCV`
 
-> **Save significant OVOCVs or not**
+> **是否保存显著的 OVOCV**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not save significant OVOCVs
+>     * 不保存显著 OVOCV
 >     * 1
->     * Save significant OVOCVs
-> * **Recommendation**: Set to 1 to save OVOCVs. Note REMs for plotting cube files need also be set
+>     * 保存显著 OVOCV
+> * **建议**: 设置为 1 以保存 OVOCV。注意还需设置用于绘制 cube 文件的 REM 参数
 
-???+ example "Example 10.10.16: OVOCV analysis between a polarized state and the fully converged SCF state."
+???+ example "示例 10.10.16: 极化态与完全收敛的 SCF 态之间的 OVOCV 分析。"
     ```qchem
     $comment
     Calculate a polarized state
@@ -260,7 +260,7 @@ SAVE_OVOCV
     $end
     ```
 
-???+ example "Example 10.10.17: OVOCV analysis between a DFT state with HF density and the DFT state with DFT density."
+???+ example "示例 10.10.17: 具有 HF 密度的 DFT 态与具有 DFT 密度的 DFT 态之间的 OVOCV 分析。"
     ```qchem
     $comment
     SCF for fragmo to get initial density for HF
@@ -350,60 +350,60 @@ SAVE_OVOCV
     $end
     ```
 
-## 10.3.4.3 OVOCV analysis for OO-DFT excitation analysis
+## 10.3.4.3 用于 OO-DFT 激发分析的 OVOCV 分析
 
-With the development of SCF algorithms for non-aufbau determinants, it is often possible to accurately represent an excited state, such as a charge-transfer state or a doubly excited state, with a single Slater determinant using Orbital-Optimized Density Functional Theory (OO-DFT). It is therefore natural to analyze the electronic excitation using the OVOCV method[[1247]](../bib_references/bib.md#bib1303)
-, which gives a primary excitation due to a single (or double for double excitation) OVOCV pair $|\psi_{\text{D}}\rangle$ (donor) and $|\psi_{\text{A}}\rangle$ (acceptor), together with many polarized pairs to account for the orbital relaxation effect.
-To reveal the importance of orbital relaxations, we introduce an intermediate frozen state (FRZ), whose density is constructed from the complete depletion of donor orbital $|\psi_{\text{D}}\rangle$ and the complete occupation of acceptor orbital $|\psi_{\text{A}}\rangle$, starting from the ground state density $\hat{P}_{\text{G}}$:
+随着针对非 aufbau（非构造原理）行列式的 SCF 算法的发展，通常可以用轨道优化密度泛函理论（Orbital-Optimized Density Functional Theory, OO-DFT）的单个 Slater 行列式来准确描述激发态，例如电荷转移态或双激发态。因此，使用 OVOCV 方法分析电子激发是自然而然的[[1247]](../bib_references/bib.md#bib1303)
+，该方法给出由单对（双激发则为两对）OVOCV 对 $|\psi_{\text{D}}\rangle$（供体, donor）和 $|\psi_{\text{A}}\rangle$（受体, acceptor）所导致的主激发，并伴随许多极化对以解释轨道弛豫效应。
+为了揭示轨道弛豫的重要性，我们引入一个中间冻结态（frozen state, FRZ），其密度是从基态密度 $\hat{P}_{\text{G}}$ 出发，通过供体轨道 $|\psi_{\text{D}}\rangle$ 完全排空和受体轨道 $|\psi_{\text{A}}\rangle$ 完全占据来构造的：
 
 <a id="Ch10.E61"></a>
 $$
 \hat{P}_{\text{FRZ}}=\hat{P}_{\text{G}}-|\psi_{\text{D}}\rangle\langle\psi_{\text{D}}|+|\psi_{\text{A}}\rangle\langle\psi_{\text{A}}|. \tag{10.61}
 $$
 
-As a result, the connection between $\hat{P}_{\text{G}}$ and $\hat{P}_{\text{FRZ}}$ reveals the primary excitation, and the connection between $\hat{P}_{\text{FRZ}}$ and $\hat{P}_{\text{E}}$ reveals the orbital relaxation effect.
+因此，$\hat{P}_{\text{G}}$ 与 $\hat{P}_{\text{FRZ}}$ 之间的联系揭示了主激发，而 $\hat{P}_{\text{FRZ}}$ 与 $\hat{P}_{\text{E}}$ 之间的联系则揭示了轨道弛豫效应。
 
 OVOCV_EXCITE_ANALYSIS
 
 ### `OVOCV_EXCITE_ANALYSIS`
 
-> **Perform OVOCV analysis for OO-DFT excitation analysis**
+> **执行用于 OO-DFT 激发分析的 OVOCV 分析**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **取值选项**:
 >     * 0
->     * Do not do OVOCV OO-DFT analysis
+>     * 不进行 OVOCV OO-DFT 分析
 >     * 1
->     * Do OVOCV OO-DFT analysis
-> * **Recommendation**: None
+>     * 进行 OVOCV OO-DFT 分析
+> * **建议**: 无
 
 OVOCV_EXCITE_TYPE
 
 ### `OVOCV_EXCITE_TYPE`
 
-> **Specify the excitation type to construct the intermediate FRZ state**
+> **指定用于构造中间 FRZ 态的激发类型**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **取值选项**:
 >     * 1
->     * Construct FRZ state using the largest OVOCV pair in
+>     * 使用
 >     * $\alpha$
->     * space
+>     * 空间中最大的 OVOCV 对构造 FRZ 态
 >     * 2
->     * Construct FRZ state using the largest OVOCV pair in
+>     * 使用
 >     * $\beta$
->     * space
+>     * 空间中最大的 OVOCV 对构造 FRZ 态
 >     * 3
->     * Construct FRZ state using the largest OVOCV pair in both
+>     * 使用
 >     * $\alpha$
->     * and
+>     * 和
 >     * $\beta$
->     * space (for double excitation)
-> * **Recommendation**: Use 1 or 2 for single excitation, 3 for double excitation
+>     * 空间中最大的 OVOCV 对构造 FRZ 态（用于双激发）
+> * **建议**: 单激发使用 1 或 2，双激发使用 3
 
-???+ example "Example 10.10.18: OVOCV OO-DFT analysis for long distance charge transfer between NH ${}_{3}$ and F ${}_{2}$ ."
+???+ example "示例 10.10.18: NH ${}_{3}$ 与 F ${}_{2}$ 之间长距离电荷转移的 OVOCV OO-DFT 分析。"
     ```qchem
     $molecule
     0 1
@@ -474,7 +474,7 @@ OVOCV_EXCITE_TYPE
     
     ```
 
-???+ example "Example 10.10.19: OVOCV OO-DFT analysis for LMCT in Fe(H ${}_{2}$ O) ${}^{3+}_{6}$ ."
+???+ example "示例 10.10.19: Fe(H ${}_{2}$ O) ${}^{3+}_{6}$ 中配体到金属电荷转移（LMCT）的 OVOCV OO-DFT 分析。"
     ```qchem
     $molecule
     +3 6
@@ -605,7 +605,7 @@ OVOCV_EXCITE_TYPE
     
     ```
 
-???+ example "Example 10.10.20: OVOCV OO-DFT analysis for double excitation in trans-butadiene."
+???+ example "示例 10.10.20: 反式丁二烯（trans-butadiene）中双激发的 OVOCV OO-DFT 分析。"
     ```qchem
     $molecule
     0 1

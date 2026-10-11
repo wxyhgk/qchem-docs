@@ -1,40 +1,38 @@
 ---
-title: "4.7.5 Job Control and Example"
+title: "4.7.5 作业控制与示例"
 ---
 
-## 4.7.5 Job Control and Example
+## 4.7.5 作业控制与示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Dual-basis calculations are controlled with the following *$rem*.
-DUAL_BASIS_ENERGY turns on the dual-basis approximation. Note that
-use of BASIS2 without DUAL_BASIS_ENERGY *only* uses
-basis set projection to generate the initial guess and does not invoke the
-dual-basis approximation (see Section [4.4.5](sect_projection.md)).
-OVPROJECTION is used as the default projection mechanism for
-dual-basis calculations; it is not recommended that this be changed.
-Specification of SCF variables (*e.g.*, THRESH) will apply to
-calculations in both basis sets.
+双基组（dual-basis）计算通过以下 *$rem* 变量进行控制。
+DUAL_BASIS_ENERGY 用于开启双基组近似。请注意，
+若仅使用 BASIS2 而未设置 DUAL_BASIS_ENERGY，则*仅*会利用
+基组投影来生成初始猜测，而不会启用双基组近似（参见第 [4.4.5](sect_projection.md) 节）。
+OVPROJECTION 是双基组计算的默认投影机制；
+不建议对其进行更改。
+SCF 变量（*例如*，THRESH）的指定将同时应用于两个基组中的计算。
 
 DUAL_BASIS_ENERGY
 
 ### `DUAL_BASIS_ENERGY`
 
-> **Activates dual-basis SCF (HF or DFT) energy correction.**
+> **启用双基组 SCF（HF 或 DFT）能量校正。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
->     * Analytic first derivative available for HF and DFT (see
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
+>     * HF 与 DFT 支持解析一阶导数（参见
 >     * JOBTYPE
->     * )
->     * Can be used in conjunction with MP2 or RI-MP2
->     * See BASIS, BASIS2, BASISPROJTYPE
-> * **Recommendation**: Use dual-basis to capture large-basis effects at smaller basis cost. Particularly useful with RI-MP2, in which HF often dominates. Use only proper subsets for small-basis calculation.
+>     * ）
+>     * 可与 MP2 或 RI-MP2 结合使用
+>     * 参见 BASIS、BASIS2、BASISPROJTYPE
+> * **建议**：使用双基组方法以较小的基组代价捕获大基组效应。在与 RI-MP2 结合时尤为有用，因为在 RI-MP2 中 HF 计算往往占主导。小基组计算应仅使用真子集（proper subset）基组。
 
-## 4.7.5.1 Examples
+## 4.7.5.1 示例
 
-???+ example "Example 4.23: Input for a dual-basis B3LYP single-point calculation."
+???+ example "示例 4.23：双基组 B3LYP 单点能计算的输入。"
     ```qchem
     $molecule
        0 1
@@ -50,7 +48,7 @@ DUAL_BASIS_ENERGY
     $end
     ```
 
-???+ example "Example 4.24: Input for a dual-basis B3LYP single-point calculation with a minimal 6-4G small basis."
+???+ example "示例 4.24：使用极小 6-4G 小基组的双基组 B3LYP 单点能计算输入。"
     ```qchem
     $molecule
        0 1
@@ -68,7 +66,7 @@ DUAL_BASIS_ENERGY
     $end
     ```
 
-???+ example "Example 4.25: Input for a dual-basis RI-MP2 geometry optimization."
+???+ example "示例 4.25：双基组 RI-MP2 几何优化的输入。"
     ```qchem
     $molecule
        0 1
@@ -86,7 +84,7 @@ DUAL_BASIS_ENERGY
     $end
     ```
 
-???+ example "Example 4.26: Input for a dual-basis RI-MP2 single-point calculation with mixed basis sets."
+???+ example "示例 4.26：使用混合基组的双基组 RI-MP2 单点能计算输入。"
     ```qchem
     $molecule
        0 1

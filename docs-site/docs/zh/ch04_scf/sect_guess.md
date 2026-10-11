@@ -2,249 +2,182 @@
 title: "4.4.2 Initial Guess Types"
 ---
 
-## 4.4.2 Initial Guess Types
+## 4.4.2 初猜类型（Initial Guess Types）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Core Hamiltonian**
+**核哈密顿量（Core Hamiltonian）**
 
-The core Hamiltonian guess simply obtains the
-guess MO coefficients by diagonalizing the core Hamiltonian matrix
-in Eq. ([4.19](Ch4.S2.SS2.md#eq417)). It is also commonly known as the one-electron
-guess, as it completely ignores interelectronic
-interactions. Although the guess is exact for one-electron systems,
-the lack of repulsion effects leads to incorrect shell structure of
-atoms as well as all electrons crowding onto the heaviest atom in
-the system; see Ref. [[797]](../bib_references/bib.md#bib831)
- for a discussion. Due
-to these effects, the core guess is typically extremely inaccurate
-and should only be used as a last resort; much better alternatives
-are provided by the various SAD and SAP guesses.
+核哈密顿量初猜 simply 通过对角化式 ([4.19](Ch4.S2.SS2.md#eq417)) 中的核哈密顿量矩阵来获得初猜分子轨道（MO）系数。它也常被称为单电子初猜（one-electron guess），因为它完全忽略电子间相互作用。尽管该初猜对单电子体系是精确的，但由于缺少排斥效应，会导致原子的壳层结构不正确，并使所有电子都聚集到体系中最重的原子上；相关讨论参见文献 [[797]](../bib_references/bib.md#bib831)。
+由于这些效应，核初猜通常极不准确，只应作为最后的手段使用；各类 SAD 和 SAP 初猜提供了好得多的替代选择。
 
-**Superposition of Atomic Densities (SAD)**
+**原子密度叠加（Superposition of Atomic Densities, SAD）**
 
-The SAD guess[[801]](../bib_references/bib.md#bib1446)
-
-is constructed by
-summing together pretabulated, spherically averaged atomic density
-matrices. The SAD guess generally yields robust convergence, and its
-use is particularly important when large basis sets and/or large
-molecules are employed. There are three issues associated with the
-SAD guess to be aware of:
+SAD 初猜[[801]](../bib_references/bib.md#bib1446)
+通过累加预先计算的、球平均的原子密度矩阵来构造。SAD 初猜通常能带来稳健的收敛，在使用大基组和/或大分子时尤其重要。需要注意与 SAD 初猜相关的三个问题：
 
 1. **1.**
 
-No molecular orbitals are obtained, which means that SCF
-algorithms requiring orbitals (the direct minimization methods
-discussed in Section [4.5](sect_convergence.md)) cannot directly use
-the SAD guess. It can, however, be generated on-the-fly
-for general basis sets (BASIS = GEN), as described below,
-though not for mixed basis sets (BASIS = MIXED).
+不会得到分子轨道，这意味着需要轨道的 SCF 算法（即第 [4.5](sect_convergence.md)
+节讨论的直接最小化方法）无法直接使用 SAD 初猜。不过，对于一般基组（BASIS = GEN），它可以按下文所述在线（on-the-fly）生成，但对混合基组（BASIS = MIXED）则不行。
 2. **2.**
 
-The SAD guess is not available for general (read-in) basis
-sets (pretabulated guesses exist for all internal basis sets); and
+SAD 初猜不适用于一般（读入的）基组（所有内部基组都有预先计算的初猜）；以及
 3. **3.**
 
-The SAD guess is not idempotent and thus requires *at least*
-two SCF iterations to ensure proper SCF convergence
-(idempotency of the density).
+SAD 初猜不是幂等的，因此*至少*需要两次 SCF 迭代，以确保 SCF 正确收敛（即密度矩阵的幂等性）。
 
-**Purified Superposition of Atomic Densities (SADMO)**
+**纯化原子密度叠加（Purified SAD, SADMO）**
 
-The purified
-SAD guess (called “SADMO” in Ref. [[797]](../bib_references/bib.md#bib831)
-), is
-otherwise the same as the SAD guess except that it removes the
-issues [1](#sad-noorb) and [3](#sad-noid) above. The SADMO guess
-obtains guess orbitals and corresponding occupation numbers by
-diagonalizing the non-idempotent SAD density matrix, after which an
-idempotent density matrix is recreated by aufbau occupation of the
-SAD natural orbitals. Since the initial density matrix is created
-with the SAD guess, the SADMO guess is not available for a general
-(read-in) basis set, either.
+纯化后的
+SAD 初猜（在文献 [[797]](../bib_references/bib.md#bib831)
+中称为 "SADMO"），除消除了上述问题 [1](#sad-noorb) 和 [3](#sad-noid)
+之外，与 SAD 初猜完全相同。SADMO 初猜通过对角化非幂等的 SAD 密度矩阵来获得初猜轨道及相应的占据数，随后按照构造原理（aufbau）占据 SAD 自然轨道，重新构造出一个幂等的密度矩阵。由于初始密度矩阵是用 SAD 初猜生成的，SADMO 初猜同样不适用于一般（读入的）基组。
 
-**Superposition of Atomic Potentials (SAP)**
+**原子势叠加（Superposition of Atomic Potentials, SAP）**
 
-The SAP guess[[797]](../bib_references/bib.md#bib831)
- is a major improvement on
-the core guess as it correctly describes atomic shell structure
-while retaining a simple form. The SAP guess
-introduces the interelectronic interactions missing from the core
-guess with a superposition of pretabulated atomic potentials, which
-have been derived with fully numerical
-calculations;[[798]](../bib_references/bib.md#bib832)
- the atomic
-potentials used in **Q-Chem** are derived from non-relativistic
-exchange-only LDA calculations employing spherically averaged
-densities.[[799]](../bib_references/bib.md#bib833)
- As suggested in
-Ref. [[797]](../bib_references/bib.md#bib831)
-, the atomic potential matrix is
-evaluated through quadrature on a molecular grid analogous to the
-one used in DFT calculations; the grid is controlled by the *$rem*
-variable GUESS_GRID. Importantly, the SAP guess is noniterative,
-available for all elements in the periodic table from H to Og, and
-can be used with both internal and general (read-in) basis sets,
-thereby offering reasonably accurate initial guesses also in the
-case when the other options fail to work. Note SAP guess is not
-available in the old SCF code but only in GEN_SCFMAN.
+SAP 初猜[[797]](../bib_references/bib.md#bib831)
+是对核初猜的重大改进，它既能正确描述原子的壳层结构，又保持了简单的形式。SAP 初猜通过叠加预先计算的原子势来引入核初猜所缺失的电子间相互作用，这些原子势由全数值计算导出；[[798]](../bib_references/bib.md#bib832)
+**Q-Chem** 中使用的原子势则由采用球平均密度的非相对论、仅交换（exchange-only）LDA 计算导出。[[799]](../bib_references/bib.md#bib833)
+如文献 [[797]](../bib_references/bib.md#bib831)
+所建议，原子势矩阵通过与 DFT 计算所用网格类似的分子网格上的数值求积来评估；该网格由 *$rem*
+变量 GUESS_GRID 控制。重要的是，SAP 初猜是非迭代的，可用于元素周期表中从 H 到 Og 的所有元素，并且既可用于内部基组，也可用于一般（读入的）基组，从而在其他选项失效的情况下仍能提供相当准确的初始猜测。请注意，SAP 初猜在旧版 SCF 代码中不可用，只能在 GEN_SCFMAN 中使用。
 
-**On-the-fly (Automated) Superposition of Atomic Densities
-(AUTOSAD)**
+**在线（自动化）原子密度叠加（On-the-fly/Automated SAD, AUTOSAD）**
 
-In contrast to the SAD option that relies on pretabulated
-density matrices, the AUTOSAD guess provides a means of obtaining a
-method-specific SAD guess on-the-fly by running separate atomic
-calculations on all nonequivalent atoms in the system. As a SAD
-guess, the AUTOSAD density matrix is not idempotent and the guess
-will not produce molecular orbitals, so direct minimization methods
-cannot be directly used. Unlike the SAD option, AUTOSAD can
-be used for both internally defined and user-defined (general)
-basis sets, but is currently unavailable for mixed
-basis. Note that use of AUTOSAD is not necessary when using a single
-internal basis set with wave function methods, as in this case the
-AUTOSAD density is simply equivalent to the pretabulated SAD
-density. The pretabulated SAD guess is based on Hartree-Fock atomic
-densities whereas AUTOSAD uses the SCF method specified in *$rem*.
+与依赖预先计算的密度矩阵的 SAD 选项不同，AUTOSAD 初猜通过对体系中所有不等价原子分别运行独立的原子计算，在线地获得与具体方法相关的 SAD 初猜。作为一种 SAD 初猜，AUTOSAD 密度矩阵不是幂等的，且该初猜不会生成分子轨道，因此无法直接使用直接最小化方法。与 SAD 选项不同，AUTOSAD 既可用于内部定义的基组，也可用于用户定义的（一般）基组，但目前不支持混合基组。注意，当在波函数方法中使用单一的内部基组时，无需使用 AUTOSAD，因为此时 AUTOSAD 密度与预先计算的 SAD 密度完全等价。预先计算的 SAD 初猜基于 Hartree-Fock 原子密度，而 AUTOSAD 使用在 *$rem* 中指定的 SCF 方法。
 
-**Generalized Wolfsberg-Helmholtz (GWH)**
+**广义 Wolfsberg-Helmholtz（Generalized Wolfsberg-Helmholtz, GWH）**
 
-The GWH guess
-procedure[[1487]](../bib_references/bib.md#bib1547)
- uses a combination of the overlap
-matrix elements in Eq. ([4.12](Ch4.S2.SS1.md#eq411)), and the diagonal elements of
-the core Hamiltonian matrix in Eq. ([4.19](Ch4.S2.SS2.md#eq417)). This initial
-guess is usually even worse than the core Hamiltonian.[[797]](../bib_references/bib.md#bib831)
+GWH 初猜
+程序[[1487]](../bib_references/bib.md#bib1547)
+结合了式 ([4.12](Ch4.S2.SS1.md#eq411)) 中的重叠矩阵元与式 ([4.19](Ch4.S2.SS2.md#eq417)) 中核哈密顿量矩阵的对角元。这一初始猜测通常甚至比核哈密顿量初猜更差。[[797]](../bib_references/bib.md#bib831)
 
-It is constructed according to
+其构造方式为
 
 <a id="eq444"></a>
 $$
 H_{\mu\upsilon}=c_{x}S_{\mu\upsilon}(H_{\mu\mu}+\tfrac{1}{2}H_{\upsilon\upsilon})\;. \tag{4.29}
 $$
 
-where $c_{x}$ is a constant, typically $c_{x}=1.75$.
+其中 $c_{x}$ 为常数，通常取 $c_{x}=1.75$。
 
-The selection of these choices (or whether to read in the orbitals) is
-controlled by the following *$rem* variables:
+上述各选项的选择（或是否读入轨道）由以下 *$rem* 变量控制：
 
 SCF_GUESS
 
 ### `SCF_GUESS`
 
-> **Specifies the initial guess procedure to use for the SCF.**
+> **指定 SCF 所使用的初始猜测程序。**
 >
-> * **Type**: `STRING`
-> * **Default**: `SAD`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`SAD`
+> * **选项**：
 >     * CORE
->     * Diagonalize core Hamiltonian
+>     * 对角化核哈密顿量
 >     * SAD
->     * Superposition of atomic density
+>     * 原子密度叠加
 >     * 801
 >     * Lenthe J. H. Van et al.
->     * J. Comput. Chem.
+>     * J. Comput. Chem.
 >     * (2006)
 >     * ,
 >     * 27
 >     * ,
 >     * pp. 926
 >     * .
->     * Link
+>     * 链接
 >     * SAP
->     * Superposition of atomic potentials
+>     * 原子势叠加
 >     * 797
 >     * Lehtola S.
->     * J. Chem. Theory Comput.
+>     * J. Chem. Theory Comput.
 >     * (2019)
 >     * ,
 >     * 15
 >     * ,
 >     * pp. 1593
 >     * .
->     * Link
->     * (only available with
+>     * 链接
+>     * （仅当以下取值时可用
 >     * GEN_SCFMAN
 >     * =
 >     * TRUE
->     * )
+>     * ）
 >     * AUTOSAD
->     * On-the-fly superposition of atomic densities
+>     * 在线（on-the-fly）原子密度叠加
 >     * SADMO
->     * Purified superposition of atomic densities (available only with
->     * standard basis sets)
+>     * 纯化原子密度叠加（仅随
+>     * 标准基组可用）
 >     * GWH
->     * Apply generalized Wolfsberg-Helmholtz approximation
+>     * 采用广义 Wolfsberg-Helmholtz 近似
 >     * READ
->     * Read previous MOs from disk
+>     * 从磁盘读取先前的 MO
 >     * FRAGMO
->     * Superimposing converged
->     * fragment MOs (see Section
+>     * 叠加已收敛的
+>     * 片段 MO（参见第
 >     * 12.3
->     * )
-> * **Recommendation**: SAD, AUTOSAD, or SADMO guess for standard basis sets. For either standard or user-customized general basis sets, AUTOSAD is recommended and used as default. If these options fail, use the SAP guess; try the GWH or core Hamiltonian guess only as a last resort. For mixed basis sets, only the AUTOSAD, SAP, GWH, and core Hamiltonian guesses are currently available. For ROHF it can be useful to READ guesses from an SCF calculation on the corresponding cation or anion. Note that because the density is made spherical, this may favor an undesired state for atomic systems, especially transition metals. Use FRAGMO in a fragment MO calculation.
+>     * 节）
+> * **建议**：对于标准基组，建议使用 SAD、AUTOSAD 或 SADMO 初猜。无论使用标准基组还是用户自定义的一般基组，均推荐使用 AUTOSAD，且其为默认选项。若这些选项均失效，请使用 SAP 初猜；仅将 GWH 或核哈密顿量初猜作为最后手段。对于混合基组，目前仅可用 AUTOSAD、SAP、GWH 和核哈密顿量初猜。对于 ROHF，从相应阳离子或阴离子的 SCF 计算中 READ 初猜可能很有用。注意，由于密度被球对称化，这可能使原子体系（尤其是过渡金属）倾向于非期望的状态。在片段 MO 计算中使用 FRAGMO。
 
 SCF_GUESS_ALWAYS
 
 ### `SCF_GUESS_ALWAYS`
 
-> **Switch to force the regeneration of a new initial guess for each series of SCF iterations (for use in geometry optimization).**
+> **开关，用于强制在每一轮 SCF 迭代开始时重新生成新的初始猜测（用于几何优化）。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`False`
+> * **选项**：
 >     * False
->     * Do not generate a new guess for each series of SCF iterations in an
->     * optimization; use MOs from the previous SCF calculation for the guess,
->     * if available.
+>     * 在优化的每一轮 SCF 迭代中不生成新的初猜；若可用，
+>     * 则使用上一次 SCF 计算的 MO 作为初猜，
+>     * （如果存在的话）。
 >     * True
->     * Generate a new guess for each series of SCF iterations in a geometry
->     * optimization.
-> * **Recommendation**: Use the default unless SCF convergence issues arise
+>     * 在几何优化的每一轮 SCF 迭代中
+>     * 生成新的初猜。
+> * **建议**：除非出现 SCF 收敛问题，否则使用默认值。
 
 GUESS_GRID
 
 ### `GUESS_GRID`
 
-> **Specifies the type of grid to use for SAP guess generation. The options are the same as those of the $rem variable XC_GRID .**
+> **指定生成 SAP 初猜时使用的网格类型。其选项与 *$rem* 变量 XC_GRID 相同。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * 对 H、C、N 和 O 使用 SG-0；对其他所有原子使用 SG-1。
 >     * $n$
->     * Use SG-
+>     * 对所有原子使用 SG-
 >     * $n$
->     * for all atoms,
+>     *，其中
 >     * $n=1,2$
->     * , or 3
+>     * 或 3
 >     * $XY$
->     * A string of two six-digit integers
+>     * 由两个六位整数
 >     * $X$
->     * and
+>     * 和
 >     * $Y$
->     * , where
+>     * 组成的字符串，其中
 >     * $X$
->     * is the number of radial points
->     * and
+>     * 是径向点数，
 >     * $Y$
->     * is the number of angular points where possible numbers of Lebedev angular
->     * points, which must be an allowed value from Table
+>     * 是角向点数；可能的 Lebedev 角向点数必须是
+>     * 表
 >     * 5.2
->     * in
->     * Section
+>     * （位于
+>     * 第
 >     * 5.5
->     * .
+>     * 节）中允许的取值之一。
 >     * $-XY$
->     * Similar format for Gauss-Legendre grids, with the six-digit integer
+>     * 用于高斯-勒让德（Gauss-Legendre）网格的类似格式，六位整数
 >     * $X$
->     * corresponding
->     * to the number of radial points and the six-digit integer
+>     * 表示径向点数，六位整数
 >     * $Y$
->     * providing the number of
->     * Gauss-Legendre angular points,
+>     * 给出具
+>     * 高斯-勒让德角向点数，
 >     * $Y=2N^{2}$
->     * .
-> * **Recommendation**: Larger grids may be required if the SAP guess is poor.
+>     * 。
+> * **建议**：如果 SAP 初猜较差，可能需要使用更大的网格。

@@ -1,12 +1,12 @@
 ---
-title: "8.4.3 Format for User-Defined Basis Sets"
+title: "8.4.3 用户自定义基组（User-Defined Basis Sets）的格式"
 ---
 
-## 8.4.3 Format for User-Defined Basis Sets
+## 8.4.3 用户自定义基组（User-Defined Basis Sets）的格式
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The format for the user-defined basis section is as follows:
+用户自定义基组（user-defined basis）段的格式如下：
 
 > | $basis |  |  |  |  |  |
 > | --- | --- | --- | --- | --- | --- |
@@ -19,23 +19,19 @@ The format for the user-defined basis section is as follows:
 > | **** |  |  |  |  |  |
 > | $end |  |  |  |  |  |
 
-where
+其中
 
-| $X$ | Atomic symbol of the atom (atomic number not accepted) |
+| $X$ | 原子的元素符号（不接受原子序数） |
 | --- | --- |
-| $L$ | Angular momentum symbol (S, P, SP, D, F, G) |
-| $K$ | Degree of contraction of the shell (integer) |
-| $scale$ | Scaling to be applied to exponents (default is 1.00) |
-| $\alpha_{i}$ | Gaussian primitive exponent (positive real number) |
-| $C_{i}^{L}$ | Contraction coefficient for each angular momentum (non-zero real numbers). |
+| $L$ | 角动量符号（S、P、SP、D、F、G） |
+| $K$ | 壳层（shell）的收缩阶数（整数） |
+| $scale$ | 施加于指数（exponent）的缩放因子（默认值为 1.00） |
+| $\alpha_{i}$ | 高斯原函数（Gaussian primitive）指数（正实数） |
+| $C_{i}^{L}$ | 各角动量对应的收缩系数（contraction coefficient，非零实数）。 |
 
-Atoms are terminated with `****` and the complete basis set is
-terminated with the *$end* keyword terminator. No blank lines can be
-incorporated within the general basis set input. Note that more than one
-contraction coefficient per line is required for compound shells like SP.
-As with all **Q-Chem** input deck information, all input is case-insensitive.
+每个原子以 `****` 结束，整个基组则以 *$end* 关键字作为终止符。在通用基组（general basis set）输入中不得包含空行。请注意，对于 SP 这类复合壳层（compound shells），每行需要提供多个收缩系数。与 **Q-Chem** 输入文件（input deck）中的所有信息一样，全部输入均不区分大小写。
 
-???+ example "Example 8.1: Example of adding a user-defined non-standard basis set. Note that since $d$ , $f$ and $g$ functions are incorporated, the $rem variable PURECART must be set. Note the use of BASIS2 for the initial guess."
+???+ example "示例 8.1: 添加一个用户自定义的非标准基组的示例。注意，由于引入了 $d$、$f$ 和 $g$ 函数，必须设置 $rem 变量 PURECART。同时注意使用 BASIS2 来提供初始猜测（initial guess）。"
     ```qchem
     $molecule
        0  1

@@ -1,79 +1,44 @@
 ---
-title: "11.6.4 Iterative Approach for Supermolecular Properties"
+title: "11.6.4 超分子性质的迭代方法"
 ---
 
-## 11.6.4 Iterative Approach for Supermolecular Properties
+## 11.6.4 超分子性质的迭代方法
 
 (July 4, 2026)
 
-The iterative embedding method is a useful approach for the computation of supermolecular
-properties.[[383]](../bib_references/bib.md#bib391)
- The keyword for requesting an iterative embedding calculation is EMB_ITER.
-In this approach, different parts of a system are chosen as active fragment in subsequent embedding calculations.
-The property is then expressed as the sum of contributions from the individual fragments.
-The high-level calculation must be repeated for each fragment, but this is computationally cheaper
-than treating the entire system at once.
+迭代嵌入方法（iterative embedding method）是计算超分子性质（supermolecular properties）的一种有效方法。[[383]](../bib_references/bib.md#bib391)
+ 用于请求迭代嵌入计算的关键字是 EMB_ITER。
+在该方法中，系统的不同部分在后续的嵌入计算中被依次选为活性片段（active fragment）。
+性质随后表示为各个片段贡献之和。
+每个片段都必须重复进行高层级（high-level）计算，但这比一次性处理整个体系的计算代价更低。
 
-It is possible to compute supermolecular static polarizabilities using the iterative embedding method. Within this approach,
-an element $\alpha_{xy}$ of the polarizability tensor $\mathbb{\alpha}$ is computed as
+可以利用迭代嵌入方法计算超分子的静态极化率（static polarizabilities）。在该方法中，极化率张量 $\mathbb{\alpha}$ 的元素 $\alpha_{xy}$ 按如下方式计算
 
 <a id="Ch11.E118"></a>
 $$
 \alpha_{xy}=\sum_{A}{(\alpha_{xy})_{A}} \tag{11.118}
 $$
 
-where the sum over active fragments A includes the entire system.
-This method can also be used to compute supermolecular dipole moments. A component $\mu_{x}$ of the dipole moment vector
-$\mathbb{\mu}$ is obtained as
+其中对活性片段 A 的求和覆盖整个体系。
+该方法同样可用于计算超分子的偶极矩（dipole moments）。偶极矩矢量 $\mathbb{\mu}$ 的分量 $\mu_{x}$ 按如下方式获得
 
 <a id="Ch11.E119"></a>
 $$
 \mu_{x}=\sum_{A}{(\mu_{x})_{A}} \tag{11.119}
 $$
 
-The keywords for triggering these features are EMB_POL and EMB_DIPOLE, respectively.
+触发这些功能的关键字分别为 EMB_POL 和 EMB_DIPOLE。
 
 EMB_ITER
 
 ### `EMB_ITER`
 
-> **Turns iterative projection-based density embedding on**
+> **开启基于投影的迭代密度嵌入（iterative projection-based density embedding）**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not iterate over different fragments.
+>     * 不对不同片段进行迭代。
 >     * TRUE
->     * Turn on iterative density embedding.
-> * **Recommendation**: None
-
-EMB_POL
-
-### `EMB_POL`
-
-> **Triggers the computation of the iterative polarizability tensor**
->
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE
->     * Do not compute the iterative polarizability tensor
->     * TRUE
->     * Compute the iterative polarizability tensor
-> * **Recommendation**: None
-
-EMB_DIPOLE
-
-### `EMB_DIPOLE`
-
-> **Triggers the computation of the iterative dipole moment**
->
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
->     * FALSE
->     * Do not compute the iterative dipole moment
->     * TRUE
->     * Compute the iterative dipole moment
-> * **Recommendation**: None
+>     * 开启迭代密度嵌入。

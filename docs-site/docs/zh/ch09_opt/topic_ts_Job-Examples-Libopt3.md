@@ -1,17 +1,12 @@
 ---
-title: "9.2.6 Libopt3 Job Examples"
+title: "9.2.6 Libopt3 作业示例"
 ---
 
-## 9.2.6 **Libopt3** Job Examples
+## 9.2.6 **Libopt3** 作业示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 9.4: As outlined, the rate of convergence of the iterative optimization process is
-dependent on a number of factors, one of which is the use of an initial
-analytic Hessian. This is easily achieved by instructing Q-Chem to calculate
-an analytic Hessian and proceed then to determine the required critical point.
-This job runs within Libopt3 driver which retains the reading of
-analytical Hessian feature."
+???+ example "示例 9.4: 如前所述，迭代优化过程的收敛速度取决于多种因素，其中之一是否使用初始解析 Hessian 矩阵（Hessian）。这只需指示 Q-Chem 计算解析 Hessian 矩阵，然后继续确定所需的临界点即可轻松实现。该作业在 Libopt3 驱动（driver）中运行，并保留了读取解析 Hessian 矩阵的功能。"
     ```qchem
     $molecule
        0  1
@@ -78,9 +73,7 @@ analytical Hessian feature."
     
     ```
 
-???+ example "Example 9.5: Libopt3 has the capability to provide recomputation of the Hessian
-during optimization. This is useful for difficult optimization jobs, but comes
-with the additional computational cost of calculating Hessians, every N-cycles."
+???+ example "示例 9.5: Libopt3 具备在几何优化过程中重新计算 Hessian 矩阵的能力。这对于困难的优化作业非常有用，但会带来额外的计算开销，即每 N 个循环（cycle）需计算一次 Hessian 矩阵。"
     ```qchem
     $comment
     Recompute Hessian during BFGS geometry optimization.
@@ -119,8 +112,7 @@ with the additional computational cost of calculating Hessians, every N-cycles."
     
     ```
 
-???+ example "Example 9.6: Optimize a structure and then perform vibrational analysis from the recomputed
-Hessian."
+???+ example "示例 9.6: 先优化分子结构，然后基于重新计算的 Hessian 矩阵执行振动分析（vibrational analysis）。"
     ```qchem
     $comment
     Optimize Ethanol then perform vibrational analysis on final structure.
@@ -153,8 +145,7 @@ Hessian."
     
     ```
 
-???+ example "Example 9.7: Libopt3 can read in a user defined topology, rather than using the
-generated topology."
+???+ example "示例 9.7: Libopt3 可以读取用户自定义的拓扑（topology），而不使用自动生成的拓扑。"
     ```qchem
     $comment
     Read in user defined topology
@@ -189,8 +180,7 @@ generated topology."
     $end
     ```
 
-???+ example "Example 9.8: Libopt3 by default uses an exact Hessian for transition-state
-optimization, then allows for vibrational analysis which simplifies input."
+???+ example "示例 9.8: 在过渡态（transition-state）优化中，Libopt3 默认使用精确的 Hessian 矩阵，并支持随后可执行振动分析，从而简化了输入设置。"
     ```qchem
     $comment
     RXN001879

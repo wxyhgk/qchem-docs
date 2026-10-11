@@ -1,195 +1,177 @@
 ---
-title: "4.6.9 Seminumerical Exchange (SNK) Matrix Evaluation"
+title: "4.6.9 半数值交换（SNK）矩阵计算"
 ---
 
-## 4.6.9 Seminumerical Exchange (SNK) Matrix Evaluation
+## 4.6.9 半数值交换（SNK）矩阵计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Seminumerical exchange (SNK) is an alternative method for evaluation
-of the exchange matrix. SNK is particularly efficient for large systems and
-basis sets due to its formal ${\cal{O}}({N^{3}})$ scaling with system size and
-${\cal{O}}({N_{\text{basis}}^{2}})$ scaling with basis set size. In addition, asymptotic
-linear scaling is possible for sparse systems. In SNK, the two-electron
-integrals are decomposed by means of numerical quadrature; one integration
-is performed on a grid:
+半数值交换（seminumerical exchange，SNK）是计算交换矩阵的一种替代方法。由于 SNK 对体系规模的正式标度为 ${\cal{O}}({N^{3}})$，对基组规模的标度为 ${\cal{O}}({N_{\text{basis}}^{2}})$，因此它在处理大体系和大基组时尤为高效。此外，对于稀疏体系还可以实现渐近线性标度。在 SNK 中，双电子积分通过数值求积的方式进行分解；其中一次积分在网格上完成：
 
 <a id="A3.S8.EGx10"></a>
 $$
 \displaystyle(\mu\sigma|\nu\lambda)=\sum_{g}w_{g}\chi_{\mu}(\mathbf{r}_{g})(\nu\lambda|g)\chi_{\sigma}(\mathbf{r}_{g}) \tag{4.59}
 $$
 
-while the second integration
+而第二次积分
 
 <a id="A3.S8.EGx11"></a>
 $$
 \displaystyle(\nu\lambda|g)=\int d\mathbf{r}\frac{\chi_{\nu}(\mathbf{r})\chi_{\lambda}(\mathbf{r})}{|\mathbf{r}-\mathbf{r}_{g}|} \tag{4.60}
 $$
 
-is evaluated analytically (3c-1e). The exchange matrix is computed in three steps:
+则采用解析方式计算（三环一电子积分，3c-1e）。交换矩阵按以下三个步骤计算：
 
 <a id="A3.S8.EGx12"></a>
 $$
 \displaystyle F_{\lambda g} \tag{4.61}
 $$
 
-With integral screening, the number of required 3c-1e integrals can be
-dramatically reduced. **Q-Chem** performs this screening based on contributions of
-a given shellpair on a given batch of grid points to both the exchange energy and the
-exchange matrix, defining two thresholds $\theta_{E}$ and $\theta_{K}$.[[769]](../bib_references/bib.md#bib801)
+借助积分筛选（integral screening），所需 3c-1e 积分的数目可以大幅减少。**Q-Chem** 依据给定壳层对（shellpair）在给定网格点批次上对交换能与交换矩阵的贡献来执行这种筛选，并定义两个阈值 $\theta_{E}$ 与 $\theta_{K}$。[[769]](../bib_references/bib.md#bib801)
 
-Further speedups are attained by evaluating those integrals which are less significant
-but non-negligible in single precision (fp32),[[768]](../bib_references/bib.md#bib802)
- defining a second
-set of thresholds $\theta_{E}^{\text{fp32}}$ and $\theta_{K}^{\text{fp32}}$. These thresholds are
-related to $\theta_{E}$ and $\theta_{K}$ by a multiplier $\theta_{i}^{\text{fp32}}=M^{\text{fp32}}\theta_{i}$.
-Additionally, basis functions which are not significant for a given batch of grid points
-may also be screened by a threshold $\theta_{B}$.
+进一步的加速则通过将那些影响较小但不可忽略的积分以单精度（fp32）来计算来实现，[[768]](../bib_references/bib.md#bib802) 即定义第二组阈值 $\theta_{E}^{\text{fp32}}$ 与 $\theta_{K}^{\text{fp32}}$。这些阈值与 $\theta_{E}$、$\theta_{K}$ 之间的关系由乘子 $\theta_{i}^{\text{fp32}}=M^{\text{fp32}}\theta_{i}$ 给出。此外，对于给定网格批次而言不重要的基函数也可以通过阈值 $\theta_{B}$ 被筛除。
 
-SNK is particularly efficient on hardware supporting OpenMP parallelism and single-instruction-multiple-data vector instructions.
+SNK 在支持 OpenMP 并行以及单指令多数据（SIMD）向量指令的硬件上效率尤为突出。
 
-SNK is currently available for HF exchange, global hybrids, and range-separated hybrids. SNK
-may be invoked by setting SNK to be 1. The grid and thresholds may also be set via
-the rem variables discussed below.
+目前 SNK 可用于 HF 交换、全局杂化（global hybrids）以及作用程分离杂化（range-separated hybrids）。将 SNK 设为 1 即可启用该方法。网格与阈值也可通过下文讨论的 rem 变量来设置。
 
 SNK
 
 ### `SNK`
 
-> **Controls the use of seminumerical exchange in the construction of the exchange matrix.**
+> **控制是否在交换矩阵的构造中使用半数值交换。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **取值选项**：
 >     * $n>0$
->     * Use SNK.
-> * **Recommendation**: Use for large systems/basis sets.
+>     * 使用 SNK。
+> * **建议**：用于大体系/大基组。
 
 SNK_GRID
 
 ### `SNK_GRID`
 
-> **Specifies the type of grid to use for SNK.**
+> **指定 SNK 所使用的网格类型。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `Use SG-1; Use DFT grid (`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`使用 SG-1；使用 DFT 网格（`
+> * **取值选项**：
 >     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * 对 H、C、N、O 使用 SG-0；对其余所有原子使用 SG-1。
 >     * $n$
->     * Use SG-
+>     * 对所有原子使用 SG-
 >     * $n$
->     * for all atoms,
+>     *，
 >     * $n=1,2$
->     * , or 3
+>     * 或 3
 >     * $XY$
->     * A string of two six-digit integers
+>     * 由两个六位整数组成的字符串
 >     * $X$
->     * and
+>     * 和
 >     * $Y$
->     * , where
+>     *，其中
 >     * $X$
->     * is the number of radial points
->     * and
+>     * 为径向点数，
 >     * $Y$
->     * is the number of angular points, where possible numbers of Lebedev angular
->     * points must be allowed values from Table
->     * 5.2
->     * in
->     * Section
+>     * 为角向点数；角向 Lebedev 点数必须是
+>     * 第
 >     * 5.5
->     * .
-> * **Recommendation**: Use the default unless numerical integration problems arise or grid errors become unacceptable. Note that Gauss-Legendre grids ( $-XY$ ) are not available for SNK.
+>     * 节
+>     * 表
+>     * 5.2
+>     * 中所列的允许值。
+> * **建议**：除非出现数值积分问题或网格误差不可接受，否则请使用默认值。注意，Gauss-Legendre 网格（ $-XY$ ）不能用于 SNK。
 
 SNK_BATCH_SIZE
 
 ### `SNK_BATCH_SIZE`
 
-> **Specifies the target grid batch size to use for SNK.**
+> **指定 SNK 所使用的目标网格批次大小。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `128`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`128`
+> * **取值选项**：
 >     * $n$
->     * Use grid batch sizes of
+>     * 网格批次大小设为
 >     * $n$
->     * grid points.
-> * **Recommendation**: Use the default. Larger batch sizes may lead to poorer screening.
+>     * 个网格点。
+> * **建议**：使用默认值。批次过大可能导致筛选效果变差。
 
 SNK_THRESH_B
 
 ### `SNK_THRESH_B`
 
-> **Cutoff for neglect of basis functions on a given grid batch, defined via a threshold of $10^{-\mbox{{\small SNK\_THRESH\_B}}}$ .**
+> **在给定网格批次上忽略基函数的截断值，其阈值定义为 $10^{-\mbox{{\small SNK\_THRESH\_B}}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `14`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`14`
+> * **取值选项**：
 >     * $n$
->     * for a threshold of
+>     * 阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Use the default unless higher accuracy (increase) or better performance (decrease) is desired.
+>     * 。
+> * **建议**：除非需要更高精度（调大）或更佳性能（调小），否则使用默认值。
 
 SNK_THRESH_E
 
 ### `SNK_THRESH_E`
 
-> **Cutoff for neglect of integral contributions to the exchange energy, defined via a threshold of $10^{-\mbox{{\small SNK\_THRESH\_E}}}$ .**
+> **忽略对交换能有贡献的积分时的截断值，其阈值定义为 $10^{-\mbox{{\small SNK\_THRESH\_E}}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`10`
+> * **取值选项**：
 >     * $n$
->     * for a threshold of
+>     * 阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Use the default unless higher accuracy (increase) or better performance (decrease) is desired.
+>     * 。
+> * **建议**：除非需要更高精度（调大）或更佳性能（调小），否则使用默认值。
 
 SNK_THRESH_K
 
 ### `SNK_THRESH_K`
 
-> **Cutoff for neglect of integral contributions to the exchange matrix, defined via a threshold of $10^{-\mbox{{\small SNK\_THRESH\_K}}}$ .**
+> **忽略对交换矩阵有贡献的积分时的截断值，其阈值定义为 $10^{-\mbox{{\small SNK\_THRESH\_K}}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `8`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`8`
+> * **取值选项**：
 >     * $n$
->     * for a threshold of
+>     * 阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: Use the default unless higher accuracy (increase) or better performance (decrease) is desired.
+>     * 。
+> * **建议**：除非需要更高精度（调大）或更佳性能（调小），否则使用默认值。
 
 SNK_THRESH_FP32_M
 
 ### `SNK_THRESH_FP32_M`
 
-> **Multiplies SNK_THRESH_E and SNK_THRESH_K to determine cutoffs for evaluating integrals in single precision (fp32), defined via a factor of $10^{\mbox{{\small SNK\_THRESH\_FP32\_M}}}$ .**
+> **将 SNK_THRESH_E 与 SNK_THRESH_K 相乘，以确定以单精度（fp32）计算积分时的截断值，该乘子因子定义为 $10^{\mbox{{\small SNK\_THRESH\_FP32\_M}}}$ 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **取值选项**：
 >     * $n$
->     * for a factor of
+>     * 因子设为
 >     * $10^{n}$
->     * .
-> * **Recommendation**: For most systems, the default gives appreciable speedups with insignificant losses to accuracy. In some rare cases, the use of mixed precision may result in infs/nans due to fp32 overflow. In this case, mixed precision integrals may be disabled with $\mbox{{\small SNK\_THRESH\_FP32\_M}}=0$ . Note that if an inf/nan is detected in the SNK exchange energy, the SCF will proceed with mixed precision disabled.
+>     * 。
+> * **建议**：对大多数体系而言，默认值可带来显著的加速，而精度损失可以忽略。在少数罕见情况下，使用混合精度可能因 fp32 溢出而产生 inf/nan。此时可通过 $\mbox{{\small SNK\_THRESH\_FP32\_M}}=0$ 关闭混合精度积分。注意，若在 SNK 交换能中检测到 inf/nan，则 SCF 将在关闭混合精度的情况下继续运行。
 
 SNK_PRINT_TIMING
 
 ### `SNK_PRINT_TIMING`
 
-> **Print the time required for one SNK exchange build for each SCF cycle.**
+> **打印每个 SCF 循环中一次 SNK 交换矩阵构建所需的时间。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **取值选项**：
 >     * $n>0$
->     * Print timing information.
-> * **Recommendation**: No recommendation.
+>     * 打印计时信息。
+> * **建议**：无特别建议。
 
-???+ example "Example 4.22: Q-Chem input for an energy calculation with $\omega$ B97M-V/SNK."
+???+ example "示例 4.22：使用 $\omega$ B97M-V/SNK 进行能量计算的 Q-Chem 输入"
     ```qchem
     $molecule
     0 1

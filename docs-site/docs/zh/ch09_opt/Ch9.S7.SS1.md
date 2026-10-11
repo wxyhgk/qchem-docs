@@ -1,150 +1,119 @@
 ---
-title: "9.7.1 Overview"
+title: "9.7.1 概述"
 ---
 
-## 9.7.1 Overview
+## 9.7.1 概述
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The concept of a reaction path is chemically intuitive (a pathway from
-reactants to products) yet somewhat theoretically ambiguous because most
-mathematical definitions depend upon the chosen coordinate system. Stationary
-points on a potential energy surface are independent of this choice, but the
-path connecting them is not, and there exist various mathematical definitions
-of a “reaction path”. **Q-Chem** uses the intrinsic reaction coordinate (IRC)
-definition, as originally defined by Fukui,[[417]](../bib_references/bib.md#bib426)
- which has come to
-be a fairly standard choice in quantum chemistry. The IRC is essentially
-sequence of small, steepest-descent paths going downhill from the transition state.
+反应路径（reaction path）的概念在化学上直观易懂（即从反应物到产物的一条途径），但在理论上却有些含糊，因为大多数数学定义都依赖于所选的坐标系。势能面（Potential Energy Surface, PES）上的驻点（stationary point）与这种选择无关，但连接各驻点的路径则不然，因此“反应路径”存在多种数学定义。**Q-Chem** 采用内禀反应坐标（Intrinsic Reaction Coordinate, IRC）的定义，该定义最早由 Fukui 提出[[417]](../bib_references/bib.md#bib426)，
+ 如今已成为量子化学中相当标准的选择。IRC 本质上是一系列从过渡态（transition state）出发、沿最速下降方向下坡的小步路径。
 
-The reaction path is most unlikely to be a straight line and so by taking a
-finite step length along the direction of the gradient you will leave the
-“true” reaction path. A series of small steepest descent steps will zig-zag
-along the actual reaction path (a behavior known as “stitching”). Ishida
-*et al.*[[615]](../bib_references/bib.md#bib638)
- developed a predictor-corrector algorithm, involving
-a second gradient calculation after the initial steepest-descent step, followed
-by a line search along the gradient bisector to get back on the path, and this
-algorithm was subsequently improved by Schmidt *et al.*.[[1214]](../bib_references/bib.md#bib1268)
+反应路径极不可能是直线，因此若沿梯度方向走一个有限步长，就会偏离“真实”的反应路径。一系列小的最速下降步会沿实际反应路径来回曲折前进（这种行为称为“缝合”，stitching）。Ishida *et al.*[[615]](../bib_references/bib.md#bib638)
+ 开发了一种预测-校正（predictor-corrector）算法，在初始最速下降步之后进行第二次梯度计算，随后沿两梯度的角平分线做直线搜索以回到路径上，此算法后来由 Schmidt *et al.*进一步改进[[1214]](../bib_references/bib.md#bib1268)。
 
-This is the method that **Q-Chem** adopts. It cannot be used for the first
-downhill step from the transition state, since the gradient is zero, so instead
-a step is taken along the Hessian mode whose frequency is imaginary.
+这正是 **Q-Chem** 所采用的方法。它不能用于从过渡态出发的第一个下坡步，因为此时梯度为零，所以取而代之的是沿虚频对应的 Hessian 模式走一步。
 
-The reaction path can be defined and followed in $Z$-matrix coordinates,
-Cartesian coordinates or mass-weighted Cartesian coordinates. The latter
-represents the “true” IRC as defined by Fukui.[[417]](../bib_references/bib.md#bib426)
- If the
-rationale for following the reaction path is simply to determine which local
-minima are connected by a given transition state, which, is arguably the major
-use of IRC algorithms, then the choice of coordinates is irrelevant. In order
-to use the IRC code, the transition state geometry and the exact Hessian must
-be available. These must be computed via two prior calculations, with
-JOBTYPE = TS (transition structure search) and
-JOBTYPE = FREQ (Hessian calculation), respectively. Job
-control variables and examples appear below.
+反应路径可以在 $Z$-矩阵坐标、笛卡尔坐标或质量加权笛卡尔坐标（mass-weighted Cartesian coordinates）中定义和跟踪。其中后者代表由 Fukui 定义的“真实” IRC[[417]](../bib_references/bib.md#bib426)。
+ 如果跟踪反应路径的目的仅仅是确定给定的过渡态连接了哪两个局部极小值——这可以说是 IRC 算法的主要用途——那么坐标系的选择就无关紧要。要使用 IRC 程序，必须已获得过渡态几何结构和精确的 Hessian 矩阵。这两者必须通过先前的两次计算得到，即分别使用
+JOBTYPE = TS（过渡态结构搜索）和
+JOBTYPE = FREQ（Hessian 计算）。作业控制变量及示例见下文。
 
-An IRC calculation is invoked by setting JOBTYPE = RPATH in
-the *$rem* section, and additional *$rem* variables are described below. IRC
-calculations may benefit from the methods discussed in
-Section [9.3](sec_better_TS_guess.md) for obtaining good initial guesses for
-transition-state structures. The final pathway (in both forward and backward
-directions) is printed at the end of the **Q-Chem** output file as a sequence of
-Cartesian-coordinate geometries representing steps along the pathway. The format
-for this output is a standard one that is readable, for example, by the
-Visual Molecular Dynamics (VMD) program.[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627)
+通过在 *$rem* 段中设置 JOBTYPE = RPATH
+即可调用 IRC 计算，其他 *$rem* 变量将在下面说明。IRC 计算可从
+第 9.3 节[9.3](sec_better_TS_guess.md)中讨论的方法中获益，以获得过渡态结构的良好初始猜测。最终路径（正向和反向两个方向）作为一系列代表路径上各步的笛卡尔坐标几何结构，打印在 **Q-Chem** 输出文件的末尾。此输出的格式是标准格式，可被 Visual Molecular Dynamics (VMD) 程序等读取[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627)。
 
 RPATH_COORDS
 
 ### `RPATH_COORDS`
 
-> **Determines which coordinate system to use in the IRC search.**
+> **决定在 IRC 搜索中使用哪种坐标系。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * 0
->     * Use mass-weighted coordinates.
+>     * 使用质量加权坐标。
 >     * 1
->     * Use Cartesian coordinates.
+>     * 使用笛卡尔坐标。
 >     * 2
->     * Use
+>     * 使用
 >     * Z
->     * -matrix coordinates.
-> * **Recommendation**: Use the default. Note that use of $Z$ -matrix coordinates requires that geometries be input in $Z$ -matrix format.
+>     * -矩阵坐标。
+> * **建议**：使用默认值。注意，使用 $Z$-矩阵坐标要求几何结构以 $Z$-矩阵格式输入。
 
 RPATH_DIRECTION
 
 ### `RPATH_DIRECTION`
 
-> **Determines the first direction of the eigenmode to follow. This will not usually be known prior to the Hessian diagonalization.**
+> **决定首先要沿本征模式的哪个方向下降。在 Hessian 对角化之前通常无法预知该方向。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * 1
->     * Descend in the positive direction of the eigenmode, then restart in the negative direction.
+>     * 先沿本征模式的正方向下降，然后在负方向重新启动。
 >     * -1
->     * Descend in the negative direction of the eigenmode, then restart in the positive direction.
-> * **Recommendation**: It is usually not possible to determine in which direction to go a priori , so both directions are automatically considered. A job that reads in the final geometry from the reaction path job will use the final step from the second direction.
+>     * 先沿本征模式的负方向下降，然后在正方向重新启动。
+> * **建议**：通常无法先验地确定应沿哪个方向进行，因此会自动考虑两个方向。读取反应路径作业最终几何结构的作业将使用第二个方向的最后一步。
 
 RPATH_MAX_CYCLES
 
 ### `RPATH_MAX_CYCLES`
 
-> **Specifies the maximum number of points to find on the reaction path.**
+> **指定在反应路径上要寻找的最大点数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `20`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`20`
+> * **选项**：
 >     * $n$
->     * User-defined number of cycles.
-> * **Recommendation**: Use more points if the minimum is desired, but not reached using the default.
+>     * 用户自定义的循环次数。
+> * **建议**：如果希望到达极小值但用默认值未能达到，则使用更多的点。
 
 RPATH_MAX_STEPSIZE
 
 ### `RPATH_MAX_STEPSIZE`
 
-> **Specifies the maximum step size to be taken (in 0.001 a.u.).**
+> **指定所采取的最大步长（以 0.001 a.u. 为单位）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `150`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`150`
+> * **选项**：
 >     * $n$
->     * Step size =
+>     * 步长 =
 >     * $n$
->     * /1000 a.u.
-> * **Recommendation**: None.
+>     * /1000 a.u.
+> * **建议**：无。
 
 RPATH_TOL_DISPLACEMENT
 
 ### `RPATH_TOL_DISPLACEMENT`
 
-> **Specifies the convergence threshold for the step. If a step size is chosen by the algorithm that is smaller than this, the path is deemed to have reached the minimum.**
+> **指定步长的收敛阈值。如果算法选择的步长小于该值，则认为路径已到达极小值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5000`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5000`
+> * **选项**：
 >     * $n$
->     * User-defined. Tolerance =
+>     * 用户自定义。容差 =
 >     * $n$
->     * /1000000 a.u.
-> * **Recommendation**: Use the default. Note that this option only controls the threshold for ending the RPATH job and does nothing to the intermediate steps of the calculation. A smaller value will provide reaction paths that end closer to the true minimum. Use of smaller values without adjusting RPATH_MAX_STEPSIZE , however, can lead to oscillations about the minimum.
+>     * /1000000 a.u.
+> * **建议**：使用默认值。注意，此选项只控制结束 RPATH 作业的阈值，对计算的中间步骤没有任何影响。较小的值会使反应路径在更接近真实极小值处终止。然而，在不调整 RPATH_MAX_STEPSIZE 的情况下使用较小的值，可能导致在极小值附近的振荡。
 
 RPATH_PRINT
 
 ### `RPATH_PRINT`
 
-> **Specifies the print output level.**
+> **指定输出打印级别。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **选项**：
 >     * $n$
-> * **Recommendation**: Use the default, as little additional information is printed at higher levels. Most of the output arises from the multiple single point calculations that are performed along the reaction pathway.
+> * **建议**：使用默认值，因为更高级别并不会打印多少额外信息。大部分输出来自于沿反应路径所执行的多次单点能计算。
 
-???+ example "Example 9.25: Reaction path search. Note that there are three required jobs: a TS search,
-followed by a frequency (Hessian) calculation, and finally the IRC calculation."
+???+ example "示例 9.25：反应路径搜索。注意共有三个必需作业：先进行 TS 搜索，
+接着进行频率（Hessian）计算，最后进行 IRC 计算。"
     ```qchem
     $molecule
        0 1

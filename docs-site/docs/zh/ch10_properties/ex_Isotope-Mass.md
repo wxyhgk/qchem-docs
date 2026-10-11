@@ -1,17 +1,14 @@
 ---
-title: "10.8.2 Isotopic Substitutions and Changes in T and P"
+title: "10.8.2 同位素取代以及 $T$ 和 $P$ 的变化"
 ---
 
-## 10.8.2 Isotopic Substitutions and Changes in $T$ and $P$
+## 10.8.2 同位素取代以及 $T$ 和 $P$ 的变化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-By default **Q-Chem** calculates vibrational frequencies using the atomic masses
-of the most abundant isotopes.
+默认情况下，**Q-Chem** 使用最丰富同位素的原子质量来计算振动频率。
 
-Masses of other isotopes can be specified
-using the *$isotopes* section and by setting the ISOTOPES *$rem*
-variable to TRUE. The format of the *$isotopes* section is as follows:
+可以通过 *$isotopes* 段并将 *$rem* 变量 ISOTOPES 设置为 TRUE 来指定其他同位素的质量。*$isotopes* 段的格式如下：
 
 > ```qchem
 > $isotopes
@@ -27,47 +24,32 @@ variable to TRUE. The format of the *$isotopes* section is as follows:
 > $end
 > ```
 
-**Note: 
+**注意：**
 
-Only the atoms whose masses are to be changed from the default
-values need to be specified. After each loop all masses are reset to the
-default values. Atoms are numbered according to the order in the *$molecule* section.
-**
+**只需指定那些质量要偏离默认值而被更改的原子。在每个循环（loop）结束后，所有质量都会被重置为默认值。原子编号按照 *$molecule* 段中出现的顺序确定。**
 
-An initial loop using the default masses is always performed first. Subsequent
-loops use the user-specified atomic masses. Only those atoms whose masses are
-to be changed need to be included in the list, all other atoms will adopt the
-default masses. The output gives a full frequency analysis for each loop. Note
-that the calculation of vibrational frequencies in the additional loops only
-involves a rescaling of the computed Hessian, and therefore takes little
-additional computational time.
+程序总是先执行一个使用默认质量的初始循环。其后的循环则使用用户指定的原子质量。列表中只需包含那些质量需要更改的原子，其余原子都将采用默认质量。输出会为每个循环给出完整的频率分析。请注意，附加循环中振动频率的计算仅涉及对已计算得到的 Hessian（海塞矩阵）进行重新标度，因此几乎不增加额外的计算时间。
 
-The first line of the *$isotopes* section specifies the number of substitution loops
-and also whether the temperature and pressure should be modified. The *tp_flag*
-setting should be set to 0 if the default temperature and pressure are to be used (298.15 K
-and 1 atm respectively), or else to 1 if they are to be altered. Note that the
-temperatures should be specified in Kelvin and pressures in atmospheres.
-See Example 10.8.2.
+*$isotopes* 段的第一行指定取代循环的数目，并指明是否需要修改温度和压强。若使用默认的温度和压强（分别为 298.15 K 和 1 atm），*tp_flag* 应设置为 0；若要改变它们，则设置为 1。请注意，温度应以开尔文（Kelvin）为单位给出，压强应以大气压（atmospheres）为单位给出。参见示例 10.8.2。
 
 ISOTOPES
 
 ### `ISOTOPES`
 
-> **Specifies if non-default masses are to be used in the frequency calculation.**
+> **指定在频率计算中是否使用非默认质量。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Use default masses only.
+>     * 仅使用默认质量。
 >     * TRUE
->     * Read isotope masses from
+>     * 从
 >     * $isotopes
->     * section.
-> * **Recommendation**: None
+>     * 段读取同位素质量。
+> * **建议**: 无
 
-???+ example "Example 10.39: An EDF1/6-31G* optimization, followed by a vibrational analysis including isotopic substitution. Doing the
-vibrational analysis at a stationary point is necessary for the results to be valid."
+???+ example "示例 10.39: 先进行 EDF1/6-31G* 几何优化，随后进行包含同位素取代的振动分析。只有在驻点上进行振动分析，结果才是有效的。"
     ```qchem
     $molecule
        0  1
@@ -110,8 +92,7 @@ vibrational analysis at a stationary point is necessary for the results to be va
     $end
     ```
 
-???+ example "Example 10.40: EDF1/6-31G* optimization followed by vibrational analysis in which the vibrational enthalpy and entropy
-and computed at different temperatures and pressures."
+???+ example "示例 10.40: 先进行 EDF1/6-31G* 几何优化，随后进行振动分析，并在不同的温度和压强下计算振动焓与振动熵。"
     ```qchem
     $molecule
        0 1

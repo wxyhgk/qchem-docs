@@ -1,15 +1,12 @@
 ---
-title: "7.3.12 Examples"
+title: "7.3.12 示例"
 ---
 
-## 7.3.12 Examples
+## 7.3.12 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 7.31: This example shows two jobs which request variants of time-dependent density
-functional theory calculations. The first job, using the default value of RPA = FALSE , performs TDDFT in the Tamm-Dancoff approximation
-(TDA). The second job, with RPA = TRUE performs a both TDA
-and full TDDFT calculations."
+???+ example "示例 7.31: 本示例展示两个作业，分别请求含时密度泛函理论（Time-Dependent Density Functional Theory, TDDFT）计算的不同变体。第一个作业使用默认值 RPA = FALSE，在 Tamm-Dancoff 近似（Tamm-Dancoff Approximation, TDA）下执行 TDDFT 计算。第二个作业设置 RPA = TRUE，同时执行 TDA 和完整的 TDDFT 计算。"
     ```qchem
     $comment
        methyl peroxy radical
@@ -51,8 +48,7 @@ and full TDDFT calculations."
     $end
     ```
 
-???+ example "Example 7.32: This example shows a calculation of the excited states of a formamide-water
-complex within a reduced excitation space of the orbitals located on formamide."
+???+ example "示例 7.32: 本示例展示在缩减的激发空间中（仅包含定域在甲酰胺上的轨道）计算甲酰胺-水络合物激发态的过程。"
     ```qchem
     $comment
        formamide-water TDDFT/TDA in reduced excitation space

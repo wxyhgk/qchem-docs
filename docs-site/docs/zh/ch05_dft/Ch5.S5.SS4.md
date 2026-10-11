@@ -1,35 +1,29 @@
 ---
-title: "5.5.4 Consistency Check and Cutoffs"
+title: "5.5.4 一致性检查与截断"
 ---
 
-## 5.5.4 Consistency Check and Cutoffs
+## 5.5.4 一致性检查与截断
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Whenever **Q-Chem** calculates numerical density functional integrals, the
-electron density itself is also integrated numerically as a test of the quality
-of the numerical quadrature. The extent to which this numerical result differs
-from the number of electrons is an indication of the accuracy of the other
-numerical integrals. A warning message is printed whenever the relative error
-in the numerical electron count reaches 0.01%, indicating that the numerical
-XC results may not be reliable. If the warning appears on the first SCF cycle
-it is probably not serious, because the initial-guess density matrix is
-sometimes not idempotent. This is the case with the SAD guess discussed in
-Section [4.4](../ch04_scf/sect_initialguess.md), and also with a density matrix that is taken
-from a previous geometry optimization cycle, and in such cases the problem will
-likely correct itself in subsequent SCF iterations. If the warning persists,
-however, then one should consider either using a finer grid or else selecting
-an alternative initial guess.
+每当 **Q-Chem** 计算数值型密度泛函积分时，都会同时对电子密度本身进行数值积分，
+以检验数值求积（numerical quadrature）的质量。该数值结果与体系电子数之间的偏差程度，
+可以作为其他数值积分精度的一项指示。当数值电子计数（electron count）的相对误差达到
+0.01% 时，程序会打印一条警告信息，表明数值交换关联（Exchange-Correlation, XC）结果
+可能不可靠。如果该警告出现在第一个自洽场（Self-Consistent Field, SCF）循环中，通常
+并不严重，因为初始猜测（initial guess）密度矩阵有时并不满足幂等性（idempotency）。
+第 [4.4](../ch04_scf/sect_initialguess.md) 节讨论的叠加原子密度（Superposition of Atomic
+Densities, SAD）猜测就属于这种情况；从上一次几何优化循环中继承的密度矩阵同样如此。
+在这些情况下，问题很可能会在后续的 SCF 迭代中自行消除。然而，如果警告持续存在，
+则应考虑使用更精细的网格（grid），或者选择另一种初始猜测。
 
-By default, **Q-Chem** will estimate the magnitude of various XC contributions on
-the grid and eliminate those determined to be numerically insignificant.
-**Q-Chem** uses specially-developed cutoff procedures which permits evaluation of
-the XC energy and potential in only ${\cal{O}}({N})$ work for large molecules. This is
-a significant improvement over the formal ${\cal{O}}({N^{3}})$ scaling of the XC cost,
-and is critical in enabling DFT calculations to be carried out on very large
-systems. In rare cases, however, the default cutoff scheme can be too
-aggressive, eliminating contributions that should be retained; this is almost
-always signaled by an inaccurate numerical density integral. An example of when
-this could occur is in calculating anions with multiple sets of diffuse
-functions in the basis. A remedy may be to increase the size of the quadrature
-grid.
+默认情况下，**Q-Chem** 会在网格上估算各类 XC 贡献的量级，并剔除那些被判定为数值上不
+重要的贡献。**Q-Chem** 采用了专门开发的截断（cutoff）流程，使得对大分子而言，XC 能量
+与 XC 势的评估仅需 ${\cal{O}}({N})$ 的计算量。相较于 XC 计算形式上的 ${\cal{O}}({N^{3}})$
+标度关系，这是一项显著的改进，也是使密度泛函理论（Density Functional Theory, DFT）
+计算能够应用于极大型体系的关键所在。不过在少数情况下，默认的截断方案可能过于激进，
+从而剔除了本应保留的贡献；这种情况几乎总是表现为数值密度积分不准确。一个可能的例子
+是在基组中包含多组弥散函数（diffuse functions）的阴离子计算。对此，一种补救办法是
+增大求积网格的规模。
+
+已同步写入 `docs-site/docs/zh/ch05_dft/Ch5.S5.SS4.md`（标题译法与 `sect_quadrature.md` 索引保持一致）。

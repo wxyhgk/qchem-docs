@@ -1,178 +1,175 @@
 ---
-title: "11.4 Q-Chem/Charmm Interface"
+title: "11.4 Q-Chem/Charmm 接口"
 ---
 
-# 11.4 **Q-Chem**/**Charmm** Interface
+# 11.4 **Q-Chem**/**Charmm** 接口
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** can be used a QM back-end for QM/MM calculations using the **Charmm**
-package.[[1492]](../bib_references/bib.md#bib1551)
- In this case, both software packages are required
-to perform the calculations, but all the code required for communication
-between the programs is incorporated in the released versions. Stand-alone
-QM/MM calculations are described in Section [11.3](sec_QMMM.md).
+**Q-Chem** 可以作为使用 **Charmm** 软件包进行的 QM/MM（量子力学/分子力学）计算的 QM 后端。[[1492]](../bib_references/bib.md#bib1551)
+在这种情况下，执行计算需要同时使用这两个软件包，但程序之间通信所需的全部代码
+均已包含在发布版本中。独立的 QM/MM 计算在第 [11.3](sec_QMMM.md) 节中描述。
 
-QM/MM jobs that use the **Charmm** interface are controlled using the following *$rem* keywords:
+使用 **Charmm** 接口的 QM/MM 作业通过以下 *$rem* 关键字进行控制：
 
 QM_MM
 
 ### `QM_MM`
 
-> **Turns on the Q-Chem / Charmm interface.**
+> **开启 Q-Chem / Charmm 接口。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Do QM/MM calculation through the
+>     * 通过
 >     * Q-Chem
 >     * /
 >     * Charmm
->     * interface.
+>     * 接口执行 QM/MM 计算。
 >     * FALSE
->     * Turn this feature off.
-> * **Recommendation**: Use the default unless running calculations with Charmm .
+>     * 关闭此功能。
+> * **建议**：除非使用 Charmm 运行计算，否则使用默认值。
 
 QMMM_PRINT
 
 ### `QMMM_PRINT`
 
-> **Controls the amount of output printed from a QM/MM job.**
+> **控制 QM/MM 作业输出信息的多少。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Limit molecule, point charge, and analysis printing.
+>     * 限制分子、点电荷以及分析信息的打印。
 >     * FALSE
->     * Normal printing.
-> * **Recommendation**: Use the default unless running calculations with Charmm .
+>     * 正常打印。
+> * **建议**：除非使用 Charmm 运行计算，否则使用默认值。
 
 QMMM_CHARGES
 
 ### `QMMM_CHARGES`
 
-> **Controls the printing of QM charges to file.**
+> **控制是否将 QM 电荷打印到文件。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Writes a charges.dat file with the Mulliken charges from the QM region.
+>     * 写入一个 charges.dat 文件，其中包含来自 QM 区域的 Mulliken 电荷。
 >     * FALSE
->     * No file written.
-> * **Recommendation**: Use the default unless running calculations with Charmm where charges on the QM region need to be saved.
+>     * 不写入文件。
+> * **建议**：除非使用 Charmm 运行计算且需要保存 QM 区域上的电荷，否则使用默认值。
 
 ESP_EFIELD
 
 ### `ESP_EFIELD`
 
-> **Triggers the calculation of the electrostatic potential (ESP) and/or the electric field at the positions of the MM charges.**
+> **触发在 MM 电荷位置上计算静电势（ESP）和/或电场。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * Computes ESP only.
+>     * 仅计算 ESP。
 >     * 1
->     * Computes ESP and electric field.
+>     * 计算 ESP 和电场。
 >     * 2
->     * Computes electric field only.
-> * **Recommendation**: None.
+>     * 仅计算电场。
+> * **建议**：无。
 
 GEOM_PRINT
 
 ### `GEOM_PRINT`
 
-> **Controls the amount of geometric information printed at each step.**
+> **控制在每一步打印的几何信息量。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Prints out all geometric information; bond distances, angles, torsions.
+>     * 打印所有几何信息；键长、键角、二面角。
 >     * FALSE
->     * Normal printing of distance matrix.
-> * **Recommendation**: Use if you want to be able to quickly examine geometric parameters at the beginning and end of optimizations. Only prints in the beginning of single point energy calculations.
+>     * 正常打印距离矩阵。
+> * **建议**：如果你希望在优化的开始和结束阶段快速查看几何参数，则使用此项。在单点能计算中仅在开始时打印。
 
 QMMM_FULL_HESSIAN
 
 ### `QMMM_FULL_HESSIAN`
 
-> **Trigger the evaluation of the full QM/MM Hessian.**
+> **触发对完整 QM/MM Hessian（黑塞矩阵）的求值。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Evaluates full Hessian.
+>     * 求值完整的 Hessian。
 >     * FALSE
->     * Hessian for QM-QM block only.
-> * **Recommendation**: None
+>     * 仅求值 QM-QM 分块的 Hessian。
+> * **建议**：无
 
 LINK_ATOM_PROJECTION
 
 ### `LINK_ATOM_PROJECTION`
 
-> **Controls whether to perform a link-atom projection**
+> **控制是否执行连接原子（link atom）投影**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`TRUE`
+> * **选项**：
 >     * TRUE
->     * Performs the projection
+>     * 执行投影
 >     * FALSE
->     * No projection
-> * **Recommendation**: Necessary in a full QM/MM Hessian evaluation on a system with link atoms
+>     * 不执行投影
+> * **建议**：在对含有连接原子的体系求值完整的 QM/MM Hessian 时是必需的
 
 HESS_AND_GRAD
 
 ### `HESS_AND_GRAD`
 
-> **Enables the evaluation of both analytical gradient and Hessian in a single job**
+> **在单个作业中同时启用解析梯度与 Hessian 的求值**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Evaluates both gradient and Hessian.
+>     * 同时求值梯度和 Hessian。
 >     * FALSE
->     * Evaluates Hessian only.
-> * **Recommendation**: Use only in a frequency (and thus Hessian) evaluation.
+>     * 仅求值 Hessian。
+> * **建议**：仅在频率计算（因而需要 Hessian）中使用。
 
 GAUSSIAN_BLUR
 
 ### `GAUSSIAN_BLUR`
 
-> **Enables the use of Gaussian-delocalized external charges in a QM/MM calculation.**
+> **在 QM/MM 计算中启用高斯离域的外电荷。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * Delocalizes external charges with Gaussian functions.
+>     * 用高斯函数使外电荷离域。
 >     * FALSE
->     * Point charges
-> * **Recommendation**: None
+>     * 点电荷
+> * **建议**：无
 
 SKIP_CHARGE_SELF_INTERACT
 
 ### `SKIP_CHARGE_SELF_INTERACT`
 
-> **Ignores the electrostatic interactions among external charges in a QM/MM calculation.**
+> **忽略 QM/MM 计算中各外电荷之间的静电相互作用。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **选项**：
 >     * TRUE
->     * No electrostatic interactions among external charges.
+>     * 外电荷之间不存在静电相互作用。
 >     * FALSE
->     * Computes the electrostatic interactions among external charges.
-> * **Recommendation**: None
+>     * 计算外电荷之间的静电相互作用。
+> * **建议**：无
 
-???+ example "Example 11.27: Do a basic QM/MM optimization of the water dimer. You need Charmm to do
-this but this is the Q-Chem file that is needed to test the QM/MM functionality. These are the bare necessities for a Q-Chem / Charmm QM/MM calculation."
+???+ example "示例 11.27：对水二聚体进行基本的 QM/MM 优化。你需要 Charmm 才能完成此计算，
+但这里是测试 QM/MM 功能所需的 Q-Chem 文件。这些是进行 Q-Chem / Charmm QM/MM 计算所必需的最少内容。"
     ```qchem
     $molecule
        0 1
@@ -195,25 +192,20 @@ this but this is the Q-Chem file that is needed to test the QM/MM functionality
     $end
     ```
 
-The **Q-Chem**/**Charmm** interface is unique in that:
+**Q-Chem**/**Charmm** 接口的独特之处在于：
 
 - •
 
-The external point charges can be replaced with Gaussian-delocalized
-charges with a finite width.[[300]](../bib_references/bib.md#bib304)
- This is an empirical way to
-include the delocalized character of the electron density of atoms in the MM
-region. This can be important for the electrostatic interaction of the QM
-region with nearby atoms in the MM region.
+外点电荷可以被替换为具有有限宽度的高斯离域电荷。[[300]](../bib_references/bib.md#bib304)
+这是一种经验性的方法，用于纳入 MM 区域中原子电子密度的离域特征。这对于 QM 区域
+与 MM 区域中邻近原子之间的静电相互作用可能很重要。
 - •
 
-We allow the evaluation of the full QM/MM Hessian.[[1491]](../bib_references/bib.md#bib1552)
+我们支持求值完整的 QM/MM Hessian。[[1491]](../bib_references/bib.md#bib1552)
 
-When link atoms are inserted to saturate the QM region, all Hessian
-elements associated with link atoms are automatically projected onto their QM
-and MM host atoms.
+当插入连接原子（link atoms）以饱和 QM 区域时，与连接原子相关的所有 Hessian 元素
+都会自动投影到其 QM 与 MM 宿主原子上。
 - •
 
-For systems with a large number of MM atoms, one can define blocks
-consisting of multiple MM atoms (*i.e.*, mobile blocks) and efficiently evaluate
-the corresponding mobile-block Hessian (MBH) for normal mode analysis.
+对于含有大量 MM 原子的体系，可以定义由多个 MM 原子组成的块（*即*，移动块，mobile blocks），
+并高效地求值相应的移动块 Hessian（MBH）以进行简正模式分析。

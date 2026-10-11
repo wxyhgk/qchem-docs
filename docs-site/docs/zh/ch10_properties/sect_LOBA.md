@@ -1,89 +1,60 @@
 ---
-title: "10.2.6 Localized Orbital Bonding Analysis"
+title: "10.2.6 定域轨道成键分析"
 ---
 
-## 10.2.6 Localized Orbital Bonding Analysis
+## 10.2.6 定域轨道成键分析
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Localized orbital bonding analysis (LOBA) is a technique
-developed by Dr. Alex Thom and Eric Sundstrom at Berkeley with Prof. Martin
-Head-Gordon.[[1357]](../bib_references/bib.md#bib1416)
+定域轨道成键分析（Localized Orbital Bonding Analysis, LOBA）是由 Alex Thom 博士、Eric Sundstrom 与 Martin Head-Gordon 教授在伯克利开发的一种技术。[[1357]](../bib_references/bib.md#bib1416)
 
-Inspired by the work of Rhee and Head-Gordon,[[1163]](../bib_references/bib.md#bib1216)
+受 Rhee 和 Head-Gordon 工作的启发，[[1163]](../bib_references/bib.md#bib1216)
 
-it makes use of the fact that the post-SCF localized occupied orbitals of a system
-provide a large amount of information about the bonding in the system.
+该技术利用了这一事实：体系的自洽场（SCF）后定域占据轨道能够提供关于体系成键情况的大量信息。
 
-While the canonical molecular orbitals can provide information about local
-reactivity and ionization energies, their delocalized nature makes them rather
-uninformative when looking at the bonding in larger molecules. Localized
-orbitals in contrast provide a convenient way to visualize and account for
-electrons. Transformations of the orbitals within the occupied subspace do not
-alter the resultant density; if a density can be represented as orbitals
-localized on individual atoms, then those orbitals can be regarded as
-non-bonding. If a maximally localized set of orbitals still requires some to
-be delocalized between atoms, these can be regarded as bonding electrons. A
-simple example is that of He${}_{2}$ versus H${}_{2}$. In the former, the delocalized
-$\sigma_{g}$ and $\sigma_{u}$ canonical orbitals may be transformed into 1s
-orbitals on each He atom, and there is no bond between them. This is not
-possible for the H${}_{2}$ molecule, and so we can regard there being a bond
-between the atoms. In cases of multiple bonding, multiple delocalized orbitals
-are required.
+虽然正则分子轨道（canonical molecular orbitals）可以提供有关局部反应活性和电离能的信息，但其离域特性使得在考察较大分子的成键时几乎无法提供有用信息。相比之下，定域轨道（Localized orbitals）为可视化和追踪电子提供了一种便捷途径。在占据子空间内对轨道进行变换不会改变由此产生的密度；如果某个密度可以表示为定域在各个单独原子上的轨道，那么这些轨道就可以被视为非键轨道。如果一组极大定域化的轨道中仍有某些轨道需要在原子间离域，则这些电子可被视为成键电子。一个简单例子是 He${}_{2}$ 与 H${}_{2}$ 的对比。对于前者，离域的 $\sigma_{g}$ 和 $\sigma_{u}$ 正则轨道可以变换为每个 He 原子上的 1s 轨道，二者之间不存在化学键。而对于 H${}_{2}$ 分子，这种变换无法实现，因此我们可以认为原子之间存在化学键。在多重键的情况下，则需要若干离域轨道来描述。
 
-While there are no absolute definitions of bonding and oxidation state, it has
-been shown that the localized orbitals match the chemically intuitive notions
-of core, non-bonded, single- and double-bonded electrons, *etc.* By combining
-these localized orbitals with population analyses, LOBA allows the nature of
-the bonding within a molecule to be quickly determined.
+虽然成键与氧化态并没有绝对的定义，但已有研究表明，定域轨道与化学直觉上的核心电子、非键电子、单键电子和双键电子等概念相吻合，*等等*。将这些定域轨道与布居分析（population analyses）相结合，LOBA 能够快速确定分子内成键的本质。
 
-In addition, it has been found that by counting localized electrons, the
-oxidation states of transition metals can be easily found. Owing to
-polarization caused by ligands, an upper threshold is applied, populations
-above which are regarded as “localized” on an atom, which has been calibrated
-to a range of transition metals, recovering standard oxidation states ranging
-from $-$II to VII.
+此外，研究发现，通过统计定域电子数目，可以方便地确定过渡金属的氧化态。由于配体引起的极化效应，需要设定一个上限阈值，超过该阈值的布居被视为“定域”在某个原子上；该阈值已针对一系列过渡金属进行校准，能够重现从 $-$II 到 VII 的标准氧化态。
 
 LOBA
 
 ### `LOBA`
 
-> **Specifies the methods to use for LOBA**
+> **指定 LOBA 所使用的方法**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `00`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`00`
+> * **选项**：
 >     * $ab$
 >     * $a$
->     * specifies the localization method
->     * 0 Perform Boys localization.
->     * 1 Perform PM localization.
->     * 2 Perform ER localization.
+>     * 指定定域化方法
+>     * 0 执行 Boys 定域化。
+>     * 1 执行 PM 定域化。
+>     * 2 执行 ER 定域化。
 >     * $b$
->     * specifies the population analysis method
->     * 0 Do not perform LOBA. This is the default.
->     * 1 Use Mulliken population analysis.
->     * 2 Use Löwdin population analysis.
-> * **Recommendation**: Boys Localization is the fastest. ER will require an auxiliary basis set. LOBA 12 provides a reasonable speed/accuracy compromise.
+>     * 指定布居分析方法
+>     * 0 不执行 LOBA。此为默认值。
+>     * 1 使用 Mulliken 布居分析。
+>     * 2 使用 Löwdin 布居分析。
+> * **建议**：Boys 定域化速度最快。ER 方法需要一组辅助基组（auxiliary basis set）。LOBA 12 在速度与精度之间提供了合理的折中。
 
 LOBA_THRESH
 
 ### `LOBA_THRESH`
 
-> **Specifies the thresholds to use for LOBA**
+> **指定 LOBA 所使用的阈值**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6015`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`6015`
+> * **选项**：
 >     * $aabb$
 >     * $aa$
->     * specifies the threshold to use for localization
+>     * 指定定域化所使用的阈值
 >     * $bb$
->     * specifies the threshold to use for occupation
->     * Both are given as percentages.
-> * **Recommendation**: Decrease $bb$ to see the smaller contributions to orbitals. Values of $aa$ between 40 and 75 have been shown to given meaningful results.
+>     * 指定占据数所使用的阈值
+>     * 两者均以百分比形式给出。
+> * **建议**：减小 $bb$ 可以观察到轨道中更小的贡献成分。$aa$ 取 40 到 75 之间的值已被证明能给出有意义的结果。
 
-On a technical note, LOBA can function of both restricted and unrestricted
-SCF calculations. The figures printed in the bonding analysis count the number
-of electrons on each atom from that orbital (*i.e.*, up to 1 for unrestricted
-or singly occupied restricted orbitals, and up to 2 for double occupied restricted.)
+从技术角度说明，LOBA 既可用于限制性 SCF 计算，也可用于非限制性 SCF 计算。成键分析中打印的数字统计的是该轨道在每个原子上的电子数（*即*，对于非限制性轨道或单占据限制性轨道最多为 1，对于双占据限制性轨道最多为 2。）

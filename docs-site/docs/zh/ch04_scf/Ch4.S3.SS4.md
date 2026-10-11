@@ -1,17 +1,14 @@
 ---
-title: "4.3.4 Examples"
+title: "4.3.4 示例"
 ---
 
-## 4.3.4 Examples
+## 4.3.4 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Provided below are examples of **Q-Chem** input files to run ground state, HF
-single point energy calculations.
+以下给出了运行基态 HF（Hartree-Fock，哈特里-福克）单点能计算的 **Q-Chem** 输入文件示例。
 
-???+ example "Example 4.2: Example Q-Chem input for a single point energy calculation on water. Note
-that the declaration of the single point $rem variable is redundant because
-it is the same as the Q-Chem default."
+???+ example "示例 4.2: 水分子单点能计算的 Q-Chem 输入示例。注意，单点能的 $rem 变量声明是多余的，因为它与 Q-Chem 的默认设置相同。"
     ```qchem
     $molecule
        0  1
@@ -30,9 +27,7 @@ it is the same as the Q-Chem default."
     $end
     ```
 
-???+ example "Example 4.3: UHF/6-311G calculation on the Li atom. Note that correlation and the job type
-were not indicated because Q-Chem defaults automatically to no correlation
-and single point energies. Note also that, since the number of $\alpha$ and $\beta$ electron differ, MOs default to an unrestricted formalism."
+???+ example "示例 4.3: Li 原子的 UHF/6-311G 计算。注意，此处没有指明相关方法和作业类型，因为 Q-Chem 会自动默认为不包含相关校正的单点能计算。另外，由于 $\alpha$ 电子数与 $\beta$ 电子数不相等，分子轨道（MOs）默认采用非限制形式（unrestricted formalism）。"
     ```qchem
     $molecule
        0,2
@@ -45,7 +40,7 @@ and single point energies. Note also that, since the number of $\alpha$ and $\be
     $end
     ```
 
-???+ example "Example 4.4: ROHF/6-311G calculation on the Lithium atom."
+???+ example "示例 4.4: 锂原子的 ROHF/6-311G 计算。"
     ```qchem
     $molecule
        0,2

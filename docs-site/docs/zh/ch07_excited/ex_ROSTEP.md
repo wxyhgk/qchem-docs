@@ -1,139 +1,130 @@
 ---
-title: "7.7.8 State-Targeted Energy Projection"
+title: "7.7.8 态靶向能量投影（State-Targeted Energy Projection）"
 ---
 
-## 7.7.8 State-Targeted Energy Projection
+## 7.7.8 态靶向能量投影（State-Targeted Energy Projection, STEP）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The state-targeted energy projection (STEP) method[[196]](../bib_references/bib.md#bib189)
+态靶向能量投影（state-targeted energy projection, STEP）方法[[196]](../bib_references/bib.md#bib189)
 
-supplies a robust and cost-effective alternative to the MOM and IMOM
-procedures that were described in Section [7.7.2](ex_OpSing.md).
-STEP applies a level shift via a simple modification of the Fock matrix,
+为第 [7.7.2](ex_OpSing.md) 节中描述的 MOM 与 IMOM 流程提供了一种稳健且经济高效的替代方案。
+STEP 通过对 Fock 矩阵进行简单修改来施加能级平移（level shift），
 
 <a id="Ch7.E80"></a>
 $$
 \text{{F}}^{\prime}=\text{{F}}+\eta\text{{SQS}}\;, \tag{7.80}
 $$
 
-where **Q** is the matrix representation of the projector onto the user-defined virtual space,
-and $\eta$ is a parameter.
-The level shift supplied by $\eta\text{{SQS}}$ elevates the energy of virtual orbital $\psi_{a}$ from
-$\varepsilon_{a}$ to $\varepsilon_{a}+\eta$ for each unoccupied orbital that is contained in **Q**.
-The parameter $\eta$ is chosen to provide the smallest level shift that retains the desired electron configuration
-and is defined as follows:
+其中 **Q** 是投影到用户定义虚空间（virtual space）上的投影算符的矩阵表示，$\eta$ 是一个参数。
+由 $\eta\text{{SQS}}$ 提供的能级平移将虚分子轨道 $\psi_{a}$ 的能量从 $\varepsilon_{a}$ 提升至
+$\varepsilon_{a}+\eta$，对每一个包含在 **Q** 中的未占据轨道均如此。
+参数 $\eta$ 的选取原则是：在保留目标电子组态的前提下提供最小的能级平移，其定义如下：
 
 <a id="eq:eta-shift"></a>
 $$
 \eta=|\varepsilon_{\text{HOMO}}-\varepsilon_{\text{LUMO}}|+\epsilon^{\prime} \tag{7.81}
 $$
 
-The HOMO/LUMO gap in Eq. ([7.81](#eq:eta-shift)) pertains to the HOMO and LUMO of the user-defined
-configuration; meaning that like the MOM procedure, STEP requires a set of initial-guess molecular orbitals
-(usually from a ground state calculation).
-The small empirical parameter $\epsilon^{\prime}$ controls the magnitude of the gap between the occupied
-and unoccupied orbitals and is settable by the *$rem* variable STEP_EPSILON.
-Application of the STEP level shift constrains the solutions of the SCF equations to prevent variational
-collapse by forcing an *aufbau* occupation of the desired occupied space at every SCF cycle.
+式 ([7.81](#eq:eta-shift)) 中的 HOMO/LUMO 能隙指的是用户所定义组态的 HOMO 和 LUMO；也就是说，
+与 MOM 流程类似，STEP 需要一组初始猜测分子轨道（通常来自基态计算）。
+小的经验参数 $\epsilon^{\prime}$ 控制已占据轨道与未占据轨道之间能隙的大小，可通过 *$rem* 变量
+STEP_EPSILON 进行设置。STEP 能级平移的应用约束了 SCF 方程的解，通过在每一个 SCF 循环中
+强制对目标占据空间施加 *aufbau*（构造原理）占据方式，从而防止变分坍缩（variational collapse）。
 
-The implementation of STEP in **Q-Chem** takes advantage of the fact that faster convergence is generally
-achieved by allowing a dynamic level shift parameter $\eta$ that changes each cycle depending on the new HOMO/LUMO gap,
-which differs from the static $\eta$ parameter reported in Ref. [[196]](../bib_references/bib.md#bib189)
-.
-In the most extreme of cases, if the desired *aufbau* configuration is trivially satisfied without application of a level shift projection,
-STEP will set $\eta=0$, which allows for unconstrained occupied/virtual rotations in optimizing the Fock matrix
-and thus for rapid convergence to the desired state.
-The parameter $\epsilon^{\prime}$ is nonetheless held constant as to allow control over the relative magnitude of the level shift
-in cases where one is necessary throughout the optimization.
+**Q-Chem** 中 STEP 的实现利用了这样一个事实：通常允许一个动态的能级平移参数 $\eta$，
+使其随每个循环中新的 HOMO/LUMO 能隙而变化，可以实现更快的收敛，
+这与文献 [[196]](../bib_references/bib.md#bib189) 中报告的静态 $\eta$ 参数不同。
+在最极端的情况下，如果无需施加能级平移投影即可平凡地满足目标 *aufbau* 组态，
+STEP 会将 $\eta$ 设为 0，这就允许在优化 Fock 矩阵时进行不受约束的占据/虚轨道旋转，
+从而快速收敛到目标态。与此同时，参数 $\epsilon^{\prime}$ 保持恒定，以便在整个优化过程中，
+当需要持续施加能级平移时，可以控制其相对大小。
 
-In more difficult cases, the dynamic level-shift approach (while more efficient) can lead to variational collapse.
-If the dynamic level-shift is insufficient, reverting
-to the implementation that was originally reported in Ref. [[196]](../bib_references/bib.md#bib189)
- can increase
-the robustness of STEP appreciably. In this approach, the level-shift parameter in Eq. ([7.81](#eq:eta-shift))
-is always active at every SCF cycle such that $\eta$ is never zero.
+在更困难的情形下，动态能级平移方法（虽然效率更高）可能导致变分坍缩。
+如果动态能级平移不足以解决问题，回退到文献 [[196]](../bib_references/bib.md#bib189)
+中最初报告的实现方式，可以显著提升 STEP 的稳健性。在这种方法中，式 ([7.81](#eq:eta-shift))
+中的能级平移参数在每个 SCF 循环中始终生效，即 $\eta$ 永不为零。
 
-STEP can be applied directly as a $\Delta$SCF procedure, wherein spin contamination of the excited state is
-often introduced, or within a restricted open-shell framework (Section [7.7.4](ex_ESROKS.md))
-in order to directly converge spin-pure excited states. The STEP algorithm is available for
-restricted, unrestricted, and restricted open-shell orbitals in **Q-Chem**.
+STEP 可以直接作为 $\Delta$SCF 流程使用（此时激发态往往会引入自旋污染），
+也可以在限制开壳层（restricted open-shell）框架内使用（第 [7.7.4](ex_ESROKS.md) 节），
+以直接收敛自旋纯（spin-pure）的激发态。在 **Q-Chem** 中，STEP 算法可用于
+限制（restricted）、非限制（unrestricted）以及限制开壳层（restricted open-shell）轨道。
 
-Job control for $\Delta$SCF (R- or U-STEP) and RO-STEP calculations:
-After STEP is activated in the *$rem* section,
-the remainder of the options for STEP are handled through the *$step* input section.
+$\Delta$SCF（R- 或 U-STEP）与 RO-STEP 计算的作业控制：
+在 *$rem* 部分激活 STEP 之后，
+其余的 STEP 选项均通过 *$step* 输入部分来处理。
 
 STEP
 
 ### `STEP`
 
-> **Activates the STEP procedure.**
+> **激活 STEP 流程。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * Do not apply the STEP level-shift algorithm.
+>     * 不应用 STEP 能级平移算法。
 >     * TRUE
->     * Apply the STEP level-shift algorithm.
-> * **Recommendation**: None
+>     * 应用 STEP 能级平移算法。
+> * **建议**: 无
 
 ### `Epsilon`
 
-> **Scales the size of the occupied/virtual gap imposed by the level-shift by $N$ /100 Hartree. INPUT SECTION: $step**
+> **以 $N$ /100 Hartree 的尺度调节能级平移所施加的占据/虚轨道能隙大小。输入部分: $step**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `10`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `10`
+> * **选项**:
 >     * $N$
-> * **Recommendation**: Use the default unless convergence issues arise, in which case a larger value can be used until the desired state is found. Be aware that increasing the occupied/virtual gap in level-shift algorithms slows convergence so it may be advisable to increase SCF_MAX_CYCLES if large shifts are required.
+> * **建议**: 使用默认值，除非出现收敛问题，此时可以增大该值直至找到目标态。请注意，在能级平移算法中增大占据/虚轨道能隙会减慢收敛速度，因此在需要较大平移量时，建议同时增大 SCF_MAX_CYCLES。
 
 ### `Print`
 
-> **Controls the print level for STEP algorithm information. INPUT SECTION: $step**
+> **控制 STEP 算法信息的打印级别。输入部分: $step**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * 0
->     * Do not print any information about STEP between SCF cycles.
+>     * 不在 SCF 循环之间打印任何关于 STEP 的信息。
 >     * 1
->     * Print the level-shift applied at each SCF cycle (R- and U-STEP).
+>     * 打印每个 SCF 循环所施加的能级平移（R- 和 U-STEP）。
 >     * 2
->     * Print the level-shift for both mixed and triplet states at each SCF cycle (RO-STEP).
-> * **Recommendation**: Use the default. Level shifts of 0 indicate that an aufbau criterion is sufficient to determine orbital occupation, and shifts $>0$ imply non- aufbau selection of the occupied space.
+>     * 打印每个 SCF 循环中混合态与三重态的能级平移（RO-STEP）。
+> * **建议**: 使用默认值。能级平移为 0 表明 *aufbau* 判据足以确定轨道占据方式；平移 $>0$ 则意味着占据空间的选择违背了 *aufbau* 原则。
 
 ### `Always_Active`
 
-> **Toggles the original implementation of STEP where the level-shift is static (applied every cycle). INPUT SECTION: $step**
+> **切换至 STEP 的原始实现方式，即使用静态能级平移（每个循环均施加）。输入部分: $step**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `None`
+> * **选项**:
 >     * alpha
->     * Apply a constant level-shift to the alpha spin orbitals.
+>     * 对 alpha 自旋轨道施加恒定的能级平移。
 >     * beta
->     * Apply a constant level-shift to the beta spin orbitals.
+>     * 对 beta 自旋轨道施加恒定的能级平移。
 >     * both
->     * Apply a constant level-shift to both alpha and beta spin orbitals.
-> * **Recommendation**: Use in cases where the dynamic level-shift does not achieve satisfactory results. In the case of U-STEP, the constraint need only be applied to orbitals that must maintain a non- aufbau configuration ( i.e. an alpha-electron promotion requires only the alpha constraint, but two-electron promotions will require both constraints). For RO-STEP this keyword is set to both by default and cannot be turned off. In R-STEP it is only sensible to use both if the desired doubly-excited configuration cannot be found with the dynamic level-shift parameter.
+>     * 对 alpha 和 beta 自旋轨道均施加恒定的能级平移。
+> * **建议**: 在动态能级平移无法取得满意结果时使用。对于 U-STEP，该约束只需施加在必须维持非 *aufbau* 组态的轨道上（即单电子 alpha 激发只需施加 alpha 约束，而双电子激发则需要同时施加两种约束）。对于 RO-STEP，该关键字默认为 both 且无法关闭。对于 R-STEP，只有当使用动态能级平移参数无法找到目标双激发组态时，采用 both 才是合理的。
 
 ROKS
 
 ### `ROKS`
 
-> **Controls whether ROKS calculation will be performed.**
+> **控制是否执行 ROKS 计算。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
->     * ROKS is not performed.
+>     * 不执行 ROKS。
 >     * TRUE
->     * ROKS will be performed.
-> * **Recommendation**: Set to TRUE if ROKS calculation is desired. UNRESTRICTED = FALSE should also be ensured.
+>     * 执行 ROKS。
+> * **建议**: 若需要 ROKS 计算则设为 TRUE。同时应确保 UNRESTRICTED = FALSE。
 
-???+ example "Example 7.58: Lowest energy $\pi\rightarrow\pi^{\ast}$ transition in acetylene using a $\Delta$ SCF approach with STEP."
+???+ example "示例 7.58: 使用带 STEP 的 $\Delta$ SCF 方法计算乙炔最低能量的 $\pi\rightarrow\pi^{\ast}$ 跃迁"
     ```qchem
     $comment
        Ground state calculation for reference orbitals
@@ -185,7 +176,7 @@ ROKS
     $end
     ```
 
-???+ example "Example 7.59: A spin-pure lowest energy $\pi\rightarrow\pi^{\ast}$ transition in acetylene using ROKS with STEP."
+???+ example "示例 7.59: 使用带 STEP 的 ROKS 方法计算乙炔最低能量的自旋纯 $\pi\rightarrow\pi^{\ast}$ 跃迁"
     ```qchem
     $comment
        Generates the ground-state reference orbitals

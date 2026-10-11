@@ -1,24 +1,18 @@
 ---
-title: "10.5.6 Noncovalent Interactions (NCI) Plots"
+title: "10.5.6 非共价相互作用（NCI）图"
 ---
 
-## 10.5.6 Noncovalent Interactions (NCI) Plots
+## 10.5.6 非共价相互作用（NCI）图
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Weitao Yang and co-workers[[652]](../bib_references/bib.md#bib676)
- have shown
-that the reduced density gradient,
+Yang Weitao（杨伟涛）及其合作者[[652]](../bib_references/bib.md#bib676) 表明，
+约化密度梯度（reduced density gradient），
 
 <a id="Ch10.E62"></a>
 $$
 s(\mathbf{r})=\left(\frac{1}{2(3\pi^{2})^{1/3}}\right)\frac{\|\hat{\bm{\nabla}}\rho(\mathbf{r})\|}{\rho(\mathbf{r})^{4/3}} \tag{10.62}
 $$
 
-provides a convenient indicator of noncovalent interactions, which are
-characterized by large density gradients in regions of space where the density
-itself is small, leading to very large values of $s(\mathbf{r})$. **Q-Chem** can
-generate noncovalent interactions (NCI) plots of the function $s(\mathbf{r})$
-in three-dimensional space. To generate these, set the
-PLOT_REDUCED_DENSITY_GRAD *$rem* variable to TRUE.
-(See the `nci-c8h14.in` input example in `$QC/samples` directory.)
+为非共价相互作用提供了一个便捷的判据。非共价相互作用的特征是：在电子密度本身很小的空间区域中存在较大的密度梯度，从而导致 $s(\mathbf{r})$ 出现非常大的值。**Q-Chem** 能够在三维空间中生成函数 $s(\mathbf{r})$ 的非共价相互作用（NCI）图。若要生成这些图，请将 *$rem* 变量 PLOT_REDUCED_DENSITY_GRAD 设置为 TRUE。
+（参见 `$QC/samples` 目录中的输入示例 `nci-c8h14.in`。）

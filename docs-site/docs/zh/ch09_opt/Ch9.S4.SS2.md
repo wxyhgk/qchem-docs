@@ -1,70 +1,62 @@
 ---
-title: "9.4.2 Geometry Optimization with General Constraints"
+title: "9.4.2 带一般约束的几何优化"
 ---
 
-## 9.4.2 Geometry Optimization with General Constraints
+## 9.4.2 带一般约束的几何优化
 
 (July 4, 2026)
 
-CONSTRAINT and ENDCONSTRAINT define the beginning and end,
-respectively, of the constraint section of *$opt* within which users may
-specify up to six different types of constraints:
+CONSTRAINT 和 ENDCONSTRAINT 分别定义了 *$opt* 中约束部分的开始与结束，在该部分之内用户可以指定最多六种不同类型的约束：
 
-**interatomic distances**
+**原子间距（interatomic distances）**
 
-Values in Ångstroms; *value* $>0$: 
+数值单位为埃（Ångstroms）；*value* $>0$：
 
-`stre   atom1   atom2   value
+`stre   atom1   atom2   value
 
 `
 
-**angles**
+**键角（angles）**
 
-Values in degrees, $0\leq value\leq 180$; *atom2* is the middle atom
-of the bend: 
+数值单位为度，$0\leq value\leq 180$；*atom2* 是弯曲角（bend）的中心原子：
 
-`bend   atom1   atom2   atom3   value
-
-`
-
-**out-of-plane-bends**
-
-Values in degrees, $-180\leq value\leq 180$ *atom2*; angle between
-*atom4* and the *atom1–atom2–atom3* plane:
-
-`outp   atom1   atom2   atom3   atom4   value
+`bend   atom1   atom2   atom3   value
 
 `
 
-**dihedral angles**
+**面外弯曲角（out-of-plane-bends）**
 
-Values in degrees, $-180\leq value\leq 180$; angle the plane
-*atom1–atom2–atom3* makes with the plane *atom2–atom3–atom4*:
+数值单位为度，$-180\leq value\leq 180$ *atom2*；指 *atom4* 与 *atom1–atom2–atom3* 平面之间的夹角：
 
-`tors   atom1   atom2   atom3   atom4   value
-
-`
-
-**coplanar bends**
-
-Values in degrees, $-180\leq value\leq 180$; bending of
-*atom1–atom2–atom3* in the plane *atom2–atom3–atom4*: 
-
-`linc   atom1   atom2   atom3   atom4   value
+`outp   atom1   atom2   atom3   atom4   value
 
 `
 
-**perpendicular bends**
+**二面角（dihedral angles）**
 
-Values in degrees, $-180\leq value\leq 180$; bending of
-*atom1–atom2–atom3* perpendicular to the plane
-*atom2–atom3–atom4*: 
+数值单位为度，$-180\leq value\leq 180$；指 *atom1–atom2–atom3* 平面与 *atom2–atom3–atom4* 平面之间的夹角：
 
-`linp   atom1   atom2   atom3   atom4   value
+`tors   atom1   atom2   atom3   atom4   value
 
 `
 
-???+ example "Example 9.11: Methanol geometry optimization with constraints in bond length and bond angles."
+**共面弯曲角（coplanar bends）**
+
+数值单位为度，$-180\leq value\leq 180$；指 *atom1–atom2–atom3* 在 *atom2–atom3–atom4* 平面内的弯曲：
+
+`linc   atom1   atom2   atom3   atom4   value
+
+`
+
+**垂直弯曲角（perpendicular bends）**
+
+数值单位为度，$-180\leq value\leq 180$；指 *atom1–atom2–atom3* 垂直于 *atom2–atom3–atom4* 平面的弯曲：
+
+`linp   atom1   atom2   atom3   atom4   value
+
+`
+
+???+ example "示例 9.11: 带键长和键角约束的甲醇几何优化。"
     ```qchem
     $molecule
        0  1

@@ -1,117 +1,82 @@
 ---
-title: "11.2.10 Langevin Dipoles Model"
+title: "11.2.10 Langevin 偶极子模型"
 ---
 
-## 11.2.10 Langevin Dipoles Model
+## 11.2.10 Langevin 偶极子模型
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-**Q-Chem** provides the option to calculate molecular properties in aqueous
-solution and the magnitudes of the hydration free energies by the Langevin
-dipoles (LD) solvation model developed by Florián and Warshel.[[394]](../bib_references/bib.md#bib402)
+**Q-Chem** 提供了使用由 Florián 和 Warshel 开发的 Langevin 偶极子（Langevin Dipoles, LD）溶剂化模型来计算水溶液中分子性质及水合自由能大小的选项[[394]](../bib_references/bib.md#bib402)。
 
-In this model, a solute molecule is surrounded by a sphere of point
-dipoles, with centers on a cubic lattice. Each of these “Langevin” dipoles
-changes its size and orientation in the electrostatic field of the solute and
-the other Langevin dipoles. The electrostatic field from the solute is
-determined rigorously by the integration of its charge density, whereas for
-dipole–dipole interactions, a 12 Å cutoff is used. The **Q-Chem**/**ChemSol** 1.0 implementation of the LD model is fully self-consistent in that
-the molecular quantum mechanical calculation takes into account solute–solvent
-interactions. Further details on the implementation and parameterization of
-this model can be found in the literature.[[394]](../bib_references/bib.md#bib402)
+在该模型中，溶质分子被包围在一层球面点偶极子之中，这些偶极子的中心位于立方格点上。每个这样的“Langevin”偶极子都会根据溶质及其他 Langevin 偶极子所产生的静电场改变其大小和取向。来自溶质的静电场通过对其电荷密度进行严格积分来确定，而偶极子–偶极子相互作用则采用 12 Å 的截断半径。**Q-Chem**/**ChemSol** 1.0 对 LD 模型的实现是完全自洽的，其中分子的量子力学计算考虑了溶质–溶剂相互作用。有关该模型实现与参数化的更多细节，可参见文献[[394]](../bib_references/bib.md#bib402)。
 
-The results of **ChemSol** calculations are printed in the standard output file.
-Below is a part of the output for a calculation on the methoxide anion
-(corresponding to the sample input given later on, and the sample file in the
-`$QC/samples` directory).
+**ChemSol** 计算的结果会输出到标准输出文件中。下面给出了对甲醇阴离子（methoxide anion）进行计算的部分输出结果（与后文给出的示例输入相对应，示例文件位于 `$QC/samples` 目录中）。
 
-| Energy Component | Value / kcal mol ${}^{-1}$ |
+| 能量分量 | 数值 / kcal mol ${}^{-1}$ |
 | --- | --- |
-| LD Electrostatic energy | $-86.14$ |
-| Hydrophobic energy | 0.28 |
-| van der Waals energy | $-1.95$ |
-| Bulk correction | $-10.07$ |
-| Solvation free energy, $\Delta G$ (ILD) | $-97.87$ |
+| LD 静电能 | $-86.14$ |
+| 疏水能 | 0.28 |
+| van der Waals 能 | $-1.95$ |
+| 体相校正（Bulk correction） | $-10.07$ |
+| 溶剂化自由能 $\Delta G$（ILD） | $-97.87$ |
 
-Table 11.8: 
-Results of the iterative Langevin Dipoles (ILD) solvation model, for aqueous methoxide.
+表 11.8： 
+采用迭代 Langevin 偶极子（Iterative Langevin Dipoles, ILD）溶剂化模型对水溶液中甲醇阴离子的计算结果。
 
-The total hydration free energy, $\Delta G$(ILD) is calculated as a sum of
-several contributions. Note that the electrostatic part of $\Delta G$ is
-calculated by using the linear-response approximation[[394]](../bib_references/bib.md#bib402)
- and
-contains contributions from the *polarization* of the solute charge
-distribution due to its interaction with the solvent. This results from the
-self-consistent implementation of the Langevin dipoles model within **Q-Chem**.
+总水合自由能 $\Delta G$(ILD) 由若干贡献项相加得到。请注意，$\Delta G$ 的静电部分是利用线性响应近似[[394]](../bib_references/bib.md#bib402)计算的，其中包含了由于溶质电荷分布与溶剂相互作用而产生的*极化*贡献。这正是 Langevin 偶极子模型在 **Q-Chem** 中以自洽方式实现所带来的结果。
 
-To perform an LD calculation in **Q-Chem**, specify normal job-control variables
-for a Hartree-Fock or DFT calculation, and set SOLVENT_METHOD =
-CHEM_SOL in the *$rem* section. Additional fine-tuning is
-accomplished using a set of keywords in a *$chem_sol* input section. The
-remainder of this section summarizes these keywords.
+要在 **Q-Chem** 中执行 LD 计算，请为 Hartree-Fock 或 DFT 计算指定常规的作业控制变量，并在 *$rem* 段中设置 SOLVENT_METHOD = CHEM_SOL。进一步的精细调节可通过在 *$chem_sol* 输入段中使用一组关键字来实现。本节其余部分对这些关键字进行概述。
 
 ### `EField`
 
-> **Determines how the solute charge distribution is approximated in evaluating the electrostatic field of the solute. INPUT SECTION: $chem_sol**
+> **决定在计算溶质静电场时如何近似溶质的电荷分布。输入段：$chem_sol**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **可选值**：
 >     * 1
->     * Exact solute charge distribution is used.
+>     * 使用精确的溶质电荷分布。
 >     * 0
->     * Solute charge distribution is approximated by Mulliken atomic charges.
-> * **Recommendation**: None. The Mulliken-based procedure is faster but less rigorous.
+>     * 用 Mulliken 原子电荷近似溶质电荷分布。
+> * **建议**：无。基于 Mulliken 电荷的方法更快，但严谨性较差。
 
 ### `NGrids`
 
-> **Sets the number of grids used to calculate the average hydration free energy. INPUT SECTION: $chem_sol**
+> **设置用于计算平均水合自由能的网格数目。输入段：$chem_sol**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`5`
+> * **可选值**：
 >     * $n$
->     * Use
+>     * 使用
 >     * $n$
->     * different grids.
-> * **Recommendation**: None. The maximum allowed value of $n$ is 20.
+>     * 个不同的网格。
+> * **建议**：无。$n$ 允许的最大值为 20。
 
 ### `Print`
 
-> **Controls printing in the ChemSol part of the Q-Chem output file. INPUT SECTION: $chem_sol**
+> **控制 Q-Chem 输出文件中 ChemSol 部分的打印信息。输入段：$chem_sol**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **可选值**：
 >     * 0
->     * Limited printing
+>     * 有限打印
 >     * 1
->     * Full printing
-> * **Recommendation**: None.
+>     * 完整打印
+> * **建议**：无。
 
 ### `ReadRadii`
 
-> **Read user-defined atomic radii from section $van_der_waals . INPUT SECTION: $chem_sol**
+> **从 $van_der_waals 段读取用户定义的原子半径。输入段：$chem_sol**
 >
-> * **Type**: `None`
-> * **Default**: `Off`
-> * **Options**:
->     * No options. Specify the keyword to use user-defined atomic radii.
-> * **Recommendation**: None.
+> * **类型**：`None`
+> * **默认值**：`Off`
+> * **可选值**：
+>     * 无选项。指定该关键字以使用用户定义的原子半径。
+> * **建议**：无。
 
-Accurate calculations of hydration free energies require a judicious choice of
-the solute–solvent boundary in terms of atom-type dependent parameters. The
-default atomic van der Waals radii available in **Q-Chem** were chosen to provide
-reasonable hydration free energies for most solutes and basis sets. These
-parameters basically coincide with the **ChemSol** 2.0 radii given in
-Ref. [[395]](../bib_references/bib.md#bib403)
-. The only difference between the **Q-Chem** and
-**ChemSol** 2.0 atomic radii stems from the fact that **Q-Chem** parameter set
-uses radii for carbon and oxygen that are independent of the atom’s
-hybridization state. User-defined atomic radii can be specified by declaring
-the option **ReadRadii** in the *$chem_sol* input section, and then placing
-the radii in the *$van_der_waals* section. Two different (and mutually exclusive)
-formats can be used, as shown below.
+要准确计算水合自由能，就需要根据依赖于原子类型的参数谨慎选择溶质–溶剂边界。**Q-Chem** 中可用的默认原子 van der Waals 半径经过挑选，能够对大多数溶质和基组给出合理的水合自由能。这些参数基本上与文献[[395]](../bib_references/bib.md#bib403)中给出的 **ChemSol** 2.0 半径一致。**Q-Chem** 与 **ChemSol** 2.0 原子半径之间的唯一差别在于：**Q-Chem** 的参数集对碳和氧使用的半径与原子的杂化状态无关。用户可以在 *$chem_sol* 输入段中声明 **ReadRadii** 选项，然后将半径写入 *$van_der_waals* 段，从而指定用户自定义的原子半径。可以使用两种不同的（互斥的）格式，如下所示。
 
 > ```qchem
 > $van_der_waals
@@ -127,16 +92,9 @@ formats can be used, as shown below.
 > $end
 > ```
 
-The purpose of the second format is to permit the user to customize the radius
-of specific atoms, in the order that they appear in the *$molecule* section,
-rather than simply by atomic numbers as in format 1. The radii of atoms that
-are not listed in the *$van_der_waals* input will be assigned default values. The atomic
-radii that were used in the calculation are printed in the **ChemSol** part of
-the output file in the column denoted *rp*. All radii should be given in
-Ångstroms.
+第二种格式的目的是允许用户按照原子在 *$molecule* 段中出现的顺序来自定义特定原子的半径，而不是像格式 1 那样仅按原子序数指定。未在 *$van_der_waals* 输入中列出的原子将被赋予默认半径值。计算中实际使用的原子半径会在输出文件的 **ChemSol** 部分中以 *rp* 列打印出来。所有半径均应以埃（Ångstroms）为单位给出。
 
-???+ example "Example 11.19: A Langevin dipoles calculation on the methoxide anion. A customized value is
-specified for the radius of the carbon atom."
+???+ example "示例 11.19: 对甲醇阴离子进行 Langevin 偶极子计算。为碳原子的半径指定了一个自定义值。"
     ```qchem
     $molecule
       -1  1

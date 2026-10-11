@@ -1,15 +1,12 @@
 ---
-title: "6.13.5 Examples"
+title: "6.13.5 示例"
 ---
 
-## 6.13.5 Examples
+## 6.13.5 示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 6.43: Two jobs that compare the correlation energy calculated via the standard
-CCSD(T) method with the new CCSD(2) approximation, both using the frozen core
-approximation. This requires that CC_INCL_CORE_CORR must be
-specified as FALSE in the CCSD(2) input."
+???+ example "示例 6.43: 两个任务，分别使用标准的 CCSD(T) 方法与新的 CCSD(2) 近似方法计算相关能（correlation energy）并进行比较，二者均采用冻结芯（frozen core）近似。这要求在 CCSD(2) 的输入中将 CC_INCL_CORE_CORR 指定为 FALSE。"
     ```qchem
     $molecule
        0  2
@@ -37,7 +34,7 @@ specified as FALSE in the CCSD(2) input."
     $end
     ```
 
-???+ example "Example 6.44: Using libpt for a standard CCSD(T) calculation"
+???+ example "示例 6.44: 使用 libpt 进行标准的 CCSD(T) 计算"
     ```qchem
     $molecule
        0  2

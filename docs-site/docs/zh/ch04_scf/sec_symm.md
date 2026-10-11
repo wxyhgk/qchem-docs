@@ -1,111 +1,79 @@
 ---
-title: "4.3.5 Symmetry"
+title: "4.3.5 对称性"
 ---
 
-## 4.3.5 Symmetry
+## 4.3.5 对称性
 
 (July 4, 2026)
 
-Symmetry is a powerful branch of mathematics and is often exploited in quantum
-chemistry, both to reduce the computational workload and to classify the final
-results obtained.[[1338]](../bib_references/bib.md#bib1397)
-**Q-Chem** is able
-to determine the point group symmetry of the molecular nuclei and, on
-completion of the SCF procedure, classify the symmetry of molecular orbitals,
-and provide symmetry decomposition of kinetic and nuclear attraction energy
-(see Chapter [10](../ch10_properties/chap_properties.md)).
+对称性是数学中一个强大的分支，在量子化学中被广泛利用，既可以减少计算工作量，也可以对最终得到的结果进行分类。[[1338]](../bib_references/bib.md#bib1397)
+**Q-Chem** 能够确定分子核的点群对称性，并在自洽场（SCF）过程完成后，对分子轨道的对称性进行分类，还提供动能和核吸引能的对称性分解（参见第 [10](../ch10_properties/chap_properties.md) 章）。
 
-Molecular systems possessing point group symmetry offer the possibility of
-large savings of computational time, by avoiding calculations of integrals
-which are equivalent *i.e.*, those integrals which can be mapped on to one
-another under one of the symmetry operations of the molecular point group. The
-**Q-Chem** default is to use symmetry to reduce computational time, when possible.
+具有点群对称性的分子系统有可能大幅节省计算时间，方法是避免计算那些等价的积分，*即*，那些在分子点群的某个对称操作下可以相互映射的积分。当可能时，**Q-Chem** 的默认行为是利用对称性来减少计算时间。
 
-There are several keywords that are related to symmetry, which causes frequent
-confusion. POINT_GROUP_SYMMETRY controls symmetry throughout all modules. The
-default is TRUE. In some cases it may be desirable to turn off
-symmetry altogether, for example if you do not want **Q-Chem** to reorient the
-molecule into the standard nuclear orientation, or if you want to turn it off
-for finite difference calculations. If the POINT_GROUP_SYMMETRY keyword is set
-to FALSE then the coordinates will not be altered from the input, and
-the point group will be set to $C_{1}$.
+有几个与对称性相关的关键字，经常引起混淆。POINT_GROUP_SYMMETRY 在所有模块中控制对称性，其默认值为 TRUE。在某些情况下，可能需要完全关闭对称性，例如，如果您不希望 **Q-Chem** 将分子重新定向到标准核取向，或者希望在有限差分计算中关闭对称性。如果 POINT_GROUP_SYMMETRY 关键字设置为 FALSE，则坐标不会相对于输入进行更改，并且点群将被设置为 $C_{1}$。
 
-The INTEGRAL_SYMMETRY keyword controls symmetry in some integral routines. It
-is set to TRUE by default. Note that setting it to FALSE
-does not turn point group symmetry off, and does not disable symmetry in the
-coupled-cluster suite (CCMAN and CCMAN2), which is controlled by
-CC_SYMMETRY (see Chapters [6](../ch06_correlation/chap_correlation.md) and
-[7](../ch07_excited/chap_excited.md)), although we noticed that sometimes it may interfere with
-the determination of orbital symmetries, possibly due to numerical noise. In
-some cases, INTEGRAL_SYMMETRY = TRUE can cause problems (poor
-convergence and wildly incorrect SCF energies) and turning it off can avoid
-these problems.
+INTEGRAL_SYMMETRY 关键字在某些积分例程中控制对称性，其默认设置为 TRUE。请注意，将其设置为 FALSE 并不会关闭点群对称性，也不会禁用耦合簇（coupled-cluster）套件（CCMAN 和 CCMAN2）中的对称性，后者由 CC_SYMMETRY 控制（参见第 [6](../ch06_correlation/chap_correlation.md) 章和第 [7](../ch07_excited/chap_excited.md) 章），尽管我们注意到它有时可能会干扰轨道对称性的判定，这可能是由数值噪声引起的。在某些情况下，INTEGRAL_SYMMETRY = TRUE 会引起问题（收敛困难以及严重错误的 SCF 能量），关闭它可以避免这些问题。
 
-The symmetry is turned off when ghost atoms are used because their placement
-may break the symmetry of the molecular structure. However, the user can force calculation to use symmetry by FORCE_SYMMETRY_ON keyword; this is illustrated in example [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1).
+当使用鬼原子（ghost atoms）时，对称性会被关闭，因为它们的位置可能会破坏分子结构的对称性。不过，用户可以通过 FORCE_SYMMETRY_ON 关键字强制计算使用对称性；这在示例 [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) 中进行了说明。
 
-**Note: 
+**注意：
 
-The user should be aware about different conventions for defining
-symmetry elements. The arbitrariness affects, for example, $C_{2v}$ point
-group. The specific choice affects how the irreducible representations in the affected groups are
-labeled. For example, $b_{1}$ and $b_{2}$ irreducible representations in $C_{2v}$ are flipped when
-using different conventions. **Q-Chem** uses non-Mulliken symmetry convention. See
-`https://iopenshell.usc.edu/resources/howto/symmetry`
-for detailed explanations.
+用户应当了解定义对称元素的不同约定。这种任意性会影响例如 $C_{2v}$ 点群。具体选择会影响受影响群中不可约表示的标注方式。例如，$C_{2v}$ 中的 $b_{1}$ 和 $b_{2}$ 不可约表示在使用不同约定时会发生互换。**Q-Chem** 采用非 Mulliken（non-Mulliken）对称性约定。详细解释参见
+`https://iopenshell.usc.edu/resources/howto/symmetry`。
 **
 
 INTEGRAL_SYMMETRY
 
 ### `INTEGRAL_SYMMETRY`
 
-> **Controls the efficiency through the use of point group symmetry for calculating integrals.**
+> **通过利用点群对称性来控制积分计算的效率。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `False`
+> * **选项**:
 >     * TRUE
->     * Use symmetry when available.
+>     * 在可用时使用对称性。
 >     * FALSE
->     * Do not use symmetry. This is
->     * always the case for RIMP2 jobs
-> * **Recommendation**: Use the default unless benchmarking. Note that symmetry usage is disabled for RIMP2, FFT, and QM/MM jobs.
+>     * 不使用对称性。对于 RIMP2 作业
+>     * 始终如此。
+> * **建议**: 除非进行基准测试，否则使用默认值。请注意，对于 RIMP2、FFT 和 QM/MM 作业，对称性的使用会被禁用。
 
 POINT_GROUP_SYMMETRY
 
 ### `POINT_GROUP_SYMMETRY`
 
-> **Controls whether or not Q-Chem determines the point group of the molecule and reorients the molecule to the standard orientation.**
+> **控制 Q-Chem 是否确定分子的点群，并将分子重新定向到标准取向。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * TRUE/FALSE
-> * **Recommendation**: Use the default unless you do not want the molecule to be reoriented. Note that symmetry usage is disabled for RIMP2 jobs.
+> * **建议**: 使用默认值，除非您不希望分子被重新定向。请注意，对于 RIMP2 作业，对称性的使用会被禁用。
 
 SYM_TOL
 
 ### `SYM_TOL`
 
-> **Controls the tolerance for determining point group symmetry. Differences in atom locations less than $10^{-\mathrm{SYM\_TOL}}$ are treated as zero.**
+> **控制判定点群对称性的容差。原子位置差异小于 $10^{-\mathrm{SYM\_TOL}}$ 时被视为零。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
->     * User defined.
-> * **Recommendation**: Use the default unless the molecule has high symmetry which is not being correctly identified. Note that relaxing this tolerance too much may introduce errors into the calculation. Misidentified point group symmetry can affect rotational symmetry numbers in thermochemical calculations.
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
+>     * 用户自定义。
+> * **建议**: 使用默认值，除非分子具有未被正确识别的高对称性。请注意，过度放宽此容差可能会在计算中引入误差。错误识别的点群对称性会影响热化学计算中的旋转对称数（rotational symmetry numbers）。
 
 FORCE_SYMMETRY_ON
 
 ### `FORCE_SYMMETRY_ON`
 
-> **Overrides turning off symmetry in calculations using ghost atoms.**
+> **在使用鬼原子的计算中，覆盖关闭对称性的行为。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Force symmetry.
+>     * 强制使用对称性。
 >     * FALSE
->     * Do not use symmetry.
-> * **Recommendation**: Use the default unless you know what you are doing.
+>     * 不使用对称性。
+> * **建议**: 使用默认值，除非您清楚自己在做什么。

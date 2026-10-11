@@ -1,32 +1,16 @@
 ---
-title: "9.4.6 Additional Atom Connectivity"
+title: "9.4.6 附加原子连接性"
 ---
 
-## 9.4.6 Additional Atom Connectivity
+## 9.4.6 附加原子连接性
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Normally delocalized internal coordinates are generated automatically from the
-input Cartesian coordinates. This is accomplished by first determining the
-atomic connectivity list (*i.e.*, which atoms are formally bonded) and then
-constructing a set of individual primitive internal coordinates comprising all
-bond stretches, all planar bends and all proper torsions that can be generated
-based on the atomic connectivity. The delocalized internal are in turn
-constructed from this set of primitives.
+通常情况下，离域内坐标（delocalized internal coordinates）会根据输入的笛卡尔坐标自动生成。其实现方式是先确定原子连接性列表（*即*，哪些原子之间存在形式化学键），然后构造一组单一的原语内坐标（primitive internal coordinates），其中包含基于该原子连接性所能生成的所有键伸缩（bond stretch）、所有平面角弯曲（planar bend）以及所有正则扭转（proper torsion）。离域内坐标继而由这组原语坐标构造而成。
 
-The atomic connectivity depends simply on distance and there are default bond
-lengths between all pairs of atoms in the code. In order for delocalized
-internals to be generated successfully, all atoms in the molecule must be
-formally bonded so as to form a closed system. In molecular complexes with
-long, weak bonds or in certain transition states where parts of the molecule
-are rearranging or dissociating, distances between atoms may be too great for
-the atoms to be regarded as formally bonded, and the standard atomic
-connectivity will separate the system into two or more distinct parts. In this
-event, the generation of delocalized internal coordinates will fail. Additional
-atomic connectivity can be included for the system to overcome this difficulty.
+原子连接性仅仅取决于原子间距离，程序中为所有原子对预设了默认的键长。为了成功生成离域内坐标，分子中的所有原子必须通过形式化学键相连，从而构成一个封闭体系。在含有长而弱键的分子复合物中，或在分子某些部分正在重排或解离的某些过渡态中，原子间距离可能过大，以至于这些原子无法被视为以形式化学键相连，此时标准的原子连接性会将整个体系分割为两个或更多彼此独立的部分。在这种情况下，离域内坐标的生成将会失败。可以为体系附加额外的原子连接性以克服这一困难。
 
-CONNECT defines the beginning of the additional connectivity section
-and ENDCONNECT the end. The format of the CONNECT section is:
+CONNECT 标志着附加连接性段的开始，ENDCONNECT 则标志其结束。CONNECT 段的格式如下：
 
 > ```qchem
 > CONNECT
@@ -34,7 +18,7 @@ and ENDCONNECT the end. The format of the CONNECT section is:
 > ENDCONNECT
 > ```
 
-| atom | Atom for which additional connectivity is being defined. |
+| atom | 需要为其定义附加连接性的原子。 |
 | --- | --- |
-| list_length | Number of atoms in the list of bonded atoms. |
-| list | List of up to 8 atoms considered as being bonded to the given atom. |
+| list_length | 成键原子列表中的原子数目。 |
+| list | 最多 8 个被认为与给定原子成键的原子列表。 |

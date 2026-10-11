@@ -1,66 +1,50 @@
 ---
-title: "7.7.9 Non-Equilibrium Solvation for ROKS and Δ SCF"
+title: "7.7.9 ROKS 与 $\Delta$SCF 的非平衡溶剂化"
 ---
 
-## 7.7.9 Non-Equilibrium Solvation for ROKS and $\Delta$SCF
+## 7.7.9 ROKS 与 $\Delta$SCF 的非平衡溶剂化
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Both $\Delta$SCF calculations (*e.g.*, based on MOM) and ROKS calculations can be performed with
-continuum solvation effects modeled by a polarizable continuum model (PCM).
-(The solvation model itself is described in Section [11.2.3](../ch11_env/topic_pcm-em.md).) As for the ground state,
-the self-consistent PCM treatment along the SCF procedure provides *equilibrium*
-solvation of the calculated excited state (set SOLVENT_METHOD = PCM
-and include the *$pcm* block). During equilibrium solvation, both slow (nuclear)
-and fast (electronic) solvent degrees of freedom are relaxed (governed by
-**Dielectric** in the *$solvent* block), as is appropriate for long-lived states.
-However, fast vertical excitation or emission occurs on a shorter timescale,
-requiring the relaxation of only the fast electronic solvent polarization
-(governed by **Dielectric_Infi**, see Section [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM)).
-In **Q-Chem**, such *nonequilibrium* solvation effects can be included
-to first order with a perturbative state-specific (ptSS) correction.[[1530]](../bib_references/bib.md#bib1593)
+$\Delta$SCF 计算（*例如*，基于 MOM 的计算）与 ROKS 计算都可以在可极化连续介质模型（Polarizable Continuum Model, PCM）所描述的连续介质溶剂效应下执行。
+（溶剂化模型本身的描述见第 [11.2.3](../ch11_env/topic_pcm-em.md) 节。）与基态类似，沿 SCF 流程进行自洽的 PCM 处理可为所计算的激发态提供*平衡*（equilibrium）溶剂化（设置 SOLVENT_METHOD = PCM
+并包含 *$pcm* 输入段）。在平衡溶剂化过程中，慢（核）自由度与快（电子）溶剂自由度都会被弛豫（由 *$solvent* 输入段中的 **Dielectric** 控制），这对于长寿命态是合适的。
+然而，快速的垂直激发或发射发生在更短的时间尺度上，此时只需要快（电子）溶剂极化发生弛豫（由 **Dielectric_Infi** 控制，见第 [11.2.3.3](../ch11_env/topic_pcm-em.md#subsubsec:noneq-PCM) 节）。
+在 **Q-Chem** 中，此类*非平衡*（nonequilibrium）溶剂化效应可以通过微扰态特定（perturbative state-specific, ptSS）校正以一阶精度纳入。[[1530]](../bib_references/bib.md#bib1593)
 
-To begin with, a nonequilibrium $\Delta$SCF or ROKS calculation requires
-equilibrium solvation of the initial state (ground state for absorption
-and excited state for emission). By activating **RF_ptSS_Save**= **true**
-in the *$pcm* block, the equilibrated reaction field is
-then stored on disk. Setting **RF_ptSS_Read** = **true** in an
-arbitrary later job for the final state reads the reaction field again.
-This automatically triggers a frozen reaction-field (fRF) SCF with the
-stored reaction field of the initial state. The resulting SCF energy
-corresponds to a zeroth order calculation of the final state in the
-reaction field of the initial state. To obtain the first-order
-nonequilibrium result, the fast solvent polarization is relaxed
-for the final state by adding a perturbative ptSS correction, which is
-printed after the converged fRF-SCF calculation.
+首先，非平衡 $\Delta$SCF 或 ROKS 计算要求初始状态（吸收过程为基态，发射过程为激发态）已完成平衡溶剂化。通过在 *$pcm* 输入段中将 **RF_ptSS_Save** 设为 **true**，
+即可将平衡后的反应场（reaction field）存储到磁盘上。在随后任意一个针对终态的作业中设置 **RF_ptSS_Read** = **true**，便会重新读取该反应场。
+这会自动触发一次冻结反应场（frozen reaction field, fRF）SCF，使用所存储的初始状态反应场。所得的 SCF 能量
+对应于终态处于初始状态反应场中的零级计算结果。若要获得一阶非平衡结果，需要对终态弛豫快溶剂极化，
+即叠加一项微扰 ptSS 校正，该校正会在收敛的 fRF-SCF 计算之后打印输出。
 
 ### `RF_ptSS_Save`
 
-> **Save the current reaction field to disk. INPUT SECTION: $pcm**
+> **将当前反应场存储到磁盘。输入段：$pcm**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`BOOLEAN`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Save the reaction field in the current job.
+>     * 在当前作业中存储反应场。
 >     * FALSE
->     * Do not save the reaction field in the current job.
-> * **Recommendation**: The reaction field is saved for the reference state, which is for $\Delta$ SCF or ROKS just the SCF result, but for TDDFT + II-SS-PCM the chosen reference state (see Section 7.3.7.2 ). Activating RF_ptSS_SAVE for several subsequent jobs overwrites the reaction field.
+>     * 在当前作业中不存储反应场。
+> * **建议**：反应场是为参考态存储的：对于 $\Delta$ SCF 或 ROKS，参考态就是 SCF 结果本身；而对于 TDDFT + II-SS-PCM，参考态为所选定的参考态（见第 7.3.7.2 节）。若在多个连续作业中开启 RF_ptSS_SAVE，反应场会被覆盖。
 
 ### `RF_ptSS_Read`
 
-> **Read the reaction field from disk and perform a fRF-SCF + ptSS-PCM calculation with it. INPUT SECTION: $pcm**
+> **从磁盘读取反应场，并基于它执行 fRF-SCF + ptSS-PCM 计算。输入段：$pcm**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`BOOLEAN`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * TRUE
->     * Read the reaction field in the current job.
+>     * 在当前作业中读取反应场。
 >     * FALSE
->     * Do not read the reaction field in the current job.
-> * **Recommendation**: The SCF result corresponds to zeroth order solvation of the final state. For first-order nonequilibrium solvation add the ptSS correction printed after the fRF-SCF.
+>     * 在当前作业中不读取反应场。
+> * **建议**：SCF 结果对应于终态的零级溶剂化。若要获得一阶非平衡溶剂化，需叠加在 fRF-SCF 之后打印的 ptSS 校正。
 
-???+ example "Example 7.60: Vertical excitation energy of formaldehyde in acetonitrile with ROKS + PCM and a nonequilibrium ptSS-PCM correction."
+???+ example "示例 7.60：用 ROKS + PCM 及非平衡 ptSS-PCM 校正计算甲醛在乙腈中的垂直激发能。"
     ```qchem
     $rem
        method               pbe0

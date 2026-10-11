@@ -1,78 +1,48 @@
 ---
-title: "4.5.7 Geometric Direct Minimization (GDM)"
+title: "4.5.7 几何直接极小化 (GDM)"
 ---
 
-## 4.5.7 Geometric Direct Minimization (GDM)
+## 4.5.7 几何直接极小化（Geometric Direct Minimization, GDM）
 
 (July 4, 2026)
 
 gdm
 
-Geometric Direct Minimization (GDM) is an extremely robust SCF convergence
-algorithm that is only slightly less efficient than DIIS. The GDM algorithm
-takes steps in an orbital rotation space that properly respects the
-hyperspherical geometry of the manifold of allowed SCF solutions. In other
-words, orbital rotations are variables that describe a space that is curved
-like a many-dimensional sphere. Just like the optimum flight paths for
-airplanes are not straight lines but great circles, so too are the optimum
-steps in orbital rotation space. GDM takes this correctly into account, which
-is the origin of its efficiency and its robustness. For full details see
-Ref. [[1391]](../bib_references/bib.md#bib1453)
-. GDM is a good alternative to DIIS for SCF jobs
-that exhibit convergence difficulties with DIIS. The GDM algorithm has been
-extended to restricted open-shell SCF calculations, and results indicate that
-it is much more efficient as compared to older direct-minimization methods.
+几何直接极小化（GDM）是一种极其稳健的自洽场（SCF）收敛算法，其效率仅略低于直接迭代子空间方法（DIIS）。GDM 算法在轨道旋转空间中走出迭代步，并且正确地考虑了允许的 SCF 解流形（manifold）所具有的双球面（hyperspherical）几何结构。换句话说，轨道旋转所描述的空间是像高维球面一样弯曲的。正如飞机的最优航线不是直线而是大圆，轨道旋转空间中的最优步长同样如此。GDM 正确地考虑了这一点，这正是其高效性与稳健性的根源。完整细节请参见文献 [[1391]](../bib_references/bib.md#bib1453) 。对于使用 DIIS 时出现收敛困难的 SCF 计算，GDM 是 DIIS 的一个良好替代方案。GDM 算法已被推广到限制开壳层（restricted open-shell）SCF 计算，结果表明与早期的直接极小化方法相比，它的效率要高得多。
 
-Section [4.5.3](sect_diis.md) discussed the fact that DIIS can efficiently head
-towards the global SCF minimum in the early iterations. This can be true even
-if DIIS fails to converge in later iterations. For this reason, a hybrid scheme
-has been implemented which uses the DIIS minimization procedure to achieve
-convergence to an intermediate cutoff threshold. Thereafter, the geometric
-direct minimization algorithm is used. This scheme combines the strengths of
-the two methods quite nicely: the ability of DIIS to recover from initial
-guesses that may not be close to the global minimum, and the ability of GDM to
-robustly converge to a local minimum, even when the local surface topology is
-challenging for DIIS. This is the recommended procedure with which to invoke
-GDM (*i.e.*, setting SCF_ALGORITHM = DIIS_GDM). This hybrid
-procedure is also compatible with the SAD guess, while GDM itself is not,
-because it requires an initial guess set of orbitals. If one wishes to disturb
-the initial guess as little as possible before switching on GDM, one should
-additionally specify MAX_DIIS_CYCLES = 1 to obtain only a single
-Roothaan step (which also serves up a properly orthogonalized set of orbitals).
+第 [4.5.3](sect_diis.md) 节讨论了这样一个事实：在迭代早期，DIIS 能够高效地朝全局 SCF 极小值前进。即使 DIIS 在后续迭代中无法收敛，这一点仍然成立。因此，程序实现了一种混合方案：先用 DIIS 极小化过程收敛到某个中间截止阈值，随后再改用几何直接极小化算法。该方案相当出色地结合了两种方法的优势：DIIS 能够从可能远离全局极小值的初始猜测中恢复，而 GDM 则能够稳健地收敛到局部极小值，即使局域曲面拓扑对 DIIS 而言颇具挑战性。这是调用 GDM 的推荐做法（*即*，设置 SCF_ALGORITHM = DIIS_GDM）。该混合过程同样兼容 SAD 猜测，而 GDM 本身则不兼容，因为它需要一组初始猜测轨道。如果希望在启用 GDM 之前尽可能少地扰动初始猜测，还应额外指定 MAX_DIIS_CYCLES = 1，从而只执行一次 Roothaan 步（这一步同时也会给出正确正交化后的轨道集合）。
 
-*$rem* options relevant to GDM are SCF_ALGORITHM which should be set
-to either GDM or DIIS_GDM and the following:
+与 GDM 相关的 *$rem* 选项包括 SCF_ALGORITHM（应设置为 GDM 或 DIIS_GDM），以及以下选项：
 
 MAX_DIIS_CYCLES
 
 ### `MAX_DIIS_CYCLES`
 
-> **The maximum number of DIIS iterations before switching to (geometric) direct minimization when SCF_ALGORITHM is DIIS_GDM or DIIS_DM . See also THRESH_DIIS_SWITCH .**
+> **当 SCF_ALGORITHM 为 DIIS_GDM 或 DIIS_DM 时，在切换到（几何）直接极小化之前所允许的最大 DIIS 迭代次数。另见 THRESH_DIIS_SWITCH 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`50`
+> * **可选值**：
 >     * 1
->     * Only a single Roothaan step before switching to (G)DM
+>     * 在切换到 (G)DM 之前只执行一次 Roothaan 步
 >     * $n$
 >     * $n$
->     * DIIS iterations before switching to (G)DM.
-> * **Recommendation**: None
+>     * 在切换到 (G)DM 之前的 DIIS 迭代次数。
+> * **建议**：无
 
 THRESH_DIIS_SWITCH
 
 ### `THRESH_DIIS_SWITCH`
 
-> **The threshold for switching between DIIS extrapolation and direct minimization of the SCF energy is $10^{-\mbox{{\small THRESH\_DIIS\_SWITCH}}}$ when SCF_ALGORITHM is DIIS_GDM or DIIS_DM . See also MAX_DIIS_CYCLES .**
+> **当 SCF_ALGORITHM 为 DIIS_GDM 或 DIIS_DM 时，在 DIIS 外推与 SCF 能量直接极小化之间进行切换的阈值为 $10^{-\mbox{{\small THRESH\_DIIS\_SWITCH}}}$ 。另见 MAX_DIIS_CYCLES 。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `2`
-> * **Options**:
->     * User-defined.
-> * **Recommendation**: None
+> * **类型**：`INTEGER`
+> * **默认值**：`2`
+> * **可选值**：
+>     * 由用户自定义。
+> * **建议**：无
 
-???+ example "Example 4.12: Input for a UHF calculation using geometric direct minimization (GDM) on the
-phenyl radical, after initial iterations with DIIS."
+???+ example "示例 4.12: 苯基自由基（phenyl radical）在使用 DIIS 完成初始迭代后，采用几何直接极小化（GDM）进行非限制 Hartree-Fock（UHF）计算的输入。"
     ```qchem
     $molecule
        0   2

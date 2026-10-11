@@ -1,18 +1,9 @@
 ---
-title: "5.7.1 Introduction"
+title: "5.7.1 引言"
 ---
 
-## 5.7.1 Introduction
+## 5.7.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-This section describes five different procedures for obtaining a better
-description of dispersion (van der Waals) interactions in DFT calculations:
-non-local correlation functionals (Section [5.7.2](sect_VV10.md)), empirical
-atom–atom dispersion potentials (“DFT-D”, Section [5.7.3](subsec_DFT-D.md)), the
-Becke-Johnson exchange-dipole model (XDM, Section [5.7.4](sect_XDM.md)), the
-Tkatchenko-Scheffler van der Waals method (TS-vdW, Section [5.7.5](sect_TS.md)), and
-finally the many-body dispersion method (MBD, Section [5.7.6](sect_MBD.md)).
-For a pedagogical introduction to all of these methods, discussing the commonalities
-between them, see Ref. [[483]](../bib_references/bib.md#bib494)
-.
+本节介绍五种不同的方法，用于在密度泛函理论（Density Functional Theory, DFT）计算中获得对色散（van der Waals，范德华）相互作用更准确的描述：非局域关联泛函（第 [5.7.2](sect_VV10.md) 节）、经验原子-原子色散势（“DFT-D”，第 [5.7.3](subsec_DFT-D.md) 节）、Becke-Johnson 交换偶极模型（XDM，第 [5.7.4](sect_XDM.md) 节）、Tkatchenko-Scheffler 范德华方法（TS-vdW，第 [5.7.5](sect_TS.md) 节），以及最后的多体色散方法（MBD，第 [5.7.6](sect_MBD.md) 节）。

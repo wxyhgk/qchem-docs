@@ -2,21 +2,21 @@
 title: "4.3.2 Job Control"
 ---
 
-## 4.3.2 Job Control
+## 4.3.2 作业控制（Job Control）
 
 (July 4, 2026)
 
-The following two *$rem* variables must be specified in order to run HF calculations:
+若要运行 HF 计算，必须指定以下两个 *$rem* 变量：
 
 METHOD
 
 ### `METHOD`
 
-> **Specifies the exchange-correlation functional.**
+> **指定交换-关联泛函。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认值`
+> * **选项**:
 >     * NAME
 >     * Use
 >     * =
@@ -36,17 +36,17 @@ METHOD
 >     * , and
 >     * 7.8
 >     * ;
-> * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations for DFT are indicated in bold in Section 5.3.5 .
+> * **建议**: 一般而言，请参考文献以指导你的选择。我们对密度泛函理论（DFT）的推荐在第 5.3.5 节中以粗体标出。
 
 BASIS
 
 ### `BASIS`
 
-> **Specifies the basis sets to be used.**
+> **指定要使用的基组（Basis Set）。**
 >
-> * **Type**: `STRING`
-> * **Default**: `No default basis set`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `无默认基组`
+> * **选项**:
 >     * General, Gen
 >     * User defined (
 >     * $basis
@@ -59,169 +59,165 @@ BASIS
 >     * Use a mixture of basis sets (see Chapter
 >     * 8
 >     * ).
-> * **Recommendation**: Consult literature and reviews to aid your selection.
+> * **建议**: 请参考文献和综述以辅助你的选择。
 
-In addition, the following *$rem* variables can be used to customize the SCF calculation:
+此外，可以使用以下 *$rem* 变量来自定义自洽场（SCF）计算：
 
 GEN_SCFMAN
 
 ### `GEN_SCFMAN`
 
-> **Use GEN_SCFMAN for the present SCF calculation.**
+> **对当前 SCF 计算使用 GEN_SCFMAN。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `TRUE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `TRUE`
+> * **选项**:
 >     * FALSE
 >     * Use the previous SCF code.
 >     * TRUE
 >     * Use GEN_SCFMAN.
-> * **Recommendation**: Set to FALSE in cases where features not yet supported by GEN_SCFMAN are needed.
+> * **建议**: 在需要用到 GEN_SCFMAN 尚未支持的功能时，设置为 FALSE。
 
 ORBITAL_ENERGY_PREC
 
 ### `ORBITAL_ENERGY_PREC`
 
-> **Obtain additional digits of precision in the orbital energies.**
+> **获取更高精度的轨道能数值位数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
 >     * Standard printout with 4 decimal digits (in Hartree).
 >     * 1
 >     * 5 decimal digits.
 >     * 2
 >     * Scientific notation with 10 digits of precision.
-> * **Recommendation**: Set as desired. Has no effect in cases where the orbital symmetry labels are printed; use SYM_IGNORE = TRUE if additional precision is needed in such cases.
+> * **建议**: 按需设置。在打印轨道对称性标签的情况下本变量无效；若在此类情况下需要更高精度，请使用 SYM_IGNORE = TRUE。
 
 PRINT_ORBITALS
 
 ### `PRINT_ORBITALS`
 
-> **Prints orbital coefficients with atom labels in analysis part of output.**
+> **在输出的分析部分打印带原子标签的轨道系数。**
 >
-> * **Type**: `INTEGER/LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `INTEGER/LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
 >     * Do not print any orbitals.
 >     * TRUE
 >     * Prints occupied orbitals plus 5 virtual orbitals.
 >     * NVIRT
 >     * Number of virtual orbitals to print.
-> * **Recommendation**: Use true unless more virtual orbitals are desired.
+> * **建议**: 使用 true，除非需要打印更多虚轨道。
 
 SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 
-> **SCF is considered converged when the wave function error is less that $10^{-\mathrm{SCF\_CONVERGENCE}}$ . Adjust the value of THRESH at the same time.**
+> **当波函数误差小于 $10^{-\mathrm{SCF\_CONVERGENCE}}$ 时，即认为 SCF 已收敛。请同时调整 THRESH 的取值。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * User-defined
-> * **Recommendation**: Tighter criteria are recommended for geometry optimization and vibration analysis. Larger values provide more significant figures, at greater computational cost. Beginning with Q-Chem 3.0, the DIIS error is measured by the maximum error rather than the RMS error that was used in earlier versions.
+> * **建议**: 对于几何优化和振动分析，推荐使用更严格的收敛判据。较大的数值可提供更多有效数字，但计算代价也更高。从 Q-Chem 3.0 开始，DIIS 误差以最大误差衡量，而非早期版本所使用的均方根（RMS）误差。
 
 UNRESTRICTED
 
 ### `UNRESTRICTED`
 
-> **Controls the use of restricted or unrestricted orbitals.**
+> **控制使用受限轨道还是非受限轨道。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * FALSE
 >     * Constrain the spatial part of the alpha and beta orbitals to be the same.
 >     * TRUE
 >     * Do not Constrain the spatial part of the alpha and beta orbitals.
-> * **Recommendation**: Use the default unless ROHF is desired. Note that for unrestricted calculations on systems with an even number of electrons it is usually necessary to break $\alpha$ / $\beta$ symmetry in the initial guess, by using SCF_GUESS_MIX or providing $occupied information (see Section 4.4 on initial guesses).
+> * **建议**: 除非需要 ROHF，否则使用默认值。注意，对电子数为偶数的体系进行非受限计算时，通常需要在初始猜测中打破 $\alpha$ / $\beta$ 对称性，方法是使用 SCF_GUESS_MIX 或提供 $occupied 信息（见第 4.4 节关于初始猜测的内容）。
 
-The calculations using other more special orbital types are controlled by the
-following *$rem* variables (they are not effective if GEN_SCFMAN =
-FALSE):
+使用其他更特殊轨道类型的计算由以下 *$rem* 变量控制（当 GEN_SCFMAN = FALSE 时它们不起作用）：
 
 OS_ROSCF
 
 ### `OS_ROSCF`
 
-> **Run an open-shell singlet ROSCF calculation with GEN_SCFMAN.**
+> **使用 GEN_SCFMAN 进行开壳层单重态 ROSCF 计算。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * OS_ROSCF calculation is performed.
 >     * FALSE
 >     * Do not run OS_ROSCF (it will run a closed-shell RSCF calculation instead).
-> * **Recommendation**: Set to TRUE if desired.
+> * **建议**: 按需设置为 TRUE。
 
 ROSCF_DODS
 
 ### `ROSCF_DODS`
 
-> **Run a canonical restricted open-shell calculation (also called “ROSCF-DODS”, where DODS stands for different orbitals for different spins) with GEN_SCFMAN. Available for high-spin half-filled open-shell systems.**
+> **使用 GEN_SCFMAN 进行正则受限开壳层计算（也称为 "ROSCF-DODS"，其中 DODS 表示不同自旋使用不同轨道，different orbitals for different spins）。仅适用于高自旋半满开壳层体系。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * Perform a canonical ROSCF calculation.
 >     * FALSE
 >     * Do not perform a canonical ROSCF calculation (run an open-shell USCF
 >     * calculation instead).
-> * **Recommendation**: Set to TRUE if desired.
+> * **建议**: 按需设置为 TRUE。
 
 GHF
 
 ### `GHF`
 
-> **Run a generalized Hartree-Fock calculation with GEN_SCFMAN.**
+> **使用 GEN_SCFMAN 进行广义 Hartree-Fock（GHF）计算。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * Run a GHF calculation.
 >     * FALSE
 >     * Do not use GHF.
-> * **Recommendation**: Set to TRUE if desired.
+> * **建议**: 按需设置为 TRUE。
 
 COMPLEX
 
 ### `COMPLEX`
 
-> **Run an SCF calculation with complex MOs using GEN_SCFMAN.**
+> **使用 GEN_SCFMAN 进行基于复数分子轨道（MO）的 SCF 计算。**
 >
-> * **Type**: `BOOLEAN`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `BOOLEAN`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
 >     * Use complex orbitals.
 >     * FALSE
 >     * Use real orbitals.
-> * **Recommendation**: Set to TRUE if desired.
+> * **建议**: 按需设置为 TRUE。
 
 COMPLEX_MIX
 
 ### `COMPLEX_MIX`
 
-> **Mix a certain percentage of the real part of the HOMO to the imaginary part of the LUMO.**
+> **将实部 HOMO 的某一百分比混合到 LUMO 的虚部中。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0–100
 >     * The mix angle =
 >     * $\pi\cdot$
 >     * /100.
-> * **Recommendation**: It may help find the stable complex solution (similar idea as SCF_GUESS_MIX ).
+> * **建议**: 这可能有助于找到稳定的复数解（与 SCF_GUESS_MIX 的思路类似）。
 
-???+ example "Example 4.1: Restricted open-shell singlet ROSCF calculation for the first excited state of
-formaldehyde using GEN_SCFMAN. The first job provides the guess orbitals
-through a restricted SCF calculation."
+???+ example "示例 4.1: 使用 GEN_SCFMAN 对甲醛第一激发态进行受限开壳层单重态 ROSCF 计算。第一个作业通过受限 SCF 计算提供猜测轨道。"
     ```qchem
     $molecule
        0 1

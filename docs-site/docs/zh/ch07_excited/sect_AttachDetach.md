@@ -1,90 +1,69 @@
 ---
-title: "7.13.2 Attachment/Detachment Density Analysis"
+title: "7.13.2 附件/脱附密度分析（Attachment/Detachment Density Analysis）"
 ---
 
-## 7.13.2 Attachment/Detachment Density Analysis
+## 7.13.2 附件/脱附密度分析（Attachment/Detachment Density Analysis）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Consider the one-particle density matrices of the initial and final states of
-interest, $\mathbf{P}_{1}$ and $\mathbf{P}_{2}$ respectively. Assuming that each state is
-represented in a finite basis of spin-orbitals, such as the molecular orbital
-basis, and each state is at the same geometry. Subtracting these matrices
-yields the difference density
+考虑所关心的初态与末态的单粒子密度矩阵，分别记为 $\mathbf{P}_{1}$ 与 $\mathbf{P}_{2}$。假设每个态都用自旋轨道的有限基组（例如分子轨道基）来表示，并且两个态具有相同的几何构型。将这两个矩阵相减即可得到差密度（difference density）
 
 <a id="eq623"></a>
 $$
 \bm{\Delta}={\rm{\bf P}}_{1}-{\rm{\bf P}}_{2} \tag{7.180}
 $$
 
-Now, the eigenvectors of the one-particle density matrix $\mathbf{P}$ describing a
-single state are termed the natural orbitals, and provide the best orbital
-description that is possible for the state, in that a CI expansion using the
-natural orbitals as the single-particle basis is the most compact. The basis
-of the attachment/detachment analysis is to consider what could be termed
-natural orbitals of the electronic transition and their occupation numbers
-(associated eigenvalues). These are defined as the eigenvectors $\mathbf{U}$ defined by
+在此需要注意，描述单个态的单粒子密度矩阵 $\mathbf{P}$ 的本征矢量称为自然轨道（natural orbitals），它能为该态提供可能的最佳轨道描述，因为以自然轨道作为单粒子基进行的 CI 展开是最紧凑的。附件/脱附分析（attachment/detachment analysis）的基础是考察所谓电子跃迁的自然轨道及其占据数（相应的本征值）。这些轨道定义为由下式给出的本征矢量 $\mathbf{U}$
 
 <a id="eq624"></a>
 $$
 {\rm{\bf U}}^{\dagger}\bm{\Delta}{\rm{\bf U}}=\delta \tag{7.181}
 $$
 
-The sum of the occupation numbers $\delta_{p}$ of these orbitals is then
+这些轨道的占据数 $\delta_{p}$ 之和为
 
 <a id="eq625"></a>
 $$
 \mbox{tr}(\bm{\Delta})=\sum\limits_{p=1}^{N}{\delta_{p}}=n \tag{7.182}
 $$
 
-where $n$ is the net gain or loss of electrons in the transition. The net gain
-in an electronic transition which does not involve ionization or electron
-attachment will obviously be zero.
+其中 $n$ 是跃迁过程中电子的净得失数。显然，对于不涉及电离或电子附着的电子跃迁，其净得失数等于零。
 
-The detachment density
+脱附密度（detachment density）
 
 <a id="eq:detach_density_matrix"></a>
 $$
 \textbf{D}=\textbf{UdU}^{\dagger} \tag{7.183}
 $$
 
-is defined as the sum of all natural orbitals of the difference density with
-negative occupation numbers, weighted by the absolute value of their
-occupations where $\mathbf{d}$ is a diagonal matrix with elements
+定义为差密度的所有具有负占据数的自然轨道之和，并以其占据数的绝对值作为权重，其中 $\mathbf{d}$ 是对角矩阵，其元素为
 
 <a id="eq627"></a>
 $$
 d_{p}=-\min(\delta_{p},0) \tag{7.184}
 $$
 
-The detachment density corresponds to the electron density associated with
-single particle levels vacated in an electronic transition or hole density.
+脱附密度对应于电子跃迁中被腾空的单粒子能级所涉及电子密度，即空穴密度（hole density）。
 
-The attachment density
+附件密度（attachment density）
 
 <a id="eq:attach_density_matrix"></a>
 $$
 \textbf{A}=\textbf{UaU}^{\dagger} \tag{7.185}
 $$
 
-is defined as the sum of all natural orbitals of the difference density with
-positive occupation numbers where $\mathbf{a}$ is a diagonal matrix with elements
+定义为差密度的所有具有正占据数的自然轨道之和，其中 $\mathbf{a}$ 是对角矩阵，其元素为
 
 <a id="eq629"></a>
 $$
 a_{p}=\max(\delta_{p},0)\;. \tag{7.186}
 $$
 
-The attachment density corresponds to the electron density associated with
-the single particle levels occupied in the transition or particle density.
-The difference between the attachment and detachment densities yields the
-original difference density matrix
+附件密度对应于跃迁中被占据的单粒子能级所涉及电子密度，即粒子密度（particle density）。附件密度与脱附密度之差即得到原始的差密度矩阵
 
 <a id="eq630"></a>
 $$
 \bm{\Delta}=\mathbf{A}-\mathbf{D}\;. \tag{7.187}
 $$
 
-Within a CIS or TDDFT calculation, where the transitions are strictly one-electron in nature,
-the matrices $\mathbf{A}$ and $\mathbf{D}$ are the particle (virtual-virtual) and hole (occupied-occupied)
-components of the unrelaxed difference density matrix.
+在 CIS 或 TDDFT（含时密度泛函理论）计算中，由于跃迁严格来说是单电子性质的，矩阵 $\mathbf{A}$ 与 $\mathbf{D}$ 分别是非松弛（unrelaxed）差密度矩阵的粒子部分（虚-虚块，virtual-virtual）和空穴部分（占据-占据块，occupied-occupied）。

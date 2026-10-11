@@ -1,123 +1,79 @@
 ---
-title: "11.2.11 Poisson Boundary Conditions"
+title: "11.2.11 泊松边界条件（Poisson Boundary Conditions）"
 ---
 
-## 11.2.11 Poisson Boundary Conditions
+## 11.2.11 泊松边界条件
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Each of the implicit solvation models described above is designed for
-isotropic, bulk solvation—conditions that can be qualitatively described
-using a scalar dielectric constant, $\varepsilon$. For an *anisotropic*
-environment, such as a liquid/vapor interface, a more general approach is
-to solve Poisson’s equation with a spatially-varying dielectric
-*function*, $\varepsilon(\mathbf{r})$. Such an approach can be used, for
-example, to model the air/water interface by describing certain regions
-of space using $\varepsilon=1$ (air) and other regions using $\varepsilon=78$
-(water).[[267]](../bib_references/bib.md#bib267)
- The atomistic region is described at the
-SCF level. Construction of the dielectric function $\varepsilon(\mathbf{r})$
-is based on a solute cavity, somewhat analogous to the solute cavity in a PCM
-calculation but where the dielectric changes smoothly (rather than abruptly)
-from $\varepsilon=1$ inside the cavity (in the atomistic QM region) to
-$\varepsilon=\varepsilon_{\rm solvent}$ outside, in the continuum solvent.
-Options for modeling a liquid/vapor interface are also available; see
-Section [11.2.11.3](#sect:PEQS:job_control). In contrast to PCMs, which must
-approximate the “volume polarization” due to penetration of the tails of the
-QM charge density beyond the solute cavity, this effect is described exactly
-under Poisson boundary conditions. The price to be paid for lifting this
-approximation is that charge densities must be discretized and integrated over
-three-dimensional space rather than simply a two-dimensional solute cavity surface.
+上文所介绍的每一种隐式溶剂化模型都是为各向同性的体相（bulk）溶剂化而设计的——这种条件可以用标量介电常数 $\varepsilon$ 来作定性描述。对于*各向异性*环境，例如液/气界面，更通用的做法是使用空间变化的介电*函数* $\varepsilon(\mathbf{r})$ 来求解泊松方程（Poisson's equation）。例如，这种方法可以用来模拟空气/水界面：在空间的某些区域使用 $\varepsilon=1$（空气），而在另一些区域使用 $\varepsilon=78$（水）。[[267]](../bib_references/bib.md#bib267)
+ 其中的原子区域用自洽场（SCF）方法来描述。介电函数 $\varepsilon(\mathbf{r})$ 的构造基于溶质空腔（solute cavity），这在某种程度上类似于极化连续介质模型（PCM）计算中的溶质空腔，但介电值是从空腔内部（即原子化的量子力学区域）的 $\varepsilon=1$ *平滑*（而非突变）地过渡到连续溶剂外部的 $\varepsilon=\varepsilon_{\rm solvent}$。用于建模液/气界面的选项同样可用；参见第 [11.2.11.3](#sect:PEQS:job_control) 节。与 PCM 不同（PCM 必须近似处理由于 QM 电荷密度“尾部”穿透到溶质空腔之外所引起的“体极化”），在泊松边界条件下这一效应可以被精确描述。取消该近似所付出的代价是：电荷密度必须在三维空间上进行离散化和积分，而不仅仅是在二维的溶质空腔表面上。
 
-**Q-Chem**’s implementation of the *Poisson Equation Solver* (PEqS) method was introduced in
-Ref. [[267]](../bib_references/bib.md#bib267)
- and refined in Refs. [[266]](../bib_references/bib.md#bib268)
- and [[1046]](../bib_references/bib.md#bib1091)
-.
-Support for dielectric media with finite ionic strength was added in Ref. [[1305]](../bib_references/bib.md#bib1362)
-.
-Users of this methodology are asked to cite Refs. [[266]](../bib_references/bib.md#bib268)
- and [[1046]](../bib_references/bib.md#bib1091)
-.
+**Q-Chem** 对*泊松方程求解器*（Poisson Equation Solver, PEqS）方法的实现最早见于文献 [[267]](../bib_references/bib.md#bib267)
+，并在文献 [[266]](../bib_references/bib.md#bib268)
+ 与 [[1046]](../bib_references/bib.md#bib1091)
+ 中得到改进。对具有有限离子强度的介电环境的支持则由文献 [[1305]](../bib_references/bib.md#bib1362)
+ 加入。使用本方法的读者请引用文献 [[266]](../bib_references/bib.md#bib268)
+ 与 [[1046]](../bib_references/bib.md#bib1091)
+。
 
-## 11.2.11.1 Theory
+## 11.2.11.1 理论
 
-The most general formulation of Poisson’s equation, for a dielectric
-*function* rather than a dielectric *constant*, is
+对于介电*函数*（而非介电*常数*），泊松方程最一般的形式为
 
 <a id="eq:Poisson"></a>
 $$
 \hat{\bm{\nabla}}\bm{\cdot}\left[\varepsilon(\mathbf{r})\hat{\bm{\nabla}}\varphi_{\rm tot}(\mathbf{r})\right]=-4\pi\rho_{\rm sol}(\mathbf{r})\;. \tag{11.25}
 $$
 
-The solute’s charge density will be separated into nuclear and electronic components,
+溶质的电荷密度将被拆分为核部分与电子部分，
 
 <a id="eq:rho"></a>
 $$
 \rho_{\rm sol}(\mathbf{r})=\rho_{\rm nuc}(\mathbf{r})+\rho_{\rm elec}(\mathbf{r})\;. \tag{11.26}
 $$
 
-The total electrostatic potential $\varphi_{\rm tot}$
-is comprised of the solute’s electrostatic potential $\varphi_{\rm elec}+\varphi_{\rm nuc}$, which is obtained from the density
-in Eq. ([11.26](#eq:rho)), plus the polarization potential induced in the medium:
+总静电势 $\varphi_{\rm tot}$ 由溶质自身的静电势 $\varphi_{\rm elec}+\varphi_{\rm nuc}$（由式 ([11.26](#eq:rho)) 中的密度求得）以及在介质中感应的极化势共同组成：
 
 <a id="eq:phi"></a>
 $$
 \varphi_{\rm tot}(\mathbf{r})=\varphi_{\rm elec}(\mathbf{r})+\varphi_{\rm nuc}(\mathbf{r})+\varphi_{\rm pol}(\mathbf{r})\;. \tag{11.27}
 $$
 
-To compute $\rho_{\rm elec}$, the electronic contribution to the electrostatic
-potential in vacuum is first evaluated on a Cartesian grid,
+为计算 $\rho_{\rm elec}$，首先在笛卡尔网格上求出真空中静电势的电子贡献，
 
 <a id="eq:phi_elec"></a>
 $$
 \varphi_{\rm elec}(\mathbf{r}_{i})=\sum_{\mu\nu}^{N_{\rm basis}}P_{\mu\nu}\Bigl{\langle}g_{\mu}(\mathbf{r})\Bigl{|}\frac{1}{|\mathbf{r}-\mathbf{r}_{i}|}\Bigr{|}g_{\nu}(\mathbf{r})\Bigr{\rangle}\;. \tag{11.28}
 $$
 
-Here **P** is the one-electron density matrix, $g_{\mu}$ and $g_{\nu}$ are
-atom-centered Gaussian basis functions, and the integration is over
-$\mathbf{r}$. The electronic part of the solute’s charge density is
-then obtained from
+其中 **P** 为单电子密度矩阵，$g_{\mu}$ 与 $g_{\nu}$ 是原子中心的 Gauss 型基函数，积分对 $\mathbf{r}$ 进行。于是溶质电荷密度的电子部分可由下式得到
 
 <a id="eq:rho_elec"></a>
 $$
 \rho_{\rm elec}(\mathbf{r})=-\frac{1}{4\pi}\hat{\nabla}^{2}\varphi_{\rm elec}(\mathbf{r})\;, \tag{11.29}
 $$
 
-where in practice the Laplacian of $\varphi_{\rm elec}$ is evaluated using an
-eighth-order finite difference scheme.[[266]](../bib_references/bib.md#bib268)
- The nuclear charge
-density $\rho_{\rm nuc}$ is described classically,
+实际计算中，$\varphi_{\rm elec}$ 的拉普拉斯（Laplacian）采用八阶有限差分格式求值。[[266]](../bib_references/bib.md#bib268)
+ 核电荷密度 $\rho_{\rm nuc}$ 则按经典方式描述，
 
 <a id="eq:rho_nuc"></a>
 $$
 \rho_{\rm nuc}(\mathbf{r})=-\sum_{A}^{N_{\rm atoms}}Z_{\!A}\ \delta\left(\mathbf{r}-\mathbf{R}_{A}\right)\;, \tag{11.30}
 $$
 
-but to avoid numerical problems the nuclear charges are smeared out over one
-Cartesian grid voxel in practice. Operationally, this is achieved by adding
-$Z_{A}/dV$ to the grid point nearest $\mathbf{R}_{A}$, where $dV$ is the volume of
-a Cartesian voxel. The exact nuclear electrostatic potential in vacuum is
-computed according to
+但为避免数值问题，实际计算中会把核电荷“抹平”到一个笛卡尔网格体素（voxel）之内。具体做法是把 $Z_{A}/dV$ 加到最靠近 $\mathbf{R}_{A}$ 的网格点上，其中 $dV$ 是笛卡尔体素的体积。真空中核的精确静电势按下式计算
 
 <a id="eq:phi_nuke"></a>
 $$
 \varphi_{\rm nuc}(\mathbf{r})=-\frac{1}{4\pi}\sum_{A}^{N_{\rm atoms}}\frac{Z_{\!A}}{|\mathbf{r}-\mathbf{R}_{A}|}\;. \tag{11.31}
 $$
 
-The Dirac delta function in Eq. ([11.30](#eq:rho_nuc)) has dimensions of
-(volume)${}^{-1}$ and therefore incorporates the aforementioned factor of $dV^{-1}$
+式 ([11.30](#eq:rho_nuc)) 中的 Dirac δ 函数具有（体积）${}^{-1}$ 的量纲，因此已包含了前述的 $dV^{-1}$ 因子。
 
-Having computed the electronic and nuclear charge densities and the
-electrostatic potentials in vacuum, one has in hand an exact solution of
-Eq. ([11.25](#eq:Poisson)) for the case where $\varepsilon(\mathbf{r})=1$. The
-induced polarization charge density and corresponding electrostatic potential
-are then obtained iteratively, following closely the procedure outlined in
-Refs. [[390]](../bib_references/bib.md#bib398)
- and [[48]](../bib_references/bib.md#bib31)
-.
-Equation ([11.25](#eq:Poisson)) is rewritten to appear as Poisson’s equation in
-vacuum with an additional source charge density:
+在求得电子与核的电荷密度以及真空中的静电势之后，我们就已经得到了 $\varepsilon(\mathbf{r})=1$ 时式 ([11.25](#eq:Poisson)) 的精确解。随后，按照文献 [[390]](../bib_references/bib.md#bib398)
+ 与 [[48]](../bib_references/bib.md#bib31)
+ 所述流程，以迭代方式获得感应的极化电荷密度及相应的静电势。将式 ([11.25](#eq:Poisson)) 改写，使其形式上等同于真空中的泊松方程但附加了一个额外的源电荷密度：
 
 <a id="A3.S8.EGx104"></a>
 $$
@@ -125,30 +81,21 @@ $$
 &\displaystyle=-4\pi\bigl{[}\rho_{\rm sol}(\mathbf{r})+\rho_{\rm pol}(\mathbf{r})\bigr{]}\;,\end{aligned} \tag{11.32}
 $$
 
-where the polarization charge density is
+其中极化电荷密度为
 
 <a id="eq:rho_pol"></a>
 $$
 \rho_{\rm pol}(\mathbf{r})=\rho_{\rm iter}(\mathbf{r})+\left(\frac{1-\varepsilon(\mathbf{r})}{\varepsilon(\mathbf{r})}\right)\rho_{\rm sol}(\mathbf{r})\;. \tag{11.33}
 $$
 
-The iterative charge density $\rho_{\rm iter}(\mathbf{r})$ takes the form
+迭代电荷密度 $\rho_{\rm iter}(\mathbf{r})$ 的形式为
 
 <a id="eq:rho_iter1"></a>
 $$
 \rho_{\rm iter}^{(k+1)}(\mathbf{r})=\frac{\hat{\bm{\nabla}}\ln\varepsilon(\mathbf{r})\bm{\cdot}\hat{\bm{\nabla}}\varphi^{(k)}_{\rm tot}(\mathbf{r})}{4\pi} \tag{11.34}
 $$
 
-at iteration $k+1$. This function is nonzero only in transition regions where
-the dielectric is being interpolated from vacuum to solvent. Note also that
-the second term in Eq. ([11.33](#eq:rho_pol)) vanishes wherever
-$\varepsilon(\mathbf{r})=1$. The quantity $\rho_{\mathrm{iter}}(\mathbf{r})$ is
-iterated to convergence by performing updates $\rho_{\mathrm{iter}}^{(k)}(\mathbf{r})\rightarrow\rho_{\mathrm{iter}}^{(k+1)}(\mathbf{r})$ using Eq. ([11.34](#eq:rho_iter1)),
-taking $\varphi^{(0)}_{\mathrm{tot}}(\mathbf{r})$ to be the solute’s electrostatic
-potential in vacuum. Each time $\rho_{\rm iter}(\mathbf{r})$ is updated, a new
-polarization charge density is generated and Eq. ([11.32](#eq:Poisson2)) is solved
-to obtain a new total electrostatic potential. To stabilize the iterative
-updates of $\rho_{\rm iter}(\mathbf{r})$, we use a damping procedure
+此为第 $k+1$ 次迭代。该函数仅在介电值从真空插值到溶剂的过渡区域中非零。另请注意，式 ([11.33](#eq:rho_pol)) 中的第二项在所有 $\varepsilon(\mathbf{r})=1$ 处为零。对 $\rho_{\mathrm{iter}}(\mathbf{r})$ 通过式 ([11.34](#eq:rho_iter1)) 执行更新 $\rho_{\mathrm{iter}}^{(k)}(\mathbf{r})\rightarrow\rho_{\mathrm{iter}}^{(k+1)}(\mathbf{r})$ 迭代至收敛，其中取 $\varphi^{(0)}_{\mathrm{tot}}(\mathbf{r})$ 为溶质在真空中的静电势。每次更新 $\rho_{\rm iter}(\mathbf{r})$ 都会生成一个新的极化电荷密度，并求解式 ([11.32](#eq:Poisson2)) 以获得新的总静电势。为稳定 $\rho_{\rm iter}(\mathbf{r})$ 的迭代更新，我们采用如下阻尼格式
 
 <a id="A3.S8.EGx105"></a>
 $$
@@ -156,121 +103,87 @@ $$
 &\displaystyle=\eta\rho_{\rm iter}^{(k+1)}+(1-\eta)\rho_{\rm iter}^{(k)}(\mathbf{r})\end{aligned} \tag{11.35}
 $$
 
-rather than using Eq. ([11.34](#eq:rho_iter1)) as written. Following
-Refs. [[390]](../bib_references/bib.md#bib398)
- and [[48]](../bib_references/bib.md#bib31)
-, we use $\eta=0.6$.
+而不是直接使用式 ([11.34](#eq:rho_iter1)) 的原始形式。依照文献 [[390]](../bib_references/bib.md#bib398)
+ 与 [[48]](../bib_references/bib.md#bib31)
+，我们取 $\eta=0.6$。
 
-Once the total charge density and electrostatic potential are iterated to
-self-consistency, the free energy of solvation,
+一旦总电荷密度与静电势迭代达到自洽，即可计算溶剂化自由能
 
 <a id="eq:Gpol"></a>
 $$
 G_{\rm pol}=\frac{1}{2}\int d\textbf{r}\;\varphi_{\rm pol}(\textbf{r})\;\rho_{\rm sol}(\mathbf{r})\;, \tag{11.36}
 $$
 
-is computed, where
+其中
 
 <a id="eq:phi_pol"></a>
 $$
-\varphi_{\rm pol}(\textbf{r})=\varphi_{\rm tot}(\textbf{r})-\varphi_{\rm sol}(\mathbf{r})\;. \tag{11.37}
+\varphi_{\rm pol}(\textbf{r})=\varphi_{\rm tot}(\textbf{r})-\varphi_{\rm sol}(\textbf{r})\;. \tag{11.37}
 $$
 
-Since $\varphi_{\mathrm{tot}}$ and $\rho_{\mathrm{tot}}$ are computed self-consistently
-at each SCF iteration, the polarization effects must be incorporated into the
-Fock matrix. This is accomplished by adding the correction term $\Delta\hat{F}=\delta G_{\mathrm{pol}}/\delta\rho_{\mathrm{elec}}$. The matrix form of this
-correction in the atomic orbital basis is
+由于 $\varphi_{\mathrm{tot}}$ 与 $\rho_{\mathrm{tot}}$ 在每一次 SCF 迭代中都是自洽求得的，因此必须把极化效应纳入 Fock 矩阵。这通过加上修正项 $\Delta\hat{F}=\delta G_{\mathrm{pol}}/\delta\rho_{\mathrm{elec}}$ 来实现。该修正项在原子轨道基组下的矩阵形式为
 
 <a id="eq:fock"></a>
 $$
 \Delta F_{\mu\nu}=\int d\textbf{r}\;\varphi_{\rm pol}(\textbf{r})\;g_{\mu}(\textbf{r})\;g_{\nu}(\textbf{r})\;. \tag{11.38}
 $$
 
-For additional details and a full description of the algorithm, see
-Ref. [[266]](../bib_references/bib.md#bib268)
-.
+更多细节及算法的完整描述参见文献 [[266]](../bib_references/bib.md#bib268)
+。
 
-## 11.2.11.2 Nonequilibrium Solvation for Vertical Ionization
+## 11.2.11.2 竖直电离的非平衡溶剂化
 
-Nonequilibrium solvation within the framework of PCMs is discussed in
-Section [11.2.3.3](topic_pcm-em.md#subsubsec:noneq-PCM), and that
-methodology[[940]](../bib_references/bib.md#bib979)
- has been adapted for vertical ionization
-processes in conjunction with Poisson boundary
-conditions.[[267]](../bib_references/bib.md#bib267)
- A state-specific approach has been
-implemented that requires solution of a nonlinear Schrödinger equation,
-Eq. ([11.7](topic_pcm-em.md#eq:SS-sdeq)). For the reference state, corresponding to $i=0$ in
-Eq. ([11.7](topic_pcm-em.md#eq:SS-sdeq)), this is equivalent to solving Eq. ([11.25](#eq:Poisson))
-for the induced polarization potential and computing the solvation free energy
-and Fock matrix correction according to
-Eqs. ([11.36](#eq:Gpol)) and ([11.38](#eq:fock)), respectively. For the ionized state,
-denoted by a subscript $i$, the solvent polarization is partitioned into fast
-and slow components. Within the Marcus partitioning scheme,[[1530]](../bib_references/bib.md#bib1593)
-
-Eq. ([11.32](#eq:Poisson2)) becomes[[266]](../bib_references/bib.md#bib268)
+PCM 框架内的非平衡溶剂化在第 [11.2.3.3](topic_pcm-em.md#subsubsec:noneq-PCM) 节中讨论，该方法[[940]](../bib_references/bib.md#bib979)
+ 已被推广用于结合泊松边界条件的竖直电离（vertical ionization）过程。[[267]](../bib_references/bib.md#bib267)
+ 这里实现了一种态特定（state-specific）方案，需要求解非线性 Schrödinger 方程，即式 ([11.7](topic_pcm-em.md#eq:SS-sdeq))。对于参考态（对应式 ([11.7](topic_pcm-em.md#eq:SS-sdeq)) 中的 $i=0$），这等价于求解式 ([11.25](#eq:Poisson)) 得到感应极化势，并分别按式 ([11.36](#eq:Gpol)) 与式 ([11.38](#eq:fock)) 计算溶剂化自由能和 Fock 矩阵修正。对于电离态（用下标 $i$ 表示），溶剂极化被划分为快分量与慢分量。在 Marcus 划分方案[[1530]](../bib_references/bib.md#bib1593)
+ 下，式 ([11.32](#eq:Poisson2)) 变为[[266]](../bib_references/bib.md#bib268)
 
 <a id="eq:neq1"></a>
 $$
 -\frac{1}{4\pi}\hat{\nabla}^{2}\varphi_{{\rm tot},i}(\mathbf{r})=\rho_{{\rm sol},i}(\mathbf{r})+\rho^{\rm slow}_{{\rm pol},0}(\mathbf{r})+\rho^{\rm fast}_{{\rm pol},i}(\mathbf{r})\;, \tag{11.39}
 $$
 
-where the fast polarization charge density of the ionized state, $\rho^{\rm fast}_{{\rm pol},i}$, is given by
+其中电离态的快极化电荷密度 $\rho^{\rm fast}_{{\rm pol},i}$ 为
 
 <a id="eq:rho_pol_neq1"></a>
 $$
 \rho^{\rm fast}_{{\rm pol},i}(\mathbf{r})=\rho_{{\rm iter},i}(\mathbf{r})+\left(\frac{1-\varepsilon_{\rm opt}(\mathbf{r})}{\varepsilon_{\rm opt}(\mathbf{r})}\right)\bigl{[}\rho_{{\rm sol},i}(\mathbf{r})+\rho^{\rm slow}_{{\rm pol},0}(\mathbf{r})\bigr{]} \tag{11.40}
 $$
 
-and the fast polarization potential, $\varphi^{\rm fast}_{{\rm pol},i}$, is
+而快极化势 $\varphi^{\rm fast}_{{\rm pol},i}$ 为
 
 <a id="eq:phi_pol_neq1"></a>
 $$
-\varphi^{\rm fast}_{{\rm pol},i}(\textbf{r})=\varphi_{{\rm tot},i}(\textbf{r})-\varphi_{{\rm sol},i}(\mathbf{r})-\varphi^{\rm slow}_{{\rm pol},0}(\mathbf{r})\;. \tag{11.41}
+\varphi^{\rm fast}_{{\rm pol},i}(\textbf{r})=\varphi_{{\rm tot},i}(\textbf{r})-\varphi_{{\rm sol},i}(\textbf{r})-\varphi^{\rm slow}_{{\rm pol},0}(\mathbf{r})\;. \tag{11.41}
 $$
 
-Subscripts $i$ and 0 refer to the ionized state and the reference state,
-respectively. The quantity $\varepsilon_{\rm opt}$ in
-Eq. ([11.40](#eq:rho_pol_neq1)) is the solvent’s optical dielectric constant, and
-$\rho_{{\rm iter},i}$ is computed using Eq. ([11.35](#eq:rho_iter2)) but with a
-dielectric function constructed using $\varepsilon_{\rm opt}$ and with
-$\varphi^{\rm fast}_{{\rm tot},i}$ substituted in place of $\varphi_{\rm tot}$. For the Marcus partitioning scheme, the slow component of the induced
-solvent polarization charge density is computed as the three-dimensional
-(volume charge rather than surface charge) analogue of Eq. ([11.9](topic_pcm-em.md#slow_q)).
+下标 $i$ 与 0 分别指电离态与参考态。式 ([11.40](#eq:rho_pol_neq1)) 中的 $\varepsilon_{\rm opt}$ 是溶剂的光学位（高频）介电常数，而 $\rho_{{\rm iter},i}$ 按式 ([11.35](#eq:rho_iter2)) 计算，只是使用由 $\varepsilon_{\rm opt}$ 构造的介电函数，并以 $\varphi^{\rm fast}_{{\rm tot},i}$ 取代 $\varphi_{\rm tot}$。在 Marcus 划分方案中，感应溶剂极化电荷密度的慢分量按式 ([11.9](topic_pcm-em.md#slow_q)) 的三维类比（体电荷而非面电荷）来计算。
 
-## 11.2.11.3 Basic Job Control
+## 11.2.11.3 基本任务控制
 
-A calculation using Poisson boundary conditions is requested by setting
-SOLVENT_METHOD = PEQS in the *$rem* section. For computational
-efficiency, the Poisson Equation Solver (PEqS) is typically not engaged until
-the error in the vacuum SCF calculation falls below a specified threshold, taken to be $10^{3}~{}E_{h}$ by default and
-user-controllable by means of the *$rem* variable PEQS_SWITCH.
+在 *$rem* 区段中设置 SOLVENT_METHOD = PEQS 即可请求使用泊松边界条件的计算。出于计算效率考虑，泊松方程求解器（PEqS）通常要等到真空 SCF 计算的误差低于某个指定阈值后才启用，该阈值默认为 $10^{3}~{}E_{h}$，用户可通过 *$rem* 变量 PEQS_SWITCH 自行控制。
 
-**Note: 
+**注意：
 
-When PEqS solvation is requested, symmetry and the standard nuclear orientation are disabled automatically,
-equivalent to POINT_GROUP_SYMMETRY = FALSE and NO_REORIENT = TRUE.
-Poisson’s equation is solved on a three-dimensional Cartesian grid and the energy need not be rotationally
-invariant unless the grid spacing is very small.
+当请求使用 PEqS 溶剂化时，对称性与标准核取向会被自动禁用，等价于设置 POINT_GROUP_SYMMETRY = FALSE 与 NO_REORIENT = TRUE。
+泊松方程是在三维笛卡尔网格上求解的，除非网格间距非常小，否则能量不必具有旋转不变性。
 **
 
 PEQS_SWITCH
 
 ### `PEQS_SWITCH`
 
-> **Inclusion of solvent effects begins when the SCF error falls below 10 ${}^{-\rm PEQS\_SWITCH}$ .**
+> **当 SCF 误差低于 10 ${}^{-\rm PEQS\_SWITCH}$ 时开始计入溶剂效应。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `3`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `3`
+> * **选项**:
 >     * $n$
->     * Corresponding to 10
+>     * 对应于 10
 >     * ${}^{-n}$
-> * **Recommendation**: Use the default unless solvent effects need to be incorporated earlier in the SCF procedure.
+> * **建议**: 使用默认值，除非需要在 SCF 流程中更早地引入溶剂效应。
 
-Further job control for the Poisson equation solver (PEqS) routines is set up in two sections:
-*$peqs_grid* and *$peqs*. (An optional third section, *$epsilon*, is discussed later.) The *$peqs_grid* section
-is used to define the Cartesian discretization grid, as follows:
+泊松方程求解器（PEqS）例程的进一步任务控制由两个区段设定：*$peqs_grid* 与 *$peqs*。（可选的第三个区段 *$epsilon* 将在后文讨论。）*$peqs_grid* 区段用于定义笛卡尔离散化网格，格式如下：
 
 > ```qchem
 > $peqs_grid
@@ -280,28 +193,17 @@ is used to define the Cartesian discretization grid, as follows:
 > $end
 > ```
 
-The Cartesian grid must be orthorhombic and `Nx`, `Ny`, and `Nz`
-refer to the number of grid points for the $x$, $y$, and $z$ axes.
+笛卡尔网格必须是正交的（orthorhombic），`Nx`、`Ny` 与 `Nz` 分别指 $x$、$y$、$z$ 轴方向上的网格点数目。
 
-**Note: 
+**注意：
 
-A fourth-order multigrid algorithm is used to accelerate convergence of
-the conjugate gradient PEqS routine that solves
-Eq. ([11.32](#eq:Poisson2)).[[266]](../bib_references/bib.md#bib268)
- This requires that the number of
-grid points be odd, with the additional constraint that the quantities $N_{x}-1$,
-$N_{y}-1$, and $N_{z}-1$ must all be divisible by 8.
+为加速求解式 ([11.32](#eq:Poisson2)) 的共轭梯度 PEqS 例程的收敛，采用了四阶多重网格（multigrid）算法。[[266]](../bib_references/bib.md#bib268)
+ 这要求网格点数为奇数，并有附加约束：$N_{x}-1$、$N_{y}-1$ 与 $N_{z}-1$ 都必须能被 8 整除。
 **
 
-Values in the last two columns of the *$peqs_grid* section specify the minimum
-and maximum values of $x$, $y$, and $z$, in units of Ångstroms. The
-length of the grid in the $x$ direction is $L_{x}=x_{\rm max}-x_{\rm min}$
-and the grid spacing is $\Delta x=L_{x}/(N_{x}-1)$. The volume element discussed
-in the context of Eq. ([11.30](#eq:rho_nuc)) is $dV=\Delta x\Delta y\Delta z$.
+*$peqs_grid* 区段最后两列中的数值给出 $x$、$y$、$z$ 的最小值与最大值，单位为埃（Å）。$x$ 方向上的网格长度为 $L_{x}=x_{\rm max}-x_{\rm min}$，网格间距为 $\Delta x=L_{x}/(N_{x}-1)$。在式 ([11.30](#eq:rho_nuc)) 的讨论中出现过的体积元为 $dV=\Delta x\Delta y\Delta z$。
 
-The *$peqs* section controls other aspects of a PEqS calculation, including
-construction of the solute cavity and other required parameters for interfacial
-or nonequilibrium solvation. The format is:
+*$peqs* 区段控制 PEqS 计算的其他方面，包括溶质空腔的构造，以及界面溶剂化或非平衡溶剂化所需的其他参数。其格式为：
 
 > ```qchem
 > $peqs
@@ -309,139 +211,128 @@ or nonequilibrium solvation. The format is:
 > $end
 > ```
 
-Available keywords are described below.
+下面介绍可用的关键字。
 
 ### `BatchSize`
 
-> **Evaluate electrostatic potential integrals in batches over small parts of the Cartesian grid, rather than computing all integrals in a single batch. INPUT SECTION: $peqs**
+> **对静电势积分按笛卡尔网格的小块分批求值，而不是在一批中计算全部积分。输入区段：$peqs**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5000`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5000`
+> * **选项**:
 >     * $n$
->     * Corresponding to a batch size of
+>     * 对应的批次大小为
 >     * $n$
->     * grid points.
-> * **Recommendation**: For large grids ( $\geq 10^{6}$ grid points), a batch size $n\approx N_{x}N_{y}N_{z}/5$ is recommended.
+>     * 个网格点。
+> * **建议**: 对于大网格（$\geq 10^{6}$ 个网格点），推荐批次大小 $n\approx N_{x}N_{y}N_{z}/5$。
 
 ### `MaxIter`
 
-> **Sets the maximum number of iterations used in the conjugate gradient solver. INPUT SECTION: $peqs**
+> **设置共轭梯度求解器使用的最大迭代次数。输入区段：$peqs**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `500`
-> * **Options**:
->     * User-defined.
-> * **Recommendation**: Use the default unless the calculation fails to converge.
+> * **类型**: `INTEGER`
+> * **默认值**: `500`
+> * **选项**:
+>     * 用户自定义。
+> * **建议**: 使用默认值，除非计算无法收敛。
 
 ### `OpticalDielectric`
 
-> **Sets the optical dielectric value of the solvent. INPUT SECTION: $peqs**
+> **设置溶剂的光学位介电常数。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `1.7778`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `1.7778`
+> * **选项**:
 >     * $\varepsilon_{\rm opt}$
->     * Desired value of
+>     * 期望的
 >     * $\varepsilon_{\text{opt}}$
->     * (dimensionless).
-> * **Recommendation**: The optical dielectric is equal to the square of the index of refraction. The default value corresponds to water at 25 ${}^{\circ}$ C.
+>     * 数值（无量纲）。
+> * **建议**: 光学位介电常数等于折射率的平方。默认值对应 25 ${}^{\circ}$ C 下的水。
 
 ### `PolarIterScale`
 
-> **Specifies the mixing parameter $\eta$ that is used in Eq. ( 11.35 ) to stabilize iterative solution for the polarization charge density. INPUT SECTION: $peqs**
+> **指定式 ( 11.35 ) 中用于稳定极化电荷密度迭代求解的混合参数 $\eta$。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0.6`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `0.6`
+> * **选项**:
 >     * $\eta$
->     * Desired value of the dimensionless mixing parameter.
-> * **Recommendation**: Use the default, which was tested in Refs. 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link and 48 Andreussi O., Dabo I., Marzari N. J. Chem. Phys. (2012) , 136 , pp. 064102 . Link , unless the calculation proves difficult to converge.
+>     * 期望的无量纲混合参数数值。
+> * **建议**: 使用默认值（该值已在文献 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link 与文献 48 Andreussi O., Dabo I., Marzari N. J. Chem. Phys. (2012) , 136 , pp. 064102 . Link 中经过检验），除非计算被证明难以收敛。
 
 ### `Print`
 
-> **Specifies the level of printing in the output file. INPUT SECTION: $peqs**
+> **指定输出文件中的打印详细程度。输入区段：$peqs**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Basic printing including some PEqS information at each SCF iteration.
+>     * 基本打印，包含每次 SCF 迭代中的部分 PEqS 信息。
 >     * 1
->     * Additional printing include atomic vdW radii used in cavity construction.
+>     * 额外打印用于空腔构造的原子 vdW 半径。
 >     * 2
->     * Debugging information.
-> * **Recommendation**: Use 0 or 1.
+>     * 调试信息。
+> * **建议**: 使用 0 或 1。
 
 ### `SoluteCavity`
 
-> **Specifies the type of solute cavity, which determines the form of the dielectric function $\varepsilon(\mathbf{r})$ . INPUT SECTION: $peqs**
+> **指定溶质空腔类型，它决定介电函数 $\varepsilon(\mathbf{r})$ 的形式。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `Vacuum`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `Vacuum`
+> * **选项**:
 >     * Vacuum
->     * Perform calculation in vacuum,
+>     * 在真空中进行计算，
 >     * $\varepsilon(\mathbf{r})\equiv 1$
->     * .
+>     * 。
 >     * RigidVDW
->     * Create a cavity using spherically symmetric error functions.
+>     * 使用球对称误差函数构造空腔。
 >     * Spherical
->     * Create a single spherical cavity around the solute.
+>     * 在溶质周围构造单个球形空腔。
 >     * Arbitrary
->     * Create a user-defined dielectric cavity as obtained from the
+>     * 构造用户自定义的介电空腔，其数值来自
 >     * $epsilon
->     * input section.
-> * **Recommendation**: None.
+>     * 输入区段。
+> * **建议**: 无。
 
 ### `SolventDielectric`
 
-> **Sets the dielectric value for the solvent. INPUT SECTION: $peqs**
+> **设置溶剂的介电常数值。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `78.39`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `78.39`
+> * **选项**:
 >     * $\varepsilon$
->     * Desired value of
+>     * 期望的
 >     * $\varepsilon$
->     * (dimensionless).
-> * **Recommendation**: The default value corresponds to water at 25 ${}^{\circ}$ C.
+>     * 数值（无量纲）。
+> * **建议**: 默认值对应 25 ${}^{\circ}$ C 下的水。
 
 ### `SolverThresh`
 
-> **The electrostatic potential is considered converged when the error falls below 10 ${}^{-\rm PEQSolverThresh}$ . INPUT SECTION: $peqs**
+> **当误差低于 10 ${}^{-\rm PEQSolverThresh}$ 时认为静电势已收敛。输入区段：$peqs**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **选项**:
 >     * $n$
->     * Corresponding to 10
+>     * 对应于 10
 >     * ${}^{-n}$
-> * **Recommendation**: Use the default unless a tighter convergence criterion is desired, at greater computational cost.
+> * **建议**: 使用默认值，除非希望采用更严格的收敛判据（计算代价更高）。
 
-## 11.2.11.4 Cavity Construction
+## 11.2.11.4 空腔构造
 
-In conventional PCMs the solute cavity is a rigid two-dimensional surface
-constructed from a union of atomic spheres, the radii of which are generally
-take to be equal to the van der Waals radius ($r_{\text{vdW}}$) scaled by a
-factor of 1.2; see Section [11.2.4](subsec_PCM_job_control.md).[[561]](../bib_references/bib.md#bib576)
-This cavity is rigid in the sense that once the atomic coordinates are
-specified, it remains unchanged during the SCF cycles. (The isodensity cavity
-discussed in Section [11.2.6](subsec_SS(V)PE.md) is an exception, but is not available
-for the PEqS method.) Furthermore, there is an abrupt and discontinuous change
-in the dielectric constant at the solute/continuum boundary. A
-three-dimensional analogue of this cavity, using continuous and differentiable
-spherically-symmetric error functions, has been implemented for PEqS
-calculations, following the procedure in Ref. [[390]](../bib_references/bib.md#bib398)
-. The
-permittivity function, which depends parametrically on the nuclear positions $\mathbf{R}_{A}$, is
+在传统 PCM 中，溶质空腔是由原子球并集构成的刚性二维曲面，其半径一般取 van der Waals 半径（$r_{\text{vdW}}$）乘以 1.2 的缩放因子；参见第 [11.2.4](subsec_PCM_job_control.md) 节。[[561]](../bib_references/bib.md#bib576)
+ 所谓刚性，是指一旦给定原子坐标，空腔在 SCF 迭代过程中保持不变（第 11.2.6 节讨论的等密度空腔是一个例外，但它对 PEqS 方法不可用）。此外，在溶质/连续介质边界处介电常数发生突变且不连续。依照文献 [[390]](../bib_references/bib.md#bib398)
+ 的做法，PEqS 计算中实现了该空腔的三维类比，使用连续且可微的球对称误差函数。该介电函数以参数方式依赖于核位置 $\mathbf{R}_{A}$，其形式为
 
 <a id="eq:rigidvdw"></a>
 $$
 \varepsilon(\mathbf{r};\{\mathbf{R}_{A}\})=\bigl{(}\varepsilon_{\rm solvent}-1\bigr{)}\ \left\{\prod_{A}^{N_{\rm atoms}}h(d_{A},\Delta;\lvert\mathbf{r}-\mathbf{R}_{A}\rvert)\right\}\;, \tag{11.42}
 $$
 
-where
+其中
 
 <a id="eq:h_func"></a>
 $$
@@ -449,23 +340,20 @@ h(d_{A},\Delta;\lvert\mathbf{r}-\mathbf{R}_{A}\rvert)=\frac{1}{2}\left[1+{\rm
 erf}\left(\frac{\lvert\mathbf{r}-\mathbf{R}_{A}\rvert-d_{A}}{\Delta}\right)\right]\;. \tag{11.43}
 $$
 
-Equation ([11.42](#eq:rigidvdw)) smoothly interpolates between $\varepsilon=1$ and
-$\varepsilon=\varepsilon_{\rm solvent}$, over a length scale of $\approx 4\Delta$. The value of $\Delta$ is specified using the **RigidScale**
-keyword. The quantity $d_{A}$ in Eqs. ([11.42](#eq:rigidvdw)) and ([11.43](#eq:h_func))
-sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vdW}$ but this can be controlled as described below.
+式 ([11.42](#eq:rigidvdw)) 在约 $4\Delta$ 的长度尺度上于 $\varepsilon=1$ 与 $\varepsilon=\varepsilon_{\rm solvent}$ 之间进行平滑插值。$\Delta$ 的数值通过 **RigidScale** 关键字指定。式 ([11.42](#eq:rigidvdw)) 与式 ([11.43](#eq:h_func)) 中的 $d_{A}$ 给出原子 $A$ 的原子球半径。默认情况下 $d_{A}=1.2\,r_{\rm vdW}$，但可以按下文所述加以控制。
 
 ### `Radii`
 
-> **Sets the choice of atomic vdW radii, $r_{\text{vdW}}$ . INPUT SECTION: $peqs**
+> **设置所选用的原子 vdW 半径 $r_{\text{vdW}}$。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `Bondi`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `Bondi`
+> * **选项**:
 >     * Bondi
->     * Use the modified Bondi set (Ref.
+>     * 使用改进的 Bondi 半径集（文献
 >     * 1186
 >     * Rowland R. S., Taylor R.
->     * J. Phys. Chem.
+>     * J. Phys. Chem.
 >     * (1996)
 >     * ,
 >     * 100
@@ -473,12 +361,12 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 >     * pp. 7384
 >     * .
 >     * Link
->     * ).
+>     * ）。
 >     * UFF
->     * Universal Force Field radii (Ref.
+>     * 通用力场（Universal Force Field）半径（文献
 >     * 1146
 >     * Rappé A. K. et al.
->     * J. Am. Chem. Soc.
+>     * J. Am. Chem. Soc.
 >     * (1992)
 >     * ,
 >     * 114
@@ -486,215 +374,198 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 >     * pp. 10024
 >     * .
 >     * Link
->     * ).
+>     * ）。
 >     * Read
->     * User-defined radii from a
+>     * 从
 >     * $van_der_waals
->     * input section.
-> * **Recommendation**: None. The Read option works in the same way as the corresponding keyword in the $pcm section, which is described in Section 11.2.4.1 with the format of the $van_der_waals input section described in Section 11.2.10 .
+>     * 输入区段读取用户自定义半径。
+> * **建议**: 无。Read 选项的工作方式与 $pcm 区段中的相应关键字相同（见第 11.2.4.1 节），其 $van_der_waals 输入区段的格式见第 11.2.10 节。
 
 ### `RigidScale`
 
-> **Sets the length scale on which the error function employed in the rigid vdW cavity construction interpolates the dielectric value from vacuum to solvent. INPUT SECTION: $peqs**
+> **设定刚性 vdW 空腔构造中所用误差函数将介电值从真空插值到溶剂的长度尺度。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0.265 Å`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `0.265 Å`
+> * **选项**:
 >     * $\Delta$
->     * Specifies the desired value (in Å); see Eq. (
+>     * 指定期望数值（单位为 Å）；参见式 (
 >     * 11.43
->     * ).
-> * **Recommendation**: Use the default value, which was tuned in Ref. 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link so that errors in small-molecule solvation energies were $\approx 1$ kcal/mol.
+>     * )。
+> * **建议**: 使用默认值。该值在文献 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link 中经过调参，使小分子溶剂化能量的误差约为 1 kcal/mol。
 
 ### `VDWtype`
 
-> **Specifies details for the rigid vdW cavity construction. INPUT SECTION: $peqs**
+> **指定刚性 vdW 空腔构造的细节。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `Scaled`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `Scaled`
+> * **选项**:
 >     * Unscaled
 >     * $d_{A}=r_{\mathrm{vdW}}$
 >     * Scaled
 >     * $d_{A}=r_{\mathrm{vdW}}\times scale$
 >     * Shifted
 >     * $d_{A}=(r_{\mathrm{vdW}}+shift)\times scale$
-> * **Recommendation**: None. The values of $scale$ and $shift$ are set with the VDWscale and VDWshift keywords, respectively.
+> * **建议**: 无。$scale$ 与 $shift$ 的数值分别由 VDWscale 和 VDWshift 关键字设置。
 
 ### `VDWscale`
 
-> **Sets the empirical scale factor applied to the atomic van der Waals radius. INPUT SECTION: $peqs**
+> **设置应用于原子 van der Waals 半径的经验缩放因子。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `1.2`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `1.2`
+> * **选项**:
 >     * $scale$
->     * Specifies the desired dimensionless scaling factor for the atomic vdW radii.
-> * **Recommendation**: Use the default value.
+>     * 指定原子 vdW 半径的无量纲缩放因子。
+> * **建议**: 使用默认值。
 
 ### `VDWshift`
 
-> **Adjusts the center of the spherically-symmetric error functions when constructing the rigid vdW cavity. INPUT SECTION: $peqs**
+> **在构造刚性 vdW 空腔时调整球对称误差函数的中心位置。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `0.0 Ångstroms`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `0.0 Å`
+> * **选项**:
 >     * $shift$
->     * Specifies the desired shift (in Å).
-> * **Recommendation**: If VDWtype is set to Shifted , the vdW scale factor is set to 1.0 by default. This can be adjusted using the VDWScale keyword.
+>     * 指定期望的位移量（单位为 Å）。
+> * **建议**: 若将 VDWtype 设为 Shifted，则 vdW 缩放因子默认设为 1.0。可用 VDWScale 关键字加以调整。
 
-Setting the **SoluteCavity** keyword to **Spherical** requests the
-construction of a spherical cavity around the solute, and the dielectric is
-smoothly interpolated from vacuum to solvent using a hyperbolic tangent function:[[267]](../bib_references/bib.md#bib267)
+将 **SoluteCavity** 关键字设为 **Spherical** 即请求在溶质周围构造球形空腔，并使用双曲正切函数将介电值从真空平滑插值到溶剂：[[267]](../bib_references/bib.md#bib267)
 
 <a id="eq:hyperbolic"></a>
 $$
 \varepsilon(r)=\frac{1}{2}\Bigl{\{}(\varepsilon_{\mathrm{solvent}}+1)+(\varepsilon_{\mathrm{solvent}}-1)\ \mbox{tanh}\bigl{[}\alpha(r-r_{\mathrm{mid}})\bigr{]}\Bigr{\}}\;. \tag{11.44}
 $$
 
-Here, $r_{\mathrm{mid}}$ is the distance where the dielectric assumes the value
-$\varepsilon(r_{\mathrm{mid}})=(\varepsilon_{\mathrm{solvent}}+1)/2$.
-The value of $r_{\mathrm{mid}}$ is taken to be the sum of the sphere radius, $R$, and
-half of the interpolation length, $L$: $r_{\mathrm{mid}}=R+L/2$.
-The sphere radius and interpolation length are controlled with the
-**SphereRadius** and **InterpolLength** keywords described below.
-The parameter $\alpha$ controls the sharpness of the switching process, with
-$\alpha=4/L$ by default.
+这里，$r_{\mathrm{mid}}$ 是介电取值 $\varepsilon(r_{\mathrm{mid}})=(\varepsilon_{\mathrm{solvent}}+1)/2$ 处的距离。
+$r_{\mathrm{mid}}$ 取为球半径 $R$ 与插值长度一半之和：$r_{\mathrm{mid}}=R+L/2$。
+球半径与插值长度由下文所述的 **SphereRadius** 与 **InterpolLength** 关键字控制。
+参数 $\alpha$ 控制过渡的陡峭程度，默认取 $\alpha=4/L$。
 
 ### `SphereRadius`
 
-> **Sets the radius of the spherical solute cavity. INPUT SECTION: $peqs**
+> **设置球形溶质空腔的半径。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `No default.`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `无默认值。`
+> * **选项**:
 >     * $R$
->     * Desired spherical cavity radius (in Å).
-> * **Recommendation**: None. See the Supporting Information of Ref. 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link for more information.
+>     * 期望的球形空腔半径（单位为 Å）。
+> * **建议**: 无。更多信息请参见文献 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link 的补充材料（Supporting Information）。
 
 ### `InterpolLength`
 
-> **Sets the length scale on which the dielectric is smoothly interpolated from vacuum to solvent. INPUT SECTION: $peqs**
+> **设定介电值从真空平滑插值到溶剂的长度尺度。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `No default.`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `无默认值。`
+> * **选项**:
 >     * $L$
->     * Desired interpolation length (in Å).
-> * **Recommendation**: None.
+>     * 期望的插值长度（单位为 Å）。
+> * **建议**: 无。
 
 ### `InterpolScale`
 
-> **For a given interpolation length ( $L$ ), ( $\alpha$ ) sets the sharpness of the dielectric transition from vacuum to solvent. INPUT SECTION: $peqs**
+> **在给定的插值长度 ( $L$ ) 下，( $\alpha$ ) 设定介电值从真空到溶剂过渡的陡峭程度。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `$\alpha$`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `$\alpha$`
+> * **选项**:
 >     * $\alpha$
->     * Desired interpolation scale factor (in Å
+>     * 期望的插值尺度因子（单位为 Å
 >     * ${}^{-1}$
->     * ).
-> * **Recommendation**: Use the default unless a broader (smaller $\alpha$ ) or narrower (larger $\alpha$ ) transition region is desired.
+>     * ）。
+> * **建议**: 使用默认值，除非希望过渡区域更宽（$\alpha$ 更小）或更窄（$\alpha$ 更大）。
 
 ### `Interface`
 
-> **Perform a solvation calculation at a solvent/vacuum interface. INPUT SECTION: $peqs**
+> **在溶剂/真空界面上进行溶剂化计算。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Modify the dielectric function to simulate an interface between solvent and vacuum.
+>     * 修改介电函数以模拟溶剂与真空之间的界面。
 >     * False
->     * Perform a solvation calculation in bulk solvent.
-> * **Recommendation**: The user will also need to specify the length scale on which the dielectric is smoothly interpolated from the bulk solvent value to vacuum, and the location of the Gibbs dividing surface (see below).
+>     * 在体相溶剂中进行溶剂化计算。
+> * **建议**: 用户还需指定介电值从体相溶剂平滑插值到真空的长度尺度，以及 Gibbs 分界面（Gibbs dividing surface）的位置（见下文）。
 
-By setting **Interface** = **True**, the dielectric function on the Cartesian grid is
-further modified to mimic a solvent/vacuum interface. First, the solute cavity
-is constructed as specified by the **SoluteCavity** keyword as discussed
-above. Then, the dielectric function is smoothly interpolated in the $z$ direction
-across the Gibbs dividing surface ($z\equiv z_{\mathrm{GDS}}$) using the following hyperbolic
-tangent switching function:[[267]](../bib_references/bib.md#bib267)
+将 **Interface** 设为 **True** 后，笛卡尔网格上的介电函数会被进一步修改以模拟溶剂/真空界面。首先，按上文所述由 **SoluteCavity** 关键字指定的方式构造溶质空腔。然后，利用下述双曲正切切换函数，在 $z$ 方向上跨越 Gibbs 分界面（$z\equiv z_{\mathrm{GDS}}$）对介电函数进行平滑插值：[[267]](../bib_references/bib.md#bib267)
 
 <a id="eq:hyperbolic2"></a>
 $$
 \varepsilon(z)=\frac{1}{2}\Bigl{\{}(\varepsilon_{\rm solvent}+1)+(1-\varepsilon_{\rm solvent})\ \mbox{tanh}\bigl{[}\beta(z-z_{\mathrm{GDS}})\bigr{]}\Bigr{\}}\;. \tag{11.45}
 $$
 
-This interpolates the dielectric function over the interface length $L_{\rm interface}$, centered at the Gibbs dividing surface, $z\equiv z_{\mathrm{GDS}}$.
-Both of these values are controlled by the keywords **InterfaceLength**
-and **GibbsDS**, respectively. Similar to the parameter $\alpha$ used in
-the spherical cavity construction, the parameter $\beta=4/L_{\rm interface}$
-controls the sharpness of the interpolation across the Gibbs dividing surface.
+该式在界面长度 $L_{\rm interface}$ 上对介电函数进行插值，插值区间以 Gibbs 分界面 $z\equiv z_{\mathrm{GDS}}$ 为中心。
+这两个数值分别由关键字 **InterfaceLength** 与 **GibbsDS** 控制。与球形空腔构造中使用的参数 $\alpha$ 类似，参数 $\beta=4/L_{\rm interface}$
+控制跨越 Gibbs 分界面的插值陡峭程度。
 
 ### `InterfaceLength`
 
-> **Sets the length scale over which the dielectric function is smoothly transitioned from bulk solvent to vacuum in the $z$ direction INPUT SECTION: $peqs**
+> **设定介电函数在 $z$ 方向上从体相溶剂平滑过渡到真空的长度尺度。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `None`
+> * **选项**:
 >     * $L_{\rm interface}$
->     * Desired interface length (in Å).
-> * **Recommendation**: This sets the value $\beta=4/L_{\rm interface}$ in Eq. ( 11.45 ). See the Supporting Information of Ref. 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link for a full description of the solvent/vacuum interface construction.
+>     * 期望的界面长度（单位为 Å）。
+> * **建议**: 该值决定式 ( 11.45 ) 中的 $\beta=4/L_{\rm interface}$。关于溶剂/真空界面构造的完整描述，请参见文献 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link 的补充材料。
 
 ### `GibbsDS`
 
-> **Sets the location of the Gibbs dividing surface, in the $z$ direction. INPUT SECTION: $peqs**
+> **设置在 $z$ 方向上 Gibbs 分界面的位置。输入区段：$peqs**
 >
-> * **Type**: `FLOAT`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `FLOAT`
+> * **默认值**: `None`
+> * **选项**:
 >     * $z_{\mathrm{GDS}}$
->     * Desired location of the Gibbs dividing surface (in Å).
-> * **Recommendation**: Consult the literature. One such way to determine this value is to compute a density profile of the solvent as a function of $z$ and set this location to be where the solvent density has decreased to 50% of the bulk value. Usually $z_{\mathrm{GDS}}\approx L_{\rm interface}/2$ .
+>     * 期望的 Gibbs 分界面位置（单位为 Å）。
+> * **建议**: 请参考文献。确定该数值的一种途径是计算溶剂密度随 $z$ 的分布曲线，并将此位置设为溶剂密度降至体相值 50% 之处。通常 $z_{\mathrm{GDS}}\approx L_{\rm interface}/2$。
 
 ### `NonequilJob`
 
-> **Obtain the nonequilibrium free energy of solvation for a vertical ionization process. INPUT SECTION: $peqs**
+> **求取竖直电离过程的溶剂化非平衡自由能。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Compute the nonequilibrium free energy for a vertical ionization process.
+>     * 计算竖直电离过程的非平衡自由能。
 >     * False
->     * Compute the equilibrium solvation free energy.
-> * **Recommendation**: None.
+>     * 计算平衡溶剂化自由能。
+> * **建议**: 无。
 
 ### `NonequilPartition`
 
-> **Specifies the manner in which the solvent response is partitioned into fast and slow components. INPUT SECTION: $peqs**
+> **指定将溶剂响应划分为快分量与慢分量的方式。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `Marcus`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `Marcus`
+> * **选项**:
 >     * Marcus
->     * Employ the Marcus partitioning scheme.
+>     * 采用 Marcus 划分方案。
 >     * Pekar
->     * Employ the Pekar partitioning scheme.
-> * **Recommendation**: Use the default. Although the fast and slow solvation responses are different between the two approaches, the total solvation free energy is the same, 1530 You Z.-Q. et al. J. Chem. Phys. (2015) , 143 , pp. 204104 . Link but the Pekar scheme is computationally more expensive than the Marcus scheme.
+>     * 采用 Pekar 划分方案。
+> * **建议**: 使用默认值。尽管两种方法的快、慢溶剂化响应不同，但总溶剂化自由能相同，1530 You Z.-Q. et al. J. Chem. Phys. (2015) , 143 , pp. 204104 . Link 只是 Pekar 方案比 Marcus 方案的计算代价更高。
 
 ### `NonequilState`
 
-> **Specifies the state of interest for a nonequilibrium vertical ionization. INPUT SECTION: $peqs**
+> **指定非平衡竖直电离中关注的目标态。输入区段：$peqs**
 >
-> * **Type**: `STRING`
-> * **Default**: `Reference`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `Reference`
+> * **选项**:
 >     * Reference
->     * The reference (initial) state, from which an electron will be removed.
+>     * 参考（初始）态，将从中移去一个电子。
 >     * Ionized
->     * The final (ionized) state.
-> * **Recommendation**: None. Both values will be needed in a compound input job, in order to compute the nonequilibrium response to vertical ionization; see Example 11.2.11.5 .
+>     * 终态（电离态）。
+> * **建议**: 无。在复合输入任务中两个数值都需要用到，以便计算对竖直电离的非平衡响应；参见示例 11.2.11.5。
 
-Lastly, by setting **SoluteCavity** to **Arbitrary** in the *$peqs* input section, the user may choose to specify a
-completely user-defined permittivity function $\varepsilon(\mathbf{r})$,[[31]](../bib_references/bib.md#bib15)
-
-which must be generated externally and input into
-**Q-Chem** pointwise on the PEqS grid, using a *$epsilon* section in the input file.
-The format for that section consists of Cartesian grid points
-$(x_{i},y_{i},z_{i})$ following by $\varepsilon(x_{i},y_{i},z_{i})$, as shown below.
+最后，将 *$peqs* 输入区段中的 **SoluteCavity** 设为 **Arbitrary**，用户即可选择指定完全由用户自定义的介电函数 $\varepsilon(\mathbf{r})$，[[31]](../bib_references/bib.md#bib15)
+ 该函数必须在外部生成，并按点（pointwise）的方式在 PEqS 网格上通过输入文件中的 *$epsilon* 区段送入 **Q-Chem**。
+该区段的格式为笛卡尔网格点 $(x_{i},y_{i},z_{i})$ 后跟 $\varepsilon(x_{i},y_{i},z_{i})$，如下所示。
 
 ```qchem
 $epsilon
@@ -711,14 +582,11 @@ xNx  yNy  zNz    eps(xNx,yNy,zNz)
 $end
 ```
 
-## 11.2.11.5 Examples
+## 11.2.11.5 示例
 
-The following example computes the solvation free energy of a water molecule
-immersed in water. The Cartesian grid is cubic with a side length of 15.0 Å and 73 grid points in each direction. A rigid vdW cavity is used based on
-scaled vdW radii for the atomic spheres. The dielectric is not set, so takes
-the default value of 78.39.
+下例计算浸没在水中的水分子的溶剂化自由能。笛卡尔网格为立方体，边长 15.0 Å，每个方向有 73 个网格点。使用刚性 vdW 空腔，原子球半径基于缩放后的 vdW 半径。未指定介电常数，因此取默认值 78.39。
 
-???+ example "Example 11.20: Free energy of solvation of water in water."
+???+ example "示例 11.20: 水在水中的溶剂化自由能。"
     ```qchem
     $molecule
        0 1
@@ -747,14 +615,9 @@ the default value of 78.39.
     $end
     ```
 
-The next example illustrates calculation of the solvation free energy of a
-water molecule at a water/vacuum interface, with the Gibbs dividing
-surface placed at $z=0.50$ Å. The length of the interface is set to $L_{\rm interface}=2.75$ Å  and the dielectric is interpolated from bulk solvent to
-vacuum in the positive $z$ direction across the Gibbs dividing surface. The
-Cartesian grid, solute cavity, and solvent dielectric are the same as in the
-previous example.
+下一示例演示位于水/真空界面处的水分子的溶剂化自由能计算，其中 Gibbs 分界面置于 $z=0.50$ Å 处。界面长度设为 $L_{\rm interface}=2.75$ Å，介电值沿正 $z$ 方向跨越 Gibbs 分界面从体相溶剂插值到真空。笛卡尔网格、溶质空腔以及溶剂介电常数均与上一示例相同。
 
-???+ example "Example 11.21: Free energy of solvation of water at a water/vacuum interface."
+???+ example "示例 11.21: 水分子在水/真空界面处的溶剂化自由能。"
     ```qchem
     $molecule
        0 1
@@ -787,20 +650,14 @@ previous example.
     $end
     ```
 
-The final example illustrates a nonequilibrium (**NonEquilJob** =
-**True**) solvation calculation for the vertical ionization of $\rm H_{2}O^{-}$ in bulk water.
-This is a compound job that first calculates the equilibrium solvation free
-energy of the anionic state (**NonEquilState** = **Reference**), then
-computes the nonequilibrium energy correction for the ionized state
-(**NonEquilState** = **Ionized**). The two jobs are separated by
-“`@@@`”. The Cartesian grid and solvent dielectric are the same as the
-previous examples, but the solute cavity is chosen to be spherical with a
-radius of 2.0 Å. The Marcus scheme (**NonEquilPartition** =
-**Marcus**) is used to partition the solvent response into fast and slow
-components. Since this is the default method, the **NonEquilPartition**
-keyword is omitted.
+最后一个示例演示 $\rm H_{2}O^{-}$ 在体相水中竖直电离的非平衡（**NonEquilJob** = **True**）溶剂化计算。
+这是一个复合任务：先计算阴离子态的平衡溶剂化自由能（**NonEquilState** = **Reference**），
+再计算电离态的非平衡能量修正（**NonEquilState** = **Ionized**）。两个任务之间用
+“`@@@`”分隔。笛卡尔网格与溶剂介电常数同前述示例相同，但溶质空腔选为球形，半径为 2.0 Å。
+使用 Marcus 方案（**NonEquilPartition** = **Marcus**）将溶剂响应划分为快、慢分量。
+由于这是默认方法，故省略 **NonEquilPartition** 关键字。
 
-???+ example "Example 11.22: Nonequilibrium free energy of solvation for the vertical ionization of $\rm H_{2}O^{-}$"
+???+ example "示例 11.22: $\rm H_{2}O^{-}$ 竖直电离的溶剂化非平衡自由能"
     ```qchem
     $molecule
        -1 2

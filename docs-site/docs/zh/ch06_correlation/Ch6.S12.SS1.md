@@ -1,62 +1,46 @@
 ---
-title: "6.12.1 Introduction"
+title: "6.12.1 引言"
 ---
 
-## 6.12.1 Introduction
+## 6.12.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The following sections give short summaries of the various coupled-cluster
-based methods available in **Q-Chem**, most of which are variants of
-coupled-cluster theory. The basic object-oriented tools necessary to permit the
-implementation of these methods in **Q-Chem** was accomplished by Anna
-Krylov and David Sherrill, working at Berkeley with Martin Head-Gordon, and
-then continuing independently at the University of Southern California and
-Georgia Tech, respectively. While at Berkeley, Krylov and Sherrill also
-developed the optimized orbital coupled-cluster method, with additional
-assistance from Ed Byrd. The extension of this code to MP3, MP4, CCSD and QCISD
-is the work of Steve Gwaltney at Berkeley, while the extensions to QCCD
-were implemented by Ed Byrd at Berkeley. The original tensor library and
-CC/EOM suite of methods are handled by the CCMAN module of **Q-Chem**.
-Later, a new code (termed CCMAN2) was developed in Krylov group by
-Evgeny Epifanovsky and others, and a gradual transition from CCMAN to CCMAN2
-has begun. During the transition time, both codes will be available for users
-via the CCMAN2 keyword. Finally, there is a new module called **libgmbpt** developed to facilitate correlated calculations of very large systems. This module
-now includes efficient implementations of RI-CC2 and stochastic RI-CC2 methods.
+以下各节简要介绍了 **Q-Chem** 中提供的各种基于耦合簇（Coupled-Cluster, CC）的方法，其中大多数是耦合簇理论（coupled-cluster theory）的变体。使这些方法得以在 **Q-Chem** 中实现的基础面向对象（object-oriented）工具由 Anna Krylov 和 David Sherrill 完成，他们最初在伯克利（Berkeley）与 Martin Head-Gordon 合作开展工作，随后分别独立地在南加州大学（University of Southern California）和佐治亚理工学院（Georgia Tech）继续相关研究。在伯克利期间，Krylov 和 Sherrill 还开发了优化轨道耦合簇方法（optimized orbital coupled-cluster method），Ed Byrd 对此提供了额外协助。该代码向 MP3、MP4、CCSD 和 QCISD 的扩展由伯克利的 Steve Gwaltney 完成，而向 QCCD 的扩展则由伯克利的 Ed Byrd 实现。原始的张量库（tensor library）以及 CC/EOM 方法套件由 **Q-Chem** 的 CCMAN 模块负责处理。此后，Evgeny Epifanovsky 等人在 Krylov 课题组开发了一套新代码（称为 CCMAN2），并已启动从 CCMAN 到 CCMAN2 的逐步过渡。在过渡期间，两套代码均可通过 CCMAN2 关键字供用户使用。最后，还有一个名为 **libgmbpt** 的新模块，旨在便于对非常大的体系进行关联计算。该模块现已包含 RI-CC2 和随机（stochastic）RI-CC2 方法的高效实现。
 
 CORRELATION
 
 ### `CORRELATION`
 
-> **Specifies the correlation level of theory handled by CCMAN/CCMAN2.**
+> **指定由 CCMAN/CCMAN2 处理的关联理论级别。**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**：`STRING`
+> * **默认值**：`None`
+> * **可选项**：
 >     * CCMP2
->     * Regular MP2 handled by CCMAN/CCMAN2
+>     * 由 CCMAN/CCMAN2 处理的常规 MP2
 >     * MP3
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * MP4SDQ
 >     * CCMAN
 >     * MP4
 >     * CCMAN
 >     * CCD
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * CCD(2)
 >     * CCMAN
 >     * CCSD
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * CCSDT
 >     * CCMAN2
 >     * CC2
->     * CCMAN2 and LIBGMBPT
+>     * CCMAN2 和 LIBGMBPT
 >     * CCSD(T)
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * CCSD(2)
 >     * CCMAN
 >     * CCSD(fT)
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * CCSD(dT)
 >     * CCMAN
 >     * CCSDT
@@ -64,9 +48,9 @@ CORRELATION
 >     * CCVB-SD
 >     * CCMAN2
 >     * QCISD
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * QCISD(T)
->     * CCMAN and CCMAN2
+>     * CCMAN 和 CCMAN2
 >     * OD
 >     * CCMAN
 >     * OD(T)
@@ -89,12 +73,9 @@ CORRELATION
 >     * CCMAN
 >     * VQCCD(2)
 >     * CCMAN
-> * **Recommendation**: Consult the literature for guidance.
+> * **建议**：请参阅相关文献以获取指导。
 
-**Note: 
+**注意：
 
-All methods implemented in CCMAN2 can be executed in combination
-with PCM implicit solvation models (at a “zeroth-order” level, as described in
-Section [11.2.1](../ch11_env/topic_solvation_Intro.md)) and with the EFP method (Section [11.5](../ch11_env/sect_efp.md)).
-Only energies and unrelaxed properties are available, not gradients.
-**
+CCMAN2 中实现的所有方法均可与 PCM 隐式溶剂模型（implicit solvation models）组合使用（处于"零级"（zeroth-order）水平，详见第 [11.2.1 节](../ch11_env/topic_solvation_Intro.md)），也可与 EFP 方法（第 [11.5 节](../ch11_env/sect_efp.md)）组合使用。
+仅可获取能量和非弛豫性质（unrelaxed properties），不支持梯度计算。**

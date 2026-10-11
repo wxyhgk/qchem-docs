@@ -1,24 +1,15 @@
 ---
-title: "6.12.6 Size-Consistent Brillouin-Wigner Second-Order Approximate Coupled Cluster Singles and Doubles (BWs-CC2)"
+title: "6.12.6 尺寸一致 Brillouin-Wigner 二阶近似耦合簇单激发与双激发（BWs-CC2）"
 ---
 
-## 6.12.6 Size-Consistent Brillouin-Wigner Second-Order Approximate Coupled Cluster Singles and Doubles (BWs-CC2)
+## 6.12.6 尺寸一致 Brillouin-Wigner 二阶近似耦合簇单激发与双激发（BWs-CC2）
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Choosing to approximate the Hamiltonian in the CCSD equations using the unperturbed Møller-Plesset
-Hamiltonian is a popular, but not unique choice. Instead, it is possible to use the unperturbed
-size-consistent Brillouin-Wigner Hamiltonian[[195]](../bib_references/bib.md#bib196)
+在 CCSD 方程中选用微扰无关的 Møller-Plesset 哈密顿量来近似哈密顿算符，是一种流行但并不唯一的选择。事实上，可以在求解双激发（Doubles）方程时改用微扰无关的尺寸一致 Brillouin-Wigner 哈密顿量[[195]](../bib_references/bib.md#bib196)
 
-during evaluation of the Doubles equation. For a definition of this Hamiltonian, see Section [6.8](topic_bws2.md).
+。关于该哈密顿量的定义，参见第 [6.8](topic_bws2.md) 节。
 
-Compared to regular (MP-)CC2, BWs-CC2 is a *regular* theory, i. e. for positive regularisation
-strength, it does not diverge for vanishing HOMO/LUMO gaps. It can therefore be applied to dissociated
-bonds and few-reference systems whose dominating determinants are coupled by double excitations.[[337]](../bib_references/bib.md#bib340)
+与常规的（MP-）CC2 相比，BWs-CC2 是一种*正则化（regular）*理论，即对于正的正规化（regularisation）强度，当 HOMO/LUMO 能隙趋于零时它不会发散。因此，它可以应用于解离键以及少数组态（few-reference）体系——这类体系的主导行列式之间通过双激发相耦合。[[337]](../bib_references/bib.md#bib340)
 
-In order to invoke this method, set METHOD = RIBWS2 in the REM section,
-and EXC_METHOD = CC2 in the *$bws2* section. BWs-CC2 is available for all
-partitions, recommended is the use of either BW-s2 or MPR-BWs2. Currently, only the electronic
-ground state is implemented. For general purposes it is recommended to employ MPR-BWs2 with
-$A_{0}=2$ and $B_{0}=0$ in BWs-CC2 calculations, though the optimal parameter set is
-dependent on the system and chemical quantity of interest.
+要启用该方法，需在 REM 段中设置 METHOD = RIBWS2，并在 *$bws2* 段中设置 EXC_METHOD = CC2。BWs-CC2 对所有分区（partition）方案均可用，推荐使用 BW-s2 或 MPR-BWs2。目前仅实现了电子基态。对于一般用途，建议在 BWs-CC2 计算中采用 $A_{0}=2$、$B_{0}=0$ 的 MPR-BWs2，尽管最优参数组取决于所研究的体系及关注的化学量。

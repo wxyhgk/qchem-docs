@@ -1,25 +1,14 @@
 ---
-title: "6.11.1 Introduction"
+title: "6.11.1 引言"
 ---
 
-## 6.11.1 Introduction
+## 6.11.1 引言
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-Joonho Lee working with Martin Head-Gordon developed and added an implementation of
-RI-MP3 with only cubic-storage requirement.[[784]](../bib_references/bib.md#bib829)
+Joonho Lee 与 Martin Head-Gordon 合作开发并加入了一种仅需立方存储需求（cubic-storage requirement）的 RI-MP3 实现。[[784]](../bib_references/bib.md#bib829)
 
-The resulting code can be applied to larger systems than
-what is possible in CCMAN2 ([6.12](topic_ccsd.md)) due to the improved storage scaling.
-To use this method, one can set METHOD = RIMP3 along with AUXBASIS.
-In essence, it applies the RI approximation in Eq. ([8.4](../ch08_basis/Ch8.S8.SS1.md#eq:riapprox)) to the MP3 correlation energy evaluation.
-Interested readers are referred to Section [6.3](topic_mp2.md) for further details on the Møller-Plesset perturbation theory.
-
-In addition to RI-MP3 one can incorporate scaled RI-MP2 and RI-MP3 correlation energy
-contributions and alternative reference molecular orbitals (DFT and OOMP2) as seen
-in recent works by Bertels *et al.*.[[115]](../bib_references/bib.md#bib102)
- and Rettig *et al.*.[[1159]](../bib_references/bib.md#bib1212)
-
-The use of non-HF orbital references requires a composite job where the first calculation
-generates the orbital reference and the second first recomputes the SCF energy and Fock with
-HF on the fixed orbital reference and then proceeds with the correlated calculation.
+得益于改进的存储标度，所得程序可应用于比 CCMAN2（[6.12](topic_ccsd.md)）所能处理的更大的体系。
+若要使用该方法，可设置 METHOD = RIMP3 并配合 AUXBASIS。
+本质上，它将式 ([8.4](../ch08_basis/Ch8.S8.SS1.md#eq:riapprox)) 中的 RI 近似应用于 MP3 关联能的计算。
+感兴趣的读者请参阅第 [6.3](topic_ccsd.md) 节。

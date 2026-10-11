@@ -1,49 +1,39 @@
 ---
-title: "7.4.3 Calculation of Absorption Spectra"
+title: "7.4.3 吸收光谱的计算"
 ---
 
-## 7.4.3 Calculation of Absorption Spectra
+## 7.4.3 吸收光谱的计算
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-## 7.4.3.1 Theory
+## 7.4.3.1 理论
 
-The absorption cross-section $\sigma_{\kappa\kappa}(\omega)$ for light polarized in the $\kappa$ direction
-($\kappa\in\{x,y,z\}$) can be obtained from the imaginary part ($\Im$) of the frequency-dependent
-polarizability, $\alpha_{\kappa\kappa}(\omega)$:[[1578]](../bib_references/bib.md#bib1641)
+沿 $\kappa$ 方向偏振的光（$\kappa\in\{x,y,z\}$）的吸收截面 $\sigma_{\kappa\kappa}(\omega)$ 可由频率相关极化率 $\alpha_{\kappa\kappa}(\omega)$ 的虚部（$\Im$）获得:[[1578]](../bib_references/bib.md#bib1641)
 
 <a id="Ch7.E65"></a>
 $$
 \sigma_{\kappa\kappa}(\omega)=\left(\frac{4\pi\omega}{c}\right)\Im\bigl{[}\alpha_{\kappa\kappa}(\omega)\bigr{]}\;. \tag{7.65}
 $$
 
-Within the electric dipole approximation, a rotationally-averaged absorption spectrum $A(\omega)$ is then simply
+在电偶极近似下，旋转平均后的吸收光谱 $A(\omega)$ 即为
 
 <a id="eq:RT-TDDFT_spectrum"></a>
 $$
 A(\omega)=\tfrac{1}{3}\bigl{[}\sigma_{xx}(\omega)+\sigma_{yy}(\omega)+\sigma_{zz}(\omega)\bigr{]}\;. \tag{7.66}
 $$
 
-Components $\alpha_{\kappa\lambda}(\omega)$ of the frequency-dependent
-polarizability tensor $\bm{\alpha}(\omega)$ are obtained from the Fourier transform ($\mathcal{F}$)
-of the time-dependent dipole moment component $\mu_{\kappa}(t)$, for a perturbing field $\mathcal{E}_{\lambda}$
-in the $\lambda$ direction:[[1578]](../bib_references/bib.md#bib1641)
+频率相关极化率张量 $\bm{\alpha}(\omega)$ 的各分量 $\alpha_{\kappa\lambda}(\omega)$ 可由时间依赖偶极矩分量 $\mu_{\kappa}(t)$ 的傅里叶变换（$\mathcal{F}$）获得，其中微扰场 $\mathcal{E}_{\lambda}$ 沿 $\lambda$ 方向:[[1578]](../bib_references/bib.md#bib1641)
 
 <a id="eq:TDKS-FT"></a>
 $$
 \alpha_{\kappa\lambda}(\omega)=\frac{\mathcal{F}\bigl{[}\mu_{\kappa}(t)\bigr{]}}{\mathcal{F}\bigl{[}\mathcal{E}_{\lambda}(t)\bigr{]}}\;. \tag{7.67}
 $$
 
-To compute the spectrum in Eq. ([7.66](#eq:RT-TDDFT_spectrum)), three
-separate perturbations in the $x$, $y$, and $z$ directions are required, else some excitations may be missing if their
-transition moment is strictly perpendicular to the applied field, causing the matrix element
-$\langle\Psi_{n}|\mathcal{E}_{\lambda}|\Psi_{0}\rangle$ to vanish. However, these three perturbations $\mathcal{E}_{x}$,
-$\mathcal{E}_{y}$, and $\mathcal{E}_{z}$ can be applied all at once in a single calculation, in order to generate a superposition
-consisting of all possible excitations out of the ground state.
+要计算式 ([7.66](#eq:RT-TDDFT_spectrum)) 中的光谱，需要沿 $x$、$y$、$z$ 三个方向分别施加微扰，否则若某些激发的跃迁偶极矩严格垂直于所施加的外场，其矩阵元 $\langle\Psi_{n}|\mathcal{E}_{\lambda}|\Psi_{0}\rangle$ 将为零，从而导致这些激发缺失。不过，这三个微扰 $\mathcal{E}_{x}$、$\mathcal{E}_{y}$ 和 $\mathcal{E}_{z}$ 可以在单次计算中同时施加，以生成一个叠加态，其中包含从基态出发的所有可能激发。
 
-## 7.4.3.2 Fourier Transform Scripts
+## 7.4.3.2 傅里叶变换脚本
 
-Two different scripts are provided to obtain the spectrum after the TDKS simulation is completed:
+提供了两个不同的脚本，用于在 TDKS 模拟完成后获得光谱：
 
 - •
 
@@ -52,20 +42,19 @@ Two different scripts are provided to obtain the spectrum after the TDKS simulat
 
 `$QC/bin/tools/tdks_pade.py`
 
-The first of these uses the Fourier transform method in Eq. ([7.67](#eq:TDKS-FT)) directly while the second
-makes use of Padé approximants to obtain comparable spectra with shorter propagation times.[[566]](../bib_references/bib.md#bib585)
+第一个脚本直接使用式 ([7.67](#eq:TDKS-FT)) 中的傅里叶变换方法，而第二个脚本利用 Padé 近似，以更短的传播时间获得可比拟的光谱。[[566]](../bib_references/bib.md#bib585)
 
-The scripts can be run as follows:
+这些脚本可以按如下方式运行：
 
 > ```qchem
 > $QC/bin/tools/tdks_fft.py output spectrum.txt
 > $QC/bin/tools/tdks_pade.py output spectrum.txt
 > ```
 
-The file `spectrum.txt` produced by the processing script will contain two columns: frequency (eV) and strength (arbitrary units).
-These data can be visualized as an $(x,y)$ plot to view the spectrum.
+处理脚本生成的 `spectrum.txt` 文件将包含两列：频率（eV）和强度（任意单位）。
+这些数据可以作为 $(x,y)$ 图进行可视化，以查看光谱。
 
-???+ example "Example 7.35: TDKS job using a CW field and a CAP."
+???+ example "示例 7.35: 使用连续波（CW）场和复吸收势（CAP）的 TDKS 计算"
     ```qchem
     $molecule
        0 1
@@ -98,34 +87,27 @@ These data can be visualized as an $(x,y)$ plot to view the spectrum.
     $end
     ```
 
-## 7.4.3.3 Dipole Filtering
+## 7.4.3.3 偶极过滤（Dipole Filtering）
 
-An important but not-well-recognized aspect of TDKS broadband spectrum calculations is that they may be contaminated by continuum
-artifacts corresponding to transitions to high-energy virtual MOs.[[1514]](../bib_references/bib.md#bib1584)
+TDKS 宽带光谱计算中一个重要但未被充分认识的方面是，它们可能被对应于向高能虚分子轨道（MO）跃迁的连续态伪影所污染。[[1514]](../bib_references/bib.md#bib1584)
 
-This can be especially problematic for core-level spectra, where one x-ray edge may exhibit artifacts arising from a lower-energy edge.
-For example, N(1s) $\to$ continuum transitions can appear at energies comparable to the oxygen K-edge consisting of
-O(1s) $\to$ valence transitions.[[566]](../bib_references/bib.md#bib585)
+对于核心能级（core-level）光谱而言，这可能尤为棘手，因为某个 X 射线吸收边可能出现源自更低能量吸收边的伪影。
+例如，N(1s) $\to$ 连续态的跃迁可能出现在与由 O(1s) $\to$ 价层跃迁构成的氧 K 边相当的能量处。[[566]](../bib_references/bib.md#bib585)
 
-This is unfortunate, since x-ray spectroscopy is a potentially useful application of the real-time approach, whereas a state-by-state
-approach (as in LR-TDDFT or any other eigenvalue-based method) may require the calculation of hundreds of individual states in order
-to obtain a converged spectrum. The TDKS approach is almost always (significantly) more expensive than LR-TDDFT,[[566]](../bib_references/bib.md#bib585)
+这一点令人遗憾，因为 X 射线光谱学是实时方法一个潜在有用的应用领域，而逐态方法（如 LR-TDDFT 或任何其他基于本征值的方法）可能需要计算数百个单独的激发态才能得到收敛的光谱。TDKS 方法几乎总是（显著地）比 LR-TDDFT 更昂贵，[[566]](../bib_references/bib.md#bib585)
 
-but the former lacks the large memory bottleneck that is incurred by the latter.
+但前者不存在后者所面临的大内存瓶颈。
 
-Fortunately, artificial states appearing in the TDKS spectrum can be eliminated by means of a dipole-filtering technique,[[1514]](../bib_references/bib.md#bib1584)
+幸运的是，出现在 TDKS 光谱中的人为态可以通过偶极过滤技术加以消除，[[1514]](../bib_references/bib.md#bib1584)
 
-although this does require some advance knowledge of what transitions to expect. The key is to recognize that the dipole moment is a
-linear function of the density matrix,
+尽管这确实需要事先对预期出现的跃迁有一定了解。关键在于认识到偶极矩是密度矩阵的线性函数，
 
 <a id="Ch7.E68"></a>
 $$
 \mu_{\lambda}(t)=\text{tr}\big{[}\mathbf{P}(t)\;\mathbf{D}_{\lambda}(t)\big{]}\;. \tag{7.68}
 $$
 
-Here, $\lambda\in\{x,y,z\}$ represents a Cartesian component of the dipole moment and $\mathbf{D}_{\lambda}$ is the matrix representation of
-the dipole moment operator $\hat{\mu}_{\lambda}$, expressed in the MO basis. The sum over occupied MOs $k$ allows us to decompose
-$\mu_{\lambda}$ into a separate contribution from each. To do this, define a matrix
+这里，$\lambda\in\{x,y,z\}$ 表示偶极矩的笛卡尔分量，$\mathbf{D}_{\lambda}$ 是偶极矩算符 $\hat{\mu}_{\lambda}$ 在 MO 基组下的矩阵表示。对占位 MO $k$ 的求和使我们能够将 $\mu_{\lambda}$ 分解为来自每个 MO 的独立贡献。为此，定义矩阵
 
 <a id="Ch7.E69"></a>
 $$
@@ -137,64 +119,54 @@ $$
 \end{array}\right) \tag{7.69}
 $$
 
-in which all but the $k$th row and column of $\mathbf{D}_{\lambda}$ have been set to zero. Then
+其中除 $\mathbf{D}_{\lambda}$ 的第 $k$ 行和第 $k$ 列之外的所有元素均被置为零。于是
 
 <a id="eq:dipole-filter"></a>
 $$
 \mu_{\lambda}(t)=\sum_{k}^{\text{occ}}\mu_{\lambda,k}(t) \tag{7.70}
 $$
 
-where
+其中
 
 <a id="Ch7.E71"></a>
 $$
 \mu_{\lambda,k}(t)=\text{tr}\big{[}\mathbf{P}(t)\;\mathbf{D}_{\lambda,k}(t)\big{]}\;. \tag{7.71}
 $$
 
-Taking the Fourier transform of the time series $\mu_{\lambda,k}(t)$ provides the spectral contribution of the $k$th MO, and the sum of all such
-contributions affords the full TDKS spectrum. This need not be done on an orbital-by-orbital basis; instead, contributions
-from groups of MOs could be summed together, representing various partitions of the summation in Eq. ([7.70](#eq:dipole-filter)).
-An oxygen K-edge spectrum that is free of contamination from
-N(1s) $\to$ continuum transitions could be obtained by only allowing the sum over $k$ to include the O(1s) orbital(s).
+对时间序列 $\mu_{\lambda,k}(t)$ 取傅里叶变换，即可得到第 $k$ 个 MO 的光谱贡献，而所有此类贡献之和便给出了完整的 TDKS 光谱。这一步骤不必逐个轨道进行；相反，可以将若干 MO 分组的贡献加在一起，代表式 ([7.70](#eq:dipole-filter)) 中求和的不同划分方式。例如，通过让对 $k$ 的求和仅包含 O(1s) 轨道，就可以获得不含 N(1s) $\to$ 连续态跃迁污染的氧 K 边光谱。
 
-The aforementioned technique is a way of decomposing the full TDKS spectrum into contributions from individual occupied MOs or
-groups thereof. Arbitrary groupings can be computed, although only when those groups of MOs are non-disjoint will the Fourier
-transforms sum to the full TDKS spectrum. In this way, the effects of different occupied MOs can be deleted from the spectrum, both to look
-for (and remove) artifacts, but also to assign spectral features by determining the occupied MOs from which they arise.
+上述技术是将完整 TDKS 光谱分解为各个占位 MO 或其分组贡献的一种方式。可以计算任意分组，但只有当这些 MO 分组为非不相交（non-disjoint）时，各傅里叶变换之和才等于完整的 TDKS 光谱。通过这种方式，可以将不同占位 MO 的影响从光谱中剔除，既用于查找（并去除）伪影，也用于通过确定谱峰来源的占位 MO 来指认光谱特征。
 
-Dipole filtering is accomplished by adding the keyword **active_groups** to the *$tdks* input section.
-An example of the format is
+偶极过滤通过在 *$tdks* 输入段中添加关键字 **active_groups** 来实现。
+其格式示例为
 
 ```qchem
 ¯         active_groups  k1 k2 k3 | k4 k5 | k6 k7 k8
 ```
 
-This requests a decomposition into three groups of occupied MOs, with indices $\{k_{1},k_{2},k_{3}\}$ for the first group,
-$\{k_{4},k_{5}\}$ for the second group, and $\{k_{6},k_{7},k_{8}\}$ for the third. (Group indices are separated by the “`|`” symbol.)
-For unrestricted calculations, the $\alpha$- and $\beta$-spin MO indices for the active groups must be listed separately, using
-keywords **active_alpha_groups** and **active_beta_groups** that both have the same format as **active_groups**.
+这请求将光谱分解为三组占位 MO，第一组的指标为 $\{k_{1},k_{2},k_{3}\}$，
+第二组为 $\{k_{4},k_{5}\}$，第三组为 $\{k_{6},k_{7},k_{8}\}$。（各分组的指标之间以“`|`”符号分隔。）
+对于非限制（unrestricted）计算，必须分别列出 active groups 的 $\alpha$ 自旋和 $\beta$ 自旋 MO 指标，
+使用关键字 **active_alpha_groups** 和 **active_beta_groups**，二者的格式均与 **active_groups** 相同。
 
 ### `active_groups`
 
-> **Specify groups of active MO indices for dipole filtering. INPUT SECTION: $tdks**
+> **为偶极过滤指定活跃 MO 指标分组。输入段：$tdks**
 >
-> * **Type**: `STRING`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `None`
+> * **选项**:
 >     * $k_{1}~{}k_{2}\cdots\text{|}k_{3}~{}k_{4}\cdots$
->     * Define groups
+>     * 定义分组
 >     * $\{k_{1},k_{2},\ldots\}$
->     * and
+>     * 以及
 >     * $\{k_{3},k_{4},\ldots\}$
->     * .
-> * **Recommendation**: Use if desired. In addition to the full dipole moment function $\bm{\mu}(t)$ , separate dipole moment functions for each group will be written to the scratch directory. For unrestricted SCF calculations, use active_alpha_groups and active_beta_groups instead.
+>     * 。
+> * **建议**: 按需使用。除了完整的偶极矩函数 $\bm{\mu}(t)$ 之外，每个分组的独立偶极矩函数也会被写入临时（scratch）目录。对于非限制 SCF 计算，请改用 active_alpha_groups 和 active_beta_groups。
 
-The following example demonstrates how to decompose the absorption spectrum for TiO${}_{2}$ into contributions from
-Ti(1s), Ti(2s), O(1s), and Ti(2p) orbitals. In order to setup this job, one must have performed a prior SCF calculation to ascertain
-which indices correspond to the MOs of interest.
+以下示例演示了如何将 TiO${}_{2}$ 的吸收光谱分解为来自 Ti(1s)、Ti(2s)、O(1s) 和 Ti(2p) 轨道的贡献。要设置此计算，必须先执行一次 SCF 计算，以确定哪些指标对应于所关注的 MO。
 
-???+ example "Example 7.36: Example of dipole filtering for TDKS. Note that the propagation time ( maxiter )
-would need to be much longer for a real simulation."
+???+ example "示例 7.36: TDKS 偶极过滤示例。注意，对于真实模拟，传播时间（ maxiter ）需要长得多。"
     ```qchem
     $comment
     TDKS with dipole filtering
@@ -231,14 +203,9 @@ would need to be much longer for a real simulation."
     
     ```
 
-The relevant output from a TDKS calculation with dipole filtering is placed into the scratch directory, in a sub-directory named
-`$QCSCRATCH/tdks-dipole`. Upon completion of the calculation that director is copied into the same directory that contains
-the input and output files, and is renamed as `outFileName.tdks-dipole` where `outFileName` is the **Q-Chem** output file.
-For restricted SCF calculations, the `tdks-dipole` directory contains a file named `full.dat` consisting of the full dipole
-moment function, arranged as components $\mu_{x}(t)$, $\mu_{y}(t)$, and $\mu_{z}(t)$. In the same directory are files named
-`group.n.dat` that contain the same information but restricted to the $n$th group of MOs. For unrestricted SCF calculations,
-`full.dat` is replaced by `full-alpha.dat` and `full-beta.dat`, while `group.n.dat` is replaced by
-`group-alpha.n.dat` and `group-beta.n.dat`. The data in these `.dat` files can be individually Fourier transformed
-to obtain spectral contributions from each group of MOs. If there are no omissions and no redundancies in the list of MOs, then the
-group spectra should sum to the full spectrum. For example, `full-alpha.dat` and `full-beta.dat` together provide the
-full spectrum for an unrestricted TDKS calculation.
+带偶极过滤的 TDKS 计算的相关输出会放置在临时目录中一个名为
+`$QCSCRATCH/tdks-dipole` 的子目录下。计算完成后，该目录会被复制到包含输入文件和输出文件的同一目录下，并重命名为 `outFileName.tdks-dipole`，其中 `outFileName` 是 **Q-Chem** 输出文件的文件名。
+对于限制（restricted）SCF 计算，`tdks-dipole` 目录中包含一个名为 `full.dat` 的文件，其内容为完整的偶极矩函数，按分量 $\mu_{x}(t)$、$\mu_{y}(t)$ 和 $\mu_{z}(t)$ 排列。在同一目录中还有名为
+`group.n.dat` 的文件，其包含相同类型的信息，但仅限于第 $n$ 组 MO。对于非限制 SCF 计算，
+`full.dat` 会被 `full-alpha.dat` 和 `full-beta.dat` 取代，而 `group.n.dat` 则被
+`group-alpha.n.dat` 和 `group-beta.n.dat` 取代。可以对这些 `.dat` 文件中的数据分别进行傅里叶变换，以获得每个 MO 分组的光谱贡献。如果 MO 列表中没有遗漏也没有重复，那么各分组的谱线之和应等于完整光谱。例如，对于非限制 TDKS 计算，`full-alpha.dat` 和 `full-beta.dat` 共同提供了完整光谱。

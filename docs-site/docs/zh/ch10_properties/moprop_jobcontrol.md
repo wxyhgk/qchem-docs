@@ -1,251 +1,248 @@
 ---
-title: "10.10.3 Job Control for the MOProp Module"
+title: "10.10.3 MOProp 模块的作业控制"
 ---
 
-## 10.10.3 Job Control for the MOProp Module
+## 10.10.3 MOProp 模块的作业控制
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The MOProp module is invoked by specifying a job number using the
-MOPROP *$rem* variable. In addition to electric properties, this
-module can also compute NMR chemical shifts (MOPROP = NMR); this
-functionality is described in Section [10.11](sec_magnetic.md).
+通过 *$rem* 变量 MOPROP 指定作业编号即可调用 MOProp 模块。除电学性质外，该模块还可以计算 NMR 化学位移（MOPROP = NMR）；此功能在第 [10.11](sec_magnetic.md) 节中描述。
 
 MOPROP
 
 ### `MOPROP`
 
-> **Specifies the job number for MOProp module.**
+> **指定 MOProp 模块的作业编号。**
 >
-> * **Type**: `STRING`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `0`
+> * **可选值**:
 >     * NMR
->     * NMR chemical shielding tensors.
+>     * NMR 化学屏蔽张量。
 >     * STATIC_POLAR
->     * Static polarizability.
+>     * 静态极化率。
 >     * ISSC
->     * Indirect nuclear spin–spin coupling tensors.
+>     * 间接核自旋-自旋耦合张量。
 >     * DYN_POLAR
->     * Dynamic polarizability.
+>     * 动态极化率。
 >     * HYPERPOL
->     * First hyperpolarizability using Wigner’s
+>     * 利用 Wigner 的
 >     * $2n+1$
->     * rule.
-> * **Recommendation**: None
+>     * 规则计算一阶超极化率。
+> * **建议**: 无
 
 MOPROP_PERTNUM
 
 ### `MOPROP_PERTNUM`
 
-> **Set the number of perturbed densities that will to be treated together.**
+> **设置将一起处理的微扰密度数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * All at once.
+>     * 一次性全部处理。
 >     * $n$
->     * Treat the perturbed densities batch-wise.
-> * **Recommendation**: Use the default. For large systems, limiting this number may be required to avoid memory exhaustion.
+>     * 分批处理微扰密度。
+> * **建议**: 使用默认值。对于大体系，可能需要限制该数目以避免内存耗尽。
 
 MOPROP_CONV_1ST
 
 ### `MOPROP_CONV_1ST`
 
-> **Sets the convergence criteria for CPSCF and 1st order TDSCF.**
+> **设置 CPSCF 及一阶 TDSCF 的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **可选值**:
 >     * $n<10$
->     * Convergence threshold set to
+>     * 收敛阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: None
+>     * 。
+> * **建议**: 无
 
 MOPROP_CONV_2ND
 
 ### `MOPROP_CONV_2ND`
 
-> **Sets the convergence criterion for second-order TDSCF.**
+> **设置二阶 TDSCF 的收敛判据。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `6`
+> * **可选值**:
 >     * $n<10$
->     * Convergence threshold set to
+>     * 收敛阈值设为
 >     * $10^{-n}$
->     * .
-> * **Recommendation**: None
+>     * 。
+> * **建议**: 无
 
 MOPROP_MAXITER_1ST
 
 ### `MOPROP_MAXITER_1ST`
 
-> **The maximum number of iterations for CPSCF and first-order TDSCF.**
+> **CPSCF 及一阶 TDSCF 的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **可选值**:
 >     * $n$
->     * Set maximum number of iterations to
+>     * 将最大迭代次数设为
 >     * $n$
->     * .
-> * **Recommendation**: Use the default.
+>     * 。
+> * **建议**: 使用默认值。
 
 MOPROP_MAXITER_2ND
 
 ### `MOPROP_MAXITER_2ND`
 
-> **The maximum number of iterations for second-order TDSCF.**
+> **二阶 TDSCF 的最大迭代次数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `50`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `50`
+> * **可选值**:
 >     * $n$
->     * Set maximum number of iterations to
+>     * 将最大迭代次数设为
 >     * $n$
->     * .
-> * **Recommendation**: Use the default.
+>     * 。
+> * **建议**: 使用默认值。
 
 MOPROP_ISSC_PRINT_REDUCED
 
 ### `MOPROP_ISSC_PRINT_REDUCED`
 
-> **Specifies whether the isotope-independent reduced coupling tensor $\mathbf{K}$ should be printed in addition to the isotope-dependent $\mathbf{J}$ -tensor when calculating indirect nuclear spin-spin couplings.**
+> **指定在计算间接核自旋-自旋耦合时，是否在依赖于同位素的 $\mathbf{J}$ 张量之外，额外打印与同位素无关的约化耦合张量 $\mathbf{K}$。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Do not print
+>     * 不打印
 >     * $\mathbf{K}$
->     * .
+>     * 。
 >     * TRUE
->     * Print
+>     * 打印
 >     * $\mathbf{K}$
->     * .
-> * **Recommendation**: None
+>     * 。
+> * **建议**: 无
 
 MOPROP_ISSC_SKIP_FC
 
 ### `MOPROP_ISSC_SKIP_FC`
 
-> **Specifies whether to skip the calculation of the Fermi contact contribution to the indirect nuclear spin-spin coupling tensor.**
+> **指定是否跳过计算间接核自旋-自旋耦合张量的费米接触（Fermi contact）贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Calculate Fermi contact contribution.
+>     * 计算费米接触贡献。
 >     * TRUE
->     * Skip Fermi contact contribution.
-> * **Recommendation**: None
+>     * 跳过费米接触贡献。
+> * **建议**: 无
 
 MOPROP_ISSC_SKIP_SD
 
 ### `MOPROP_ISSC_SKIP_SD`
 
-> **Specifies whether to skip the calculation of the spin-dipole contribution to the indirect nuclear spin-spin coupling tensor.**
+> **指定是否跳过计算间接核自旋-自旋耦合张量的自旋-偶极（spin-dipole）贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Calculate spin-dipole contribution.
+>     * 计算自旋-偶极贡献。
 >     * TRUE
->     * Skip spin-dipole contribution.
-> * **Recommendation**: None
+>     * 跳过自旋-偶极贡献。
+> * **建议**: 无
 
 MOPROP_ISSC_SKIP_PSO
 
 ### `MOPROP_ISSC_SKIP_PSO`
 
-> **Specifies whether to skip the calculation of the paramagnetic spin-orbit contribution to the indirect nuclear spin-spin coupling tensor.**
+> **指定是否跳过计算间接核自旋-自旋耦合张量的顺磁自旋-轨道（paramagnetic spin-orbit）贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Calculate paramagnetic spin-orbit contribution.
+>     * 计算顺磁自旋-轨道贡献。
 >     * TRUE
->     * Skip paramagnetic spin-orbit contribution.
-> * **Recommendation**: None
+>     * 跳过顺磁自旋-轨道贡献。
+> * **建议**: 无
 
 MOPROP_ISSC_SKIP_DSO
 
 ### `MOPROP_ISSC_SKIP_DSO`
 
-> **Specifies whether to skip the calculation of the diamagnetic spin-orbit contribution to the indirect nuclear spin-spin coupling tensor.**
+> **指定是否跳过计算间接核自旋-自旋耦合张量的抗磁自旋-轨道（diamagnetic spin-orbit）贡献。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **可选值**:
 >     * FALSE
->     * Calculate diamagnetic spin-orbit contribution.
+>     * 计算抗磁自旋-轨道贡献。
 >     * TRUE
->     * Skip diamagnetic spin-orbit contribution.
-> * **Recommendation**: None
+>     * 跳过抗磁自旋-轨道贡献。
+> * **建议**: 无
 
 MOPROP_DIIS
 
 ### `MOPROP_DIIS`
 
-> **Controls the use of Pulay’s DIIS in solving the CPSCF equations.**
+> **控制在求解 CPSCF 方程时是否使用 Pulay 的 DIIS。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `5`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `5`
+> * **可选值**:
 >     * 0
->     * Turn off DIIS.
+>     * 关闭 DIIS。
 >     * 5
->     * Turn on DIIS.
-> * **Recommendation**: None
+>     * 开启 DIIS。
+> * **建议**: 无
 
 MOPROP_DIIS_DIM_SS
 
 ### `MOPROP_DIIS_DIM_SS`
 
-> **Specified the DIIS subspace dimension.**
+> **指定 DIIS 子空间的维数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `20`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `20`
+> * **可选值**:
 >     * 0
->     * No DIIS.
+>     * 不使用 DIIS。
 >     * $n$
->     * Use a subspace of dimension
+>     * 使用维数为
 >     * $n$
->     * .
-> * **Recommendation**: None
+>     * 的子空间。
+> * **建议**: 无
 
 SAVE_LAST_GPX
 
 ### `SAVE_LAST_GPX`
 
-> **Save the last $\mathbf{G}[\mathbf{P}^{x}]$ when calculating dynamic polarizabilities in order to call the MOProp code in a second run, via MOPROP = 104 (which is otherwise the same as MOPROP = HYPERPOL).**
+> **在计算动态极化率时保存最后一个 $\mathbf{G}[\mathbf{P}^{x}]$，以便在第二次运行中通过 MOPROP = 104 调用 MOProp 代码（该选项与 MOPROP = HYPERPOL 基本相同）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
 >     * False
 >     * 1
 >     * True
-> * **Recommendation**: None
+> * **建议**: 无
 
 MOPROP_RESTART
 
 ### `MOPROP_RESTART`
 
-> **Specifies the option for restarting MOProp calculations.**
+> **指定重启 MOProp 计算的选项。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **可选值**:
 >     * 0
->     * Not a restart calculation.
+>     * 非重启计算。
 >     * 1
->     * Restart from a previous calculation using the same scratch directory.
-> * **Recommendation**: Need to also include "SCF_GUESS READ" and "SKIP_SCFMAN TRUE" to ensure the same set of MOs.
+>     * 使用相同的临时目录（scratch directory）从先前的计算重启。
+> * **建议**: 还需要同时设置 "SCF_GUESS READ" 和 "SKIP_SCFMAN TRUE"，以确保使用同一组分子轨道（MO）。

@@ -1,9 +1,9 @@
 ---
-title: "5.8 Empirical Corrections for Basis Set Superposition Error"
+title: "5.8 基组叠加误差的经验校正"
 ---
 
-# 5.8 Empirical Corrections for Basis Set Superposition Error
+# 5.8 基组叠加误差的经验校正
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-- [5.8.1 Overview](Ch5.S8.SS1.md)
+- [5.8.1 概述](Ch5.S8.SS1.md)

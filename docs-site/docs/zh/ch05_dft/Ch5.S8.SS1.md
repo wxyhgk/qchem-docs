@@ -1,96 +1,84 @@
 ---
-title: "5.8.1 Overview"
+title: "5.8.1 概述"
 ---
 
-## 5.8.1 Overview
+## 5.8.1 概述
 
-(July 4, 2026)
+(2026年7月4日)
 
-This section describes DFT-C,[[1482]](../bib_references/bib.md#bib1542)
- an empirical correction for
-basis set superposition error (BSSE) in DFT calculations that is an adaptation
-of Grimme’s geometrical counterpoise (gCP) correction.[[722]](../bib_references/bib.md#bib754)
- Unlike
-the traditional Boys-Bernardi counterpoise correction
-(Section [8.9](../ch08_basis/sec_BSSE.md)),[[151]](../bib_references/bib.md#bib148)
- the cost of the DFT-C correction
-is essentially zero (on the scale of a DFT calculation), and the latter
-provides an estimate of both inter- and *intra*molecular BSSE. The form
-of this correction is
+本节介绍 DFT-C,[[1482]](../bib_references/bib.md#bib1542)
+ 这是一种针对密度泛函理论（Density Functional Theory, DFT）计算中基组重叠误差（Basis Set Superposition Error, BSSE）的经验校正方法，
+它是对 Grimme 的几何反基组（geometrical counterpoise, gCP）校正的改进。[[722]](../bib_references/bib.md#bib754)
+ 与传统的 Boys-Bernardi 反基组校正（第 [8.9](../ch08_basis/sec_BSSE.md) 节）不同，[[151]](../bib_references/bib.md#bib148)
+ DFT-C 校正的计算开销几乎为零（相对于一次 DFT 计算的量级而言），并且它可以同时估计分子间和*分子内*的 BSSE。该校正的形式为
 
 <a id="Ch5.E56"></a>
 $$
 E_{\text{DFT-C}}=\sigma\sum^{\text{atoms}}_{A}c_{A}\sum^{\text{atoms}}_{B\neq A}g_{AB^{\ast}}^{\text{DFT-C}}(R_{AB})\;h_{AB^{\ast}}(\{A,B,\ldots\}) \tag{5.56}
 $$
 
-where $g_{AB^{\ast}}^{\text{DFT-C}}$ is a damped, pairwise BSSE correction,
+其中 $g_{AB^{\ast}}^{\text{DFT-C}}$ 是一个带阻尼的两体 BSSE 校正项，
 
 <a id="Ch5.E57"></a>
 $$
 g_{AB^{\ast}}^{\text{DFT-C}}(R_{AB})=d(R_{AB})\;f_{AB^{\ast}}^{\text{DFT-C}}(R_{AB})+\bigl{[}1-d(R_{AB})\bigr{]}f_{AB^{\ast}}^{\text{DFT-C}}(R_{\text{cov},AB})\;. \tag{5.57}
 $$
 
-The quantity
+量
 
 <a id="Ch5.E58"></a>
 $$
 f_{AB^{\ast}}^{\text{DFT-C}}(R_{AB})=c_{AB}\exp\bigl{(}-\alpha_{AB}R_{AB}^{2}+\beta_{AB}R_{AB}\bigr{)} \tag{5.58}
 $$
 
-is the undamped pairwise BSSE and
+是未加阻尼的两体 BSSE，而
 
 <a id="Ch5.E59"></a>
 $$
 d(R_{AB})=\frac{1}{1+k_{1,AB}(R_{AB}/R_{0,AB})^{-k_{2,AB}}} \tag{5.59}
 $$
 
-is a damping function. The quantity
-$h_{AB^{\ast}}(\{A,B,...\})$ is a many-body correction to the two-body BSSE correction, given by
+是一个阻尼函数。量 $h_{AB^{\ast}}(\{A,B,...\})$ 是对两体 BSSE 校正的多体校正项，其表达式为
 
 <a id="3b"></a>
 $$
 h_{AB^{\ast}}(\{A,B,...\})=\left[1+\sum_{C\neq A,B}\frac{N_{C}^{\text{virt}}}{N_{B}^{\text{virt}}}\operatorname{terfc}\left(R_{AC},R_{AB}\right)\operatorname{terfc}\left(R_{BC},R_{AB}\right)\right]^{-1} \tag{5.60}
 $$
 
-where
+其中
 
 <a id="terfc"></a>
 $$
 \operatorname{terfc}(x,y)=1-\frac{1}{2}\big{[}\mathrm{erf}(x+y)+\mathrm{erf}(x-y)\bigr{]}\;. \tag{5.61}
 $$
 
-The parameters $c_{A}$, $c_{AB}$, $\alpha_{AB}$, and $\beta_{AB}$ are
-basis-set-dependent, and the overall scaling parameter $\sigma$ is loosely
-method-dependent. All of these parameters are set internally based on the
-method and basis *$rem* specifications.
+参数 $c_{A}$、$c_{AB}$、$\alpha_{AB}$ 和 $\beta_{AB}$ 依赖于基组，而总体缩放参数 $\sigma$ 则与方法 loosely 相关（即对方法的选择仅有较弱的依赖）。所有这些参数都根据 *$rem* 中指定的方法和基组在内部自动设定。
 
-**Note: 
+**注意：
 
-Currently, only the def2-SVPD basis set is supported for use with DFT-C.
+目前 DFT-C 仅支持 def2-SVPD 基组。
 **
 
-The DFT-C correction is governed by the following *$rem* variable:
+DFT-C 校正由以下 *$rem* 变量控制：
 
 DFT_C
 
 ### `DFT_C`
 
-> **Controls whether the DFT-C empirical BSSE correction should be added.**
+> **控制是否添加 DFT-C 经验 BSSE 校正。**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**：`LOGICAL`
+> * **默认值**：`FALSE`
+> * **可选值**：
 >     * FALSE
->     * (or 0) Do not apply the DFT-C correction
+>     * (或 0) 不应用 DFT-C 校正
 >     * TRUE
->     * (or 1) Apply the DFT-C correction
-> * **Recommendation**: NONE
+>     * (或 1) 应用 DFT-C 校正
+> * **建议值**：NONE
 
-The DFT-C method can be applied to any local, GGA, or meta-GGA density
-functional, as in the following example.
+DFT-C 方法可以应用于任何局域泛函、广义梯度近似（Generalized Gradient Approximation, GGA）或meta-GGA 密度泛函，如下例所示。
 
-???+ example "Example 5.17: Geometry optimization of the methane dimer using B97M-V-C/def2-SVPD, i.e. ,
-the B97M-V functional with the DFT-C BSSE correction in the def2-SVPD basis set."
+???+ example "示例 5.17: 使用 B97M-V-C/def2-SVPD（即在 def2-SVPD 基组下采用带 DFT-C BSSE 校正的 B97M-V 泛函）对甲烷二聚体进行几何优化。"
     ```qchem
     $molecule
        0 1

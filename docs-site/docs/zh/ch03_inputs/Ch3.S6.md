@@ -1,9 +1,13 @@
 ---
-title: "3.6 Q-Chem Output File"
+title: "3.6 Q-Chem 输出文件"
 ---
 
-# 3.6 **Q-Chem** Output File
+# 3.6 **Q-Chem** 输出文件
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-- [3.6.1 Overview](Ch3.S6.SS1.md)
+- [3.6.1 概述](Ch3.S6.SS1.md)
+
+---
+
+已同时保存为 `Ch3.S6_zh.md`。

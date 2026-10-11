@@ -1,14 +1,13 @@
 ---
-title: "9.9.2 Overview and Basic Job Control"
+title: "9.9.2 概述与基本任务控制"
 ---
 
-## 9.9.2 Overview and Basic Job Control
+## 9.9.2 概述与基本任务控制
 
 (July 4, 2026)
 
-Initial Cartesian coordinates and velocities must be specified for the
-nuclei. Coordinates are specified in the *$molecule* section as usual,
-while velocities can be specified using a *$velocity* section with the form:
+必须为原子核指定初始的笛卡尔坐标和速度。坐标按照惯例在 *$molecule* 段中指定，
+而速度可以通过 *$velocity* 段来指定，其形式为：
 
 > `$velocity` 
 > 
@@ -24,22 +23,19 @@ while velocities can be specified using a *$velocity* section with the form:
 > 
 > `$end`
 
-Here $v_{x,i}$, $v_{y,i}$, and $v_{z,i}$ are the $x$, $y$, and $z$ Cartesian
-velocities of the $i$th nucleus, specified in atomic units (bohrs per atomic
-unit of time, where 1 a.u. of time is approximately 0.0242 fs). The
-*$velocity* section thus has the same form as the *$molecule* section, but
-without atomic symbols and without the line specifying charge and multiplicity.
-The atoms must be ordered in the same manner in both the *$velocity* and
-*$molecule* sections.
+这里 $v_{x,i}$、$v_{y,i}$ 和 $v_{z,i}$ 分别是第 $i$ 个原子核的 $x$、$y$、$z$
+笛卡尔速度，以原子单位给出（bohr 每原子时间单位，其中 1 a.u. 时间约等于
+0.0242 fs）。因此 *$velocity* 段与 *$molecule* 段形式相同，
+只是不含原子符号，也不含指定电荷与自旋多重度的那一行。
+在 *$velocity* 和 *$molecule* 两个段中，原子的排列顺序必须完全一致。
 
-As an alternative to a *$velocity* section, initial nuclear velocities can be
-sampled from certain distributions (*e.g.*, Maxwell-Boltzmann), using the
-AIMD_INIT_VELOC variable described below.
-AIMD_INIT_VELOC can also be set to QUASICLASSICAL, which
-triggers the use of quasi-classical trajectory molecular dynamics (see
-Section [9.9.6](subsec_QCT.md)).
+作为 *$velocity* 段的替代方案，初始核速度可以从某些分布（*e.g.*，麦克斯韦-玻尔兹曼分布，
+Maxwell-Boltzmann）中抽样获得，这通过下文描述的 AIMD_INIT_VELOC 变量来实现。
+AIMD_INIT_VELOC 还可以设置为 QUASICLASSICAL，
+这将触发使用经典轨迹分子动力学（quasi-classical trajectory molecular dynamics，见
+第 [9.9.6](subsec_QCT.md) 节）。
 
-The nuclear mass can be initialized by a *$mass* section with the form:
+原子核质量可以通过形式如下的 *$mass* 段来初始化：
 
 > `$mass` 
 > 
@@ -55,335 +51,296 @@ The nuclear mass can be initialized by a *$mass* section with the form:
 > 
 > `$end`
 
-The total number in the *$mass* section must be equal to number of atoms. Unit
-is the atomic mass unit (amu), *e.g.*, mass of hydrogen-1 atom is 1.00783. If the
-*$mass* section is not initialized, the default mass will be used.
+*$mass* 段中数值的总数必须等于原子个数。单位为原子质量单位（amu），*e.g.*，
+氢-1 原子的质量为 1.00783。若未初始化 *$mass* 段，则使用默认质量。
 
-Although the **Q-Chem** output file dutifully records the progress of any
-*ab initio* molecular dynamics job, the most useful information is printed
-not to the main output file but rather to a directory called “AIMD” that is a
-subdirectory of the job’s scratch directory. (All *ab initio* molecular
-dynamics jobs should therefore use the *–save* option described in
-Section [2.2](../ch02_install/sect_running.md).) The AIMD directory consists of a set of files that
-record, in ASCII format, one line of information at each time step. Each file
-contains a few comment lines (indicated by “#”) that describe its contents
-and which we summarize in the list below.
+尽管 **Q-Chem** 输出文件会如实记录从头算分子动力学（*ab initio* molecular dynamics）
+任务的进展，但最有用的信息并非打印在主输出文件中，而是打印在一个名为 “AIMD” 的
+目录中，该目录是任务临时（scratch）目录下的子目录。（因此所有从头算分子动力学
+任务都应使用第 [2.2](../ch02_install/sect_running.md) 节中描述的 *–save* 选项。）
+AIMD 目录由一组文件构成，这些文件以 ASCII 格式记录每个时间步的一行信息。
+每个文件包含若干以 “#” 标识的注释行，用于描述其内容，我们在下文中汇总列出。
 
 - •
 
-`Cost`: Records the number of SCF cycles, the total CPU time, and the total
-memory use at each dynamics step.
+`Cost`：记录每个动力学步的 SCF 循环次数、总 CPU 时间以及总内存使用量。
 - •
 
-`EComponents`: Records various components of the total energy (all in hartree).
+`EComponents`：记录总能的各种组成部分（均以 hartree 为单位）。
 - •
 
-`Energy`: Records the total energy and fluctuations therein.
+`Energy`：记录总能量及其涨落。
 - •
 
-`MulMoments`: If multipole moments are requested, they are printed here.
+`MulMoments`：若请求了多极矩（multipole moments），则输出到此文件。
 - •
 
-`NucCarts`: Records the nuclear Cartesian coordinates $x_{1}$, $y_{1}$,
-$z_{1}$, $x_{2}$, $y_{2}$, $z_{2}$, …, $x_{N}$, $y_{N}$, $z_{N}$
-at each time step, in either bohrs or Ångstroms.
+`NucCarts`：记录每个时间步的核笛卡尔坐标 $x_{1}$，$y_{1}$，
+$z_{1}$，$x_{2}$，$y_{2}$，$z_{2}$，…，$x_{N}$，$y_{N}$，$z_{N}$，
+单位为 bohr 或埃（Ångstroms）。
 - •
 
-`NucForces`: Records the Cartesian forces on the nuclei at each time step
-(same order as the coordinates, but given in atomic units).
+`NucForces`：记录每个时间步作用在原子核上的笛卡尔力
+（顺序与坐标相同，但以原子单位给出）。
 - •
 
-`NucVeloc`: Records the Cartesian velocities of the nuclei at each time
-step (same order as the coordinates, but given in atomic units).
+`NucVeloc`：记录每个时间步原子核的笛卡尔速度
+（顺序与坐标相同，但以原子单位给出）。
 - •
 
-`TandV`: Records the kinetic and potential energy, as well as
-fluctuations in each.
+`TandV`：记录动能与势能，以及各自的涨落。
 - •
 
-`View.xyz`: Cartesian-formatted version of `NucCarts` for
-viewing trajectories in an external visualization program.
+`View.xyz`：`NucCarts` 的笛卡尔格式版本，
+用于在外部可视化程序中查看轨迹。
 
-For ELMD jobs, there are other output files as well:
+对于 ELMD 任务，还有其他一些输出文件：
 
 - •
 
-`ChangeInF`: Records the matrix norm and largest magnitude element of
-$\Delta\mathbf{F}=\mathbf{F}(t+\delta t)-\mathbf{F}(t)$ in the basis of
-Cholesky-orthogonalized AOs. The files ChangeInP, ChangeInL, and
-ChangeInZ provide analogous information for the density matrix $\mathbf{P}$
-and the Cholesky orthogonalization matrices $\mathbf{L}$ and $\mathbf{Z}$ defined
-in Ref. [[558]](../bib_references/bib.md#bib572)
-.
+`ChangeInF`：记录在 Cholesky 正交化原子轨道（AO）基下
+$\Delta\mathbf{F}=\mathbf{F}(t+\delta t)-\mathbf{F}(t)$ 的矩阵范数及最大元素模。
+文件 ChangeInP、ChangeInL 和 ChangeInZ 分别为密度矩阵 $\mathbf{P}$
+以及在文献 [[558]](../bib_references/bib.md#bib572)
+中定义的 Cholesky 正交化矩阵 $\mathbf{L}$ 和 $\mathbf{Z}$ 提供类似信息。
 - •
 
-`DeltaNorm`: Records the norm and largest magnitude element of the
-curvy-steps rotation angle matrix $\Delta$ defined in
-Ref. [[558]](../bib_references/bib.md#bib572)
-. Matrix elements of $\Delta$ are the
-dynamical variables representing the electronic degrees of freedom. The
-output file DeltaDotNorm provides the same information for the electronic
-velocity matrix $d\Delta/{dt}$.
+`DeltaNorm`：记录文献 [[558]](../bib_references/bib.md#bib572)
+中定义的曲步（curvy-steps）旋转角矩阵 $\Delta$ 的范数及最大元素模。
+$\Delta$ 的矩阵元是代表电子自由度的动力学变量。
+输出文件 DeltaDotNorm 为电子速度矩阵 $d\Delta/{dt}$ 提供相同的信息。
 - •
 
-`ElecGradNorm`: Records the norm and largest magnitude element of the
-electronic gradient matrix $\mathbf{FP}-\mathbf{PF}$ in the Cholesky basis.
+`ElecGradNorm`：记录 Cholesky 基下电子梯度矩阵 $\mathbf{FP}-\mathbf{PF}$
+的范数及最大元素模。
 - •
 
-`dTfict:` Records the instantaneous time derivative of the fictitious kinetic
-energy at each time step, in atomic units.
+`dTfict:`：记录每个时间步虚拟动能（fictitious kinetic energy）的瞬时时间导数，
+以原子单位给出。
 
-*Ab initio* molecular dynamics jobs are requested by specifying
-JOBTYPE = AIMD. Initial velocities must be specified either
-using a *$velocity* section or via the AIMD_INIT_VELOC keyword
-described below. In addition, the following *$rem* variables must be specified
-for any *ab initio* molecular dynamics job:
+通过将 JOBTYPE = AIMD 进行指定来请求从头算分子动力学任务。
+初始速度必须通过 *$velocity* 段或下文描述的 AIMD_INIT_VELOC 关键字来指定。
+此外，任何从头算分子动力学任务都必须指定以下 *$rem* 变量：
 
 AIMD_METHOD
 
 ### `AIMD_METHOD`
 
-> **Selects an ab initio molecular dynamics algorithm.**
+> **选择从头算分子动力学算法。**
 >
-> * **Type**: `STRING`
-> * **Default**: `BOMD`
-> * **Options**:
+> * **类型**: `STRING`
+> * **默认值**: `BOMD`
+> * **选项**:
 >     * BOMD
->     * Born-Oppenheimer molecular dynamics.
+>     * 玻恩-奥本海默分子动力学（Born-Oppenheimer molecular dynamics）。
 >     * CURVY
->     * Curvy-steps Extended Lagrangian molecular dynamics.
+>     * 曲步扩展拉格朗日分子动力学（Curvy-steps Extended Lagrangian molecular dynamics）。
 >     * QCMD
->     * Meyer-Miller nonadiabatic molecular dynamics.
-> * **Recommendation**: BOMD yields exact classical molecular dynamics, provided that the energy is tolerably conserved. ELMD is an approximation to exact classical dynamics whose validity should be tested for the properties of interest. QCMD initiates Meyer-Miller nonadiabatic dynamics methods including the symmetric quasiclassical approach or the traditional Ehrenfest method.
+>     * Meyer-Miller 非绝热分子动力学（Meyer-Miller nonadiabatic molecular dynamics）。
+> * **建议**: BOMD 在能量守恒可接受的条件下产生精确的经典分子动力学。ELMD 是对精确经典动力学的一种近似，其有效性应针对所关心的性质进行检验。QCMD 启动 Meyer-Miller 非绝热动力学方法，包括对称经典方法（symmetric quasiclassical approach）或传统的 Ehrenfest 方法。
 
 TIME_STEP
 
 ### `TIME_STEP`
 
-> **Specifies the molecular dynamics time step, in atomic units (1 a.u. = 0.0242 fs).**
+> **以原子单位指定分子动力学的时间步长（1 a.u. = 0.0242 fs）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
->     * User-specified.
-> * **Recommendation**: Smaller time steps lead to better energy conservation; too large a time step may cause the job to fail entirely. Make the time step as large as possible, consistent with tolerable energy conservation.
+> * **类型**: `INTEGER`
+> * **默认值**: `None.`
+> * **选项**:
+>     * 由用户指定。
+> * **建议**: 较小的时间步长带来更好的能量守恒；时间步长过大可能导致任务完全失败。在能量守恒可接受的前提下，尽可能增大时间步长。
 
 AIMD_TIME_STEP_CONVERSION
 
 ### `AIMD_TIME_STEP_CONVERSION`
 
-> **Modifies the molecular dynamics time step to increase granularity.**
+> **修改分子动力学的时间步长以提高粒度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
 >     * $n$
->     * The molecular dynamics time step is
+>     * 分子动力学时间步长为
 >     * TIME_STEP
 >     * /
 >     * $n$
 >     * a.u.
-> * **Recommendation**: None
+> * **建议**: 无
 
 AIMD_STEPS
 
 ### `AIMD_STEPS`
 
-> **Specifies the requested number of molecular dynamics steps.**
+> **指定所请求的分子动力学步数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
->     * User-specified.
-> * **Recommendation**: None.
+> * **类型**: `INTEGER`
+> * **默认值**: `None.`
+> * **选项**:
+>     * 由用户指定。
+> * **建议**: 无。
 
-*Ab initio* molecular dynamics calculations can be quite expensive, and
-thus **Q-Chem** includes several algorithms designed to accelerate such
-calculations. At the self-consistent field (Hartree-Fock and DFT) level, BOMD
-calculations can be greatly accelerated by using information from previous time
-steps to construct a good initial guess for the new molecular orbitals or Fock
-matrix, thus hastening SCF convergence. A Fock matrix extrapolation
-procedure,[[559]](../bib_references/bib.md#bib573)
- based on a suggestion by Pulay and Fogarasi,[[1135]](../bib_references/bib.md#bib1185)
+从头算分子动力学计算可能非常昂贵，因此 **Q-Chem** 包含若干旨在加速此类计算的算法。
+在自洽场（self-consistent field，SCF，即 Hartree-Fock 与密度泛函理论（Density
+Functional Theory, DFT））层面，利用先前时间步的信息为新分子轨道或 Fock 矩阵构造
+良好的初始猜测，从而加速 SCF 收敛，可以大幅加快 BOMD 计算。
+为此提供了基于 Pulay 和 Fogarasi 建议[[1135]](../bib_references/bib.md#bib1185)
+的 Fock 矩阵外推（extrapolation）过程[[559]](../bib_references/bib.md#bib573)。
 
-is available for this purpose.
-
-The Fock matrix elements $F_{\mu\nu}$ in the atomic orbital basis are
-oscillatory functions of the time $t$, and **Q-Chem**’s extrapolation procedure
-fits these oscillations to a power series in $t$:
+原子轨道基下的 Fock 矩阵元 $F_{\mu\nu}$ 是关于时间 $t$ 的振荡函数，
+**Q-Chem** 的外推过程将这些振荡拟合为 $t$ 的幂级数：
 
 <a id="Ch9.E61"></a>
 $$
 F_{\mu\nu}(t)=\sum\limits_{n=0}^{N}{c_{n}\,}t^{n} \tag{9.61}
 $$
 
-The $N+1$ extrapolation coefficients $c_{n}$ are determined by a fit to a set of
-$M$ Fock matrices retained from previous time steps. Fock matrix extrapolation
-can significantly reduce the number of SCF iterations required at each time
-step, but for low-order extrapolations, or if SCF_CONVERGENCE is set
-too small, a systematic drift in the total energy may be observed. Benchmark
-calculations testing the limits of energy conservation can be found in
-Ref. [[559]](../bib_references/bib.md#bib573)
-, and demonstrate that numerically exact classical
-dynamics (without energy drift) can be obtained at significantly reduced cost.
+$N+1$ 个外推系数 $c_{n}$ 由对从前几个时间步保留的 $M$ 个 Fock 矩阵集合的拟合确定。
+Fock 矩阵外推可以显著减少每个时间步所需的 SCF 迭代次数，但对于低阶外推，
+或者当 SCF_CONVERGENCE 设置过小时，可能会观察到总能量的系统性漂移。
+测试能量守恒极限的基准计算可见文献 [[559]](../bib_references/bib.md#bib573)，
+结果表明在显著降低成本的同时可以获得数值上精确的经典动力学（无能量漂移）。
 
-Fock matrix extrapolation is requested by specifying values for $N$ and $M$, as
-in the form of the following two *$rem* variables:
+通过为 $N$ 和 $M$ 指定数值来请求 Fock 矩阵外推，形式为以下两个 *$rem* 变量：
 
 FOCK_EXTRAP_ORDER
 
 ### `FOCK_EXTRAP_ORDER`
 
-> **Specifies the polynomial order $N$ for Fock matrix extrapolation.**
+> **指定 Fock 矩阵外推的多项式阶数 $N$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $N$
->     * Extrapolate using an
+>     * 使用
 >     * $N$
->     * th-order polynomial (
+>     * 阶多项式进行外推（
 >     * $N>0$
->     * ).
-> * **Recommendation**: None
+>     * ）。
+> * **建议**: 无
 
 FOCK_EXTRAP_POINTS
 
 ### `FOCK_EXTRAP_POINTS`
 
-> **Specifies the number $M$ of old Fock matrices that are retained for use in extrapolation.**
+> **指定为外推而保留的旧 Fock 矩阵数目 $M$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $M$
->     * Save
+>     * 保存
 >     * $M$
->     * Fock matrices for use in extrapolation
+>     * 个 Fock 矩阵用于外推
 >     * $(M>N)$
-> * **Recommendation**: Higher-order extrapolations with more saved Fock matrices are faster and conserve energy better than low-order extrapolations, up to a point. In many cases, the scheme ( $N$ = 6, $M$ = 12), in conjunction with SCF_CONVERGENCE = 6, is found to provide about a 50% savings in computational cost while still conserving energy.
+> * **建议**: 到一定程度为止，保留更多 Fock 矩阵的高阶外推比低阶外推更快且能量守恒更好。在许多情况下，方案（$N$ = 6，$M$ = 12）配合 SCF_CONVERGENCE = 6，可在保持能量守恒的同时节省约 50% 的计算成本。
 
-When nuclear forces are computed using underlying electronic structure methods
-with non-optimized orbitals (such as MP2), a set of response equations must be
-solved.[[29]](../bib_references/bib.md#bib13)
- While these equations are linear, their
-dimensionality necessitates an iterative
-solution,[[1115]](../bib_references/bib.md#bib1161)
- which, in practice, looks much like
-the SCF equations. Extrapolation is again useful here,[[1304]](../bib_references/bib.md#bib1360)
- and
-the syntax for $Z$-vector (response) extrapolation is similar to Fock extrapolation.
+当使用轨道未经优化的底层电子结构方法（如 MP2）计算核力时，
+必须求解一组响应方程（response equations）[[29]](../bib_references/bib.md#bib13)。
+虽然这些方程是线性的，但其维数决定了需要采用迭代求解
+[[1115]](../bib_references/bib.md#bib1161)，
+在实践中其形式与 SCF 方程十分相似。这里外推同样有用
+[[1304]](../bib_references/bib.md#bib1360)，
+且 $Z$ 矢量（响应）外推的语法与 Fock 外推类似。
 
 Z_EXTRAP_ORDER
 
 ### `Z_EXTRAP_ORDER`
 
-> **Specifies the polynomial order $N$ for Z-vector extrapolation.**
+> **指定 $Z$ 矢量外推的多项式阶数 $N$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $N$
->     * Extrapolate using an
+>     * 使用
 >     * $N$
->     * th-order polynomial (
+>     * 阶多项式进行外推（
 >     * $N>0$
->     * ).
-> * **Recommendation**: None
+>     * ）。
+> * **建议**: 无
 
 Z_EXTRAP_POINTS
 
 ### `Z_EXTRAP_POINTS`
 
-> **Specifies the number $M$ of old $Z$ -vectors that are retained for use in extrapolation.**
+> **指定为外推而保留的旧 $Z$ 矢量数目 $M$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * $M$
->     * Save
+>     * 保存
 >     * $M$
->     * previous
+>     * 个先前的
 >     * $Z$
->     * -vectors for use in extrapolation
+>     * 矢量用于外推
 >     * $(M>N)$
-> * **Recommendation**: Using the default $Z$ -vector convergence settings, a $(M,N)=(4,2)$ extrapolation was shown to provide the greatest speedup. At this setting, a 2–3-fold reduction in iterations was demonstrated.
+> * **建议**: 在使用默认 $Z$ 矢量收敛设置的情况下，$(M,N)=(4,2)$ 外推被证明能提供最大的加速。在该设置下，迭代次数可减少 2–3 倍。
 
-Assuming decent conservation, a BOMD calculation represents exact classical
-dynamics on the Born-Oppenheimer potential energy surface. In contrast,
-so-called extended Lagrangian molecular dynamics (ELMD) methods make an
-approximation to exact classical dynamics in order to expedite the
-calculations. ELMD methods—of which the most famous is Car–Parrinello
-molecular dynamics—introduce a fictitious dynamics for the electronic
-(orbital) degrees of freedom, which are then *propagated* alongside the
-nuclear degrees of freedom, rather than *optimized* at each time step as
-they are in a BOMD calculation. The fictitious electronic dynamics is
-controlled by a fictitious mass parameter $\mu$, and the value of $\mu$
-controls both the accuracy and the efficiency of the method. In the limit of
-small $\mu$ the nuclei and the orbitals propagate adiabatically, and ELMD
-mimics true classical dynamics. Larger values of $\mu$ slow down the
-electronic dynamics, allowing for larger time steps (and more computationally
-efficient dynamics), at the expense of an ever-greater approximation to true
-classical dynamics.
+假设能量守恒良好，BOMD 计算代表在玻恩-奥本海默（Born-Oppenheimer）势能面上的
+精确经典动力学。与之相对，所谓的扩展拉格朗日分子动力学（extended Lagrangian
+molecular dynamics，ELMD）方法为了加快计算而对精确经典动力学做出近似。
+ELMD 方法（其中最著名的是 Car–Parrinello 分子动力学）为电子（轨道）自由度
+引入虚拟动力学（fictitious dynamics），这些自由度与核自由度一起被*传播*
+（propagated），而不是像在 BOMD 计算中那样在每个时间步被*优化*。
+虚拟电子动力学由虚拟质量参数 $\mu$ 控制，$\mu$ 的取值同时影响方法的
+精度与效率。在 $\mu$ 很小的极限下，核与轨道绝热地传播，ELMD
+模仿真实的经典动力学。较大的 $\mu$ 值会减慢电子动力学，
+允许使用更大的时间步长（从而动力学在计算上更高效），
+代价是对真实经典动力学的近似程度不断加大。
 
-**Q-Chem**’s ELMD algorithm is based upon propagating the density matrix,
-expressed in a basis of atom-centered Gaussian orbitals, along
-shortest-distance paths (geodesics) of the manifold of allowed density matrices
-$\mathbf{P}$. Idempotency of $\mathbf{P}$ is maintained at every time step, by
-construction, and thus our algorithm requires neither density matrix
-purification, nor iterative solution for Lagrange multipliers (to enforce
-orthogonality of the molecular orbitals). We call this procedure “curvy
-steps” ELMD,[[558]](../bib_references/bib.md#bib572)
- and in a sense it is a time-dependent
-implementation of the GDM algorithm (Section [4.5](../ch04_scf/sect_convergence.md)) for
-converging SCF single-point calculations.
+**Q-Chem** 的 ELMD 算法基于将密度矩阵（在以原子为中心的高斯轨道基下表示）
+沿允许密度矩阵流形 $\mathbf{P}$ 的最短距离路径（测地线，geodesics）进行传播。
+$\mathbf{P}$ 的幂等性（idempotency）在构造上于每个时间步都得以保持，
+因此我们的算法既不需要密度矩阵纯化（purification），也不需要求解
+拉格朗日乘子（Lagrange multipliers）的迭代过程（以强制分子轨道的正交性）。
+我们将此过程称为“曲步”（curvy steps）ELMD[[558]](../bib_references/bib.md#bib572)，
+从某种意义上说，它是用于收敛 SCF 单点计算的 GDM 算法
+（第 [4.5](../ch04_scf/sect_convergence.md) 节）的含时实现。
 
-The extent to which ELMD constitutes a significant approximation to BOMD
-continues to be debated. When assessing the accuracy of ELMD, the primary
-consideration is whether there exists a separation of time scales between
-nuclear oscillations, whose time scale $\tau_{\mathrm{nuc}}$ is set by the period
-of the fastest vibrational frequency, and electronic oscillations, whose time
-scale $\tau_{\mathrm{elec}}$ may be estimated according to[[558]](../bib_references/bib.md#bib572)
+ELMD 在多大程度上构成对 BOMD 的重大近似，目前仍有争论。在评估 ELMD 的精度时，
+首要考虑的是核振荡与电子振荡之间是否存在时间尺度的分离：核振荡的时间尺度
+$\tau_{\mathrm{nuc}}$ 由最快振动频率的周期决定，而电子振荡的时间尺度
+$\tau_{\mathrm{elec}}$ 可根据[[558]](../bib_references/bib.md#bib572)估计为
 
 <a id="Ch9.E62"></a>
 $$
 \tau_{\mathrm{elec}}\geq\left(\frac{\mu}{\varepsilon_{\rm LUMO}-\varepsilon_{\rm HOMO}}\right)^{1/2} \tag{9.62}
 $$
 
-A conservative estimate, suggested in Ref. [[558]](../bib_references/bib.md#bib572)
-, is that
-essentially exact classical dynamics is attained when $\tau_{\mathrm{nuc}}>$ 10
-$\tau_{\mathrm{elec}}$. In practice, we recommend careful benchmarking to insure
-that ELMD faithfully reproduces the BOMD observables of interest.
+文献 [[558]](../bib_references/bib.md#bib572)
+中给出的保守估计是，当 $\tau_{\mathrm{nuc}}>$ 10
+$\tau_{\mathrm{elec}}$ 时即可达到本质精确的经典动力学。在实践中，
+我们建议进行细致的基准测试，以确保 ELMD 能忠实重现所关心的 BOMD 可观测量。
 
-Due to the existence of a fast time scale $\tau_{\mathrm{elec}}$, ELMD requires
-smaller time steps than BOMD. When BOMD is combined with Fock matrix
-extrapolation to accelerate convergence, it is no longer clear that ELMD
-methods are substantially more efficient, at least in Gaussian basis
-sets.[[559]](../bib_references/bib.md#bib573)
+由于存在快速时间尺度 $\tau_{\mathrm{elec}}$，ELMD 需要比 BOMD 更小的时间步长。
+当 BOMD 与 Fock 矩阵外推相结合以加速收敛时，至少在高斯基组中，
+ELMD 方法是否明显更高效已不再清楚[[559]](../bib_references/bib.md#bib573)。
 
-The following *$rem* variables are required for ELMD jobs:
+ELMD 任务需要以下 *$rem* 变量：
 
 AIMD_FICT_MASS
 
 ### `AIMD_FICT_MASS`
 
-> **Specifies the value of the fictitious electronic mass $\mu$ , in atomic units, where $\mu$ has dimensions of (energy) $\times$ (time) ${}^{2}$ .**
+> **以原子单位指定虚拟电子质量 $\mu$ 的值，其中 $\mu$ 的量纲为（能量）$\times$（时间）${}^{2}$。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
->     * User-specified
-> * **Recommendation**: Values in the range of 50–200 a.u. have been employed in test calculations; consult Ref. 558 Herbert J. M., Head-Gordon M. J. Chem. Phys. (2004) , 121 , pp. 11542 . Link for examples and discussion.
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
+>     * 由用户指定
+> * **建议**: 在测试计算中使用了 50–200 a.u. 范围内的值；相关示例与讨论参见文献 558 Herbert J. M., Head-Gordon M. J. Chem. Phys. (2004), 121, pp. 11542. Link。
 
 AIMD_PRINT
 
 ### `AIMD_PRINT`
 
-> **Specifies the verbosity of the output in AIMD.**
+> **指定 AIMD 输出的详细程度。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
->     * User-specified
-> * **Recommendation**: Higher values result in more verbose output.
+> * **类型**: `INTEGER`
+> * **默认值**: `1`
+> * **选项**:
+>     * 由用户指定
+> * **建议**: 数值越大，输出越详细。

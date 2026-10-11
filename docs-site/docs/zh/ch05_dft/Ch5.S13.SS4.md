@@ -1,14 +1,13 @@
 ---
-title: "5.13.4 CAP-DFT Job Examples"
+title: "5.13.4 CAP-DFT 作业示例"
 ---
 
-## 5.13.4 CAP-DFT Job Examples
+## 5.13.4 CAP-DFT 作业示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-???+ example "Example 5.5.39: CAP-B3LYP single point job for N ${}_{2}^{-}$ ,
-invoking re-evaluation of the CAP grid in the SCF iteration 10.
-The guess density matrix is generated using charge stabilization."
+???+ example "示例 5.5.39：N ${}_{2}^{-}$ 的 CAP-B3LYP 单点能计算作业，在第 10 次 SCF 迭代中重新计算（评估）CAP 网格。
+初始猜测密度矩阵通过电荷稳定化（charge stabilization）方法生成。"
     ```qchem
     $comment
       Charge stabilization calculation on N2 anion
@@ -207,8 +206,8 @@ The guess density matrix is generated using charge stabilization."
     $end
     ```
 
-???+ example "Example 5.5.40: CAP-HF single point job for N ${}_{2}^{-}$ , using the more recent CAP-SCF implementation.
-The guess density matrix is generated using charge stabilization."
+???+ example "示例 5.5.40：N ${}_{2}^{-}$ 的 CAP-HF 单点能计算作业，使用较新的 CAP-SCF 实现。
+初始猜测密度矩阵通过电荷稳定化（charge stabilization）方法生成。"
     ```qchem
     $comment
       Charge stabilization calculation on N2 anion

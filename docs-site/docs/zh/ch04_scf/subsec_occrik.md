@@ -1,146 +1,116 @@
 ---
-title: "4.6.8 occ-RI-K Exchange Algorithm"
+title: "4.6.8 occ-RI-K 交换算法"
 ---
 
-## 4.6.8 occ-RI-K Exchange Algorithm
+## 4.6.8 occ-RI-K 交换算法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The occupied orbital RI-K (occ-RI-K) algorithm[[892]](../bib_references/bib.md#bib926)
- is a new scheme for
-building the exchange matrix (K) partially in the MO basis using the RI
-approximation. occ-RI-K typically matches current alternatives in terms of both
-the accuracy (energetics identical to standard RI-K) and convergence
-(essentially unchanged relative to conventional methods). On the other hand,
-this algorithm exhibits significant speedups over conventional integral
-evaluation (14x) and standard RI-K (3.3x) for a test system, a graphene
-fragment (C${}_{68}$H${}_{22}$) using cc-pVQZ basis set (4400 basis functions),
-whereas the speedup increases with the size of the AO basis set. Thus occ-RI-K
-helps to make larger basis set hybrid DFT calculations more feasible, which is
-quite desirable for achieving improved accuracy in DFT calculations with modern
-functionals.
+占据轨道 RI-K（occupied orbital RI-K，occ-RI-K）算法[[892]](../bib_references/bib.md#bib926)
+是一种利用 RI（Resolution of the Identity，恒等式分辨率）近似、在分子轨道（Molecular Orbital, MO）基下部分构建交换矩阵（K）的新方案。occ-RI-K
+通常在精度（能量结果与标准 RI-K 完全一致）和收敛性（相对于常规方法基本不变）两方面都能与现有替代方法相匹敌。另一方面，对于一个测试体系——使用 cc-pVQZ
+基组（4400 个基函数）的石墨烯片段（C${}_{68}$H${}_{22}$）——该算法相比常规积分求值可加速 14 倍，相比标准 RI-K 可加速 3.3 倍，
+且加速比会随着原子轨道（Atomic Orbital, AO）基组规模的增大而提高。因此，occ-RI-K 有助于使更大基组的杂化密度泛函理论（Density Functional Theory, DFT）计算变得更可行，
+而这对于使用现代泛函的 DFT 计算以获得更高精度而言是非常理想的。
 
-The idea of the occ-RI-K formalism comes from a simple observation that
-the exchange energy $E_{K}$ and its gradient can be evaluated from the diagonal
-elements of the exchange matrix in the occupied-occupied block $K_{ii}$, and
-occupied-virtual block $K_{ia}$, respectively, rather than the full matrix
-in the AO representation, $K_{\mu\nu}$. Mathematically,
+occ-RI-K 形式（formalism）的思想源于一个简单的观察：交换能 $E_{K}$ 及其梯度可以分别由占据-占据块 $K_{ii}$
+和占据-虚轨道块 $K_{ia}$ 中交换矩阵的对角元素来求值，而不需要 AO 表示下的完整矩阵 $K_{\mu\nu}$。数学上，
 
 <a id="A3.S8.EGx6"></a>
 $$
 \displaystyle E_{K} \tag{4.53}
 $$
 
-and
+以及
 
 <a id="eq4occ-RI-K2"></a>
 $$
 \frac{\partial E_{K}}{\partial\Delta_{ai}}=2K_{ai} \tag{4.54}
 $$
 
-where $\Delta$ is a skew-symmetric matrix used to parameterize the unitary
-transformation $U$, which represents the variations of the MO coefficients
-as follows:
+其中 $\Delta$ 是一个反对称矩阵，用于参数化幺正变换 $U$，该变换表示 MO 系数的变化，如下所示：
 
 <a id="eq4occ-RI-K3"></a>
 $$
 U=e^{(\Delta-\Delta^{T})}. \tag{4.55}
 $$
 
-From Eq. [4.53](#eq4occ-RI-K1) and [4.54](#eq4occ-RI-K2) it is evident that the exchange
-energy and gradient need just $K_{i\nu}$ rather than $K_{\mu\nu}$.
+由式 [4.53](#eq4occ-RI-K1) 和 [4.54](#eq4occ-RI-K2) 可以明显看出，交换能和梯度只需要 $K_{i\nu}$
+而非 $K_{\mu\nu}$。
 
-In regular RI-K one has to compute two quartic terms,[[1442]](../bib_references/bib.md#bib1502)
+在常规 RI-K 中，必须计算两项四次方量级（quartic）的项，[[1442]](../bib_references/bib.md#bib1502)
 
-whereas there are three quartic terms for the occ-RI-K algorithm. The speedup of the
-latter with respect to former can be explained from the following ratio of
-operations; refer to Ref. [[892]](../bib_references/bib.md#bib926)
- for details.
+而 occ-RI-K 算法则有三项四次方量级的项。后者相对于前者的加速比可以从以下运算量之比来解释；详情参见文献 [[892]](../bib_references/bib.md#bib926)。
 
 <a id="A3.S8.EGx7"></a>
 $$
 \displaystyle\frac{\mbox{\#~{}of~{}RI-K~{}quartic~{}operations}}{\mbox{\#~{}of~{}occ-RI-K~{}quartic~{}operations}}=\frac{oNX^{2}+oN^{2}X}{o^{2}X^{2}+o^{2}NX+o^{2}NX}=\frac{N(X+N)}{o(X+2N)} \tag{4.56}
 $$
 
-With a conservative approximation of $X\approx 2N$, the speedup is
-$\frac{3}{4}(N/o)$. The occ-RI-K algorithm also involves some cubic steps which
-should be negligible in the very large molecule limit. Tests in the
-Ref. [[892]](../bib_references/bib.md#bib926)
- suggest that occ-RI-K for small systems with
-large basis will gain less speed than a large system with small basis, because
-the cubic terms will be more dominant for the former than the latter case.
+在 $X\approx 2N$ 的保守近似下，加速比为 $\frac{3}{4}(N/o)$。occ-RI-K 算法还涉及一些三次方量级的步骤，
+在超大分子极限下这些步骤应当可以忽略不计。文献 [[892]](../bib_references/bib.md#bib926)
+中的测试表明，对于使用大基组的小体系，occ-RI-K 获得的加速要小于使用小基组的大体系，
+因为三次方量级的项在前者中比在后者中占据更主导地位。
 
-In the course of SCF iteration, the occ-RI-K method does not require us to
-construct the exact Fock matrix explicitly. Rather, $k_{i\nu}$ contributes to
-the Fock matrix in the mixed MO and AO representations ($F_{i\nu}$) and yields
-orbital gradient and DIIS error vectors for converging SCF. On the other hand,
-since occ-RI-K does not provide exactly the same unoccupied eigenvalues, the
-diagonalization updates can differ from the conventional SCF procedure. In
-Ref. [[892]](../bib_references/bib.md#bib926)
-, occ-RI-K was found to require, on average, the
-same number of SCF iterations to converge and to yield accurate energies.
+在自洽场（Self-Consistent Field, SCF）迭代过程中，occ-RI-K 方法并不要求我们显式地构造精确的 Fock 矩阵。
+而是由 $k_{i\nu}$ 对 MO 与 AO 混合表示的 Fock 矩阵（$F_{i\nu}$）作出贡献，并给出轨道梯度
+和 DIIS 误差向量以实现 SCF 收敛。另一方面，由于 occ-RI-K 无法精确给出相同的未占据本征值，
+对角化更新可能与常规 SCF 过程有所不同。在文献 [[892]](../bib_references/bib.md#bib926)
+中发现，occ-RI-K 平均需要相同次数的 SCF 迭代即可收敛并给出精确的能量。
 
-The occ-RI-K can be invoked by either setting OCC_RI_K to be true, or (since **Q-Chem** 5.2) specifying
-auxiliary basis set for K using AUX_BASIS_K.
+可以通过将 OCC_RI_K 设置为 true 来启用 occ-RI-K，或者（自 **Q-Chem** 5.2 起）使用 AUX_BASIS_K 为 K 指定辅助基组。
 
 OCC_RI_K
 
 ### `OCC_RI_K`
 
-> **Controls the use of the occ-RI-K approximation for constructing the exchange matrix**
+> **控制是否使用 occ-RI-K 近似来构建交换矩阵**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `False`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `False`
+> * **选项**:
 >     * True
->     * Use occ-RI-K.
-> * **Recommendation**: Larger the system, better the performance
+>     * 使用 occ-RI-K。
+> * **建议**: 体系越大，性能越好
 
-## 4.6.8.1 occ-RI-K for exchange energy gradient evaluation
+## 4.6.8.1 用于交换能梯度求值的 occ-RI-K
 
-A very attractive feature of occ-RI-K framework is that one can compute the
-exchange energy gradient with respect to nuclear coordinates with the same
-leading quartic-scaling operations as the energy calculation.
+occ-RI-K 框架的一个极具吸引力的特性是，可以用与能量计算相同的、主导的四次方量级运算来计算交换能对核坐标的梯度。
 
-The occ-RI-K formulation yields the following formula for the gradient
-of exchange energy in global Coulomb-metric RI:
+occ-RI-K 形式在全局库仑度量（global Coulomb-metric）RI 下给出如下交换能梯度公式：
 
 <a id="A3.S8.EGx8"></a>
 $$
 \displaystyle E_{K}^{x} \tag{4.57}
 $$
 
-The superscript $x$ represents the derivative with respect to a
-nuclear coordinate. Note that the derivatives of the MO coefficients
-$c_{\mu i}$ are not included here, because they are already
-included in the total energy derivative calculation by **Q-Chem**
-via the derivative of the overlap matrix.
+上标 $x$ 表示对某个核坐标求导。注意，这里没有包含 MO 系数
+$c_{\mu i}$ 的导数，因为 **Q-Chem** 已经通过重叠矩阵的导数，将其包含在总能量导数计算之中了。
 
-In Eq. [4.57](#eq4occ-RI-K-grad), the construction of the density fitting
-coefficients ($C_{\mu\nu}^{P}$) has the worst scaling of $\mathcal{O}(M^{4})$
-because it involves MO to AO back transformations:
+在式 [4.57](#eq4occ-RI-K-grad) 中，密度拟合（density fitting）系数（$C_{\mu\nu}^{P}$）的构建具有最差的 $\mathcal{O}(M^{4})$
+标度，因为它涉及从 MO 到 AO 的反变换（back transformation）：
 
 <a id="A3.S8.EGx9"></a>
 $$
 \displaystyle C_{\mu\nu}^{P}=\sum_{ij}c_{\mu i}c_{\nu j}C_{ij}^{P} \tag{4.58}
 $$
 
-where the operation cost is $o^{2}NX+o[\mathrm{NB2}]X$.
+其中运算代价为 $o^{2}NX+o[\mathrm{NB2}]X$。
 
 RI_K_GRAD
 
 ### `RI_K_GRAD`
 
-> **Turn on the nuclear gradient calculations**
+> **开启核梯度计算**
 >
-> * **Type**: `LOGICAL`
-> * **Default**: `FALSE`
-> * **Options**:
+> * **类型**: `LOGICAL`
+> * **默认值**: `FALSE`
+> * **选项**:
 >     * TRUE
->     * Use occ-RI-K based gradient
-> * **Recommendation**: Use "RI_J false"
+>     * 使用基于 occ-RI-K 的梯度
+> * **建议**: 配合使用 "RI_J false"
 
-???+ example "Example 4.21: Q-Chem input for a energy and gradient calculations with occ-RI-K method."
+???+ example "示例 4.21: 使用 occ-RI-K 方法进行能量与梯度计算的 Q-Chem 输入。"
     ```qchem
     $molecule
        0   1

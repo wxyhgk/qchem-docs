@@ -1,13 +1,9 @@
----
-title: "6.17 Memory Options and Parallelization of Coupled-Cluster Calculations"
----
+# 6.17 耦合簇计算的内存选项与并行化
 
-# 6.17 Memory Options and Parallelization of Coupled-Cluster Calculations
+（2026 年 7 月 4 日）
 
-(July 4, 2026)
+- [6.17.1 引言](Ch6.S17.SS1.md)
 
-- [6.17.1 Introduction](Ch6.S17.SS1.md)
+- [6.17.2 串行与共享内存并行任务](Ch6.S17.SS2.md)
 
-- [6.17.2 Serial and Shared Memory Parallel Jobs](Ch6.S17.SS2.md)
-
-- [6.17.3 Summary of Keywords](Ch6.S17.SS3.md)
+- [6.17.3 关键字汇总](Ch6.S17.SS3.md)

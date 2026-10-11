@@ -1,107 +1,107 @@
 ---
-title: "9.10.2 Job Control and Examples"
+title: "9.10.2 作业控制与示例"
 ---
 
-## 9.10.2 Job Control and Examples
+## 9.10.2 作业控制与示例
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
 PIMC_NBEADSPERATOM
 
 ### `PIMC_NBEADSPERATOM`
 
-> **Number of path integral time slices (“beads”) used on each atom of a PIMC simulation.**
+> **在路径积分蒙特卡洛（PIMC）模拟中，每个原子所使用的路径积分时间切片（“珠子”，beads）数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None.`
+> * **选项**:
 >     * 1
->     * Perform classical Boltzmann sampling.
+>     * 执行经典玻尔兹曼（Boltzmann）采样。
 >     * $>$
 >     * 1
->     * Perform quantum-mechanical path integral sampling.
-> * **Recommendation**: This variable controls the inherent convergence of the path integral simulation. The one-bead limit represents classical sampling and the infinite-bead limit represents exact quantum-mechanical sampling. Using 32 beads is reasonably converged for room-temperature simulations of molecular systems.
+>     * 执行量子力学路径积分采样。
+> * **建议**: 该变量控制路径积分模拟固有的收敛性。单珠子（one-bead）极限代表经典采样，而无限珠子极限代表精确的量子力学采样。对于分子体系的室温模拟，使用 32 个珠子即可达到较为合理的收敛。
 
 PIMC_TEMP
 
 ### `PIMC_TEMP`
 
-> **Temperature, in Kelvin (K), of path integral simulations.**
+> **路径积分模拟的温度，单位为开尔文（K）。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
->     * User-specified number of Kelvin for PIMC or classical MC simulations.
-> * **Recommendation**: None.
+> * **类型**: `INTEGER`
+> * **默认值**: `None.`
+> * **选项**:
+>     * 由用户为 PIMC 或经典蒙特卡洛（MC）模拟指定的开尔文数值。
+> * **建议**: 无。
 
 PIMC_MCMAX
 
 ### `PIMC_MCMAX`
 
-> **Number of Monte Carlo steps to sample.**
+> **要采样的蒙特卡洛（MC）步数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
->     * User-specified number of steps to sample.
-> * **Recommendation**: This variable dictates the statistical convergence of MC/PIMC simulations. For converged simulations at least $10^{5}$ steps is recommended.
+> * **类型**: `INTEGER`
+> * **默认值**: `None.`
+> * **选项**:
+>     * 由用户指定的采样步数。
+> * **建议**: 该变量决定 MC/PIMC 模拟的统计收敛性。对于收敛的模拟，建议至少进行 $10^{5}$ 步。
 
 PIMC_WARMUP_MCMAX
 
 ### `PIMC_WARMUP_MCMAX`
 
-> **Number of Monte Carlo steps to sample during an equilibration period of MC/PIMC simulations.**
+> **在 MC/PIMC 模拟的平衡（ equilibration ）阶段要采样的蒙特卡洛步数。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None.`
-> * **Options**:
->     * User-specified number of steps to sample.
-> * **Recommendation**: Use this variable to equilibrate the molecule/ring polymer before collecting production statistics. Usually a short run of roughly 10% of PIMC_MCMAX is sufficient.
+> * **类型**: `INTEGER`
+> * **默认值**: `None.`
+> * **选项**:
+>     * 由用户指定的采样步数。
+> * **建议**: 使用该变量在收集生产（production）统计量之前对分子/环形聚合物进行平衡。通常，进行约为 PIMC_MCMAX 10% 的短程运行即可满足需要。
 
 PIMC_MOVETYPE
 
 ### `PIMC_MOVETYPE`
 
-> **Selects the type of displacements used in MC/PIMC simulations.**
+> **选择 MC/PIMC 模拟中使用的位移类型。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `0`
+> * **选项**:
 >     * 0
->     * Cartesian displacements of all beads, with occasional (1%) center-of-mass moves.
+>     * 所有珠子的笛卡尔（Cartesian）位移，并偶尔（1%）进行质心移动。
 >     * 1
->     * Normal-mode displacements of all modes, with occasional (1%) center-of-mass moves.
+>     * 所有正则模的位移，并偶尔（1%）进行质心移动。
 >     * 2
->     * Levy flights without center-of-mass moves.
-> * **Recommendation**: Except for classical sampling (MC) or small bead-number quantum sampling (PIMC), Levy flights should be used. For Cartesian and normal-mode moves, the maximum displacement is adjusted during the warm-up run to the desired acceptance rate (controlled by PIMC_ACCEPT_RATE ). For Levy flights, the acceptance is solely controlled by PIMC_SNIP_LENGTH .
+>     * 莱维飞行（Levy flights），不进行质心移动。
+> * **建议**: 除经典采样（MC）或珠子数较少的量子采样（PIMC）外，应使用莱维飞行。对于笛卡尔位移和正则模移动，最大位移会在预热（warm-up）运行期间调整为期望的接受率（由 PIMC_ACCEPT_RATE 控制）。对于莱维飞行，接受率仅由 PIMC_SNIP_LENGTH 控制。
 
 PIMC_ACCEPT_RATE
 
 ### `PIMC_ACCEPT_RATE`
 
-> **Acceptance rate for MC/PIMC simulations when Cartesian or normal-mode displacements are used.**
+> **当使用笛卡尔位移或正则模位移时，MC/PIMC 模拟的接受率。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
 >     * $0<n<100$
->     * User-specified rate, given as a whole-number percentage.
-> * **Recommendation**: Choose acceptance rate to maximize sampling efficiency, which is typically signified by the mean-square displacement (printed in the job output). Note that the maximum displacement is adjusted during the warm-up run to achieve roughly this acceptance rate.
+>     * 由用户指定的比率，以整数百分比形式给出。
+> * **建议**: 选择合适的接受率以使采样效率最大化，这通常由均方位移（mean-square displacement，输出在作业输出中）来表征。注意，最大位移会在预热运行期间进行调整，以达到大致对应的接受率。
 
 PIMC_SNIP_LENGTH
 
 ### `PIMC_SNIP_LENGTH`
 
-> **Number of “beads” to use in the Levy flight movement of the ring polymer.**
+> **在环形聚合物的莱维飞行移动中使用的“珠子”数目。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `None`
-> * **Options**:
+> * **类型**: `INTEGER`
+> * **默认值**: `None`
+> * **选项**:
 >     * $3\leq n\leq\mbox{{\small PIMC\_NBEADSPERATOM}}$
->     * User-specified length of snippet.
-> * **Recommendation**: Choose the snip length to maximize sampling efficiency. The efficiency can be estimated by the mean-square displacement between configurations, printed at the end of the output file. This efficiency will typically, however, be a trade-off between the mean-square displacement (length of statistical correlations) and the number of beads moved. Only the moved beads require recomputing the potential, i.e. , a call to Q-Chem for the electronic energy. (Note that the endpoints of the snippet remain fixed during a single move, so $n-2$ beads are actually moved for a snip length of $n$ . For 1 or 2 beads in the simulation, Cartesian moves should be used instead.)
+>     * 由用户指定的片段（snippet）长度。
+> * **建议**: 选择合适的片段长度以使采样效率最大化。该效率可以通过构型之间的均方位移来估计，其值输出在输出文件的末尾。不过，这种效率通常需要在均方位移（统计相关性的长度）与被移动珠子的数目之间进行权衡。只有被移动的珠子才需要重新计算势能，即需要调用一次 Q-Chem 来计算电子能量。（注意，在一次移动中片段的两个端点保持固定，因此对于长度为 $n$ 的片段，实际移动的是 $n-2$ 个珠子。若模拟中只有 1 个或 2 个珠子，则应改用笛卡尔位移。）
 
-???+ example "Example 9.47: Path integral Monte Carlo simulation of H ${}_{2}$ at room temperature"
+???+ example "示例 9.47: 室温下 H ${}_{2}$ 的路径积分蒙特卡洛模拟"
     ```qchem
     $comment
     The number of Monte Carlo steps is deliberately set low, more typical
@@ -129,7 +129,7 @@ PIMC_SNIP_LENGTH
     $end
     ```
 
-???+ example "Example 9.48: Classical Monte Carlo simulation of a water molecule at 500K"
+???+ example "示例 9.48: 500K 下水分子的经典蒙特卡洛模拟"
     ```qchem
     $comment
     The number of Monte Carlo steps is deliberately set low, more typical

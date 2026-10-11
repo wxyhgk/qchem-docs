@@ -2,99 +2,60 @@
 title: "10.11.2 NMR Chemical Shifts and J-Couplings"
 ---
 
-## 10.11.2 NMR Chemical Shifts and *J*-Couplings
+## 10.11.2 NMR 化学位移与 *J*-耦合
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-NMR calculations are available at both the Hartree-Fock and DFT levels of theory.[[551]](../bib_references/bib.md#bib566)
-**Q-Chem** computes NMR chemical shielding tensors using gauge-including atomic
-orbitals (GIAOs),[[334]](../bib_references/bib.md#bib338)
+NMR 计算可在 Hartree-Fock 和 DFT（密度泛函理论，Density Functional Theory）两个理论层次上进行。[[551]](../bib_references/bib.md#bib566)
+**Q-Chem** 使用规范不变原子轨道（gauge-including atomic orbitals, GIAOs）[[334]](../bib_references/bib.md#bib338)
+计算 NMR 化学屏蔽张量，该方法已被证明在许多应用中可靠且精确。[[550]](../bib_references/bib.md#bib564)
 
-an approach that has proven to reliable and accurate for many applications.[[550]](../bib_references/bib.md#bib564)
-
-The shielding tensor $\bm{\sigma}$
-is a second-order property that depends upon the external magnetic field,
-$\mathbf{B}$, and the spin angular momentum $\bm{m}$ for a given nucleus:
+屏蔽张量 $\bm{\sigma}$ 是一个二阶性质，依赖于外磁场 $\mathbf{B}$ 以及给定核的自旋角动量 $\bm{m}$：
 
 <a id="Ch10.E116"></a>
 $$
 \Delta E=-\bm{m}\bm{\cdot}(\mathbf{1}-\bm{\sigma})\bm{\cdot}\mathbf{B}\;. \tag{10.116}
 $$
 
-Using analytical derivative techniques to evaluate $\bm{\sigma}$, the components
-of this $3\times 3$ tensor are computed as
+利用解析求导技术计算 $\bm{\sigma}$，该 $3\times 3$ 张量的各分量按如下方式计算：
 
 <a id="Ch10.E117"></a>
 $$
 \sigma_{ij}=\sum_{\mu\nu}P_{\mu\nu}\left(\frac{\partial^{2}h_{\mu\nu}}{\partial B_{i}\partial m_{j}}\right)+\sum_{\mu\nu}\frac{\partial P_{\mu\nu}}{\partial B_{i}}\frac{\partial h_{\mu\nu}}{\partial m_{j}} \tag{10.117}
 $$
 
-where $i,j\in\{x,y,z\}$ indicate Cartesian components. Note that there is a
-separate chemical shielding tensor for each $\bm{m}$, that is, for each
-nucleus. To compute $\sigma_{ij}$ it is necessary to solve coupled-perturbed
-SCF (CPSCF) equations to obtain the perturbed densities $\partial P/\partial B_{i}$, which can be accomplished using the MO-based “MOProp” module whose use
-is described below. (Use of the MOProp module to compute optical properties of
-molecules was discussed in Section [10.10](sec_ElectricProps.md).) Alternatively, a
-linear-scaling, density matrix-based CPSCF (D-CPSCF) formulation is
-available,[[1010]](../bib_references/bib.md#bib1054)
- which is described in
-Section [10.11.3](sec_D-CPSCF-NMR.md).
+其中 $i,j\in\{x,y,z\}$ 表示笛卡尔分量。注意，每个 $\bm{m}$（即每个核）都有一个独立的化学屏蔽张量。要计算 $\sigma_{ij}$，需求解耦合微扰自洽场（coupled-perturbed SCF, CPSCF）方程以获得微扰密度 $\partial P/\partial B_{i}$，这可以通过基于分子轨道（MO）的 "MOProp" 模块来实现，其用法将在下文说明。（使用 MOProp 模块计算分子光学性质的内容已在第 [10.10](sec_ElectricProps.md) 节中讨论。）此外，还提供了一种线性标度的、基于密度矩阵的 CPSCF（D-CPSCF）方法，[[1010]](../bib_references/bib.md#bib1054)
+ 相关说明见第 [10.11.3](sec_D-CPSCF-NMR.md) 节。
 
-In addition to chemical shifts, indirect nuclear spin-spin coupling constants,
-also known as scalar couplings or $J$-couplings, can be computed at the SCF
-level. The coupling tensor $\mathbf{J}^{AB}$ between atoms $A$ and $B$ is
-evaluated as the second derivative of the electronic energy with respect to the
-nuclear magnetic moments $\bm{m}$:
+除化学位移外，间接核自旋-自旋耦合常数（亦称标量耦合或 $J$-耦合）也可在 SCF 层次上计算。原子 $A$ 与 $B$ 之间的耦合张量 $\mathbf{J}^{AB}$ 定义为电子能量对核磁矩 $\bm{m}$ 的二阶导数：
 
 <a id="issc"></a>
 $$
 \mathbf{J}^{AB}=\frac{\partial^{2}E}{\partial\bm{m}_{A}\partial\bm{m}_{B}}\;. \tag{10.118}
 $$
 
-The indirect coupling tensor has five distinct contributions. The diamagnetic
-spin-orbit (DSO) contribution is calculated as an expectation value with the
-ground state wave function. The other contributions are the paramagnetic
-spin-orbit (PSO), spin-dipole (SD), Fermi contact (FC), and mixed SD/FC
-contributions. These terms require the electronic response of the systems to
-the perturbation due to the magnetic nuclei. Ten distinct CPSCF equations must
-be solved for each perturbing nucleus, which makes the calculation of
-$J$-coupling constants more time-consuming than that of chemical shifts.
+间接耦合张量包含五项不同的贡献。抗磁自旋-轨道（diamagnetic spin-orbit, DSO）贡献是用基态波函数计算的期望值。其余贡献为顺磁自旋-轨道（paramagnetic spin-orbit, PSO）、自旋-偶极（spin-dipole, SD）、费米接触（Fermi contact, FC）以及 SD/FC 混合贡献。这些项需要体系对外磁场（由磁性核产生的微扰）的电子响应。每个微扰核都需要求解十个不同的 CPSCF 方程，这使得 $J$-耦合常数的计算比化学位移更为耗时。
 
-Some authors have recommended calculating only the Fermi contact
-contribution,[[71]](../bib_references/bib.md#bib56)
- and skipping the other contributions, for
-${}^{1}$H–${}^{1}$H coupling constants. For that purpose, **Q-Chem** allows the user
-to skip calculation of any of the four contributions: (FC, SD, PSO, or DSO.
-(The mixed SD/FC contributions is automatically calculated at no
-additional cost whenever both the SD and FC contributions are computed.) See
-Section [10.10.3](moprop_jobcontrol.md) for details. Note that omitting any of the
-contributions cannot be rationalized from a theoretical point of view. Results
-from such calculations should be interpreted extremely cautiously.
+一些作者建议对 ${}^{1}$H–${}^{1}$H 耦合常数仅计算费米接触贡献，[[71]](../bib_references/bib.md#bib56)
+ 而忽略其他贡献。为此，**Q-Chem** 允许用户跳过四项贡献（FC、SD、PSO 或 DSO）中的任意一项。（只要同时计算 SD 和 FC 贡献，SD/FC 混合贡献就会自动计算，无需额外代价。）详见第 [10.10.3](moprop_jobcontrol.md) 节。注意，从理论上讲，省略任何一项贡献都是缺乏依据的。此类计算的结果应极其谨慎地解释。
 
-**Note: 
+**注意：
 
 1.
 
-Specialized basis sets are highly recommended in any $J$-coupling
-calculation, such as the pcJ-$n$ basis set family.[[634]](../bib_references/bib.md#bib660)
+在任何 $J$-耦合计算中，强烈推荐使用了专用的基组（Basis Set），例如 pcJ-$n$ 基组族。[[634]](../bib_references/bib.md#bib660)
 
 2.
 
-The Hartree-Fock level of theory is *not* suitable to obtain
-$J$-coupling constants of *any* degree of reliability. Use GGA or
-hybrid density functionals instead.
+Hartree-Fock 理论层次*不适合*获得任何可靠程度的 $J$-耦合常数。请改用 GGA 或杂化密度泛函。
 
 **
 
-## 10.11.2.1 FD-NMR Job Control and Examples
+### 10.11.2.1 FD-NMR 作业控制与示例
 
-**Q-Chem**’s new FD-NMR feature calculates the NMR shielding tensor by applying finite differentiation on an analytic property,
-such as the total energy (when IDERIV = 0), or the atom-wise induced magnetic field (when IDERIV = 1) the first
-derivative of the energy with respect to the nuclear magentic moments. FD1 based shielding calculation is much more efficient than
-that of FD2, and is avaliable at restricted SCF level (i.e. up to rung 4 hybrid / range-separated hybrid functionals). FD2 also has
-limited support for $O(N^{5})$ correlated methods such as (regularized) RI-MP2.
+**Q-Chem** 全新的 FD-NMR 功能通过对某个解析性质施加有限差分（finite differentiation）来计算 NMR 屏蔽张量，该解析性质可以是总能量（当 IDERIV = 0 时），也可以是逐原子的感应磁场（当 IDERIV = 1 时），即能量对核磁矩的一阶导数。基于 FD1 的屏蔽计算远比 FD2 高效，并且可在限制型（restricted）SCF 层次下使用（即最高支持到第 4 级 rung 的杂化/范围分离杂化泛函）。FD2 对某些 $O(N^{5})$ 相关方法（如（正则化）RI-MP2）也提供有限的支持。
 
-???+ example "Example 10.55: FD2-based NMR calculation for water at RI-MP2/pcSseg-2 level."
+???+ example "示例 10.55：在 RI-MP2/pcSseg-2 层次上对水分子进行基于 FD2 的 NMR 计算。"
     ```qchem
     $molecule
     0 1
@@ -154,7 +115,7 @@ limited support for $O(N^{5})$ correlated methods such as (regularized) RI-MP2.
     
     ```
 
-???+ example "Example 10.56: FD1-based NMR calculation for benzene at HF/pcSseg-3 level."
+???+ example "示例 10.56：在 HF/pcSseg-3 层次上对苯分子进行基于 FD1 的 NMR 计算。"
     ```qchem
     $molecule
     0 1
@@ -217,21 +178,11 @@ limited support for $O(N^{5})$ correlated methods such as (regularized) RI-MP2.
     
     ```
 
-## 10.11.2.2 NMR Job Control and Examples
+### 10.11.2.2 NMR 作业控制与示例
 
-This section describes the use of **Q-Chem**’s MO-based CPSCF code, which is
-contained in the “MOProp” module that is also responsible for computing
-electric properties. NMR chemical shifts are requested by setting
-MOPROP = 1, and $J$-couplings by setting JOBTYPE =
-ISSC. The reader is referred to to Section [10.10.3](moprop_jobcontrol.md)
-for additional job control variables associated with the MOProp module, as well
-as explanations of the ones that are invoked in the samples below. An
-alternative, ${\cal{O}}({N})$ density matrix-based implementation of NMR chemical
-shifts is also available and is described in Section [10.11.3](sec_D-CPSCF-NMR.md).
-Setting JOBTYPE = NMR invokes the density-based code, not the
-MO-based code.
+本节介绍 **Q-Chem** 基于 MO 的 CPSCF 代码的使用方法，该代码包含在 "MOProp" 模块中，该模块同时负责计算电学性质。通过设置 MOPROP = 1 来请求计算 NMR 化学位移，通过设置 JOBTYPE = ISSC 来计算 $J$-耦合。关于与 MOProp 模块相关的更多作业控制变量，以及下面示例中所用变量的说明，请参见第 [10.10.3](moprop_jobcontrol.md) 节。此外，还提供另一种 ${\cal{O}}({N})$ 标度、基于密度矩阵的 NMR 化学位移实现，详见第 [10.11.3](sec_D-CPSCF-NMR.md) 节。注意，设置 JOBTYPE = NMR 调用的是基于密度的代码，而非基于 MO 的代码。
 
-???+ example "Example 10.57: MO-based NMR calculation."
+???+ example "示例 10.57：基于 MO 的 NMR 计算。"
     ```qchem
     $molecule
     0  1
@@ -256,15 +207,9 @@ MO-based code.
     $end
     ```
 
-In the following compound job, we show how to restart an NMR calculation
-should it exceed the maximum number of CPSCF iterations (specified with
-MOPROP_MAXITER_1ST, or should the calculation run out of time on
-a shared computer resource. Note that the first job is *intentionally*
-set up to exceed the maximum number of iterations, so will crash. However,
-the calculation is restarted and completed in the second job.
+在下面的复合作业中，我们演示当 NMR 计算超出最大 CPSCF 迭代次数（由 MOPROP_MAXITER_1ST 指定）时，或者在共享计算资源上因超时而中断时，如何重启计算。注意，第一个作业是*故意*设置为超出最大迭代次数的，因此会崩溃；但计算在第二个作业中被重启并完成。
 
-???+ example "Example 10.58: Illustrates how to restart an NMR calculation. In this first job, we intentionally set the max number of iterations too small, to force
-premature end so that we can demonstrate restart capability in the 2nd job."
+???+ example "示例 10.58：演示如何重启 NMR 计算。在第一个作业中，我们故意将最大迭代次数设得过小，以强制计算提前结束，从而可以在第二个作业中展示重启功能。"
     ```qchem
     $molecule
     0  1
@@ -309,7 +254,7 @@ premature end so that we can demonstrate restart capability in the 2nd job."
     $end
     ```
 
-???+ example "Example 10.59: $J$ -coupling calculation: water molecule with B3LYP/cc-pVDZ"
+???+ example "示例 10.59：$J$-耦合计算：使用 B3LYP/cc-pVDZ 的水分子"
     ```qchem
     $molecule
        0 1
@@ -331,10 +276,7 @@ premature end so that we can demonstrate restart capability in the 2nd job."
     $end
     ```
 
-In the event that spin-spin couplings of only certain atom pairs are of
-interest, it is possible to limit the atom pairs for which the couplings are
-computed. Selection is done via the *$spin-spin* input section, which is
-zero-indexed. For example, the section
+如果只关心某些特定原子对之间的自旋-自旋耦合，可以限制计算耦合的原子对。选择通过 *$spin-spin* 输入段完成，其原子索引从零开始。例如，下面的输入段
 
 > ```qchem
 > $spin-spin
@@ -342,39 +284,16 @@ zero-indexed. For example, the section
 > $end
 > ```
 
-would compute couplings between all possible pairings of the first, second,
-and sixth atoms in the respective *$molecule* section: (1, 2), (1, 6), and (2,6).
-If the *$spin-spin* section is not specified, couplings between all
-possible pairs of atoms in *$molecule* will be computed.
+将计算 *$molecule* 段中第一个、第二个和第六个原子之间所有可能配对的耦合：(1, 2)、(1, 6) 和 (2, 6)。若未指定 *$spin-spin* 段，则将计算 *$molecule* 中所有原子对之间的耦合。
 
-## 10.11.2.3 Nucleus-Independent Chemical Shifts: Probes of Aromaticity
+### 10.11.2.3 核独立化学位移：芳香性的探针
 
-Unambiguous theoretical estimates of degree of aromaticity are still on high
-demand. The NMR chemical shift methodology offers one unique probe of
-aromaticity based on one defining characteristics of an aromatic system: its
-ability to sustain a diatropic ring current. This leads to a response to an
-imposed external magnetic field with a strong (negative) shielding at the
-center of the ring. Von Schleyer *et al.* have employed this phenomenon to justify
-a new unique probe of aromaticity.[[1383]](../bib_references/bib.md#bib1468)
- They proposed the
-computed absolute magnetic shielding at ring centers (unweighted mean of the
-heavy-atoms ring coordinates) as a new aromaticity criterion, called
-nucleus-independent chemical shift (NICS). Aromatic rings show strong negative
-shielding at the ring center (negative NICS), while anti-aromatic systems
-reveal positive NICS at the ring center. As an example, a typical NICS value
-for benzene is about $-11.5$ ppm as estimated with **Q-Chem** at the
-Hartree-Fock/6-31G* level. The same NICS value for benzene was also
-reported in Ref. [[1383]](../bib_references/bib.md#bib1468)
-. The calculated NICS value for
-furan of $-13.9$ ppm with **Q-Chem** is about the same as the value reported for
-furan in Ref. [[1383]](../bib_references/bib.md#bib1468)
-. Below is one input example of how
-to the NICS of furan with **Q-Chem**, using the ghost atom option. The ghost
-atom is placed at the center of the furan ring, and the basis set assigned to
-it within the basis mix option must be the basis used for hydrogen atom.
+对芳香性程度的明确理论估计仍有迫切需求。NMR 化学位移方法提供了一种独特的芳香性探针，其依据是芳香体系的一个定义性特征：其维持同向环电流（diatropic ring current）的能力。这使得体系对外加磁场产生响应，在环中心处表现出强（负）屏蔽。Von Schleyer *et al.* 利用这一现象提出了一种新的独特芳香性探针。[[1383]](../bib_references/bib.md#bib1468)
+ 他们提议将环中心处计算得到的绝对磁屏蔽（重原子环坐标的未加权平均）作为一种新的芳香性判据，称为核独立化学位移（nucleus-independent chemical shift, NICS）。芳香环在环中心处表现出强负屏蔽（负 NICS），而反芳香体系在环中心处则呈现正 NICS。例如，用 **Q-Chem** 在 Hartree-Fock/6-31G* 层次上估算的苯典型 NICS 值约为 $-11.5$ ppm。参考文献 [[1383]](../bib_references/bib.md#bib1468)
+ 中也报道了相同的苯 NICS 值。**Q-Chem** 计算得到的呋喃 NICS 值为 $-13.9$ ppm，与参考文献 [[1383]](../bib_references/bib.md#bib1468)
+ 中报道的呋喃数值基本一致。下面给出一个使用 **Q-Chem**（借助鬼原子（ghost atom）选项）计算呋喃 NICS 的输入示例。鬼原子置于呋喃环的中心，并且在基组混合（basis mix）选项中为其指定的基组必须是用于氢原子的基组。
 
-???+ example "Example 10.60: Calculation of the NMR NICS probe of furan, HF/6-31G* level. Note the ghost
-atom at the center of the ring."
+???+ example "示例 10.60：计算呋喃的 NMR NICS 探针，HF/6-31G* 层次。注意置于环中心的鬼原子。"
     ```qchem
     $molecule
        0 1

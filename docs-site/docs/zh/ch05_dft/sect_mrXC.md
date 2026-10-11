@@ -1,94 +1,71 @@
 ---
-title: "5.5.5 Multi-resolution Exchange-Correlation (MRXC) Method"
+title: "5.5.5 多分辨率交换-相关（MRXC）方法"
 ---
 
-## 5.5.5 Multi-resolution Exchange-Correlation (MRXC) Method
+## 5.5.5 多分辨率交换-相关（MRXC）方法
 
-(July 4, 2026)
+（2026 年 7 月 4 日）
 
-The multi-resolution exchange-correlation (MRXC) method is a new approach, courtesy of the
-**Q-Chem** development team,[[706]](../bib_references/bib.md#bib738)
+多分辨率交换-相关（multi-resolution exchange-correlation, MRXC）方法是一种新方法，由 **Q-Chem** 开发团队提出，[[706]](../bib_references/bib.md#bib738)
 
-for accelerating computation of the exchange-correlation (XC) energy and matrix for any
-given density functional.
-As explained in Section [4.6.5](../ch04_scf/sect_FTC.md), XC functionals are sufficiently complicated integration
-of them is usually performed by numerical quadrature.
-There are two basic types of quadrature. One is the atom-centered
-grid (ACG), a superposition of atomic quadrature described in Section [4.6.5](../ch04_scf/sect_FTC.md).
-The ACG has high density of points near the nucleus to handle the compact core
-density and low density of points in the valence and non-bonding region where
-the electron density is smooth. The other type is even-spaced cubic grid
-(ESCG), which is typically used together with pseudopotentials and plane-wave
-basis functions where only the valence and non-bonded electron density is
-assumed smooth. In quantum chemistry, an ACG is more often used as it can
-handle accurately all-electron calculations of molecules. MRXC combines those
-two integration schemes seamlessly to achieve an optimal computational
-efficiency by placing the calculation of the smooth part of the density and XC
-matrix onto the ESCG. The computation associated with the smooth fraction of
-the electron density is the major bottleneck of the XC part of a DFT
-calculation and can be done at a much faster rate on the ESCG due to its low
-resolution. Fast Fourier transform and B-spline interpolation are employed for
-the accurate transformation between the two types of grids such that the final
-results remain the same as they would be on the ACG alone, yet a speedup of
-several times is achieved for the XC matrix.
-The smooth part of the calculation with MRXC can also be combined
-with FTC (see Section [4.6.5](../ch04_scf/sect_FTC.md)) to achieve a further gain in efficiency.
+用于加速任意给定密度泛函的交换-相关（exchange-correlation, XC）能量与矩阵的计算。
+如第 [4.6.5](../ch04_scf/sect_FTC.md) 节所述，XC 泛函足够复杂，因此对它们的积分通常通过数值求积来完成。
+求积有两种基本类型。一种是原子中心网格（atom-centered grid, ACG），即第 [4.6.5](../ch04_scf/sect_FTC.md) 节所述的原子求积叠加方案。ACG 在原子核附近具有较高的点密度，以处理紧凑的核心密度，而在价区和非键区域（电子密度较为平滑的地方）点密度较低。另一种类型是均匀间距立方网格（even-spaced cubic grid, ESCG），它通常与赝势和平面波基函数配合使用，此时仅假设价电子密度和非键电子密度是平滑的。在量子化学中，ACG 使用得更为频繁，因为它能够精确处理分子的全电子计算。MRXC 将这两种积分方案无缝结合起来，把密度和 XC 矩阵中平滑部分的计算放到 ESCG 上，从而达到最佳的计算效率。与电子密度平滑部分相关的计算是 DFT 计算中 XC 部分的主要瓶颈，而由于 ESCG 分辨率较低，这部分计算可以以快得多的速率完成。为实现两种网格之间的精确转换，采用了快速傅里叶变换和 B 样条插值，使得最终结果与仅使用 ACG 时完全相同，同时 XC 矩阵的计算可获得数倍的加速。MRXC 中平滑部分的计算还可以与 FTC（见第 [4.6.5](../ch04_scf/sect_FTC.md) 节）结合使用，以进一步提升效率。
 
 MRXC
 
 ### `MRXC`
 
-> **Controls the use of MRXC.**
+> **控制 MRXC 的使用。**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `0`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`0`
+> * **选项**：
 >     * 0
->     * Do not use MRXC
+>     * 不使用 MRXC
 >     * 1
->     * Use MRXC in the evaluation of the XC part
-> * **Recommendation**: MRXC is very efficient for medium and large molecules, especially when medium and large basis sets are used.
+>     * 在 XC 部分的计算中使用 MRXC
+> * **建议**：MRXC 对中等和大型分子非常高效，尤其是当使用中等和大型基组时。
 
-The following two keywords control the smoothness precision. The default value
-is carefully selected to maintain high accuracy.
+以下两个关键字控制平滑性精度。默认值经过精心选取，以维持高精度。
 
 MRXC_CLASS_THRESH_MULT
 
 ### `MRXC_CLASS_THRESH_MULT`
 
-> **Controls the of smoothness precision**
+> **控制平滑性精度的（阈值）前置因子**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `1`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`1`
+> * **选项**：
 >     * $im$
->     * An integer
-> * **Recommendation**: A prefactor in the threshold for MRXC error control: $im\times 10^{-io}$
+>     * 一个整数
+> * **建议**：MRXC 误差控制阈值中的前置因子：$im\times 10^{-io}$
 
 MRXC_CLASS_THRESH_ORDER
 
 ### `MRXC_CLASS_THRESH_ORDER`
 
-> **Controls the of smoothness precision**
+> **控制平滑性精度的（阈值）指数**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`6`
+> * **选项**：
 >     * $io$
->     * An integer
-> * **Recommendation**: The exponent in the threshold of the MRXC error control: $im\times 10^{-io}$
+>     * 一个整数
+> * **建议**：MRXC 误差控制阈值中的指数：$im\times 10^{-io}$
 
-The next keyword controls the order of the B-spline interpolation:
+下一个关键字控制 B 样条插值的阶数：
 
 LOCAL_INTERP_ORDER
 
 ### `LOCAL_INTERP_ORDER`
 
-> **Controls the order of the B-spline**
+> **控制 B 样条的阶数**
 >
-> * **Type**: `INTEGER`
-> * **Default**: `6`
-> * **Options**:
+> * **类型**：`INTEGER`
+> * **默认值**：`6`
+> * **选项**：
 >     * $n$
->     * An integer
-> * **Recommendation**: The default value is sufficiently accurate
+>     * 一个整数
+> * **建议**：默认值已足够精确

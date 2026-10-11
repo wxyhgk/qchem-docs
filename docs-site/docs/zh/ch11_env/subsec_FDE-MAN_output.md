@@ -1,40 +1,35 @@
 ---
-title: "11.7.7 FDE-Man output"
+title: "11.7.7 FDE-Man 输出"
 ---
 
-## 11.7.7 FDE-Man output
+## 11.7.7 FDE-Man 输出
 
 (July 4, 2026)
 
-In general the FDE-Man output indicates all important stages of the embedding
-calculation, which are:
+总体而言，FDE-Man 的输出会显示嵌入（embedding）计算的所有重要阶段，即：
 
 1. 1.
 
-Generation of $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$,
+$\rho_{A}^{\mathrm{ref}}(\mathbf{r})$ 的生成，
 2. 2.
 
-Generation of $\rho_{B}(\mathbf{r})$,
+$\rho_{B}(\mathbf{r})$ 的生成，
 3. 3.
 
-Construction of the embedding potential,
+嵌入势（embedding potential）的构造，
 4. 4.
 
-Start of FDE-Man embedding calculation and
+FDE-Man 嵌入计算的启动，以及
 5. 5.
 
-Final FDE-Man summary.
+FDE-Man 最终总结。
 
-In the following table definitions of the terms printed to the output are
-collected. These quantities are printed for every state, *i.e.* for every
-$\rho_{A}^{I}(\mathbf{r})$. In addition, the non-electrostatic interactions
-with respect to the reference density $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$ are printed
-at the top of the FDE-Man summary.
+下表汇总了输出中所打印各项术语的定义。这些量会对每一个态（state）*即* 每一个 $\rho_{A}^{I}(\mathbf{r})$ 分别打印。此外，相对于参考密度 $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$ 的非静电相互作用会打印在 FDE-Man 总结的顶部。
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <thead class="ltx_thead">
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_tt" colspan="2">Subsystem Energies</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_tt" colspan="2">子系统能量（Subsystem Energies）</th>
 </tr>
 </thead>
 <tbody class="ltx_tbody">
@@ -47,26 +42,26 @@ at the top of the FDE-Man summary.
 <td class="ltx_td ltx_align_left">$E_{B}=E_{v_{B}}^{\mathrm{HK}}[\rho_{B}]\;\text{or}\;E_{\mathrm{HF}}$</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t" colspan="2">Electrostatic Interactions</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t" colspan="2">静电相互作用（Electrostatic Interactions）</th>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_typewriter">rho_A &lt;-&gt; rho_B</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_typewriter">rho_A &lt;-&gt; rho_B</span></th>
 <td class="ltx_td ltx_align_left ltx_border_t">$J_{\mathrm{int}}[\rho_{A},\rho_{B}]=\int\int\frac{\rho_{A}(\mathbf{r})\rho_{B}(\mathbf{r}^{\prime})}{|\mathbf{r}-\mathbf{r}^{\prime}|}\mathrm{d}\mathbf{r}\mathrm{d}\mathbf{r}^{\prime}$</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><span class="ltx_text ltx_font_typewriter">rho_A &lt;-&gt; Nuc_B</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><span class="ltx_text ltx_font_typewriter">rho_A &lt;-&gt; Nuc_B</span></th>
 <td class="ltx_td ltx_align_left">$V_{B}^{\mathrm{nuc}}[\rho_{A}]=\int\rho_{A}(\mathbf{r})v_{B}(\mathbf{r})\mathrm{d}\mathbf{r}$</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><span class="ltx_text ltx_font_typewriter">rho_B &lt;-&gt; Nuc_A</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><span class="ltx_text ltx_font_typewriter">rho_B &lt;-&gt; Nuc_A</span></th>
 <td class="ltx_td ltx_align_left">$V_{A}^{\mathrm{nuc}}[\rho_{B}]=\int\rho_{B}(\mathbf{r})v_{A}(\mathbf{r})\mathrm{d}\mathbf{r}$</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><span class="ltx_text ltx_font_typewriter">Nuc_A &lt;-&gt; Nuc_B</span></th>
+<th class="ltx_td ltx_align_left ltx_th ltx_th_row"><span class="ltx_text ltx_font_typewriter">Nuc_A &lt;-&gt; Nuc_B</span></th>
 <td class="ltx_td ltx_align_left">$V_{N_{A}N_{B}}=\sum_{i}\sum_{j}\frac{Z_{i}Z_{j}}{|R_{i}-R_{j}|}$</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t" colspan="2">Non-Electrostatic Interactions</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t" colspan="2">非静电相互作用（Non-Electrostatic Interactions）</th>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_typewriter">non-additive E_xc</span></th>
@@ -85,7 +80,7 @@ at the top of the FDE-Man summary.
 <td class="ltx_td ltx_align_left">$\int\rho_{A}^{I}(\mathbf{r})v_{T}^{\mathrm{nad}}(\mathbf{r})\mathrm{d}\mathbf{r}$</td>
 </tr>
 <tr class="ltx_tr">
-<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t" colspan="2">Final FDET energies</th>
+<th class="ltx_td ltx_align_center ltx_th ltx_th_column ltx_th_row ltx_border_t" colspan="2">最终 FDET 能量（Final FDET energies）</th>
 </tr>
 <tr class="ltx_tr">
 <th class="ltx_td ltx_align_left ltx_th ltx_th_row ltx_border_t"><span class="ltx_text ltx_font_typewriter">Delta_Lin</span></th>
@@ -106,4 +101,4 @@ at the top of the FDE-Man summary.
 </tbody>
 </table>
 
-Table 11.11: Definition of output terms.
+表 11.11：输出项的定义。

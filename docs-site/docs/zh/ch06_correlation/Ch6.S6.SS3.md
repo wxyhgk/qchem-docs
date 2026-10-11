@@ -1,39 +1,34 @@
 ---
-title: "6.6.3 OpenMP Implementation of RI-MP2"
+title: "6.6.3 RI-MP2 的 OpenMP 实现"
 ---
 
-## 6.6.3 OpenMP Implementation of RI-MP2
+## 6.6.3 RI-MP2 的 OpenMP 实现
 
-(July 4, 2026)
+(2026 年 7 月 4 日)
 
-An OpenMP RI-MP2 energy algorithm is used by default in **Q-Chem** 4.1 onward.
-This can be invoked by using CORR = PRIMP2 for older versions, but note
-that in 4.01 and below, only RHF/RI-MP2 was supported. Now UHF/RI-MP2 and ROHF/RI-MP2 is supported, and the formation of the ‘B’ matrices as well as three
-center integrals are parallelized. This algorithm uses the remaining memory
-from the MEM_TOTAL allocation for all computation, which can
-drastically reduce hard drive reads in the formation of t-amplitudes.
-Since **Q-Chem** 5.2, RI-MP2 can be invoked by using method=mp2 and
-proper auxiliary basis using AUX_BASIS_CORR. In case of double-hybrid,
-adding AUX_BASIS_CORR will simply invoke RI-MP2.
+从 **Q-Chem** 4.1 版本开始，默认使用 OpenMP 的 RI-MP2 能量算法。
+在较旧的版本中可以通过设置 CORR = PRIMP2 来调用该算法，但请注意
+在 4.01 及更早版本中，仅支持 RHF/RI-MP2。现在已支持 UHF/RI-MP2 和 ROHF/RI-MP2，并且 ‘B’ 矩阵的构建以及
+三中心积分均已实现并行化。该算法利用 MEM_TOTAL 分配中剩余的内存
+完成全部计算，从而可以大幅减少构建 t-振幅（t-amplitudes）时的硬盘读取。
+自 **Q-Chem** 5.2 起，可以通过设置 method=mp2 并使用
+AUX_BASIS_CORR 指定合适的辅助基组来调用 RI-MP2。在双杂化（double-hybrid）方法的情况下，
+添加 AUX_BASIS_CORR 将直接调用 RI-MP2。
 
-???+ example "Example 6.5: Example of OpenMP-parallel RI-MP2 job."
+???+ example "示例 6.5: OpenMP 并行 RI-MP2 作业示例。"
     ```qchem
     $molecule
        0 1
        C1
        H1  C1    1.077260
-       H2  C1    1.077260  H1  131.608240
+       H2  C1    1.077260
     $end
     
     $rem
-       EXCHANGE           HF
-       CORRELATION        pRIMP2
-       BASIS              cc-pVTZ
-       AUX_BASIS          rimp2-cc-pVTZ
-       PURECART           1111
-       THRESH             12
-       SCF_CONVERGENCE    8
-       MAX_SUB_FILE_NUM   128
-       INTEGRAL_SYMMETRY  false
-    $end
+       METHOD        mp2
+       BASIS         cc-pVDZ
+       AUX_BASIS_CORR cc-pVDZ / cc-pVDZ-RI
+       MEMORY        2000
+       SCF_CONV        12
+       $end
     ```
