@@ -48,6 +48,769 @@ plugins:
     - locale: zh
       name: 中文
       build: true
+      site_name: Q-Chem 7.0 用户手册
+      nav_translations:
+        Home: 首页
+        Overview: 概述
+        References: 参考文献与延伸阅读
+        'Chapter 1: Introduction': 第 1 章：引言
+        'Chapter 2: Installation, Customization, and Execution': 第 2 章：安装、配置与执行
+        'Chapter 3: Q-Chem Inputs': 第 3 章：Q-Chem 输入文件结构
+        'Chapter 4: Self-Consistent Field Ground-State Methods': 第 4 章：自洽场（SCF）基态方法
+        'Chapter 5: Density Functional Theory': 第 5 章：密度泛函理论（DFT）
+        'Chapter 6: Wave Function-Based Correlation Methods': 第 6 章：波函数电子相关方法
+        'Chapter 7: Open-Shell and Excited-State Methods': 第 7 章：开壳层与激发态方法
+        'Chapter 8: Basis Sets and Effective Core Potentials': 第 8 章：基组与有效核心势（ECP）
+        'Chapter 9: Exploring Potential Energy Surfaces': 第 9 章：势能面搜索与动力学
+        'Chapter 10: Molecular Properties and Analysis': 第 10 章：分子性质与波函数分析
+        'Chapter 11: Molecules in Complex Environments': 第 11 章：复杂环境与溶剂化模型
+        'Chapter 12: Fragment-Based Methods': 第 12 章：基于片段的方法
+        'Chapter 13: Specialized Topics': 第 13 章：专题方法
+        'Appendix A: AOInts: Q-Chem’s Integrals Engine': 附录 A：AOInts 积分引擎
+        'Appendix B: Q-Chem Quick Reference': 附录 B：Q-Chem 快速参考
+        'Appendix C: Third-party Components': 附录 C：第三方组件与许可
+        1.2 Q-Chem, Inc.: 1.2 Q-Chem 公司
+        3.1 IQmol: 3.1 IQmol 可视化软件
+        C.2 Armadillo: C.2 Armadillo 线性代数库
+        C.3 ctx: C.3 ctx 库
+        C.4 dftd4: C.4 DFT-D4 色散校正库
+        C.5 libecpint: C.5 libecpint 积分库
+        C.6 libefp: C.6 libefp 有效片段势库
+        C.7 libtensor: C.7 libtensor 张量计算库
+        C.8 libxm: C.8 libxm 模块
+        1.1 About This Manual: 1.1 关于本手册
+        1.1.1 Overview: 1.1.1 概述
+        1.1.2 Chapter Summaries: 1.1.2 章节摘要
+        1.2.1 Contact Information and Customer Support: 1.2.1 联系方式与客户支持
+        1.2.2 About the Company: 1.2.2 关于公司
+        1.2.3 Company Mission: 1.2.3 公司使命
+        1.3 Q-Chem Features: 1.3 Q-Chem 功能特性
+        1.3.1 Overview of Q-Chem Features: 1.3.1 Q-Chem 功能概览
+        1.3.2 New Features in Q-Chem 7.0: 1.3.2 Q-Chem 7.0 新增功能
+        1.3.3 New Features in Q-Chem 6.4: 1.3.4 Q-Chem 6.3 新特性
+        1.3.4 New Features in Q-Chem 6.3: 1.3.4 Q-Chem 6.3 新特性
+        1.3.5 New Features in Q-Chem 6.2: 1.3.5 Q-Chem 6.2 新特性
+        1.3.6 New Features in Q-Chem 6.1: 1.3.6 Q-Chem 6.1 新功能
+        1.3.7 New Features in Q-Chem 6.0: 1.3.7 Q-Chem 6.0 新特性
+        1.3.8 New Features in Q-Chem 5.4: 1.3.8 Q-Chem 5.4 的新特性
+        1.3.9 New Features in Q-Chem 5.3: 1.3.9 Q-Chem 5.3 新特性
+        1.3.10 New Features in Q-Chem 5.2: 1.3.10 Q-Chem 5.2 新特性
+        1.3.11 New Features in Q-Chem 5.1: 1.3.11 Q-Chem 5.1 新特性
+        1.3.12 New Features in Q-Chem 5.0: 1.3.12 Q-Chem 5.0 的新特性
+        1.3.13 New Features in Q-Chem 4.4: 1.3.13 Q-Chem 4.4 新特性
+        1.3.14 New Features in Q-Chem 4.3: 1.3.14 Q-Chem 4.3 新特性
+        1.3.15 New Features in Q-Chem 4.2: 1.3.15 Q-Chem 4.2 新特性
+        1.3.16 New Features in Q-Chem 4.1: 1.3.16 Q-Chem 4.1 新特性
+        1.3.17 New Features in Q-Chem 4.0.1: 1.3.17 Q-Chem 4.0.1 新特性
+        1.3.18 New Features in Q-Chem 4.0: 1.3.18 Q-Chem 4.0 新特性
+        1.3.19 Summary of Features in Q-Chem Versions 3. x: 1.3.19 Q-Chem 3.$\,$*x* 版本功能汇总
+        1.3.20 Summary of Features Prior to Q-Chem 3.0: 1.3.20 Q-Chem 3.0 之前版本特性汇总
+        1.4 Citing Q-Chem: 1.4 引用 Q-Chem
+        1.4.1 Overview: 1.4.1 概述
+        2.1 Installing Q-Chem: 2.1 安装 Q-Chem
+        2.1.1 Downloading and Licensing: 2.1.1 下载与许可
+        2.1.2 Installation Requirements: 2.1.2 安装要求
+        2.1.3 Q-Chem Auxiliary files ($QCAUX): 2.1.3 Q-Chem 辅助文件（*$QCAUX*）
+        2.1.4 Q-Chem Run-time Environment Variables: 2.1.4 Q-Chem 运行时环境变量
+        2.1.5 User Account Adjustments: 2.1.5 用户账户配置
+        2.1.6 Further Customization: 2.1.6 进一步定制
+        2.2 Running Q-Chem: 2.2 运行 Q-Chem
+        2.2.1 General Usage: 2.2.1 一般用法
+        2.2.2 Integration with IQmol: 2.2.2 与 IQmol 的集成
+        2.2.3 Customizable Archive Files: 2.2.3 可自定义的归档文件（Customizable Archive Files）
+        2.2.4 Testing and Exploring Q-Chem: 2.2.4 测试与探索 Q-Chem
+        3.1.1 Overview: 3.1.1 概述
+        3.2 General Form: 3.2 一般形式
+        3.2.1 Overview: 3.2.1 概述
+        3.3 Molecular Coordinate Input ($molecule): 3.3 分子坐标输入（$molecule）
+        3.3.1 Introduction: 3.3.1 引言
+        3.3.2 Specifying the Molecular Coordinates Manually: 3.3.2 手动指定分子坐标
+        3.3.3 Reading Molecular Coordinates from a Previous Job or File: 3.3.3 从先前的作业或文件中读取分子坐标
+        '3.4 Job Specification: The $rem Input Section': 3.4 作业说明：*$rem* 输入段
+        3.4.1 Overview: 3.4.1 概述
+        '3.5 Batch Jobs: Multiple Inputs in a Single File': 3.5 批处理作业：单个文件中的多个输入
+        3.5.1 Overview: 3.5.1 概述
+        3.6 Q-Chem Output File: 3.6 Q-Chem 输出文件
+        3.6.1 Overview: 3.6.1 概述
+        4.1 Introduction: 4.1 引言
+        4.1.1 Overview: 4.1.1 概述
+        4.2 Theoretical Background: 4.2 理论背景
+        4.2.1 SCF and LCAO Approximations: 4.2.1 SCF 与 LCAO 近似
+        4.2.2 Hartree-Fock Theory: 4.2.2 Hartree-Fock 理论
+        4.3 Basic SCF Job Control: 4.3 基本 SCF 作业控制
+        4.3.1 Introduction: 4.3.1 引言
+        4.3.2 Job Control: 4.3.2 作业控制
+        4.3.3 Additional Options: 4.3.3 附加选项
+        4.3.4 Examples: 4.3.4 示例
+        4.3.5 Symmetry: 4.3.5 对称性
+        4.4 SCF Initial Guess: 4.4 SCF 初始猜测
+        4.4.1 Introduction: 4.4.1 引言
+        4.4.2 Initial Guess Types: 4.4.2 初猜类型（Initial Guess Types）
+        4.4.3 Reading MOs from Disk: 4.4.3 从磁盘读取分子轨道（MO）
+        4.4.4 Modifying the Occupied Molecular Orbitals: 4.4.4 修改占据分子轨道
+        4.4.5 Basis Set Projection: 4.4.5 基组投影
+        4.5 Converging SCF Calculations: 4.5 收敛 SCF 计算
+        4.5.1 Introduction: 4.5.1 引言
+        4.5.2 Basic Convergence Control Options: 4.5.2 基本收敛控制选项
+        4.5.3 Direct Inversion in the Iterative Subspace (DIIS): 4.5.3 迭代子空间直接反演法（DIIS）
+        4.5.4 Damping: 4.5.4 阻尼
+        4.5.5 Level-Shifting: 4.5.5 能级偏移（Level-Shifting）
+        4.5.6 Pseudo-Fractional Occupation Number Method (pFON): 4.5.6 伪分数占据数方法（pFON）
+        4.5.7 Geometric Direct Minimization (GDM): 4.5.7 几何直接极小化 (GDM)
+        4.5.8 Direct Minimization (DM): 4.5.8 直接极小化（DM）
+        4.5.9 Relaxed Constraint Algorithm (RCA): 4.5.9 松弛约束算法（RCA）
+        4.5.10 Augmented Roothaan Hall Energy DIIS (ADIIS): 4.5.10 增强型 Roothaan-Hall 能量 DIIS（ADIIS）
+        4.5.11 Newton Methods: 4.5.11 Newton 方法
+        4.5.12 User-Customized Hybrid SCF Algorithm: 4.5.12 用户自定义混合 SCF 算法
+        4.5.13 Black-box Robust SCF Pipelines: 4.5.13 黑盒鲁棒 SCF 流程
+        4.5.14 Maximum Overlap Method (MOM): 4.5.14 最大重叠方法（MOM）
+        4.5.15 Square Gradient Minimization (SGM): 4.5.15 平方梯度最小化（SGM）
+        4.5.16 State-Targeted Energy Projection (STEP): 4.5.16 态定向能量投影（State-Targeted Energy Projection, STEP）
+        4.5.17 Internal Stability Analysis and Automated Correction for Energy Minima: 4.5.17 内部稳定性分析与能量极小点的自动修正
+        4.5.18 Orbital Energy Scaling in Canonical ROSCF Calculations: 4.5.18 正则 ROSCF 计算中的轨道能量缩放
+        4.6 Large Molecules and Linear Scaling Methods: 4.6 大分子与线性标度方法
+        4.6.1 Introduction: 4.6.1 引言
+        4.6.2 Continuous Fast Multipole Method (CFMM): 4.6.2 连续快速多极子方法 (CFMM)
+        4.6.3 Linear Scaling Exchange (LinK) Matrix Evaluation: 4.6.3 线性标度交换（LinK）矩阵计算
+        4.6.4 Incremental and Variable Thresh Fock Matrix Building: 4.6.4 增量式与可变阈值 Fock 矩阵构建
+        4.6.5 Fourier Transform Coulomb Method: 4.6.5 傅里叶变换库仑方法
+        4.6.6 Resolution of the Identity Fock Matrix Methods: 4.6.6 恒等式分解 Fock 矩阵方法
+        4.6.7 PARI-K Fast Exchange Algorithm: 4.6.7 PARI-K 快速交换算法
+        4.6.8 occ-RI-K Exchange Algorithm: 4.6.8 occ-RI-K 交换算法
+        4.6.9 Seminumerical Exchange (SNK) Matrix Evaluation: 4.6.9 半数值交换（SNK）矩阵计算
+        4.7 Dual-Basis Self-Consistent Field Calculations: 4.7 双基组自洽场计算
+        4.7.1 Introduction: 4.7.1 引言
+        4.7.2 Dual-Basis MP2: 4.7.2 双基组 MP2
+        4.7.3 Dual-Basis Dynamics: 4.7.3 双基组动力学
+        4.7.4 Basis-Set Pairings: 4.7.4 基组配对
+        4.7.5 Job Control and Example: 4.7.5 作业控制与示例
+        4.8 Hartree-Fock and Density-Functional Perturbative Corrections: 4.8 Hartree-Fock 与密度泛函微扰修正
+        4.8.1 Introduction: 4.8.1 引言
+        4.8.2 Job Control: 4.8.2 作业控制
+        4.8.3 Examples: 4.8.3 示例
+        4.9 Unconventional SCF Calculations: 4.9 非常规 SCF 计算
+        4.9.1 Polarized Atomic Orbital (PAO) Calculations: 4.9.1 极化原子轨道（PAO）计算
+        4.9.2 SCF Metadynamics: 4.9.2 SCF 元动力学（SCF Metadynamics）
+        4.9.3 Multiple SCF Solutions for Non-Orthogonal CI: 4.9.3 非正交 CI 的多个 SCF 解
+        4.9.4 Holomorphic Hartree-Fock Theory: 4.9.4 全纯 Hartree-Fock 理论
+        4.9.5 Non-Hermitian SCF with complex basis functions: 4.9.5 使用复基函数的非厄米 SCF
+        4.9.6 Relativistic Effects: 4.9.6 相对论效应
+        4.10 Extended Tight-Binding Methods (xTB): 4.10 扩展紧束缚方法（xTB）
+        4.10.1 Introduction: 4.10.1 引言
+        4.10.2 Job Control: 4.10.2 作业控制
+        4.10.3 Examples: 4.10.3 示例
+        5.1 Introduction: 5.1 引言
+        5.1.1 Overview: 5.1.1 概述
+        5.2 Kohn-Sham Density Functional Theory: 5.2 Kohn-Sham 密度泛函理论
+        5.3 Overview of Available Functionals: 5.3 可用泛函概览
+        5.3.1 Introduction: 5.3.1 引言
+        5.3.2 Suggested Density Functionals: 5.3.2 推荐的密度泛函
+        5.3.3 Exchange Functionals: 5.3.3 交换泛函
+        5.3.4 Correlation Functionals: 5.3.4 相关泛函
+        5.3.5 Exchange-Correlation Functionals: 5.3.5 交换-关联泛函
+        5.3.6 Specialized Functionals: 5.3.6 专用泛函
+        5.3.7 User-Defined Density Functionals: 5.3.7 用户自定义密度泛函（User-Defined Density Functionals）
+        5.3.8 Semi-Empirical Functionals: 5.3.8 半经验泛函
+        5.4 Basic DFT Job Control: 5.4 DFT 作业的基本控制
+        5.4.1 Overview: 5.4.1 概述
+        5.5 DFT Numerical Quadrature: 5.5 DFT 数值积分（DFT Numerical Quadrature）
+        5.5.1 Introduction: 5.5.1 引言
+        5.5.2 Angular Grids: 5.5.2 角向网格
+        5.5.3 Standard Quadrature Grids: 5.5.3 标准求积网格
+        5.5.4 Consistency Check and Cutoffs: 5.5.4 一致性检查与截断
+        5.5.5 Multi-resolution Exchange-Correlation (MRXC) Method: 5.5.5 多分辨率交换-相关（MRXC）方法
+        5.5.6 Incremental DFT: 5.5.6 增量式 DFT（Incremental DFT）
+        5.6 Range-Separated Hybrid Density Functionals: 5.6 范围分离杂化密度泛函（Range-Separated Hybrid Density Functionals, RSH）
+        5.6.1 Introduction: 5.6.1 引言
+        5.6.2 Semi-Empirical RSH Functionals: 5.6.2 半经验 RSH 泛函
+        5.6.3 User-Defined RSH Functionals: 5.6.3 用户自定义 RSH 泛函
+        5.6.4 Tuned RSH Functionals: 5.6.4 调优型 RSH 泛函
+        5.7 DFT Methods for van der Waals Interactions: 5.7 面向范德华相互作用的 DFT 方法
+        5.7.1 Introduction: 5.7.1 引言
+        5.7.2 Non-Local Correlation (NLC) Functionals: 5.7.2 非局域相关（NLC）泛函
+        '5.7.3 Empirical Dispersion Corrections: DFT-D': 5.7.3 经验色散校正：DFT-D
+        5.7.4 Exchange-Dipole Model (XDM): 5.7.4 交换偶极模型（XDM）
+        5.7.5 Tkatchenko-Scheffler van der Waals Model (TS-vdW): 5.7.5 Tkatchenko-Scheffler van der Waals 模型（TS-vdW）
+        5.7.6 Many-Body Dispersion (MBD) Method: 5.7.6 多体色散（Many-Body Dispersion, MBD）方法
+        5.8 Empirical Corrections for Basis Set Superposition Error: 5.8 基组叠加误差的经验校正
+        5.8.1 Overview: 5.8.1 概述
+        5.9 Double-Hybrid Density Functional Theory: 5.9 双杂化密度泛函理论
+        5.9.1 Overview: 5.9.1 概述
+        5.10 Asymptotically Corrected Exchange-Correlation Potentials: 5.10 渐近修正的交换关联势（Asymptotically Corrected Exchange-Correlation Potentials）
+        5.10.1 Introduction: 5.10.1 引言
+        5.10.2 LB94 Scheme: 5.10.2 LB94 方案
+        5.10.3 Localized Fermi-Amaldi (LFA) Schemes: 5.10.3 局域 Fermi-Amaldi (LFA) 方案
+        5.11 Methods Based on “Constrained” DFT: 5.11 基于“约束”DFT 的方法
+        5.11.1 Introduction: 5.11.1 引言
+        5.11.2 Manner of Counting Electrons: 5.11.2 电子计数方式
+        5.11.3 Job Control: 5.11.3 作业控制
+        5.11.4 Examples: 5.11.4 示例
+        5.11.5 Configuration Interaction with Constrained DFT (CDFT-CI): 5.11.5 约束密度泛函理论组态相互作用（CDFT-CI）
+        5.11.6 CDFT-CI Job Control and Examples: 5.11.6 CDFT-CI 作业控制与示例
+        5.12 Unconventional DFT Methods: 5.12 非传统密度泛函理论方法
+        5.12.1 Density-Corrected DFT: 5.12.1 密度校正 DFT（Density-Corrected DFT）
+        5.12.2 Derivative Discontinuity Restoration: 5.12.2 导数间断性恢复
+        5.12.3 Thermally-Assisted-Occupation DFT (TAO-DFT): 5.12.3 热助占据密度泛函理论 (TAO-DFT)
+        5.13 Complex Absorbing Potential DFT Methods for the Description of Metastable Electronic States: 5.13 用于描述亚稳电子态的复吸收势密度泛函方法（Complex Absorbing Potential DFT, CAP-DFT）
+        5.13.1 Introduction: 5.13.1 引言
+        5.13.2 CAP-DFT Job Control: 5.13.2 CAP-DFT 作业控制
+        5.13.3 Density Functional Approximations Available for Use with Complex Absorbing Potentials: 5.13.3 可用于复吸收势的密度泛函近似
+        5.13.4 CAP-DFT Job Examples: 5.13.4 CAP-DFT 作业示例
+        6.1 Introduction: 6.1 引言
+        6.1.1 Overview: 6.1.1 概述
+        6.2 Treatment and the Definition of Core Electrons: 6.2 芯电子的处理与定义
+        6.2.1 Overview: 6.2.1 概述
+        6.3 Møller-Plesset Perturbation Theory: 6.3 默勒-普莱塞特微扰理论（Møller-Plesset Perturbation Theory）
+        6.3.1 Overview: 6.3.1 概述
+        6.4 Exact MP2 Methods: 6.4 精确 MP2 方法
+        6.4.1 Algorithm: 6.4.1 算法
+        6.4.2 Algorithm Control and Customization: 6.4.2 算法控制与自定义
+        6.5 Local MP2 Methods: 6.5 局部 MP2 方法
+        6.5.1 Local Triatomics in Molecules (TRIM) Model: 6.5.1 分子中的局域三原子（TRIM）模型
+        6.5.2 EPAO Evaluation Options: 6.5.2 EPAO 评估选项
+        6.5.3 Numerical Sparsity Based Implementation: 6.5.3 基于数值稀疏性的实现
+        6.6 Auxiliary Basis (Resolution of the Identity) MP2 Methods: 6.6 辅助基组（恒等投影）MP2 方法
+        6.6.1 Introduction: 6.6.1 引言
+        6.6.2 RI-MP2 Energies and Gradients.: 6.6.2 RI-MP2 能量与梯度。
+        6.6.3 OpenMP Implementation of RI-MP2: 6.6.3 RI-MP2 的 OpenMP 实现
+        6.6.4 GPU Implementation of RI-MP2: 6.6.4 RI-MP2 的 GPU 实现
+        6.6.5 Spin-Biased MP2 Methods (SCS-MP2, SOS-MP2, and MOS-MP2): 6.6.5 自旋偏向 MP2 方法（SCS-MP2、SOS-MP2 与 MOS-MP2）
+        6.6.6 Orbital-Optimized MP2: 6.6.6 轨道优化 MP2（Orbital-Optimized MP2）
+        6.6.7 Brueckner CC2: 6.6.7 Brueckner CC2
+        6.6.8 RI-TRIM MP2 Energies: 6.6.8 RI-TRIM MP2 能量
+        6.6.9 Dual-Basis MP2: 6.6.9 双基组 MP2（Dual-Basis MP2）
+        6.6.10 RI-MP2 Method for Complex Basis Functions: 6.6.10 复数基函数的 RI-MP2 方法
+        6.6.11 RI-MP2 Method with the Laplace Transformation: 6.6.11 采用拉普拉斯变换的 RI-MP2 方法
+        6.7 Attenuated MP2: 6.7 衰减 MP2（Attenuated MP2）
+        6.7.1 Overview: 6.7.1 概述
+        6.8 Size-Consistent Brillouin-Wigner Perturbation Theory: 6.8 尺寸一致的 Brillouin-Wigner 微扰理论
+        6.8.1 Introduction: 6.8.1 引言
+        6.8.2 BW-s2 Job Control: 6.8.2 BW-s2 作业控制
+        6.9 Maximum Physical Regularisation Perturbation Theory: 6.9 最大物理正则化微扰理论
+        6.9.1 Introduction: 6.9.1 引言
+        6.9.2 MPR-BWs2 Job Control: 6.9.2 MPR-BWs2 任务控制
+        6.10 Direct Random Phase Approximation Methods: 6.10 直接随机相位近似（direct Random Phase Approximation, dRPA）方法
+        6.10.1 Introduction: 6.10.1 引言
+        6.10.2 dRPA Job Control: 6.10.2 dRPA 作业控制
+        6.11 Resolution-of-Identity MP3: 6.11 恒等式分解（Resolution-of-Identity, RI）MP3
+        6.11.1 Introduction: 6.11.1 引言
+        6.11.2 RI-MP3 Job Control: 6.11.2 RI-MP3 作业控制
+        6.11.3 Examples: 6.11.3 示例
+        6.12 Coupled-Cluster Methods: 6.12 耦合簇方法（Coupled-Cluster Methods）
+        6.12.1 Introduction: 6.12.1 引言
+        6.12.2 Coupled Cluster Singles and Doubles (CCSD): 6.12.2 耦合簇单激发与双激发方法 (CCSD)
+        6.12.3 Coupled Cluster Singles, Doubles and Triples (CCSDT): 6.12.3 耦合簇单激发、双激发与三激发方法（CCSDT）
+        6.12.4 Second-Order Approximate Coupled Cluster Singles and Doubles (CC2): 6.12.4 二阶近似耦合簇单双激发模型 (CC2)
+        6.12.5 Stochastic CC2 and CCSD: 6.12.5 随机化 CC2 与 CCSD
+        6.12.6 Size-Consistent Brillouin-Wigner Second-Order Approximate Coupled Cluster Singles and Doubles (BWs-CC2): 6.12.6 尺寸一致 Brillouin-Wigner 二阶近似耦合簇单激发与双激发（BWs-CC2）
+        6.12.7 Quadratic Configuration Interaction (QCISD): 6.12.7 二次组态相互作用（QCISD）
+        6.12.8 Optimized Orbital Coupled Cluster Doubles (OD): 6.12.8 优化轨道耦合簇双激发（OD）
+        6.12.9 Quadratic Coupled Cluster Doubles (QCCD): 6.12.9 二次耦合簇 doubles（QCCD）
+        6.12.10 Resolution-of-the-Identity with CC (RI-CC): 6.12.10 耦合簇方法中的密度拟合（Resolution-of-the-Identity with CC, RI-CC）
+        6.12.11 Cholesky Decomposition with CC (CD-CC): 6.12.11 结合 Cholesky 分解的耦合簇方法（CD-CC）
+        6.12.12 Job Control Options: 6.12.12 作业控制选项
+        6.12.13 Examples: 6.12.13 示例
+        6.13 Non-Iterative Corrections to Coupled Cluster Energies: 6.13 耦合簇能量的非迭代修正
+        6.13.1 (T) Triples Corrections: 6.13.1 (T) 三激发修正（(T) Triples Corrections）
+        6.13.2 (2) Triples and Quadruples Corrections: 6.13.2 (2) 三激发与四激发修正（Triples and Quadruples Corrections）
+        6.13.3 (dT) and (fT) corrections: 6.13.3 (dT) 与 (fT) 修正
+        6.13.4 Job Control Options: 6.13.4 作业控制选项
+        6.13.5 Examples: 6.13.5 示例
+        6.14 Coupled Cluster Active Space Methods: 6.14 耦合簇活性空间方法（Coupled Cluster Active Space Methods）
+        6.14.1 Introduction: 6.14.1 引言
+        6.14.2 VOD and VOD(2) Methods: 6.14.2 VOD 与 VOD(2) 方法
+        6.14.3 VQCCD: 6.14.3 VQCCD
+        6.14.4 CCVB-SD: 6.14.4 CCVB-SD
+        6.14.5 Local Pair Models for Valence Correlations Beyond Doubles: 6.14.5 用于双激发以上价关联的局域对模型
+        6.14.6 Convergence Strategies and More Advanced Options: 6.14.6 收敛策略与更多高级选项
+        6.15 Alternative Orbitals for Correlated Calculations: 6.15 用于关联计算的其他轨道
+        6.15.1 Frozen Natural Orbitals: 6.15.1 冻结自然轨道
+        6.15.2 Non-Hartree-Fock Orbitals in Correlated Calculations: 6.15.2 相关计算中的非 Hartree-Fock 轨道
+        6.16 Analytic Gradients and Properties for Coupled-Cluster Methods: 6.16 耦合簇方法的解析梯度与性质
+        6.16.1 Overview: 6.16.1 概述
+        6.17 Memory Options and Parallelization of Coupled-Cluster Calculations: 6.17 耦合簇计算的内存选项与并行化
+        6.17.1 Introduction: 6.17.1 引言
+        6.17.2 Serial and Shared Memory Parallel Jobs: 6.17.2 串行与共享内存并行作业
+        6.17.3 Summary of Keywords: 6.17.3 关键字汇总
+        6.18 Using Single-Precision Arithmetic in Coupled-Cluster Calculations: 6.18 在耦合簇计算中使用单精度算术
+        6.18.1 Overview: 6.18.1 概述
+        6.19 Simplified Coupled-Cluster Methods Based on a Perfect-Pairing Active Space: 6.19 基于完美配对活性空间的简化耦合簇方法
+        6.19.1 Introduction: 6.19.1 引言
+        6.19.2 Perfect Pairing (PP): 6.19.2 完美配对（Perfect Pairing, PP）
+        6.19.3 Coupled Cluster Valence Bond (CCVB): 6.19.3 耦合簇价键（CCVB）
+        '6.19.4 Second-Order Correction to Perfect Pairing: PP(2)': 6.19.4 完美配对的二阶微扰修正：PP(2)
+        6.19.5 Other GVBMAN Methods and Options: 6.19.5 其他 GVBMAN 方法与选项
+        6.20 Complete Active Space Methods: 6.20 完全活性空间方法
+        6.20.1 Introduction & Theory: 6.20.1 简介与理论
+        6.20.2 CAS-CI and CASSCF Job Control Options: 6.20.2 CAS-CI 与 CASSCF 作业控制选项
+        6.21 Incremental Correlation Methods: 6.21 增量式关联方法（Incremental Correlation Methods）
+        6.21.1 Introduction: 6.21.1 引言
+        6.21.2 Theory: 6.21.2 理论
+        6.21.3 Job Control for iFCI: 6.21.3 iFCI 的任务控制
+        6.21.4 Example: 6.21.4 示例
+        6.22 Adaptive Sampling Configuration Interaction Method: 6.22 自适应采样组态相互作用方法
+        6.22.1 Introduction: 6.22.1 引言
+        6.22.2 Theory: 6.22.2 理论
+        6.22.3 ASCI Job Control: 6.22.3 ASCI 作业控制
+        6.23 Variational Two-Electron Reduced-Density-Matrix Methods: 6.23 变分两电子约化密度矩阵方法
+        6.23.1 Introduction: 6.23.1 引言
+        6.23.2 Theory: 6.23.2 理论
+        6.23.3 v2RDM Job Control: 6.23.3 v2RDM 作业控制
+        6.23.4 Examples: 6.23.4 示例
+        7.1 General Excited-State Features: 7.1 激发态通用功能
+        7.1.1 Overview: 7.1.1 概述
+        7.2 Uncorrelated Wave Function Methods: 7.2 非关联波函数方法
+        7.2.1 Introduction: 7.2.1 引言
+        7.2.2 Configuration Interaction with Single Substitutions (CIS): 7.2.2 单激发组态相互作用（Configuration Interaction with Single Substitutions, CIS）
+        7.2.3 CIS Methods with Extended Excitation Manifolds: 7.2.3 具有扩展激发流形的 CIS 方法
+        7.2.4 Job Control Options: 7.2.4 作业控制选项
+        7.3 Time-Dependent Density Functional Theory (TDDFT): 7.3 含时密度泛函理论（TDDFT）
+        7.3.1 Brief Introduction: 7.3.1 简要介绍
+        7.3.2 Charge-Transfer Metrics: 7.3.2 电荷转移度量
+        7.3.3 TDDFT within a Reduced Single-Excitation Space: 7.3.3 约化单激发空间内的 TDDFT
+        7.3.4 Spin-Flip TDDFT: 7.3.4 自旋翻转 TDDFT
+        7.3.5 Electron-Affinity (EA-) TDDFT: 7.3.5 电子亲和能（EA-）TDDFT
+        7.3.6 Job Control for TDDFT: 7.3.6 TDDFT 的任务控制
+        7.3.7 TDDFT + PCM for Excitation and Emission Energies in Solution: 7.3.7 溶液中的激发能与发射能：TDDFT + PCM
+        7.3.8 Analytic Excited-State Hessian in TDDFT: 7.3.8 TDDFT 中的解析激发态 Hessian
+        7.3.9 Electric Circular Dichroism: 7.3.9 电圆二色性
+        7.3.10 Spin-Orbit Coupling: 7.3.10 自旋-轨道耦合
+        7.3.11 CIS-1D and TDDFT-1D: 7.3.11 CIS-1D 与 TDDFT-1D
+        7.3.12 Examples: 7.3.12 示例
+        7.4 Real-Time SCF Methods: 7.4 实时 SCF 方法
+        7.4.1 Introduction & Theory: 7.4.1 引言与理论
+        7.4.2 Job Control: 7.4.2 作业控制
+        7.4.3 Calculation of Absorption Spectra: 7.4.3 吸收光谱的计算
+        7.4.4 Calculation of High-Harmonic Generation (HHG) Spectra: 7.4.4 高次谐波产生（HHG）光谱的计算
+        7.4.5 Real-Time Extension of TAO-DFT (RT-TAO): 7.4.5 TAO-DFT 的实时扩展（RT-TAO）
+        7.5 Non-Orthogonal Configuration Interaction (NOCI): 7.5 非正交组态相互作用（NOCI）
+        7.5.1 Introduction: 7.5.1 引言
+        7.5.2 Job Control: 7.5.2 任务控制
+        7.6 Non-Orthogonal CIS and Static Exchange (STEX): 7.6 非正交 CIS 与静态交换（STEX）
+        7.6.1 Non-Orthogonal CIS (NOCIS): 7.6.1 非正交 CIS（NOCIS）
+        7.6.2 Static Exchange: 7.6.2 静态交换（Static Exchange, STEX）
+        7.6.3 One-Center NOCIS (1C-NOCIS): 7.6.3 单中心 NOCIS（1C-NOCIS）
+        7.6.4 Job Control: 7.6.4 作业控制
+        7.7 Restricted Open-Shell and Δ SCF Methods: 7.7 限制开壳层与 $\Delta$SCF 方法
+        7.7.1 Introduction: 7.7.1 引言
+        7.7.2 Maximum Overlap Method: 7.7.2 最大重叠法
+        7.7.3 Approximate Spin Purification: 7.7.3 近似自旋纯化
+        7.7.4 Restricted Open-Shell Kohn-Sham Method: 7.7.4 受限开壳层 Kohn-Sham 方法
+        7.7.5 Squared-Gradient Minimization: 7.7.5 梯度平方极小化
+        7.7.6 Freeze-and-Release Calculations: 7.7.6 冻结-释放（Freeze-and-Release）计算
+        7.7.7 ALMO-SGM Method: 7.7.7 ALMO-SGM 方法
+        7.7.8 State-Targeted Energy Projection: 7.7.8 态靶向能量投影（State-Targeted Energy Projection）
+        7.7.9 Non-Equilibrium Solvation for ROKS and Δ SCF: 7.7.9 ROKS 与 $\Delta$SCF 的非平衡溶剂化
+        7.7.10 Δ SCF Driver: 7.7.10 Δ SCF 驱动
+        '7.8 Correlated Excited State Methods: The CIS(D) Family': 7.8 关联激发态方法：CIS(D) 系列
+        7.8.1 Introduction: 7.8.1 引言
+        7.8.2 CIS(D) Theory: 7.8.2 CIS(D) 理论
+        7.8.3 Resolution of the Identity CIS(D) Methods: 7.8.3 恒等式分解 CIS(D) 方法
+        7.8.4 SOS-CIS(D) Model: 7.8.4 SOS-CIS(D) 模型
+        7.8.5 SOS-CIS(D 0 ) Model: 7.8.5 SOS-CIS(D${}_{0}$) 模型
+        7.8.6 CIS(D) Job Control and Examples: 7.8.6 CIS(D) 作业控制与示例
+        '7.8.7 RI-CIS(D), SOS-CIS(D), and SOS-CIS(D 0 ): Job Controls and Examples': 7.8.7 RI-CIS(D)、SOS-CIS(D) 与 SOS-CIS(D 0)：作业控制与示例
+        7.9 Coupled-Cluster Excited-State and Open-Shell Methods: 7.9 耦合簇（Coupled-Cluster）激发态与开壳层方法
+        7.9.1 Introduction: 7.9.1 引言
+        7.9.2 Excited States via EOM-EE-CCSD and EOM-CCSDT: 7.9.2 通过 EOM-EE-CCSD 与 EOM-CCSDT 计算激发态
+        7.9.3 EOM-XX-CCSD and CI Suite of Methods: 7.9.3 EOM-XX-CCSD 与 CI 方法系列
+        7.9.4 EOM-XX-CC2: 7.9.4 EOM-XX-CC2
+        7.9.5 Further approximate EOM-CC Methods: 7.9.5 更多近似 EOM-CC 方法
+        7.9.6 Spin-Flip Methods for Di- and Triradicals: 7.9.6 用于双自由基与三自由基的自旋翻转方法
+        7.9.7 EOM-DIP-CCSD: 7.9.7 EOM-DIP-CCSD
+        7.9.8 EOM-DEA-CCSD: 7.9.8 EOM-DEA-CCSD
+        7.9.9 EOM-CC Calculations of Core-Level States: 7.9.9 核心能级态的 EOM-CC 计算
+        7.9.10 EOM-CC Calculations of Metastable States: 7.9.10 亚稳态的 EOM-CC 计算
+        7.9.11 Auger Spectra and Lifetimes of Core-Level States: 7.9.11 俄歇光谱与核心能级态寿命
+        7.9.12 Partial Auger Decay Widths from Complex-Variable Calculations: 7.9.12 基于复变量计算的俄歇部分衰变宽度
+        7.9.13 Charge Stabilization for EOM-DIP with Unstable References and Other Methods: 7.9.13 针对不稳定参考态及其他方法的 EOM-DIP 电荷稳定化
+        7.9.14 Frozen Natural Orbitals in CC, IP-CC, and SF-CC Calculations: 7.9.14 CC、IP-CC 与 SF-CC 计算中的冻结自然轨道
+        7.9.15 Single-Precision Arithmetic in EOM-CC Calculations: 7.9.15 EOM-CC 计算中的单精度算术
+        7.9.16 EOM-CC Guess Formation and Iterative Diagonalization: 7.9.16 EOM-CC 初始猜测构建与迭代对角化
+        7.9.17 Using Projectors for Computing High-Lying EOM-CC Ctates: 7.9.17 使用投影算符计算高激发能的 EOM-CC 态
+        7.9.18 EOM-CC Job Control: 7.9.18 EOM-CC 作业控制
+        7.9.19 Examples: 7.9.19 示例
+        7.9.20 Non-Hartree–Fock Orbitals in EOM Calculations: 7.9.20 EOM 计算中的非 Hartree–Fock 轨道
+        7.9.21 Analytic Gradients and Properties for CCSD and EOM-XX-CCSD: 7.9.21 CCSD 与 EOM-XX-CCSD 的解析梯度及性质
+        7.9.22 EOM-CC Optimization and Properties Job Control: 7.9.22 EOM-CC 优化与性质作业控制
+        7.9.23 EOM-CCSDT for High Accuracy (CCMAN2 only): 7.9.23 用于高精度计算的 EOM-CCSDT（仅限 CCMAN2）
+        7.9.24 EOM(2,3) Methods for Higher-Accuracy and Problematic Situations (CCMAN only): 7.9.24 用于高精度及疑难情形的 EOM(2,3) 方法（仅限 CCMAN）
+        '7.9.25 Active-Space EOM-CC(2,3): Tricks of the Trade (CCMAN only)': 7.9.25 活性空间 EOM-CC(2,3)：实战技巧（仅限 CCMAN）
+        7.9.26 Job Control for EOM-CC(2,3): 7.9.26 EOM-CC(2,3) 作业控制
+        7.9.27 Non-Iterative Triples Corrections to EOM-CCSD and CCSD: 7.9.27 EOM-CCSD 与 CCSD 的非迭代三激发修正
+        7.9.28 Potential Energy Surface Crossing Minimization: 7.9.28 势能面交叉最小化
+        7.9.29 Dyson Orbitals for Ionized or Attached States within EOM-CCSD: 7.9.29 EOM-CCSD 框架下电离态或附着态的戴森轨道（Dyson Orbitals）
+        7.9.30 Interpretation of EOM/CI Wave Functions and Orbital Numbering: 7.9.30 EOM/CI 波函数的解释与轨道编号
+        7.9.31 Interface with OpenFermion Package for Quantum Computing: 7.9.31 与量子计算软件包 OpenFermion 的接口
+        7.10 The ADC( n ) Family of Correlated Excited-State Methods: 7.10 ADC($n$) 系列关联激发态方法
+        7.10.1 Introduction: 7.10.1 引言
+        7.10.2 The Algebraic Diagrammatic Construction (ADC) Scheme: 7.10.2 代数图解构造（ADC）方案
+        7.10.3 IP- and EA-ADC: 7.10.3 IP- 与 EA-ADC
+        7.10.4 Resolution of the Identity ADC Methods: 7.10.4 恒等分辨（Resolution of the Identity）ADC 方法
+        7.10.5 Spin Opposite Scaling ADC(2) Models: 7.10.5 自旋相反缩放 ADC(2) 模型
+        7.10.6 Regularised Excited States with BWs-ADC: 7.10.6 正则化激发态与 BWs-ADC
+        7.10.7 Core-Excitation ADC Methods: 7.10.7 核激发 ADC 方法（Core-Excitation ADC Methods）
+        7.10.8 Spin-Flip ADC Methods: 7.10.8 自旋翻转 ADC 方法（Spin-Flip ADC Methods）
+        7.10.9 CAP/ADC Methods for the Description of Metastable Electronic States: 7.10.9 用于描述亚稳电子态的 CAP/ADC 方法
+        7.10.10 Properties and Visualization: 7.10.10 性质与可视化
+        7.10.11 Excited States in Solution with ADC/SS-PCM: 7.10.11 采用 ADC/SS-PCM 计算溶液中的激发态
+        '7.10.12 Frozen-Density Embedding: FDE-ADC methods': 7.10.12 冻结密度嵌入：FDE-ADC 方法
+        7.10.13 ADC Job Control: 7.10.13 ADC 作业控制
+        7.10.14 Examples: 7.10.14 示例
+        7.11 Restricted Active Space Spin-Flip (RAS-SF) and Configuration Interaction (RAS-CI): 7.11 受限活性空间自旋翻转（RAS-SF）与组态相互作用（RAS-CI）
+        7.11.1 Introduction: 7.11.1 引言
+        7.11.2 The Restricted Active Space (RAS) Scheme: 7.11.2 受限活性空间（RAS）方案
+        7.11.3 Second-Order Perturbative Corrections to RAS-CI: 7.11.3 RAS-CI 的二阶微扰修正
+        7.11.4 Short-Range Density Functional Correlation within RAS-CI: 7.11.4 RAS-CI 中的短程密度泛函关联
+        7.11.5 Excitonic Analysis of the RAS-CI Wave Function: 7.11.5 RAS-CI 波函数的激子分析
+        7.11.6 Diabatization of RAS-CI Eigenstates: 7.11.6 RAS-CI 本征态的非绝热化（Diabatization）
+        7.11.7 Spin-flip CAS with Perturbative External Singles Corrections (casman): 7.11.7 带微扰外部单激发修正的自旋翻转 CAS（casman）
+        7.11.8 Direct RAS-nSF-IP/EA (librassf): 7.11.8 直接 RAS-nSF-IP/EA（librassf）
+        7.11.9 librassf Effective Hamiltonian Analysis: 7.11.9 librassf 有效哈密顿量分析
+        7.11.10 State-Specific PCM with RAS-SF: 7.11.10 面向 RAS-SF 的态特定 PCM
+        7.11.11 Job Control for the RASCI1 Implementation: 7.11.11 RASCI1 实现的作业控制
+        7.11.12 Job Control Options for RASCI2: 7.11.12 RASCI2 的任务控制选项
+        7.11.13 Job Control Options for casman: 7.11.13 casman 的作业控制选项
+        7.11.14 Job Control Options for librassf: 7.11.14 librassf 的作业控制选项
+        7.11.15 Examples: 7.11.15 示例
+        7.12 Core Ionization Energies and Core-Excited States: 7.12 核电离能与核激发态
+        7.12.1 Many-Body Methods for Core-Excited States: 7.12.1 面向核激发态的多体方法
+        7.12.2 Calculations of X-Ray Spectroscopy with TDDFT: 7.12.2 使用 TDDFT 的 X 射线光谱计算
+        7.12.3 Methods Based on Kohn-Sham Eigenvalues: 7.12.3 基于 Kohn-Sham 本征值的方法
+        7.12.4 Calculations of Core Excitations with ROKS: 7.12.4 使用 ROKS 计算核心激发
+        7.13 Visualization of Excited States: 7.13 激发态的可视化
+        7.13.1 Introduction: 7.13.1 引言
+        7.13.2 Attachment/Detachment Density Analysis: 7.13.2 附件/脱附密度分析（Attachment/Detachment Density Analysis）
+        7.13.3 Natural Transition Orbitals: 7.13.3 自然跃迁轨道（NTO）
+        8.1 Introduction to Basis Sets: 8.1 基组导论
+        8.1.1 Overview: 8.1.1 概述
+        8.2 Built-In Basis Sets: 8.2 内置基组
+        8.2.1 Overview: 8.2.1 概述
+        8.3 Basis Set Symbolic Representation: 8.3 基组符号化表示
+        8.3.1 Symbolic Representation Overview: 8.3.1 基组符号表示概览
+        8.3.2 Customization: 8.3.2 自定义
+        8.4 User-Defined Basis Sets ($basis): 8.4 用户自定义基组（User-Defined Basis Sets，$basis）
+        8.4.1 Introduction: 8.4.1 引言
+        8.4.2 Job Control: 8.4.2 任务控制
+        8.4.3 Format for User-Defined Basis Sets: 8.4.3 用户自定义基组（User-Defined Basis Sets）的格式
+        8.5 Mixed Basis Sets: 8.5 混合基组
+        8.5.1 Overview: 8.5.1 概述
+        8.6 Dual Basis Sets: 8.6 双基组（Dual Basis Sets）
+        8.6.1 Overview: 8.6.1 概述
+        8.7 Complex Basis Sets: 8.7 复数基组
+        8.7.1 Overview: 8.7.1 概述
+        8.8 Auxiliary Basis Sets for RI (Density Fitting): 8.8 用于 RI（密度拟合）的辅助基组
+        8.8.1 Overview: 8.8.1 概述
+        8.9 Ghost Atoms and Basis Set Superposition Error: 8.9 鬼原子与基组重叠误差
+        8.9.1 Overview: 8.9.1 概述
+        8.10 Effective Core Potentials (ECPs): 8.10 有效核心势（Effective Core Potentials, ECPs）
+        8.10.1 Introduction & Overview: 8.10.1 简介与概述
+        8.10.2 ECP Fitting: 8.10.2 ECP 拟合
+        8.10.3 Built-In ECPs: 8.10.3 内置 ECP
+        8.10.4 A Brief Guide to Q-Chem’s Built-In ECPs: 8.10.4 **Q-Chem** 内置有效核势（ECP）简明指南
+        8.10.5 User-Defined ECPs: 8.10.5 用户自定义 ECP
+        8.10.6 ECPs and Electron Correlation: 8.10.6 有效核势（ECP）与电子相关
+        8.10.7 Forces and Vibrational Frequencies with ECPs: 8.10.7 含 ECP 的力与振动频率
+        9.1 Equilibrium Geometries and Transition-State Structures with Q-Chem: 9.1 使用 Q-Chem 进行平衡几何结构与过渡态结构优化
+        9.1.1 Introduction: 9.1.1 引言
+        9.1.2 Theoretical Background: 9.1.2 理论背景
+        9.1.3 Eigenvector-Following (EF) Algorithm: 9.1.3 特征矢量跟随（EF）算法
+        9.1.4 Delocalized Internal Coordinates: 9.1.4 离域内坐标
+        9.1.5 Constrained Optimization: 9.1.5 约束优化
+        9.1.6 Constrained Optimization in Delocalized Internal Coordinates: 9.1.6 离域内坐标下的约束优化
+        9.1.7 GDIIS Algorithm: 9.1.7 GDIIS 算法
+        9.2 Geometry Optimization Job Controls: 9.2 几何优化作业控制（Geometry Optimization Job Controls）
+        9.2.1 Job Control Overview: 9.2.1 任务控制概述
+        9.2.2 Optimize Job Control: 9.2.2 Optimize（优化）作业控制
+        9.2.3 Hessian-Free Characterization of Stationary Points: 9.2.3 无需 Hessian 的驻点特征判定
+        9.2.4 Optimize Job Examples: 9.2.4 Optimize 作业示例
+        9.2.5 Libopt3 Job Control: 9.2.5 Libopt3 作业控制
+        9.2.6 Libopt3 Job Examples: 9.2.6 Libopt3 作业示例
+        9.3 Improved Algorithms for Transition-Structure Optimization: 9.3 改进的过渡结构优化算法（Improved Algorithms for Transition-Structure Optimization）
+        9.3.1 Introduction: 9.3.1 引言
+        9.3.2 Freezing String Method: 9.3.2 冻结弦方法（Freezing String Method）
+        9.3.3 Hessian-Free Transition-State Search: 9.3.3 无 Hessian 过渡态搜索
+        9.4 Constrained Optimization: 9.4 约束优化
+        9.4.1 Introduction: 9.4.1 引言
+        9.4.2 Geometry Optimization with General Constraints: 9.4.2 带一般约束的几何优化
+        9.4.3 Frozen Atoms: 9.4.3 冻结原子（Frozen Atoms）
+        9.4.4 Dummy Atoms: 9.4.4 虚拟原子（Dummy Atoms）
+        9.4.5 Dummy Atom Placement in Dihedral Constraints: 9.4.5 二面角约束中虚拟原子的放置
+        9.4.6 Additional Atom Connectivity: 9.4.6 附加原子连接性
+        9.4.7 Atomic Confining Potentials as Alternatives to Constrained Optimization: 9.4.7 原子约束势作为约束优化的替代方案
+        9.5 Application of Pressure and Forces: 9.5 施加压力与外力
+        9.5.1 Application of External Forces: 9.5.1 施加外力
+        9.5.2 Application of Pressure: 9.5.2 压强的施加
+        9.6 Potential Energy Scans: 9.6 势能面扫描（Potential Energy Scans）
+        9.6.1 Overview: 9.6.1 概述
+        9.7 Intrinsic Reaction Coordinate: 9.7 内禀反应坐标
+        9.7.1 Overview: 9.7.1 概述
+        9.8 Nonadiabatic Couplings and Optimization of Minimum-Energy Crossing Points: 9.8 非绝热耦合与最小能量交叉点的优化
+        9.8.1 Nonadiabatic Couplings: 9.8.1 非绝热耦合
+        9.8.2 Job Control and Examples: 9.8.2 作业控制与示例
+        9.8.3 Minimum-Energy Crossing Points: 9.8.3 最小能量交叉点
+        9.8.4 Job Control and Examples: 9.8.4 作业控制与示例
+        9.8.5 State-Tracking Algorithm: 9.8.5 态跟踪算法（State-Tracking Algorithm）
+        9.9 Ab Initio Molecular Dynamics: 9.9 从头算分子动力学（Ab Initio Molecular Dynamics）
+        9.9.1 Introduction: 9.9.1 简介
+        9.9.2 Overview and Basic Job Control: 9.9.2 概述与基本任务控制
+        9.9.3 Additional Job Control and Examples: 9.9.3 附加任务控制与示例
+        9.9.4 Thermostats: 9.9.4 恒温器
+        9.9.5 Vibrational Spectra: 9.9.5 振动光谱
+        9.9.6 Quasi-Classical Molecular Dynamics: 9.9.6 准经典分子动力学
+        9.9.7 Fewest-Switches Surface Hopping: 9.9.7 最少跳跃面跳跃（Fewest-Switches Surface Hopping）
+        9.9.8 Meyer-Miller Nonadiabatic Dynamics: 9.9.8 Meyer-Miller 非绝热动力学
+        9.10 Ab Initio Path Integrals: 9.10 从头算路径积分（Ab Initio Path Integrals）
+        9.10.1 Theory: 9.10.1 理论
+        9.10.2 Job Control and Examples: 9.10.2 作业控制与示例
+        9.11 Ab Initio Molecular Dynamics with Complex Absorbing Potentials: 9.11 采用复吸收势的 *Ab Initio* 分子动力学
+        9.11.1 Introduction: 9.11.1 引言
+        9.11.2 Finding Electronic Resonance States of Temporary Anions: 9.11.2 寻找临时阴离子的电子共振态
+        9.11.3 CAP-AIMD Job Control and Examples: 9.11.3 CAP-AIMD 任务控制与示例
+        9.12 Optimizing the Structure of Clusters: 9.12 团簇结构的优化
+        9.12.1 Introduction: 9.12.1 引言
+        9.12.2 Cluster Optimization Job Control: 9.12.2 团簇优化作业控制
+        10.1 Introduction: 10.1 引言
+        10.1.1 Overview: 10.1.1 概述
+        10.2 Wave Function Analysis: 10.2 波函数分析
+        10.2.1 Introduction: 10.2.1 引言
+        10.2.2 Atomic Partial Charges: 10.2.2 原子部分电荷
+        10.2.3 Multipole Moments: 10.2.3 多极矩（Multipole Moments）
+        10.2.4 Population of Effectively Unpaired Electrons: 10.2.4 有效未成对电子布居数
+        10.2.5 Symmetry Decomposition: 10.2.5 对称性分解
+        10.2.6 Localized Orbital Bonding Analysis: 10.2.6 定域轨道成键分析
+        10.2.7 Oxidation State Localized Orbitals: 10.2.7 氧化态定域轨道
+        10.2.8 Intrinsic Atomic Orbitals: 10.2.8 本征原子轨道（Intrinsic Atomic Orbitals）
+        10.2.9 Broken Bond Orbitals: 10.2.9 断键轨道（Broken Bond Orbitals）
+        10.2.10 Atomic dipoles and quadrupoles: 10.2.10 原子偶极矩与四极矩
+        10.2.11 Excited-State Analysis for CIS and TDDFT: 10.2.11 CIS 与 TDDFT 的激发态分析
+        10.2.12 General Excited-State Analysis: 10.2.12 通用激发态分析
+        10.2.13 Earth Mover’s Distance Analysis: 10.2.13 推土机距离（Earth Mover's Distance）分析
+        10.3 Orbital Analysis: 10.3 轨道分析
+        10.3.1 Interface to the NBO Package: 10.3.1 NBO 程序包接口
+        10.3.2 Orbital Localization: 10.3.2 轨道定域化
+        10.3.3 Donor–Acceptor Orbital Overlaps: 10.3.3 给体–受体轨道重叠
+        10.3.4 Occupied–Virtual Orbitals for Chemical Valence Analysis: 10.3.4 用于化学价键分析的占据–虚轨道（Occupied–Virtual Orbitals for Chemical Valence Analysis）
+        10.4 Density Analysis: 10.4 密度分析
+        10.4.1 Spin and Charge Densities at the Nuclei: 10.4.1 核处的自旋密度与电荷密度
+        10.4.2 Atoms in Molecules: 10.4.2 分子中的原子
+        10.5 Visualizing and Plotting Volumetric Quantities: 10.5 体数据的可视化与绘图
+        10.5.1 Introduction: 10.5.1 引言
+        10.5.2 Visualizing Orbitals Using MolDen and MacMolPlt: 10.5.2 使用 MolDen 和 MacMolPlt 可视化轨道
+        10.5.3 Visualization of Natural Transition Orbitals: 10.5.3 自然跃迁轨道的可视化
+        10.5.4 Generation of Volumetric Data Using $plots: 10.5.4 使用 *$plots* 生成体数据（Volumetric Data）
+        10.5.5 Direct Generation of “Cube” Files: 10.5.5 直接生成“Cube”文件
+        10.5.6 Noncovalent Interactions (NCI) Plots: 10.5.6 非共价相互作用（NCI）图
+        10.5.7 Electron Localization Function: 10.5.7 电子定域函数
+        10.5.8 Electrostatic Potentials: 10.5.8 静电势
+        10.6 Electric Fields: 10.6 电场
+        10.6.1 Overview: 10.6.1 概述
+        10.7 Finite-Difference Properties: 10.7 有限差分性质
+        10.8 Harmonic Vibrational Analysis: 10.8 谐波振动分析
+        10.8.1 Overview: 10.8.1 概述
+        10.8.2 Isotopic Substitutions and Changes in T and P: 10.8.2 同位素取代以及 $T$ 和 $P$ 的变化
+        10.8.3 Treatment of Low-Frequency Vibrational Modes: 10.8.3 低频振动模式的处理
+        10.8.4 Partial Hessian Vibrational Analysis: 10.8.4 部分 Hessian 振动分析
+        10.8.5 Localized Mode Vibrational Analysis: 10.8.5 定域模式振动分析
+        10.8.6 Resonance Raman intensities: 10.8.6 共振拉曼强度
+        10.8.7 Vibrationally-Resolved Electronic and Resonance Raman Spectra: 10.8.7 振动分辨的电子光谱与共振拉曼光谱
+        10.9 Anharmonic Vibrational Frequencies: 10.9 非谐振动频率
+        10.9.1 Introduction: 10.9.1 引言
+        10.9.2 Vibration Configuration Interaction Theory: 10.9.2 振动组态相互作用理论
+        10.9.3 Vibrational Perturbation Theory: 10.9.3 振动微扰理论
+        10.9.4 Transition-Optimized Shifted Hermite Theory: 10.9.4 跃迁优化平移 Hermite 理论
+        10.9.5 Job Control: 10.9.5 作业控制（Job Control）
+        10.10 Linear-Scaling Computation of Electric Properties: 10.10 电学性质的线性标度计算
+        10.10.1 Introduction: 10.10.1 引言
+        10.10.2 $fdpfreq Input Section: 10.10.2 $fdpfreq 输入段
+        10.10.3 Job Control for the MOProp Module: 10.10.3 MOProp 模块的作业控制
+        10.10.4 Examples: 10.10.4 示例
+        10.11 NMR and Other Magnetic Properties: 10.11 NMR 与其他磁性质
+        10.11.1 Introduction: 10.11.1 介绍
+        10.11.2 NMR Chemical Shifts and J-Couplings: 10.11.2 NMR 化学位移与 J-耦合
+        10.11.3 Linear-Scaling NMR Chemical Shift Calculations: 10.11.3 线性标度 NMR 化学位移计算
+        10.11.4 Additional Magnetic Field-Related Properties: 10.11.4 其他与磁场相关的性质
+        10.12 Vibrational Circular Dichroism (VCD): 10.12 振动圆二色性（Vibrational Circular Dichroism, VCD）
+        10.13 Finite-Field Calculation of (Hyper)Polarizabilities: 10.13 (超)极化率的有限场计算
+        10.13.1 Introduction: 10.13.1 引言
+        10.13.2 Numerical Calculation of Static Polarizabilities: 10.13.2 静态极化率的数值计算
+        10.13.3 Romberg Finite-Field Procedure: 10.13.3 Romberg 有限场方法
+        10.14 General Response Theory: 10.14 广义响应理论
+        10.14.1 Introduction: 10.14.1 引言
+        10.14.2 Job Control: 10.14.2 任务控制
+        10.14.3 $response Section and Operator Specification: 10.14.3 $response 节与算符指定
+        10.14.4 Examples Including $response Section: 10.14.4 包含 $response$ 段的示例
+        10.15 Electronic Couplings for Electron- and Energy Transfer: 10.15 电子转移与能量转移的电子耦合
+        10.15.1 Eigenstate-Based Methods: 10.15.1 基于本征态的方法
+        10.15.2 Diabatic-State-Based Methods: 10.15.2 基于绝热态（Diabatic-State-Based）的方法
+        10.15.3 Fragment-Based Methods for Electronic Coupling: 10.15.3 用于电子耦合的基于片段的方法（Fragment-Based Methods for Electronic Coupling）
+        11.1 Introduction: 11.1 引言
+        11.1.1 Overview: 11.1.1 概述
+        11.2 Chemical Solvent Models: 11.2 化学溶剂模型
+        11.2.1 Introduction: 11.2.1 引言
+        11.2.2 Kirkwood-Onsager Multipole Expansion Method: 11.2.2 Kirkwood-Onsager 多极展开方法
+        11.2.3 Polarizable Continuum Models: 11.2.3 极化连续介质模型
+        11.2.4 PCM Job Control: 11.2.4 PCM 任务控制
+        11.2.5 Linear-Scaling QM/MM/PCM Calculations: 11.2.5 线性标度 QM/MM/PCM 计算
+        11.2.6 Isodensity Implementation of SS(V)PE: 11.2.6 SS(V)PE 的等密度实现
+        11.2.7 Composite Method for Implicit Representation of Solvent (CMIRS): 11.2.7 溶剂隐式表示组合法（CMIRS）
+        11.2.8 COSMO: 11.2.8 COSMO
+        11.2.9 SM x Models: 11.2.9 SM$x$ 模型
+        11.2.10 Langevin Dipoles Model: 11.2.10 Langevin 偶极子模型
+        11.2.11 Poisson Boundary Conditions: 11.2.11 泊松边界条件（Poisson Boundary Conditions）
+        11.3 Stand-Alone QM/MM Calculations: 11.3 独立的 QM/MM 计算
+        11.3.1 Available QM/MM Methods and Features: 11.3.1 可用的 QM/MM 方法与功能
+        11.3.2 Using the Stand-Alone QM/MM Features: 11.3.2 使用独立的 QM/MM 功能
+        11.3.3 Additional Job Control Variables: 11.3.3 附加作业控制变量
+        11.3.4 QM/MM Examples: 11.3.4 QM/MM 示例
+        11.4 Q-Chem/Charmm Interface: 11.4 Q-Chem/Charmm 接口
+        11.5 Effective Fragment Potential Method: 11.5 有效片段势方法（Effective Fragment Potential Method）
+        11.5.1 Introduction: 11.5.1 引言
+        11.5.2 Theoretical Background: 11.5.2 理论背景
+        11.5.3 Excited-State Calculations with EFP: 11.5.3 结合 EFP 的激发态计算
+        11.5.4 Pairwise Fragment Energy Decomposition: 11.5.4 成对片段能量分解
+        '11.5.5 Extension to Macromolecules: Fragmented EFP Scheme': 11.5.5 大分子扩展：碎片化 EFP 方案
+        11.5.6 QM/MM models within EFP umbrella: 11.5.6 EFP 框架下的 QM/MM 模型
+        11.5.7 Running EFP Jobs: 11.5.7 运行 EFP 任务
+        11.5.8 Debugging EFP Jobs: 11.5.8 EFP 作业的调试
+        11.5.9 Library of Fragments: 11.5.9 片段库（Library of Fragments）
+        11.5.10 Calculation of User-Defined EFP Potentials: 11.5.10 用户自定义 EFP 势的计算
+        11.5.11 fEFP Input Structure: 11.5.11 fEFP 输入结构
+        11.5.12 Input Keywords: 11.5.12 输入关键字
+        11.5.13 Examples: 11.5.13 示例
+        11.6 Projection-Based Density Embedding: 11.6 基于投影的电子密度嵌入（Projection-Based Density Embedding）
+        11.6.1 Introduction and Theory: 11.6.1 引言与理论
+        11.6.2 Job Control for Embedding Calculations: 11.6.2 嵌入计算的作业控制
+        11.6.3 External Interface for Projection-Based Embedding: 11.6.3 基于投影的嵌入外部接口
+        11.6.4 Iterative Approach for Supermolecular Properties: 11.6.4 超分子性质的迭代方法
+        11.6.5 Previous Implementation Based on “EmbedMan”: 11.6.5 基于「EmbedMan」的先前实现
+        11.7 Frozen-Density Embedding Theory: 11.7 冻结密度嵌入理论（Frozen-Density Embedding Theory, FDE）
+        11.7.1 Introduction: 11.7.1 引言
+        11.7.2 FDE-Man: 11.7.2 FDE-Man
+        11.7.3 FDE-Man Job Control: 11.7.3 FDE-Man 作业控制
+        11.7.4 Single-Fragment Calculations: 11.7.4 单片段计算
+        11.7.5 Read an External Potential From a File: 11.7.5 从文件读取外部势
+        11.7.6 Examples: 11.7.6 示例
+        11.7.7 FDE-Man output: 11.7.7 FDE-Man 输出
+        11.8 Polarizable Embedding Model: 11.8 可极化嵌入模型（Polarizable Embedding Model）
+        11.8.1 Introduction: 11.8.1 简介
+        11.8.2 Job Control: 11.8.2 作业控制
+        11.8.3 Interpreting the Output: 11.8.3 解读输出结果
+        11.9 Atomic Interactions Represented By Empirical Dispersion (AIRBED): 11.9 基于经验色散表征的原子相互作用（AIRBED）
+        11.9.1 Introduction: 11.9.1 引言
+        11.9.2 AIRBED Job Control: 11.9.2 AIRBED 作业控制
+        12.1 Introduction: 12.1 引言
+        12.1.1 Overview: 12.1.1 概述
+        12.2 Specifying Fragments in the $molecule Section: 12.2 在 $molecule 段中指定片段（Fragments）
+        12.2.1 Overview: 12.2.1 概述
+        12.3 FRAGMO Initial Guess for SCF Methods: 12.3 SCF 方法的 FRAGMO 初始猜测（Initial Guess）
+        12.3.1 Overview: 12.3.1 概述
+        12.4 Automated Evaluation of Counterpoise Correction: 12.4 Counterpoise 校正的自动化计算
+        12.4.1 Overview: 12.4.1 概述
+        12.5 Locally-Projected SCF and First-Generation ALMO-EDA Methods: 12.5 局域投影 SCF 与第一代 ALMO-EDA 方法
+        12.5.1 Locally-Projected SCF: 12.5.1 局域投影 SCF
+        12.5.2 Roothaan-Step Corrections and FRAGMO Initial Guess: 12.5.2 Roothaan 步修正与 FRAGMO 初始猜测
+        12.5.3 First-Generation ALMO-EDA and Perturbative Charge-Transfer Analysis: 12.5.3 第一代 ALMO-EDA 与微扰电荷转移分析
+        12.5.4 Perturbative Charge-Transfer Analysis Usinig Complementary Occupied/Virtual Pairs: 12.5.4 使用互补占据/虚轨道对的微扰电荷转移分析
+        12.5.5 Job Control Options: 12.5.5 作业控制选项
+        12.6 Second-Generation ALMO-EDA Method: 12.6 第二代 ALMO-EDA 方法
+        12.6.1 Introduction: 12.6.1 引言
+        12.6.2 Generalized SCF-MI Calculations and Additional Features: 12.6.2 广义 SCF-MI 计算及附加功能
+        12.6.3 Polarization Energy with a Well-Defined Basis Set Limit: 12.6.3 具有明确基组极限的极化能
+        12.6.4 Further Decomposition of the Frozen Energy: 12.6.4 冻结能的进一步分解
+        12.6.5 Job Control for EDA2: 12.6.5 EDA2 的作业控制
+        12.6.6 ALMO-EDA with Implicit Solvent Models: 12.6.6 结合隐式溶剂模型的 ALMO-EDA
+        12.6.7 ALMO-EDA with Non-Aufbau Electronic Configurations: 12.6.7 采用非 *Aufbau*（非构造原理）电子组态的 ALMO-EDA
+        12.6.8 ALMO-EDA with Non-Perturbative Polarization and Charge Transfer Analysis: 12.6.8 采用非微扰极化与电荷转移分析的 ALMO-EDA
+        12.6.9 Visualization Tools Associated with ALMO-EDA: 12.6.9 与 ALMO-EDA 相关的可视化工具
+        12.7 Additional ALMO-EDA Capabilities: 12.7 ALMO-EDA 的附加功能
+        12.7.1 ALMO-EDA for the MP2 Method: 12.7.1 面向 MP2 方法的 ALMO-EDA
+        12.7.2 ALMO-EDA for Bonded Interactions: 12.7.2 用于成键相互作用的 ALMO-EDA
+        12.7.3 Adiabatic ALMO-EDA and VFB Analysis: 12.7.3 绝热 ALMO-EDA 与 VFB 分析
+        12.7.4 ALMO Force Decomposition Analysis: 12.7.4 ALMO 受力分解分析
+        12.7.5 ALMO-EDA for Excited States: 12.7.5 激发态的 ALMO-EDA
+        12.8 The Explicit Polarization (XPol) Method: 12.8 显式极化（XPol）方法
+        12.8.1 Theory: 12.8.1 理论
+        12.8.2 Supplementing XPol with Empirical Potentials: 12.8.2 用经验势补充 XPol
+        12.8.3 Job Control Variables for XPol: 12.8.3 XPol 的作业控制变量
+        12.8.4 Examples: 12.8.4 示例
+        12.9 Symmetry-Adapted Perturbation Theory (SAPT): 12.9 对称适配微扰理论 (SAPT)
+        12.9.1 Theory: 12.9.1 理论
+        12.9.2 Job Control for SAPT Calculations: 12.9.2 SAPT 计算的任务控制
+        12.10 The XPol+SAPT (XSAPT) Method: 12.10 XPol+SAPT（XSAPT）方法
+        12.10.1 Introduction: 12.10.1 引言
+        12.10.2 Theory: 12.10.2 理论
+        12.10.3 Dispersion Models: 12.10.3 色散模型（Dispersion Models）
+        12.10.4 Running an XSAPT+MBD Job: 12.10.4 运行 XSAPT+MBD 计算任务
+        12.11 Energy Decomposition Analysis Based on SAPT/cDFT: 12.11 基于 SAPT/cDFT 的能量分解分析
+        12.11.1 Overview: 12.11.1 概述
+        12.12 The Many-Body Expansion Method: 12.12 多体展开方法（Many-Body Expansion Method）
+        12.12.1 Introduction: 12.12.1 引言
+        12.12.2 Job Control: 12.12.2 作业控制
+        12.13 The Generalized Many-Body Expansion Method: 12.13 广义多体展开方法（The Generalized Many-Body Expansion Method）
+        12.13.1 Introduction: 12.13.1 引言
+        12.13.2 Job Control: 12.13.2 作业控制
+        12.14 Ab Initio Frenkel Davydov Exciton Model (AIFDEM): 12.14 从头算 Frenkel-Davydov 激子模型 (AIFDEM)
+        12.14.1 Theory: 12.14.1 理论
+        12.14.2 Job Control Variables: 12.14.2 作业控制变量
+        12.14.3 Examples: 12.14.3 示例
+        12.15 TDDFT for Molecular Interactions: 12.15 分子间相互作用的含时密度泛函理论（TDDFT）
+        12.15.1 Introduction: 12.15.1 引言
+        12.15.2 Job Control: 12.15.2 任务控制
+        12.16 ALMO-CIS/TDA and Its Charge-Transfer Correction: 12.16 ALMO-CIS/TDA 及其电荷转移校正
+        12.16.1 Introduction: 12.16.1 引言
+        12.16.2 Job Control: 12.16.2 作业控制
+        12.16.3 ALMO-CIS/TDA with Selected Fragment Occupied-Virtual Pairs: 12.16.3 采用选定片段占据-虚轨道对的 ALMO-CIS/TDA
+        13.1 Geminal Models: 13.1 Geminal 模型
+        13.1.1 Introduction: 13.1.1 引言
+        13.1.2 Perturbative Corrections: 13.1.2 微扰校正
+        13.2 Intracules: 13.2 电子对内分布函数（Intracules）
+        13.2.1 Introduction: 13.2.1 引言
+        13.2.2 Position Intracules: 13.2.2 位置内胶（Position Intracules）
+        13.2.3 Momentum Intracules: 13.2.3 动量内禀函数（Momentum Intracules）
+        13.2.4 Wigner Intracules: 13.2.4 Wigner 内轨函数
+        13.2.5 Intracule Job Control: 13.2.5 Intracule 任务控制
+        13.2.6 Format for the $intracule Section: 13.2.6 $intracule 区段格式
+        13.3 CASE Approximation: 13.3 CASE 近似
+        13.3.1 Overview: 13.3.1 概述
+        13.4 Molecular Junctions: 13.4 分子结（Molecular Junctions）
+        13.4.1 Overview: 13.4.1 概述
+        13.5 Nuclear–Electronic Orbital Method: 13.5 核–电子轨道方法（Nuclear–Electronic Orbital Method）
+        13.5.1 Introduction: 13.5.1 引言
+        13.5.2 Overview of Available NEO Models: 13.5.2 可用 NEO 模型概览
+        13.5.3 Additional Customization to NEO Models: 13.5.3 NEO 模型的额外定制选项
+        13.5.4 Job Control for the NEO methods: 13.5.4 NEO 方法的任务控制
+        13.5.5 Molecular Properties and Wave Function Analysis Tools for NEO Models: 13.5.5 NEO 模型的分子性质与波函数分析工具
+        13.5.6 Examples: 13.5.6 示例
+        13.6 Construction of Effective Hamiltonians from EOM-CC Wave Functions: 13.6 从 EOM-CC 波函数构造有效哈密顿量
+        13.6.1 Overview: 13.6.1 概述
+        A.1 Historical Overview: A.1 历史概述
+        A.1.1 Overview: A.1.1 概述
+        A.2 Calculating Electron Repulsion Integrals (ERIs): A.2 计算电子排斥积分（ERIs）
+        A.2.1 Overview: A.2.1 概述
+        'A.2.2 Data Structures: Shell Pairs and Quartets': A.2.2 数据结构：壳层对与壳层四元组
+        A.2.3 Survey of ERI Evaluation: A.2.3 电子排斥积分（ERI）计算综述
+        A.2.4 Efficiency of ERI Evaluation: A.2.4 电子排斥积分评估的效率
+        A.3 User-Controllable Variables: A.3 用户可控变量（User-Controllable Variables）
+        A.3.1 Overview: A.3.1 概述
+        B.1 Text Input Summary: B.1 文本输入汇总
+        B.1.1 Introduction: B.1.1 引言
+        B.1.2 Descriptions of Some Q-Chem Input Sections: B.1.2 Q-Chem 部分输入段的说明
+        B.1.3 $rem Variable List: B.1.3 $rem 变量列表
+        B.2 Geometry Optimization, Frequencies, & Properties: B.2 几何优化、频率与性质
+        B.2.1 Survey of Job Control Options: B.2.1 作业控制选项概览
+        B.2.2 Geometry Optimization with General Constraints: B.2.2 含一般约束的几何优化
+        B.3 Alphabetical Listing of $rem Variables: B.3 *$rem* 变量按字母顺序列表
+        B.3.1 Overview: B.3.1 概述
+        C.1 Introduction: C.1 引言
+        C.1.1 Overview: C.1.1 概述
+        C.2.1 Overview: C.2.1 概述
+        C.3.1 Overview: C.3.1 概述
+        C.4.1 Overview: C.4.1 概述
+        C.5.1 Overview: C.5.1 概述
+        C.6.1 Overview: C.6.1 概述
+        C.7.1 Overview: C.7.1 概述
+        C.8.1 Overview: C.8.1 概述
 markdown_extensions:
 - admonition
 - pymdownx.details

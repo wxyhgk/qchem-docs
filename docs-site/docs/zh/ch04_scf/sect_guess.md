@@ -1,5 +1,5 @@
 ---
-title: "4.4.2 Initial Guess Types"
+title: "4.4.2 初猜类型（Initial Guess Types）"
 ---
 
 ## 4.4.2 初猜类型（Initial Guess Types）

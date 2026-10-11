@@ -1,5 +1,5 @@
 ---
-title: "1.3.13 New Features in Q-Chem 4.4"
+title: "1.3.13 Q-Chem 4.4 新特性"
 ---
 
 ## 1.3.13 **Q-Chem** 4.4 新特性

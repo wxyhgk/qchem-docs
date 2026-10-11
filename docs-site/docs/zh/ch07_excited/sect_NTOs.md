@@ -1,5 +1,5 @@
 ---
-title: "7.13.3 Natural Transition Orbitals"
+title: "7.13.3 自然跃迁轨道（NTO）"
 ---
 
 ## 7.13.3 自然跃迁轨道（Natural Transition Orbitals, NTOs）

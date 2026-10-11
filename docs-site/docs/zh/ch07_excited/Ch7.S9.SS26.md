@@ -1,5 +1,5 @@
 ---
-title: "7.9.26 Job Control for EOM-CC(2,3)"
+title: "7.9.26 EOM-CC(2,3) 作业控制"
 ---
 
 ## 7.9.26 EOM-CC(2,3) 的作业控制

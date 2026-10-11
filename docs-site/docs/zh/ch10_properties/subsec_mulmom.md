@@ -1,5 +1,5 @@
 ---
-title: "10.2.3 Multipole Moments"
+title: "10.2.3 多极矩（Multipole Moments）"
 ---
 
 ## 10.2.3 多极矩（Multipole Moments）

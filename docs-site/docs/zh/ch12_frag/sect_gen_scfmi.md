@@ -1,5 +1,5 @@
 ---
-title: "12.6.2 Generalized SCF-MI Calculations and Additional Features"
+title: "12.6.2 广义 SCF-MI 计算及附加功能"
 ---
 
 ## 12.6.2 广义 SCF-MI 计算及附加功能

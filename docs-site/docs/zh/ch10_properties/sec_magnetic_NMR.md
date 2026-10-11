@@ -1,5 +1,5 @@
 ---
-title: "10.11.2 NMR Chemical Shifts and J-Couplings"
+title: "10.11.2 NMR 化学位移与 J-耦合"
 ---
 
 ## 10.11.2 NMR 化学位移与 *J*-耦合

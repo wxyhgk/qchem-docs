@@ -1,5 +1,5 @@
 ---
-title: "4.3.2 Job Control"
+title: "4.3.2 作业控制"
 ---
 
 ## 4.3.2 作业控制（Job Control）
