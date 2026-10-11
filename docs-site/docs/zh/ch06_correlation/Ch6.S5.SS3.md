@@ -208,4 +208,31 @@ $\kappa$-MP2 和二阶尺寸一致性 Brillouin-Wigner 理论（BWs2，第 [6.8]
     H4    C1        1.09778    H2      107.22823    H3      114.89419
     H5    C1        1.09778    H2      107.22823    H4      114.89419
     $end
+
+    $rem
+    JOBTYPE¯¯¯SP
+    UNRESTRICTED¯¯FALSE
+    CORRELATION¯¯LMP2
+    LOCOOCCVIRT¯¯2
+    BASIS¯¯¯DEF2-SVP
+    AUX_BASIS¯¯RIMP2-DEF2-SVP
+    N_FROZEN_CORE¯FC
+    SCF_CONVERGENCE 9
+    THRESH¯¯¯14
+    SYMMETRY¯¯FALSE
+    SYM_IGNORE¯¯TRUE
+    $end
+
+    $localocc
+    method newboys
+    lambda 100
+    $end
+    $localvirt
+    method vv-hv
+    $end
+
+    $localmp2
+    thresh 60
+    $end
     ```
+

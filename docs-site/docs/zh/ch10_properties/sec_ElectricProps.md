@@ -1,13 +1,15 @@
-以下是翻译结果：
-
+---
+title: "10.10 电学性质的线性标度计算"
 ---
 
-title: "10.10 线性响应理论（Linear Response Theory）"
+# 10.10 电学性质的线性标度计算
 
-# 10.10 Linear Response Theory（线性响应理论）
+（2026年7月4日更新）
 
-- [10.10.1 概述（Overview）](#overview)
+- [10.10.1 引言](Ch10.S10.SS1.md)
 
-## 10.10.1 Overview（概述）
+- [10.10.2 *$fdpfreq* 输入段](Ch10.S10.SS2.md)
 
-本章节内容正在筹备中。
+- [10.10.3 MOProp 模块的作业控制](moprop_jobcontrol.md)
+
+- [10.10.4 示例](Ch10.S10.SS4.md)
