@@ -41,11 +41,10 @@ The parameters of the jobs are set *via* options specified in the
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The following job control variables belong *only* in the *$distort* 
+    section. Do not place them in the *$rem* section.
 
-The following job control variables belong *only* in the *$distort* 
-section. Do not place them in the *$rem* section.
-**
 
 ### `Model`
 

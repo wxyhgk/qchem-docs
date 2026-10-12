@@ -259,17 +259,11 @@ ection is required, however the user should pay attention in order to identify
 which cube file contains which spatial function. For each requested MO with
 index $N$, three files will be printed:
 
-- •
-
-mo.$N$.cube contains the real-valued MO prior to addition of the
+- mo.$N$.cube contains the real-valued MO prior to addition of the
 CAP.
-- •
-
-mo.$\left(1000+N\right)$.cube contains the real part of the
+- mo.$\left(1000+N\right)$.cube contains the real part of the
 complex MO after convergence of the CAP-SCF calculation.
-- •
-
-mo.$\left(1000+N+o\right)$.cube contains the imaginary part
+- mo.$\left(1000+N+o\right)$.cube contains the imaginary part
 of the complex MO after convergence of the CAP-SCF calculation. $o$ is
 equal to the total number of spin orbitals calculated for the molecule.
 

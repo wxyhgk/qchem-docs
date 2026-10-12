@@ -38,9 +38,8 @@ the definition of the second torsion constraint in Cartesian coordinates.
 Table 9.3: 
 Comparison of dihedral angle constraint method for adopted coordinates.
 
-**Note: 
+!!! note "Note"
+    In almost all cases the above discussion is somewhat academic, as
+    internal coordinates are now best imposed using delocalized internal
+    coordinates and there is no restriction on the constraint values.
 
-In almost all cases the above discussion is somewhat academic, as
-internal coordinates are now best imposed using delocalized internal
-coordinates and there is no restriction on the constraint values.
-**

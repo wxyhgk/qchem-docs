@@ -268,12 +268,11 @@ Table [11.2](#table:solvent_model_derivatives) also summarizes the availability
 gradients for implicit solvent models. (Finite-difference gradients and Hessians are requested automatically
 for calculations where the requisite analytic derivatives are not available.)
 
-**Note: 
+!!! note "Note"
+    The format for specifying implicit solvent models changed
+    significantly starting in **Q-Chem** v. 4.2.1. This change was made in an
+    attempt to simply and unify the input notation for a large number of different models.
 
-The format for specifying implicit solvent models changed
-significantly starting in **Q-Chem** v. 4.2.1. This change was made in an
-attempt to simply and unify the input notation for a large number of different models.
-**
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <tbody class="ltx_tbody">
@@ -374,18 +373,10 @@ attempt to simply and unify the input notation for a large number of different m
 </tbody>
 </table>
 
-- •
-
-${}^{a}$Gradients available for vdW cavities and SAS cavity surfaces only.
-- •
-
-${}^{b}$Hessians for COSMO with the outlying charge correction are not supported.
-- •
-
-${}^{c}$Seminumerical Hessian, with a step size controllable via FDIFF_STEPSIZE.
-- •
-
-${}^{d}$Gradients are not supported but single-point calculations can be performed using solvent-polarized MOs.
+- ${}^{a}$Gradients available for vdW cavities and SAS cavity surfaces only.
+- ${}^{b}$Hessians for COSMO with the outlying charge correction are not supported.
+- ${}^{c}$Seminumerical Hessian, with a step size controllable via FDIFF_STEPSIZE.
+- ${}^{d}$Gradients are not supported but single-point calculations can be performed using solvent-polarized MOs.
 
 Table 11.2: 
 Summary of analytic energy gradient and Hessian capabilities with implicit solvent models.

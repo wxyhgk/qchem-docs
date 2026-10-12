@@ -27,9 +27,7 @@ $$
 
 我们提供了一个脚本，可在 TDKS 模拟完成后用于获取光谱：
 
-- •
-
-`$QC/bin/tools/tdks_hhg.py`
+- `$QC/bin/tools/tdks_hhg.py`
 
 该脚本使用式 ([7.73](#eq:hhg2))，其中 $w(t)$ 取为 Hamming 窗函数[[1579]](../bib_references/bib.md#bib1642)。
 

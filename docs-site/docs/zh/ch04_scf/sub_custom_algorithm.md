@@ -50,11 +50,10 @@ title: "4.5.12 用户自定义混合 SCF 算法"
 >     * `10`: ${}^{-n}$
 > * **建议**: 无
 
-**注意：
+!!! note "注意"
+    *$rem* 变量 GEN_SCFMAN_ALGO_X、GEN_SCFMAN_ITER_X、
+    GEN_SCFMAN_CONV_X（X = 2, 3, 4）的定义和使用方式类似。
 
-*$rem* 变量 GEN_SCFMAN_ALGO_X、GEN_SCFMAN_ITER_X、
-GEN_SCFMAN_CONV_X（X = 2, 3, 4）的定义和使用方式类似。
-**
 
 ???+ example "示例 4.16: 使用 ADIIS + DIIS 算法对镉-咪唑配合物进行 B3LYP/3-21G 计算
 （示例取自文献 601 Hu X., Yang W. J. Chem. Phys. (2010) , 132 , pp. 054109 . 链接 ）。由于 CORE 初始猜测质量较差，使用单一算法（如 DIIS 或 GDM）无法收敛。"

@@ -10,21 +10,11 @@ title: "8.10.3 内置 ECP"
 
 **Q-Chem** 配备了若干标准的有效核势（Effective Core Potential, ECP）集合，通过在 *$rem* 块中使用 ECP 关键字来指定。本章末尾对这些内置 ECP 进行了较为详细的介绍，它们分为四大族：
 
-- •
-
-Hay-Wadt（即 Los Alamos）系列（fit-HWMB 和 fit-LANL2DZ）
-- •
-
-Stevens-Basch-Krauss-Jansien-Cundari 系列（fit-SBKJC）
-- •
-
-Christiansen-Ross-Ermler-Nash-Bursten 系列（fit-CRENBS 和 fit-CRENBL）
-- •
-
-Stuttgart-Bonn 系列（SRLC 和 SRSC）
-- •
-
-Karlsruhe def2-ECP，与 def2 基组（Basis Set）配合使用
+- Hay-Wadt（即 Los Alamos）系列（fit-HWMB 和 fit-LANL2DZ）
+- Stevens-Basch-Krauss-Jansien-Cundari 系列（fit-SBKJC）
+- Christiansen-Ross-Ermler-Nash-Bursten 系列（fit-CRENBS 和 fit-CRENBL）
+- Stuttgart-Bonn 系列（SRLC 和 SRSC）
+- Karlsruhe def2-ECP，与 def2 基组（Basis Set）配合使用
 
 其中大多数系列的参考文献以及其定义与特性信息可在 Basis Set Exchange 上找到：[[1123]](../bib_references/bib.md#bib1170)
 

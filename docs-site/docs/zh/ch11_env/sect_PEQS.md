@@ -180,11 +180,10 @@ $$
 
 在 *$rem* 区段中设置 SOLVENT_METHOD = PEQS 即可请求使用泊松边界条件的计算。出于计算效率考虑，泊松方程求解器（PEqS）通常要等到真空 SCF 计算的误差低于某个指定阈值后才启用，该阈值默认为 $10^{3}~{}E_{h}$，用户可通过 *$rem* 变量 PEQS_SWITCH 自行控制。
 
-**注意：
+!!! note "注意"
+    当请求使用 PEqS 溶剂化时，对称性与标准核取向会被自动禁用，等价于设置 POINT_GROUP_SYMMETRY = FALSE 与 NO_REORIENT = TRUE。
+    泊松方程是在三维笛卡尔网格上求解的，除非网格间距非常小，否则能量不必具有旋转不变性。
 
-当请求使用 PEqS 溶剂化时，对称性与标准核取向会被自动禁用，等价于设置 POINT_GROUP_SYMMETRY = FALSE 与 NO_REORIENT = TRUE。
-泊松方程是在三维笛卡尔网格上求解的，除非网格间距非常小，否则能量不必具有旋转不变性。
-**
 
 ### `PEQS_SWITCH`
 
@@ -208,11 +207,10 @@ $$
 
 笛卡尔网格必须是正交的（orthorhombic），`Nx`、`Ny` 与 `Nz` 分别指 $x$、$y$、$z$ 轴方向上的网格点数目。
 
-**注意：
+!!! note "注意"
+    为加速求解式 ([11.32](#eq:Poisson2)) 的共轭梯度 PEqS 例程的收敛，采用了四阶多重网格（multigrid）算法。[[266]](../bib_references/bib.md#bib268)
+     这要求网格点数为奇数，并有附加约束：$N_{x}-1$、$N_{y}-1$ 与 $N_{z}-1$ 都必须能被 8 整除。
 
-为加速求解式 ([11.32](#eq:Poisson2)) 的共轭梯度 PEqS 例程的收敛，采用了四阶多重网格（multigrid）算法。[[266]](../bib_references/bib.md#bib268)
- 这要求网格点数为奇数，并有附加约束：$N_{x}-1$、$N_{y}-1$ 与 $N_{z}-1$ 都必须能被 8 整除。
-**
 
 *$peqs_grid* 区段最后两列中的数值给出 $x$、$y$、$z$ 的最小值与最大值，单位为埃（Å）。$x$ 方向上的网格长度为 $L_{x}=x_{\rm max}-x_{\rm min}$，网格间距为 $\Delta x=L_{x}/(N_{x}-1)$。在式 ([11.30](#eq:rho_nuc)) 的讨论中出现过的体积元为 $dV=\Delta x\Delta y\Delta z$。
 

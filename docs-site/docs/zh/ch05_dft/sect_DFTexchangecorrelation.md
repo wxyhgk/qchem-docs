@@ -6,10 +6,9 @@ title: "5.3.5 交换-关联泛函"
 
 （2026 年 7 月 4 日）
 
-**注意：
+!!! note "注意"
+    本节中的所有交换-关联泛函均可通过 *$rem* 变量 METHOD 调用。出于向后兼容性的考虑，除标注星号（*）的泛函之外，所有交换-关联泛函均可使用 *$rem* 变量 EXCHANGE 调用。每个类别中流行和/或推荐的泛函列在最前面，并以粗体标示。其余泛函按字母顺序排列。
 
-本节中的所有交换-关联泛函均可通过 *$rem* 变量 METHOD 调用。出于向后兼容性的考虑，除标注星号（*）的泛函之外，所有交换-关联泛函均可使用 *$rem* 变量 EXCHANGE 调用。每个类别中流行和/或推荐的泛函列在最前面，并以粗体标示。其余泛函按字母顺序排列。
-**
 
 - $\circ$
 
@@ -514,10 +513,9 @@ wM06-D3（$\omega$M06-D3）：25 参数色散校正 [DFT-D3(0)] 泛函，短程 
 
 双杂化广义梯度近似（Double Hybrid Generalized Gradient Approximation, DH GGA）
 
-**注意：
+!!! note "注意"
+    若要对 MP2 部分使用分辨率恒等（resolution-of-the-identity）近似，需通过 *$rem* 变量 AUX_BASIS_CORR 指定辅助基组
 
-若要对 MP2 部分使用分辨率恒等（resolution-of-the-identity）近似，需通过 *$rem* 变量 AUX_BASIS_CORR 指定辅助基组
-**
 
 - $\bullet$
 

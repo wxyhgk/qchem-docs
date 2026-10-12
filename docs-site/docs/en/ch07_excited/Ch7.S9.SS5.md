@@ -38,7 +38,6 @@ State properties and EOM-EOM transition properties can be computed using these
 methods (reference-EOM properties are not yet implemented). These methods are designed
 for treating core-level states.[[1193]](../bib_references/bib.md#bib1248)
 
-**Note: 
+!!! note "Note"
+    These methods are still in the experimental stage.
 
-These methods are still in the experimental stage.
-**

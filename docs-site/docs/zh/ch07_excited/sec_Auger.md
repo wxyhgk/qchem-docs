@@ -132,10 +132,9 @@ Feshbach 宽度的实现包含对发射电子所有可能方向（**k** 矢量�
 。在 Feshbach 计算中，可以通过 CC_DO_NAO 关键字启用 NAO 的计算。NAO 以 **MolDen** 格式输出在工作目录下创建的子目录中。其“能量”为奇异值的平方（未归一化），空穴 NAO 被赋予占据数 1，价层衰变 NAO 被赋予占据数 0。
 输出 NAO 的默认阈值为 0.20，用户可以使用 WFA_ORB_THRESH 关键字控制该阈值（见第 [10.2](../ch10_properties/sec_wfa.md) 节）。下面的示例 [7.9.11.2](#ex:auger1)、[7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了这一功能。
 
-**注意：
+!!! note "注意"
+    NAO 是使用二体戴森振幅的 $\Gamma_{r\beta}^{p\alpha,q\beta}$ 分块计算得到的。这意味着在非共振俄歇衰变计算中，空穴应当对应于移除一个 $\beta$ 电子。
 
-NAO 是使用二体戴森振幅的 $\Gamma_{r\beta}^{p\alpha,q\beta}$ 分块计算得到的。这意味着在非共振俄歇衰变计算中，空穴应当对应于移除一个 $\beta$ 电子。
-**
 
 ### `CC_DO_FESHBACH`
 

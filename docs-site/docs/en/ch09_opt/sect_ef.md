@@ -79,18 +79,12 @@ which can be used to evaluate $\lambda$ iteratively.
 The eigenvalues, $\lambda$, of the RFO equation Eq. ([9.7](#eq:a6)) have the
 following important properties:[[72]](../bib_references/bib.md#bib57)
 
-- •
-
-The $(n+1)$ values of $\lambda$ bracket the $n$ eigenvalues of the
+- The $(n+1)$ values of $\lambda$ bracket the $n$ eigenvalues of the
 Hessian matrix $\lambda_{i}<b_{i}<\lambda_{i+1}$.
-- •
-
-At a stationary point, one of the eigenvalues, $\lambda$, of Eq. ([9.7](#eq:a6)) is
+- At a stationary point, one of the eigenvalues, $\lambda$, of Eq. ([9.7](#eq:a6)) is
 zero and the other $n$ eigenvalues are those of the Hessian at the
 stationary point.
-- •
-
-For a saddle point of order $m$, the zero eigenvalue separates the $m$
+- For a saddle point of order $m$, the zero eigenvalue separates the $m$
 negative and the $(n-m)$ positive Hessian eigenvalues.
 
 This last property, the separability of the positive and negative Hessian

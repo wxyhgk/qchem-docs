@@ -8,21 +8,11 @@ title: "11.7.7 FDE-Man 输出"
 
 总体而言，FDE-Man 的输出会显示嵌入（embedding）计算的所有重要阶段，即：
 
-1. 1.
-
-$\rho_{A}^{\mathrm{ref}}(\mathbf{r})$ 的生成，
-2. 2.
-
-$\rho_{B}(\mathbf{r})$ 的生成，
-3. 3.
-
-嵌入势（embedding potential）的构造，
-4. 4.
-
-FDE-Man 嵌入计算的启动，以及
-5. 5.
-
-FDE-Man 最终总结。
+1. $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$ 的生成，
+2. $\rho_{B}(\mathbf{r})$ 的生成，
+3. 嵌入势（embedding potential）的构造，
+4. FDE-Man 嵌入计算的启动，以及
+5. FDE-Man 最终总结。
 
 下表汇总了输出中所打印各项术语的定义。这些量会对每一个态（state）*即* 每一个 $\rho_{A}^{I}(\mathbf{r})$ 分别打印。此外，相对于参考密度 $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$ 的非静电相互作用会打印在 FDE-Man 总结的顶部。
 

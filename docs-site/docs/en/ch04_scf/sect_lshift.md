@@ -74,14 +74,13 @@ by means of the following *$rem* variables.
 >     * `User-defined`
 > * **Recommendation**: The input number must be an integer between 0 and 9999. The actual shift is equal to /1000 Eh. The default value is provided to make the level-shifting calculation run and should not be taken as optimal for any specific problem. Trial and error may be required to find the optimal threshold. Larger level shifts make the SCF process more stable but also slow down convergence, thus requiring more SCF cycles.
 
-**Note: 
+!!! note "Note"
+    If either GAP_TOL or LSHIFT or both are explicitly
+    specified, then LEVEL_SHIFT is automatically set to TRUE.
+    Setting LEVEL_SHIFT = FALSE disables any values of
+    GAP_TOL and LSHIFT. Invoking the LS_DIIS algorithm also
+    disables any setting of LEVEL_SHIFT.
 
-If either GAP_TOL or LSHIFT or both are explicitly
-specified, then LEVEL_SHIFT is automatically set to TRUE.
-Setting LEVEL_SHIFT = FALSE disables any values of
-GAP_TOL and LSHIFT. Invoking the LS_DIIS algorithm also
-disables any setting of LEVEL_SHIFT.
-**
 
 ### `MAX_LS_CYCLES`
 

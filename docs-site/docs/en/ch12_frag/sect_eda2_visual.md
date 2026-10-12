@@ -8,19 +8,11 @@ title: "12.6.9 Visualization Tools Associated with ALMO-EDA"
 
 The following visualization tools are enabled in EDA2:
 
-- •
-
-Automated generation of complementary occupied-virtual pairs (COVP)
-- •
-
-Electron density difference (EDD) maps between intermediate states
+- Automated generation of complementary occupied-virtual pairs (COVP)
+- Electron density difference (EDD) maps between intermediate states
 (FRZ$\rightarrow$POL, POL$\rightarrow$Full)
-- •
-
-Plots for Natural Orbitals for Chemical Valence (NOCV)
-- •
-
-Plots of frozen and polarized ALMOs
+- Plots for Natural Orbitals for Chemical Valence (NOCV)
+- Plots of frozen and polarized ALMOs
 
 As introduced in Sec. [12.5.4](sect_covp.md), the COVPs can help elucidate the details
 of a charge-transfer process by showing the chemically most relevant

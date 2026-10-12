@@ -45,10 +45,9 @@ Kirkwood-Onsager 溶剂模型的能量与解析梯度
 CC_SAVEAMPL = TRUE 以保留气相计算中的 CC 振幅，
 这将节省后续溶液相计算的一些时间。
 
-**注意：
+!!! note "注意"
+    对于 CCSD 计算，Kirkwood-Onsager 模型只能与 CCMAN2 = FALSE 配合使用。
 
-对于 CCSD 计算，Kirkwood-Onsager 模型只能与 CCMAN2 = FALSE 配合使用。
-**
 
 以下作业控制选项应放在 *$solvent* 部分，而不是 *$rem* 部分。
 与 **Q-Chem** 输入文件的其他部分一样，此输入部分不区分大小写。

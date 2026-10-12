@@ -23,12 +23,8 @@ increasing number of linear scaling alternatives and analogies, but for Coulomb
 interactions, the CFMM remains state of the art. There are two computationally
 intensive contributions to the Coulomb interactions which we discuss in turn:
 
-- •
-
-Long-range interactions, which are treated by the CFMM
-- •
-
-Short-range interactions, corresponding to overlapping charge
+- Long-range interactions, which are treated by the CFMM
+- Short-range interactions, corresponding to overlapping charge
 distributions, which are treated by a specialized “J-matrix engine”
 together with **Q-Chem**’s state-of-the art two-electron integral methods.
 
@@ -64,21 +60,11 @@ contracted basis functions to be maintained.
 
 The CFMM algorithm can be summarized in five steps:
 
-1. 1.
-
-Form and translate multipoles.
-2. 2.
-
-Convert multipoles to local Taylor expansions.
-3. 3.
-
-Translate Taylor information to the lowest level.
-4. 4.
-
-Evaluate Taylor expansions to obtain the far-field potential.
-5. 5.
-
-Perform direct interactions between overlapping distributions.
+1. Form and translate multipoles.
+2. Convert multipoles to local Taylor expansions.
+3. Translate Taylor information to the lowest level.
+4. Evaluate Taylor expansions to obtain the far-field potential.
+5. Perform direct interactions between overlapping distributions.
 
 Accuracy can be carefully controlled by due consideration of tree depth,
 truncation of the multipole expansion and the definition of the extent of

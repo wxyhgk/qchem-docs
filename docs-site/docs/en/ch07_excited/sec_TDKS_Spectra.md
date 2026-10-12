@@ -48,12 +48,8 @@ consisting of all possible excitations out of the ground state.
 
 Two different scripts are provided to obtain the spectrum after the TDKS simulation is completed:
 
-- •
-
-`$QC/bin/tools/tdks_fft.py`
-- •
-
-`$QC/bin/tools/tdks_pade.py`
+- `$QC/bin/tools/tdks_fft.py`
+- `$QC/bin/tools/tdks_pade.py`
 
 The first of these uses the Fourier transform method in Eq. ([7.67](#eq:TDKS-FT)) directly while the second
 makes use of Padé approximants to obtain comparable spectra with shorter propagation times.[[566]](../bib_references/bib.md#bib585)

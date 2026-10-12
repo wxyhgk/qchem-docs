@@ -10,10 +10,9 @@ title: "11.5.7 运行 EFP 任务"
 
 *ab initio* 区域可以采用常规量子化学方法描述，如 HF、DFT（Density Functional Theory, 密度泛函理论）或包含激发态方法的相关方法 [CIS、CIS(D)、TDDFT、ADC、EOM-CCSD 方法]。关于 EFP 与 EOM-CCSD 及 CIS(D) 接口的理论细节，参见文献 [[1272]](../bib_references/bib.md#bib1325) 和 [[711]](../bib_references/bib.md#bib743)。ADC/EFP 模型见文献 [[1230]](../bib_references/bib.md#bib1285)。
 
-**注意：
+!!! note "注意"
+    EFP 对电子激发态同时提供隐式（通过轨道响应）和显式（通过可极化 EFP 片段的瞬时响应）修正。经 EFP 修正后的激发能会打印在输出文件的性质（property）部分。
 
-EFP 对电子激发态同时提供隐式（通过轨道响应）和显式（通过可极化 EFP 片段的瞬时响应）修正。经 EFP 修正后的激发能会打印在输出文件的性质（property）部分。
-**
 
 静电（electrostatic）、极化（polarization）、交换排斥（exchange-repulsion）和色散（dispersion）等贡献在 EFP 片段（EF）之间计算；而在 *ab initio* 区域与 EF 区域之间仅计算静电和极化项。
 

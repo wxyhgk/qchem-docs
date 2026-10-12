@@ -66,13 +66,12 @@ especially if the node has more resources available. When running CCMAN2
 exclusively on a node, CC_MEMORY should be set to $\sim$80% of the
 total available RAM.
 
-**Note: 
+!!! note "Note"
+    When running small jobs, using too large CC_MEMORY in CCMAN2
+    is not recommended because **Q-Chem** will allocate more resources than needed
+    for the calculation, which may affect other jobs that you may wish to run on
+    the same node.
 
-When running small jobs, using too large CC_MEMORY in CCMAN2
-is not recommended because **Q-Chem** will allocate more resources than needed
-for the calculation, which may affect other jobs that you may wish to run on
-the same node.
-**
 
 For large disk-based coupled cluster calculations it is recommended to use a
 new tensor contraction code available in CCMAN2 via libxm, which can
@@ -84,8 +83,7 @@ and is asynchronously prefetched to fast memory before evaluating contractions.
 The performance of the code is not affected by the amount of RAM after about
 128 GB if fast disks (such as SAS array in RAID0) are available on the system.
 
-**Note: 
+!!! note "Note"
+    When using libxm CC_BACKEND, sufficient
+    MEM_TOTAL should be specified for integral transofromation (e.g., about 10 GB for a job with 500-700 basis functions).
 
-When using libxm CC_BACKEND, sufficient
-MEM_TOTAL should be specified for integral transofromation (e.g., about 10 GB for a job with 500-700 basis functions).
-**

@@ -77,11 +77,10 @@ inexpensive single-point calculations. In practice it is most useful as a
 fast preoptimization or exploratory tool before higher-level calculations are
 carried out.
 
-**Note: 
+!!! note "Note"
+    The present **Q-Chem** implementation does *not* include the D4
+    dispersion contribution that is part of the original standalone
+    GFN2-xTB model. Consequently, total energies and optimized structures can
+    differ from those obtained with the reference `xtb` program,
+    especially for systems where dispersion interactions are important.
 
-The present **Q-Chem** implementation does *not* include the D4
-dispersion contribution that is part of the original standalone
-GFN2-xTB model. Consequently, total energies and optimized structures can
-differ from those obtained with the reference `xtb` program,
-especially for systems where dispersion interactions are important.
-**

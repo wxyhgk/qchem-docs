@@ -71,13 +71,9 @@ constrained to be positive semidefinite.
 
 The BPSDP algorithm involves an iterative two-step procedure:
 
-1. 1.
-
-Solve $\mathbf{AA}^{T}\mathbf{y}=\mathbf{A}(\mathbf{c}-\mathbf{z})+\tau\mu(\mathbf{b}-\mathbf{A}\mathbf{x})$
+1. Solve $\mathbf{AA}^{T}\mathbf{y}=\mathbf{A}(\mathbf{c}-\mathbf{z})+\tau\mu(\mathbf{b}-\mathbf{A}\mathbf{x})$
 for $\mathbf{y}$ by conjugate gradient methods.
-2. 2.
-
-Update $\mathbf{x}$ and $\mathbf{z}$ by separating $\mathbf{U}=M(\mu\mathbf{x}+\mathbf{A}^{T}\mathbf{y}-\mathbf{c})$ into its positive and negative components (by
+2. Update $\mathbf{x}$ and $\mathbf{z}$ by separating $\mathbf{U}=M(\mu\mathbf{x}+\mathbf{A}^{T}\mathbf{y}-\mathbf{c})$ into its positive and negative components (by
 diagonalization). The updated primal and dual solutions $\mathbf{x}$ and
 $\mathbf{z}$ are given by $M(\mathbf{x})=\mathbf{U}(+)/\mu$ and $M(\mathbf{z})=-\mathbf{U}(-)$.
 

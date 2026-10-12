@@ -20,19 +20,11 @@ title: "12.6.7 采用非 *Aufbau*（非构造原理）电子组态的 ALMO-EDA"
 具体而言，对处于非 *aufbau* 电子组态的复合物进行 ALMO-EDA 计算（假设仅有一个片段被激发）
 包含以下步骤：
 
-- •
-
-对所有片段执行基态 SCF 计算
-- •
-
-使用 MOM，按输入中指定的方式计算该片段的非 *aufbau* 电子组态：激发该片段所消耗的能量在输出中以*制备（preparation）*能（$E_{\mathrm{prp}}$）的形式报告；
+- 对所有片段执行基态 SCF 计算
+- 使用 MOM，按输入中指定的方式计算该片段的非 *aufbau* 电子组态：激发该片段所消耗的能量在输出中以*制备（preparation）*能（$E_{\mathrm{prp}}$）的形式报告；
 以此构建体系的冻结态（frozen state），即该片段处于非 *aufbau* 态，其余片段处于基态
-- •
-
-从冻结态出发，执行带 MOM 的 SCF-MI 计算，以获得非 *aufbau* 电子组态下的极化态（polarized state）
-- •
-
-从非 *aufbau* 态下的极化波函数出发，执行带 MOM 的完整 SCF 计算
+- 从冻结态出发，执行带 MOM 的 SCF-MI 计算，以获得非 *aufbau* 电子组态下的极化态（polarized state）
+- 从非 *aufbau* 态下的极化波函数出发，执行带 MOM 的完整 SCF 计算
 
 此类计算除标准 EDA2 任务的常规设置外，还需要设置 EDA2_MOM = TRUE。
 非 *aufbau* 电子态通过 *$scfmi_mom* 输入节来指定，其格式如下：

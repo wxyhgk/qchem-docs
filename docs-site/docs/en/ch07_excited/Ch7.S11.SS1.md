@@ -67,9 +67,8 @@ specification of an auxiliary basis set analogous to RI-MP2 computations (see
 Section [6.6.2](../ch06_correlation/sect_rimp2.md)). Otherwise, the active space as well as hole and
 particle excitations are specified in the same way as in RASCI1.
 
-**Note: 
+!!! note "Note"
+    Because RASCI2 uses the RI approximation, the total energies computed
+    with the two codes will be slightly different. Energy differences
+    between different states should closely match each other, however.
 
-Because RASCI2 uses the RI approximation, the total energies computed
-with the two codes will be slightly different. Energy differences
-between different states should closely match each other, however.
-**

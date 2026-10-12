@@ -53,10 +53,9 @@ CC_EOM_2PA_SINGLE_PREC keyword (see also Section [7.9.21.6](sec_EOMGRAD.md#sec:2
 >     * `1`: single-precision calculation
 > * **Recommendation**: NONE
 
-**Note: 
+!!! note "Note"
+    Remember to adjust convergence thresholds when using single precision.
 
-Remember to adjust convergence thresholds when using single precision.
-**
 
 ???+ example "Example 7.92: A job evaluating EOM-EA-CCSD energies for formaldehyde anion using
 single-precision execution combined with CD"

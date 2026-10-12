@@ -82,10 +82,9 @@ CCMAN2 在每个不可约表示（irrep）内按能量对轨道编号，并对�
 
 对 EOM-CC 计算最完整的分析可通过部署 **libwfa** 模块中包含的通用波函数分析工具来实现，该工具在第 [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md) 节中介绍。通过设置 STATE_ANALYSIS = TRUE 可启用 EOM-CC 态分析。此外，还应相应地设置用于控制态性质与态间性质计算的关键词。
 
-**注意：
+!!! note "注意"
+    波函数分析仅对 CCMAN2 可用。
 
-波函数分析仅对 CCMAN2 可用。
-**
 
 ???+ example "示例 7.179: EOM-IP 态（He ${}_{3}^{+}$ ）的波函数分析。"
     ```qchem

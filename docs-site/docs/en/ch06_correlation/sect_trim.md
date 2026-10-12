@@ -40,19 +40,13 @@ electron correlation treatment. This means that the considerations necessary
 for a correlation treatment to qualify as a well-defined theoretical model
 chemistry apply equally to local correlation modeling. The local approximations should be
 
-- •
-
-*Size-consistent:* meaning that the energy of a super-system of two
+- *Size-consistent:* meaning that the energy of a super-system of two
 non-interacting molecules should be the sum of the energy obtained from
 individual calculations on each molecule.
-- •
-
-*Uniquely defined:* Require no input beyond nuclei, electrons, and
+- *Uniquely defined:* Require no input beyond nuclei, electrons, and
 an atomic orbital basis set. In other words, the model should be uniquely
 specified without customization for each molecule.
-- •
-
-*Yield continuous potential energy surfaces:* The model
+- *Yield continuous potential energy surfaces:* The model
 approximations should be smooth, and not yield energies that exhibit
 jumps as nuclear geometries are varied.
 
@@ -135,30 +129,22 @@ calculations.[[790]](../bib_references/bib.md#bib819)
  In particular, the TRIM model
 has been shown to be quite faithful to full MP2 theory via the following tests:
 
-- •
-
-The TRIM model recovers around 99.7% of the MP2 correlation energy for
+- The TRIM model recovers around 99.7% of the MP2 correlation energy for
 covalent bonding. This is significantly higher than the roughly 98–99%
 correlation energy recovery typically exhibited by the Saebo-Pulay local
 correlation method.[[1194]](../bib_references/bib.md#bib1249)
  The DIM model recovers around
 95% of the correlation energy.
-- •
-
-The performance of the TRIM model for relative energies is very robust,
+- The performance of the TRIM model for relative energies is very robust,
 as shown in Ref. [[790]](../bib_references/bib.md#bib819)
  for the challenging case of
 torsional barriers in conjugated molecules. The RMS error in these
 relative energies is only 0.031 kcal/mol, as compared to around 1
 kcal/mol when electron correlation effects are completely neglected.
-- •
-
-For the water dimer with the aug-cc-pVTZ basis, 96% of the MP2
+- For the water dimer with the aug-cc-pVTZ basis, 96% of the MP2
 contribution to the binding energy is recovered with the TRIM model, as
 compared to 62% with the Saebo-Pulay local correlation method.
-- •
-
-For calculations of the MP2 contribution to the G3 and G3(MP2) energies
+- For calculations of the MP2 contribution to the G3 and G3(MP2) energies
 with the larger molecules in the G3-99 database,[[294]](../bib_references/bib.md#bib300)
 
 introduction of the TRIM approximation results in an RMS error relative

@@ -263,13 +263,12 @@ efficiency, the Poisson Equation Solver (PEqS) is typically not engaged until
 the error in the vacuum SCF calculation falls below a specified threshold, taken to be $10^{3}~{}E_{h}$ by default and
 user-controllable by means of the *$rem* variable PEQS_SWITCH.
 
-**Note: 
+!!! note "Note"
+    When PEqS solvation is requested, symmetry and the standard nuclear orientation are disabled automatically,
+    equivalent to POINT_GROUP_SYMMETRY = FALSE and NO_REORIENT = TRUE.
+    Poisson’s equation is solved on a three-dimensional Cartesian grid and the energy need not be rotationally
+    invariant unless the grid spacing is very small.
 
-When PEqS solvation is requested, symmetry and the standard nuclear orientation are disabled automatically,
-equivalent to POINT_GROUP_SYMMETRY = FALSE and NO_REORIENT = TRUE.
-Poisson’s equation is solved on a three-dimensional Cartesian grid and the energy need not be rotationally
-invariant unless the grid spacing is very small.
-**
 
 ### `PEQS_SWITCH`
 
@@ -296,15 +295,14 @@ is used to define the Cartesian discretization grid, as follows:
 The Cartesian grid must be orthorhombic and `Nx`, `Ny`, and `Nz`
 refer to the number of grid points for the $x$, $y$, and $z$ axes.
 
-**Note: 
+!!! note "Note"
+    A fourth-order multigrid algorithm is used to accelerate convergence of
+    the conjugate gradient PEqS routine that solves
+    Eq. ([11.32](#eq:Poisson2)).[[266]](../bib_references/bib.md#bib268)
+     This requires that the number of
+    grid points be odd, with the additional constraint that the quantities $N_{x}-1$,
+    $N_{y}-1$, and $N_{z}-1$ must all be divisible by 8.
 
-A fourth-order multigrid algorithm is used to accelerate convergence of
-the conjugate gradient PEqS routine that solves
-Eq. ([11.32](#eq:Poisson2)).[[266]](../bib_references/bib.md#bib268)
- This requires that the number of
-grid points be odd, with the additional constraint that the quantities $N_{x}-1$,
-$N_{y}-1$, and $N_{z}-1$ must all be divisible by 8.
-**
 
 Values in the last two columns of the *$peqs_grid* section specify the minimum
 and maximum values of $x$, $y$, and $z$, in units of Ångstroms. The

@@ -173,17 +173,11 @@ Compare this example to Example 7.7.5"
 
 The code will automatically measure three useful quantities:
 
-- •
-
-Overlaps between the ground state SOMOs used as a guess, the singlet (or mixed-state) SOMOs,
+- Overlaps between the ground state SOMOs used as a guess, the singlet (or mixed-state) SOMOs,
 and the triplet SOMOs; this serves as a measure to ensure the $\Delta$SCF orbital optimizations
 are indeed converging to the desired excited states.
-- •
-
-Transition dipole moment between the ground state and the singlet excited state.
-- •
-
-Non-orthogonal overlap between the closed-shell ground state and the singlet excited state
+- Transition dipole moment between the ground state and the singlet excited state.
+- Non-orthogonal overlap between the closed-shell ground state and the singlet excited state
 determinants (see Section [7.7.4](ex_ESROKS.md) on SOMO mixing in ROKS calculations).
 
 When the SOMO overlaps of the guess are poor (significantly smaller than unity), the $\Delta$SCF calculations

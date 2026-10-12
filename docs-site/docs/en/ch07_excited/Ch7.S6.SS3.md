@@ -54,15 +54,9 @@ $$
 
 Note that the special 2eOS CSF associated with repairing of the core electron with the particle SOMO $t$ are included in the 4eOS CSFs presented above as the cases when $y=t$. As per the original 1C-NOCIS and STEX methods, the variant for M${}_{S}$ = 0 2eOS references diagonalizes the Hamiltonian in the subspan of all the aforementioned CSFs. In deviation with the original doublet and triplet 1C-NOCIS implementation, however, the 2eOS variant offers three possible sets of reference orbitals:
 
-- •
-
-The 1eOS, M${}_{S}$ = 1/2 doublet core ion orbitals, with the virtual space rotated into the NTO basis of a standard closed-shell STEX calculation
-- •
-
-The 2eOS, M${}_{S}$ = 0 ROKS-optimized orbitals for the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ configuration
-- •
-
-The 3eOS, M${}_{S}$ = 3/2 quartet core ion ROHF-optimized orbitals for the $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ configuration
+- The 1eOS, M${}_{S}$ = 1/2 doublet core ion orbitals, with the virtual space rotated into the NTO basis of a standard closed-shell STEX calculation
+- The 2eOS, M${}_{S}$ = 0 ROKS-optimized orbitals for the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ configuration
+- The 3eOS, M${}_{S}$ = 3/2 quartet core ion ROHF-optimized orbitals for the $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ configuration
 
 Crucially, all of these references incorporate relaxation due to the presence of the core hole and hope to provide a well-defined particle state $t$. Since the STEX and 1C-NOCIS models are, in essence, a truncated CI formalism for open-shell systems, the final excited states constructed are sensitive to the underlying choice of orbitals.[[712]](../bib_references/bib.md#bib744)
  By virtue of being occupied in all the CSFs employed to describe the pump-probe states, the quality of the normally-empty $t$ orbital is essential. For the moment, we recommend using the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ orbitals when targeting singlet states and $\big{|}^{4}\Phi_{oc}^{t}\big{\rangle}$ orbitals when targeting triplet states.

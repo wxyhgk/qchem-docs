@@ -174,18 +174,12 @@ title: "11.4 Q-Chem/Charmm 接口"
 
 **Q-Chem**/**Charmm** 接口的独特之处在于：
 
-- •
-
-外点电荷可以被替换为具有有限宽度的高斯离域电荷。[[300]](../bib_references/bib.md#bib304)
+- 外点电荷可以被替换为具有有限宽度的高斯离域电荷。[[300]](../bib_references/bib.md#bib304)
 这是一种经验性的方法，用于纳入 MM 区域中原子电子密度的离域特征。这对于 QM 区域
 与 MM 区域中邻近原子之间的静电相互作用可能很重要。
-- •
-
-我们支持求值完整的 QM/MM Hessian。[[1491]](../bib_references/bib.md#bib1552)
+- 我们支持求值完整的 QM/MM Hessian。[[1491]](../bib_references/bib.md#bib1552)
 
 当插入连接原子（link atoms）以饱和 QM 区域时，与连接原子相关的所有 Hessian 元素
 都会自动投影到其 QM 与 MM 宿主原子上。
-- •
-
-对于含有大量 MM 原子的体系，可以定义由多个 MM 原子组成的块（*即*，移动块，mobile blocks），
+- 对于含有大量 MM 原子的体系，可以定义由多个 MM 原子组成的块（*即*，移动块，mobile blocks），
 并高效地求值相应的移动块 Hessian（MBH）以进行简正模式分析。

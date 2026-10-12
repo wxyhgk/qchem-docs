@@ -59,10 +59,9 @@ For coupled-cluster calculations using this model, one may set
 CC_SAVEAMPL = TRUE to retain the CC amplitudes from the gas-phase calculation, which
 will save some time in the subsequent solution-phase calculation.
 
-**Note: 
+!!! note "Note"
+    For CCSD calculations the Kirkwood-Onsager model works only with CCMAN2 = FALSE.
 
-For CCSD calculations the Kirkwood-Onsager model works only with CCMAN2 = FALSE.
-**
 
 The following job-control options belong in the *$solvent* section, not the *$rem* section.
 As with other parts of the **Q-Chem** input file, this input section is not case-sensitive.

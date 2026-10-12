@@ -24,11 +24,10 @@ The format of the *$pcm* section is analogous to that of the *$rem* section:
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The following job control variables belong *only* in the *$pcm* section.
+    Do not place them in the *$rem* section.
 
-The following job control variables belong *only* in the *$pcm* section.
-Do not place them in the *$rem* section.
-**
 
 ### `Theory`
 
@@ -216,12 +215,11 @@ For large molecules it may be necessary to reduce the number of grid points
 (*e.g.*, to $N=86$) or to use linear-scaling solvers rather than matrix inversion, as
 discussed in Section [11.2.5](subsec_linear-PCM.md).
 
-**Note: 
+!!! note "Note"
+    The acceptable values for the number of Lebedev points per sphere are
+    $N=6$, 26, 38, 50, 86, 110, 146, 170, 194, 302, 350, 434, 590, 770, 974, 1202,
+    1454, 1730, 2030, 2354, 2702, 3074, 3470, 3890, 4334, 4802, 5294.
 
-The acceptable values for the number of Lebedev points per sphere are
-$N=6$, 26, 38, 50, 86, 110, 146, 170, 194, 302, 350, 434, 590, 770, 974, 1202,
-1454, 1730, 2030, 2354, 2702, 3074, 3470, 3890, 4334, 4802, 5294.
-**
 
 ### `HeavyPoints`
 

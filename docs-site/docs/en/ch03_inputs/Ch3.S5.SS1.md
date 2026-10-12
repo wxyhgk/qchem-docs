@@ -16,32 +16,22 @@ file.
 
 Some limitations should be kept in mind:
 
-- •
-
-The first job will overwrite any existing output file of the same name in
+- The first job will overwrite any existing output file of the same name in
 the working directory. Restarting the job will also overwrite any
 existing file.
-- •
-
-**Q-Chem** reads all the jobs from the input file immediately and stores
+- **Q-Chem** reads all the jobs from the input file immediately and stores
 them. Therefore no changes can be made to the details of subsequent jobs
 following command-line initiation of **Q-Chem**, even if these subsequent jobs have not yet run.
-- •
-
-If any single job fails, **Q-Chem** proceeds to the next job in the batch
+- If any single job fails, **Q-Chem** proceeds to the next job in the batch
 file, for good or ill.
-- •
-
-No check is made to ensure that dependencies are satisfied, or that
+- No check is made to ensure that dependencies are satisfied, or that
 information is consistent. For example, in a geometry optimization
 followed by a frequency calculation, no attempt is made by the latter to
 check that the optimization was successful. When reading MO coefficients
 from a previous job, it is the user’s responsibility to ensure that the
 basis set is the same in both calculations, as this is assumed by the
 program.
-- •
-
-Scratch files are saved from one job to the next in a batch job, so that
+- Scratch files are saved from one job to the next in a batch job, so that
 information from previous jobs can be shared with subsequent ones, but
 are deleted upon completion of the entire batch job unless the
 *–save* command-line argument is supplied, as discussed in

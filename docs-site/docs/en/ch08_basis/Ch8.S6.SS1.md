@@ -13,21 +13,13 @@ assuming in this chapter so far. Such calculations are said to involve
 primary, basis, which is specified by the *$rem* keyword BASIS2.
 Examples of calculations that can be performed using dual basis sets include:
 
-- •
-
-An improved initial guess for an SCF calculation in the large basis. See
+- An improved initial guess for an SCF calculation in the large basis. See
 Section [4.4.5](../ch04_scf/sect_projection.md).
-- •
-
-Dual basis self-consistent field calculations (Hartree-Fock and density
+- Dual basis self-consistent field calculations (Hartree-Fock and density
 functional theory). See discussion in Section [4.7](../ch04_scf/sect_dualbasis.md).
-- •
-
-Density functional perturbative corrections by “triple jumping”.
+- Density functional perturbative corrections by “triple jumping”.
 See Section [4.8](../ch04_scf/sect_HFPC.md).
-- •
-
-Dual basis MP2 calculations. See discussion in Section [6.6.2](../ch06_correlation/sect_rimp2.md).
+- Dual basis MP2 calculations. See discussion in Section [6.6.2](../ch06_correlation/sect_rimp2.md).
 
 ### `BASIS2`
 

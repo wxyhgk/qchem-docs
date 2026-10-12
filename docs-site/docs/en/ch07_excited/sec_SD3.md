@@ -51,21 +51,18 @@ Similar corrections are available for EOM-IP-CCSD,[[888]](../bib_references/bib.
 triples correspond to $3h2p$ excitations and EOM-EA-CCSD, where triples
 correspond to $2h3p$ excitations.
 
-**Note: 
+!!! note "Note"
+    Due to the orbital non-invariance problem, using (dT) correction is discouraged.
 
-Due to the orbital non-invariance problem, using (dT) correction is discouraged.
-**
 
-**Note: 
+!!! note "Note"
+    EOM-IP-CCSD(fT) correction is now available both in CCMAN and CCMAN2.
 
-EOM-IP-CCSD(fT) correction is now available both in CCMAN and CCMAN2.
-**.
 
-**Note: 
+!!! note "Note"
+    In CCMAN2, triples corrections can be computed using two different backends,
+    **libtensor** and **libpt**. The former is more effective and recommended for larger jobs (see Section [6.13.3](../ch06_correlation/sec_dT.md)).
 
-In CCMAN2, triples corrections can be computed using two different backends,
-**libtensor** and **libpt**. The former is more effective and recommended for larger jobs (see Section [6.13.3](../ch06_correlation/sec_dT.md)).
-**
 
 ## 7.9.27.1 Job Control for Non-Iterative Triples Corrections
 
@@ -96,11 +93,10 @@ EOM_CORR:
 >     * `SD(ST)`: EOM-CCSD(sT), available for IP
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    In CCMAN2, EOM-IP-CCSD(fT) can be computed with or without
+    USE_LIBPT = TRUE.
 
-In CCMAN2, EOM-IP-CCSD(fT) can be computed with or without
-USE_LIBPT = TRUE.
-**
 
 ## 7.9.27.2 Examples
 

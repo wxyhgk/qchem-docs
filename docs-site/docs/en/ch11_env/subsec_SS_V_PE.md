@@ -352,13 +352,12 @@ the cavity is accepted. If the two results do not agree, then the program
 exits with an error message indicating that the inner isodensity surface is
 found to be too far from the outer isodensity surface.
 
-**Note: 
+!!! note "Note"
+    For some small molecules (such as atoms and diatomics), construction of the isodensity
+    cavity may fail with the default parameters. In such cases, we recommend setting ITrnGr = 0
+    and also IRotGr = 0, with the molecule centered at the origin of the grid (*i.e.*, in the standard
+    nuclear orientation).
 
-For some small molecules (such as atoms and diatomics), construction of the isodensity
-cavity may fail with the default parameters. In such cases, we recommend setting ITrnGr = 0
-and also IRotGr = 0, with the molecule centered at the origin of the grid (*i.e.*, in the standard
-nuclear orientation).
-**
 
 Some molecules, for example C${}_{60}$, can have a hole in the middle. Such
 molecules have two different “legal” isodensity surfaces, a small inner one

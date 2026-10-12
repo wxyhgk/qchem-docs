@@ -16,20 +16,18 @@ title: "7.9.22 EOM-CC Optimization and Properties Job Control"
 >     * `[`: $i$ , $j$ ] optimize the $j$ th state of the $i$ th irrep.
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    The state number should be smaller or equal to the number of excited
+    states calculated in the corresponding irrep.
 
-The state number should be smaller or equal to the number of excited
-states calculated in the corresponding irrep.
-**
 
-**Note: 
+!!! note "Note"
+    If analytic gradients are not available, the finite difference
+    calculations will be performed and the symmetry will be turned off. In this
+    case, CC_STATE_TO_OPT should be specified assuming C${}_{1}$ symmetry,
+    *i.e.*, as [1,N] where N is the number of state to optimize (the EOM states are
+    numbered from 1).
 
-If analytic gradients are not available, the finite difference
-calculations will be performed and the symmetry will be turned off. In this
-case, CC_STATE_TO_OPT should be specified assuming C${}_{1}$ symmetry,
-*i.e.*, as [1,N] where N is the number of state to optimize (the EOM states are
-numbered from 1).
-**
 
 ### `CC_EOM_PROP`
 
@@ -51,12 +49,11 @@ numbered from 1).
 >     * 1 (calculate transition properties between all computed EOM state and the reference state): 2 (calculate transition properties between all pairs of EOM states)
 > * **Recommendation**: Additional equations (for the left EOM-CCSD eigenvectors plus lambda CCSD equations in case of transition properties between the CCSD reference and EOM-CCSD target states are requested) need to be solved for transition properties, approximately doubling the computational cost. The cost of the transition properties calculation itself is low.
 
-**Note: 
+!!! note "Note"
+    When the *$trans_prop* section is present in the input, it overrides the
+    setting of the CC_TRANS_PROP *$rem* variable. However, for
+    *$trans_prop* to work, CC_TRANS_PROP *does* need to be set.
 
-When the *$trans_prop* section is present in the input, it overrides the
-setting of the CC_TRANS_PROP *$rem* variable. However, for
-*$trans_prop* to work, CC_TRANS_PROP *does* need to be set.
-**
 
 ### `CC_EOM_ECD`
 
@@ -240,11 +237,10 @@ setting of the CC_TRANS_PROP *$rem* variable. However, for
 >     * `FALSE`: Do not use point group symmetry (all states will be of $A$ symmetry).
 > * **Recommendation**: It is automatically turned off for any finite difference calculations, e.g. second derivatives.
 
-**Note: 
+!!! note "Note"
+    Only Abelian groups are supported. For molecules from non-Abelian groups,
+    USE_ABELIAN_SUBGROUP must be set to TRUE (this is currently a default for all CCMAN and CCMAN2 jobs).
 
-Only Abelian groups are supported. For molecules from non-Abelian groups,
-USE_ABELIAN_SUBGROUP must be set to TRUE (this is currently a default for all CCMAN and CCMAN2 jobs).
-**
 
 ### `STATE_ANALYSIS`
 
@@ -267,10 +263,9 @@ USE_ABELIAN_SUBGROUP must be set to TRUE (this is currently a default for all CC
 >     * `TRUE`（或 `1`）: Calculate g-tensor.
 > * **Recommendation**: None.
 
-**Note: 
+!!! note "Note"
+    g-Tensor calculations are only available for CCSD.
 
-g-Tensor calculations are only available for CCSD.
-**
 
 ## 7.9.22.1 Examples
 

@@ -14,10 +14,9 @@ title: "6.13.4 作业控制选项"
 
 **Q-Chem** 中提供了多种非迭代三激励（non-iterative triples）的实现。在原始的 CCMAN 套件中，可以计算 (T)、(2) 以及 (dT)/(fT) 校正。该代码的并行扩展性非常有限（最多 4 个核心）。CCMAN2 目前仅允许对 CCSD 波函数计算 (T) 和 (fT) 校正。默认使用 CCMAN2 代码来计算 (T)；若要使用 CCMAN 代码，请将 `CCMAN2` 设为 false。CCMAN2 中有两个版本的 (T)：默认版本（原生 CCMAN2）和使用 **libpt** 的新版本。基于 **libpt** 的实现是内存内（in-core）的 OpenMP 并行代码。在大多数实际计算中它显著更快，但它不使用点群对称性，因此对于高对称性的小体系作业，其性能可能反而较慢。通过设置 USE_LIBPT=TRUE 可启用 **libpt** 代码。CCSD(T) 计算可以利用 CCSD(T) 计算过程中打印的 *$ccsd_pt_restart* 数据进行重启。要重启作业，只需将最后一次打印的 *$ccsd_pt_restart* 复制到 **Q-Chem** 输入文件中即可。
 
-**注意：
+!!! note "注意"
+    为获得 **libpt** (T) 代码的最佳性能，应请求并行执行，参见第 [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel) 节。
 
-为获得 **libpt** (T) 代码的最佳性能，应请求并行执行，参见第 [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel) 节。
-**
 
 ### `USE_LIBPT`
 

@@ -24,17 +24,11 @@ To remedy this problem, one can employ charge stabilization methods.[[740]](../b
 This approach, which can be used with any electronic structure method, introduces an
 additional Coulomb potential to stabilize the wave function. There are three ways to do this:
 
-- •
-
-Scaling the nuclear charges, which is accomplished using the *$rem* variable SCALE_NUCLEAR_CHARGE.
-- •
-
-User-defined nuclear charges, activated by setting CHARGE_STABILIZE = TRUE and specifying
+- Scaling the nuclear charges, which is accomplished using the *$rem* variable SCALE_NUCLEAR_CHARGE.
+- User-defined nuclear charges, activated by setting CHARGE_STABILIZE = TRUE and specifying
 the new charges in a *$nuclear_charges* input section. The format for the *$nuclear_charges* input section is the
 same as that of the *$van_der_waals* section, which is described in Section [11.2.10](../ch11_env/subsec_LD.md).
-- •
-
-Adding a “charged cage”, *i.e.*, an array of point charges around the molecule, which is activated by setting
+- Adding a “charged cage”, *i.e.*, an array of point charges around the molecule, which is activated by setting
 ADD_CHARGED_CAGE = TRUE.
 Two types of cages (spherical and dodecahedral) are available; the
 shape, radius, number of points, and total charge of the cage are set by the user.

@@ -55,22 +55,20 @@ CVS_EE_TRIPLETS 的用法与常规 EOM 计算完全相同）。对于电离态�
 跃迁性质和 Dyson 轨道既可以在 CVS 流形内部计算，也可以在 CVS 与价层流形之间计算
 （Dyson 轨道的定义见第 [7.9.29](topic_dyson.md) 节）。CVS-EOM-CCSD 仅可在 CCMAN2 下使用。
 
-**注意：
+!!! note "注意"
+    (1) 在 CVS-EOM 计算中必须冻结核心电子。核心的精确定义取决于所研究的边，
+    因此使用默认值可能并不合适。
+    (2) 默认设置（N_FROZEN_CORE = FC）在 QM/MM 计算中不能正确工作。
+    应当显式指定冻结核心轨道的数目。
 
-(1) 在 CVS-EOM 计算中必须冻结核心电子。核心的精确定义取决于所研究的边，
-因此使用默认值可能并不合适。
-(2) 默认设置（N_FROZEN_CORE = FC）在 QM/MM 计算中不能正确工作。
-应当显式指定冻结核心轨道的数目。
-**
 
 可以为源自特定核心轨道的电离/激发设置自定义的 CVS 计算。为此，首先应使用
 *$reorder_mo* 功能对轨道重新排序，使所需的核心轨道出现在列表首位，
 然后以 N_FROZEN_CORE = 1 运行 CVS-EOM 计算。
 
-**注意：
+!!! note "注意"
+    *$reorder_mo* 仅适用于旧的 SCF 代码（GEN_SCFMAN=FALSE）。
 
-*$reorder_mo* 仅适用于旧的 SCF 代码（GEN_SCFMAN=FALSE）。
-**
 
 还可以使用关键字 N_FC_CVS_INACTIVE 将冻结芯空间拆分为 CVS 活性与 CVS 非活性子空间，
 该关键字将 CVS 活性子空间的大小定义为 N_FROZEN_CORE 减去 N_FC_CVS_INACTIVE。
@@ -202,11 +200,10 @@ RIXS 截面的计算需要求解响应方程，其方式与 2PA 截面的计算�
 >     * `12`: 在标准 EOM-EE-CCSD 的 RIXS 响应计算中使用 $\sigma$ 中间量
 > * **建议**: 使用 1 以启用具有稳健收敛性的 fc-CVS-EOM-EE-CCSD
 
-**注意：
+!!! note "注意"
+    由于 EOM-EE-CCSD 中的 RIXS 响应解经常无法收敛，推荐使用 CC_EOM_RIXS = 1
+    的 fc-CVS-EOM-EE-CCSD RIXS 计算以获得顺畅的收敛。其他所有选项均为实验性质。
 
-由于 EOM-EE-CCSD 中的 RIXS 响应解经常无法收敛，推荐使用 CC_EOM_RIXS = 1
-的 fc-CVS-EOM-EE-CCSD RIXS 计算以获得顺畅的收敛。其他所有选项均为实验性质。
-**
 
 要指定泵浦频率和阻尼因子 $\epsilon$，请使用 *$rixs* 节：
 
@@ -237,35 +234,25 @@ DIIS 求解器由 CC_MAX_ITER、CC_DIIS_START、
 CC_DIIS_SIZE、CC_EOM_2PA_ECONV 和
 CC_EOM_2PA_XCONV 控制。
 
-**注意：
+!!! note "注意"
+    - 为获得 DIIS 求解器下响应方程更好的收敛性，
+    请增大 CC_DIIS_SIZE（推荐 25）并考虑使用更大的阻尼因子。
 
-•
+    - **Dalton** 求解器在估计收敛时使用残差范数的平方（与 Davidson 求解器相同），
+    而 DIIS 求解器使用的是相邻迭代之间响应向量之差的范数。
 
-为获得 DIIS 求解器下响应方程更好的收敛性，
-请增大 CC_DIIS_SIZE（推荐 25）并考虑使用更大的阻尼因子。
-
-•
-
-**Dalton** 求解器在估计收敛时使用残差范数的平方（与 Davidson 求解器相同），
-而 DIIS 求解器使用的是相邻迭代之间响应向量之差的范数。
-
-**
 
 ## 7.9.9.2 示例
 
 以下示例说明如何执行这些计算。
 
-- •
-
-例 [7.9.9.2](#ex:cvsee1)：在 CCSD 计算中冻结氧原子上的 $1s$ 轨道
+- 例 [7.9.9.2](#ex:cvsee1)：在 CCSD 计算中冻结氧原子上的 $1s$ 轨道
 （N_FROZEN_CORE = FC）。在 EOM 计算中调用 CVS 近似（CVS_EE_SINGLETS），
 从而将核心激发能作为最低激发获得。通过选择 CC_TRANS_PROP = 1
 激活振子强度和旋转强度的计算，并通过 STATE_ANALYSIS = TRUE
 调用 **libwfa** 分析（见第 [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md) 节）。
 注意，对于非手性体系，旋转强度为零。
-- •
-
-例 [7.9.9.2](#ex:cvsee1)：在双边分子（一氧化碳）中进行 CVS-EOM-EE-CCSD 计算。
+- 例 [7.9.9.2](#ex:cvsee1)：在双边分子（一氧化碳）中进行 CVS-EOM-EE-CCSD 计算。
 在当前实现中，应针对每一条边分别进行计算。第一个作业计算碳边态。
 由于碳的 $1s$ 轨道在能量上最高（在该分子的核心 $1s$ 轨道中），
 C 边的输入与例 [7.9.9.2](#ex:cvsee1) 类似。在参考 CCSD 计算中，
@@ -276,25 +263,17 @@ C 边的输入与例 [7.9.9.2](#ex:cvsee1) 类似。在参考 CCSD 计算中，
 专门针对氧边。氧原子的 1$s$ 轨道通过 N_FROZEN_CORE = 1 选取。
 若分子还有其他边，则应通过适当的 N_FROZEN_CORE 值，
 选取最深的核心轨道，直至并包括所研究边的轨道。
-- •
-
-例 [7.9.9.2](#ex:cvsee1)：利用放置在氮原子上的附加 Rydberg 函数组计算氨的 XAS 光谱；
+- 例 [7.9.9.2](#ex:cvsee1)：利用放置在氮原子上的附加 Rydberg 函数组计算氨的 XAS 光谱；
 Rydberg 函数的指数按 Kaufmann 的配方[[672]](../bib_references/bib.md#bib696)
 生成。
 注意，使用虚原子（ghost atoms）时对称性会被关闭。可通过 FORCE_SYMMETRY_ON
 关键字强制开启对称性。
  alternatively，此计算也可以通过向所有（或所选）原子添加采用偶数 tempered 指数的
 附加弥散函数来设置。用户必须确保虚原子不会降低对称性。
-- •
-
-例 [7.9.9.2](#ex:cvsee1)：计算苯的 XES 光谱。
-- •
-
-例 [7.9.9.2](#ex:cvsee1) 和 [7.9.9.2](#ex:cvsee1)：分别计算核心激发态与核心电离态之间、
+- 例 [7.9.9.2](#ex:cvsee1)：计算苯的 XES 光谱。
+- 例 [7.9.9.2](#ex:cvsee1) 和 [7.9.9.2](#ex:cvsee1)：分别计算核心激发态与核心电离态之间、
 以及核心激发态与价电离态之间的 Dyson 轨道。
-- •
-
-例 [7.9.9.2](#ex:cvsee1)：RIXS 计算的设置。
+- 例 [7.9.9.2](#ex:cvsee1)：RIXS 计算的设置。
 
 采用态相互作用方法[[1404]](../bib_references/bib.md#bib1464)
 计算 L 边光谱需要两步流程。首先，**Q-Chem** 计算所需的 CVS-EOM 态和 SOC。

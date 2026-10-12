@@ -33,29 +33,19 @@ $\mathbf{r}$ (on A).
 
 **Q-Chem** includes four such functionals that can describe dispersion interactions:
 
-- •
-
-vdW-DF-04, developed by Langreth, Lundqvist, and
+- vdW-DF-04, developed by Langreth, Lundqvist, and
 coworkers,[[327]](../bib_references/bib.md#bib331)
  implemented as described in
 Ref. [[1417]](../bib_references/bib.md#bib1474)
 .
-- •
-
-vdW-DF-10 (also known as vdW-DF2), which is a
+- vdW-DF-10 (also known as vdW-DF2), which is a
 re-parameterization of vdW-DF-04.[[786]](../bib_references/bib.md#bib822)
-- •
-
-VV09, developed[[1414]](../bib_references/bib.md#bib1475)
+- VV09, developed[[1414]](../bib_references/bib.md#bib1475)
  and implemented[[1415]](../bib_references/bib.md#bib1476)
 
 by Vydrov and Van Voorhis.
-- •
-
-VV10 by Vydrov and Van Voorhis.[[1416]](../bib_references/bib.md#bib1477)
-- •
-
-rVV10 by Sabatini and coworkers.[[1192]](../bib_references/bib.md#bib1247)
+- VV10 by Vydrov and Van Voorhis.[[1416]](../bib_references/bib.md#bib1477)
+- rVV10 by Sabatini and coworkers.[[1192]](../bib_references/bib.md#bib1247)
 
 Each of these functionals is implemented in a self-consistent manner, and
 analytic gradients with respect to nuclear displacements are

@@ -52,11 +52,10 @@ title: "5.11.6 CDFT-CI Job Control and Examples"
 >     * `TRUE`: Use the given charge/spin constraints directly, with no promolecule calculations.
 > * **Recommendation**: Setting to TRUE can be useful for scanning over constraint values.
 
-**Note: 
+!!! note "Note"
+    CDFT_LAMBDA_MODE and CDFTCI_SKIP_PROMOLECULES
+    are mutually incompatible.
 
-CDFT_LAMBDA_MODE and CDFTCI_SKIP_PROMOLECULES
-are mutually incompatible.
-**
 
 ### `CDFTCI_SVD_THRESH`
 

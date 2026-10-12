@@ -13,19 +13,13 @@ automatically spawned when the user requests this option. When basis set
 projection is requested (by providing a valid small basis for BASIS2),
 the program executes the following steps:
 
-- •
-
-A simple DFT calculation is performed in the small basis,
+- A simple DFT calculation is performed in the small basis,
 BASIS2, yielding a converged density matrix in this basis.
-- •
-
-The large basis set SCF calculation (with different values of
+- The large basis set SCF calculation (with different values of
 EXCHANGE and CORRELATION set by the input) begins by
 constructing the DFT Fock operator in the large basis but with the
 density matrix obtained from the small basis set.
-- •
-
-By diagonalizing this matrix, an accurate initial guess for the density
+- By diagonalizing this matrix, an accurate initial guess for the density
 matrix in the large basis is obtained, and the target SCF calculation
 commences.
 
@@ -62,14 +56,13 @@ following *$rem* variables:
 >     * `OVPROJECTION`: Projects MOs from BASIS2 to BASIS .
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    BASIS2 sometimes affects post-Hartree-Fock calculations. It is
+    recommended to split such jobs into two subsequent one, such that in the first
+    job a desired Hartree-Fock solution is found using BASIS2, and in the
+    second job, which performs a post-HF calculation,
+    SCF_GUESS = READ is invoked.
 
-BASIS2 sometimes affects post-Hartree-Fock calculations. It is
-recommended to split such jobs into two subsequent one, such that in the first
-job a desired Hartree-Fock solution is found using BASIS2, and in the
-second job, which performs a post-HF calculation,
-SCF_GUESS = READ is invoked.
-**
 
 ???+ example "Example 4.7: Input where basis set projection is used to generate a good initial guess for
 a calculation employing a general basis set, for which the default initial

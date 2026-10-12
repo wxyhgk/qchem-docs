@@ -14,10 +14,9 @@ Section [12](../ch12_frag/chap_frag.md)) in the *$molecule* section, whereas th
 corresponds to the embedded species (A), the second fragment represents
 the environment (B).
 
-**Note: 
+!!! note "Note"
+    The current implementation allows only for closed shell fragments.
 
-The current implementation allows only for closed shell fragments.
-**
 
 ### `FDE`
 
@@ -47,10 +46,9 @@ section.
 Other DFT functionals can also be requested with the EXCHANGE and CORRELATION keywords as described
 in Section [5.4](../ch05_dft/sect_DFT_METHOD.md).
 
-**Note: 
+!!! note "Note"
+    The current implementation is restricted to mean-field methods that are solved with the SCFMAN module.
 
-The current implementation is restricted to mean-field methods that are solved with the SCFMAN module.
-**
 
 The standard capabilities to use customized basis sets are also possible with the FDE-Man module.
 

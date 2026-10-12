@@ -82,22 +82,20 @@ This script applies the IE condition to both the neutral molecule and its
 anion, minimizing $J(\omega)$ in Eq. ([5.19](#eq:J(w))).
 A similar script, `OptOmegaIP.pl`, uses Eq. ([5.18](#eq:IP-tuning)) for the neutral molecule only.
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    If the system does not have positive EA, then the tuning should be done
+    according to the IP condition only. The IP/EA script will yield an
+    incorrect value of $\omega$ in such cases.
 
-If the system does not have positive EA, then the tuning should be done
-according to the IP condition only. The IP/EA script will yield an
-incorrect value of $\omega$ in such cases.
+    2.
 
-2.
+    In order for the scripts to work, one must specify
+    SCF_FINAL_PRINT = 1 in the inputs. The scripts look for
+    specific regular expressions and will not work correctly without this
+    keyword.
 
-In order for the scripts to work, one must specify
-SCF_FINAL_PRINT = 1 in the inputs. The scripts look for
-specific regular expressions and will not work correctly without this
-keyword.
-
-**
 
 Although the tuning procedure was originally developed by Baer and co-workers
 using the BNL functional,[[851]](../bib_references/bib.md#bib885)

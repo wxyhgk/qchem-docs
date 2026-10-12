@@ -42,11 +42,10 @@ Other job-control variables are similar to EOM-CCSD ones.
 
 Illustrative examples employing EOM-CCSDT for computing excitation energies are given below.
 
-**Note: 
+!!! note "Note"
+    For non-trivial calculations we recommend using
+    CC_BACKEND=XM.
 
-For non-trivial calculations we recommend using
-CC_BACKEND=XM.
-**
 
 ???+ example "Example 7.152: Computation of first excited singlet (B ${}_{1}$ ) and first excited triplet (B ${}_{2}$ )
 energies of BH using EOM-EE-CCSDT/STO-3G

@@ -15,83 +15,39 @@ title: "12.6.5 EDA2 的作业控制"
 （下文介绍）来设定。除此之外，为了灵活性，用户也可以覆盖部分预设 *$rem*
 变量的取值：
 
-- •
+- 与孤立碎片计算相关：
 
-与孤立碎片计算相关：
+- EDA_CHILD_SUPER_BASIS：碎片计算使用超系统（super-system）基组（默认：FALSE）。
+- FRAGMO_GUESS_MODE：如第 [12.3](sect_FRAGMOguess.md) 节所述（默认：0）。
+- 与 FRZ 项的分解相关：
 
-- **–**
-
-EDA_CHILD_SUPER_BASIS：碎片计算使用超系统（super-system）基组（默认：FALSE）。
-- **–**
-
-FRAGMO_GUESS_MODE：如第 [12.3](sect_FRAGMOguess.md) 节所述（默认：0）。
-- •
-
-与 FRZ 项的分解相关：
-
-- **–**
-
-FRZ_ORTHO_DECOMP：在 *$rem* 区段中将其值设为 $-1$ 即可关闭该选项
+- FRZ_ORTHO_DECOMP：在 *$rem* 区段中将其值设为 $-1$ 即可关闭该选项
 （默认：TRUE）。
-- **–**
+- FRZ_ORTHO_DECOMP_CONV：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：6）。
+- EDA_CLS_DISP：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：FALSE）。
+- DISP_FREE_X：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：HF）。
+- DISP_FREE_C：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：NONE）。
+- 与 POL 的评估与分析相关：
 
-FRZ_ORTHO_DECOMP_CONV：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：6）。
-- **–**
+- CHILD_MP_ORDERS：如第 [12.6.3](sect_ferf.md) 节所述（默认：232 (DQ)）。
+- SCFMI_FREEZE_SS：如第 [12.6.2](sect_gen_scfmi.md) 节所述（默认：0）。
+- EDA_POL_A：执行非微扰极化分析（默认：FALSE；见第 [12.6.8](sect_eda2_vcta.md) 节）。
+- 与 CT 和 BSSE 的评估相关：
 
-EDA_CLS_DISP：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：FALSE）。
-- **–**
-
-DISP_FREE_X：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：HF）。
-- **–**
-
-DISP_FREE_C：如第 [12.6.4](sect_frz_decomp.md) 节所述（默认：NONE）。
-- •
-
-与 POL 的评估与分析相关：
-
-- **–**
-
-CHILD_MP_ORDERS：如第 [12.6.3](sect_ferf.md) 节所述（默认：232 (DQ)）。
-- **–**
-
-SCFMI_FREEZE_SS：如第 [12.6.2](sect_gen_scfmi.md) 节所述（默认：0）。
-- **–**
-
-EDA_POL_A：执行非微扰极化分析（默认：FALSE；见第 [12.6.8](sect_eda2_vcta.md) 节）。
-- •
-
-与 CT 和 BSSE 的评估相关：
-
-- **–**
-
-EDA_NO_CT：在 EDA 流程中跳过 CT 项的评估
+- EDA_NO_CT：在 EDA 流程中跳过 CT 项的评估
 （默认：FALSE
 （当 SCFMI_FREEZE_SS = TRUE 时自动开启））。
-- **–**
-
-EDA_BSSE：使用_counterpoise_校正后的单体计算来评估 BSSE
+- EDA_BSSE：使用_counterpoise_校正后的单体计算来评估 BSSE
 （默认：FALSE）。
-- **–**
-
-EDA_PCT_A：开启微扰式（基于 Roothaan 步骤）电荷转移分析（默认：FALSE）。
-- **–**
-
-EDA_VCT_A：开启非微扰电荷转移分析（默认：FALSE；见第 [12.6.8](sect_eda2_vcta.md) 节）。
-- **–**
-
-EDA_COVP：对电荷转移执行 COVP 分析（默认：FALSE；见第 [12.5.3](sect_eda1.md) 节）。
-- **–**
-
-EDA_PRINT_COVP：将 COVP 输出到分子轨道系数文件中（默认：FALSE；见第 [12.5.3](sect_eda1.md) 节）。
+- EDA_PCT_A：开启微扰式（基于 Roothaan 步骤）电荷转移分析（默认：FALSE）。
+- EDA_VCT_A：开启非微扰电荷转移分析（默认：FALSE；见第 [12.6.8](sect_eda2_vcta.md) 节）。
+- EDA_COVP：对电荷转移执行 COVP 分析（默认：FALSE；见第 [12.5.3](sect_eda1.md) 节）。
+- EDA_PRINT_COVP：将 COVP 输出到分子轨道系数文件中（默认：FALSE；见第 [12.5.3](sect_eda1.md) 节）。
 
 注意：当 EDA_PRINT_COVP 大于 1 时，EDA2 可以为每对供体与受体碎片自动生成其主要占据-虚互补轨道（complementary occupied-virtual orbitals）的 cube 文件。
-- •
+- 其他选项：
 
-其他选项：
-
-- **–**
-
-EDA2_PRINT_LEVEL：当设置为 $>1$ 时，为部分 EDA 项输出额外细节（*e.g.* 经溶剂化校正的 ELEC/PAULI）（默认：1）
+- EDA2_PRINT_LEVEL：当设置为 $>1$ 时，为部分 EDA 项输出额外细节（*e.g.* 经溶剂化校正的 ELEC/PAULI）（默认：1）
 
 ### `EDA2`
 

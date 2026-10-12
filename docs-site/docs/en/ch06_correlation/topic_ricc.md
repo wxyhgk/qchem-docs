@@ -25,20 +25,18 @@ integrals in conventional form (by transforming RI integrals back to the
 standard format) invoking conventional CC procedures. This option is mostly used for
 debugging and benchmarking purposes.
 
-**Note: 
+!!! note "Note"
+    RI for integrals is available for all CCMAN/CCMAN2 methods. CCMAN
+    requires that the unrestricted reference be used, CCMAN2 does not have this
+    limitation. The RI is also available for jobs that need analytic
+    gradients.
+    Full RI implementation (with integrals used in decomposed form) is
+    only available for CCMAN2. For maximum computational efficiency, combine with
+    FNO (see Sections [6.15.1](sec_FNOCC.md) and [7.9.14](../ch07_excited/sec_FNO.md)) when appropriate.
 
-RI for integrals is available for all CCMAN/CCMAN2 methods. CCMAN
-requires that the unrestricted reference be used, CCMAN2 does not have this
-limitation. The RI is also available for jobs that need analytic
-gradients.
-Full RI implementation (with integrals used in decomposed form) is
-only available for CCMAN2. For maximum computational efficiency, combine with
-FNO (see Sections [6.15.1](sec_FNOCC.md) and [7.9.14](../ch07_excited/sec_FNO.md)) when appropriate.
-**
 
-**Note: 
+!!! note "Note"
+    Efficient implementation[[532]](../bib_references/bib.md#bib546)
+     of RI-CC2 that does not store double amplitudes
+    is available in **libgmbpt**; it is invoked by setting CCMAN2=-1. See Section [6.12.4](topic_cc2.md).
 
-Efficient implementation[[532]](../bib_references/bib.md#bib546)
- of RI-CC2 that does not store double amplitudes
-is available in **libgmbpt**; it is invoked by setting CCMAN2=-1. See Section [6.12.4](topic_cc2.md).
-**

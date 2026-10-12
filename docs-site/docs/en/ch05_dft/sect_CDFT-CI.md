@@ -95,12 +95,11 @@ If it is desired to use an unconstrained state as one of the interacting
 configurations, charge and spin constraints of zero may be applied to the atom
 range from 0 to 0.
 
-**Note: 
+!!! note "Note"
+    It is mandatory to specify a spin constraint corresponding to every
+    charge constraint (and it must be immediately following that charge constraint
+    in the input deck), for reasons described below.
 
-It is mandatory to specify a spin constraint corresponding to every
-charge constraint (and it must be immediately following that charge constraint
-in the input deck), for reasons described below.
-**
 
 In addition to the *$cdft* input section of the input file, a CDFT-CI
 calculation must also set the CDFTCI flag to TRUE for the calculation

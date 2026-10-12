@@ -14,18 +14,10 @@ hardware and accounting configurations. However, users may identify other
 important uses for this customization feature. **Q-Chem** obtains input
 initialization variables from four sources:
 
-1. 1.
-
-User input file
-2. 2.
-
-`$HOME/.qchemrc` file
-3. 3.
-
-`$QC/config/preferences` file
-4. 4.
-
-“Factory installed” program defaults
+1. User input file
+2. `$HOME/.qchemrc` file
+3. `$QC/config/preferences` file
+4. “Factory installed” program defaults
 
 Input mechanisms higher in this list override those that are lower. Mechanisms
 #2 and #3 allow the user to specify alternative default settings for certain
@@ -34,12 +26,11 @@ This can be done by a system administrator via a `preferences` file added
 to the `$QC/config` directory, or by an individual user by means of a
 `.qchemrc` file in her home directory.
 
-**Note: 
+!!! note "Note"
+    The `.qchemrc` and `preferences` files are not requisites for
+    running **Q-Chem** and currently only support keywords in the *$rem* input
+    section.
 
-The `.qchemrc` and `preferences` files are not requisites for
-running **Q-Chem** and currently only support keywords in the *$rem* input
-section.
-**
 
 The format of the `.qchemrc` and `preferences` files consists of a
 *$rem* keyword section, as in the **Q-Chem** input file, terminated with the
@@ -69,18 +60,8 @@ $end
 The following *$rem* variables are specifically recommended as those that a
 user might want to customize:
 
-- •
-
-MEM_STATIC
-- •
-
-SCF_CONVERGENCE
-- •
-
-THRESH
-- •
-
-MAX_SCF_CYCLES
-- •
-
-GEOM_OPT_MAX_CYCLES
+- MEM_STATIC
+- SCF_CONVERGENCE
+- THRESH
+- MAX_SCF_CYCLES
+- GEOM_OPT_MAX_CYCLES

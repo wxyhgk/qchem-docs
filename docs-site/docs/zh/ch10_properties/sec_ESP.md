@@ -8,10 +8,9 @@ title: "10.5.8 静电势"
 
 **Q-Chem** 可以在一组网格点上计算静电势。静电势（Electrostatic Potential, ESP）的求值由 *$rem* 变量 ESP_GRID 控制。
 
-**注意：
+!!! note "注意"
+    为了与 **Q-Chem**/**Charmm** 接口保持向后兼容，名称 IGDESP 与 ESP_GRID 等价。
 
-为了与 **Q-Chem**/**Charmm** 接口保持向后兼容，名称 IGDESP 与 ESP_GRID 等价。
-**
 
 ### `ESP_GRID`
 

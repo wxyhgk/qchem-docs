@@ -16,11 +16,10 @@ HF and CORRELATION = NONE, as in a ground-state
 Hartree-Fock calculation, but then also specifying a number of excited-state
 roots using the *$rem* keyword CIS_N_ROOTS.
 
-**Note: 
+!!! note "Note"
+    For RHF case, $n$ singlets and $n$ triplets will be computed, unless
+    specified otherwise by using CIS_TRIPLETS and CIS_SINGLETS.
 
-For RHF case, $n$ singlets and $n$ triplets will be computed, unless
-specified otherwise by using CIS_TRIPLETS and CIS_SINGLETS.
-**
 
 ### `CIS_N_ROOTS`
 
@@ -193,10 +192,9 @@ Additional variables for fine-tuning CIS and related calculations are provided b
 >     * $n$: core orbitals.
 > * **Recommendation**: There is no computational advantage to using frozen core for CIS, and analytical derivatives are only available when no orbitals are frozen. It is helpful when calculating CIS(D) corrections (see Section 7.8 ).
 
-**Note: 
+!!! note "Note"
+    In correlated calculation, the default setting is N_FROZEN_CORE=FC.
 
-In correlated calculation, the default setting is N_FROZEN_CORE=FC.
-**
 
 ### `N_FROZEN_VIRTUAL`
 

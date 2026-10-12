@@ -74,20 +74,18 @@ Section [10.10.3](moprop_jobcontrol.md) for details. Note that omitting any of 
 contributions cannot be rationalized from a theoretical point of view. Results
 from such calculations should be interpreted extremely cautiously.
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    Specialized basis sets are highly recommended in any $J$-coupling
+    calculation, such as the pcJ-$n$ basis set family.[[634]](../bib_references/bib.md#bib660)
 
-Specialized basis sets are highly recommended in any $J$-coupling
-calculation, such as the pcJ-$n$ basis set family.[[634]](../bib_references/bib.md#bib660)
+    2.
 
-2.
+    The Hartree-Fock level of theory is *not* suitable to obtain
+    $J$-coupling constants of *any* degree of reliability. Use GGA or
+    hybrid density functionals instead.
 
-The Hartree-Fock level of theory is *not* suitable to obtain
-$J$-coupling constants of *any* degree of reliability. Use GGA or
-hybrid density functionals instead.
-
-**
 
 ## 10.11.2.1 FD-NMR Job Control and Examples
 

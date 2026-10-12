@@ -52,17 +52,11 @@ $$
 
 对这些量的自动化分析在文献 [[311]](../bib_references/bib.md#bib328) 中有详细描述。
 
-**注意： 
+!!! note "注意"
+    - 如果场窗口选择不当，自动化过程可能会失败。
 
-•
+    - Romberg 过程可以针对某一个特定的对角方向执行，也可以针对所有笛卡尔分量执行。对于二阶超极化率，仅可获得 $iiii$、$iijj$ 分量。
 
-如果场窗口选择不当，自动化过程可能会失败。
-
-•
-
-Romberg 过程可以针对某一个特定的对角方向执行，也可以针对所有笛卡尔分量执行。对于二阶超极化率，仅可获得 $iiii$、$iijj$ 分量。
-
-**
 
 ## 10.13.3.1 如何执行 Romberg 微分过程
 
@@ -96,15 +90,9 @@ Romberg 过程可以针对某一个特定的对角方向执行，也可以针对
 
 要运行计算，请创建一个名为 `input` 的输入文件，指定分子、电子结构方法以及若干额外的 *$rem* 变量，这些变量用于
 
-- •
-
-关闭对称性（对于 CC/EOM 计算，设置 INTEGRAL_SYMMETRY 和 CC_SYMMETRY），
-- •
-
-请求更高精度的输出（CC_PRINT_PREC），以及
-- •
-
-设置非常严格的收敛条件（SCF_CONVERGENCE、CC_CONVERGENCE、EOM_DAVIDSON_CONVERGENCE，*等等*）。
+- 关闭对称性（对于 CC/EOM 计算，设置 INTEGRAL_SYMMETRY 和 CC_SYMMETRY），
+- 请求更高精度的输出（CC_PRINT_PREC），以及
+- 设置非常严格的收敛条件（SCF_CONVERGENCE、CC_CONVERGENCE、EOM_DAVIDSON_CONVERGENCE，*等等*）。
 
 下面给出一个输入文件的示例。
 
@@ -140,10 +128,9 @@ Romberg 过程可以针对某一个特定的对角方向执行，也可以针对
 
 Romberg 微分仅适用于已启用高精度总能量输出的方法。在当前版本的 **Q-Chem** 中，CC_PRINT_PREC 已对以下方法实现：HF、DFT、MP2、RI-MP2、MP3、CCD、CCSD、CCSD(T)、QCISD、QCISD(T)、TDDFT 和 EOM-CCSD。
 
-**注意： 
+!!! note "注意"
+    当使用激发态方法（如 TDDFT、CIS 和 EOM-CC）时，在外电场较大时态序（state ordering）可能会发生交换。
 
-当使用激发态方法（如 TDDFT、CIS 和 EOM-CC）时，在外电场较大时态序（state ordering）可能会发生交换。
-**
 
 使用 T-REX 程序，可以计算静态势偶极矩、极化率、一阶和二阶超极化率，可针对某一个特定的对角方向或所有笛卡尔分量，不过二阶超极化率仅限于 $iiii$ 和 $iijj$ 分量。在计算所有分量时，您可以获得偶极矩和极化率的范数、超瑞利散射（Hyper-Rayleigh scattering）一阶超极化率、二阶超极化率的平均值以及其他信息。
 

@@ -56,17 +56,15 @@ hard drive and the CPU time. Calculations with around 80 basis functions are
 possible for a molecule consisting of four first row atoms (NO dimer). The
 number of basis functions can be larger for smaller systems.
 
-**Note: 
+!!! note "Note"
+    In EE calculations, one needs to always solve for at least one low-spin
+    root in the first symmetry irrep in order to obtain the correlated EOM energy
+    of the reference. The triples correction to the total reference energy must be
+    used to evaluate EOM-(2,3) excitation energies.
 
-In EE calculations, one needs to always solve for at least one low-spin
-root in the first symmetry irrep in order to obtain the correlated EOM energy
-of the reference. The triples correction to the total reference energy must be
-used to evaluate EOM-(2,3) excitation energies.
-**
 
-**Note: 
+!!! note "Note"
+    EOM-CC(2,3) works for EOM-EE, EOM-SF, and EOM-IP/EA. In EOM-IP,
+    “triples” correspond to $3h2p$ excitations, and the computational scaling of
+    EOM-IP-CC(2,3) is less.
 
-EOM-CC(2,3) works for EOM-EE, EOM-SF, and EOM-IP/EA. In EOM-IP,
-“triples” correspond to $3h2p$ excitations, and the computational scaling of
-EOM-IP-CC(2,3) is less.
-**

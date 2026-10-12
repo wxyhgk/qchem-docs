@@ -143,18 +143,16 @@ $$
 在每个表面上布置 Lebedev 网格点或球谐函数网格点，这些网格点之间的默认间距为 0.5 Å。
 这些电荷可以被约束以满足“化学对称性”，即化学等价的原子具有相同的原子电荷值，从而得到所谓“RESP”电荷。[[270]](../bib_references/bib.md#bib271)
 
-**注意：
+!!! note "注意"
+    1.
 
-1.
+    当 ESP_CHARGES 和 RESP_CHARGES 同时开启时，仅计算 RESP 电荷
 
-当 ESP_CHARGES 和 RESP_CHARGES 同时开启时，仅计算 RESP 电荷
+    2.
 
-2.
+    ESP_CHARGES 和 RESP_CHARGES 均可用于从 CIS 或 TDDFT 计算（RPA 或 TDA）中计算任意单重激发态的原子电荷。对于激发态布居分析，建议开启 CIS_RELAXED_DENSITY。
+    从物理上看，外部静电环境感受到的应当是弛豫后的激发态密度，而非未弛豫的密度。
 
-ESP_CHARGES 和 RESP_CHARGES 均可用于从 CIS 或 TDDFT 计算（RPA 或 TDA）中计算任意单重激发态的原子电荷。对于激发态布居分析，建议开启 CIS_RELAXED_DENSITY。
-从物理上看，外部静电环境感受到的应当是弛豫后的激发态密度，而非未弛豫的密度。
-
-**
 
 ### `ESP_CHARGES`
 

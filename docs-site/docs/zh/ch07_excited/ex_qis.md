@@ -13,10 +13,9 @@ title: "7.9.31 与量子计算软件包 OpenFermion 的接口"
 （开发版本，即将合并入官方 github 仓库）包含一个导入模块，该模块能够识别并读取这些文件，同时还附带若干单元测试。
 示例 7.9.31 以水分子为例演示了这一功能。
 
-**注意：
+!!! note "注意"
+    不应冻结核心电子（Core should not be frozen）。
 
-不应冻结核心电子（Core should not be frozen）。
-**
 
 ### `PRINT_QIS`
 

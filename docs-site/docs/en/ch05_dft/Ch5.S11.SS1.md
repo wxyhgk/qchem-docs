@@ -119,12 +119,11 @@ That is, the constraint is on the difference between the average number of
 electrons on the atom and the nuclear charge. Thus, to constrain CO to be
 negative, the constraint value would be 1 and not 15.
 
-**Note: 
+!!! note "Note"
+    Constraint in *$cdft* specifies the number of excess electrons on a
+    fragment, not the total charge, *i.e.*, the value 1.0 means charge $=-1$,
+    whereas charge constraint of $-$1.0 corresponds to the total $+$1 charge.
 
-Constraint in *$cdft* specifies the number of excess electrons on a
-fragment, not the total charge, *i.e.*, the value 1.0 means charge $=-1$,
-whereas charge constraint of $-$1.0 corresponds to the total $+$1 charge.
-**
 
 The choice of which atoms to include in different constraint regions is left
 entirely to the user and in practice must be based somewhat on chemical
@@ -160,24 +159,22 @@ sensitive to grid size than ground-state DFT, so sometimes increasing the
 integration grid improves the convergence. If convergence is problematic,
 try using the SG-2 or SG-3 grid (Section [5.5.3](sect_standard-quad.md)).
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    To improve convergence, use the fewest possible constraints. For
+    example, if your system consists of two fragments, specify the constrains
+    for one of them only. The overall charge and multiplicity will force the
+    “unconstrained” fragment to attain the right charge and multiplicity.
 
-To improve convergence, use the fewest possible constraints. For
-example, if your system consists of two fragments, specify the constrains
-for one of them only. The overall charge and multiplicity will force the
-“unconstrained” fragment to attain the right charge and multiplicity.
+    2.
 
-2.
+    The direct minimization methods are not available for constrained
+    calculations. Hence, some combination of DIIS and RCA must be used to
+    obtain convergence. Further, it is often necessary to break symmetry in
+    the initial guess (using SCF_GUESS_MIX) to ensure that the
+    lowest energy solution is obtained.
 
-The direct minimization methods are not available for constrained
-calculations. Hence, some combination of DIIS and RCA must be used to
-obtain convergence. Further, it is often necessary to break symmetry in
-the initial guess (using SCF_GUESS_MIX) to ensure that the
-lowest energy solution is obtained.
-
-**
 
 Analytic gradients are available for constrained DFT
 calculations.[[1500]](../bib_references/bib.md#bib1558)

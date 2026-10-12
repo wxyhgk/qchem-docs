@@ -55,11 +55,9 @@ combination of $i_{\alpha}$ and $j_{\beta}$ describes the same target state as $
 implementation, these two channels are automatically combined to a single decay width: in the output, one of the
 orbitals characterizing the decay channel is always an alpha orbital and the inverted spin case is implicitly contained.
 
-**Note: 
+!!! note "Note"
+    Core electrons must not be frozen in such calculations—N_FROZEN_CORE should be set to 0. The core hole must be in a $\beta$ orbital.
 
-Core electrons must not be frozen in such calculations—N_FROZEN_CORE should be set to 0. The core hole must be in a $\beta$ orbital.
-
-**
 
 ### `CC_PW`
 
@@ -246,12 +244,10 @@ combination of $i_{\alpha}$ and $j_{\beta}$ describes the same target state as $
 implementation, these two channels are automatically combined to a single decay width: in the output, one of the
 orbitals characterizing the decay channel is always an alpha orbital and the inverted spin case is implicitly contained.
 
-**Note: 
+!!! note "Note"
+    Core electrons must not be frozen in such calculations—N_FROZEN_CORE should be set to 0. The
+    core-valence separation must not be invoked.
 
-Core electrons must not be frozen in such calculations—N_FROZEN_CORE should be set to 0. The
-core-valence separation must not be invoked.
-
-**
 
 ### `EOM_ACP`
 

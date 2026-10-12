@@ -15,17 +15,11 @@ see Section [5.13.3](sub_XCfuncs_CAP.md) on how to specify the desired function
 The CAP parameters should be specified in the *$rem* section.
 The same keywords and keyword values apply as used for CAP-CC calculations:
 
-- •
-
-CAP_ETA, for setting the CAP strength $\eta$. 
+- CAP_ETA, for setting the CAP strength $\eta$. 
 
 The optimal value of $\eta$ is commonly determined through minimizing $\left|\eta dE/d\eta\right|$.
-- •
-
-CAP_TYPE, for specifying the CAP type (cubic, spherical or Voronoi).
-- •
-
-CAP_X/Y/Z, for specifying the CAP onset(s).
+- CAP_TYPE, for specifying the CAP type (cubic, spherical or Voronoi).
+- CAP_X/Y/Z, for specifying the CAP onset(s).
 
 See Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md) for further details on these keywords.
 
@@ -35,14 +29,13 @@ The CAP_GRID_SWITCH and CAP_NEW_GRID keywords can be used to invoke
 re-evaluation of the CAP on a different grid during the course of the SCF iterations.
 See below for details on these keywords.
 
-**Note: 
+!!! note "Note"
+    The approach outlined here also works for CAP-HF calculations, by setting METHOD = HF instead of a complex-variable functional.
+    CAP-HF also remains accessible via the older implementation,
+    by setting CS_HF = 1 in *$complex_ccman* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md));
+    however, this cannot be used for invoking CAP-DFT calculations,
+    and the keywords CAP_GRID, CAP_GRID_SWITCH and CAP_NEW_GRID will not be recognized.
 
-The approach outlined here also works for CAP-HF calculations, by setting METHOD = HF instead of a complex-variable functional.
-CAP-HF also remains accessible via the older implementation,
-by setting CS_HF = 1 in *$complex_ccman* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md));
-however, this cannot be used for invoking CAP-DFT calculations,
-and the keywords CAP_GRID, CAP_GRID_SWITCH and CAP_NEW_GRID will not be recognized.
-**
 
 ### `CAP_SCF`
 
@@ -96,36 +89,20 @@ Additionally, CAP-DFT calculations were observed to be more difficult to converg
 
 This section therefore lists some tips for increasing the likelihood of convergence.
 
-- •
-
-It is crucial to provide a good SCF guess density matrix.
+- It is crucial to provide a good SCF guess density matrix.
 Examples include, but are certainly not limited to:
 
-- **–**
-
-a converged CAP-HF density matrix obtained at the same value of $\eta$.
-- **–**
-
-a converged CAP-DFT density matrix obtained using the same functional and at a similar value of $\eta$.
-- **–**
-
-a converged DFT density matrix obtained using the same functional
+- a converged CAP-HF density matrix obtained at the same value of $\eta$.
+- a converged CAP-DFT density matrix obtained using the same functional and at a similar value of $\eta$.
+- a converged DFT density matrix obtained using the same functional
 and employing charge stabilization with a small added charge.
 See Section [7.9.13](../ch07_excited/sec_CAGE.md) for further details about the use of charge stabilization.
-- **–**
-
-a converged CAP-DFT density matrix obtained using the same functional, at the same value of $\eta$,
+- a converged CAP-DFT density matrix obtained using the same functional, at the same value of $\eta$,
 and employing charge stabilization with a small added charge.
-- •
-
-The use of the maximum overlap method (MOM, see Section [7.7.2](../ch07_excited/ex_OpSing.md)) is strongly recommended.
-- •
-
-CAP-DFT calculations were found to require a very fine grid for XC numerical quadrature,
+- The use of the maximum overlap method (MOM, see Section [7.7.2](../ch07_excited/ex_OpSing.md)) is strongly recommended.
+- CAP-DFT calculations were found to require a very fine grid for XC numerical quadrature,
 finer than what would be needed for a conventional (real-variable) DFT calculation.
 See Section [5.5](sect_quadrature.md) for details about setting the XC grid.
-- •
-
-Employing a coarser CAP grid in the initial SCF iterations might facilitate finding the resonance state,
+- Employing a coarser CAP grid in the initial SCF iterations might facilitate finding the resonance state,
 while using a finer grid might improve convergence behavior.
 For details about setting the CAP grid, see Section  5.13.2.

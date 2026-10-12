@@ -33,20 +33,14 @@ are supported within **Q-Chem**. The first three directly approximate the full
 time-independent Schrödinger equation. In order of increasing accuracy, and
 also increasing cost, they are:
 
-1. 1.
-
-Perturbative treatment of pair correlations between electrons, typically
+1. Perturbative treatment of pair correlations between electrons, typically
 capable of recovering 80% or so of the correlation energy in stable
 molecules.
-2. 2.
-
-Self-consistent treatment of pair correlations between electrons (most often
+2. Self-consistent treatment of pair correlations between electrons (most often
 based on coupled-cluster theory),
 capable of recovering on the order of 95% or so of the correlation
 energy.
-3. 3.
-
-Non-iterative corrections for higher than double substitutions, which
+3. Non-iterative corrections for higher than double substitutions, which
 can account for more than 99% of the correlation energy. They are the
 basis of many modern methods that are capable of yielding chemical
 accuracy for ground state reaction energies, as exemplified by the
@@ -66,15 +60,9 @@ species. Selected configuration interaction (CI) models are also available.
 In order to carry out a wave function-based electron correlation calculation
 using **Q-Chem**, three *$rem* variables need to be set:
 
-- •
-
-BASIS to specify the basis set (see Chapter [8](../ch08_basis/chap_basis.md))
-- •
-
-METHOD for treating correlation
-- •
-
-N_FROZEN_CORE frozen core electrons (FC default, optionally
+- BASIS to specify the basis set (see Chapter [8](../ch08_basis/chap_basis.md))
+- METHOD for treating correlation
+- N_FROZEN_CORE frozen core electrons (FC default, optionally
 FC, or $n$)
 
 For wave function-based correlation methods, the default option for exchange

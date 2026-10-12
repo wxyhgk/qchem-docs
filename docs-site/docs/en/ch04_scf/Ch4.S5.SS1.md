@@ -13,9 +13,7 @@ algorithms which can be selected via the *$rem* variable SCF_ALGORITHM, includin
 
 Methods that are based on extrapolation or interpolation:
 
-- •
-
-The highly successful DIIS procedures. These are the default (except
+- The highly successful DIIS procedures. These are the default (except
 for restricted open-shell SCF calculations) and are available for all
 orbital types (see Section [4.5.3](sect_diis.md)).
 The damping
@@ -24,47 +22,31 @@ The damping
 technique[[578]](../bib_references/bib.md#bib599)
 
 can also be invoked together with DIIS (R, U only).
-- •
-
-ADIIS: the combination of augmented Roothaan-Hall (ARH) energy function
+- ADIIS: the combination of augmented Roothaan-Hall (ARH) energy function
 and DIIS developed by Hu and Yang,[[601]](../bib_references/bib.md#bib624)
  which is available for
 R and U only.
 
 Methods that make use of orbital gradient:
 
-- •
-
-Direct Minimization (DM), which has been re-implemented as simple
+- Direct Minimization (DM), which has been re-implemented as simple
 steepest descent with line search, and is available for all orbital
 types. DM can be invoked after a few DIIS iterations.
-- •
-
-Limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm (L_BFGS),
+- Limited-memory Broyden-Fletcher-Goldfarb-Shanno algorithm (L_BFGS),
 which is a quasi-Newton method using the gradients and steps taken in
 the previous iterations to construct the approximate Hessian.
-- •
-
-Geometric Direct Minimization (GDM) which is an improved and highly
+- Geometric Direct Minimization (GDM) which is an improved and highly
 robust version of DM and is the recommended fall-back when DIIS fails.
 Like DM, It can also be invoked after a few iterations with
 DIIS to improve the initial guess. GDM is the default algorithm for
 restricted open-shell SCF calculations and is available for all
 orbital types (see Section [4.5.7](sect_gdm.md)). GDM comes in three variants:
 
-- **–**
-
-GDM: the default implementation.
-- **–**
-
-GDM_LS: Uses a line search at every iteration.
-- **–**
-
-GDM_QLS: Employs a quadratic energy model to perform the
+- GDM: the default implementation.
+- GDM_LS: Uses a line search at every iteration.
+- GDM_QLS: Employs a quadratic energy model to perform the
 line search at every iteration.
-- •
-
-Square Gradient Minimization (SGM) family: SGM is a GDM-inspired method for
+- Square Gradient Minimization (SGM) family: SGM is a GDM-inspired method for
 excited state orbital optimization. Currently, three variants of this approach
 are supported: SGM (for RO and and OS_RO), SGM_LS (for R, U, RO and OS_RO)
 and SGM_QLS (for R and U), which are based upon the corresponding GDM approaches.
@@ -72,13 +54,9 @@ For further details, see Section [4.5.15](sect_SGM-SCF.md).
 
 Methods that require orbital Hessian:
 
-- •
-
-NEWTON_CG/NEWTON_MINRES (solve $\mathbf{Hd}=-\mathbf{g}$ for the
+- NEWTON_CG/NEWTON_MINRES (solve $\mathbf{Hd}=-\mathbf{g}$ for the
 update direction with CG/MINRES solvers).
-- •
-
-SF_NEWTON_CG (the “saddle-free" version of NEWTON_CG).
+- SF_NEWTON_CG (the “saddle-free" version of NEWTON_CG).
 
 The analytical orbital Hessian is available for R/U/RO/G/CR unless special
 density functionals (*e.g.*, those nonlocal functionals except for VV10 [[1416]](../bib_references/bib.md#bib1477)

@@ -76,14 +76,13 @@ Dyson orbitals can be computed either within the CVS manifold or between the CVS
 valence manifolds (see Section [7.9.29](topic_dyson.md) for definition of Dyson
 orbitals). CVS-EOM-CCSD is only available with CCMAN2.
 
-**Note: 
+!!! note "Note"
+    (1) Core electrons must be frozen in CVS-EOM calculations. The exact
+    definition of the core depends on the edge, so using default values may be not appropriate.
+    (2) The default setting (N_FROZEN_CORE = FC)
+    does not work correctly in QM/MM calculations. One should
+    specify the number of frozen core orbitals explicitly.
 
-(1) Core electrons must be frozen in CVS-EOM calculations. The exact
-definition of the core depends on the edge, so using default values may be not appropriate.
-(2) The default setting (N_FROZEN_CORE = FC)
-does not work correctly in QM/MM calculations. One should
-specify the number of frozen core orbitals explicitly.
-**
 
 It is possible to set up customized CVS calculations for ionization/excitation
 originating from a particular core orbital. To do so, one should first use
@@ -91,10 +90,9 @@ originating from a particular core orbital. To do so, one should first use
 orbital appears the first in the list and then run a CVS-EOM calculation
 with N_FROZEN_CORE = 1.
 
-**Note: 
+!!! note "Note"
+    *$reorder_mo* works only with old SCF code (GEN_SCFMAN=FALSE).
 
-*$reorder_mo* works only with old SCF code (GEN_SCFMAN=FALSE).
-**
 
 It is also possible to split the frozen-core space into CVS-active and CVS-inactive subspaces
 using the keyword N_FC_CVS_INACTIVE, which defines the size of the CVS-active
@@ -232,10 +230,9 @@ This feature is only available within fc-CVS-EOM-EE-CCSD.
 >     * `12`: Use $\sigma$ -intermediates for RIXS response calculations within the standard EOM-EE-CCSD
 > * **Recommendation**: Use 1 to deploy fc-CVS-EOM-EE-CCSD with robust convergence
 
-**Note: 
+!!! note "Note"
+    Since the RIXS response solutions within EOM-EE-CCSD often do not converge, fc-CVS-EOM-EE-CCSD RIXS calculations with CC_EOM_RIXS = 1 are recommended for smooth convergence. All other options are experimental.
 
-Since the RIXS response solutions within EOM-EE-CCSD often do not converge, fc-CVS-EOM-EE-CCSD RIXS calculations with CC_EOM_RIXS = 1 are recommended for smooth convergence. All other options are experimental.
-**
 
 To specify pumping frequencies and damping
 factor $\epsilon$, use *$rixs* section:
@@ -268,28 +265,20 @@ CC_MAX_ITER, CC_DIIS_START,
 CC_DIIS_SIZE, CC_EOM_2PA_ECONV, and
 CC_EOM_2PA_XCONV.
 
-**Note: 
+!!! note "Note"
+    - For better convergence of the response equations with DIIS solver,
+    increase CC_DIIS_SIZE (25 is recommended) and consider using a larger damping factor.
 
-•
+    - The **Dalton** 
+    solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver),
+    whereas the DIIS solver uses the norm of the difference of the response vector between iterations.
 
-For better convergence of the response equations with DIIS solver,
-increase CC_DIIS_SIZE (25 is recommended) and consider using a larger damping factor.
-
-•
-
-The **Dalton** 
-solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver),
-whereas the DIIS solver uses the norm of the difference of the response vector between iterations.
-
-**
 
 ## 7.9.9.2 Examples
 
 The following examples illustrate how to perform these calculations.
 
-- •
-
-Example [7.9.9.2](#ex:cvsee1): the $1s$ orbital on the oxygen atom is frozen in
+- Example [7.9.9.2](#ex:cvsee1): the $1s$ orbital on the oxygen atom is frozen in
 the CCSD calculation (N_FROZEN_CORE = FC). In the EOM
 calculation, the CVS approximation is invoked (CVS_EE_SINGLETS), so
 that the core-excitation energies are obtained as the lowest excitations. The
@@ -297,9 +286,7 @@ calculation of the oscillator strengths and rotatory strengths is activated
 by selecting CC_TRANS_PROP = 1 and the **libwfa** analysis is invoked by
 STATE_ANALYSIS = TRUE (see Section [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md)).
 Note that rotatory strengths will be zero for non-chiral systems.
-- •
-
-Example [7.9.9.2](#ex:cvsee1): CVS-EOM-EE-CCSD calculations in a two-edge
+- Example [7.9.9.2](#ex:cvsee1): CVS-EOM-EE-CCSD calculations in a two-edge
 molecule (carbon monoxide). In the present implementation, the calculation should be done
 separately for each edge. The first job computes carbon-edge states. Since
 the carbon $1s$ orbital is the highest in energy (among the core $1s$ orbitals
@@ -315,9 +302,7 @@ selection specifically targets the oxygen edge by using a smaller core. The
 the molecule has other edges, the deepest lying core orbitals, up to and
 including those of the edge of interest, should be selected by an appropriate
 value of N_FROZEN_CORE.
-- •
-
-Example [7.9.9.2](#ex:cvsee1): calculation of the XAS spectrum of ammonia using
+- Example [7.9.9.2](#ex:cvsee1): calculation of the XAS spectrum of ammonia using
 additional set of Rydberg functions placed on the nitrogen; the exponents of
 the Rydberg functions were generated using Kaufmann’s recipe[[672]](../bib_references/bib.md#bib696)
 .
@@ -325,16 +310,10 @@ Note that when ghost atoms are used, the symmetry is turned off. It can be force
 FORCE_SYMMETRY_ON keyword.
 Alternatively, this calculation can be set up by adding additional diffuse functions
 to all (or selected) atoms using even-tempered exponents. Users must ensure that the ghost atoms do not lower the symmetry.
-- •
-
-Example [7.9.9.2](#ex:cvsee1): calculation of the XES spectrum of benzene.
-- •
-
-Examples [7.9.9.2](#ex:cvsee1) and [7.9.9.2](#ex:cvsee1): calculations of Dyson
+- Example [7.9.9.2](#ex:cvsee1): calculation of the XES spectrum of benzene.
+- Examples [7.9.9.2](#ex:cvsee1) and [7.9.9.2](#ex:cvsee1): calculations of Dyson
 orbitals between core-excited and core-ionized states and between core-excited and valence-ionized states.
-- •
-
-Example [7.9.9.2](#ex:cvsee1): setup of RIXS calculations.
+- Example [7.9.9.2](#ex:cvsee1): setup of RIXS calculations.
 
 Calculations of L-edge spectra using state-interaction
 approach[[1404]](../bib_references/bib.md#bib1464)

@@ -117,14 +117,13 @@ $$
 \mathbf{x}_{m+1}=\mathbf{x}_{m+1}^{\prime}-\mathbf{H}^{-1}\mathbf{g}_{m+1}^{\prime}\;. \tag{9.41}
 $$
 
-**Note: 
+!!! note "Note"
+    Convergence is theoretically guaranteed regardless of the quality of the
+    Hessian matrix, as long as it is positive definite. The original GDIIS
+    algorithm used a static Hessian (*i.e.* the initial guess Hessian) which was
+    often a simple identity matrix. Updating the Hessian at each cycle generally
+    results in more rapid convergence, and this is the default in **Optimize**.
 
-Convergence is theoretically guaranteed regardless of the quality of the
-Hessian matrix, as long as it is positive definite. The original GDIIS
-algorithm used a static Hessian (*i.e.* the initial guess Hessian) which was
-often a simple identity matrix. Updating the Hessian at each cycle generally
-results in more rapid convergence, and this is the default in **Optimize**.
-**
 
 Other improvements to the original method include limiting the number of
 previous geometries used in Eq. ([9.33](#eq:a23)) by neglecting

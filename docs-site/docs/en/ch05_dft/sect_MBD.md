@@ -80,14 +80,10 @@ range-separated self-consistent screening.[[43]](../bib_references/bib.md#bib27)
  In this
 approach, $\alpha_{\text{eff},A}^{0}$ is obtained in a two-step process:
 
-1. 1.
-
-The free-volume scaling approach is applied to the free-atom
+1. The free-volume scaling approach is applied to the free-atom
 polarizabilities, using the Hirshfeld-partitioned molecular electron
 density. This is the same procedure used in the TS-vdW method described in Section [5.7.5](sect_TS.md).
-2. 2.
-
-The short-range atomic polarizabilities
+2. The short-range atomic polarizabilities
 $\mathrm{\alpha}_{\mathrm{sr},AB}(iu)$ are obtained by applying a Dyson-like
 screening on only the short range part of the polarizabilities.
 The same range-separation will later be used to define

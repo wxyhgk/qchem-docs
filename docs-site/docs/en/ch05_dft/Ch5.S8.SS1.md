@@ -70,10 +70,9 @@ basis-set-dependent, and the overall scaling parameter $\sigma$ is loosely
 method-dependent. All of these parameters are set internally based on the
 method and basis *$rem* specifications.
 
-**Note: 
+!!! note "Note"
+    Currently, only the def2-SVPD basis set is supported for use with DFT-C.
 
-Currently, only the def2-SVPD basis set is supported for use with DFT-C.
-**
 
 The DFT-C correction is governed by the following *$rem* variable:
 

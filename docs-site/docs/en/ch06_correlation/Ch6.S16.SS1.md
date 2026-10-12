@@ -26,12 +26,11 @@ For CCSD, analytic calculation of g-tensors is also available (see Section [7.9.
 Limitations: Gradients and fully relaxed properties for ROHF and non-HF (*e.g.*,
 B3LYP or FNO) orbitals as well as RI approximation are not yet available.
 
-**Note: 
+!!! note "Note"
+    If gradients or properties are computed with frozen core/virtual,
+    the algorithm will replace frozen orbitals to restricted. This will not affect
+    the energies, but will change the orbital numbering in the CCMAN printout.
 
-If gradients or properties are computed with frozen core/virtual,
-the algorithm will replace frozen orbitals to restricted. This will not affect
-the energies, but will change the orbital numbering in the CCMAN printout.
-**
 
 ### `CC_REF_PROP`
 

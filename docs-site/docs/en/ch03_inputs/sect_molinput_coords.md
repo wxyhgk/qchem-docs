@@ -42,11 +42,10 @@ molecular geometry using Cartesian coordinates (in Ångstroms) is:
 > atom  x-coordinate  y-coordinate  z-coordinate
 > ```
 
-**Note: 
+!!! note "Note"
+    The geometry can by specified in bohr by setting the *$rem* variable
+    INPUT_BOHR equal to TRUE.
 
-The geometry can by specified in bohr by setting the *$rem* variable
-INPUT_BOHR equal to TRUE.
-**
 
 ```qchem
 $molecule
@@ -66,25 +65,23 @@ $molecule
 $end
 ```
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    Atoms can be declared by either atomic number or symbol.
 
-Atoms can be declared by either atomic number or symbol.
+    2.
 
-2.
+    Coordinates can be entered either as variables/parameters or real numbers.
 
-Coordinates can be entered either as variables/parameters or real numbers.
+    3.
 
-3.
+    Variables/parameters can be declared in any order.
 
-Variables/parameters can be declared in any order.
+    4.
 
-4.
+    A single blank line separates parameters from the atom declaration.
 
-A single blank line separates parameters from the atom declaration.
-
-**
 
 Once all the molecular Cartesian coordinates have been entered, terminate
 the molecular coordinate input with the *$end* keyword.
@@ -108,23 +105,13 @@ with an atom declaration, a reference atom and a distance, a second reference
 atom and an angle, a third reference atom and a dihedral angle. This can be
 summarized as:
 
-1. 1.
-
-First atom.
-2. 2.
-
-Second atom, reference atom, distance.
-3. 3.
-
-Third atom, reference atom A, distance between A and the third atom,
+1. First atom.
+2. Second atom, reference atom, distance.
+3. Third atom, reference atom A, distance between A and the third atom,
 reference atom B, angle defined by atoms A, B and the third atom.
-4. 4.
-
-Fourth atom, reference atom A, distance, reference atom B, angle,
+4. Fourth atom, reference atom A, distance, reference atom B, angle,
 reference atom C, dihedral angle (A, B, C and the fourth atom).
-5. 5.
-
-All subsequent atoms follow the same basic form as (4)
+5. All subsequent atoms follow the same basic form as (4)
 
 ```qchem
 O1
@@ -145,30 +132,18 @@ hydrogen atom (H1) of `hooh`.
 
 Some further points to note are:
 
-- •
+- Atoms can be declared by either atomic number or symbol.
 
-Atoms can be declared by either atomic number or symbol.
-
-- **–**
-
-If declared by atomic number, connectivity needs to be indicated
+- If declared by atomic number, connectivity needs to be indicated
 by *Z*-matrix line number.
-- **–**
-
-If declared by atomic symbol either number similar atoms (*e.g.*,
+- If declared by atomic symbol either number similar atoms (*e.g.*,
 H1, H2, O1, O2 *etc.*) and refer connectivity using this symbol, or
 indicate connectivity by the line number of the referred atom.
-- •
-
-Bond lengths and angles can be entered either as variables/parameters or
+- Bond lengths and angles can be entered either as variables/parameters or
 real numbers.
 
-- **–**
-
-Variables/parameters can be declared in any order.
-- **–**
-
-A single blank line separates parameters from the *Z*-matrix.
+- Variables/parameters can be declared in any order.
+- A single blank line separates parameters from the *Z*-matrix.
 
 All the following examples are equivalent in the information forwarded to the
 **Q-Chem** program.
@@ -235,9 +210,8 @@ where symmetry axes and planes are not centered on a real atom, and have also
 been useful in the past for choosing variables for structure optimization and
 introducing symmetry constraints.
 
-**Note: 
+!!! note "Note"
+    Dummy atoms play no role in the quantum mechanical calculation, and are
+    used merely for convenience in specifying other atomic positions or geometric
+    variables.
 
-Dummy atoms play no role in the quantum mechanical calculation, and are
-used merely for convenience in specifying other atomic positions or geometric
-variables.
-**

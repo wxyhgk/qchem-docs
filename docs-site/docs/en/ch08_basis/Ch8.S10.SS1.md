@@ -10,12 +10,8 @@ The application of quantum chemical methods to elements in the lower half of
 the Periodic Table is more difficult than for the lighter atoms. There are
 two key reasons for this:
 
-- •
-
-the number of electrons in heavy atoms is large
-- •
-
-relativistic effects in heavy atoms are often non-negligible
+- the number of electrons in heavy atoms is large
+- relativistic effects in heavy atoms are often non-negligible
 
 Both of these problems stem from the presence of large numbers of core
 electrons and, given that such electrons do not play a significant

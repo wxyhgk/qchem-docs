@@ -22,15 +22,14 @@ If CIS or TDDFT excited states are requested, then this
 keyword will also print out the centroids and radii of gyration for each
 excited-state electron density.
 
-**Note: 
+!!! note "Note"
+    These keywords only apply to SCF, DFT, CIS, and TDDFT calculations.
+    To compute these quantities for correlated wave functions, use keywords that specify
+    properties calculations for the corresponding method, as described in
+    Chapters [6](../ch06_correlation/chap_correlation.md) and [7](../ch07_excited/chap_excited.md). For example, to compute
+    CCSD or EOM-CCSD multipole moments and other properties, use
+    CC_REF_PROP = TRUE and CC_EOM_PROP = TRUE.
 
-These keywords only apply to SCF, DFT, CIS, and TDDFT calculations.
-To compute these quantities for correlated wave functions, use keywords that specify
-properties calculations for the corresponding method, as described in
-Chapters [6](../ch06_correlation/chap_correlation.md) and [7](../ch07_excited/chap_excited.md). For example, to compute
-CCSD or EOM-CCSD multipole moments and other properties, use
-CC_REF_PROP = TRUE and CC_EOM_PROP = TRUE.
-**
 
 ### `PRINT_RADII_GYRE`
 

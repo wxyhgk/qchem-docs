@@ -26,19 +26,17 @@ and properties calculations for both canonical and RI/CD versions. Single-precis
 versions of most EOM-CC methods are also available; the respective keywords are
 described in Section [7.9.15](../ch07_excited/sec_SP_EOM_CC.md).
 
-**Note: 
+!!! note "Note"
+    When using single-precision, the thresholds need to be adjusted accordingly, as
+    explained below. Using too tight convergence thresholds in single precision
+    results in a non-convergent behavior.
 
-When using single-precision, the thresholds need to be adjusted accordingly, as
-explained below. Using too tight convergence thresholds in single precision
-results in a non-convergent behavior.
-**
 
-**Note: 
+!!! note "Note"
+    In rare cases, slow performance of the current code in single precision
+    with default CC_BACKEND was noted; this issue is being investigated.
+    Please monitor the performance and report any issues you encounter.
 
-In rare cases, slow performance of the current code in single precision
-with default CC_BACKEND was noted; this issue is being investigated.
-Please monitor the performance and report any issues you encounter.
-**
 
 Webinar showing how to use the single-precision functionality in **Q-Chem**,
 including the monitoring of errors.
@@ -65,12 +63,11 @@ Calculation of perturbative triples corrections, (T) and (fT),
 can be executed in single precision using **libpt**; additional keywords
 deploying these features are USE_LIBPT and LIBPT_MIXED_PRECISION.
 
-**Note: 
+!!! note "Note"
+    Calculation of numerical derivatives in single precision, such as
+    finite difference evaluation of nuclear gradients and finite-field calculations,
+    require using larger step sizes or field strengths, respectively.
 
-Calculation of numerical derivatives in single precision, such as
-finite difference evaluation of nuclear gradients and finite-field calculations,
-require using larger step sizes or field strengths, respectively.
-**
 
 ### `CC_SINGLE_PREC`
 

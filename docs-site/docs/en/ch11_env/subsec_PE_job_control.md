@@ -23,17 +23,14 @@ section. PE-ADC supports the excited state analysis
 >     * `False`: Don’t perform a PE calculation.
 > * **Recommendation**: Set the $rem variable to TRUE to start a PE calculation.
 
-**Note: 
+!!! note "Note"
+    Turning PE on disables symmetry by setting POINT_GROUP_SYMMETRY to FALSE.
 
-Turning PE on disables symmetry by setting POINT_GROUP_SYMMETRY to FALSE.
 
-**
+!!! note "Note"
+    Setting the REM variables USE_LIBQINTS and GEN_SCFMAN
+    to TRUE is required to run PE.
 
-**Note: 
-
-Setting the REM variables USE_LIBQINTS and GEN_SCFMAN
-to TRUE is required to run PE.
-**
 
 The PE-specific options can be set in the *$pe* input section. The format of the *$pe* section
 requires key and value pairs separated by a space character:
@@ -44,11 +41,10 @@ requires key and value pairs separated by a space character:
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The following job control variables belong *only* in the *$pe*
+    section. Do not place them in the *$rem* section.
 
-The following job control variables belong *only* in the *$pe*
-section. Do not place them in the *$rem* section.
-**
 
 ### `POTFILE`
 

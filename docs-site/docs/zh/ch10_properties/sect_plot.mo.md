@@ -101,64 +101,28 @@ title: "10.5.4 使用 *$plots* 生成体数据（Volumetric Data）"
 
 默认情况下，所有输出数据都打印到工作目录中的文件，并覆盖任何同名的现有文件。
 
-- •
+- 分子轨道数据打印到名为 `plot.mo` 的文件。
+- 密度绘制到 `plots.hf`。
+- 限制性非弛豫（Restricted unrelaxed）附着/脱离分析输出到：
 
-分子轨道数据打印到名为 `plot.mo` 的文件。
-- •
+- `plot.attach.alpha`
+- `plot.detach.alpha`
+- 非限制性非弛豫（Unrestricted unrelaxed）附着/脱离分析输出到：
 
-密度绘制到 `plots.hf`。
-- •
+- `plot.attach.alpha`
+- `plot.detach.alpha`
+- `plot.attach.beta`
+- `plot.detach.beta`
+- 限制性弛豫（Restricted relaxed）附着/脱离分析绘制到：
 
-限制性非弛豫（Restricted unrelaxed）附着/脱离分析输出到：
+- `plot.attach.rlx.alpha`
+- `plot.detach.rlx.alpha`
+- 非限制性弛豫（Unrestricted relaxed）附着/脱离分析输出到：
 
-- **–**
-
-`plot.attach.alpha`
-- **–**
-
-`plot.detach.alpha`
-- •
-
-非限制性非弛豫（Unrestricted unrelaxed）附着/脱离分析输出到：
-
-- **–**
-
-`plot.attach.alpha`
-- **–**
-
-`plot.detach.alpha`
-- **–**
-
-`plot.attach.beta`
-- **–**
-
-`plot.detach.beta`
-- •
-
-限制性弛豫（Restricted relaxed）附着/脱离分析绘制到：
-
-- **–**
-
-`plot.attach.rlx.alpha`
-- **–**
-
-`plot.detach.rlx.alpha`
-- •
-
-非限制性弛豫（Unrestricted relaxed）附着/脱离分析输出到：
-
-- **–**
-
-`plot.attach.rlx.alpha`
-- **–**
-
-`plot.attach.rlx.alpha`
-- **–**
-
-`plot.attach.rlx.beta`
-- **–**
-
-`plot.detach.rlx.beta`
+- `plot.attach.rlx.alpha`
+- `plot.attach.rlx.alpha`
+- `plot.attach.rlx.beta`
+- `plot.detach.rlx.beta`
 
 输出以原子单位打印，先给出坐标，随后是各项目的值，如下所示：
 

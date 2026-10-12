@@ -24,10 +24,9 @@ title: "9.6.1 概述"
 > $end
 > ```
 
-**注意：
+!!! note "注意"
+    使用 JOBTYPE = PES_SCAN 的势能扫描仅适用于基态势能面，不过可以在 *$rem* 段中包含适当的垂直激发（vertical excitation）关键字，沿扫描坐标计算激发能，*e.g.*，用于 CIS/TDDFT 激发态的 CIS_N_ROOTS。
 
-使用 JOBTYPE = PES_SCAN 的势能扫描仅适用于基态势能面，不过可以在 *$rem* 段中包含适当的垂直激发（vertical excitation）关键字，沿扫描坐标计算激发能，*e.g.*，用于 CIS/TDDFT 激发态的 CIS_N_ROOTS。
-**
 
 下面第一个示例演示如何扫描丁烷的扭转势，其本质是一系列约束优化，其中 C1–C2–C3–C4 二面角依次固定为 $-$180${}^{\circ}$、$-$165${}^{\circ}$、$-$150${}^{\circ}$、
 $\ldots$、165${}^{\circ}$、180${}^{\circ}$。

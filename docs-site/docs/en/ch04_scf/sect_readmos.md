@@ -8,9 +8,7 @@ title: "4.4.3 Reading MOs from Disk"
 
 There are two methods by which MO coefficients can be used from a previous job by reading them from disk:
 
-1. 1.
-
-Running two independent jobs sequentially invoking **Q-Chem** with
+1. Running two independent jobs sequentially invoking **Q-Chem** with
 three command line variables:.
 
 > ```qchem
@@ -18,33 +16,28 @@ three command line variables:.
 >    localhost-2> qchem job2.in job2.out save
 > ```
 
-**Note: 
+!!! note "Note"
+    (1) The *$rem* variable SCF_GUESS must be set to READ in `job2.in`.
+    (2) Scratch files remain in `$QCSCRATCH/save` on exit.
 
-(1) The *$rem* variable SCF_GUESS must be set to READ in `job2.in`.
-(2) Scratch files remain in `$QCSCRATCH/save` on exit.
-**
-2. 2.
-
-Running a batch job where two jobs are placed into a single input file
+2. Running a batch job where two jobs are placed into a single input file
 separated by the string `@@@` on a single line.
 
-**Note: 
+!!! note "Note"
+    (1) SCF_GUESS must be set to READ in the second job of the batch file.
+    (2) A third **Q-Chem** command line variable is not necessary.
+    (3) As for the SAD guess, **Q-Chem** requires at least two SCF cycles to
+    ensure proper
+    SCF convergence (idempotency of the density).
 
-(1) SCF_GUESS must be set to READ in the second job of the batch file.
-(2) A third **Q-Chem** command line variable is not necessary.
-(3) As for the SAD guess, **Q-Chem** requires at least two SCF cycles to
-ensure proper
-SCF convergence (idempotency of the density).
-**
 
-**Note: 
+!!! note "Note"
+    It is up to the user to make sure that the basis sets match between the
+    two jobs. There is no internal checking for this, although the occupied
+    orbitals are re-orthogonalized in the current basis after being read in. If you
+    want to project from a smaller basis into a larger basis, consult
+    Section [4.4.5](sect_projection.md).
 
-It is up to the user to make sure that the basis sets match between the
-two jobs. There is no internal checking for this, although the occupied
-orbitals are re-orthogonalized in the current basis after being read in. If you
-want to project from a smaller basis into a larger basis, consult
-Section [4.4.5](sect_projection.md).
-**
 
 ???+ example "Example 4.5: Input for an ROHF calculation on the OH radical. One SCF cycle is initially
 performed on the cation, to get reasonably good initial guess orbitals, which

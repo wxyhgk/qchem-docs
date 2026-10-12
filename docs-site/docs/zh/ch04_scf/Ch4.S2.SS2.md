@@ -96,10 +96,9 @@ $$
 \left({\mu\nu|\lambda\sigma}\right)=\int\int{\phi_{\mu}({\rm{\bf r}}_{1})\phi_{\nu}({\rm{\bf r}}_{1})\left({\frac{1}{r_{12}}}\right)\phi_{\lambda}({\rm{\bf r}}_{2})\phi_{\sigma}({\rm{\bf r}}_{\rm{\bf 2}})\;d{\rm{\bf r}}_{1}\;d{\rm{\bf r}}_{2}}\;. \tag{4.25}
 $$
 
-**注意：
+!!! note "注意"
+    双电子积分的构建与利用是整个 SCF 方法性能的核心议题。一款新型量子化学软件程序中 SCF 方法的性能，只需考察其原子轨道积分包的实现质量即可快速估算。有关 **Q-Chem** 的 **AOInts** 积分包的详细信息，参见附录 [A](../app_a_aoints/app_AOINTS.md)。
 
-双电子积分的构建与利用是整个 SCF 方法性能的核心议题。一款新型量子化学软件程序中 SCF 方法的性能，只需考察其原子轨道积分包的实现质量即可快速估算。有关 **Q-Chem** 的 **AOInts** 积分包的详细信息，参见附录 [A](../app_a_aoints/app_AOINTS.md)。
-**
 
 将式 ([4.18](#eq416)) 中的矩阵元代回 Roothaan-Hall 方程，即式 ([4.11](Ch4.S2.SS1.md#eq:Roothaan-Hall))，并迭代直至达到自洽，即可得到 RHF 能量与波函数。另一种做法是采用非限制型（unrestricted）波函数形式，分别定义 $\alpha$ 和 $\beta$ 密度矩阵：
 

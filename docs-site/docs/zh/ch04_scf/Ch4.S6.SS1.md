@@ -11,15 +11,9 @@ title: "4.6.1 引言"
 所谓线性缩放，是指若分子尺寸增大一倍，则计算量同样也只增大一倍。
 其中在计算上意义重大的项有三类：
 
-- •
-
-电子-电子库仑相互作用，对此 **Q-Chem** 实现了连续快速多极子方法（Continuous Fast Multipole Method, CFMM），详见 [4.6.2](sect_cfmm.md) 节
-- •
-
-精确交换相互作用，该项出现在杂化密度泛函理论（Density Functional Theory, DFT）计算和 Hartree-Fock 计算中，对此 **Q-Chem** 实现了下文 [4.6.3](sect_link.md) 节讨论的 LinK 方法。
-- •
-
-DFT 计算中交换关联泛函的数值积分，我们已在 [5.5](../ch05_dft/sect_quadrature.md) 节中讨论过。
+- 电子-电子库仑相互作用，对此 **Q-Chem** 实现了连续快速多极子方法（Continuous Fast Multipole Method, CFMM），详见 [4.6.2](sect_cfmm.md) 节
+- 精确交换相互作用，该项出现在杂化密度泛函理论（Density Functional Theory, DFT）计算和 Hartree-Fock 计算中，对此 **Q-Chem** 实现了下文 [4.6.3](sect_link.md) 节讨论的 LinK 方法。
+- DFT 计算中交换关联泛函的数值积分，我们已在 [5.5](../ch05_dft/sect_quadrature.md) 节中讨论过。
 
 对于上述全部三种高性能方法，**Q-Chem** 均支持能量计算以及高效的解析梯度计算，从而可以对大分子进行结构优化以及相对能量求值。请注意，SCF 能量的解析二阶导数目前尚未利用这些方法。
 

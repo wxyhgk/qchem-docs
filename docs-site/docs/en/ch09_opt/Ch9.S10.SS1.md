@@ -135,27 +135,17 @@ however, including a basic data analysis of the simulation. Average energies
 deviations and errors are printed at the end of the output file. The
 `$QCSCRATCH/PIMC` directory additionally contains the following files:
 
-- •
-
-`BondAves`: running average of bond lengths for convergence testing.
-- •
-
-`BondBins`: normalized distribution of significant bond lengths,
+- `BondAves`: running average of bond lengths for convergence testing.
+- `BondBins`: normalized distribution of significant bond lengths,
 binned within 5 standard deviations of the average bond length.
-- •
-
-`ChainCarts`: human-readable file of configuration coordinates,
+- `ChainCarts`: human-readable file of configuration coordinates,
 likely to be used for further, external statistical analysis. This file can
 get quite large, so be sure to provide enough scratch space!
-- •
-
-`ChainView.xyz`: Cartesian-formatted file for viewing the
+- `ChainView.xyz`: Cartesian-formatted file for viewing the
 ring-polymer sampling in an external visualization program. (The sampling is
 performed such that the center of mass of the ring polymer system remains
 centered.)
-- •
-
-`Vcorr`: potential correlation function for the assessment of
+- `Vcorr`: potential correlation function for the assessment of
 statistical correlations in the sampling.
 
 In each of the above files, the first few lines contain a description of how

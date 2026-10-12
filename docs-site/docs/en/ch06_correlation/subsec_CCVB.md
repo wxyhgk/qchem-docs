@@ -110,15 +110,9 @@ solution is recommended. This is invoked by GVB_RESTART = TRUE.
 Whenever this is used, or any time orbitals are being read directly into CCVB
 from another calculation, it is important to also set:
 
-- •
-
-SCF_GUESS = READ
-- •
-
-MP2_RESTART_NO_SCF = TRUE
-- •
-
-SCF_ALGORITHM = DIIS
+- SCF_GUESS = READ
+- MP2_RESTART_NO_SCF = TRUE
+- SCF_ALGORITHM = DIIS
 
 This bypasses orthogonalization schemes used elsewhere within **Q-Chem** that are
 likely to jumble the CCVB guess.

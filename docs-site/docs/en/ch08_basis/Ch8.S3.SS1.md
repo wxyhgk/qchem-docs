@@ -24,15 +24,9 @@ Table [8.3](#table:BS:Pople-ext).
 | $j$ -31( $k$ +, $l$ +)G( $m$ , $n$ ) | 4,6 | 3d | 3p |
 | $j$ -311( $k$ +, $l$ +)G( $m$ , $n$ ) | 6 | df, 2df, 3df | pd, 2pd, 3pd |
 
-- •
-
-${}^{a}$$k$ and $l$ denote the number of sets of diffuse functions on heavy atoms and on hydrogen atoms, respectively.
-- •
-
-${}^{b}$$m$ denotes the number of sets of polarization functions on the heavy atoms.
-- •
-
-${}^{c}$$n$ denotes the number of sets of polarization functions on the hydrogen atoms.
+- ${}^{a}$$k$ and $l$ denote the number of sets of diffuse functions on heavy atoms and on hydrogen atoms, respectively.
+- ${}^{b}$$m$ denotes the number of sets of polarization functions on the heavy atoms.
+- ${}^{c}$$n$ denotes the number of sets of polarization functions on the hydrogen atoms.
 
 Table 8.1: 
 Summary of Pople-type basis sets available in **Q-Chem**.
@@ -156,15 +150,9 @@ has an “augmented” counterpart (aug-cc-*name*) that includes diffuse functio
 | aug-cc-pwCVTZ-PP ${}^{c}$ | Cu $\rightarrow$ Rn |
 | aug-cc-pwCVQZ-PP ${}^{c}$ | Cu $\rightarrow$ Rn |
 
-- •
-
-${}^{a}$may-, jun-, and jul-cc-p(C)VXZ variants are also available
-- •
-
-${}^{b}$jun-cc-pVXZ-PP variant is also available
-- •
-
-${}^{c}$jun-cc-p(w)VXZ(-PP) variant is also available
+- ${}^{a}$may-, jun-, and jul-cc-p(C)VXZ variants are also available
+- ${}^{b}$jun-cc-pVXZ-PP variant is also available
+- ${}^{c}$jun-cc-p(w)VXZ(-PP) variant is also available
 
 Table 8.5: 
 Atoms supported in **Q-Chem** for correlation-consistent basis sets.
@@ -242,9 +230,7 @@ to the jun-cc-pVXZ prescription.
 | def2-ha-QZVP, def2-ha-QZVPP | H–Kr; Rb–La, Hf–Rn (with def2-ECP) |
 | def2-QZVPD, def2-QZVPPD | H–Kr; Rb–La, Hf–Rn (with def2-ECP) |
 
-- •
-
-${}^{a}$Na–Kr are identical to def2-SV(P)
+- ${}^{a}$Na–Kr are identical to def2-SV(P)
 
 Table 8.7: 
 Atoms supported in **Q-Chem** for the Karlsruhe “def2” basis sets.[[1438]](../bib_references/bib.md#bib1504)
@@ -267,9 +253,7 @@ H–Lr except for Pa–Np and Cm–Bk.
 | aug-pcJ- $n$ | H $\rightarrow$ Ar |
 | aug-psS- $n$ | H $\rightarrow$ Ar |
 
-- •
-
-${}^{a}$For $n=0,1,2,3,4$ in each case
+- ${}^{a}$For $n=0,1,2,3,4$ in each case
 
 Table 8.8: 
 Atoms supported for Jensen polarization consistent basis sets

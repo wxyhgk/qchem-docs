@@ -16,17 +16,11 @@ dummy atom coordinates are generated from the coordinates of the real atoms
 from the dummy atoms defining list (see below). There are three types of dummy
 atom:
 
-1. 1.
-
-Positioned at the arithmetic mean of up to seven real atoms in the defining
+1. Positioned at the arithmetic mean of up to seven real atoms in the defining
 list.
-2. 2.
-
-Positioned a unit distance along the normal to a plane defined by three
+2. Positioned a unit distance along the normal to a plane defined by three
 atoms, centered on the middle atom of the three.
-3. 3.
-
-Positioned a unit distance along the bisector of a given angle.
+3. Positioned a unit distance along the bisector of a given angle.
 
 The format for declaring dummy atoms is:
 
@@ -45,7 +39,6 @@ The format for declaring dummy atoms is:
 Once defined, dummy atoms can be used to define standard internal (distance,
 angle) constraints as per the constraints section, above.
 
-**Note: 
+!!! note "Note"
+    The use of dummy atoms of type 1 has never progressed beyond the experimental stage.
 
-The use of dummy atoms of type 1 has never progressed beyond the experimental stage.
-**

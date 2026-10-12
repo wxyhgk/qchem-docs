@@ -24,12 +24,11 @@ two calculations (`AO-overlap-TwoGeoms.txt`, which need not be an identity matri
 because the geometries could differ), and the MO overlap matrix between the two calculations
 (`MO-overlap-TwoGeoms.txt`).
 
-**Note: 
+!!! note "Note"
+    Currently, only overlaps between $\alpha$-spin MOs are considered, hence why only
+    $\alpha$-spin MO coefficients are returned. This means that this features is implemented
+    only for spin-restricted wave functions.
 
-Currently, only overlaps between $\alpha$-spin MOs are considered, hence why only
-$\alpha$-spin MO coefficients are returned. This means that this features is implemented
-only for spin-restricted wave functions.
-**
 
 Alternatively, one might be interested in the degree of spatial overlap between donor and
 acceptor orbitals (*e.g.*, HOMO and LUMO) within the same molecule or on two different molecules

@@ -120,10 +120,9 @@ Visual Molecular Dynamics (VMD)[[W. Humphrey, A. Dalke, and K. Schulten (1996)]]
 `mo.2.cube`、$\ldots$。对于亚稳态，戴森轨道的实部和虚部按以下顺序分别写入不同的文件
 $\text{Re}(\phi^{lr}_{1})\ \text{Re}(\phi^{rl}_{1})\ \ \text{Re}(\phi^{lr}_{2})\ \text{Re}(\phi^{rl}_{2})\ldots\text{Im}(\phi^{lr}_{1})\ \text{Im}(\phi^{rl}_{1})\ \ \text{Im}(\phi^{lr}_{2})\ \text{Im}(\phi^{rl}_{2})\ldots$
 
-**注意：
+!!! note "注意"
+    通过 **MolDen** 格式进行可视化不可用。
 
-通过 **MolDen** 格式进行可视化不可用。
-**
 
 ## 7.9.29.2 示例
 

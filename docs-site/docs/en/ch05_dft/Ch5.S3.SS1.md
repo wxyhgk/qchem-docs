@@ -142,31 +142,21 @@ functionals that were parameterized in part using data sets of non-covalent
 interactions, and already tend to overestimate non-covalent interaction
 energies. The most popular such methods available in **Q-Chem** are:
 
-- •
-
-Non-local correlation (NLC) functionals (Section [5.7.2](sect_VV10.md)), including those of
+- Non-local correlation (NLC) functionals (Section [5.7.2](sect_VV10.md)), including those of
 Vydrov and Van Voorhis[[1414]](../bib_references/bib.md#bib1475)
  (VV09 and VV10) and of Lundqvist and Langreth[[327]](../bib_references/bib.md#bib331)
 
 (vdW-DF-04 and vdW-DF-10). The revised VV10 NLC functional of Sabatini and coworkers (rVV10) is also available[[1192]](../bib_references/bib.md#bib1247)
 .
-- •
-
-Damped, atom–atom pairwise empirical dispersion potentials from Grimme and
+- Damped, atom–atom pairwise empirical dispersion potentials from Grimme and
 others[[494]](../bib_references/bib.md#bib502)
 
 [DFT-D2, DFT-CHG, DFT-D3(0), DFT-D3(BJ), DFT-D3(CSO), DFT-D3M(0), DFT-D3M(BJ), and DFT-D3(op)];
 see Section [5.7.3](subsec_DFT-D.md).
-- •
-
-The exchange-dipole models (XDM) of Johnson and Becke (XDM6 and XDM10); see Section [5.7.4](sect_XDM.md).
-- •
-
-The Tkatchenko-Scheffler (TS) method for dispersion interactions;[[1361]](../bib_references/bib.md#bib1421)
+- The exchange-dipole models (XDM) of Johnson and Becke (XDM6 and XDM10); see Section [5.7.4](sect_XDM.md).
+- The Tkatchenko-Scheffler (TS) method for dispersion interactions;[[1361]](../bib_references/bib.md#bib1421)
  see Section [5.7.5](sect_TS.md).
-- •
-
-The Many-Body Dispersion (MBD) method for van der Waals interactions[[1360]](../bib_references/bib.md#bib1422)
+- The Many-Body Dispersion (MBD) method for van der Waals interactions[[1360]](../bib_references/bib.md#bib1422)
 ;
 see Section [5.7.6](sect_MBD.md).
 

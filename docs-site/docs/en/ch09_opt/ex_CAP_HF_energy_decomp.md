@@ -8,26 +8,16 @@ title: "9.11.3 CAP-AIMD Job Control and Examples"
 
 The following three assignments are necessary in order to run a CAP-AIMD simulation:
 
-- •
-
-JOBTYPE = AIMD in *$rem*,
-- •
-
-COMPLEX_CCMAN = TRUE in *$rem* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)), and
-- •
-
-CS_HF = 1 in *$complex_ccman* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)).
+- JOBTYPE = AIMD in *$rem*,
+- COMPLEX_CCMAN = TRUE in *$rem* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)), and
+- CS_HF = 1 in *$complex_ccman* (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)).
 
 For now, CAP-AIMD simulations are possible only with the cuboid CAP type, so setting CAP_TYPE = 1 is also necessary in the *$complex_ccman* section (see Section [7.9.10](../ch07_excited/sub_cc_cs_cap.md)).
 
 With CAP-AIMD simulations, one gets two additional files in the AIMD directory (§[9.9.2](sub_aimd_jobcontrol.md)):
 
-- •
-
-`CAP_EComponents`: Records for each step the total complex energy, the CAP-corrected total complex energy, and the real and imaginary parts of the CAP contribution to the total complex energy – all in atomic units (a.u.).
-- •
-
-`CAP_PositionAndWidth`: Records for each step the total complex energy (in a.u.) and the resonance width (in electron-Volt).
+- `CAP_EComponents`: Records for each step the total complex energy, the CAP-corrected total complex energy, and the real and imaginary parts of the CAP contribution to the total complex energy – all in atomic units (a.u.).
+- `CAP_PositionAndWidth`: Records for each step the total complex energy (in a.u.) and the resonance width (in electron-Volt).
 
 ### `CAP_AIMD_SWITCH`
 

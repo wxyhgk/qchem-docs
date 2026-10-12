@@ -58,32 +58,20 @@ the possible instabilities can be found in Ref. [[1227]](../bib_references/bib.
 
 Wave function instabilities can arise for several reasons, but frequently occur if
 
-- •
-
-There exists a singlet diradical at a lower energy then the closed-shell
+- There exists a singlet diradical at a lower energy then the closed-shell
 singlet state.
-- •
-
-There exists a triplet state at a lower energy than the lowest singlet
+- There exists a triplet state at a lower energy than the lowest singlet
 state.
-- •
-
-There are multiple solutions to the SCF equations, and the calculation
+- There are multiple solutions to the SCF equations, and the calculation
 has not found the lowest energy solution.
 
 **Q-Chem**’s previous stability analysis package suffered from the following
 limitations:
 
-- •
-
-It is only available for restricted (close-shell) and unrestricted SCF
+- It is only available for restricted (close-shell) and unrestricted SCF
 calculations.
-- •
-
-It requires the analytical orbital Hessian of the wave function energy.
-- •
-
-The calculation terminates after the corrected MOs are generated, and a
+- It requires the analytical orbital Hessian of the wave function energy.
+- The calculation terminates after the corrected MOs are generated, and a
 second job is needed to read in these orbitals and run another SCF
 calculation.
 
@@ -122,11 +110,10 @@ corrected MOs as initial guess will be launched automatically if
 INTERNAL_STABILITY_ITER > 0. Such macro-loops will keep going until
 a stable solution is reached.
 
-**Note: 
+!!! note "Note"
+    The stability analysis package can be used to analyze both HF and DFT
+    wave functions.
 
-The stability analysis package can be used to analyze both HF and DFT
-wave functions.
-**
 
 ## 4.5.17.1 Job Control
 

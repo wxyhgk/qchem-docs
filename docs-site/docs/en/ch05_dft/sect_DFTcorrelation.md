@@ -6,13 +6,12 @@ title: "5.3.4 Correlation Functionals"
 
 (July 4, 2026)
 
-**Note: 
+!!! note "Note"
+    All correlation functionals in this section can be invoked using the
+    *$rem* variable CORRELATION. Popular and/or recommended
+    functionals within each class are listed first and indicated in bold. The rest
+    are in alphabetical order.
 
-All correlation functionals in this section can be invoked using the
-*$rem* variable CORRELATION. Popular and/or recommended
-functionals within each class are listed first and indicated in bold. The rest
-are in alphabetical order.
-**
 
 - $\circ$
 

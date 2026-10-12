@@ -12,7 +12,7 @@ hide:
     Q-Chem 7.0 量子化学计算软件包官方用户手册、理论背景与执行指南（中英双语版）。
   </p>
   <div style="margin-top: 1rem;">
-    <a class="md-button md-button--primary" href="ch01_intro/chap_intro.md" style="margin-right: 0.5rem;">📖 快速入门</a>
+    <a class="md-button md-button--primary" href="ch01_intro/chap_intro/" style="margin-right: 0.5rem;">📖 快速入门</a>
     <a class="md-button" href="assets/qchem_manual.pdf" target="_blank" download>⬇️ 下载官方 PDF 手册 (5.5 MB)</a>
   </div>
 </div>

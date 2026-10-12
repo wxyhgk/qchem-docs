@@ -14,10 +14,9 @@ are saved in separate files in the home directory. OpenFermion
 (development version, soon to be checked into official github repository) contains an import module, which understands how to read these files, and several unit tests.
 Example 7.9.31 illustrates this capability for water molecule.
 
-**Note: 
+!!! note "Note"
+    Core should not be frozen.
 
-Core should not be frozen.
-**
 
 ### `PRINT_QIS`
 

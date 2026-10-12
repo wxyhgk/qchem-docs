@@ -27,12 +27,11 @@ variable to TRUE. The format of the *$isotopes* section is as follows:
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    Only the atoms whose masses are to be changed from the default
+    values need to be specified. After each loop all masses are reset to the
+    default values. Atoms are numbered according to the order in the *$molecule* section.
 
-Only the atoms whose masses are to be changed from the default
-values need to be specified. After each loop all masses are reset to the
-default values. Atoms are numbered according to the order in the *$molecule* section.
-**
 
 An initial loop using the default masses is always performed first. Subsequent
 loops use the user-specified atomic masses. Only those atoms whose masses are

@@ -146,10 +146,9 @@ $X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{triplet}}Y^{
 STATE_ANALYSIS = TRUE、MOLDEN_FORMAT = TRUE
 以及 NTO_PAIRS = $N$。有关 **libwfa** 包的详情，请参阅第 [10.2](../ch10_properties/sec_wfa.md) 节。
 
-**注意：
+!!! note "注意"
+    该分析与单重态和三重态之间常规跃迁密度矩阵的 NTO 分析不同。
 
-该分析与单重态和三重态之间常规跃迁密度矩阵的 NTO 分析不同。
-**
 
 ???+ example "示例 7.21: 使用 TDDFT/TDA 计算一电子 SOC。"
     ```qchem
@@ -335,10 +334,9 @@ $$
 
 其中 $\alpha_{0}$ 是精细结构常数，$\tilde{\mathbf{L}}=\mathbf{L}/r^{3}$。
 
-**注意：
+!!! note "注意"
+    目前，该 CIS 或 TDDFT/TDA-SOC 实现仅支持限制型 SCF 计算（在没有 SOC 时，此类计算会产生激发单重态和三重态）。此外，基态不通过 SOC（或以其他方式）与激发态耦合。
 
-目前，该 CIS 或 TDDFT/TDA-SOC 实现仅支持限制型 SCF 计算（在没有 SOC 时，此类计算会产生激发单重态和三重态）。此外，基态不通过 SOC（或以其他方式）与激发态耦合。
-**
 
 该程序通过设置 *$rem* 变量 CIS_SOC = $N$ 来触发，其中 $N$ 是所需的根数：
 

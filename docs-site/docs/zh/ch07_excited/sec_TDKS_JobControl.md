@@ -189,19 +189,13 @@ TDKS 方法的基础是对一个（先前无场的）基态 $|\Psi_{0}\rangle$ �
 
 **Field_Type** 的这些选择可总结如下。注意 $\bm{\mathcal{E}}=(\mathcal{E}_{x},\mathcal{E}_{y},\mathcal{E}_{z})$ 是一个矢量，其大小由 **Field_Amp** 控制，其方向由 **Field_Vector** 控制。
 
-- •
-
-**Delta** 模拟狄拉克 $\delta$ 函数冲击，场 $\bm{\mathcal{E}}$ 仅在前两个时间步内（以恒定振幅）开启。
+- **Delta** 模拟狄拉克 $\delta$ 函数冲击，场 $\bm{\mathcal{E}}$ 仅在前两个时间步内（以恒定振幅）开启。
 振幅由下方记录在案的 **Field_Amp** 关键字控制。为了在不同 $\Delta t$ 选择之间进行归一化，**Field_Amp** 实际指定的是*积分后*的场强 $\bm{\mathcal{E}}\Delta t$，即电场强度本身为
 (**Field_Amp**)/$(\Delta t)$.[[566]](../bib_references/bib.md#bib585)
 
 如此一来，**Field_Amp** 控制的便是 $\delta$ 函数脉冲向体系注入的总能量，这也是使采用两个不同时间步长的模拟结果可以进行并排比较的唯一方法。
-- •
-
-**CW** 模拟形式为 $\bm{\mathcal{E}}(t)=\mathbf{A}_{0}\sin(\omega t)$ 的连续波电场，其振幅 $\mathbf{A}_{0}$ 和频率 $\omega$ 分别在 *$tdks* 段中使用关键字 **Field_Amp** 和 **Field_Frequency** 设置。
-- •
-
-**Impulse** 场具有如下高斯包络，
+- **CW** 模拟形式为 $\bm{\mathcal{E}}(t)=\mathbf{A}_{0}\sin(\omega t)$ 的连续波电场，其振幅 $\mathbf{A}_{0}$ 和频率 $\omega$ 分别在 *$tdks* 段中使用关键字 **Field_Amp** 和 **Field_Frequency** 设置。
+- **Impulse** 场具有如下高斯包络，
 
 <a id="Ch7.E60"></a>
 
@@ -211,9 +205,7 @@ $$
 
 其中 $\mathbf{A}_{0}$ 和频率 $\omega$ 分别使用 **Field_Amp** 和 **Field_Frequency** 设置。
 场参数 $\tau$ 和 $t_{\text{peak}}$ 分别在 *$tdks* 段中使用 **Field_Tau** 和 **Field_Peak** 设置。方向 $\mathbf{A}_{0}$ 使用 **Field_Vector** 设置。
-- •
-
-**Impulse2** 场具有余弦平方包络，场 $\bm{\mathcal{E}}$ 初始即开启，并在 $t=2t_{\text{peak}}$ 时关闭。对于 $0\leq t\leq 2t_{\text{peak}}$，
+- **Impulse2** 场具有余弦平方包络，场 $\bm{\mathcal{E}}$ 初始即开启，并在 $t=2t_{\text{peak}}$ 时关闭。对于 $0\leq t\leq 2t_{\text{peak}}$，
 
 <a id="Ch7.E61"></a>
 

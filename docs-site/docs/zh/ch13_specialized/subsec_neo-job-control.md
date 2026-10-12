@@ -10,10 +10,9 @@ title: "13.5.4 NEO 方法的任务控制"
 
 NEO 方法是自洽场（SCF）方法的一种自然扩展，并继承了其诸多功能。SCF 任务控制中使用的一些关键字同样适用于 NEO 方法，此外还有若干额外的关键字。要运行 NEO 计算，必须指定以下 *$rem* 变量：
 
-**注意：
+!!! note "注意"
+    以下是一些 *$rem* 变量，我们认为它们大多不言自明，故未在下方详细讨论，但它们也会在几何结构和对称性方面影响 NEO 任务，包括 INPUT_BOHR、SYM_IGNORE 和 POINT_GROUP_SYMMETRY。
 
-以下是一些 *$rem* 变量，我们认为它们大多不言自明，故未在下方详细讨论，但它们也会在几何结构和对称性方面影响 NEO 任务，包括 INPUT_BOHR、SYM_IGNORE 和 POINT_GROUP_SYMMETRY。
-**
 
 ### `NEO`
 
@@ -106,10 +105,9 @@ NEO 方法是自洽场（SCF）方法的一种自然扩展，并继承了其诸�
 > | **** |  |  |  |  |  |
 > | $end |  |  |  |  |  |
 
-**注意：
+!!! note "注意"
+    若干使用密度拟合（density fitting）的后-NEO-HF 方法还要求定义核辅助基组。此类用户定义的 *$neo_aux_basis* 段的输入格式与 *$basis* 和 *$neo_basis* 段完全相同。更多细节请参见第 [13.5.6](subsec_neo-examples.md) 节中的示例。
 
-若干使用密度拟合（density fitting）的后-NEO-HF 方法还要求定义核辅助基组。此类用户定义的 *$neo_aux_basis* 段的输入格式与 *$basis* 和 *$neo_basis* 段完全相同。更多细节请参见第 [13.5.6](subsec_neo-examples.md) 节中的示例。
-**
 
 ## 13.5.4.2 附加关键字
 
@@ -353,10 +351,9 @@ NEO-SCF 迭代过程传统上采用交替求解电子与量子核 Roothaan/Kohn-
 >     * 用户自定义
 > * **建议**: NEO-SCF 过程的收敛速度取决于电子轨道和质子轨道的初始猜测。对于特别困难的体系，先进行分步优化再切换到同时优化可能会有帮助。
 
-**注意：
+!!! note "注意"
+    以下变量专用于 SCF_ALGORITHM = DIIS。
 
-以下变量专用于 SCF_ALGORITHM = DIIS。
-**
 
 ### `DIIS_SUBSPACE_SIZE`
 
@@ -379,10 +376,9 @@ NEO-SCF 迭代过程传统上采用交替求解电子与量子核 Roothaan/Kohn-
 >     * `FALSE`
 > * **建议**: 使用默认值，最大误差提供了更可靠的判据。
 
-**注意：
+!!! note "注意"
+    以下变量专用于 SCF_ALGORITHM = DIIS_GDM。
 
-以下变量专用于 SCF_ALGORITHM = DIIS_GDM。
-**
 
 ### `MAX_DIIS_CYCLES`
 

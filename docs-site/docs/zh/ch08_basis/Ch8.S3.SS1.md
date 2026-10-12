@@ -15,15 +15,9 @@ title: "8.3.1 基组符号表示概览"
 | $j$ -31( $k$ +, $l$ +)G( $m$ , $n$ ) | 4,6 | 3d | 3p |
 | $j$ -311( $k$ +, $l$ +)G( $m$ , $n$ ) | 6 | df, 2df, 3df | pd, 2pd, 3pd |
 
-- •
-
-${}^{a}$$k$ 和 $l$ 分别表示重原子上和氢原子上的弥散函数组数。
-- •
-
-${}^{b}$$m$ 表示重原子上的极化函数组数。
-- •
-
-${}^{c}$$n$ 表示氢原子上的极化函数组数。
+- ${}^{a}$$k$ 和 $l$ 分别表示重原子上和氢原子上的弥散函数组数。
+- ${}^{b}$$m$ 表示重原子上的极化函数组数。
+- ${}^{c}$$n$ 表示氢原子上的极化函数组数。
 
 表 8.1： 
 **Q-Chem** 中可用的 Pople 型基组汇总。
@@ -139,15 +133,9 @@ $n$ 为额外增加的轻原子 $p$ 极化函数数目。
 | aug-cc-pwCVTZ-PP ${}^{c}$ | Cu $\rightarrow$ Rn |
 | aug-cc-pwCVQZ-PP ${}^{c}$ | Cu $\rightarrow$ Rn |
 
-- •
-
-${}^{a}$同时提供 may-、jun- 和 jul-cc-p(C)VXZ 变体
-- •
-
-${}^{b}$同时提供 jun-cc-pVXZ-PP 变体
-- •
-
-${}^{c}$同时提供 jun-cc-p(w)VXZ(-PP) 变体
+- ${}^{a}$同时提供 may-、jun- 和 jul-cc-p(C)VXZ 变体
+- ${}^{b}$同时提供 jun-cc-pVXZ-PP 变体
+- ${}^{c}$同时提供 jun-cc-p(w)VXZ(-PP) 变体
 
 表 8.5： 
 **Q-Chem** 中相关一致基组所支持的原子。
@@ -214,9 +202,7 @@ jun-cc-pVXZ 的做法。
 | def2-ha-QZVP, def2-ha-QZVPP | H–Kr; Rb–La, Hf–Rn (with def2-ECP) |
 | def2-QZVPD, def2-QZVPPD | H–Kr; Rb–La, Hf–Rn (with def2-ECP) |
 
-- •
-
-${}^{a}$Na–Kr 与 def2-SV(P) 完全相同
+- ${}^{a}$Na–Kr 与 def2-SV(P) 完全相同
 
 表 8.7： 
 **Q-Chem** 中 Karlsruhe “def2” 基组[[1438]](../bib_references/bib.md#bib1504)所支持的原子。
@@ -237,9 +223,7 @@ ${}^{a}$Na–Kr 与 def2-SV(P) 完全相同
 | aug-pcJ- $n$ | H $\rightarrow$ Ar |
 | aug-psS- $n$ | H $\rightarrow$ Ar |
 
-- •
-
-${}^{a}$各系列中 $n=0,1,2,3,4$
+- ${}^{a}$各系列中 $n=0,1,2,3,4$
 
 表 8.8： 
 **Q-Chem** 中可用的 Jensen 极化一致（polarization consistent）基组所支持的原子。应优先使用

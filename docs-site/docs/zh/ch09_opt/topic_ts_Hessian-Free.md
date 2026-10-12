@@ -12,10 +12,9 @@ title: "9.2.3 无需 Hessian 的驻点特征判定"
 这种无需 Hessian 的特征判定方法的费用取决于 Davidson 求解器的收敛速度。例如，要判定一个能量极小点，需要总计 $2\times N_{\mathrm{iter}}$ 次能量 + 梯度计算，其中 $N_{\mathrm{iter}}$ 是 Davidson 算法收敛所需的迭代次数，而"2"对应每次迭代中的前向与后向位移。根据文献 [[1243]](../bib_references/bib.md#bib1297)
 ，对于规模较大的体系，该方法的效率可能远高于精确的 Hessian 计算。
 
-**Note: 
+!!! note "Note"
+    目前，该方法不支持 QM/MM（量子力学/分子力学）或含有冻结原子的体系。
 
-目前，该方法不支持 QM/MM（量子力学/分子力学）或含有冻结原子的体系。
-**
 
 ### `GEOM_OPT_CHARAC`
 

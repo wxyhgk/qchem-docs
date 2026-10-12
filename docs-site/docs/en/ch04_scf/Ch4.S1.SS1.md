@@ -39,33 +39,21 @@ are much the same in both cases. Basic SCF job control is described in
 Section [4.3](sec_SCF_job-control.md). Later sections introduce more specialized
 options that can be consulted as needed. Of particular note are the following:
 
-- •
-
-Initial guesses for SCF calculations (Section [4.4](sect_initialguess.md)).
+- Initial guesses for SCF calculations (Section [4.4](sect_initialguess.md)).
 Modification of the guess is recommended in cases where the SCF
 calculation fails to converge.
-- •
-
-Changing the SCF convergence algorithm (Section [4.5](sect_convergence.md))
+- Changing the SCF convergence algorithm (Section [4.5](sect_convergence.md))
 is also a good strategy when the SCF calculation fails to converge.
-- •
-
-Linear-scaling, “${\cal{O}}({N})$”, and other reduced-cost methods are
+- Linear-scaling, “${\cal{O}}({N})$”, and other reduced-cost methods are
 available for large systems (see Section [4.6](sec_O_N.md)).
-- •
-
-Unconventional SCF calculations. Some non-standard SCF methods
+- Unconventional SCF calculations. Some non-standard SCF methods
 with novel physical and mathematical features are available. These include:
 
-- **–**
-
-Dual-basis SCF calculations (Section [4.7](sect_dualbasis.md)) and DFT
+- Dual-basis SCF calculations (Section [4.7](sect_dualbasis.md)) and DFT
 perturbation theory (Section [4.8](sect_HFPC.md)), which facilitate
 large-basis quality results but require self-consistent iterations
 only in a smaller basis set.
-- **–**
-
-SCF meta-dynamics (Section [4.9.2](sec_SCF-meta-dyn.md)), which can be
+- SCF meta-dynamics (Section [4.9.2](sec_SCF-meta-dyn.md)), which can be
 used to locate multiple solutions to the SCF equations and to help
 check that the solution obtained is actually the lowest minimum.
 

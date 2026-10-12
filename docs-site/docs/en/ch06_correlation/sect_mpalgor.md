@@ -40,51 +40,29 @@ The algorithm and implementation in **Q-Chem** is improved over earlier
 methods,[[542]](../bib_references/bib.md#bib552)
  particularly in the following areas:
 
-- •
-
-Uses pure functions, as opposed to Cartesians, for all fifth-order steps.
+- Uses pure functions, as opposed to Cartesians, for all fifth-order steps.
 This leads to large computational savings for basis sets containing pure
 functions.
-- •
-
-Customized loop unrolling for improved efficiency.
-- •
-
-The sort-less semi-direct method avoids a read and write operation
+- Customized loop unrolling for improved efficiency.
+- The sort-less semi-direct method avoids a read and write operation
 resulting in a large I/O savings.
-- •
-
-Reduction in disk and memory usage.
-- •
-
-No extra integral evaluation for gradient calculations.
-- •
-
-Full exploitation of frozen core approximation.
+- Reduction in disk and memory usage.
+- No extra integral evaluation for gradient calculations.
+- Full exploitation of frozen core approximation.
 
 The implementation offers the user the following alternatives:
 
-- •
-
-Direct algorithm (energies only).
-- •
-
-Disk-based sort-less semi-direct algorithm (energies and gradients).
-- •
-
-Local occupied orbital method (energies only).
+- Direct algorithm (energies only).
+- Disk-based sort-less semi-direct algorithm (energies and gradients).
+- Local occupied orbital method (energies only).
 
 The semi-direct algorithm is the only choice for gradient calculations. It is
 also normally the most efficient choice for energy calculations. There are two
 classes of exceptions:
 
-- •
-
-If the amount of disk space available is not significantly larger than
+- If the amount of disk space available is not significantly larger than
 the amount of memory available, then the direct algorithm is preferred.
-- •
-
-If the calculation involves a very large basis set, then the local
+- If the calculation involves a very large basis set, then the local
 orbital method may be faster, because it performs the transformation in a
 different order. It does not have the large memory requirement (no
 $OVN$ array needed), and always evaluates the integrals four times.
@@ -94,15 +72,11 @@ order to exploit the full efficiency of **Q-Chem**’s direct and semi-direct MP
 methods (as discussed above, the LOCAL_OCCUPIED method has different
 requirements).
 
-- •
-
-MEM_STATIC: The value specified for this *$rem* variable must be
+- MEM_STATIC: The value specified for this *$rem* variable must be
 sufficient to permit efficient integral evaluation (10-80MB) and to hold
 a large temporary array whose size is $OVN$, the product of the number of
 occupied, virtual and total numbers of orbitals.
-- •
-
-N_FROZEN_CORE: The computational requirements for MP2 are
+- N_FROZEN_CORE: The computational requirements for MP2 are
 proportional to the number of occupied orbitals for some steps, and the
 square of that number for other steps. Therefore the CPU time can be
 significantly reduced if your job employs the frozen core approximation.

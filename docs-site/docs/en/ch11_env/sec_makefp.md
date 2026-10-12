@@ -81,11 +81,10 @@ Table 11.10: Standard fragments available in **Q-Chem**
 | uracil, S66, gas phase | URACIL_L |
 | uracil, S66, H-bonded dimer | URACIL_HB_L |
 
-**Note: 
+!!! note "Note"
+    The fragments from **Q-Chem** fragment library have “_L” added to their
+    names to distinguish them from user-defined fragments.
 
-The fragments from **Q-Chem** fragment library have “_L” added to their
-names to distinguish them from user-defined fragments.
-**
 
 The parameters for the standard fragments were computed as follows. The
 geometries of the solvent molecules were optimized with MP2/cc-pVTZ;

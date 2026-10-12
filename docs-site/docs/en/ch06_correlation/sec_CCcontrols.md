@@ -29,13 +29,12 @@ For memory options and parallel execution, see Section [6.17](CCparallel.md).
 >     * $n$: Corresponding to $10^{-n}$ convergence criterion. Amplitude convergence is set automatically to match energy convergence.
 > * **Recommendation**: Use the default
 
-**Note: 
+!!! note "Note"
+    For single-point calculations, CC_E_CONV = 6 and CC_T_CONV = 4.
+    Tighter amplitude convergence (CC_T_CONV = 5) is used for gradients and EOM
+    calculations. When using single-precision calculations, the thresholds should be adjusted
+    accordingly (see section [6.18](sec_SP_CC.md)).
 
-For single-point calculations, CC_E_CONV = 6 and CC_T_CONV = 4.
-Tighter amplitude convergence (CC_T_CONV = 5) is used for gradients and EOM
-calculations. When using single-precision calculations, the thresholds should be adjusted
-accordingly (see section [6.18](sec_SP_CC.md)).
-**
 
 ### `CC_DOV_THRESH`
 
@@ -47,10 +46,9 @@ accordingly (see section [6.18](sec_SP_CC.md)).
 >     * $abcde$: Integer code is mapped to $ab\times 10^{-de}$ , e.g. , $2501$ corresponds to 0.025, $99001$ corresponds to 0.99, etc.
 > * **Recommendation**: Increase to 0.25, 0.5 or 0.75 for non convergent coupled-cluster calculations.
 
-**Note: 
+!!! note "Note"
+    Works only for CCMAN jobs, not enabled in CCMAN2.
 
-Works only for CCMAN jobs, not enabled in CCMAN2.
-**
 
 ### `CC_SCALE_AMP`
 
@@ -62,10 +60,9 @@ Works only for CCMAN jobs, not enabled in CCMAN2.
 >     * $abcd$: Integer code is mapped to $abcd\times 10^{-2}$ , e.g. , $90$ corresponds to 0.9
 > * **Recommendation**: Use 0.9 or 0.8 for non convergent coupled-cluster calculations.
 
-**Note: 
+!!! note "Note"
+    Now available for both CCMAN and CCMAN2.
 
-Now available for both CCMAN and CCMAN2.
-**
 
 ### `CC_MAX_ITER`
 

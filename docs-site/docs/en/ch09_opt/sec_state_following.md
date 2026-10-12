@@ -52,16 +52,10 @@ where $\lambda_{\rm max}$ is the largest eigenvalue of $\mathbf{M}$.
 
 The selected state always satisfies one of the following
 
-1. 1.
-
-It is the only state in the window defined by $\gamma_{E}$.
-2. 2.
-
-It is the state with the largest overlap, provided at least one state has
+1. It is the only state in the window defined by $\gamma_{E}$.
+2. It is the state with the largest overlap, provided at least one state has
 $\mathcal{S}\geq\gamma_{S}$.
-3. 3.
-
-It is the nearest state energetically if all states in the window have
+3. It is the nearest state energetically if all states in the window have
 $\mathcal{S}<\gamma_{S}$, or if there are no states in the energy window.
 
 State-following can currently be used with CIS or TDDFT excited states and is

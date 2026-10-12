@@ -10,20 +10,12 @@ title: "7.3.6 TDDFT 的任务控制"
 
 含时密度泛函理论（time-dependent density functional theory, TDDFT）计算的输入格式与前一节中描述的非关联激发态方法（uncorrelated excited state methods）的输入格式基本一致（特别是参见第 [7.2.4](sec_CIS-jobcontrol.md) 节）。有以下几点需要注意：
 
-- •
-
-  交换与关联泛函的指定方式与基态 DFT 计算完全相同，即通过 EXCHANGE 和 CORRELATION 来设置。要启用 TDDFT，需将 CIS_N_ROOTS 设为 $\geq 1$ 的值，以指定要计算的激发态数目。
-- •
-
-  若将 RPA 设为 TRUE，则执行"完整"的 TDDFT 计算；不过默认值为 RPA = FALSE，此时调用 TDA[[580]](../bib_references/bib.md#bib602)，即在式 ([7.15](sect_tddftintro.md#eq:TDDFT)) 中忽略去激发振幅 $\mathbf{y}$。对于激发能而言，这通常是一个很好的近似，尽管在 TDA 下振子强度不再形式上满足 Thomas-Reiche-Kuhn 求和规则。
+- 交换与关联泛函的指定方式与基态 DFT 计算完全相同，即通过 EXCHANGE 和 CORRELATION 来设置。要启用 TDDFT，需将 CIS_N_ROOTS 设为 $\geq 1$ 的值，以指定要计算的激发态数目。
+- 若将 RPA 设为 TRUE，则执行"完整"的 TDDFT 计算；不过默认值为 RPA = FALSE，此时调用 TDA[[580]](../bib_references/bib.md#bib602)，即在式 ([7.15](sect_tddftintro.md#eq:TDDFT)) 中忽略去激发振幅 $\mathbf{y}$。对于激发能而言，这通常是一个很好的近似，尽管在 TDA 下振子强度不再形式上满足 Thomas-Reiche-Kuhn 求和规则。
 
    对于 RPA = TRUE，会先执行一次 TDA 计算，并将其作为完整 TDDFT 计算的初始猜测。可以通过 RPA = 2 完全跳过 TDA 计算。RPA 未在限制开壳层（restricted open-shell）计算中实现，此类计算仅支持 TDA。
-- •
-
-  若在执行 TDDFT 计算时将 SPIN_FLIP 设为 1（或 TRUE）或 2，则将执行 SF-TDDFT（自旋翻转 TDDFT）计算。目前，SF-TDDFT 仅在 TDA 框架内实现，因此 RPA 必须设为 FALSE。请记得将自旋多重度设为 3（对于电子数为偶数的体系，*e.g.*，双自由基），设为 4（对于电子数为奇数的体系，*e.g.*，三自由基）。MR-SFTDDFT（通过 SPIN_FLIP=2 调用）仅对三重态参考实现。
-- •
-
-  若在执行 TDDFT 计算时将 MGGA_GINV 设为 1，则会为 meta-GGA 泛函添加规范不变性修正（gauge invariance correction）。[[84]](../bib_references/bib.md#bib69)
+- 若在执行 TDDFT 计算时将 SPIN_FLIP 设为 1（或 TRUE）或 2，则将执行 SF-TDDFT（自旋翻转 TDDFT）计算。目前，SF-TDDFT 仅在 TDA 框架内实现，因此 RPA 必须设为 FALSE。请记得将自旋多重度设为 3（对于电子数为偶数的体系，*e.g.*，双自由基），设为 4（对于电子数为奇数的体系，*e.g.*，三自由基）。MR-SFTDDFT（通过 SPIN_FLIP=2 调用）仅对三重态参考实现。
+- 若在执行 TDDFT 计算时将 MGGA_GINV 设为 1，则会为 meta-GGA 泛函添加规范不变性修正（gauge invariance correction）。[[84]](../bib_references/bib.md#bib69)
 
 下面介绍一些基本的任务控制变量（需添加到 *$rem* 段中）。另外还有用于 X 射线光谱学的其他选项，参见第 [7.12.2](subsec_TDDFT-Xray.md) 节。
 

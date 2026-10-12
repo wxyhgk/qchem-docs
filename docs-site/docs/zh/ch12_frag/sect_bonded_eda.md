@@ -32,18 +32,10 @@ CT 项给出了键中离子性程度的指示。综合各项共同构成所研�
 
 使用成键 ALMO-EDA 的注意事项：
 
-- •
-
-必须设置 SCFMI_MODE = 1。
-- •
-
-必须设置 ROSCF = TRUE。
-- •
-
-成键 ALMO-EDA 没有预设（presets）。因此请设置 EDA2 = 10。
-- •
-
-SCF_ALGORITHM 不得使用 DIIS。当 BONDED_EDA = 2 时使用 GDM_LS，当 BONDED_EDA = 1 时使用 L_BFGS。
+- 必须设置 SCFMI_MODE = 1。
+- 必须设置 ROSCF = TRUE。
+- 成键 ALMO-EDA 没有预设（presets）。因此请设置 EDA2 = 10。
+- SCF_ALGORITHM 不得使用 DIIS。当 BONDED_EDA = 2 时使用 GDM_LS，当 BONDED_EDA = 1 时使用 L_BFGS。
 
 ### `BONDED_EDA`
 

@@ -126,18 +126,16 @@ radii, can be modified using a *$empirical_dispersion* input section. For exampl
 
 Values not specified explicitly default to the values optimized by Grimme.
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    DFT-D2 is only defined for elements up to Xe.
 
-DFT-D2 is only defined for elements up to Xe.
+    2.
 
-2.
+    B97-D is an exchange-correlation functional that automatically employs
+    the DFT-D2 dispersion correction when used via METHOD = B97-D.
 
-B97-D is an exchange-correlation functional that automatically employs
-the DFT-D2 dispersion correction when used via METHOD = B97-D.
-
-**
 
 An alternative to Grimme’s DFT-D2 is the empirical dispersion correction of
 Chai and Head-Gordon,[[224]](../bib_references/bib.md#bib219)
@@ -163,18 +161,16 @@ damping parameter $a$ is controlled by the keyword DFT_D_A.
 >     * $n$: Corresponding to $a=n/100$ .
 > * **Recommendation**: Use the default.
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    DFT-CHG is only defined for elements up to Xe.
 
-DFT-CHG is only defined for elements up to Xe.
+    2.
 
-2.
+    The $\omega$B97X-D and $\omega$M05-D functionals automatically employ the
+    DFT-CHG dispersion correction when used via METHOD = wB97X-D or wM05-D.
 
-The $\omega$B97X-D and $\omega$M05-D functionals automatically employ the
-DFT-CHG dispersion correction when used via METHOD = wB97X-D or wM05-D.
-
-**
 
 Grimme’s DFT-D3 method[[486]](../bib_references/bib.md#bib504)
  constitutes an improvement
@@ -305,34 +301,22 @@ Note that $\beta_{8}=\beta_{6}+2$.
 
 To summarize this bewildering array of D3 damping functions:
 
-- •
-
-**DFT-D3(0)** is requested by setting DFT_D = D3_ZERO. The
+- **DFT-D3(0)** is requested by setting DFT_D = D3_ZERO. The
 model depends on four scaling parameters ($s_{6}$, $s_{r,6}$, $s_{8}$, and $s_{r,8}$),
 as defined in Eq. ([5.30](#eq:zero-damping)).
-- •
-
-**DFT-D3(BJ)** is requested by setting DFT_D = D3_BJ. The
+- **DFT-D3(BJ)** is requested by setting DFT_D = D3_BJ. The
 model depends on four scaling parameters ($s_{6}$, $s_{8}$, $\alpha_{1}$, and
 $\alpha_{2}$), as defined in Eq. ([5.31](#eq:bj-damping)).
-- •
-
-**DFT-D3(CSO)** is requested by setting DFT_D = D3_CSO. The
+- **DFT-D3(CSO)** is requested by setting DFT_D = D3_CSO. The
 model depends on two scaling parameters ($s_{6}$ and $\alpha_{1}$), as defined in
 Eq. ([5.32](#eq:cso-damping)).
-- •
-
-**DFT-D3M(0)** is requested by setting DFT_D = D3_ZEROM. The
+- **DFT-D3M(0)** is requested by setting DFT_D = D3_ZEROM. The
 model depends on five scaling parameters ($s_{6}$, $s_{8}$, $s_{r,6}$, $s_{r,8}$, and
 $\alpha_{1}$), as defined in Eq. ([5.33](#eq:zero-m-damping)).
-- •
-
-**DFT-D3M(BJ)** is requested by setting DFT_D = D3_BJM. The
+- **DFT-D3M(BJ)** is requested by setting DFT_D = D3_BJM. The
 model depends on four scaling parameters ($s_{6}$, $s_{8}$, $\alpha_{1}$, and
 $\alpha_{2}$), as defined in Eq. ([5.31](#eq:bj-damping)).
-- •
-
-**DFT-D3(op)** is requested by setting DFT_D = D3_OP. The
+- **DFT-D3(op)** is requested by setting DFT_D = D3_OP. The
 model depends on four scaling parameters ($s_{6}$, $s_{8}$, $\alpha_{1}$, $\alpha_{2}$,
 and $\beta_{6}$), as defined in Eq. ([5.31](#eq:bj-damping)).
 
@@ -341,38 +325,36 @@ The scaling parameters in these damping functions can be modified using the
 DFT_D = D3, and a D3 dispersion correction will be selected
 automatically, if one is available for the selected functional.
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    DFT-D3(0) is defined for elements up to Pu ($Z=94$).
 
-DFT-D3(0) is defined for elements up to Pu ($Z=94$).
+    2.
 
-2.
+    The B97-D3(0), $\omega$B97X-D3, $\omega$M06-D3 functionals automatically
+    employ the DFT-D3(0) dispersion correction when invoked by setting
+    METHOD equal to B97-D3, wB97X-D3, or
+    wM06-D3.
 
-The B97-D3(0), $\omega$B97X-D3, $\omega$M06-D3 functionals automatically
-employ the DFT-D3(0) dispersion correction when invoked by setting
-METHOD equal to B97-D3, wB97X-D3, or
-wM06-D3.
+    3.
 
-3.
+    The old way of invoking DFT-D3, namely through the use of
+    EMPIRICAL_GRIMME3, is still supported, though its use is
+    discouraged since D3_ZERO accomplishes the same thing but with
+    additional precision for the relevant parameters.
 
-The old way of invoking DFT-D3, namely through the use of
-EMPIRICAL_GRIMME3, is still supported, though its use is
-discouraged since D3_ZERO accomplishes the same thing but with
-additional precision for the relevant parameters.
+    4.
 
-4.
+    When DFT_D = D3, parameters may not be overwritten,
+    with the exception of DFT_D3_3BODY; this is intended as a
+    user-friendly option. This is also the case when
+    EMPIRICAL_GRIMME3 is employed for a functional parameterized in
+    **Q-Chem**. When any of D3_ZERO, D3_BJ, etc. are
+    chosen, **Q-Chem** will automatically populate the parameters with their
+    default values, if they available for the desired functional, but these
+    defaults can still be overwritten by the user.
 
-When DFT_D = D3, parameters may not be overwritten,
-with the exception of DFT_D3_3BODY; this is intended as a
-user-friendly option. This is also the case when
-EMPIRICAL_GRIMME3 is employed for a functional parameterized in
-**Q-Chem**. When any of D3_ZERO, D3_BJ, etc. are
-chosen, **Q-Chem** will automatically populate the parameters with their
-default values, if they available for the desired functional, but these
-defaults can still be overwritten by the user.
-
-**
 
 ### `DFT_D3_S6`
 

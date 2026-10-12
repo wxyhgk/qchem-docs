@@ -10,24 +10,12 @@ title: "4.1.1 概述"
 
 第 [4.2 节](sec_SCF_theory.md) 提供 SCF 方法（包括 HF 和 KS-DFT）的理论背景。从某种意义上说，前者可视为后者的一个特例，且作业控制 *$rem* 变量在两种情况下大致相同。基本的 SCF 作业控制见第 [4.3 节](sec_SCF_job-control.md)。后续各节介绍更为专门的选项，可按需查阅。尤其值得注意的有以下几项：
 
-- •
+- SCF 计算的初始猜测（initial guess）（第 [4.4 节](sect_initialguess.md)）。当 SCF 计算不收敛时，建议修改猜测。
+- 当 SCF 计算不收敛时，改变 SCF 收敛算法（第 [4.5 节](sect_convergence.md)）也是一种不错的策略。
+- 针对大体系，提供了线性标度（linear-scaling）、“${\cal{O}}({N})$” 及其他低成本方法（见第 [4.6 节](sec_O_N.md)）。
+- 非常规 SCF 计算。一些具有新颖物理和数学特征的非标准 SCF 方法也可用。这些方法包括：
 
-SCF 计算的初始猜测（initial guess）（第 [4.4 节](sect_initialguess.md)）。当 SCF 计算不收敛时，建议修改猜测。
-- •
-
-当 SCF 计算不收敛时，改变 SCF 收敛算法（第 [4.5 节](sect_convergence.md)）也是一种不错的策略。
-- •
-
-针对大体系，提供了线性标度（linear-scaling）、“${\cal{O}}({N})$” 及其他低成本方法（见第 [4.6 节](sec_O_N.md)）。
-- •
-
-非常规 SCF 计算。一些具有新颖物理和数学特征的非标准 SCF 方法也可用。这些方法包括：
-
-- **–**
-
-双基组（dual-basis）SCF 计算（第 [4.7 节](sect_dualbasis.md)）以及 DFT 微扰理论（第 [4.8 节](sect_HFPC.md)），它们有助于获得大基组级别的质量结果，但只需在较小的基组中进行自洽迭代。
-- **–**
-
-SCF 元动力学（meta-dynamics）（第 [4.9.2 节](sec_SCF-meta-dyn.md)），可用于寻找 SCF 方程的多个解，并帮助检验所获得的解是否确实是最低极小值。
+- 双基组（dual-basis）SCF 计算（第 [4.7 节](sect_dualbasis.md)）以及 DFT 微扰理论（第 [4.8 节](sect_HFPC.md)），它们有助于获得大基组级别的质量结果，但只需在较小的基组中进行自洽迭代。
+- SCF 元动力学（meta-dynamics）（第 [4.9.2 节](sec_SCF-meta-dyn.md)），可用于寻找 SCF 方程的多个解，并帮助检验所获得的解是否确实是最低极小值。
 
 其中一些非常规 SCF 方法为 **Q-Chem** 所独有。

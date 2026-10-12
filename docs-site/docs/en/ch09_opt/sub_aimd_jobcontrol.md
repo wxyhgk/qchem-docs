@@ -69,68 +69,42 @@ record, in ASCII format, one line of information at each time step. Each file
 contains a few comment lines (indicated by “#”) that describe its contents
 and which we summarize in the list below.
 
-- •
-
-`Cost`: Records the number of SCF cycles, the total CPU time, and the total
+- `Cost`: Records the number of SCF cycles, the total CPU time, and the total
 memory use at each dynamics step.
-- •
-
-`EComponents`: Records various components of the total energy (all in hartree).
-- •
-
-`Energy`: Records the total energy and fluctuations therein.
-- •
-
-`MulMoments`: If multipole moments are requested, they are printed here.
-- •
-
-`NucCarts`: Records the nuclear Cartesian coordinates $x_{1}$, $y_{1}$,
+- `EComponents`: Records various components of the total energy (all in hartree).
+- `Energy`: Records the total energy and fluctuations therein.
+- `MulMoments`: If multipole moments are requested, they are printed here.
+- `NucCarts`: Records the nuclear Cartesian coordinates $x_{1}$, $y_{1}$,
 $z_{1}$, $x_{2}$, $y_{2}$, $z_{2}$, …, $x_{N}$, $y_{N}$, $z_{N}$
 at each time step, in either bohrs or Ångstroms.
-- •
-
-`NucForces`: Records the Cartesian forces on the nuclei at each time step
+- `NucForces`: Records the Cartesian forces on the nuclei at each time step
 (same order as the coordinates, but given in atomic units).
-- •
-
-`NucVeloc`: Records the Cartesian velocities of the nuclei at each time
+- `NucVeloc`: Records the Cartesian velocities of the nuclei at each time
 step (same order as the coordinates, but given in atomic units).
-- •
-
-`TandV`: Records the kinetic and potential energy, as well as
+- `TandV`: Records the kinetic and potential energy, as well as
 fluctuations in each.
-- •
-
-`View.xyz`: Cartesian-formatted version of `NucCarts` for
+- `View.xyz`: Cartesian-formatted version of `NucCarts` for
 viewing trajectories in an external visualization program.
 
 For ELMD jobs, there are other output files as well:
 
-- •
-
-`ChangeInF`: Records the matrix norm and largest magnitude element of
+- `ChangeInF`: Records the matrix norm and largest magnitude element of
 $\Delta\mathbf{F}=\mathbf{F}(t+\delta t)-\mathbf{F}(t)$ in the basis of
 Cholesky-orthogonalized AOs. The files ChangeInP, ChangeInL, and
 ChangeInZ provide analogous information for the density matrix $\mathbf{P}$
 and the Cholesky orthogonalization matrices $\mathbf{L}$ and $\mathbf{Z}$ defined
 in Ref. [[558]](../bib_references/bib.md#bib572)
 .
-- •
-
-`DeltaNorm`: Records the norm and largest magnitude element of the
+- `DeltaNorm`: Records the norm and largest magnitude element of the
 curvy-steps rotation angle matrix $\Delta$ defined in
 Ref. [[558]](../bib_references/bib.md#bib572)
 . Matrix elements of $\Delta$ are the
 dynamical variables representing the electronic degrees of freedom. The
 output file DeltaDotNorm provides the same information for the electronic
 velocity matrix $d\Delta/{dt}$.
-- •
-
-`ElecGradNorm`: Records the norm and largest magnitude element of the
+- `ElecGradNorm`: Records the norm and largest magnitude element of the
 electronic gradient matrix $\mathbf{FP}-\mathbf{PF}$ in the Cholesky basis.
-- •
-
-`dTfict:` Records the instantaneous time derivative of the fictitious kinetic
+- `dTfict:` Records the instantaneous time derivative of the fictitious kinetic
 energy at each time step, in atomic units.
 
 *Ab initio* molecular dynamics jobs are requested by specifying

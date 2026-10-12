@@ -47,11 +47,10 @@ of coupled-perturbed ($Z$-vector) equations,[[1399]](../bib_references/bib.md#bi
  which makes the gradient somewhat more expensive
 than a traditional DFT gradient.
 
-**Note: 
+!!! note "Note"
+    At present, the coupled-perturbed equtions for DC-DFT are solved in serial, meaning that while the SCF iterations are parallelized
+    the $Z$-vector iterations are not.
 
-At present, the coupled-perturbed equtions for DC-DFT are solved in serial, meaning that while the SCF iterations are parallelized
-the $Z$-vector iterations are not.
-**
 
 To perform a DC-DFT calculation, set use METHOD in the *$rem* section to select the functional of choice, and also set
 DC_DFT = TRUE. Note that because $E_{\text{DFT}}[\rho]$ is never diagonalized, any subsequent properties that are

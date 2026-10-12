@@ -13,9 +13,7 @@ orbitals (EPAOs) that spans the occupied space. There are three valid choices
 for this basis, controlled by the PAO_METHOD and
 EPAO_ITERATE keywords described below.
 
-- •
-
-**Non-iterated EPAOs:** The initial guess EPAOs are the default for
+- **Non-iterated EPAOs:** The initial guess EPAOs are the default for
 local MP2 calculations, and are defined as follows. For each atom, the
 covariant density matrix (SPS) is diagonalized, giving eigenvalues which
 are approximate natural orbital occupancies, and eigenvectors which are
@@ -35,9 +33,7 @@ torsional barrier calculations discussed above,[[790]](../bib_references/bib.md#
 TRIM RMS deviations of 0.03 kcal/mol from full MP2 calculations are
 increased to only 0.04 kcal/mol when EPAO(0) orbitals are employed rather
 than EPAOs.
-- •
-
-**EPAOs:** EPAOs are defined by minimizing a localization functional
+- **EPAOs:** EPAOs are defined by minimizing a localization functional
 as described in Ref. [[789]](../bib_references/bib.md#bib820)
 . These functions were designed
 to be suitable for local MP2 calculations, and have yielded excellent
@@ -46,9 +42,7 @@ difficult to converge for large molecules, at least with the algorithms
 that have been developed to this stage. Therefore it is not the default,
 but is switched on by specifying a (large) value for
 EPAO_ITERATE, as discussed below.
-- •
-
-**PAO:** If the SCF calculation is performed in terms of a
+- **PAO:** If the SCF calculation is performed in terms of a
 molecule-optimized minimal basis, as described in Chapter [4](../ch04_scf/chap_scf.md), then the
 resulting PAO-SCF calculation can be corrected with either conventional
 or local MP2 for electron correlation. PAO-SCF calculations alter the
@@ -91,12 +85,8 @@ CORRELATION = LOCAL_MP2.
 A local MP2 calculation (requested by the LOCAL_MP2 option for
 CORRELATION) consists of the following steps:
 
-- •
-
-After the SCF is converged, a minimal basis of EPAOs are obtained.
-- •
-
-The TRIM (and DIM) local MP2 energies are then evaluated (gradients are
+- After the SCF is converged, a minimal basis of EPAOs are obtained.
+- The TRIM (and DIM) local MP2 energies are then evaluated (gradients are
 not yet available).
 
 Details of the efficient implementation of the local MP2 method described above
@@ -115,15 +105,11 @@ separately optimized DIM algorithm has been implemented.
 
 The resource requirements for local MP2 calculations are as follows:
 
-- •
-
-*Memory:* The memory requirement for the integral transformation
+- *Memory:* The memory requirement for the integral transformation
 does not exceed $OON$, and is thresholded so that it asymptotically grows
 linearly with molecule size. Additional memory of approximately 32$N^{2}$
 is required to complete the local MP2 energy evaluation.
-- •
-
-*Disk:* The disk space requirement is only about $8OVN$, but is
+- *Disk:* The disk space requirement is only about $8OVN$, but is
 not governed by a threshold. This is a very large reduction from the case
 of a full MP2 calculation, where, in the case of four integral
 evaluations, $OVN^{2}$/4 disk space is required. As the local MP2 disk

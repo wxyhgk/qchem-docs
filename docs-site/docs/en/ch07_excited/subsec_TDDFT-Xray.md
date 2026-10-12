@@ -187,12 +187,11 @@ for these calculations can be reduced further through the TDDFT_NVIRT keyword th
 reduces the number of virtual orbitals included in the TDDFT calculation.
 Job control variables for fTDDFTs are listed below and are illustrated in Example [7.12.2.1](#ex:TDDFT-CVS-0).
 
-**Note: 
+!!! note "Note"
+    Currently fTDDFTs works only for restricted CIS/TDA calculations and is not parallelized.
+    (Multiple threads can be used for the initial SCF calculation but the subsequent CIS/TDA calculation
+    is performed in serial.)
 
-Currently fTDDFTs works only for restricted CIS/TDA calculations and is not parallelized.
-(Multiple threads can be used for the initial SCF calculation but the subsequent CIS/TDA calculation
-is performed in serial.)
-**
 
 ### `FAST_XAS`
 

@@ -24,13 +24,9 @@ metadynamics. The **libnoci** implementation of SCF metadynamics can be accessed
 using USE_LIBNOCI = TRUE in combination with NOCI_DETGEN = 3.
 In addition to the original SCF metadynamics features available in **Q-Chem**, this new implementation includes:
 
-- •
-
-An active space approach where orbital mixing and optimization
+- An active space approach where orbital mixing and optimization
 occurs only in a user-defined subset of orbitals.
-- •
-
-Full support for restricted, unrestricted and generalized orbital types, along
+- Full support for restricted, unrestricted and generalized orbital types, along
 with complex (Hermitian) and holomorphic (non-Hermitian) orbitals; see Section [4.9.4](sec_HoloHF.md).
 
 Multiple Hartree-Fock states of particular relevance for NOCI are often

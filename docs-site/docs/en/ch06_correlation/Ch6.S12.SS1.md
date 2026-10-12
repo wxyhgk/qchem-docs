@@ -61,10 +61,9 @@ now includes efficient implementations of RI-CC2 and stochastic RI-CC2 methods.
 >     * `VQCCD(2)`: CCMAN
 > * **Recommendation**: Consult the literature for guidance.
 
-**Note: 
+!!! note "Note"
+    All methods implemented in CCMAN2 can be executed in combination
+    with PCM implicit solvation models (at a “zeroth-order” level, as described in
+    Section [11.2.1](../ch11_env/topic_solvation_Intro.md)) and with the EFP method (Section [11.5](../ch11_env/sect_efp.md)).
+    Only energies and unrelaxed properties are available, not gradients.
 
-All methods implemented in CCMAN2 can be executed in combination
-with PCM implicit solvation models (at a “zeroth-order” level, as described in
-Section [11.2.1](../ch11_env/topic_solvation_Intro.md)) and with the EFP method (Section [11.5](../ch11_env/sect_efp.md)).
-Only energies and unrelaxed properties are available, not gradients.
-**

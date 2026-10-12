@@ -82,21 +82,15 @@ natural internals have become the coordinates of first choice.[[396]](../bib_ref
 There are some disadvantages to natural internal coordinates as they are
 commonly constructed and used:
 
-- •
-
-Algorithms for the automatic construction of natural internals are
+- Algorithms for the automatic construction of natural internals are
 complicated. There are a large number of structural possibilities, and to
 adequately handle even the most common of them can take several thousand
 lines of code.
-- •
-
-For the more complex molecular topologies, most assigning algorithms
+- For the more complex molecular topologies, most assigning algorithms
 generate more natural internal coordinates than are required to
 characterize all possible motions of the system (*i.e.*, the generated
 coordinate set contains redundancies).
-- •
-
-In cases with a very complex molecular topology (*e.g.*, multiply fused
+- In cases with a very complex molecular topology (*e.g.*, multiply fused
 rings and cage compounds) the assigning algorithm may be unable to
 generate a suitable set of coordinates.
 
@@ -177,19 +171,13 @@ The situation for geometry optimization, comparing Cartesian, *Z*-matrix and
 delocalized internal coordinates, and assuming a “reasonable” starting
 geometry, is as follows:
 
-- •
-
-For small or very rigid medium-sized systems (up to about 15 atoms),
+- For small or very rigid medium-sized systems (up to about 15 atoms),
 optimizations in Cartesian and internal coordinates (“good” *Z*-matrix or
 delocalized internals) should perform similarly.
-- •
-
-For medium-sized systems (say 15–30 atoms) optimizations in Cartesians
+- For medium-sized systems (say 15–30 atoms) optimizations in Cartesians
 should perform as well as optimizations in internal coordinates, provided
 a reliable starting Hessian is available.
-- •
-
-For large systems (30+ atoms), unless these are very rigid, neither
+- For large systems (30+ atoms), unless these are very rigid, neither
 Cartesian nor *Z*-matrix coordinates can compete with delocalized
 internals, even with good quality Hessian information. As the system
 increases, and with less reliable starting geometries, the advantage of

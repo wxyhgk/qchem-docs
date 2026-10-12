@@ -38,21 +38,18 @@ EOM-SF-CCSD(dT) 和 EOM-SF-CCSD(fT) 方法相较于 EOM-SF-CCSD 可带来系统�
 类似的修正也适用于 EOM-IP-CCSD，[[888]](../bib_references/bib.md#bib922)
 其中三激发对应于 $3h2p$ 激发；以及 EOM-EA-CCSD，其中三激发对应于 $2h3p$ 激发。
 
-**注意：
+!!! note "注意"
+    由于轨道非不变性问题，不建议使用 (dT) 修正。
 
-由于轨道非不变性问题，不建议使用 (dT) 修正。
-**
 
-**注意：
+!!! note "注意"
+    EOM-IP-CCSD(fT) 修正现已在 CCMAN 和 CCMAN2 中均可用。
 
-EOM-IP-CCSD(fT) 修正现已在 CCMAN 和 CCMAN2 中均可用。
-**。
 
-**注意：
+!!! note "注意"
+    在 CCMAN2 中，三激发修正可使用两种不同的后端进行计算，
+    即 **libtensor** 和 **libpt**。前者效率更高，推荐用于较大规模的计算任务（参见第 [6.13.3](../ch06_correlation/sec_dT.md) 节）。
 
-在 CCMAN2 中，三激发修正可使用两种不同的后端进行计算，
-即 **libtensor** 和 **libpt**。前者效率更高，推荐用于较大规模的计算任务（参见第 [6.13.3](../ch06_correlation/sec_dT.md) 节）。
-**
 
 ## 7.9.27.1 非迭代三激发修正的任务控制
 
@@ -88,10 +85,9 @@ EOM-IP-CCSD(fT) 修正现已在 CCMAN 和 CCMAN2 中均可用。
 >     * EOM-CCSD(sT)，适用于 IP
 > * **建议**：无
 
-**注意：
+!!! note "注意"
+    在 CCMAN2 中，EOM-IP-CCSD(fT) 可在设置 USE_LIBPT = TRUE 或不设置的情况下计算。
 
-在 CCMAN2 中，EOM-IP-CCSD(fT) 可在设置 USE_LIBPT = TRUE 或不设置的情况下计算。
-**
 
 ## 7.9.27.2 示例
 

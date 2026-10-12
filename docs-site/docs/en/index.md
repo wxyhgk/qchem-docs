@@ -12,7 +12,7 @@ hide:
     Comprehensive documentation, theoretical background, and execution guide for Q-Chem 7.0 quantum chemistry software package.
   </p>
   <div style="margin-top: 1rem;">
-    <a class="md-button md-button--primary" href="ch01_intro/chap_intro.md" style="margin-right: 0.5rem;">📖 Get Started</a>
+    <a class="md-button md-button--primary" href="ch01_intro/chap_intro/" style="margin-right: 0.5rem;">📖 Get Started</a>
     <a class="md-button" href="assets/qchem_manual.pdf" target="_blank" download>⬇️ Download PDF Manual (5.5 MB)</a>
   </div>
 </div>

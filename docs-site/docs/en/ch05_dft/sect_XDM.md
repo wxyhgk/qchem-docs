@@ -109,11 +109,10 @@ LRC-$\omega$PBE, and CAM-B3LYP.[[1027]](../bib_references/bib.md#bib1070)
 
 Parameters for this set of functionals are implemented in **Q-Chem**.[[483]](../bib_references/bib.md#bib494)
 
-**Note: 
+!!! note "Note"
+    For functionals other than the ones specified above, Hartree-Fock values of the parameters $a_{1}$ and
+    $a_{2}$ are used, although this may not be optimal.
 
-For functionals other than the ones specified above, Hartree-Fock values of the parameters $a_{1}$ and
-$a_{2}$ are used, although this may not be optimal.
-**
 
 ## 5.7.4.2 Job Control
 

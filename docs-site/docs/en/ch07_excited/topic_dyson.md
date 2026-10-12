@@ -165,10 +165,9 @@ CCMAN and CCMAN2. The Dyson orbitals will be written to files `mo.1.cube`,
 of the Dyson orbitals are written to separate files in the order
 $\text{Re}(\phi^{lr}_{1})\ \text{Re}(\phi^{rl}_{1})\ \ \text{Re}(\phi^{lr}_{2})\ \text{Re}(\phi^{rl}_{2})\ldots\text{Im}(\phi^{lr}_{1})\ \text{Im}(\phi^{rl}_{1})\ \ \text{Im}(\phi^{lr}_{2})\ \text{Im}(\phi^{rl}_{2})\ldots$
 
-**Note: 
+!!! note "Note"
+    Visualization via the **MolDen** format is not available.
 
-Visualization via the **MolDen** format is not available.
-**
 
 ## 7.9.29.2 Examples
 

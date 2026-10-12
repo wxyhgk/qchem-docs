@@ -42,12 +42,8 @@ Their positions are specified in the *$molecule* section alongside all the
 other atoms (atomic symbol: Gh), and their intended basis functions are
 specified in one of two ways:
 
-1. 1.
-
-Via a user-defined *$basis* section, using BASIS = MIXED.
-2. 2.
-
-Placing “$@$” next to an atomic symbol in the *$molecule* section
+1. Via a user-defined *$basis* section, using BASIS = MIXED.
+2. Placing “$@$” next to an atomic symbol in the *$molecule* section
 designates it as a ghost atom supporting the same basis functions as the
 corresponding atom, so that a *$basis* section is not required.
 

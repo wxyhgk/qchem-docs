@@ -233,10 +233,9 @@ $$
 C_{6}^{kl}\rightarrow\left(1-S_{kl}^{2}\left(1-2\log|S_{kl}|+2\log^{2}|S_{kl}|\right)\right)C_{6}^{kl}\;. \tag{11.75}
 $$
 
-**Note: 
+!!! note "Note"
+    QM/EFP dispersion interactions are currently disabled.
 
-QM/EFP dispersion interactions are currently disabled.
-**
 
 Exchange-repulsion originates from the Pauli exclusion principle, which states
 that the wave function of two identical fermions must be anti-symmetric. In
@@ -285,7 +284,6 @@ scales as ${\cal{O}}({N})$. Consequently, for large systems exchange-repulsion m
 become less computationally expensive than the long-range components of EFP
 (such as Coulomb interactions).
 
-**Note: 
+!!! note "Note"
+    The QM/EFP exchange-repulsion energy is currently disabled.
 
-The QM/EFP exchange-repulsion energy is currently disabled.
-**

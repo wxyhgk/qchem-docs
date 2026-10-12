@@ -110,26 +110,16 @@ $$
 主目录下生成的 `ctnum_*.om` 文件用作电荷转移数分析的输入，具体说明可参见文献，*e.g.*，[[1097]](../bib_references/bib.md#bib1141)。
 使用外部程序 `TheoDORE`（`theodore-qc.sourceforge.net`）可以创建电子/空穴关联图并计算基于片段（fragment）的描述符。
 
-**注意：
+!!! note "注意"
+    - 当从开壳层（open-shell）参考态进行激发态计算时，**libwfa** 会同时对 $\alpha\alpha$ 和 $\beta\beta$ 跃迁密度执行分析。请务必查看正确的部分。判断方法是记住：在开壳层参考态中 $N_{\alpha}>N_{\beta}$，*e.g.*，在双重态（doublet）参考态中，未成对电子为 $\alpha$ 自旋，空穴为 $\beta$ 自旋。因此，对于未成对电子跃迁到未占据轨道的跃迁，需要查看 $\alpha\alpha$ 块；而对于从双占据轨道跃迁到 singly unoccupied 轨道（即空穴）的跃迁，需要查看 $\beta\beta$ 块。
 
-•
+    - 要在 CCMAN2 作业中启用所有类型的分析，必须激活 CC_REF_PROP、CC_EOM_PROP 和 CC_TRANS_PROP。
+    示例 [7.9.30](../ch07_excited/ex_eomip-wfa.md) 展示了这一点。
 
-当从开壳层（open-shell）参考态进行激发态计算时，**libwfa** 会同时对 $\alpha\alpha$ 和 $\beta\beta$ 跃迁密度执行分析。请务必查看正确的部分。判断方法是记住：在开壳层参考态中 $N_{\alpha}>N_{\beta}$，*e.g.*，在双重态（doublet）参考态中，未成对电子为 $\alpha$ 自旋，空穴为 $\beta$ 自旋。因此，对于未成对电子跃迁到未占据轨道的跃迁，需要查看 $\alpha\alpha$ 块；而对于从双占据轨道跃迁到 singly unoccupied 轨道（即空穴）的跃迁，需要查看 $\beta\beta$ 块。
+    - 在厄米（Hermitian）形式体系中，$\gamma^{\text{IF}}$ 是 $\gamma^{\text{FI}}$ 的厄米共轭；但在非厄米方法（如耦合簇理论）中，两者略有不同。虽然对于定量的态间性质会同时计算 $\gamma^{\text{IF}}$ 和 $\gamma^{\text{FI}}$，但由 $(\gamma^{\text{IF}})^{\dagger}$ 与 $\gamma^{\text{FI}}$ 导出的激子性质定性趋势非常相似。对于 EOM-CC，仅分析一个 1TDM。
 
-•
+    - 在限制性（spin-restricted）计算中，**libwfa** 模块仅对跃迁密度的 $\alpha\alpha$ 块计算 NTO。因此，在计算开壳层 EOM-IP/EA 态之间跃迁的 NTO 时，请务必指定正确的自旋态。例如，使用 EOM_EA_ALPHA 来可视化涉及额外电子的跃迁。
 
-要在 CCMAN2 作业中启用所有类型的分析，必须激活 CC_REF_PROP、CC_EOM_PROP 和 CC_TRANS_PROP。
-示例 [7.9.30](../ch07_excited/ex_eomip-wfa.md) 展示了这一点。
-
-•
-
-在厄米（Hermitian）形式体系中，$\gamma^{\text{IF}}$ 是 $\gamma^{\text{FI}}$ 的厄米共轭；但在非厄米方法（如耦合簇理论）中，两者略有不同。虽然对于定量的态间性质会同时计算 $\gamma^{\text{IF}}$ 和 $\gamma^{\text{FI}}$，但由 $(\gamma^{\text{IF}})^{\dagger}$ 与 $\gamma^{\text{FI}}$ 导出的激子性质定性趋势非常相似。对于 EOM-CC，仅分析一个 1TDM。
-
-•
-
-在限制性（spin-restricted）计算中，**libwfa** 模块仅对跃迁密度的 $\alpha\alpha$ 块计算 NTO。因此，在计算开壳层 EOM-IP/EA 态之间跃迁的 NTO 时，请务必指定正确的自旋态。例如，使用 EOM_EA_ALPHA 来可视化涉及额外电子的跃迁。
-
-**
 
 ### `STATE_ANALYSIS`
 
@@ -235,15 +225,14 @@ HOMO 和 LUMO 的 cube 文件也会生成。"
     $end
     ```
 
-**注意：
+!!! note "注意"
+    对于轨道和密度的输出，可以使用 MOLDEN_FORMAT = TRUE
+    （见示例 10.2.12）、
+    MAKE_CUBE_FILES = TRUE
+    （见示例 10.2.12）
+    或 GUI = 2 选项。
+    当 STATE_ANALYSIS 被激活时，这些选项互斥。
 
-对于轨道和密度的输出，可以使用 MOLDEN_FORMAT = TRUE
-（见示例 10.2.12）、
-MAKE_CUBE_FILES = TRUE
-（见示例 10.2.12）
-或 GUI = 2 选项。
-当 STATE_ANALYSIS 被激活时，这些选项互斥。
-**
 
 ???+ example "示例 10.9: 尿嘧啶（Uracil）在 PBE0/def2-SV(P) 水平下的计算。启用 libwfa 的扩展功能，包括以 cube 格式导出 NTO 和密度，并计算这些密度的 ESP。
 libwfa 的这种扩展模式会显著增加计算成本，尤其是在选择精细网格时。"
@@ -291,15 +280,7 @@ libwfa 的这种扩展模式会显著增加计算成本，尤其是在选择精�
 
 **libwfa** 应用的其他示例：
 
-- •
-
-示例 [7.3.4.2](../ch07_excited/sect_sftddft.md#ex:MRSFDFT) 展示了对位苯双自由基（para-benzyne）中 SF-DFT 态的波函数分析；
-- •
-
-示例 [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) 展示了 CVS-EOM-EE 中 XAS 跃迁的波函数分析；
-- •
-
-示例 [7.9.30](../ch07_excited/ex_eomip-wfa.md) 展示了 EOM-IP 态之间跃迁的波函数分析；
-- •
-
-示例 [7.9.19](../ch07_excited/ex_CAPlibwfa.md) 展示了 CAP-EOM-CCSD 中复值密度的波函数分析。
+- 示例 [7.3.4.2](../ch07_excited/sect_sftddft.md#ex:MRSFDFT) 展示了对位苯双自由基（para-benzyne）中 SF-DFT 态的波函数分析；
+- 示例 [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) 展示了 CVS-EOM-EE 中 XAS 跃迁的波函数分析；
+- 示例 [7.9.30](../ch07_excited/ex_eomip-wfa.md) 展示了 EOM-IP 态之间跃迁的波函数分析；
+- 示例 [7.9.19](../ch07_excited/ex_CAPlibwfa.md) 展示了 CAP-EOM-CCSD 中复值密度的波函数分析。

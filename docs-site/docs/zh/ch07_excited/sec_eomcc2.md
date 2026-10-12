@@ -17,21 +17,11 @@ title: "7.9.4 EOM-XX-CC2"
 
 在 CCMAN2 中，使用 RHF、UHF 或 ROHF 参考并借助点群对称性，可采用以下 CC2 功能：
 
-- •
-
-EOM-EE/SF/EA/IP-CC2 的能量[[1040]](../bib_references/bib.md#bib1085)；
-- •
-
-CC2 参考态以及 EOM-EE/SF-CC2 态的单电子性质，可选择是否包含振幅响应（amplitude response）；
-- •
-
-CC2 $\leftrightarrow$ EOM-EE-CC2、EOM-EE-CC2 $\leftrightarrow$ EOM-EE-CC2 以及 EOM-SF-CC2 $\leftrightarrow$ EOM-SF-CC2 类型跃迁的跃迁偶极矩；
-- •
-
-CC2 $\leftrightarrow$ EOM-EA/IP-CC2 以及 EOM-EE/SF-CC2 $\leftrightarrow$ EOM-EA/IP-CC2 类型跃迁的 Dyson 轨道（见第 [7.9.29](topic_dyson.md) 节）；
-- •
-
-使用 CAP、CS 或 CBFs 的 EOM-EE/EA-CC2 共振能[[1382]](../bib_references/bib.md#bib1443)
+- EOM-EE/SF/EA/IP-CC2 的能量[[1040]](../bib_references/bib.md#bib1085)；
+- CC2 参考态以及 EOM-EE/SF-CC2 态的单电子性质，可选择是否包含振幅响应（amplitude response）；
+- CC2 $\leftrightarrow$ EOM-EE-CC2、EOM-EE-CC2 $\leftrightarrow$ EOM-EE-CC2 以及 EOM-SF-CC2 $\leftrightarrow$ EOM-SF-CC2 类型跃迁的跃迁偶极矩；
+- CC2 $\leftrightarrow$ EOM-EA/IP-CC2 以及 EOM-EE/SF-CC2 $\leftrightarrow$ EOM-EA/IP-CC2 类型跃迁的 Dyson 轨道（见第 [7.9.29](topic_dyson.md) 节）；
+- 使用 CAP、CS 或 CBFs 的 EOM-EE/EA-CC2 共振能[[1382]](../bib_references/bib.md#bib1443)
 （见第 [7.9.10](sub_cc_cs_cap.md) 节）。
 
 电子排斥积分（ERI）可以通过分辨率恒等近似或 Cholesky 分解来近似，也可以使用正则（canonical）ERI。
@@ -39,22 +29,12 @@ CC2 $\leftrightarrow$ EOM-EA/IP-CC2 以及 EOM-EE/SF-CC2 $\leftrightarrow$ EOM-E
 
 CC2 的 LIBGMBPT 实现仅使用 RI 近似，不利用点群对称性，也不支持单精度执行。可用的功能包括：
 
-- •
-
-使用 RHF 或 UHF 参考的 EOM-EE-CC2 能量；
-- •
-
-使用 UHF 参考的 EOM-SF-CC2 能量[[1040]](../bib_references/bib.md#bib1085)；
-- •
-
-使用 RHF 参考的 EOM-EA/IP-CC2 能量[[1041]](../bib_references/bib.md#bib1086)；
-- •
-
-使用 RHF 参考并借助 CAP、CS 或 CBFs 的 EOM-EA-CC2 共振能[[1382]](../bib_references/bib.md#bib1443)
+- 使用 RHF 或 UHF 参考的 EOM-EE-CC2 能量；
+- 使用 UHF 参考的 EOM-SF-CC2 能量[[1040]](../bib_references/bib.md#bib1085)；
+- 使用 RHF 参考的 EOM-EA/IP-CC2 能量[[1041]](../bib_references/bib.md#bib1086)；
+- 使用 RHF 参考并借助 CAP、CS 或 CBFs 的 EOM-EA-CC2 共振能[[1382]](../bib_references/bib.md#bib1443)
 （见第 [7.9.10](sub_cc_cs_cap.md) 节）；
-- •
-
-自旋缩放（spin-scaling，见第 [6.6.5](../ch06_correlation/topic_sbmp2.md) 节）可用于单重激发态的实值 EOM-EE-CC2，以及实值和复值的 EOM-EA-CC2。
+- 自旋缩放（spin-scaling，见第 [6.6.5](../ch06_correlation/topic_sbmp2.md) 节）可用于单重激发态的实值 EOM-EE-CC2，以及实值和复值的 EOM-EA-CC2。
 
 对于束缚态，LIBGMBPT 采用混合 Davidson/DIIS 求解器来求解 EOM 本征值问题[[532]](../bib_references/bib.md#bib546)。
 对于共振态则仅使用 Davidson 求解器[[1382]](../bib_references/bib.md#bib1443)。

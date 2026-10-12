@@ -141,14 +141,10 @@ $A$ and $B$ (without losing generality, assuming $A$ is the embedded fragment).
 In the original work by Manby *et al.*,[[878]](../bib_references/bib.md#bib913)
  this was achieved by
 
-- •
-
-Performing a Pipek-Mezey localization[[1093]](../bib_references/bib.md#bib1138)
+- Performing a Pipek-Mezey localization[[1093]](../bib_references/bib.md#bib1138)
  of the canonical
 occupied orbitals;
-- •
-
-Assigning a PM-localized orbital to the “active” fragment $A$ if its
+- Assigning a PM-localized orbital to the “active” fragment $A$ if its
 Mulliken population on $A$ is greater than 0.4.
 
 This approach has been adopted as the default occupied space partition method

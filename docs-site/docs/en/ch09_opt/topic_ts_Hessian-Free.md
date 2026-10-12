@@ -28,10 +28,9 @@ iteration. According to Ref. [[1243]](../bib_references/bib.md#bib1297)
 , this method can be much
 more efficient than exact Hessian calculation for substantially large systems.
 
-**Note: 
+!!! note "Note"
+    At the moment, this method does not support QM/MM or systems with fixed atoms.
 
-At the moment, this method does not support QM/MM or systems with fixed atoms.
-**
 
 ### `GEOM_OPT_CHARAC`
 

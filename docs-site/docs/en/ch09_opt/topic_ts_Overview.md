@@ -64,18 +64,10 @@ The key to optimizing a molecular geometry successfully is to proceed from the
 starting geometry to the final geometry in as few steps as possible. Four
 factors influence the path and number of steps:
 
-- •
-
-starting geometry
-- •
-
-coordinate system
-- •
-
-optimization algorithm
-- •
-
-quality of the Hessian (and gradient)
+- starting geometry
+- coordinate system
+- optimization algorithm
+- quality of the Hessian (and gradient)
 
 **Q-Chem** controls the last three of these, but the starting geometry is solely
 determined by the user, and the closer it is to the converged geometry, the
@@ -157,30 +149,12 @@ Higher angular momentum are supported when GEN_SCFMAN = TRUE.
 
 Features of **Q-Chem**’s geometry and transition-state optimization capabilities include:
 
-- •
-
-Cartesian, *Z*-matrix or internal coordinate systems
-- •
-
-Eigenvector Following (EF) or GDIIS algorithms
-- •
-
-Constrained optimizations
-- •
-
-Equilibrium structure searches
-- •
-
-Transition structure searches
-- •
-
-Hessian-free characterization of stationary points
-- •
-
-Initial Hessian and Hessian update options
-- •
-
-Reaction pathways using intrinsic reaction coordinates (IRC)
-- •
-
-Optimization of minimum-energy crossing points (MECPs) along conical seams
+- Cartesian, *Z*-matrix or internal coordinate systems
+- Eigenvector Following (EF) or GDIIS algorithms
+- Constrained optimizations
+- Equilibrium structure searches
+- Transition structure searches
+- Hessian-free characterization of stationary points
+- Initial Hessian and Hessian update options
+- Reaction pathways using intrinsic reaction coordinates (IRC)
+- Optimization of minimum-energy crossing points (MECPs) along conical seams

@@ -22,17 +22,14 @@ PE 的作业控制通过两个部分来实现，即 *$rem* 和 *$pe*。
 >     * `False`: 不执行 PE 计算。
 > * **建议**: 将 $rem 变量设置为 TRUE 以启动 PE 计算。
 
-**注意：
+!!! note "注意"
+    开启 PE 会通过将 POINT_GROUP_SYMMETRY 设置为 FALSE 来禁用对称性。
 
-开启 PE 会通过将 POINT_GROUP_SYMMETRY 设置为 FALSE 来禁用对称性。
 
-**
+!!! note "注意"
+    运行 PE 时，必须将 REM 变量 USE_LIBQINTS 和 GEN_SCFMAN
+    设置为 TRUE。
 
-**注意：
-
-运行 PE 时，必须将 REM 变量 USE_LIBQINTS 和 GEN_SCFMAN
-设置为 TRUE。
-**
 
 PE 专用的选项可以在 *$pe* 输入部分中设置。*$pe* 部分的格式
 要求关键字与取值之间用空格分隔，形成键值对：
@@ -43,11 +40,10 @@ PE 专用的选项可以在 *$pe* 输入部分中设置。*$pe* 部分的格式
 > $end
 > ```
 
-**注意：
+!!! note "注意"
+    以下作业控制变量*只能*放在 *$pe*
+    部分中。请勿将其放置在 *$rem* 部分。
 
-以下作业控制变量*只能*放在 *$pe*
-部分中。请勿将其放置在 *$rem* 部分。
-**
 
 ### `POTFILE`
 

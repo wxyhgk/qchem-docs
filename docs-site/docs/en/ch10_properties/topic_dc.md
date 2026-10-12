@@ -246,9 +246,7 @@ It is important to obtain proper charge-localized initial and final states for
 the DC scheme, and this step determines the quality of the coupling values.
 **Q-Chem** provides three approaches to construct charge-localized states:
 
-- •
-
-**The “1+1” approach
+- **The “1+1” approach
 
 **Since the system consists of donor and acceptor molecules or fragments, with a
 charge being localized either donor or acceptor, it is intuitive to combine
@@ -312,9 +310,7 @@ be the values as in the example in order to perform DC calculation with “1+1�
 charge-localized states. An additional *$rem* variable,
 SCF_PRINT_FRGM is included. When it is TRUE a detailed
 output for the fragment HF self-consistent field calculation is given.
-- •
-
-**The “relaxed” approach
+- **The “relaxed” approach
 
 **In “1+1” approach, the intermolecular interaction is neglected in the initial
 and final states, and so the final electronic coupling can be underestimated.
@@ -330,9 +326,7 @@ with diffusive basis functions, or when the donor and acceptor molecules are
 very close to each other.
 
 To perform relaxed DC calculation, set STS_DC = RELAX.
-- •
-
-**Hybrid scheme: Constrained DFT charge-localized states
+- **Hybrid scheme: Constrained DFT charge-localized states
 
 **Constrained (C)DFT (Section [5.11](../ch05_dft/topic_cdft.md)) can be used to obtain
 charge-localized states. It is recommended to set both charge and spin

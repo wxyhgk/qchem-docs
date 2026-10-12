@@ -10,10 +10,9 @@ Tkatchenko 和 Scheffler[[1361]](../bib_references/bib.md#bib1421)
  针对 van der Waals（vdW，*即*，色散）相互作用开发了一种成对（pairwise）方法，该方法基于一种缩放（scaling）方案，可得到能够反映局域电子环境的*原位*（*in situ*）原子极化率（$\alpha$）、色散系数（$C_{6}$）以及 vdW 半径（$R_{\text{vdW}}$）。这些参数是通过对自由原子值进行缩放得到的，以体现给定原子的体积如何被其分子环境所改变。分子中原子的尺寸利用电子密度的 Hirshfeld 划分（partition）来确定。（Hirshfeld 或"stockholder"划分法——它同时也可以给出分子中原子电荷的一种度量——在第 [10.2.2](../ch10_properties/subsec_pop_anal.md) 节中描述。）
 在由此得到的"TS-vdW"方法中，只需要一个经验性的范围分离参数（$s_{R}$），它依赖于所采用的交换-关联泛函。
 
-**注意：
+!!! note "注意"
+    目前参数 $s_{R}$ 仅对 PBE、PBE0、BLYP、B3LYP、revPBE、M06L 和 M06 泛函实现了。
 
-目前参数 $s_{R}$ 仅对 PBE、PBE0、BLYP、B3LYP、revPBE、M06L 和 M06 泛函实现了。
-**
 
 TS-vdW 的能量表达式基于色散能量的成对加和模型，
 

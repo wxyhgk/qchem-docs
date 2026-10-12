@@ -21,16 +21,10 @@ title: "7.9.13 针对不稳定参考态及其他方法的 EOM-DIP 电荷稳定�
 
 这一方法可用于任何电子结构方法，它引入一个额外的库仑（Coulomb）势来稳定波函数。共有三种实现方式：
 
-- •
-
-对核电荷进行缩放（scaling），通过 *$rem* 变量 SCALE_NUCLEAR_CHARGE 实现。
-- •
-
-用户自定义核电荷，通过设置 CHARGE_STABILIZE = TRUE 并在 *$nuclear_charges* 输入段中指定新电荷来激活。*$nuclear_charges* 输入段的格式与
+- 对核电荷进行缩放（scaling），通过 *$rem* 变量 SCALE_NUCLEAR_CHARGE 实现。
+- 用户自定义核电荷，通过设置 CHARGE_STABILIZE = TRUE 并在 *$nuclear_charges* 输入段中指定新电荷来激活。*$nuclear_charges* 输入段的格式与
 *$van_der_waals* 段相同，后者在第 [11.2.10](../ch11_env/subsec_LD.md) 节中有描述。
-- •
-
-添加一个"带电笼"（charged cage），*即*，在分子周围布置一组点电荷，通过设置
+- 添加一个"带电笼"（charged cage），*即*，在分子周围布置一组点电荷，通过设置
 ADD_CHARGED_CAGE = TRUE 来激活。
 提供两种类型的笼（球形与十二面体形）；笼的形状、半径、点数和总电荷均由用户设置。
 

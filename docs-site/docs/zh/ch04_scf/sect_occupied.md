@@ -21,12 +21,11 @@ title: "4.4.4 修改占据分子轨道"
 有两种机制可以修改一组猜测轨道：要么通过 SCF_GUESS_MIX，要么通过指明确定要占据的轨道。**Q-Chem**
 用户可以借助 *$occupied* 或 *$swap_occupied_virtual* 关键字来定义占据的猜测轨道。在前者中，通过在第一行列出要占据的 $\alpha$ 轨道、第二行列出 $\beta$ 轨道来定义占据的猜测轨道。在后者中，只需指明需要交换（swap）的那一对轨道。
 
-**注意：
+!!! note "注意"
+    (1) 为阻止 **Q-Chem** 在 SCF 过程中改变轨道占据，通常将 MOM_START 选项与
+    *$occupied* 或 *$swap_occupied_virtual* 关键字配合使用。
+    (2) 这些选项对轨道的需求使其与 SAD 猜测不相容。最常见的做法是将其与 SCF_GUESS = READ 一起使用。
 
-(1) 为阻止 **Q-Chem** 在 SCF 过程中改变轨道占据，通常将 MOM_START 选项与
-*$occupied* 或 *$swap_occupied_virtual* 关键字配合使用。
-(2) 这些选项对轨道的需求使其与 SAD 猜测不相容。最常见的做法是将其与 SCF_GUESS = READ 一起使用。
-**
 
 修改占据猜测轨道的格式如下：
 

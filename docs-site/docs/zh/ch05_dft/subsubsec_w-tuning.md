@@ -62,8 +62,6 @@ $$
 SCF_FINAL_PRINT = 1。脚本会查找特定的正则表达式，
 缺少该关键字将无法正确运行。
 
-**
-
 尽管调优过程最初由 Baer 及其合作者基于 BNL 泛函开发，[[851]](../bib_references/bib.md#bib885)
  但它同样适用于任何 RSH 泛函，例如 LRC-$\omega$PBE（参见
 Ref. [[1380]](../bib_references/bib.md#bib1441)

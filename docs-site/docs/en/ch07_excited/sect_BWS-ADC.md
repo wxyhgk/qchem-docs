@@ -88,47 +88,21 @@ BWs-ADC calculations are executed in a two-step process inside a single Q-Chem j
 
 To run a BWs-ADC calculation, include the following in your input file:
 
-- •
+- In the REM section, set METHOD to RIBWS2.
+- In the REM section, specify both BASIS and either AUX_BASIS or AUX_BASIS_CORR
+- Choose a partitioning with the METHOD keyword in the *$bws2* section. We recommend:
 
-In the REM section, set METHOD to RIBWS2.
-- •
+- Set METHOD to MPR-BWS2 in the *$bws2* section.
+- Set MPR_A0 to the desired $A_{0}$ value in the *$bws2* section.
+- Set MPR_B0 to the desired $B_{0}$ value in the *$bws2* section.
+- In the *$bws2* section, use the EXC_METHOD keyword to determine the BWs-ADC variant:
 
-In the REM section, specify both BASIS and either AUX_BASIS or AUX_BASIS_CORR
-- •
-
-Choose a partitioning with the METHOD keyword in the *$bws2* section. We recommend:
-
-- **–**
-
-Set METHOD to MPR-BWS2 in the *$bws2* section.
-- **–**
-
-Set MPR_A0 to the desired $A_{0}$ value in the *$bws2* section.
-- **–**
-
-Set MPR_B0 to the desired $B_{0}$ value in the *$bws2* section.
-- •
-
-In the *$bws2* section, use the EXC_METHOD keyword to determine the BWs-ADC variant:
-
-- **–**
-
-For BWs-ADC(0), set EXC_METHOD to ADC(0) or ADC0.
-- **–**
-
-For BWs-ADC(2)-s, set EXC_METHOD to any of ADC(2), ADC2, ADC(2)-S or ADC2-S.
-- **–**
-
-For BWs-ADC(2)-x, set EXC_METHOD to ADC(2)-X or ADC2-X.
-- **–**
-
-For BWs-ADC(3), set EXC_METHOD to ADC(3) or ADC3.
-- •
-
-For a restricted reference, specify the number of excited states using the EE_STATES or the EE_SINGLETS and EE_TRIPLETS keywords in the REM section.
-- •
-
-For an unrestricted reference, only use the EE_STATES keyword.
+- For BWs-ADC(0), set EXC_METHOD to ADC(0) or ADC0.
+- For BWs-ADC(2)-s, set EXC_METHOD to any of ADC(2), ADC2, ADC(2)-S or ADC2-S.
+- For BWs-ADC(2)-x, set EXC_METHOD to ADC(2)-X or ADC2-X.
+- For BWs-ADC(3), set EXC_METHOD to ADC(3) or ADC3.
+- For a restricted reference, specify the number of excited states using the EE_STATES or the EE_SINGLETS and EE_TRIPLETS keywords in the REM section.
+- For an unrestricted reference, only use the EE_STATES keyword.
 
 All keywords used for Job Control of RI-BW-s2 calculations (see section [6.8.2](../ch06_correlation/sect_bws2_jobcontrol.md)) can be used to specify details about the ground state calculation in a BWs-ADC calculation.
 Additionally, all keywords used for ADC Job Control (see section [7.10.13](sect_adc_jobcontrol.md)) can be used to adjust the ADC part of a BWs-ADC calculation.

@@ -171,30 +171,21 @@ to TRUE), and specify the solvent parameters, *i.e.*, dielectric
 constant $\epsilon$ (DIELECTRIC) and squared refractive index $n^{2}$
 (DIELECTRIC_INFI) in the *$solvent* block.
 
-**Note: 
+!!! note "Note"
+    Symmetry will be disabled for all calculations with a PCM.
 
-Symmetry will be disabled for all calculations with a PCM.
-**
 
 In the output of a ptSS-PCM calculation with any correlated ADC variant,
 multiple values are given for the total and transition energies depending in
 the level of theory. For the correlated ADC variants these include:
 
-- •
-
-*Zeroth-order results*, direct outcome of the ADC calculation with
+- *Zeroth-order results*, direct outcome of the ADC calculation with
 solvated orbitals, excited states are ordered according to this value.
-- •
-
-*First-order results*, incl. only ptSS nonequilibrium
+- *First-order results*, incl. only ptSS nonequilibrium
 corrections, termed ptSS(PTE).
-- •
-
-*Corrected first-order results*, incl. also the correlation
+- *Corrected first-order results*, incl. also the correlation
 correction, termed ptSS(PTD).
-- •
-
-*Scaled and corrected first-order results*, incl. an empirical
+- *Scaled and corrected first-order results*, incl. an empirical
 scaling of the correlation correction, termed ptSS(PTD*).
 
 We recommend to use the corrected first-order results since the PTD correction
@@ -214,12 +205,11 @@ terms (ptSS, PTD etc.) are given separately. An even more verbose output
 detailing all the integrals contributing to the 1st order corrections can
 be obtained by increasing PCM_PRINT to 1.
 
-**Note: 
+!!! note "Note"
+    The zeroth-order results are by no means identical to the gas-phase
+    excitation energies, and in turn the ptSS-term is not the solvatochromic
+    shift.
 
-The zeroth-order results are by no means identical to the gas-phase
-excitation energies, and in turn the ptSS-term is not the solvatochromic
-shift.
-**
 
 **(C) Tips and Tricks
 
@@ -315,12 +305,11 @@ nonequilibrium functionalities (NONEQUILIBRIUM = TRUE in
 require an initial guess, a SS-PCM calculation is always the second (or
 third, $\ldots$) step of a multi-step job.
 
-**Note: 
+!!! note "Note"
+    Any SS-PCM calculation requires a preceding converged ptSS-PCM
+    calculation (*i.e.*, EQSOLV = FALSE) for the desired state to provide a
+    guess for the initial solvent field, or it will crash during the SCF.
 
-Any SS-PCM calculation requires a preceding converged ptSS-PCM
-calculation (*i.e.*, EQSOLV = FALSE) for the desired state to provide a
-guess for the initial solvent field, or it will crash during the SCF.
-**
 
 To create the input-file for a multi step job, add "@@@" at the end of the
 input for the first job and append the input for the second job. See also
@@ -341,12 +330,11 @@ either EE_STATES or SF_STATES for triplet references. To
 compute, *e.g.*, the phosphorescence energy, only triplet states should be
 requested and EQSTATE would typically be set to 1.
 
-**Note: 
+!!! note "Note"
+    Computing multiple classes of excited states during the solvent-field
+    iterations will confuse the state-ordering logic of the program and yield the
+    wrong results.
 
-Computing multiple classes of excited states during the solvent-field
-iterations will confuse the state-ordering logic of the program and yield the
-wrong results.
-**
 
 Convergence is controlled by EQS_CONV. Criteria are the SCF energy as
 well as the RMSD, MAD and largest single difference of the surface-charges. The
@@ -360,23 +348,17 @@ may save some time for the computation, *e.g.*, for the emission energy of large
 
 A typical ADC/SS-PCM calculation consists of three steps/subsequent jobs:
 
-1. 1.
-
-Generation of an initial guess for the solvent field using a
+1. Generation of an initial guess for the solvent field using a
 nonequilibrium calculation (EQSTATE = FALSE). To save time,
 this would typically be done with a smaller basis set and lower convergence
 criteria (*e.g.*,
 
 ADC_DAVIDSON_CONV = 4).
-2. 2.
-
-Converging the solvent field for the desired state. In this step it is
+2. Converging the solvent field for the desired state. In this step it is
 advisable to compute as few states as possible (maybe one more than
 EQSTATE to be aware of looming state crossings), and more importantly,
 only the desired class of excited states.
-3. 3.
-
-Computing all excited states of interest and their properties in the
+3. Computing all excited states of interest and their properties in the
 previously converged solvent field. If the reference state of the solvent-field
 equilibration is a singlet state, this is straightforward and any number of
 singlet/triplet states can be computed in this final step without further

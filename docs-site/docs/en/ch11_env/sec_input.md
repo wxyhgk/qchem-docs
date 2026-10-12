@@ -22,13 +22,12 @@ Refs. [[1272]](../bib_references/bib.md#bib1325)
 are described in Ref. [[1230]](../bib_references/bib.md#bib1285)
 .
 
-**Note: 
+!!! note "Note"
+    EFP provides both implicit (through orbital response) and explicit (as
+    instantaneous response of the polarizable EFP fragments) corrections to the
+    electronic excited states. EFP-modified excitation energies are printed in the
+    property section of the output.
 
-EFP provides both implicit (through orbital response) and explicit (as
-instantaneous response of the polarizable EFP fragments) corrections to the
-electronic excited states. EFP-modified excitation energies are printed in the
-property section of the output.
-**
 
 Electrostatic, polarization, exchange-repulsion, and dispersion contributions
 are calculated between EFs; only electrostatic and polarization terms are

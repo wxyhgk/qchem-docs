@@ -98,15 +98,9 @@ These singly excited wave functions and energies could be considered crude
 approximations to the excited states of the system. However, determinants of
 the form Eq. ([7.7](#eq606)) are deficient in that they:
 
-- •
-
-do not yield pure spin states
-- •
-
-resemble more closely ionization rather than excitation
-- •
-
-are not appropriate for excitation into degenerate states
+- do not yield pure spin states
+- resemble more closely ionization rather than excitation
+- are not appropriate for excitation into degenerate states
 
 These deficiencies can be partially overcome by representing the excited
 state wave function as a linear combination of *all* possible singly excited
@@ -258,13 +252,12 @@ experiment about an appropriate value of MEM_TOTAL for low-memory
 jobs. However, a memory allocation error will occur if the calculation demands
 more memory than available.
 
-**Note: 
+!!! note "Note"
+    Unlike **Q-Chem**’s MP2 frequency code, the analytic CIS second derivative
+    code currently does not support frozen core or virtual orbitals. These
+    approximations do not lead to large savings at the CIS level, as all
+    computationally-expensive steps are performed in the atomic orbital basis.
 
-Unlike **Q-Chem**’s MP2 frequency code, the analytic CIS second derivative
-code currently does not support frozen core or virtual orbitals. These
-approximations do not lead to large savings at the CIS level, as all
-computationally-expensive steps are performed in the atomic orbital basis.
-**
 
 ???+ example "Example 7.2: This example illustrates a CIS geometry optimization followed by a vibrational
 frequency analysis on the lowest singlet excited state of formaldehyde. This $n\rightarrow\pi^{\ast}$ excited state is non-planar, unlike the ground state. The

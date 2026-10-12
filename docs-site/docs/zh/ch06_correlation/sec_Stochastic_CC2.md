@@ -11,15 +11,13 @@ title: "6.12.5 随机化 CC2 与 CCSD"
 sRI-CC2 的主要优势在于其更低的计算标度（scaling）——${\cal{O}}({N^{3}})$，相比之下 RI-CC2 为 ${\cal{O}}({N^{5}})$——这使得该方法可以应用于大得多的分子体系。
 这些代码仍在开发之中。建议用户参考名为 `libgmbpt_sricc$\ast$` 和 `libgmbpt_thc_sricc$\ast$` 的示例作业以获取使用指导。
 
-**注意：
+!!! note "注意"
+    sRI-CC2 目前不支持冻结芯层（frozen core）：N_FROZEN_CORE 必须设为零。
 
-sRI-CC2 目前不支持冻结芯层（frozen core）：N_FROZEN_CORE 必须设为零。
-**
 
-**注意：
+!!! note "注意"
+    sRI-CC2 目前不支持几何结构优化，只能与 JOBTYPE=SP 配合使用。
 
-sRI-CC2 目前不支持几何结构优化，只能与 JOBTYPE=SP 配合使用。
-**
 
 RI-CC2 与 sRI-CC2 通过设置 METHOD = CC2 *并且* 适当指定
 AIX_BASIS 来启用。

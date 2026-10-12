@@ -8,15 +8,9 @@ title: "10.11.4 其他与磁场相关的性质"
 
 除核磁共振（NMR）化学屏蔽常数和自旋-自旋耦合常数之外，**Q-Chem** 还可计算其他一些磁学性质，包括
 
-- •
-
-超精细相互作用张量（hyperfine interaction tensors），
-- •
-
-由电场梯度（Electric Field Gradient, EFG）张量得到的核四极相互作用（nuclear quadrupole interaction），以及
-- •
-
-电子 *g*-张量（electronic *g*-tensor），
+- 超精细相互作用张量（hyperfine interaction tensors），
+- 由电场梯度（Electric Field Gradient, EFG）张量得到的核四极相互作用（nuclear quadrupole interaction），以及
+- 电子 *g*-张量（electronic *g*-tensor），
 
 ## 10.11.4.1 超精细相互作用
 

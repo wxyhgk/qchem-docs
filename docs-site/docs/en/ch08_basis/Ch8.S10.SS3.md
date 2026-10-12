@@ -12,21 +12,11 @@ title: "8.10.3 Built-In ECPs"
 the ECP keyword within the *$rem* block. The built-in ECPs, which are
 described in some detail at the end of this Chapter, fall into four families:
 
-- •
-
-The Hay-Wadt (or Los Alamos) sets (fit-HWMB and fit-LANL2DZ)
-- •
-
-The Stevens-Basch-Krauss-Jansien-Cundari set (fit-SBKJC)
-- •
-
-The Christiansen-Ross-Ermler-Nash-Bursten sets (fit-CRENBS and fit-CRENBL)
-- •
-
-The Stuttgart-Bonn sets (SRLC and SRSC)
-- •
-
-Karlsruhe def2-ECPs, for use with the def2 basis sets
+- The Hay-Wadt (or Los Alamos) sets (fit-HWMB and fit-LANL2DZ)
+- The Stevens-Basch-Krauss-Jansien-Cundari set (fit-SBKJC)
+- The Christiansen-Ross-Ermler-Nash-Bursten sets (fit-CRENBS and fit-CRENBL)
+- The Stuttgart-Bonn sets (SRLC and SRSC)
+- Karlsruhe def2-ECPs, for use with the def2 basis sets
 
 References and information about the definition and characteristics of most of
 these sets can be found at the Basis Set Exchange:[[1123]](../bib_references/bib.md#bib1170)

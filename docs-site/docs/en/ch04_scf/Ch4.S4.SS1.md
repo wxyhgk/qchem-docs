@@ -17,14 +17,10 @@ at worst, the procedure may diverge.
 Thus, in an *ab initio* SCF procedure, the quality of the initial guess
 is of utmost importance for (at least) two main reasons:
 
-- •
-
-To ensure that the SCF converges to an appropriate ground state. Often
+- To ensure that the SCF converges to an appropriate ground state. Often
 SCF calculations can converge to different local minima in wave function
 space, depending upon which part of “LCAO space” in which the initial guess lands.
-- •
-
-When considering jobs with many basis functions requiring the
+- When considering jobs with many basis functions requiring the
 recalculation of ERIs at each iteration, using a good initial guess that
 is close to the final solution can reduce the total job time
 significantly by decreasing the number of SCF iterations.
@@ -33,30 +29,14 @@ For these reasons, sooner or later most users will find it helpful to have some
 understanding of the different options available for customizing the initial
 guess. **Q-Chem** currently offers six options for the initial guess:
 
-- •
-
-Superposition of Atomic Densities (SAD)
-- •
-
-Superposition of Atomic Potentials (SAP, only available with GEN_SCFMAN = TRUE)
-- •
-
-On-the-fly (automated) Superposition of Atomic Densities (AUTOSAD)
-- •
-
-Purified SAD guess (provides molecular orbitals; SADMO)
-- •
-
-Core Hamiltonian (CORE)
-- •
-
-Generalized Wolfsberg-Helmholtz (GWH)
-- •
-
-Reading previously obtained MOs from disk. (READ)
-- •
-
-Basis set projection (BASIS2)
+- Superposition of Atomic Densities (SAD)
+- Superposition of Atomic Potentials (SAP, only available with GEN_SCFMAN = TRUE)
+- On-the-fly (automated) Superposition of Atomic Densities (AUTOSAD)
+- Purified SAD guess (provides molecular orbitals; SADMO)
+- Core Hamiltonian (CORE)
+- Generalized Wolfsberg-Helmholtz (GWH)
+- Reading previously obtained MOs from disk. (READ)
+- Basis set projection (BASIS2)
 
 The first six of these guesses are built-in, and are briefly described in
 Section [4.4.2](sect_guess.md). The option of reading MOs from disk is described in

@@ -15,11 +15,10 @@ MO_OVERLAPS_TWO_GEOMS 来实现，如下方示例 10.3.3 所示。这需要两�
 （`AO-overlap-TwoGeoms.txt`，由于几何结构可能不同，该矩阵不必是单位矩阵），以及两次计算之间的 MO 重叠矩阵
 （`MO-overlap-TwoGeoms.txt`）。
 
-**注意：
+!!! note "注意"
+    目前仅考虑 $\alpha$-自旋 MO 之间的重叠，这也是为何只返回 $\alpha$-自旋 MO 系数的原因。
+    这意味着该功能仅针对自旋限制（spin-restricted）波函数实现。
 
-目前仅考虑 $\alpha$-自旋 MO 之间的重叠，这也是为何只返回 $\alpha$-自旋 MO 系数的原因。
-这意味着该功能仅针对自旋限制（spin-restricted）波函数实现。
-**
 
 或者，人们可能关心同一分子内给体轨道与受体轨道（*例如*，HOMO 与 LUMO）之间空间重叠的程度，或同一超分子计算中两个不同分子轨道之间的空间重叠程度。这些量可以使用与 TDDFT 中计算 $\Lambda$ 度量的相同工具来计算 [式 ([7.16](../ch07_excited/sec_CT-metrics.md#eq:Tozer-metric))]，并且其贡献的重叠 $O_{ia}$ [式 ([7.17](../ch07_excited/sec_CT-metrics.md#eq:Tozer-overlaps))] 可通过
 SPATIAL_OVERLAP_ANALYSIS 打印输出。作业控制选项请参见第 [7.3.6.1](../ch07_excited/subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic) 节，

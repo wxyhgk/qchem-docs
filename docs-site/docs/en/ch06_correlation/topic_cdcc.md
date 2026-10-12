@@ -50,12 +50,11 @@ The two-step algorithm uses additional parameter,
 CD_TS_SPAN_FACTOR, which is defaulted to 2. A larger value may
 be used to increase accuracy, as illustrated by Example [6.12.13](ex_CDCCSD.md).
 
-**Note: 
+!!! note "Note"
+    Cholesky decomposition is available for all CCMAN2 methods, including
+    energy, analytic gradients, and properties calculations.
+    For maximum computational efficiency, combine with FNO (see Sections
+    [6.15.1](sec_FNOCC.md) and [7.9.14](../ch07_excited/sec_FNO.md)) when appropriate.
 
-Cholesky decomposition is available for all CCMAN2 methods, including
-energy, analytic gradients, and properties calculations.
-For maximum computational efficiency, combine with FNO (see Sections
-[6.15.1](sec_FNOCC.md) and [7.9.14](../ch07_excited/sec_FNO.md)) when appropriate.
-**
 
 Examples [6.12.13](ex_CDCCSD.md), [6.12.13](ex_CDCCSD.md), and [6.12.13](ex_CDCCSD.md) illustrate the usage of this feature.

@@ -10,15 +10,9 @@ It is sometimes useful for the occupied guess orbitals to be other than the
 lowest $N_{\alpha}$ (or $N_{\beta}$) orbitals. Reasons why one may need
 to do this include:
 
-- •
-
-To converge to a state of different symmetry or orbital occupation.
-- •
-
-To break spatial symmetry.
-- •
-
-To break spin symmetry, as in unrestricted calculations on molecules with
+- To converge to a state of different symmetry or orbital occupation.
+- To break spatial symmetry.
+- To break spin symmetry, as in unrestricted calculations on molecules with
 an even number of electrons.
 
 There are two mechanisms for modifying a set of guess orbitals: either by
@@ -28,14 +22,13 @@ keywords. In the former, occupied guess orbitals are defined by listing the
 $\alpha$ orbitals to be occupied on the first line and $\beta$ on the second. In the
 former, only pair of orbitals that needs to be swapped is specified.
 
-**Note: 
+!!! note "Note"
+    (1) To prevent **Q-Chem** to change orbital occupation during SCF procedure,
+    MOM_START option is often used in combination with
+    *$occupied* or *$swap_occupied_virtual* keywords.
+    (2) The need for orbitals renders these options incompatible with the SAD
+    guess. Most often, they are used with SCF_GUESS = READ.
 
-(1) To prevent **Q-Chem** to change orbital occupation during SCF procedure,
-MOM_START option is often used in combination with
-*$occupied* or *$swap_occupied_virtual* keywords.
-(2) The need for orbitals renders these options incompatible with the SAD
-guess. Most often, they are used with SCF_GUESS = READ.
-**
 
 The format for modifying occupied guess orbitals is as follows:
 

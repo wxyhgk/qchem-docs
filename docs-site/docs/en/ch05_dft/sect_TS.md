@@ -21,11 +21,10 @@ In the resulting “TS-vdW” approach, only a single empirical range-separation
 parameter ($s_{R}$) is required, which depends upon the underlying
 exchange-correlation functional.
 
-**Note: 
+!!! note "Note"
+    The parameter $s_{R}$ is currently implemented only
+    for the PBE, PBE0, BLYP, B3LYP, revPBE, M06L, and M06 functionals.
 
-The parameter $s_{R}$ is currently implemented only
-for the PBE, PBE0, BLYP, B3LYP, revPBE, M06L, and M06 functionals.
-**
 
 The TS-vdW energy expression is based on a pairwise-additive model for the dispersion energy,
 

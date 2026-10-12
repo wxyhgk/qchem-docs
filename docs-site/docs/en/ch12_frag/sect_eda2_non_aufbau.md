@@ -37,23 +37,15 @@ Specifically, an ALMO-EDA calculation for a complex within a non-*aufbau*
 electronic configuration (assuming only one of the fragments is excited)
 comprises the following steps:
 
-- •
-
-Perform ground-state SCF calculations for all fragments
-- •
-
-Calculate the non-*aufbau* electronic configuration for the fragment
+- Perform ground-state SCF calculations for all fragments
+- Calculate the non-*aufbau* electronic configuration for the fragment
 as specified in the input using MOM: the energy consumed to excite this fragment
 is reported in the output as the *preparation* energy ($E_{\mathrm{prp}}$);
 construct the frozen state for the system with that one fragment in the
 non-*aufbau* state and the rest in ground state
-- •
-
-Starting from the frozen state, perform an SCF-MI calculation with MOM
+- Starting from the frozen state, perform an SCF-MI calculation with MOM
 to obtain the polarized state within the non-*aufbau* electronic configuration
-- •
-
-Perform a full SCF calculation with MOM, starting from the polarized
+- Perform a full SCF calculation with MOM, starting from the polarized
 wave function in the non-*aufbau* state
 
 Such a calculation requires EDA2_MOM = TRUE in addition to

@@ -29,14 +29,12 @@ $$
 EOM-DIP-CCSD 方法的精度与其他 EOM-CCSD 模型相当，*i.e.*，约为 0.1–0.3 eV。EOM-DIP-CCSD 的计算标度为 ${\cal{O}}({N^{6}})$，与其他 EOM-CCSD 方法类似。不过，其计算成本相对于（*e.g.*）EOM-EE-CCSD 而言更低，并且随基组（Basis Set）规模的增大而上升得更缓慢。要发起一次 EOM-DIP 计算，可使用 DIP_STATES，或 DIP_SINGLETS 与 DIP_TRIPLETS。
 在特定情形下，也可以使用 DIP_AA_STATES、DIP_BB_STATES、DIP_BA_STATES 这些关键词。
 
-**注意：
+!!! note "注意"
+    如果参考态相对于电子剥离（electron detachment）不稳定，EOM-DIP 的表现可能不佳。详见第 [7.9.13](sec_CAGE.md) 节。
 
-如果参考态相对于电子剥离（electron detachment）不稳定，EOM-DIP 的表现可能不佳。详见第 [7.9.13](sec_CAGE.md) 节。
-**
 
-**注意：
+!!! note "注意"
+    在 EOM-DIP-CCSD 的某些应用中，EOM 部分只包含 2$h$ 算符。这类计算对应于 EOM_PRECONV_DOUBLES = TRUE 计算所得到的能量。
 
-在 EOM-DIP-CCSD 的某些应用中，EOM 部分只包含 2$h$ 算符。这类计算对应于 EOM_PRECONV_DOUBLES = TRUE 计算所得到的能量。
-**
 
 （已保存至 `/Users/wxyhgk/Documents/Quamtum_Chemistry_md/QChem/7.9.7_EOM-DIP-CCSD_zh.md`）

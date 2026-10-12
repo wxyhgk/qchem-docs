@@ -38,31 +38,29 @@ The general format of the *$rem* section of the text input file is
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    Tab stops can be used to format input.
 
-Tab stops can be used to format input.
+    2.
 
-2.
+    A line prefixed with an exclamation mark ‘!’ is treated as a comment
+    and will be ignored by the program.
 
-A line prefixed with an exclamation mark ‘!’ is treated as a comment
-and will be ignored by the program.
+    3.
 
-3.
+    *$rem* variables are case-insensitive (as is the whole **Q-Chem** input file).
 
-*$rem* variables are case-insensitive (as is the whole **Q-Chem** input file).
+    4.
 
-4.
+    Depending on the particular *$rem* variable, “`value`” may be a
+    keyword (string), an integer, or a logical value (true or false).
 
-Depending on the particular *$rem* variable, “`value`” may be a
-keyword (string), an integer, or a logical value (true or false).
+    5.
 
-5.
+    A complete list of *$rem* variables can be found in Appendix [B](../app_b_quickref/app_quick_ref.md).
 
-A complete list of *$rem* variables can be found in Appendix [B](../app_b_quickref/app_quick_ref.md).
-
-**
 
 In this manual, *$rem* variables will be described using the following format:
 

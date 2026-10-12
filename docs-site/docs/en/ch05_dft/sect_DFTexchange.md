@@ -6,12 +6,11 @@ title: "5.3.3 Exchange Functionals"
 
 (July 4, 2026)
 
-**Note: 
+!!! note "Note"
+    All exchange functionals in this section can be invoked using the *$rem*
+    variable EXCHANGE. Popular and/or recommended functionals within
+    each class are listed first and indicated in bold. The rest are in alphabetical order.
 
-All exchange functionals in this section can be invoked using the *$rem*
-variable EXCHANGE. Popular and/or recommended functionals within
-each class are listed first and indicated in bold. The rest are in alphabetical order.
-**
 
 - $\circ$
 

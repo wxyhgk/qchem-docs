@@ -244,15 +244,11 @@ $$
 
 考虑空穴转移过程 $\text{D}^{+}+\text{A}\to\text{D}+\text{A}^{+}$，或者等价的电子转移过程 $\text{D}^{-}+\text{A}\to\text{D}+\text{A}^{-}$，其中给体（D）与受体（A）片段分别具有 $n_{\text{D}}$ 和 $n_{\text{A}}$ 个电子，具体步骤如下。
 
-- •
-
-对孤立的给体片段和受体片段分别进行 KS-DFT 计算；收集收敛的片段轨道：
+- 对孤立的给体片段和受体片段分别进行 KS-DFT 计算；收集收敛的片段轨道：
 
 $\{\phi_{\text{D1}},\phi_{\text{D2}},\dots,\phi_{\text{D}n_{\text{D}}\pm 1}\}$ 和
 $\{\phi_{\text{A1}},\phi_{\text{A2}},\dots,\phi_{\text{A}n_{\text{A}}}\}$
-- •
-
-对两个片段上的占据轨道做 Löwdin 正交化。反应物非绝热态势（$\text{D}^{+}\text{A}$ 或 $\text{D}^{-}\text{A}$）可表示为
+- 对两个片段上的占据轨道做 Löwdin 正交化。反应物非绝热态势（$\text{D}^{+}\text{A}$ 或 $\text{D}^{-}\text{A}$）可表示为
 
 <a id="Ch10.E224"></a>
 
@@ -261,9 +257,7 @@ $$
 $$
 
 其中 "$\bar{\phi}$" 表示 Löwdin 正交化后的轨道，$N=n_{\text{D}}+n_{\text{A}}$。需要注意，电子将要跃入的最低未占轨道（空穴转移情形下为 $\phi_{\text{D}n_{\text{D}}}$，电子转移情形下为 $\phi_{\text{A}n_{\text{A}}+1}$）也必须与所有占据轨道所张成的空间正交。
-- •
-
-构造产物非绝热态势（$\text{DA}^{+}$ 或 $\text{DA}^{-}$），方法很简单：把空穴从 $\bar{\phi}_{\text{D}n_{\text{D}}}$ 移动到 $\bar{\phi}_{\text{A}n_{\text{A}}}$（空穴转移），或把多余电子从 $\bar{\phi}_{\text{D}n_{\text{D}}+1}$ 移动到 $\bar{\phi}_{\text{A}n_{\text{A}}+1}$（电子转移）
+- 构造产物非绝热态势（$\text{DA}^{+}$ 或 $\text{DA}^{-}$），方法很简单：把空穴从 $\bar{\phi}_{\text{D}n_{\text{D}}}$ 移动到 $\bar{\phi}_{\text{A}n_{\text{A}}}$（空穴转移），或把多余电子从 $\bar{\phi}_{\text{D}n_{\text{D}}+1}$ 移动到 $\bar{\phi}_{\text{A}n_{\text{A}}+1}$（电子转移）
 
 <a id="Ch10.E225"></a>
 
@@ -271,9 +265,7 @@ $$
 |\bar{\psi}_{b}\rangle=\frac{1}{\sqrt{(N-1)!}}\;\mathrm{det}\left\{\bar{\phi}_{\text{D1}},\bar{\phi}_{\text{D2}},\dots,\bar{\phi}_{\text{D}n_{\text{D}}}\bar{\phi}_{\text{A1}},\bar{\phi}_{\text{A2}},\dots,\bar{\phi}_{\text{A}n_{\text{A}}\pm 1}\right\} \tag{10.225}
 $$
 
-- •
-
-计算 $|\bar{\psi}_{a}\rangle$ 与 $|\bar{\psi}_{b}\rangle$ 之间的电子耦合，该耦合近似为由反应物非绝热态势构造的 Kohn-Sham Fock 算符在正交化片段轨道之间的矩阵元：
+- 计算 $|\bar{\psi}_{a}\rangle$ 与 $|\bar{\psi}_{b}\rangle$ 之间的电子耦合，该耦合近似为由反应物非绝热态势构造的 Kohn-Sham Fock 算符在正交化片段轨道之间的矩阵元：
 
 <a id="A3.S8.EGx102"></a>
 
@@ -285,13 +277,9 @@ $$
 上述方法记作 FODFT($2n-1$)@$\text{D}^{+}\text{A}$（空穴转移）/FODFT($2n+1$)@$\text{D}^{-}\text{A}$（电子转移），[[1217]](../bib_references/bib.md#bib1271)
 因为在制备片段轨道时显式考虑了带电片段，并且 KS Fock 矩阵由 $2n\mp 1$ 个占据轨道构造。除此之外，FODFT 还有另外两种变体：
 
-1. 1.
-
-FODFT($2n$)@DA：[[1232]](../bib_references/bib.md#bib1287)
+1. FODFT($2n$)@DA：[[1232]](../bib_references/bib.md#bib1287)
  D 与 A 均以闭壳层制备片段轨道；KS Fock 算符由 $2n$ 个占据轨道构造。
-2. 2.
-
-FODFT($\mathrm{2n-1}$)@DA（空穴转移）/
+2. FODFT($\mathrm{2n-1}$)@DA（空穴转移）/
 FODFT($2n+1$)@$\text{D}^{-}\text{A}^{-}$（电子转移）：[[1006]](../bib_references/bib.md#bib1047)
  片段轨道在体系带有一个多余电子的情况下制备（空穴转移用 DA，电子转移用 $\text{D}^{-}\text{A}^{-}$），
 而在构造 KS Fock 算符时移除一个占据轨道。

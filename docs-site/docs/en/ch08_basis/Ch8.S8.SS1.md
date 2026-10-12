@@ -157,9 +157,7 @@ the *$basis* input section documented above in Section [8.4](sect_userbasis.md)
 | RIMP2-aug-cc-pVTZ | H, He, B $\rightarrow$ Ne, Al $\rightarrow$ Ar, Ga $\rightarrow$ Kr |
 | RIMP2-aug-cc-pVQZ | H, He, B $\rightarrow$ Ne, Al $\rightarrow$ Ar, Ga $\rightarrow$ Kr |
 
-- •
-
-${}^{a}$XX includes SV(P), SVP, TZVP, TZVPP, QZVP, and QZVPP.
+- ${}^{a}$XX includes SV(P), SVP, TZVP, TZVPP, QZVP, and QZVPP.
 ${}^{b}$XX includes SV(P), SVP, SVPD, TZVP, TZVPD, TZVPP, TZVPPD, QZVP, and QZVPPD.
 ${}^{c}$XX includes SVP, TZVP, TZVPP, and QZVPP, obtained by systematic pruning of diffuse functions.
 For example, RIMP2-def2-ma-SVP is obtained from RIMP2-def2-SVPD by pruning in the same manner

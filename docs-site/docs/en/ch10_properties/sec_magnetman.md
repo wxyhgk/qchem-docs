@@ -9,15 +9,9 @@ title: "10.11.4 Additional Magnetic Field-Related Properties"
 In addition to NMR chemical shieldings and spin-spin couplings, other magnetic
 properties available in **Q-Chem** are
 
-- •
-
-hyperfine interaction tensors,
-- •
-
-the nuclear quadrupole interaction from electric field gradient tensors, and
-- •
-
-the electronic *g*-tensor,
+- hyperfine interaction tensors,
+- the nuclear quadrupole interaction from electric field gradient tensors, and
+- the electronic *g*-tensor,
 
 ## 10.11.4.1 Hyperfine Interaction
 

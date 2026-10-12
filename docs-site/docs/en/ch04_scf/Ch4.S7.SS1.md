@@ -29,12 +29,11 @@ density matrix. Thus, only a single Fock build is required in the large basis
 set. Currently, HF and DFT energies (SP) as well as analytic first derivatives
 (FORCE or OPT) are available.
 
-**Note: 
+!!! note "Note"
+    As of version 4.0, first derivatives of unrestricted dual-basis DFT
+    energies—though correct—require a code-efficiency fix. We do not recommend
+    use of these derivatives until this improvement has been made.
 
-As of version 4.0, first derivatives of unrestricted dual-basis DFT
-energies—though correct—require a code-efficiency fix. We do not recommend
-use of these derivatives until this improvement has been made.
-**
 
 Across the G3 set[[296]](../bib_references/bib.md#bib297)
  of 223

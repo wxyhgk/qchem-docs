@@ -52,15 +52,9 @@ RCC[[1390]](../bib_references/bib.md#bib1452)
 
 对于势能面（potential energy surfaces），建议从前一次计算得到的 CCVB 解出发进行重启。这通过 GVB_RESTART = TRUE 来调用。每当使用此选项，或任何时候将其他计算的轨道直接读入 CCVB 时，都务必同时设置：
 
-- •
-
-SCF_GUESS = READ
-- •
-
-MP2_RESTART_NO_SCF = TRUE
-- •
-
-SCF_ALGORITHM = DIIS
+- SCF_GUESS = READ
+- MP2_RESTART_NO_SCF = TRUE
+- SCF_ALGORITHM = DIIS
 
 这就绕过了 **Q-Chem** 中其他位置使用的正交化方案，这些方案很可能会打乱 CCVB 的猜测。
 

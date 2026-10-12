@@ -218,9 +218,7 @@ These choices for **Field_Type** can be summarized as follows.
 Note that $\bm{\mathcal{E}}=(\mathcal{E}_{x},\mathcal{E}_{y},\mathcal{E}_{z})$ is a vector quantity whose magnitude is controlled
 by **Field_Amp** and whose direction is controlled by **Field_Vector**.
 
-- •
-
-**Delta** simulates a Dirac $\delta$-function kick, with the field $\bm{\mathcal{E}}$ turned on (at a constant
+- **Delta** simulates a Dirac $\delta$-function kick, with the field $\bm{\mathcal{E}}$ turned on (at a constant
 amplitude) only during the first two time steps.
 The amplitude is controlled by the **Field_Amp** keyword that is documented below.
 In order to normalize across different choices of $\Delta t$, **Field_Amp** actually specifies the *integrated*
@@ -229,14 +227,10 @@ field intensity $\bm{\mathcal{E}}\Delta t$, meaning that the electric field inte
 
 That way, **Field_Amp** controls the total amount of energy that is put into this system by the $\delta$-function impulse,
 which is the only way that results from simulations with two different time steps can be compared side-by-side.
-- •
-
-**CW** simulates a continuous-wave electric field of the form
+- **CW** simulates a continuous-wave electric field of the form
 $\bm{\mathcal{E}}(t)=\mathbf{A}_{0}\sin(\omega t)$, whose amplitude $\mathbf{A}_{0}$ and frequency $\omega$ are set using
 the keywords **Field_Amp** and **Field_Frequency**, respectively, in the *$tdks* section.
-- •
-
-The **Impulse** field has a Gaussian envelope,
+- The **Impulse** field has a Gaussian envelope,
 
 <a id="Ch7.E60"></a>
 
@@ -247,9 +241,7 @@ $$
 with $\mathbf{A}_{0}$ and frequency $\omega$ set using **Field_Amp** and **Field_Frequency**, respectively.
 The field parameters $\tau$ and $t_{\text{peak}}$ are set using **Field_Tau** and **Field_Peak**,
 respectively, in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set using **Field_Vector**.
-- •
-
-The **Impulse2** field has a cosine-squared envelope, with the field $\bm{\mathcal{E}}$ turned on initially and turned off at $t=2t_{\text{peak}}$. For $0\leq t\leq 2t_{\text{peak}}$,
+- The **Impulse2** field has a cosine-squared envelope, with the field $\bm{\mathcal{E}}$ turned on initially and turned off at $t=2t_{\text{peak}}$. For $0\leq t\leq 2t_{\text{peak}}$,
 
 <a id="Ch7.E61"></a>
 

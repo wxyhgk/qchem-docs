@@ -62,24 +62,14 @@ NBO 分析同样可用于采用构型相互作用单激发（CIS）或含时密�
 
 几点使用说明：
 
-1. 1.
-
-在 *$nbo* 关键字被识别之前，*rem* 变量 NBO 必须先设置为 TRUE。
-2. 2.
-
-**Q-Chem** 不支持需要多次作业运行（multiple job runs）的 NBO 程序包功能。
-3. 3.
-
-可通过 PRINT_ORBITALS 和 MOLDEN_FORMAT 关键字触发 NBO 的输出。此时会向 *outfile* 写入两个 MOLDEN 段。
+1. 在 *$nbo* 关键字被识别之前，*rem* 变量 NBO 必须先设置为 TRUE。
+2. **Q-Chem** 不支持需要多次作业运行（multiple job runs）的 NBO 程序包功能。
+3. 可通过 PRINT_ORBITALS 和 MOLDEN_FORMAT 关键字触发 NBO 的输出。此时会向 *outfile* 写入两个 MOLDEN 段。
 第一个对应常规分子轨道（MO），第二个对应自然键轨道（NBO）。
-4. 4.
-
-可通过在 $nbo 段中使用 PLOT 关键字触发输出完整的自然原子轨道（NAO）、自然杂化轨道（NHO）、自然键轨道（NBO）和自然定域分子轨道（NLMO）集合。
+4. 可通过在 $nbo 段中使用 PLOT 关键字触发输出完整的自然原子轨道（NAO）、自然杂化轨道（NHO）、自然键轨道（NBO）和自然定域分子轨道（NLMO）集合。
 相关文件为 `$QCSCRATCH/savename` 中的 `FILE.31` – `FILE.39`。
 这些文件可以由 **ChemCraft** 和 **JMol** 等程序打开。
-5. 5.
-
-**Q-Chem** 内部实现的 NBO v. 5 最多支持 300 个原子和 3,000 个基函数。
+5. **Q-Chem** 内部实现的 NBO v. 5 最多支持 300 个原子和 3,000 个基函数。
 
 ???+ example "示例 10.12: 甲醛（formaldehyde）NBO 计算的基本输入。
 NBO 以 MolDen 格式打印到 outfile 中，完整的原生 NBO 格式文件写入 $QCSCRATCH/savename 。"

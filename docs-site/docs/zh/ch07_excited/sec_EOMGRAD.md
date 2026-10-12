@@ -12,10 +12,9 @@ CCSD 及所有 EOM-CCSD 方法的解析梯度对闭壳层与开壳层参考（�
  以及二电子积分的 RI/Cholesky 表示（另见第 [6.16](../ch06_correlation/sec_CCGRAD.md) 节）。
 只要相应的单点能计算可行，这些计算就应当是可行的。
 
-**注意：
+!!! note "注意"
+    ROHF 及非 HF（*e.g.*，B3LYP）轨道的梯度尚不可用。
 
-ROHF 及非 HF（*e.g.*，B3LYP）轨道的梯度尚不可用。
-**
 
 对于 CCSD 和 EOM-CCSD 波函数，**Q-Chem** 可以计算永久及跃迁偶极矩、振子强度、
 ECD 旋转强度 [包括长度规范（length gauge，与原点相关）和速度规范（velocity gauge，与原点无关）两种形式]、$\langle\hat{R}^{2}\rangle$
@@ -23,11 +22,10 @@ ECD 旋转强度 [包括长度规范（length gauge，与原点相关）和速�
 $\langle\hat{S}^{2}\rangle$ 值。$g$ 张量的计算对 CCSD 波函数可用
 （见第 [10.11.4](../ch10_properties/sec_magnetman.md) 节及示例 [10.11.4.4](../ch10_properties/sec_magnetman.md#ex:CCSD-gtensor)）。
 
-**注意：
+!!! note "注意"
+    $g$ 张量也可以按照文献 [[660]](../bib_references/bib.md#bib684)
+     所述，使用 EOM-CC 与 RAS-CI 波函数通过组态相互作用（state-interaction）方法计算。
 
-$g$ 张量也可以按照文献 [[660]](../bib_references/bib.md#bib684)
- 所述，使用 EOM-CC 与 RAS-CI 波函数通过组态相互作用（state-interaction）方法计算。
-**。
 
 CCSD 与 EOM-CCSD 程序与 NBO 5.0 程序包的接口同样可用。此外，可以请求对 EOM-CCSD 激发态进行激发态分析。对于 EOM-MP2，只有态性质（偶极矩、角动量投影、$\langle\hat{R}^{2}\rangle$、$\langle\hat{S}^{2}\rangle$）可用。
 类似的功能对某些 EOM-OD 和 CI 模型（仅限 CCMAN）也可用。
@@ -81,23 +79,16 @@ CC_TRANS_PROP *确实*需要被设置。
 
 关于 *$trans_prop* 输入段落的说明：
 
-1. 1.
-
-`calc` 为其*前面*的*第一个*态对列表（或态列表）计算性质。
-2. 2.
-
-态对列表是*可选的*：若没有态对列表，则考虑态列表内所有可能的组合。
-3. 3.
-
-`calc` 之后的选项包括：`nac`、`soc`、`dyson`、
+1. `calc` 为其*前面*的*第一个*态对列表（或态列表）计算性质。
+2. 态对列表是*可选的*：若没有态对列表，则考虑态列表内所有可能的组合。
+3. `calc` 之后的选项包括：`nac`、`soc`、`dyson`、
 `2pa`、`dipole`、`default`、`pcm`、`opdm_norm`、
 `wfa`、`ang`、`linmom`、`dipole linmom`、`ecd`。目前仅实现了其中的一部分。
 
-**注意：
+!!! note "注意"
+    *$trans_prop* 段落是一项新功能，仍在开发之中——使用风险自负。
+    最终，该段落将取代其他控制方式并成为默认设置。
 
-*$trans_prop* 段落是一项新功能，仍在开发之中——使用风险自负。
-最终，该段落将取代其他控制方式并成为默认设置。
-**
 
 ## 7.9.21.1 使用 EOM-CC 波函数计算角动量矩阵元
 
@@ -287,13 +278,12 @@ CALC_SOC 设置为 2 则在不平均约化矩阵元的情况下直接构造自�
 能级分裂的分析。示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 和 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)
 演示了在使用 SOMF 的乙炔-O 复合物中计算 SOC。
 
-**注意：
+!!! note "注意"
+    在存在有效核势（ECP）的情况下，尝试使用上述算法
+    （CALC_SOC=1 或 2）计算 SOC，
+    很可能得到非物理的极低 SOC 值。
+    作为替代，我们建议使用有效核电荷（CALC_SOC=4）。
 
-在存在有效核势（ECP）的情况下，尝试使用上述算法
-（CALC_SOC=1 或 2）计算 SOC，
-很可能得到非物理的极低 SOC 值。
-作为替代，我们建议使用有效核电荷（CALC_SOC=4）。
-**
 
 要对无自旋单粒子跃迁密度矩阵进行 NTO 分析[[1105]](../bib_references/bib.md#bib1152)
 
@@ -338,20 +328,18 @@ CC_STATE_TO_OPT 设定，耦合在该态与
 所有其他 EOM 态之间计算。若未设置 CC_STATE_TO_OPT，则 SOC 在
 参考态与所有 EOM-EE 或 EOM-SF 态之间计算。
 
-**注意：
+!!! note "注意"
+    在自旋受限（spin-restricted）的情况下，如使用闭壳层
+    参考态的 EOM-EE 计算，无法计算单重态与三重态 EOM 组态之间的 SOC（只能
+    计算参考态与 EOM 三重态之间的 SOC）。若要计算 EOM-EE 单重态与 EOM-EE 三重态之间的 SOC，请在
+    相同作业中设置 UNRESTRICTED = TRUE 重新运行，
+    使三重态和单重态出现在同一组态中。
 
-在自旋受限（spin-restricted）的情况下，如使用闭壳层
-参考态的 EOM-EE 计算，无法计算单重态与三重态 EOM 组态之间的 SOC（只能
-计算参考态与 EOM 三重态之间的 SOC）。若要计算 EOM-EE 单重态与 EOM-EE 三重态之间的 SOC，请在
-相同作业中设置 UNRESTRICTED = TRUE 重新运行，
-使三重态和单重态出现在同一组态中。
-**
 
-**注意：
+!!! note "注意"
+    计算跃迁性质最灵活的控制方式由
+    *$trans_prop* 输入段落提供，如第 7.9.21 节所述。
 
-计算跃迁性质最灵活的控制方式由
-*$trans_prop* 输入段落提供，如第 7.9.21 节所述。
-**
 
 ## 7.9.21.5 使用 EOM-CC 波函数计算非绝热耦合
 
@@ -367,11 +355,10 @@ $$
 其中 $G_{I}$、$G_{J}$ 和 $G_{IJ}$ 分别是态 $I$、$J$
 以及虚拟求和态 $|\Psi_{I+J}\rangle\equiv|\Psi_{I}\rangle+|\Psi_{J}\rangle$ 的解析梯度。目前，EE/IP/EA 的 NAC 可用。[[375]](../bib_references/bib.md#bib380)
 
-**注意：
+!!! note "注意"
+    请注意，NAC 向量的各个分量依赖于分子的
+    取向。
 
-请注意，NAC 向量的各个分量依赖于分子的
-取向。
-**
 
 ## 7.9.21.6 EOM-EE-CCSD 内的双光子吸收跃迁矩与截面
 
@@ -431,11 +418,10 @@ DIIS 求解器由
 CC_MAX_ITER、CC_DIIS_START、
 CC_DIIS_SIZE、CC_EOM_2PA_ECONV 和 CC_EOM_2PA_XCONV 控制。
 
-**注意：
+!!! note "注意"
+    **Dalton** 求解器在判断收敛时使用残差范数的平方（与 Davidson 求解器相同），
+    而 DIIS 求解器使用相邻迭代之间响应向量之差的范数。
 
-**Dalton** 求解器在判断收敛时使用残差范数的平方（与 Davidson 求解器相同），
-而 DIIS 求解器使用相邻迭代之间响应向量之差的范数。
-**
 
 2PA 计算可以通过激活
 CC_EOM_2PA_SINGLE_PREC 关键字（连同激活 CC 与 EOM-CC 方程单精度执行的关键字，见第 [7.9.15](sec_SP_EOM_CC.md) 节）
@@ -466,11 +452,10 @@ CC_EOM_2PA_SINGLE_PREC 关键字（连同激活 CC 与 EOM-CC 方程单精度执
 即电子圆二色谱（ECD）。其虚部（实部）对应于旋光色散（ORD）。
 目前，这些功能仅在常规实现中可用（无 RI/CD）。
 
-**注意：
+!!! note "注意"
+    这些计算要求将 CC_FULLRESPONSE 设置为 0，
+    并将 CC_REF_PROP 设置为 TRUE。
 
-这些计算要求将 CC_FULLRESPONSE 设置为 0，
-并将 CC_REF_PROP 设置为 TRUE。
-**
 
 OR 的响应方程使用与极化率响应方程相同的求解器
 （相关关键字见第 [7.9.21.8](#sec:EOMpol) 节）。
@@ -500,12 +485,11 @@ OR 的响应方程使用与极化率响应方程相同的求解器
 > $end
 > ```
 
-**注意：
+!!! note "注意"
+    与其他跃迁性质一样，ECD/XCD 光谱也可以由 EOM-CC/CVS-EOM-CC 态之间的
+    旋转强度计算得到。
+    见第 7.9.21 节。
 
-与其他跃迁性质一样，ECD/XCD 光谱也可以由 EOM-CC/CVS-EOM-CC 态之间的
-旋转强度计算得到。
-见第 7.9.21 节。
-**
 
 ## 7.9.21.8 CCSD 与 EOM-CCSD 波函数静态及动态极化率的计算
 
@@ -542,10 +526,9 @@ CCSD 与 EOM-EE/SF-CCSD 在虚频率下的动态极化率也可通过 *$dyn_pol*
 
 目前，这些功能仅在常规实现中可用。
 
-**注意：
+!!! note "注意"
+    EOM-CCSD 极化率仅对 EE 和 SF 波函数可用。
 
-EOM-CCSD 极化率仅对 EE 和 SF 波函数可用。
-**
 
 默认情况下，无阻尼和阻尼的极化率响应波函数均使用一种名为 **Dalton**
 求解器的新型迭代 Davidson 型子空间方法计算。[[248]](../bib_references/bib.md#bib251)
@@ -555,10 +538,9 @@ DALTON_MAXITER 和 DALTON_MAXSPACE
 关键字控制。阻尼极化率响应波函数也可以通过设置 DAMPED_DALTON_SOLVER = FALSE
 使用较旧的 DIIS 求解器计算。DIIS 求解器由 CC_MAX_ITER、CC_DIIS_START、CC_DIIS_SIZE 和 CC _CONVERGENCE 控制。
 
-**注意：
+!!! note "注意"
+    **Dalton** 求解器在判断收敛时使用残差范数的平方（与 Davidson 求解器相同），而 DIIS 求解器使用相邻迭代之间响应向量之差的范数。响应计算（2PA、极化率、RIXS）的默认收敛阈值为 5。
 
-**Dalton** 求解器在判断收敛时使用残差范数的平方（与 Davidson 求解器相同），而 DIIS 求解器使用相邻迭代之间响应向量之差的范数。响应计算（2PA、极化率、RIXS）的默认收敛阈值为 5。
-**
 
 ## 7.9.21.9 CCSD 波函数静态及动态第一超极化率的计算
 
@@ -578,11 +560,10 @@ CCSD 波函数的静态和动态偶极第一超极化率计算在 CCMAN2 中可�
 $\omega_{3}=\omega_{1}+\omega_{2}$），
 以及相应的阻尼因子。
 
-**注意：
+!!! note "注意"
+    这些计算要求将 CC_FULLRESPONSE 设置为 0，
+    并将 CC_REF_PROP 设置为 TRUE。
 
-这些计算要求将 CC_FULLRESPONSE 设置为 0，
-并将 CC_REF_PROP 设置为 TRUE。
-**
 
 > ```qchem
 > $1hpol
@@ -652,11 +633,10 @@ $|{\mathbf{k}}|$ 使用五个网格点。
 > $end
 > ```
 
-**注意：
+!!! note "注意"
+    $|{\mathbf{k}}|$ 值的网格按
+    $\sqrt{2E}$ 计算，其中 $E$ 从 0.0 eV 变化到 0.1*($k\_grid\_points$-1) eV。
 
-$|{\mathbf{k}}|$ 值的网格按
-$\sqrt{2E}$ 计算，其中 $E$ 从 0.0 eV 变化到 0.1*($k\_grid\_points$-1) eV。
-**
 
 > ```qchem
 > $free_electron
@@ -667,10 +647,9 @@ $\sqrt{2E}$ 计算，其中 $E$ 从 0.0 eV 变化到 0.1*($k\_grid\_points$-1) e
 > $end
 > ```
 
-**注意：
+!!! note "注意"
+    $|{\mathbf{k}}|$ 的大小无关紧要，只有方向重要。
 
-$|{\mathbf{k}}|$ 的大小无关紧要，只有方向重要。
-**
 
 光电子角分布（photoelectron angular distribution, PAD）——$\Omega(\theta,\phi)$，
 其中 $\theta$ 和 $\phi$ 是光电子矢量

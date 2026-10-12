@@ -331,16 +331,12 @@ Considering a hole-transfer process, $\text{D}^{+}+\text{A}\to\text{D}+\text{A}^
 process $\text{D}^{-}+\text{A}\to\text{D}+\text{A}^{-}$, where the donor (D) and acceptor (A) fragments
 have $n_{\text{D}}$ and $n_{\text{A}}$ electrons, respectively, the procedure is the following.
 
-- •
-
-Perform KS-DFT calculations for isolated donor and acceptor fragments;
+- Perform KS-DFT calculations for isolated donor and acceptor fragments;
 collect the converged fragment orbitals: 
 
 $\{\phi_{\text{D1}},\phi_{\text{D2}},\dots,\phi_{\text{D}n_{\text{D}}\pm 1}\}$ and
 $\{\phi_{\text{A1}},\phi_{\text{A2}},\dots,\phi_{\text{A}n_{\text{A}}}\}$
-- •
-
-Löwdin orthogonalize the occupied orbitals on two fragments.
+- Löwdin orthogonalize the occupied orbitals on two fragments.
 The reactant diabat ($\text{D}^{+}\text{A}$ or $\text{D}^{-}\text{A}$) can be represented as
 
 <a id="Ch10.E224"></a>
@@ -353,9 +349,7 @@ where “$\bar{\phi}$” denotes Löwdin-orthogonalized orbitals,
 and $N=n_{\text{D}}+n_{\text{A}}$. Note that the lowest unoccupied orbital where the electron
 is transferring to, $\phi_{\text{D}n_{\text{D}}}$ in the case of HT or $\phi_{\text{A}n_{\text{A}}+1}$ in the case of ET,
 also needs to be made orthogonal to the space spanned by all occupied orbitals.
-- •
-
-Construct the product diabat ($\text{DA}^{+}$ or $\text{DA}^{-}$), simply by moving the hole from
+- Construct the product diabat ($\text{DA}^{+}$ or $\text{DA}^{-}$), simply by moving the hole from
 $\bar{\phi}_{\text{D}n_{\text{D}}}$ to $\bar{\phi}_{\text{A}n_{\text{A}}}$ (HT), or the excess electron from
 $\bar{\phi}_{\text{D}n_{\text{D}}+1}$ to $\bar{\phi}_{\text{A}n_{\text{A}}+1}$ (ET)
 
@@ -365,9 +359,7 @@ $$
 |\bar{\psi}_{b}\rangle=\frac{1}{\sqrt{(N-1)!}}\;\mathrm{det}\left\{\bar{\phi}_{\text{D1}},\bar{\phi}_{\text{D2}},\dots,\bar{\phi}_{\text{D}n_{\text{D}}}\bar{\phi}_{\text{A1}},\bar{\phi}_{\text{A2}},\dots,\bar{\phi}_{\text{A}n_{\text{A}}\pm 1}\right\} \tag{10.225}
 $$
 
-- •
-
-Compute the electronic coupling between $|\bar{\psi}_{a}\rangle$ and
+- Compute the electronic coupling between $|\bar{\psi}_{a}\rangle$ and
 $|\bar{\psi}_{b}\rangle$, which is approximated by the coupling of the
 orthogonalized fragment orbitals through the Kohn-Sham Fock operator, built from the reactant diabat:
 
@@ -384,14 +376,10 @@ FODFT($2n-1$)@$\text{D}^{+}\text{A}$ (HT)/FODFT($2n+1$)@$\text{D}^{-}\text{A}$ (
 as the charged fragment is explicitly taken into account when preparing the fragment orbitals and the KS Fock
 matrix is built from $2n\mp 1$ occupied orbitals. Besides this, there are two other variants of FODFT:
 
-1. 1.
-
-FODFT($2n$)@DA:[[1232]](../bib_references/bib.md#bib1287)
+1. FODFT($2n$)@DA:[[1232]](../bib_references/bib.md#bib1287)
  fragment orbitals prepared with
 D and A both closed-shell; KS Fock operator constructed from $2n$ occupied orbitals.
-2. 2.
-
-FODFT($\mathrm{2n-1}$)@DA (HT) /
+2. FODFT($\mathrm{2n-1}$)@DA (HT) /
 FODFT($2n+1$)@$\text{D}^{-}\text{A}^{-}$ (ET):[[1006]](../bib_references/bib.md#bib1047)
  fragment orbitals
 prepared with the system having one excess electron (DA for HT and $\text{D}^{-}\text{A}^{-}$ for ET),

@@ -188,23 +188,21 @@ These charges can be restricted to satisfy “chemical symmetry”,
 where chemically equivalent atoms have the same atomic charge value,
 leading to the so-called “RESP” charges.[[270]](../bib_references/bib.md#bib271)
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    When both ESP_CHARGES and RESP_CHARGES are turned
+    on, only the RESP charges will be calcualted
 
-When both ESP_CHARGES and RESP_CHARGES are turned
-on, only the RESP charges will be calcualted
+    2.
 
-2.
+    Both ESP_CHARGES and RESP_CHARGES can be
+    used to compute the atomic charges of any singlet excited state
+    from a CIS or TDDFT calculation (RPA or TDA). For excited-state
+    popular analysis, it is recommended to turn on CIS_RELAXED_DENSITY.
+    Physically, the external electrostatic environment should feel the relaxed
+    excited state density not the unrelaxed density.
 
-Both ESP_CHARGES and RESP_CHARGES can be
-used to compute the atomic charges of any singlet excited state
-from a CIS or TDDFT calculation (RPA or TDA). For excited-state
-popular analysis, it is recommended to turn on CIS_RELAXED_DENSITY.
-Physically, the external electrostatic environment should feel the relaxed
-excited state density not the unrelaxed density.
-
-**
 
 ### `ESP_CHARGES`
 

@@ -152,23 +152,17 @@ this but this is the Q-Chem file that is needed to test the QM/MM functionality
 
 The **Q-Chem**/**Charmm** interface is unique in that:
 
-- •
-
-The external point charges can be replaced with Gaussian-delocalized
+- The external point charges can be replaced with Gaussian-delocalized
 charges with a finite width.[[300]](../bib_references/bib.md#bib304)
  This is an empirical way to
 include the delocalized character of the electron density of atoms in the MM
 region. This can be important for the electrostatic interaction of the QM
 region with nearby atoms in the MM region.
-- •
-
-We allow the evaluation of the full QM/MM Hessian.[[1491]](../bib_references/bib.md#bib1552)
+- We allow the evaluation of the full QM/MM Hessian.[[1491]](../bib_references/bib.md#bib1552)
 
 When link atoms are inserted to saturate the QM region, all Hessian
 elements associated with link atoms are automatically projected onto their QM
 and MM host atoms.
-- •
-
-For systems with a large number of MM atoms, one can define blocks
+- For systems with a large number of MM atoms, one can define blocks
 consisting of multiple MM atoms (*i.e.*, mobile blocks) and efficiently evaluate
 the corresponding mobile-block Hessian (MBH) for normal mode analysis.

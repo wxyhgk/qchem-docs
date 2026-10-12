@@ -14,12 +14,8 @@ Please refer to the installation notes for your particular platform, which are
 distributed with the software. The system software required to run **Q-Chem** on
 your platform is minimal, and includes:
 
-- •
-
-A suitable operating system.
-- •
-
-Run-time libraries (usually provided with your operating system).
+- A suitable operating system.
+- Run-time libraries (usually provided with your operating system).
 
 Please check the **Q-Chem** web site (`www.q-chem.com`) or contact **Q-Chem** support
 (`support@q-chem.com`) if further details are

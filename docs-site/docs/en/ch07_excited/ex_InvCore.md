@@ -103,10 +103,9 @@ $\Delta E_{\text{CCSD}}=10.709~{}E_{h}=291.42$ eV.
 This approach can be further extended to obtain multiple excited states
 involving core electrons by performing CIS, TDDFT, or EOM-EE calculations.
 
-**Note: 
+!!! note "Note"
+    This approach often leads to convergence problems in correlated calculations.
 
-This approach often leads to convergence problems in correlated calculations.
-**
 
 One can also use the following trick illustrated by Example 7.12.1.
 
@@ -149,7 +148,6 @@ Koopmans character (dominated by single core ionization); thus, canonical HF
 MOs provide good representation of the correlated Dyson orbital. The same
 strategy can be used to compute core-excited states.
 
-**Note: 
+!!! note "Note"
+    The accuracy of this approach is rather poor and is similar to Koopmans’ approximation.
 
-The accuracy of this approach is rather poor and is similar to Koopmans’ approximation.
-**

@@ -107,14 +107,13 @@ $$
 \left({\mu\nu|\lambda\sigma}\right)=\int\int{\phi_{\mu}({\rm{\bf r}}_{1})\phi_{\nu}({\rm{\bf r}}_{1})\left({\frac{1}{r_{12}}}\right)\phi_{\lambda}({\rm{\bf r}}_{2})\phi_{\sigma}({\rm{\bf r}}_{\rm{\bf 2}})\;d{\rm{\bf r}}_{1}\;d{\rm{\bf r}}_{2}}\;. \tag{4.25}
 $$
 
-**Note: 
+!!! note "Note"
+    The formation and utilization of two-electron integrals is a topic
+    central to the overall performance of SCF methodologies. The performance of the
+    SCF methods in new quantum chemistry software programs can be quickly estimated
+    simply by considering the quality of their atomic orbital integrals packages.
+    See Appendix [A](../app_a_aoints/app_AOINTS.md) for details of **Q-Chem**’s **AOInts** package.
 
-The formation and utilization of two-electron integrals is a topic
-central to the overall performance of SCF methodologies. The performance of the
-SCF methods in new quantum chemistry software programs can be quickly estimated
-simply by considering the quality of their atomic orbital integrals packages.
-See Appendix [A](../app_a_aoints/app_AOINTS.md) for details of **Q-Chem**’s **AOInts** package.
-**
 
 Substituting the matrix element in Eq. ([4.18](#eq416)) back into the
 Roothaan-Hall equations, Eq. ([4.11](Ch4.S2.SS1.md#eq:Roothaan-Hall)), and iterating until

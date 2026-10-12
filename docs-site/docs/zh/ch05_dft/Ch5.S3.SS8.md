@@ -10,28 +10,18 @@ title: "5.3.8 半经验泛函"
 
 **Q-Chem** 中提供以下方法：
 
-- •
-
-**HF-3c**：这是一种基于 HF（Hartree-Fock，哈特里-福克）的半经验方法，配合名为 MINIX 的最小基组（Minimal Basis Set）使用。支持从 H 到 Xe 的所有元素。对于从 Rb（$Z=37$）到 Xe（$Z=54$）的元素，必须使用 def2-ECP。[[1329]](../bib_references/bib.md#bib1388)
-- •
-
-**PBEh-3c**：这是一种基于 DFT（Density Functional Theory，密度泛函理论）的方法，配合 def2-mSVP 基组使用。支持从 H 到 Rn 的所有元素。对于从 Rb（$Z=37$）到 Rn（$Z=86$）的元素，必须使用 def2-ECP。由于该方法包含电子相关效应，[[487]](../bib_references/bib.md#bib508)
+- **HF-3c**：这是一种基于 HF（Hartree-Fock，哈特里-福克）的半经验方法，配合名为 MINIX 的最小基组（Minimal Basis Set）使用。支持从 H 到 Xe 的所有元素。对于从 Rb（$Z=37$）到 Xe（$Z=54$）的元素，必须使用 def2-ECP。[[1329]](../bib_references/bib.md#bib1388)
+- **PBEh-3c**：这是一种基于 DFT（Density Functional Theory，密度泛函理论）的方法，配合 def2-mSVP 基组使用。支持从 H 到 Rn 的所有元素。对于从 Rb（$Z=37$）到 Rn（$Z=86$）的元素，必须使用 def2-ECP。由于该方法包含电子相关效应，[[487]](../bib_references/bib.md#bib508)
 
 其精度高于 HF-3c，但双-$\zeta$（double-$\zeta$）基组使其在处理大分子时计算代价更高。
 
-**注意：
+!!! note "注意"
+    - HF-3c 和 PBEh-3c 方法是针对上述基组进行参数化的。虽然 **Q-Chem** 并不强制这一限制，但除非有充分理由，否则不应使用其他基组；即便如此也应谨慎使用，因为结果可能无法达到文献报道的精度。
 
-•
+    - 这些 DFT-3c 方法支持解析频率计算，
 
-HF-3c 和 PBEh-3c 方法是针对上述基组进行参数化的。虽然 **Q-Chem** 并不强制这一限制，但除非有充分理由，否则不应使用其他基组；即便如此也应谨慎使用，因为结果可能无法达到文献报道的精度。
+    其中"3c"项的导数采用数值方法计算。在大多数情况下，用户无需关心此细节；有关半数值 Hessian（Hessian matrix，黑塞矩阵）计算的任务控制设置，请参见第 [5.3.8.2](#sec:3c-JobControl) 节。
 
-•
-
-这些 DFT-3c 方法支持解析频率计算，
-
-其中"3c"项的导数采用数值方法计算。在大多数情况下，用户无需关心此细节；有关半数值 Hessian（Hessian matrix，黑塞矩阵）计算的任务控制设置，请参见第 [5.3.8.2](#sec:3c-JobControl) 节。
-
-**
 
 ## 5.3.8.2 DFT-3c 的任务控制与示例
 

@@ -12,17 +12,16 @@ alkene molecule the hydrogen atoms could be modeled by the STO-3G basis, while
 the carbon atoms have the larger 6-31G(d) basis. This can be specified within
 the *$basis* block using the more familiar basis set labels.
 
-**Note: 
+!!! note "Note"
+    (1) It is not possible to augment a standard basis set in this way; the whole
+    basis needs to be inserted as for a user-defined basis (angular
+    momentum, exponents, contraction coefficients) and additional functions
+    added. Standard basis set exponents and coefficients can be easily
+    obtained by setting the PRINT_GENERAL_BASIS *$rem* variable to TRUE.
+    (2) The PURECART flag must be set for *all* general basis
+    input containing $d$ angular momentum or higher functions, regardless of
+    whether standard basis sets are entered in this non-standard manner.
 
-(1) It is not possible to augment a standard basis set in this way; the whole
-basis needs to be inserted as for a user-defined basis (angular
-momentum, exponents, contraction coefficients) and additional functions
-added. Standard basis set exponents and coefficients can be easily
-obtained by setting the PRINT_GENERAL_BASIS *$rem* variable to TRUE.
-(2) The PURECART flag must be set for *all* general basis
-input containing $d$ angular momentum or higher functions, regardless of
-whether standard basis sets are entered in this non-standard manner.
-**
 
 The user can also specify different basis sets for atoms of the same type, but
 in different parts of the molecule. This allows a larger basis set to be used

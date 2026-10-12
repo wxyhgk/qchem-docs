@@ -12,12 +12,11 @@ The NEO method is a natural extension of the SCF method and it inherits many of 
 Some keywords that are used in the SCF Job Control are used in the NEO methods with a few additional keywords.
 The following *$rem* variables must be specified in order to run NEO calculations:
 
-**Note: 
+!!! note "Note"
+    Some *$rem* variables, which we find mostly self-explanatory but not discussed below, that
+    also influence NEO jobs in regards to geometry and symmetry considerations include
+    INPUT_BOHR, SYM_IGNORE, and POINT_GROUP_SYMMETRY.
 
-Some *$rem* variables, which we find mostly self-explanatory but not discussed below, that
-also influence NEO jobs in regards to geometry and symmetry considerations include
-INPUT_BOHR, SYM_IGNORE, and POINT_GROUP_SYMMETRY.
-**
 
 ### `NEO`
 
@@ -117,12 +116,11 @@ The format for the user-defined neo_basis section is as follows:
 > | **** |  |  |  |  |  |
 > | $end |  |  |  |  |  |
 
-**Note: 
+!!! note "Note"
+    Several of the post-NEO-HF methods utilizing density fitting also require
+    the nuclear auxiliary basis set to be defined. The format for such user-defined *$neo_aux_basis*
+    section is identical to the *$basis* and *$neo_basis* input sections. See examples in Section [13.5.6](subsec_neo-examples.md) for more details.
 
-Several of the post-NEO-HF methods utilizing density fitting also require
-the nuclear auxiliary basis set to be defined. The format for such user-defined *$neo_aux_basis*
-section is identical to the *$basis* and *$neo_basis* input sections. See examples in Section [13.5.6](subsec_neo-examples.md) for more details.
-**
 
 ## 13.5.4.2 Additional Keywords
 
@@ -375,10 +373,9 @@ as well as the Geometric Direct Minimization (GDM)[[1391]](../bib_references/bib
 >     * `User-defined`
 > * **Recommendation**: The rate of convergence of the NEO-SCF procedure is dependent on the initial guess for the electronic and protonic orbitals. For especially difficult systems, it may be helpful to do stepwise optimization before switching to simultaneous.
 
-**Note: 
+!!! note "Note"
+    The following variables are specific to SCF_ALGORITHM = DIIS.
 
-The following variables are specific to SCF_ALGORITHM = DIIS.
-**
 
 ### `DIIS_SUBSPACE_SIZE`
 
@@ -401,10 +398,9 @@ The following variables are specific to SCF_ALGORITHM = DIIS.
 >     * `FALSE`
 > * **Recommendation**: Use the default, the maximum error provides a more reliable criterion.
 
-**Note: 
+!!! note "Note"
+    The following variables are specific to SCF_ALGORITHM = DIIS_GDM.
 
-The following variables are specific to SCF_ALGORITHM = DIIS_GDM.
-**
 
 ### `MAX_DIIS_CYCLES`
 

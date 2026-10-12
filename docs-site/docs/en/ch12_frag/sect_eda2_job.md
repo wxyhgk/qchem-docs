@@ -26,87 +26,43 @@ provided by the developers. The option number is set through the EDA2
 users are allowed to overwrite the values of part of the preset *$rem*
 variables:
 
-- •
+- Related to the isolated fragment calculations:
 
-Related to the isolated fragment calculations:
+- EDA_CHILD_SUPER_BASIS: use the super-system basis for fragment calculations (default: FALSE).
+- FRAGMO_GUESS_MODE: as introduced in Section [12.3](sect_FRAGMOguess.md) (default: 0).
+- Related to the decomposition of the FRZ term:
 
-- **–**
-
-EDA_CHILD_SUPER_BASIS: use the super-system basis for fragment calculations (default: FALSE).
-- **–**
-
-FRAGMO_GUESS_MODE: as introduced in Section [12.3](sect_FRAGMOguess.md) (default: 0).
-- •
-
-Related to the decomposition of the FRZ term:
-
-- **–**
-
-FRZ_ORTHO_DECOMP: it can be turned off by setting its value to $-1$ in the *$rem* section 
+- FRZ_ORTHO_DECOMP: it can be turned off by setting its value to $-1$ in the *$rem* section 
 
 (default: TRUE).
-- **–**
+- FRZ_ORTHO_DECOMP_CONV: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: 6).
+- EDA_CLS_DISP: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: FALSE).
+- DISP_FREE_X: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: HF).
+- DISP_FREE_C: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: NONE).
+- Related to the evaluation and analysis of POL:
 
-FRZ_ORTHO_DECOMP_CONV: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: 6).
-- **–**
+- CHILD_MP_ORDERS: as introduced in Section [12.6.3](sect_ferf.md) (default: 232 (DQ)).
+- SCFMI_FREEZE_SS: as introduced in Section [12.6.2](sect_gen_scfmi.md) (default: 0).
+- EDA_POL_A: perform non-perturbative polarization analysis (default: FALSE; see Section [12.6.8](sect_eda2_vcta.md)).
+- Related to the evaluation of CT and BSSE:
 
-EDA_CLS_DISP: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: FALSE).
-- **–**
-
-DISP_FREE_X: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: HF).
-- **–**
-
-DISP_FREE_C: as introduced in Section [12.6.4](sect_frz_decomp.md) (default: NONE).
-- •
-
-Related to the evaluation and analysis of POL:
-
-- **–**
-
-CHILD_MP_ORDERS: as introduced in Section [12.6.3](sect_ferf.md) (default: 232 (DQ)).
-- **–**
-
-SCFMI_FREEZE_SS: as introduced in Section [12.6.2](sect_gen_scfmi.md) (default: 0).
-- **–**
-
-EDA_POL_A: perform non-perturbative polarization analysis (default: FALSE; see Section [12.6.8](sect_eda2_vcta.md)).
-- •
-
-Related to the evaluation of CT and BSSE:
-
-- **–**
-
-EDA_NO_CT: skip the evaluation of the CT term in the EDA procedure 
+- EDA_NO_CT: skip the evaluation of the CT term in the EDA procedure 
 
 (default: FALSE
 (automatically turned on when SCFMI_FREEZE_SS = TRUE)).
-- **–**
-
-EDA_BSSE: use counterpoise-corrected monomer calculations to evaluate the BSSE 
+- EDA_BSSE: use counterpoise-corrected monomer calculations to evaluate the BSSE 
 
 (default: FALSE).
-- **–**
-
-EDA_PCT_A: turn on perturbative (Roothaan step based) charge transfer analysis (default: FALSE).
-- **–**
-
-EDA_VCT_A: turn on non-perturbative charge transfer analysis (default: FALSE; see Section [12.6.8](sect_eda2_vcta.md)).
-- **–**
-
-EDA_COVP: perform COVP analysis for charge transfer (default: FALSE; see Section [12.5.3](sect_eda1.md)).
-- **–**
-
-EDA_PRINT_COVP: dump COVPs to the MO coefficient file (default: FALSE; see Section [12.5.3](sect_eda1.md)). 
+- EDA_PCT_A: turn on perturbative (Roothaan step based) charge transfer analysis (default: FALSE).
+- EDA_VCT_A: turn on non-perturbative charge transfer analysis (default: FALSE; see Section [12.6.8](sect_eda2_vcta.md)).
+- EDA_COVP: perform COVP analysis for charge transfer (default: FALSE; see Section [12.5.3](sect_eda1.md)).
+- EDA_PRINT_COVP: dump COVPs to the MO coefficient file (default: FALSE; see Section [12.5.3](sect_eda1.md)). 
 
 Note: EDA2 can automatically generate the cubes for the dominant complementary occupied-virtual orbitals for each pair of donor
 and acceptor fragments when EDA_PRINT_COVP is greater than 1.
-- •
+- Miscellaneous:
 
-Miscellaneous:
-
-- **–**
-
-EDA2_PRINT_LEVEL: print additional details for some of the EDA terms (*e.g.* solvation-corrected ELEC/PAULI)
+- EDA2_PRINT_LEVEL: print additional details for some of the EDA terms (*e.g.* solvation-corrected ELEC/PAULI)
 when set to $>1$ (default: 1)
 
 ### `EDA2`

@@ -61,61 +61,35 @@ AIMD_INIT_VELOC 还可以设置为 QUASICLASSICAL，
 AIMD 目录由一组文件构成，这些文件以 ASCII 格式记录每个时间步的一行信息。
 每个文件包含若干以 “#” 标识的注释行，用于描述其内容，我们在下文中汇总列出。
 
-- •
-
-`Cost`：记录每个动力学步的 SCF 循环次数、总 CPU 时间以及总内存使用量。
-- •
-
-`EComponents`：记录总能的各种组成部分（均以 hartree 为单位）。
-- •
-
-`Energy`：记录总能量及其涨落。
-- •
-
-`MulMoments`：若请求了多极矩（multipole moments），则输出到此文件。
-- •
-
-`NucCarts`：记录每个时间步的核笛卡尔坐标 $x_{1}$，$y_{1}$，
+- `Cost`：记录每个动力学步的 SCF 循环次数、总 CPU 时间以及总内存使用量。
+- `EComponents`：记录总能的各种组成部分（均以 hartree 为单位）。
+- `Energy`：记录总能量及其涨落。
+- `MulMoments`：若请求了多极矩（multipole moments），则输出到此文件。
+- `NucCarts`：记录每个时间步的核笛卡尔坐标 $x_{1}$，$y_{1}$，
 $z_{1}$，$x_{2}$，$y_{2}$，$z_{2}$，…，$x_{N}$，$y_{N}$，$z_{N}$，
 单位为 bohr 或埃（Ångstroms）。
-- •
-
-`NucForces`：记录每个时间步作用在原子核上的笛卡尔力
+- `NucForces`：记录每个时间步作用在原子核上的笛卡尔力
 （顺序与坐标相同，但以原子单位给出）。
-- •
-
-`NucVeloc`：记录每个时间步原子核的笛卡尔速度
+- `NucVeloc`：记录每个时间步原子核的笛卡尔速度
 （顺序与坐标相同，但以原子单位给出）。
-- •
-
-`TandV`：记录动能与势能，以及各自的涨落。
-- •
-
-`View.xyz`：`NucCarts` 的笛卡尔格式版本，
+- `TandV`：记录动能与势能，以及各自的涨落。
+- `View.xyz`：`NucCarts` 的笛卡尔格式版本，
 用于在外部可视化程序中查看轨迹。
 
 对于 ELMD 任务，还有其他一些输出文件：
 
-- •
-
-`ChangeInF`：记录在 Cholesky 正交化原子轨道（AO）基下
+- `ChangeInF`：记录在 Cholesky 正交化原子轨道（AO）基下
 $\Delta\mathbf{F}=\mathbf{F}(t+\delta t)-\mathbf{F}(t)$ 的矩阵范数及最大元素模。
 文件 ChangeInP、ChangeInL 和 ChangeInZ 分别为密度矩阵 $\mathbf{P}$
 以及在文献 [[558]](../bib_references/bib.md#bib572)
 中定义的 Cholesky 正交化矩阵 $\mathbf{L}$ 和 $\mathbf{Z}$ 提供类似信息。
-- •
-
-`DeltaNorm`：记录文献 [[558]](../bib_references/bib.md#bib572)
+- `DeltaNorm`：记录文献 [[558]](../bib_references/bib.md#bib572)
 中定义的曲步（curvy-steps）旋转角矩阵 $\Delta$ 的范数及最大元素模。
 $\Delta$ 的矩阵元是代表电子自由度的动力学变量。
 输出文件 DeltaDotNorm 为电子速度矩阵 $d\Delta/{dt}$ 提供相同的信息。
-- •
-
-`ElecGradNorm`：记录 Cholesky 基下电子梯度矩阵 $\mathbf{FP}-\mathbf{PF}$
+- `ElecGradNorm`：记录 Cholesky 基下电子梯度矩阵 $\mathbf{FP}-\mathbf{PF}$
 的范数及最大元素模。
-- •
-
-`dTfict:`：记录每个时间步虚拟动能（fictitious kinetic energy）的瞬时时间导数，
+- `dTfict:`：记录每个时间步虚拟动能（fictitious kinetic energy）的瞬时时间导数，
 以原子单位给出。
 
 通过将 JOBTYPE = AIMD 进行指定来请求从头算分子动力学任务。

@@ -12,21 +12,11 @@ title: "6.23.1 引言"
 
 在 **Q-Chem** 中，所有 v2RDM 优化均在以下条件下进行：
 
-- •
-
-2-RDM 是半正定的
-- •
-
-单电子约化密度矩阵（one-electron reduced-density matrix，1-RDM）是半正定的
-- •
-
-2-RDM 的迹等于电子对数 $N(N-1)$
-- •
-
-2-RDM 的每个自旋块能正确地收缩到 1-RDM 相应的自旋块
-- •
-
-$\hat{M}_{S}$ 的期望值为 $\frac{1}{2}(N_{\alpha}-N_{\beta})$（最大自旋投影）
+- 2-RDM 是半正定的
+- 单电子约化密度矩阵（one-electron reduced-density matrix，1-RDM）是半正定的
+- 2-RDM 的迹等于电子对数 $N(N-1)$
+- 2-RDM 的每个自旋块能正确地收缩到 1-RDM 相应的自旋块
+- $\hat{M}_{S}$ 的期望值为 $\frac{1}{2}(N_{\alpha}-N_{\beta})$（最大自旋投影）
 
 此外，可以对 2-RDM 施加可选的自旋约束，使得 $\langle\hat{S}^{2}\rangle=S(S+1)$（以 $\hbar^{2}$ 为单位），其中 $S$ 为自旋量子数。请注意，对 $\hat{S}^{2}$ 期望值的这一约束并不能严格保证 2-RDM 对应于 $\hat{S}^{2}$ 的本征函数。若没有额外的约束，v2RDM 优化会得到质量低劣的 2-RDM，其能量远低于全 CI 的结果。要获得合理的结果，至少需要强制额外的对概率密度矩阵（pair-probability density matrices）的正性，包括两空穴约化密度矩阵（two-hole reduced-density matrix，${}^{2}\mathbf{Q}$）和粒子-空穴约化密度矩阵（particle-hole reduced-density matrix，${}^{2}\mathbf{G}$）。${}^{2}\mathbf{D}$、${}^{2}\mathbf{Q}$ 与 ${}^{2}\mathbf{G}$ 的正性构成了 Garrod 与 Percus 提出的 DQG 约束。[[430]](../bib_references/bib.md#bib442)
  对许多体系而言，DQG 约束能够给出对电子结构的合理描述。然而，若追求高精度，有时需要考虑对更高阶约化密度矩阵的约束（*例如* 三电子约化密度矩阵 [3-RDM]）。在 **Q-Chem** 中，v2RDM 优化可以在 T1 与 T2 部分三粒子条件（partial three-particle conditions）[[369]](../bib_references/bib.md#bib372)

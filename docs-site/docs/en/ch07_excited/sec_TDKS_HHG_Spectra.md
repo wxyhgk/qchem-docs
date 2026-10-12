@@ -29,9 +29,7 @@ see Section [7.4.2.3](sec_TDKS_JobControl.md#sec:TDKS:CAP).
 
 A script is provided to obtain the spectrum after the TDKS simulation is completed:
 
-- •
-
-`$QC/bin/tools/tdks_hhg.py`
+- `$QC/bin/tools/tdks_hhg.py`
 
 This uses Eq. ([7.73](#eq:hhg2)) with $w(t)$ taken to be the Hamming window function.[[1579]](../bib_references/bib.md#bib1642)
 

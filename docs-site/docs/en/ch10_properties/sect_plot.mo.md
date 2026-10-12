@@ -133,64 +133,28 @@ excited state, *etc.*; and attach/detach specified from state $1\rightarrow N_{\
 By default, all output data are printed to files in the working directory, overwriting any
 existing file of the same name.
 
-- •
+- Molecular orbital data is printed to a file called `plot.mo`.
+- Densities are plotted to `plots.hf`.
+- Restricted unrelaxed attachment/detachment analysis is sent to:
 
-Molecular orbital data is printed to a file called `plot.mo`.
-- •
+- `plot.attach.alpha`
+- `plot.detach.alpha`
+- Unrestricted unrelaxed attachment/detachment analysis is sent to:
 
-Densities are plotted to `plots.hf`.
-- •
+- `plot.attach.alpha`
+- `plot.detach.alpha`
+- `plot.attach.beta`
+- `plot.detach.beta`
+- Restricted relaxed attachments/detachment analysis is plotted in:
 
-Restricted unrelaxed attachment/detachment analysis is sent to:
+- `plot.attach.rlx.alpha`
+- `plot.detach.rlx.alpha`
+- Unrestricted relaxed attachment/detachment analysis is sent to:
 
-- **–**
-
-`plot.attach.alpha`
-- **–**
-
-`plot.detach.alpha`
-- •
-
-Unrestricted unrelaxed attachment/detachment analysis is sent to:
-
-- **–**
-
-`plot.attach.alpha`
-- **–**
-
-`plot.detach.alpha`
-- **–**
-
-`plot.attach.beta`
-- **–**
-
-`plot.detach.beta`
-- •
-
-Restricted relaxed attachments/detachment analysis is plotted in:
-
-- **–**
-
-`plot.attach.rlx.alpha`
-- **–**
-
-`plot.detach.rlx.alpha`
-- •
-
-Unrestricted relaxed attachment/detachment analysis is sent to:
-
-- **–**
-
-`plot.attach.rlx.alpha`
-- **–**
-
-`plot.attach.rlx.alpha`
-- **–**
-
-`plot.attach.rlx.beta`
-- **–**
-
-`plot.detach.rlx.beta`
+- `plot.attach.rlx.alpha`
+- `plot.attach.rlx.alpha`
+- `plot.attach.rlx.beta`
+- `plot.detach.rlx.beta`
 
 Output is printed in atomic units, with coordinates first followed by item value, as shown below:
 

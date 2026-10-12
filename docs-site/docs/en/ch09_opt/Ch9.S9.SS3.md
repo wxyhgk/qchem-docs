@@ -178,10 +178,9 @@ AIMD_INTEGRATION to RATTLE. Constraints are imposed via the
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The bond length values should be in Ångstrom units.
 
-The bond length values should be in Ångstrom units.
-**
 
 The convergence threshold and the number of maximum iterations for RATTLE steps
 are controlled by the following *$rem* variables: RATTLE_THRESH (with

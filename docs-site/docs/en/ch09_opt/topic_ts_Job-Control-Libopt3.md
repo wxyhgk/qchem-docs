@@ -343,12 +343,11 @@ D A-B-C (ABC is Linear)
 
 D A-B-C (ABC is Linear)
 
-**Note: 
+!!! note "Note"
+    The first line is the total number of coordinates to read.
+    Then the following lines are the coordinate definition to be used, following the
+    definition above: coordinate type, atom number 1, ….
 
-The first line is the total number of coordinates to read.
-Then the following lines are the coordinate definition to be used, following the
-definition above: coordinate type, atom number 1, ….
-**
 
 > ```qchem
 > $geom_opt_topology

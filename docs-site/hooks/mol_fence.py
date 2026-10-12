@@ -162,24 +162,45 @@ def extract_xyz_from_qchem(code_text: str) -> str | None:
     return None
 
 
+R1_SEP = re.compile(r"^([ \t]*)[-*]\s*•[ \t\u00a0]*\n+[ \t\u00a0]*(?=\S)", re.M)
+R1_SAME = re.compile(r"^([ \t]*)[-*]\s*•[ \t\u00a0]+(?=\S)", re.M)
+R2_SEP = re.compile(r"^([ \t]*)[-*]\s*\*\*[-–—]\*\*[ \t\u00a0]*\n+[ \t\u00a0]*(?=\S)", re.M)
+R2_SAME = re.compile(r"^([ \t]*)[-*]\s*\*\*[-–—]\*\*[ \t\u00a0]+(?=\S)", re.M)
+R3_SEP = re.compile(r"^([ \t]*)-\s*\*+[ \t\u00a0]*\n+[ \t\u00a0]*(?=\S)", re.M)
+R3_SAME = re.compile(r"^([ \t]*)-\s*\*+[ \t\u00a0]+(?=\S)", re.M)
+R4_SEP = re.compile(r"^([ \t]*)(\d+)\.\s*\2\.[ \t\u00a0]*\n+[ \t\u00a0]*(?=\S)", re.M)
+R4_SAME = re.compile(r"^([ \t]*)(\d+)\.\s*\2\.[ \t\u00a0]+(?=\S)", re.M)
+R5_STRAY = re.compile(r"\n\n[ \t]*\*\*[。.]?[ \t\u00a0]*\n\n")
+
+
 def on_page_markdown(markdown: str, **kwargs) -> str:
-    """Handle explicit ```mol fences in markdown."""
-    if "```mol" not in markdown:
-        return markdown
+    """Preprocess markdown: clean list artifacts and handle explicit ```mol fences."""
+    if "•" in markdown or "**–**" in markdown or "**-**" in markdown:
+        markdown = R1_SEP.sub(r"\1- ", markdown)
+        markdown = R1_SAME.sub(r"\1- ", markdown)
+        markdown = R2_SEP.sub(r"\1- ", markdown)
+        markdown = R2_SAME.sub(r"\1- ", markdown)
+        markdown = R3_SEP.sub(r"\1- ", markdown)
+        markdown = R3_SAME.sub(r"\1- ", markdown)
+    if "1. 1." in markdown or "2. 2." in markdown:
+        markdown = R4_SEP.sub(r"\1\2. ", markdown)
+        markdown = R4_SAME.sub(r"\1\2. ", markdown)
 
-    def _replace(match):
-        meta, xyz, inp = _split_body(match.group("body"))
-        return match.group("indent") + render_mol_panel(
-            xyz,
-            inp,
-            title=meta.get("title", ""),
-            theme=meta.get("theme", "chem311"),
-            height=meta.get("height", "360px"),
-            repr_style=meta.get("representation", "ball-stick"),
-            fmt=meta.get("format", "xyz"),
-        )
+    if "```mol" in markdown:
+        def _replace(match):
+            meta, xyz, inp = _split_body(match.group("body"))
+            return match.group("indent") + render_mol_panel(
+                xyz,
+                inp,
+                title=meta.get("title", ""),
+                theme=meta.get("theme", "chem311"),
+                height=meta.get("height", "360px"),
+                repr_style=meta.get("representation", "ball-stick"),
+                fmt=meta.get("format", "xyz"),
+            )
+        markdown = FENCE.sub(_replace, markdown)
 
-    return FENCE.sub(_replace, markdown)
+    return markdown
 
 
 def on_page_content(html: str, **kwargs) -> str:

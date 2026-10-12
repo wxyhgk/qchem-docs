@@ -45,11 +45,10 @@ The CCSD(T) calculation can be restarted using the *$ccsd_pt_restart* data
 printed during the CCSD(T) calculation. To restart the job simply copy the last
 printed *$ccsd_pt_restart* to your **Q-Chem** input file.
 
-**Note: 
+!!! note "Note"
+    For the best performance of **libpt** (T) code, parallel execution should be requested,
+    see Section [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel).
 
-For the best performance of **libpt** (T) code, parallel execution should be requested,
-see Section [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel).
-**
 
 ### `USE_LIBPT`
 

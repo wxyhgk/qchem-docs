@@ -32,15 +32,9 @@ $$
 
 所选态始终满足以下条件之一
 
-1. 1.
-
-它是 $\gamma_{E}$ 所定义窗口内唯一的态。
-2. 2.
-
-它是重叠度最大的态，前提是至少有一个态满足 $\mathcal{S}\geq\gamma_{S}$。
-3. 3.
-
-若窗口内所有态都满足 $\mathcal{S}<\gamma_{S}$，或能量窗口内没有任何态，则选择能量上最接近的态。
+1. 它是 $\gamma_{E}$ 所定义窗口内唯一的态。
+2. 它是重叠度最大的态，前提是至少有一个态满足 $\mathcal{S}\geq\gamma_{S}$。
+3. 若窗口内所有态都满足 $\mathcal{S}<\gamma_{S}$，或能量窗口内没有任何态，则选择能量上最接近的态。
 
 态跟随（state-following）目前可用于 CIS 或 TDDFT 激发态，通过 *$rem* 变量 STATE_FOLLOW 启用。它可以用于几何优化、*从头算（ab initio）*分子动力学，[[256]](../bib_references/bib.md#bib256)
 

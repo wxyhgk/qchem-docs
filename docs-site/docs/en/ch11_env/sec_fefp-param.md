@@ -50,25 +50,17 @@ $end
 The four first lines are required for the first step of the script
 (**gamess** MAKEFP job); the next ones are necessary for the actual EFP job:
 
-- •
-
-`Name`: Residue name
-- •
-
-`PreAtoms`:
+- `Name`: Residue name
+- `PreAtoms`:
 Atoms which belongs to the residue for **gamess** MAKEFP calculation.
-- •
-
-`CH, NH, or OH`:
+- `CH, NH, or OH`:
 In the case of broken bonds a hydrogen atom is added so
 that in X–Y bond (where X belongs to the Lys2 residue and Y belongs to the
 previous or next residue) the Y atom is replaced by H along the X–Y axis.
 The default equilibrium distance for the X-H bond is set to 1.08 Å for
 a C–H bond, to 1.00 Å for a N–H bond, and to 0.94 Å for a O–H bond.
 It required to specify the atom number of the X and Y atoms.
-- •
-
-`PostAtoms`:
+- `PostAtoms`:
 Atoms which belong to the residue after removing the
 overlapping fragment atoms or caps when the HLA or the CLA
 scheme is used. This important step removes multipoles and polarizability
@@ -81,31 +73,19 @@ Expand-Remove-Redistribute. Concerning the polarizability expansion
 points, only one polarizability expansion point is removed when a hydrogen atom
 saturates the dangling bond, whereas 6 or 5 polarizability points are
 removed when the cap is an amine or an aldehyde, respectively.
-- •
-
-`ResCharge`: The net charge of the residue after removing the
+- `ResCharge`: The net charge of the residue after removing the
 overlapping fragment atoms (*cf.* the LA scheme).
-- •
-
-`USEFP`:
+- `USEFP`:
 Name of the EFP fragment (and `.efp` file) to use with this fragment in the
 actual EFP calculation.
 
-**Note: 
+!!! note "Note"
+    - In the MFCC scheme, the two first letters of the concap fragment have to be “CC”.
 
-•
+    - If the *PostAtoms* keyword is not present, the second script will
+    generate an EFP job file without any modification of the parameters, which is useful for the MFCC scheme.
 
-In the MFCC scheme, the two first letters of the concap fragment have to be “CC”.
+    - **Q-Chem**’s implementation of EFP currently does not support dipole–quadrupole polarizabilities.
+    These may be present in a `.efp` generated using **gamess** and should be removed if that file is to be
+    read by **Q-Chem**.
 
-•
-
-If the *PostAtoms* keyword is not present, the second script will
-generate an EFP job file without any modification of the parameters, which is useful for the MFCC scheme.
-
-•
-
-**Q-Chem**’s implementation of EFP currently does not support dipole–quadrupole polarizabilities.
-These may be present in a `.efp` generated using **gamess** and should be removed if that file is to be
-read by **Q-Chem**.
-
-**

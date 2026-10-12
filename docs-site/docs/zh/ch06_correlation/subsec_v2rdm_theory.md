@@ -49,12 +49,8 @@ $$
 
 BPSDP 算法包含一个迭代的二步流程：
 
-1. 1.
-
-用共轭梯度法（conjugate gradient methods）求解 $\mathbf{AA}^{T}\mathbf{y}=\mathbf{A}(\mathbf{c}-\mathbf{z})+\tau\mu(\mathbf{b}-\mathbf{A}\mathbf{x})$ 得到 $\mathbf{y}$。
-2. 2.
-
-通过对角化将 $\mathbf{U}=M(\mu\mathbf{x}+\mathbf{A}^{T}\mathbf{y}-\mathbf{c})$ 分解为正分量与负分量，从而更新 $\mathbf{x}$ 与 $\mathbf{z}$。更新后的原始解与对偶解 $\mathbf{x}$ 和 $\mathbf{z}$ 由 $M(\mathbf{x})=\mathbf{U}(+)/\mu$ 与 $M(\mathbf{z})=-\mathbf{U}(-)$ 给出。
+1. 用共轭梯度法（conjugate gradient methods）求解 $\mathbf{AA}^{T}\mathbf{y}=\mathbf{A}(\mathbf{c}-\mathbf{z})+\tau\mu(\mathbf{b}-\mathbf{A}\mathbf{x})$ 得到 $\mathbf{y}$。
+2. 通过对角化将 $\mathbf{U}=M(\mu\mathbf{x}+\mathbf{A}^{T}\mathbf{y}-\mathbf{c})$ 分解为正分量与负分量，从而更新 $\mathbf{x}$ 与 $\mathbf{z}$。更新后的原始解与对偶解 $\mathbf{x}$ 和 $\mathbf{z}$ 由 $M(\mathbf{x})=\mathbf{U}(+)/\mu$ 与 $M(\mathbf{z})=-\mathbf{U}(-)$ 给出。
 
 这里，$\tau$ 是步长参数，取自区间 [1.0,1.6] [[930]](../bib_references/bib.md#bib968)
 。惩罚参数 $\mu$ 控制原始约束或对偶约束被强制施加的严格程度，并按照文献 [[930]](../bib_references/bib.md#bib968)

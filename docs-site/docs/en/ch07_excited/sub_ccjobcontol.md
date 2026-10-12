@@ -26,28 +26,25 @@ well as symmetry of transition. It is possible to turn off the use of symmetry
 by CC_SYMMETRY. If set to FALSE the molecule will be treated
 as having $C_{1}$ symmetry and all states will be of $A$ symmetry.
 
-**Note: 
+!!! note "Note"
+    Only Abelian groups are supported; USE_ABELIAN_SUBGROUP
+    must be set to TRUE for all CCMAN and CCMAN2 jobs (it is set by default).
 
-Only Abelian groups are supported; USE_ABELIAN_SUBGROUP
-must be set to TRUE for all CCMAN and CCMAN2 jobs (it is set by default).
-**
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    In finite-difference calculations, the symmetry is turned off
+    automatically, and the user must ensure that XX_STATES is
+    adjusted accordingly.
 
-In finite-difference calculations, the symmetry is turned off
-automatically, and the user must ensure that XX_STATES is
-adjusted accordingly.
+    2.
 
-2.
+    In CCMAN2, different types of
+    target states can be requested in a single calculation.
+    In CCMAN, mixing different EOM models in a single calculation is only
+    allowed in Dyson orbitals calculations.
 
-In CCMAN2, different types of
-target states can be requested in a single calculation.
-In CCMAN, mixing different EOM models in a single calculation is only
-allowed in Dyson orbitals calculations.
-
-**
 
 Below we describe alternative way to specify correlation treatment in EOM-CC/CI
 calculations. These keywords will be eventually phased out. By default, the
@@ -349,31 +346,28 @@ The most relevant EOM-CC input options follow.
 >     * $[i,j,k\ldots]$: Find $i$ DEA $\alpha\beta$ states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    It is a symmetry of a *transition* rather than that of a *target
+    state* which is specified in excited state calculations. The symmetry of the
+    target state is a product of the symmetry of the reference state and the
+    transition. For closed-shell molecules, the former is fully symmetric and the
+    symmetry of the target state is the same as that of transition, however, for
+    open-shell references this is not so.
 
-It is a symmetry of a *transition* rather than that of a *target
-state* which is specified in excited state calculations. The symmetry of the
-target state is a product of the symmetry of the reference state and the
-transition. For closed-shell molecules, the former is fully symmetric and the
-symmetry of the target state is the same as that of transition, however, for
-open-shell references this is not so.
-**
 
-**Note: 
+!!! note "Note"
+    In earlier versions of **Q-Chem**, we used EOM_XX_STATES. These keywords were replaced by XX_STATES for uniformity (e.g., they are also used in ADC methods to specify target ADC states).
+    For backward compatibility,
+    the old keywords are aliased to the new ones, so old inputs would still work.
+    However, these old keywords eventually will be depreciated. It is recommended
+    to switch to the new ones.
 
-In earlier versions of **Q-Chem**, we used EOM_XX_STATES. These keywords were replaced by XX_STATES for uniformity (e.g., they are also used in ADC methods to specify target ADC states).
-For backward compatibility,
-the old keywords are aliased to the new ones, so old inputs would still work.
-However, these old keywords eventually will be depreciated. It is recommended
-to switch to the new ones.
-**
 
-**Note: 
+!!! note "Note"
+    For the XX_STATES options, **Q-Chem** will increase the number of
+    roots if it suspects degeneracy, or change it to a smaller value, if it cannot
+    generate enough guess vectors to start the calculations.
 
-For the XX_STATES options, **Q-Chem** will increase the number of
-roots if it suspects degeneracy, or change it to a smaller value, if it cannot
-generate enough guess vectors to start the calculations.
-**
 
 ### `EOM_FAKE_IPEA`
 
@@ -385,19 +379,18 @@ generate enough guess vectors to start the calculations.
 >     * `FALSE, TRUE`
 > * **Recommendation**: None. This feature only works for CCMAN.
 
-**Note: 
+!!! note "Note"
+    When EOM_FAKE_IPEA is set to TRUE, it can change the
+    convergence of Hartree-Fock iterations compared to the same job without
+    EOM_FAKE_IPEA, because a very diffuse basis function is added to a
+    center of symmetry *before* the Hartree-Fock iterations start. For the
+    same reason, BASIS2 keyword is incompatible with
+    EOM_FAKE_IPEA. In order to read Hartree-Fock guess from a previous
+    job, you must specify EOM_FAKE_IPEA (even if you do not request for
+    any correlation or excited states) in that previous job. Currently, the second
+    moments of electron density and Mulliken charges and spin densities are
+    incorrect for the EOM-IP/EA-CCSD target states.
 
-When EOM_FAKE_IPEA is set to TRUE, it can change the
-convergence of Hartree-Fock iterations compared to the same job without
-EOM_FAKE_IPEA, because a very diffuse basis function is added to a
-center of symmetry *before* the Hartree-Fock iterations start. For the
-same reason, BASIS2 keyword is incompatible with
-EOM_FAKE_IPEA. In order to read Hartree-Fock guess from a previous
-job, you must specify EOM_FAKE_IPEA (even if you do not request for
-any correlation or excited states) in that previous job. Currently, the second
-moments of electron density and Mulliken charges and spin densities are
-incorrect for the EOM-IP/EA-CCSD target states.
-**
 
 ### `EOM_USER_GUESS`
 
@@ -452,11 +445,10 @@ incorrect for the EOM-IP/EA-CCSD target states.
 >     * `1`: pre-converge singles
 > * **Recommendation**: Sometimes helps with problematic convergence.
 
-**Note: 
+!!! note "Note"
+    In CCMAN, setting EOM_PRECONV_SINGLES = $N$ would result in $N$
+    Davidson iterations pre-converging singles.
 
-In CCMAN, setting EOM_PRECONV_SINGLES = $N$ would result in $N$
-Davidson iterations pre-converging singles.
-**
 
 ### `EOM_PRECONV_DOUBLES`
 
@@ -469,10 +461,9 @@ Davidson iterations pre-converging singles.
 >     * `N`: Perform N Davidson iterations pre-converging doubles.
 > * **Recommendation**: Occasionally necessary to ensure a doubly excited state is found. Also used in DSF, DIP, and DEA calculations instead of EOM_PRECONV_SINGLES
 
-**Note: 
+!!! note "Note"
+    Not available for EOM-EE in CCMAN2.
 
-Not available for EOM-EE in CCMAN2.
-**
 
 ### `EOM_PRECONV_SD`
 
@@ -485,10 +476,9 @@ Not available for EOM-EE in CCMAN2.
 >     * `N`: perform N Davidson iterations pre-converging singles and doubles.
 > * **Recommendation**: Occasionally necessary to ensure that all low-lying states are found. Also, very useful in EOM(2,3) calculations. None
 
-**Note: 
+!!! note "Note"
+    Not available in CCMAN2.
 
-Not available in CCMAN2.
-**
 
 ### `EOM_DAVIDSON_CONVERGENCE`
 
@@ -572,10 +562,9 @@ Not available in CCMAN2.
 >     * `FALSE, TRUE`
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    Not available in CCMAN2.
 
-Not available in CCMAN2.
-**
 
 ### `CC_FNO_THRESH`
 

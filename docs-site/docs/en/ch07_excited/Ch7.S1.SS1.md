@@ -27,47 +27,33 @@ In excited-state calculations, as for ground state calculations, the user must
 strike a compromise between cost and accuracy. This chapter
 summarizes **Q-Chem**’s capabilities in four general classes of excited state methods:
 
-- •
-
-Single-electron wave function-based methods (Section [7.2](sect_noncorr.md)).
+- Single-electron wave function-based methods (Section [7.2](sect_noncorr.md)).
 These are excited state treatments of roughly the same level of
 sophistication as the Hartree-Fock ground state method, in the sense
 that electron correlation is essentially ignored. Single excitation
 configuration interaction (CIS) is the workhorse method of this type.
 The spin-flip variant of CIS extends it to diradicals and other situations with small HOMO-LUMO gaps.
-- •
-
-Time-dependent density functional theory (TDDFT,
+- Time-dependent density functional theory (TDDFT,
 Section [7.3](sect_tddft.md)). TDDFT is a widely used extension of DFT to
 excited states. For a cost that is only a little larger than that of a
 CIS calculation, TDDFT typically affords significantly greater accuracy due to
 a treatment of electron correlation. It, too, has a spin-flip variant (as well as its improved
 version, mixed reference SF-TDDFT) that can
 be used to study di- and tri-radicals as well as bond breaking.
-- •
-
-The Maximum Overlap Method (MOM) for excited $\Delta$SCF states
+- The Maximum Overlap Method (MOM) for excited $\Delta$SCF states
 (Section [7.7.2](ex_OpSing.md)). This method overcomes some of the deficiencies of
 TDDFT and, in particular, can be used for modeling charge-transfer and Rydberg
 transitions as well as core-excited states.
-- •
-
-Restricted open-shell Kohn-Sham (ROKS) method is a spin-purified,
+- Restricted open-shell Kohn-Sham (ROKS) method is a spin-purified,
 orbital optimized approach for excited states (Section [7.7.4](ex_ESROKS.md)).
 It is very accurate for modeling charge-transfer states and core-excitations.
-- •
-
-The Square Gradient Minimization (SGM) algorithm can be used to converge both $\Delta$SCF
+- The Square Gradient Minimization (SGM) algorithm can be used to converge both $\Delta$SCF
 and ROKS excited states. Details about using SGM in practice can be found in
 Section [4.5.15](../ch04_scf/sect_SGM-SCF.md).
-- •
-
-The State-Targeted Energy Projection (STEP) algorithm (Section [7.7.8](ex_ROSTEP.md))
+- The State-Targeted Energy Projection (STEP) algorithm (Section [7.7.8](ex_ROSTEP.md))
 is available for $\Delta$SCF and ROKS excited states. It is less expensive than SGM
 and usually more robust than MOM.
-- •
-
-Wave function-based electron correlation treatments
+- Wave function-based electron correlation treatments
 (Sections [7.8](sect_excorr.md), [7.10](sect_exadc.md), [7.11](topic_rasi.md) and [7.9](topic_eomcc.md)).
 Roughly speaking, these are excited state analogues of the ground state
 wave function-based electron correlation methods discussed in
@@ -77,11 +63,10 @@ computationally expensive. These methods can also describe certain
 multi-configurational wave functions, for example, problematic doublet
 radicals, diradicals, triradicals, and more.
 
-**Note: 
+!!! note "Note"
+    Core electrons are frozen by default in most correlated excited-state
+    calculations (see Section [6.2](../ch06_correlation/sec_core.md)).
 
-Core electrons are frozen by default in most correlated excited-state
-calculations (see Section [6.2](../ch06_correlation/sec_core.md)).
-**
 
 In general, a basis set appropriate for a ground state density functional
 theory or a Hartree-Fock calculation will be appropriate for describing
@@ -97,9 +82,7 @@ of both valence and Rydberg excited states.
 
 **Q-Chem** supports four main types of excited state calculation:
 
-- •
-
-**Vertical absorption spectrum
+- **Vertical absorption spectrum
 
 **This is the calculation of the excited states of the molecule at the
 ground state geometry, as appropriate for absorption spectroscopy. The
@@ -114,16 +97,12 @@ with the polarizable continuum model (PCM) to model the absorption
 spectrum in solution following state-specific nonequilibrium approach.
 Most EOM methods can be combined with explicit solvent treatments using
 classical (QM/MM) and polarizable (QM/EFP) embedding.
-- •
-
-**Electronic spectra beyond UV-Vis
+- **Electronic spectra beyond UV-Vis
 
 ****Q-Chem** affords calculations of other types of electronic spectra, including
 electronic circular dichroism, optical rotations, and two-photon transitions. Extensions to core-level spectra are
 also available.
-- •
-
-**Visualization
+- **Visualization
 
 **It is possible to visualize the excited states either by
 attachment/detachment density analysis (available for CIS, RPA, TDDFT,
@@ -138,9 +117,7 @@ from the ground and electronically excited states or detachment from
 electron-attached states for CCSD and EOM-CCSD wave functions. For the
 RAS-SF method (Section [7.11](topic_rasi.md)), one can plot the natural orbitals
 of a computed electronic state.
-- •
-
-**Excited-state optimization**
+- **Excited-state optimization**
 
 Optimization of the geometry of stationary points on excited state
 potential energy surfaces is valuable for understanding the geometric
@@ -148,23 +125,17 @@ relaxation that occurs between the ground and excited state. Analytic
 first derivatives are available for UCIS, RCIS, TDDFT, and EOM-CCSD.
 Excited state optimizations may also be performed using finite difference
 methods, however, these can be very time-consuming to perform.
-- •
-
-**Optimization of the crossings between potential energy surfaces**
+- **Optimization of the crossings between potential energy surfaces**
 
 Seams between potential energy surfaces can be located and optimized by using analytic
 gradients within EOM-CCSD, CIS, and TD-DFT formalisms.
-- •
-
-**Properties
+- **Properties
 
 **Properties such as dipole moments, spatial extent
 of electron densities and $\langle\hat{S}^{2}\rangle$ values can be computed for
 ADC, EOM-CCSD, EOM-MP2, EOM-OD, RAS-SF and CIS wave functions.
 Static polarizabilities are available for CCSD, EOM-EE-CCSD, and EOM-SF-CCSD methods.
-- •
-
-**Transition properties and state interactions
+- **Transition properties and state interactions
 
 **Transition dipole moments and oscillator strengths can be computed with
 practically all excited-state methods. Matrix elements and
@@ -174,9 +145,7 @@ can be computed for EOM-CCSD, RAS-SF, CIS,
 and TDDFT wave functions. Dyson orbitals are available for EOM-CC wave
 functions. Transition properties can be computed between the reference
 and target states (*e.g.*, HF-CIS) or between different target states (*e.g.*, CIS-CIS or CCSD-EOM-CCSD).
-- •
-
-**Excited-state vibrational analysis**
+- **Excited-state vibrational analysis**
 
 Given an optimized excited state geometry, **Q-Chem** can calculate the
 force constants at the stationary point to predict excited state
@@ -188,12 +157,11 @@ derivatives are available. EOM-CCSD frequencies are also available using
 analytic first derivatives and second derivatives obtained from finite
 difference methods. EOM-OD frequencies are only available through finite difference calculations.
 
-**Note: 
+!!! note "Note"
+    EOM-CC and most of the CI codes are part of CCMAN and CCMAN2. CCMAN is
+    a legacy code which is being phased out. All new developments and
+    performance-enhancing features are implemented in CCMAN2.
 
-EOM-CC and most of the CI codes are part of CCMAN and CCMAN2. CCMAN is
-a legacy code which is being phased out. All new developments and
-performance-enhancing features are implemented in CCMAN2.
-**
 
 ### `METHOD`
 

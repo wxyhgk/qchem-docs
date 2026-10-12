@@ -41,16 +41,14 @@ DIP_STATES, or DIP_SINGLETS and DIP_TRIPLETS.
 In certain circumstances, the DIP_AA_STATES, DIP_BB_STATES,
 DIP_BA_STATES keywords can be used.
 
-**Note: 
+!!! note "Note"
+    The performance of EOM-DIP may be poor if the reference state is unstable
+    with respect to electron detachment. See Section [7.9.13](sec_CAGE.md) for details.
 
-The performance of EOM-DIP may be poor if the reference state is unstable
-with respect to electron detachment. See Section [7.9.13](sec_CAGE.md) for details.
-**
 
-**Note: 
+!!! note "Note"
+    In some applications of EOM-DIP-CCSD, only
+    2$h$ operators were included in the EOM part. These calculations
+    correspond to energies obtained from EOM_PRECONV_DOUBLES = TRUE
+    calculation.
 
-In some applications of EOM-DIP-CCSD, only
-2$h$ operators were included in the EOM part. These calculations
-correspond to energies obtained from EOM_PRECONV_DOUBLES = TRUE
-calculation.
-**

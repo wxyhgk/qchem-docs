@@ -23,12 +23,11 @@ increase the number of singly excited guess vectors
 (EOM_NGUESS_SINGLES) and include doubly excited guess vectors
 (EOM_NGUESS_DOUBLES).
 
-**Note: 
+!!! note "Note"
+    In CCMAN2, if there is not enough singly excited guess vectors, the
+    algorithm adds doubly excited guess vectors. In CCMAN, doubly excited guess
+    vectors are generated only if EOM_NGUESS_DOUBLES is invoked.
 
-In CCMAN2, if there is not enough singly excited guess vectors, the
-algorithm adds doubly excited guess vectors. In CCMAN, doubly excited guess
-vectors are generated only if EOM_NGUESS_DOUBLES is invoked.
-**
 
 The user can request to pre-converge singles (solve the equations in
 singles-only block of the Hamiltonian. This is done by using
@@ -37,11 +36,10 @@ one can pre-converge $2p$/$2h$ amplitudes by using EOM_PRECONV_DOUBLES.
 In the CVS suite of methods, this option is invoked by
 CVS_EOM_PRECONV_SINGLES.
 
-**Note: 
+!!! note "Note"
+    In CCMAN, the user can pre-converge both singles and doubles blocks
+    (EOM_PRECONV_SINGLES and EOM_PRECONV_DOUBLES)
 
-In CCMAN, the user can pre-converge both singles and doubles blocks
-(EOM_PRECONV_SINGLES and EOM_PRECONV_DOUBLES)
-**.
 
 If a state (or several states) of a particular character is desired (*e.g.*,
 $\rm HOMO\rightarrow LUMO+10$ excitation or $\rm HOMO-10$ ionization), the user

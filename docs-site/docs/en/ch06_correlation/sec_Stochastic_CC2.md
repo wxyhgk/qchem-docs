@@ -13,15 +13,13 @@ with ${\cal{O}}({N^{5}})$ of RI-CC2), which facilitates applications to much lar
 These codes are under development. Users are advised to refer to the sample jobs
 named `libgmbpt_sricc$\ast$` and `libgmbpt_thc_sricc$\ast$` for guidance.
 
-**Note: 
+!!! note "Note"
+    sRI-CC2 currently does not support frozen core: N_FROZEN_CORE must be set to zero.
 
-sRI-CC2 currently does not support frozen core: N_FROZEN_CORE must be set to zero.
-**
 
-**Note: 
+!!! note "Note"
+    sRI-CC2 currently does not support geometry optimization and can only be used with JOBTYPE=SP.
 
-sRI-CC2 currently does not support geometry optimization and can only be used with JOBTYPE=SP.
-**
 
 RI-CC2 and sRI-CC2 are deployed by setting METHOD = CC2 *and* specifying
 AIX_BASIS appropriately.

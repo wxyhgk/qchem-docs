@@ -81,47 +81,21 @@ BWs-ADC 计算在单个 Q-Chem 作业中以两步流程执行。首先，在 `li
 
 要运行 BWs-ADC 计算，请在输入文件中包含以下内容：
 
-- •
+- 在 REM 段中，将 METHOD 设置为 RIBWS2。
+- 在 REM 段中，同时指定 BASIS 以及 AUX_BASIS 或 AUX_BASIS_CORR 其中之一。
+- 在 *$bws2* 段中使用 METHOD 关键字选择一种分拆方案。我们推荐：
 
-在 REM 段中，将 METHOD 设置为 RIBWS2。
-- •
+- 在 *$bws2* 段中将 METHOD 设置为 MPR-BWS2。
+- 在 *$bws2* 段中将 MPR_A0 设置为目标 $A_{0}$ 值。
+- 在 *$bws2* 段中将 MPR_B0 设置为目标 $B_{0}$ 值。
+- 在 *$bws2* 段中，使用 EXC_METHOD 关键字确定 BWs-ADC 的变体：
 
-在 REM 段中，同时指定 BASIS 以及 AUX_BASIS 或 AUX_BASIS_CORR 其中之一。
-- •
-
-在 *$bws2* 段中使用 METHOD 关键字选择一种分拆方案。我们推荐：
-
-- **–**
-
-在 *$bws2* 段中将 METHOD 设置为 MPR-BWS2。
-- **–**
-
-在 *$bws2* 段中将 MPR_A0 设置为目标 $A_{0}$ 值。
-- **–**
-
-在 *$bws2* 段中将 MPR_B0 设置为目标 $B_{0}$ 值。
-- •
-
-在 *$bws2* 段中，使用 EXC_METHOD 关键字确定 BWs-ADC 的变体：
-
-- **–**
-
-对于 BWs-ADC(0)，将 EXC_METHOD 设置为 ADC(0) 或 ADC0。
-- **–**
-
-对于 BWs-ADC(2)-s，将 EXC_METHOD 设置为 ADC(2)、ADC2、ADC(2)-S 或 ADC2-S 中的任意一个。
-- **–**
-
-对于 BWs-ADC(2)-x，将 EXC_METHOD 设置为 ADC(2)-X 或 ADC2-X。
-- **–**
-
-对于 BWs-ADC(3)，将 EXC_METHOD 设置为 ADC(3) 或 ADC3。
-- •
-
-对于限制（restricted）参考，使用 REM 段中的 EE_STATES 或 EE_SINGLETS 和 EE_TRIPLETS 关键字指定激发态数目。
-- •
-
-对于非限制（unrestricted）参考，仅使用 EE_STATES 关键字。
+- 对于 BWs-ADC(0)，将 EXC_METHOD 设置为 ADC(0) 或 ADC0。
+- 对于 BWs-ADC(2)-s，将 EXC_METHOD 设置为 ADC(2)、ADC2、ADC(2)-S 或 ADC2-S 中的任意一个。
+- 对于 BWs-ADC(2)-x，将 EXC_METHOD 设置为 ADC(2)-X 或 ADC2-X。
+- 对于 BWs-ADC(3)，将 EXC_METHOD 设置为 ADC(3) 或 ADC3。
+- 对于限制（restricted）参考，使用 REM 段中的 EE_STATES 或 EE_SINGLETS 和 EE_TRIPLETS 关键字指定激发态数目。
+- 对于非限制（unrestricted）参考，仅使用 EE_STATES 关键字。
 
 用于 RI-BW-s2 计算作业控制（Job Control）的所有关键字（见第 [6.8.2](../ch06_correlation/sect_bws2_jobcontrol.md) 节）均可用于指定 BWs-ADC 计算中基态计算的细节。
 此外，用于 ADC 作业控制的所有关键字（见第 [7.10.13](sect_adc_jobcontrol.md) 节）均可用于调整 BWs-ADC 计算中 ADC 部分的设置。

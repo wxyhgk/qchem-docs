@@ -51,13 +51,9 @@ MBD 框架内的某一具体方法由以下模型定义：静态极化率（$\al
 范围分离自洽屏蔽（range-separated self-consistent screening）[[43]](../bib_references/bib.md#bib27)。
 在该方案中，$\alpha_{\text{eff},A}^{0}$ 通过两步过程获得：
 
-1. 1.
-
-将自由体积缩放（free-volume scaling）方法应用于自由原子极化率，使用 Hirshfeld 划分的分子电子密度。这与第 [5.7.5](sect_TS.md)
+1. 将自由体积缩放（free-volume scaling）方法应用于自由原子极化率，使用 Hirshfeld 划分的分子电子密度。这与第 [5.7.5](sect_TS.md)
 节所述 TS-vdW 方法中采用的程序相同。
-2. 2.
-
-短程原子极化率
+2. 短程原子极化率
 $\mathrm{\alpha}_{\mathrm{sr},AB}(iu)$ 是仅对极化率的短程部分施加类 Dyson（Dyson-like）屏蔽而得到的。
 同样的范围分离稍后也将用于定义
 $\mathbf{T}_{\mathrm{lr}}$。

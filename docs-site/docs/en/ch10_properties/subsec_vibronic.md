@@ -239,37 +239,23 @@ To predict OPA, OPE and RRS spectra, electronic structure calculations on ground
 and excited states should be performed. The necessary jobs at different level of
 approximation are summarized in the following:
 
-- •
+- FC. This is available for OPA, OPE, and RRS spectra.
 
-FC. This is available for OPA, OPE, and RRS spectra.
-
-1. 1.
-
-$x_{0}^{g}\neq x_{0}^{e}$, $L_{g}=L_{e}$, and $\omega^{g}=\omega^{e}$. Geometry
+1. $x_{0}^{g}\neq x_{0}^{e}$, $L_{g}=L_{e}$, and $\omega^{g}=\omega^{e}$. Geometry
 optimization on excited state potential surface is performed, followed by ground state
 optimization and frequency analysis.
-2. 2.
-
-$x_{0}^{g}\neq x_{0}^{e}$, $L_{g}\neq L_{e}$, and $\omega^{g}\neq\omega^{e}$.
+2. $x_{0}^{g}\neq x_{0}^{e}$, $L_{g}\neq L_{e}$, and $\omega^{g}\neq\omega^{e}$.
 Geometry optimization and frequency calculation are needed on both
 ground and excited states.
-- •
+- FCHT. This is available for OPA, OPE, and RRS spectra.
 
-FCHT. This is available for OPA, OPE, and RRS spectra.
-
-- •
-
-$x_{0}^{g}\neq x_{0}^{e}$, $L_{g}\neq L_{e}$, and $\omega^{g}\neq\omega^{e}$. It is similar to the second kind of FC calculation, in which
+- $x_{0}^{g}\neq x_{0}^{e}$, $L_{g}\neq L_{e}$, and $\omega^{g}\neq\omega^{e}$. It is similar to the second kind of FC calculation, in which
 transition dipole derivative is obtained via frequency calculation on
 excited state. Geometry optimization and frequency calculation are
 needed on both ground and excited states.
-- •
+- VG. This is available for OPA and RRS spectra.
 
-VG. This is available for OPA and RRS spectra.
-
-- •
-
-$x_{0}^{g}=x_{0}^{e}$, $L_{g}=L_{e}$, and $\omega^{g}=\omega^{e}$.
+- $x_{0}^{g}=x_{0}^{e}$, $L_{g}=L_{e}$, and $\omega^{g}=\omega^{e}$.
 Only the geometry optimization and frequency calculation of the ground
 state is involved. Frequencies and normal modes of excited state are
 assumed to be the same as ground state. The displacement vector is

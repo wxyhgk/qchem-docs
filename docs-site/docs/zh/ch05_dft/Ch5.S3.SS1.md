@@ -68,30 +68,20 @@ $$
 
 最后，近年来 KS-DFT 的最后一项重大进展是发展了能够准确描述非共价相互作用（尤其是色散）的方法。从原理上讲，雅各布天梯上的所有泛函都可以与这些色散校正组合使用，尽管在某些情况下这种组合反而有害，特别是对于那些部分使用非共价相互作用数据集进行参数化的半经验泛函，它们本身已倾向于高估非共价相互作用能。**Q-Chem** 中最常用的此类方法有：
 
-- •
-
-非局域相关（non-local correlation, NLC）泛函（第 [5.7.2](sect_VV10.md) 节），包括 Vydrov 和 Van Voorhis 提出的
+- 非局域相关（non-local correlation, NLC）泛函（第 [5.7.2](sect_VV10.md) 节），包括 Vydrov 和 Van Voorhis 提出的
 [[1414]](../bib_references/bib.md#bib1475)
 （VV09 和 VV10）以及 Lundqvist 和 Langreth 提出的[[327]](../bib_references/bib.md#bib331)
 
 （vdW-DF-04 和 vdW-DF-10）。Sabatini 及其合作者改进的 VV10 NLC 泛函（rVV10）同样可用[[1192]](../bib_references/bib.md#bib1247)
 。
-- •
-
-来自 Grimme 及其他作者的、经阻尼处理的原子间成对经验色散势[[494]](../bib_references/bib.md#bib502)
+- 来自 Grimme 及其他作者的、经阻尼处理的原子间成对经验色散势[[494]](../bib_references/bib.md#bib502)
 
 [DFT-D2, DFT-CHG, DFT-D3(0), DFT-D3(BJ), DFT-D3(CSO), DFT-D3M(0), DFT-D3M(BJ), and DFT-D3(op)]；
 见第 [5.7.3](subsec_DFT-D.md) 节。
-- •
-
-Johnson 和 Becke 提出的交换偶极模型（exchange-dipole models, XDM）（XDM6 和 XDM10）；见第 [5.7.4](sect_XDM.md) 节。
-- •
-
-Tkatchenko-Scheffler (TS) 色散相互作用方法；[[1361]](../bib_references/bib.md#bib1421)
+- Johnson 和 Becke 提出的交换偶极模型（exchange-dipole models, XDM）（XDM6 和 XDM10）；见第 [5.7.4](sect_XDM.md) 节。
+- Tkatchenko-Scheffler (TS) 色散相互作用方法；[[1361]](../bib_references/bib.md#bib1421)
 见第 [5.7.5](sect_TS.md) 节。
-- •
-
-用于 van der Waals 相互作用的多体色散（Many-Body Dispersion, MBD）方法[[1360]](../bib_references/bib.md#bib1422)
+- 用于 van der Waals 相互作用的多体色散（Many-Body Dispersion, MBD）方法[[1360]](../bib_references/bib.md#bib1422)
 ；
 见第 [5.7.6](sect_MBD.md) 节。
 

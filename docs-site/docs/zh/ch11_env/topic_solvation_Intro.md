@@ -198,10 +198,9 @@ ${}^{a}$<span class="ltx_text" style="font-size:80%;">广义 Born 静电模型�
 
 表 11.2 还汇总了各隐式溶剂模型解析能量梯度的可用性。（对于解析导数不可用的计算，将自动采用有限差分方法求取梯度和 Hessian。）
 
-**注意：
+!!! note "注意"
+    自 **Q-Chem** v. 4.2.1 起，隐式溶剂模型的指定格式发生了显著变化。做出这一更改的目的在于简化和统一大量不同模型的输入记法。
 
-自 **Q-Chem** v. 4.2.1 起，隐式溶剂模型的指定格式发生了显著变化。做出这一更改的目的在于简化和统一大量不同模型的输入记法。
-**
 
 <table class="ltx_tabular ltx_centering ltx_guessed_headers ltx_align_middle">
 <tbody class="ltx_tbody">
@@ -302,18 +301,10 @@ ${}^{a}$<span class="ltx_text" style="font-size:80%;">广义 Born 静电模型�
 </tbody>
 </table>
 
-- •
-
-${}^{a}$梯度仅支持 vdW 空腔和 SAS 空腔表面。
-- •
-
-${}^{b}$COSMO 带外点电荷校正（outlying charge correction）的 Hessian 不受支持。
-- •
-
-${}^{c}$半数值 Hessian，步长可通过 FDIFF_STEPSIZE 控制。
-- •
-
-${}^{d}$不支持梯度，但可使用经溶剂极化的 MO 进行单点能计算。
+- ${}^{a}$梯度仅支持 vdW 空腔和 SAS 空腔表面。
+- ${}^{b}$COSMO 带外点电荷校正（outlying charge correction）的 Hessian 不受支持。
+- ${}^{c}$半数值 Hessian，步长可通过 FDIFF_STEPSIZE 控制。
+- ${}^{d}$不支持梯度，但可使用经溶剂极化的 MO 进行单点能计算。
 
 表 11.2：
 隐式溶剂模型解析能量梯度和 Hessian 能力的汇总。

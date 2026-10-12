@@ -17,9 +17,7 @@ $$
 
 角向求积网格（angular quadrature grid）用于在 $r$ 固定的情况下对 $f(r,\theta,\phi)$ 进行积分，通常以两个指标来刻画：其一是“阶”（degree），即求积能够精确积分的 $\ell$ 的最大值；其二是“效率”（efficiency），即公式中每个自由度所能精确积分的球谐函数数目。**Q-Chem** 支持以下两类角向网格。
 
-- •
-
-**Lebedev 网格（Lebedev grids）。**
+- **Lebedev 网格（Lebedev grids）。**
 这类网格是专门为球面求积构造的网格，[[776]](../bib_references/bib.md#bib808)
 基于八面体点群（octahedral point group）构造。**Q-Chem** 中可用的 Lebedev 网格列于表
 [5.2](#table:Lebedev)。这类网格的效率通常接近 1，在某些情况下甚至超过 1。通过
@@ -135,9 +133,7 @@ $$
 
 表 5.2： 
 **Q-Chem** 中可用的 Lebedev 角向求积网格。
-- •
-
-**Gauss-Legendre 网格（Gauss-Legendre grids）。**
+- **Gauss-Legendre 网格（Gauss-Legendre grids）。**
 这类网格是在两个球极角 $\theta$ 和 $\phi$ 上构造的球面直积网格（spherical direct-product grid）。
 对 $\theta$ 的积分采用由 Legendre 多项式导出的 Gauss 求积（Gaussian quadrature）来完成，
 而对 $\phi$ 的积分则采用等间距分布的网格点。选择 Gauss-Legendre 网格时，需指定用于积分的总点数

@@ -10,93 +10,43 @@ title: "5.3.2 推荐的密度泛函"
 
 对于第 2 层的广义梯度近似（Generalized Gradient Approximation, GGA），我们推荐：
 
-- •
-
-**B97-D3(BJ)**：METHOD = B97-D3 且 DFT_D = D3_BJ
-- •
-
-revPBE-D3(BJ)：METHOD = revPBE 且 DFT_D = D3_BJ
-- •
-
-BLYP-D3(BJ)：METHOD = BLYP 且 DFT_D = D3_BJ
-- •
-
-PBE：METHOD = PBE
+- **B97-D3(BJ)**：METHOD = B97-D3 且 DFT_D = D3_BJ
+- revPBE-D3(BJ)：METHOD = revPBE 且 DFT_D = D3_BJ
+- BLYP-D3(BJ)：METHOD = BLYP 且 DFT_D = D3_BJ
+- PBE：METHOD = PBE
 
 对于第 3 层的 meta-GGA，我们推荐：
 
-- •
-
-**B97M-rV**：METHOD = B97M-rV
-- •
-
-MS1-D3(0)：METHOD = MGGA_MS1 且 DFT_D = D3_ZERO
-- •
-
-MS2-D3(0)：METHOD = MGGA_MS2 且 DFT_D = D3_ZERO
-- •
-
-M06-L-D3(0)：METHOD = M06-L 且 DFT_D = D3_ZERO
-- •
-
-TPSS-D3(BJ)：METHOD = TPSS 且 DFT_D = D3_BJ
+- **B97M-rV**：METHOD = B97M-rV
+- MS1-D3(0)：METHOD = MGGA_MS1 且 DFT_D = D3_ZERO
+- MS2-D3(0)：METHOD = MGGA_MS2 且 DFT_D = D3_ZERO
+- M06-L-D3(0)：METHOD = M06-L 且 DFT_D = D3_ZERO
+- TPSS-D3(BJ)：METHOD = TPSS 且 DFT_D = D3_BJ
 
 对于第 4 层的混合 GGA（hybrid GGA），我们推荐：
 
-- •
-
-$\omega$**B97X-V**：METHOD = wB97X-V
-- •
-
-$\omega$B97X-D3S(BJ)：METHOD = wB97X-D3S(BJ)
-- •
-
-$\omega$B97X-D：METHOD = wB97X-D
-- •
-
-B3LYP-D3(BJ)：METHOD = B3LYP 且 DFT_D = D3_BJ
-- •
-
-revPBE0-D3(BJ)：METHOD = revPBE0 且 DFT_D = D3_BJ
+- $\omega$**B97X-V**：METHOD = wB97X-V
+- $\omega$B97X-D3S(BJ)：METHOD = wB97X-D3S(BJ)
+- $\omega$B97X-D：METHOD = wB97X-D
+- B3LYP-D3(BJ)：METHOD = B3LYP 且 DFT_D = D3_BJ
+- revPBE0-D3(BJ)：METHOD = revPBE0 且 DFT_D = D3_BJ
 
 对于第 4 层的混合 meta-GGA，我们推荐：
 
-- •
-
-**COACH**：METHOD = COACH
-- •
-
-$\omega$**B97M-V**：METHOD = wB97M-V
-- •
-
-CF22D：METHOD = CF22D
-- •
-
-M06-2X-D3(0)：METHOD = M06-2X 且 DFT_D = D3_ZERO
-- •
-
-TPSSh-D3(BJ)：METHOD = TPSSh 且 DFT_D = D3_BJ
+- **COACH**：METHOD = COACH
+- $\omega$**B97M-V**：METHOD = wB97M-V
+- CF22D：METHOD = CF22D
+- M06-2X-D3(0)：METHOD = M06-2X 且 DFT_D = D3_ZERO
+- TPSSh-D3(BJ)：METHOD = TPSSh 且 DFT_D = D3_BJ
 
 对于第 5 层的双杂化 GGA（double-hybrid GGA），我们推荐：
 
-- •
-
-$\omega$**B97X-2(LP)**：METHOD = wB97X-2(LP)
-- •
-
-$\omega$**B97X-2(TQZ)**：METHOD = wB97X-2(TQZ)
-- •
-
-**DSD-PBEPBE-D3**：METHOD = DSD-PBEPBE-D3
-- •
-
-**revDSD-PBEP86-D4**：METHOD = revDSD-PBEP86-D4
+- $\omega$**B97X-2(LP)**：METHOD = wB97X-2(LP)
+- $\omega$**B97X-2(TQZ)**：METHOD = wB97X-2(TQZ)
+- **DSD-PBEPBE-D3**：METHOD = DSD-PBEPBE-D3
+- **revDSD-PBEP86-D4**：METHOD = revDSD-PBEP86-D4
 
 对于第 5 层的双杂化 meta-GGA，我们推荐：
 
-- •
-
-$\omega$**B97M-(2)**：METHOD = wB97M-(2)
-- •
-
-**PTPSS-D3**：METHOD = PTPSS-D3
+- $\omega$**B97M-(2)**：METHOD = wB97M-(2)
+- **PTPSS-D3**：METHOD = PTPSS-D3

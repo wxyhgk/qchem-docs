@@ -82,19 +82,13 @@ Automatic analysis of these quantities is described in detail in
 Ref. [[311]](../bib_references/bib.md#bib328)
 .
 
-**Note: 
+!!! note "Note"
+    - The automatic procedure can fail if the field window is not chosen wisely.
 
-•
+    - The Romberg procedure can be performed either for one specific diagonal
+    direction or for all Cartesian components. In the case of the second
+    hyperpolarizability, only the $iiii$, $iijj$ components are available.
 
-The automatic procedure can fail if the field window is not chosen wisely.
-
-•
-
-The Romberg procedure can be performed either for one specific diagonal
-direction or for all Cartesian components. In the case of the second
-hyperpolarizability, only the $iiii$, $iijj$ components are available.
-
-**
 
 ## 10.13.3.1 How to execute Romberg’s differentiation procedure
 
@@ -132,16 +126,10 @@ To run the calculation, create an input called `input` that specifies
 your molecule, an electronic structure method, and several additional *$rem*
 variables that
 
-- •
-
-turn off symmetry (INTEGRAL_SYMMETRY and CC_SYMMETRY for
+- turn off symmetry (INTEGRAL_SYMMETRY and CC_SYMMETRY for
 CC/EOM calculations),
-- •
-
-request higher-precision printing (CC_PRINT_PREC), and
-- •
-
-set up very tight convergence (SCF_CONVERGENCE,
+- request higher-precision printing (CC_PRINT_PREC), and
+- set up very tight convergence (SCF_CONVERGENCE,
 CC_CONVERGENCE, EOM_DAVIDSON_CONVERGENCE, *etc.*).
 
 An example of an input file is given below.
@@ -193,11 +181,10 @@ energy to high precision has been enabled. In the current version of **Q-Chem**,
 CC_PRINT_PREC is implemented for the following methods: HF, DFT,
 MP2, RI-MP2, MP3, CCD, CCSD, CCSD(T), QCISD, QCISD(T), TDDFT, and EOM-CCSD.
 
-**Note: 
+!!! note "Note"
+    When using excited-state methods such as TDDFT, CIS, and EOM-CC, state
+    ordering may switch when the external field is large.
 
-When using excited-state methods such as TDDFT, CIS, and EOM-CC, state
-ordering may switch when the external field is large.
-**
 
 With the T-REX program, you can compute the static dipole moment,
 polarizability, and first and second hyperpolarizabilities for one specific

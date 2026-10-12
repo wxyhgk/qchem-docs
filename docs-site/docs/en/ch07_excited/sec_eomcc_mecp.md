@@ -40,20 +40,18 @@ well.
 To run a PES crossing minimization, CCSD and EOM-CCSD methods must be employed
 for the ground and excited state calculations respectively.
 
-**Note: 
+!!! note "Note"
+    MECP optimization is only available for methods with analytic gradients.
+    Finite-difference evaluation of two gradients is not possible.
 
-MECP optimization is only available for methods with analytic gradients.
-Finite-difference evaluation of two gradients is not possible.
-**
 
 ## 7.9.28.1 Job Control Options
 
-**Note: 
+!!! note "Note"
+    When performing coupled-cluster-based MECP calculations, one must use
+    the XOPT_STATE_1 and XOPT_STATE_2 keywords and not
+    MECP_STATE1 and MECP_STATE2.
 
-When performing coupled-cluster-based MECP calculations, one must use
-the XOPT_STATE_1 and XOPT_STATE_2 keywords and not
-MECP_STATE1 and MECP_STATE2.
-**
 
 XOPT_STATE_1, XOPT_STATE_2
 
@@ -67,13 +65,12 @@ XOPT_STATE_1, XOPT_STATE_2
 >     * `[spin, irrep, state]`: spin = 0 Addresses states with low spin, see also EE_SINGLETS or IP_STATES,EA_STATES. spin = 1 Addresses states with high spin, see also EE_TRIPLETS. irrep Specifies the irreducible representation to which the state belongs; for example, in the $C_{2v}$ point group, irreps are ordered 1, 2, 3, 4 for $A_{1}$ , $A_{2}$ , $B_{1}$ , and $B_{2}$ , respectively. state Specifies the state number within the irreducible representation, state = 1 means the lowest excited state, state = 2 is the second excited state, etc. . 0, 0, -1 Ground state.
 > * **Recommendation**: Only intersections of states with different spin or symmetry can be calculated at this time.
 
-**Note: 
+!!! note "Note"
+    The spin can only be specified when using closed-shell RHF references. In
+    the case of open-shell references all states are treated together, see also
+    EE_STATES. For example, in spin-flip calculations use spin = 0 regardless of what is
+    the actual multiplicity of the target state.
 
-The spin can only be specified when using closed-shell RHF references. In
-the case of open-shell references all states are treated together, see also
-EE_STATES. For example, in spin-flip calculations use spin = 0 regardless of what is
-the actual multiplicity of the target state.
-**
 
 ### `XOPT_SEAM_ONLY`
 

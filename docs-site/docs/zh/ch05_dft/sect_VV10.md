@@ -19,24 +19,14 @@ $$
 
 **Q-Chem** 包含四个此类可描述色散相互作用的泛函：
 
-- •
-
-vdW-DF-04，由 Langreth、Lundqvist 及其合作者发展，[[327]](../bib_references/bib.md#bib331)
+- vdW-DF-04，由 Langreth、Lundqvist 及其合作者发展，[[327]](../bib_references/bib.md#bib331)
  实现方式见文献 [[1417]](../bib_references/bib.md#bib1474)
 。
-- •
-
-vdW-DF-10（亦称 vdW-DF2），是 vdW-DF-04 的重新参数化版本。[[786]](../bib_references/bib.md#bib822)
-- •
-
-VV09，由 Vydrov 与 Van Voorhis 发展[[1414]](../bib_references/bib.md#bib1475)
+- vdW-DF-10（亦称 vdW-DF2），是 vdW-DF-04 的重新参数化版本。[[786]](../bib_references/bib.md#bib822)
+- VV09，由 Vydrov 与 Van Voorhis 发展[[1414]](../bib_references/bib.md#bib1475)
  并实现[[1415]](../bib_references/bib.md#bib1476)。
-- •
-
-VV10，由 Vydrov 与 Van Voorhis 提出。[[1416]](../bib_references/bib.md#bib1477)
-- •
-
-rVV10，由 Sabatini 及其合作者提出。[[1192]](../bib_references/bib.md#bib1247)
+- VV10，由 Vydrov 与 Van Voorhis 提出。[[1416]](../bib_references/bib.md#bib1477)
+- rVV10，由 Sabatini 及其合作者提出。[[1192]](../bib_references/bib.md#bib1247)
 
 上述每个泛函均以自洽（Self-Consistent Field, SCF）方式实现，并可提供对核位移的解析梯度。[[1417]](../bib_references/bib.md#bib1474)
  非局域相关由 *$rem* 变量 NL_CORRELATION 控制，其可取以下四个值之一：

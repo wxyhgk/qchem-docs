@@ -34,11 +34,10 @@ means the $x$-coordinate and $y$-coordinate of atom 2 are fixed, whereas
 
 will yield erroneous results.
 
-**Note: 
+!!! note "Note"
+    When the *FIXED* section is specified within *$opt*, the
+    optimization will proceed in Cartesian coordinates.
 
-When the *FIXED* section is specified within *$opt*, the
-optimization will proceed in Cartesian coordinates.
-**
 
 Note that *frequency* calculations for a system with frozen atom constraints will generally produce
 imaginary frequencies. These arise because the Hessian computed
@@ -75,11 +74,10 @@ harmonic confining potentials as a replacement for fixed atom constraints is des
 >     * `User defined`
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    The above two *$rem* variables are only relevant to frequency calculations; they are
+    not required in geometry optimization with fixed atoms.
 
-The above two *$rem* variables are only relevant to frequency calculations; they are
-not required in geometry optimization with fixed atoms.
-**
 
 ???+ example "Example 9.12: Optimization of the water dimer structure with the structure of the first water frozen"
     ```qchem

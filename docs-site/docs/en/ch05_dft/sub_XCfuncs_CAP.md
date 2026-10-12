@@ -15,10 +15,9 @@ Their names are taken from the original functional name with added prefix “cx_
 
 ## 5.13.3.1 Exchange functionals
 
-**Note: 
+!!! note "Note"
+    All exchange functionals in this section can be invoked using the *$rem* variable EXCHANGE.
 
-All exchange functionals in this section can be invoked using the *$rem* variable EXCHANGE.
-**
 
 - $\circ$
 
@@ -40,10 +39,9 @@ cx_PBE: Perdew, Burke, and Ernzerhof exchange functional[[1062]](../bib_referenc
 
 ## 5.13.3.2 Correlation functionals
 
-**Note: 
+!!! note "Note"
+    All correlation functionals in this section can be invoked using the *$rem* variable CORRELATION.
 
-All correlation functionals in this section can be invoked using the *$rem* variable CORRELATION.
-**
 
 - $\circ$
 
@@ -68,11 +66,10 @@ cx_LYP: Lee-Yang-Parr opposite-spin correlation functional[[780]](../bib_referen
 
 ## 5.13.3.3 Exchange-Correlation Functionals
 
-**Note: 
+!!! note "Note"
+    All exchange-correlation functionals in this section can be invoked using
+    the *$rem* variable METHOD.
 
-All exchange-correlation functionals in this section can be invoked using
-the *$rem* variable METHOD.
-**
 
 - $\circ$
 

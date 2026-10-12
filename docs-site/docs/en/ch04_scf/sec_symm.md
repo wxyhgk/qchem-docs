@@ -44,16 +44,15 @@ these problems.
 The symmetry is turned off when ghost atoms are used because their placement
 may break the symmetry of the molecular structure. However, the user can force calculation to use symmetry by FORCE_SYMMETRY_ON keyword; this is illustrated in example [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1).
 
-**Note: 
+!!! note "Note"
+    The user should be aware about different conventions for defining
+    symmetry elements. The arbitrariness affects, for example, $C_{2v}$ point
+    group. The specific choice affects how the irreducible representations in the affected groups are
+    labeled. For example, $b_{1}$ and $b_{2}$ irreducible representations in $C_{2v}$ are flipped when
+    using different conventions. **Q-Chem** uses non-Mulliken symmetry convention. See
+    `https://iopenshell.usc.edu/resources/howto/symmetry`
+    for detailed explanations.
 
-The user should be aware about different conventions for defining
-symmetry elements. The arbitrariness affects, for example, $C_{2v}$ point
-group. The specific choice affects how the irreducible representations in the affected groups are
-labeled. For example, $b_{1}$ and $b_{2}$ irreducible representations in $C_{2v}$ are flipped when
-using different conventions. **Q-Chem** uses non-Mulliken symmetry convention. See
-`https://iopenshell.usc.edu/resources/howto/symmetry`
-for detailed explanations.
-**
 
 ### `INTEGRAL_SYMMETRY`
 

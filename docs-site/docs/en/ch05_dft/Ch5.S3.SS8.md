@@ -10,38 +10,28 @@ title: "5.3.8 Semi-Empirical Functionals"
 
 The following methods are available in **Q-Chem**:
 
-- •
-
-**HF-3c**: It is an HF-based semi-empirical method which is used with a
+- **HF-3c**: It is an HF-based semi-empirical method which is used with a
 minimal basis called MINIX. All the elements from H to Xe are supported. For the elements
 from Rb ($Z=37$) to Xe ($Z=54$), def2-ECP must be used.[[1329]](../bib_references/bib.md#bib1388)
-- •
-
-**PBEh-3c**: It is a DFT based method which is used with def2-mSVP basis
+- **PBEh-3c**: It is a DFT based method which is used with def2-mSVP basis
 set.This is available for all the elements from H to Rn. For the elements from Rb
 ($Z=37$) to Rn ($Z=86$), def2-ECP has to be used. It is a more accurate
 method than HF-3c as it has correlation,[[487]](../bib_references/bib.md#bib508)
 
 although the double-$\zeta$ basis set makes it more expensive for large molecules.
 
-**Note: 
+!!! note "Note"
+    - The HF-3c and PBEh-3c methods were parameterized for use with the aforementioned
+    basis sets. Although **Q-Chem** does not enforce this, other basis sets should not be
+    used unless there is a good reason for doing so, and only then with caution as the
+    results may not match published accuracy.
 
-•
+    - Analytic frequencies are available for these DFT-3c methods,
 
-The HF-3c and PBEh-3c methods were parameterized for use with the aforementioned
-basis sets. Although **Q-Chem** does not enforce this, other basis sets should not be
-used unless there is a good reason for doing so, and only then with caution as the
-results may not match published accuracy.
+    with derivatives of the “3c” term computed numerically. In most cases this should be
+    invisible to the user; see Section [5.3.8.2](#sec:3c-JobControl) for job control settings related
+    to semi-numerical calculation of the Hessian.
 
-•
-
-Analytic frequencies are available for these DFT-3c methods,
-
-with derivatives of the “3c” term computed numerically. In most cases this should be
-invisible to the user; see Section [5.3.8.2](#sec:3c-JobControl) for job control settings related
-to semi-numerical calculation of the Hessian.
-
-**
 
 ## 5.3.8.2 Job Control and Examples for DFT-3c
 

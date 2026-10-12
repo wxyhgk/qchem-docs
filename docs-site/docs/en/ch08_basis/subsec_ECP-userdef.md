@@ -42,22 +42,20 @@ A sequence of four asterisks (*i.e.*, `****`)
 
 *$end*
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    All of the information in the *$ecp* block is case-insensitive.
 
-All of the information in the *$ecp* block is case-insensitive.
+    2.
 
-2.
+    The power of $r$ (which includes the Jacobian $r^{2}$ factor) must be 0, 1, or 2.
 
-The power of $r$ (which includes the Jacobian $r^{2}$ factor) must be 0, 1, or 2.
+    3.
 
-3.
+    If an $r^{0}$ or $r^{1}$ term is included you must include the rem keyword
+    “ECP_FIT = TRUE”.
 
-If an $r^{0}$ or $r^{1}$ term is included you must include the rem keyword
-“ECP_FIT = TRUE”.
-
-**
 
 ???+ example "Example 8.10: Optimizing the HF geometry of AlH ${}_{3}$ using a user-defined ECP and basis set
 on Al and the 3-21G basis on H."

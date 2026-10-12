@@ -167,11 +167,10 @@ SRC 泛函的作业控制变量列于下文，其与 CVS 近似配合使用的�
 还可以进一步通过 TDDFT_NVIRT 关键字来降低，该关键字可减少 TDDFT 计算中所包含的虚轨道数目。
 fTDDFTs 的作业控制变量列于下文，其用法在示例 [7.12.2.1](#ex:TDDFT-CVS-0) 中演示。
 
-**注意：
+!!! note "注意"
+    目前 fTDDFTs 仅适用于受限（restricted）CIS/TDA 计算，且未做并行化。
+    （初始 SCF 计算可以使用多个线程，但随后的 CIS/TDA 计算是串行执行的。）
 
-目前 fTDDFTs 仅适用于受限（restricted）CIS/TDA 计算，且未做并行化。
-（初始 SCF 计算可以使用多个线程，但随后的 CIS/TDA 计算是串行执行的。）
-**
 
 ### `FAST_XAS`
 

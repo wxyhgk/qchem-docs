@@ -69,26 +69,16 @@ The general format for passing options from **Q-Chem** to the NBO program is sho
 
 A few usage notes:
 
-1. 1.
-
-*$rem* variable NBO must be set to TRUE before the *$nbo* keyword is recognized.
-2. 2.
-
-**Q-Chem** does not support facets of the NBO package which require multiple job runs
-3. 3.
-
-Output of the NBOs can be triggered by the PRINT_ORBITALS
+1. *$rem* variable NBO must be set to TRUE before the *$nbo* keyword is recognized.
+2. **Q-Chem** does not support facets of the NBO package which require multiple job runs
+3. Output of the NBOs can be triggered by the PRINT_ORBITALS
 and MOLDEN_FORMAT keywords. In this case two MOLDEN sections are written to *outfile*.
 The first one corresponds to the regular MOs, the second one to the NBOs.
-4. 4.
-
-Print-out of the full set of NAOs, NHOs, NBOs, and NLMOs can be triggered via
+4. Print-out of the full set of NAOs, NHOs, NBOs, and NLMOs can be triggered via
 the PLOT keyword in the $nbo section.
 The files of interest are `FILE.31` – `FILE.39` in `$QCSCRATCH/savename`.
 These files can be opened by, *e.g.*, the **ChemCraft** and **JMol** programs.
-5. 5.
-
-**Q-Chem**’s internal implementation of NBO v. 5 has an upper limit of 300 atoms and 3,000 basis functions.
+5. **Q-Chem**’s internal implementation of NBO v. 5 has an upper limit of 300 atoms and 3,000 basis functions.
 
 ???+ example "Example 10.12: Basic input for NBO computation on formaldehyde.
 The NBOs are printed to outfile in MolDen format and the full set of

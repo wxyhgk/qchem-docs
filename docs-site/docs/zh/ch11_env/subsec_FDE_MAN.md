@@ -11,10 +11,9 @@ FDE-Man 的任务控制分为两个部分，即 *$rem* 和 *$fde*。
 
 各片段通过 *$molecule* 段中的片段描述符（fragment descriptor）来指定（见第 [12](../ch12_frag/chap_frag.md) 章），其中第一个片段对应被嵌入的体系（A），第二个片段表示环境（B）。
 
-**注意：
+!!! note "注意"
+    当前实现仅允许闭壳层（closed shell）片段。
 
-当前实现仅允许闭壳层（closed shell）片段。
-**
 
 ### `FDE`
 
@@ -53,10 +52,9 @@ FDE-Man 的任务控制分为两个部分，即 *$rem* 和 *$fde*。
 
 如第 [5.4](../ch05_dft/sect_DFT_METHOD.md) 节所述，也可以通过 EXCHANGE 和 CORRELATION 关键字来指定其他 DFT 泛函。
 
-**注意：
+!!! note "注意"
+    当前实现仅限于由 SCFMAN 模块求解的 mean-field（平均场）方法。
 
-当前实现仅限于由 SCFMAN 模块求解的 mean-field（平均场）方法。
-**
 
 FDE-Man 模块同样支持使用自定义基组（customized basis set）的标准功能。
 

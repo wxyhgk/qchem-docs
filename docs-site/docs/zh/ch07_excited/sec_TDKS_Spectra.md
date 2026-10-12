@@ -38,12 +38,8 @@ $$
 
 提供了两个不同的脚本，用于在 TDKS 模拟完成后获得光谱：
 
-- •
-
-`$QC/bin/tools/tdks_fft.py`
-- •
-
-`$QC/bin/tools/tdks_pade.py`
+- `$QC/bin/tools/tdks_fft.py`
+- `$QC/bin/tools/tdks_pade.py`
 
 第一个脚本直接使用式 ([7.67](#eq:TDKS-FT)) 中的傅里叶变换方法，而第二个脚本利用 Padé 近似，以更短的传播时间获得可比拟的光谱。[[566]](../bib_references/bib.md#bib585)
 

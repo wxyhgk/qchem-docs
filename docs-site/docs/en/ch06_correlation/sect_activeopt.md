@@ -83,10 +83,9 @@ as follows.
 >     * $abcde$: Integer code is mapped to $abc\times 10^{-de}$
 > * **Recommendation**: Increase to 0.5 or 0.75 for non convergent coupled-cluster calculations.
 
-**Note: 
+!!! note "Note"
+    Works only for CCMAN jobs, not enabled in CCMAN2.
 
-Works only for CCMAN jobs, not enabled in CCMAN2.
-**
 
 ### `CC_THETA_STEPSIZE`
 

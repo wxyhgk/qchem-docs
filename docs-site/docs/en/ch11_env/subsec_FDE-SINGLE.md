@@ -22,11 +22,10 @@ when only *one molecule* is given in the MOLECULE section.
 >     * `FALSE`: Don’t read the embedding potential, use other options.
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    This functionality is constructed as a separate module, only the import_rhoA and print_props=1
+    options can be used with the single-fragment mode.
 
-This functionality is constructed as a separate module, only the import_rhoA and print_props=1
-options can be used with the single-fragment mode.
-**
 
 One can also use the single-fragment mode to obtain Mulliken and ChElPG charges from a density matrix.
 In order to do that, one needs to import the density of fragment A, and set **charges** to one of the options below.

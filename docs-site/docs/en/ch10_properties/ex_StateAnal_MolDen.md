@@ -171,43 +171,33 @@ Refs. [[1097]](../bib_references/bib.md#bib1141)
 external `TheoDORE` program (`theodore-qc.sourceforge.net`) to
 create electron/hole correlation plots and to compute fragment based descriptors.
 
-**Note: 
+!!! note "Note"
+    - When doing excited-state calculations from an open-shell reference, **libwfa** will perform the analysis for both $\alpha\alpha$ and $\beta\beta$ transition
+    densities. Make sure you look at the correct one. The way to figure it out is
+    to remember that in open-shell references $N_{\alpha}>N_{\beta}$, *e.g.*, in
+    doublet references, the unpaired electron is $\alpha$ and the hole is $\beta$.
+    Thus, for transitions of the unpaired electron into the unoccupied orbitals
+    you need $\alpha\alpha$ block, whereas for the transitions from doubly occupied orbitals
+    into the singly unoccupied orbital (the hole) you need the $\beta\beta$ block.
 
-•
+    - To activate all types of analyses in CCMAN2 jobs, you have to activate CC_REF_PROP,
+    CC_EOM_PROP, and CC_TRANS_PROP.
+    This is shown in Example [7.9.30](../ch07_excited/ex_eomip-wfa.md).
 
-When doing excited-state calculations from an open-shell reference, **libwfa** will perform the analysis for both $\alpha\alpha$ and $\beta\beta$ transition
-densities. Make sure you look at the correct one. The way to figure it out is
-to remember that in open-shell references $N_{\alpha}>N_{\beta}$, *e.g.*, in
-doublet references, the unpaired electron is $\alpha$ and the hole is $\beta$.
-Thus, for transitions of the unpaired electron into the unoccupied orbitals
-you need $\alpha\alpha$ block, whereas for the transitions from doubly occupied orbitals
-into the singly unoccupied orbital (the hole) you need the $\beta\beta$ block.
+    - In Hermitian formalisms, $\gamma^{\text{IF}}$ is a Hermitian conjugate
+    of $\gamma^{\text{FI}}$, but in non-Hermitian approaches, such as
+    coupled-cluster theory, the two are slightly different. While for quantitative
+    interstate properties both $\gamma^{\text{IF}}$ and $\gamma^{\text{FI}}$ are
+    computed, the qualitative trends in exciton properties derived from
+    $(\gamma^{\text{IF}})^{\dagger}$ and $\gamma^{\text{FI}}$ are very similar. Only
+    one 1TDM is analyzed for EOM-CC.
 
-•
+    - In spin-restricted calculations, the **libwfa** module computes NTOs for
+    the $\alpha\alpha$ block of transition density. Thus, when computing NTOs for
+    the transitions between open-shell EOM-IP/EA states make sure to specify
+    correct spin states. For example, use EOM_EA_ALPHA to visualize
+    transitions involving the extra electron.
 
-To activate all types of analyses in CCMAN2 jobs, you have to activate CC_REF_PROP,
-CC_EOM_PROP, and CC_TRANS_PROP.
-This is shown in Example [7.9.30](../ch07_excited/ex_eomip-wfa.md).
-
-•
-
-In Hermitian formalisms, $\gamma^{\text{IF}}$ is a Hermitian conjugate
-of $\gamma^{\text{FI}}$, but in non-Hermitian approaches, such as
-coupled-cluster theory, the two are slightly different. While for quantitative
-interstate properties both $\gamma^{\text{IF}}$ and $\gamma^{\text{FI}}$ are
-computed, the qualitative trends in exciton properties derived from
-$(\gamma^{\text{IF}})^{\dagger}$ and $\gamma^{\text{FI}}$ are very similar. Only
-one 1TDM is analyzed for EOM-CC.
-
-•
-
-In spin-restricted calculations, the **libwfa** module computes NTOs for
-the $\alpha\alpha$ block of transition density. Thus, when computing NTOs for
-the transitions between open-shell EOM-IP/EA states make sure to specify
-correct spin states. For example, use EOM_EA_ALPHA to visualize
-transitions involving the extra electron.
-
-**
 
 ### `STATE_ANALYSIS`
 
@@ -314,15 +304,14 @@ The cubes files of HOMO and LUMO will also be generated."
     $end
     ```
 
-**Note: 
+!!! note "Note"
+    For the output of orbitals and densities it is possible to use either the MOLDEN_FORMAT = TRUE
+    (see Example 10.2.12),
+    MAKE_CUBE_FILES = TRUE
+    (see Example 10.2.12),
+    or GUI = 2 options.
+    These options are mutually exclusive when STATE_ANALYSIS is activated.
 
-For the output of orbitals and densities it is possible to use either the MOLDEN_FORMAT = TRUE
-(see Example 10.2.12),
-MAKE_CUBE_FILES = TRUE
-(see Example 10.2.12),
-or GUI = 2 options.
-These options are mutually exclusive when STATE_ANALYSIS is activated.
-**
 
 ???+ example "Example 10.9: Uracil computed at the PBE0/def2-SV(P) level. Activation of extended libwfa functionality including export of NTOs and densities in cube format and computation of the ESPs of these densities.
 This extended libwfa mode can add significant computational cost, especially if a fine grid is chosen."
@@ -370,18 +359,10 @@ This extended libwfa mode can add significant computational cost, especially if 
 
 Other examples of **libwfa** uses:
 
-- •
-
-Example [7.3.4.2](../ch07_excited/sect_sftddft.md#ex:MRSFDFT) illustrates wave-function analysis of the SF-DFT
+- Example [7.3.4.2](../ch07_excited/sect_sftddft.md#ex:MRSFDFT) illustrates wave-function analysis of the SF-DFT
 states in para-benzyne;
-- •
-
-Example [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) illustrates wave-function analysis of XAS transitions
+- Example [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) illustrates wave-function analysis of XAS transitions
 within CVS-EOM-EE;
-- •
-
-Example [7.9.30](../ch07_excited/ex_eomip-wfa.md) illustrates wave-function analysis for transitions between EOM-IP states;
-- •
-
-Example [7.9.19](../ch07_excited/ex_CAPlibwfa.md) illustrates wave-function analysis of complex-valued densities
+- Example [7.9.30](../ch07_excited/ex_eomip-wfa.md) illustrates wave-function analysis for transitions between EOM-IP states;
+- Example [7.9.19](../ch07_excited/ex_CAPlibwfa.md) illustrates wave-function analysis of complex-valued densities
 within CAP-EOM-CCSD.

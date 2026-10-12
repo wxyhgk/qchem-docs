@@ -9,21 +9,11 @@ title: "11.7.7 FDE-Man output"
 In general the FDE-Man output indicates all important stages of the embedding
 calculation, which are:
 
-1. 1.
-
-Generation of $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$,
-2. 2.
-
-Generation of $\rho_{B}(\mathbf{r})$,
-3. 3.
-
-Construction of the embedding potential,
-4. 4.
-
-Start of FDE-Man embedding calculation and
-5. 5.
-
-Final FDE-Man summary.
+1. Generation of $\rho_{A}^{\mathrm{ref}}(\mathbf{r})$,
+2. Generation of $\rho_{B}(\mathbf{r})$,
+3. Construction of the embedding potential,
+4. Start of FDE-Man embedding calculation and
+5. Final FDE-Man summary.
 
 In the following table definitions of the terms printed to the output are
 collected. These quantities are printed for every state, *i.e.* for every

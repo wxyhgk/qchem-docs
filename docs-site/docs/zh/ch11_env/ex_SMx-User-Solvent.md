@@ -18,27 +18,13 @@ SM12[[910]](../bib_references/bib.md#bib946)
 其含义是：只要已知某种溶剂的少量描述符（descriptors），该模型就可以应用于该溶剂。
 溶剂描述符包括：
 
-- •
-
-介电常数
-- •
-
-折射率
-- •
-
-宏观表面张力
-- •
-
-Abraham 标度下的酸度
-- •
-
-Abraham 标度下的碱度
-- •
-
-碳芳香性（carbon aromaticity），即非氢溶剂原子中芳香碳原子所占的比例
-- •
-
-电负性卤素性（electronegative halogenicity），即非氢溶剂原子中
+- 介电常数
+- 折射率
+- 宏观表面张力
+- Abraham 标度下的酸度
+- Abraham 标度下的碱度
+- 碳芳香性（carbon aromaticity），即非氢溶剂原子中芳香碳原子所占的比例
+- 电负性卤素性（electronegative halogenicity），即非氢溶剂原子中
 F、Cl 或 Br 所占的比例）。
 
 这些模型由对连续介质静电相互作用的广义 Born（generalized Born）处理，以及以原子表面张力进行参数化的
@@ -382,29 +368,15 @@ ${}^{a}$<span class="ltx_text" style="font-size:80%;">溶剂名称在指定时�
 通过设置 **solvent** = **other**，用户可以指定自定义溶剂。这需要提供
 以下溶剂描述符：
 
-- •
-
-**Dielec**，溶剂的介电常数 $\varepsilon$
-- •
-
-**SolN**，293 K 下光频折射率 $n_{20}^{D}$
-- •
-
-**SolA**，Abraham 氢键酸度 $\sum{\alpha}_{2}^{\text{H}}$
-- •
-
-**SolB**，Abraham 氢键碱度 $\sum{\beta}_{2}^{\text{H}}$
-- •
-
-**SolG**，$\gamma=\gamma_{m}/\gamma^{0}$
+- **Dielec**，溶剂的介电常数 $\varepsilon$
+- **SolN**，293 K 下光频折射率 $n_{20}^{D}$
+- **SolA**，Abraham 氢键酸度 $\sum{\alpha}_{2}^{\text{H}}$
+- **SolB**，Abraham 氢键碱度 $\sum{\beta}_{2}^{\text{H}}$
+- **SolG**，$\gamma=\gamma_{m}/\gamma^{0}$
 其中 $\gamma_{m}$ 是 298 K 下空气/溶剂界面的宏观表面张力，$\gamma^{0}$ 为 1 cal mol${}^{-1}$ Å${}^{-2}$
 （1 dyne/cm = 1.43932 cal mol${}^{-1}$ Å${}^{-2}$）
-- •
-
-**SolC**，芳香性（$\phi$），即非氢溶剂原子中芳香碳原子所占的比例
-- •
-
-**SolH**，电负性"卤素性"（$\psi$），即非氢溶剂原子中 F、Cl 或 Br 所占的比例
+- **SolC**，芳香性（$\phi$），即非氢溶剂原子中芳香碳原子所占的比例
+- **SolH**，电负性"卤素性"（$\psi$），即非氢溶剂原子中 F、Cl 或 Br 所占的比例
 
 这些参数在 *$smx* 输入节中按示例 11.2.9 所示的方式指定。
 （*​$smx* 节中省略的任何溶剂描述符默认为零。）
@@ -552,33 +524,17 @@ SM8 溶剂化自由能按 $T=298$ K、气相与溶液相标准态浓度均为 1 
 
 SM8 测试套件包含以下代表性示例：
 
-- •
-
-2,2-dichloroethenyl dimethyl phosphate 在水中的单点溶剂化能与解析梯度计算，
+- 2,2-dichloroethenyl dimethyl phosphate 在水中的单点溶剂化能与解析梯度计算，
 方法为 M06-2X/6-31G*；
-- •
-
-2,2-dichloroethenyl dimethyl phosphate 在苯中的单点溶剂化能计算，
+- 2,2-dichloroethenyl dimethyl phosphate 在苯中的单点溶剂化能计算，
 方法为 M06-2X/6-31G*；
-- •
-
-2,2-dichloroethenyl dimethyl phosphate 在乙醇中的单点溶剂化能计算，
+- 2,2-dichloroethenyl dimethyl phosphate 在乙醇中的单点溶剂化能计算，
 方法为 M06-2X/6-31G*；
-- •
-
-5-fluorouracil 在水中的单点溶剂化能计算，方法为 M06/6-31+G*；
-- •
-
-5-fluorouracil 在辛醇中的单点溶剂化能计算，方法为 M06-L/6-31+G*；
-- •
-
-5-fluorouracil 在氟苯中的单点溶剂化能与解析梯度计算，方法为 M06-HF/6-31+G**；
-- •
-
-质子化甲醇 $\rm CH_{3}OH_{2}^{+}$ 在水中的几何优化，方法为 B3LYP/6-31G*；
-- •
-
-质子化甲醇 $\rm CH_{3}OH_{2}^{+}$ 在水中的有限差分频率计算（含解析梯度），方法为 B3LYP/6-31G*。
+- 5-fluorouracil 在水中的单点溶剂化能计算，方法为 M06/6-31+G*；
+- 5-fluorouracil 在辛醇中的单点溶剂化能计算，方法为 M06-L/6-31+G*；
+- 5-fluorouracil 在氟苯中的单点溶剂化能与解析梯度计算，方法为 M06-HF/6-31+G**；
+- 质子化甲醇 $\rm CH_{3}OH_{2}^{+}$ 在水中的几何优化，方法为 B3LYP/6-31G*；
+- 质子化甲醇 $\rm CH_{3}OH_{2}^{+}$ 在水中的有限差分频率计算（含解析梯度），方法为 B3LYP/6-31G*。
 
 希望计算溶解度的用户可以根据溶剂化自由能，采用文献 [[1358]](../bib_references/bib.md#bib1418)
  中描述的方法进行计算。

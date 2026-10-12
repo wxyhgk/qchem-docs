@@ -21,22 +21,12 @@ using LIBGMBPT implementation.
 In CCMAN2, the following CC2 features are available with a RHF, UHF or ROHF references and
 using point-group symmetry:
 
-- •
-
-Energies for EOM-EE/SF/EA/IP-CC2[[1040]](../bib_references/bib.md#bib1085)
+- Energies for EOM-EE/SF/EA/IP-CC2[[1040]](../bib_references/bib.md#bib1085)
 ;
-- •
-
-One-electron properties for the CC2 reference state and the EOM-EE/SF-CC2 states with and without amplitude response;
-- •
-
-Transition dipole moments for transitions of type CC2 $\leftrightarrow$ EOM-EE-CC2, EOM-EE-CC2 $\leftrightarrow$ EOM-EE-CC2 and EOM-SF-CC2 $\leftrightarrow$ EOM-SF-CC2;
-- •
-
-Dyson orbitals (see section [7.9.29](topic_dyson.md)) for transitions of type CC2 $\leftrightarrow$ EOM-EA/IP-CC2 and EOM-EE/SF-CC2 $\leftrightarrow$ EOM-EA/IP-CC2;
-- •
-
-Resonance energies with EOM-EE/EA-CC2 using a CAP, CS or CBFs[[1382]](../bib_references/bib.md#bib1443)
+- One-electron properties for the CC2 reference state and the EOM-EE/SF-CC2 states with and without amplitude response;
+- Transition dipole moments for transitions of type CC2 $\leftrightarrow$ EOM-EE-CC2, EOM-EE-CC2 $\leftrightarrow$ EOM-EE-CC2 and EOM-SF-CC2 $\leftrightarrow$ EOM-SF-CC2;
+- Dyson orbitals (see section [7.9.29](topic_dyson.md)) for transitions of type CC2 $\leftrightarrow$ EOM-EA/IP-CC2 and EOM-EE/SF-CC2 $\leftrightarrow$ EOM-EA/IP-CC2;
+- Resonance energies with EOM-EE/EA-CC2 using a CAP, CS or CBFs[[1382]](../bib_references/bib.md#bib1443)
  (see Section [7.9.10](sub_cc_cs_cap.md)).
 
 The electron repulsion integrals (ERIs) can be approximated by using the
@@ -47,25 +37,15 @@ The LIBGMBPT implementation of CC2 only uses the RI approximation. It does not
 exploit point group symmetry or single-precision execution. The following features
 are available:
 
-- •
-
-Energies with EOM-EE-CC2 with RHF or UHF references;
-- •
-
-Energies with EOM-SF-CC2 with UHF references[[1040]](../bib_references/bib.md#bib1085)
+- Energies with EOM-EE-CC2 with RHF or UHF references;
+- Energies with EOM-SF-CC2 with UHF references[[1040]](../bib_references/bib.md#bib1085)
 ;
-- •
-
-Energies with EOM-EA/IP-CC2 with RHF references[[1041]](../bib_references/bib.md#bib1086)
+- Energies with EOM-EA/IP-CC2 with RHF references[[1041]](../bib_references/bib.md#bib1086)
 ;
-- •
-
-Resonance energies with EOM-EA-CC2 with RHF references by using a CAP, CS or
+- Resonance energies with EOM-EA-CC2 with RHF references by using a CAP, CS or
 CBFs[[1382]](../bib_references/bib.md#bib1443)
  (see section [7.9.10](sub_cc_cs_cap.md));
-- •
-
-Spin-scaling (see Section [6.6.5](../ch06_correlation/topic_sbmp2.md)) is available for real-valued EOM-EE-CC2
+- Spin-scaling (see Section [6.6.5](../ch06_correlation/topic_sbmp2.md)) is available for real-valued EOM-EE-CC2
 for singlet excited states and for both real- and complex-valued EOM-EA-CC2.
 
 For bound states LIBGMBPT uses a mixed Davidson/DIIS solver to solve the EOM eigenvalue problem.[[532]](../bib_references/bib.md#bib546)

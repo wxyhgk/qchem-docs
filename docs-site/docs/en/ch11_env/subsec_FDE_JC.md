@@ -16,11 +16,10 @@ requires key and value pairs separated by a space character:
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The following job control variables belong *only* in the *$fde*
+    section. Do not place them in the *$rem* section.
 
-The following job control variables belong *only* in the *$fde*
-section. Do not place them in the *$rem* section.
-**
 
 The supermolecular expansion (SE) uses the full basis set of the supersystem
 for calculations on each fragment. Because of the computational cost this
@@ -44,15 +43,9 @@ exchange-correlation functional, for instance TF/SVWN or PW91k/PW91.
 
 The *minimal specifications required* to successfully run a FDET calculation are:
 
-- •
-
-Functionals for embedding potential: **T_Func**, **XC_Func** (or **X_Func** and **C_Func**),
-- •
-
-Basis expansion: **Expansion**,
-- •
-
-Method for environment density: **rhoB_method**
+- Functionals for embedding potential: **T_Func**, **XC_Func** (or **X_Func** and **C_Func**),
+- Basis expansion: **Expansion**,
+- Method for environment density: **rhoB_method**
 
 ### `T_Func`
 
@@ -217,12 +210,11 @@ and are required to be present in the same folder of the calculation.
 >     * `FALSE`: Don’t do a superposition, use the whole fragment B.
 > * **Recommendation**: The files with the molecular density matrices should be .txt files, numerated from 0, with the prefix SCF_Dens_B_Subfrag_ .
 
-**Note: 
+!!! note "Note"
+    No embedding calculation is performed if these functions are selected. In both cases,
+    only the geometry of fragment B has to be given, and each molecule needs to be specified as independent
+    fragment in the MOLECULE section.
 
-No embedding calculation is performed if these functions are selected. In both cases,
-only the geometry of fragment B has to be given, and each molecule needs to be specified as independent
-fragment in the MOLECULE section.
-**
 
 When using the *superposition* options, the file of the superposed density matrix of the environment (B)
 is saved with the name `Densmat_B.txt`, and can be used with the **import_rhoB** option
@@ -339,10 +331,9 @@ with the **prepol** keyword. The different pre-polarization options are describe
 >     * `Mixed`: Use a combination of different built-in basis sets (see Section 8.5 ).
 > * **Recommendation**: Smaller basis for fragment B can be used to improve the performance of embedding calculations.
 
-**Note: 
+!!! note "Note"
+    All basis used within the FDE-Man module use PURECART = 2111.
 
-All basis used within the FDE-Man module use PURECART = 2111.
-**
 
 ### `print_props`
 

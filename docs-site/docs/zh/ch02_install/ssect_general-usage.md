@@ -8,22 +8,12 @@ title: "2.2.1 一般用法"
 
 安装完成并对用户账户进行必要的调整之后，用户即可运行 **Q-Chem**。**Q-Chem** 有多种调用方式：
 
-1. 1.
+1. **IQmol** 为 **Q-Chem** 软件包提供了完全集成的图形界面，其中包含一个带上下文帮助的高级输入生成器，能够引导你了解 **Q-Chem** 提供的众多选项。它还提供分子构建器、作业提交与监控工具，并可视化分子轨道、电子密度和振动频率。最新版本及下载/安装说明，请参阅 **IQmol** 主页（`http://www.iqmol.org`）。
+2. *qchem* 命令行 shell 脚本。命令行执行的简单格式如下所示。本手册的其余部分将详细介绍输入文件的创建方法。
+3. 通过第三方图形用户界面（GUI）调用。其中最流行的两种是：
 
-**IQmol** 为 **Q-Chem** 软件包提供了完全集成的图形界面，其中包含一个带上下文帮助的高级输入生成器，能够引导你了解 **Q-Chem** 提供的众多选项。它还提供分子构建器、作业提交与监控工具，并可视化分子轨道、电子密度和振动频率。最新版本及下载/安装说明，请参阅 **IQmol** 主页（`http://www.iqmol.org`）。
-2. 2.
-
-*qchem* 命令行 shell 脚本。命令行执行的简单格式如下所示。本手册的其余部分将详细介绍输入文件的创建方法。
-3. 3.
-
-通过第三方图形用户界面（GUI）调用。其中最流行的两种是：
-
-- •
-
-面向电子结构软件的通用 Web 界面 **WebMO**（`www.webmo.net`）。
-- •
-
-Wavefunction 公司在某些平台上提供的 **Spartan** 用户界面。有关当前的可用性详情，请联系 Wavefunction, Inc.（`www.wavefun.com`）或 **Q-Chem**。
+- 面向电子结构软件的通用 Web 界面 **WebMO**（`www.webmo.net`）。
+- Wavefunction 公司在某些平台上提供的 **Spartan** 用户界面。有关当前的可用性详情，请联系 Wavefunction, Inc.（`www.wavefun.com`）或 **Q-Chem**。
 
 只要 **Q-Chem** 已正确安装在你的机器上，并且必要的环境变量已在 `.cshrc`、`.profile` 或等效的登录文件中设置好，使用 **Q-Chem** 命令行 shell 脚本（*qchem*）就非常简单。如果配置正确，`$PATH` 变量会在登录时自动完成必要的修改，从而可以在工作目录中调用 **Q-Chem**。
 
@@ -38,10 +28,9 @@ Wavefunction 公司在某些平台上提供的 **Spartan** 用户界面。有关
 
 其中 `infile` 是格式规范的 **Q-Chem** 输入文件的文件名（详见第 [3](../ch03_inputs/chap_inputs.md) 章及本手册其余部分），`outfile` 则是 **Q-Chem** 写入作业输出信息的文件名。
 
-**注意：
+!!! note "注意"
+    如果 `outfile` 已存在于工作目录中，它将被覆盖。
 
-如果 `outfile` 已存在于工作目录中，它将被覆盖。
-**
 
 使用命令行变量 `savename` 可以在多次运行之间保存几个关键的暂存（scratch）文件，当要求 **Q-Chem** 读取先前作业的信息时，这是必需的。如果未给出 `savename` 参数，**Q-Chem** 会在运行结束时删除所有临时暂存文件。被保存的文件位于 `$QCSCRATCH/savename/` 中，包括当前分子几何结构、当前分子轨道与密度矩阵以及当前力常数（如有）等文件。*–save* 选项与 `savename` 连用表示保存所有临时文件，而不仅仅是上述几个必需的文件。通常不需要这样做。当指定了 `$QCLOCALSCR` 时，临时文件将存储在该目录下，并在正常终止时复制到 `$QCSCRATCH/savename/`。
 
@@ -115,20 +104,10 @@ Wavefunction 公司在某些平台上提供的 **Spartan** 用户界面。有关
 
 使用 **BrianQC** 的要求如下：
 
-- •
-
-单独的 **BrianQC** 许可证
-- •
-
-64 位的 Linux 或 Windows 操作系统
-- •
-
-基于 Pascal、Volta、Turing 或 Ampere 架构的 Nvidia GPU
-- •
-
-角动量不超过 $g$ 的基组（Basis Set）
-- •
-
-每个 GPU 上只运行一个 **Q-Chem** 计算
+- 单独的 **BrianQC** 许可证
+- 64 位的 Linux 或 Windows 操作系统
+- 基于 Pascal、Volta、Turing 或 Ampere 架构的 Nvidia GPU
+- 角动量不超过 $g$ 的基组（Basis Set）
+- 每个 GPU 上只运行一个 **Q-Chem** 计算
 
 欲了解更多信息，请访问 `https://www.brianqc.com/`。

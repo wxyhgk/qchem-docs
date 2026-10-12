@@ -9,10 +9,9 @@ title: "10.5.8 Electrostatic Potentials"
 **Q-Chem** can evaluate electrostatic potentials on a grid of points.
 Electrostatic potential (ESP) evaluation is controlled by the *$rem* variable ESP_GRID.
 
-**Note: 
+!!! note "Note"
+    For backwards compatibility with the **Q-Chem**/**Charmm** interface, the name IGDESP is equivalent to ESP_GRID.
 
-For backwards compatibility with the **Q-Chem**/**Charmm** interface, the name IGDESP is equivalent to ESP_GRID.
-**
 
 ### `ESP_GRID`
 

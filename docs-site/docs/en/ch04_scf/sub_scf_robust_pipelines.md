@@ -14,55 +14,33 @@ These pipelines can be used by setting SCF_ALGORITHM to ROBUST or ROBUST_STABLE
 in conjunction to GEN_SCFMAN set to true.
 The outline for the ROBUST pipeline is below:
 
-- •
-
-SCF converges when the DIIS error or RMS gradient
+- SCF converges when the DIIS error or RMS gradient
 converges below the requested convergence threshold.
-- •
-
-The cutoff for the neglect of 2-electron integrals is set to $10^{-12}$
+- The cutoff for the neglect of 2-electron integrals is set to $10^{-12}$
 or a tighter user-specified value set using THRESH. Note that, by default,
 THRESH = SCF_CONVERGENCE+4.
-- •
-
-The cutoff for the neglect of overlap integrals is set to $10^{-14}$ or a
+- The cutoff for the neglect of overlap integrals is set to $10^{-14}$ or a
 tighter user-specified value set using S2THRESH to offset
 any basis-set linear dependency problems.
-- •
-
-We define oscillatory behavior during the SCF procedure as
+- We define oscillatory behavior during the SCF procedure as
 SCF_ROBUST_MIN_SIGN_CHANGES number of sign changes within a window of logarithms of
 DIIS errors or RMS gradients.
-- •
-
-We define a plateau detection when the slopes of SCF_ROBUST_PLATEAU_WINDOWS windows of DIIS errors or RMS gradients
+- We define a plateau detection when the slopes of SCF_ROBUST_PLATEAU_WINDOWS windows of DIIS errors or RMS gradients
 are less than SCF_ROBUST_SLOPE_THRESH.
-- •
-
-Throughout the pipeline, MAX_SCF_CYCLES corresponds to the maximum cycles allowed
+- Throughout the pipeline, MAX_SCF_CYCLES corresponds to the maximum cycles allowed
 for an SCF algorithm to run without any parameter changes.
-- •
-
-The pipeline starts with the DIIS algorithm. If a plateau or oscillatory behavior in the DIIS error is
+- The pipeline starts with the DIIS algorithm. If a plateau or oscillatory behavior in the DIIS error is
 detected after iteration #(2*SCF_ROBUST_WINDOW_SIZE+1), the incremental Fock algorithm,
 if on, is switched off for good.
-- •
-
-At this point, if the DIIS error is less than 0.001, the algorithm is switched to ADIIS; otherwise,
+- At this point, if the DIIS error is less than 0.001, the algorithm is switched to ADIIS; otherwise,
 DIIS is allowed to run for a further MAX_SCF_CYCLES iterations unless a plateau
 or oscillatory trend is detected again at which point the algorithm switches to GDM.
 For Q-Chem 7.0, if robust SCF is run with MPI+OMP parallelization, the switch to ADIIS is skipped.
-- •
-
-ADIIS is allowed to run for MAX_SCF_CYCLES iterations unless the DIIS error becomes smaller
+- ADIIS is allowed to run for MAX_SCF_CYCLES iterations unless the DIIS error becomes smaller
 than 0.001.
-- •
-
-DIIS is run again after ADIIS. The pipeline switches to GDM if a plateau or oscillatory trend is detected again after
+- DIIS is run again after ADIIS. The pipeline switches to GDM if a plateau or oscillatory trend is detected again after
 iteration #(2*SCF_ROBUST_WINDOW_SIZE+1).
-- •
-
-GDM is allowed to run until convergence or maximum allowed number of iterations.
+- GDM is allowed to run until convergence or maximum allowed number of iterations.
 
 The ROBUST_STABLE pipeline performs a stability analysis on top of the ROBUST pipeline until a minimum is found.
 Following the initial macroiteration run with ROBUST, only GDM is used in subsequent macroiterations

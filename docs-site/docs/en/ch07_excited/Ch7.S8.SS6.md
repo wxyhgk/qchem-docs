@@ -66,15 +66,14 @@ SF_STATES.
 >     * $[i,j,k\ldots]$: Find $i$ SF states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    It is a symmetry of a *transition* rather than that of a *target state*
+    that is specified in excited state calculations. The symmetry of the
+    target state is a product of the symmetry of the reference state and the
+    transition. For closed-shell molecules, the former is fully symmetric and the
+    symmetry of the target state is the same as that of transition, however, for
+    open-shell references this is not so.
 
-It is a symmetry of a *transition* rather than that of a *target state*
-that is specified in excited state calculations. The symmetry of the
-target state is a product of the symmetry of the reference state and the
-transition. For closed-shell molecules, the former is fully symmetric and the
-symmetry of the target state is the same as that of transition, however, for
-open-shell references this is not so.
-**
 
 ### `CC_STATE_TO_OPT`
 
@@ -86,14 +85,13 @@ open-shell references this is not so.
 >     * `[`: $i$ , $j$ ] optimize the $j$ th state of the $i$ th irrep.
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    Since there are no analytic gradients for CIS(D), the symmetry should be
+    turned off for geometry optimization and frequency calculations, and
+    CC_STATE_TO_OPT should be specified assuming $C_{1}$ symmetry, *i.e.*,
+    as [1,N] where N is the number of state to optimize (the states are numbered
+    from 1).
 
-Since there are no analytic gradients for CIS(D), the symmetry should be
-turned off for geometry optimization and frequency calculations, and
-CC_STATE_TO_OPT should be specified assuming $C_{1}$ symmetry, *i.e.*,
-as [1,N] where N is the number of state to optimize (the states are numbered
-from 1).
-**
 
 ???+ example "Example 7.64: CIS(D) excitation energy calculation for ozone at the experimental ground
 state geometry $C_{2v}$"

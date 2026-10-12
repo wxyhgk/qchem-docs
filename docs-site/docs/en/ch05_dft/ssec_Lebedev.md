@@ -23,9 +23,7 @@ meaning the number of spherical harmonics exactly integrated per degree of
 freedom in the formula. **Q-Chem** supports the following two types of angular
 grids.
 
-- •
-
-**Lebedev grids.**
+- **Lebedev grids.**
 These are specially-constructed grids for quadrature on the surface of a
 sphere,[[776]](../bib_references/bib.md#bib808)
  based on the
@@ -145,9 +143,7 @@ specifying the number of grid points (from Table [5.2](#table:Lebedev)) using t
 
 Table 5.2: 
 Lebedev angular quadrature grids available in **Q-Chem**.
-- •
-
-**Gauss-Legendre grids.**
+- **Gauss-Legendre grids.**
 These are spherical direct-product grids in the two spherical-polar angles,
 $\theta$ and $\phi$. Integration in over $\theta$ is performed using a Gaussian
 quadrature derived from the Legendre polynomials,

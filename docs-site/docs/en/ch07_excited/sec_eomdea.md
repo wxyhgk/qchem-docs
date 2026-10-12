@@ -31,9 +31,8 @@ An EOM-DEA calculation is invoked by using DEA_STATES, or DEA_SINGLETS and DEA_T
 In more exotic calculations, such as EOM-DEA for open-shell references, DEA_AA_STATES, DEA_BB_STATES,
 and DEA_AB_STATES keywords might be useful. Both EOM-CCSD and EOM-MP2 variants are available.
 
-**Note: 
+!!! note "Note"
+    In some applications of EOM-DEA-CCSD, only
+    2$p$ operators were included in the EOM part. These calculations
+    correspond to energies obtained from EOM_PRECONV_DOUBLES = TRUE calculation.
 
-In some applications of EOM-DEA-CCSD, only
-2$p$ operators were included in the EOM part. These calculations
-correspond to energies obtained from EOM_PRECONV_DOUBLES = TRUE calculation.
-**

@@ -191,10 +191,9 @@ AIMD_INTEGRATION 设置为 RATTLE 即可请求该功能。约束条件通过
 > $end
 > ```
 
-**注意：
+!!! note "注意"
+    键长数值应以埃（Ångstrom）为单位。
 
-键长数值应以埃（Ångstrom）为单位。
-**
 
 RATTLE 步的收敛阈值和最大迭代次数由以下 *$rem* 变量控制：RATTLE_THRESH（默认值为 6）和 RATTLE_MAXIT（默认值为 100）。
 

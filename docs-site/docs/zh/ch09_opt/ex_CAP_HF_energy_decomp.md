@@ -8,26 +8,16 @@ title: "9.11.3 CAP-AIMD 任务控制与示例"
 
 若要运行 CAP-AIMD（复吸收势 - 从头算分子动力学）模拟，必须设置以下三项：
 
-- •
-
-JOBTYPE = AIMD，位于 *$rem* 中，
-- •
-
-COMPLEX_CCMAN = TRUE，位于 *$rem* 中（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节），以及
-- •
-
-CS_HF = 1，位于 *$complex_ccman* 中（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）。
+- JOBTYPE = AIMD，位于 *$rem* 中，
+- COMPLEX_CCMAN = TRUE，位于 *$rem* 中（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节），以及
+- CS_HF = 1，位于 *$complex_ccman* 中（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）。
 
 目前，CAP-AIMD 模拟仅可使用长方体（cuboid）类型的 CAP，因此还需要在 *$complex_ccman* 区段中设置 CAP_TYPE = 1（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）。
 
 进行 CAP-AIMD 模拟时，除 [9.9.2](sub_aimd_jobcontrol.md) 节所述内容外，还会在 AIMD 目录中生成两个额外文件：
 
-- •
-
-`CAP_EComponents`：记录每一步的总复数能量、经 CAP 修正的总复数能量，以及 CAP 对总复数能量贡献的实部与虚部——全部以原子单位（a.u.）计。
-- •
-
-`CAP_PositionAndWidth`：记录每一步的总复数能量（以 a.u. 计）以及共振宽度（以电子伏特 eV 计）。
+- `CAP_EComponents`：记录每一步的总复数能量、经 CAP 修正的总复数能量，以及 CAP 对总复数能量贡献的实部与虚部——全部以原子单位（a.u.）计。
+- `CAP_PositionAndWidth`：记录每一步的总复数能量（以 a.u. 计）以及共振宽度（以电子伏特 eV 计）。
 
 ### `CAP_AIMD_SWITCH`
 

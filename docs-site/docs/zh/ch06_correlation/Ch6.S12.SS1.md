@@ -73,7 +73,7 @@ title: "6.12.1 引言"
 >     * CCMAN
 > * **建议**：请参阅相关文献以获取指导。
 
-**注意：
+!!! note "注意"
+    CCMAN2 中实现的所有方法均可与 PCM 隐式溶剂模型（implicit solvation models）组合使用（处于"零级"（zeroth-order）水平，详见第 [11.2.1 节](../ch11_env/topic_solvation_Intro.md)），也可与 EFP 方法（第 [11.5 节](../ch11_env/sect_efp.md)）组合使用。
+    仅可获取能量和非弛豫性质（unrelaxed properties），不支持梯度计算。
 
-CCMAN2 中实现的所有方法均可与 PCM 隐式溶剂模型（implicit solvation models）组合使用（处于"零级"（zeroth-order）水平，详见第 [11.2.1 节](../ch11_env/topic_solvation_Intro.md)），也可与 EFP 方法（第 [11.5 节](../ch11_env/sect_efp.md)）组合使用。
-仅可获取能量和非弛豫性质（unrelaxed properties），不支持梯度计算。**

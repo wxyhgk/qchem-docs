@@ -12,10 +12,9 @@ title: "7.2.4 作业控制选项"
 
 请求 CIS 类作业的方式是：像基态 Hartree-Fock（HF）计算那样，将 *$rem* 变量设置为 EXCHANGE = HF 且 CORRELATION = NONE，然后再使用 *$rem* 关键字 CIS_N_ROOTS 指定所需的激发态根数。
 
-**注意：
+!!! note "注意"
+    对于 RHF 情形，除非通过 CIS_TRIPLETS 和 CIS_SINGLETS 另行指定，否则将计算 $n$ 个单重态和 $n$ 个三重态。
 
-对于 RHF 情形，除非通过 CIS_TRIPLETS 和 CIS_SINGLETS 另行指定，否则将计算 $n$ 个单重态和 $n$ 个三重态。
-**
 
 ### `CIS_N_ROOTS`
 
@@ -188,10 +187,9 @@ title: "7.2.4 作业控制选项"
 >     * $n$: 个核心轨道。
 > * **建议**: 对 CIS 而言，使用冻结核心并没有计算上的优势，且只有在没有轨道被冻结时才提供解析导数。在计算 CIS(D) 校正时该选项很有帮助（参见第 7.8 节）。
 
-**注意：
+!!! note "注意"
+    在关联计算中，默认设置为 N_FROZEN_CORE=FC。
 
-在关联计算中，默认设置为 N_FROZEN_CORE=FC。
-**
 
 ### `N_FROZEN_VIRTUAL`
 

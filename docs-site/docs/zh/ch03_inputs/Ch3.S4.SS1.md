@@ -52,8 +52,6 @@ title: "3.4.1 概述"
 
 完整的 *$rem* 变量列表可见附录 [B](../app_b_quickref/app_quick_ref.md)。
 
-**
-
 在本手册中，*$rem* 变量将按以下格式描述：
 
 ### `IQMOL_FCHK`

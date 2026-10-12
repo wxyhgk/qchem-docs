@@ -88,18 +88,10 @@ details for how to analyze the results may be found in the referenced literature
 
 Considerations for using the bonded ALMO-EDA:
 
-- •
-
-SCFMI_MODE = 1 is required.
-- •
-
-ROSCF = TRUE must be set.
-- •
-
-There are no presets of the bonded ALMO-EDA. Therefore, set EDA2 = 10.
-- •
-
-DIIS may not be used for SCF_ALGORITHM. Use GDM_LS
+- SCFMI_MODE = 1 is required.
+- ROSCF = TRUE must be set.
+- There are no presets of the bonded ALMO-EDA. Therefore, set EDA2 = 10.
+- DIIS may not be used for SCF_ALGORITHM. Use GDM_LS
 for BONDED_EDA = 2 and L_BFGS for BONDED_EDA = 1.
 
 ### `BONDED_EDA`

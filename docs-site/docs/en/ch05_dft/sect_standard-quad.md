@@ -154,41 +154,39 @@ grid.[[301]](../bib_references/bib.md#bib305)
 grid, and while SG-3 is often adequate, it is not completely converged in
 the case of non-bonded interactions.[[301]](../bib_references/bib.md#bib305)
 
-**Note: 
+!!! note "Note"
+    1.
 
-1.
+    SG-0 was re-optimized for **Q-Chem** v. 3.0, so results may differ
+    slightly as compared to older versions of the program.
 
-SG-0 was re-optimized for **Q-Chem** v. 3.0, so results may differ
-slightly as compared to older versions of the program.
+    2.
 
-2.
+    The SG-2 and SG-3 grids use a double-exponential radial
+    quadrature,[[301]](../bib_references/bib.md#bib305)
+     whereas a general grid (selected by
+    setting XC_GRID = $XY$, as described in
+    Section [5.4](sect_DFT_METHOD.md)) uses an Euler-MacLaurin radial quadrature.
+    As such, *absolute* energies cannot be compared between, *e.g.*,
+    SG-2 and XC_GRID = 000075000302, even though
+    SG-2 uses a pruned (75, 302) grid. However, energy
+    *differences* should be quite similar between the two.
 
-The SG-2 and SG-3 grids use a double-exponential radial
-quadrature,[[301]](../bib_references/bib.md#bib305)
- whereas a general grid (selected by
-setting XC_GRID = $XY$, as described in
-Section [5.4](sect_DFT_METHOD.md)) uses an Euler-MacLaurin radial quadrature.
-As such, *absolute* energies cannot be compared between, *e.g.*,
-SG-2 and XC_GRID = 000075000302, even though
-SG-2 uses a pruned (75, 302) grid. However, energy
-*differences* should be quite similar between the two.
+    3.
 
-3.
+    As noted in Ref. [[301]](../bib_references/bib.md#bib305)
+    , for Minnesota functionals some wiggles in
+    potential energy surfaces may persist with the SG-3 grid, especially for longer-range non-bonded interactions.
+    Although these are rarely problematic for energy differences, if the user wants to eliminate these oscillations then
+    we recommend an unpruned (99, 590) grid, *i.e.*, XC_GRID = 000099000590.
 
-As noted in Ref. [[301]](../bib_references/bib.md#bib305)
-, for Minnesota functionals some wiggles in
-potential energy surfaces may persist with the SG-3 grid, especially for longer-range non-bonded interactions.
-Although these are rarely problematic for energy differences, if the user wants to eliminate these oscillations then
-we recommend an unpruned (99, 590) grid, *i.e.*, XC_GRID = 000099000590.
+    4.
 
-4.
+    Although much has been said in the literature regarding the grid sensitivity of the SCAN functional,[[83]](../bib_references/bib.md#bib68)
 
-Although much has been said in the literature regarding the grid sensitivity of the SCAN functional,[[83]](../bib_references/bib.md#bib68)
+    the conventional wisdom that SCAN is extremely sensitive to grid quality is largely based on calculations in condensed-matter
+    (periodic DFT) codes. In **Q-Chem**, the SG-2 and SG-3 grids appear to be of sufficient quality for SCAN calculations.[[161]](../bib_references/bib.md#bib154)
 
-the conventional wisdom that SCAN is extremely sensitive to grid quality is largely based on calculations in condensed-matter
-(periodic DFT) codes. In **Q-Chem**, the SG-2 and SG-3 grids appear to be of sufficient quality for SCAN calculations.[[161]](../bib_references/bib.md#bib154)
+    (That said, regularized functionals such as r${}^{\text{2}}$SCAN[[419]](../bib_references/bib.md#bib428)
+     do reduce the grid dependence.)
 
-(That said, regularized functionals such as r${}^{\text{2}}$SCAN[[419]](../bib_references/bib.md#bib428)
- do reduce the grid dependence.)
-
-**

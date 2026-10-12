@@ -13,14 +13,10 @@ of small gas-phase molecules are routinely in excess of
 cause severe distortions in K-edge spectra.
 These errors can be traced to two sources:
 
-1. 1.
-
-A lack of orbital relaxation effects that is poorly compensated by
+1. A lack of orbital relaxation effects that is poorly compensated by
 linear-response theory with only single excitations atop
 ground state reference orbitals, and
-2. 2.
-
-a form of excited-state self-interaction error in the TDDFT potential
+2. a form of excited-state self-interaction error in the TDDFT potential
 called particle–hole self-interaction error.
 
 Both can be rectified by choosing a more suitable set of reference orbitals

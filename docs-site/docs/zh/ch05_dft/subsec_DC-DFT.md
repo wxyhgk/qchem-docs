@@ -35,11 +35,10 @@ DC-DFT 的解析能量梯度可用，[[1144]](../bib_references/bib.md#bib1196)
  但由于泛函 $E_{\text{DC-DFT}}$ 未被迭代至自洽，评估梯度 $dE_{\text{DC-DFT}}/dx$ 需要求解耦合微扰（$Z$-vector）方程，[[1399]](../bib_references/bib.md#bib1459)
  这使得梯度计算比传统 DFT 梯度略为昂贵。
 
-**注意：
+!!! note "注意"
+    目前 DC-DFT 的耦合微扰方程以串行方式求解，也就是说，虽然 SCF 迭代是并行化的，
+    但 $Z$-vector 迭代并未并行化。
 
-目前 DC-DFT 的耦合微扰方程以串行方式求解，也就是说，虽然 SCF 迭代是并行化的，
-但 $Z$-vector 迭代并未并行化。
-**
 
 要执行 DC-DFT 计算，请在 *$rem* 段中设置 METHOD 以选择所需泛函，并设置
 DC_DFT = TRUE。注意，由于 $E_{\text{DFT}}[\rho]$ 从不被对角化，因此在 SCF 流程末尾计算的任何后续性质均基于 Hartree-Fock 密度。

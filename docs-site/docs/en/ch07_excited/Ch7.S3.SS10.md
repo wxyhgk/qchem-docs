@@ -152,10 +152,9 @@ To activate this analysis, use the following: CALC_SOC = 2,
 STATE_ANALYSIS = TRUE, MOLDEN_FORMAT = TRUE,
 and NTO_PAIRS = $N$. Consult Section [10.2](../ch10_properties/sec_wfa.md) for details of the **libwfa** package.
 
-**Note: 
+!!! note "Note"
+    This analysis differs from the NTO analysis of the regular transition density matrix between the singlet and triplet states.
 
-This analysis differs from the NTO analysis of the regular transition density matrix between the singlet and triplet states.
-**
 
 ???+ example "Example 7.21: Calculation of one-electron SOCs for using TDDFT/TDA."
     ```qchem
@@ -343,10 +342,9 @@ $$
 
 where $\alpha_{0}$ is the fine-structure constant and $\tilde{\mathbf{L}}=\mathbf{L}/r^{3}$.
 
-**Note: 
+!!! note "Note"
+    Currently, this CIS or TDDFT/TDA-SOC implementation supports only restricted SCF calculations (which would produce excited state singlets and triplets in the absence of SOC). Also, the ground state is not coupled to the excited states through SOC (or otherwise).
 
-Currently, this CIS or TDDFT/TDA-SOC implementation supports only restricted SCF calculations (which would produce excited state singlets and triplets in the absence of SOC). Also, the ground state is not coupled to the excited states through SOC (or otherwise).
-**
 
 The code is triggered by setting *$rem* variable CIS_SOC = $N$, where $N$ is the number of roots desired:
 

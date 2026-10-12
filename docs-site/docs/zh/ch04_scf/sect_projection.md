@@ -8,15 +8,9 @@ title: "4.4.5 基组投影"
 
 **Q-Chem** 还包含一种由 **Q-Chem** 公司的 Jing Kong 博士开发的全新基组投影方法。它使得在一个大基组中进行的计算能够借助一个小基组中的计算来自举（bootstrap）收敛——当用户请求此选项时，该小基组计算会被自动派生执行。当请求基组投影时（通过为 BASIS2 提供一个有效的小基组），程序执行以下步骤：
 
-- •
-
-首先在小基组 BASIS2 中执行一个简单的密度泛函理论（Density Functional Theory, DFT）计算，得到该基组中收敛的密度矩阵。
-- •
-
-大基组的自洽场（SCF）计算（由输入设置不同的 EXCHANGE 和 CORRELATION 值）从在大基组中构建 DFT Fock 算符开始，但使用从小基组获得的密度矩阵。
-- •
-
-通过对该矩阵进行对角化，得到大基组中密度矩阵的精确初始猜测，随后开始目标 SCF 计算。
+- 首先在小基组 BASIS2 中执行一个简单的密度泛函理论（Density Functional Theory, DFT）计算，得到该基组中收敛的密度矩阵。
+- 大基组的自洽场（SCF）计算（由输入设置不同的 EXCHANGE 和 CORRELATION 值）从在大基组中构建 DFT Fock 算符开始，但使用从小基组获得的密度矩阵。
+- 通过对该矩阵进行对角化，得到大基组中密度矩阵的精确初始猜测，随后开始目标 SCF 计算。
 
 有两种不同的投影方法可用，可通过 *$rem* 中的 BASISPROJTYPE 设置。OVPROJECTION 选项在大基组中展开来自 BASIS2 计算的分子轨道（MO），而 FOPPROJECTION 选项则使用初始较小基组计算的密度矩阵在大基组中构建 Fock 矩阵。对于无法使用对称匹配泛函（SAD）初始猜测的一般基组而言，基组投影是一个非常有效的选项。具体而言，该初始猜测由以下 *$rem* 变量控制：
 
@@ -44,10 +38,9 @@ title: "4.4.5 基组投影"
 >     * `OVPROJECTION`: 将 MO 从 BASIS2 投影到 BASIS。
 > * **建议**: 无
 
-**注意：
+!!! note "注意"
+    BASIS2 有时会影响后 Hartree-Fock（post-Hartree-Fock）计算。建议将此类任务拆分为两个先后执行的任务：在第一个任务中利用 BASIS2 求得所需的 Hartree-Fock 解，而在执行 post-HF 计算的第二个任务中调用 SCF_GUESS = READ。
 
-BASIS2 有时会影响后 Hartree-Fock（post-Hartree-Fock）计算。建议将此类任务拆分为两个先后执行的任务：在第一个任务中利用 BASIS2 求得所需的 Hartree-Fock 解，而在执行 post-HF 计算的第二个任务中调用 SCF_GUESS = READ。
-**
 
 ???+ example "示例 4.7：使用基组投影为采用一般基组的计算生成良好的初始猜测（该情况下默认初始猜测不可用）的输入文件。"
     ```qchem

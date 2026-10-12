@@ -113,9 +113,7 @@ $$
 | RIMP2-aug-cc-pVTZ | H, He, B $\rightarrow$ Ne, Al $\rightarrow$ Ar, Ga $\rightarrow$ Kr |
 | RIMP2-aug-cc-pVQZ | H, He, B $\rightarrow$ Ne, Al $\rightarrow$ Ar, Ga $\rightarrow$ Kr |
 
-- •
-
-${}^{a}$XX 包括 SV(P)、SVP、TZVP、TZVPP、QZVP 和 QZVPP。
+- ${}^{a}$XX 包括 SV(P)、SVP、TZVP、TZVPP、QZVP 和 QZVPP。
 ${}^{b}$XX 包括 SV(P)、SVP、SVPD、TZVP、TZVPD、TZVPP、TZVPPD、QZVP 和 QZVPPD。
 ${}^{c}$XX 包括 SVP、TZVP、TZVPP 和 QZVPP，通过对弥散函数（diffuse functions）进行系统修剪（pruning）得到。
 例如，RIMP2-def2-ma-SVP 由 RIMP2-def2-SVPD 修剪得到，其修剪方式与 def2-ma-SVP 由 def2-SVPD 修剪得到的方式相同。

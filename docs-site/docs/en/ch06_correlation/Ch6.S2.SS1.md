@@ -54,12 +54,11 @@ Table 6.1:  A summary of the effects of different core definitions
 >     * $n$: core orbitals (if set to 0, all electrons will be active).
 > * **Recommendation**: Correlated calculations calculations are more efficient with frozen core orbitals. Use default if possible.
 
-**Note: 
+!!! note "Note"
+    The default setting (N_FROZEN_CORE=FC)
+    does not work correctly in QM/MM calculations. One should
+    specify the number of frozen core orbitals explicitly.
 
-The default setting (N_FROZEN_CORE=FC)
-does not work correctly in QM/MM calculations. One should
-specify the number of frozen core orbitals explicitly.
-**
 
 ### `N_FROZEN_VIRTUAL`
 

@@ -65,15 +65,9 @@ $$
 
 有理函数优化（Rational Function Optimization, RFO）方程即式 ([9.7](#eq:a6)) 的本征值 $\lambda$ 具有以下重要性质：[[72]](../bib_references/bib.md#bib57)
 
-- •
-
-$\lambda$ 的 $(n+1)$ 个取值将 Hessian 矩阵的 $n$ 个本征值"分隔包围"起来，即 $\lambda_{i}<b_{i}<\lambda_{i+1}$。
-- •
-
-在驻点处，式 ([9.7](#eq:a6)) 的某个本征值 $\lambda$ 为零，其余 $n$ 个本征值即为驻点处 Hessian 的本征值。
-- •
-
-对于一个 $m$ 阶鞍点（saddle point），那个零本征值恰好将 $m$ 个负 Hessian 本征值与 $(n-m)$ 个正 Hessian 本征值分隔开来。
+- $\lambda$ 的 $(n+1)$ 个取值将 Hessian 矩阵的 $n$ 个本征值"分隔包围"起来，即 $\lambda_{i}<b_{i}<\lambda_{i+1}$。
+- 在驻点处，式 ([9.7](#eq:a6)) 的某个本征值 $\lambda$ 为零，其余 $n$ 个本征值即为驻点处 Hessian 的本征值。
+- 对于一个 $m$ 阶鞍点（saddle point），那个零本征值恰好将 $m$ 个负 Hessian 本征值与 $(n-m)$ 个正 Hessian 本征值分隔开来。
 
 最后这一性质——正、负 Hessian 本征值的可分隔性——使得可以使用两个平移参数：一个用于能量需要极大化的模式方向，另一个用于能量极小化的方向。对于过渡态（一阶鞍点），用 Hessian 本征模来表示，我们有两个矩阵方程
 

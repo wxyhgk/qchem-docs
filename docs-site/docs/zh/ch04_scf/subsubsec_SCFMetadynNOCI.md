@@ -10,12 +10,8 @@ title: "4.9.3 非正交 CI 的多个 SCF 解"
 
 **Q-Chem** 5.2 版本引入了一个新的 NOCI 程序包 **libnoci**，用于定位多个 SCF 解并运行 NOCI 计算（见第 [7.5.2](../ch07_excited/subsec_LIBNOCI.md) 节），其中包括 SCF 元动力学的全新实现。**libnoci** 对 SCF 元动力学的实现可通过 USE_LIBNOCI = TRUE 结合 NOCI_DETGEN = 3 来使用。除了 **Q-Chem** 中原有的 SCF 元动力学功能之外，这一新实现还包括：
 
-- •
-
-一种活性空间（active space）方法，其中轨道混合与优化仅在用户定义的轨道子集中进行。
-- •
-
-对限制（restricted）、非限制（unrestricted）以及广义（generalized）轨道类型的完整支持，同时支持复（Hermite）轨道与全纯（非 Hermite）轨道；见第 [4.9.4](sec_HoloHF.md) 节。
+- 一种活性空间（active space）方法，其中轨道混合与优化仅在用户定义的轨道子集中进行。
+- 对限制（restricted）、非限制（unrestricted）以及广义（generalized）轨道类型的完整支持，同时支持复（Hermite）轨道与全纯（非 Hermite）轨道；见第 [4.9.4](sec_HoloHF.md) 节。
 
 对于 NOCI 特别相关的多个 Hartree-Fock 态，通常源于在占主导地位的分子轨道子集中改变轨道占据数。例如，重要的多个解可能对应于其轨道在 SCF 级别上分别弛豫过的激发行列式，或由主导活性空间中的强混合形成的对称性破缺态。**libnoci** 允许仅在用 *$active_orbitals* 输入段所定义的轨道子集中进行轨道混合与弛豫，从而识别出多个解。
 默认情况下，所定位到的多个解随后会在完整的轨道空间中进一步优化，不过可以使用 SKIP_SCFMAN = TRUE 跳过这一步。

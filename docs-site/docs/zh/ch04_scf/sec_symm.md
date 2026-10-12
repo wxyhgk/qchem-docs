@@ -17,11 +17,10 @@ INTEGRAL_SYMMETRY 关键字在某些积分例程中控制对称性，其默认�
 
 当使用鬼原子（ghost atoms）时，对称性会被关闭，因为它们的位置可能会破坏分子结构的对称性。不过，用户可以通过 FORCE_SYMMETRY_ON 关键字强制计算使用对称性；这在示例 [7.9.9.2](../ch07_excited/sub_cvs_eom.md#ex:cvsee1) 中进行了说明。
 
-**注意：
+!!! note "注意"
+    用户应当了解定义对称元素的不同约定。这种任意性会影响例如 $C_{2v}$ 点群。具体选择会影响受影响群中不可约表示的标注方式。例如，$C_{2v}$ 中的 $b_{1}$ 和 $b_{2}$ 不可约表示在使用不同约定时会发生互换。**Q-Chem** 采用非 Mulliken（non-Mulliken）对称性约定。详细解释参见
+    `https://iopenshell.usc.edu/resources/howto/symmetry`。
 
-用户应当了解定义对称元素的不同约定。这种任意性会影响例如 $C_{2v}$ 点群。具体选择会影响受影响群中不可约表示的标注方式。例如，$C_{2v}$ 中的 $b_{1}$ 和 $b_{2}$ 不可约表示在使用不同约定时会发生互换。**Q-Chem** 采用非 Mulliken（non-Mulliken）对称性约定。详细解释参见
-`https://iopenshell.usc.edu/resources/howto/symmetry`。
-**
 
 ### `INTEGRAL_SYMMETRY`
 

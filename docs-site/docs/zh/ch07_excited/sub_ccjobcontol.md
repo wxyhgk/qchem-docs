@@ -18,24 +18,21 @@ EOM-CCSD，应将 METHOD 设为 EOM-CCSD，
 对于 EOM-MP2，
 METHOD = EOM-CCSD，*依此类推*。此外，需要通过 XX_STATES 指定*目标态*的数量（XX 表示目标态的类型，*例如*，EE、SF、IP、EA、DIP、DSF 等）。用户必须了解所研究体系的点群对称性，以及初始态和目标态的对称性，还有跃迁的对称性。可以通过 CC_SYMMETRY 关闭对称性的使用。如果将其设为 FALSE，则将分子视为具有 $C_{1}$ 对称性，所有态均为 $A$ 对称性。
 
-**注意：
+!!! note "注意"
+    仅支持阿贝尔群；对于所有 CCMAN 和 CCMAN2 作业，必须将 USE_ABELIAN_SUBGROUP
+    设为 TRUE（默认即已设置）。
 
-仅支持阿贝尔群；对于所有 CCMAN 和 CCMAN2 作业，必须将 USE_ABELIAN_SUBGROUP
-设为 TRUE（默认即已设置）。
-**
 
-**注意：
+!!! note "注意"
+    1.
 
-1.
+    在有限差分计算中，对称性会自动关闭，用户必须确保相应地调整 XX_STATES。
 
-在有限差分计算中，对称性会自动关闭，用户必须确保相应地调整 XX_STATES。
+    2.
 
-2.
+    在 CCMAN2 中，可以在单次计算中请求不同类型的目标态。
+    在 CCMAN 中，单次计算中混合不同的 EOM 模型仅允许在 Dyson 轨道计算中使用。
 
-在 CCMAN2 中，可以在单次计算中请求不同类型的目标态。
-在 CCMAN 中，单次计算中混合不同的 EOM 模型仅允许在 Dyson 轨道计算中使用。
-
-**
 
 下面我们描述在 EOM-CC/CI 计算中指定关联处理的替代方式。这些关键字最终将被淘汰。默认情况下，波函数 EOM 部分的关联级别（*即*，EOM 算符 $R$ 中的最大激发级别）设为与
 CORRELATION 匹配，但用户可以通过使用 EOM_CORR 为参考态和 EOM 态混合不同的关联级别。要请求 CI
@@ -400,24 +397,21 @@ CORRELATION 与 EOM_CORR 组合。
 >     * 依此类推。
 > * **建议**：无
 
-**注意：
+!!! note "注意"
+    在激发态计算中指定的对称性是*跃迁*的对称性，而非*目标态*的对称性。目标态的对称性是参考态对称性与跃迁对称性的乘积。对于闭壳层分子，前者为全对称的，因此目标态的对称性与跃迁的对称性相同；但对于开壳层参考态则不然。
 
-在激发态计算中指定的对称性是*跃迁*的对称性，而非*目标态*的对称性。目标态的对称性是参考态对称性与跃迁对称性的乘积。对于闭壳层分子，前者为全对称的，因此目标态的对称性与跃迁的对称性相同；但对于开壳层参考态则不然。
-**
 
-**注意：
+!!! note "注意"
+    在 **Q-Chem** 的早期版本中，我们使用 EOM_XX_STATES。为实现统一（例如，这些关键字也用于 ADC 方法中指定目标 ADC 态），这些关键字已被替换为 XX_STATES。
+    为了向后兼容，
+    旧关键字被别名为新关键字，因此旧输入仍然可用。
+    然而，这些旧关键字最终将被弃用。建议
+    切换到新关键字。
 
-在 **Q-Chem** 的早期版本中，我们使用 EOM_XX_STATES。为实现统一（例如，这些关键字也用于 ADC 方法中指定目标 ADC 态），这些关键字已被替换为 XX_STATES。
-为了向后兼容，
-旧关键字被别名为新关键字，因此旧输入仍然可用。
-然而，这些旧关键字最终将被弃用。建议
-切换到新关键字。
-**
 
-**注意：
+!!! note "注意"
+    对于 XX_STATES 选项，如果 **Q-Chem** 怀疑存在简并，它会增加根数；如果无法生成足够的猜测向量来启动计算，它会将其改为更小的值。
 
-对于 XX_STATES 选项，如果 **Q-Chem** 怀疑存在简并，它会增加根数；如果无法生成足够的猜测向量来启动计算，它会将其改为更小的值。
-**
 
 ### `EOM_FAKE_IPEA`
 
@@ -429,10 +423,9 @@ CORRELATION 与 EOM_CORR 组合。
 >     * FALSE, TRUE
 > * **建议**：无。此功能仅在 CCMAN 中有效。
 
-**注意：
+!!! note "注意"
+    当 EOM_FAKE_IPEA 设为 TRUE 时，与不使用 EOM_FAKE_IPEA 的相同作业相比，它可能会改变 Hartree-Fock 迭代的收敛性，因为在 Hartree-Fock 迭代开始*之前*，会在对称中心添加一个非常弥散的基函数。出于同样的原因，BASIS2 关键字与 EOM_FAKE_IPEA 不兼容。若要从之前的作业中读取 Hartree-Fock 猜测，必须在该之前的作业中指定 EOM_FAKE_IPEA（即使你不请求任何关联或激发态计算）。目前，EOM-IP/EA-CCSD 目标态的电子密度二阶矩、Mulliken 电荷和自旋密度是不正确的。
 
-当 EOM_FAKE_IPEA 设为 TRUE 时，与不使用 EOM_FAKE_IPEA 的相同作业相比，它可能会改变 Hartree-Fock 迭代的收敛性，因为在 Hartree-Fock 迭代开始*之前*，会在对称中心添加一个非常弥散的基函数。出于同样的原因，BASIS2 关键字与 EOM_FAKE_IPEA 不兼容。若要从之前的作业中读取 Hartree-Fock 猜测，必须在该之前的作业中指定 EOM_FAKE_IPEA（即使你不请求任何关联或激发态计算）。目前，EOM-IP/EA-CCSD 目标态的电子密度二阶矩、Mulliken 电荷和自旋密度是不正确的。
-**
 
 ### `EOM_USER_GUESS`
 
@@ -486,10 +479,9 @@ CORRELATION 与 EOM_CORR 组合。
 >     * 1 预收敛单激发
 > * **建议**：有时有助于解决收敛问题。
 
-**注意：
+!!! note "注意"
+    在 CCMAN 中，设置 EOM_PRECONV_SINGLES = $N$ 会导致 $N$ 次 Davidson 迭代来预收敛单激发。
 
-在 CCMAN 中，设置 EOM_PRECONV_SINGLES = $N$ 会导致 $N$ 次 Davidson 迭代来预收敛单激发。
-**
 
 ### `EOM_PRECONV_DOUBLES`
 
@@ -502,10 +494,9 @@ CORRELATION 与 EOM_CORR 组合。
 >     * N 执行 N 次 Davidson 迭代来预收敛双激发。
 > * **建议**：偶尔需要以确保找到双激发态。也用于 DSF、DIP 和 DEA 计算中替代 EOM_PRECONV_SINGLES。
 
-**注意：
+!!! note "注意"
+    在 CCMAN2 中不支持 EOM-EE。
 
-在 CCMAN2 中不支持 EOM-EE。
-**
 
 ### `EOM_PRECONV_SD`
 
@@ -518,10 +509,9 @@ CORRELATION 与 EOM_CORR 组合。
 >     * N 执行 N 次 Davidson 迭代来预收敛单激发和双激发。
 > * **建议**：偶尔需要以确保找到所有低能态。在 EOM(2,3) 计算中也非常有用。无。
 
-**注意：
+!!! note "注意"
+    在 CCMAN2 中不可用。
 
-在 CCMAN2 中不可用。
-**
 
 ### `EOM_DAVIDSON_CONVERGENCE`
 
@@ -603,10 +593,9 @@ CORRELATION 与 EOM_CORR 组合。
 >     * FALSE, TRUE
 > * **建议**：无
 
-**注意：
+!!! note "注意"
+    在 CCMAN2 中不可用。
 
-在 CCMAN2 中不可用。
-**
 
 ### `CC_FNO_THRESH`
 

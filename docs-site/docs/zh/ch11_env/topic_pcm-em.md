@@ -535,10 +535,9 @@ TDDFT 计算获得。能量 ${E^{k}_{1}}^{\prime}$ 和 $E_{1}^{\prime\prime}$ �
 要将约束平衡原理应用于垂直吸收和垂直发射，请在 *$pcm* 段中使用
 **Td_CEq_NonEq** 关键字。用户被要求引用文献 [[821]](../bib_references/bib.md#bib852)。
 
-**注意：
+!!! note "注意"
+    本方法与自旋翻转（spin-flip）计算不兼容。
 
-本方法与自旋翻转（spin-flip）计算不兼容。
-**
 
 ## 11.2.3.5 非均匀 PCM（Heterogeneous PCM）
 

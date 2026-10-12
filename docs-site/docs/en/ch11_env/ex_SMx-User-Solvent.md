@@ -19,28 +19,14 @@ Each of these SM$x$ methods is designed as a “universal” solvation model,[[2
 in the sense that it can be applied to any solvent for which a small of descriptors is known.
 The solvent descriptors are:
 
-- •
-
-dielectric constant
-- •
-
-refractive index
-- •
-
-bulk surface tension
-- •
-
-acidity on the Abraham scale
-- •
-
-basicity on the Abraham scale
-- •
-
-carbon aromaticity, which equals the fraction of non-hydrogenic
+- dielectric constant
+- refractive index
+- bulk surface tension
+- acidity on the Abraham scale
+- basicity on the Abraham scale
+- carbon aromaticity, which equals the fraction of non-hydrogenic
 solvent atoms that are aromatic carbon atoms
-- •
-
-electronegative halogenicity, which equals the fraction of
+- electronegative halogenicity, which equals the fraction of
 non-hydrogenic solvent atoms that are F, Cl, or Br).
 
 These models consist of a generalized Born treatment of continuum electrostatic
@@ -387,30 +373,16 @@ ${}^{a}$<span class="ltx_text" style="font-size:80%;">Solvent names should be sp
 By setting **solvent** = **other**, the user may specify their own solvent. This requires
 specification of the following solvent descriptors:
 
-- •
-
-**Dielec**, the dielectric constant, $\varepsilon$, of the solvent
-- •
-
-**SolN** , the index of refraction at optical frequencies at 293 K, $n_{20}^{D}$
-- •
-
-**SolA** , Abraham’s hydrogen bond acidity, $\sum{\alpha}_{2}^{\text{H}}$
-- •
-
-**SolB** , Abraham’s hydrogen bond basicity, $\sum{\beta}_{2}^{\text{H}}$
-- •
-
-**SolG** , $\gamma=\gamma_{m}/\gamma^{0}$
+- **Dielec**, the dielectric constant, $\varepsilon$, of the solvent
+- **SolN** , the index of refraction at optical frequencies at 293 K, $n_{20}^{D}$
+- **SolA** , Abraham’s hydrogen bond acidity, $\sum{\alpha}_{2}^{\text{H}}$
+- **SolB** , Abraham’s hydrogen bond basicity, $\sum{\beta}_{2}^{\text{H}}$
+- **SolG** , $\gamma=\gamma_{m}/\gamma^{0}$
 where $\gamma_{m}$ is the macroscopic surface tension at air/solvent
 interface at 298 K and $\gamma^{0}$ is 1 cal mol${}^{-1}$ Å${}^{-2}$
 (1 dyne/cm = 1.43932 cal mol${}^{-1}$ Å${}^{-2}$)
-- •
-
-**SolC**, aromaticity ($\phi$), equal to the fraction of non-hydrogen solvent atoms that are aromatic carbon atoms
-- •
-
-**SolH**, electronegative “halogenicity” ($\psi$), equal to the fraction of non-hydrogen solvent atoms that are F, Cl or Br
+- **SolC**, aromaticity ($\phi$), equal to the fraction of non-hydrogen solvent atoms that are aromatic carbon atoms
+- **SolH**, electronegative “halogenicity” ($\psi$), equal to the fraction of non-hydrogen solvent atoms that are F, Cl or Br
 
 These parameters are specified in the *$smx* input section as suggested in Example 11.2.9.
 (Any solvent descriptors that are omitted from the *$smx* section default to zero.)
@@ -589,39 +561,23 @@ free energy and the analytical derivatives of the CDS terms derived in Ref. [[1
 
 The SM8 test suite contains the following representative examples:
 
-- •
-
-single-point solvation energy and analytical gradient calculation for
+- single-point solvation energy and analytical gradient calculation for
 2,2-dichloroethenyl dimethyl phosphate in water at the
 M06-2X/6-31G* level;
-- •
-
-single-point solvation energy calculation for 2,2-dichloroethenyl
+- single-point solvation energy calculation for 2,2-dichloroethenyl
 dimethyl phosphate in benzene at the M06-2X/6-31G*
 level;
-- •
-
-single-point solvation energy calculation for 2,2-dichloroethenyl
+- single-point solvation energy calculation for 2,2-dichloroethenyl
 dimethyl phosphate in ethanol at the M06-2X/6-31G* level;
-- •
-
-single-point solvation energy calculation for 5-fluorouracil in water at
+- single-point solvation energy calculation for 5-fluorouracil in water at
 the M06/6-31+G* level;
-- •
-
-single-point solvation energy calculation for 5-fluorouracil in octanol
+- single-point solvation energy calculation for 5-fluorouracil in octanol
 at the M06-L/6-31+G* level;
-- •
-
-single-point solvation energy and analytical gradient calculation for
+- single-point solvation energy and analytical gradient calculation for
 5-fluorouracil in fluorobenzene at the M06-HF/6-31+G** level;
-- •
-
-geometry optimization for protonated methanol $\rm CH_{3}OH_{2}^{+}$ in water
+- geometry optimization for protonated methanol $\rm CH_{3}OH_{2}^{+}$ in water
 at the B3LYP/6-31G* level;
-- •
-
-finite-difference frequency (with analytical gradient) calculation for
+- finite-difference frequency (with analytical gradient) calculation for
 protonated methanol $\rm CH_{3}OH_{2}^{+}$ in water at the B3LYP/6-31G* level.
 
 Users who wish to calculate solubilities can calculate them from the free

@@ -15,17 +15,11 @@ title: "5.13.2 CAP-DFT 作业控制"
 CAP 参数应在 *$rem* 部分中指定。
 其可用的关键字及取值与 CAP-CC 计算中所使用的相同：
 
-- •
-
-CAP_ETA，用于设置 CAP 强度 $\eta$。
+- CAP_ETA，用于设置 CAP 强度 $\eta$。
 
 $\eta$ 的最优值通常通过最小化 $\left|\eta dE/d\eta\right|$ 来确定。
-- •
-
-CAP_TYPE，用于指定 CAP 类型（cubic、spherical 或 Voronoi）。
-- •
-
-CAP_X/Y/Z，用于指定 CAP 的作用起始位置（onset）。
+- CAP_TYPE，用于指定 CAP 类型（cubic、spherical 或 Voronoi）。
+- CAP_X/Y/Z，用于指定 CAP 的作用起始位置（onset）。
 
 有关这些关键字的更多细节，请参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节。
 
@@ -35,14 +29,13 @@ CAP_GRID_SWITCH 和 CAP_NEW_GRID 关键字可用于在 SCF 迭代过程中
 在另一个网格上重新计算 CAP。
 有关这些关键字的详细信息见下文。
 
-**注意：
+!!! note "注意"
+    此处所述方法同样适用于 CAP-HF 计算，只需将 METHOD = HF 而非某个复变泛函即可。
+    CAP-HF 也可以通过旧的实现方式来访问，
+    方法是在 *$complex_ccman* 中设置 CS_HF = 1（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）；
+    然而，该旧方式不能用于调用 CAP-DFT 计算，
+    并且关键字 CAP_GRID、CAP_GRID_SWITCH 和 CAP_NEW_GRID 将不被识别。
 
-此处所述方法同样适用于 CAP-HF 计算，只需将 METHOD = HF 而非某个复变泛函即可。
-CAP-HF 也可以通过旧的实现方式来访问，
-方法是在 *$complex_ccman* 中设置 CS_HF = 1（参见第 [7.9.10](../ch07_excited/sub_cc_cs_cap.md) 节）；
-然而，该旧方式不能用于调用 CAP-DFT 计算，
-并且关键字 CAP_GRID、CAP_GRID_SWITCH 和 CAP_NEW_GRID 将不被识别。
-**
 
 ### `CAP_SCF`
 
@@ -96,34 +89,18 @@ CAP-HF 也可以通过旧的实现方式来访问，
 
 本节因此列出一些提高收敛可能性的技巧。
 
-- •
-
-提供高质量的 SCF 猜测密度矩阵（guess density matrix）至关重要。
+- 提供高质量的 SCF 猜测密度矩阵（guess density matrix）至关重要。
 示例包括但不限于：
 
-- **–**
-
-在相同 $\eta$ 值下收敛得到的 CAP-HF 密度矩阵。
-- **–**
-
-使用相同泛函、在相近 $\eta$ 值下收敛得到的 CAP-DFT 密度矩阵。
-- **–**
-
-使用相同泛函、并采用施加少量附加电荷的电荷稳定化（charge stabilization）方法收敛得到的 DFT 密度矩阵。
+- 在相同 $\eta$ 值下收敛得到的 CAP-HF 密度矩阵。
+- 使用相同泛函、在相近 $\eta$ 值下收敛得到的 CAP-DFT 密度矩阵。
+- 使用相同泛函、并采用施加少量附加电荷的电荷稳定化（charge stabilization）方法收敛得到的 DFT 密度矩阵。
 有关电荷稳定化使用的更多细节，请参见第 [7.9.13](../ch07_excited/sec_CAGE.md) 节。
-- **–**
-
-使用相同泛函、在相同 $\eta$ 值下、并采用施加少量附加电荷的电荷稳定化方法收敛得到的 CAP-DFT 密度矩阵。
-- •
-
-强烈推荐使用最大重叠方法（maximum overlap method, MOM，参见第 [7.7.2](../ch07_excited/ex_OpSing.md) 节）。
-- •
-
-已发现 CAP-DFT 计算需要非常精细的网格来进行交换-关联（XC）数值求积，
+- 使用相同泛函、在相同 $\eta$ 值下、并采用施加少量附加电荷的电荷稳定化方法收敛得到的 CAP-DFT 密度矩阵。
+- 强烈推荐使用最大重叠方法（maximum overlap method, MOM，参见第 [7.7.2](../ch07_excited/ex_OpSing.md) 节）。
+- 已发现 CAP-DFT 计算需要非常精细的网格来进行交换-关联（XC）数值求积，
 其精细程度高于常规（实变量）DFT 计算所需。
 有关设置 XC 网格的详细信息，请参见第 [5.5](sect_quadrature.md) 节。
-- •
-
-在初始 SCF 迭代中使用较粗糙的 CAP 网格可能有助于找到共振态，
+- 在初始 SCF 迭代中使用较粗糙的 CAP 网格可能有助于找到共振态，
 而使用较精细的网格可能改善收敛行为。
 有关设置 CAP 网格的详细信息，请参见第 5.13.2 节。

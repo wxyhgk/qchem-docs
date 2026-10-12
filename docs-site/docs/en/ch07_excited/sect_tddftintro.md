@@ -65,13 +65,9 @@ TDDFT has been developed to address this issue.[[1239]](../bib_references/bib.md
 
 SF-TDDFT is different from standard TDDFT in two ways:
 
-- •
-
-The reference is a high-spin triplet (quartet) for a system with an even
+- The reference is a high-spin triplet (quartet) for a system with an even
 (odd) number of electrons;
-- •
-
-One electron is spin-flipped from an $\alpha$ Kohn–Sham orbital to a $\beta$
+- One electron is spin-flipped from an $\alpha$ Kohn–Sham orbital to a $\beta$
 orbital during the excitation.
 
 SF-TDDFT can describe the ground state as well as a few low-lying excited states,

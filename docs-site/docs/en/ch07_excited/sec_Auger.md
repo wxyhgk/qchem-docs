@@ -190,11 +190,10 @@ The default threshold for
 the NAOs to be printed is 0.20. It can be controlled by the user using the WFA_ORB_THRESH keyword (see Section [10.2](../ch10_properties/sec_wfa.md)). This feature is illustrated in examples
 [7.9.11.2](#ex:auger1), [7.9.11.2](#ex:auger1), and [7.9.11.2](#ex:auger1) below.
 
-**Note: 
+!!! note "Note"
+    NAOs are computed using $\Gamma_{r\beta}^{p\alpha,q\beta}$ block of the two-body Dyson amplitude. This means that in the non-resonant Auger decay calculations, the core hole
+    should correspond to removing $\beta$-electron.
 
-NAOs are computed using $\Gamma_{r\beta}^{p\alpha,q\beta}$ block of the two-body Dyson amplitude. This means that in the non-resonant Auger decay calculations, the core hole
-should correspond to removing $\beta$-electron.
-**
 
 ### `CC_DO_FESHBACH`
 

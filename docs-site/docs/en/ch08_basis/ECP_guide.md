@@ -15,36 +15,24 @@ ECP to use in a planned calculation.
 
 The following information is provided for each ECP:
 
-- •
-
-The elements for which the ECP is available in **Q-Chem**. This is shown on
+- The elements for which the ECP is available in **Q-Chem**. This is shown on
 a schematic Periodic Table by shading all the elements that are
 *not* supported.
-- •
-
-The literature reference for each element for which the ECP is available
+- The literature reference for each element for which the ECP is available
 in **Q-Chem**.
-- •
-
-The matching orbital basis set that **Q-Chem** will use for light (*i.e.*.
+- The matching orbital basis set that **Q-Chem** will use for light (*i.e.*.
 non-ECP atoms). For example, if the user requests SRSC ECPs—which
 are defined only for atoms beyond argon—**Q-Chem** will use the
 6-311G basis set for all atoms up to Ar.
-- •
-
-The core electrons that are replaced by the ECP. For example, in the
+- The core electrons that are replaced by the ECP. For example, in the
 fit-LANL2DZ ECP for the Fe atom, the core is [Ne], indicating
 that the $1s$, $2s$ and $2p$ electrons are removed.
-- •
-
-The maximum spherical harmonic projection operator that is used for each
+- The maximum spherical harmonic projection operator that is used for each
 element. This often, but not always, corresponds to the maximum orbital
 angular momentum of the core electrons that have been replaced by the
 ECP. For example, in the fit-LANL2DZ ECP for the Fe atom, the
 maximum projector is of $P$-type.
-- •
-
-The number of valence basis functions of each angular momentum type that
+- The number of valence basis functions of each angular momentum type that
 are present in the matching orbital basis set. For example, in the
 matching basis for the fit-LANL2DZ ECP for the Fe atom, there the
 three $s$ shells, three $p$ shells and two $d$ shells. This basis is

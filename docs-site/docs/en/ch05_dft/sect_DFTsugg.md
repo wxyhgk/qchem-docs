@@ -17,93 +17,43 @@ single recommended method from each category is indicated in bold.**
 
 From the GGAs on Rung 2, we recommend:
 
-- •
-
-**B97-D3(BJ)**: METHOD = B97-D3 and DFT_D = D3_BJ
-- •
-
-revPBE-D3(BJ): METHOD = revPBE and DFT_D = D3_BJ
-- •
-
-BLYP-D3(BJ): METHOD = BLYP and DFT_D = D3_BJ
-- •
-
-PBE: METHOD = PBE
+- **B97-D3(BJ)**: METHOD = B97-D3 and DFT_D = D3_BJ
+- revPBE-D3(BJ): METHOD = revPBE and DFT_D = D3_BJ
+- BLYP-D3(BJ): METHOD = BLYP and DFT_D = D3_BJ
+- PBE: METHOD = PBE
 
 From the meta-GGAs on Rung 3, we recommend:
 
-- •
-
-**B97M-rV**: METHOD = B97M-rV
-- •
-
-MS1-D3(0): METHOD = MGGA_MS1 and DFT_D = D3_ZERO
-- •
-
-MS2-D3(0): METHOD = MGGA_MS2 and DFT_D = D3_ZERO
-- •
-
-M06-L-D3(0): METHOD = M06-L and DFT_D = D3_ZERO
-- •
-
-TPSS-D3(BJ): METHOD = TPSS and DFT_D = D3_BJ
+- **B97M-rV**: METHOD = B97M-rV
+- MS1-D3(0): METHOD = MGGA_MS1 and DFT_D = D3_ZERO
+- MS2-D3(0): METHOD = MGGA_MS2 and DFT_D = D3_ZERO
+- M06-L-D3(0): METHOD = M06-L and DFT_D = D3_ZERO
+- TPSS-D3(BJ): METHOD = TPSS and DFT_D = D3_BJ
 
 From the hybrid GGAs on Rung 4, we recommend:
 
-- •
-
-$\omega$**B97X-V**: METHOD = wB97X-V
-- •
-
-$\omega$B97X-D3S(BJ): METHOD = wB97X-D3S(BJ)
-- •
-
-$\omega$B97X-D: METHOD = wB97X-D
-- •
-
-B3LYP-D3(BJ): METHOD = B3LYP and DFT_D = D3_BJ
-- •
-
-revPBE0-D3(BJ): METHOD = revPBE0 and DFT_D = D3_BJ
+- $\omega$**B97X-V**: METHOD = wB97X-V
+- $\omega$B97X-D3S(BJ): METHOD = wB97X-D3S(BJ)
+- $\omega$B97X-D: METHOD = wB97X-D
+- B3LYP-D3(BJ): METHOD = B3LYP and DFT_D = D3_BJ
+- revPBE0-D3(BJ): METHOD = revPBE0 and DFT_D = D3_BJ
 
 From the hybrid meta-GGAs on Rung 4, we recommend:
 
-- •
-
-**COACH**: METHOD = COACH
-- •
-
-$\omega$**B97M-V**: METHOD = wB97M-V
-- •
-
-CF22D: METHOD = CF22D
-- •
-
-M06-2X-D3(0): METHOD = M06-2X and DFT_D = D3_ZERO
-- •
-
-TPSSh-D3(BJ): METHOD = TPSSh and DFT_D = D3_BJ
+- **COACH**: METHOD = COACH
+- $\omega$**B97M-V**: METHOD = wB97M-V
+- CF22D: METHOD = CF22D
+- M06-2X-D3(0): METHOD = M06-2X and DFT_D = D3_ZERO
+- TPSSh-D3(BJ): METHOD = TPSSh and DFT_D = D3_BJ
 
 From the double-hybrid GGAs on Rung 5, we recommend:
 
-- •
-
-$\omega$**B97X-2(LP)**: METHOD = wB97X-2(LP)
-- •
-
-$\omega$**B97X-2(TQZ)**: METHOD = wB97X-2(TQZ)
-- •
-
-**DSD-PBEPBE-D3**: METHOD = DSD-PBEPBE-D3
-- •
-
-**revDSD-PBEP86-D4**: METHOD = revDSD-PBEP86-D4
+- $\omega$**B97X-2(LP)**: METHOD = wB97X-2(LP)
+- $\omega$**B97X-2(TQZ)**: METHOD = wB97X-2(TQZ)
+- **DSD-PBEPBE-D3**: METHOD = DSD-PBEPBE-D3
+- **revDSD-PBEP86-D4**: METHOD = revDSD-PBEP86-D4
 
 From the double-hybrid mGGAs on Rung 5, we recommend:
 
-- •
-
-$\omega$**B97M-(2)**: METHOD = wB97M-(2)
-- •
-
-**PTPSS-D3**: METHOD = PTPSS-D3
+- $\omega$**B97M-(2)**: METHOD = wB97M-(2)
+- **PTPSS-D3**: METHOD = PTPSS-D3

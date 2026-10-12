@@ -16,7 +16,6 @@ specify EXCHANGE, *e.g.*, if EXCHANGE = B3LYP, B3LYP orbitals will
 be computed and used. See Section [6.15](../ch06_correlation/sec_AltOrbs.md) for additional discussion of alternative
 orbital choices in correlated wave function calculations.
 
-**Note: 
+!!! note "Note"
+    Using non-HF exchange in CCMAN2 is not possible.
 
-Using non-HF exchange in CCMAN2 is not possible.
-**

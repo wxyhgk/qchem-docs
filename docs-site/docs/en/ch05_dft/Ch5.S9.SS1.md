@@ -77,10 +77,9 @@ XYG3 is not only comparable to that of the G2 or G3 theory for thermochemistry,
 but barrier heights and non-covalent interactions, including stacking
 interactions, are also very well described by XYG3.[[1551]](../bib_references/bib.md#bib1610)
 
-**Note: 
+!!! note "Note"
+    The recommended basis set for XYG3 is 6-311+G(3df,2p).
 
-The recommended basis set for XYG3 is 6-311+G(3df,2p).
-**
 
 Due to the inclusion of PT2 terms, the cost of double-hybrid calculations is
 formally ${\cal{O}}({N^{5}})$, as in conventional MP2, thereby not applicable to large

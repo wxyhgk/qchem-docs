@@ -6,15 +6,14 @@ title: "5.3.5 Exchange-Correlation Functionals"
 
 (July 4, 2026)
 
-**Note: 
+!!! note "Note"
+    All exchange-correlation functionals in this section can be invoked using
+    the *$rem* variable METHOD. For backwards compatibility, all of the
+    exchange-correlation functionals *except* for the ones marked with an
+    asterisk can be used with the *$rem* variable EXCHANGE. Popular
+    and/or recommended functionals within each class are listed first and
+    indicated in bold. The rest are in alphabetical order.
 
-All exchange-correlation functionals in this section can be invoked using
-the *$rem* variable METHOD. For backwards compatibility, all of the
-exchange-correlation functionals *except* for the ones marked with an
-asterisk can be used with the *$rem* variable EXCHANGE. Popular
-and/or recommended functionals within each class are listed first and
-indicated in bold. The rest are in alphabetical order.
-**
 
 - $\circ$
 
@@ -554,10 +553,9 @@ SR HF exchange, 100% LR HF exchange, and $\omega=0.3$[[832]](../bib_references/b
 
 Double Hybrid Generalized Gradient Approximation (DH GGA)
 
-**Note: 
+!!! note "Note"
+    In order to use the resolution-of-the-identity approximation for the MP2 component, specify an auxiliary basis set with the *$rem* variable AUX_BASIS_CORR
 
-In order to use the resolution-of-the-identity approximation for the MP2 component, specify an auxiliary basis set with the *$rem* variable AUX_BASIS_CORR
-**
 
 - $\bullet$
 

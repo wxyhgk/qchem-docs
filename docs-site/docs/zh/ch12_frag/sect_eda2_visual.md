@@ -8,18 +8,10 @@ title: "12.6.9 与 ALMO-EDA 相关的可视化工具"
 
 EDA2 中启用了以下可视化工具：
 
-- •
-
-互补占据-虚轨道对（complementary occupied-virtual pairs, COVP）的自动生成
-- •
-
-中间态之间（FRZ$\rightarrow$POL、POL$\rightarrow$Full）的电子密度差（electron density difference, EDD）图
-- •
-
-化学价自然轨道（Natural Orbitals for Chemical Valence, NOCV）图
-- •
-
-冻结（frozen）与极化（polarized）ALMO 图
+- 互补占据-虚轨道对（complementary occupied-virtual pairs, COVP）的自动生成
+- 中间态之间（FRZ$\rightarrow$POL、POL$\rightarrow$Full）的电子密度差（electron density difference, EDD）图
+- 化学价自然轨道（Natural Orbitals for Chemical Valence, NOCV）图
+- 冻结（frozen）与极化（polarized）ALMO 图
 
 如第 [12.5.4 节](sect_covp.md) 所述，COVP 通过展示化学上最相关的供体-受体轨道，
 有助于阐明电荷转移过程的细节。在 EDA2 的实现中，

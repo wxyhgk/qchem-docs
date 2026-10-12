@@ -24,22 +24,12 @@ the full CI energy.
 In **Q-Chem**, all v2RDM optimizations are carried out under the following
 conditions:
 
-- •
-
-the 2-RDM is positive semidefinite
-- •
-
-the one-electron reduced-density matrix (1-RDM) is positive semidefinite
-- •
-
-the trace of the 2-RDM is equal to the number of pairs of electrons, $N(N-1)$
-- •
-
-each spin block of the 2-RDM properly contracts to the appropriate spin block of the
+- the 2-RDM is positive semidefinite
+- the one-electron reduced-density matrix (1-RDM) is positive semidefinite
+- the trace of the 2-RDM is equal to the number of pairs of electrons, $N(N-1)$
+- each spin block of the 2-RDM properly contracts to the appropriate spin block of the
 1-RDM
-- •
-
-the expectation value of $\hat{M}_{S}$ is
+- the expectation value of $\hat{M}_{S}$ is
 $\frac{1}{2}(N_{\alpha}-N_{\beta})$ (the maximal spin projection)
 
 Additionally, an optional spin constraint can be placed on the 2-RDM such

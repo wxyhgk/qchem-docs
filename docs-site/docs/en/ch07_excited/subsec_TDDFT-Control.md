@@ -13,15 +13,11 @@ closely the input already described for the uncorrelated excited state methods
 described in the previous section (in particular, see
 Section [7.2.4](sec_CIS-jobcontrol.md)). There are several points to be aware of:
 
-- •
-
-The exchange and correlation functionals are specified exactly as for a
+- The exchange and correlation functionals are specified exactly as for a
 ground state DFT calculation, through EXCHANGE and
 CORRELATION. To active TDDFT, set CIS_N_ROOTS to a value $\geq 1$,
 specifying the number of excited states to compute.
-- •
-
-If RPA is set to TRUE, a “full” TDDFT calculation
+- If RPA is set to TRUE, a “full” TDDFT calculation
 will be performed, however the default value is RPA = FALSE,
 which invokes the TDA,[[580]](../bib_references/bib.md#bib602)
  in which the de-excitation
@@ -35,9 +31,7 @@ is performed first and used as the initial guess for the full TDDFT
 calculation. The TDA calculation can be skipped altogether using
 RPA = 2. RPA is not implemented for restricted open-shell
 calculations, only TDA.
-- •
-
-If SPIN_FLIP is set to 1 (or TRUE) or 2
+- If SPIN_FLIP is set to 1 (or TRUE) or 2
 when performing a TDDFT
 calculation, a SF-TDDFT calculation will be performed. At present,
 SF-TDDFT is only implemented within the TDA so RPA must be set
@@ -46,9 +40,7 @@ systems with an even-number of electrons (*e.g.*, diradicals), and
 4 for odd-number electron systems (*e.g.*, triradicals). MR-SFTDDFT (invoked by
 SPIN_FLIP=2)
 is only implemented for triplet references.
-- •
-
-If MGGA_GINV is set to 1 when performing a TDDFT
+- If MGGA_GINV is set to 1 when performing a TDDFT
 calculation, gauge invariance correction will be added to meta-GGA
 functionals.[[84]](../bib_references/bib.md#bib69)
 

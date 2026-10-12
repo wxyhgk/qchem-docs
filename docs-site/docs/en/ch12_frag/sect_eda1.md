@@ -64,25 +64,15 @@ To perform energy decomposition analysis, specify fragments in the *$molecule*
 section and set JOBTYPE to EDA. For a complete EDA
 job, **Q-Chem**
 
-- •
-
-performs the SCF on isolated fragments (use the *$rem_frgm* section if
+- performs the SCF on isolated fragments (use the *$rem_frgm* section if
 convergence issues arise but make sure that keywords in this section
 do not affect the final energies of the fragments),
-- •
-
-generates the FRAGMO guess to obtain the FRZ term,
-- •
-
-converges the SCF-MI equations to evaluate the POL term,
-- •
-
-performs evaluation of the perturbative (RS or ARS) variational
+- generates the FRAGMO guess to obtain the FRZ term,
+- converges the SCF-MI equations to evaluate the POL term,
+- performs evaluation of the perturbative (RS or ARS) variational
 correction to calculate the forward donation and back-bonding
 components of the CT term for each pair of molecules in the system,
-- •
-
-converges the full SCF procedure to evaluate the higher order
+- converges the full SCF procedure to evaluate the higher order
 relaxation component of the CT term.
 
 The FRGM_LPCORR keyword controls evaluation of the CT term in an EDA

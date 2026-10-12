@@ -42,12 +42,8 @@ It can be invoked by setting METHOD to the respective ADC model prefixed
 by CVS. Besides the general ADC related keywords, two additional keywords
 in the *$rem* block are necessary to control CVS-ADC calculations:
 
-- •
-
-ADC_CVS = TRUE switches on the CVS-ADC calculation
-- •
-
-CC_REST_OCC = $n$ controls the number of core orbitals included
+- ADC_CVS = TRUE switches on the CVS-ADC calculation
+- CC_REST_OCC = $n$ controls the number of core orbitals included
 in the excitation space. The integer $n$ corresponds to the n energetically
 lowest core orbitals.
 

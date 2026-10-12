@@ -112,10 +112,9 @@ activated by setting STATE_ANALYSIS = TRUE. In addition,
 keywords controlling calculations of state and interstate properties should be
 set up accordingly.
 
-**Note: 
+!!! note "Note"
+    Wave function analysis is only available for CCMAN2.
 
-Wave function analysis is only available for CCMAN2.
-**
 
 ???+ example "Example 7.179: Wave function analysis of the EOM-IP states (He ${}_{3}^{+}$ )."
     ```qchem

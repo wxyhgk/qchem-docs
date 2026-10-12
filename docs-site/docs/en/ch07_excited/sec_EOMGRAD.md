@@ -23,10 +23,9 @@ core/virtual functionality[[804]](../bib_references/bib.md#bib838)
 the two-electron integrals (see also Section [6.16](../ch06_correlation/sec_CCGRAD.md)).
 These calculations should be feasible whenever the corresponding single-point energy calculation is feasible.
 
-**Note: 
+!!! note "Note"
+    Gradients for ROHF and non-HF (*e.g.*, B3LYP) orbitals are not yet available.
 
-Gradients for ROHF and non-HF (*e.g.*, B3LYP) orbitals are not yet available.
-**
 
 For the CCSD and EOM-CCSD wave functions, **Q-Chem** can calculate
 permanent and transition dipole moments, oscillator strengths,
@@ -37,12 +36,11 @@ useful for assigning different Rydberg states, *e.g.*, $3p_{x}$ vs. $3s$, *etc.*
 $\langle\hat{S}^{2}\rangle$ values. Calculation of $g$-tensors is available for CCSD wave functions
 (see Section [10.11.4](../ch10_properties/sec_magnetman.md) and example [10.11.4.4](../ch10_properties/sec_magnetman.md#ex:CCSD-gtensor)).
 
-**Note: 
+!!! note "Note"
+    $g$-tensors can also be computed with state-interaction approach using EOM-CC and RAS-CI
+    wave-functions, as described in Ref. [[660]](../bib_references/bib.md#bib684)
+    .
 
-$g$-tensors can also be computed with state-interaction approach using EOM-CC and RAS-CI
-wave-functions, as described in Ref. [[660]](../bib_references/bib.md#bib684)
-.
-**.
 
 Interface of the CCSD and EOM-CCSD codes with the NBO 5.0
 package is also available. Furthermore, excited state analyses can be requested for
@@ -108,26 +106,19 @@ CC_TRANS_PROP *does* need to be set.
 
 Notes about the *$trans_prop* input section:
 
-1. 1.
-
-`calc` computes properties for the *first* pair list (or state
+1. `calc` computes properties for the *first* pair list (or state
 list) *before* it.
-2. 2.
-
-The pair list is *optional*: if there is no pair list, all possible
+2. The pair list is *optional*: if there is no pair list, all possible
 combinations within the state list will be considered.
-3. 3.
-
-Options after `calc` include: `nac`, `soc`, `dyson`,
+3. Options after `calc` include: `nac`, `soc`, `dyson`,
 `2pa`, `dipole`, `default`, `pcm`, `opdm_norm`,
 `wfa`, `ang`, `linmom`, `dipole linmom`, `ecd`. Currently, only some of them are implemented.
 
-**Note: 
+!!! note "Note"
+    The *$trans_prop* section is a new feature and is still under development —
+    use at your own risk. Eventually, this section will replace other controls and
+    will become a default.
 
-The *$trans_prop* section is a new feature and is still under development —
-use at your own risk. Eventually, this section will replace other controls and
-will become a default.
-**
 
 ## 7.9.21.1 Calculations of Angular Momentum Matrix Elements Using EOM-CC Wave Functions
 
@@ -331,13 +322,12 @@ Examples [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) and [7.9.22.1](Ch7.S9.SS22.md#ex:C
 illustrate calculation of SOC using SOMF
 in the acetylene-O complex.
 
-**Note: 
+!!! note "Note"
+    In the case of ECP, attempts to compute SOCs using the above algorithms
+    (with CALC_SOC=1 or 2)
+    will, most likely, result in unphysically low SOC values.
+    Instead, we recommend using effective charges (CALC_SOC=4).
 
-In the case of ECP, attempts to compute SOCs using the above algorithms
-(with CALC_SOC=1 or 2)
-will, most likely, result in unphysically low SOC values.
-Instead, we recommend using effective charges (CALC_SOC=4).
-**
 
 To activate the NTO analysis of the spinless one-particle transition density matrices,[[1105]](../bib_references/bib.md#bib1152)
 
@@ -386,21 +376,19 @@ CC_STATE_TO_OPT, and couplings are computed between that state and
 all other EOM states. In the absence of CC_STATE_TO_OPT, SOCs are
 computed between the reference state and all EOM-EE or EOM-SF states.
 
-**Note: 
+!!! note "Note"
+    In a spin-restricted case, such as EOM-EE calculations using closed-shell
+    reference state, SOCs between the singlet and triplet EOM manifolds cannot be
+    computed (only SOCs between the reference state and EOM triplets can be
+    calculated). To compute SOCs between EOM-EE singlets and EOM-EE triplets, run
+    the same job with UNRESTRICTED = TRUE, such that triplets and
+    singlets appear in the same manifold.
 
-In a spin-restricted case, such as EOM-EE calculations using closed-shell
-reference state, SOCs between the singlet and triplet EOM manifolds cannot be
-computed (only SOCs between the reference state and EOM triplets can be
-calculated). To compute SOCs between EOM-EE singlets and EOM-EE triplets, run
-the same job with UNRESTRICTED = TRUE, such that triplets and
-singlets appear in the same manifold.
-**
 
-**Note: 
+!!! note "Note"
+    The most flexible control for computing transition properties is afforded by the
+    *$trans_prop* input section, as described in Section 7.9.21.
 
-The most flexible control for computing transition properties is afforded by the
-*$trans_prop* input section, as described in Section 7.9.21.
-**
 
 ## 7.9.21.5 Calculations of Non-Adiabatic Couplings Using EOM-CC Wave Functions
 
@@ -417,11 +405,10 @@ $$
 where, $G_{I}$, $G_{J}$, and $G_{IJ}$ are analytic gradients for states $I$, $J$,
 and a fictitious summed state $|\Psi_{I+J}\rangle\equiv|\Psi_{I}\rangle+|\Psi_{J}\rangle$. Currently, NACs for EE/IP/EA are available.[[375]](../bib_references/bib.md#bib380)
 
-**Note: 
+!!! note "Note"
+    Note that the individual components of the NAC vector depend on the
+    molecular orientation.
 
-Note that the individual components of the NAC vector depend on the
-molecular orientation.
-**
 
 ## 7.9.21.6 Transition Moments and Cross Sections for Two-Photon Absorption
 within EOM-EE-CCSD
@@ -487,11 +474,10 @@ The DIIS solver is controlled by the
 CC_MAX_ITER, CC_DIIS_START,
 CC_DIIS_SIZE, CC_EOM_2PA_ECONV, and CC_EOM_2PA_XCONV.
 
-**Note: 
+!!! note "Note"
+    The **Dalton** solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver),
+    whereas the DIIS solver uses the norm of the difference of the response vector between iterations.
 
-The **Dalton** solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver),
-whereas the DIIS solver uses the norm of the difference of the response vector between iterations.
-**
 
 2PA calculations can be carried out using single precision, by activating
 CC_EOM_2PA_SINGLE_PREC keyword, in addition to the keywords activating
@@ -525,12 +511,11 @@ the two circularly polarized components of the lp light, *i.e.*, to the electron
 The imaginary (real) part corresponds to the dispersion (ORD).
 Currently, these features are available for the canonical implementation only (no RI/CD).
 
-**Note: 
+!!! note "Note"
+    CC_FULLRESPONSE must be set to 0 and
+    CC_REF_PROP must be set to TRUE for these
+    calculations.
 
-CC_FULLRESPONSE must be set to 0 and
-CC_REF_PROP must be set to TRUE for these
-calculations.
-**
 
 The response equations for OR are solved using the same solver as the response equations for polarizabilities
 (see Section [7.9.21.8](#sec:EOMpol) for relevant keywords).
@@ -560,12 +545,11 @@ For a damped calculation, the frequency range, damping factor, and gauge choice 
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    Like other transition properties, ECD/XCD spectra can also be computed
+    from the rotatory strengths between EOM-CC/CVS-EOM-CC states.
+    See Section 7.9.21.
 
-Like other transition properties, ECD/XCD spectra can also be computed
-from the rotatory strengths between EOM-CC/CVS-EOM-CC states.
-See Section 7.9.21.
-**
 
 ## 7.9.21.8 Calculations of Static and Dynamic Polarizabilities for CCSD and EOM-CCSD
 Wave Functions
@@ -608,10 +592,9 @@ which can be turned on by specifying the *damped_epsilon* variable in the
 
 Currently, these features are available for the canonical implementation only.
 
-**Note: 
+!!! note "Note"
+    EOM-CCSD polarizabilities are available for the EE and SF wave functions only.
 
-EOM-CCSD polarizabilities are available for the EE and SF wave functions only.
-**
 
 By default, both undamped and damped polarizability response wave functions are computed using a new
 iterative Davidson-like subspace procedure called the **Dalton** solver.[[248]](../bib_references/bib.md#bib251)
@@ -621,10 +604,9 @@ DALTON_MAXITER, and DALTON_MAXSPACE
 keywords. Damped polarizability response wave functions can also be computed using the older DIIS solver
 by setting DAMPED_DALTON_SOLVER = FALSE. The DIIS solver is controlled by CC_MAX_ITER, CC_DIIS_START, CC_DIIS_SIZE, and CC _CONVERGENCE.
 
-**Note: 
+!!! note "Note"
+    The **Dalton** solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver), whereas the DIIS solver uses the norm of the difference of the response vector between iterations. The default threshold for convergence in response calculations (2PA, polarizability, RIXS) is 5.
 
-The **Dalton** solver uses square of the norm of the residual in estimating convergence (as in the Davidson solver), whereas the DIIS solver uses the norm of the difference of the response vector between iterations. The default threshold for convergence in response calculations (2PA, polarizability, RIXS) is 5.
-**
 
 ## 7.9.21.9 Calculations of Static and Dynamic First Hyperpolarizabilities for CCSD Wave Functions
 
@@ -645,11 +627,10 @@ specifies the frequency ranges of the two photons ($\omega_{1}$ and $\omega_{2}$
 $\omega_{3}=\omega_{1}+\omega_{2}$),
 as well as the corresponding damping factors.
 
-**Note: 
+!!! note "Note"
+    CC_FULLRESPONSE must be set to 0
+    and CC_REF_PROP must be set to TRUE for these calculations.
 
-CC_FULLRESPONSE must be set to 0
-and CC_REF_PROP must be set to TRUE for these calculations.
-**
 
 > ```qchem
 > $1hpol
@@ -723,11 +704,10 @@ $|{\mathbf{k}}|$.
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The grid of $|{\mathbf{k}}|$ values is computed as
+    $\sqrt{2E}$ where $E$ runs from 0.0 eV to 0.1*($k\_grid\_points$-1) eV.
 
-The grid of $|{\mathbf{k}}|$ values is computed as
-$\sqrt{2E}$ where $E$ runs from 0.0 eV to 0.1*($k\_grid\_points$-1) eV.
-**
 
 > ```qchem
 > $free_electron
@@ -738,10 +718,9 @@ $\sqrt{2E}$ where $E$ runs from 0.0 eV to 0.1*($k\_grid\_points$-1) eV.
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    The magnitude of $|{\mathbf{k}}|$ does not matter, only direction does.
 
-The magnitude of $|{\mathbf{k}}|$ does not matter, only direction does.
-**
 
 Photoelectron angular distribution (PAD) — $\Omega(\theta,\phi)$,
 where $\theta$ and $\phi$ are angular coordinates of the photoelectron’s vector

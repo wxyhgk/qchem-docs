@@ -699,10 +699,9 @@ To engage the constrained equilibrium principle for vertical absorption and emis
 **Td_CEq_NonEq** keyword in the *$pcm* section. Users are asked to cite Ref. [[821]](../bib_references/bib.md#bib852)
 .
 
-**Note: 
+!!! note "Note"
+    This method is incompatible with spin-flip calculations.
 
-This method is incompatible with spin-flip calculations.
-**
 
 ## 11.2.3.5 Heterogeneous PCM
 

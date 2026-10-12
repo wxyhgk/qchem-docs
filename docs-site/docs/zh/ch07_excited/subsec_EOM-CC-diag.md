@@ -13,17 +13,15 @@ EOM-CC 本征问题通过迭代对角化（iterative diagonalization）程序求
 
 默认情况下，对角化程序寻找由 XX_STATES 指定的若干个最低本征态。初始猜测向量（guess vectors）由利用 Koopmans 定理选择的单激发行列式生成；猜测向量的数目等于目标态的数目。如有必要，用户可以增加单激发猜测向量的数目（EOM_NGUESS_SINGLES）并包含双激发猜测向量（EOM_NGUESS_DOUBLES）。
 
-**注意：
+!!! note "注意"
+    在 CCMAN2 中，如果单激发猜测向量不足，算法会添加双激发猜测向量。而在 CCMAN 中，只有当调用了 EOM_NGUESS_DOUBLES 时才会生成双激发猜测向量。
 
-在 CCMAN2 中，如果单激发猜测向量不足，算法会添加双激发猜测向量。而在 CCMAN 中，只有当调用了 EOM_NGUESS_DOUBLES 时才会生成双激发猜测向量。
-**
 
 用户可以请求对 singles 进行预收敛（即仅在哈密顿量的 singles-only 块中求解方程），通过 EOM_PRECONV_SINGLES 实现。在 EOM-DEA/DIP 计算中，可以通过 EOM_PRECONV_DOUBLES 对 $2p$/$2h$ 振幅进行预收敛。在 CVS 方法系列中，该选项由 CVS_EOM_PRECONV_SINGLES 调用。
 
-**注意：
+!!! note "注意"
+    在 CCMAN 中，用户可以同时对 singles 和 doubles 块进行预收敛（EOM_PRECONV_SINGLES 和 EOM_PRECONV_DOUBLES）。
 
-在 CCMAN 中，用户可以同时对 singles 和 doubles 块进行预收敛（EOM_PRECONV_SINGLES 和 EOM_PRECONV_DOUBLES）。
-**。
 
 如果需要某个（或某几个）具有特定特征的态（*例如*，$\rm HOMO\rightarrow LUMO+10$ 激发或 $\rm HOMO-10$ 电离），用户可以通过 EOM_USER_GUESS 关键字和 *$eom_user_guess* 节来指定，如下例所示。算法将尝试寻找与该猜测向量具有最大重叠的本征态。该态的多重度与常规计算相同，由 XX_SINGLETS 和 EE_TRIPLETS 关键字决定。此选项对于寻找高位态（如核心电离态或核心激发态）非常有用。它仅在 CCMAN2 中可用。
 

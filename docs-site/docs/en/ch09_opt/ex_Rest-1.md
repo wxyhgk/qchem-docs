@@ -36,12 +36,11 @@ bond-angle, or torsional variables specified.
 > $end
 > ```
 
-**Note: 
+!!! note "Note"
+    Potential scans with JOBTYPE = PES_SCAN are available for ground-state potential
+    energy surfaces only, although one may compute excitation energies along the scanned coordinate(s) by including
+    appropriate keywords for vertical excitation in the *$rem* section, *e.g.*, CIS_N_ROOTS for CIS/TDDFT excited states.
 
-Potential scans with JOBTYPE = PES_SCAN are available for ground-state potential
-energy surfaces only, although one may compute excitation energies along the scanned coordinate(s) by including
-appropriate keywords for vertical excitation in the *$rem* section, *e.g.*, CIS_N_ROOTS for CIS/TDDFT excited states.
-**
 
 The first example below demonstrates how to scan the torsional potential of butane,
 which is a sequence of constrained optimizations with

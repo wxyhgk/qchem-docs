@@ -9,31 +9,21 @@ title: "2.2.1 General Usage"
 Once installation is complete, and any necessary adjustments are made to the
 user account, the user is now able to run **Q-Chem**. There are several ways to invoke **Q-Chem**:
 
-1. 1.
-
-**IQmol** offers a fully integrated graphical interface for the **Q-Chem**
+1. **IQmol** offers a fully integrated graphical interface for the **Q-Chem**
 package and includes a sophisticated input generator with contextual help
 which is able to guide you through the many **Q-Chem** options available. It
 also provides a molecular builder, job submission and monitoring tools, and
 is able to visualize molecular orbitals, densities and vibrational frequencies.
 For the latest version and download/installation instructions, please
 see the **IQmol** homepage (`http://www.iqmol.org`).
-2. 2.
-
-*qchem* command line shell script. The simple format for command line execution
+2. *qchem* command line shell script. The simple format for command line execution
 is given below. The remainder of this manual covers the creation of input files in detail.
-3. 3.
+3. Via a third-party graphical user interface (GUI). The two most popular ones are:
 
-Via a third-party graphical user interface (GUI). The two most popular ones are:
-
-- •
-
-A general web-based interface for electronic structure software, **WebMO**
+- A general web-based interface for electronic structure software, **WebMO**
 
 (`www.webmo.net`).
-- •
-
-Wavefunction’s **Spartan** user interface on some platforms. Contact Wavefunction, Inc. 
+- Wavefunction’s **Spartan** user interface on some platforms. Contact Wavefunction, Inc. 
 
 (`www.wavefun.com`) or **Q-Chem** for full details of current availability.
 
@@ -57,10 +47,9 @@ where `infile` is the name of a suitably formatted **Q-Chem** input file
 (detailed in Chapter [3](../ch03_inputs/chap_inputs.md), and the remainder of this manual), and
 the `outfile` is the name of the file to which **Q-Chem** will place the job output information.
 
-**Note: 
+!!! note "Note"
+    If the `outfile` already exists in the working directory, it will be overwritten.
 
-If the `outfile` already exists in the working directory, it will be overwritten.
-**
 
 The use of the `savename` command line variable allows the saving of a few
 key scratch files between runs, and is necessary when instructing **Q-Chem** to
@@ -210,21 +199,11 @@ using OpenMP threading.
 
 Requirements for using **BrianQC** are:
 
-- •
-
-A separate **BrianQC** license
-- •
-
-A 64-bit Linux or Windows-based operating system
-- •
-
-An Nvidia GPU based on the Pascal, Volta, Turing, or Ampere
+- A separate **BrianQC** license
+- A 64-bit Linux or Windows-based operating system
+- An Nvidia GPU based on the Pascal, Volta, Turing, or Ampere
 architecture
-- •
-
-A basis set with $g$ angular momentum or lower functions
-- •
-
-Only one **Q-Chem** calculation running per GPU
+- A basis set with $g$ angular momentum or lower functions
+- Only one **Q-Chem** calculation running per GPU
 
 To learn more, visit `https://www.brianqc.com/`.

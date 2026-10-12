@@ -16,19 +16,13 @@ arise. Linear scaling means that if the molecule size is doubled, then the
 computational effort likewise only doubles. There are three computationally
 significant terms:
 
-- •
-
-Electron-electron Coulomb interactions, for which **Q-Chem** incorporates
+- Electron-electron Coulomb interactions, for which **Q-Chem** incorporates
 the Continuous Fast Multipole Method (CFMM) discussed in section
 [4.6.2](sect_cfmm.md)
-- •
-
-Exact exchange interactions, which arise in hybrid DFT calculations and
+- Exact exchange interactions, which arise in hybrid DFT calculations and
 Hartree-Fock calculations, for which **Q-Chem** incorporates the LinK
 method discussed in section [4.6.3](sect_link.md) below.
-- •
-
-Numerical integration of the exchange and correlation functionals in DFT
+- Numerical integration of the exchange and correlation functionals in DFT
 calculations, which we have already discussed in section [5.5](../ch05_dft/sect_quadrature.md).
 
 **Q-Chem** supports energies and efficient analytical gradients for all three of

@@ -195,9 +195,8 @@ limiting values into two by using a dummy atom,[[61]](../bib_references/bib.md#b
 analogous to splitting a $180^{\circ}$ bond angle into two $90^{\circ}$ angles
 in a *Z*-matrix.
 
-**Note: 
+!!! note "Note"
+    Exact $0^{\circ}$ and $180^{\circ}$ single angle constraints cannot be
+    imposed, as the corresponding constraint normals, $\hat{\bm{\nabla}}\mathbf{C}_{i}$, are zero,
+    and result in rows and columns of zeros in the Lagrangian Hessian matrix.
 
-Exact $0^{\circ}$ and $180^{\circ}$ single angle constraints cannot be
-imposed, as the corresponding constraint normals, $\hat{\bm{\nabla}}\mathbf{C}_{i}$, are zero,
-and result in rows and columns of zeros in the Lagrangian Hessian matrix.
-**

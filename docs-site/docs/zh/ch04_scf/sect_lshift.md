@@ -43,11 +43,11 @@ title: "4.5.5 能级偏移（Level-Shifting）"
 >     * 用户自定义
 > * **建议**: 输入数值必须是 0 到 9999 之间的整数。实际偏移量等于 /1000 Eh。默认值的设置只是为了让能级偏移计算能够运行，不应视为任何特定问题的最优值。可能需要通过反复试验来寻找最优阈值。较大的偏移量使 SCF 过程更稳定，但同时也会减慢收敛速度，从而需要更多的 SCF 循环。
 
-**注意：
+!!! note "注意"
+    如果显式指定了 GAP_TOL 或 LSHIFT 或两者皆指定，则 LEVEL_SHIFT 会自动设置为 TRUE。
+    设置 LEVEL_SHIFT = FALSE 会使 GAP_TOL 和 LSHIFT 的任何取值失效。
+    调用 LS_DIIS 算法同样会使 LEVEL_SHIFT 的任何设置失效。
 
-如果显式指定了 GAP_TOL 或 LSHIFT 或两者皆指定，则 LEVEL_SHIFT 会自动设置为 TRUE。
-设置 LEVEL_SHIFT = FALSE 会使 GAP_TOL 和 LSHIFT 的任何取值失效。
-调用 LS_DIIS 算法同样会使 LEVEL_SHIFT 的任何设置失效。**
 
 ### `MAX_LS_CYCLES`
 

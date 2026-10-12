@@ -59,11 +59,10 @@ calculation based on GEN_SCFMAN, and the basic job control is as follows:
 >     * `10`: ${}^{-n}$
 > * **Recommendation**: None
 
-**Note: 
+!!! note "Note"
+    *$rem* variables GEN_SCFMAN_ALGO_X, GEN_SCFMAN_ITER_X,
+    GEN_SCFMAN_CONV_X (X = 2, 3, 4) are defined and used in a similar way.
 
-*$rem* variables GEN_SCFMAN_ALGO_X, GEN_SCFMAN_ITER_X,
-GEN_SCFMAN_CONV_X (X = 2, 3, 4) are defined and used in a similar way.
-**
 
 ???+ example "Example 4.16: B3LYP/3-21G calculation for a cadmium-imidazole complex using the ADIIS + DIIS algorithm
 (an example from Ref. 601 Hu X., Yang W. J. Chem. Phys. (2010) , 132 , pp. 054109 . Link ). Due to the poor quality of the CORE guess, using a single algorithm such as DIIS or GDM fails to converge."

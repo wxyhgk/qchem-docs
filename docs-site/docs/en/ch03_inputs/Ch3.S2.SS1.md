@@ -303,18 +303,10 @@ requirements of **Q-Chem** input files are much less stringent. For example, the
 
 The second general aspect of **Q-Chem** input is that there are effectively four input sources:
 
-- •
-
-User input file (required)
-- •
-
-`.qchemrc` file in `$HOME` (optional)
-- •
-
-`preferences` file in `$QC/config` (optional)
-- •
-
-Internal program defaults and calculation results (built-in)
+- User input file (required)
+- `.qchemrc` file in `$HOME` (optional)
+- `preferences` file in `$QC/config` (optional)
+- Internal program defaults and calculation results (built-in)
 
 The order of preference is as shown, *i.e.*, the input mechanism offers a program
 default override for *all* users, default override for *individual*
