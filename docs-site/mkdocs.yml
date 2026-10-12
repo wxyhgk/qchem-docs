@@ -5,6 +5,10 @@ site_url: ''
 use_directory_urls: true
 docs_dir: docs
 site_dir: site
+
+hooks:
+  - hooks/mol_fence.py
+
 theme:
   name: material
   language: en
@@ -827,8 +831,11 @@ markdown_extensions:
 extra_javascript:
 - assets/mathjax.js
 - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+- assets/fast-mol-viewer.iife.js
+- assets/mol-embed.js
 extra_css:
 - assets/custom.css
+- assets/mol-embed.css
 
 nav:
 - Home: index.md
