@@ -325,48 +325,16 @@ ${}^{d}$不支持梯度，但可使用经溶剂极化的 MO 进行单点能计�
 > * **类型**: `STRING`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不使用溶剂化模型。
->     * KIRKWOOD
->     * 使用 Kirkwood-Onsager 模型（第
->     * 11.2.2
->     * 节）。
->     * PCM
->     * 使用表观表面电荷可极化连续介质模型（Polarizable Continuum Model）（第
->     * 11.2.3
->     * 节）。
->     * ISOSVP
->     * 使用 SS(V)PE 模型的等密度实现（第
->     * 11.2.6
->     * 节）。
->     * COSMO
->     * 使用 COSMO（第
->     * 11.2.8
->     * 节）。
->     * SM8
->     * 使用 Cramer-Truhlar SM
->     * $x$
->     * 模型的第 8 版（第
->     * 11.2.9.1
->     * 节）。
->     * SM12
->     * 使用 SM
->     * $x$
->     * 模型的第 12 版（第
->     * 11.2.9.2
->     * 节）。
->     * SMD
->     * 使用 SMD（第
->     * 11.2.9.3
->     * 节）。
->     * CHEM_SOL
->     * 使用 Langevin 偶极子模型（第
->     * 11.2.10
->     * 节）。
->     * PEQS
->     * 使用泊松方程求解器（Poisson Equation Solver）（第
->     * 11.2.11
->     * 节）。
+>     * `0`: 不使用溶剂化模型。
+>     * `KIRKWOOD`: 使用 Kirkwood-Onsager 模型（第 11.2.2 节）。
+>     * `PCM`: 使用表观表面电荷可极化连续介质模型（Polarizable Continuum Model）（第 11.2.3 节）。
+>     * `ISOSVP`: 使用 SS(V)PE 模型的等密度实现（第 11.2.6 节）。
+>     * `COSMO`: 使用 COSMO（第 11.2.8 节）。
+>     * `SM8`: 使用 Cramer-Truhlar SM $x$ 模型的第 8 版（第 11.2.9.1 节）。
+>     * `SM12`: 使用 SM $x$ 模型的第 12 版（第 11.2.9.2 节）。
+>     * `SMD`: 使用 SMD（第 11.2.9.3 节）。
+>     * `CHEM_SOL`: 使用 Langevin 偶极子模型（第 11.2.10 节）。
+>     * `PEQS`: 使用泊松方程求解器（Poisson Equation Solver）（第 11.2.11 节）。
 > * **建议**: 请查阅相关文献（例如，文献 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021), 11, pp. e1519. Link）。PCM 是一个模型家族的统称，在这种情况下可能需要额外的输入选项才能完整地指定模型；参见第 11.2.3 节。此外，SM12 也有多个可用版本，详见第 11.2.9.2 节的讨论。
 
 在详细讨论这些模型之前，先就命名法方面几个容易引起混淆的问题作一些说明。首先，“PCM”一词常被（有时是不太严格地）用来指代一个模型家族，其中包括 COSMO、C-PCM、SS(V)PE 和 IEF-PCM。后两种模型在积分方程层面是形式上等价的，[[188]](../bib_references/bib.md#bib183) 但在数值实现上存在一些差异。[[756]](../bib_references/bib.md#bib789)

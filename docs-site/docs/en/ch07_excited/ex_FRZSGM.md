@@ -80,8 +80,6 @@ $\beta$ MO sets. Since one can have excitations of $\alpha$ and $\beta$ electron
 the b_frozen and vb_frozen are introduced to freeze the $\beta$ MOs.
 The $\beta$ MOs can be reordered using the *$reorder_beta* input section.
 
-FROZEN_ORBITAL
-
 ### `FROZEN_ORBITAL`
 
 > **turns on the constrained optimization library (prints in the output A frozen … calculation will be performed using … ).**
@@ -89,13 +87,9 @@ FROZEN_ORBITAL
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform a constrained optimization.
->     * TRUE
->     * Perform a constrained optimization.
+>     * `FALSE`: Do not perform a constrained optimization.
+>     * `TRUE`: Perform a constrained optimization.
 > * **Recommendation**: Only works with the GDM optimization algorithm. For a the constrained optimization to be effective, the user must manually reorder the MOs as explained above.
-
-A_FROZEN
 
 ### `A_FROZEN`
 
@@ -104,15 +98,9 @@ A_FROZEN
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No frozen vectors.
->     * Af
->     * Freeze the last Af occupied
->     * $\alpha$
->     * MOs.
+>     * `0`: No frozen vectors.
+>     * `Af`: Freeze the last Af occupied $\alpha$ MOs.
 > * **Recommendation**: None
-
-VA_FROZEN
 
 ### `VA_FROZEN`
 
@@ -121,15 +109,9 @@ VA_FROZEN
 > * **Type**: `INTEGER`
 > * **Default**: `FALSE`
 > * **Options**:
->     * 0
->     * No frozen vectors.
->     * VAf
->     * Freeze the last VAf virtual
->     * $\alpha$
->     * MOs.
+>     * `0`: No frozen vectors.
+>     * `VAf`: Freeze the last VAf virtual $\alpha$ MOs.
 > * **Recommendation**: None
-
-B_FROZEN
 
 ### `B_FROZEN`
 
@@ -138,15 +120,9 @@ B_FROZEN
 > * **Type**: `INTEGER`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * No frozen vectors.
->     * Bf
->     * Freeze the last Bf occupied
->     * $\beta$
->     * MOs.
+>     * `FALSE`: No frozen vectors.
+>     * `Bf`: Freeze the last Bf occupied $\beta$ MOs.
 > * **Recommendation**: None
-
-VB_FROZEN
 
 ### `VB_FROZEN`
 
@@ -155,12 +131,8 @@ VB_FROZEN
 > * **Type**: `INTEGER`
 > * **Default**: `FALSE`
 > * **Options**:
->     * 0
->     * No frozen vectors.
->     * VBf
->     * Freeze the last VBf virtual
->     * $\beta$
->     * MOs.
+>     * `0`: No frozen vectors.
+>     * `VBf`: Freeze the last VBf virtual $\beta$ MOs.
 > * **Recommendation**: None
 
 ???+ example "Example 7.7.56: Example input for the freeze-and-release calculation of the lowest-lying

@@ -158,8 +158,6 @@ depends, in principle, upon the value of OMEGA, although in practice
 it is not very sensitive to this value and results obtained in this way are similar to fully self-consistent values
 of $\omega_{\text{GDD}}$.[[956]](../bib_references/bib.md#bib997)
 
-OMEGA_GDD
-
 ### `OMEGA_GDD`
 
 > **Controls the application of $\omega_{\text{GDD}}$ tuning for long-range corrected DFT**
@@ -167,13 +165,9 @@ OMEGA_GDD
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Do not apply GDD tuning.
->     * TRUE (or 1)
->     * Use GDD tuning.
+>     * `FALSE`（或 `0`）: Do not apply GDD tuning.
+>     * `TRUE`（或 `1`）: Use GDD tuning.
 > * **Recommendation**: The $rem variable OMEGA must also be specified, in order to set the initial range-separation parameter.
-
-OMEGA_GDD_SCALING
 
 ### `OMEGA_GDD_SCALING`
 
@@ -182,10 +176,7 @@ OMEGA_GDD_SCALING
 > * **Type**: `INTEGER`
 > * **Default**: `885`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $C=n/1000$
->     * .
+>     * $n$: Corresponding to $C=n/1000$ .
 > * **Recommendation**: The quantity $C=0.885$ ( $n=885$ ) was determined in Ref. 764 Lao K. U., Herbert J. M. J. Chem. Theory Comput. (2018) , 14 , pp. 2955 . Link using LRC- $\omega$ PBE/hpTZVPP calculations.
 
 ???+ example "Example 5.9: Sample input illustrating a calculation to determine the $\omega$ value for
@@ -232,8 +223,6 @@ means to adjust the fraction of short-range exchange in an RSH
 functional,[[58]](../bib_references/bib.md#bib41)
  while the $\omega$ parameter is set by tuning.
 
-FRACTIONAL_ELECTRON
-
 ### `FRACTIONAL_ELECTRON`
 
 > **Add or subtract a fraction of an electron.**
@@ -241,12 +230,8 @@ FRACTIONAL_ELECTRON
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use an integer number of electrons.
->     * $n$
->     * Add
->     * $n/1000$
->     * electrons to the system.
+>     * `0`: Use an integer number of electrons.
+>     * $n$: Add $n/1000$ electrons to the system.
 > * **Recommendation**: Use only if trying to generate $E(N)$ plots. If $n<0$ , a fraction of an electron is removed from the system.
 
 ???+ example "Example 5.10: Example of a DFT job with a fractional number of electrons. Here, we make the $-1.x$ anion of fluoride by subtracting a fraction of an electron from the HOMO
@@ -302,8 +287,6 @@ In practice, EFF tuning of an RSH functional is enabled by setting the *$rem* va
 The evaluation of $\omega_{\text{EFF}}$ in Eq. ([5.21](#mu-eff)) requires the electron density, which is obtained from a converged SCF calculation.
 When using an RSH functional, an initial value of $\omega$ must be specified via the *$rem* variable OMEGA. In contrast, for semilocal or global hybrid functionals (e.g., PBE or B3LYP), specifying OMEGA is not required.
 
-OMEGA_EFF
-
 ### `OMEGA_EFF`
 
 > **Controls the application of $\omega_{\text{EFF}}$ tuning for long-range corrected DFT**
@@ -311,10 +294,8 @@ OMEGA_EFF
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Do not apply EFF tuning.
->     * TRUE (or 1)
->     * Apply EFF tuning.
+>     * `FALSE`（或 `0`）: Do not apply EFF tuning.
+>     * `TRUE`（或 `1`）: Apply EFF tuning.
 > * **Recommendation**: The $rem variable OMEGA must also be specified to provide an initial value for the range-separation parameter.
 
 ???+ example "Example 5.11: Sample input illustrating a calculation to determine the $\omega$ value using EFF tuning procedure."

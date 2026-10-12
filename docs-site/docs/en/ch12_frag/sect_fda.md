@@ -57,8 +57,6 @@ components are relevant to the stretch or compression. Despite the usefulness
 of the redundant internal coordinates, they are not unique, and the order of
 the atoms in the input file can affect the results.
 
-FDA
-
 ### `FDA`
 
 > **Decompose intermolecular forces**
@@ -66,10 +64,8 @@ FDA
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Does a regular force job.
->     * TRUE
->     * Invokes the force decomposition analysis method
+>     * `FALSE`: Does a regular force job.
+>     * `TRUE`: Invokes the force decomposition analysis method
 > * **Recommendation**: Set it to TRUE with jobtype=force to decompose the force.
 
 ???+ example "Example 12.34: Force Decomposition Analysis job for the H ${}_{2}$ O $\cdots$ F ${}^{-}$ job using the internal coordinates"

@@ -12,8 +12,6 @@ title: "11.4 Q-Chem/Charmm 接口"
 
 使用 **Charmm** 接口的 QM/MM 作业通过以下 *$rem* 关键字进行控制：
 
-QM_MM
-
 ### `QM_MM`
 
 > **开启 Q-Chem / Charmm 接口。**
@@ -31,8 +29,6 @@ QM_MM
 >     * 关闭此功能。
 > * **建议**：除非使用 Charmm 运行计算，否则使用默认值。
 
-QMMM_PRINT
-
 ### `QMMM_PRINT`
 
 > **控制 QM/MM 作业输出信息的多少。**
@@ -46,8 +42,6 @@ QMMM_PRINT
 >     * 正常打印。
 > * **建议**：除非使用 Charmm 运行计算，否则使用默认值。
 
-QMMM_CHARGES
-
 ### `QMMM_CHARGES`
 
 > **控制是否将 QM 电荷打印到文件。**
@@ -60,8 +54,6 @@ QMMM_CHARGES
 >     * FALSE
 >     * 不写入文件。
 > * **建议**：除非使用 Charmm 运行计算且需要保存 QM 区域上的电荷，否则使用默认值。
-
-ESP_EFIELD
 
 ### `ESP_EFIELD`
 
@@ -78,8 +70,6 @@ ESP_EFIELD
 >     * 仅计算电场。
 > * **建议**：无。
 
-GEOM_PRINT
-
 ### `GEOM_PRINT`
 
 > **控制在每一步打印的几何信息量。**
@@ -92,8 +82,6 @@ GEOM_PRINT
 >     * FALSE
 >     * 正常打印距离矩阵。
 > * **建议**：如果你希望在优化的开始和结束阶段快速查看几何参数，则使用此项。在单点能计算中仅在开始时打印。
-
-QMMM_FULL_HESSIAN
 
 ### `QMMM_FULL_HESSIAN`
 
@@ -108,8 +96,6 @@ QMMM_FULL_HESSIAN
 >     * 仅求值 QM-QM 分块的 Hessian。
 > * **建议**：无
 
-LINK_ATOM_PROJECTION
-
 ### `LINK_ATOM_PROJECTION`
 
 > **控制是否执行连接原子（link atom）投影**
@@ -122,8 +108,6 @@ LINK_ATOM_PROJECTION
 >     * FALSE
 >     * 不执行投影
 > * **建议**：在对含有连接原子的体系求值完整的 QM/MM Hessian 时是必需的
-
-HESS_AND_GRAD
 
 ### `HESS_AND_GRAD`
 
@@ -138,8 +122,6 @@ HESS_AND_GRAD
 >     * 仅求值 Hessian。
 > * **建议**：仅在频率计算（因而需要 Hessian）中使用。
 
-GAUSSIAN_BLUR
-
 ### `GAUSSIAN_BLUR`
 
 > **在 QM/MM 计算中启用高斯离域的外电荷。**
@@ -152,8 +134,6 @@ GAUSSIAN_BLUR
 >     * FALSE
 >     * 点电荷
 > * **建议**：无
-
-SKIP_CHARGE_SELF_INTERACT
 
 ### `SKIP_CHARGE_SELF_INTERACT`
 

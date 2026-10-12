@@ -22,8 +22,6 @@ $$
  因为其对公式 ([7.78](#eq:OpSing)) 中的两项采用同一组自洽轨道。
 相比之下，Noodleman 的近似自旋纯化流程则执行两次独立的 SCF 计算，各自使用不同的轨道。
 
-SPIN_PROJ
-
 ### `SPIN_PROJ`
 
 > **控制是否执行近似自旋纯化。**
@@ -31,10 +29,6 @@ SPIN_PROJ
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行自旋纯化。
->     * NOODLEMAN
->     * 使用 Noodleman 公式执行自旋纯化，即公式 (
->     * 7.78
->     * )。
+>     * `FALSE`: 不执行自旋纯化。
+>     * `NOODLEMAN`: 使用 Noodleman 公式执行自旋纯化，即公式 ( 7.78 )。
 > * **建议**: 若需要自旋纯化，请设置为 NOODLEMAN。务必确保 UNRESTRICTED 设置为 TRUE。梯度可用，但 Hessian 不可用。

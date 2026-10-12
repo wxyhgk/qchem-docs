@@ -51,8 +51,6 @@ For the best performance of **libpt** (T) code, parallel execution should be req
 see Section [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel).
 **
 
-USE_LIBPT
-
 ### `USE_LIBPT`
 
 > **Enable libpt for CCSD(T) calculations in CCMAN2.**
@@ -60,11 +58,9 @@ USE_LIBPT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: libpt is now used by default in all real-valued CC/EOM-CC calculations
-
-CC_INCL_CORE_CORR
 
 ### `CC_INCL_CORE_CORR`
 
@@ -73,6 +69,6 @@ CC_INCL_CORE_CORR
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: Use the default unless no core-valence or core correlation is desired ( e.g. , for comparison with other methods or because the basis used cannot describe core correlation).

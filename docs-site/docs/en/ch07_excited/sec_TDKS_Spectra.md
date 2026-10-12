@@ -188,12 +188,7 @@ keywords **active_alpha_groups** and **active_beta_groups** that both have the s
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * $k_{1}~{}k_{2}\cdots\text{|}k_{3}~{}k_{4}\cdots$
->     * Define groups
->     * $\{k_{1},k_{2},\ldots\}$
->     * and
->     * $\{k_{3},k_{4},\ldots\}$
->     * .
+>     * $k_{1}~{}k_{2}\cdots\text{|}k_{3}~{}k_{4}\cdots$: Define groups $\{k_{1},k_{2},\ldots\}$ and $\{k_{3},k_{4},\ldots\}$ .
 > * **Recommendation**: Use if desired. In addition to the full dipole moment function $\bm{\mu}(t)$ , separate dipole moment functions for each group will be written to the scratch directory. For unrestricted SCF calculations, use active_alpha_groups and active_beta_groups instead.
 
 The following example demonstrates how to decompose the absorption spectrum for TiO${}_{2}$ into contributions from

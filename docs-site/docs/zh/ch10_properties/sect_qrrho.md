@@ -44,8 +44,6 @@ $$
 qRRHO 方案是 **Q-Chem** 中的默认设置，所有热力学量都会分别在标准温度和压力（298.15 K
 和 1.00 atm）下按 RRHO（不进行插值）和 qRRHO 方案输出。若要更改后者，用户可以指定一个 *$isotopes* 段（详见示例及第 [10.8.2](ex_Isotope-Mass.md) 节）。两个插值函数所使用的 $\alpha$ 和 $\omega_{0}$ 可分别通过 QRRHO_ALPHA 和 QRRHO_OMEGA_CUTOFF 进行修改。
 
-QRRHO_ALPHA
-
 ### `QRRHO_ALPHA`
 
 > **指定 Chai 和 Head-Gordon 阻尼函数中的指数，用于在 qRRHO 方案中对振动焓和熵进行插值。若要单独更改熵插值的指数，请指定 MRRHO_ALPHA。**
@@ -56,8 +54,6 @@ QRRHO_ALPHA
 >     * $\alpha$
 >     * qRRHO 方案中使用的无量纲插值指数。
 > * **建议**：使用默认值。
-
-QRRHO_OMEGA_CUTOFF
 
 ### `QRRHO_OMEGA_CUTOFF`
 

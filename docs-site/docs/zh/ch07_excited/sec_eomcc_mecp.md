@@ -53,33 +53,7 @@ XOPT_STATE_1, XOPT_STATE_2
 > * **类型**: `[INTEGER, INTEGER, INTEGER]`
 > * **默认值**: `无默认值（必须指定该选项才能运行此计算）`
 > * **选项**:
->     * [spin, irrep, state]
->     * spin = 0
->     * 处理低自旋（low spin）态，
->     * 另见 EE_SINGLETS 或 IP_STATES,EA_STATES。
->     * spin = 1
->     * 处理高自旋（high spin）态，
->     * 另见 EE_TRIPLETS。
->     * irrep
->     * 指定该态所属的不可约表示（irreducible representation）；例如，在
->     * $C_{2v}$
->     * 点群中，
->     * 不可约表示按 1、2、3、4 依次对应
->     * $A_{1}$
->     * 、
->     * $A_{2}$
->     * 、
->     * $B_{1}$
->     * 和
->     * $B_{2}$
->     * 。
->     * state
->     * 指定不可约表示内的态序号，state = 1 表示最低的激发
->     * 态，state = 2 表示第二激发态，
->     * 以此类推。
->     * .
->     * 0, 0, -1
->     * 基态。
+>     * `[spin, irrep, state]`: spin = 0 处理低自旋（low spin）态， 另见 EE_SINGLETS 或 IP_STATES,EA_STATES。 spin = 1 处理高自旋（high spin）态， 另见 EE_TRIPLETS。 irrep 指定该态所属的不可约表示（irreducible representation）；例如，在 $C_{2v}$ 点群中， 不可约表示按 1、2、3、4 依次对应 $A_{1}$、 $A_{2}$、 $B_{1}$ 和 $B_{2}$。 state 指定不可约表示内的态序号，state = 1 表示最低的激发态，state = 2 表示第二激发态， 以此类推。 . 0, 0, -1 基态。
 > * **建议**: 目前只能计算自旋或对称性不同的态之间的交叉。
 
 **注意：**
@@ -89,8 +63,6 @@ XOPT_STATE_1, XOPT_STATE_2
 EE_STATES。例如，在自旋翻转（spin-flip）计算中，无论目标态的实际多重度为何，均使用 spin = 0。
 **
 
-XOPT_SEAM_ONLY
-
 ### `XOPT_SEAM_ONLY`
 
 > **仅执行交叉 seam 搜索，不进行最小化。**
@@ -98,10 +70,8 @@ XOPT_SEAM_ONLY
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 在交叉 seam 上找到一个点后即停止。
->     * FALSE
->     * 对交叉 seam 执行最小化。
+>     * `TRUE`: 在交叉 seam 上找到一个点后即停止。
+>     * `FALSE`: 对交叉 seam 执行最小化。
 > * **建议**: 对于自由度很多的体系，可以先将该选项设为 TRUE 以定位 seam，然后以该几何结构作为最小化的起始点，这可能很有用。
 
 ## 7.9.28.2 示例

@@ -97,8 +97,6 @@ job-control variables and an example can be found below. The value of the
 range-separation parameter is then controlled by the variable OMEGA,
 as shown in the examples below.
 
-LRC_DFT
-
 ### `LRC_DFT`
 
 > **Controls the application of long-range-corrected DFT**
@@ -106,13 +104,9 @@ LRC_DFT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Do not apply long-range correction.
->     * TRUE (or 1)
->     * Add 100% long-range Hartree-Fock exchange to the requested functional.
+>     * `FALSE`（或 `0`）: Do not apply long-range correction.
+>     * `TRUE`（或 `1`）: Add 100% long-range Hartree-Fock exchange to the requested functional.
 > * **Recommendation**: The $rem variable OMEGA must also be specified, in order to set the range-separation parameter.
-
-OMEGA
 
 ### `OMEGA`
 
@@ -121,14 +115,8 @@ OMEGA
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\omega=n/1000$
->     * , in units of bohr
->     * ${}^{-1}$
+>     * $n$: Corresponding to $\omega=n/1000$ , in units of bohr ${}^{-1}$
 > * **Recommendation**: None
-
-COMBINE_K
 
 ### `COMBINE_K`
 
@@ -137,15 +125,9 @@ COMBINE_K
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Build short-range and long-range K separately (twice as expensive as a global hybrid)
->     * TRUE (or 1)
->     * Build short-range and long-range K together (
->     * $\approx$
->     * as expensive as a global hybrid)
+>     * `FALSE`（或 `0`）: Build short-range and long-range K separately (twice as expensive as a global hybrid)
+>     * `TRUE`（或 `1`）: Build short-range and long-range K together ( $\approx$ as expensive as a global hybrid)
 > * **Recommendation**: Most pre-defined range-separated hybrid functionals in Q-Chem use this feature by default. However, if a user-specified RSH is desired, it is necessary to manually turn this feature on.
-
-HFK_SR_COEF
 
 ### `HFK_SR_COEF`
 
@@ -154,12 +136,8 @@ HFK_SR_COEF
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n/100000000$
+>     * $n$: Corresponding to $n/100000000$
 > * **Recommendation**: None
-
-HFK_LR_COEF
 
 ### `HFK_LR_COEF`
 
@@ -168,9 +146,7 @@ HFK_LR_COEF
 > * **Type**: `INTEGER`
 > * **Default**: `100000000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n/100000000$
+>     * $n$: Corresponding to $n/100000000$
 > * **Recommendation**: None
 
 ???+ example "Example 5.6: Application of LRC- $\mu$ BOP to $\rm(H_{2}O)_{2}^{-}$ ."

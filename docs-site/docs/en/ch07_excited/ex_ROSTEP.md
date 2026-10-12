@@ -65,8 +65,6 @@ Job control for $\Delta$SCF (R- or U-STEP) and RO-STEP calculations:
 After STEP is activated in the *$rem* section,
 the remainder of the options for STEP are handled through the *$step* input section.
 
-STEP
-
 ### `STEP`
 
 > **Activates the STEP procedure.**
@@ -74,10 +72,8 @@ STEP
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not apply the STEP level-shift algorithm.
->     * TRUE
->     * Apply the STEP level-shift algorithm.
+>     * `FALSE`: Do not apply the STEP level-shift algorithm.
+>     * `TRUE`: Apply the STEP level-shift algorithm.
 > * **Recommendation**: None
 
 ### `Epsilon`
@@ -97,12 +93,9 @@ STEP
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Do not print any information about STEP between SCF cycles.
->     * 1
->     * Print the level-shift applied at each SCF cycle (R- and U-STEP).
->     * 2
->     * Print the level-shift for both mixed and triplet states at each SCF cycle (RO-STEP).
+>     * `0`: Do not print any information about STEP between SCF cycles.
+>     * `1`: Print the level-shift applied at each SCF cycle (R- and U-STEP).
+>     * `2`: Print the level-shift for both mixed and triplet states at each SCF cycle (RO-STEP).
 > * **Recommendation**: Use the default. Level shifts of 0 indicate that an aufbau criterion is sufficient to determine orbital occupation, and shifts $>0$ imply non- aufbau selection of the occupied space.
 
 ### `Always_Active`
@@ -112,15 +105,10 @@ STEP
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * alpha
->     * Apply a constant level-shift to the alpha spin orbitals.
->     * beta
->     * Apply a constant level-shift to the beta spin orbitals.
->     * both
->     * Apply a constant level-shift to both alpha and beta spin orbitals.
+>     * `alpha`: Apply a constant level-shift to the alpha spin orbitals.
+>     * `beta`: Apply a constant level-shift to the beta spin orbitals.
+>     * `both`: Apply a constant level-shift to both alpha and beta spin orbitals.
 > * **Recommendation**: Use in cases where the dynamic level-shift does not achieve satisfactory results. In the case of U-STEP, the constraint need only be applied to orbitals that must maintain a non- aufbau configuration ( i.e. an alpha-electron promotion requires only the alpha constraint, but two-electron promotions will require both constraints). For RO-STEP this keyword is set to both by default and cannot be turned off. In R-STEP it is only sensible to use both if the desired doubly-excited configuration cannot be found with the dynamic level-shift parameter.
-
-ROKS
 
 ### `ROKS`
 
@@ -129,10 +117,8 @@ ROKS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * ROKS is not performed.
->     * TRUE
->     * ROKS will be performed.
+>     * `FALSE`: ROKS is not performed.
+>     * `TRUE`: ROKS will be performed.
 > * **Recommendation**: Set to TRUE if ROKS calculation is desired. UNRESTRICTED = FALSE should also be ensured.
 
 ???+ example "Example 7.58: Lowest energy $\pi\rightarrow\pi^{\ast}$ transition in acetylene using a $\Delta$ SCF approach with STEP."

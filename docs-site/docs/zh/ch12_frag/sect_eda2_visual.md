@@ -99,13 +99,9 @@ $$
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不生成 EDD（电子密度差）图
->     * TRUE
->     * 生成 EDD（电子密度差）图
+>     * `FALSE`: 不生成 EDD（电子密度差）图
+>     * `TRUE`: 生成 EDD（电子密度差）图
 > * **建议**: 无
-
-EDA_NOCV
 
 ### `EDA_NOCV`
 
@@ -114,15 +110,10 @@ EDA_NOCV
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不执行 NOCV 分析
->     * 1
->     * 绘制 NOCV 对密度形变（density deformation）的贡献
->     * 2
->     * 同时绘制 NOCV 对密度形变的贡献及 NOCV 轨道
+>     * `0`: 不执行 NOCV 分析
+>     * `1`: 绘制 NOCV 对密度形变（density deformation）的贡献
+>     * `2`: 同时绘制 NOCV 对密度形变的贡献及 NOCV 轨道
 > * **建议**: 无
-
-PLOT_ALMO_FRZ
 
 ### `PLOT_ALMO_FRZ`
 
@@ -131,13 +122,9 @@ PLOT_ALMO_FRZ
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不绘制冻结态 ALMO
->     * TRUE
->     * 绘制冻结态 ALMO
+>     * `FALSE`: 不绘制冻结态 ALMO
+>     * `TRUE`: 绘制冻结态 ALMO
 > * **建议**: 无
-
-PLOT_ALMO_POL
 
 ### `PLOT_ALMO_POL`
 
@@ -146,10 +133,8 @@ PLOT_ALMO_POL
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不绘制极化态 ALMO
->     * TRUE
->     * 绘制极化态 ALMO
+>     * `FALSE`: 不绘制极化态 ALMO
+>     * `TRUE`: 绘制极化态 ALMO
 > * **建议**: 无
 
 ???+ example "示例 12.24: 通过 EDA2 执行微扰 CTA（约束轨道对, Constrained Transition-amplitude）计算（使用默认设置）。通过设置 EDA_PRINT_COVP = AUTOMATED 来启用自动 COVP（正则化轨道对, Canonical Orbital-Pair）生成，可自动绘制最重要的 COVP。通过设置 PLOTS = TRUE 使用新版 $plots 区块格式，无需指定要绘制的轨道数目。"

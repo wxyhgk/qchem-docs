@@ -38,8 +38,6 @@ RCC[[1390]](../bib_references/bib.md#bib1452)
 
 通过设置 CORRELATION = CCVB 即可调用 CCVB 计算。活化的单重态 geminal 数目必须通过 GVB_N_PAIRS 指定。此后需要选择一个初始猜测。对此有三个主要选项，由以下关键字指定
 
-CCVB_GUESS
-
 ### `CCVB_GUESS`
 
 > **指定 CCVB 计算的初始猜测**
@@ -47,18 +45,9 @@ CCVB_GUESS
 > * **类型**: `INTEGER`
 > * **默认值**: `NONE`
 > * **可选值**:
->     * 1
->     * 标准 GVBMAN 猜测（通过
->     * GVB_LOCAL
->     * + Sano 过程进行轨道定域化）。
->     * 2
->     * 使用先前 GVBMAN 计算的轨道，需配合
->     * SCF_GUESS
->     * =
->     * READ
->     * 。
->     * 3
->     * 将 UHF 轨道转换为配对 VB 形式。
+>     * `1`: 标准 GVBMAN 猜测（通过 GVB_LOCAL + Sano 过程进行轨道定域化）。
+>     * `2`: 使用先前 GVBMAN 计算的轨道，需配合 SCF_GUESS = READ。
+>     * `3`: 将 UHF 轨道转换为配对 VB 形式。
 > * **建议**: 选项 1 总体最实用。GVBMAN 方法的成功往往依赖于定域化轨道，此猜测正是瞄准这一点。选项 2 适用于将结果与其他 GVBMAN 方法对比，或者当其他 GVBMAN 方法能更高效地获得期望结果时使用。选项 3 在键断裂情形下、且已找到相关的 UHF 解时很有用。它对小型体系效果最好，或者当自旋非限制化（unrestriction）只是较大分子中的局域现象时。如果非限制化是非局域的且体系较大，此猜测得到的解往往不是全局极小值。任何 UHF 解都有一定数目的非限制化对（pair），程序会输出该数目。如果 GVB_N_PAIRS 超过这个数目，将使用标准 GVBMAN 初始猜测过程为超出的那些对构造猜测。
 
 对于势能面（potential energy surfaces），建议从前一次计算得到的 CCVB 解出发进行重启。这通过 GVB_RESTART = TRUE 来调用。每当使用此选项，或任何时候将其他计算的轨道直接读入 CCVB 时，都务必同时设置：
@@ -77,8 +66,6 @@ SCF_ALGORITHM = DIIS
 
 除了上文讨论的原生（parent）CCVB 方法之外，我们还纳入了两种相关的能量优化方案，其运行由以下关键字控制：
 
-CCVB_METHOD
-
 ### `CCVB_METHOD`
 
 > **可选地修改基本 CCVB 方法**
@@ -86,12 +73,9 @@ CCVB_METHOD
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **可选值**:
->     * 1
->     * 标准 CCVB 模型
->     * 3
->     * CCVB 的独立电子对近似（Independent Electron Pair Approximation, IEPA）
->     * 4
->     * 变分 PP（即 CCVB 的参考能量）
+>     * `1`: 标准 CCVB 模型
+>     * `3`: CCVB 的独立电子对近似（Independent Electron Pair Approximation, IEPA）
+>     * `4`: 变分 PP（即 CCVB 的参考能量）
 > * **建议**: 通常推荐使用选项 1。选项 4 适用于预条件处理（preconditioning），以及获得定域化轨道解，后者可用于后续计算。当常规 GVBMAN PP 代码出现变分不稳定时，选项 4 也很有用。选项 3 是 CCVB 的一种简单独立振幅近似。它避免了 CCVB 的三次方标度（cubic-scaling）振幅方程，并且能够为任意分子体系达到正确的解离能（而常规 CCVB 仅在 UHF 能够达到正确解离极限的情形下才能做到）。不过，CCVB 的 IEPA 近似有时会出现变分不稳定，而我们在常规 CCVB 中尚未观察到这种现象。
 
 ???+ example "示例 6.52：处于中间解离区域的 N ${}_{2}$ 分子。在本例中，必须使用 SCF_ALGORITHM DIIS 才能获得未破缺对称性的 RHF

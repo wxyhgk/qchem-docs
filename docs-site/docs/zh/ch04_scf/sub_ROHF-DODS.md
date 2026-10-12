@@ -16,8 +16,6 @@ title: "4.5.18 正则 ROSCF 计算中的轨道能量缩放"
 
 ### 作业控制（Job Control）
 
-ROSCF_DIAG_SCALE_A
-
 ### `ROSCF_DIAG_SCALE_A`
 
 > **在执行正则限制开壳层自洽场（restricted open-shell SCF）计算时，在 SCF 迭代过程中对开壳层对角 $\alpha$ Fock 矩阵块（从而对单占据 $\alpha$ 轨道能量）进行缩放，以缓解收敛困难体系中违背构造原理的问题。收敛之后，会恢复正确的正则轨道能量。**
@@ -32,8 +30,6 @@ ROSCF_DIAG_SCALE_A
 >     * $n\cdot 10^{-}2$
 >     * 。
 > * **建议**：若出现收敛问题，可尝试一系列不同的取值，例如 $\pm 800$ 、 $\pm 400$ 、 $\pm 200$ 、 $\pm 100$ 、 $\pm 50$ 、 $\pm 20$ 、 $\pm 10$ 。
-
-ROSCF_DIAG_SCALE_B
 
 ### `ROSCF_DIAG_SCALE_B`
 

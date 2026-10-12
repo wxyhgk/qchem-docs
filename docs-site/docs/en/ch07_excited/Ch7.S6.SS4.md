@@ -8,8 +8,6 @@ title: "7.6.4 Job Control"
 
 NOCIS, 1C-NOCIS, and STEX run as subroutines in GEN_SCFMAN. Thus, for all calculations, you must set GEN_SCFMAN = TRUE. It is also highly recommended that you run an open-shell ground state calculation prior to running your NOCIS/STEX/1C-NOCIS calculations, which are all restricted.
 
-NOCIS
-
 ### `NOCIS`
 
 > **Requests a NOCIS/STEX/1C-NOCIS/EA-TDDFT calculation.**
@@ -17,12 +15,8 @@ NOCIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not run these methods.
->     * TRUE
->     * Run one of these methods, options controlled in
->     * $nocis
->     * .
+>     * `FALSE`: Do not run these methods.
+>     * `TRUE`: Run one of these methods, options controlled in $nocis .
 > * **Recommendation**: None
 
 Options below this line are set within the *$nocis* section.
@@ -44,10 +38,8 @@ Options below this line are set within the *$nocis* section.
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * False
->     * Run a NOCIS calculation.
->     * True
->     * Run a 1C-NOCIS calculation.
+>     * `False`: Run a NOCIS calculation.
+>     * `True`: Run a 1C-NOCIS calculation.
 > * **Recommendation**: None
 
 ### `ORB_OFFSET`
@@ -57,8 +49,7 @@ Options below this line are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the first orbital of interest in the system in question. For example, this would be set to 0 for the O K-edge in CO ${}_{2}$ because the two O 1s orbitals lie below the C 1s, so for the C K-edge this would be set to 2.
 
 ### `NUM_REF`
@@ -68,8 +59,7 @@ Options below this line are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the number of consecutive orbitals of interest for the calculation. For example, for the oxygen K-edge in CO ${}_{2}$ , the number of references would be 2 (two O 1s orbitals), whereas for the carbon K-edge it would be 1 (one C 1s).
 
 Options below this line are exclusive to 1C-NOCIS calculations for 2eOS references.
@@ -81,12 +71,9 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `ROKS`
 > * **Options**:
->     * CIS
->     * Employ a CIS excited-state wave function transformed into the NTO basis as the IS
->     * ROKS
->     * Employ a ROKS- or ROHF-optimized wave function (singlets or triplets) as the IS
->     * CIS_ROKS
->     * Use CIS NTOs as a guess for an RO calculation on the IS.
+>     * `CIS`: Employ a CIS excited-state wave function transformed into the NTO basis as the IS
+>     * `ROKS`: Employ a ROKS- or ROHF-optimized wave function (singlets or triplets) as the IS
+>     * `CIS_ROKS`: Use CIS NTOs as a guess for an RO calculation on the IS.
 > * **Recommendation**: Use CIS when targeting a well-defined initial state. Else use ROSCF. Note that, if the CIS_ROKS option is used, the previous excited state job can employ TDDFT instead of CIS to provide a better guess.
 
 ### `OS_IS_CIS_STATE`
@@ -96,8 +83,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the desired CIS state.
 
 ### `OS_IS_OCC_VALENCE`
@@ -107,8 +93,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `HOMO`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the desired ROKS state. This is a 0-indexed variable (the lowest orbital has index 0).
 
 ### `OS_IS_VIR_VALENCE`
@@ -118,8 +103,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `LUMO`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the desired ROKS state. This is a 0-indexed variable (the lowest orbital has index 0).
 
 ### `OS_IS_SCF_ALGORITHM`
@@ -129,11 +113,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `GDM when`
 > * **Options**:
->     * DIIS
->     * GDM
->     * GDM_LS
->     * SGM
->     * SGM_LS
+>     * `DIIS`: GDM GDM_LS SGM SGM_LS
 > * **Recommendation**: Use defaults.
 
 ### `OS_IS_DSCF_ALGORITHM`
@@ -143,10 +123,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * MOM
->     * IMOM
->     * STEP
->     * STEP_MOM
+>     * `MOM`: IMOM STEP STEP_MOM
 > * **Recommendation**: When using DIIS, MOM or IMOM may be necessary to target higher valence excited states.
 
 ### `OS_IS_SCF_CONVERGENCE`
@@ -156,8 +133,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `7 for SGM- and GDM-based solvers`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Modify as needed for convergence, but thresholds below 5 for descent-based methods (GDM, SGM), and 7 for others may provide unsufficiently-converged orbitals.
 
 ### `OS_IS_SGM_GRADIENT`
@@ -167,8 +143,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `75 when using SGM as the SCF solver for the initial valence state`
 > * **Options**:
->     * $n$
->     * Positive integer below 100
+>     * $n$: Positive integer below 100
 > * **Recommendation**: See DELTA_GRADIENT_SCALE $rem variable. If ROKS_IS_SS_MIXING is set to FALSE, try the default. Otherwise, a value of around 10 might be required. If its converging to the wrong state, try decreasing.
 
 ### `OS_IS_SS_MIXING`
@@ -178,10 +153,8 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `BOOL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Supress coupling.
->     * TRUE
->     * Allow coupling.
+>     * `FALSE`: Supress coupling.
+>     * `TRUE`: Allow coupling.
 > * **Recommendation**: See ROKS_SS_MIXING $rem variable. Supressing coupling is useful when the resuling states are difficult to converge and / or overlap significantly with the ground state, and seems to be harmless otherwise. Certain $\pi\longrightarrow{}\pi^{*}$ excitated states are particularly susceptible to this (Example 7.7.4 ). Only works with descent-based solvers (GDM or SGM).
 
 ### `OS_FS_REFERENCE_ORB`
@@ -191,15 +164,9 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `ROKS_2EOS for singlet valence excited states`
 > * **Options**:
->     * OC_NOCIS
->     * Uses ROSCF doublet core ion orbitals, rotated into the closed-shell
->     * 1C-NOCIS NTO basis
->     * QUARTET_ION
->     * Uses the ROSCF quartet core ion orbitals
->     * ROKS_2EOS
->     * Uses the
->     * $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$
->     * orbitals optimized via ROKS.
+>     * `OC_NOCIS`: Uses ROSCF doublet core ion orbitals, rotated into the closed-shell 1C-NOCIS NTO basis
+>     * `QUARTET_ION`: Uses the ROSCF quartet core ion orbitals
+>     * `ROKS_2EOS`: Uses the $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ orbitals optimized via ROKS.
 > * **Recommendation**: Use defaults.
 
 ### `OS_FS_NS_REFERENCE`
@@ -209,8 +176,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Non-negative integer
+>     * $n$: Non-negative integer
 > * **Recommendation**: Experimental feature. When simulating, say, the M ${}_{2,\;3}$ -edge of an iron compound, the 3s core hole reference may be useful - while it doesn’t optimize each individual 3p core hole individually, it partially captures core hole orbital realxation and provides an unbiased reference for the set of three 3p orbitals. Note no spin-orbit coupling is implemented at the moment for these calculations.
 
 ### `OS_FS_D_ION_SCF_ALGORITHM`
@@ -220,9 +186,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `DIIS`
 > * **Options**:
->     * DIIS
->     * SGM
->     * SGM_LS
+>     * `DIIS`: SGM SGM_LS
 > * **Recommendation**: Use default. If convergence is not possible, try SGM.
 
 ### `OS_FS_D_ION_DSCF_ALGORITHM`
@@ -232,10 +196,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `MOM when`
 > * **Options**:
->     * MOM
->     * IMOM
->     * STEP
->     * STEP_MOM
+>     * `MOM`: IMOM STEP STEP_MOM
 > * **Recommendation**: None.
 
 ### `OS_FS_D_ION_SCF_CONVERGENCE`
@@ -245,8 +206,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $ijk...$
->     * Positive integer. i, j, k, … relate to reference 1, 2, 3, …
+>     * $ijk...$: Positive integer. i, j, k, … relate to reference 1, 2, 3, …
 > * **Recommendation**: Setting this $rem variable to 0 skips the doublet core ion calculations and instead uses the valence excited state orbitals as a guess for either the quartet core ion ROHF calculation or $\big{|}^{1}\Phi_{o}^{t}\big{\rangle}$ ROKS calculations. When that fails to converge the reference orbitals, attempt to use doublet core ion orbitals as a guess. Thresholds below 5 for SGM-Based solvers, or 7 for DIIS / MOM may provide insufficiently converged orbitals. This may not be as critical (and perhaps necessar) if just using them as a guess for subsequent calculations. Note DFT orbitals may serve as better guess - specify the desired functional via the ENV_METHOD $rem variable. When using closed-shell 1C-NOCIS reference orbitals for the 1C-NOCIS 2eOS calculation, proper convergence and not DFT must be used.
 
 ### `OS_FS_D_ION_SGM_GRADIENT`
@@ -256,8 +216,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Anecdotically, a value of 1 - 10 seems to work well for core ions. If the ROSCF calculation is not converging, try increasing.
 
 ### `OS_FS_Q_ION_SCF_ALGORITHM`
@@ -267,9 +226,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `DIIS`
 > * **Options**:
->     * DIIS
->     * SGM
->     * SGM_LS
+>     * `DIIS`: SGM SGM_LS
 > * **Recommendation**: Use DIIS when possible. For problematic cases, use SGM.
 
 ### `OS_FS_Q_ION_DSCF_ALGORITHM`
@@ -279,10 +236,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `MOM when`
 > * **Options**:
->     * MOM
->     * IMOM
->     * STEP
->     * STEP_MOM
+>     * `MOM`: IMOM STEP STEP_MOM
 > * **Recommendation**: For efficiency, attempt using MOM, IMOM, STEP, or STEP_MOM first (requires DIIS for OS_FS_Q_ION_SCF_ALGORITHM ). If the SCF procedure fails to converge or converges to the wrong state, do not set this rem variable and attempt using SGM in OS_FS_Q_ION_SCF_ALGORITHM .
 
 ### `OS_FS_Q_ION_SCF_CONVERGENCE`
@@ -292,8 +246,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `6 (for each reference) for SGM-based solvers`
 > * **Options**:
->     * $ijk...$
->     * Positive integer. i, j, k, … relate to reference 1, 2, 3, …
+>     * $ijk...$: Positive integer. i, j, k, … relate to reference 1, 2, 3, …
 > * **Recommendation**: Modify as needed for convergence, but thresholds below 5 for SGM-based methods, and 7 for others may provide unsufficiently-converged orbitals.
 
 ### `OS_FS_Q_ION_SGM_GRADIENT`
@@ -303,8 +256,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Anecdotically, a value of 1 - 10 seems to work well for core ions. If the ROSCF calculation is not converging, try increasing.
 
 ### `OS_FS_2EOS_SCF_ALGORITHM`
@@ -314,9 +266,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `SGM`
 > * **Options**:
->     * DIIS
->     * SGM
->     * SGM_LS
+>     * `DIIS`: SGM SGM_LS
 > * **Recommendation**: Use DIIS for very simple (small) molecules and low-lying valence excited states. Else, use SGM.
 
 ### `OS_FS_2EOS_DSCF_ALGORITHM`
@@ -326,10 +276,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `STRING`
 > * **Default**: `MOM when`
 > * **Options**:
->     * MOM
->     * IMOM
->     * STEP
->     * STEP_MOM
+>     * `MOM`: IMOM STEP STEP_MOM
 > * **Recommendation**: Use defaults.
 
 ### `OS_FS_2EOS_SCF_CONVERGENCE`
@@ -339,8 +286,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `6 (for each reference) for SGM-based solvers`
 > * **Options**:
->     * $ijk...$
->     * Positive integer. i, j, k, … relate to reference 1, 2, 3, …
+>     * $ijk...$: Positive integer. i, j, k, … relate to reference 1, 2, 3, …
 > * **Recommendation**: Modify as needed for convergence, but thresholds below 5 for SGM-based methods, and 7 for others may provide unsufficiently-converged orbitals.
 
 ### `OS_FS_2EOS_SGM_GRADIENT`
@@ -350,8 +296,7 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `INTEGER`
 > * **Default**: `75 when`
 > * **Options**:
->     * $n$
->     * Positive integer below 100
+>     * $n$: Positive integer below 100
 > * **Recommendation**: See DELTA_GRADIENT_SCALE $rem variable. If ROKS_FS_2EOS_SS_MIXING is set to FALSE, try the default. Otherwise, a value of around 1 - 10 might be required. If its converging to the wrong state, try decreasing.
 
 ### `OS_FS_2EOS_SS_MIXING`
@@ -361,10 +306,8 @@ Options below this line are exclusive to 1C-NOCIS calculations for 2eOS referenc
 > * **Type**: `BOOL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Supress coupling.
->     * TRUE
->     * Allow coupling.
+>     * `FALSE`: Supress coupling.
+>     * `TRUE`: Allow coupling.
 > * **Recommendation**: See ROKS_SS_MIXING $rem variable. Supressing coupling is useful when the resuling states are difficult to converge and / or overlap significantly with the ground state, and seems to be harmless otherwise. 1s $\longrightarrow{}$ 3s excited states, for example, are particularly susceptible to this phenomena. Only works with descent-based solvers (GDM or SGM).
 
 ???+ example "Example 7.40: NOCIS for the nitrogen K-edge of N ${}_{2}$"

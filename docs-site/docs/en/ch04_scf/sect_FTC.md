@@ -48,8 +48,6 @@ also significant speed ups when non–Pople basis sets are used such as cc-pvTZ.
 The FTC energy and gradients calculations are implemented to use up to $f$-type
 basis functions.
 
-FTC
-
 ### `FTC`
 
 > **Controls the overall use of the FTC.**
@@ -57,13 +55,9 @@ FTC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not use FTC in the Coulomb part
->     * 1
->     * Use FTC in the Coulomb part
+>     * `0`: Do not use FTC in the Coulomb part
+>     * `1`: Use FTC in the Coulomb part
 > * **Recommendation**: Use FTC when bigger and/or diffuse basis sets are used.
-
-FTC_SMALLMOL
 
 ### `FTC_SMALLMOL`
 
@@ -72,13 +66,9 @@ FTC_SMALLMOL
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Use a big pre-calculated array to speed up the FTC calculations
->     * 0
->     * Use this option to save some memory
+>     * `1`: Use a big pre-calculated array to speed up the FTC calculations
+>     * `0`: Use this option to save some memory
 > * **Recommendation**: Use the default if possible and use 0 (or buy some more memory) when needed.
-
-FTC_CLASS_THRESH_ORDER
 
 ### `FTC_CLASS_THRESH_ORDER`
 
@@ -87,11 +77,8 @@ FTC_CLASS_THRESH_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * User specified
+>     * $n$: User specified
 > * **Recommendation**: Use the default.
-
-FTC_CLASS_THRESH_MULT
 
 ### `FTC_CLASS_THRESH_MULT`
 
@@ -100,6 +87,5 @@ FTC_CLASS_THRESH_MULT
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * User specified.
+>     * $n$: User specified.
 > * **Recommendation**: Use the default. If diffuse basis sets are used and the molecule is relatively big then tighter FTC classification threshold has to be used. According to our experiments using Pople-type diffuse basis sets, the default $5\times 10^{-5}$ value provides accurate result for an alanine5 molecule while $1\times 10^{-5}$ threshold value for alanine10 and $5\times 10^{-6}$ value for alanine15 has to be used.

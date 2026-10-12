@@ -33,8 +33,6 @@ the algorithm will replace frozen orbitals to restricted. This will not affect
 the energies, but will change the orbital numbering in the CCMAN printout.
 **
 
-CC_REF_PROP
-
 ### `CC_REF_PROP`
 
 > **Whether or not the non-relaxed (expectation value) or full response (including orbital relaxation terms) one-particle CCSD properties will be calculated. The properties currently include permanent dipole moment, the second moments ( $\langle x^{2}\rangle$ , $\langle y^{2}\rangle$ , and $\langle z^{2}\rangle$ ) of the electron density along with $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$ . This option is incompatible with JOBTYPE = FORCE , OPT , or FREQ .**
@@ -42,10 +40,8 @@ CC_REF_PROP
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: Additional equations need to be solved ( $\lambda$ -CCSD equations) for properties with the cost approximately the same as CCSD equations. Use the default if you do not need properties. The cost of the properties calculation itself is low. The CCSD one-particle density can be analyzed with NBO package by specifying NBO = TRUE , = TRUE , and JOBTYPE = FORCE .
-
-CC_REF_PROP_TE
 
 ### `CC_REF_PROP_TE`
 
@@ -54,10 +50,8 @@ CC_REF_PROP_TE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: The two-particle properties are computationally expensive, since they require calculation and use of the two-particle density matrix (the cost is approximately the same as the cost of an analytic gradient calculation). Do not request the two-particle properties unless you really need them.
-
-CC_FULLRESPONSE
 
 ### `CC_FULLRESPONSE`
 
@@ -66,7 +60,7 @@ CC_FULLRESPONSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: Not available for non UHF/RHF references and for the methods that do not have analytic gradients ( e.g. , QCISD).
 
 ???+ example "Example 6.50: CCSD geometry optimization of HHeF followed up by properties calculations"

@@ -36,8 +36,6 @@ Full details of the SGM algorithm are provided in Ref. [[511]](../bib_reference
 The use of SGM is controlled by the SCF_ALGORITHM variable in the
 *$rem* section:
 
-SCF_ALGORITHM
-
 ### `SCF_ALGORITHM`
 
 > **Algorithm used for converging the SCF.**
@@ -45,13 +43,10 @@ SCF_ALGORITHM
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * SGM
->     * SGM_LS
->     * SGM_QLS
->     * for R and U orbitals only
+>     * `SGM`
+>     * `SGM_LS`
+>     * `SGM_QLS`: for R and U orbitals only
 > * **Recommendation**: SGM should be used for RO and or OS_RO orbitals only. SGM_LS is recommended for R or U orbitals, though it can also be used for RO and OS_RO orbitals. SGM_QLS is a slower, but more robust option for R and U calculations.
-
-DELTA_GRADIENT_SCALE
 
 ### `DELTA_GRADIENT_SCALE`
 

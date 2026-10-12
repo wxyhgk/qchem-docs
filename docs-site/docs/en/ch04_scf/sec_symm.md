@@ -55,8 +55,6 @@ using different conventions. **Q-Chem** uses non-Mulliken symmetry convention. S
 for detailed explanations.
 **
 
-INTEGRAL_SYMMETRY
-
 ### `INTEGRAL_SYMMETRY`
 
 > **Controls the efficiency through the use of point group symmetry for calculating integrals.**
@@ -64,14 +62,9 @@ INTEGRAL_SYMMETRY
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * TRUE
->     * Use symmetry when available.
->     * FALSE
->     * Do not use symmetry. This is
->     * always the case for RIMP2 jobs
+>     * `TRUE`: Use symmetry when available.
+>     * `FALSE`: Do not use symmetry. This is always the case for RIMP2 jobs
 > * **Recommendation**: Use the default unless benchmarking. Note that symmetry usage is disabled for RIMP2, FFT, and QM/MM jobs.
-
-POINT_GROUP_SYMMETRY
 
 ### `POINT_GROUP_SYMMETRY`
 
@@ -80,10 +73,8 @@ POINT_GROUP_SYMMETRY
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: Use the default unless you do not want the molecule to be reoriented. Note that symmetry usage is disabled for RIMP2 jobs.
-
-SYM_TOL
 
 ### `SYM_TOL`
 
@@ -92,10 +83,8 @@ SYM_TOL
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * User defined.
+>     * `User defined.`
 > * **Recommendation**: Use the default unless the molecule has high symmetry which is not being correctly identified. Note that relaxing this tolerance too much may introduce errors into the calculation. Misidentified point group symmetry can affect rotational symmetry numbers in thermochemical calculations.
-
-FORCE_SYMMETRY_ON
 
 ### `FORCE_SYMMETRY_ON`
 
@@ -104,8 +93,6 @@ FORCE_SYMMETRY_ON
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Force symmetry.
->     * FALSE
->     * Do not use symmetry.
+>     * `TRUE`: Force symmetry.
+>     * `FALSE`: Do not use symmetry.
 > * **Recommendation**: Use the default unless you know what you are doing.

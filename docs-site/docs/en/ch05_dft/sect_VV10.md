@@ -165,8 +165,6 @@ and PBE correlation, but a coarser SG-1 grid is used for the
 non-local part of VV10. Furthermore, the above example is identical to
 specifying METHOD = VV10.
 
-NL_CORRELATION
-
 ### `NL_CORRELATION`
 
 > **Specifies a non-local correlation functional that includes non-empirical dispersion.**
@@ -174,19 +172,12 @@ NL_CORRELATION
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * None
->     * No non-local correlation
->     * vdW-DF-04
->     * the non-local part of vdW-DF-04
->     * vdW-DF-10
->     * the non-local part of vdW-DF-10 (also known as vdW-DF2)
->     * VV09
->     * the non-local part of VV09
->     * VV10
->     * the non-local part of VV10
+>     * `None`: No non-local correlation
+>     * `vdW-DF-04`: the non-local part of vdW-DF-04
+>     * `vdW-DF-10`: the non-local part of vdW-DF-10 (also known as vdW-DF2)
+>     * `VV09`: the non-local part of VV09
+>     * `VV10`: the non-local part of VV10
 > * **Recommendation**: Do not forget to add the LSDA correlation (PW92 is recommended) when using vdW-DF-04, vdW-DF-10, or VV09. VV10 should be used with PBE correlation. Choose exchange functionals carefully: HF, rPW86, revPBE, and some of the LRC exchange functionals are among the recommended choices.
-
-NL_VV_C
 
 ### `NL_VV_C`
 
@@ -195,12 +186,8 @@ NL_VV_C
 > * **Type**: `INTEGER`
 > * **Default**: `89`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $C=n/10000$
+>     * $n$: Corresponding to $C=n/10000$
 > * **Recommendation**: $C=0.0093$ is recommended when a semi-local exchange functional is used. $C=0.0089$ is recommended when a long-range corrected (LRC) hybrid functional is used. For further details see Ref. 1416 Vydrov O. A., Van Voorhis T. J. Chem. Phys. (2010) , 133 , pp. 244103 . Link .
-
-NL_VV_B
 
 ### `NL_VV_B`
 
@@ -209,12 +196,8 @@ NL_VV_B
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $b=n/100$
+>     * $n$: Corresponding to $b=n/100$
 > * **Recommendation**: The optimal value depends strongly on the exchange functional used. $b=5.9$ is recommended for rPW86. For further details see Ref. 1416 Vydrov O. A., Van Voorhis T. J. Chem. Phys. (2010) , 133 , pp. 244103 . Link .
-
-USE_RVV10
 
 ### `USE_RVV10`
 
@@ -223,15 +206,9 @@ USE_RVV10
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use VV10 NLC (the default for
->     * NL_CORRELATION
->     * )
->     * TRUE
->     * Use rVV10 NLC
+>     * `FALSE`: Use VV10 NLC (the default for NL_CORRELATION )
+>     * `TRUE`: Use rVV10 NLC
 > * **Recommendation**: Set to TRUE if the rVV10 NLC is desired.
-
-USE_LIBNLQ
 
 ### `USE_LIBNLQ`
 
@@ -240,6 +217,6 @@ USE_LIBNLQ
 > * **Type**: `LOGICAL`
 > * **Default**: `True`
 > * **Options**:
->     * False
->     * True
+>     * `False`
+>     * `True`
 > * **Recommendation**: Use the default

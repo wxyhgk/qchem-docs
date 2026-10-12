@@ -37,8 +37,6 @@ Consult Ref. 
 
  for details and suggestions.
 
-NBO
-
 ### `NBO`
 
 > **Controls the use of the NBO package.**
@@ -46,16 +44,10 @@ NBO
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not invoke the NBO package.
->     * 1
->     * Do invoke the NBO package, for the ground state.
->     * 2
->     * Invoke the NBO package for the ground state, and also each
->     * CIS, RPA, or TDDFT excited state.
+>     * `0`: Do not invoke the NBO package.
+>     * `1`: Do invoke the NBO package, for the ground state.
+>     * `2`: Invoke the NBO package for the ground state, and also each CIS, RPA, or TDDFT excited state.
 > * **Recommendation**: None
-
-NBOMEMORY
 
 ### `NBOMEMORY`
 
@@ -64,12 +56,7 @@ NBOMEMORY
 > * **Type**: `INTEGER`
 > * **Default**: `500000`
 > * **Options**:
->     * $N$
->     * Allocate
->     * $N$
->     * double-precision words (=
->     * $8N$
->     * bytes).
+>     * $N$: Allocate $N$ double-precision words (= $8N$ bytes).
 > * **Recommendation**: This memory comes out of MEM_TOTAL .
 
 The general format for passing options from **Q-Chem** to the NBO program is shown below:

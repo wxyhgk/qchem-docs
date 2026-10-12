@@ -17,8 +17,6 @@ title: "7.2.4 作业控制选项"
 对于 RHF 情形，除非通过 CIS_TRIPLETS 和 CIS_SINGLETS 另行指定，否则将计算 $n$ 个单重态和 $n$ 个三重态。
 **
 
-CIS_N_ROOTS
-
 ### `CIS_N_ROOTS`
 
 > **设置要求解的 CI 单激发（CIS）激发态根数。**
@@ -26,14 +24,9 @@ CIS_N_ROOTS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * $n>0$
->     * 求解
->     * $n$
->     * 个 CIS 激发态。
+>     * $n$: $n>0$ 求解
+>     * $n$: 个 CIS 激发态。
 > * **建议**: 无
-
-CIS_SINGLETS
 
 ### `CIS_SINGLETS`
 
@@ -42,13 +35,9 @@ CIS_SINGLETS
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * 求解单重态。
->     * FALSE
->     * 不求解单重态。
+>     * `TRUE`: 求解单重态。
+>     * `FALSE`: 不求解单重态。
 > * **建议**: 无
-
-CIS_TRIPLETS
 
 ### `CIS_TRIPLETS`
 
@@ -57,13 +46,9 @@ CIS_TRIPLETS
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * 求解三重态。
->     * FALSE
->     * 不求解三重态。
+>     * `TRUE`: 求解三重态。
+>     * `FALSE`: 不求解三重态。
 > * **建议**: 无
-
-CIS_STATE_DERIV
 
 ### `CIS_STATE_DERIV`
 
@@ -72,13 +57,9 @@ CIS_STATE_DERIV
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 选择第
->     * $n$
->     * 个态。
+>     * $n$: 选择第
+>     * $n$: 个态。
 > * **建议**: 注意检查由于态交叉（state crossings）导致优化过程中各态的顺序是否发生变化。
-
-CIS_STATE_MULTIGRAD
 
 ### `CIS_STATE_MULTIGRAD`
 
@@ -87,13 +68,9 @@ CIS_STATE_MULTIGRAD
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 1
->     * 对所有 CIS/TDDFT 态计算梯度。
->     * 2
->     * 对 SCF 态及所有 CIS/TDDFT 态计算梯度。
+>     * `1`: 对所有 CIS/TDDFT 态计算梯度。
+>     * `2`: 对 SCF 态及所有 CIS/TDDFT 态计算梯度。
 > * **建议**: 是否需要取决于具体应用。如果只需要一个梯度，请改用 CIS_STATE_DERIV。
-
-RPA
 
 ### `RPA`
 
@@ -102,15 +79,10 @@ RPA
 > * **类型**: `LOGICAL/INTEGER`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不进行 RPA 计算。
->     * TRUE
->     * 进行 RPA 计算。
->     * 2
->     * 不进行 CIS 或 TDDFT/TDA 计算，直接进行 RPA 计算。
+>     * `FALSE`: 不进行 RPA 计算。
+>     * `TRUE`: 进行 RPA 计算。
+>     * `2`: 不进行 CIS 或 TDDFT/TDA 计算，直接进行 RPA 计算。
 > * **建议**: RPA = 2 不适用于限制开壳层（restricted open-shell）波函数。
-
-SPIN_FLIP
 
 ### `SPIN_FLIP`
 
@@ -119,10 +91,8 @@ SPIN_FLIP
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **建议**: 无
-
-SPIN_FLIP_XCIS
 
 ### `SPIN_FLIP_XCIS`
 
@@ -131,13 +101,9 @@ SPIN_FLIP_XCIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不进行 SF-XCIS 计算。
->     * TRUE
->     * 进行 SF-XCIS 计算（需要 ROHF 三重态基态）。
+>     * `FALSE`: 不进行 SF-XCIS 计算。
+>     * `TRUE`: 进行 SF-XCIS 计算（需要 ROHF 三重态基态）。
 > * **建议**: 无
-
-SFX_AMP_OCC_A
 
 ### `SFX_AMP_OCC_A`
 
@@ -146,16 +112,9 @@ SFX_AMP_OCC_A
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 构建一个在第
->     * $n$
->     * 个轨道上带有
->     * $\alpha$
->     * 空穴的猜测振幅
->     * （需要 SFX_AMP_VIR_B）。
+>     * $n$: 构建一个在第
+>     * $n$: 个轨道上带有 $\alpha$ 空穴的猜测振幅 （需要 SFX_AMP_VIR_B）。
 > * **建议**: 仅在默认猜测不满足要求时使用。
-
-SFX_AMP_VIR_B
 
 ### `SFX_AMP_VIR_B`
 
@@ -164,16 +123,9 @@ SFX_AMP_VIR_B
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 构建一个在第
->     * $n$
->     * 个轨道上带有
->     * $\beta$
->     * 粒子的猜测振幅
->     * （需要 SFX_AMP_OCC_A）。
+>     * $n$: 构建一个在第
+>     * $n$: 个轨道上带有 $\beta$ 粒子的猜测振幅 （需要 SFX_AMP_OCC_A）。
 > * **建议**: 仅在默认猜测不满足要求时使用。
-
-XCIS
 
 ### `XCIS`
 
@@ -182,13 +134,9 @@ XCIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不进行 XCIS 计算。
->     * TRUE
->     * 进行 XCIS 计算（需要 ROHF 基态）。
+>     * `FALSE`: 不进行 XCIS 计算。
+>     * `TRUE`: 进行 XCIS 计算（需要 ROHF 基态）。
 > * **建议**: 无
-
-SASF_CIS
 
 ### `SASF_CIS`
 
@@ -197,13 +145,9 @@ SASF_CIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不进行 SA-SF-CIS/DFT 计算。
->     * TRUE
->     * 进行 SA-SF-CIS/DFT 计算。
+>     * `FALSE`: 不进行 SA-SF-CIS/DFT 计算。
+>     * `TRUE`: 进行 SA-SF-CIS/DFT 计算。
 > * **建议**: SA-SF 方法需要限制开壳层基态计算。
-
-DFTCIS
 
 ### `DFTCIS`
 
@@ -212,13 +156,9 @@ DFTCIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不进行 DFT/CIS 计算。
->     * TRUE
->     * 进行 DFT/CIS 计算。
+>     * `FALSE`: 不进行 DFT/CIS 计算。
+>     * `TRUE`: 进行 DFT/CIS 计算。
 > * **建议**: 无
-
-DFTCIS_PARAMS
 
 ### `DFTCIS_PARAMS`
 
@@ -227,19 +167,14 @@ DFTCIS_PARAMS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 执行 CIS
->     * 1
->     * 执行 B3LYP/CIS
->     * 2
->     * 执行 CAM-B3LYP/CIS
+>     * `0`: 执行 CIS
+>     * `1`: 执行 B3LYP/CIS
+>     * `2`: 执行 CAM-B3LYP/CIS
 > * **建议**: 需要将 DFTCIS 设置为 1 或 2。
 
 ## 7.2.4.2 CIS 附加自定义选项
 
 下面提供了用于精细调节 CIS 及相关计算的附加变量。
-
-N_FROZEN_CORE
 
 ### `N_FROZEN_CORE`
 
@@ -248,20 +183,15 @@ N_FROZEN_CORE
 > * **类型**: `INTEGER/STRING`
 > * **默认值**: `0`
 > * **选项**:
->     * FC
->     * 冻结核心近似（Frozen core approximation）。
->     * $n$
->     * 冻结
->     * $n$
->     * 个核心轨道。
+>     * `FC`: 冻结核心近似（Frozen core approximation）。
+>     * $n$: 冻结
+>     * $n$: 个核心轨道。
 > * **建议**: 对 CIS 而言，使用冻结核心并没有计算上的优势，且只有在没有轨道被冻结时才提供解析导数。在计算 CIS(D) 校正时该选项很有帮助（参见第 7.8 节）。
 
 **注意：
 
 在关联计算中，默认设置为 N_FROZEN_CORE=FC。
 **
-
-N_FROZEN_VIRTUAL
 
 ### `N_FROZEN_VIRTUAL`
 
@@ -270,13 +200,9 @@ N_FROZEN_VIRTUAL
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 冻结
->     * $n$
->     * 个虚轨道。
+>     * $n$: 冻结
+>     * $n$: 个虚轨道。
 > * **建议**: 对 CIS 而言，使用冻结虚轨道并没有计算上的优势，且只有在没有轨道被冻结时才提供解析导数。
-
-MAX_CIS_CYCLES
 
 ### `MAX_CIS_CYCLES`
 
@@ -285,11 +211,8 @@ MAX_CIS_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `30`
 > * **选项**:
->     * $n$
->     * 用户自定义的循环次数。
+>     * $n$: 用户自定义的循环次数。
 > * **建议**: 默认值通常已经足够。
-
-MAX_CIS_SUBSPACE
 
 ### `MAX_CIS_SUBSPACE`
 
@@ -298,11 +221,8 @@ MAX_CIS_SUBSPACE
 > * **类型**: `INTEGER`
 > * **默认值**: `以收敛所有根所需的数目为准`
 > * **选项**:
->     * $n$
->     * 用户自定义的子空间向量数目
+>     * $n$: 用户自定义的子空间向量数目
 > * **建议**: 默认值通常是合适的，除非为大分子请求大量激发态。存储子空间向量所需的总内存上界为 $2nOV$ ，其中 $O$ 和 $V$ 分别表示占据轨道和虚轨道的数目。可以减少 $n$ 以节省内存，代价是更多的 CIS 迭代次数。如果 $n$ 不比 CIS_N_ROOTS 大很多，收敛可能会受到影响。
-
-CIS_CONVERGENCE
 
 ### `CIS_CONVERGENCE`
 
@@ -311,12 +231,8 @@ CIS_CONVERGENCE
 > * **类型**: `INTEGER`
 > * **默认值**: `6`
 > * **选项**:
->     * $n$
->     * 对应于
->     * $10^{-n}$
+>     * $n$: 对应于 $10^{-n}$
 > * **建议**: 该变量同时控制 CPSCF 方程的收敛。
-
-CIS_DYNAMIC_MEM
 
 ### `CIS_DYNAMIC_MEM`
 
@@ -325,13 +241,9 @@ CIS_DYNAMIC_MEM
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 部分使用静态内存
->     * TRUE
->     * 完全使用动态内存
+>     * `FALSE`: 部分使用静态内存
+>     * `TRUE`: 完全使用动态内存
 > * **建议**: 默认控制方式需要足够的静态内存（MEM_STATIC），以存放一个在每次 CIS 迭代中以 $2\times OV\times N_{\text{roots}}$ 规模增长的数组，其中 $N_{\text{roots}}$ 为未收敛根的数目（$\leq$ CIS_N_ROOTS）。对于大规模计算，必须为 MEM_STATIC 指定很大的值，这并不推荐（参见第 2 章）。因此，推荐对大规模计算使用动态内存。
-
-CIS_RELAXED_DENSITY
 
 ### `CIS_RELAXED_DENSITY`
 
@@ -340,13 +252,9 @@ CIS_RELAXED_DENSITY
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 分析中不使用弛豫 CIS 密度。
->     * TRUE
->     * 分析中使用弛豫 CIS 密度。
+>     * `FALSE`: 分析中不使用弛豫 CIS 密度。
+>     * `TRUE`: 分析中使用弛豫 CIS 密度。
 > * **建议**: 无
-
-CIS_GUESS_DISK
 
 ### `CIS_GUESS_DISK`
 
@@ -355,13 +263,9 @@ CIS_GUESS_DISK
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 生成新的猜测。
->     * TRUE
->     * 从磁盘读取猜测。
+>     * `FALSE`: 生成新的猜测。
+>     * `TRUE`: 从磁盘读取猜测。
 > * **建议**: 需要来自之前计算的猜测。
-
-CIS_GUESS_DISK_TYPE
 
 ### `CIS_GUESS_DISK_TYPE`
 
@@ -370,15 +274,10 @@ CIS_GUESS_DISK_TYPE
 > * **类型**: `INTEGER`
 > * **默认值**: `Nil`
 > * **选项**:
->     * 0
->     * 仅读取三重态
->     * 1
->     * 读取三重态和单重态
->     * 2
->     * 仅读取单重态
+>     * `0`: 仅读取三重态
+>     * `1`: 读取三重态和单重态
+>     * `2`: 仅读取单重态
 > * **建议**: 若 CIS_GUESS_DISK 为 TRUE，则必须指定该选项。
-
-STS_MOM
 
 ### `STS_MOM`
 
@@ -387,13 +286,9 @@ STS_MOM
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不计算态间跃迁矩。
->     * TRUE
->     * 计算态间跃迁矩。
+>     * `FALSE`: 不计算态间跃迁矩。
+>     * `TRUE`: 计算态间跃迁矩。
 > * **建议**: 设置为 true 时，请求计算所有激发态两两之间以及各激发态与基态之间的态间偶极跃迁矩。该选项不适用于限制开壳层波函数。
-
-CIS_MOMENTS
 
 ### `CIS_MOMENTS`
 
@@ -402,8 +297,6 @@ CIS_MOMENTS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不计算激发态矩。
->     * TRUE
->     * 为每个激发态计算多极矩。
+>     * `FALSE`: 不计算激发态矩。
+>     * `TRUE`: 为每个激发态计算多极矩。
 > * **建议**: 若需要激发态矩，请设置为 TRUE（这是一项附加的、计算量很小的任务）。MULTIPOLE_ORDER 控制打印多少阶多极矩。该选项不适用于自旋翻转方法。

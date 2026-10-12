@@ -242,8 +242,6 @@ $x_{0}^{g}=x_{0}^{e}$，$L_{g}=L_{e}$，且 $\omega^{g}=\omega^{e}$。
 
 振动光谱计算涉及两个 *$rem* 变量与一个 *$vibronic* 段。
 
-SAVE_VIBRONIC_PARAMS
-
 ### `SAVE_VIBRONIC_PARAMS`
 
 > **保存振动光谱模拟所请求的激发态信息。**
@@ -251,10 +249,8 @@ SAVE_VIBRONIC_PARAMS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
+>     * `FALSE`
 > * **建议**: TRUE
-
-VIBRONIC_SPECTRA
 
 ### `VIBRONIC_SPECTRA`
 
@@ -263,14 +259,10 @@ VIBRONIC_SPECTRA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 不预测振动光谱。
->     * 1
->     * 计算 OPA 光谱。
->     * 2
->     * 计算 OPE 光谱。
->     * 3
->     * 计算 RRS 光谱。
+>     * `0`: 不预测振动光谱。
+>     * `1`: 计算 OPA 光谱。
+>     * `2`: 计算 OPE 光谱。
+>     * `3`: 计算 RRS 光谱。
 > * **建议**: 使用默认值。
 
 *$vibronic* 段中的变量：
@@ -282,12 +274,9 @@ VIBRONIC_SPECTRA
 > * **类型**: `INTEGER`
 > * **默认值**: `-1`
 > * **可选值**:
->     * 1
->     * FC。
->     * 2
->     * FCHT。
->     * 3
->     * VG。
+>     * `1`: FC。
+>     * `2`: FCHT。
+>     * `3`: VG。
 > * **建议**: 由用户自定义
 
 ### `TEMPERATURE`
@@ -297,8 +286,7 @@ VIBRONIC_SPECTRA
 > * **类型**: `FLOAT`
 > * **默认值**: `$298.15$`
 > * **可选值**:
->     * $t$
->     * 温度，单位为 K。
+>     * $t$: 温度，单位为 K。
 > * **建议**: 由用户自定义
 
 ### `FREQ_RANGE`
@@ -308,10 +296,7 @@ VIBRONIC_SPECTRA
 > * **类型**: `FLOAT`
 > * **默认值**: `$1.0\ 40000.0\ 10.0$`
 > * **可选值**:
->     * $\nu_{\text{min}}\ \nu_{\text{max}}\ \delta\nu$
->     * 最小值、最大值与步长，单位为
->     * $\text{cm}^{-1}$
->     * 。
+>     * $\nu_{\text{min}}\ \nu_{\text{max}}\ \delta\nu$: 最小值、最大值与步长，单位为 $\text{cm}^{-1}$。
 > * **建议**: 由用户自定义
 
 ### `TIME_RANGE`
@@ -321,8 +306,7 @@ VIBRONIC_SPECTRA
 > * **类型**: `FLOAT and INTEGER`
 > * **默认值**: `$1.0\ 40000$`
 > * **可选值**:
->     * $\delta t\ n_{\text{step}}$
->     * 时间步长（以原子单位 a.u. 计）以及步数。
+>     * $\delta t\ n_{\text{step}}$: 时间步长（以原子单位 a.u. 计）以及步数。
 > * **建议**: 由用户自定义
 
 ### `DAMPING`
@@ -332,10 +316,7 @@ VIBRONIC_SPECTRA
 > * **类型**: `FLOAT`
 > * **默认值**: `$300.0$`
 > * **可选值**:
->     * $\gamma$
->     * 阻尼因子，单位为
->     * $\text{cm}^{-1}$
->     * 。
+>     * $\gamma$: 阻尼因子，单位为 $\text{cm}^{-1}$。
 > * **建议**: 由用户自定义
 
 ### `FREQ_SCALE_FACTOR`
@@ -345,9 +326,7 @@ VIBRONIC_SPECTRA
 > * **类型**: `FLOAT`
 > * **默认值**: `$1.0\ 1.0\ 1.0\ 1.0$`
 > * **可选值**:
->     * $\lambda_{\text{H}}^{g}\ \lambda_{\text{H}}^{e}\ \lambda_{\text{ZPE}}^{g}\ \lambda_{\text{ZPE}}^{e}$
->     * 依次为基态谐振频率、激发态谐振频率、基态零点能
->     * 以及激发态零点能的缩放因子
+>     * $\lambda_{\text{H}}^{g}\ \lambda_{\text{H}}^{e}\ \lambda_{\text{ZPE}}^{g}\ \lambda_{\text{ZPE}}^{e}$: 依次为基态谐振频率、激发态谐振频率、基态零点能以及激发态零点能的缩放因子
 > * **建议**: 由用户自定义
 
 ### `EPSILON`
@@ -357,10 +336,7 @@ VIBRONIC_SPECTRA
 > * **类型**: `FLOAT`
 > * **默认值**: `$25.0$`
 > * **可选值**:
->     * $\varepsilon$
->     * 展宽因子，单位为
->     * $\text{cm}^{-1}$
->     * 。
+>     * $\varepsilon$: 展宽因子，单位为 $\text{cm}^{-1}$。
 > * **建议**: 由用户自定义
 
 ## 10.8.7.3 振动光谱任务示例

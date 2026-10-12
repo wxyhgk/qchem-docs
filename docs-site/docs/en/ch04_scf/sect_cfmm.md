@@ -118,8 +118,6 @@ art PRISM approach of Gill and coworkers.[[22]](../bib_references/bib.md#bib6)
 
 The CFMM is controlled by the following input parameters:
 
-CFMM_ORDER
-
 ### `CFMM_ORDER`
 
 > **Controls the order of the multipole expansions in CFMM calculation.**
@@ -127,12 +125,9 @@ CFMM_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `15`
 > * **Options**:
->     * $n$
->     * Use multipole expansions of order
+>     * $n$: Use multipole expansions of order
 >     * $n$
 > * **Recommendation**: Use the default.
-
-GRAIN
 
 ### `GRAIN`
 
@@ -141,12 +136,7 @@ GRAIN
 > * **Type**: `INTEGER`
 > * **Default**: `-1`
 > * **Options**:
->     * -1
->     * Program decides best value, turning on CFMM when useful
->     * 1
->     * Do not use CFMM
->     * $n\geq 8$
->     * Use CFMM with
->     * $n$
->     * lowest-level boxes in one dimension
+>     * `-1`: Program decides best value, turning on CFMM when useful
+>     * `1`: Do not use CFMM $n\geq 8$ Use CFMM with
+>     * $n$: lowest-level boxes in one dimension
 > * **Recommendation**: This is an expert option; either use the default, or use a value of 1 if CFMM is not desired.

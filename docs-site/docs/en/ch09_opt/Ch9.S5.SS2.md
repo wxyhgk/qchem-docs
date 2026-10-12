@@ -21,8 +21,6 @@ To invoke one of these methods, set DISTORT = TRUE in the *$rem* section.
 By setting the *$rem* variable SCF_FINAL_PRINT = 1,
 the energy contribution due to pressure is printed in the output.
 
-DISTORT
-
 ### `DISTORT`
 
 > **Specifies whether to apply pressure or external force to a chemical system**
@@ -30,10 +28,8 @@ DISTORT
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * False
->     * Do not use pressure or force
->     * True
->     * Use pressure or force
+>     * `False`: Do not use pressure or force
+>     * `True`: Use pressure or force
 > * **Recommendation**: Set to true to apply pressure or force.
 
 The parameters of the jobs are set *via* options specified in the
@@ -58,58 +54,19 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * HCFF
->     * Hydrostatic Compression Force Field
->     * 1295
->     * Stauch T., Chakraborty R., Head-Gordon M.
->     * ChemPhysChem
->     * (2019)
->     * ,
->     * 20
->     * ,
->     * pp. 2742
->     * .
->     * Link
->     * XHCFF
->     * eXtended Hydrostatic Compression Force Field
->     * 1297
->     * Stauch T.
->     * J. Chem. Phys.
->     * (2020)
->     * ,
->     * 153
->     * ,
->     * pp. 134503
->     * .
->     * Link
->     * PV
->     * Add PV term by computing vDW volume
->     * 1540
->     * Zeller F., Pracht P., Neudecker T.
->     * J. Phys. Chem. A
->     * (2025)
->     * ,
->     * 129
->     * ,
->     * pp. 2108
->     * .
->     * Link
->     * GOSTSHYP
->     * Gaussians On Surface Tesserae Simulate HYdrostatic Pressure
->     * 1206
->     * Scheurer M. et al.
->     * J. Chem. Theory Comput.
->     * (2021)
->     * ,
->     * 17
->     * ,
->     * pp. 583
->     * .
->     * Link
->     * EFEI
->     * External Force is Explicitly Included (Section
->     * 9.5.1
->     * )
+>     * `HCFF`: Hydrostatic Compression Force Field
+>     * `1295`: Stauch T., Chakraborty R., Head-Gordon M. ChemPhysChem (2019) ,
+>     * `20`: , pp. 2742 . Link
+>     * `XHCFF`: eXtended Hydrostatic Compression Force Field
+>     * `1297`: Stauch T. J. Chem. Phys. (2020) ,
+>     * `153`: , pp. 134503 . Link
+>     * `PV`: Add PV term by computing vDW volume
+>     * `1540`: Zeller F., Pracht P., Neudecker T. J. Phys. Chem. A (2025) ,
+>     * `129`: , pp. 2108 . Link
+>     * `GOSTSHYP`: Gaussians On Surface Tesserae Simulate HYdrostatic Pressure
+>     * `1206`: Scheurer M. et al. J. Chem. Theory Comput. (2021) ,
+>     * `17`: , pp. 583 . Link
+>     * `EFEI`: External Force is Explicitly Included (Section 9.5.1 )
 > * **Recommendation**: Please refer to the following subsections for recommendations on which model to use.
 
 ### `Pressure`
@@ -119,7 +76,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `DOUBLE`
 > * **Default**: `None`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: None
 
 ### `NPoints_Heavy`
@@ -129,7 +86,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `INTEGER`
 > * **Default**: `110`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: Use the default.
 
 ### `NPoints_Hydrogen`
@@ -139,7 +96,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `INTEGER`
 > * **Default**: `110`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: Use the default.
 
 ### `Scaling`
@@ -149,7 +106,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `DOUBLE`
 > * **Default**: `1.2`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: Increase when modeling a chemical complex to make sure that the complex is placed inside a single cavity. 1206 Scheurer M. et al. J. Chem. Theory Comput. (2021) , 17 , pp. 583 . Link A value of 1.0 was suggested to be used in the X-HCFF model. 1297 Stauch T. J. Chem. Phys. (2020) , 153 , pp. 134503 . Link
 
 ### `tess_method`
@@ -159,12 +116,9 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `scrf`
 > * **Options**:
->     * scrf
->     * use the same tessellation code as implicit solvation models
->     * distort
->     * use libdistort tessellation routine
->     * occ
->     * use outer cavity correction
+>     * `scrf`: use the same tessellation code as implicit solvation models
+>     * `distort`: use libdistort tessellation routine
+>     * `occ`: use outer cavity correction
 > * **Recommendation**: Use distort option for compatibility with implicit solvation models in the same calculation. Scrf option allows for more cavity options. OCC allows to reduce the amount of negative amplitudes - use for GOSTSHYP calculations with bad SCF convergence.
 
 ### `proberad`
@@ -174,8 +128,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `DOUBLE`
 > * **Default**: `0.0`
 > * **Options**:
->     * User defined
-
+>     * `User defined`
 ### `occrad`
 
 > **Distance to outer cavity for OCC GOSTSHYP calculations. INPUT SECTION: $distort**
@@ -183,7 +136,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `DOUBLE`
 > * **Default**: `0.25`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: Smaller values will lead to higher probability of negative amplitudes, larger values lead to discarding many tessellation points.
 
 ## 9.5.2.1 Hydrostatic Compression Force Field (HCFF)

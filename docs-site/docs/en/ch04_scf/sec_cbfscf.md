@@ -21,8 +21,6 @@ The simplest such approximation is the static-exchange approximation. In this ap
  This approximation neglects orbital relaxation effects which can be included by a non-Hermitian self-consistent-field (NH-SCF) procedure.[[931]](../bib_references/bib.md#bib970)
  In practice the NH-SCF energy functional is the same as the Holomorphic Hartree-Fock energy functional (Eq. [4.70](sec_HoloHF.md#eq:HoloHFEnergy)), though it is used for a different purpose. Both static-exchange and NH-SCF theories using complex basis functions (CBFs) are available in **Q-Chem**. Specification of the complex basis set is described in Section [8.7](../ch08_basis/sect_zbas.md).
 
-COMPLEX_EXPONENTS
-
 ### `COMPLEX_EXPONENTS`
 
 > **Enable a non-Hermitian calculation with CBFs.**
@@ -30,11 +28,8 @@ COMPLEX_EXPONENTS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform a non-Hermitian calculation with CBFs
+>     * `TRUE`: Perform a non-Hermitian calculation with CBFs
 > * **Recommendation**: Set to TRUE if a non-Hermitian calculation using CBFs is desired.
-
-COMPLEX_SPIN_STATE
 
 ### `COMPLEX_SPIN_STATE`
 
@@ -43,12 +38,8 @@ COMPLEX_SPIN_STATE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $2S+1$
->     * A state of spin
->     * $S$
+>     * $2S+1$: A state of spin $S$
 > * **Recommendation**: None
-
-COMPLEX_N_ELECTRON
 
 ### `COMPLEX_N_ELECTRON`
 
@@ -57,13 +48,8 @@ COMPLEX_N_ELECTRON
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Perform the non-Hermitian calculation on an
->     * $N+n$
->     * electron system
+>     * $n$: Perform the non-Hermitian calculation on an $N+n$ electron system
 > * **Recommendation**: None
-
-COMPLEX_STATIC_EXCHANGE
 
 ### `COMPLEX_STATIC_EXCHANGE`
 
@@ -72,13 +58,9 @@ COMPLEX_STATIC_EXCHANGE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform a static exchange calculation
->     * FALSE
->     * Do not perform a static exchange calculation
+>     * `TRUE`: Perform a static exchange calculation
+>     * `FALSE`: Do not perform a static exchange calculation
 > * **Recommendation**: Set to TRUE if a static-exchange calculation is desired.
-
-COMPLEX_SCF
 
 ### `COMPLEX_SCF`
 
@@ -87,17 +69,11 @@ COMPLEX_SCF
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not perform an NH-SCF calculation
->     * 1
->     * Perform a restricted NH-SCF calculation
->     * 2
->     * Perform an unrestricted NH-SCF calculation
->     * 3
->     * Perform a restricted, open-shell NH-SCF calculation
+>     * `0`: Do not perform an NH-SCF calculation
+>     * `1`: Perform a restricted NH-SCF calculation
+>     * `2`: Perform an unrestricted NH-SCF calculation
+>     * `3`: Perform a restricted, open-shell NH-SCF calculation
 > * **Recommendation**: None
-
-COMPLEX_METSCF
 
 ### `COMPLEX_METSCF`
 
@@ -106,17 +82,11 @@ COMPLEX_METSCF
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Roothaan iterations
->     * 1
->     * DIIS
->     * 3
->     * ADIIS
->     * 21
->     * Newton-MINRES
+>     * `0`: Roothaan iterations
+>     * `1`: DIIS
+>     * `3`: ADIIS
+>     * `21`: Newton-MINRES
 > * **Recommendation**: Use the default (DIIS).
-
-COMPLEX_SCF_GUESS
 
 ### `COMPLEX_SCF_GUESS`
 
@@ -125,17 +95,11 @@ COMPLEX_SCF_GUESS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use a guess from a static-exchange calculation
->     * 1
->     * Read real-basis MO coefficients
->     * 2
->     * Read real-basis density matrix
->     * 1000
->     * Read guess from a previous calculation
+>     * `0`: Use a guess from a static-exchange calculation
+>     * `1`: Read real-basis MO coefficients
+>     * `2`: Read real-basis density matrix
+>     * `1000`: Read guess from a previous calculation
 > * **Recommendation**: Use a guess from a static exchange calculation. Note that for temporary anions, this requires the specification of COMPLEX_TARGET .
-
-COMPLEX_TARGET
 
 ### `COMPLEX_TARGET`
 
@@ -144,6 +108,5 @@ COMPLEX_TARGET
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Orbital index (starting at zero) for the additional electron
+>     * $n$: Orbital index (starting at zero) for the additional electron
 > * **Recommendation**: $n$ should always be greater than $N_{\text{occ}}-1$ .

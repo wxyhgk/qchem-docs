@@ -691,8 +691,6 @@ $z$ 为光的传播方向。
 将被忽略）。
 这些功能在下文的示例 [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)-[7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) 中演示。
 
-CC_FREE_ELECTRON
-
 ### `CC_FREE_ELECTRON`
 
 > **指定是否计算涉及自由电子的性质。**
@@ -700,10 +698,8 @@ CC_FREE_ELECTRON
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **建议**: 无
-
-DYSON_PW_COUPLING
 
 ### `DYSON_PW_COUPLING`
 
@@ -712,5 +708,5 @@ DYSON_PW_COUPLING
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE (do not compute coupling)`
 > * **选项**:
->     * TRUE/FLSE
+>     * `TRUE/FLSE`
 > * **建议**: 需要时激活。必须同时开启 CC_DO_DYSON。

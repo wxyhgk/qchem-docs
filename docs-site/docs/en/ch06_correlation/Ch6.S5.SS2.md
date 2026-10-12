@@ -56,8 +56,6 @@ SCF energy, and are therefore not the default. This can be enabled by
 specifying PAO_METHOD = PAO, in a job with
 CORRELATION = LOCAL_MP2.
 
-PAO_METHOD
-
 ### `PAO_METHOD`
 
 > **Controls the type of PAO calculations requested.**
@@ -65,13 +63,9 @@ PAO_METHOD
 > * **Type**: `STRING`
 > * **Default**: `EPAO`
 > * **Options**:
->     * EPAO
->     * Find EPAOs by minimizing delocalization function.
->     * PAO
->     * Do SCF in a molecule-optimized minimal basis.
+>     * `EPAO`: Find EPAOs by minimizing delocalization function.
+>     * `PAO`: Do SCF in a molecule-optimized minimal basis.
 > * **Recommendation**: None
-
-EPAO_ITERATE
 
 ### `EPAO_ITERATE`
 
@@ -80,13 +74,9 @@ EPAO_ITERATE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Optimize the EPAOs for up to
->     * $n$
->     * iterations.
+>     * $n$: Optimize the EPAOs for up to
+>     * $n$: iterations.
 > * **Recommendation**: Use the default. For molecules that are not too large, one can test the sensitivity of the results to the type of minimal functions by the use of optimized EPAOs in which case a value of $n=500$ is reasonable.
-
-EPAO_WEIGHTS
 
 ### `EPAO_WEIGHTS`
 
@@ -95,10 +85,7 @@ EPAO_WEIGHTS
 > * **Type**: `INTEGER`
 > * **Default**: `115`
 > * **Options**:
->     * 15
->     * Standard weights, with 1
->     * ${}^{\mathrm{st}}$
->     * order optimization only.
+>     * `15`: Standard weights, with 1 ${}^{\mathrm{st}}$ order optimization only.
 > * **Recommendation**: Use the default, unless convergence failure is encountered.
 
 A local MP2 calculation (requested by the LOCAL_MP2 option for

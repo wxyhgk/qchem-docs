@@ -6,8 +6,6 @@ title: "11.9.2 AIRBED Job Control"
 
 (July 4, 2026)
 
-AIRBED
-
 ### `AIRBED`
 
 > **Perform an AIRBED calculation.**
@@ -15,13 +13,9 @@ AIRBED
 > * **Type**: `BOOLEAN`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Perform an AIRBED calculation.
->     * False
->     * Don’t perform an AIRBED calculation.
+>     * `True`: Perform an AIRBED calculation.
+>     * `False`: Don’t perform an AIRBED calculation.
 > * **Recommendation**: Set the $rem variable DFT_D to EMPIRICAL_GRIMME.
-
-AIRBED_ALPHA
 
 ### `AIRBED_ALPHA`
 
@@ -30,11 +24,7 @@ AIRBED_ALPHA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\alpha$
->     * =
->     * $n/1000$
+>     * $n$: Corresponding to $\alpha$ = $n/1000$
 > * **Recommendation**: 0 or -1200 for hBN surface
 
 ???+ example "Example 11.53: AIRBED geometry optimisation calculation for a CO ${}_{2}$ molecule between two

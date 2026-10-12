@@ -180,8 +180,6 @@ title: "10.5.4 使用 *$plots* 生成体数据（Volumetric Data）"
 
 **Q-Chem** 的 *$plots* 工具允许用户直接利用上一次计算保存的振幅（amplitudes）来绘制跃迁密度和脱离/附着密度，而无需重新求解 post-SCF（CIS、RPA、TDA 或 TDDFT）方程。要利用此功能，必须使用同一个 **Q-Chem** scratch 目录，并且 *$rem* 变量 SKIP_CIS_RPA 必须设置为 TRUE。为进一步减少计算时间，*Srem* 变量 SCF_GUESS 可以设置为 READ。
 
-SKIP_CIS_RPA
-
 ### `SKIP_CIS_RPA`
 
 > **在波函数分析时跳过 CIS、RPA、TDA 或 TDDFT 方程的求解。**
@@ -189,7 +187,7 @@ SKIP_CIS_RPA
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE / FALSE
+>     * `TRUE / FALSE`
 > * **建议**: 若同一计算此前已运行过且保留了 scratch 文件，则将其设置为 true 以加速绘图数据的生成。
 
 ## 10.5.4.1 新的 *$plots* 输入

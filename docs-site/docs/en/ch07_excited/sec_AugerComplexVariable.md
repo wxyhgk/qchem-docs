@@ -61,8 +61,6 @@ Core electrons must not be frozen in such calculations—N_FROZEN_CORE should be
 
 **
 
-CC_PW
-
 ### `CC_PW`
 
 > **Activates calculation of partial Auger decay widths via decomposition of the imaginary part of the coupled-cluster energy of a complex-variable CCSD calculation on a core-ionized state. Currently, this is implemented for states resulting from ionization of a $\beta$ core electron of a closed-shell system.**
@@ -70,10 +68,8 @@ CC_PW
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not invoke energy decomposition into partial Auger decay widths
->     * 1
->     * invoke energy decomposition into partial Auger decay widths
+>     * `0`: do not invoke energy decomposition into partial Auger decay widths
+>     * `1`: invoke energy decomposition into partial Auger decay widths
 > * **Recommendation**: Use to compute partial widths for a complex-variable calculation on a core-vacant state. An appropriate complex-scaled basis set has to be chosen in order to capture Auger decay and the optimal scaling angle needs to be determined. 917 Matz F., Jagau T.-C. J. Chem. Phys. (2022) , 156 , pp. 114117 . Link , 918 Matz F., Jagau T.-C. Mol. Phys. (2023) , 121 , pp. e2105270 . Link
 
 ???+ example "Example 7.7.86: Calculation of Auger partial decay widths of the core-ionized neon atom."
@@ -257,8 +253,6 @@ core-valence separation must not be invoked.
 
 **
 
-EOM_ACP
-
 ### `EOM_ACP`
 
 > **Activates calculation of partial Auger decay widths by recomputation of the EOM-CCSD state with an Auger Channel Projector applied. Currently, this is implemented for EOMIP-CCSD calculations with a closed-shell reference.**
@@ -266,10 +260,8 @@ EOM_ACP
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not run ACP-EOM-CCSD calculations
->     * 1
->     * determine partial Auger decay widths by running ACP-EOM-CCSD calculations
+>     * `0`: do not run ACP-EOM-CCSD calculations
+>     * `1`: determine partial Auger decay widths by running ACP-EOM-CCSD calculations
 > * **Recommendation**: Use to compute partial widths for a complex-variable calculation which produces a core-vacant state. An appropriate complex-scaled basis set has to be chosen in order to capture Auger decay and the optimal scaling angle needs to be determined. 917 Matz F., Jagau T.-C. J. Chem. Phys. (2022) , 156 , pp. 114117 . Link , 918 Matz F., Jagau T.-C. Mol. Phys. (2023) , 121 , pp. e2105270 . Link
 
 ???+ example "Example 7.7.87: Calculation of Auger partial decay widths of the core-ionized neon atom."

@@ -44,8 +44,6 @@ difference of gradients. In addition, for numerical polarizabilities at the
 Hartree-Fock or DFT level set RESPONSE_POLAR = $-1$ in order to disable
 the analytic polarizability code.
 
-RESPONSE_POLAR
-
 ### `RESPONSE_POLAR`
 
 > **Control the use of analytic or numerical polarizabilities.**
@@ -53,9 +51,6 @@ RESPONSE_POLAR
 > * **Type**: `INTEGER`
 > * **Default**: `0 or`
 > * **Options**:
->     * 0
->     * Perform an analytic polarizability calculation.
->     * $-$
->     * 1
->     * Perform a numeric polarizability calculation even when analytic 2nd derivatives are available.
+>     * `0`: Perform an analytic polarizability calculation. $-$
+>     * `1`: Perform a numeric polarizability calculation even when analytic 2nd derivatives are available.
 > * **Recommendation**: None

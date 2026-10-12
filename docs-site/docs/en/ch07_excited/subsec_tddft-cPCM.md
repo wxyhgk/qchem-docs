@@ -148,8 +148,6 @@ states with a vanishing transition density
     $end
     ```
 
-TDDFT_LR_PCM
-
 ### `TDDFT_LR_PCM`
 
 > **Controls LR-PCM for TDDFT, i.e. , whether or not to add the LR-PCM contributions to the TDDFT eigenvalue problem.**
@@ -157,10 +155,8 @@ TDDFT_LR_PCM
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Do not do LR-PCM (0th-order solvent correction only).
->     * TRUE
->     * Perform full LR-PCM.
+>     * `FALSE`: Do not do LR-PCM (0th-order solvent correction only).
+>     * `TRUE`: Perform full LR-PCM.
 > * **Recommendation**: Assuming that PCM solvation is turned on for the ground state ( SOLVENT_METHOD = PCM in the $rem section), then disabling LR-PCM by setting = FALSE will afford a “0th-order” solvation correction, in which solvent-polarized MOs and energy levels are used in what is otherwise equivalent to a gas-phase TDDFT calculation. This is the first step in more sophisticated “nonequilibrium” TDDFT + PCM methods, which are discussed in Section 11.2.3.3 . The LR-PCM correction to the excitation energies has some peculiar properties, such as the fact that it vanishes for optically-forbidden states, 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link and the state-specific approaches that are discussed in Section 11.2.3.3 are likely preferable.
 
 ## 7.3.7.2 State-Specific PCM
@@ -175,12 +171,9 @@ which can be employed to activate either a perturbative or one of the iterative 
 > * **Type**: `Various`
 > * **Default**: `NONE`
 > * **Options**:
->     * Perturb
->     * Perform ptSS and ptLR for vertical excitations.
->     * External
->     * Perform self-consistent EI-SS-PCM to the excited state (for emission).
->     * Internal
->     * Perform self-consistent II-SS-PCM to the excited state (for emission or excitation).
+>     * `Perturb`: Perform ptSS and ptLR for vertical excitations.
+>     * `External`: Perform self-consistent EI-SS-PCM to the excited state (for emission).
+>     * `Internal`: Perform self-consistent II-SS-PCM to the excited state (for emission or excitation).
 > * **Recommendation**: Use for vertical excitation energies ptSS-PCM or in very polar cases the nonequilibrium II-SS-PCM, and equilibrium EI-SS-PCM for emission energies of long-lived excited states.
 
 **1. Perturbative State-Specific (ptSS) PCM**
@@ -211,10 +204,8 @@ density, if the latter has been recommended. Results based on the relaxed densit
 > * **Type**: `STRING`
 > * **Default**: `False`
 > * **Options**:
->     * TRUE
->     * Activate nonequilibrium ptSS-PCM.
->     * FALSE
->     * Deactivate nonequilibrium ptSS-PCM.
+>     * `TRUE`: Activate nonequilibrium ptSS-PCM.
+>     * `FALSE`: Deactivate nonequilibrium ptSS-PCM.
 > * **Recommendation**: activates a default ptSS-PCM calculation with Marcus charge separation and no additional LR-PCM.
 
 ### `ChargeSeparation`
@@ -224,10 +215,8 @@ density, if the latter has been recommended. Results based on the relaxed densit
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * Marcus
->     * Do slow/fast charge separation with the Marcus partition.
->     * Pekar
->     * Do slow/fast charge separation with the Pekar partition.
+>     * `Marcus`: Do slow/fast charge separation with the Marcus partition.
+>     * `Pekar`: Do slow/fast charge separation with the Pekar partition.
 > * **Recommendation**: Charge separation is used in conjunction with the StateSpecific keyword in $pcm .
 
 ???+ example "Example 7.15: PCM solvation effects on the vertical excitation energies of planar DMABN using the ptSS and ptLR methods."
@@ -315,14 +304,9 @@ and ptSS-PCM calculations, again the **ChargeSeparation** keyword is employed.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No self-consistent SS-PCM.
->     * 1
->     * Single SS-PCM calculation (SCF + TDDFT) with the solvent field found on disk.
->     * $n>1$
->     * Do a maximum of
->     * $n$
->     * automatic solvent-field iterations.
+>     * `0`: No self-consistent SS-PCM.
+>     * `1`: Single SS-PCM calculation (SCF + TDDFT) with the solvent field found on disk. $n>1$ Do a maximum of
+>     * $n$: automatic solvent-field iterations.
 > * **Recommendation**: We recommend to use 15 steps max. Typical convergence is 3–5 steps. In difficult cases 6–12. If the solvent-field iteration do not converge in 15 steps, something is wrong. For EI-SS-PCM jobs make sure a solvent field was written to disk by a previous job. II-SS-PCM will automatically begin by setting up the solvent field.
 
 ### `EqState`
@@ -332,11 +316,8 @@ and ptSS-PCM calculations, again the **ChargeSeparation** keyword is employed.
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * 1
->     * energetically lowest excited state
->     * 2
->     * 2nd lowest excited state
->     * $\cdots$
+>     * `1`: energetically lowest excited state
+>     * `2`: 2nd lowest excited state $\cdots$
 > * **Recommendation**: Given that only one class of excited states is calculated, the state will be selected according to its energetic position shown in the “Exited-State Summary” of the output file.
 
 ### `Eqs_Conv`
@@ -346,12 +327,9 @@ and ptSS-PCM calculations, again the **ChargeSeparation** keyword is employed.
 > * **Type**: `INTEGER`
 > * **Default**: `SCF_CONVERGENCE`
 > * **Options**:
->     * 3
->     * May be sufficient for emission energies
->     * 4
->     * Assured converged total energies (2.7 meV)
->     * 5
->     * Very tight
+>     * `3`: May be sufficient for emission energies
+>     * `4`: Assured converged total energies (2.7 meV)
+>     * `5`: Very tight
 > * **Recommendation**: Use the default.
 
 ### `EqState_Follow`
@@ -361,10 +339,8 @@ and ptSS-PCM calculations, again the **ChargeSeparation** keyword is employed.
 > * **Type**: `NONE`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Activate automatic state-following
->     * FALSE
->     * Deactivate automatic state-following.
+>     * `TRUE`: Activate automatic state-following
+>     * `FALSE`: Deactivate automatic state-following.
 > * **Recommendation**: State-Following works well for separated states of different character and can become problematic for nearly degenerate states. It can be advisable to deactivate state-following if similar states are close.
 
 **2. (A) External-Iteration SS-PCM**
@@ -501,16 +477,11 @@ See Section [7.7.9](sect_ROKS_neq-PCM.md) for further information.
 > * **Type**: `NONE`
 > * **Default**: `NONE`
 > * **Options**:
->     * VEM(f)
->     * Activate nonequilibrium II-SS-PCM (VEM) with the full matrix contribution.
->     * VEM(d)
->     * Activate nonequilibrium II-SS-PCM (VEM) with only diagonal matrix elements.
->     * AEM(f)
->     * Activate equilibrium II-SS-PCM (AEM) with the full matrix contribution.
->     * AEM(d)
->     * Activate equilibrium II-SS-PCM (AEM) with only diagonal matrix elements.
->     * …-state x y z … 0
->     * Specify sequence of states to be followed (terminate with 0).
+>     * `VEM(f)`: Activate nonequilibrium II-SS-PCM (VEM) with the full matrix contribution.
+>     * `VEM(d)`: Activate nonequilibrium II-SS-PCM (VEM) with only diagonal matrix elements.
+>     * `AEM(f)`: Activate equilibrium II-SS-PCM (AEM) with the full matrix contribution.
+>     * `AEM(d)`: Activate equilibrium II-SS-PCM (AEM) with only diagonal matrix elements.
+>     * `…-state x y z … 0`: Specify sequence of states to be followed (terminate with 0).
 > * **Recommendation**: The nonequilibrium versions (VEM) provide vertical excitation energies, while in equilibrium (AEM) the initial state for emission energies is prepared. By attaching the -state ending an explicit sequence of states to be followed can be provided. After terminating with a zero, state-following will be re-engaged.
 
 ???+ example "Example 7.7.17: TDDFT with Internal Iteration SS-PCM and the additional ground state calculation for

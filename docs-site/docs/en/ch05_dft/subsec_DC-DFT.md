@@ -58,8 +58,6 @@ DC_DFT = TRUE. Note that because $E_{\text{DFT}}[\rho]$ is never diagonalized, a
 computed at the end of the SCF procedure are based on the Hartree-Fock density. This includes one-particle energy levels, Mulliken charges,
 multipole moments, etc.
 
-DC_DFT
-
 ### `DC_DFT`
 
 > **Controls whether to use DC-DFT.**
@@ -67,13 +65,6 @@ DC_DFT
 > * **Type**: `Boolean`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not do DC-DFT.
->     * TRUE
->     * Iterate the density to self-consistency at the Hartree-Fock level and then perform
->     * evaluate
->     * $E_{\text{DFT}}[\rho_{\text{HF}}]$
->     * using the functional specified with
->     * METHOD
->     * .
+>     * `FALSE`: Do not do DC-DFT.
+>     * `TRUE`: Iterate the density to self-consistency at the Hartree-Fock level and then perform evaluate $E_{\text{DFT}}[\rho_{\text{HF}}]$ using the functional specified with METHOD .
 > * **Recommendation**: Use if desired. Analytic gradients are available but are a serial bottleneck in the present implementation.

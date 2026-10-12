@@ -10,8 +10,6 @@ title: "6.12.12 作业控制选项"
 
 关于内存选项与并行执行，请参见 [6.17](CCparallel.md) 节。
 
-CC_CONVERGENCE
-
 ### `CC_CONVERGENCE`
 
 > **耦合簇程序的整体收敛判据。其设计目的是保证所计算能量至少有 $n$ 位有效数字，并自动将其他与收敛相关的变量（CC_E_CONV、CC_T_CONV、CC_THETA_CONV、CC_THETA_GRAD_CONV）设置为 [ $10^{-n}$ ]。**
@@ -28,8 +26,6 @@ CC_CONVERGENCE
 **注意：**
 
 **对于单点能计算，CC_E_CONV = 6 且 CC_T_CONV = 4。对于梯度（gradients）和 EOM 计算，则使用更严格的振幅收敛（CC_T_CONV = 5）。使用单精度计算时，应相应地调整这些阈值（参见 [6.18](sec_SP_CC.md) 节）。**
-
-CC_DOV_THRESH
 
 ### `CC_DOV_THRESH`
 
@@ -54,8 +50,6 @@ CC_DOV_THRESH
 
 **仅对 CCMAN 作业有效，在 CCMAN2 中未启用。**
 
-CC_SCALE_AMP
-
 ### `CC_SCALE_AMP`
 
 > **若不为 0，则在收敛出现问题时缩小更新耦合簇振幅的步长。**
@@ -77,8 +71,6 @@ CC_SCALE_AMP
 
 **现已同时支持 CCMAN 和 CCMAN2。**
 
-CC_MAX_ITER
-
 ### `CC_MAX_ITER`
 
 > **优化耦合簇能量时的最大迭代次数。**
@@ -92,8 +84,6 @@ CC_MAX_ITER
 >     * 次迭代以达到收敛。
 > * **建议**：无
 
-CC_PRINT
-
 ### `CC_PRINT`
 
 > **控制 Q-Chem 中后-MP2 耦合簇模块的输出量**
@@ -104,8 +94,6 @@ CC_PRINT
 >     * $0-7$
 >     * 较大的值会导致森林被砍光……
 > * **建议**：如果你需要更多输出且不在乎树木，就调大它
-
-CHOLESKY_TOL
 
 ### `CHOLESKY_TOL`
 
@@ -118,8 +106,6 @@ CHOLESKY_TOL
 >     * 对应容差
 >     * $10^{-n}$
 > * **建议**：2 - 定性计算，3 - 适用于大多数情况，4 - 定量计算（总能量误差通常小于 1 $\mu$ hartree）
-
-CHOLESKY_TWOSTEP
 
 ### `CHOLESKY_TWOSTEP`
 
@@ -134,8 +120,6 @@ CHOLESKY_TWOSTEP
 >     * 使用两步法流程
 > * **建议**：两步法流程效率更高。
 
-CD_TS_SPAN_FACTOR
-
 ### `CD_TS_SPAN_FACTOR`
 
 > **控制两步法 Cholesky 分解第 I 步中主元选取（pivoting）过程所使用的 span factor**
@@ -147,8 +131,6 @@ CD_TS_SPAN_FACTOR
 >     * 对应容差
 >     * $10^{-n}$
 > * **建议**：使用较大的值（例如 3）可能提高分解步骤的精度。
-
-CC_DIRECT_RI
 
 ### `CC_DIRECT_RI`
 

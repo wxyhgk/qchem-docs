@@ -21,8 +21,6 @@ title: "8.6.1 概述"
 
 双基组 MP2 计算。相关讨论参见第 [6.6.2](../ch06_correlation/sect_rimp2.md) 节。
 
-BASIS2
-
 ### `BASIS2`
 
 > **定义（较小的）第二套基组。**

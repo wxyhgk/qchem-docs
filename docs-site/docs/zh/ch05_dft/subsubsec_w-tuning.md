@@ -105,8 +105,6 @@ LRC-$\omega$PBEh（$C=0.75$）确定，[[956]](../bib_references/bib.md#bib997)
 因此，原则上 $\omega_{\text{GDD}}$ 的取值依赖于 OMEGA 的设定值，尽管实际上它对该值并不十分敏感，
 以此方式获得的结果与完全自洽的 $\omega_{\text{GDD}}$ 值相近。[[956]](../bib_references/bib.md#bib997)
 
-OMEGA_GDD
-
 ### `OMEGA_GDD`
 
 > **控制对长程校正 DFT 应用 $\omega_{\text{GDD}}$ 调优**
@@ -114,13 +112,9 @@ OMEGA_GDD
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE（或 0）
->     * 不应用 GDD 调优。
->     * TRUE（或 1）
->     * 使用 GDD 调优。
+>     * `FALSE`（或 `0`）: 不应用 GDD 调优。
+>     * `TRUE`（或 `1`）: 使用 GDD 调优。
 > * **建议**: 还必须指定 $rem 变量 OMEGA，以设定初始的 range-separation 参数。
-
-OMEGA_GDD_SCALING
 
 ### `OMEGA_GDD_SCALING`
 
@@ -129,10 +123,7 @@ OMEGA_GDD_SCALING
 > * **类型**: `INTEGER`
 > * **默认值**: `885`
 > * **选项**:
->     * $n$
->     * 对应于
->     * $C=n/1000$
->     * 。
+>     * $n$: 对应于 $C=n/1000$。
 > * **建议**: 量 $C=0.885$（即 $n=885$）是在 Ref. 764 Lao K. U., Herbert J. M. J. Chem. Theory Comput. (2018) , 14 , pp. 2955 . 中基于 LRC-$\omega$PBE/hpTZVPP 计算确定的。
 
 ???+ example "示例 5.9: 示例输入，演示基于 GDD 调优程序确定 LRC-$\omega$PBE 所用 $\omega$ 值的计算。"
@@ -171,8 +162,6 @@ OMEGA_GDD_SCALING
 有人建议通过检查这类图来调整 RSH 泛函中短程交换的成分比例，[[58]](../bib_references/bib.md#bib41)
  而 $\omega$ 参数则由调优来确定。
 
-FRACTIONAL_ELECTRON
-
 ### `FRACTIONAL_ELECTRON`
 
 > **增加或减少分数个电子。**
@@ -180,12 +169,8 @@ FRACTIONAL_ELECTRON
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 使用整数个电子。
->     * $n$
->     * 向体系添加
->     * $n/1000$
->     * 个电子。
+>     * `0`: 使用整数个电子。
+>     * $n$: 向体系添加 $n/1000$ 个电子。
 > * **建议**: 仅在试图生成 $E(N)$ 图时使用。若 $n<0$，则从体系中移除相应分数的电子。
 
 ???+ example "示例 5.10: 具有分数电子数的 DFT 作业示例。此处通过从 F${}^{2-}$ 的 HOMO 中减去分数个电子，构造氟的 $-1.x$ 价阴离子。"
@@ -240,8 +225,6 @@ $$
 Eq. ([5.21](#mu-eff)) 中 $\omega_{\text{EFF}}$ 的求值需要电子密度，这是从收敛的 SCF 计算中获得的。
 使用 RSH 泛函时，必须通过 *$rem* 变量 OMEGA 指定 $\omega$ 的初始值。相比之下，对于半局域泛函或全局杂化泛函（例如 PBE 或 B3LYP），则无需指定 OMEGA。
 
-OMEGA_EFF
-
 ### `OMEGA_EFF`
 
 > **控制对长程校正 DFT 应用 $\omega_{\text{EFF}}$ 调优**
@@ -249,10 +232,8 @@ OMEGA_EFF
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE（或 0）
->     * 不应用 EFF 调优。
->     * TRUE（或 1）
->     * 应用 EFF 调优。
+>     * `FALSE`（或 `0`）: 不应用 EFF 调优。
+>     * `TRUE`（或 `1`）: 应用 EFF 调优。
 > * **建议**: 还必须指定 $rem 变量 OMEGA，为 range-separation 参数提供初始值。
 
 ???+ example "示例 5.11: 示例输入，演示使用 EFF 调优程序确定 $\omega$ 值的计算。"

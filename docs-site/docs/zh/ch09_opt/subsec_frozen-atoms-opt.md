@@ -36,8 +36,6 @@ title: "9.4.3 冻结原子（Frozen Atoms）"
 请注意，对于带有冻结原子约束的体系，*频率（frequency）* 计算通常会产生虚频（imaginary frequencies）。其原因是：频率计算所得到的 Hessian 矩阵，与冻结原子优化过程中计算的梯度在物理意义上并不一致。
 一种可能的解决办法是直接将 Hessian 中与冻结原子相关的元素置零。这样可以消除冻结原子对简正模式（normal modes）的贡献，并减少所计算频率的数目。对于一个含 $N$ 个原子的体系，若冻结了 $n$ 个原子，则简正模式的数目为 $3(N-n)-6$，若体系为线性分子则为 $3(N-n)-5$。这种“置零”方法可以通过一对 *$rem* 变量 FRZN_OPT 和 FRZ_ATOMS 来启用，详见下文说明。另一种更优雅的做法是用软的谐振约束势（soft harmonic confining potentials）替代严格固定的原子位置，这在效果上能达到相同的目的，同时允许所有原子坐标发生弛豫（*即*，优化），从而可以进行正确的振动频率计算。用谐振约束势替代冻结原子约束的方法在第 [9.4.7 节](subsec_HarmonicConfiner.md) 中描述。
 
-FRZN_OPT
-
 ### `FRZN_OPT`
 
 > **控制本作业在频率计算中是否使用 Hessian 置零技术**
@@ -45,13 +43,9 @@ FRZN_OPT
 > * **类型**: `LOGICAL`
 > * **默认值**: `False`
 > * **可选值**:
->     * False
->     * 不使用置零的 Hessian
->     * True
->     * 使用置零的 Hessian
+>     * `False`: 不使用置零的 Hessian
+>     * `True`: 使用置零的 Hessian
 > * **建议**: False
-
-FRZ_ATOMS
 
 ### `FRZ_ATOMS`
 

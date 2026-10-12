@@ -16,8 +16,6 @@ FDE-Man 的任务控制分为两个部分，即 *$rem* 和 *$fde*。
 当前实现仅允许闭壳层（closed shell）片段。
 **
 
-FDE
-
 ### `FDE`
 
 > **开启密度嵌入（density embedding）。**
@@ -32,8 +30,6 @@ FDE
 > * **建议**：将 $rem 变量设置为 TRUE 以启动 FDET 计算。
 
 启用 FDE-Man 后，嵌入方法的指定以及其他任务控制参数（收敛阈值、最大迭代次数 *等*）应在 *$rem* 段中设置。
-
-METHOD
 
 ### `METHOD`
 
@@ -71,8 +67,6 @@ FDE-ADC[[1121]](../bib_references/bib.md#bib1168)
 在这一特定变体中，子系统 A 由波函数描述，而子系统 B 由密度描述。FDE-ADC 方法采用线性化的 FDET 近似[[1539]](../bib_references/bib.md#bib1603)。
 
 与其他方法类似，ADC 的相关设置也必须在 *$rem* 段内完成，如下所示。
-
-METHOD
 
 ### `METHOD`
 

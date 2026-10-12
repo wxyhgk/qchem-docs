@@ -18,8 +18,6 @@ $$
 
 若计算为完美配对（CORRELATION = PP），则除了限制解之外，还可以寻找非限制解。对于电子数为奇数的分子，默认使用非限制轨道，但电子数为偶数的分子也可以指定使用非限制轨道。这通过设置 GVB_UNRESTRICTED = TRUE 来实现。然而，若给定限制初始猜测，通常仍会收敛到限制解，因此需要额外指定 REM 变量以确保初始猜测具有破缺的自旋对称性。这可以通过使用非限制 SCF 解作为初始猜测来实现，相关技术见[第 4 章](../ch04_scf/chap_scf.md)。或者，也可以在计算开始之前，使用下面描述的 GVB_GUESS_MIX 显式地对一组限制猜测轨道进行对称性破缺。此外还有活性对内非限制（Unrestricted-in-Active Pairs, UAP）的实现[[774]](../bib_references/bib.md#bib807)，这是 GVB 方法的默认非限制实现。该方法通过仅优化一组 ROHF 分子轨道系数以及每个占据-虚轨道对的单一旋转角来简化非限制化过程。这些角度用于构造一系列 $2\times 2$ 的 Givens 旋转矩阵，将其应用于 ROHF 系数以确定 $\alpha$ 自旋分子轨道系数，而其转置则应用于 ROHF 系数以确定 $\beta$ 自旋分子轨道系数。该算法速度快，并消除了非限制 GVB 方法在解离极限附近的许多病态行为。为了生成完整的势能曲线，我们发现最好的做法是从所需的 UHF 解离解出发作为 GVB 的猜测，然后向平衡键长方向追踪。
 
-GVB_UNRESTRICTED
-
 ### `GVB_UNRESTRICTED`
 
 > **控制 PP 计算使用限制还是非限制模式。通常自动处理。**
@@ -29,8 +27,6 @@ GVB_UNRESTRICTED
 > * **选项**：
 >     * TRUE/FALSE
 > * **建议**：仅在需要从 RHF 或 ROHF 初始猜测执行 UPP 计算时才显式设置此变量。若要保持默认并使用新的活性对内非限制 GVB 代码（该代码在与 GVB_DO_ROHF 配合使用时可返回 RHF 或 ROHF 解），则无需设置此变量，只需指定 UNRESTRICTED = TRUE。
-
-GVB_DO_ROHF
 
 ### `GVB_DO_ROHF`
 
@@ -42,8 +38,6 @@ GVB_DO_ROHF
 >     * $n$
 >     * 用户自定义
 > * **建议**：若 $n$ 的值与 GVB_N_PAIRS 相同，则返回 GVB 的 ROHF 解。仅适用于 UNRESTRICTED = TRUE 的 GVB 实现且 GVB_OLD_UPP = 0（其默认值）。
-
-GVB_OLD_UPP
 
 ### `GVB_OLD_UPP`
 
@@ -79,8 +73,6 @@ GVB_OLD_UPP
 >     * 链接
 >     * 中描述的非限制实现
 > * **建议**：仅适用于非限制 PP，不适用于其他 GVB 模型。
-
-GVB_GUESS_MIX
 
 ### `GVB_GUESS_MIX`
 

@@ -29,8 +29,6 @@ The symmetric quasi-classical Meyer-Miller (SQC/MM) approach is requested in **Q
 
 Sampling distributions for the initial nuclear DOF are requested with the QCMD_INITNUC keyword. Currently, sampling both initial positions and velocity from either a Wigner or Boltzmann distribution is available. Sampling from either of these distributions requires a frequency calculation to be available. Alternatively, the user can input velocities using the *$velocity* section as described in Section [9.9.2](sub_aimd_jobcontrol.md).
 
-QCMD_METHOD
-
 ### `QCMD_METHOD`
 
 > **Specifies the nonadiabatic Meyer-Miller molecular dynamics method.**
@@ -38,13 +36,9 @@ QCMD_METHOD
 > * **Type**: `STRING`
 > * **Default**: `0`
 > * **Options**:
->     * Ehrenfest
->     * Traditional Ehrenfest molecular dynamics.
->     * SQC
->     * Symmetric Quasi-Classical Meyer-Miller molecular dynamics
+>     * `Ehrenfest`: Traditional Ehrenfest molecular dynamics.
+>     * `SQC`: Symmetric Quasi-Classical Meyer-Miller molecular dynamics
 > * **Recommendation**: None
-
-QCMD_INITSTATE
 
 ### `QCMD_INITSTATE`
 
@@ -53,13 +47,8 @@ QCMD_INITSTATE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * An integer set less than
->     * CIS_N_ROOTS
->     * .
+>     * $n$: An integer set less than CIS_N_ROOTS .
 > * **Recommendation**: None
-
-QCMD_INITNUC
 
 ### `QCMD_INITNUC`
 
@@ -68,13 +57,11 @@ QCMD_INITNUC
 > * **Type**: `STRING`
 > * **Default**: `0`
 > * **Options**:
->     * Wigner
->     * Wigner distribution.
->     * Boltzmann
->     * Boltzmann distribution
+>     * `Wigner`
+>     * `Wigner distribution.`
+>     * `Boltzmann`
+>     * `Boltzmann distribution`
 > * **Recommendation**: Used in conjunction with AIMD_TEMP .
-
-QCMD_WARMUP
 
 ### `QCMD_WARMUP`
 
@@ -86,8 +73,6 @@ QCMD_WARMUP
 >     * $n$
 > * **Recommendation**: None
 
-SQC_GAMADJUST
-
 ### `SQC_GAMADJUST`
 
 > **Specifies the $\gamma$ -adjustment protocol.**
@@ -95,11 +80,8 @@ SQC_GAMADJUST
 > * **Type**: `STRING`
 > * **Default**: `True`
 > * **Options**:
->     * True
->     * use the
->     * $\gamma$
->     * -adjustment protocol.
->     * False
+>     * `True`: use the $\gamma$ -adjustment protocol.
+>     * `False`
 > * **Recommendation**: The $\gamma$ -adjustment protocol is generally recommended.
 
 ???+ example "Example 9.45: Ehrenfest simulation."

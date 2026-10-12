@@ -52,8 +52,6 @@ ROBUST_STABLE 流程在 ROBUST 流程的基础上额外执行稳定性分析（s
 这些参数的默认值目前设为实验性取值，未必对所有使用场景都是最优的；
 因此，如果默认值无法让用户的场景收敛，我们鼓励用户将自己的设置反馈给 Q-Chem Office。
 
-SCF_ROBUST_WINDOW_SIZE
-
 ### `SCF_ROBUST_WINDOW_SIZE`
 
 > **控制用于检测鲁棒 SCF 流程中振荡或平台期的 DIIS 误差或 RMS 梯度对数值窗口的大小。**
@@ -64,8 +62,6 @@ SCF_ROBUST_WINDOW_SIZE
 >     * n
 >     * 自定义。
 > * **建议**：无
-
-SCF_ROBUST_MIN_SIGN_CHANGES
 
 ### `SCF_ROBUST_MIN_SIGN_CHANGES`
 
@@ -78,8 +74,6 @@ SCF_ROBUST_MIN_SIGN_CHANGES
 >     * 自定义。
 > * **建议**：无
 
-SCF_ROBUST_PLATEAU_WINDOWS
-
 ### `SCF_ROBUST_PLATEAU_WINDOWS`
 
 > **控制用于检测鲁棒 SCF 流程中平台期时，所使用的 DIIS 误差或 RMS 梯度对数值窗口的数目。**
@@ -90,8 +84,6 @@ SCF_ROBUST_PLATEAU_WINDOWS
 >     * n
 >     * 自定义。
 > * **建议**：无
-
-SCF_ROBUST_SLOPE_THRESH
 
 ### `SCF_ROBUST_SLOPE_THRESH`
 

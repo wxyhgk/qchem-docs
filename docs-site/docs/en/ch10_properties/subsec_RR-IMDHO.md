@@ -105,8 +105,6 @@ $$
 
 Setting JOBTYPE = RRAMAN invokes the calculation of resonance Raman intensities.
 
-RR_NO_NORMALISE
-
 ### `RR_NO_NORMALISE`
 
 > **Controls whether frequency job calculates resonance Raman intensities**
@@ -114,10 +112,8 @@ RR_NO_NORMALISE
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * False
->     * Normalize RR intensities
->     * True
->     * Do not normalize RR intensities
+>     * `False`: Normalize RR intensities
+>     * `True`: Do not normalize RR intensities
 > * **Recommendation**: False
 
 ???+ example "Example 10.44: Calculating resonance Raman intensities."

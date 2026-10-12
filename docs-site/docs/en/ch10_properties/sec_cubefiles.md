@@ -32,8 +32,6 @@ publication. Cube files for the MOs and densities requested in the *$plots*
 section are requested by setting MAKE_CUBE_FILES to TRUE,
 with the *$plots* section specified as described in Section [10.5.4](sect_plot.mo.md).
 
-MAKE_CUBE_FILES
-
 ### `MAKE_CUBE_FILES`
 
 > **Requests generation of cube files for MOs, NTOs, or NBOs.**
@@ -41,17 +39,11 @@ MAKE_CUBE_FILES
 > * **Type**: `LOGICAL/STRING`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not generate cube files.
->     * TRUE
->     * Generate cube files for MOs and densities.
->     * NTOS
->     * Generate cube files for NTOs.
->     * NBOS
->     * Generate cube files for NBOs.
+>     * `FALSE`: Do not generate cube files.
+>     * `TRUE`: Generate cube files for MOs and densities.
+>     * `NTOS`: Generate cube files for NTOs.
+>     * `NBOS`: Generate cube files for NBOs.
 > * **Recommendation**: None
-
-PLOT_SPIN_DENSITY
 
 ### `PLOT_SPIN_DENSITY`
 
@@ -60,10 +52,8 @@ PLOT_SPIN_DENSITY
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not generate spin density cube files.
->     * TRUE
->     * Generate spin density cube files.
+>     * `FALSE`: Do not generate spin density cube files.
+>     * `TRUE`: Generate spin density cube files.
 > * **Recommendation**: Set to TRUE if spin densities are desired in addition to total densities. Requires that MAKE_CUBE_FILES be set to TRUE as well, and that one or more total densities is requested in the $plots input section. The corresponding spin densities will then be generated also.
 
 The following example illustrates the generation of cube files for a ground and
@@ -114,8 +104,6 @@ Cube files for additional states are readily obtained using a sequence of
 ground- and excited-state information using SCF_GUESS and
 SKIP_CIS_RPA.
 
-CUBEFILE_STATE
-
 ### `CUBEFILE_STATE`
 
 > **Determines which excited state is used to generate cube files**
@@ -123,10 +111,8 @@ CUBEFILE_STATE
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * Generate cube files for the
->     * $n$
->     * th excited state
+>     * $n$: Generate cube files for the
+>     * $n$: th excited state
 > * **Recommendation**: None
 
 An additional complication is the manner in which to specify which NTOs will be

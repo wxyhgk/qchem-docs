@@ -70,8 +70,6 @@ Chipman,[[242]](../bib_references/bib.md#bib247)
  so some *$rem* variables are used for
 job control of isodensity SS(V)PE calculations. These are listed below.
 
-SVP_MEMORY
-
 ### `SVP_MEMORY`
 
 > **Specifies the amount of memory for use by the solvation module.**
@@ -79,11 +77,8 @@ SVP_MEMORY
 > * **Type**: `INTEGER`
 > * **Default**: `125`
 > * **Options**:
->     * $n$
->     * corresponds to the amount of memory in MB.
+>     * $n$: corresponds to the amount of memory in MB.
 > * **Recommendation**: The default should be fine for medium size molecules with the default Lebedev grid, only increase if needed.
-
-SVP_PATH
 
 ### `SVP_PATH`
 
@@ -92,13 +87,9 @@ SVP_PATH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Run a gas-phase calculation and upon convergence run the SS(V)PE computation.
->     * 1
->     * Do not run a gas-phase calculation.
+>     * `0`: Run a gas-phase calculation and upon convergence run the SS(V)PE computation.
+>     * `1`: Do not run a gas-phase calculation.
 > * **Recommendation**: Running the gas-phase calculation provides a good guess to start the solvation stage and provides a more complete set of solvated properties.
-
-SVP_CHARGE_CONV
 
 ### `SVP_CHARGE_CONV`
 
@@ -107,13 +98,8 @@ SVP_CHARGE_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * $n$
->     * Convergence threshold set to
->     * $10^{-n}$
->     * .
+>     * $n$: Convergence threshold set to $10^{-n}$ .
 > * **Recommendation**: The default value unless convergence problems arise.
-
-SVP_CAVITY_CONV
 
 ### `SVP_CAVITY_CONV`
 
@@ -122,13 +108,8 @@ SVP_CAVITY_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * $n$
->     * Convergence threshold set to
->     * $10^{-n}$
->     * .
+>     * $n$: Convergence threshold set to $10^{-n}$ .
 > * **Recommendation**: The default value unless convergence problems arise.
-
-SVP_GUESS
 
 ### `SVP_GUESS`
 
@@ -137,14 +118,9 @@ SVP_GUESS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No guessing.
->     * 1
->     * Read a guess from a previous isodensity SS(V)PE calculation.
->     * 2
->     * Use a guess specified by the
->     * $svpirf
->     * section from the input.
+>     * `0`: No guessing.
+>     * `1`: Read a guess from a previous isodensity SS(V)PE calculation.
+>     * `2`: Use a guess specified by the $svpirf section from the input.
 > * **Recommendation**: It is helpful to also set SCF_GUESS to READ when using a guess from a previous Q-Chem run. Set IPnRF = 1 in the $svp section of the previous Q-Chem job, in order to save the reaction field for subsequent reading (see Section 11.2.6.2 ).
 
 This last *$rem* variable requires specification of a *$svpirf* input section, the format for which is the following:
@@ -197,10 +173,8 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not invoke a CMIRS calculation.
->     * 1
->     * Invoke a CMIRS calculation.
+>     * `0`: Do not invoke a CMIRS calculation.
+>     * `1`: Invoke a CMIRS calculation.
 > * **Recommendation**: None. Need to set IPnRF = 1 in the $svp section if CMIRS is desired.
 
 ### `IPnRF`
@@ -210,10 +184,8 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not save the reaction field.
->     * 1
->     * Save the reaction field.
+>     * `0`: Do not save the reaction field.
+>     * `1`: Save the reaction field.
 > * **Recommendation**: None. = 1 is required for CMIRS ( i.e. , if IDEFESR = 1).
 
 ### `IShape`
@@ -223,10 +195,8 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * use the electronic isodensity surface.
->     * 1
->     * use a spherical cavity surface.
+>     * `0`: use the electronic isodensity surface.
+>     * `1`: use a spherical cavity surface.
 > * **Recommendation**: Use the default surface.
 
 ### `RhoIso`
@@ -236,9 +206,7 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `FLOAT`
 > * **Default**: `0.001`
 > * **Options**:
->     * Real number specifying the density in electrons/bohr
->     * ${}^{3}$
->     * .
+>     * Real number specifying the density in electrons/bohr: ${}^{3}$ .
 > * **Recommendation**: The default value is optimal for most situations. Increasing the value produces a smaller cavity which ordinarily increases the magnitude of the solvation energy.
 
 ### `RadSph`
@@ -258,10 +226,8 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Single center Lebedev integration.
->     * 1
->     * Single center spherical polar integration.
+>     * `0`: Single center Lebedev integration.
+>     * `1`: Single center spherical polar integration.
 > * **Recommendation**: The Lebedev integration is by far the more efficient.
 
 ### `NPtLeb`
@@ -271,10 +237,7 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `1202`
 > * **Options**:
->     * Valid choices are:
->     * 6, 18, 26, 38, 50, 86, 110, 146, 170, 194, 302, 350, 434, 590, 770,
->     * 974, 1202, 1454, 1730, 2030, 2354, 2702, 3074, 3470, 3890, 4334,
->     * 4802, or 5294.
+>     * `Valid choices are:`: 6, 18, 26, 38, 50, 86, 110, 146, 170, 194, 302, 350, 434, 590, 770, 974, 1202, 1454, 1730, 2030, 2354, 2702, 3074, 3470, 3890, 4334, 4802, or 5294.
 > * **Recommendation**: The default value has been found adequate to obtain the energy to within 0.1 kcal/mol for solutes the size of mono-substituted benzenes.
 
 ### `NPtThe, NPtPhi`
@@ -284,10 +247,7 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `8,16`
 > * **Options**:
->     * $\theta$
->     * ,
->     * $\phi$
->     * specifying the number of points.
+>     * $\theta$: , $\phi$ specifying the number of points.
 > * **Recommendation**: These should be multiples of 2 and 4 respectively, to provide symmetry sufficient for all Abelian point groups. Defaults are too small for all but the tiniest and simplest solutes.
 
 ### `LinEq`
@@ -297,14 +257,9 @@ The following keywords are supported in the *$svp* section:
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * use LU decomposition in memory if space permits, else switch to
->     * = 2
->     * 1
->     * use conjugate gradient iterations in memory if space permits, else use
->     * = 2
->     * 2
->     * use conjugate gradient iterations with the system matrix stored externally on disk.
+>     * `0`: use LU decomposition in memory if space permits, else switch to = 2
+>     * `1`: use conjugate gradient iterations in memory if space permits, else use = 2
+>     * `2`: use conjugate gradient iterations with the system matrix stored externally on disk.
 > * **Recommendation**: The default should be sufficient in most cases.
 
 ### `CvgLin`
@@ -336,23 +291,13 @@ sophisticated surface integration approaches are developed and implemented.
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 0
->     * No translation (
->     * i.e.
->     * , center of the cavity at the origin
->     * of the atomic coordinate system)
->     * 1
->     * Translate to the center of nuclear mass.
->     * 2
->     * Translate to the center of nuclear charge.
->     * 3
->     * Translate to the midpoint of the outermost atoms.
->     * 4
->     * Translate to midpoint of the outermost non-hydrogen atoms.
->     * 5
->     * Translate to user-specified coordinates in Bohr.
->     * 6
->     * Translate to user-specified coordinates in Ångstroms.
+>     * `0`: No translation ( i.e. , center of the cavity at the origin of the atomic coordinate system)
+>     * `1`: Translate to the center of nuclear mass.
+>     * `2`: Translate to the center of nuclear charge.
+>     * `3`: Translate to the midpoint of the outermost atoms.
+>     * `4`: Translate to midpoint of the outermost non-hydrogen atoms.
+>     * `5`: Translate to user-specified coordinates in Bohr.
+>     * `6`: Translate to user-specified coordinates in Ångstroms.
 > * **Recommendation**: The default value is recommended unless the single-center integrations procedure fails. If cavity construction fails for a small, high-symmetry system, consider setting = 0.
 
 ### `TranX, TranY, TranZ`
@@ -362,12 +307,7 @@ sophisticated surface integration approaches are developed and implemented.
 > * **Type**: `FLOAT`
 > * **Default**: `0, 0, 0`
 > * **Options**:
->     * $x$
->     * ,
->     * $y$
->     * , and
->     * $z$
->     * relative to the origin in the appropriate units.
+>     * $x$: , $y$ , and $z$ relative to the origin in the appropriate units.
 > * **Recommendation**: None.
 
 ### `IRotGr`
@@ -377,27 +317,10 @@ sophisticated surface integration approaches are developed and implemented.
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 0
->     * No rotation.
->     * 1
->     * Rotate initial
->     * $xyz$
->     * axes of the integration grid to coincide
->     * with principal moments of nuclear inertia (relevant if
->     * ITrnGr
->     * = 1)
->     * 2
->     * Rotate initial
->     * $xyz$
->     * axes of integration grid to coincide with
->     * principal moments of nuclear charge (relevant if
->     * ITrnGr
->     * = 2)
->     * 3
->     * Rotate initial
->     * $xyz$
->     * axes of the integration grid through user-specified
->     * Euler angles as defined by Wilson, Decius, and Cross.
+>     * `0`: No rotation.
+>     * `1`: Rotate initial $xyz$ axes of the integration grid to coincide with principal moments of nuclear inertia (relevant if ITrnGr = 1)
+>     * `2`: Rotate initial $xyz$ axes of integration grid to coincide with principal moments of nuclear charge (relevant if ITrnGr = 2)
+>     * `3`: Rotate initial $xyz$ axes of the integration grid through user-specified Euler angles as defined by Wilson, Decius, and Cross.
 > * **Recommendation**: The default is recommended unless the knowledgeable user has good reason otherwise. If cavity construction fails for a small, high-symmetry system, consider setting = 0.
 
 ### `RotThe  RotPhi  RotChi`
@@ -407,12 +330,7 @@ sophisticated surface integration approaches are developed and implemented.
 > * **Type**: `FLOAT`
 > * **Default**: `0,0,0`
 > * **Options**:
->     * $\theta$
->     * ,
->     * $\phi$
->     * ,
->     * $\chi$
->     * in degrees
+>     * $\theta$: , $\phi$ , $\chi$ in degrees
 > * **Recommendation**: None.
 
 ### `IOpPrd`
@@ -422,10 +340,8 @@ sophisticated surface integration approaches are developed and implemented.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Symmetric form.
->     * 1
->     * Non-symmetric form.
+>     * `0`: Symmetric form.
+>     * `1`: Non-symmetric form.
 > * **Recommendation**: The default uses more memory but is generally more efficient, we recommend its use unless there is shortage of memory available.
 
 By default, **Q-Chem** will check the validity of the single-center expansion by
@@ -459,8 +375,6 @@ cavity determined by working in from large distances.
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * no cavity check, use only the outer cavity
->     * 1
->     * cavity check, generating both the inner and outer cavities and compare.
+>     * `0`: no cavity check, use only the outer cavity
+>     * `1`: cavity check, generating both the inner and outer cavities and compare.
 > * **Recommendation**: Consider turning off cavity check only if the molecule has a hole and if a star (outer) surface is expected.

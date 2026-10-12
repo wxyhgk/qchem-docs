@@ -126,8 +126,6 @@ only **NAtoms_Mol1** is required, as this determined which part of the *$molecul
 corresponds to monomer $A$, with the rest corresponding to monomer $B$. It is required that
 all atoms for $A$ are grouped together in the *$molecule* section.
 
-XDM
-
 ### `XDM`
 
 > **Controls whether to add XDM dispersion to an SCF calculation**
@@ -135,12 +133,9 @@ XDM
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not apply the XDM scheme.
->     * 1
->     * Add XDM dispersion as a correction to the SCF energy (and gradient, if appropriate).
->     * 2
->     * Add dispersion as a DFT functional and do full SCF.
+>     * `0`: Do not apply the XDM scheme.
+>     * `1`: Add XDM dispersion as a correction to the SCF energy (and gradient, if appropriate).
+>     * `2`: Add dispersion as a DFT functional and do full SCF.
 > * **Recommendation**: The second (self-consistent) option is only available for XDM6.
 
 ### `NAtomsMol1`
@@ -150,14 +145,7 @@ XDM
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $N$
->     * Monomer
->     * $A$
->     * consists of the first
->     * $N$
->     * atoms in the
->     * $molecule
->     * section.
+>     * $N$: Monomer $A$ consists of the first $N$ atoms in the $molecule section.
 > * **Recommendation**: This is the only required keyword in the $xdm section. The two monomers must be grouped together in the $molecule section; note that Q-Chem ’s fragment-based input format does not work with XDM.
 
 ### `Method`
@@ -167,20 +155,8 @@ XDM
 > * **Type**: `STRING`
 > * **Default**: `XDM10`
 > * **Options**:
->     * XDM6
->     * Use the
->     * $C_{6}$
->     * -only model of Eq. (
->     * 5.41
->     * ).
->     * XDM10
->     * Use the model that includes
->     * $C_{8}$
->     * and
->     * $C_{10}$
->     * , Eq. (
->     * 5.43
->     * ).
+>     * `XDM6`: Use the $C_{6}$ -only model of Eq. ( 5.41 ).
+>     * `XDM10`: Use the model that includes $C_{8}$ and $C_{10}$ , Eq. ( 5.43 ).
 > * **Recommendation**: The XDM10 is generally more accurate and is now the preferred approach.
 
 ### `Damp_C6_K`
@@ -190,10 +166,7 @@ XDM
 > * **Type**: `FLOAT`
 > * **Default**: `0.8`
 > * **Options**:
->     * $x$
->     * Set
->     * $\kappa=x$
->     * .
+>     * $x$: Set $\kappa=x$ .
 > * **Recommendation**: The default value is taken from Ref. Becke:2005a and is intended to be universal.
 
 ### `Damp_A1`
@@ -203,10 +176,7 @@ XDM
 > * **Type**: `FLOAT`
 > * **Default**: `Various`
 > * **Options**:
->     * $x$
->     * Set
->     * $a_{1}=x$
->     * .
+>     * $x$: Set $a_{1}=x$ .
 > * **Recommendation**: Functional-specific defaults are available for HF, PW86PBE, PBE, BLYP, B97-1, B3LYP, B3P86, B3PW91, PBE0, BHHLYP, LRC- $\omega$ PBE, and CAM-B3LYP, taken from Ref. 1027 Otero-de-la-Roza A., Johnson E. R. J. Chem. Phys. (2013) , 138 , pp. 204109 . Link . For other functionals, the HF values (Ref. 651 Johnson E. R., Becke A. D. J. Chem. Phys. (2006) , 124 , pp. 174104 . Link ) are used by default, although Q-Chem will print a warning that this may not be optimal.
 
 ### `Damp_A2`
@@ -216,10 +186,7 @@ XDM
 > * **Type**: `FLOAT`
 > * **Default**: `Various`
 > * **Options**:
->     * $x$
->     * Set
->     * $a_{2}=x$
->     * .
+>     * $x$: Set $a_{2}=x$ .
 > * **Recommendation**: The same comments apply (regarding functional-specific values) as in the case of Damp_A1 .
 
 ### `Print`
@@ -229,12 +196,9 @@ XDM
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * No printing.
->     * 1
->     * Minimal printing.
->     * 2
->     * Debug-level printing.
+>     * `0`: No printing.
+>     * `1`: Minimal printing.
+>     * `2`: Debug-level printing.
 > * **Recommendation**: None
 
 ### `Use_Elec_Drv`
@@ -244,10 +208,8 @@ XDM
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Use the gradient correction.
->     * FALSE
->     * Do not use the gradient correction.
+>     * `TRUE`: Use the gradient correction.
+>     * `FALSE`: Do not use the gradient correction.
 > * **Recommendation**: This is only valid with Becke’s $C_{6}$ damping function using the interpolated BR89 model.
 
 ???+ example "Example 5.14: Sample input illustrating a frequency calculation of a vdW complex He $\cdots$ N ${}_{2}$ using the XDM dispersion correction."

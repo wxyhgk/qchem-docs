@@ -6,8 +6,6 @@ title: "6.20.2 CAS-CI and CASSCF Job Control Options"
 
 (July 4, 2026)
 
-CAS_METHOD
-
 ### `CAS_METHOD`
 
 > **Indicates whether orbital optimization is requested.**
@@ -15,15 +13,10 @@ CAS_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Not running a CAS calculation
->     * 1
->     * CAS-CI (no orbital optimization)
->     * 2
->     * CASSCF (orbital optimization)
+>     * `0`: Not running a CAS calculation
+>     * `1`: CAS-CI (no orbital optimization)
+>     * `2`: CASSCF (orbital optimization)
 > * **Recommendation**: Use 2 for best accuracy, but such computations may become infeasible for large active spaces.
-
-CAS_M_S
 
 ### `CAS_M_S`
 
@@ -32,13 +25,7 @@ CAS_M_S
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * for a wave function with
->     * $N$
->     * unpaired electrons
-
-CAS_N_ELEC
-
+>     * $N$: for a wave function with $N$ unpaired electrons
 ### `CAS_N_ELEC`
 
 > **Specifies the number of active electrons.**
@@ -46,15 +33,9 @@ CAS_N_ELEC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * include
->     * $N$
->     * electrons in the active space
->     * -1
->     * include all electrons in the active space
+>     * $N$: include $N$ electrons in the active space
+>     * `-1`: include all electrons in the active space
 > * **Recommendation**: Use the smallest active space possible for the given system.
-
-CAS_N_ORB
 
 ### `CAS_N_ORB`
 
@@ -63,15 +44,9 @@ CAS_N_ORB
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * include
->     * $N$
->     * orbitals in the active space
->     * -1
->     * include all orbitals in the active space
+>     * $N$: include $N$ orbitals in the active space
+>     * `-1`: include all orbitals in the active space
 > * **Recommendation**: Use the smallest active space possible for the given system.
-
-CAS_N_ROOTS
 
 ### `CAS_N_ROOTS`
 
@@ -80,13 +55,7 @@ CAS_N_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $N$
->     * solve for
->     * $N$
->     * roots of the Hamiltonian
-
-CAS_THRESH
-
+>     * $N$: solve for $N$ roots of the Hamiltonian
 ### `CAS_THRESH`
 
 > **Specifies the threshold for matrix elements to be included in the CAS Hamiltonian.**
@@ -94,12 +63,7 @@ CAS_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `12`
 > * **Options**:
->     * $N$
->     * for a threshold of
->     * $10^{-N}$
-
-CAS_SAVE_NAT_ORBS
-
+>     * $N$: for a threshold of $10^{-N}$
 ### `CAS_SAVE_NAT_ORBS`
 
 > **Save the CAS natural orbitals in place of the reference orbitals.**
@@ -107,13 +71,8 @@ CAS_SAVE_NAT_ORBS
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * overwrite the reference orbitals with CAS natural orbitals
->     * FALSE
->     * do not save the CAS natural orbitals
-
-MAX_CASSCF_CYCLES
-
+>     * `TRUE`: overwrite the reference orbitals with CAS natural orbitals
+>     * `FALSE`: do not save the CAS natural orbitals
 ### `MAX_CASSCF_CYCLES`
 
 > **Maximum number of orbital optimization cycles for CASSCF.**
@@ -121,12 +80,7 @@ MAX_CASSCF_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $N$
->     * set maximum number of optimization cycles to
->     * $N$
-
-CAS_USE_RI
-
+>     * $N$: set maximum number of optimization cycles to $N$
 ### `CAS_USE_RI`
 
 > **Indicates whether the resolution of the identity approximation should be used.**
@@ -134,13 +88,9 @@ CAS_USE_RI
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Compute 2-electron integrals analytically
->     * TRUE
->     * Use the RI approximation for 2-electron integrals
+>     * `FALSE`: Compute 2-electron integrals analytically
+>     * `TRUE`: Use the RI approximation for 2-electron integrals
 > * **Recommendation**: Analytic integrals are more accurate, RI integrals are faster
-
-CAS_DAVIDSON_TOL
 
 ### `CAS_DAVIDSON_TOL`
 
@@ -149,12 +99,8 @@ CAS_DAVIDSON_TOL
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $N$
->     * for a threshold of
->     * $10^{-N}$
+>     * $N$: for a threshold of $10^{-N}$
 > * **Recommendation**: The default should be suitable in most cases
-
-CAS_DAVIDSON_MAXVECTORS
 
 ### `CAS_DAVIDSON_MAXVECTORS`
 
@@ -163,14 +109,8 @@ CAS_DAVIDSON_MAXVECTORS
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * $N$
->     * sets the maximum Davidson subspace size to
->     * $N$
->     * +
->     * CAS_N_ROOTS
+>     * $N$: sets the maximum Davidson subspace size to $N$ + CAS_N_ROOTS
 > * **Recommendation**: The default should be suitable in most cases
-
-CAS_SOLVER
 
 ### `CAS_SOLVER`
 
@@ -179,17 +119,9 @@ CAS_SOLVER
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * CAS-CI/CASSCF
->     * 2
->     * ASCI (see Section
->     * 6.22
->     * )
->     * 3
->     * Truncated CI (CIS, CISD, CISDT, etc.)
-
-TRUNC_CI_LEVEL
-
+>     * `1`: CAS-CI/CASSCF
+>     * `2`: ASCI (see Section 6.22 )
+>     * `3`: Truncated CI (CIS, CISD, CISDT, etc.)
 ### `TRUNC_CI_LEVEL`
 
 > **Specifies the order of truncated CI to be used in the active space.**
@@ -197,18 +129,12 @@ TRUNC_CI_LEVEL
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not carry out truncated CI
->     * 1
->     * CIS
->     * 2
->     * CISD
->     * 3
->     * CISDT
->     * 4
->     * CISDTQ
->     * etc.
-
+>     * `0`: Do not carry out truncated CI
+>     * `1`: CIS
+>     * `2`: CISD
+>     * `3`: CISDT
+>     * `4`: CISDTQ
+>     * `etc.`
 ???+ example "Example 6.55: CASCI(6,14) calculation for the ground state of N ${}_{2}$ ."
     ```qchem
     $molecule

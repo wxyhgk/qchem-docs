@@ -44,8 +44,6 @@ above which are regarded as “localized” on an atom, which has been calibrate
 to a range of transition metals, recovering standard oxidation states ranging
 from $-$II to VII.
 
-LOBA
-
 ### `LOBA`
 
 > **Specifies the methods to use for LOBA**
@@ -53,20 +51,8 @@ LOBA
 > * **Type**: `INTEGER`
 > * **Default**: `00`
 > * **Options**:
->     * $ab$
->     * $a$
->     * specifies the localization method
->     * 0 Perform Boys localization.
->     * 1 Perform PM localization.
->     * 2 Perform ER localization.
->     * $b$
->     * specifies the population analysis method
->     * 0 Do not perform LOBA. This is the default.
->     * 1 Use Mulliken population analysis.
->     * 2 Use Löwdin population analysis.
+>     * $ab$: $a$ specifies the localization method 0 Perform Boys localization. 1 Perform PM localization. 2 Perform ER localization. $b$ specifies the population analysis method 0 Do not perform LOBA. This is the default. 1 Use Mulliken population analysis. 2 Use Löwdin population analysis.
 > * **Recommendation**: Boys Localization is the fastest. ER will require an auxiliary basis set. LOBA 12 provides a reasonable speed/accuracy compromise.
-
-LOBA_THRESH
 
 ### `LOBA_THRESH`
 
@@ -75,12 +61,7 @@ LOBA_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `6015`
 > * **Options**:
->     * $aabb$
->     * $aa$
->     * specifies the threshold to use for localization
->     * $bb$
->     * specifies the threshold to use for occupation
->     * Both are given as percentages.
+>     * $aabb$: $aa$ specifies the threshold to use for localization $bb$ specifies the threshold to use for occupation Both are given as percentages.
 > * **Recommendation**: Decrease $bb$ to see the smaller contributions to orbitals. Values of $aa$ between 40 and 75 have been shown to given meaningful results.
 
 On a technical note, LOBA can function of both restricted and unrestricted

@@ -12,8 +12,6 @@ title: "12.6.8 采用非微扰极化与电荷转移分析的 ALMO-EDA"
 
 若至少有一个片段为开壳层结构，则 will 采用非受限分析。也可以通过设置 UNRESTRICTED=TRUE 来强制使用非受限分析。
 
-EDA_POL_A
-
 ### `EDA_POL_A`
 
 > **对极化过程执行能量分解分析（EDA）**
@@ -21,13 +19,9 @@ EDA_POL_A
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不对极化过程执行 EDA
->     * TRUE
->     * 对极化过程执行 EDA
+>     * `FALSE`: 不对极化过程执行 EDA
+>     * `TRUE`: 对极化过程执行 EDA
 > * **建议**: 设置为 TRUE 以对极化过程执行 EDA
-
-EDA_VCT_A
 
 ### `EDA_VCT_A`
 
@@ -36,13 +30,9 @@ EDA_VCT_A
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行非微扰 CT 分析
->     * TRUE
->     * 执行非微扰 CT 分析。
+>     * `FALSE`: 不执行非微扰 CT 分析
+>     * `TRUE`: 执行非微扰 CT 分析。
 > * **建议**: 设置为 TRUE 以执行非微扰 CT 分析
-
-EDA_COVP_THRESH
 
 ### `EDA_COVP_THRESH`
 
@@ -51,13 +41,8 @@ EDA_COVP_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `500`
 > * **选项**:
->     * $N$
->     * 对能量降低贡献超过
->     * $0.001\times N$
->     * kJ/mol 的 COVP 将被保存
+>     * $N$: 对能量降低贡献超过 $0.001\times N$ kJ/mol 的 COVP 将被保存
 > * **建议**: 无
-
-EDA_SAVE_COVP
 
 ### `EDA_SAVE_COVP`
 
@@ -66,13 +51,9 @@ EDA_SAVE_COVP
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不保存重要的 COVP
->     * TRUE
->     * 保存重要的 COVP
+>     * `FALSE`: 不保存重要的 COVP
+>     * `TRUE`: 保存重要的 COVP
 > * **建议**: 设置为 TRUE 以保存 COVP。注意还需要设置用于绘制 cube 文件的 REM 选项
-
-EDA_NOCV
 
 ### `EDA_NOCV`
 
@@ -81,13 +62,9 @@ EDA_NOCV
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行 NOCV 分析
->     * TRUE
->     * 执行 NOCV 分析
+>     * `FALSE`: 不执行 NOCV 分析
+>     * `TRUE`: 执行 NOCV 分析
 > * **建议**: 无
-
-EDA_NOCV_THRESH
 
 ### `EDA_NOCV_THRESH`
 
@@ -96,13 +73,8 @@ EDA_NOCV_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `500`
 > * **选项**:
->     * $N$
->     * 能量降低贡献超过
->     * $0.001\times N$
->     * kJ/mol 的 NOCV 将被保存
+>     * $N$: 能量降低贡献超过 $0.001\times N$ kJ/mol 的 NOCV 将被保存
 > * **建议**: 无
-
-EDA_SAVE_NOCV
 
 ### `EDA_SAVE_NOCV`
 
@@ -111,13 +83,9 @@ EDA_SAVE_NOCV
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不保存重要的 NOCV
->     * 1
->     * 保存重要的 NOCV
+>     * `0`: 不保存重要的 NOCV
+>     * `1`: 保存重要的 NOCV
 > * **建议**: 设置为 1 以保存 NOCV。注意还需要设置用于绘制 cube 文件的 REM 选项
-
-EDA_NOCV_QUADRATURE
 
 ### `EDA_NOCV_QUADRATURE`
 
@@ -126,13 +94,9 @@ EDA_NOCV_QUADRATURE
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * 1
->     * 使用 1 个求积
->     * 5
->     * 使用 5 个求积
+>     * `1`: 使用 1 个求积
+>     * `5`: 使用 5 个求积
 > * **建议**: 大多数情况下，一个求积就足够了。然而，当 NOCV 的能量降低与对应的 COVP 结果差异很大时，建议增加求积数目。
-
-OVOCV_ANALYSIS
 
 ### `OVOCV_ANALYSIS`
 
@@ -141,13 +105,9 @@ OVOCV_ANALYSIS
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行 OVOCV 分析
->     * TRUE
->     * 执行 OVOCV 分析
+>     * `FALSE`: 不执行 OVOCV 分析
+>     * `TRUE`: 执行 OVOCV 分析
 > * **建议**: 无
-
-OVOCV_THRESH
 
 ### `OVOCV_THRESH`
 
@@ -156,13 +116,8 @@ OVOCV_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `500`
 > * **选项**:
->     * $N$
->     * 能量降低贡献超过
->     * $0.001\times N$
->     * kJ/mol 的 OVOCV 将被保存
+>     * $N$: 能量降低贡献超过 $0.001\times N$ kJ/mol 的 OVOCV 将被保存
 > * **建议**: 无
-
-SAVE_OVOCV
 
 ### `SAVE_OVOCV`
 
@@ -171,10 +126,8 @@ SAVE_OVOCV
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不保存重要的 OVOCV
->     * 1
->     * 保存重要的 OVOCV
+>     * `0`: 不保存重要的 OVOCV
+>     * `1`: 保存重要的 OVOCV
 > * **建议**: 设置为 1 以保存 OVOCV。注意还需要设置用于绘制 cube 文件的 REM 选项
 
 ???+ example "示例 12.20: 采用非微扰 POL 与 CT 分析对 H ${}_{2}$ O-Na ${}^{+}$ 体系进行限制 EDA 计算。"

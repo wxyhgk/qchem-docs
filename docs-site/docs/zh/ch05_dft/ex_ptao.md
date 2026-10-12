@@ -17,8 +17,6 @@ GGA[[228]](../bib_references/bib.md#bib228)
 
 有几个 *$rem* 变量用于 TAO-DFT。
 
-TAO_DFT
-
 ### `TAO_DFT`
 
 > **控制是否使用 TAO-DFT。**
@@ -26,13 +24,9 @@ TAO_DFT
 > * **类型**: `Boolean`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不使用 TAO-DFT
->     * TRUE
->     * 使用 TAO-DFT
+>     * `FALSE`: 不使用 TAO-DFT
+>     * `TRUE`: 使用 TAO-DFT
 > * **建议**: 无
-
-TAO_DFT_THETA
 
 ### `TAO_DFT_THETA`
 
@@ -41,11 +35,8 @@ TAO_DFT_THETA
 > * **类型**: `INTEGER`
 > * **默认值**: `7`
 > * **选项**:
->     * $m$
->     * 自定义虚拟温度的尾数。
+>     * $m$: 自定义虚拟温度的尾数。
 > * **建议**: 无
-
-TAO_DFT_THETA_NDP
 
 ### `TAO_DFT_THETA_NDP`
 
@@ -54,11 +45,8 @@ TAO_DFT_THETA_NDP
 > * **类型**: `INTEGER`
 > * **默认值**: `3`
 > * **选项**:
->     * $n$
->     * 自定义虚拟温度的指数幂。
+>     * $n$: 自定义虚拟温度的指数幂。
 > * **建议**: 无
-
-PTAO
 
 ### `PTAO`
 
@@ -67,10 +55,8 @@ PTAO
 > * **类型**: `Boolean`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行 pTAO/TDA 方法
->     * TRUE
->     * 执行 pTAO/TDA 方法
+>     * `FALSE`: 不执行 pTAO/TDA 方法
+>     * `TRUE`: 执行 pTAO/TDA 方法
 > * **建议**: 无
 
 请注意，将 TAO_DFT_THETA 设为 0 即可恢复普通的 Kohn-Sham DFT。[[227]](../bib_references/bib.md#bib222)

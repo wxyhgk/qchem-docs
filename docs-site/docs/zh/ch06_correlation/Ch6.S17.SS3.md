@@ -6,8 +6,6 @@ title: "6.17.3 关键字汇总"
 
 （2026 年 7 月 4 日）
 
-MEM_STATIC
-
 ### `MEM_STATIC`
 
 > **为各个 Fortran 程序模块设置内存**
@@ -19,8 +17,6 @@ MEM_STATIC
 >     * 用户自定义的内存大小（单位：MB）。
 > * **建议**：对于直接（direct）和半直接（semi-direct）MP2 计算，该值必须大于 OVN 加上 AO 积分求值所需的内存（32–160 MB）。对于大型耦合簇（coupled-cluster）计算，可高达 2000 MB。
 
-CC_MEMORY
-
 ### `CC_MEMORY`
 
 > **指定 CCMAN 和 CCMAN2 中用于块张量（block-tensor）核内存储的缓冲区最大大小（单位：MB）。**
@@ -31,8 +27,6 @@ CC_MEMORY
 >     * $n$
 >     * 以 MB 为单位的整数值
 > * **建议**：较大的值可带来更好的 I/O 性能，推荐用于大内存系统（可写入 .qchemrc 文件）。当在单个节点上专门运行 CCMAN2 时，应设置为总可用 RAM 的 $\sim$ 80%。
-
-CC_BACKEND
 
 ### `CC_BACKEND`
 

@@ -32,8 +32,6 @@ $$
 
 触发上述功能的关键字分别为 EMB_POL 和 EMB_DIPOLE。
 
-EMB_ITER
-
 ### `EMB_ITER`
 
 > **开启迭代投影密度嵌入**
@@ -47,8 +45,6 @@ EMB_ITER
 >     * 开启迭代密度嵌入。
 > * **建议**：无
 
-EMB_POL
-
 ### `EMB_POL`
 
 > **触发迭代极化率张量的计算**
@@ -61,8 +57,6 @@ EMB_POL
 >     * TRUE
 >     * 计算迭代极化率张量。
 > * **建议**：无
-
-EMB_DIPOLE
 
 ### `EMB_DIPOLE`
 

@@ -102,8 +102,6 @@ $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\mathbf{P}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{A}]\right). \tag{12.17}
 $$
 
-FRZ_ORTHO_DECOMP
-
 ### `FRZ_ORTHO_DECOMP`
 
 > **基于与冻结波函数关联的一阶密度矩阵（1PDM）的正交分解，执行冻结相互作用能的分解。**
@@ -111,13 +109,9 @@ FRZ_ORTHO_DECOMP
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE (automatically set to`
 > * **选项**:
->     * FALSE
->     * 不执行正交分解。
->     * TRUE
->     * 使用正交碎片密度执行冻结能分解。
+>     * `FALSE`: 不执行正交分解。
+>     * `TRUE`: 使用正交碎片密度执行冻结能分解。
 > * **建议**: 使用由 "EDA2" 自动设置的默认值。注意，用户可以通过将其设置为 $-1$ 来关闭正交分解。此外，对于涉及有效核势（ECP）的计算，该值会被自动设置为 FALSE，否则会产生不合理的结果。
-
-FRZ_ORTHO_DECOMP_CONV
 
 ### `FRZ_ORTHO_DECOMP_CONV`
 
@@ -126,11 +120,8 @@ FRZ_ORTHO_DECOMP_CONV
 > * **类型**: `INTEGER`
 > * **默认值**: `6`
 > * **选项**:
->     * $n$
->     * $10^{-n}$
+>     * $n$: $10^{-n}$
 > * **建议**: 除非需要更严格的收敛标准，否则使用默认值。
-
-EDA_CLS_ELEC
 
 ### `EDA_CLS_ELEC`
 
@@ -139,13 +130,9 @@ EDA_CLS_ELEC
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE (automatically set to`
 > * **选项**:
->     * FALSE
->     * 不计算经典的 ELEC 项和 PAULI 项。
->     * TRUE
->     * 执行经典分解。
+>     * `FALSE`: 不计算经典的 ELEC 项和 PAULI 项。
+>     * `TRUE`: 执行经典分解。
 > * **建议**: TRUE
-
-EDA_CLS_DISP
 
 ### `EDA_CLS_DISP`
 
@@ -154,13 +141,9 @@ EDA_CLS_DISP
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 使用通过正交分解计算得到的 DISP 项（如果可用）。
->     * TRUE
->     * 使用基于未畸变单体密度（undistorted monomer densities）计算得到的 DISP 项。
+>     * `FALSE`: 使用通过正交分解计算得到的 DISP 项（如果可用）。
+>     * `TRUE`: 使用基于未畸变单体密度（undistorted monomer densities）计算得到的 DISP 项。
 > * **建议**: 当不执行正交分解时，将其设置为 TRUE。
-
-DISP_FREE_X
 
 ### `DISP_FREE_X`
 
@@ -169,14 +152,8 @@ DISP_FREE_X
 > * **类型**: `STRING`
 > * **默认值**: `HF`
 > * **选项**:
->     * Q-Chem 所支持的交换泛函（
->     * 例如
->     * revPBE）或交换-关联泛函（
->     * 例如
->     * B3LYP）。
+>     * Q-Chem 所支持的交换泛函（: 例如 revPBE）或交换-关联泛函（例如 B3LYP）。
 > * **建议**: 对于杂化（主）泛函（例如 $\omega$ B97X-V）推荐使用 HF，对于半局域泛函（例如 B97M-V）推荐使用 revPBE。其他合理选项（例如对 B3LYP-D3 使用 B3LYP）亦可采用。
-
-DISP_FREE_C
 
 ### `DISP_FREE_C`
 

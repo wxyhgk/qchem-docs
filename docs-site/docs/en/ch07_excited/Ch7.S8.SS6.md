@@ -26,8 +26,6 @@ performed when EXCHANGE = HF, CORRELATION = CI
 and EOM_CORR = CIS(D). The SF-CIS(D) is invoked by using
 SF_STATES.
 
-EE_STATES
-
 ### `EE_STATES`
 
 > **Sets the number of excited state roots to find. For closed-shell reference, defaults into EE_SINGLETS . For open-shell references, specifies all low-lying states.**
@@ -35,16 +33,8 @@ EE_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EE_SINGLETS
 
 ### `EE_SINGLETS`
 
@@ -53,17 +43,8 @@ EE_SINGLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EE_TRIPLETS
 
 ### `EE_TRIPLETS`
 
@@ -72,17 +53,8 @@ EE_TRIPLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-SF_STATES
 
 ### `SF_STATES`
 
@@ -91,14 +63,7 @@ SF_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * SF states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ SF states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
 
 **Note: 
@@ -111,8 +76,6 @@ symmetry of the target state is the same as that of transition, however, for
 open-shell references this is not so.
 **
 
-CC_STATE_TO_OPT
-
 ### `CC_STATE_TO_OPT`
 
 > **Specifies which state to optimize.**
@@ -120,16 +83,7 @@ CC_STATE_TO_OPT
 > * **Type**: `INTEGER ARRAY`
 > * **Default**: `None`
 > * **Options**:
->     * [
->     * $i$
->     * ,
->     * $j$
->     * ]
->     * optimize the
->     * $j$
->     * th state of the
->     * $i$
->     * th irrep.
+>     * `[`: $i$ , $j$ ] optimize the $j$ th state of the $i$ th irrep.
 > * **Recommendation**: None
 
 **Note: 

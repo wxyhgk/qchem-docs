@@ -123,8 +123,6 @@ $X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{triplet}}Y^{
 
 通过 *$rem* 变量 CALC_SOC 来启用 TDDFT + SOC 计算：
 
-CALC_SOC
-
 ### `CALC_SOC`
 
 > **控制是否为 EOM-CC、RAS-CI、CIS、TDDFT/TDA 和 TDDFT/RPA 计算 SOC 常数。**
@@ -132,14 +130,10 @@ CALC_SOC
 > * **类型**: `INTEGER/LOGICAL`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不执行 SOC 计算。
->     * 1
->     * 使用 Breit-Pauli 哈密顿量的一电子部分执行 SOC 计算
->     * 2
->     * 对两电子贡献采用平均场处理，执行完整 SOC 计算
->     * 4
->     * 使用缩放核电荷执行 SOC 计算
+>     * `0`: 不执行 SOC 计算。
+>     * `1`: 使用 Breit-Pauli 哈密顿量的一电子部分执行 SOC 计算
+>     * `2`: 对两电子贡献采用平均场处理，执行完整 SOC 计算
+>     * `4`: 使用缩放核电荷执行 SOC 计算
 > * **建议**: 最后两个选项在第 7.9.21.4 节中描述。
 
 示例 [7.3.10.1](#ex:dftcis-soc)、[7.3.10.1](#ex:dftcis-soc) 和 [7.3.10.1](#ex:dftcis-soc)
@@ -348,8 +342,6 @@ $$
 
 该程序通过设置 *$rem* 变量 CIS_SOC = $N$ 来触发，其中 $N$ 是所需的根数：
 
-CIS_SOC
-
 ### `CIS_SOC`
 
 > **控制 TDDFT/TDA-SOC 计算所求根的数目。**
@@ -357,12 +349,7 @@ CIS_SOC
 > * **类型**: `INTEGER/LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行该计算。
->     * $N$
->     * 求解
->     * $N$
->     * 个最低的 TDDFT/TDA-SOC 自旋绝热态。
+>     * `FALSE`: 不执行该计算。 $N$ 求解 $N$ 个最低的 TDDFT/TDA-SOC 自旋绝热态。
 > * **建议**: 不大于 $4\times$ CIS_N_ROOTS。TDDFT/TDA-SOC 会先执行一次标准的 TDDFT/TDA 计算以生成初始猜测，然后重新进行对角化以生成自旋绝热线。因此，一个好的做法是先单独执行一次常规的 TDDFT/TDA 计算，生成激发自旋 diabats（自旋 diabatic 态）并检查所需的能量范围，之后再生成激发自旋绝热线。
 
 若要加入 post-SCF 磁场，必须初始化 *$bfield_postscf* 区块：

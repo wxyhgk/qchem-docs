@@ -59,8 +59,6 @@ $$
 
 在 **Q-Chem** 中，全纯 Hartree-Fock 方法实现在 **libnoci** 软件包内（参见 [7.5.2 节](../ch07_excited/subsec_LIBNOCI.md)），通过设置 USE_LIBNOCI = TRUE 来访问，其设计目标是为 NOCI 计算定位多个 SCF 解。
 
-SCF_HOLOMORPHIC
-
 ### `SCF_HOLOMORPHIC`
 
 > **启用全纯 Hartree-Fock 轨道。**
@@ -68,13 +66,9 @@ SCF_HOLOMORPHIC
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 关闭全纯 Hartree-Fock
->     * TRUE
->     * 开启全纯 Hartree-Fock。
+>     * `FALSE`: 关闭全纯 Hartree-Fock
+>     * `TRUE`: 开启全纯 Hartree-Fock。
 > * **建议**: 若设为 TRUE，则始终使用全纯 Hartree-Fock 的复轨道系数。若设为 FALSE 但同时 COMPLEX = TRUE，则使用复厄米轨道。
-
-SCF_EESCALE_MAG
 
 ### `SCF_EESCALE_MAG`
 
@@ -83,12 +77,8 @@ SCF_EESCALE_MAG
 > * **类型**: `INTEGER`
 > * **默认值**: `$10000$`
 > * **选项**:
->     * $abcde$
->     * 对应于
->     * $a.bcde$
+>     * $abcde$: 对应于 $a.bcde$
 > * **建议**: 对于全纯 Hartree-Fock 轨道，仅使用输入值的幅值；而对于真实 Hartree-Fock 轨道，输入值的符号表示 $\lambda$ 的符号。
-
-SCF_EESCALE_ARG
 
 ### `SCF_EESCALE_ARG`
 
@@ -97,7 +87,5 @@ SCF_EESCALE_ARG
 > * **类型**: `INTEGER`
 > * **默认值**: `$00000$`
 > * **选项**:
->     * $abcde$
->     * 对应于
->     * $a.bcde$
+>     * $abcde$: 对应于 $a.bcde$
 > * **建议**: 通常设置为复相位角 $00500$（即 $0.0500$）就足以安全地将某个解引导越过 Coulson-Fischer 点，并转入其对应的复全纯解。

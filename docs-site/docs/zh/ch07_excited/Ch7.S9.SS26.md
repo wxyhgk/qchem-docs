@@ -9,8 +9,6 @@ title: "7.9.26 EOM-CC(2,3) 作业控制"
 通过 METHOD=EOM-CC(2,3) 调用 EOM-CC(2,3)。
 以下选项可用：
 
-EOM_PRECONV_SD
-
 ### `EOM_PRECONV_SD`
 
 > **先求解 EOM-CCSD 方程并打印能量，随后将 EOM-CCSD 矢量用作 EOM-CC(2,3) 的初始矢量。对于采用能量可加性方案（energy additivity schemes）的计算非常方便。**
@@ -23,8 +21,6 @@ EOM_PRECONV_SD
 >     * $n$
 >     * 次 SD 迭代
 > * **建议**：建议开启此选项
-
-CC_REST_AMPL
 
 ### `CC_REST_AMPL`
 
@@ -39,8 +35,6 @@ CC_REST_AMPL
 >     * 不施加限制
 > * **建议**：无
 
-CC_REST_TRIPLES
-
 ### `CC_REST_TRIPLES`
 
 > **将 $R_{3}$ 振幅限制在活性空间（active space）内，即要求从一个活性占据轨道中移除一个电子，并向一个活性虚轨道中添加一个电子。**
@@ -51,8 +45,6 @@ CC_REST_TRIPLES
 >     * 1
 >     * 施加限制
 > * **建议**：无
-
-CC_REST_OCC
 
 ### `CC_REST_OCC`
 
@@ -66,8 +58,6 @@ CC_REST_OCC
 >     * $n$
 >     * 个占据轨道。
 > * **建议**：无
-
-CC_REST_VIR
 
 ### `CC_REST_VIR`
 

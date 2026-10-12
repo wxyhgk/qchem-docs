@@ -186,8 +186,6 @@ $$
 泊松方程是在三维笛卡尔网格上求解的，除非网格间距非常小，否则能量不必具有旋转不变性。
 **
 
-PEQS_SWITCH
-
 ### `PEQS_SWITCH`
 
 > **当 SCF 误差低于 10 ${}^{-\rm PEQS\_SWITCH}$ 时开始计入溶剂效应。**
@@ -195,9 +193,7 @@ PEQS_SWITCH
 > * **类型**: `INTEGER`
 > * **默认值**: `3`
 > * **选项**:
->     * $n$
->     * 对应于 10
->     * ${}^{-n}$
+>     * $n$: 对应于 10 ${}^{-n}$
 > * **建议**: 使用默认值，除非需要在 SCF 流程中更早地引入溶剂效应。
 
 泊松方程求解器（PEqS）例程的进一步任务控制由两个区段设定：*$peqs_grid* 与 *$peqs*。（可选的第三个区段 *$epsilon* 将在后文讨论。）*$peqs_grid* 区段用于定义笛卡尔离散化网格，格式如下：
@@ -237,10 +233,8 @@ PEQS_SWITCH
 > * **类型**: `INTEGER`
 > * **默认值**: `5000`
 > * **选项**:
->     * $n$
->     * 对应的批次大小为
->     * $n$
->     * 个网格点。
+>     * $n$: 对应的批次大小为
+>     * $n$: 个网格点。
 > * **建议**: 对于大网格（$\geq 10^{6}$ 个网格点），推荐批次大小 $n\approx N_{x}N_{y}N_{z}/5$。
 
 ### `MaxIter`
@@ -260,10 +254,7 @@ PEQS_SWITCH
 > * **类型**: `FLOAT`
 > * **默认值**: `1.7778`
 > * **选项**:
->     * $\varepsilon_{\rm opt}$
->     * 期望的
->     * $\varepsilon_{\text{opt}}$
->     * 数值（无量纲）。
+>     * $\varepsilon_{\rm opt}$: 期望的 $\varepsilon_{\text{opt}}$ 数值（无量纲）。
 > * **建议**: 光学位介电常数等于折射率的平方。默认值对应 25 ${}^{\circ}$ C 下的水。
 
 ### `PolarIterScale`
@@ -273,8 +264,7 @@ PEQS_SWITCH
 > * **类型**: `FLOAT`
 > * **默认值**: `0.6`
 > * **选项**:
->     * $\eta$
->     * 期望的无量纲混合参数数值。
+>     * $\eta$: 期望的无量纲混合参数数值。
 > * **建议**: 使用默认值（该值已在文献 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link 与文献 48 Andreussi O., Dabo I., Marzari N. J. Chem. Phys. (2012) , 136 , pp. 064102 . Link 中经过检验），除非计算被证明难以收敛。
 
 ### `Print`
@@ -284,12 +274,9 @@ PEQS_SWITCH
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 基本打印，包含每次 SCF 迭代中的部分 PEqS 信息。
->     * 1
->     * 额外打印用于空腔构造的原子 vdW 半径。
->     * 2
->     * 调试信息。
+>     * `0`: 基本打印，包含每次 SCF 迭代中的部分 PEqS 信息。
+>     * `1`: 额外打印用于空腔构造的原子 vdW 半径。
+>     * `2`: 调试信息。
 > * **建议**: 使用 0 或 1。
 
 ### `SoluteCavity`
@@ -299,18 +286,10 @@ PEQS_SWITCH
 > * **类型**: `STRING`
 > * **默认值**: `Vacuum`
 > * **选项**:
->     * Vacuum
->     * 在真空中进行计算，
->     * $\varepsilon(\mathbf{r})\equiv 1$
->     * 。
->     * RigidVDW
->     * 使用球对称误差函数构造空腔。
->     * Spherical
->     * 在溶质周围构造单个球形空腔。
->     * Arbitrary
->     * 构造用户自定义的介电空腔，其数值来自
->     * $epsilon
->     * 输入区段。
+>     * `Vacuum`: 在真空中进行计算， $\varepsilon(\mathbf{r})\equiv 1$。
+>     * `RigidVDW`: 使用球对称误差函数构造空腔。
+>     * `Spherical`: 在溶质周围构造单个球形空腔。
+>     * `Arbitrary`: 构造用户自定义的介电空腔，其数值来自 $epsilon 输入区段。
 > * **建议**: 无。
 
 ### `SolventDielectric`
@@ -320,10 +299,7 @@ PEQS_SWITCH
 > * **类型**: `FLOAT`
 > * **默认值**: `78.39`
 > * **选项**:
->     * $\varepsilon$
->     * 期望的
->     * $\varepsilon$
->     * 数值（无量纲）。
+>     * $\varepsilon$: 期望的 $\varepsilon$ 数值（无量纲）。
 > * **建议**: 默认值对应 25 ${}^{\circ}$ C 下的水。
 
 ### `SolverThresh`
@@ -333,9 +309,7 @@ PEQS_SWITCH
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **选项**:
->     * $n$
->     * 对应于 10
->     * ${}^{-n}$
+>     * $n$: 对应于 10 ${}^{-n}$
 > * **建议**: 使用默认值，除非希望采用更严格的收敛判据（计算代价更高）。
 
 ## 11.2.11.4 空腔构造
@@ -368,36 +342,13 @@ $$
 > * **类型**: `STRING`
 > * **默认值**: `Bondi`
 > * **选项**:
->     * Bondi
->     * 使用改进的 Bondi 半径集（文献
->     * 1186
->     * Rowland R. S., Taylor R.
->     * J. Phys. Chem.
->     * (1996)
->     * ,
->     * 100
->     * ,
->     * pp. 7384
->     * .
->     * Link
->     * ）。
->     * UFF
->     * 通用力场（Universal Force Field）半径（文献
->     * 1146
->     * Rappé A. K. et al.
->     * J. Am. Chem. Soc.
->     * (1992)
->     * ,
->     * 114
->     * ,
->     * pp. 10024
->     * .
->     * Link
->     * ）。
->     * Read
->     * 从
->     * $van_der_waals
->     * 输入区段读取用户自定义半径。
+>     * `Bondi`: 使用改进的 Bondi 半径集（文献
+>     * `1186`: Rowland R. S., Taylor R. J. Phys. Chem. (1996) ,
+>     * `100`: , pp. 7384 . Link）。
+>     * `UFF`: 通用力场（Universal Force Field）半径（文献
+>     * `1146`: Rappé A. K. et al. J. Am. Chem. Soc. (1992) ,
+>     * `114`: , pp. 10024 . Link）。
+>     * `Read`: 从 $van_der_waals 输入区段读取用户自定义半径。
 > * **建议**: 无。Read 选项的工作方式与 $pcm 区段中的相应关键字相同（见第 11.2.4.1 节），其 $van_der_waals 输入区段的格式见第 11.2.10 节。
 
 ### `RigidScale`
@@ -407,10 +358,7 @@ $$
 > * **类型**: `FLOAT`
 > * **默认值**: `0.265 Å`
 > * **选项**:
->     * $\Delta$
->     * 指定期望数值（单位为 Å）；参见式 (
->     * 11.43
->     * )。
+>     * $\Delta$: 指定期望数值（单位为 Å）；参见式 ( 11.43 )。
 > * **建议**: 使用默认值。该值在文献 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link 中经过调参，使小分子溶剂化能量的误差约为 1 kcal/mol。
 
 ### `VDWtype`
@@ -420,12 +368,9 @@ $$
 > * **类型**: `STRING`
 > * **默认值**: `Scaled`
 > * **选项**:
->     * Unscaled
->     * $d_{A}=r_{\mathrm{vdW}}$
->     * Scaled
->     * $d_{A}=r_{\mathrm{vdW}}\times scale$
->     * Shifted
->     * $d_{A}=(r_{\mathrm{vdW}}+shift)\times scale$
+>     * `Unscaled`: $d_{A}=r_{\mathrm{vdW}}$
+>     * `Scaled`: $d_{A}=r_{\mathrm{vdW}}\times scale$
+>     * `Shifted`: $d_{A}=(r_{\mathrm{vdW}}+shift)\times scale$
 > * **建议**: 无。$scale$ 与 $shift$ 的数值分别由 VDWscale 和 VDWshift 关键字设置。
 
 ### `VDWscale`
@@ -435,8 +380,7 @@ $$
 > * **类型**: `FLOAT`
 > * **默认值**: `1.2`
 > * **选项**:
->     * $scale$
->     * 指定原子 vdW 半径的无量纲缩放因子。
+>     * $scale$: 指定原子 vdW 半径的无量纲缩放因子。
 > * **建议**: 使用默认值。
 
 ### `VDWshift`
@@ -446,8 +390,7 @@ $$
 > * **类型**: `FLOAT`
 > * **默认值**: `0.0 Å`
 > * **选项**:
->     * $shift$
->     * 指定期望的位移量（单位为 Å）。
+>     * $shift$: 指定期望的位移量（单位为 Å）。
 > * **建议**: 若将 VDWtype 设为 Shifted，则 vdW 缩放因子默认设为 1.0。可用 VDWScale 关键字加以调整。
 
 将 **SoluteCavity** 关键字设为 **Spherical** 即请求在溶质周围构造球形空腔，并使用双曲正切函数将介电值从真空平滑插值到溶剂：[[267]](../bib_references/bib.md#bib267)
@@ -470,8 +413,7 @@ $r_{\mathrm{mid}}$ 取为球半径 $R$ 与插值长度一半之和：$r_{\mathrm
 > * **类型**: `FLOAT`
 > * **默认值**: `无默认值。`
 > * **选项**:
->     * $R$
->     * 期望的球形空腔半径（单位为 Å）。
+>     * $R$: 期望的球形空腔半径（单位为 Å）。
 > * **建议**: 无。更多信息请参见文献 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link 的补充材料（Supporting Information）。
 
 ### `InterpolLength`
@@ -481,8 +423,7 @@ $r_{\mathrm{mid}}$ 取为球半径 $R$ 与插值长度一半之和：$r_{\mathrm
 > * **类型**: `FLOAT`
 > * **默认值**: `无默认值。`
 > * **选项**:
->     * $L$
->     * 期望的插值长度（单位为 Å）。
+>     * $L$: 期望的插值长度（单位为 Å）。
 > * **建议**: 无。
 
 ### `InterpolScale`
@@ -492,10 +433,7 @@ $r_{\mathrm{mid}}$ 取为球半径 $R$ 与插值长度一半之和：$r_{\mathrm
 > * **类型**: `FLOAT`
 > * **默认值**: `$\alpha$`
 > * **选项**:
->     * $\alpha$
->     * 期望的插值尺度因子（单位为 Å
->     * ${}^{-1}$
->     * ）。
+>     * $\alpha$: 期望的插值尺度因子（单位为 Å ${}^{-1}$）。
 > * **建议**: 使用默认值，除非希望过渡区域更宽（$\alpha$ 更小）或更窄（$\alpha$ 更大）。
 
 ### `Interface`
@@ -505,10 +443,8 @@ $r_{\mathrm{mid}}$ 取为球半径 $R$ 与插值长度一半之和：$r_{\mathrm
 > * **类型**: `STRING`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 修改介电函数以模拟溶剂与真空之间的界面。
->     * False
->     * 在体相溶剂中进行溶剂化计算。
+>     * `True`: 修改介电函数以模拟溶剂与真空之间的界面。
+>     * `False`: 在体相溶剂中进行溶剂化计算。
 > * **建议**: 用户还需指定介电值从体相溶剂平滑插值到真空的长度尺度，以及 Gibbs 分界面（Gibbs dividing surface）的位置（见下文）。
 
 将 **Interface** 设为 **True** 后，笛卡尔网格上的介电函数会被进一步修改以模拟溶剂/真空界面。首先，按上文所述由 **SoluteCavity** 关键字指定的方式构造溶质空腔。然后，利用下述双曲正切切换函数，在 $z$ 方向上跨越 Gibbs 分界面（$z\equiv z_{\mathrm{GDS}}$）对介电函数进行平滑插值：[[267]](../bib_references/bib.md#bib267)
@@ -530,8 +466,7 @@ $$
 > * **类型**: `FLOAT`
 > * **默认值**: `None`
 > * **选项**:
->     * $L_{\rm interface}$
->     * 期望的界面长度（单位为 Å）。
+>     * $L_{\rm interface}$: 期望的界面长度（单位为 Å）。
 > * **建议**: 该值决定式 ( 11.45 ) 中的 $\beta=4/L_{\rm interface}$。关于溶剂/真空界面构造的完整描述，请参见文献 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link 的补充材料。
 
 ### `GibbsDS`
@@ -541,8 +476,7 @@ $$
 > * **类型**: `FLOAT`
 > * **默认值**: `None`
 > * **选项**:
->     * $z_{\mathrm{GDS}}$
->     * 期望的 Gibbs 分界面位置（单位为 Å）。
+>     * $z_{\mathrm{GDS}}$: 期望的 Gibbs 分界面位置（单位为 Å）。
 > * **建议**: 请参考文献。确定该数值的一种途径是计算溶剂密度随 $z$ 的分布曲线，并将此位置设为溶剂密度降至体相值 50% 之处。通常 $z_{\mathrm{GDS}}\approx L_{\rm interface}/2$。
 
 ### `NonequilJob`
@@ -552,10 +486,8 @@ $$
 > * **类型**: `STRING`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 计算竖直电离过程的非平衡自由能。
->     * False
->     * 计算平衡溶剂化自由能。
+>     * `True`: 计算竖直电离过程的非平衡自由能。
+>     * `False`: 计算平衡溶剂化自由能。
 > * **建议**: 无。
 
 ### `NonequilPartition`
@@ -565,10 +497,8 @@ $$
 > * **类型**: `STRING`
 > * **默认值**: `Marcus`
 > * **选项**:
->     * Marcus
->     * 采用 Marcus 划分方案。
->     * Pekar
->     * 采用 Pekar 划分方案。
+>     * `Marcus`: 采用 Marcus 划分方案。
+>     * `Pekar`: 采用 Pekar 划分方案。
 > * **建议**: 使用默认值。尽管两种方法的快、慢溶剂化响应不同，但总溶剂化自由能相同，1530 You Z.-Q. et al. J. Chem. Phys. (2015) , 143 , pp. 204104 . Link 只是 Pekar 方案比 Marcus 方案的计算代价更高。
 
 ### `NonequilState`
@@ -578,10 +508,8 @@ $$
 > * **类型**: `STRING`
 > * **默认值**: `Reference`
 > * **选项**:
->     * Reference
->     * 参考（初始）态，将从中移去一个电子。
->     * Ionized
->     * 终态（电离态）。
+>     * `Reference`: 参考（初始）态，将从中移去一个电子。
+>     * `Ionized`: 终态（电离态）。
 > * **建议**: 无。在复合输入任务中两个数值都需要用到，以便计算对竖直电离的非平衡响应；参见示例 11.2.11.5。
 
 最后，将 *$peqs* 输入区段中的 **SoluteCavity** 设为 **Arbitrary**，用户即可选择指定完全由用户自定义的介电函数 $\varepsilon(\mathbf{r})$，[[31]](../bib_references/bib.md#bib15)

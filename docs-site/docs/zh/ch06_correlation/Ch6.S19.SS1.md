@@ -8,8 +8,6 @@ title: "6.19.1 引言"
 
 下文所述方法价键理论（Valence Bond Theory）相关，由 GVBMAN 模块负责处理。可用的模型如下：
 
-CORRELATION
-
 ### `CORRELATION`
 
 > **指定由 GVBMAN 处理的 GVB 模型中的关联级别。**
@@ -17,14 +15,7 @@ CORRELATION
 > * **类型**: `STRING`
 > * **默认值**: `None`
 > * **可选值**:
->     * PP
->     * CCVB
->     * GVB_IP
->     * GVB_SIP
->     * GVB_DIP
->     * OP
->     * NP
->     * 2P
+>     * `PP`: CCVB GVB_IP GVB_SIP GVB_DIP OP NP 2P
 > * **建议**: 作为粗略指导，对双自由基类（biradicaloid）分子使用 PP，对涉及强自旋关联的多自由基类（polyradicaloid）分子使用 CCVB。更多指导请查阅相关文献。
 
 电子关联较强的分子，其名义占据轨道（例如构成 Hartree-Fock 波函数的那些轨道）与名义空轨道之间的能量差很小。典型例子包括所谓的双自由基类（diradicaloid）分子，[[655]](../bib_references/bib.md#bib679)

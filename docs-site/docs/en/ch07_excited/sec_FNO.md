@@ -37,8 +37,6 @@ Please, adjust your input consistently with CC_SYMMETRY = FALSE.
 OSFNO can be combined with orbital localization to produce effective Hamiltonians,
 as described in the Section [13.6](../ch13_specialized/sec_EffHam.md).
 
-CC_OSFNO
-
 ### `CC_OSFNO`
 
 > **Activation of OSFNO. Available only for open-shell references.**
@@ -46,8 +44,7 @@ CC_OSFNO
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * activate
+>     * `TRUE`: activate
 > * **Recommendation**: Use for EOM-SF-CCSD calculations from open-shell references. Available in CCMAN2 only.
 
 ???+ example "Example 7.91: An EOM-SF-CCSD job, illustrating usage of OSFNO for energies and properties."

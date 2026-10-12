@@ -22,8 +22,6 @@ $$
 
 在 **Q-Chem** 中，密度矩阵阻尼作为一种处理困难 SCF 案例的选项（DAMP 算法）提供（仅限 RHF 和 UHF）。在实际计算中，阻尼常常与 DIIS 和 GDM 结合使用（DP_DIIS 和 DP_GDM 算法）。要启用阻尼，需将 *$rem* 变量 SCF_ALGORITHM 设置为 DAMP、DP_DIIS 或 DP_GDM。其他相关的 *$rem* 变量如下所示：
 
-NDAMP
-
 ### `NDAMP`
 
 > **确定混合系数。$\alpha$ = /100。**
@@ -34,8 +32,6 @@ NDAMP
 >     * 用户自定义。0 到 100 之间的整数。
 > * **建议**: 如果 SCF 过程中出现强烈波动，则增大该值。
 
-MAX_DP_CYCLES
-
 ### `MAX_DP_CYCLES`
 
 > **当 SCF_ALGORITHM = DP_DIIS 和 DP_GDM 时，使用阻尼的 SCF 迭代的最大次数。另见 THRESH_DP_SWITCH 。**
@@ -43,14 +39,10 @@ MAX_DP_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `3`
 > * **选项**:
->     * 1
->     * 仅对单个 SCF 步施加阻尼，其余 SCF 步不使用阻尼。
+>     * `1`: 仅对单个 SCF 步施加阻尼，其余 SCF 步不使用阻尼。
 >     * $n$
->     * $n$
->     * 在关闭阻尼之前，使用阻尼的 SCF 迭代次数。
+>     * $n$: 在关闭阻尼之前，使用阻尼的 SCF 迭代次数。
 > * **建议**: 如果在关闭阻尼后仍然持续出现强烈波动，则增大该数值。
-
-THRESH_DP_SWITCH
 
 ### `THRESH_DP_SWITCH`
 

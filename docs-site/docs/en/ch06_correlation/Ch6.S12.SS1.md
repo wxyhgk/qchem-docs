@@ -24,8 +24,6 @@ has begun. During the transition time, both codes will be available for users
 via the CCMAN2 keyword. Finally, there is a new module called **libgmbpt** developed to facilitate correlated calculations of very large systems. This module
 now includes efficient implementations of RI-CC2 and stochastic RI-CC2 methods.
 
-CORRELATION
-
 ### `CORRELATION`
 
 > **Specifies the correlation level of theory handled by CCMAN/CCMAN2.**
@@ -33,62 +31,34 @@ CORRELATION
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * CCMP2
->     * Regular MP2 handled by CCMAN/CCMAN2
->     * MP3
->     * CCMAN and CCMAN2
->     * MP4SDQ
->     * CCMAN
->     * MP4
->     * CCMAN
->     * CCD
->     * CCMAN and CCMAN2
->     * CCD(2)
->     * CCMAN
->     * CCSD
->     * CCMAN and CCMAN2
->     * CCSDT
->     * CCMAN2
->     * CC2
->     * CCMAN2 and LIBGMBPT
->     * CCSD(T)
->     * CCMAN and CCMAN2
->     * CCSD(2)
->     * CCMAN
->     * CCSD(fT)
->     * CCMAN and CCMAN2
->     * CCSD(dT)
->     * CCMAN
->     * CCSDT
->     * CCMAN2
->     * CCVB-SD
->     * CCMAN2
->     * QCISD
->     * CCMAN and CCMAN2
->     * QCISD(T)
->     * CCMAN and CCMAN2
->     * OD
->     * CCMAN
->     * OD(T)
->     * CCMAN
->     * OD(2)
->     * CCMAN
->     * VOD
->     * CCMAN
->     * VOD(2)
->     * CCMAN
->     * QCCD
->     * CCMAN
->     * QCCD(T)
->     * CCMAN
->     * QCCD(2)
->     * CCMAN
->     * VQCCD
->     * CCMAN
->     * VQCCD(T)
->     * CCMAN
->     * VQCCD(2)
->     * CCMAN
+>     * `CCMP2`: Regular MP2 handled by CCMAN/CCMAN2
+>     * `MP3`: CCMAN and CCMAN2
+>     * `MP4SDQ`: CCMAN
+>     * `MP4`: CCMAN
+>     * `CCD`: CCMAN and CCMAN2
+>     * `CCD(2)`: CCMAN
+>     * `CCSD`: CCMAN and CCMAN2
+>     * `CCSDT`: CCMAN2
+>     * `CC2`: CCMAN2 and LIBGMBPT
+>     * `CCSD(T)`: CCMAN and CCMAN2
+>     * `CCSD(2)`: CCMAN
+>     * `CCSD(fT)`: CCMAN and CCMAN2
+>     * `CCSD(dT)`: CCMAN
+>     * `CCSDT`: CCMAN2
+>     * `CCVB-SD`: CCMAN2
+>     * `QCISD`: CCMAN and CCMAN2
+>     * `QCISD(T)`: CCMAN and CCMAN2
+>     * `OD`: CCMAN
+>     * `OD(T)`: CCMAN
+>     * `OD(2)`: CCMAN
+>     * `VOD`: CCMAN
+>     * `VOD(2)`: CCMAN
+>     * `QCCD`: CCMAN
+>     * `QCCD(T)`: CCMAN
+>     * `QCCD(2)`: CCMAN
+>     * `VQCCD`: CCMAN
+>     * `VQCCD(T)`: CCMAN
+>     * `VQCCD(2)`: CCMAN
 > * **Recommendation**: Consult the literature for guidance.
 
 **Note: 

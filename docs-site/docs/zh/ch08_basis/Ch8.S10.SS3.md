@@ -34,8 +34,6 @@ Karlsruhe def2-ECP，与 def2 基组（Basis Set）配合使用
 
 以下 *$rem* 变量用于控制所使用的 ECP：
 
-ECP
-
 ### `ECP`
 
 > **定义所使用的有效核势及其关联基组**

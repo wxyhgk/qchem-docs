@@ -20,8 +20,6 @@ title: "4.4.5 基组投影"
 
 有两种不同的投影方法可用，可通过 *$rem* 中的 BASISPROJTYPE 设置。OVPROJECTION 选项在大基组中展开来自 BASIS2 计算的分子轨道（MO），而 FOPPROJECTION 选项则使用初始较小基组计算的密度矩阵在大基组中构建 Fock 矩阵。对于无法使用对称匹配泛函（SAD）初始猜测的一般基组而言，基组投影是一个非常有效的选项。具体而言，该初始猜测由以下 *$rem* 变量控制：
 
-BASIS2
-
 ### `BASIS2`
 
 > **设置在基组投影中使用的小基组。**
@@ -30,15 +28,10 @@ BASIS2
 > * **默认值**: `无第二基组默认设置。`
 > * **选项**:
 >     * 符号。按照第
->     * 8
->     * 章使用标准基组。
->     * BASIS2_GEN
->     * 一般（General）BASIS2
->     * BASIS2_MIXED
->     * 混合（Mixed）BASIS2
+>     * `8`: 章使用标准基组。
+>     * `BASIS2_GEN`: 一般（General）BASIS2
+>     * `BASIS2_MIXED`: 混合（Mixed）BASIS2
 > * **建议**: BASIS2 应比 BASIS 更小。当 BASIS2 仅用于初始猜测目的时，使用比极小基组更大的基组几乎没有好处。更大的标准化 BASIS2 选项可用于双基组计算（参见第 4.7 节）。
-
-BASISPROJTYPE
 
 ### `BASISPROJTYPE`
 
@@ -47,14 +40,8 @@ BASISPROJTYPE
 > * **类型**: `STRING`
 > * **默认值**: `OVPROJECTION`
 > * **选项**:
->     * FOPPROJECTION
->     * 在第二基组中构建 Fock 矩阵
->     * OVPROJECTION
->     * 将 MO 从
->     * BASIS2
->     * 投影到
->     * BASIS
->     * 。
+>     * `FOPPROJECTION`: 在第二基组中构建 Fock 矩阵
+>     * `OVPROJECTION`: 将 MO 从 BASIS2 投影到 BASIS。
 > * **建议**: 无
 
 **注意：

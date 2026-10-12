@@ -37,8 +37,6 @@ Eq. ([7.78](#eq:OpSing)),
 In contrast, Noodleman’s approximate spin purification procedure performs two independent SCF
 calculations with different orbitals in each.
 
-SPIN_PROJ
-
 ### `SPIN_PROJ`
 
 > **Controls whether approximate spin purification is performed.**
@@ -46,10 +44,6 @@ SPIN_PROJ
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Spin purification is not performed.
->     * NOODLEMAN
->     * Spin purification is performed using Noodleman’s formula, Eq. (
->     * 7.78
->     * ).
+>     * `FALSE`: Spin purification is not performed.
+>     * `NOODLEMAN`: Spin purification is performed using Noodleman’s formula, Eq. ( 7.78 ).
 > * **Recommendation**: Set to NOODLEMAN if spin purification is desired. Make sure that UNRESTRICTED is set to TRUE . Gradients are available but Hessians are not.

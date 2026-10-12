@@ -64,35 +64,7 @@ XOPT_STATE_1, XOPT_STATE_2
 > * **Type**: `[INTEGER, INTEGER, INTEGER]`
 > * **Default**: `No default value (the option must be specified to run this calculation)`
 > * **Options**:
->     * [spin, irrep, state]
->     * spin = 0
->     * Addresses states with low spin,
->     * see also EE_SINGLETS or IP_STATES,EA_STATES.
->     * spin = 1
->     * Addresses states with high spin,
->     * see also EE_TRIPLETS.
->     * irrep
->     * Specifies the irreducible representation to which
->     * the state belongs; for example, in the
->     * $C_{2v}$
->     * point group,
->     * irreps are ordered 1, 2, 3, 4 for
->     * $A_{1}$
->     * ,
->     * $A_{2}$
->     * ,
->     * $B_{1}$
->     * , and
->     * $B_{2}$
->     * , respectively.
->     * state
->     * Specifies the state number within the irreducible
->     * representation, state = 1 means the lowest excited
->     * state, state = 2 is the second excited state,
->     * etc.
->     * .
->     * 0, 0, -1
->     * Ground state.
+>     * `[spin, irrep, state]`: spin = 0 Addresses states with low spin, see also EE_SINGLETS or IP_STATES,EA_STATES. spin = 1 Addresses states with high spin, see also EE_TRIPLETS. irrep Specifies the irreducible representation to which the state belongs; for example, in the $C_{2v}$ point group, irreps are ordered 1, 2, 3, 4 for $A_{1}$ , $A_{2}$ , $B_{1}$ , and $B_{2}$ , respectively. state Specifies the state number within the irreducible representation, state = 1 means the lowest excited state, state = 2 is the second excited state, etc. . 0, 0, -1 Ground state.
 > * **Recommendation**: Only intersections of states with different spin or symmetry can be calculated at this time.
 
 **Note: 
@@ -103,8 +75,6 @@ EE_STATES. For example, in spin-flip calculations use spin = 0 regardless of wha
 the actual multiplicity of the target state.
 **
 
-XOPT_SEAM_ONLY
-
 ### `XOPT_SEAM_ONLY`
 
 > **Orders an intersection seam search only, no minimization is to be performed.**
@@ -112,10 +82,8 @@ XOPT_SEAM_ONLY
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Find a point on the intersection seam and stop.
->     * FALSE
->     * Perform a minimization of the intersection seam.
+>     * `TRUE`: Find a point on the intersection seam and stop.
+>     * `FALSE`: Perform a minimization of the intersection seam.
 > * **Recommendation**: In systems with a large number of degrees of freedom it might be useful to locate the seam first by setting this option to TRUE and using that geometry as a starting point for the minimization.
 
 ## 7.9.28.2 Examples

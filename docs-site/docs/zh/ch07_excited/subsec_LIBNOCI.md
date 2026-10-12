@@ -23,8 +23,6 @@ $\beta$ 轨道的编号以 $\alpha$ 分子轨道（MO）总数作为偏移量（
 **libnoci** 程序包还兼容新的 SCF 亚稳态动力学实现（见第 [4.9.3](../ch04_scf/subsubsec_SCFMetadynNOCI.md) 节），
 以及全纯 Hartree–Fock（holomorphic Hartree–Fock）方法，该方法可在所有几何结构上对多个 Hartree–Fock 解进行连续延拓（见第 [4.9.4](../ch04_scf/sec_HoloHF.md) 节）。
 
-USE_LIBNOCI
-
 ### `USE_LIBNOCI`
 
 > **启用 libnoci 以运行 NOCI 计算。**
@@ -32,18 +30,9 @@ USE_LIBNOCI
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * False
->     * 不使用
->     * libnoci
->     * （采用 Q-Chem
->     * 原始实现）。
->     * True
->     * 使用
->     * libnoci
->     * 实现。
+>     * `False`: 不使用 libnoci （采用 Q-Chem 原始实现）。
+>     * `True`: 使用 libnoci 实现。
 > * **建议**: 下文详述的各 $rem 变量仅在 libnoci 中可用。
-
-NOCI_REFGEN
 
 ### `NOCI_REFGEN`
 
@@ -52,13 +41,9 @@ NOCI_REFGEN
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 通过单次 SCF 计算生成初始参考行列式。
->     * 1
->     * 从先前的计算中读取（多个）初始参考行列式。
+>     * `0`: 通过单次 SCF 计算生成初始参考行列式。
+>     * `1`: 从先前的计算中读取（多个）初始参考行列式。
 > * **建议**: 可通过 SCF_READMINIMA 指定要从先前计算中读取的具体参考行列式。
-
-NOCI_DETGEN
 
 ### `NOCI_DETGEN`
 
@@ -67,30 +52,15 @@ NOCI_DETGEN
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 仅使用初始参考行列式。
->     * 1
->     * 从每个参考行列式生成 CIS 激发组态。
->     * 2
->     * 从每个参考行列式生成全部 FCI 激发组态。
->     * 3
->     * 使用 SCF 亚稳态动力学生成
->     * $n$
->     * 个多行列式，其中
->     * $n$
->     * 通过
->     * SCF_SAVEMINIMA
->     * =
->     * $n$
->     * 指定。
->     * 4
->     * 从每个参考行列式生成全部 CAS 激发组态，其中活性轨道
->     * 通过
->     * $active_orbitals
->     * 输入段指定。
+>     * `0`: 仅使用初始参考行列式。
+>     * `1`: 从每个参考行列式生成 CIS 激发组态。
+>     * `2`: 从每个参考行列式生成全部 FCI 激发组态。
+>     * `3`: 使用 SCF 亚稳态动力学生成
+>     * $n$: 个多行列式，其中
+>     * $n$: 通过 SCF_SAVEMINIMA =
+>     * $n$: 指定。
+>     * `4`: 从每个参考行列式生成全部 CAS 激发组态，其中活性轨道通过 $active_orbitals 输入段指定。
 > * **建议**: 默认情况下，这些多行列式会在运行 NOCI 之前于 SCF 级别进行优化。可通过指定 SKIP_SCFMAN = TRUE 来关闭此行为。
-
-NOCI_NEIGVAL
 
 ### `NOCI_NEIGVAL`
 
@@ -99,11 +69,8 @@ NOCI_NEIGVAL
 > * **类型**: `INTEGER`
 > * **默认值**: `10`
 > * **选项**:
->     * $n$
->     * 正整数
+>     * $n$: 正整数
 > * **建议**: 增大该值可输出能量逐渐升高的 NOCI 能级。
-
-NOCI_PRINT
 
 ### `NOCI_PRINT`
 
@@ -112,8 +79,7 @@ NOCI_PRINT
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * $n$
->     * 正整数
+>     * $n$: 正整数
 > * **建议**: 增大该值可获得更多调试信息。
 
 ???+ example "示例 7.39: 在 libnoci 实现中对 H ${}_{2}$ 运行 NOCI，多行列式由 SCF 亚稳态动力学生成。"

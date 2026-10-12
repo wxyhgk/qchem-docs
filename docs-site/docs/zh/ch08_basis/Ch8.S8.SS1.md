@@ -46,8 +46,6 @@ $$
 
 **Q-Chem** 内置了多种辅助基组，可通过 *$rem* 关键字 AUX_BASIS 指定。这些辅助基组列于表 [8.9](#tab:auxbasis_corr) 中，并通过下文所列的任务控制变量在 *$rem* 输入段中指定。请注意，除内置辅助基组（表 [8.9](#tab:auxbasis_corr)）之外，还可以通过 *$aux_basis*（或 *$aux_basis_j*、*$aux_basis_k*、*$aux_basis_corr*）输入段来输入用户自定义的辅助基组，其语法总体上遵循前文第 [8.4](sect_userbasis.md) 节中所述的 *$basis* 输入段。
 
-AUX_BASIS
-
 ### `AUX_BASIS`
 
 > **设置要使用的辅助基组**
@@ -55,17 +53,10 @@ AUX_BASIS
 > * **类型**: `STRING`
 > * **默认值**: `无默认辅助基组`
 > * **选项**:
->     * General, Gen
->     * 用户自定义。与
->     * BASIS
->     * 的用法相同
->     * Symbol
->     * 使用下表中的标准辅助基组
->     * Mixed
->     * 使用不同基组的组合
+>     * `General, Gen`: 用户自定义。与 BASIS 的用法相同
+>     * `Symbol`: 使用下表中的标准辅助基组
+>     * `Mixed`: 使用不同基组的组合
 > * **建议**: 请参阅文献及 Basis Set Exchange 以辅助选择。
-
-AUX_BASIS_J
 
 ### `AUX_BASIS_J`
 
@@ -74,17 +65,10 @@ AUX_BASIS_J
 > * **类型**: `STRING`
 > * **默认值**: `无默认辅助基组`
 > * **选项**:
->     * General, Gen
->     * 用户自定义。与
->     * BASIS
->     * 的用法相同
->     * Symbol
->     * 使用下表中的标准辅助基组
->     * Mixed
->     * 使用不同基组的组合
+>     * `General, Gen`: 用户自定义。与 BASIS 的用法相同
+>     * `Symbol`: 使用下表中的标准辅助基组
+>     * `Mixed`: 使用不同基组的组合
 > * **建议**: 请参阅文献及 Basis Set Exchange 以辅助选择。
-
-AUX_BASIS_K
 
 ### `AUX_BASIS_K`
 
@@ -93,17 +77,10 @@ AUX_BASIS_K
 > * **类型**: `STRING`
 > * **默认值**: `无默认辅助基组`
 > * **选项**:
->     * General, Gen
->     * 用户自定义。与
->     * BASIS
->     * 的用法相同
->     * Symbol
->     * 使用下表中的标准辅助基组
->     * Mixed
->     * 使用不同基组的组合
+>     * `General, Gen`: 用户自定义。与 BASIS 的用法相同
+>     * `Symbol`: 使用下表中的标准辅助基组
+>     * `Mixed`: 使用不同基组的组合
 > * **建议**: 请参阅文献及 Basis Set Exchange 以辅助选择。
-
-AUX_BASIS_CORR
 
 ### `AUX_BASIS_CORR`
 
@@ -112,14 +89,9 @@ AUX_BASIS_CORR
 > * **类型**: `STRING`
 > * **默认值**: `无默认辅助基组`
 > * **选项**:
->     * General, Gen
->     * 用户自定义。与
->     * BASIS
->     * 的用法相同
->     * Symbol
->     * 使用下表中的标准辅助基组
->     * Mixed
->     * 使用不同基组的组合
+>     * `General, Gen`: 用户自定义。与 BASIS 的用法相同
+>     * `Symbol`: 使用下表中的标准辅助基组
+>     * `Mixed`: 使用不同基组的组合
 > * **建议**: 请参阅文献及 Basis Set Exchange 以辅助选择。
 
 | 符号名称 | 支持的原子 |

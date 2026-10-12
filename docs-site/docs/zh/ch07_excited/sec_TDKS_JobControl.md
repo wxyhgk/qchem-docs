@@ -40,8 +40,6 @@ title: "7.4.2 作业控制"
 
 TDKS 方法在大多数实际应用都需要大量的时间步，因此程序提供了重启（restart）功能。通过在 *$rem* 段中设置 TDKS_RESTART = TRUE，可以将一次长的动力学模拟分段执行（*e.g.*, 以规避共享计算资源上的墙钟时间限制）。上一次作业的结果存储在暂存（scratch）目录中，下一个作业通过从同一目录读取数据来启动，并从中断的时间传播处继续。因此，后续 **Q-Chem** 作业必须使用 `-save` 标志，并且两次作业应使用同名（同一）暂存目录。默认情况下，中间结果每 1,000 步自动存储一次。如果作业在达到所请求的时间步数之前被意外终止，可以轻松地从最后保存的步骤重新启动。
 
-TDKS_RESTART
-
 ### `TDKS_RESTART`
 
 > **通过继续上一个作业来重启计算**
@@ -49,10 +47,8 @@ TDKS_RESTART
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * TDKS 计算从上一次计算继续。
->     * FALSE
->     * TDKS 计算从头开始。
+>     * `TRUE`: TDKS 计算从上一次计算继续。
+>     * `FALSE`: TDKS 计算从头开始。
 > * **建议**: 无。
 
 ???+ example "示例 7.34: 展示重启功能的 TDKS 计算。"
@@ -136,14 +132,10 @@ TDKS_RESTART
 > * **类型**: `STRING`
 > * **默认值**: `MMUT`
 > * **选项**:
->     * EULER
->     * 欧拉（Euler）方法
->     * MMUT
->     * 改进中点酉变换（Modified mid-point unitary transformation）方法
->     * LFLPPC
->     * 线性 Fock、线性密度预测/校正（Linear Fock, linear density predictor/corrector）方法
->     * EPPC
->     * 指数密度预测/校正（Exponential density predictor/corrector）方法
+>     * `EULER`: 欧拉（Euler）方法
+>     * `MMUT`: 改进中点酉变换（Modified mid-point unitary transformation）方法
+>     * `LFLPPC`: 线性 Fock、线性密度预测/校正（Linear Fock, linear density predictor/corrector）方法
+>     * `EPPC`: 指数密度预测/校正（Exponential density predictor/corrector）方法
 > * **建议**: 使用 MMUT、LFLPPC 或 EPPC。（不推荐使用欧拉方法。）与 MMUT 相比，两种预测/校正方法能够使用更大的时间步长实现稳定的动力学，并且还能对动力学的稳定性进行实时（on-the-fly）一致性检查，但这些方法在单步开销上比 MMUT 更昂贵。
 
 ### `PC_Fock_Thresh`
@@ -153,7 +145,7 @@ TDKS_RESTART
 > * **类型**: `INTEGER`
 > * **默认值**: `7 (for`
 > * **选项**:
->     * > 0
+>     * `> 0`
 > * **建议**: 无。
 
 ### `PC_Den_Thresh`
@@ -163,7 +155,7 @@ TDKS_RESTART
 > * **类型**: `INTEGER`
 > * **默认值**: `7 (for`
 > * **选项**:
->     * > 0
+>     * `> 0`
 > * **建议**: 无。
 
 ### `PC_Max_Iter`
@@ -173,7 +165,7 @@ TDKS_RESTART
 > * **类型**: `INTEGER`
 > * **默认值**: `20`
 > * **选项**:
->     * > 0
+>     * `> 0`
 > * **建议**: 无。
 
 ## 7.4.2.2 微扰场
@@ -187,19 +179,12 @@ TDKS 方法的基础是对一个（先前无场的）基态 $|\Psi_{0}\rangle$ �
 > * **类型**: `STRING`
 > * **默认值**: `DELTA`
 > * **选项**:
->     * DELTA
->     * $\delta$
->     * 函数冲击（kick）
->     * CW
->     * 连续波（continuous-wave）场
->     * IMPULSE
->     * 脉冲场（高斯包络）
->     * IMPULSE2
->     * 脉冲场（余弦平方包络）
->     * STATIC
->     * 静电场
->     * NONE
->     * 无场
+>     * `DELTA`: $\delta$ 函数冲击（kick）
+>     * `CW`: 连续波（continuous-wave）场
+>     * `IMPULSE`: 脉冲场（高斯包络）
+>     * `IMPULSE2`: 脉冲场（余弦平方包络）
+>     * `STATIC`: 静电场
+>     * `NONE`: 无场
 > * **建议**: 无。
 
 **Field_Type** 的这些选择可总结如下。注意 $\bm{\mathcal{E}}=(\mathcal{E}_{x},\mathcal{E}_{y},\mathcal{E}_{z})$ 是一个矢量，其大小由 **Field_Amp** 控制，其方向由 **Field_Vector** 控制。
@@ -246,7 +231,7 @@ $$
 > * **类型**: `VECTOR`
 > * **默认值**: `1.0 1.0 1.0`
 > * **选项**:
->     * NONE
+>     * `NONE`
 > * **建议**: NONE
 
 ### `Field_Amp`
@@ -256,7 +241,7 @@ $$
 > * **类型**: `DOUBLE`
 > * **默认值**: `0.0001`
 > * **选项**:
->     * NONE
+>     * `NONE`
 > * **建议**: $10^{-3}$ – $10^{-4}$ a.u. 的取值对应弱场，适用于模拟吸收光谱（ i.e. ，处于线性响应范围之内，但无需线性响应含时密度泛函理论（LR-TDDFT）所要求的逐根（root-by-root）计算）。更大的场振幅对应强场动力学，例如二次谐波产生（second harmonic generation）。
 
 ### `Field_Frequency`
@@ -266,7 +251,7 @@ $$
 > * **类型**: `DOUBLE`
 > * **默认值**: `0.001`
 > * **选项**:
->     * NONE
+>     * `NONE`
 > * **建议**: 使用能量单位是为了在利用 TDKS 产生宽谱时更加方便。
 
 ### `Field_Peak`
@@ -276,7 +261,7 @@ $$
 > * **类型**: `DOUBLE`
 > * **默认值**: `0.0`
 > * **选项**:
->     * NONE
+>     * `NONE`
 > * **建议**: NONE
 
 ### `Field_Tau`
@@ -286,7 +271,7 @@ $$
 > * **类型**: `DOUBLE`
 > * **默认值**: `0.7`
 > * **选项**:
->     * NONE
+>     * `NONE`
 > * **建议**: NONE
 
 ## 7.4.2.3 复吸收势（Complex Absorbing Potential, CAP）
@@ -344,10 +329,8 @@ $$
 > * **类型**: `LOGICAL`
 > * **默认值**: `False`
 > * **选项**:
->     * TRUE
->     * 使用 CAP
->     * FALSE
->     * 不使用 CAP
+>     * `TRUE`: 使用 CAP
+>     * `FALSE`: 不使用 CAP
 > * **建议**: 无。
 
 ### `CAP_R0`
@@ -357,7 +340,7 @@ $$
 > * **类型**: `DOUBLE`
 > * **默认值**: `0`
 > * **选项**:
->     * > 0
+>     * `> 0`
 > * **建议**: 推荐使用大于最大原子范德华半径两倍的取值，并根据需要进行检验。
 
 ### `CAP_Eta`
@@ -367,5 +350,5 @@ $$
 > * **类型**: `DOUBLE`
 > * **默认值**: `1.0`
 > * **选项**:
->     * > 0
+>     * `> 0`
 > * **建议**: 典型取值为 4.0–5.0，但建议进行检验。

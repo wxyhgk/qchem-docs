@@ -6,8 +6,6 @@ title: "9.12.2 团簇优化作业控制"
 
 (2026 年 7 月 4 日)
 
-NSEARCH
-
 ### `NSEARCH`
 
 > **INTEGER（整数）**
@@ -18,8 +16,6 @@ NSEARCH
 >     * 由用户定义。
 > * **建议**: 无
 
-SEARCH_ATOMIC
-
 ### `SEARCH_ATOMIC`
 
 > **对原子团簇执行优化。**
@@ -27,13 +23,9 @@ SEARCH_ATOMIC
 > * **类型**: `BOOLEAN（布尔值）`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 将执行原子团簇搜索。
->     * False
->     * 将执行分子团簇搜索。
+>     * `True`: 将执行原子团簇搜索。
+>     * `False`: 将执行分子团簇搜索。
 > * **建议**: 使用 N_SWOP 指定在结构生成过程中进行原子交换的原子序数。
-
-N_SWOP
 
 ### `N_SWOP`
 
@@ -45,8 +37,6 @@ N_SWOP
 >     * 由用户定义
 > * **建议**: 无
 
-N_MOL_TYPE
-
 ### `N_MOL_TYPE`
 
 > **INTEGER（整数）**
@@ -56,8 +46,6 @@ N_MOL_TYPE
 > * **选项**:
 >     * 由用户定义：可取 1 或 2。
 > * **建议**: 无
-
-NMOL1
 
 ### `NMOL1`
 
@@ -69,8 +57,6 @@ NMOL1
 >     * 由用户定义。
 > * **建议**: 无
 
-N_ATOM_TYPE_1
-
 ### `N_ATOM_TYPE_1`
 
 > **INTEGER（整数）**
@@ -80,8 +66,6 @@ N_ATOM_TYPE_1
 > * **选项**:
 >     * 由用户定义。
 > * **建议**: 无
-
-NMOL2
 
 ### `NMOL2`
 
@@ -93,8 +77,6 @@ NMOL2
 >     * 由用户定义。
 > * **建议**: 无
 
-N_ATOM_TYPE_2
-
 ### `N_ATOM_TYPE_2`
 
 > **INTEGER（整数）**
@@ -105,8 +87,6 @@ N_ATOM_TYPE_2
 >     * 由用户定义。
 > * **建议**: 无
 
-MAXBOX
-
 ### `MAXBOX`
 
 > **设置分子被限制在其中的盒（box）尺寸。**
@@ -114,14 +94,8 @@ MAXBOX
 > * **类型**: `INTEGER（整数）`
 > * **默认值**: `20000`
 > * **选项**:
->     * $n$
->     * 对应于
->     * =
->     * $n/1000$
->     * bohr。
+>     * $n$: 对应于 = $n/1000$ bohr。
 > * **建议**: 需要确保团簇能够容纳在该盒子内。
-
-MIN_SEPARATION
 
 ### `MIN_SEPARATION`
 
@@ -130,14 +104,8 @@ MIN_SEPARATION
 > * **类型**: `INTEGER（整数）`
 > * **默认值**: `300`
 > * **选项**:
->     * $n$
->     * 对应于
->     * =
->     * $n/100$
->     * bohr。
+>     * $n$: 对应于 = $n/100$ bohr。
 > * **建议**: 约为 2.5 bohr。
-
-MAX_DISPLACE
 
 ### `MAX_DISPLACE`
 
@@ -146,14 +114,8 @@ MAX_DISPLACE
 > * **类型**: `INTEGER（整数）`
 > * **默认值**: `500`
 > * **选项**:
->     * $n$
->     * 对应于
->     * =
->     * $n/100$
->     * bohr。
+>     * $n$: 对应于 = $n/100$ bohr。
 > * **建议**: 无。
-
-SCF_NOCRASH
 
 ### `SCF_NOCRASH`
 
@@ -162,13 +124,9 @@ SCF_NOCRASH
 > * **类型**: `BOOLEAN（布尔值）`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 确保计算继续处理下一个结构。
->     * False
->     * 计算将停止。
+>     * `True`: 确保计算继续处理下一个结构。
+>     * `False`: 计算将停止。
 > * **建议**: 设置为 = TRUE。
-
-TIGHTEN_CONVERG
 
 ### `TIGHTEN_CONVERG`
 
@@ -177,13 +135,9 @@ TIGHTEN_CONVERG
 > * **类型**: `BOOLEAN（布尔值）`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 执行使用更严格 SCF 收敛标准的附加计算。
->     * False
->     * 不执行附加计算。
+>     * `True`: 执行使用更严格 SCF 收敛标准的附加计算。
+>     * `False`: 不执行附加计算。
 > * **建议**: 无。
-
-USE_INITIAL
 
 ### `USE_INITIAL`
 
@@ -192,13 +146,9 @@ USE_INITIAL
 > * **类型**: `BOOLEAN（布尔值）`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 输入结构被包含在搜索中。
->     * False
->     * 输入结构不被包含在搜索中。
+>     * `True`: 输入结构被包含在搜索中。
+>     * `False`: 输入结构不被包含在搜索中。
 > * **建议**: 无。
-
-SEARCH_MOM
 
 ### `SEARCH_MOM`
 
@@ -207,13 +157,9 @@ SEARCH_MOM
 > * **类型**: `BOOLEAN（布尔值）`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 执行结合 MOM 的搜索。
->     * False
->     * 执行不使用 MOM 的常规计算。
+>     * `True`: 执行结合 MOM 的搜索。
+>     * `False`: 执行不使用 MOM 的常规计算。
 > * **建议**: 无。
-
-MC_CYCLES
 
 ### `MC_CYCLES`
 
@@ -225,8 +171,6 @@ MC_CYCLES
 >     * 由用户定义。
 > * **建议**: 无
 
-MC_STEPS
-
 ### `MC_STEPS`
 
 > **INTEGER（整数）**
@@ -236,8 +180,6 @@ MC_STEPS
 > * **选项**:
 >     * 由用户定义。
 > * **建议**: 无
-
-MC_TEMP
 
 ### `MC_TEMP`
 
@@ -249,8 +191,6 @@ MC_TEMP
 >     * 由用户定义。
 > * **建议**: 无
 
-N_MOVES
-
 ### `N_MOVES`
 
 > **INTEGER（整数）**
@@ -260,8 +200,6 @@ N_MOVES
 > * **选项**:
 >     * 由用户定义。
 > * **建议**: 无
-
-MAX_JUMP
 
 ### `MAX_JUMP`
 

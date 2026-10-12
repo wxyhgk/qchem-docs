@@ -45,8 +45,6 @@ $$
 
 下面列出了 RCA 的作业控制变量（Job-control variables），并附有一个使用示例。
 
-RCA_PRINT
-
 ### `RCA_PRINT`
 
 > **控制 RCA SCF 优化的输出信息。**
@@ -54,17 +52,11 @@ RCA_PRINT
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 不输出任何信息
->     * 1
->     * RCA 摘要信息
->     * 2
->     * 级别 1 加上 RCA 系数
->     * 3
->     * 级别 2 加上 RCA 迭代详情
+>     * `0`: 不输出任何信息
+>     * `1`: RCA 摘要信息
+>     * `2`: 级别 1 加上 RCA 系数
+>     * `3`: 级别 2 加上 RCA 迭代详情
 > * **建议**: 无
-
-MAX_RCA_CYCLES
 
 ### `MAX_RCA_CYCLES`
 
@@ -73,11 +65,8 @@ MAX_RCA_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **可选值**:
->     * N
->     * 在切换到 DIIS 之前执行 N 次 RCA 迭代
+>     * `N`: 在切换到 DIIS 之前执行 N 次 RCA 迭代
 > * **建议**: 无
-
-THRESH_RCA_SWITCH
 
 ### `THRESH_RCA_SWITCH`
 
@@ -86,10 +75,7 @@ THRESH_RCA_SWITCH
 > * **类型**: `INTEGER`
 > * **默认值**: `3`
 > * **可选值**:
->     * N
->     * 当误差（Error）小于
->     * $10^{-N}$
->     * 时，算法从 RCA 切换为 DIIS。
+>     * `N`: 当误差（Error）小于 $10^{-N}$ 时，算法从 RCA 切换为 DIIS。
 > * **建议**: 无
 
 ???+ example "示例 4.13: 将 RCA_DIIS 算法应用于自由基"

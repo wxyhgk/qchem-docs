@@ -30,8 +30,6 @@ EOM_ARESP_SINGLE_PREC = 1 即可启用该功能。
 若要在双光子吸收（2PA）计算中用单精度求解响应方程，请使用
 CC_EOM_2PA_SINGLE_PREC 关键字（另见第 [7.9.21.6](sec_EOMGRAD.md#sec:2PA) 节）。
 
-EOM_SINGLE_PREC
-
 ### `EOM_SINGLE_PREC`
 
 > **EOM-CC/MP2 计算的精度选择。仅在 CCMAN2 中可用。**
@@ -39,13 +37,9 @@ EOM_SINGLE_PREC
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 1
->     * 单精度计算
->     * 2
->     * 在单精度计算之后执行双精度的清理（clean-up）迭代
+>     * `1`: 单精度计算
+>     * `2`: 在单精度计算之后执行双精度的清理（clean-up）迭代
 > * **建议**: 使用单精度时请勿设置过于严格的收敛判据
-
-CC_EOM_2PA_SINGLE_PREC
 
 ### `CC_EOM_2PA_SINGLE_PREC`
 
@@ -54,8 +48,7 @@ CC_EOM_2PA_SINGLE_PREC
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 1
->     * 单精度计算
+>     * `1`: 单精度计算
 > * **建议**: 无
 
 **注意：

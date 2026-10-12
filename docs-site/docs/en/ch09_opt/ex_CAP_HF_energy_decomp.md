@@ -29,8 +29,6 @@ With CAP-AIMD simulations, one gets two additional files in the AIMD directory (
 
 `CAP_PositionAndWidth`: Records for each step the total complex energy (in a.u.) and the resonance width (in electron-Volt).
 
-CAP_AIMD_SWITCH
-
 ### `CAP_AIMD_SWITCH`
 
 > **Sets CAP_ETA to zero during a CAP-AIMD simulation when the real part of the last alpha occupied orbital’s energy is negative**
@@ -38,17 +36,9 @@ CAP_AIMD_SWITCH
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Set
->     * CAP_ETA
->     * to zero when the real part of the last alpha occupied orbital’s becomes negative.
->     * FALSE
->     * Keep user’s
->     * CAP_ETA
->     * constant throughout simulation.
+>     * `TRUE`: Set CAP_ETA to zero when the real part of the last alpha occupied orbital’s becomes negative.
+>     * `FALSE`: Keep user’s CAP_ETA constant throughout simulation.
 > * **Recommendation**: Use default.
-
-CS_STRICT
 
 ### `CS_STRICT`
 
@@ -57,13 +47,9 @@ CS_STRICT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * determine Mulliken charges, multipole moments and complex orbital energies for CAP-HF calculations by reading – when applicable – the complex density matrix or complex molecular orbital coefficient file.
->     * FALSE
->     * Don’t read the complex density matrix or complex molecular orbital coefficient file when determining Mulliken charges, multipole moments and orbital energies for CAP-HF calculations.
+>     * `TRUE`: determine Mulliken charges, multipole moments and complex orbital energies for CAP-HF calculations by reading – when applicable – the complex density matrix or complex molecular orbital coefficient file.
+>     * `FALSE`: Don’t read the complex density matrix or complex molecular orbital coefficient file when determining Mulliken charges, multipole moments and orbital energies for CAP-HF calculations.
 > * **Recommendation**: Set to ‘TRUE’ for CAP-HF calculations.
-
-SKIP_OLD_SCFMAN
 
 ### `SKIP_OLD_SCFMAN`
 
@@ -72,15 +58,9 @@ SKIP_OLD_SCFMAN
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Skip
->     * only
->     * old SCF drivers
->     * FALSE
->     * Do not skip old SCF drivers
+>     * `TRUE`: Skip only old SCF drivers
+>     * `FALSE`: Do not skip old SCF drivers
 > * **Recommendation**: When performing CAP calculations on temporary anions, it may help setting this variable to FALSE.
-
-CS_SCF_FINAL_PRINT
 
 ### `CS_SCF_FINAL_PRINT`
 
@@ -89,37 +69,15 @@ CS_SCF_FINAL_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Print direct breakdown of CAP-SCF energy.
->     * 2
->     * Print breakdown of CAP-SCF energy based on the complex coefficient matrix.
->     * Also required if the options below are requested.
->     * 3
->     * Level 2 plus diagonal elements of complex orbital energy matrix,
->     * F
->     * . Triggered by Level 2.
->     * 4
->     * Level 2 plus diagonal elements of complex kinetic energy matrix,
->     * T
->     * . Triggered by Level 2
->     * 5
->     * Level 2 plus diagonal elements of complex electron-nuclear Coulomb potential energy matrix,
->     * V
->     * . Triggered by Level 2.
->     * 6
->     * Level 2 plus diagonal elements of CAP matrix,
->     * W
->     * . Triggered by Level 2.
->     * 7
->     * Level 2 plus diagonal elements of total complex one-electron energy matrix,
->     * $\textbf{T}+\textbf{V}+\textbf{W}$
->     * . Triggered by Level 2.
->     * 8
->     * Level 2 plus diagonal elements of total complex electronic energy matrix,
->     * $\textbf{T}+\textbf{V}+\textbf{W}+\textbf{F}$
->     * . Triggered by Level 2.
->     * 9
->     * Level 2 to 8. Triggered by Level 2.
+>     * `1`: Print direct breakdown of CAP-SCF energy.
+>     * `2`: Print breakdown of CAP-SCF energy based on the complex coefficient matrix. Also required if the options below are requested.
+>     * `3`: Level 2 plus diagonal elements of complex orbital energy matrix, F . Triggered by Level 2.
+>     * `4`: Level 2 plus diagonal elements of complex kinetic energy matrix, T . Triggered by Level 2
+>     * `5`: Level 2 plus diagonal elements of complex electron-nuclear Coulomb potential energy matrix, V . Triggered by Level 2.
+>     * `6`: Level 2 plus diagonal elements of CAP matrix, W . Triggered by Level 2.
+>     * `7`: Level 2 plus diagonal elements of total complex one-electron energy matrix, $\textbf{T}+\textbf{V}+\textbf{W}$ . Triggered by Level 2.
+>     * `8`: Level 2 plus diagonal elements of total complex electronic energy matrix, $\textbf{T}+\textbf{V}+\textbf{W}+\textbf{F}$ . Triggered by Level 2.
+>     * `9`: Level 2 to 8. Triggered by Level 2.
 > * **Recommendation**: Level 1 is usually enough. Values for this $rem variable are transformed first into a set of distinct values; thus, for example, “1111” is equivalent to “1” and “28224” is equivalent to “248”. To request Levels 3–9, please remember to request Level 2 as well.
 
 ???+ example "Example 9.9.49: CAP-HF single point job for N ${}_{2}^{-}$ , with energy decomposition of the complex energy. Basis set is cc-PVTZ+3p."

@@ -23,8 +23,6 @@ JOBTYPE = FREQ（Hessian 计算）。作业控制变量及示例见下文。
 即可调用 IRC 计算，其他 *$rem* 变量将在下面说明。IRC 计算可从
 第 9.3 节[9.3](sec_better_TS_guess.md)中讨论的方法中获益，以获得过渡态结构的良好初始猜测。最终路径（正向和反向两个方向）作为一系列代表路径上各步的笛卡尔坐标几何结构，打印在 **Q-Chem** 输出文件的末尾。此输出的格式是标准格式，可被 Visual Molecular Dynamics (VMD) 程序等读取[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627)。
 
-RPATH_COORDS
-
 ### `RPATH_COORDS`
 
 > **决定在 IRC 搜索中使用哪种坐标系。**
@@ -42,8 +40,6 @@ RPATH_COORDS
 >     * -矩阵坐标。
 > * **建议**：使用默认值。注意，使用 $Z$-矩阵坐标要求几何结构以 $Z$-矩阵格式输入。
 
-RPATH_DIRECTION
-
 ### `RPATH_DIRECTION`
 
 > **决定首先要沿本征模式的哪个方向下降。在 Hessian 对角化之前通常无法预知该方向。**
@@ -57,8 +53,6 @@ RPATH_DIRECTION
 >     * 先沿本征模式的负方向下降，然后在正方向重新启动。
 > * **建议**：通常无法先验地确定应沿哪个方向进行，因此会自动考虑两个方向。读取反应路径作业最终几何结构的作业将使用第二个方向的最后一步。
 
-RPATH_MAX_CYCLES
-
 ### `RPATH_MAX_CYCLES`
 
 > **指定在反应路径上要寻找的最大点数。**
@@ -69,8 +63,6 @@ RPATH_MAX_CYCLES
 >     * $n$
 >     * 用户自定义的循环次数。
 > * **建议**：如果希望到达极小值但用默认值未能达到，则使用更多的点。
-
-RPATH_MAX_STEPSIZE
 
 ### `RPATH_MAX_STEPSIZE`
 
@@ -85,8 +77,6 @@ RPATH_MAX_STEPSIZE
 >     * /1000 a.u.
 > * **建议**：无。
 
-RPATH_TOL_DISPLACEMENT
-
 ### `RPATH_TOL_DISPLACEMENT`
 
 > **指定步长的收敛阈值。如果算法选择的步长小于该值，则认为路径已到达极小值。**
@@ -99,8 +89,6 @@ RPATH_TOL_DISPLACEMENT
 >     * $n$
 >     * /1000000 a.u.
 > * **建议**：使用默认值。注意，此选项只控制结束 RPATH 作业的阈值，对计算的中间步骤没有任何影响。较小的值会使反应路径在更接近真实极小值处终止。然而，在不调整 RPATH_MAX_STEPSIZE 的情况下使用较小的值，可能导致在极小值附近的振荡。
-
-RPATH_PRINT
 
 ### `RPATH_PRINT`
 

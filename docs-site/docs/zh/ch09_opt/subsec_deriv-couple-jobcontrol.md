@@ -17,8 +17,6 @@ title: "9.8.2 作业控制与示例"
 
 随后将在所列状态 $i,j,k,\ldots$ 之间所有两两组合上计算非绝热耦合；使用 “0” 表示请求 HF 或 DFT 参考态，“1” 表示第一激发态，依此类推。注意，导数耦合（derivative coupling）的量纲为长度的倒数，并以原子单位（atomic unit）打印输出，*即*，bohr${}^{-1}$。
 
-CALC_NAC
-
 ### `CALC_NAC`
 
 > **决定是否计算非绝热耦合。**
@@ -31,8 +29,6 @@ CALC_NAC
 >     * FALSE
 >     * 不计算非绝热耦合。
 > * **建议**：无。
-
-CIS_DER_NUMSTATE
 
 ### `CIS_DER_NUMSTATE`
 
@@ -48,8 +44,6 @@ CIS_DER_NUMSTATE
 >     * $n(n-1)/2$
 >     * 组非绝热耦合。
 > * **建议**：无。
-
-SET_QUADRATIC
 
 ### `SET_QUADRATIC`
 

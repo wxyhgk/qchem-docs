@@ -43,8 +43,6 @@ molecules.[[439]](../bib_references/bib.md#bib450)
  Mass-effects from the rest of the system can be
 vibrationally averaged or excluded within this scheme.
 
-PHESS
-
 ### `PHESS`
 
 > **Controls whether partial Hessian calculations are performed.**
@@ -52,15 +50,10 @@ PHESS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Partial Hessian calculation.
->     * 2
->     * Vibrational subsystem analysis (massless).
->     * 3
->     * Vibrational subsystem analysis (weighted).
+>     * `1`: Partial Hessian calculation.
+>     * `2`: Vibrational subsystem analysis (massless).
+>     * `3`: Vibrational subsystem analysis (weighted).
 > * **Recommendation**: None
-
-N_SOL
 
 ### `N_SOL`
 
@@ -69,10 +62,8 @@ N_SOL
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: None
-
-PH_FAST
 
 ### `PH_FAST`
 
@@ -81,8 +72,7 @@ PH_FAST
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Lower integral cutoffs
+>     * `TRUE`: Lower integral cutoffs
 > * **Recommendation**: None
 
 ???+ example "Example 10.43: This example shows a partial Hessian frequency calculation of the vibrational

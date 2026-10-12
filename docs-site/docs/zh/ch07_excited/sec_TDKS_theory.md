@@ -91,8 +91,6 @@ TDKS 计算每个时间步长的开销不应超过基态 SCF 循环开销的几�
 第 [7.4.3](sec_TDKS_Spectra.md) 节讨论如何从电子动力学的 TDKS 模拟中计算宽带谱。
 第 [7.4.4](sec_TDKS_HHG_Spectra.md) 节讨论如何从电子动力学的 TDKS 模拟中计算高次谐波产生（High-Harmonic Generation, HHG）谱。
 
-TDKS
-
 ### `TDKS`
 
 > **用于开启 TDKS 计算的作业控制关键字**
@@ -100,8 +98,6 @@ TDKS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 在基态 SCF 计算之后执行 TDKS 计算
->     * FALSE
->     * 不执行 TDKS 计算
+>     * `TRUE`: 在基态 SCF 计算之后执行 TDKS 计算
+>     * `FALSE`: 不执行 TDKS 计算
 > * **建议**: 无。

@@ -56,8 +56,6 @@ present, FSSH calculations can only be performed using Born-Oppenheimer
 molecular dynamics (BOMD) method. Furthermore, the optimized velocity Verlet
 (OVV) integration method is not supported for FSSH calculations.
 
-FSSH_LOWESTSURFACE
-
 ### `FSSH_LOWESTSURFACE`
 
 > **Specifies the lowest-energy state considered in a surface hopping calculation.**
@@ -65,13 +63,9 @@ FSSH_LOWESTSURFACE
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * Only states
->     * $n$
->     * and above are considered in a FSSH calculation.
+>     * $n$: Only states
+>     * $n$: and above are considered in a FSSH calculation.
 > * **Recommendation**: None
-
-FSSH_NSURFACES
 
 ### `FSSH_NSURFACES`
 
@@ -81,11 +75,8 @@ FSSH_NSURFACES
 > * **Default**: `None`
 > * **Options**:
 >     * $n$
->     * $n$
->     * states are considered in the surface hopping calculation.
+>     * $n$: states are considered in the surface hopping calculation.
 > * **Recommendation**: Any states which may come close in energy to the active surface should be included in the surface hopping calculation.
-
-FSSH_INITIALSURFACE
 
 ### `FSSH_INITIALSURFACE`
 
@@ -94,18 +85,8 @@ FSSH_INITIALSURFACE
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * An integer between
->     * FSSH_LOWESTSURFACE
->     * and
->     * FSSH_LOWESTSURFACE
->     * $+$
->     * FSSH_NSURFACES
->     * $-1$
->     * .
+>     * $n$: An integer between FSSH_LOWESTSURFACE and FSSH_LOWESTSURFACE $+$ FSSH_NSURFACES $-1$ .
 > * **Recommendation**: None
-
-AFSSH
 
 ### `AFSSH`
 
@@ -114,13 +95,9 @@ AFSSH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Traditional surface hopping, no decoherence.
->     * 1
->     * Use augmented fewest-switches surface hopping (AFSSH).
+>     * `0`: Traditional surface hopping, no decoherence.
+>     * `1`: Use augmented fewest-switches surface hopping (AFSSH).
 > * **Recommendation**: AFSSH will increase the cost of the calculation, but may improve accuracy for some systems. See Refs. 1321 Subotnik J. E., Shenvi N. J. Chem. Phys. (2011) , 134 , pp. 024105 . Link , 1324 Subotnik J. E. J. Phys. Chem. A (2011) , 114 , pp. 12083 . Link , 749 Landry B. R., Subotnik J. E. J. Chem. Phys. (2012) , 137 , pp. 22A513 . Link for more detail.
-
-AIMD_SHORT_TIME_STEP
 
 ### `AIMD_SHORT_TIME_STEP`
 
@@ -129,26 +106,11 @@ AIMD_SHORT_TIME_STEP
 > * **Type**: `INTEGER`
 > * **Default**: `TIME_STEP`
 > * **Options**:
->     * $n$
->     * Specify an electronic time step duration of
->     * $n$
->     * /
->     * AIMD_TIME_STEP_CONVERSION
->     * a.u. If
->     * $n$
->     * is less than the nuclear time step variable
->     * TIME_STEP
->     * , the
->     * electronic wave function will be integrated multiple times per nuclear time step,
->     * using a linear interpolation of nuclear quantities such as the energy gradient and
->     * derivative coupling. Note that
->     * $n$
->     * must divide
->     * TIME_STEP
->     * evenly.
+>     * $n$: Specify an electronic time step duration of
+>     * $n$: / AIMD_TIME_STEP_CONVERSION a.u. If
+>     * $n$: is less than the nuclear time step variable TIME_STEP , the electronic wave function will be integrated multiple times per nuclear time step, using a linear interpolation of nuclear quantities such as the energy gradient and derivative coupling. Note that
+>     * $n$: must divide TIME_STEP evenly.
 > * **Recommendation**: Make as large as possible while keeping the trace of the density matrix close to unity during long simulations. Note that while specifying an appropriate duration for the electronic time step is essential for maintaining accurate wave function time evolution, the electronic-only time steps employ linear interpolation to estimate important quantities. Consequently, a short electronic time step is not a substitute for a reasonable nuclear time step.
-
-FSSH_CONTINUE
 
 ### `FSSH_CONTINUE`
 
@@ -157,10 +119,7 @@ FSSH_CONTINUE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * Start fresh calculation.
->     * $1$
->     * Restart from previous run.
+>     * $0$: Start fresh calculation. $1$ Restart from previous run.
 > * **Recommendation**: None
 
 ???+ example "Example 9.44: FSSH simulation. Note that analytic derivative couplings must be requested

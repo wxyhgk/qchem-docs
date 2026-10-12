@@ -43,8 +43,6 @@ as it requires a two-electron property to be evaluated, but can be reduced to
 cubic-scaling cost (with respect to the number of occupied orbitals),
 via the resolution of identity approximation.[[1320]](../bib_references/bib.md#bib1378)
 
-BOYSCALC
-
 ### `BOYSCALC`
 
 > **Specifies how Boys localized orbitals are to be calculated**
@@ -52,15 +50,10 @@ BOYSCALC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not perform any Boys localization.
->     * 1
->     * Localize core and valence together.
->     * 2
->     * Do separate localizations on core and valence.
+>     * `0`: Do not perform any Boys localization.
+>     * `1`: Localize core and valence together.
+>     * `2`: Do separate localizations on core and valence.
 > * **Recommendation**: None
-
-ERCALC
 
 ### `ERCALC`
 
@@ -69,36 +62,7 @@ ERCALC
 > * **Type**: `INTEGER`
 > * **Default**: `06000`
 > * **Options**:
->     * $aabcd$
->     * $aa$
->     * specifies the convergence threshold.
->     * If
->     * $aa>3$
->     * , the threshold is set to
->     * $10^{-aa}$
->     * . The default is 6.
->     * If
->     * $aa=1$
->     * , the calculation is aborted after the guess, allowing Pipek-Mezey
->     * orbitals to be extracted.
->     * $b$
->     * specifies the guess:
->     * 0 Boys localized orbitals. This is the default
->     * 1 Pipek-Mezey localized orbitals.
->     * $c$
->     * specifies restart options (if restarting from an ER calculation):
->     * 0 No restart. This is the default
->     * 1 Read in MOs from last ER calculation.
->     * 2 Read in MOs and RI integrals from last ER calculation.
->     * $d$
->     * specifies how to treat core orbitals
->     * 0 Do not perform ER localization. This is the default.
->     * 1 Localize core and valence together.
->     * 2 Do separate localizations on core and valence.
->     * 3 Localize only the valence electrons.
->     * 4 Use the
->     * $localize
->     * section.
+>     * $aabcd$: $aa$ specifies the convergence threshold. If $aa>3$ , the threshold is set to $10^{-aa}$ . The default is 6. If $aa=1$ , the calculation is aborted after the guess, allowing Pipek-Mezey orbitals to be extracted. $b$ specifies the guess: 0 Boys localized orbitals. This is the default 1 Pipek-Mezey localized orbitals. $c$ specifies restart options (if restarting from an ER calculation): 0 No restart. This is the default 1 Read in MOs from last ER calculation. 2 Read in MOs and RI integrals from last ER calculation. $d$ specifies how to treat core orbitals 0 Do not perform ER localization. This is the default. 1 Localize core and valence together. 2 Do separate localizations on core and valence. 3 Localize only the valence electrons. 4 Use the $localize section.
 > * **Recommendation**: ERCALC 1 will usually suffice, which uses threshold $10^{-6}$ .
 
 The *$localize* section may be used to specify orbitals subject to ER
@@ -136,8 +100,6 @@ GVB_N_PAIRS specified, with no guarantee of them being bonding,
 *i.e.* they can be core or lone pairs. This is currently implemented for
 restricted and restricted Open-shell spin symmetries; work on the unrestricted case is underway.
 
-ANTIBOND
-
 ### `ANTIBOND`
 
 > **Triggers Antibond subroutine to generate antibonding orbitals after a converged SCF**
@@ -145,17 +107,11 @@ ANTIBOND
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Does not localize the virtual space.
->     * 1
->     * Localizes the virtual space, one antibonding for every bond.
->     * 2,3
->     * Fill the virtual space with antibonding orbitals-like guesses.
->     * 4
->     * Does Frozen Natural Orbitals and leaves them on scratch for future jobs or visualization.
+>     * `0`: Does not localize the virtual space.
+>     * `1`: Localizes the virtual space, one antibonding for every bond.
+>     * `2,3`: Fill the virtual space with antibonding orbitals-like guesses.
+>     * `4`: Does Frozen Natural Orbitals and leaves them on scratch for future jobs or visualization.
 > * **Recommendation**: None
-
-DOMODSANO
 
 ### `DOMODSANO`
 
@@ -164,10 +120,7 @@ DOMODSANO
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Does original Sano procedure (similar to GVBMAN).
->     * 1
->     * Does an improved Sano procedure that’s more localized.
->     * 2
->     * Does another variation of Sano.
+>     * `0`: Does original Sano procedure (similar to GVBMAN).
+>     * `1`: Does an improved Sano procedure that’s more localized.
+>     * `2`: Does another variation of Sano.
 > * **Recommendation**: 1 is always better

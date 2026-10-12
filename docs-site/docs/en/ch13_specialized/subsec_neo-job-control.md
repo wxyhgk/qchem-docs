@@ -19,8 +19,6 @@ also influence NEO jobs in regards to geometry and symmetry considerations inclu
 INPUT_BOHR, SYM_IGNORE, and POINT_GROUP_SYMMETRY.
 **
 
-NEO
-
 ### `NEO`
 
 > **Enable a NEO-SCF calculation.**
@@ -28,13 +26,9 @@ NEO
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Enable a NEO-SCF calculation.
->     * FALSE
->     * Disable a NEO-SCF calculation.
+>     * `TRUE`: Enable a NEO-SCF calculation.
+>     * `FALSE`: Disable a NEO-SCF calculation.
 > * **Recommendation**: Set to TRUE if desired.
-
-JOBTYPE
 
 ### `JOBTYPE`
 
@@ -43,19 +37,12 @@ JOBTYPE
 > * **Type**: `STRING`
 > * **Default**: `SP`
 > * **Options**:
->     * SP
->     * Single point energy.
->     * FORCE
->     * Analytical force calculation.
->     * OPT
->     * Geometry minimization.
->     * TS
->     * Transition structure search.
->     * FREQ
->     * Frequency calculation.
+>     * `SP`: Single point energy.
+>     * `FORCE`: Analytical force calculation.
+>     * `OPT`: Geometry minimization.
+>     * `TS`: Transition structure search.
+>     * `FREQ`: Frequency calculation.
 > * **Recommendation**: Application-dependent. Always use POINT_GROUP_SYMMETRY = FALSE with geometry optimization.
-
-METHOD
 
 ### `METHOD`
 
@@ -64,21 +51,10 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `No default`
 > * **Options**:
->     * NAME
->     * Use
->     * =
->     * NAME
->     * , where
->     * NAME
->     * is one of the following:
->     * HF
->     * for Hartree-Fock theory;
->     * one of the DFT methods listed in Section
->     * 5.3.5
->     * .;
+>     * `NAME`: Use =
+>     * `NAME`: , where
+>     * `NAME`: is one of the following: HF for Hartree-Fock theory; one of the DFT methods listed in Section 5.3.5 .;
 > * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations for DFT are indicated in bold in Section 5.3.5 .
-
-BASIS
 
 ### `BASIS`
 
@@ -87,18 +63,11 @@ BASIS
 > * **Type**: `STRING`
 > * **Default**: `No default basis set`
 > * **Options**:
->     * General, Gen
->     * User defined (
->     * $basis
->     * keyword required).
->     * Symbol
->     * Use standard basis sets as per Chapter
->     * 8
->     * .
->     * Mixed
->     * Use a mixture of basis sets (see Chapter
->     * 8
->     * ).
+>     * `General, Gen`: User defined ( $basis keyword required).
+>     * `Symbol`: Use standard basis sets as per Chapter
+>     * `8`: .
+>     * `Mixed`: Use a mixture of basis sets (see Chapter
+>     * `8`: ).
 > * **Recommendation**: Consult literature and reviews to aid your selection.
 
 The format for the user-defined basis section is as follows:
@@ -160,8 +129,6 @@ section is identical to the *$basis* and *$neo_basis* input sections. See exampl
 More *$rem* variables that can be used to customize the calculation. Some of these are NEO specific variables,
 while others are shared with other **Q-Chem** modules:
 
-BASIS_LIN_DEP_THRESH
-
 ### `BASIS_LIN_DEP_THRESH`
 
 > **Sets the threshold for determining linear dependence in the basis set**
@@ -169,12 +136,8 @@ BASIS_LIN_DEP_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * Sets the threshold to
->     * $10^{-n}$
+>     * $n$: Sets the threshold to $10^{-n}$
 > * **Recommendation**: Set to 5 or smaller if you have a poorly behaved SCF and you suspect linear dependence in you basis set. Lower values (larger thresholds) may affect the accuracy of the calculation.
-
-NEO_BASIS_LIN_DEP_THRESH
 
 ### `NEO_BASIS_LIN_DEP_THRESH`
 
@@ -183,10 +146,8 @@ NEO_BASIS_LIN_DEP_THRESH
 > * **Type**: `DOUBLE`
 > * **Default**: `5.0`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: No recommendation.
-
-PURECART
 
 ### `PURECART`
 
@@ -195,11 +156,8 @@ PURECART
 > * **Type**: `Controls the use of pure (spherical harmonic) or Cartesian angular forms`
 > * **Default**: `1111`
 > * **Options**:
->     * $hgfd$
->     * Use 1 for pure and 2 for Cartesian.
+>     * $hgfd$: Use 1 for pure and 2 for Cartesian.
 > * **Recommendation**: This is pre-defined for all standard basis sets
-
-NEO_PURECART
 
 ### `NEO_PURECART`
 
@@ -208,10 +166,8 @@ NEO_PURECART
 > * **Type**: `INTEGER`
 > * **Default**: `2222`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: The default value corresponds to the use of Cartesian Gaussians for all angular momentum classes. The value = 1111 would use spherical Gaussians instead, similar to the use of PURECART .
-
-NEO_ISOTOPE
 
 ### `NEO_ISOTOPE`
 
@@ -220,15 +176,10 @@ NEO_ISOTOPE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * This NEO calculation uses protons.
->     * 2
->     * This NEO calculation uses deuterons.
->     * 3
->     * This NEO calculation uses tritons.
+>     * `1`: This NEO calculation uses protons.
+>     * `2`: This NEO calculation uses deuterons.
+>     * `3`: This NEO calculation uses tritons.
 > * **Recommendation**: Refer to the NEO literature for the best performance on the isotope effects calculations.
-
-NEO_VPP
 
 ### `NEO_VPP`
 
@@ -237,17 +188,9 @@ NEO_VPP
 > * **Type**: `LOGICAL/INTEGER`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE (or 1)
->     * Enable this option (include nuclear
->     * $J-K$
->     * terms).
->     * FALSE (or 0)
->     * Disable this option (remove nuclear
->     * $J-K$
->     * terms).
+>     * `TRUE`（或 `1`）: Enable this option (include nuclear $J-K$ terms).
+>     * `FALSE`（或 `0`）: Disable this option (remove nuclear $J-K$ terms).
 > * **Recommendation**: Set = 0 only in the case of one quantum hydrogen.
-
-XC_GRID
 
 ### `XC_GRID`
 
@@ -256,44 +199,10 @@ XC_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `Functional-dependent; see Table`
 > * **Options**:
->     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
->     * $n$
->     * Use SG-
->     * $n$
->     * for all atoms,
->     * $n=1,2$
->     * , or 3
->     * $XY$
->     * A string of two six-digit integers
->     * $X$
->     * and
->     * $Y$
->     * , where
->     * $X$
->     * is the number of radial points
->     * and
->     * $Y$
->     * is the number of angular points where possible numbers of Lebedev angular
->     * points, which must be an allowed value from Table
->     * 5.2
->     * in
->     * Section
->     * 5.5
->     * .
->     * $-XY$
->     * Similar format for Gauss-Legendre grids, with the six-digit integer
->     * $X$
->     * corresponding
->     * to the number of radial points and the six-digit integer
->     * $Y$
->     * providing the number of
->     * Gauss-Legendre angular points,
->     * $Y=2N^{2}$
->     * .
+>     * `0`: Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * $n$: Use SG-
+>     * $n$: for all atoms, $n=1,2$ , or 3 $XY$ A string of two six-digit integers $X$ and $Y$ , where $X$ is the number of radial points and $Y$ is the number of angular points where possible numbers of Lebedev angular points, which must be an allowed value from Table 5.2 in Section 5.5 . $-XY$ Similar format for Gauss-Legendre grids, with the six-digit integer $X$ corresponding to the number of radial points and the six-digit integer $Y$ providing the number of Gauss-Legendre angular points, $Y=2N^{2}$ .
 > * **Recommendation**: We strongly recommend using an unpruned, Euler-Maclaurin-Lebedev grid type for NEO-DFT calculations. Larger grids may be required for optimization and frequency calculations.
-
-UNRESTRICTED
 
 ### `UNRESTRICTED`
 
@@ -302,13 +211,9 @@ UNRESTRICTED
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Constrain the spatial part of the alpha and beta orbitals to be the same.
->     * TRUE
->     * Do not Constrain the spatial part of the alpha and beta orbitals.
+>     * `FALSE`: Constrain the spatial part of the alpha and beta orbitals to be the same.
+>     * `TRUE`: Do not Constrain the spatial part of the alpha and beta orbitals.
 > * **Recommendation**: The ROHF method is not available. Note that for unrestricted calculations on systems with an even number of electrons it is usually necessary to break $\alpha$ / $\beta$ symmetry in the initial guess, by using SCF_GUESS_MIX or providing $occupied information (see Section 4.4 on initial guesses).
-
-S2THRESH
 
 ### `S2THRESH`
 
@@ -317,13 +222,8 @@ S2THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `Same as`
 > * **Options**:
->     * $n$
->     * for a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: for a threshold of $10^{-n}$ .
 > * **Recommendation**: Increase the value of if the program finds negative eigenvalues for the overlap matrix.
-
-THRESH
 
 ### `THRESH`
 
@@ -332,13 +232,8 @@ THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n$
->     * for a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: for a threshold of $10^{-n}$ .
 > * **Recommendation**: The value should satisfy $\geq$ 3 + SCF_CONVERGENCE , although = 4 + SCF_CONVERGENCE is the default (in most cases) since Q-Chem v. 6.0. See Ref. 479 Gray M., Bowling P. E., Herbert J. M. J. Phys. Chem. A (2024) , 128 , pp. 7739 . Link for recommended values of in the presence of diffuse basis functions, where tighter thresholds are often required and too-loose thresholds may lead to slower convergence or convergence failure.
-
-MEM_STATIC
 
 ### `MEM_STATIC`
 
@@ -347,11 +242,8 @@ MEM_STATIC
 > * **Type**: `INTEGER`
 > * **Default**: `192`
 > * **Options**:
->     * $n$
->     * User-defined number of megabytes.
+>     * $n$: User-defined number of megabytes.
 > * **Recommendation**: Use the default.
-
-MEM_TOTAL
 
 ### `MEM_TOTAL`
 
@@ -360,16 +252,13 @@ MEM_TOTAL
 > * **Type**: `INTEGER`
 > * **Default**: `2000`
 > * **Options**:
->     * $n$
->     * User-defined number of megabytes.
+>     * $n$: User-defined number of megabytes.
 > * **Recommendation**: Use the default, or set to the physical memory of your machine. The minimum requirement is $3X^{2}$ .
 
 ## 13.5.4.3 NEO-SCF Specific Keywords
 
 The following *$rem* variables can be used to specify the tolerances for NEO-SCF convergence.
 Some of these *$rem* variables are inherited from conventional SCF calculations:
-
-SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 
@@ -378,10 +267,8 @@ SCF_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: None.
-
-NEO_N_SCF_CONVERGENCE
 
 ### `NEO_N_SCF_CONVERGENCE`
 
@@ -390,10 +277,8 @@ NEO_N_SCF_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: None.
-
-NEO_E_CONV
 
 ### `NEO_E_CONV`
 
@@ -402,10 +287,8 @@ NEO_E_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Tighter criteria for geometry optimization are recommended. Note that for stepwise calculations, this convergence criteria checks the difference in energy between electronic and protonic microiterations blocks.
-
-MAX_SCF_CYCLES
 
 ### `MAX_SCF_CYCLES`
 
@@ -414,12 +297,8 @@ MAX_SCF_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * User-selected.
+>     * $n$: $n>0$ User-selected.
 > * **Recommendation**: Increase for slowly converging systems such as those containing transition metals.
-
-NEO_E_MAX_SCF_CYCLES
 
 ### `NEO_E_MAX_SCF_CYCLES`
 
@@ -428,12 +307,8 @@ NEO_E_MAX_SCF_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `150`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * User-selected.
+>     * $n$: $n>0$ User-selected.
 > * **Recommendation**: None.
-
-NEO_N_MAX_SCF_CYCLES
 
 ### `NEO_N_MAX_SCF_CYCLES`
 
@@ -442,9 +317,7 @@ NEO_N_MAX_SCF_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `150`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * User-selected.
+>     * $n$: $n>0$ User-selected.
 > * **Recommendation**: None.
 
 The NEO-SCF iteration procedure has traditionally involved solving the
@@ -456,8 +329,6 @@ This is now the default scheme for solving the NEO-SCF equations. We support the
 as well as the Geometric Direct Minimization (GDM)[[1391]](../bib_references/bib.md#bib1453)
  approach. The following *$rem* variables permit some customization of the NEO-SCF iterations:
 
-NEO_SIMULTANEOUS_SCF
-
 ### `NEO_SIMULTANEOUS_SCF`
 
 > **Enables simultaneous optimization algorithm.**
@@ -465,11 +336,9 @@ NEO_SIMULTANEOUS_SCF
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: Use the default unless issues with convergence are observed, in which cause set to FALSE to utilize the traditional stepwise approach.
-
-SCF_ALGORITHM
 
 ### `SCF_ALGORITHM`
 
@@ -478,15 +347,10 @@ SCF_ALGORITHM
 > * **Type**: `STRING`
 > * **Default**: `DIIS`
 > * **Options**:
->     * DIIS
->     * Pulay DIIS.
->     * GDM
->     * Geometric Direct Minimization.
->     * DIIS_GDM
->     * Use DIIS and then later switch to geometric direct minimization.
+>     * `DIIS`: Pulay DIIS.
+>     * `GDM`: Geometric Direct Minimization.
+>     * `DIIS_GDM`: Use DIIS and then later switch to geometric direct minimization.
 > * **Recommendation**: In the NEO methods, the GDM procedure is recommended. Note that DIIS_GDM is only supported for simultaneous optimizations.
-
-NEO_SCF_GUESS_N
 
 ### `NEO_SCF_GUESS_N`
 
@@ -495,17 +359,11 @@ NEO_SCF_GUESS_N
 > * **Type**: `STRING`
 > * **Default**: `TIGHT`
 > * **Options**:
->     * CORE
->     * Diagonalize the nuclear core Hamiltonian
->     * TIGHT
->     * Occupies the least diffuse nuclear MO
->     * AUTOSAD
->     * On-the-fly superposition of nuclear atomic densities from an atomic NEO calculation
->     * READ
->     * Read previous nuclear MOs from disk
+>     * `CORE`: Diagonalize the nuclear core Hamiltonian
+>     * `TIGHT`: Occupies the least diffuse nuclear MO
+>     * `AUTOSAD`: On-the-fly superposition of nuclear atomic densities from an atomic NEO calculation
+>     * `READ`: Read previous nuclear MOs from disk
 > * **Recommendation**: Use the default. Note that if is set to READ , only the nuclear MOs from a previous NEO-SCF job are read from disk. The starting guess for the electronic MOs in a NEO calculation remains the converged result from the conventional electronic calculation of the current job. To read in both the electronic and nuclear MOs from a previous NEO-SCF job, must be set to READ in conjunction with SKIP_SCFMAN set to TRUE .
-
-NEO_STEPWISE_SCF_STEPS
 
 ### `NEO_STEPWISE_SCF_STEPS`
 
@@ -514,15 +372,13 @@ NEO_STEPWISE_SCF_STEPS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: The rate of convergence of the NEO-SCF procedure is dependent on the initial guess for the electronic and protonic orbitals. For especially difficult systems, it may be helpful to do stepwise optimization before switching to simultaneous.
 
 **Note: 
 
 The following variables are specific to SCF_ALGORITHM = DIIS.
 **
-
-DIIS_SUBSPACE_SIZE
 
 ### `DIIS_SUBSPACE_SIZE`
 
@@ -531,10 +387,8 @@ DIIS_SUBSPACE_SIZE
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: None.
-
-DIIS_ERR_RMS
 
 ### `DIIS_ERR_RMS`
 
@@ -543,16 +397,14 @@ DIIS_ERR_RMS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: Use the default, the maximum error provides a more reliable criterion.
 
 **Note: 
 
 The following variables are specific to SCF_ALGORITHM = DIIS_GDM.
 **
-
-MAX_DIIS_CYCLES
 
 ### `MAX_DIIS_CYCLES`
 
@@ -561,14 +413,10 @@ MAX_DIIS_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * 1
->     * Only a single Roothaan step before switching to (G)DM
+>     * `1`: Only a single Roothaan step before switching to (G)DM
 >     * $n$
->     * $n$
->     * DIIS iterations before switching to (G)DM.
+>     * $n$: DIIS iterations before switching to (G)DM.
 > * **Recommendation**: None
-
-THRESH_DIIS_SWITCH
 
 ### `THRESH_DIIS_SWITCH`
 
@@ -577,5 +425,5 @@ THRESH_DIIS_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * User-defined.
+>     * `User-defined.`
 > * **Recommendation**: None

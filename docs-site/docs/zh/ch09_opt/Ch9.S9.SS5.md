@@ -26,8 +26,6 @@ $$
 
 请注意，偶极矩自相关函数可能混入转动或平动信息；尽管 **Q-Chem** 中的初始条件已消除了平动与转动，但力和传播（propagation）中的数值噪声仍可能随时间导致平动和转动。平动-转动校正由 PROJ_TRANSROT 关键字激活。
 
-AIMD_NUCL_VACF_POINTS
-
 ### `AIMD_NUCL_VACF_POINTS`
 
 > **在 AIMD 轨迹的速度自相关函数中使用的时间点数**
@@ -42,8 +40,6 @@ AIMD_NUCL_VACF_POINTS
 >     * $n$
 >     * 个时间步的速度自相关函数。
 > * **建议**：若需要 VACF，将其设置为与 AIMD_STEPS 相同的值。
-
-AIMD_NUCL_DACF_POINTS
 
 ### `AIMD_NUCL_DACF_POINTS`
 
@@ -60,8 +56,6 @@ AIMD_NUCL_DACF_POINTS
 >     * 个时间步的偶极矩自相关函数。
 > * **建议**：若需要 DACF，将其设置为与 AIMD_STEPS 相同的值。
 
-AIMD_NUCL_SAMPLE_RATE
-
 ### `AIMD_NUCL_SAMPLE_RATE`
 
 > **对速度和/或偶极矩自相关函数进行采样的速率。以步数的倍数指定；即，每步采样设为 1。**
@@ -74,8 +68,6 @@ AIMD_NUCL_SAMPLE_RATE
 >     * $n$
 >     * 步更新一次速度/偶极矩自相关函数。
 > * **建议**：由于速度和偶极矩在从头算（ab initio）方法中都会例行计算，当需要 VACF 或 DACF 时，该变量几乎总是应设置为 1。
-
-PROJ_TRANSROT
 
 ### `PROJ_TRANSROT`
 

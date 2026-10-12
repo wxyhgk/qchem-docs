@@ -14,8 +14,6 @@ Electrostatic potential (ESP) evaluation is controlled by the *$rem* variable ES
 For backwards compatibility with the **Q-Chem**/**Charmm** interface, the name IGDESP is equivalent to ESP_GRID.
 **
 
-ESP_GRID
-
 ### `ESP_GRID`
 
 > **Controls evaluation of the electrostatic potential on a grid of points. If enabled, the output is in an ASCII file, plot.esp , in the format $x,y,z,\phi(x,y,z)$ for each point, where $\phi$ is the ESP.**
@@ -23,36 +21,10 @@ ESP_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `-4`
 > * **Options**:
->     * $-1$
->     * read grid input via the
->     * $plots
->     * section of the input deck
->     * $-2$
->     * same as the option
->     * $-1$
->     * , plus evaluate the ESP of the
->     * $external_charges
->     * $-3$
->     * same as the option
->     * $-1$
->     * but in connection with
->     * STATE_ANALYSIS
->     * =
->     * TRUE
->     * .
->     * This computes the ESP for all excited-state densities, transition densities, and electron/hole densities.
->     * $-4$
->     * No ESP evaluation
->     * $0$
->     * Generate the ESP values at all nuclear positions
->     * +
->     * $n$
->     * read
->     * $n$
->     * grid points
->     * in bohr
->     * from the ASCII file
->     * ESPGrid
+>     * $-1$: read grid input via the $plots section of the input deck $-2$ same as the option $-1$ , plus evaluate the ESP of the $external_charges $-3$ same as the option $-1$ but in connection with STATE_ANALYSIS =
+>     * `TRUE`: . This computes the ESP for all excited-state densities, transition densities, and electron/hole densities. $-4$ No ESP evaluation $0$ Generate the ESP values at all nuclear positions +
+>     * $n$: read
+>     * $n$: grid points in bohr from the ASCII file ESPGrid
 > * **Recommendation**: For the $+n$ option, the user should also specify NO_REORIENT = TRUE . This forces Q-Chem to use the user’s coordinate frame (as established in the $molecule section), which should be the same coordinate frame used in the ESPGrid file.
 
 The following example illustrates the evaluation of electrostatic potentials on
@@ -124,8 +96,6 @@ cube file as the result; the new format for the $plots section is used"
 We can also compute the electrostatic potential for the transition density,
 which can be used, for example, to compute the Coulomb coupling in excitation energy transfer.
 
-ESP_TRANS
-
 ### `ESP_TRANS`
 
 > **Controls the calculation of the electrostatic potential of the transition density**
@@ -133,10 +103,8 @@ ESP_TRANS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * compute the electrostatic potential of the excited state transition density
->     * FALSE
->     * compute the electrostatic potential of the excited state electronic density
+>     * `TRUE`: compute the electrostatic potential of the excited state transition density
+>     * `FALSE`: compute the electrostatic potential of the excited state electronic density
 > * **Recommendation**: NONE
 
 The electrostatic potential is a complicated object and it is not uncommon to
@@ -156,8 +124,6 @@ calculation requires the traceless form of the multipole moments and these are
 also printed out during the course of the calculations. To request these
 multipole-derived charges, set MM_CHARGES = TRUE in the *$rem* section.
 
-MM_CHARGES
-
 ### `MM_CHARGES`
 
 > **Requests the calculation of multipole-derived charges (MDCs).**
@@ -165,6 +131,5 @@ MM_CHARGES
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculates the MDCs and also the traceless form of the multipole moments
+>     * `TRUE`: Calculates the MDCs and also the traceless form of the multipole moments
 > * **Recommendation**: Set to TRUE if MDCs or the traceless form of the multipole moments are desired. The calculation does not take long.

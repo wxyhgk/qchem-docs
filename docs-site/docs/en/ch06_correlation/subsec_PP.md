@@ -55,8 +55,6 @@ dissociation limit. To generate a full potential curve we find it is best to
 start at the desired UHF dissociation solution as a guess for GVB and follow it
 inwards to the equilibrium bond distance.
 
-GVB_UNRESTRICTED
-
 ### `GVB_UNRESTRICTED`
 
 > **Controls restricted versus unrestricted PP jobs. Usually handled automatically.**
@@ -64,10 +62,8 @@ GVB_UNRESTRICTED
 > * **Type**: `LOGICAL`
 > * **Default**: `same value as UNRESTRICTED`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: Set this variable explicitly only to do a UPP job from an RHF or ROHF initial guess. Leave this variable alone and specify UNRESTRICTED = TRUE to access the new unrestricted-in-active-pairs GVB code which can return an RHF or ROHF solution if used with GVB_DO_ROHF
-
-GVB_DO_ROHF
 
 ### `GVB_DO_ROHF`
 
@@ -76,11 +72,8 @@ GVB_DO_ROHF
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-Defined
+>     * $n$: User-Defined
 > * **Recommendation**: If $n$ is the same value as GVB_N_PAIRS returns the ROHF solution for GVB, only works with the UNRESTRICTED = TRUE implementation of GVB with GVB_OLD_UPP = 0 (its default value)
-
-GVB_OLD_UPP
 
 ### `GVB_OLD_UPP`
 
@@ -89,33 +82,13 @@ GVB_OLD_UPP
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use Unrestricted-in-Active Pairs described in Ref.
->     * 774
->     * Lawler K. V., Small D. W., Head-Gordon M.
->     * J. Phys. Chem. A
->     * (2010)
->     * ,
->     * 114
->     * ,
->     * pp. 2930
->     * .
->     * Link
->     * 1
->     * Use Unrestricted Implementation described in Ref.
->     * 110
->     * Beran G. J. O. et al.
->     * J. Phys. Chem. A
->     * (2005)
->     * ,
->     * 109
->     * ,
->     * pp. 9183
->     * .
->     * Link
+>     * `0`: Use Unrestricted-in-Active Pairs described in Ref.
+>     * `774`: Lawler K. V., Small D. W., Head-Gordon M. J. Phys. Chem. A (2010) ,
+>     * `114`: , pp. 2930 . Link
+>     * `1`: Use Unrestricted Implementation described in Ref.
+>     * `110`: Beran G. J. O. et al. J. Phys. Chem. A (2005) ,
+>     * `109`: , pp. 9183 . Link
 > * **Recommendation**: Only works for Unrestricted PP and no other GVB model.
-
-GVB_GUESS_MIX
 
 ### `GVB_GUESS_MIX`
 
@@ -124,9 +97,7 @@ GVB_GUESS_MIX
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined,
->     * $0\leq n\leq 100$
+>     * $n$: User-defined, $0\leq n\leq 100$
 > * **Recommendation**: 25 often works well to break symmetry without overly impeding convergence.
 
 Whilst all of the description in this section refers to PP solved via

@@ -8,8 +8,6 @@ title: "10.5.3 自然跃迁轨道的可视化"
 
 对于使用 CIS、RPA、TDDFT、EOM-CC 和 ADC 方法计算的激发态，自然跃迁轨道（Natural Transition Orbitals, NTOs）的构建（如第 [7.13.3](../ch07_excited/sect_NTOs.md) 节和第 [10.2.12](ex_StateAnal_MolDen.md) 节所述）通过 *$rem* 变量 NTO_PAIRS 来请求。该变量还决定了每个激发态输出的空穴/粒子（hole/particle）NTO 对数，以及自然轨道或自然差值轨道（natural difference orbitals）的数目。尽管空穴/粒子对的总数等于占据分子轨道（MO）的数目，但通常只有极少数这些对（往往仅一对）具有显著的振幅。（在多个生色团之间存在强电子耦合，或激发态具有显著多参考特征的情况下，可能会遇到额外的大振幅 NTO。[[572]](../bib_references/bib.md#bib586)）
 
-NTO_PAIRS
-
 ### `NTO_PAIRS`
 
 > **控制激发态空穴/粒子 NTO 对的写出。**

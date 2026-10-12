@@ -72,8 +72,6 @@ finite difference evaluation of nuclear gradients and finite-field calculations,
 require using larger step sizes or field strengths, respectively.
 **
 
-CC_SINGLE_PREC
-
 ### `CC_SINGLE_PREC`
 
 > **Precision selection for CCSD calculation. Available in CCMAN2 only.**
@@ -81,13 +79,9 @@ CC_SINGLE_PREC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * single-precision calculation
->     * 2
->     * single-precision calculation followed by double-precision clean-up iterations
+>     * `1`: single-precision calculation
+>     * `2`: single-precision calculation followed by double-precision clean-up iterations
 > * **Recommendation**: Do not set too tight convergence thresholds when using single precision
-
-CC_SP_T_CONV
 
 ### `CC_SP_T_CONV`
 
@@ -96,13 +90,8 @@ CC_SP_T_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion
 > * **Recommendation**: Set 4 to be consistent with the default threshold in double precision in a pure single-precision run. When used with clean-up version, it should be smaller than double-precision threshold not to introduce extra iterations.
-
-CC_SP_E_CONV
 
 ### `CC_SP_E_CONV`
 
@@ -111,13 +100,8 @@ CC_SP_E_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion
 > * **Recommendation**: Set 6 to be consistent with the default threshold in double precision in a pure single-precision calculation. When used with clean-up version, it should be smaller than double-precision threshold not to introduce extra iterations.
-
-CC_SP_DM
 
 ### `CC_SP_DM`
 
@@ -126,11 +110,8 @@ CC_SP_DM
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * single-precision calculation
+>     * `1`: single-precision calculation
 > * **Recommendation**: NONE
-
-CC_ERASE_DP_INTEGRALS
 
 ### `CC_ERASE_DP_INTEGRALS`
 
@@ -139,11 +120,8 @@ CC_ERASE_DP_INTEGRALS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * do not store
+>     * `1`: do not store
 > * **Recommendation**: Do not erase integrals if clean-up in double precision is intended.
-
-LIBPT_MIXED_PRECISION
 
 ### `LIBPT_MIXED_PRECISION`
 
@@ -152,8 +130,7 @@ LIBPT_MIXED_PRECISION
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * use single precision
+>     * `1`: use single precision
 > * **Recommendation**: Use in combination with USE_LIBPT .
 
 ???+ example "Example 6.51: A job evaluating CCSD and CCSD(T) energy using single-precision execution"

@@ -37,12 +37,7 @@ not orbital invariant. For MP2 calculations, the standard RI-MP2 code should be 
 > * **Type**: `INTEGER`
 > * **Default**: `1000`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $\alpha$
->     * .
+>     * $n$: where $n/1000$ is the value of $\alpha$ .
 > * **Recommendation**: The default is set to the original BW-s2 theory where $\alpha=1$ (corresponding to $n=1000$ ) is exact for a two-electron, two-orbital problem. For general applications $\alpha=4$ ( $n=4000$ ) is a broadly successful choice. Other values can be set based on the chemical problem at hand.
 
 ### `ENERGY_CONVERGENCE`
@@ -52,9 +47,7 @@ not orbital invariant. For MP2 calculations, the standard RI-MP2 code should be 
 > * **Type**: `INTEGER`
 > * **Default**: `$n$`
 > * **Options**:
->     * $n$
->     * where the convergence threshold is set to
->     * $10^{-n}$
+>     * $n$: where the convergence threshold is set to $10^{-n}$
 > * **Recommendation**: Use the default unless the cost of the calculation becomes prohibitive, then consider reducing to a slightly lower value.
 
 ### `AMPLITUDE_CONVERGENCE`
@@ -64,9 +57,7 @@ not orbital invariant. For MP2 calculations, the standard RI-MP2 code should be 
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n$
->     * where the convergence threshold is set to
->     * $10^{-n}$
+>     * $n$: where the convergence threshold is set to $10^{-n}$
 > * **Recommendation**: Use the default for small to medium sized molecules. Large molecules may require looser criteria.
 
 ### `MAX_CYCLES`
@@ -86,10 +77,8 @@ not orbital invariant. For MP2 calculations, the standard RI-MP2 code should be 
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Computes the iterative and non-iterative parameter gradient.
->     * FALSE
->     * Does not compute the parameter gradient.
+>     * `TRUE`: Computes the iterative and non-iterative parameter gradient.
+>     * `FALSE`: Does not compute the parameter gradient.
 > * **Recommendation**: If required, set to TRUE.
 
 ???+ example "Example 6.23: Example of RI-BW-s2 on an acetylene pyridine complex"

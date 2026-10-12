@@ -55,8 +55,6 @@ functionals.[[84]](../bib_references/bib.md#bib69)
 Some basic job control variables (to be added to the *$rem* section) are described below.
 There are additional options for x-ray spectroscopy; see Section [7.12.2](subsec_TDDFT-Xray.md).
 
-CIS_SINGLETS
-
 ### `CIS_SINGLETS`
 
 > **Controls whether to compute singlet excited states.**
@@ -64,13 +62,9 @@ CIS_SINGLETS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Do not compute singlet excitations.
->     * TRUE
->     * Compute singlet excitations.
+>     * `FALSE`: Do not compute singlet excitations.
+>     * `TRUE`: Compute singlet excitations.
 > * **Recommendation**: This option makes sense only for a singlet ground state, since the use of an open-shell ground state does not afford spin-pure excited states.
-
-CIS_TRIPLETS
 
 ### `CIS_TRIPLETS`
 
@@ -79,13 +73,9 @@ CIS_TRIPLETS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Do not compute triplet excitations.
->     * TRUE
->     * Compute triplet excitations.
+>     * `FALSE`: Do not compute triplet excitations.
+>     * `TRUE`: Compute triplet excitations.
 > * **Recommendation**: This option makes sense only for a singlet ground state, since the use of an open-shell ground state does not afford spin-pure excited states.
-
-SPIN_FLIP
 
 ### `SPIN_FLIP`
 
@@ -94,13 +84,9 @@ SPIN_FLIP
 > * **Type**: `INEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Do original SF-TDDFT.
->     * 2
->     * Do MRSF-TDDFT.
+>     * `1`: Do original SF-TDDFT.
+>     * `2`: Do MRSF-TDDFT.
 > * **Recommendation**: None
-
-MGGA_GINV
 
 ### `MGGA_GINV`
 
@@ -109,13 +95,9 @@ MGGA_GINV
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No correction.
->     * 1
->     * Add gauge invariance correction to meta-GGA functionals.
+>     * `0`: No correction.
+>     * `1`: Add gauge invariance correction to meta-GGA functionals.
 > * **Recommendation**: Not recommended when TDA is used because the TDA violates gauge invariance.
-
-WANG_ZIEGLER_KERNEL
 
 ### `WANG_ZIEGLER_KERNEL`
 
@@ -124,13 +106,9 @@ WANG_ZIEGLER_KERNEL
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not use non-collinear kernel.
->     * TRUE
->     * Use non-collinear kernel.
+>     * `FALSE`: Do not use non-collinear kernel.
+>     * `TRUE`: Use non-collinear kernel.
 > * **Recommendation**: None
-
-CIS_GUESS_TYPE
 
 ### `CIS_GUESS_TYPE`
 
@@ -139,31 +117,9 @@ CIS_GUESS_TYPE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Generate
->     * $N$
->     * (no. of roots requested) occupied
->     * $\to$
->     * virtual single orbital transitions according to their orbital energy
->     * difference order (from low to high). This is the common scenario.
->     * 1
->     * Generate
->     * $N-1$
->     * occupied
->     * $\to$
->     * virtual single orbital transitions according to their orbital energy difference order (from low to high),
->     * and generate another guess excitation vector consist of all the remaining single orbital transitions in the occupied
->     * $\to$
->     * virtual
->     * transition space with equal weights.
->     * 2
->     * Generate
->     * $N$
->     * occupied/virtual single orbital transitions according to their orbital energy difference order (from low to high),
->     * and generate one more guess excitation vector consist of all the remaining single orbital transitions in the occupied
->     * $\to$
->     * virtual
->     * transition space with equal weights.
+>     * `0`: Generate $N$ (no. of roots requested) occupied $\to$ virtual single orbital transitions according to their orbital energy difference order (from low to high). This is the common scenario.
+>     * `1`: Generate $N-1$ occupied $\to$ virtual single orbital transitions according to their orbital energy difference order (from low to high), and generate another guess excitation vector consist of all the remaining single orbital transitions in the occupied $\to$ virtual transition space with equal weights.
+>     * `2`: Generate $N$ occupied/virtual single orbital transitions according to their orbital energy difference order (from low to high), and generate one more guess excitation vector consist of all the remaining single orbital transitions in the occupied $\to$ virtual transition space with equal weights.
 > * **Recommendation**: The default setting should work for most of the cases. However, when the number of roots is small, in some CIS/TDA/RPA calculations, low energy excited states could be missing. The options = 1 or 2 may remedy this root missing issue by sampling more vectors in the transition space. Setting = 1 or 2 may take more cycles to converge in the Davidson iteration, but the results are expected to be more reliable. Currently, = 1 or 2 are not supported in SF-XCIS calculations. Setting TRNSS = TRUE also disables the setting of .
 
 ## 7.3.6.2 Options for Charge-Separation Metrics
@@ -173,8 +129,6 @@ and in both the canonical and NTO representations, by setting CIS_CT_METRICS = T
 are described below. For **libwfa** job control (*e.g.*, to compute the recommended metrics $d_{\text{e-h}}$, $d_{\text{exc}}$, and $d_{\text{CD1}}$),
 see Section [10.2.12](../ch10_properties/ex_StateAnal_MolDen.md).
 
-CIS_CT_METRICS
-
 ### `CIS_CT_METRICS`
 
 > **Controls whether to compute the charge-separation metrics $\Lambda$ , $\Delta r$ , $\Delta\sigma$ , and $\Gamma$ (Section 7.3.2 ).**
@@ -182,13 +136,9 @@ CIS_CT_METRICS
 > * **Type**: `INTEGER`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute these metrics.
->     * TRUE
->     * Compute all four metrics (for each excited state), in both the canonical and NTO representations.
+>     * `FALSE`: Do not compute these metrics.
+>     * `TRUE`: Compute all four metrics (for each excited state), in both the canonical and NTO representations.
 > * **Recommendation**: Request if desired. (There is some overhead associated with computing $\Lambda$ , but it should be small.)
-
-SPATIAL_OVERLAP_METRIC
 
 ### `SPATIAL_OVERLAP_METRIC`
 
@@ -197,21 +147,9 @@ SPATIAL_OVERLAP_METRIC
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Compute
->     * $\Lambda$
->     * using
->     * $O_{ia}$
->     * .
->     * 2
->     * Compute
->     * $\Lambda$
->     * using
->     * $\tilde{O}_{ia}$
->     * .
+>     * `1`: Compute $\Lambda$ using $O_{ia}$ .
+>     * `2`: Compute $\Lambda$ using $\tilde{O}_{ia}$ .
 > * **Recommendation**: Option 1 represents the original metric suggested by Tozer and co-workers in Ref. 1057 Peach M. J. G. et al. J. Chem. Phys. (2008) , 128 , pp. 044118 . Link .
-
-SPATIAL_OVERLAP_GRID
 
 ### `SPATIAL_OVERLAP_GRID`
 
@@ -220,21 +158,9 @@ SPATIAL_OVERLAP_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Use a EML grid with
->     * $N_{r}=300$
->     * and
->     * $N_{\Omega}=302$
->     * .
->     * 2
->     * Use a EML grid with
->     * $N_{r}=400$
->     * and
->     * $N_{\Omega}=434$
->     * .
+>     * `1`: Use a EML grid with $N_{r}=300$ and $N_{\Omega}=302$ .
+>     * `2`: Use a EML grid with $N_{r}=400$ and $N_{\Omega}=434$ .
 > * **Recommendation**: None.
-
-SPATIAL_OVERLAP_PRINT
 
 ### `SPATIAL_OVERLAP_PRINT`
 
@@ -243,23 +169,14 @@ SPATIAL_OVERLAP_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not print the
->     * $O_{ia}$
->     * .
->     * 1
->     * Print the frontier overlaps only (5 occupied and 5 virtual orbitals.
->     * 2
->     * Print all of the
->     * $O_{ia}$
->     * .
+>     * `0`: Do not print the $O_{ia}$ .
+>     * `1`: Print the frontier overlaps only (5 occupied and 5 virtual orbitals.
+>     * `2`: Print all of the $O_{ia}$ .
 > * **Recommendation**: These may be useful for a posteriori analysis of the spatial proximity of various MOs; however, option 2 will engender significant printing for large molecules. Whether it is $O_{ia}$ [Eq. ( 7.17 )] or $\tilde{O}_{ia}$ [Eq. ( 7.18 )] that is printed depends upon the setting of SPATIAL_OVERLAP_ANAL .
 
 ## 7.3.6.3 Options for a Truncated Subspace
 
 The following options can be used to implement the reduced excitation space that was described in Section [7.3.3](subsec_TRNSS.md).
-
-CISTR_PRINT
 
 ### `CISTR_PRINT`
 
@@ -268,11 +185,8 @@ CISTR_PRINT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Increase output level.
+>     * `TRUE`: Increase output level.
 > * **Recommendation**: None
-
-CUTOCC
 
 ### `CUTOCC`
 
@@ -281,12 +195,8 @@ CUTOCC
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * 0-200
->     * Use a cutoff of
->     * /100
+>     * `0-200`: Use a cutoff of /100
 > * **Recommendation**: None
-
-CUTVIR
 
 ### `CUTVIR`
 
@@ -295,11 +205,8 @@ CUTVIR
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0-100
->     * CUTOFF = CUTVIR/100
+>     * `0-100`: CUTOFF = CUTVIR/100
 > * **Recommendation**: None
-
-N_SOL
 
 ### `N_SOL`
 
@@ -308,10 +215,8 @@ N_SOL
 > * **Type**: `INTEGER`
 > * **Default**: `No default.`
 > * **Options**:
->     * User defined.
+>     * `User defined.`
 > * **Recommendation**: Reads from either the $solute or $alist input section.
-
-TRNSS
 
 ### `TRNSS`
 
@@ -320,11 +225,8 @@ TRNSS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Use reduced excitation space.
+>     * `TRUE`: Use reduced excitation space.
 > * **Recommendation**: None
-
-TRTYPE
 
 ### `TRTYPE`
 
@@ -333,20 +235,15 @@ TRTYPE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Select orbitals localized on a set of atoms.
->     * 2
->     * Specify a set of orbitals.
->     * 3
->     * Specify a set of occupied orbitals, include excitations to all virtual orbitals.
+>     * `1`: Select orbitals localized on a set of atoms.
+>     * `2`: Specify a set of orbitals.
+>     * `3`: Specify a set of occupied orbitals, include excitations to all virtual orbitals.
 > * **Recommendation**: None
 
 ## 7.3.6.4 Job Control for EA-TDDFT
 
 Like NOCIS/STEX/1C-NOCIS, the options for the EA-TDDFT/EA-CIS
 method are controlled via the *$nocis* section after NOCIS is set to TRUE in *$rem*.
-
-NOCIS
 
 ### `NOCIS`
 
@@ -355,12 +252,8 @@ NOCIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not run these methods.
->     * TRUE
->     * Run one of these methods, options controlled in
->     * $nocis
->     * .
+>     * `FALSE`: Do not run these methods.
+>     * `TRUE`: Run one of these methods, options controlled in $nocis .
 > * **Recommendation**: None
 
 The options below are set within the *$nocis* section.
@@ -372,8 +265,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the number of consecutive orbitals of interest for the calculation. For example, for the oxygen K-edge in CO ${}_{\text{2}}$ , the number of references would be 2 (two oxygen 1s orbitals), whereas for the carbon K-edge it would be 1 (one carbon 1s).
 
 ### `ORB_OFFSET`
@@ -383,8 +275,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Set according to the first orbital of interest in the system in question. For example, this would be set to 0 for the oxygen K-edge in CO ${}_{\text{2}}$ because the two O(1s) orbitals lie below the C(1s), so for the carbon K-edge this would be set to 2.
 
 ### `LOCALIZE_ORBITALS`
@@ -394,8 +285,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `$-1$`
 > * **Options**:
->     * $n$
->     * Integer, normally positive.
+>     * $n$: Integer, normally positive.
 > * **Recommendation**: Set to $-1$ to skip Boys localization entirely, or set to a value greater than NUM_REF to include more orbitals in the preliminary localization, otherwise use the default.
 
 ### `SUBSYSTEM_ATOMS`
@@ -405,9 +295,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * List of integers delimited by spaces:
->     * $i\ j\ k$
->     * …
+>     * List of integers delimited by spaces:: $i\ j\ k$ …
 > * **Recommendation**: Use only if excitations out of a particular subset of atoms is of interest and the definition of ORB_OFFSET and NUM_REF is nontrivial. This is an expert option, and should only be used in specific situations such as isolating the oxygen K-edge of all water molecules at the air/water interface.
 
 ### `DSCF_ALGORITHM`
@@ -417,7 +305,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `STRING`
 > * **Default**: `MOM`
 > * **Options**:
->     * MOM, IMOM, STEP, or STEP_MOM
+>     * `MOM, IMOM, STEP, or STEP_MOM`
 > * **Recommendation**: Use MOM unless convergence issues arise. IMOM occasionally provides improved convergence, but the combination of STEP and MOM used by the STEP_MOM option is particularly robust. In rare cases, STEP may be necessary, but this is not recommended as the number of SCF cycles required is quite large. If STEP_MOM is requested, the option STEP_MOM_START must also be set.
 
 ### `STEP_MOM_START`
@@ -427,8 +315,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Positive integer.
+>     * $n$: Positive integer.
 > * **Recommendation**: For best results, set such that STEP reaches a convergence threshold of at least $10^{-4}$ a.u. before switching to MOM, but if MOM continues to collapse or oscillate, then wait until tighter convergence is achieved to switch algorithms.
 
 ### `REF_SCF_ALGORITHM`
@@ -448,8 +335,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `Same as`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: None
 
 ### `REF_SCF_GUESS`
@@ -469,8 +355,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `NONE`
 > * **Default**: `NONE`
 > * **Options**:
->     * The presence of this keyword will activate
->     * .
+>     * The presence of this keyword will activate: .
 > * **Recommendation**: This is the most cost-effective form of the EA-TDDFT equations and has almost no effect on results for K-edge XAS.
 
 ### `EA_RPA`
@@ -480,8 +365,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `NONE`
 > * **Default**: `NONE`
 > * **Options**:
->     * The presence of this keyword will activate
->     * .
+>     * The presence of this keyword will activate: .
 > * **Recommendation**: No recommendation.
 
 ### `SINGLETS`
@@ -491,10 +375,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `NONE`
 > * **Default**: `NONE`
 > * **Options**:
->     * The presence of this keyword without the
->     * Triplets
->     * keyword
->     * will compute singlets without computing triplets.
+>     * The presence of this keyword without the: Triplets keyword will compute singlets without computing triplets.
 > * **Recommendation**: No recommendation.
 
 ### `TRIPLETS`
@@ -504,10 +385,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `NONE`
 > * **Default**: `NONE`
 > * **Options**:
->     * The presence of this keyword without the
->     * Singlets
->     * keyword
->     * will compute triplets without computing singlets.
+>     * The presence of this keyword without the: Singlets keyword will compute triplets without computing singlets.
 > * **Recommendation**: No recommendation.
 
 ### `N_ROOTS`
@@ -517,9 +395,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `INTEGER`
 > * **Default**: `All`
 > * **Options**:
->     * $n$
->     * where
->     * $n<m_{\rm{roots}}$
+>     * $n$: where $n<m_{\rm{roots}}$
 > * **Recommendation**: No recommendation. Beware that unlike CIS/TDDFT jobs this keyword only prints fewer roots, but the entirety of the Hamiltonian is still diagonalized via direct diagonalization.
 
 ### `PRINT_NTOS`
@@ -529,10 +405,7 @@ The options below are set within the *$nocis* section.
 > * **Type**: `NONE`
 > * **Default**: `NONE`
 > * **Options**:
->     * The presence of this keyword automatically generates
->     * all NTOs (default), or
->     * N_ROOTS
->     * NTOs.
+>     * The presence of this keyword automatically generates: all NTOs (default), or N_ROOTS NTOs.
 > * **Recommendation**: No recommendation, but one should be sure to also include a $plots section with appropriate details such that the cube files can be generated.
 
 ???+ example "Example 7.12: EA-TDDFT with Tamm-Dancoff approximation for the K-edge of NH ${}_{3}$ .

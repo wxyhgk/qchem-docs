@@ -12,8 +12,6 @@ RASCI1 方法的使用通过在 *$rem* 变量中将 CORRELATION 设置为 RASCI 
 
 最小输入还要求指定 RAS_ROOTS 的期望（非零）值、"活跃" RAS2 空间中的电子数，以及 RAS1 和 RAS2 子空间中的轨道数。
 
-RAS_ROOTS
-
 ### `RAS_ROOTS`
 
 > **设置要计算的 RAS-CI 根（roots）数目。**
@@ -28,8 +26,6 @@ RAS_ROOTS
 >     * 个 RAS-CI 态
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_ELEC
-
 ### `RAS_ELEC`
 
 > **设置 RAS2 中的电子数（活跃电子）。**
@@ -41,8 +37,6 @@ RAS_ELEC
 >     * 用户定义的整数，
 >     * $n>0$
 > * **建议**：无。仅适用于 RAS-CI。
-
-RAS_ELEC_ALPHA
 
 ### `RAS_ELEC_ALPHA`
 
@@ -56,8 +50,6 @@ RAS_ELEC_ALPHA
 >     * $n>0$
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_ELEC_BETA
-
 ### `RAS_ELEC_BETA`
 
 > **设置 RAS2 中自旋-$\beta$ 电子数（活跃电子）。**
@@ -69,8 +61,6 @@ RAS_ELEC_BETA
 >     * 用户定义的整数，
 >     * $n>0$
 > * **建议**：无。仅适用于 RAS-CI。
-
-RAS_ACT
 
 ### `RAS_ACT`
 
@@ -84,8 +74,6 @@ RAS_ACT
 >     * $n>0$
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_OCC
-
 ### `RAS_OCC`
 
 > **设置 RAS1 中的轨道数**
@@ -97,8 +85,6 @@ RAS_OCC
 >     * 用户定义的整数，
 >     * $n>0$
 > * **建议**：这些是在引入 $hole$（空穴）类型激发之前最初双占据的轨道（RAS1）。RAS1 空间从最低轨道开始直至该数目，即目前尚不支持冻结轨道选项。仅适用于 RAS-CI。
-
-RAS_DO_HOLE
 
 ### `RAS_DO_HOLE`
 
@@ -113,8 +99,6 @@ RAS_DO_HOLE
 >     * 不包含空穴组态
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_DO_PART
-
 ### `RAS_DO_PART`
 
 > **控制 RAS-CI 波函数中是否包含粒子（particle）激发。**
@@ -128,8 +112,6 @@ RAS_DO_PART
 >     * 不包含粒子组态
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_AMPL_PRINT
-
 ### `RAS_AMPL_PRINT`
 
 > **定义打印 CI 振幅时使用的绝对阈值（$\times 10^{2}$）。**
@@ -141,8 +123,6 @@ RAS_AMPL_PRINT
 >     * 用户定义的整数，
 >     * $n\geq 0$
 > * **建议**：无。仅适用于 RAS-CI。
-
-RAS_ACT_ORB
 
 ### `RAS_ACT_ORB`
 
@@ -157,8 +137,6 @@ RAS_ACT_ORB
 >     * 变量的值
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_NATORB
-
 ### `RAS_NATORB`
 
 > **控制自然轨道占据数的计算。**
@@ -171,8 +149,6 @@ RAS_NATORB
 >     * FALSE
 >     * 不计算自然轨道占据数
 > * **建议**：无。仅适用于 RAS-CI。
-
-RAS_NATORB_STATE
 
 ### `RAS_NATORB_STATE`
 
@@ -187,8 +163,6 @@ RAS_NATORB_STATE
 >     * 个态的自然轨道
 > * **建议**：无。仅适用于 RAS-CI，且需 GUI = 2。
 
-RAS_GUESS_CS
-
 ### `RAS_GUESS_CS`
 
 > **控制 RAS-CI 中闭壳层猜测组态（guess configuration）的数目。**
@@ -201,8 +175,6 @@ RAS_GUESS_CS
 >     * $n$
 >     * 个闭壳层猜测组态开始
 > * **建议**：仅对单重态的计算有意义。仅适用于 RAS-CI。
-
-RAS_SPIN_MULT
 
 ### `RAS_SPIN_MULT`
 
@@ -218,8 +190,6 @@ RAS_SPIN_MULT
 >     * $n\geq 0$
 > * **建议**：该选项仅适用于 $M_{S}=0$ 的体系，即 $\alpha$ 与 $\beta$ 电子数相同的情况。
 
-RAS_PT2
-
 ### `RAS_PT2`
 
 > **对 RAS-CI 能量执行二阶微扰修正**
@@ -232,8 +202,6 @@ RAS_PT2
 >     * FALSE
 >     * 不计算 RASCI(2) 能量修正
 > * **建议**：无。仅适用于 RAS-CI。
-
-RAS_PT2_PARTITION
 
 ### `RAS_PT2_PARTITION`
 
@@ -248,8 +216,6 @@ RAS_PT2_PARTITION
 >     * 同时执行 DK 分割和 EN 分割
 > * **建议**：仅适用于设置了 RAS_PT2 为 true 的 RAS-CI。
 
-RAS_PT2_VSHIFT
-
 ### `RAS_PT2_VSHIFT`
 
 > **定义 RASCI(2) 中的能级位移（$\times 10^{3}~{}au$）**
@@ -260,8 +226,6 @@ RAS_PT2_VSHIFT
 >     * $n$
 >     * 用户定义的整数
 > * **建议**：仅适用于设置了 RAS_PT2 为 true 的 RAS-CI。
-
-RAS_SRDFT
 
 ### `RAS_SRDFT`
 
@@ -279,8 +243,6 @@ RAS_SRDFT
 >     * $sr$
 >     * DFT 计算
 > * **建议**：无。仅适用于 RAS-CI。需要设置 RAS_SRDFT_EXC 和 RAS_SRDFT_COR。
-
-RAS_SRDFT_EXC
 
 ### `RAS_SRDFT_EXC`
 
@@ -300,8 +262,6 @@ RAS_SRDFT_EXC
 >     * 节列出的短程交换泛函之一
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_SRDFT_COR
-
 ### `RAS_SRDFT_COR`
 
 > **定义短程关联泛函**
@@ -320,8 +280,6 @@ RAS_SRDFT_COR
 >     * 节列出的短程关联泛函之一
 > * **建议**：无。仅适用于 RAS-CI。
 
-RAS_OMEGA
-
 ### `RAS_OMEGA`
 
 > **在 RAS-CI-$sr$ DFT 方法中设置库仑程分离（range-separation）参数。**
@@ -336,8 +294,6 @@ RAS_OMEGA
 >     * ${}^{-1}$
 > * **建议**：无。程分离参数通常记为 $\omega$ 或 $\mu$。仅适用于 RAS-CI。
 
-RAS_SRDFT_DAMP
-
 ### `RAS_SRDFT_DAMP`
 
 > **在 RAS-CI-$sr$ DFT 方法中设置阻尼因子（$\alpha<1$）。**
@@ -350,8 +306,6 @@ RAS_SRDFT_DAMP
 >     * $0<\alpha<1$
 > * **建议**：当 RAS-CI-$sr$ DFT 迭代出现收敛问题时进行调整。仅适用于 RAS-CI
 
-RAS_SRDFT_SA_ROOTS
-
 ### `RAS_SRDFT_SA_ROOTS`
 
 > **设置在 RAS-CI-$sr$ DFT 中用于构建态平均（state averaged）参考密度的根列表。**
@@ -362,8 +316,6 @@ RAS_SRDFT_SA_ROOTS
 >     * $[i,j,k\ldots]$
 >     * 态列表。
 > * **建议**：无。仅适用于 RAS-CI
-
-RAS_NFRAG
 
 ### `RAS_NFRAG`
 
@@ -376,8 +328,6 @@ RAS_NFRAG
 >     * 要考虑的片段（fragment）数目
 > * **建议**：仅适用于 RAS-CI。打印信息的详细程度由 RAS_PRINT 控制。
 
-RAS_NFRAG_ATOMS
-
 ### `RAS_NFRAG_ATOMS`
 
 > **设置每个片段中的原子数。**
@@ -389,8 +339,6 @@ RAS_NFRAG_ATOMS
 >     * 各数值之和必须等于
 >     * 体系中的原子总数
 > * **建议**：无。仅适用于 RAS-CI。
-
-RAS_FRAG_SETS
 
 ### `RAS_FRAG_SETS`
 
@@ -405,8 +353,6 @@ RAS_FRAG_SETS
 >     * 个片段中的正则分子轨道（canonical MOs）集合
 > * **建议**：在 RAS1、RAS2 和 RAS3 空间内设置可降低定域化过程的计算开销，还可能得到质量更好的片段轨道。仅适用于 RAS-CI。
 
-CALC_SOC
-
 ### `CALC_SOC`
 
 > **控制是否为 EOM-CC、RAS-CI、TDDFT/TDA 及 TDDFT 计算自旋-轨道耦合（SOC）常数。**
@@ -420,8 +366,6 @@ CALC_SOC
 >     * 执行 SOC 计算。
 > * **建议**：除 TRUE 和 FALSE 之外，EOM-CC 程序还支持更多 SOC 评估变体；见第 7.9.21.4 节。
 
-RAS_SOC_2E
-
 ### `RAS_SOC_2E`
 
 > **控制是否计算 RAS-CI SOC 的双电子平均场（mean-field）贡献。**
@@ -434,8 +378,6 @@ RAS_SOC_2E
 >     * TRUE
 >     * 计算双电子平均场贡献。
 > * **建议**：无。
-
-RAS_SOC_SYM_DENS
 
 ### `RAS_SOC_SYM_DENS`
 

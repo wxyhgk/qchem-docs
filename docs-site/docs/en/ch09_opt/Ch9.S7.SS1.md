@@ -54,8 +54,6 @@ Cartesian-coordinate geometries representing steps along the pathway. The format
 for this output is a standard one that is readable, for example, by the
 Visual Molecular Dynamics (VMD) program.[[W. Humphrey, A. Dalke, and K. Schulten (1996)]](../bib_references/bib.md#bib627)
 
-RPATH_COORDS
-
 ### `RPATH_COORDS`
 
 > **Determines which coordinate system to use in the IRC search.**
@@ -63,17 +61,10 @@ RPATH_COORDS
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Use mass-weighted coordinates.
->     * 1
->     * Use Cartesian coordinates.
->     * 2
->     * Use
->     * Z
->     * -matrix coordinates.
+>     * `0`: Use mass-weighted coordinates.
+>     * `1`: Use Cartesian coordinates.
+>     * `2`: Use Z -matrix coordinates.
 > * **Recommendation**: Use the default. Note that use of $Z$ -matrix coordinates requires that geometries be input in $Z$ -matrix format.
-
-RPATH_DIRECTION
 
 ### `RPATH_DIRECTION`
 
@@ -82,13 +73,9 @@ RPATH_DIRECTION
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Descend in the positive direction of the eigenmode, then restart in the negative direction.
->     * -1
->     * Descend in the negative direction of the eigenmode, then restart in the positive direction.
+>     * `1`: Descend in the positive direction of the eigenmode, then restart in the negative direction.
+>     * `-1`: Descend in the negative direction of the eigenmode, then restart in the positive direction.
 > * **Recommendation**: It is usually not possible to determine in which direction to go a priori , so both directions are automatically considered. A job that reads in the final geometry from the reaction path job will use the final step from the second direction.
-
-RPATH_MAX_CYCLES
 
 ### `RPATH_MAX_CYCLES`
 
@@ -97,11 +84,8 @@ RPATH_MAX_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `20`
 > * **Options**:
->     * $n$
->     * User-defined number of cycles.
+>     * $n$: User-defined number of cycles.
 > * **Recommendation**: Use more points if the minimum is desired, but not reached using the default.
-
-RPATH_MAX_STEPSIZE
 
 ### `RPATH_MAX_STEPSIZE`
 
@@ -110,13 +94,9 @@ RPATH_MAX_STEPSIZE
 > * **Type**: `INTEGER`
 > * **Default**: `150`
 > * **Options**:
->     * $n$
->     * Step size =
->     * $n$
->     * /1000 a.u.
+>     * $n$: Step size =
+>     * $n$: /1000 a.u.
 > * **Recommendation**: None.
-
-RPATH_TOL_DISPLACEMENT
 
 ### `RPATH_TOL_DISPLACEMENT`
 
@@ -125,13 +105,9 @@ RPATH_TOL_DISPLACEMENT
 > * **Type**: `INTEGER`
 > * **Default**: `5000`
 > * **Options**:
->     * $n$
->     * User-defined. Tolerance =
->     * $n$
->     * /1000000 a.u.
+>     * $n$: User-defined. Tolerance =
+>     * $n$: /1000000 a.u.
 > * **Recommendation**: Use the default. Note that this option only controls the threshold for ending the RPATH job and does nothing to the intermediate steps of the calculation. A smaller value will provide reaction paths that end closer to the true minimum. Use of smaller values without adjusting RPATH_MAX_STEPSIZE , however, can lead to oscillations about the minimum.
-
-RPATH_PRINT
 
 ### `RPATH_PRINT`
 

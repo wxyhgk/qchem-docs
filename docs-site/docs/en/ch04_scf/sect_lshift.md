@@ -43,8 +43,6 @@ level-shifting with DIIS. This is invoked by setting SCF_ALGORITHM =
 LS_DIIS. Level-shifting can also be used on its own (without DIIS),
 by means of the following *$rem* variables.
 
-LEVEL_SHIFT
-
 ### `LEVEL_SHIFT`
 
 > **Determine whether to invoke level-shifting or not together with DIIS.**
@@ -52,13 +50,9 @@ LEVEL_SHIFT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Apply level shifting.
->     * FALSE
->     * Do not apply level shifting.
+>     * `TRUE`: Apply level shifting.
+>     * `FALSE`: Do not apply level shifting.
 > * **Recommendation**: Use TRUE if level-shifting is necessary to accelerate SCF convergence.
-
-GAP_TOL
 
 ### `GAP_TOL`
 
@@ -67,10 +61,8 @@ GAP_TOL
 > * **Type**: `INTEGER`
 > * **Default**: `300`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: The input number must be an integer between 0 and 9999. The threshold applied is set to /1000 Eh. The default value is provided to make the level-shifting calculation run and should not be taken as optimal for any specific problem. Trial and error may be required to find the optimal threshold. Larger values of generally lead to level-shifting being used more frequently during the SCF convergence process.
-
-LSHIFT
 
 ### `LSHIFT`
 
@@ -79,7 +71,7 @@ LSHIFT
 > * **Type**: `INTEGER`
 > * **Default**: `200`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: The input number must be an integer between 0 and 9999. The actual shift is equal to /1000 Eh. The default value is provided to make the level-shifting calculation run and should not be taken as optimal for any specific problem. Trial and error may be required to find the optimal threshold. Larger level shifts make the SCF process more stable but also slow down convergence, thus requiring more SCF cycles.
 
 **Note: 
@@ -91,8 +83,6 @@ GAP_TOL and LSHIFT. Invoking the LS_DIIS algorithm also
 disables any setting of LEVEL_SHIFT.
 **
 
-MAX_LS_CYCLES
-
 ### `MAX_LS_CYCLES`
 
 > **The maximum number of DIIS iterations with level-shifting when SCF_ALGORITHM = LS_DIIS . See also THRESH_LS_SWITCH .**
@@ -100,14 +90,10 @@ MAX_LS_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `MAX_SCF_CYCLES`
 > * **Options**:
->     * 1
->     * Only a single DIIS step with level-shifting, and no level-shifting for the remaining DIIS steps.
+>     * `1`: Only a single DIIS step with level-shifting, and no level-shifting for the remaining DIIS steps.
 >     * $n$
->     * $n$
->     * DIIS iterations with level-shifting before turning level-shifting off.
+>     * $n$: DIIS iterations with level-shifting before turning level-shifting off.
 > * **Recommendation**: None
-
-THRESH_LS_SWITCH
 
 ### `THRESH_LS_SWITCH`
 
@@ -116,7 +102,7 @@ THRESH_LS_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * User-defined.
+>     * `User-defined.`
 > * **Recommendation**: None
 
 ???+ example "Example 4.9: Input for a RKS calculation using DIIS with level-shifting on a uranium compound."

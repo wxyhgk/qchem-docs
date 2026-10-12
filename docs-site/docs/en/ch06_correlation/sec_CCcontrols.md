@@ -19,8 +19,6 @@ that one should be aware of for routine calculations.
 
 For memory options and parallel execution, see Section [6.17](CCparallel.md).
 
-CC_CONVERGENCE
-
 ### `CC_CONVERGENCE`
 
 > **Overall convergence criterion for the coupled-cluster codes. This is designed to ensure at least $n$ significant digits in the calculated energy, and automatically sets the other convergence-related variables ( CC_E_CONV , CC_T_CONV , CC_THETA_CONV , CC_THETA_GRAD_CONV ) [ $10^{-n}$ ].**
@@ -28,11 +26,7 @@ CC_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion. Amplitude convergence is set
->     * automatically to match energy convergence.
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion. Amplitude convergence is set automatically to match energy convergence.
 > * **Recommendation**: Use the default
 
 **Note: 
@@ -43,8 +37,6 @@ calculations. When using single-precision calculations, the thresholds should be
 accordingly (see section [6.18](sec_SP_CC.md)).
 **
 
-CC_DOV_THRESH
-
 ### `CC_DOV_THRESH`
 
 > **Specifies minimum allowed values for the coupled-cluster energy denominators. Smaller values are replaced by this constant during early iterations only, so the final results are unaffected, but initial convergence is improved when the HOMO-LUMO gap is small or when non-conventional references are used.**
@@ -52,24 +44,13 @@ CC_DOV_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $abcde$
->     * Integer code is mapped to
->     * $ab\times 10^{-de}$
->     * ,
->     * e.g.
->     * ,
->     * $2501$
->     * corresponds to 0.025,
->     * $99001$
->     * corresponds to 0.99, etc.
+>     * $abcde$: Integer code is mapped to $ab\times 10^{-de}$ , e.g. , $2501$ corresponds to 0.025, $99001$ corresponds to 0.99, etc.
 > * **Recommendation**: Increase to 0.25, 0.5 or 0.75 for non convergent coupled-cluster calculations.
 
 **Note: 
 
 Works only for CCMAN jobs, not enabled in CCMAN2.
 **
-
-CC_SCALE_AMP
 
 ### `CC_SCALE_AMP`
 
@@ -78,22 +59,13 @@ CC_SCALE_AMP
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $abcd$
->     * Integer code is mapped to
->     * $abcd\times 10^{-2}$
->     * ,
->     * e.g.
->     * ,
->     * $90$
->     * corresponds to 0.9
+>     * $abcd$: Integer code is mapped to $abcd\times 10^{-2}$ , e.g. , $90$ corresponds to 0.9
 > * **Recommendation**: Use 0.9 or 0.8 for non convergent coupled-cluster calculations.
 
 **Note: 
 
 Now available for both CCMAN and CCMAN2.
 **
-
-CC_MAX_ITER
 
 ### `CC_MAX_ITER`
 
@@ -102,13 +74,9 @@ CC_MAX_ITER
 > * **Type**: `INTEGER`
 > * **Default**: `200`
 > * **Options**:
->     * $n$
->     * up to
->     * $n$
->     * iterations to achieve convergence.
+>     * $n$: up to
+>     * $n$: iterations to achieve convergence.
 > * **Recommendation**: None
-
-CC_PRINT
 
 ### `CC_PRINT`
 
@@ -117,11 +85,8 @@ CC_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $0-7$
->     * higher values can lead to deforestation…
+>     * $0-7$: higher values can lead to deforestation…
 > * **Recommendation**: Increase if you need more output and don’t like trees
-
-CHOLESKY_TOL
 
 ### `CHOLESKY_TOL`
 
@@ -130,12 +95,8 @@ CHOLESKY_TOL
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $n$
->     * Corresponds to a tolerance of
->     * $10^{-n}$
+>     * $n$: Corresponds to a tolerance of $10^{-n}$
 > * **Recommendation**: 2 - qualitative calculations, 3 - appropriate for most cases, 4 - quantitative (error in total energy typically less than 1 $\mu$ hartree)
-
-CHOLESKY_TWOSTEP
 
 ### `CHOLESKY_TWOSTEP`
 
@@ -144,13 +105,9 @@ CHOLESKY_TWOSTEP
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * use original decomposition procedure
->     * TRUE
->     * use two-step procedure
+>     * `FALSE`: use original decomposition procedure
+>     * `TRUE`: use two-step procedure
 > * **Recommendation**: The two-step procedure is more efficient.
-
-CD_TS_SPAN_FACTOR
 
 ### `CD_TS_SPAN_FACTOR`
 
@@ -159,12 +116,8 @@ CD_TS_SPAN_FACTOR
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * $n$
->     * Corresponds to a tolerance of
->     * $10^{-n}$
+>     * $n$: Corresponds to a tolerance of $10^{-n}$
 > * **Recommendation**: Using larger value (e.g., 3) may improve accuracy of the decomposition step.
-
-CC_DIRECT_RI
 
 ### `CC_DIRECT_RI`
 
@@ -173,8 +126,6 @@ CC_DIRECT_RI
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * use all integrals in decomposed format
->     * TRUE
->     * transform all RI or Cholesky integral back to conventional format
+>     * `FALSE`: use all integrals in decomposed format
+>     * `TRUE`: transform all RI or Cholesky integral back to conventional format
 > * **Recommendation**: By default all integrals are used in decomposed format allowing significant reduction of memory use. If all integrals are transformed back (TRUE option) no memory reduction is achieved and decomposition error is introduced, however, the integral transformation is performed significantly faster and conventional CC/EOM algorithms are used.

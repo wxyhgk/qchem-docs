@@ -111,8 +111,6 @@ Section [7.4.3](sec_TDKS_Spectra.md) discusses how to compute broadband spectra
 Section [7.4.4](sec_TDKS_HHG_Spectra.md) discusses how to compute high-harmonic generation (HHG) spectra from TDKS simulations
 of electron dynamics.
 
-TDKS
-
 ### `TDKS`
 
 > **Job control keyword to turn on TDKS calculation**
@@ -120,8 +118,6 @@ TDKS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform a TDKS calculation following a ground-state SCF calculation
->     * FALSE
->     * Do not perform a TDKS calculation
+>     * `TRUE`: Perform a TDKS calculation following a ground-state SCF calculation
+>     * `FALSE`: Do not perform a TDKS calculation
 > * **Recommendation**: None.

@@ -45,8 +45,6 @@ more than $0.001\times N$ kJ/mol to the energy decrease.
 Unrestricted analysis will be used if at least one of the fragments has an open-shell structure. It can also be forced by setting
 UNRESTRICTED=TRUE.
 
-EDA_POL_A
-
 ### `EDA_POL_A`
 
 > **Perform EDA for polarization process**
@@ -54,13 +52,9 @@ EDA_POL_A
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform EDA for polarization process
->     * TRUE
->     * Perform EDA for polarization process
+>     * `FALSE`: Do not perform EDA for polarization process
+>     * `TRUE`: Perform EDA for polarization process
 > * **Recommendation**: Set to TRUE to perform EDA for polarization process
-
-EDA_VCT_A
 
 ### `EDA_VCT_A`
 
@@ -69,13 +63,9 @@ EDA_VCT_A
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform non-perturbative CT analysis
->     * TRUE
->     * Perform non-perturbative CT analysis.
+>     * `FALSE`: Do not perform non-perturbative CT analysis
+>     * `TRUE`: Perform non-perturbative CT analysis.
 > * **Recommendation**: Set to TRUE to perform non-perturbative CT analysis
-
-EDA_COVP_THRESH
 
 ### `EDA_COVP_THRESH`
 
@@ -84,13 +74,8 @@ EDA_COVP_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $N$
->     * COVPs that contributes more than
->     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
+>     * $N$: COVPs that contributes more than $0.001\times N$ kJ/mol in energy decrease will be saved
 > * **Recommendation**: None
-
-EDA_SAVE_COVP
 
 ### `EDA_SAVE_COVP`
 
@@ -99,13 +84,9 @@ EDA_SAVE_COVP
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not save significant COVPs
->     * TRUE
->     * Save significant COVPs
+>     * `FALSE`: Do not save significant COVPs
+>     * `TRUE`: Save significant COVPs
 > * **Recommendation**: Set to TRUE to save COVPs. Note that REMs for plotting cube files need also be set
-
-EDA_NOCV
 
 ### `EDA_NOCV`
 
@@ -114,13 +95,9 @@ EDA_NOCV
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not do NOCV analysis
->     * TRUE
->     * Do NOCV analysis
+>     * `FALSE`: Do not do NOCV analysis
+>     * `TRUE`: Do NOCV analysis
 > * **Recommendation**: None
-
-EDA_NOCV_THRESH
 
 ### `EDA_NOCV_THRESH`
 
@@ -129,13 +106,8 @@ EDA_NOCV_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $N$
->     * NOCVs that contributes more than
->     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
+>     * $N$: NOCVs that contributes more than $0.001\times N$ kJ/mol in energy decrease will be saved
 > * **Recommendation**: None
-
-EDA_SAVE_NOCV
 
 ### `EDA_SAVE_NOCV`
 
@@ -144,13 +116,9 @@ EDA_SAVE_NOCV
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not save significant NOCVs
->     * 1
->     * Save significant NOCVs
+>     * `0`: Do not save significant NOCVs
+>     * `1`: Save significant NOCVs
 > * **Recommendation**: Set to 1 to save NOCVs. Note REMs for plotting cube files need also be set
-
-EDA_NOCV_QUADRATURE
 
 ### `EDA_NOCV_QUADRATURE`
 
@@ -159,13 +127,9 @@ EDA_NOCV_QUADRATURE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Use 1 quadrature
->     * 5
->     * Use 5 quadratures
+>     * `1`: Use 1 quadrature
+>     * `5`: Use 5 quadratures
 > * **Recommendation**: Most of the time, one quadrature is enough. However, in cases where the NOCV energy decreases are very different from the corresponding COVP results, it is recommended to increase the quadrature numbers.
-
-OVOCV_ANALYSIS
 
 ### `OVOCV_ANALYSIS`
 
@@ -174,13 +138,9 @@ OVOCV_ANALYSIS
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not do OVOCV analysis
->     * TRUE
->     * Do OVOCV analysis
+>     * `FALSE`: Do not do OVOCV analysis
+>     * `TRUE`: Do OVOCV analysis
 > * **Recommendation**: None
-
-OVOCV_THRESH
 
 ### `OVOCV_THRESH`
 
@@ -189,13 +149,8 @@ OVOCV_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $N$
->     * OVOCVs that contributes more than
->     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
+>     * $N$: OVOCVs that contributes more than $0.001\times N$ kJ/mol in energy decrease will be saved
 > * **Recommendation**: None
-
-SAVE_OVOCV
 
 ### `SAVE_OVOCV`
 
@@ -204,10 +159,8 @@ SAVE_OVOCV
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not save significant OVOCVs
->     * 1
->     * Save significant OVOCVs
+>     * `0`: Do not save significant OVOCVs
+>     * `1`: Save significant OVOCVs
 > * **Recommendation**: Set to 1 to save OVOCVs. Note REMs for plotting cube files need also be set
 
 ???+ example "Example 12.20: Restricted EDA calculation for the H ${}_{2}$ O-Na ${}^{+}$ system with non-perturbative POL and CT analysis."

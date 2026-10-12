@@ -10,8 +10,6 @@ title: "9.2.1 任务控制概述"
 
 几何优化的任务控制变量采用通用 rem 变量模式 GEOM_OPT。这些是最初在 **Optimize** 驱动模块中使用的 rem 变量，参见第 9.2.2 节 [9.2.2](topic_ts_Job-Control-Optimize.md)。**Libopt3** 的任务控制变量则包含在 *$geom_opt* 区段中，相较原始的 rem 变量，它为用户提供了更为精细的任务控制能力，参见第 9.2.5 节 [9.2.5](topic_ts_Job-Control-Libopt3.md)。为保证已有工作流的用户不受影响，当 GEOM_OPT 变量在 **Libopt3** 驱动模块中存在匹配的变量/控制项时，同样可以被读取。rem 变量设置优先级由高到低的顺序如下：1) *$geom_opt* 变量，2) GEOM_OPT 变量，3) 默认值。
 
-JOBTYPE
-
 ### `JOBTYPE`
 
 > **指定计算类型。**
@@ -26,8 +24,6 @@ JOBTYPE
 >     * RPATH
 >     * 内禀反应坐标（Intrinsic Reaction Coordinate, IRC）路径跟随。
 > * **建议**：视具体应用而定。
-
-GEOM_OPT_DRIVER
 
 ### `GEOM_OPT_DRIVER`
 

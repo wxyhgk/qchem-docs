@@ -37,8 +37,6 @@ compute the latter on the CPU (using double-precision). We are thus able to
 determine how much double-precision we desire by tuning the $\delta$
 parameter, and tailoring the balance between computational speed and accuracy.
 
-CUDA_RI-MP2
-
 ### `CUDA_RI-MP2`
 
 > **Enables GPU implementation of RI-MP2**
@@ -46,13 +44,9 @@ CUDA_RI-MP2
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * GPU-enabled MGEMM off
->     * TRUE
->     * GPU-enabled MGEMM on
+>     * `FALSE`: GPU-enabled MGEMM off
+>     * `TRUE`: GPU-enabled MGEMM on
 > * **Recommendation**: Necessary to set to 1 in order to run GPU-enabled RI-MP2
-
-USECUBLAS_THRESH
 
 ### `USECUBLAS_THRESH`
 
@@ -61,11 +55,8 @@ USECUBLAS_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `250`
 > * **Options**:
->     * n
->     * user-defined threshold
+>     * `n`: user-defined threshold
 > * **Recommendation**: Use the default value. Anything less can seriously hinder the GPU acceleration
-
-USE_MGEMM
 
 ### `USE_MGEMM`
 
@@ -74,13 +65,9 @@ USE_MGEMM
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * MGEMM disabled
->     * TRUE
->     * MGEMM enabled
+>     * `FALSE`: MGEMM disabled
+>     * `TRUE`: MGEMM enabled
 > * **Recommendation**: Use when having single-precision cards
-
-MGEMM_THRESH
 
 ### `MGEMM_THRESH`
 
@@ -89,8 +76,7 @@ MGEMM_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `10000`
 > * **Options**:
->     * $n$
->     * User-specified threshold
+>     * $n$: User-specified threshold
 > * **Recommendation**: For small molecules and basis sets up to triple- $\zeta$ , the default value suffices to not deviate too much from the double-precision values. Care should be taken to reduce this number for larger molecules and also larger basis-sets.
 
 ???+ example "Example 6.6: RI-MP2 double-precision calculation"

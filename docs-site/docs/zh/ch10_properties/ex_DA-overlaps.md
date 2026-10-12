@@ -25,8 +25,6 @@ MO_OVERLAPS_TWO_GEOMS 来实现，如下方示例 10.3.3 所示。这需要两�
 SPATIAL_OVERLAP_ANALYSIS 打印输出。作业控制选项请参见第 [7.3.6.1](../ch07_excited/subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic) 节，
 示例请参见示例 10.3.3。
 
-MO_OVERLAPS_TWO_GEOMS
-
 ### `MO_OVERLAPS_TWO_GEOMS`
 
 > **指定是否在两种不同几何结构下计算分子轨道重叠。**
@@ -34,12 +32,9 @@ MO_OVERLAPS_TWO_GEOMS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不计算这些重叠。
->     * 1
->     * 用于指示两次必需 SCF 计算中的第一次。
->     * 2
->     * 用于指示两次必需 SCF 计算中的第二次。
+>     * `0`: 不计算这些重叠。
+>     * `1`: 用于指示两次必需 SCF 计算中的第一次。
+>     * `2`: 用于指示两次必需 SCF 计算中的第二次。
 > * **建议**: 两次计算中原子的排列顺序必须一致。（程序不会对此进行检查。）
 
 ???+ example "示例 10.14：计算萘与四氰基对苯醌二甲烷（TCNQ）二聚体前线分子轨道的“空间重叠”。

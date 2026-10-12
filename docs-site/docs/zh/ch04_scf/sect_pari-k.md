@@ -14,8 +14,6 @@ PARI-K[[891]](../bib_references/bib.md#bib925)
  推荐将与 Weigend[[1442]](../bib_references/bib.md#bib1502)
  开发的交换拟合基组（cc-pVTZ-JK 和 cc-pVQZ-JK）与 PARI-K 配合使用。与 PARI-K 近似相关的误差看起来仅比标准 RI-HF 略高。[[938]](../bib_references/bib.md#bib978)
 
-PARI_K
-
 ### `PARI_K`
 
 > **控制在交换矩阵的构建中是否使用 PARI-K 近似**
@@ -23,6 +21,5 @@ PARI_K
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 使用 PARI-K。
+>     * `TRUE`: 使用 PARI-K。
 > * **建议**: 用于 aug-cc-pVTZ 及更大的基组。

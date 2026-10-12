@@ -11,8 +11,6 @@ A CDFT calculation is requested by setting CDFT = TRUE in the
 Three SCF algorithms are currently available for CDFT calculations: DIIS, RCA,
 and the combined RCA-DIIS algorithm. Additional job control variables are described below.
 
-CDFT
-
 ### `CDFT`
 
 > **Initiates a constrained DFT calculation**
@@ -20,13 +18,9 @@ CDFT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform a Constrained DFT Calculation
->     * FALSE
->     * No Density Constraint
+>     * `TRUE`: Perform a Constrained DFT Calculation
+>     * `FALSE`: No Density Constraint
 > * **Recommendation**: Set to TRUE if a Constrained DFT calculation is desired.
-
-CDFT_POSTDIIS
 
 ### `CDFT_POSTDIIS`
 
@@ -35,13 +29,9 @@ CDFT_POSTDIIS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Enforce constraint after DIIS
->     * FALSE
->     * Do not enforce constraint after DIIS
+>     * `TRUE`: Enforce constraint after DIIS
+>     * `FALSE`: Do not enforce constraint after DIIS
 > * **Recommendation**: Use the default unless convergence problems arise, in which case it may be beneficial to experiment with setting to FALSE . With this option set to TRUE , energies should be variational after the first iteration.
-
-CDFT_PREDIIS
 
 ### `CDFT_PREDIIS`
 
@@ -50,13 +40,9 @@ CDFT_PREDIIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Enforce constraint before DIIS
->     * FALSE
->     * Do not enforce constraint before DIIS
+>     * `TRUE`: Enforce constraint before DIIS
+>     * `FALSE`: Do not enforce constraint before DIIS
 > * **Recommendation**: Use the default unless convergence problems arise, in which case it may be beneficial to experiment with setting to TRUE . Note that it is possible to enforce the constraint both before and after DIIS by setting both and CDFT_POSTDIIS to TRUE .
-
-CDFT_THRESH
 
 ### `CDFT_THRESH`
 
@@ -65,13 +51,8 @@ CDFT_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * N
->     * Constraint is satisfied to within
->     * $10^{-N}$
->     * .
+>     * `N`: Constraint is satisfied to within $10^{-N}$ .
 > * **Recommendation**: Default value is set to match SCF_CONVERGENCE . Use the default unless problems occur.
-
-CDFT_MAXITER
 
 ### `CDFT_MAXITER`
 
@@ -80,13 +61,9 @@ CDFT_MAXITER
 > * **Type**: `INTEGER`
 > * **Default**: `20`
 > * **Options**:
->     * N
->     * A maximum of
->     * N
->     * microiterations will be attempted.
+>     * `N`: A maximum of
+>     * `N`: microiterations will be attempted.
 > * **Recommendation**: Default value is expected to be sufficient in most situations.
-
-CDFT_PRINT
 
 ### `CDFT_PRINT`
 
@@ -95,13 +72,9 @@ CDFT_PRINT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Print detailed information.
->     * FALSE
->     * Do not print detailed information.
+>     * `TRUE`: Print detailed information.
+>     * `FALSE`: Do not print detailed information.
 > * **Recommendation**: Use the default and invoke additional printing for troubleshooting.
-
-CDFT_BECKE_POP
 
 ### `CDFT_BECKE_POP`
 
@@ -110,8 +83,6 @@ CDFT_BECKE_POP
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Print populations
->     * FALSE
->     * Do not print them
+>     * `TRUE`: Print populations
+>     * `FALSE`: Do not print them
 > * **Recommendation**: Use the default. Note that the Mulliken populations printed at the end of an SCF run will not typically add up to the prescribed constraint value. Only the Becke populations are guaranteed to satisfy the user-specified constraints.

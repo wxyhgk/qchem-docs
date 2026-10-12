@@ -18,10 +18,8 @@ when only *one molecule* is given in the MOLECULE section.
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Read and add the embedding potential to the Fock matrix.
->     * FALSE
->     * Don’t read the embedding potential, use other options.
+>     * `TRUE`: Read and add the embedding potential to the Fock matrix.
+>     * `FALSE`: Don’t read the embedding potential, use other options.
 > * **Recommendation**: None
 
 **Note: 
@@ -41,8 +39,6 @@ Importing the density matrix of fragment A is done as described previously.
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * Mulliken
->     * Compute Mulliken charges from system A density matrix.
->     * CHELPG
->     * Compute ChElPG charges from system A density matrix.
+>     * `Mulliken`: Compute Mulliken charges from system A density matrix.
+>     * `CHELPG`: Compute ChElPG charges from system A density matrix.
 > * **Recommendation**: None

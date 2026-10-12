@@ -34,8 +34,6 @@ $$
 
 TDDFT-1D 计算的 *rem* 变量与 CIS 计算的类似，以下 *$rem* 变量用于控制 TDDFT-1D 计算。
 
-CIS1D_N_ROOTS
-
 ### `CIS1D_N_ROOTS`
 
 > **设置要计算的 CIS-1D 和 TDDFT-1D 态的数目。$\mathbf{H}$ 的最低本征态为基态，其后依次为激发态。**
@@ -50,8 +48,6 @@ CIS1D_N_ROOTS
 >     * 个 CIS-1D 或 TDDFT-1D 态。
 > * **建议**：无
 
-CIS1D_ED_CONVERGENCE
-
 ### `CIS1D_ED_CONVERGENCE`
 
 > **用于轨道优化的 $E_{d}$ 最小化收敛判据。停止准则设为 $10^{-\text{CIS1D\_ED\_CONVERGENCE}}$ 。**
@@ -65,8 +61,6 @@ CIS1D_ED_CONVERGENCE
 >     * 时认为已收敛。
 > * **建议**：$\mathbf{H}$ 本征根的收敛性由 CIS_CONVERGENCE 控制，对于 CIS-1D 或 TDDFT-1D 计算，其默认值为 9。若增大 CIS_CONVERGENCE，则本变量也应相应增大。
 
-CIS1D_MAX_CYCLES
-
 ### `CIS1D_MAX_CYCLES`
 
 > **对 $\mathbf{H}$ 进行对角化时 Davidson 迭代的最大次数。**
@@ -79,8 +73,6 @@ CIS1D_MAX_CYCLES
 >     * $n$
 >     * 次迭代。
 > * **建议**：为 Davidson 迭代（用于对角化 $\mathbf{H}$ ）分配的内存为 $(n_{\text{occ}}n_{\text{virt}}+\text{2})$ ( )( CIS1D_N_ROOTS )/2 个双精度数，其中 $n_{\text{occ}}$ 和 $n_{\text{virt}}$ 分别为占据轨道数和虚轨道数。较大的取值可能需要增大 MEM_TOTAL。
-
-CIS1D_SCALE_GD
 
 ### `CIS1D_SCALE_GD`
 
@@ -96,8 +88,6 @@ CIS1D_SCALE_GD
 >     * 缩放。
 > * **建议**：由于 Kohn-Sham 行列式并非真正的波函数，因此没有严格的方法来确定 $\mathbf{H}$ 中的耦合元，故采用“伪波函数”（pseudo-wave function）方法计算这些耦合。1028 Ou Q., Alguire E. C., Subotnik J. E. J. Phys. Chem. B (2015) , 119 , pp. 7150 . Link , 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . Link 有时为了获得准确的势能面，需要对耦合元进行缩放，而缩放因子需通过一定的基准测试来确定。56 Athavale V., Teh H.-H., Subotnik J. E. J. Chem. Phys. (2021) , 155 , pp. 154105 . Link
 
-CIS1D_SCALE_SD
-
 ### `CIS1D_SCALE_SD`
 
 > **单激发组态与唯一双激发组态之间耦合矩阵元 $\langle\psi_{i}^{a}|H|\psi_{h\bar{h}}^{l\bar{l}}\rangle$ 的缩放因子。**
@@ -112,8 +102,6 @@ CIS1D_SCALE_SD
 >     * 缩放。
 > * **建议**：与 CIS1D_SCALE_GD 相同。
 
-CIS1D_STATE_DERIV
-
 ### `CIS1D_STATE_DERIV`
 
 > **选择要计算梯度的 CIS-1D/TDDFT-1D 态。这对于几何优化等任务非常有用。**
@@ -127,8 +115,6 @@ CIS1D_STATE_DERIV
 >     * $n$
 >     * 个 CIS-1D/TDDFT-1D 态。
 > * **建议**：无
-
-CIS1D_DER_NUMSTATE
 
 ### `CIS1D_DER_NUMSTATE`
 

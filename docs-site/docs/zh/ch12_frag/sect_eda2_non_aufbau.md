@@ -61,8 +61,6 @@ HOMO$\rightarrow$LUMO 激发，该节只需写成
 做法非常简单：只需在 SCF-MI 计算的 *$rem* 设置中添加 SCFMI_MOM = TRUE（见第 [12.6.2](sect_gen_scfmi.md) 节）。
 非 *aufbau* 电子组态同样可以通过 *$scfmi_mom* 节按相同方式指定。
 
-EDA2_MOM
-
 ### `EDA2_MOM`
 
 > **使用 MOM 对非 *aufbau*（非构造原理）电子组态执行 ALMO-EDA 计算**
@@ -85,10 +83,8 @@ EDA2_MOM
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 标准 SCF-MI 计算
->     * TRUE
->     * 使用 MOM 的 SCF-MI 计算
+>     * `FALSE`: 标准 SCF-MI 计算
+>     * `TRUE`: 使用 MOM 的 SCF-MI 计算
 > * **建议**: 无
 
 请注意，EDA2_MOM 与 SCFMI_MOM 可以在不显式设置 *$scfmi_mom* 段的情况下使用，此时在 SCF-MI 或 ALMO-EDA 计算中，将由两个基态碎片构造的冻结态的电子组态得以保留。

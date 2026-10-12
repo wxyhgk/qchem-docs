@@ -23,8 +23,6 @@ INTEGRAL_SYMMETRY 关键字在某些积分例程中控制对称性，其默认�
 `https://iopenshell.usc.edu/resources/howto/symmetry`。
 **
 
-INTEGRAL_SYMMETRY
-
 ### `INTEGRAL_SYMMETRY`
 
 > **通过利用点群对称性来控制积分计算的效率。**
@@ -32,14 +30,9 @@ INTEGRAL_SYMMETRY
 > * **类型**: `LOGICAL`
 > * **默认值**: `False`
 > * **选项**:
->     * TRUE
->     * 在可用时使用对称性。
->     * FALSE
->     * 不使用对称性。对于 RIMP2 作业
->     * 始终如此。
+>     * `TRUE`: 在可用时使用对称性。
+>     * `FALSE`: 不使用对称性。对于 RIMP2 作业始终如此。
 > * **建议**: 除非进行基准测试，否则使用默认值。请注意，对于 RIMP2、FFT 和 QM/MM 作业，对称性的使用会被禁用。
-
-POINT_GROUP_SYMMETRY
 
 ### `POINT_GROUP_SYMMETRY`
 
@@ -48,10 +41,8 @@ POINT_GROUP_SYMMETRY
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **建议**: 使用默认值，除非您不希望分子被重新定向。请注意，对于 RIMP2 作业，对称性的使用会被禁用。
-
-SYM_TOL
 
 ### `SYM_TOL`
 
@@ -63,8 +54,6 @@ SYM_TOL
 >     * 用户自定义。
 > * **建议**: 使用默认值，除非分子具有未被正确识别的高对称性。请注意，过度放宽此容差可能会在计算中引入误差。错误识别的点群对称性会影响热化学计算中的旋转对称数（rotational symmetry numbers）。
 
-FORCE_SYMMETRY_ON
-
 ### `FORCE_SYMMETRY_ON`
 
 > **在使用鬼原子的计算中，覆盖关闭对称性的行为。**
@@ -72,8 +61,6 @@ FORCE_SYMMETRY_ON
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 强制使用对称性。
->     * FALSE
->     * 不使用对称性。
+>     * `TRUE`: 强制使用对称性。
+>     * `FALSE`: 不使用对称性。
 > * **建议**: 使用默认值，除非您清楚自己在做什么。

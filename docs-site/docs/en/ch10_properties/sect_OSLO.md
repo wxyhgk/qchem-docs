@@ -66,8 +66,6 @@ instead. Although this method was developed for oxidation state, it produces a
 set of localized orbitals on fragments or atoms that can be used like any other
 localization method.
 
-OSLO
-
 ### `OSLO`
 
 > **Triggers OSLO procedure after a converged SCF**
@@ -75,10 +73,8 @@ OSLO
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Don’t perform OSLO
->     * 1
->     * Perform the OSLO procedure
+>     * `0`: Don’t perform OSLO
+>     * `1`: Perform the OSLO procedure
 > * **Recommendation**: None
 
 More precise control of OSLO goes under the *$loco* input section, with keywords that are introduced below.
@@ -91,12 +87,9 @@ See the example for reference.
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 0
->     * Mulliken
->     * 1
->     * Lowdin
->     * 2
->     * IAOs
+>     * `0`: Mulliken
+>     * `1`: Lowdin
+>     * `2`: IAOs
 > * **Recommendation**: Use IAOs since they are insenstive to the basis set. When using IAOs, use AUTOSAD = TRUE in the $loco input section to use the new AUTOSAD-IAO algorithm, which uses AUTOSAD atomic densities instead of some minimal basis.
 
 ### `OSLO_THRESH`
@@ -106,12 +99,7 @@ See the example for reference.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use the default, 0.01
->     * $c$
->     * Use threshold of
->     * $c$
->     * /1000
+>     * `0`: Use the default, 0.01 $c$ Use threshold of $c$ /1000
 > * **Recommendation**: Use the default
 
 ### `OSLO_BRANCHING`
@@ -121,12 +109,9 @@ See the example for reference.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $abcd\ldots$
->     * , for each digit:
->     * 0
->     * Follow the default behavior
->     * 1
->     * Favor the next set of orbitals over the current set
+>     * $abcd\ldots$: , for each digit:
+>     * `0`: Follow the default behavior
+>     * `1`: Favor the next set of orbitals over the current set
 > * **Recommendation**: Use the default, and only worry about this if the system involves multiple Lewis structures
 
 ???+ example "Example 10.3: An OSLO job to analyze the oxidation state (or formal charges) of the water

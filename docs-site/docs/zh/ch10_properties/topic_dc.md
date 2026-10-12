@@ -345,8 +345,6 @@ $$
 
 有时人们希望计算超越“给体 HOMO 与受体 LUMO”的前线轨道之间的耦合。可使用 *$rem* 选项 STS_TRANS_DONOR 与 STS_TRANS_ACCEPTOR 为 FMO 耦合计算选取一定范围的占据轨道与虚轨道。
 
-STS_TRANS_DONOR
-
 ### `STS_TRANS_DONOR`
 
 > **在 ET 耦合的 FMO 方法中控制给体前线分子轨道的范围。**
@@ -359,8 +357,6 @@ STS_TRANS_DONOR
 >     * $v$
 >     * 分别计算 $o$ 与 $v$ 所指定的占据分子轨道与虚分子轨道之间的耦合。
 > * **建议**：无
-
-STS_TRANS_ACCEPTOR
 
 ### `STS_TRANS_ACCEPTOR`
 

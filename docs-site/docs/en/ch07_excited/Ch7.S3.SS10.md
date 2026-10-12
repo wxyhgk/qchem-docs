@@ -127,8 +127,6 @@ $X^{Ia}_{i,\text{triplet}}X^{Jb}_{j,\text{triplet}}+Y^{Ia}_{i,\text{triplet}}Y^{
 
 A TDDFT + SOC calculation is activated by *$rem* variable CALC_SOC:
 
-CALC_SOC
-
 ### `CALC_SOC`
 
 > **Controls whether to calculate the SOC constants for EOM-CC, RAS-CI, CIS, TDDFT/TDA and TDDFT/RPA.**
@@ -136,14 +134,10 @@ CALC_SOC
 > * **Type**: `INTEGER/LOGICAL`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not perform the SOC calculation.
->     * 1
->     * Perform the SOC calculation using the one-electron part of the Breit-Pauli Hamiltonian
->     * 2
->     * Perform the full SOC calculation using a mean-field treatment of the two-electron contribution
->     * 4
->     * Perform the SOC calculation using scaled nuclear charges
+>     * `0`: Do not perform the SOC calculation.
+>     * `1`: Perform the SOC calculation using the one-electron part of the Breit-Pauli Hamiltonian
+>     * `2`: Perform the full SOC calculation using a mean-field treatment of the two-electron contribution
+>     * `4`: Perform the SOC calculation using scaled nuclear charges
 > * **Recommendation**: The final two options are described in Section 7.9.21.4 .
 
 Examples [7.3.10.1](#ex:dftcis-soc), [7.3.10.1](#ex:dftcis-soc), and [7.3.10.1](#ex:dftcis-soc)
@@ -356,8 +350,6 @@ Currently, this CIS or TDDFT/TDA-SOC implementation supports only restricted SCF
 
 The code is triggered by setting *$rem* variable CIS_SOC = $N$, where $N$ is the number of roots desired:
 
-CIS_SOC
-
 ### `CIS_SOC`
 
 > **Controls the roots of performing TDDFT/TDA-SOC calculation.**
@@ -365,12 +357,7 @@ CIS_SOC
 > * **Type**: `INTEGER/LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform the calculation.
->     * $N$
->     * Solve the
->     * $N$
->     * lowest spin-adiabatic states of TDDFT/TDA-SOC.
+>     * `FALSE`: Do not perform the calculation. $N$ Solve the $N$ lowest spin-adiabatic states of TDDFT/TDA-SOC.
 > * **Recommendation**: Less than or equal to $4\times$ CIS_N_ROOTS. TDDFT/TDA-SOC first performs a standard TDDFT/TDA calculation so as to generate an initial guess before rerunning the diagonalization to generate the spin adiabats. Therefore, it is a good idea to perform a stand-alone normal TDDFT/TDA calculation and generate the excited spin-diabats and check the desired range of energies, before generating the excited spin-adiabats.
 
 To include a post-SCF magnetic field, the *$bfield_postscf* section must be initialized:

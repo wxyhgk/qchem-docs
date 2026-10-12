@@ -8,8 +8,6 @@ title: "4.3.2 Job Control"
 
 The following two *$rem* variables must be specified in order to run HF calculations:
 
-METHOD
-
 ### `METHOD`
 
 > **Specifies the exchange-correlation functional.**
@@ -17,28 +15,10 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `No default`
 > * **Options**:
->     * NAME
->     * Use
->     * =
->     * NAME
->     * , where
->     * NAME
->     * is one of the following:
->     * HF
->     * for Hartree-Fock theory;
->     * one of the DFT methods listed in Section
->     * 5.3.5
->     * .;
->     * one of the correlated methods listed in Sections
->     * 7.9
->     * ,
->     * 7.10
->     * , and
->     * 7.8
->     * ;
+>     * `NAME`: Use =
+>     * `NAME`: , where
+>     * `NAME`: is one of the following: HF for Hartree-Fock theory; one of the DFT methods listed in Section 5.3.5 .; one of the correlated methods listed in Sections 7.9 , 7.10 , and 7.8 ;
 > * **Recommendation**: In general, consult the literature to guide your selection. Our recommendations for DFT are indicated in bold in Section 5.3.5 .
-
-BASIS
 
 ### `BASIS`
 
@@ -47,23 +27,14 @@ BASIS
 > * **Type**: `STRING`
 > * **Default**: `No default basis set`
 > * **Options**:
->     * General, Gen
->     * User defined (
->     * $basis
->     * keyword required).
->     * Symbol
->     * Use standard basis sets as per Chapter
->     * 8
->     * .
->     * Mixed
->     * Use a mixture of basis sets (see Chapter
->     * 8
->     * ).
+>     * `General, Gen`: User defined ( $basis keyword required).
+>     * `Symbol`: Use standard basis sets as per Chapter
+>     * `8`: .
+>     * `Mixed`: Use a mixture of basis sets (see Chapter
+>     * `8`: ).
 > * **Recommendation**: Consult literature and reviews to aid your selection.
 
 In addition, the following *$rem* variables can be used to customize the SCF calculation:
-
-GEN_SCFMAN
 
 ### `GEN_SCFMAN`
 
@@ -72,13 +43,9 @@ GEN_SCFMAN
 > * **Type**: `BOOLEAN`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Use the previous SCF code.
->     * TRUE
->     * Use GEN_SCFMAN.
+>     * `FALSE`: Use the previous SCF code.
+>     * `TRUE`: Use GEN_SCFMAN.
 > * **Recommendation**: Set to FALSE in cases where features not yet supported by GEN_SCFMAN are needed.
-
-ORBITAL_ENERGY_PREC
 
 ### `ORBITAL_ENERGY_PREC`
 
@@ -87,15 +54,10 @@ ORBITAL_ENERGY_PREC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Standard printout with 4 decimal digits (in Hartree).
->     * 1
->     * 5 decimal digits.
->     * 2
->     * Scientific notation with 10 digits of precision.
+>     * `0`: Standard printout with 4 decimal digits (in Hartree).
+>     * `1`: 5 decimal digits.
+>     * `2`: Scientific notation with 10 digits of precision.
 > * **Recommendation**: Set as desired. Has no effect in cases where the orbital symmetry labels are printed; use SYM_IGNORE = TRUE if additional precision is needed in such cases.
-
-PRINT_ORBITALS
 
 ### `PRINT_ORBITALS`
 
@@ -104,15 +66,10 @@ PRINT_ORBITALS
 > * **Type**: `INTEGER/LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not print any orbitals.
->     * TRUE
->     * Prints occupied orbitals plus 5 virtual orbitals.
->     * NVIRT
->     * Number of virtual orbitals to print.
+>     * `FALSE`: Do not print any orbitals.
+>     * `TRUE`: Prints occupied orbitals plus 5 virtual orbitals.
+>     * `NVIRT`: Number of virtual orbitals to print.
 > * **Recommendation**: Use true unless more virtual orbitals are desired.
-
-SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 
@@ -121,10 +78,8 @@ SCF_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Tighter criteria are recommended for geometry optimization and vibration analysis. Larger values provide more significant figures, at greater computational cost. Beginning with Q-Chem 3.0, the DIIS error is measured by the maximum error rather than the RMS error that was used in earlier versions.
-
-UNRESTRICTED
 
 ### `UNRESTRICTED`
 
@@ -133,17 +88,13 @@ UNRESTRICTED
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Constrain the spatial part of the alpha and beta orbitals to be the same.
->     * TRUE
->     * Do not Constrain the spatial part of the alpha and beta orbitals.
+>     * `FALSE`: Constrain the spatial part of the alpha and beta orbitals to be the same.
+>     * `TRUE`: Do not Constrain the spatial part of the alpha and beta orbitals.
 > * **Recommendation**: Use the default unless ROHF is desired. Note that for unrestricted calculations on systems with an even number of electrons it is usually necessary to break $\alpha$ / $\beta$ symmetry in the initial guess, by using SCF_GUESS_MIX or providing $occupied information (see Section 4.4 on initial guesses).
 
 The calculations using other more special orbital types are controlled by the
 following *$rem* variables (they are not effective if GEN_SCFMAN =
 FALSE):
-
-OS_ROSCF
 
 ### `OS_ROSCF`
 
@@ -152,13 +103,9 @@ OS_ROSCF
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * OS_ROSCF calculation is performed.
->     * FALSE
->     * Do not run OS_ROSCF (it will run a closed-shell RSCF calculation instead).
+>     * `TRUE`: OS_ROSCF calculation is performed.
+>     * `FALSE`: Do not run OS_ROSCF (it will run a closed-shell RSCF calculation instead).
 > * **Recommendation**: Set to TRUE if desired.
-
-ROSCF_DODS
 
 ### `ROSCF_DODS`
 
@@ -167,14 +114,9 @@ ROSCF_DODS
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform a canonical ROSCF calculation.
->     * FALSE
->     * Do not perform a canonical ROSCF calculation (run an open-shell USCF
->     * calculation instead).
+>     * `TRUE`: Perform a canonical ROSCF calculation.
+>     * `FALSE`: Do not perform a canonical ROSCF calculation (run an open-shell USCF calculation instead).
 > * **Recommendation**: Set to TRUE if desired.
-
-GHF
 
 ### `GHF`
 
@@ -183,13 +125,9 @@ GHF
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Run a GHF calculation.
->     * FALSE
->     * Do not use GHF.
+>     * `TRUE`: Run a GHF calculation.
+>     * `FALSE`: Do not use GHF.
 > * **Recommendation**: Set to TRUE if desired.
-
-COMPLEX
 
 ### `COMPLEX`
 
@@ -198,13 +136,9 @@ COMPLEX
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Use complex orbitals.
->     * FALSE
->     * Use real orbitals.
+>     * `TRUE`: Use complex orbitals.
+>     * `FALSE`: Use real orbitals.
 > * **Recommendation**: Set to TRUE if desired.
-
-COMPLEX_MIX
 
 ### `COMPLEX_MIX`
 
@@ -213,10 +147,7 @@ COMPLEX_MIX
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0–100
->     * The mix angle =
->     * $\pi\cdot$
->     * /100.
+>     * `0–100`: The mix angle = $\pi\cdot$ /100.
 > * **Recommendation**: It may help find the stable complex solution (similar idea as SCF_GUESS_MIX ).
 
 ???+ example "Example 4.1: Restricted open-shell singlet ROSCF calculation for the first excited state of

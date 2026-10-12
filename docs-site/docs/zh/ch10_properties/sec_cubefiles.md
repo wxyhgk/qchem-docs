@@ -16,8 +16,6 @@ title: "10.5.5 直接生成“Cube”文件"
 
 特别推荐使用 VMD 来生成用于发表的高质量图像。按照第 [10.5.4](sect_plot.mo.md) 节所述指定 *$plots* 区段，并将 MAKE_CUBE_FILES 设置为 TRUE，即可为 *$plots* 区段中所请求的分子轨道（MO）与密度生成 cube 文件。
 
-MAKE_CUBE_FILES
-
 ### `MAKE_CUBE_FILES`
 
 > **请求为 MO、NTO 或 NBO 生成 cube 文件。**
@@ -25,17 +23,11 @@ MAKE_CUBE_FILES
 > * **类型**: `LOGICAL/STRING`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不生成 cube 文件。
->     * TRUE
->     * 为 MO 和密度生成 cube 文件。
->     * NTOS
->     * 为自然跃迁轨道（Natural Transition Orbitals, NTO）生成 cube 文件。
->     * NBOS
->     * 为自然键轨道（Natural Bond Orbitals, NBO）生成 cube 文件。
+>     * `FALSE`: 不生成 cube 文件。
+>     * `TRUE`: 为 MO 和密度生成 cube 文件。
+>     * `NTOS`: 为自然跃迁轨道（Natural Transition Orbitals, NTO）生成 cube 文件。
+>     * `NBOS`: 为自然键轨道（Natural Bond Orbitals, NBO）生成 cube 文件。
 > * **建议**: 无
-
-PLOT_SPIN_DENSITY
 
 ### `PLOT_SPIN_DENSITY`
 
@@ -44,10 +36,8 @@ PLOT_SPIN_DENSITY
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不生成自旋密度 cube 文件。
->     * TRUE
->     * 生成自旋密度 cube 文件。
+>     * `FALSE`: 不生成自旋密度 cube 文件。
+>     * `TRUE`: 生成自旋密度 cube 文件。
 > * **建议**: 若在总密度之外还需要自旋密度，则将其设置为 TRUE。这要求同时把 MAKE_CUBE_FILES 设置为 TRUE，并且在 $plots 输入区段中请求了一个或多个总密度。相应的自旋密度随后也会被一并生成。
 
 下面的示例演示了如何为基态密度和激发态密度生成 cube 文件，其中包括相应的自旋密度。在本例中，作业暂存目录下的 `plots` 子目录应包含名为 `dens.N.cube`（第 $N$ 个态的总密度，其中 $N=0$ 或 1 分别代表基态与第一激发态）、`dens_alpha.N.cube` 和 `dens_beta.N.cube`（每个态的 $\rho_{\alpha}$ 与 $\rho_{\beta}$），以及 `dens_spin.N.cube`（每个态的 $\rho_{\alpha}-\rho_{\beta}$。）
@@ -82,8 +72,6 @@ PLOT_SPIN_DENSITY
 
 将 MAKE_CUBE_FILES 设置为 NTOS，同样可以为自然跃迁轨道（NTO）生成 cube 文件（第 [7.13.3](../ch07_excited/sect_NTOs.md) 节与第 [10.5.3](sect_visualize_NTOs.md) 节），不过在这种情况下过程略显复杂，因为这些量具有态特定（state-specific）的性质。NTO 的 cube 文件只会为单个激发态生成，该态由 CUBEFILE_STATE 指定。若要获取其他态的 cube 文件，只需串联运行若干个 **Q-Chem** 作业即可，其中第二个（及后续）作业通过 SCF_GUESS 和 SKIP_CIS_RPA 读入已收敛的基态与激发态信息。
 
-CUBEFILE_STATE
-
 ### `CUBEFILE_STATE`
 
 > **决定使用哪一个激发态来生成 cube 文件**
@@ -91,10 +79,8 @@ CUBEFILE_STATE
 > * **类型**: `INTEGER`
 > * **默认值**: `None`
 > * **可选值**:
->     * $n$
->     * 为第
->     * $n$
->     * 个激发态生成 cube 文件
+>     * $n$: 为第
+>     * $n$: 个激发态生成 cube 文件
 > * **建议**: 无
 
 另一个需要注意的复杂之处在于指定哪些 NTO 将作为 cube 文件输出。当 MAKE_CUBE_FILES 设置为 TRUE 时，这在 *$plots* 区段中指定，与指定待绘制的 MO 的方式相同。但必须理解 NTO 的存储顺序。对于一个具有 $N_{\alpha}$ 个 $\alpha$ 自旋 MO 的体系，占据 NTO $1,2,\ldots,N_{\alpha}$ 按振幅递增的顺序存储，因此第 $N_{\alpha}$ 个占据 NTO 是最重要的。虚 NTO 紧随其后存储，并按*递减*的重要性排序。按照这一约定，对于任意特定激发态，主要（principle）NTO 对由最后一个占据轨道和第一个虚轨道组成。因此，轨道 $N_{\alpha}$ 和 $N_{\alpha}+1$ 代表最重要的 NTO 对，而轨道 $N_{\alpha}-1$ 和 $N_{\alpha}+2$ 代表第二重要的 NTO 对，依此类推。

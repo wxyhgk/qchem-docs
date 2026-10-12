@@ -27,8 +27,6 @@ for a complete account of the STEP algorithm the reader is referred to Ref. [[1
 
 The STEP-related *$rem* variables are the following:
 
-STEP
-
 ### `STEP`
 
 > **Activates the STEP procedure.**
@@ -36,13 +34,9 @@ STEP
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not apply the STEP level-shift algorithm.
->     * TRUE
->     * Apply the STEP level-shift algorithm.
+>     * `FALSE`: Do not apply the STEP level-shift algorithm.
+>     * `TRUE`: Apply the STEP level-shift algorithm.
 > * **Recommendation**: None
-
-STEP_EPSILON
 
 ### `STEP_EPSILON`
 
@@ -54,8 +48,6 @@ STEP_EPSILON
 >     * $N$
 > * **Recommendation**: Use the default unless convergence issues arise, in which case a larger value can be used until the desired state is found. Be aware that increasing the occupied/virtual gap in level-shift algorithms slows convergence so it may be advisable to increase SCF_MAX_CYCLES if large shifts are required.
 
-STEP_PRINT
-
 ### `STEP_PRINT`
 
 > **Controls the print level for STEP algorithm information.**
@@ -63,10 +55,7 @@ STEP_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Do not print any information about STEP between SCF cycles.
->     * 1
->     * Print the level-shift applied at each SCF cycle (R- and U-STEP).
->     * 2
->     * Print the level-shift for both mixed and triplet states at each SCF cycle (RO-STEP).
+>     * `0`: Do not print any information about STEP between SCF cycles.
+>     * `1`: Print the level-shift applied at each SCF cycle (R- and U-STEP).
+>     * `2`: Print the level-shift for both mixed and triplet states at each SCF cycle (RO-STEP).
 > * **Recommendation**: Use the default. Level shifts of 0 indicate that an aufbau criterion is sufficient to determine orbital occupation, and shifts $>0$ imply non- aufbau selection of the occupied space.

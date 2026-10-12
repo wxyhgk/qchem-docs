@@ -45,8 +45,6 @@ CT 项给出了键中离子性程度的指示。综合各项共同构成所研�
 
 SCF_ALGORITHM 不得使用 DIIS。当 BONDED_EDA = 2 时使用 GDM_LS，当 BONDED_EDA = 1 时使用 L_BFGS。
 
-BONDED_EDA
-
 ### `BONDED_EDA`
 
 > **使用键合 ALMO-EDA。**
@@ -54,15 +52,10 @@ BONDED_EDA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 不执行键合 ALMO-EDA。
->     * 1
->     * 使用非正交组态相互作用（non-orthogonal CI）执行 ALMO-EDA。
->     * 2
->     * 使用自旋投影形式体系（spin-projected formalism）执行 ALMO-EDA。
+>     * `0`: 不执行键合 ALMO-EDA。
+>     * `1`: 使用非正交组态相互作用（non-orthogonal CI）执行 ALMO-EDA。
+>     * `2`: 使用自旋投影形式体系（spin-projected formalism）执行 ALMO-EDA。
 > * **建议**: 当超体系（supersystem）为闭壳层（closed shell）时，所有情况均设置为 2；仅当各碎片（fragment）各自拥有多于一个未配对电子时才使用 1。
-
-EDA_CONTRACTION_ANAL
 
 ### `EDA_CONTRACTION_ANAL`
 
@@ -71,10 +64,8 @@ EDA_CONTRACTION_ANAL
 > * **类型**: `BOOLEAN`
 > * **默认值**: `0`
 > * **可选值**:
->     * FALSE
->     * 不执行收缩分析。
->     * TRUE
->     * 执行收缩分析。
+>     * `FALSE`: 不执行收缩分析。
+>     * `TRUE`: 执行收缩分析。
 > * **建议**: 无特别建议
 
 ???+ example "示例 12.28: 使用 MDQ FERF 对 F ${}_2$ 进行键合 EDA，在自旋投影形式体系下进行冻结分析"

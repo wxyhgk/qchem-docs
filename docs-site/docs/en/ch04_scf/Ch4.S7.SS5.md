@@ -16,8 +16,6 @@ dual-basis calculations; it is not recommended that this be changed.
 Specification of SCF variables (*e.g.*, THRESH) will apply to
 calculations in both basis sets.
 
-DUAL_BASIS_ENERGY
-
 ### `DUAL_BASIS_ENERGY`
 
 > **Activates dual-basis SCF (HF or DFT) energy correction.**
@@ -25,11 +23,7 @@ DUAL_BASIS_ENERGY
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * Analytic first derivative available for HF and DFT (see
->     * JOBTYPE
->     * )
->     * Can be used in conjunction with MP2 or RI-MP2
->     * See BASIS, BASIS2, BASISPROJTYPE
+>     * Analytic first derivative available for HF and DFT (see: JOBTYPE ) Can be used in conjunction with MP2 or RI-MP2 See BASIS, BASIS2, BASISPROJTYPE
 > * **Recommendation**: Use dual-basis to capture large-basis effects at smaller basis cost. Particularly useful with RI-MP2, in which HF often dominates. Use only proper subsets for small-basis calculation.
 
 ## 4.7.5.1 Examples

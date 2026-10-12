@@ -38,8 +38,6 @@ set projection is a very effective option for general basis sets, where the SAD
 guess is not available. In detail, this initial guess is controlled by the
 following *$rem* variables:
 
-BASIS2
-
 ### `BASIS2`
 
 > **Sets the small basis set to use in basis set projection.**
@@ -48,15 +46,10 @@ BASIS2
 > * **Default**: `No second basis set default.`
 > * **Options**:
 >     * Symbol. Use standard basis sets as per Chapter
->     * 8
->     * .
->     * BASIS2_GEN
->     * General BASIS2
->     * BASIS2_MIXED
->     * Mixed BASIS2
+>     * `8`: .
+>     * `BASIS2_GEN`: General BASIS2
+>     * `BASIS2_MIXED`: Mixed BASIS2
 > * **Recommendation**: BASIS2 should be smaller than BASIS. There is little advantage to using a basis larger than a minimal basis when BASIS2 is used for initial guess purposes. Larger, standardized BASIS2 options are available for dual-basis calculations (see Section 4.7 ).
-
-BASISPROJTYPE
 
 ### `BASISPROJTYPE`
 
@@ -65,14 +58,8 @@ BASISPROJTYPE
 > * **Type**: `STRING`
 > * **Default**: `OVPROJECTION`
 > * **Options**:
->     * FOPPROJECTION
->     * Construct the Fock matrix in the second basis
->     * OVPROJECTION
->     * Projects MOs from
->     * BASIS2
->     * to
->     * BASIS
->     * .
+>     * `FOPPROJECTION`: Construct the Fock matrix in the second basis
+>     * `OVPROJECTION`: Projects MOs from BASIS2 to BASIS .
 > * **Recommendation**: None
 
 **Note: 

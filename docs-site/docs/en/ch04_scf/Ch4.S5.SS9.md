@@ -93,8 +93,6 @@ may improve convergence in some cases.
 
 Job-control variables for RCA are listed below, along with an example of its use.
 
-RCA_PRINT
-
 ### `RCA_PRINT`
 
 > **Controls the output from RCA SCF optimizations.**
@@ -102,17 +100,11 @@ RCA_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No print out
->     * 1
->     * RCA summary information
->     * 2
->     * Level 1 plus RCA coefficients
->     * 3
->     * Level 2 plus RCA iteration details
+>     * `0`: No print out
+>     * `1`: RCA summary information
+>     * `2`: Level 1 plus RCA coefficients
+>     * `3`: Level 2 plus RCA iteration details
 > * **Recommendation**: None
-
-MAX_RCA_CYCLES
 
 ### `MAX_RCA_CYCLES`
 
@@ -121,11 +113,9 @@ MAX_RCA_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * N
+>     * `N`
 >     * N RCA iterations before switching to DIIS
 > * **Recommendation**: None
-
-THRESH_RCA_SWITCH
 
 ### `THRESH_RCA_SWITCH`
 
@@ -134,10 +124,7 @@ THRESH_RCA_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * N
->     * Algorithm changes from RCA to DIIS when Error is less than
->     * $10^{-N}$
->     * .
+>     * `N`: Algorithm changes from RCA to DIIS when Error is less than $10^{-N}$ .
 > * **Recommendation**: None
 
 ???+ example "Example 4.13: RCA_DIIS algorithm applied a radical"

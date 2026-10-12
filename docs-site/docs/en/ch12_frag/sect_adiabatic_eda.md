@@ -83,8 +83,6 @@ EDA_ALIGN_FRGM_SPIN = 1 or 2 when performing geometry optimization
 on the frozen potential surface. The job will then go through the fragment spin alignment procedure
 in each optimization cycle.
 
-FRZ_GEOM
-
 ### `FRZ_GEOM`
 
 > **Compute forces on the frozen potential surface.**
@@ -92,13 +90,9 @@ FRZ_GEOM
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute forces on the frozen potential surface.
->     * TRUE
->     * Compute forces on the frozen potential surface.
+>     * `FALSE`: Do not compute forces on the frozen potential surface.
+>     * `TRUE`: Compute forces on the frozen potential surface.
 > * **Recommendation**: Set it to TRUE when optimized geometry or vibrational frequencies on the frozen potential surface are desired.
-
-POL_GEOM
 
 ### `POL_GEOM`
 
@@ -107,10 +101,8 @@ POL_GEOM
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute forces on the polarized potential surface.
->     * TRUE
->     * Compute forces on the polarized potential surface.
+>     * `FALSE`: Do not compute forces on the polarized potential surface.
+>     * `TRUE`: Compute forces on the polarized potential surface.
 > * **Recommendation**: Set it to TRUE when optimized geometry or vibrational frequencies on the polarized potential surface are desired.
 
 ???+ example "Example 12.12.30: Geometry optimization of the ammonia-borane complex on the fully relaxed,
@@ -255,8 +247,6 @@ a VFB state always follows a polarization (standard SCF-MI) calculation. Also, s
 definition of VFB states is based on the generalized SCF-MI technique (Section [12.6.2](sect_gen_scfmi.md)),
 SCFMI_MODE = 1 is required.
 
-VFB_CTA
-
 ### `VFB_CTA`
 
 > **Use the Variational Forward-Backward (VFB) approach to obtain “one-way” CT potential surfaces.**
@@ -264,14 +254,8 @@ VFB_CTA
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * FORWARD
->     * Allow 1
->     * $\rightarrow$
->     * 2 CT only (1 and 2 are two fragments).
->     * BACKWARD
->     * Allow 2
->     * $\rightarrow$
->     * 1 CT only.
+>     * `FORWARD`: Allow 1 $\rightarrow$ 2 CT only (1 and 2 are two fragments).
+>     * `BACKWARD`: Allow 2 $\rightarrow$ 1 CT only.
 > * **Recommendation**: None
 
 ???+ example "Example 12.32: Geometry optimization on one-side CT surface (2 $\to$ 1)

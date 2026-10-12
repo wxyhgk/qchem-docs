@@ -195,8 +195,6 @@ a legacy code which is being phased out. All new developments and
 performance-enhancing features are implemented in CCMAN2.
 **
 
-METHOD
-
 ### `METHOD`
 
 > **Specifies the level of theory.**
@@ -204,97 +202,35 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * CIS
->     * Section
->     * 7.2.2
->     * CIS(D)
->     * Section
->     * 7.8.2
->     * RI-CIS(D)
->     * Section
->     * 7.8.3
->     * SOS-CIS(D)
->     * Section
->     * 7.8.4
->     * SOS-CIS(D0)
->     * Section
->     * 7.8.5
->     * CISD
->     * Section
->     * 7.9.3
->     * CISDT
->     * Section
->     * 7.9.3
->     * EOM-OD
->     * Section
->     * 7.9.3
->     * EOM-CC2
->     * Section
->     * 7.9.4
->     * EOM-CCSD
->     * Section
->     * 7.9.3
->     * EOM-CCSDT
->     * Section
->     * 7.9.23
->     * EOM-MP2
->     * Section
->     * 7.9.5.1
->     * EOM-MP2T
->     * Section
->     * 7.9.5.1
->     * EOM-CCSD-S(D)
->     * Section
->     * 7.9.5.2
->     * EOM-MP2-S(D)
->     * Section
->     * 7.9.5.2
->     * EOM-CCSD(dT)
->     * Section
->     * 7.9.27
->     * EOM-CCSD(fT)
->     * Section
->     * 7.9.27
->     * EOM-CC(2,3)
->     * Section
->     * 7.9.24
->     * ADC(0)
->     * Section
->     * 7.10
->     * ADC(1)
->     * Section
->     * 7.10
->     * ADC(2)
->     * Section
->     * 7.10
->     * ADC(2)-X
->     * Section
->     * 7.10
->     * ADC(3)
->     * Section
->     * 7.10
->     * SOS-ADC(2)
->     * Section
->     * 7.10
->     * SOS-ADC(2)-X
->     * Section
->     * 7.10
->     * CVS-ADC(1)
->     * Section
->     * 7.10
->     * CVS-ADC(2)
->     * Section
->     * 7.10
->     * CVS-ADC(2)-X
->     * Section
->     * 7.10
->     * CVS-ADC(3)
->     * Section
->     * 7.10
->     * RAS-CI
->     * Section
->     * 7.11
->     * RAS-CI-2
->     * Section
->     * 7.11
+>     * `CIS`: Section 7.2.2
+>     * `CIS(D)`: Section 7.8.2
+>     * `RI-CIS(D)`: Section 7.8.3
+>     * `SOS-CIS(D)`: Section 7.8.4
+>     * `SOS-CIS(D0)`: Section 7.8.5
+>     * `CISD`: Section 7.9.3
+>     * `CISDT`: Section 7.9.3
+>     * `EOM-OD`: Section 7.9.3
+>     * `EOM-CC2`: Section 7.9.4
+>     * `EOM-CCSD`: Section 7.9.3
+>     * `EOM-CCSDT`: Section 7.9.23
+>     * `EOM-MP2`: Section 7.9.5.1
+>     * `EOM-MP2T`: Section 7.9.5.1
+>     * `EOM-CCSD-S(D)`: Section 7.9.5.2
+>     * `EOM-MP2-S(D)`: Section 7.9.5.2
+>     * `EOM-CCSD(dT)`: Section 7.9.27
+>     * `EOM-CCSD(fT)`: Section 7.9.27
+>     * `EOM-CC(2,3)`: Section 7.9.24
+>     * `ADC(0)`: Section 7.10
+>     * `ADC(1)`: Section 7.10
+>     * `ADC(2)`: Section 7.10
+>     * `ADC(2)-X`: Section 7.10
+>     * `ADC(3)`: Section 7.10
+>     * `SOS-ADC(2)`: Section 7.10
+>     * `SOS-ADC(2)-X`: Section 7.10
+>     * `CVS-ADC(1)`: Section 7.10
+>     * `CVS-ADC(2)`: Section 7.10
+>     * `CVS-ADC(2)-X`: Section 7.10
+>     * `CVS-ADC(3)`: Section 7.10
+>     * `RAS-CI`: Section 7.11
+>     * `RAS-CI-2`: Section 7.11
 > * **Recommendation**: Consult the literature for guidance.

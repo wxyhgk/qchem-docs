@@ -8,8 +8,6 @@ title: "5.11.3 作业控制"
 
 通过在 *$rem* 段中设置 CDFT = TRUE 来请求进行约束密度泛函理论（Constrained Density Functional Theory, CDFT）计算。需要按照上文所述指定 *$cdft* 输入段。目前 CDFT 计算有三种自洽场（SCF）算法可用：DIIS、RCA，以及 RCA-DIIS 组合算法。其他作业控制变量说明如下。
 
-CDFT
-
 ### `CDFT`
 
 > **发起一次约束 DFT 计算**
@@ -17,13 +15,9 @@ CDFT
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 执行约束 DFT 计算
->     * FALSE
->     * 不施加密度约束
+>     * `TRUE`: 执行约束 DFT 计算
+>     * `FALSE`: 不施加密度约束
 > * **建议**: 若希望进行约束 DFT 计算，则设置为 TRUE。
-
-CDFT_POSTDIIS
 
 ### `CDFT_POSTDIIS`
 
@@ -32,13 +26,9 @@ CDFT_POSTDIIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * 在 DIIS 之后强制执行约束
->     * FALSE
->     * 在 DIIS 之后不强制执行约束
+>     * `TRUE`: 在 DIIS 之后强制执行约束
+>     * `FALSE`: 在 DIIS 之后不强制执行约束
 > * **建议**: 使用默认值，除非出现收敛问题，此时尝试将其设置为 FALSE 可能有所裨益。当此选项设置为 TRUE 时，自第一次迭代之后能量应当具有变分性。
-
-CDFT_PREDIIS
 
 ### `CDFT_PREDIIS`
 
@@ -47,13 +37,9 @@ CDFT_PREDIIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 在 DIIS 之前强制执行约束
->     * FALSE
->     * 在 DIIS 之前不强制执行约束
+>     * `TRUE`: 在 DIIS 之前强制执行约束
+>     * `FALSE`: 在 DIIS 之前不强制执行约束
 > * **建议**: 使用默认值，除非出现收敛问题，此时尝试将其设置为 TRUE 可能有所裨益。注意，通过将本选项与 CDFT_POSTDIIS 同时设置为 TRUE，可以在 DIIS 之前和之后都强制执行约束。
-
-CDFT_THRESH
 
 ### `CDFT_THRESH`
 
@@ -62,13 +48,8 @@ CDFT_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **选项**:
->     * N
->     * 约束在
->     * $10^{-N}$
->     * 精度范围内得到满足。
+>     * `N`: 约束在 $10^{-N}$ 精度范围内得到满足。
 > * **建议**: 默认值与 SCF_CONVERGENCE 相匹配。除非出现问题，否则使用默认值。
-
-CDFT_MAXITER
 
 ### `CDFT_MAXITER`
 
@@ -77,13 +58,9 @@ CDFT_MAXITER
 > * **类型**: `INTEGER`
 > * **默认值**: `20`
 > * **Options**:
->     * N
->     * 最多将尝试
->     * N
->     * 次微迭代（microiterations）。
+>     * `N`: 最多将尝试
+>     * `N`: 次微迭代（microiterations）。
 > * **建议**: 在大多数情况下，默认值应当已经足够。
-
-CDFT_PRINT
 
 ### `CDFT_PRINT`
 
@@ -92,13 +69,9 @@ CDFT_PRINT
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 打印详细信息。
->     * FALSE
->     * 不打印详细信息。
+>     * `TRUE`: 打印详细信息。
+>     * `FALSE`: 不打印详细信息。
 > * **建议**: 使用默认值，并在排查问题时启用额外的打印输出。
-
-CDFT_BECKE_POP
 
 ### `CDFT_BECKE_POP`
 
@@ -107,8 +80,6 @@ CDFT_BECKE_POP
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * 打印布居数
->     * FALSE
->     * 不打印布居数
+>     * `TRUE`: 打印布居数
+>     * `FALSE`: 不打印布居数
 > * **建议**: 使用默认值。注意，在 SCF 计算结束时打印的 Mulliken 布居数通常不会加和到用户指定的约束值。只有 Becke 布居数保证满足用户指定的约束。

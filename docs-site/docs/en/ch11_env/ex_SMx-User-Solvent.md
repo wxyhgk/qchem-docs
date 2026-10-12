@@ -430,9 +430,7 @@ Job controls variables for the *$smx* section that are common to SM8, SM12, and 
 > * **Type**: `STRING`
 > * **Default**: `water`
 > * **Options**:
->     * Any name from the list of solvents given in Table
->     * 11.7
->     * .
+>     * Any name from the list of solvents given in Table: 11.7 .
 > * **Recommendation**: NONE
 
 ### `Print`
@@ -442,14 +440,9 @@ Job controls variables for the *$smx* section that are common to SM8, SM12, and 
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Minimal printing
->     * 1
->     * Detailed breakdown of energy components (at SCF convergence)
->     * 2
->     * Additional information, dependent on the specific SM
->     * $x$
->     * model
+>     * `0`: Minimal printing
+>     * `1`: Detailed breakdown of energy components (at SCF convergence)
+>     * `2`: Additional information, dependent on the specific SM $x$ model
 > * **Recommendation**: The energy components obtained with print = 1 may be useful, although a summary is printed by default. The value print = 2 is probably only useful for diagnosing problems.
 
 ???+ example "Example 11.16: SMD model with a user-defined solvent."
@@ -680,42 +673,15 @@ input section.
 > * **Type**: `STRING`
 > * **Default**: `CM5`
 > * **Options**:
->     * CM5
->     * Charge Model 5 charges
->     * 911
->     * Marenich A. V. et al.
->     * J. Chem. Theory Comput.
->     * (2012)
->     * ,
->     * 8
->     * ,
->     * pp. 527
->     * .
->     * Link
->     * MK
->     * Merz-Singh-Kollman charges
->     * 1258
->     * Singh U. C., Kollman P. A.
->     * J. Comput. Chem.
->     * (1984)
->     * ,
->     * 5
->     * ,
->     * pp. 129
->     * .
->     * Link
->     * CHELPG
->     * ChElPG charges
->     * 159
->     * Breneman C. M., Wiberg K. B.
->     * J. Comput. Chem.
->     * (1990)
->     * ,
->     * 11
->     * ,
->     * pp. 361
->     * .
->     * Link
+>     * `CM5`: Charge Model 5 charges
+>     * `911`: Marenich A. V. et al. J. Chem. Theory Comput. (2012) ,
+>     * `8`: , pp. 527 . Link
+>     * `MK`: Merz-Singh-Kollman charges
+>     * `1258`: Singh U. C., Kollman P. A. J. Comput. Chem. (1984) ,
+>     * `5`: , pp. 129 . Link
+>     * `CHELPG`: ChElPG charges
+>     * `159`: Breneman C. M., Wiberg K. B. J. Comput. Chem. (1990) ,
+>     * `11`: , pp. 361 . Link
 > * **Recommendation**: None. Merz-Singh-Kollman and ChElPG charges are fit to reproduce the molecular electrostatic potential on the van der Waals surface or on a cubic grid, respectively, whereas CM5 is an empirical model based on Hirshfeld population analysis.
 
 ???+ example "Example 11.17: SM12CM5 calculation of the solvation free energy of water in the 1-octanol
@@ -780,8 +746,6 @@ on by setting SMX_GAS_PHASE = TRUE. Setting this *$rem*
 variable to TRUE might also be helpful if directly converging SCF with
 the SM$x$ models is difficult.
 
-SMX_GAS_PHASE
-
 ### `SMX_GAS_PHASE`
 
 > **Converge the gas-phase SCF first before doing calculations with SM $x$ models**
@@ -789,10 +753,8 @@ SMX_GAS_PHASE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Run SMx calculations directly
->     * TRUE
->     * Run gas-phase calculation first
+>     * `FALSE`: Run SMx calculations directly
+>     * `TRUE`: Run gas-phase calculation first
 > * **Recommendation**: Use the default unless solvation free energy is needed. Set it to TRUE if the SCF calculation fails to converge otherwise.
 
 ???+ example "Example 11.18: SMD force calculation for tetrahydrofuran (THF) in the pentane solvent."

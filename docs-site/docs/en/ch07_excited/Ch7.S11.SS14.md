@@ -21,8 +21,6 @@ and RAS_DO_PART keywords. Additionally, text files containing
 eigenvalues and eigenvectors can be printed via the
 RASSF_WRITE_EVALS and RASSF_WRITE_EVECS keywords.
 
-RAS_N_ROOTS
-
 ### `RAS_N_ROOTS`
 
 > **Sets the number of RAS-CI roots to be computed.**
@@ -30,14 +28,9 @@ RAS_N_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * Compute
->     * $n$
->     * RAS-CI states
+>     * $n$: $n>0$ Compute
+>     * $n$: RAS-CI states
 > * **Recommendation**: None.
-
-RASSF_DELTA_ALPHA
 
 ### `RASSF_DELTA_ALPHA`
 
@@ -46,15 +39,8 @@ RASSF_DELTA_ALPHA
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $0$
->     * Remove no alpha electrons (use for EA)
->     * $1$
->     * Remove one alpha electron (use for 1SF, IP)
->     * $2$
->     * Remove two alpha electrons (use for 2SF, 1SF-IP)
+>     * $0$: Remove no alpha electrons (use for EA) $1$ Remove one alpha electron (use for 1SF, IP) $2$ Remove two alpha electrons (use for 2SF, 1SF-IP)
 > * **Recommendation**: None.
-
-RASSF_DELTA_BETA
 
 ### `RASSF_DELTA_BETA`
 
@@ -63,15 +49,8 @@ RASSF_DELTA_BETA
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $0$
->     * Add no beta electrons (use for IP)
->     * $1$
->     * Add one beta electron (use for 1SF, EA)
->     * $2$
->     * Add two beta electrons (use for 2SF, 1SF-EA)
+>     * $0$: Add no beta electrons (use for IP) $1$ Add one beta electron (use for 1SF, EA) $2$ Add two beta electrons (use for 2SF, 1SF-EA)
 > * **Recommendation**: None.
-
-RAS_DO_HOLE
 
 ### `RAS_DO_HOLE`
 
@@ -80,13 +59,8 @@ RAS_DO_HOLE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * No hole excitations (use for CAS or RAS(p))
->     * $1$
->     * Single hole excitations (use for RAS(h) or RAS(h,p))
+>     * $0$: No hole excitations (use for CAS or RAS(p)) $1$ Single hole excitations (use for RAS(h) or RAS(h,p))
 > * **Recommendation**: None.
-
-RAS_DO_PART
 
 ### `RAS_DO_PART`
 
@@ -95,13 +69,8 @@ RAS_DO_PART
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * No particle excitations (use for CAS or RAS(h))
->     * $1$
->     * Single particle excitations (use for RAS(p) or RAS(h,p))
+>     * $0$: No particle excitations (use for CAS or RAS(h)) $1$ Single particle excitations (use for RAS(p) or RAS(h,p))
 > * **Recommendation**: None.
-
-N_FROZEN_CORE
 
 ### `N_FROZEN_CORE`
 
@@ -110,12 +79,8 @@ N_FROZEN_CORE
 > * **Type**: `SIZE_T`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * $n\geq 0$
->     * Number of frozen core orbitals.
+>     * $n$: $n\geq 0$ Number of frozen core orbitals.
 > * **Recommendation**: None.
-
-N_FROZEN_VIRTUAL
 
 ### `N_FROZEN_VIRTUAL`
 
@@ -124,12 +89,8 @@ N_FROZEN_VIRTUAL
 > * **Type**: `SIZE_T`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * $n\geq 0$
->     * Number of frozen virtual orbitals.
+>     * $n$: $n\geq 0$ Number of frozen virtual orbitals.
 > * **Recommendation**: None.
-
-RASSF_GUESS
 
 ### `RASSF_GUESS`
 
@@ -138,15 +99,8 @@ RASSF_GUESS
 > * **Type**: `INTEGER`
 > * **Default**: `$2$`
 > * **Options**:
->     * $0$
->     * Random orthonormal guess (default for CAS)
->     * $1$
->     * Identity guess
->     * $2$
->     * CAS guess (default for RAS)
+>     * $0$: Random orthonormal guess (default for CAS) $1$ Identity guess $2$ CAS guess (default for RAS)
 > * **Recommendation**: Starting from a CAS guess is recommended for larger molecules. If Davidson encounters issues with linearly dependent eigenvectors, consider using identity. The random orthonormal guess requires building a large $NxN$ matrix and is therefore only recommended for calculations with fewer determinants.
-
-RASSF_WRITE_EVALS
 
 ### `RASSF_WRITE_EVALS`
 
@@ -155,13 +109,8 @@ RASSF_WRITE_EVALS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * Do not write eigenvalues to an output file
->     * $1$
->     * Write eigenvalues to an output file
+>     * $0$: Do not write eigenvalues to an output file $1$ Write eigenvalues to an output file
 > * **Recommendation**: None.
-
-RASSF_WRITE_EVECS
 
 ### `RASSF_WRITE_EVECS`
 
@@ -170,13 +119,8 @@ RASSF_WRITE_EVECS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * Do not write eigenvectors to an output file
->     * $1$
->     * Write eigenvectors to an output file
+>     * $0$: Do not write eigenvectors to an output file $1$ Write eigenvectors to an output file
 > * **Recommendation**: None.
-
-CAS_LOCAL
 
 ### `CAS_LOCAL`
 
@@ -185,15 +129,8 @@ CAS_LOCAL
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * No localization
->     * $1$
->     * Boys localization
->     * $2$
->     * Pipek-Mezey localization
+>     * $0$: No localization $1$ Boys localization $2$ Pipek-Mezey localization
 > * **Recommendation**: None.
-
-CAS_LOCAL_ALGO
 
 ### `CAS_LOCAL_ALGO`
 
@@ -202,15 +139,8 @@ CAS_LOCAL_ALGO
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * No localization
->     * $1$
->     * Boys localization
->     * $2$
->     * Pipek-Mezey localization
+>     * $0$: No localization $1$ Boys localization $2$ Pipek-Mezey localization
 > * **Recommendation**: None.
-
-RASSF_DO_BLOCH
 
 ### `RASSF_DO_BLOCH`
 
@@ -219,8 +149,5 @@ RASSF_DO_BLOCH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * Skip analysis
->     * $1$
->     * Do effective Hamiltonian analysis
+>     * $0$: Skip analysis $1$ Do effective Hamiltonian analysis
 > * **Recommendation**: None.

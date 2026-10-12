@@ -40,8 +40,6 @@ well as the holomorphic Hartree–Fock approach which allows multiple
 Hartree–Fock solutions to be continued across all geometries (see
 Section. [4.9.4](../ch04_scf/sec_HoloHF.md)).
 
-USE_LIBNOCI
-
 ### `USE_LIBNOCI`
 
 > **Turn on the use of libnoci for running NOCI calculations.**
@@ -49,19 +47,9 @@ USE_LIBNOCI
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * False
->     * Do not use
->     * libnoci
->     * (uses original
->     * Q-Chem
->     * implementation).
->     * True
->     * Use the
->     * libnoci
->     * implementation.
+>     * `False`: Do not use libnoci (uses original Q-Chem implementation).
+>     * `True`: Use the libnoci implementation.
 > * **Recommendation**: The $rem variables detailed below are only available in libnoci .
-
-NOCI_REFGEN
 
 ### `NOCI_REFGEN`
 
@@ -70,13 +58,9 @@ NOCI_REFGEN
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Generate initial reference determinant from a single SCF calculation.
->     * 1
->     * Read (multiple) initial reference determinants from a previous calculation.
+>     * `0`: Generate initial reference determinant from a single SCF calculation.
+>     * `1`: Read (multiple) initial reference determinants from a previous calculation.
 > * **Recommendation**: The specific reference determinants to be read from a previous calculation can be indicated using SCF_READMINIMA .
-
-NOCI_DETGEN
 
 ### `NOCI_DETGEN`
 
@@ -85,31 +69,15 @@ NOCI_DETGEN
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use only the initial reference determinants.
->     * 1
->     * Generate CIS excitations from each reference determinant.
->     * 2
->     * Generate all FCI excitations from each reference determinant.
->     * 3
->     * Generate
->     * $n$
->     * multiple determinants using SCF metadynamics, where
->     * $n$
->     * is specified
->     * using
->     * SCF_SAVEMINIMA
->     * =
->     * $n$
->     * .
->     * 4
->     * Generate all CAS excitations from each reference determinant, where the active orbitals
->     * are specified using the
->     * $active_orbitals
->     * input section.
+>     * `0`: Use only the initial reference determinants.
+>     * `1`: Generate CIS excitations from each reference determinant.
+>     * `2`: Generate all FCI excitations from each reference determinant.
+>     * `3`: Generate
+>     * $n$: multiple determinants using SCF metadynamics, where
+>     * $n$: is specified using SCF_SAVEMINIMA =
+>     * $n$: .
+>     * `4`: Generate all CAS excitations from each reference determinant, where the active orbitals are specified using the $active_orbitals input section.
 > * **Recommendation**: By default, these multiple determinants are optimized at the SCF level before running NOCI. This behavior can be turned off using by specifying SKIP_SCFMAN = TRUE .
-
-NOCI_NEIGVAL
 
 ### `NOCI_NEIGVAL`
 
@@ -118,11 +86,8 @@ NOCI_NEIGVAL
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Increase this to print progressively higher NOCI energies.
-
-NOCI_PRINT
 
 ### `NOCI_PRINT`
 
@@ -131,8 +96,7 @@ NOCI_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * Positive integer
+>     * $n$: Positive integer
 > * **Recommendation**: Increase this for additional debug information.
 
 ???+ example "Example 7.39: NOCI for H ${}_{2}$ run in the libnoci implementation, with multiple determinants

@@ -101,8 +101,6 @@ CORRELATION 与 EOM_CORR 组合。
 
 以下是最相关的 EOM-CC 输入选项。
 
-EE_STATES
-
 ### `EE_STATES`
 
 > **设置要寻找的激发态根数。对于闭壳层参考态，默认为 EE_SINGLETS。对于开壳层参考态，指定所有低能态。**
@@ -115,8 +113,6 @@ EE_STATES
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-EE_SINGLETS
 
 ### `EE_SINGLETS`
 
@@ -131,8 +127,6 @@ EE_SINGLETS
 >     * 依此类推。
 > * **建议**：无
 
-EE_TRIPLETS
-
 ### `EE_TRIPLETS`
 
 > **设置要寻找的三重态激发态根数。仅对闭壳层参考态有效。**
@@ -145,8 +139,6 @@ EE_TRIPLETS
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-SF_STATES
 
 ### `SF_STATES`
 
@@ -161,8 +153,6 @@ SF_STATES
 >     * 依此类推。
 > * **建议**：无
 
-DSF_STATES
-
 ### `DSF_STATES`
 
 > **设置要寻找的双自旋翻转目标态根数。**
@@ -175,8 +165,6 @@ DSF_STATES
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-IP_STATES
 
 ### `IP_STATES`
 
@@ -191,8 +179,6 @@ IP_STATES
 >     * 依此类推。
 > * **建议**：无
 
-IP_ALPHA
-
 ### `IP_ALPHA`
 
 > **设置通过移除 $\alpha$ 电子（$M_{S}=\tfrac{1}{2}$）获得的电离目标态数。**
@@ -205,8 +191,6 @@ IP_ALPHA
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-IP_BETA
 
 ### `IP_BETA`
 
@@ -221,8 +205,6 @@ IP_BETA
 >     * 依此类推。
 > * **建议**：无
 
-EA_STATES
-
 ### `EA_STATES`
 
 > **设置要寻找的电子附着目标态根数。默认附着 $\beta$ 电子（参见 EA_BETA）。**
@@ -235,8 +217,6 @@ EA_STATES
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-EA_ALPHA
 
 ### `EA_ALPHA`
 
@@ -251,8 +231,6 @@ EA_ALPHA
 >     * 依此类推。
 > * **建议**：无
 
-EA_BETA
-
 ### `EA_BETA`
 
 > **设置通过附着 $\beta$ 电子（$M_{S}=\tfrac{1}{2}$，EA-SF）获得的电子附着目标态数。**
@@ -265,8 +243,6 @@ EA_BETA
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-DIP_STATES
 
 ### `DIP_STATES`
 
@@ -281,8 +257,6 @@ DIP_STATES
 >     * 依此类推。
 > * **建议**：无
 
-DIP_SINGLETS
-
 ### `DIP_SINGLETS`
 
 > **设置要寻找的单重态 DIP 根数。仅对闭壳层参考态有效。**
@@ -295,8 +269,6 @@ DIP_SINGLETS
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-DIP_TRIPLETS
 
 ### `DIP_TRIPLETS`
 
@@ -311,8 +283,6 @@ DIP_TRIPLETS
 >     * 依此类推。
 > * **建议**：无
 
-DIP_AA_STATES
-
 ### `DIP_AA_STATES`
 
 > **设置要寻找的 $M_{S}=-1$ DIP 根数（移除两个 $\alpha$ 电子）。仅对闭壳层参考态有效。**
@@ -325,8 +295,6 @@ DIP_AA_STATES
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-DIP_BB_STATES
 
 ### `DIP_BB_STATES`
 
@@ -341,8 +309,6 @@ DIP_BB_STATES
 >     * 依此类推。
 > * **建议**：无
 
-DIP_AB_STATES
-
 ### `DIP_AB_STATES`
 
 > **设置要寻找的 $M_{S}=0$ DIP 根数（移除一个 $\alpha$ 和一个 $\beta$ 电子）。**
@@ -355,8 +321,6 @@ DIP_AB_STATES
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-DEA_STATES
 
 ### `DEA_STATES`
 
@@ -371,8 +335,6 @@ DEA_STATES
 >     * 依此类推。
 > * **建议**：无
 
-DEA_SINGLETS
-
 ### `DEA_SINGLETS`
 
 > **设置要寻找的单重态 DEA 根数。仅对闭壳层参考态有效。**
@@ -385,8 +347,6 @@ DEA_SINGLETS
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-DEA_TRIPLETS
 
 ### `DEA_TRIPLETS`
 
@@ -401,8 +361,6 @@ DEA_TRIPLETS
 >     * 依此类推。
 > * **建议**：无
 
-DEA_AA_STATES
-
 ### `DEA_AA_STATES`
 
 > **设置要寻找的 $M_{S}=1$ DEA 根数（两个 $\alpha$ 电子）。**
@@ -416,8 +374,6 @@ DEA_AA_STATES
 >     * 依此类推。
 > * **建议**：无
 
-DEA_BB_STATES
-
 ### `DEA_BB_STATES`
 
 > **设置要寻找的 $M_{S}=-1$ DEA 根数（两个 $\beta$ 电子）。**
@@ -430,8 +386,6 @@ DEA_BB_STATES
 >     * 在第二个不可约表示中寻找 $j$ 个态，
 >     * 依此类推。
 > * **建议**：无
-
-DEA_AB_STATES
 
 ### `DEA_AB_STATES`
 
@@ -465,8 +419,6 @@ DEA_AB_STATES
 对于 XX_STATES 选项，如果 **Q-Chem** 怀疑存在简并，它会增加根数；如果无法生成足够的猜测向量来启动计算，它会将其改为更小的值。
 **
 
-EOM_FAKE_IPEA
-
 ### `EOM_FAKE_IPEA`
 
 > **如果设为 TRUE，使用弥散轨道技巧计算伪 EOM-IP 或 EOM-EA 能量和性质。在 CCMAN 中为 EOM-EA 和 Dyson 轨道计算的默认选项。**
@@ -482,8 +434,6 @@ EOM_FAKE_IPEA
 当 EOM_FAKE_IPEA 设为 TRUE 时，与不使用 EOM_FAKE_IPEA 的相同作业相比，它可能会改变 Hartree-Fock 迭代的收敛性，因为在 Hartree-Fock 迭代开始*之前*，会在对称中心添加一个非常弥散的基函数。出于同样的原因，BASIS2 关键字与 EOM_FAKE_IPEA 不兼容。若要从之前的作业中读取 Hartree-Fock 猜测，必须在该之前的作业中指定 EOM_FAKE_IPEA（即使你不请求任何关联或激发态计算）。目前，EOM-IP/EA-CCSD 目标态的电子密度二阶矩、Mulliken 电荷和自旋密度是不正确的。
 **
 
-EOM_USER_GUESS
-
 ### `EOM_USER_GUESS`
 
 > **指定在 EOM 计算中是否使用用户定义的猜测。**
@@ -495,8 +445,6 @@ EOM_USER_GUESS
 >     * 求解与 $eom_user_guess 中指定的跃迁具有最大重叠的态。
 > * **建议**：轨道按能量排序，如 CCMAN2 输出开头所示。在 CCMAN 中不可用。
 
-EOM_SHIFT
-
 ### `EOM_SHIFT`
 
 > **指定 EOM 计算中的能量平移。**
@@ -506,8 +454,6 @@ EOM_SHIFT
 > * **选项**：
 >     * $n$ 对应 $n\cdot 10^{-3}$ Hartree 的平移（即 11000 = 11 Hartree）；围绕此值求解本征态。
 > * **建议**：在 CCMAN 中不可用。
-
-EOM_NGUESS_DOUBLES
 
 ### `EOM_NGUESS_DOUBLES`
 
@@ -519,8 +465,6 @@ EOM_NGUESS_DOUBLES
 >     * $n$ 包含 $n$ 个为双激发的猜测向量
 > * **建议**：应设为预期的双激发态数，否则可能无法找到这些态。
 
-EOM_NGUESS_SINGLES
-
 ### `EOM_NGUESS_SINGLES`
 
 > **指定为单激发的激发态猜测向量数。**
@@ -530,8 +474,6 @@ EOM_NGUESS_SINGLES
 > * **选项**：
 >     * $n$ 包含 $n$ 个为单激发的猜测向量
 > * **建议**：应大于或等于所请求的激发态数。
-
-EOM_PRECONV_SINGLES
 
 ### `EOM_PRECONV_SINGLES`
 
@@ -549,8 +491,6 @@ EOM_PRECONV_SINGLES
 在 CCMAN 中，设置 EOM_PRECONV_SINGLES = $N$ 会导致 $N$ 次 Davidson 迭代来预收敛单激发。
 **
 
-EOM_PRECONV_DOUBLES
-
 ### `EOM_PRECONV_DOUBLES`
 
 > **不为零时，在完整激发态计算之前先收敛双激发向量。设置预收敛过程的最大迭代次数。**
@@ -566,8 +506,6 @@ EOM_PRECONV_DOUBLES
 
 在 CCMAN2 中不支持 EOM-EE。
 **
-
-EOM_PRECONV_SD
 
 ### `EOM_PRECONV_SD`
 
@@ -585,8 +523,6 @@ EOM_PRECONV_SD
 在 CCMAN2 中不可用。
 **
 
-EOM_DAVIDSON_CONVERGENCE
-
 ### `EOM_DAVIDSON_CONVERGENCE`
 
 > **激发态向量 RMS 残差（范数的平方）的收敛判据。**
@@ -596,8 +532,6 @@ EOM_DAVIDSON_CONVERGENCE
 > * **选项**：
 >     * $n$ 对应 $10^{-n}$ 收敛判据
 > * **建议**：使用默认值。通常该值应与 EOM_DAVIDSON_THRESHOLD 相同。
-
-EOM_DAVIDSON_THRESHOLD
 
 ### `EOM_DAVIDSON_THRESHOLD`
 
@@ -609,8 +543,6 @@ EOM_DAVIDSON_THRESHOLD
 >     * $abcde$ 整数编码映射为 $abc\times 10^{-(de+2)}$，例如 02505 对应 2.5 $\times 10^{-6}$
 > * **建议**：除非遇到收敛问题，否则使用默认值。通常应设为与 EOM_DAVIDSON_CONVERGENCE 相同的值，如果出现收敛问题，尝试设为略大于 EOM_DAVIDSON_CONVERGENCE 的值。
 
-EOM_DAVIDSON_MAXVECTORS
-
 ### `EOM_DAVIDSON_MAXVECTORS`
 
 > **指定 Davidson 对角化子空间中的最大向量数。**
@@ -620,8 +552,6 @@ EOM_DAVIDSON_MAXVECTORS
 > * **选项**：
 >     * $n$ 在重置子空间之前每个根最多使用 $n$ 个向量
 > * **建议**：较大的值会增加磁盘存储，但能加速和稳定收敛。
-
-EOM_DAVIDSON_MAX_ITER
 
 ### `EOM_DAVIDSON_MAX_ITER`
 
@@ -633,8 +563,6 @@ EOM_DAVIDSON_MAX_ITER
 >     * $n$ 用户自定义的迭代次数
 > * **建议**：默认值通常足够。
 
-EOM_DIIS_CONVERGENCE
-
 ### `EOM_DIIS_CONVERGENCE`
 
 > **用于求解实值 EOM 态的 DIIS 算法的收敛判据（仅适用于 LIBGMBPT 中的 RI-CC2）。**
@@ -644,8 +572,6 @@ EOM_DIIS_CONVERGENCE
 > * **选项**：
 >     * $n$ 对应 $10^{-n}$ 收敛判据。
 > * **建议**：过松的收敛判据可能导致找到错误的态。
-
-EOM_DIIS_MAXVECTORS
 
 ### `EOM_DIIS_MAXVECTORS`
 
@@ -657,8 +583,6 @@ EOM_DIIS_MAXVECTORS
 >     * $n$ DIIS 子空间中最多使用 $n$ 个向量。
 > * **建议**：较大的值会增加磁盘存储，但能加速和稳定收敛。
 
-EOM_DIIS_MAX_ITER
-
 ### `EOM_DIIS_MAX_ITER`
 
 > **DIIS 过程允许的最大迭代次数（仅适用于 LIBGMBPT 中的 RI-CC2）。**
@@ -668,8 +592,6 @@ EOM_DIIS_MAX_ITER
 > * **选项**：
 >     * $n$ 用户自定义的迭代次数。
 > * **建议**：默认值通常足够。
-
-EOM_IPEA_FILTER
 
 ### `EOM_IPEA_FILTER`
 
@@ -686,8 +608,6 @@ EOM_IPEA_FILTER
 在 CCMAN2 中不可用。
 **
 
-CC_FNO_THRESH
-
 ### `CC_FNO_THRESH`
 
 > **初始化 FNO 截断并设置两种截止阈值（OCCT 和 POVO）使用的值。**
@@ -699,8 +619,6 @@ CC_FNO_THRESH
 >     * $abcd$ 对应 $ab.cd$%
 > * **建议**：无
 
-CC_FNO_USEPOP
-
 ### `CC_FNO_USEPOP`
 
 > **截断方案的选择。**
@@ -711,8 +629,6 @@ CC_FNO_USEPOP
 >     * 0 POVO
 > * **建议**：无
 
-SCALE_NUCLEAR_CHARGE
-
 ### `SCALE_NUCLEAR_CHARGE`
 
 > **将每个原子核的电荷按某个值进行缩放。核排斥能是针对未缩放的核电荷计算的。**
@@ -722,8 +638,6 @@ SCALE_NUCLEAR_CHARGE
 > * **选项**：
 >     * $n$ 向分子添加 $(1+n/100)e$ 的总正电荷。
 > * **建议**：无
-
-ADD_CHARGED_CAGE
 
 ### `ADD_CHARGED_CAGE`
 
@@ -737,8 +651,6 @@ ADD_CHARGED_CAGE
 >     * 2 球形笼。
 > * **建议**：球形笼预期能给出更准确的结果，尤其是对于小半径。
 
-CAGE_RADIUS
-
 ### `CAGE_RADIUS`
 
 > **定义带电笼的半径。**
@@ -748,8 +660,6 @@ CAGE_RADIUS
 > * **选项**：
 >     * $n$ 半径为 $n/100$ Å。
 > * **建议**：无
-
-CAGE_POINTS
 
 ### `CAGE_POINTS`
 
@@ -761,8 +671,6 @@ CAGE_POINTS
 >     * $n$ 使用的点电荷数。
 > * **建议**：无
 
-CAGE_CHARGE
-
 ### `CAGE_CHARGE`
 
 > **定义笼的总电荷。**
@@ -773,8 +681,6 @@ CAGE_CHARGE
 >     * $n$ 笼的总电荷为 $n/100$ a.u.
 > * **建议**：无
 
-EOM_EE_IV_PROJ
-
 ### `EOM_EE_IV_PROJ`
 
 > **在使用 EOM-EE-CCSD 计算激发态时启用内价层投影算符的应用。**
@@ -784,8 +690,6 @@ EOM_EE_IV_PROJ
 > * **选项**：
 >     * $n$ 用于构造内价层投影算符的活性占据轨道数。轨道从底部开始计数，冻结轨道不计入。
 > * **建议**：无
-
-EOM_IP_IV_PROJ
 
 ### `EOM_IP_IV_PROJ`
 

@@ -119,8 +119,6 @@ available for closed-shell references.
 
 The most relevant EOM-CC input options follow.
 
-EE_STATES
-
 ### `EE_STATES`
 
 > **Sets the number of excited state roots to find. For closed-shell reference, defaults into EE_SINGLETS . For open-shell references, specifies all low-lying states.**
@@ -128,17 +126,8 @@ EE_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EE_SINGLETS
 
 ### `EE_SINGLETS`
 
@@ -147,17 +136,8 @@ EE_SINGLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EE_TRIPLETS
 
 ### `EE_TRIPLETS`
 
@@ -166,17 +146,8 @@ EE_TRIPLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-SF_STATES
 
 ### `SF_STATES`
 
@@ -185,17 +156,8 @@ SF_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * SF states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ SF states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DSF_STATES
 
 ### `DSF_STATES`
 
@@ -204,17 +166,8 @@ DSF_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * doubly spin-flipped states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ doubly spin-flipped states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-IP_STATES
 
 ### `IP_STATES`
 
@@ -223,17 +176,8 @@ IP_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ ionized states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-IP_ALPHA
 
 ### `IP_ALPHA`
 
@@ -242,17 +186,8 @@ IP_ALPHA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ ionized states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-IP_BETA
 
 ### `IP_BETA`
 
@@ -261,17 +196,8 @@ IP_BETA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ ionized states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EA_STATES
 
 ### `EA_STATES`
 
@@ -280,17 +206,8 @@ EA_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * EA states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ EA states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EA_ALPHA
 
 ### `EA_ALPHA`
 
@@ -299,17 +216,8 @@ EA_ALPHA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * EA states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ EA states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-EA_BETA
 
 ### `EA_BETA`
 
@@ -318,17 +226,8 @@ EA_BETA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * EA states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ EA states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DIP_STATES
 
 ### `DIP_STATES`
 
@@ -337,17 +236,8 @@ DIP_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DIP_SINGLETS
 
 ### `DIP_SINGLETS`
 
@@ -356,17 +246,8 @@ DIP_SINGLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP singlet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP singlet states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DIP_TRIPLETS
 
 ### `DIP_TRIPLETS`
 
@@ -375,17 +256,8 @@ DIP_TRIPLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP triplet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP triplet states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DIP_AA_STATES
 
 ### `DIP_AA_STATES`
 
@@ -394,17 +266,8 @@ DIP_AA_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DIP_BB_STATES
 
 ### `DIP_BB_STATES`
 
@@ -413,17 +276,8 @@ DIP_BB_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DIP_AB_STATES
 
 ### `DIP_AB_STATES`
 
@@ -432,17 +286,8 @@ DIP_AB_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DEA_STATES
 
 ### `DEA_STATES`
 
@@ -451,17 +296,8 @@ DEA_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DIP states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DIP states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DEA_SINGLETS
 
 ### `DEA_SINGLETS`
 
@@ -470,17 +306,8 @@ DEA_SINGLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA singlet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DEA singlet states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DEA_TRIPLETS
 
 ### `DEA_TRIPLETS`
 
@@ -489,17 +316,8 @@ DEA_TRIPLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA triplet states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DEA triplet states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DEA_AA_STATES
 
 ### `DEA_AA_STATES`
 
@@ -508,19 +326,8 @@ DEA_AA_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA
->     * $\alpha\alpha$
->     * states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DEA $\alpha\alpha$ states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DEA_BB_STATES
 
 ### `DEA_BB_STATES`
 
@@ -529,19 +336,8 @@ DEA_BB_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA
->     * $\beta\beta$
->     * states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DEA $\beta\beta$ states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-DEA_AB_STATES
 
 ### `DEA_AB_STATES`
 
@@ -550,16 +346,7 @@ DEA_AB_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * DEA
->     * $\alpha\beta$
->     * states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ DEA $\alpha\beta$ states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
 
 **Note: 
@@ -588,8 +375,6 @@ roots if it suspects degeneracy, or change it to a smaller value, if it cannot
 generate enough guess vectors to start the calculations.
 **
 
-EOM_FAKE_IPEA
-
 ### `EOM_FAKE_IPEA`
 
 > **If TRUE , calculates fake EOM-IP or EOM-EA energies and properties using the diffuse orbital trick. Default for EOM-EA and Dyson orbital calculations in CCMAN.**
@@ -597,7 +382,7 @@ EOM_FAKE_IPEA
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (use proper EOM-IP code)`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: None. This feature only works for CCMAN.
 
 **Note: 
@@ -614,8 +399,6 @@ moments of electron density and Mulliken charges and spin densities are
 incorrect for the EOM-IP/EA-CCSD target states.
 **
 
-EOM_USER_GUESS
-
 ### `EOM_USER_GUESS`
 
 > **Specifies if user-defined guess will be used in EOM calculations.**
@@ -623,14 +406,8 @@ EOM_USER_GUESS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Solve for a state that has maximum overlap with a trans-n
->     * specified in
->     * $eom_user_guess
->     * .
+>     * `TRUE`: Solve for a state that has maximum overlap with a trans-n specified in $eom_user_guess .
 > * **Recommendation**: The orbitals are ordered by energy, as printed in the beginning of the CCMAN2 output. Not available in CCMAN.
-
-EOM_SHIFT
 
 ### `EOM_SHIFT`
 
@@ -639,16 +416,8 @@ EOM_SHIFT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * corresponds to
->     * $n\cdot 10^{-3}$
->     * Hartree shift (
->     * i.e.
->     * , 11000 = 11 Hartree); solve for
->     * eigenstates around this value.
+>     * $n$: corresponds to $n\cdot 10^{-3}$ Hartree shift ( i.e. , 11000 = 11 Hartree); solve for eigenstates around this value.
 > * **Recommendation**: Not available in CCMAN.
-
-EOM_NGUESS_DOUBLES
 
 ### `EOM_NGUESS_DOUBLES`
 
@@ -657,13 +426,9 @@ EOM_NGUESS_DOUBLES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Include
->     * $n$
->     * guess vectors that are double excitations
+>     * $n$: Include
+>     * $n$: guess vectors that are double excitations
 > * **Recommendation**: This should be set to the expected number of doubly excited states, otherwise they may not be found.
-
-EOM_NGUESS_SINGLES
 
 ### `EOM_NGUESS_SINGLES`
 
@@ -672,13 +437,9 @@ EOM_NGUESS_SINGLES
 > * **Type**: `INTEGER`
 > * **Default**: `Equal to the number of excited states requested`
 > * **Options**:
->     * $n$
->     * Include
->     * $n$
->     * guess vectors that are single excitations
+>     * $n$: Include
+>     * $n$: guess vectors that are single excitations
 > * **Recommendation**: Should be greater or equal than the number of excited states requested, unless .
-
-EOM_PRECONV_SINGLES
 
 ### `EOM_PRECONV_SINGLES`
 
@@ -687,10 +448,8 @@ EOM_PRECONV_SINGLES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not pre-converge
->     * 1
->     * pre-converge singles
+>     * `0`: do not pre-converge
+>     * `1`: pre-converge singles
 > * **Recommendation**: Sometimes helps with problematic convergence.
 
 **Note: 
@@ -699,8 +458,6 @@ In CCMAN, setting EOM_PRECONV_SINGLES = $N$ would result in $N$
 Davidson iterations pre-converging singles.
 **
 
-EOM_PRECONV_DOUBLES
-
 ### `EOM_PRECONV_DOUBLES`
 
 > **When not zero, doubly excited vectors are converged prior to a full excited states calculation. Sets the maximum number of iterations for pre-converging procedure**
@@ -708,18 +465,14 @@ EOM_PRECONV_DOUBLES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not pre-converge
->     * N
->     * Perform N Davidson iterations pre-converging doubles.
+>     * `0`: Do not pre-converge
+>     * `N`: Perform N Davidson iterations pre-converging doubles.
 > * **Recommendation**: Occasionally necessary to ensure a doubly excited state is found. Also used in DSF, DIP, and DEA calculations instead of EOM_PRECONV_SINGLES
 
 **Note: 
 
 Not available for EOM-EE in CCMAN2.
 **
-
-EOM_PRECONV_SD
 
 ### `EOM_PRECONV_SD`
 
@@ -728,18 +481,14 @@ EOM_PRECONV_SD
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not pre-converge
->     * N
->     * perform N Davidson iterations pre-converging singles and doubles.
+>     * `0`: do not pre-converge
+>     * `N`: perform N Davidson iterations pre-converging singles and doubles.
 > * **Recommendation**: Occasionally necessary to ensure that all low-lying states are found. Also, very useful in EOM(2,3) calculations. None
 
 **Note: 
 
 Not available in CCMAN2.
 **
-
-EOM_DAVIDSON_CONVERGENCE
 
 ### `EOM_DAVIDSON_CONVERGENCE`
 
@@ -748,13 +497,8 @@ EOM_DAVIDSON_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion
 > * **Recommendation**: Use the default. Normally this value be the same as EOM_DAVIDSON_THRESHOLD .
-
-EOM_DAVIDSON_THRESHOLD
 
 ### `EOM_DAVIDSON_THRESHOLD`
 
@@ -763,16 +507,8 @@ EOM_DAVIDSON_THRESHOLD
 > * **Type**: `INTEGER`
 > * **Default**: `00103`
 > * **Options**:
->     * $abcde$
->     * Integer code is mapped to
->     * $abc\times 10^{-(de+2)}$
->     * ,
->     * i.e.
->     * , 02505->2.5
->     * $\times 10^{-6}$
+>     * $abcde$: Integer code is mapped to $abc\times 10^{-(de+2)}$ , i.e. , 02505->2.5 $\times 10^{-6}$
 > * **Recommendation**: Use the default unless converge problems are encountered. Should normally be set to the same values as EOM_DAVIDSON_CONVERGENCE , if convergence problems arise try setting to a value slightly larger than EOM_DAVIDSON_CONVERGENCE .
-
-EOM_DAVIDSON_MAXVECTORS
 
 ### `EOM_DAVIDSON_MAXVECTORS`
 
@@ -781,13 +517,9 @@ EOM_DAVIDSON_MAXVECTORS
 > * **Type**: `INTEGER`
 > * **Default**: `60`
 > * **Options**:
->     * $n$
->     * Up to
->     * $n$
->     * vectors per root before the subspace is reset
+>     * $n$: Up to
+>     * $n$: vectors per root before the subspace is reset
 > * **Recommendation**: Larger values increase disk storage but accelerate and stabilize convergence.
-
-EOM_DAVIDSON_MAX_ITER
 
 ### `EOM_DAVIDSON_MAX_ITER`
 
@@ -796,11 +528,8 @@ EOM_DAVIDSON_MAX_ITER
 > * **Type**: `INTEGER`
 > * **Default**: `30`
 > * **Options**:
->     * $n$
->     * User-defined number of iterations
+>     * $n$: User-defined number of iterations
 > * **Recommendation**: Default is usually sufficient
-
-EOM_DIIS_CONVERGENCE
 
 ### `EOM_DIIS_CONVERGENCE`
 
@@ -809,13 +538,8 @@ EOM_DIIS_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion.
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion.
 > * **Recommendation**: A loose convergence criterion may result in finding an incorrect state.
-
-EOM_DIIS_MAXVECTORS
 
 ### `EOM_DIIS_MAXVECTORS`
 
@@ -824,13 +548,9 @@ EOM_DIIS_MAXVECTORS
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * $n$
->     * Up to
->     * $n$
->     * vectors in the DIIS subspace.
+>     * $n$: Up to
+>     * $n$: vectors in the DIIS subspace.
 > * **Recommendation**: Larger values increase disk storage but accelerate and stabilize convergence.
-
-EOM_DIIS_MAX_ITER
 
 ### `EOM_DIIS_MAX_ITER`
 
@@ -839,11 +559,8 @@ EOM_DIIS_MAX_ITER
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * User-defined number of iterations.
+>     * $n$: User-defined number of iterations.
 > * **Recommendation**: Default is usually sufficient.
-
-EOM_IPEA_FILTER
 
 ### `EOM_IPEA_FILTER`
 
@@ -852,15 +569,13 @@ EOM_IPEA_FILTER
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (EOM-IP or EOM-EA amplitudes will not be filtered)`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: None
 
 **Note: 
 
 Not available in CCMAN2.
 **
-
-CC_FNO_THRESH
 
 ### `CC_FNO_THRESH`
 
@@ -869,15 +584,8 @@ CC_FNO_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * range
->     * 0000-10000
->     * $abcd$
->     * Corresponding to
->     * $ab.cd$
->     * %
+>     * `range`: 0000-10000 $abcd$ Corresponding to $ab.cd$ %
 > * **Recommendation**: None
-
-CC_FNO_USEPOP
 
 ### `CC_FNO_USEPOP`
 
@@ -886,11 +594,8 @@ CC_FNO_USEPOP
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * POVO
+>     * `0`: POVO
 > * **Recommendation**: None
-
-SCALE_NUCLEAR_CHARGE
 
 ### `SCALE_NUCLEAR_CHARGE`
 
@@ -899,13 +604,8 @@ SCALE_NUCLEAR_CHARGE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * A total positive charge of (1+
->     * $n/100$
->     * )e is added to the molecule.
+>     * $n$: A total positive charge of (1+ $n/100$ )e is added to the molecule.
 > * **Recommendation**: NONE
-
-ADD_CHARGED_CAGE
 
 ### `ADD_CHARGED_CAGE`
 
@@ -914,15 +614,10 @@ ADD_CHARGED_CAGE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No cage.
->     * 1
->     * Dodecahedral cage.
->     * 2
->     * Spherical cage.
+>     * `0`: No cage.
+>     * `1`: Dodecahedral cage.
+>     * `2`: Spherical cage.
 > * **Recommendation**: Spherical cage is expected to yield more accurate results, especially for small radii.
-
-CAGE_RADIUS
 
 ### `CAGE_RADIUS`
 
@@ -931,13 +626,8 @@ CAGE_RADIUS
 > * **Type**: `INTEGER`
 > * **Default**: `225`
 > * **Options**:
->     * $n$
->     * radius is
->     * $n/100$
->     * Å.
+>     * $n$: radius is $n/100$ Å.
 > * **Recommendation**: None
-
-CAGE_POINTS
 
 ### `CAGE_POINTS`
 
@@ -946,11 +636,8 @@ CAGE_POINTS
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * Number of point charges to use.
+>     * $n$: Number of point charges to use.
 > * **Recommendation**: None
-
-CAGE_CHARGE
 
 ### `CAGE_CHARGE`
 
@@ -959,13 +646,8 @@ CAGE_CHARGE
 > * **Type**: `INTEGER`
 > * **Default**: `400`
 > * **Options**:
->     * $n$
->     * Total charge of the cage is
->     * $n/100$
->     * a.u.
+>     * $n$: Total charge of the cage is $n/100$ a.u.
 > * **Recommendation**: None
-
-EOM_EE_IV_PROJ
 
 ### `EOM_EE_IV_PROJ`
 
@@ -974,12 +656,8 @@ EOM_EE_IV_PROJ
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Number of active occupied orbitals that are used to construct the inner-valence projector. The orbitals are counted from the
->     * bottom, with frozen orbitals excluded from the count.
+>     * $n$: Number of active occupied orbitals that are used to construct the inner-valence projector. The orbitals are counted from the bottom, with frozen orbitals excluded from the count.
 > * **Recommendation**: none
-
-EOM_IP_IV_PROJ
 
 ### `EOM_IP_IV_PROJ`
 
@@ -988,8 +666,5 @@ EOM_IP_IV_PROJ
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Number of active occupied orbitals that are used to construct the inner-valence projector.
->     * The orbitals are counted from the
->     * bottom, with frozen orbitals excluded from the count.
+>     * $n$: Number of active occupied orbitals that are used to construct the inner-valence projector. The orbitals are counted from the bottom, with frozen orbitals excluded from the count.
 > * **Recommendation**: none

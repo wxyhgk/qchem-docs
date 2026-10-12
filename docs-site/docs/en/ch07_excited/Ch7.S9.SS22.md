@@ -6,8 +6,6 @@ title: "7.9.22 EOM-CC Optimization and Properties Job Control"
 
 (July 4, 2026)
 
-CC_STATE_TO_OPT
-
 ### `CC_STATE_TO_OPT`
 
 > **Specifies which state to optimize (or from which state compute EOM-EOM inter-state properties).**
@@ -15,16 +13,7 @@ CC_STATE_TO_OPT
 > * **Type**: `INTEGER ARRAY`
 > * **Default**: `None`
 > * **Options**:
->     * [
->     * $i$
->     * ,
->     * $j$
->     * ]
->     * optimize the
->     * $j$
->     * th state of the
->     * $i$
->     * th irrep.
+>     * `[`: $i$ , $j$ ] optimize the $j$ th state of the $i$ th irrep.
 > * **Recommendation**: None
 
 **Note: 
@@ -42,8 +31,6 @@ case, CC_STATE_TO_OPT should be specified assuming C${}_{1}$ symmetry,
 numbered from 1).
 **
 
-CC_EOM_PROP
-
 ### `CC_EOM_PROP`
 
 > **Whether or not the non-relaxed (expectation value) one-particle EOM-CCSD target state properties will be calculated. Available properties currently include permanent dipole moment, angular momentum projections, the second moments ( $\langle x^{2}\rangle$ , $\langle y^{2}\rangle$ , and $\langle z^{2}\rangle$ ) of the electron density along with $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$ . This option is incompatible with JOBTYPE = FORCE , OPT , or FREQ .**
@@ -51,10 +38,8 @@ CC_EOM_PROP
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (no one-particle properties will be calculated)`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: Additional equations (EOM-CCSD equations for the left eigenvectors) need to be solved for properties, approximately doubling the cost of calculation for each irrep. The cost of the one-particle properties calculation itself is low. The one-particle density of an EOM-CCSD target state can be analyzed with NBO or libwfa packages by specifying the state with CC_STATE_TO_OPT and requesting NBO = TRUE and = TRUE .
-
-CC_TRANS_PROP
 
 ### `CC_TRANS_PROP`
 
@@ -63,8 +48,7 @@ CC_TRANS_PROP
 > * **Type**: `INTEGER`
 > * **Default**: `0 (no transition properties will be calculated)`
 > * **Options**:
->     * 1 (calculate transition properties between all computed EOM state and the reference state)
->     * 2 (calculate transition properties between all pairs of EOM states)
+>     * 1 (calculate transition properties between all computed EOM state and the reference state): 2 (calculate transition properties between all pairs of EOM states)
 > * **Recommendation**: Additional equations (for the left EOM-CCSD eigenvectors plus lambda CCSD equations in case of transition properties between the CCSD reference and EOM-CCSD target states are requested) need to be solved for transition properties, approximately doubling the computational cost. The cost of the transition properties calculation itself is low.
 
 **Note: 
@@ -74,8 +58,6 @@ setting of the CC_TRANS_PROP *$rem* variable. However, for
 *$trans_prop* to work, CC_TRANS_PROP *does* need to be set.
 **
 
-CC_EOM_ECD
-
 ### `CC_EOM_ECD`
 
 > **Whether or not the ECD transition moments will be calculated. By default, the transition moments are calculated between the CCSD reference and the EOM-CCSD target states. In order to calculate transition moments between a set of EOM-CCSD states and another EOM-CCSD state, the CC_STATE_TO_OPT must be specified for this state.**
@@ -83,11 +65,8 @@ CC_EOM_ECD
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (do not compute ECD transition moments)`
 > * **Options**:
->     * TRUE
->     * Compute ECD transition moments.
+>     * `TRUE`: Compute ECD transition moments.
 > * **Recommendation**: Activate for chiral molecules only.
-
-CC_EOM_2PA
 
 ### `CC_EOM_2PA`
 
@@ -96,25 +75,10 @@ CC_EOM_2PA
 > * **Type**: `INTEGER`
 > * **Default**: `0 (do not compute 2PA transition moments)`
 > * **Options**:
->     * 1
->     * Compute 2PA using the fastest algorithm (use
->     * $\tilde{\sigma}$
->     * -intermediates for
->     * canonical
->     * and
->     * $\sigma$
->     * -intermediates for RI/CD response calculations).
->     * 2
->     * Use
->     * $\sigma$
->     * -intermediates for 2PA response equation calculations.
->     * 3
->     * Use
->     * $\tilde{\sigma}$
->     * -intermediates for 2PA response equation calculations.
+>     * `1`: Compute 2PA using the fastest algorithm (use $\tilde{\sigma}$ -intermediates for canonical and $\sigma$ -intermediates for RI/CD response calculations).
+>     * `2`: Use $\sigma$ -intermediates for 2PA response equation calculations.
+>     * `3`: Use $\tilde{\sigma}$ -intermediates for 2PA response equation calculations.
 > * **Recommendation**: Additional response equations (6 for each target state) will be solved, which increases the cost of calculations. The cost of 2PA moments is about 10 times that of energy calculation. Use the default algorithm. Setting $>0$ turns on CC_TRANS_PROP .
-
-CC_EOM_2PA_XCONV
 
 ### `CC_EOM_2PA_XCONV`
 
@@ -123,13 +87,8 @@ CC_EOM_2PA_XCONV
 > * **Type**: `INTEGER`
 > * **Default**: `5 Corresponding to`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion.
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion.
 > * **Recommendation**: Use the default in double precision. May reduce in single precision.
-
-DAMPED_DALTON_SOLVER
 
 ### `DAMPED_DALTON_SOLVER`
 
@@ -138,11 +97,8 @@ DAMPED_DALTON_SOLVER
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE (Use the new`
 > * **Options**:
->     * FALSE
->     * If the old DIIS solver is desired for the above properties.
+>     * `FALSE`: If the old DIIS solver is desired for the above properties.
 > * **Recommendation**: Use the new solver for faster convergence relative to DIIS.
-
-DALTON_XCONV
 
 ### `DALTON_XCONV`
 
@@ -151,13 +107,8 @@ DALTON_XCONV
 > * **Type**: `INTEGER`
 > * **Default**: `6 Corresponding to`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
->     * convergence criterion.
+>     * $n$: Corresponding to $10^{-n}$ convergence criterion.
 > * **Recommendation**: Use the default in double precision. May reduce to 5 in single precision.
-
-DALTON_MAXITER
 
 ### `DALTON_MAXITER`
 
@@ -166,11 +117,8 @@ DALTON_MAXITER
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * User-defined number of iterations.
+>     * $n$: User-defined number of iterations.
 > * **Recommendation**: Default is usually sufficient
-
-DALTON_MAXSPACE
 
 ### `DALTON_MAXSPACE`
 
@@ -179,13 +127,9 @@ DALTON_MAXSPACE
 > * **Type**: `INTEGER`
 > * **Default**: `200`
 > * **Options**:
->     * $n$
->     * Up to
->     * $n$
->     * vectors per root before the subspace is reset.
+>     * $n$: Up to
+>     * $n$: vectors per root before the subspace is reset.
 > * **Recommendation**: Larger values increase disk storage but accelerate and stabilize convergence.
-
-DALTON_PRECOND_START
 
 ### `DALTON_PRECOND_START`
 
@@ -194,11 +138,8 @@ DALTON_PRECOND_START
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * User-defined iteration number.
+>     * $n$: User-defined iteration number.
 > * **Recommendation**: Use default.
-
-CALC_SOC
 
 ### `CALC_SOC`
 
@@ -207,20 +148,12 @@ CALC_SOC
 > * **Type**: `INTEGER/LOGICAL`
 > * **Default**: `FALSE (no spin-orbit couplings will be calculated)`
 > * **Options**:
->     * 0/FALSE
->     * (no spin-orbit couplings will be calculated)
->     * 1/TRUE
->     * Activates SOC calculation. EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the new code with L+/L- averaging
->     * 2
->     * EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the new code without L+/L- averaging
->     * 3
->     * EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the legacy code
->     * 4
->     * One-electron spin-orbit couplings will be computed with effective nuclear charges (with L+/L- averaging
->     * for EOM-CC/MP2)
+>     * `0/FALSE`: (no spin-orbit couplings will be calculated)
+>     * `1/TRUE`: Activates SOC calculation. EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the new code with L+/L- averaging
+>     * `2`: EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the new code without L+/L- averaging
+>     * `3`: EOM-CC/EOM-MP2 only: spin-orbit couplings will be computed with the legacy code
+>     * `4`: One-electron spin-orbit couplings will be computed with effective nuclear charges (with L+/L- averaging for EOM-CC/MP2)
 > * **Recommendation**: CCMAN2 supports several variants of SOC calculation for EOM-CC/EOM-MP2 methods. One-electron and mean-field two-electron SOCs will be computed by default. To enable full two-electron SOCs, two-particle EOM properties must be turned on (see CC_EOM_PROP_TE ).
-
-CALC_NAC
 
 ### `CALC_NAC`
 
@@ -229,13 +162,9 @@ CALC_NAC
 > * **Type**: `INTEGER`
 > * **Default**: `0 (do not compute NAC)`
 > * **Options**:
->     * 1
->     * NYI for EOM-CC
->     * 2
->     * Compute NACs using Szalay’s approach (this what needs to be specified for EOM-CC).
+>     * `1`: NYI for EOM-CC
+>     * `2`: Compute NACs using Szalay’s approach (this what needs to be specified for EOM-CC).
 > * **Recommendation**: Additional response equations will be solved and gradients for all EOM states and for summed states will be computed, which increases the cost of calculations. Request only when needed and do not ask for too many EOM states.
-
-CC_POL
 
 ### `CC_POL`
 
@@ -244,25 +173,15 @@ CC_POL
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * (analytic-derivative or response-theory mixed symmetric-asymmetric approach)
->     * 2
->     * (analytic-derivative or response-theory asymmetric approach)
->     * 3
->     * (expectation-value approach with right response intermediates)
->     * 4
->     * (expectation-value approach with left response intermediates)
->     * 13
->     * (damped-response expectation-value approach with right response intermediates)
->     * 14
->     * (damped-response expectation-value approach with left response intermediates)
->     * 15
->     * (damped-response expectation-value approach with first-order response density matrices)
->     * 23
->     * (expectation-value approach with right response intermediates and imaginary frequencies)
+>     * `1`: (analytic-derivative or response-theory mixed symmetric-asymmetric approach)
+>     * `2`: (analytic-derivative or response-theory asymmetric approach)
+>     * `3`: (expectation-value approach with right response intermediates)
+>     * `4`: (expectation-value approach with left response intermediates)
+>     * `13`: (damped-response expectation-value approach with right response intermediates)
+>     * `14`: (damped-response expectation-value approach with left response intermediates)
+>     * `15`: (damped-response expectation-value approach with first-order response density matrices)
+>     * `23`: (expectation-value approach with right response intermediates and imaginary frequencies)
 > * **Recommendation**: CCSD polarizabilities are expensive since they require solving three/six (for static) or six/twelve (for dynamic) additional response equations. Do no request this property unless you need it.
-
-EOM_POL
 
 ### `EOM_POL`
 
@@ -271,19 +190,12 @@ EOM_POL
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * (analytic-derivative or response-theory mixed symmetric-asymmetric approach)
->     * 2
->     * (analytic-derivative or response-theory asymmetric approach)
->     * 3
->     * (expectation-value approach with right response intermediates)
->     * 4
->     * (expectation-value approach with left response intermediates)
->     * 23
->     * (expectation-value approach with right response intermediates and imaginary frequencies)
+>     * `1`: (analytic-derivative or response-theory mixed symmetric-asymmetric approach)
+>     * `2`: (analytic-derivative or response-theory asymmetric approach)
+>     * `3`: (expectation-value approach with right response intermediates)
+>     * `4`: (expectation-value approach with left response intermediates)
+>     * `23`: (expectation-value approach with right response intermediates and imaginary frequencies)
 > * **Recommendation**: EOM-CCSD polarizabilities are expensive since they require solving three/nine (for static) or six/eighteen (for dynamic) additional response equations. Do no request this property unless you need it.
-
-CC_1HPOL
 
 ### `CC_1HPOL`
 
@@ -292,13 +204,9 @@ CC_1HPOL
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * (damped-response expectation-value approach with only first-order response wave functions)
->     * 3
->     * (damped-response expectation-value approach with second-order response density matrices for wave-function and natural orbital analyses)
+>     * `1`: (damped-response expectation-value approach with only first-order response wave functions)
+>     * `3`: (damped-response expectation-value approach with second-order response density matrices for wave-function and natural orbital analyses)
 > * **Recommendation**: CCSD first hyperpolarizabilities are expensive since they require solving a huge number of first- and second-order response equations. Do no request this property unless you need it.
-
-CC_EOM_PROP_TE
 
 ### `CC_EOM_PROP_TE`
 
@@ -307,10 +215,8 @@ CC_EOM_PROP_TE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE, TRUE
+>     * `FALSE, TRUE`
 > * **Recommendation**: The two-particle properties are computationally expensive since they require calculation and use of the two-particle density matrix (the cost is approximately the same as the cost of an analytic gradient calculation). Do not request the two-particle properties unless you really need them.
-
-CC_FULLRESPONSE
 
 ### `CC_FULLRESPONSE`
 
@@ -319,13 +225,9 @@ CC_FULLRESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * (both amplitude and orbital response will be calculated)
->     * 2
->     * (only amplitude response will be calculated)
+>     * `1`: (both amplitude and orbital response will be calculated)
+>     * `2`: (only amplitude response will be calculated)
 > * **Recommendation**: Not available for non-UHF/RHF references. Only available for EOM/CI methods for which analytic gradients are available.
-
-CC_SYMMETRY
 
 ### `CC_SYMMETRY`
 
@@ -334,12 +236,8 @@ CC_SYMMETRY
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Use the point group symmetry of the molecule
->     * FALSE
->     * Do not use point group symmetry (all states will be of
->     * $A$
->     * symmetry).
+>     * `TRUE`: Use the point group symmetry of the molecule
+>     * `FALSE`: Do not use point group symmetry (all states will be of $A$ symmetry).
 > * **Recommendation**: It is automatically turned off for any finite difference calculations, e.g. second derivatives.
 
 **Note: 
@@ -348,8 +246,6 @@ Only Abelian groups are supported. For molecules from non-Abelian groups,
 USE_ABELIAN_SUBGROUP must be set to TRUE (this is currently a default for all CCMAN and CCMAN2 jobs).
 **
 
-STATE_ANALYSIS
-
 ### `STATE_ANALYSIS`
 
 > **Activates excited state analyses using libwfa .**
@@ -357,10 +253,8 @@ STATE_ANALYSIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (no excited state analyses)`
 > * **Options**:
->     * TRUE, FALSE
+>     * `TRUE, FALSE`
 > * **Recommendation**: Set to TRUE if excited state analysis is required, but also if plots of densities or orbitals are needed. For details see Section 10.2.12 .
-
-G_TENSOR
 
 ### `G_TENSOR`
 
@@ -369,10 +263,8 @@ G_TENSOR
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate g-tensor
->     * TRUE (or 1)
->     * Calculate g-tensor.
+>     * `FALSE`（或 `0`）: Don’t calculate g-tensor
+>     * `TRUE`（或 `1`）: Calculate g-tensor.
 > * **Recommendation**: None.
 
 **Note: 

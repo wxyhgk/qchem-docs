@@ -58,8 +58,6 @@ EOM-IP-CCSD(fT) 修正现已在 CCMAN 和 CCMAN2 中均可用。
 
 三激发修正可通过 METHOD 或 EOM_CORR 关键字请求：
 
-METHOD
-
 ### `METHOD`
 
 > **指定计算方法。**
@@ -74,8 +72,6 @@ METHOD
 >     * EOM-CCSD(ST)
 >     * EOM-CCSD(sT)，适用于 IP
 > * **建议**：无
-
-EOM_CORR
 
 ### `EOM_CORR`
 

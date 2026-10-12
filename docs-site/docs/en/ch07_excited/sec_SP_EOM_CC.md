@@ -32,8 +32,6 @@ activated by EOM_ARESP_SINGLE_PREC = 1.
 For using single precision in calculating response equations for 2PA calculations, use the
 CC_EOM_2PA_SINGLE_PREC keyword (see also Section [7.9.21.6](sec_EOMGRAD.md#sec:2PA)).
 
-EOM_SINGLE_PREC
-
 ### `EOM_SINGLE_PREC`
 
 > **Precision selection for EOM-CC/MP2 calculations. Available in CCMAN2 only.**
@@ -41,13 +39,9 @@ EOM_SINGLE_PREC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * single-precision calculation
->     * 2
->     * single-precision calculation is followed by double-precision clean-up iterations
+>     * `1`: single-precision calculation
+>     * `2`: single-precision calculation is followed by double-precision clean-up iterations
 > * **Recommendation**: Do not set too tight convergence criteria when use single precision
-
-CC_EOM_2PA_SINGLE_PREC
 
 ### `CC_EOM_2PA_SINGLE_PREC`
 
@@ -56,8 +50,7 @@ CC_EOM_2PA_SINGLE_PREC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * single-precision calculation
+>     * `1`: single-precision calculation
 > * **Recommendation**: NONE
 
 **Note: 

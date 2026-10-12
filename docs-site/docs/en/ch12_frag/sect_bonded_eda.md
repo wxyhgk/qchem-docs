@@ -102,8 +102,6 @@ There are no presets of the bonded ALMO-EDA. Therefore, set EDA2 = 10.
 DIIS may not be used for SCF_ALGORITHM. Use GDM_LS
 for BONDED_EDA = 2 and L_BFGS for BONDED_EDA = 1.
 
-BONDED_EDA
-
 ### `BONDED_EDA`
 
 > **Use the bonded ALMO-EDA.**
@@ -111,15 +109,10 @@ BONDED_EDA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not perform bonded ALMO-EDA.
->     * 1
->     * Perform ALMO-EDA with non-orthogonal CI.
->     * 2
->     * Perform ALMO-EDA with spin-projected formalism.
+>     * `0`: Do not perform bonded ALMO-EDA.
+>     * `1`: Perform ALMO-EDA with non-orthogonal CI.
+>     * `2`: Perform ALMO-EDA with spin-projected formalism.
 > * **Recommendation**: Set to 2 for all cases where the supersystem is closed shell, only use 1 for cases where the fragments have more than one unpaired spin each.
-
-EDA_CONTRACTION_ANAL
 
 ### `EDA_CONTRACTION_ANAL`
 
@@ -128,10 +121,8 @@ EDA_CONTRACTION_ANAL
 > * **Type**: `BOOLEAN`
 > * **Default**: `0`
 > * **Options**:
->     * FALSE
->     * Do not perform contraction analysis.
->     * TRUE
->     * Perform contraction analysis.
+>     * `FALSE`: Do not perform contraction analysis.
+>     * `TRUE`: Perform contraction analysis.
 > * **Recommendation**: No recommendation
 
 ???+ example "Example 12.28: Bonded EDA of F ${}_{2}$ with MDQ FERFs, frozen analysis in the spin-projected formalism"

@@ -29,8 +29,6 @@ See Section [4.8](../ch04_scf/sect_HFPC.md).
 
 Dual basis MP2 calculations. See discussion in Section [6.6.2](../ch06_correlation/sect_rimp2.md).
 
-BASIS2
-
 ### `BASIS2`
 
 > **Defines the (small) second basis set.**
@@ -38,14 +36,9 @@ BASIS2
 > * **Type**: `STRING`
 > * **Default**: `No default for the second basis set.`
 > * **Options**:
->     * Symbol
->     * Use standard basis sets as for
->     * BASIS
->     * .
->     * BASIS2_GEN
->     * General
->     * BASIS2_MIXED
->     * Mixed
+>     * `Symbol`: Use standard basis sets as for BASIS .
+>     * `BASIS2_GEN`: General
+>     * `BASIS2_MIXED`: Mixed
 > * **Recommendation**: should be smaller than BASIS . There is little advantage to using a basis larger than a minimal basis when is used for initial guess purposes. Larger, standardized options are available for dual-basis calculations as discussed in Section 4.7 and summarized in Table 4.2 .
 
 In addition to built-in basis sets for BASIS2, it is also possible to

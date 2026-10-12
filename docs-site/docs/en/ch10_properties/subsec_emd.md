@@ -201,8 +201,6 @@ solver SINKHORN, the regularization strength for Sinkhorn solver SINKHORN_REG, t
 cycles MAX_SINKHORN_CYCLES. Larger regularization parameters generally improve agreement with the exact EMD but may lead to numerical instability if the kernel matrix becomes too
 sharply peaked. Smaller regularization parameters improve numerical robustness, but introduce a larger approximation error relative to the exact EMD.
 
-EMD_ANALYSIS
-
 ### `EMD_ANALYSIS`
 
 > **Controls whether Earth Mover’s Distance (EMD) analysis is performed.**
@@ -210,13 +208,9 @@ EMD_ANALYSIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform EMD analysis.
->     * TRUE
->     * Perform EMD analysis.
+>     * `FALSE`: Do not perform EMD analysis.
+>     * `TRUE`: Perform EMD analysis.
 > * **Recommendation**: This keyword activates the evaluation of the Earth Mover’s Distance between the positive and negative parts of the real-space density difference. The corresponding charge distributions are constructed on the grid specified by EMD_FIT_GRID .
-
-EMD_FIT_GRID
 
 ### `EMD_FIT_GRID`
 
@@ -225,15 +219,8 @@ EMD_FIT_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * Grid specification
->     * $N$
->     * is in the same format as
->     * XC_GRID
->     * .
+>     * $N$: Grid specification $N$ is in the same format as XC_GRID .
 > * **Recommendation**: This keyword defines the grid used for the reduced-grid representation of the density difference entering the EMD calculation. The input format is the same as for XC_GRID , but it should be equal or smaller than XC_GRID . A recommended choice is 19000026, and for larger molecules an even smaller grid may be used with only a small loss of accuracy. A denser grid generally improves the quality of the EMD result, but also increases the computational cost of the transport problem.
-
-SINKHORN
 
 ### `SINKHORN`
 
@@ -242,13 +229,9 @@ SINKHORN
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use the exact transportation simplex algorithm.
->     * TRUE
->     * Use the entropically regularized Sinkhorn–Knopp algorithm.
+>     * `FALSE`: Use the exact transportation simplex algorithm.
+>     * `TRUE`: Use the entropically regularized Sinkhorn–Knopp algorithm.
 > * **Recommendation**: The Sinkhorn–Knopp algorithm provides an efficient approximation to the exact Earth Mover’s Distance and is generally preferable for large grids. The corresponding regularization strength is controlled by SINKHORN_REG .
-
-MAX_SINKHORN_CYCLES
 
 ### `MAX_SINKHORN_CYCLES`
 
@@ -257,13 +240,8 @@ MAX_SINKHORN_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $N$
->     * Perform at most
->     * $N$
->     * Sinkhorn iterations.
+>     * $N$: Perform at most $N$ Sinkhorn iterations.
 > * **Recommendation**: Increase this value if the Sinkhorn iterations do not converge within the default number of cycles. This keyword is only relevant when SINKHORN is set to 1.
-
-SINKHORN_THRESHOLD
 
 ### `SINKHORN_THRESHOLD`
 
@@ -272,13 +250,8 @@ SINKHORN_THRESHOLD
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $N$
->     * Converge the Sinkhorn iterations to a threshold of
->     * $10^{-N}$
->     * .
+>     * $N$: Converge the Sinkhorn iterations to a threshold of $10^{-N}$ .
 > * **Recommendation**: Smaller values of $N$ correspond to a looser convergence criterion, while larger values correspond to tighter convergence. This keyword is only relevant when SINKHORN is set to 1.
-
-SINKHORN_REG
 
 ### `SINKHORN_REG`
 
@@ -287,10 +260,7 @@ SINKHORN_REG
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $N$
->     * Use a regularization parameter of
->     * $N$
->     * for the Sinkhorn kernel.
+>     * $N$: Use a regularization parameter of $N$ for the Sinkhorn kernel.
 > * **Recommendation**: This keyword controls the strength of the entropic regularization in the Sinkhorn formulation of the EMD problem. Larger values generally yield results closer to the exact EMD, but may also lead to numerical instability or slower convergence. Smaller values are more numerically robust, but increase the deviation from the exact optimal transport solution. In the present implementation, the user-specified regularization parameter is internally scaled by the maximum element of the distance matrix before the Sinkhorn kernel is constructed. This keyword is only relevant when SINKHORN is set to 1.
 
 ???+ example "Example 10.10: Basic TDDFT calculation with PBE functional for water molecule with EMD analysis for the first three excited singlet and triplet states

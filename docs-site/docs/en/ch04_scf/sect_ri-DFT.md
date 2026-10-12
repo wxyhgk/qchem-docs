@@ -60,8 +60,6 @@ of the atom is included in the cutoff so that smaller atoms are dropped from
 the fitting radius sooner. The values of $R_{0}$ and $R_{1}$ are specified as REM
 variables as described below.
 
-RI_J
-
 ### `RI_J`
 
 > **Toggles the use of the RI algorithm to compute J.**
@@ -69,11 +67,8 @@ RI_J
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Turn on RI for J.
+>     * `TRUE`: Turn on RI for J.
 > * **Recommendation**: For large (especially 1D and 2D) molecules the approximation may yield significant improvements in Fock evaluation time when used with ARI .
-
-RI_K
 
 ### `RI_K`
 
@@ -82,11 +77,8 @@ RI_K
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Turn on RI for K.
+>     * `TRUE`: Turn on RI for K.
 > * **Recommendation**: For large (especially 1D and 2D) molecules the approximation may yield significant improvements in Fock evaluation time when used with ARI .
-
-ARI
 
 ### `ARI`
 
@@ -95,11 +87,8 @@ ARI
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Turn on ARI.
+>     * `TRUE`: Turn on ARI.
 > * **Recommendation**: For large (especially 1D and 2D) molecules the approximation may yield significant improvements in Fock evaluation time.
-
-ARI_R0
 
 ### `ARI_R0`
 
@@ -108,11 +97,8 @@ ARI_R0
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * User defined radius.
+>     * $n$: User defined radius.
 > * **Recommendation**: For some systems the default value may be too small and the calculation will become unstable.
-
-ARI_R1
 
 ### `ARI_R1`
 
@@ -121,6 +107,5 @@ ARI_R1
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * User defined radius.
+>     * $n$: User defined radius.
 > * **Recommendation**: For some systems the default value may be too small and the calculation will become unstable. This value also determines, in part, the smoothness of the potential energy surface.

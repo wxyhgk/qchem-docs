@@ -18,8 +18,6 @@ title: "7.9.31 与量子计算软件包 OpenFermion 的接口"
 不应冻结核心电子（Core should not be frozen）。
 **
 
-PRINT_QIS
-
 ### `PRINT_QIS`
 
 > **请求转储 OpenFermion 所需的数据。**
@@ -27,8 +25,7 @@ PRINT_QIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * TRUE
->     * 将 QIS 所需的数据输出到用户目录中。
+>     * `TRUE`: 将 QIS 所需的数据输出到用户目录中。
 > * **建议**: 请注意生成文件的体积大小。
 
 ???+ example "示例 7.180：水分子的 CCSD/STO-3G 计算，并输出供 OpenFermion 使用的数据。"

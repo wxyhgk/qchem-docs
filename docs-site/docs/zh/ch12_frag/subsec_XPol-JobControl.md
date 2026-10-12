@@ -12,8 +12,6 @@ XPol 方法可以与 Hartree-Fock 理论以及大多数密度泛函（Density Fu
 XPol 与溶剂化模型（第 [11.2](../ch11_env/topic_solvation.md) 节）或外部
 电荷（*$external_charges*）的结合使用也不受支持。当使用 Mulliken、Löwdin 或 CM5 嵌入电荷时可解析计算梯度（Analytic Gradients），但对于 ChElPG 嵌入电荷尚不支持。
 
-XPOL
-
 ### `XPOL`
 
 > **执行自洽的 XPol 计算。**
@@ -21,10 +19,8 @@ XPOL
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 执行 XPol 计算。
->     * FALSE
->     * 不执行 XPol 计算。
+>     * `TRUE`: 执行 XPol 计算。
+>     * `FALSE`: 不执行 XPol 计算。
 > * **建议**: 无（NONE）
 
 其他 XPol 选项通过 *$xpol* 段中包含的关键字来指定。
@@ -37,14 +33,9 @@ XPOL
 > * **类型**: `STRING`
 > * **默认值**: `Charges`
 > * **选项**:
->     * None
->     * 不使用嵌入电荷。
->     * Charges
->     * 原子点电荷（标准 XPol 方法）。
->     * Density
->     * 片段密度（与 FMO 方法类似；参见
->     * 第 12.12
->     * 节）
+>     * `None`: 不使用嵌入电荷。
+>     * `Charges`: 原子点电荷（标准 XPol 方法）。
+>     * `Density`: 片段密度（与 FMO 方法类似；参见第 12.12 节）
 > * **建议**: 标准 XPol 方法使用原子点电荷。
 
 ### `charges`
@@ -54,13 +45,11 @@ XPOL
 > * **类型**: `STRING`
 > * **默认值**: `CM5`
 > * **选项**:
->     * Mulliken
+>     * `Mulliken`
 >     * Mulliken 电荷
->     * Lowdin
->     * Löwdin 电荷
->     * CHELPG
->     * ChElPG 电荷
->     * CM5
+>     * `Lowdin`: Löwdin 电荷
+>     * `CHELPG`: ChElPG 电荷
+>     * `CM5`
 >     * CM5 电荷
 > * **建议**: 在扩展基组（extended basis sets）中使用 Mulliken 电荷出现的问题可能导致 XPol 收敛失败。Löwdin 电荷往往稍微更稳定，而 ChElPG 电荷相当稳健，并能提供精确的静电嵌入。然而，ChElPG 电荷的计算代价更高，并且在含有带电单体的体系中，其表现略逊于 CM5 电荷。CM5 电荷是一种性价比较高且略微更精确的选择。对于 XSAPT 计算（第 12.10 节），推荐使用 CM5 电荷。但是，CM5 电荷尚不适用于 AIFDEM 作业（第 12.14 节），在这种情况下推荐使用 ChElPG 电荷。
 
@@ -71,8 +60,7 @@ XPOL
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * $n$
->     * 期望的输出级别
+>     * $n$: 期望的输出级别
 > * **建议**: 较高的值会输出额外的信息
 
 尤其在 SAPT(KS) 计算（参见第 [12.9](topic_sapt.md) 节）和 XSAPT(KS) 计算（第 [12.10](sect_XSAPT.md) 节）的背景下——

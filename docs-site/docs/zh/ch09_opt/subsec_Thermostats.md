@@ -122,8 +122,6 @@ NOSE_HOOVER_TIMESCALE 控制，以飞秒为单位。此功能的另一个唯一�
     $end
     ```
 
-AIMD_THERMOSTAT
-
 ### `AIMD_THERMOSTAT`
 
 > **对 AIMD 轨迹施加恒温控制。**
@@ -131,13 +129,9 @@ AIMD_THERMOSTAT
 > * **类型**: `INTEGER`
 > * **默认值**: `none`
 > * **选项**:
->     * LANGEVIN
->     * 随机白噪声 Langevin 恒温器
->     * NOSE_HOOVER
->     * 时间可逆的 Nosé-Hoover 链恒温器
+>     * `LANGEVIN`: 随机白噪声 Langevin 恒温器
+>     * `NOSE_HOOVER`: 时间可逆的 Nosé-Hoover 链恒温器
 > * **建议**: 采样正则（NVT）系综时可使用任一恒温器。
-
-AIMD_LANGEVIN_TIMESCALE
 
 ### `AIMD_LANGEVIN_TIMESCALE`
 
@@ -146,12 +140,8 @@ AIMD_LANGEVIN_TIMESCALE
 > * **类型**: `INTEGER`
 > * **默认值**: `none`
 > * **选项**:
->     * $n$
->     * 恒温器时间尺度，以 $n$
->     * fs
+>     * $n$: 恒温器时间尺度，以 $n$ fs
 > * **建议**: 较小的值（约 100）对应更紧的恒温器，但可能阻碍快速采样。较大的值（ $\geq 1000$ ）允许更快速的采样，但可能需要更长时间才能达到热平衡。
-
-NOSE_HOOVER_LENGTH
 
 ### `NOSE_HOOVER_LENGTH`
 
@@ -160,12 +150,9 @@ NOSE_HOOVER_LENGTH
 > * **类型**: `INTEGER`
 > * **默认值**: `none`
 > * **选项**:
->     * $n$
->     * 辅助变量的链长为
+>     * $n$: 辅助变量的链长为
 >     * $n$
 > * **建议**: 通常取 3-6
-
-NOSE_HOOVER_TIMESCALE
 
 ### `NOSE_HOOVER_TIMESCALE`
 
@@ -174,7 +161,5 @@ NOSE_HOOVER_TIMESCALE
 > * **类型**: `INTEGER`
 > * **默认值**: `none`
 > * **选项**:
->     * $n$
->     * 恒温器时间尺度，以 $n$
->     * fs 为单位
+>     * $n$: 恒温器时间尺度，以 $n$ fs 为单位
 > * **建议**: 较小的值（约 100）对应更紧的恒温器，但可能阻碍快速采样。较大的值（ $\geq 1000$ ）允许更快速的采样，但可能需要更长时间才能达到热平衡。

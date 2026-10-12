@@ -69,8 +69,6 @@ iterations than the corresponding GDM calculations at the SCF level. This is a
 reflection of the correlation model itself. To deal with convergence issues, a
 number of REM values are available to customize the calculations, as listed below.
 
-GVB_ORB_MAX_ITER
-
 ### `GVB_ORB_MAX_ITER`
 
 > **Controls the number of orbital iterations allowed in GVB-CC calculations. Some jobs, particularly unrestricted PP jobs can require 500–1000 iterations.**
@@ -81,8 +79,6 @@ GVB_ORB_MAX_ITER
 >     * User-defined number of iterations.
 > * **Recommendation**: Default is typically adequate, but some jobs, particularly UPP jobs, can require 500–1000 iterations if converged tightly.
 
-GVB_ORB_CONV
-
 ### `GVB_ORB_CONV`
 
 > **The GVB-CC wave function is considered converged when the root-mean-square orbital gradient and orbital step sizes are less than $10^{-\mathrm{GVB\_ORB\_CONV}}$ . Adjust THRESH simultaneously.**
@@ -91,10 +87,8 @@ GVB_ORB_CONV
 > * **Default**: `5`
 > * **Options**:
 >     * $n$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Use 6 for PP(2) jobs or geometry optimizations. Tighter convergence ( i.e. 7 or higher) cannot always be reliably achieved.
-
-GVB_ORB_SCALE
 
 ### `GVB_ORB_SCALE`
 
@@ -103,11 +97,8 @@ GVB_ORB_SCALE
 > * **Type**: `INTEGER`
 > * **Default**: `1000`
 > * **Options**:
->     * $n$
->     * User-defined, 0–1000
+>     * $n$: User-defined, 0–1000
 > * **Recommendation**: Default is usually fine, but for some stretched geometries it can help with convergence to use smaller values.
-
-GVB_AMP_SCALE
 
 ### `GVB_AMP_SCALE`
 
@@ -116,11 +107,8 @@ GVB_AMP_SCALE
 > * **Type**: `INTEGER`
 > * **Default**: `1000`
 > * **Options**:
->     * $n$
->     * User-defined, 0–1000
+>     * $n$: User-defined, 0–1000
 > * **Recommendation**: Default is usually fine, but in some highly-correlated systems it can help with convergence to use smaller values.
-
-GVB_RESTART
 
 ### `GVB_RESTART`
 
@@ -129,10 +117,8 @@ GVB_RESTART
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: Useful when trying to converge to the same GVB solution at slightly different geometries, for example.
-
-GVB_REGULARIZE
 
 ### `GVB_REGULARIZE`
 
@@ -142,10 +128,8 @@ GVB_REGULARIZE
 > * **Default**: `0`
 > * **Options**:
 >     * $c$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Should be increased if unrestricted amplitudes do not converge or converge slowly at dissociation. Set this to zero to remove all dynamically-valued amplitude regularization.
-
-GVB_POWER
 
 ### `GVB_POWER`
 
@@ -155,10 +139,8 @@ GVB_POWER
 > * **Default**: `6`
 > * **Options**:
 >     * $p$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Should be decreased if unrestricted amplitudes do not converge or converge slowly at dissociation, and should be kept even valued.
-
-GVB_SHIFT
 
 ### `GVB_SHIFT`
 
@@ -168,7 +150,7 @@ GVB_SHIFT
 > * **Default**: `0`
 > * **Options**:
 >     * $n$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Default is fine, can be used in lieu of the dynamically valued amplitude regularization if it does not aid convergence.
 
 Another issue that a user of these methods should be aware of is the fact that
@@ -191,8 +173,6 @@ performed with amplitude regularization to find a desired solution, and then
 the calculation can be rerun with GVB_RESTART = TRUE and the
 regularization turned off to remove the energy penalty of regularization.
 
-GVB_LOCAL
-
 ### `GVB_LOCAL`
 
 > **Sets the localization scheme used in the initial guess wave function.**
@@ -200,15 +180,10 @@ GVB_LOCAL
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 0
->     * No Localization
->     * 1
->     * Boys localized orbitals
->     * 2
->     * Pipek-Mezey orbitals
+>     * `0`: No Localization
+>     * `1`: Boys localized orbitals
+>     * `2`: Pipek-Mezey orbitals
 > * **Recommendation**: Different initial guesses can sometimes lead to different solutions. It can be helpful to try both to ensure the global minimum has been found.
-
-GVB_DO_SANO
 
 ### `GVB_DO_SANO`
 
@@ -217,12 +192,9 @@ GVB_DO_SANO
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 0
->     * No localization or Sano procedure
->     * 1
->     * Only localizes the active virtual orbitals
->     * 2
->     * Uses the Sano procedure
+>     * `0`: No localization or Sano procedure
+>     * `1`: Only localizes the active virtual orbitals
+>     * `2`: Uses the Sano procedure
 > * **Recommendation**: Different initial guesses can sometimes lead to different solutions. Disabling sometimes can aid in finding more non-local solutions for the orbitals.
 
 Other *$rem* variables relevant to GVB calculations are given below. It is
@@ -236,8 +208,6 @@ want only the most reactive electron pair to be active ($n_{\mathrm{active}}=$1)
 Clearly making physically appropriate choices for this variable is essential
 for obtaining physically appropriate results!
 
-GVB_N_PAIRS
-
 ### `GVB_N_PAIRS`
 
 > **Alternative to CC_REST_OCC and CC_REST_VIR for setting active space size in GVB and valence coupled cluster methods.**
@@ -245,11 +215,8 @@ GVB_N_PAIRS
 > * **Type**: `INTEGER`
 > * **Default**: `PP active space (1 occ and 1 virt for each valence electron pair)`
 > * **Options**:
->     * $n$
->     * user-defined
+>     * $n$: user-defined
 > * **Recommendation**: Use the default unless one wants to study a special active space. When using small active spaces, it is important to ensure that the proper orbitals are incorporated in the active space. If not, use the $reorder_mo feature to adjust the SCF orbitals appropriately.
-
-GVB_PRINT
 
 ### `GVB_PRINT`
 
@@ -259,10 +226,8 @@ GVB_PRINT
 > * **Default**: `0`
 > * **Options**:
 >     * $n$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Should never need to go above 0 or 1.
-
-GVB_TRUNC_OCC
 
 ### `GVB_TRUNC_OCC`
 
@@ -272,10 +237,8 @@ GVB_TRUNC_OCC
 > * **Default**: `0`
 > * **Options**:
 >     * $n$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: This allows for asymmetric GVB active spaces removing the $n$ lowest energy occupied orbitals from the GVB active space while leaving their paired virtual orbitals in the active space. Only the models including the SIP and DIP amplitudes ( i.e. NP and 2P) benefit from this all other models this equivalent to just reducing the total number of pairs.
-
-GVB_TRUNC_VIR
 
 ### `GVB_TRUNC_VIR`
 
@@ -285,10 +248,8 @@ GVB_TRUNC_VIR
 > * **Default**: `0`
 > * **Options**:
 >     * $n$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: This allows for asymmetric GVB active spaces removing the $n$ highest energy occupied orbitals from the GVB active space while leaving their paired virtual orbitals in the active space. Only the models including the SIP and DIP amplitudes ( i.e. NP and 2P) benefit from this all other models this equivalent to just reducing the total number of pairs.
-
-GVB_REORDER_PAIRS
 
 ### `GVB_REORDER_PAIRS`
 
@@ -297,11 +258,8 @@ GVB_REORDER_PAIRS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * $0\leq n\leq 5$
+>     * $n$: $0\leq n\leq 5$
 > * **Recommendation**: This allows for the user to change the order the active pairs are placed in after the orbitals are read in or are guessed using localization and the Sano procedure. Up to 5 sequential pair swaps can be made, but it is best to leave this alone.
-
-GVB_REORDER_1
 
 ### `GVB_REORDER_1`
 
@@ -310,11 +268,8 @@ GVB_REORDER_1
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined XXXYYY
+>     * $n$: User-defined XXXYYY
 > * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 1 .
-
-GVB_REORDER_2
 
 ### `GVB_REORDER_2`
 
@@ -323,11 +278,8 @@ GVB_REORDER_2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined XXXYYY
+>     * $n$: User-defined XXXYYY
 > * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 2 .
-
-GVB_REORDER_3
 
 ### `GVB_REORDER_3`
 
@@ -336,11 +288,8 @@ GVB_REORDER_3
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined XXXYYY
+>     * $n$: User-defined XXXYYY
 > * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 3 .
-
-GVB_REORDER_4
 
 ### `GVB_REORDER_4`
 
@@ -349,11 +298,8 @@ GVB_REORDER_4
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined XXXYYY
+>     * $n$: User-defined XXXYYY
 > * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 4 .
-
-GVB_REORDER_5
 
 ### `GVB_REORDER_5`
 
@@ -362,8 +308,7 @@ GVB_REORDER_5
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined XXXYYY
+>     * $n$: User-defined XXXYYY
 > * **Recommendation**: This is in the format of two 3-digit pair indices that tell the code to swap pair XXX with YYY, for example swapping pair 1 and 2 would get the input 001002. Must be specified in GVB_REORDER_PAIRS $\geq$ 5 .
 
 It is known that symmetry breaking of the orbitals to favor localized solutions
@@ -378,8 +323,6 @@ restricted and unrestricted wave functions (barring that there is no restricted
 implementation of the 2P model, but setting GVB_DO_ROHF to the same number as
 the number of pairs in the system is equivalent).
 
-GVB_SYMFIX
-
 ### `GVB_SYMFIX`
 
 > **Should GVB use a symmetry breaking fix.**
@@ -387,15 +330,10 @@ GVB_SYMFIX
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * no symmetry breaking fix
->     * 1
->     * symmetry breaking fix with virtual orbitals spanning the active space
->     * 2
->     * symmetry breaking fix with virtual orbitals spanning the whole virtual space
+>     * `0`: no symmetry breaking fix
+>     * `1`: symmetry breaking fix with virtual orbitals spanning the active space
+>     * `2`: symmetry breaking fix with virtual orbitals spanning the whole virtual space
 > * **Recommendation**: It is best to stick with type 1 to get a symmetry breaking correction with the best results coming from CORRELATION = NP and = 1.
-
-GVB_SYMPEN
 
 ### `GVB_SYMPEN`
 
@@ -405,10 +343,8 @@ GVB_SYMPEN
 > * **Default**: `160`
 > * **Options**:
 >     * $\gamma$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Sets the pre-factor for the amplitude regularization term for the SB amplitudes: $-(\gamma/1000)(e^{(c*100)*t^{2}}-1)$ .
-
-GVB_SYMSCA
 
 ### `GVB_SYMSCA`
 
@@ -418,7 +354,7 @@ GVB_SYMSCA
 > * **Default**: `125`
 > * **Options**:
 >     * $c$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Sets the weight for the amplitude regularization term for the SB amplitudes: $-(\gamma/1000)(e^{(c*100)*t^{2}}-1)$ .
 
 We have already mentioned a few issues associated with the GVB calculations:

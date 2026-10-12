@@ -46,8 +46,6 @@ $$
 
 或冻结/生长弦（freezing/growing-string）方法。目标态通过 CIS_STATE_DERIV（用于优化或动力学）指定，或通过 SET_STATE_REACTANT 和 SET_STATE_PRODUCT（用于冻结弦或生长弦方法）指定。几何优化的结果可能受步长（GEOM_OPT_DMAX）影响，使用比默认值更小的步长通常可以得到更好的结果。此外，冻结/生长弦计算中弦的收敛往往具有挑战性。
 
-STATE_FOLLOW
-
 ### `STATE_FOLLOW`
 
 > **启用态跟随。**
@@ -60,8 +58,6 @@ STATE_FOLLOW
 >     * TRUE
 >     * 使用态跟随。
 > * **建议**：无。
-
-FOLLOW_ENERGY
 
 ### `FOLLOW_ENERGY`
 
@@ -77,8 +73,6 @@ FOLLOW_ENERGY
 >     * $E_{\rm est}\pm n\times 10^{-6}~{}E_{h}$
 >     * 范围内进行搜索。
 > * **建议**：若要非绝热地（diabatically）跟随某个态，使用较宽的能量窗口；若要在大多数情况下保持在绝动态上，使用较窄的窗口。
-
-FOLLOW_OVERLAP
 
 ### `FOLLOW_OVERLAP`
 

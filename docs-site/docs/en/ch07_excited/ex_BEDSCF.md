@@ -72,8 +72,6 @@ $10^{-3}~{}E_{h}$ or 0.03 eV would be quite problematic, for example.) Further
 reduction of SCF_CONVERGENCE likely compromises properties such as
 dipole moments or nuclear gradients, and is not recommended.
 
-SCF_ALGORITHM
-
 ### `SCF_ALGORITHM`
 
 > **Algorithm used for converging the SCF.**
@@ -81,12 +79,8 @@ SCF_ALGORITHM
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * SGM
->     * SGM_LS
->     * SGM_QLS
+>     * `SGM`: SGM_LS SGM_QLS
 > * **Recommendation**: SGM should be used for RO- $\Delta$ SCF or ROKS calculations only. SGM_LS is recommended for R- or U- $\Delta$ SCF, though it can also be used for RO- $\Delta$ SCF or ROKS. SGM_QLS is a slower but more robust option for R- and U- $\Delta$ SCF calculations.
-
-DELTA_GRADIENT_SCALE
 
 ### `DELTA_GRADIENT_SCALE`
 
@@ -98,8 +92,6 @@ DELTA_GRADIENT_SCALE
 >     * $N$
 > * **Recommendation**: Use default. For problematic cases, $N=$ 50, 25, 10 or even $N=1$ could be useful.
 
-ROKS
-
 ### `ROKS`
 
 > **Controls whether ROKS calculation will be performed.**
@@ -107,10 +99,8 @@ ROKS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * ROKS is not performed.
->     * TRUE
->     * ROKS will be performed.
+>     * `FALSE`: ROKS is not performed.
+>     * `TRUE`: ROKS will be performed.
 > * **Recommendation**: Set to TRUE if ROKS calculation is desired. UNRESTRICTED = FALSE should also be ensured.
 
 ???+ example "Example 7.52: Restricted $\Delta$ SCF double excitation from $2s$ to $2p$ of Be atom, using SGM_QLS and the ground

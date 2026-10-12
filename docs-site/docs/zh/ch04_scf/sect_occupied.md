@@ -75,8 +75,6 @@ title: "4.4.4 修改占据分子轨道"
 
 *$rem* 中其他与改变轨道占据相关的变量有：
 
-SCF_GUESS_PRINT
-
 ### `SCF_GUESS_PRINT`
 
 > **控制猜测分子轨道（MO）、Fock 矩阵与密度矩阵的打印输出。**
@@ -102,8 +100,6 @@ SCF_GUESS_PRINT
 >     * 2
 >     * 在级别 1 的基础上增加密度矩阵、MO 系数和本征值。
 > * **建议**：无
-
-SCF_GUESS_MIX
 
 ### `SCF_GUESS_MIX`
 

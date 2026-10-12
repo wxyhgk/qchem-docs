@@ -6,8 +6,6 @@ title: "5.11.6 CDFT-CI Job Control and Examples"
 
 (July 4, 2026)
 
-CDFTCI
-
 ### `CDFTCI`
 
 > **Initiates a constrained DFT-configuration interaction calculation**
@@ -15,13 +13,9 @@ CDFTCI
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform a CDFT-CI Calculation
->     * FALSE
->     * No CDFT-CI
+>     * `TRUE`: Perform a CDFT-CI Calculation
+>     * `FALSE`: No CDFT-CI
 > * **Recommendation**: Set to TRUE if a CDFT-CI calculation is desired.
-
-CDFTCI_PRINT
 
 ### `CDFTCI_PRINT`
 
@@ -30,17 +24,11 @@ CDFTCI_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Only print energies and coefficients of CDFT-CI final states
->     * 1
->     * Level 0 plus CDFT-CI overlap, Hamiltonian, and population matrices
->     * 2
->     * Level 1 plus eigenvectors and eigenvalues of the CDFT-CI population matrix
->     * 3
->     * Level 2 plus promolecule orbital coefficients and energies
+>     * `0`: Only print energies and coefficients of CDFT-CI final states
+>     * `1`: Level 0 plus CDFT-CI overlap, Hamiltonian, and population matrices
+>     * `2`: Level 1 plus eigenvectors and eigenvalues of the CDFT-CI population matrix
+>     * `3`: Level 2 plus promolecule orbital coefficients and energies
 > * **Recommendation**: Level 3 is primarily for program debugging; levels 1 and 2 may be useful for analyzing the coupling elements
-
-CDFT_LAMBDA_MODE
 
 ### `CDFT_LAMBDA_MODE`
 
@@ -49,14 +37,9 @@ CDFT_LAMBDA_MODE
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Standard CDFT calculations are used.
->     * TRUE
->     * Instead of specifying target charge and spin constraints, use the values
->     * from the input deck as the value of the Becke weight potential
+>     * `FALSE`: Standard CDFT calculations are used.
+>     * `TRUE`: Instead of specifying target charge and spin constraints, use the values from the input deck as the value of the Becke weight potential
 > * **Recommendation**: Should usually be set to FALSE. Setting to TRUE can be useful to scan over different strengths of charge or spin localization, as convergence properties are improved compared to regular CDFT(-CI) calculations.
-
-CDFTCI_SKIP_PROMOLECULES
 
 ### `CDFTCI_SKIP_PROMOLECULES`
 
@@ -65,11 +48,8 @@ CDFTCI_SKIP_PROMOLECULES
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Standard CDFT-CI calculation is performed.
->     * TRUE
->     * Use the given charge/spin constraints directly, with no
->     * promolecule calculations.
+>     * `FALSE`: Standard CDFT-CI calculation is performed.
+>     * `TRUE`: Use the given charge/spin constraints directly, with no promolecule calculations.
 > * **Recommendation**: Setting to TRUE can be useful for scanning over constraint values.
 
 **Note: 
@@ -78,8 +58,6 @@ CDFT_LAMBDA_MODE and CDFTCI_SKIP_PROMOLECULES
 are mutually incompatible.
 **
 
-CDFTCI_SVD_THRESH
-
 ### `CDFTCI_SVD_THRESH`
 
 > **By default, a symmetric orthogonalization is performed on the CDFT-CI matrix before diagonalization. If the CDFT-CI overlap matrix is nearly singular ( i.e. , some of the diabatic states are nearly degenerate), then this orthogonalization can lead to numerical instability. When computing $\mathbf{S}^{-1/2}$ , eigenvalues smaller than $10^{-\mathrm{CDFTCI\_SVD\_THRESH}}$ are discarded.**
@@ -87,13 +65,8 @@ CDFTCI_SVD_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * for a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: for a threshold of $10^{-n}$ .
 > * **Recommendation**: Can be decreased if numerical instabilities are encountered in the final diagonalization.
-
-CDFTCI_STOP
 
 ### `CDFTCI_STOP`
 
@@ -102,17 +75,9 @@ CDFTCI_STOP
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Stop after converging state
->     * $n$
->     * (the first state is state
->     * $1$
->     * )
->     * $0$
->     * Do not stop early
+>     * $n$: Stop after converging state
+>     * $n$: (the first state is state $1$ ) $0$ Do not stop early
 > * **Recommendation**: Use this setting if some diabatic states converge but others do not.
-
-CDFTCI_RESTART
 
 ### `CDFTCI_RESTART`
 
@@ -121,9 +86,7 @@ CDFTCI_RESTART
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Start calculations on state
->     * $n+1$
+>     * $n$: Start calculations on state $n+1$
 > * **Recommendation**: Use this setting in conjunction with CDFTCI_STOP .
 
 ???+ example "Example 5.5.28: CDFT-CI calculation of couplings between the anionic GFP chromophore

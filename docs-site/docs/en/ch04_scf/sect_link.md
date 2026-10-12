@@ -33,8 +33,6 @@ papers.[[1011]](../bib_references/bib.md#bib1049)
 following option (although **Q-Chem** automatically switches it on when the
 program believes it is the preferable algorithm).
 
-LIN_K
-
 ### `LIN_K`
 
 > **Controls whether linear scaling evaluation of exact exchange (LinK) is used.**
@@ -42,10 +40,8 @@ LIN_K
 > * **Type**: `LOGICAL`
 > * **Default**: `Program chooses, switching on LinK whenever CFMM is used.`
 > * **Options**:
->     * TRUE
->     * Use LinK
->     * FALSE
->     * Do not use LinK
+>     * `TRUE`: Use LinK
+>     * `FALSE`: Do not use LinK
 > * **Recommendation**: Use for HF and hybrid DFT calculations with large numbers of atoms.
 
 ???+ example "Example 4.19: Q-Chem input for a large single point energy calculation. The CFMM is

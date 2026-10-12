@@ -20,8 +20,6 @@ title: "6.5.2 EPAO 评估选项"
 
 **PAO：** 如果 SCF 计算是在分子优化的最小组（molecule-optimized minimal basis）下进行的（如第 [4 章](../ch04_scf/chap_scf.md)所述），则所得的 PAO-SCF 计算可以用常规 MP2 或局部 MP2 来校正电子相关。PAO-SCF 计算会改变 SCF 能量，因此不是默认选项。在 CORRELATION = LOCAL_MP2 的作业中指定 PAO_METHOD = PAO 即可启用此功能。
 
-PAO_METHOD
-
 ### `PAO_METHOD`
 
 > **控制所请求的 PAO 计算类型。**
@@ -35,8 +33,6 @@ PAO_METHOD
 >     * 在分子优化的最小组下进行 SCF 计算。
 > * **建议**：无
 
-EPAO_ITERATE
-
 ### `EPAO_ITERATE`
 
 > **控制 EPAO 计算的迭代次数（参见 PAO_METHOD）。**
@@ -49,8 +45,6 @@ EPAO_ITERATE
 >     * $n$
 >     * 次迭代的优化。
 > * **建议**：使用默认值。对于不太大的分子，可以通过使用优化后的 EPAO 来测试结果对最小组函数类型的敏感性，此时取 $n=500$ 是合理的。
-
-EPAO_WEIGHTS
 
 ### `EPAO_WEIGHTS`
 

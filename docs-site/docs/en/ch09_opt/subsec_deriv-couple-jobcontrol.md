@@ -21,8 +21,6 @@ $i,j,k,\ldots$; use “0” to request the HF or DFT reference state, “1”
 for the first excited state, etc. Note that the derivative couplings are have
 dimensions of inverse length and are printed in atomic units, *i.e.*, bohr${}^{-1}$.
 
-CALC_NAC
-
 ### `CALC_NAC`
 
 > **Determines whether we are calculating nonadiabatic couplings.**
@@ -30,13 +28,9 @@ CALC_NAC
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate nonadiabatic couplings.
->     * FALSE
->     * Do not calculate nonadiabatic couplings.
+>     * `TRUE`: Calculate nonadiabatic couplings.
+>     * `FALSE`: Do not calculate nonadiabatic couplings.
 > * **Recommendation**: None.
-
-CIS_DER_NUMSTATE
 
 ### `CIS_DER_NUMSTATE`
 
@@ -45,15 +39,9 @@ CIS_DER_NUMSTATE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not calculate nonadiabatic couplings.
->     * $n$
->     * Calculate
->     * $n(n-1)/2$
->     * pairs of nonadiabatic couplings.
+>     * `0`: Do not calculate nonadiabatic couplings.
+>     * $n$: Calculate $n(n-1)/2$ pairs of nonadiabatic couplings.
 > * **Recommendation**: None.
-
-SET_QUADRATIC
 
 ### `SET_QUADRATIC`
 
@@ -62,10 +50,8 @@ SET_QUADRATIC
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Include full quadratic response contributions for TDDFT.
->     * FALSE
->     * Use pseudo-wave function approach.
+>     * `TRUE`: Include full quadratic response contributions for TDDFT.
+>     * `FALSE`: Use pseudo-wave function approach.
 > * **Recommendation**: The pseudo-wave function approach is usually accurate enough and is free of accidental singularities. Consult Refs. 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . Link and 1029 Ou Q. et al. J. Chem. Phys. (2015) , 142 , pp. 064114 . Link for additional guidance.
 
 ???+ example "Example 9.26: Nonadiabatic couplings among the lowest five singlet states of ethylene,

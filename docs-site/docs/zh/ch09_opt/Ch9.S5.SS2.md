@@ -19,8 +19,6 @@ title: "9.5.2 压强的施加"
 通过将 *$rem* 变量设置为 SCF_FINAL_PRINT = 1，
 可在输出中打印由压强引起的能量贡献。
 
-DISTORT
-
 ### `DISTORT`
 
 > **指定是否对化学体系施加压强或外力**
@@ -28,10 +26,8 @@ DISTORT
 > * **类型**: `LOGICAL`
 > * **默认值**: `False`
 > * **选项**:
->     * False
->     * 不使用压强或力
->     * True
->     * 使用压强或力
+>     * `False`: 不使用压强或力
+>     * `True`: 使用压强或力
 > * **建议**: 若需施加压强或力，请设置为 true。
 
 作业的相关参数通过 *$distort* 输入段中指定的选项来设置。*$distort* 段的格式与 *$rem* 段类似：
@@ -54,56 +50,19 @@ DISTORT
 > * **类型**: `STRING`
 > * **默认值**: `None`
 > * **选项**:
->     * HCFF
->     * Hydrostatic Compression Force Field（流体静压压缩力场）
->     * 1295
->     * Stauch T., Chakraborty R., Head-Gordon M.
->     * ChemPhysChem
->     * (2019)
->     * ,
->     * 20
->     * ,
->     * pp. 2742
->     * .
->     * Link
->     * XHCFF
->     * eXtended Hydrostatic Compression Force Field（扩展流体静压压缩力场）
->     * 1297
->     * Stauch T.
->     * J. Chem. Phys.
->     * (2020)
->     * ,
->     * 153
->     * ,
->     * pp. 134503
->     * .
->     * Link
->     * PV
->     * 通过计算 vDW 体积添加 PV 项
->     * 1540
->     * Zeller F., Pracht P., Neudecker T.
->     * J. Phys. Chem. A
->     * (2025)
->     * ,
->     * 129
->     * ,
->     * pp. 2108
->     * .
->     * Link
->     * GOSTSHYP
->     * Gaussians On Surface Tesserae Simulate HYdrostatic Pressure（表面面元上的高斯模拟流体静压）
->     * 1206
->     * Scheurer M. et al.
->     * J. Chem. Theory Comput.
->     * (2021)
->     * ,
->     * 17
->     * ,
->     * pp. 583
->     * .
->     * Link
->     * EFEI
->     * 显式包含外力（External Force is Explicitly Included，第 9.5.1 节）
+>     * `HCFF`: Hydrostatic Compression Force Field（流体静压压缩力场）
+>     * `1295`: Stauch T., Chakraborty R., Head-Gordon M. ChemPhysChem (2019) ,
+>     * `20`: , pp. 2742 . Link
+>     * `XHCFF`: eXtended Hydrostatic Compression Force Field（扩展流体静压压缩力场）
+>     * `1297`: Stauch T. J. Chem. Phys. (2020) ,
+>     * `153`: , pp. 134503 . Link
+>     * `PV`: 通过计算 vDW 体积添加 PV 项
+>     * `1540`: Zeller F., Pracht P., Neudecker T. J. Phys. Chem. A (2025) ,
+>     * `129`: , pp. 2108 . Link
+>     * `GOSTSHYP`: Gaussians On Surface Tesserae Simulate HYdrostatic Pressure（表面面元上的高斯模拟流体静压）
+>     * `1206`: Scheurer M. et al. J. Chem. Theory Comput. (2021) ,
+>     * `17`: , pp. 583 . Link
+>     * `EFEI`: 显式包含外力（External Force is Explicitly Included，第 9.5.1 节）
 > * **建议**: 关于模型选择的具体建议，请参阅以下各小节。
 
 ### `Pressure`
@@ -153,12 +112,9 @@ DISTORT
 > * **类型**: `STRING`
 > * **默认值**: `scrf`
 > * **选项**:
->     * scrf
->     * 使用与隐式溶剂化模型相同的剖分代码
->     * distort
->     * 使用 libdistort 剖分例程
->     * occ
->     * 使用外空腔校正（outer cavity correction）
+>     * `scrf`: 使用与隐式溶剂化模型相同的剖分代码
+>     * `distort`: 使用 libdistort 剖分例程
+>     * `occ`: 使用外空腔校正（outer cavity correction）
 > * **建议**: 若要在同一计算中与隐式溶剂化模型保持兼容，请使用 distort 选项。Scrf 选项支持更多空腔选项。OCC 可减少负振幅的出现量——建议用于 SCF 收敛不佳的 GOSTSHYP 计算。
 
 ### `proberad`
@@ -169,7 +125,6 @@ DISTORT
 > * **默认值**: `0.0`
 > * **选项**:
 >     * 用户自定义
-
 ### `occrad`
 
 > **OCC GOSTSHYP 计算中外空腔的距离。输入段：$distort**

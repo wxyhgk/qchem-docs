@@ -6,8 +6,6 @@ title: "6.10.2 dRPA 作业控制"
 
 （2026 年 7 月 4 日）
 
-CLENSHAW_NGRID
-
 ### `CLENSHAW_NGRID`
 
 > **用于 Curtis-Clenshaw 求积的网格点数目。**

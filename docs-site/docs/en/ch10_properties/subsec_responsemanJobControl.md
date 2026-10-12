@@ -9,8 +9,6 @@ title: "10.14.2 Job Control"
 Only one keyword is necessary in the *$rem* section to activate the response
 module. All other options are controlled through the *$response* input section.
 
-RESPONSE
-
 ### `RESPONSE`
 
 > **Activate the general response property module.**
@@ -18,10 +16,8 @@ RESPONSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Don’t activate the general response property module.
->     * TRUE (or 1)
->     * Activate the general response property module.
+>     * `FALSE`（或 `0`）: Don’t activate the general response property module.
+>     * `TRUE`（或 `1`）: Activate the general response property module.
 > * **Recommendation**: None.
 
 ### `ORDER`
@@ -31,8 +27,7 @@ RESPONSE
 > * **Type**: `STRING`
 > * **Default**: `LINEAR`
 > * **Options**:
->     * LINEAR
->     * Perform up through linear response.
+>     * `LINEAR`: Perform up through linear response.
 > * **Recommendation**: None. Currently, only linear response is implemented.
 
 ### `SOLVER`
@@ -42,10 +37,8 @@ RESPONSE
 > * **Type**: `STRING`
 > * **Default**: `DIIS`
 > * **Options**:
->     * LINEAR
->     * Iteratively solve the response equations without convergence acceleration.
->     * DIIS
->     * Iteratively solve the response equations using DIIS for convergence acceleration.
+>     * `LINEAR`: Iteratively solve the response equations without convergence acceleration.
+>     * `DIIS`: Iteratively solve the response equations using DIIS for convergence acceleration.
 > * **Recommendation**: DIIS
 
 ### `HAMILTONIAN`
@@ -55,12 +48,9 @@ RESPONSE
 > * **Type**: `STRING`
 > * **Default**: `RPA`
 > * **Options**:
->     * RPA
->     * No approximations.
->     * TDA
->     * Same as the CIS approximation.
->     * CIS
->     * Synonym for TDA.
+>     * `RPA`: No approximations.
+>     * `TDA`: Same as the CIS approximation.
+>     * `CIS`: Synonym for TDA.
 > * **Recommendation**: None.
 
 ### `SPIN`
@@ -70,10 +60,8 @@ RESPONSE
 > * **Type**: `STRING`
 > * **Default**: `SINGLET`
 > * **Options**:
->     * SINGLET
->     * Operator is spin-conserving.
->     * TRIPLET
->     * Operator is not spin-conserving.
+>     * `SINGLET`: Operator is spin-conserving.
+>     * `TRIPLET`: Operator is not spin-conserving.
 > * **Recommendation**: None. Care must be taken as all operators in a single calculation will be forced to follow this option.
 
 ### `MAXITER`
@@ -83,8 +71,7 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `60`
 > * **Options**:
->     * $n$
->     * Maximum number of iterations.
+>     * $n$: Maximum number of iterations.
 > * **Recommendation**: Use the default value.
 
 ### `CONV`
@@ -94,10 +81,7 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n$
->     * Sets the convergence threshold to
->     * $10^{-n}$
->     * .
+>     * $n$: Sets the convergence threshold to $10^{-n}$ .
 > * **Recommendation**: Use the default value.
 
 ### `DIIS_START`
@@ -107,8 +91,7 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * Iteration number to start DIIS.
+>     * $n$: Iteration number to start DIIS.
 > * **Recommendation**: Use the default value.
 
 ### `DIIS_VECTORS`
@@ -118,8 +101,7 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * $n>0$
->     * Maximum number of DIIS vectors to keep.
+>     * $n>0$: Maximum number of DIIS vectors to keep.
 > * **Recommendation**: Use the default value.
 
 ### `RHF_AS_UHF`
@@ -129,10 +111,8 @@ RESPONSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Treat an RHF wave function as though it were UHF.
->     * FALSE
->     * Treat an RHF wave function as RHF.
+>     * `TRUE`: Treat an RHF wave function as though it were UHF.
+>     * `FALSE`: Treat an RHF wave function as RHF.
 > * **Recommendation**: Use the default value. Only useful for debugging.
 
 ### `PRINT_LEVEL`
@@ -142,12 +122,10 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 1
->     * Print the initial guess and the final results.
->     * 2
->     * 1 + iterations and comments.
->     * 10
->     * Kill trees.
+>     * `1`: Print the initial guess and the final results.
+>     * `2`
+>     * `1 + iterations and comments.`
+>     * `10`: Kill trees.
 > * **Recommendation**: Use the default value.
 
 ### `RUN_TYPE`
@@ -157,11 +135,8 @@ RESPONSE
 > * **Type**: `STRING`
 > * **Default**: `SINGLE`
 > * **Options**:
->     * SINGLE
->     * Use only the orbital Hessian and excitation type specified in
->     * their respective keywords.
->     * ALL
->     * Use all permutations of RPA/TDA and singlet/triplet.
+>     * `SINGLE`: Use only the orbital Hessian and excitation type specified in their respective keywords.
+>     * `ALL`: Use all permutations of RPA/TDA and singlet/triplet.
 > * **Recommendation**: Use the default value, unless a comparison between approximations and excitation types is desired.
 
 ### `SAVE`
@@ -171,12 +146,9 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Don’t save any quantities to disk.
->     * 1
->     * Save quantities in MO basis.
->     * 2
->     * Save quantities in MO and AO bases.
+>     * `0`: Don’t save any quantities to disk.
+>     * `1`: Save quantities in MO basis.
+>     * `2`: Save quantities in MO and AO bases.
 > * **Recommendation**: None.
 
 ### `READ`
@@ -186,12 +158,9 @@ RESPONSE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Don’t read any quantities from disk.
->     * 1
->     * Read quantities in MO basis.
->     * 2
->     * Read quantities in AO basis.
+>     * `0`: Don’t read any quantities from disk.
+>     * `1`: Read quantities in MO basis.
+>     * `2`: Read quantities in AO basis.
 > * **Recommendation**: None.
 
 ### `DUMP_AO_INTEGRALS`
@@ -201,10 +170,8 @@ RESPONSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Save AO-basis property integrals to disk.
->     * FALSE
->     * Don’t save AO-basis property integrals to disk.
+>     * `TRUE`: Save AO-basis property integrals to disk.
+>     * `FALSE`: Don’t save AO-basis property integrals to disk.
 > * **Recommendation**: None.
 
 ### `FORCE_NOT_NONORTHOGONAL`
@@ -214,8 +181,8 @@ RESPONSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: Leave as false. Using the standard (canonical) response equations with non-orthogonal MOs will give incorrect results.
 
 ### `FORCE_NONORTHOGONAL`
@@ -225,8 +192,8 @@ RESPONSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: Leave as false. When used with canonical MOs, this should give the same answer as with the standard equations, but at greater computational cost.
 
 ### `FREQUENCY`
@@ -236,6 +203,5 @@ RESPONSE
 > * **Type**: `DOUBLE`
 > * **Default**: `0.0`
 > * **Options**:
->     * $l\,m\,n\,\dots$
->     * One or more field strengths separated by spaces.
+>     * $l\,m\,n\,\dots$: One or more field strengths separated by spaces.
 > * **Recommendation**: None.

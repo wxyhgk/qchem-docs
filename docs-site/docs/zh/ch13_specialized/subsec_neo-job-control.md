@@ -15,8 +15,6 @@ NEO 方法是自洽场（SCF）方法的一种自然扩展，并继承了其诸�
 以下是一些 *$rem* 变量，我们认为它们大多不言自明，故未在下方详细讨论，但它们也会在几何结构和对称性方面影响 NEO 任务，包括 INPUT_BOHR、SYM_IGNORE 和 POINT_GROUP_SYMMETRY。
 **
 
-NEO
-
 ### `NEO`
 
 > **启用 NEO-SCF 计算。**
@@ -24,13 +22,9 @@ NEO
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 启用 NEO-SCF 计算。
->     * FALSE
->     * 禁用 NEO-SCF 计算。
+>     * `TRUE`: 启用 NEO-SCF 计算。
+>     * `FALSE`: 禁用 NEO-SCF 计算。
 > * **建议**: 如有需要，设置为 TRUE。
-
-JOBTYPE
 
 ### `JOBTYPE`
 
@@ -39,19 +33,12 @@ JOBTYPE
 > * **类型**: `STRING`
 > * **默认值**: `SP`
 > * **选项**:
->     * SP
->     * 单点能计算。
->     * FORCE
->     * 解析力计算。
->     * OPT
->     * 几何结构优化。
->     * TS
->     * 过渡态搜索。
->     * FREQ
->     * 频率计算。
+>     * `SP`: 单点能计算。
+>     * `FORCE`: 解析力计算。
+>     * `OPT`: 几何结构优化。
+>     * `TS`: 过渡态搜索。
+>     * `FREQ`: 频率计算。
 > * **建议**: 视具体应用而定。进行几何结构优化时，请始终使用 POINT_GROUP_SYMMETRY = FALSE。
-
-METHOD
 
 ### `METHOD`
 
@@ -60,21 +47,10 @@ METHOD
 > * **类型**: `STRING`
 > * **默认值**: `无默认值`
 > * **选项**:
->     * NAME
->     * 使用
->     * =
->     * NAME
->     * ，其中
->     * NAME
->     * 为下列之一：
->     * HF
->     * 表示 Hartree-Fock 理论；
->     * 第
->     * 5.3.5
->     * 节列出的密度泛函理论（DFT）方法之一。；
+>     * `NAME`: 使用 =
+>     * `NAME`: ，其中
+>     * `NAME`: 为下列之一： HF 表示 Hartree-Fock 理论； 第 5.3.5 节列出的密度泛函理论（DFT）方法之一。；
 > * **建议**: 一般而言，请参考相关文献来指导您的选择。我们对 DFT 方法的推荐在第 5.3.5 节中以粗体标出。
-
-BASIS
 
 ### `BASIS`
 
@@ -83,18 +59,11 @@ BASIS
 > * **类型**: `STRING`
 > * **默认值**: `无默认基组`
 > * **选项**:
->     * General, Gen
->     * 用户自定义（必须提供
->     * $basis
->     * 关键字）。
->     * Symbol
->     * 按照第
->     * 8
->     * 章使用标准基组。
->     * Mixed
->     * 使用混合基组（参见第
->     * 8
->     * 章）。
+>     * `General, Gen`: 用户自定义（必须提供 $basis 关键字）。
+>     * `Symbol`: 按照第
+>     * `8`: 章使用标准基组。
+>     * `Mixed`: 使用混合基组（参见第
+>     * `8`: 章）。
 > * **建议**: 请参考相关文献和综述以辅助您的选择。
 
 用户自定义基组段的格式如下：
@@ -146,8 +115,6 @@ BASIS
 
 以下更多的 *$rem* 变量可用于定制计算。其中一些是 NEO 专用变量，而另一些则与 **Q-Chem** 的其他模块共用：
 
-BASIS_LIN_DEP_THRESH
-
 ### `BASIS_LIN_DEP_THRESH`
 
 > **设置判断基组线性相关性的阈值**
@@ -155,12 +122,8 @@ BASIS_LIN_DEP_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `6`
 > * **选项**:
->     * $n$
->     * 将阈值设置为
->     * $10^{-n}$
+>     * $n$: 将阈值设置为 $10^{-n}$
 > * **建议**: 如果 SCF 收敛表现不佳，且您怀疑基组中存在线性相关性，请设置为 5 或更小的值。较低的值（较大的阈值）可能会影响计算的精度。
-
-NEO_BASIS_LIN_DEP_THRESH
 
 ### `NEO_BASIS_LIN_DEP_THRESH`
 
@@ -172,8 +135,6 @@ NEO_BASIS_LIN_DEP_THRESH
 >     * 用户自定义
 > * **建议**: 无特别建议。
 
-PURECART
-
 ### `PURECART`
 
 > **INTEGER**
@@ -181,11 +142,8 @@ PURECART
 > * **类型**: `控制使用纯函数（球谐函数）形式还是笛卡尔角动量形式`
 > * **默认值**: `1111`
 > * **选项**:
->     * $hgfd$
->     * 纯函数形式使用 1，笛卡尔形式使用 2。
+>     * $hgfd$: 纯函数形式使用 1，笛卡尔形式使用 2。
 > * **建议**: 所有标准基组均已预先定义此值。
-
-NEO_PURECART
 
 ### `NEO_PURECART`
 
@@ -197,8 +155,6 @@ NEO_PURECART
 >     * 用户自定义
 > * **建议**: 默认值表示对所有角动量类别均使用笛卡尔高斯函数。若将该值设为 1111，则改用球谐高斯函数，类似于 PURECART 的用法。
 
-NEO_ISOTOPE
-
 ### `NEO_ISOTOPE`
 
 > **启用不同类型同位素的计算。目前仅允许使用一种类型的同位素。**
@@ -206,15 +162,10 @@ NEO_ISOTOPE
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * 1
->     * 该 NEO 计算使用质子。
->     * 2
->     * 该 NEO 计算使用氘核。
->     * 3
->     * 该 NEO 计算使用氚核。
+>     * `1`: 该 NEO 计算使用质子。
+>     * `2`: 该 NEO 计算使用氘核。
+>     * `3`: 该 NEO 计算使用氚核。
 > * **建议**: 关于同位素效应计算的最佳性能表现，请参阅 NEO 相关文献。
-
-NEO_VPP
 
 ### `NEO_VPP`
 
@@ -223,17 +174,9 @@ NEO_VPP
 > * **类型**: `LOGICAL/INTEGER`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE (or 1)
->     * 启用此选项（包含核
->     * $J-K$
->     * 项）。
->     * FALSE (or 0)
->     * 禁用此选项（移除核
->     * $J-K$
->     * 项）。
+>     * `TRUE`（或 `1`）: 启用此选项（包含核 $J-K$ 项）。
+>     * `FALSE`（或 `0`）: 禁用此选项（移除核 $J-K$ 项）。
 > * **建议**: 仅在单个量子化氢的情况下设置为 = 0。
-
-XC_GRID
 
 ### `XC_GRID`
 
@@ -242,39 +185,10 @@ XC_GRID
 > * **类型**: `INTEGER`
 > * **默认值**: `与泛函相关，见表`
 > * **选项**:
->     * 0
->     * 对 H、C、N 和 O 使用 SG-0；对其余原子使用 SG-1。
->     * $n$
->     * 对所有原子使用 SG-
->     * $n$
->     * ，其中
->     * $n=1,2$
->     * 或 3
->     * $XY$
->     * 由两个六位整数
->     * $X$
->     * 和
->     * $Y$
->     * 组成的字符串，其中
->     * $X$
->     * 为径向点数，
->     * $Y$
->     * 为角向点数，角向点数必须取自第
->     * 5.5
->     * 节表
->     * 5.2
->     * 中的 Lebedev 角向点数的允许值。
->     * $-XY$
->     * Gauss-Legendre 网格的类似格式，其中六位整数
->     * $X$
->     * 对应径向点数，六位整数
->     * $Y$
->     * 给出 Gauss-Legendre 角向点数，
->     * $Y=2N^{2}$
->     * 。
+>     * `0`: 对 H、C、N 和 O 使用 SG-0；对其余原子使用 SG-1。
+>     * $n$: 对所有原子使用 SG-
+>     * $n$: ，其中 $n=1,2$ 或 3 $XY$ 由两个六位整数 $X$ 和 $Y$ 组成的字符串，其中 $X$ 为径向点数， $Y$ 为角向点数，角向点数必须取自第 5.5 节表 5.2 中的 Lebedev 角向点数的允许值。 $-XY$ Gauss-Legendre 网格的类似格式，其中六位整数 $X$ 对应径向点数，六位整数 $Y$ 给出 Gauss-Legendre 角向点数， $Y=2N^{2}$。
 > * **建议**: 我们强烈建议在 NEO-DFT 计算中使用未修剪（unpruned）的 Euler-Maclaurin-Lebedev 网格类型。几何结构优化和频率计算可能需要更大的网格。
-
-UNRESTRICTED
 
 ### `UNRESTRICTED`
 
@@ -283,13 +197,9 @@ UNRESTRICTED
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **Options**:
->     * FALSE
->     * 约束 alpha 和 beta 轨道的空间部分相同。
->     * TRUE
->     * 不约束 alpha 和 beta 轨道的空间部分。
+>     * `FALSE`: 约束 alpha 和 beta 轨道的空间部分相同。
+>     * `TRUE`: 不约束 alpha 和 beta 轨道的空间部分。
 > * **建议**: ROHF 方法不可用。请注意，对于具有偶数个电子的体系进行非限制计算时，通常需要在初始猜测中打破 $\alpha$ / $\beta$ 对称性，可通过使用 SCF_GUESS_MIX 或提供 $occupied 信息来实现（参见第 4.4 节关于初始猜测的内容）。
-
-S2THRESH
 
 ### `S2THRESH`
 
@@ -298,13 +208,8 @@ S2THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `与以下相同`
 > * **选项**:
->     * $n$
->     * 对应阈值
->     * $10^{-n}$
->     * 。
+>     * $n$: 对应阈值 $10^{-n}$。
 > * **建议**: 如果程序发现重叠矩阵存在负特征值，请增大 的值。
-
-THRESH
 
 ### `THRESH`
 
@@ -313,13 +218,8 @@ THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `8`
 > * **选项**:
->     * $n$
->     * 对应阈值
->     * $10^{-n}$
->     * 。
+>     * $n$: 对应阈值 $10^{-n}$。
 > * **建议**: 该值应满足 $\geq$ 3 + SCF_CONVERGENCE ；不过，自 Q-Chem v. 6.0 起，默认值（在大多数情况下）为 = 4 + SCF_CONVERGENCE。参见文献 479 Gray M., Bowling P. E., Herbert J. M. J. Phys. Chem. A (2024) , 128 , pp. 7739 。链接给出了在存在弥散基组时 的推荐值，此时通常需要更严格的阈值，而过松的阈值可能导致收敛变慢或收敛失败。
-
-MEM_STATIC
 
 ### `MEM_STATIC`
 
@@ -328,11 +228,8 @@ MEM_STATIC
 > * **类型**: `INTEGER`
 > * **默认值**: `192`
 > * **选项**:
->     * $n$
->     * 用户自定义的内存大小（兆字节）。
+>     * $n$: 用户自定义的内存大小（兆字节）。
 > * **建议**: 使用默认值。
-
-MEM_TOTAL
 
 ### `MEM_TOTAL`
 
@@ -341,15 +238,12 @@ MEM_TOTAL
 > * **类型**: `INTEGER`
 > * **默认值**: `2000`
 > * **选项**:
->     * $n$
->     * 用户自定义的内存大小（兆字节）。
+>     * $n$: 用户自定义的内存大小（兆字节）。
 > * **建议**: 使用默认值，或设置为机器的物理内存。最低要求为 $3X^{2}$ 。
 
 ## 13.5.4.3 NEO-SCF 专用关键字
 
 以下 *$rem* 变量可用于指定 NEO-SCF 收敛的容差。其中一些 *$rem* 变量继承自常规 SCF 计算：
-
-SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 
@@ -361,8 +255,6 @@ SCF_CONVERGENCE
 >     * 用户自定义
 > * **建议**: 无。
 
-NEO_N_SCF_CONVERGENCE
-
 ### `NEO_N_SCF_CONVERGENCE`
 
 > **当核波函数误差小于 $10^{-\mathrm{NEO\_N\_SCF\_CONVERGENCE}}$ 时，认为 NEO-SCF 已收敛。**
@@ -372,8 +264,6 @@ NEO_N_SCF_CONVERGENCE
 > * **选项**:
 >     * 用户自定义
 > * **建议**: 无。
-
-NEO_E_CONV
 
 ### `NEO_E_CONV`
 
@@ -385,8 +275,6 @@ NEO_E_CONV
 >     * 用户自定义
 > * **建议**: 对于几何结构优化，建议使用更严格的判据。请注意，对于分步（stepwise）计算，该收敛判据检查的是电子与质子微迭代（microiterations）块之间的能量差。
 
-MAX_SCF_CYCLES
-
 ### `MAX_SCF_CYCLES`
 
 > **控制允许的最大 SCF 迭代次数。**
@@ -394,12 +282,8 @@ MAX_SCF_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **选项**:
->     * $n$
->     * $n>0$
->     * 用户自选。
+>     * $n$: $n>0$ 用户自选。
 > * **建议**: 对于收敛缓慢的体系（例如含有过渡金属的体系），请增大该值。
-
-NEO_E_MAX_SCF_CYCLES
 
 ### `NEO_E_MAX_SCF_CYCLES`
 
@@ -408,12 +292,8 @@ NEO_E_MAX_SCF_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `150`
 > * **选项**:
->     * $n$
->     * $n>0$
->     * 用户自选。
+>     * $n$: $n>0$ 用户自选。
 > * **建议**: 无。
-
-NEO_N_MAX_SCF_CYCLES
 
 ### `NEO_N_MAX_SCF_CYCLES`
 
@@ -422,14 +302,10 @@ NEO_N_MAX_SCF_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `150`
 > * **选项**:
->     * $n$
->     * $n>0$
->     * 用户自选。
+>     * $n$: $n>0$ 用户自选。
 > * **建议**: 无。
 
 NEO-SCF 迭代过程传统上采用交替求解电子与量子核 Roothaan/Kohn-Sham 方程的方式，直至达到变分解的收敛。这种做法可能计算代价高昂，尤其是当达到自洽需要大量 SCF 迭代时。为了加速这一过程，也可以在 NEO-SCF 迭代过程的每一步同时求解这些方程。目前这已是求解 NEO-SCF 方程的默认方案。我们支持迭代子空间直接逆（Direct Inversion in the Iterative Subspace, DIIS）算法[[837]](../bib_references/bib.md#bib883) 以及几何直接最小化（Geometric Direct Minimization, GDM）[[1391]](../bib_references/bib.md#bib1453) 方法的联合同时实现。以下 *$rem* 变量允许对 NEO-SCF 迭代进行一定的定制：
-
-NEO_SIMULTANEOUS_SCF
 
 ### `NEO_SIMULTANEOUS_SCF`
 
@@ -438,11 +314,9 @@ NEO_SIMULTANEOUS_SCF
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **建议**: 使用默认值，除非观察到收敛问题；若出现收敛问题，则设置为 FALSE 以采用传统的分步方法。
-
-SCF_ALGORITHM
 
 ### `SCF_ALGORITHM`
 
@@ -451,15 +325,10 @@ SCF_ALGORITHM
 > * **类型**: `STRING`
 > * **默认值**: `DIIS`
 > * **选项**:
->     * DIIS
->     * Pulay DIIS。
->     * GDM
->     * 几何直接最小化。
->     * DIIS_GDM
->     * 先使用 DIIS，之后切换为几何直接最小化。
+>     * `DIIS`: Pulay DIIS。
+>     * `GDM`: 几何直接最小化。
+>     * `DIIS_GDM`: 先使用 DIIS，之后切换为几何直接最小化。
 > * **建议**: 在 NEO 方法中，推荐使用 GDM 过程。请注意，DIIS_GDM 仅支持同时优化。
-
-NEO_SCF_GUESS_N
 
 ### `NEO_SCF_GUESS_N`
 
@@ -468,17 +337,11 @@ NEO_SCF_GUESS_N
 > * **类型**: `STRING`
 > * **默认值**: `TIGHT`
 > * **选项**:
->     * CORE
->     * 对角化核芯（core）Hamilton 矩阵
->     * TIGHT
->     * 占据弥散程度最小的核分子轨道（MO）
->     * AUTOSAD
->     * 由原子 NEO 计算在线叠加（on-the-fly superposition）核原子密度
->     * READ
->     * 从磁盘读取先前的核分子轨道
+>     * `CORE`: 对角化核芯（core）Hamilton 矩阵
+>     * `TIGHT`: 占据弥散程度最小的核分子轨道（MO）
+>     * `AUTOSAD`: 由原子 NEO 计算在线叠加（on-the-fly superposition）核原子密度
+>     * `READ`: 从磁盘读取先前的核分子轨道
 > * **建议**: 使用默认值。请注意，若 设置为 READ，则仅从磁盘读取先前 NEO-SCF 任务的核分子轨道。NEO 计算中电子分子轨道的初始猜测仍为当前任务常规电子计算收敛后的结果。若要从先前 NEO-SCF 任务同时读取电子和核分子轨道，必须将 设置为 READ，并将 SKIP_SCFOAN 设为 TRUE。
-
-NEO_STEPWISE_SCF_STEPS
 
 ### `NEO_STEPWISE_SCF_STEPS`
 
@@ -495,8 +358,6 @@ NEO_STEPWISE_SCF_STEPS
 以下变量专用于 SCF_ALGORITHM = DIIS。
 **
 
-DIIS_SUBSPACE_SIZE
-
 ### `DIIS_SUBSPACE_SIZE`
 
 > **控制 SCF 过程中 DIIS 子空间的大小。**
@@ -507,8 +368,6 @@ DIIS_SUBSPACE_SIZE
 >     * 用户自定义
 > * **建议**: 无。
 
-DIIS_ERR_RMS
-
 ### `DIIS_ERR_RMS`
 
 > **将 DIIS 收敛判据从最大误差更改为均方根（RMS）误差。**
@@ -516,16 +375,14 @@ DIIS_ERR_RMS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **建议**: 使用默认值，最大误差提供了更可靠的判据。
 
 **注意：
 
 以下变量专用于 SCF_ALGORITHM = DIIS_GDM。
 **
-
-MAX_DIIS_CYCLES
 
 ### `MAX_DIIS_CYCLES`
 
@@ -534,14 +391,10 @@ MAX_DIIS_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **选项**:
->     * 1
->     * 在切换到 (G)DM 之前仅执行一次 Roothaan 步
+>     * `1`: 在切换到 (G)DM 之前仅执行一次 Roothaan 步
 >     * $n$
->     * $n$
->     * 次 DIIS 迭代后切换到 (G)DM。
+>     * $n$: 次 DIIS 迭代后切换到 (G)DM。
 > * **建议**: 无
-
-THRESH_DIIS_SWITCH
 
 ### `THRESH_DIIS_SWITCH`
 

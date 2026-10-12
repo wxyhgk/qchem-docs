@@ -57,10 +57,8 @@ remainder of this section summarizes these keywords.
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Exact solute charge distribution is used.
->     * 0
->     * Solute charge distribution is approximated by Mulliken atomic charges.
+>     * `1`: Exact solute charge distribution is used.
+>     * `0`: Solute charge distribution is approximated by Mulliken atomic charges.
 > * **Recommendation**: None. The Mulliken-based procedure is faster but less rigorous.
 
 ### `NGrids`
@@ -70,10 +68,8 @@ remainder of this section summarizes these keywords.
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Use
->     * $n$
->     * different grids.
+>     * $n$: Use
+>     * $n$: different grids.
 > * **Recommendation**: None. The maximum allowed value of $n$ is 20.
 
 ### `Print`
@@ -83,10 +79,8 @@ remainder of this section summarizes these keywords.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Limited printing
->     * 1
->     * Full printing
+>     * `0`: Limited printing
+>     * `1`: Full printing
 > * **Recommendation**: None.
 
 ### `ReadRadii`

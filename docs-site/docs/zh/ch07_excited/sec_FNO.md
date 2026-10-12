@@ -30,8 +30,6 @@ CC_FNO_THRESH 与 CC_FNO_USEPOP 关键字的用法与传统 FNO 相同。
 
 OSFNO 可以与轨道局域化结合以生成有效哈密顿量，如第 [13.6 节](../ch13_specialized/sec_EffHam.md) 所述。
 
-CC_OSFNO
-
 ### `CC_OSFNO`
 
 > **启用 OSFNO。仅适用于开壳层参考态。**
@@ -39,8 +37,7 @@ CC_OSFNO
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * activate
+>     * `TRUE`: activate
 > * **建议**: 用于从开壳层参考态出发的 EOM-SF-CCSD 计算。仅在 CCMAN2 中可用。
 
 ???+ example "示例 7.91: 一个 EOM-SF-CCSD 任务，演示 OSFNO 在能量与性质计算中的用法。"

@@ -81,35 +81,15 @@ but different in their performance for large molecules and ions.[[200]](../bib_r
 > * **Type**: `STRING`
 > * **Default**: `aiD3`
 > * **Options**:
->     * aiD
->     * First-generation empirical pairwise dispersion potential
->     * aiD2
->     * Second-generation empirical pairwise dispersion potential
->     * aiD3
->     * Third-generation empirical pairwise dispersion potential
->     * MBD
->     * Many-body
->     * $C_{6}$
->     * and
->     * $C_{8}$
->     * dispersion potential
->     * MBDrev
->     * Revised MBD dispersion, refit to SAPT10K data
->     * OC8AIMMBD
->     * Optimized
->     * $C_{6}$
->     * -
->     * $C_{8}$
+>     * `aiD`: First-generation empirical pairwise dispersion potential
+>     * `aiD2`: Second-generation empirical pairwise dispersion potential
+>     * `aiD3`: Third-generation empirical pairwise dispersion potential
+>     * `MBD`: Many-body $C_{6}$ and $C_{8}$ dispersion potential
+>     * `MBDrev`: Revised MBD dispersion, refit to SAPT10K data
+>     * `OC8AIMMBD`: Optimized $C_{6}$ - $C_{8}$
 >     * MBD with nonrelativistic free-atom reference data
->     * OC8RAIMMBD
->     * Optimized
->     * $C_{6}$
->     * -
->     * $C_{8}$
->     * MBD, relativistic reference data
->     * RAIMVDW
->     * Pairwise atoms-in-molecules dispersion only (no MBD term),
->     * relativistic references
+>     * `OC8RAIMMBD`: Optimized $C_{6}$ - $C_{8}$ MBD, relativistic reference data
+>     * `RAIMVDW`: Pairwise atoms-in-molecules dispersion only (no MBD term), relativistic references
 > * **Recommendation**: The MBD-based models are generally better than the ai D models, especially for large systems where MBD effects (beyond pairwise additivity) become important. The optimized $C_{6}$ - $C_{8}$ MBD models perform even better for ions and extend MBD to heavy elements via relativistic reference data.
 
 The +*ai*D potentials make a pairwise approximation for dispersion, in which

@@ -196,8 +196,6 @@ NAOs are computed using $\Gamma_{r\beta}^{p\alpha,q\beta}$ block of the two-body
 should correspond to removing $\beta$-electron.
 **
 
-CC_DO_FESHBACH
-
 ### `CC_DO_FESHBACH`
 
 > **Activates calculation of resonance widths using Feshbach-Fano approach.**
@@ -205,15 +203,10 @@ CC_DO_FESHBACH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not invoke Feshbach-Fano calculation
->     * 1
->     * invoke Feshbach-Fano calculation of the resonance width
->     * 2
->     * invoke Feshbach-Fano calculation of the resonance width and resonance shift
+>     * `0`: do not invoke Feshbach-Fano calculation
+>     * `1`: invoke Feshbach-Fano calculation of the resonance width
+>     * `2`: invoke Feshbach-Fano calculation of the resonance width and resonance shift
 > * **Recommendation**: Initial and final states should be correctly specified.
-
-CC_FESHBACH_CW
 
 ### `CC_FESHBACH_CW`
 
@@ -222,17 +215,10 @@ CC_FESHBACH_CW
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use plane wave
->     * 1
->     * Use Coulomb wave generated internally
->     * 3
->     * Use Coulomb basis provided by the user in the
->     * $coulomb_wave
->     * section
+>     * `0`: Use plane wave
+>     * `1`: Use Coulomb wave generated internally
+>     * `3`: Use Coulomb basis provided by the user in the $coulomb_wave section
 > * **Recommendation**: Additional details need to be specified in $coulomb_wave section.
-
-CC_FESHBACH_INT_ORDER
 
 ### `CC_FESHBACH_INT_ORDER`
 
@@ -241,11 +227,8 @@ CC_FESHBACH_INT_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * corresponds to the Lebedev quadrature order
+>     * $n$: corresponds to the Lebedev quadrature order
 > * **Recommendation**: Use default, unless tighter convergence is desired (16 gives fully converged widths).
-
-CC_FESHBACH_DELTA_INTB
 
 ### `CC_FESHBACH_DELTA_INTB`
 
@@ -254,11 +237,8 @@ CC_FESHBACH_DELTA_INTB
 > * **Type**: `INTEGER`
 > * **Default**: `Preset`
 > * **Options**:
->     * $n$
->     * corresponds to energy limit in eV
+>     * $n$: corresponds to energy limit in eV
 > * **Recommendation**: Use default.
-
-CC_FESHBACH_DELTA_INTC
 
 ### `CC_FESHBACH_DELTA_INTC`
 
@@ -267,11 +247,8 @@ CC_FESHBACH_DELTA_INTC
 > * **Type**: `INTEGER`
 > * **Default**: `Preset`
 > * **Options**:
->     * $n$
->     * corresponds to energy limit in eV
+>     * $n$: corresponds to energy limit in eV
 > * **Recommendation**: Use default.
-
-CC_DO_NAO
 
 ### `CC_DO_NAO`
 
@@ -280,10 +257,8 @@ CC_DO_NAO
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not compute NAOs
->     * 1
->     * compute NAOs
+>     * `0`: do not compute NAOs
+>     * `1`: compute NAOs
 > * **Recommendation**: Initial and final states should be correctly specified.
 
 ## 7.9.11.1 One-Center Approximation
@@ -329,8 +304,6 @@ subset of the cc-pVTZ basis set and STO-3G.
 
 Examples [7.9.11.2](#ex:auger1) and [7.9.11.2](#ex:auger1) illustrate OCA calculations.
 
-CC_FESHBACH_OCA
-
 ### `CC_FESHBACH_OCA`
 
 > **Activates Auger width calculation through OCA method.**
@@ -338,13 +311,9 @@ CC_FESHBACH_OCA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * 1s core-hole
->     * 2
->     * 2s core-hole.
+>     * `1`: 1s core-hole
+>     * `2`: 2s core-hole.
 > * **Recommendation**: None
-
-OCA_ATOM_INDEX
 
 ### `OCA_ATOM_INDEX`
 
@@ -353,8 +322,7 @@ OCA_ATOM_INDEX
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * follows order from molecule section.
+>     * $n$: follows order from molecule section.
 > * **Recommendation**: None
 
 ## 7.9.11.2 Examples

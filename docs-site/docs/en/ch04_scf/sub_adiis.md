@@ -49,8 +49,6 @@ certain value. This hybrid algorithm, which can be invoked by setting “SCF_ALG
 = ADIIS_DIIS” in **Q-Chem**, was shown to afford accelerated convergence for cases
 where DIIS alone was unable or took much longer to converge the SCF problem. [[601]](../bib_references/bib.md#bib624)
 
-ADIIS_INNER_CONV
-
 ### `ADIIS_INNER_CONV`
 
 > **Convergence criterion for the ADIIS inner loops (L-BFGS optimization of Eq. 4.43 )**
@@ -58,13 +56,8 @@ ADIIS_INNER_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `12`
 > * **Options**:
->     * $n$
->     * Using 10
->     * ${}^{-n}$
->     * as the convergence criterion for the ADIIS inner loops
+>     * $n$: Using 10 ${}^{-n}$ as the convergence criterion for the ADIIS inner loops
 > * **Recommendation**: Use the default
-
-THRESH_ADIIS_SWITCH
 
 ### `THRESH_ADIIS_SWITCH`
 
@@ -73,12 +66,8 @@ THRESH_ADIIS_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $n$
->     * Switching from ADIIS to DIIS when the SCF error is below
->     * $10^{-n}$
+>     * $n$: Switching from ADIIS to DIIS when the SCF error is below $10^{-n}$
 > * **Recommendation**: 3 or 4 is suitable
-
-MAX_ADIIS_CYCLES
 
 ### `MAX_ADIIS_CYCLES`
 
@@ -87,10 +76,7 @@ MAX_ADIIS_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `30`
 > * **Options**:
->     * $N$
->     * Doing at most
->     * $N$
->     * ADIIS iterations before switching to DIIS
+>     * $N$: Doing at most $N$ ADIIS iterations before switching to DIIS
 > * **Recommendation**: Use the default; typically there is no benefit of doing ADIIS for too many iterations
 
 ???+ example "Example 4.14: B3LYP/3-21G calculation for the Cd(II)-imidazole

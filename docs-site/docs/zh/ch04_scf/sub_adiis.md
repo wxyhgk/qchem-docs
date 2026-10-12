@@ -36,8 +36,6 @@ $$
 已知 ADIIS 算法在接近 SCF 收敛的区域效率会有所下降。因此，使用“ADIIS+DIIS”算法更为理想：当 SCF 误差低于某一阈值，或 ADIIS 迭代次数达到某个设定值时，即切换为 DIIS。这种混合算法可通过在 **Q-Chem** 中设置 “SCF_ALGORITHM
 = ADIIS_DIIS” 来调用。已有结果表明，在单独使用 DIIS 无法收敛或收敛耗时过长的情况下，该算法能够显著加速收敛。[[601]](../bib_references/bib.md#bib624)
 
-ADIIS_INNER_CONV
-
 ### `ADIIS_INNER_CONV`
 
 > **ADIIS 内层循环（式 4.43 的 L-BFGS 优化）的收敛判据**
@@ -51,8 +49,6 @@ ADIIS_INNER_CONV
 >     * 作为 ADIIS 内层循环的收敛判据
 > * **建议**：使用默认值
 
-THRESH_ADIIS_SWITCH
-
 ### `THRESH_ADIIS_SWITCH`
 
 > **在 ADIIS-DIIS 计算中从 ADIIS 切换到 DIIS 的阈值**
@@ -65,8 +61,6 @@ THRESH_ADIIS_SWITCH
 >     * $10^{-n}$
 >     * 时，从 ADIIS 切换到 DIIS
 > * **建议**：3 或 4 较为合适
-
-MAX_ADIIS_CYCLES
 
 ### `MAX_ADIIS_CYCLES`
 

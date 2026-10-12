@@ -118,8 +118,6 @@ resolution-of-identity (RI) methods.
 Since **Q-Chem** 5.2, RIMP2 can be invoked simply by specifying auxiliary basis set
 using AUX_BASIS_CORR. See Section [6.6](../ch06_correlation/topic_rimp2.md).
 
-DH
-
 ### `DH`
 
 > **Controls the application of DH-DFT scheme.**
@@ -127,16 +125,12 @@ DH
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Do not apply the DH-DFT scheme
->     * TRUE (or 1)
->     * Apply DH-DFT scheme
+>     * `FALSE`（或 `0`）: Do not apply the DH-DFT scheme
+>     * `TRUE`（或 `1`）: Apply DH-DFT scheme
 > * **Recommendation**: NONE
 
 The following to *$rem* variables pertain to the
 $\omega$B97X-2(LP) and $\omega$B97X-2(TQZ) functionals.
-
-SSS_FACTOR
 
 ### `SSS_FACTOR`
 
@@ -145,15 +139,8 @@ SSS_FACTOR
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $c_{\mathrm{ss}}=n/10^{6}$
->     * in Eq. (
->     * 5.62
->     * ).
+>     * $n$: Corresponding to $c_{\mathrm{ss}}=n/10^{6}$ in Eq. ( 5.62 ).
 > * **Recommendation**: NONE
-
-SOS_FACTOR
 
 ### `SOS_FACTOR`
 
@@ -162,12 +149,7 @@ SOS_FACTOR
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $c_{\mathrm{os}}=n/10^{6}$
->     * in Eq. (
->     * 5.62
->     * ).
+>     * $n$: Corresponding to $c_{\mathrm{os}}=n/10^{6}$ in Eq. ( 5.62 ).
 > * **Recommendation**: NONE
 
 ???+ example "Example 5.18: Applications of the B2PLYP functional to LiH with and without using RI."

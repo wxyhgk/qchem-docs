@@ -16,8 +16,6 @@ SCF-MI 计算中所使用的绝对局域分子轨道（Absolutely Localized Mole
 
 此外，借助这一更通用的实现，用户可以指定某些片段在 SCF-MI 计算过程中保持冻结（frozen），*即*，这些片段上不发生片段内弛豫（intrafragment relaxation）。这通过设置 *$rem* 变量 SCFMI_FREEZE_SS 来实现。这样的计算可以被理解为：活性片段（active fragment）嵌入在一个冻结环境中，且二者之间的相互作用以量子力学方式处理。
 
-SCFMI_MODE
-
 ### `SCFMI_MODE`
 
 > **确定是否使用广义 SCF-MI，并指定工作基组的性质。**
@@ -25,15 +23,10 @@ SCFMI_MODE
 > * **类型（Type）**: `INTEGER`
 > * **默认值（Default）**: `0（基本“EDA2”计算使用“1”）。`
 > * **选项（Options）**:
->     * 0
->     * 基于 AO 分块的 SCF-MI（ALMO 的原始定义）。
->     * 1
->     * 广义 SCF-MI，其基向量在片段之间非正交。
->     * 2
->     * 广义 SCF-MI，其基向量在片段之间正交。
+>     * `0`: 基于 AO 分块的 SCF-MI（ALMO 的原始定义）。
+>     * `1`: 广义 SCF-MI，其基向量在片段之间非正交。
+>     * `2`: 广义 SCF-MI，其基向量在片段之间正交。
 > * **建议（Recommendation）**: 无
-
-SCFMI_FREEZE_SS
 
 ### `SCFMI_FREEZE_SS`
 
@@ -42,10 +35,8 @@ SCFMI_FREEZE_SS
 > * **类型（Type）**: `INTEGER`
 > * **默认值（Default）**: `0（所有片段均为活性片段）`
 > * **选项（Options）**:
->     * $n$
->     * 冻结前
->     * $n$
->     * 个片段。
+>     * $n$: 冻结前
+>     * $n$: 个片段。
 > * **建议（Recommendation）**: 无
 
 ???+ example "示例 12.12: 水二聚体的广义 SCF-MI 计算，采用单步 Roothaan 步骤（Roothaan step）微扰修正。就这一具体情形而言，

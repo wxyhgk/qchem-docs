@@ -39,8 +39,6 @@ contributing overlaps $O_{ia}$ [Eq. ([7.17](../ch07_excited/sec_CT-metrics.md#e
 SPATIAL_OVERLAP_ANALYSIS. See Section [7.3.6.1](../ch07_excited/subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic)
 for job control options and Example 10.3.3 for an example.
 
-MO_OVERLAPS_TWO_GEOMS
-
 ### `MO_OVERLAPS_TWO_GEOMS`
 
 > **Specifies whether to compute molecular orbital overlaps at two different geometries.**
@@ -48,12 +46,9 @@ MO_OVERLAPS_TWO_GEOMS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not compute these overlaps.
->     * 1
->     * Used to indicate the first of two required SCF calculations.
->     * 2
->     * Used to indicate the second of two required SCF calculations.
+>     * `0`: Do not compute these overlaps.
+>     * `1`: Used to indicate the first of two required SCF calculations.
+>     * `2`: Used to indicate the second of two required SCF calculations.
 > * **Recommendation**: The atoms must be ordered in the same way for both calculations. (This is not checked.)
 
 ???+ example "Example 10.14: Compute “spatial overlaps” of the frontier MOs, for a dimer of naphthalene and tetracyanoquinone.

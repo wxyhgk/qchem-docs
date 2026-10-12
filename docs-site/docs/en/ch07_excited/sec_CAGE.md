@@ -57,8 +57,6 @@ essentially meaningless.
 
 The following descriptions and examples illustrate all three mechanisms of charge stabilization.
 
-SCALE_NUCLEAR_CHARGE
-
 ### `SCALE_NUCLEAR_CHARGE`
 
 > **Scale the nuclear charges.**
@@ -66,10 +64,7 @@ SCALE_NUCLEAR_CHARGE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * scale the nuclear charges in a way that adds a charge of
->     * $N$
->     * /100 (in a.u.)
+>     * $N$: scale the nuclear charges in a way that adds a charge of $N$ /100 (in a.u.)
 > * **Recommendation**: For EOM methods a perturbative correction can be added in conjunction with this option (as noted above), but for other electronic structure methods once simply gets a traditional calculation but with modified nuclear charges.
 
 ???+ example "Example 7.89: EOM-DIP excitation energies and properties using a charged cage for stabilization."

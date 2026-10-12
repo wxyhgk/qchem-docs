@@ -77,8 +77,6 @@ Currently, only the def2-SVPD basis set is supported for use with DFT-C.
 
 The DFT-C correction is governed by the following *$rem* variable:
 
-DFT_C
-
 ### `DFT_C`
 
 > **Controls whether the DFT-C empirical BSSE correction should be added.**
@@ -86,10 +84,8 @@ DFT_C
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * (or 0) Do not apply the DFT-C correction
->     * TRUE
->     * (or 1) Apply the DFT-C correction
+>     * `FALSE`: (or 0) Do not apply the DFT-C correction
+>     * `TRUE`: (or 1) Apply the DFT-C correction
 > * **Recommendation**: NONE
 
 The DFT-C method can be applied to any local, GGA, or meta-GGA density

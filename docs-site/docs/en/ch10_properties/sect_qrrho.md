@@ -47,8 +47,6 @@ This procedure is known as the quasi-rigid-rotor-harmonic-oscillator (qRRHO) app
 The qRRHO scheme is the default in **Q-Chem**, and all thermodynamic quantities are printed for the RRHO (without interpolations) and qRRHO schemes at standard temperature and pressure (298.15 K
 and 1.00 atm). To change the latter, the user can specify an *$isotopes* section (see examples and Section [10.8.2](ex_Isotope-Mass.md) for details). $\alpha$ and $\omega_{0}$ for both interpolator functions can be modified through QRRHO_ALPHA and QRRHO_OMEGA_CUTOFF respectively.
 
-QRRHO_ALPHA
-
 ### `QRRHO_ALPHA`
 
 > **Specifies the exponent in the damping function of Chai and Head-Gordon, used for interpolating the vibrational enthalpy and entropy in the qRRHO scheme. Specify MRRHO_ALPHA to change the exponent for the entropy interpolation separately.**
@@ -56,11 +54,8 @@ QRRHO_ALPHA
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $\alpha$
->     * Dimensionless interpolator exponent used in the qRRHO scheme.
+>     * $\alpha$: Dimensionless interpolator exponent used in the qRRHO scheme.
 > * **Recommendation**: Use the default.
-
-QRRHO_OMEGA_CUTOFF
 
 ### `QRRHO_OMEGA_CUTOFF`
 
@@ -69,10 +64,7 @@ QRRHO_OMEGA_CUTOFF
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $\omega_{0}$
->     * Interpolator cutoff frequency used in the qRRHO scheme in cm
->     * ${}^{-1}$
->     * .
+>     * $\omega_{0}$: Interpolator cutoff frequency used in the qRRHO scheme in cm ${}^{-1}$ .
 > * **Recommendation**: Use the default.
 
 ???+ example "Example 10.41: Harmonic vibrational analysis at the HF/3-21G level of theory, where the thermodynamic properties for RRHO and

@@ -6,8 +6,6 @@ title: "11.9.2 AIRBED 作业控制"
 
 （2026 年 7 月 4 日）
 
-AIRBED
-
 ### `AIRBED`
 
 > **执行 AIRBED 计算。**
@@ -20,8 +18,6 @@ AIRBED
 >     * False
 >     * 不执行 AIRBED 计算。
 > * **建议**：将 $rem 变量 DFT_D 设置为 EMPIRICAL_GRIMME。
-
-AIRBED_ALPHA
 
 ### `AIRBED_ALPHA`
 

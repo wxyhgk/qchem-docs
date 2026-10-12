@@ -137,8 +137,6 @@ Feshbach 宽度的实现包含对发射电子所有可能方向（**k** 矢量�
 NAO 是使用二体戴森振幅的 $\Gamma_{r\beta}^{p\alpha,q\beta}$ 分块计算得到的。这意味着在非共振俄歇衰变计算中，空穴应当对应于移除一个 $\beta$ 电子。
 **
 
-CC_DO_FESHBACH
-
 ### `CC_DO_FESHBACH`
 
 > **使用 Feshbach-Fano 方法启用共振宽度计算。**
@@ -146,15 +144,10 @@ CC_DO_FESHBACH
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不进行 Feshbach-Fano 计算
->     * 1
->     * 进行 Feshbach-Fano 共振宽度计算
->     * 2
->     * 进行 Feshbach-Fano 共振宽度与共振位移计算
+>     * `0`: 不进行 Feshbach-Fano 计算
+>     * `1`: 进行 Feshbach-Fano 共振宽度计算
+>     * `2`: 进行 Feshbach-Fano 共振宽度与共振位移计算
 > * **建议**: 应正确指定初态和末态。
-
-CC_FESHBACH_CW
 
 ### `CC_FESHBACH_CW`
 
@@ -163,17 +156,10 @@ CC_FESHBACH_CW
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 使用平面波
->     * 1
->     * 使用内部生成的库仑波
->     * 3
->     * 使用用户在
->     * $coulomb_wave
->     * 段中提供的库仑基组
+>     * `0`: 使用平面波
+>     * `1`: 使用内部生成的库仑波
+>     * `3`: 使用用户在 $coulomb_wave 段中提供的库仑基组
 > * **建议**: 需要在 $coulomb_wave 段中指定额外的细节。
-
-CC_FESHBACH_INT_ORDER
 
 ### `CC_FESHBACH_INT_ORDER`
 
@@ -182,11 +168,8 @@ CC_FESHBACH_INT_ORDER
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **选项**:
->     * $n$
->     * 对应 Lebedev 求积的阶数
+>     * $n$: 对应 Lebedev 求积的阶数
 > * **建议**: 使用默认值，除非需要更严格的收敛（取 16 可获得完全收敛的宽度）。
-
-CC_FESHBACH_DELTA_INTB
 
 ### `CC_FESHBACH_DELTA_INTB`
 
@@ -195,11 +178,8 @@ CC_FESHBACH_DELTA_INTB
 > * **类型**: `INTEGER`
 > * **默认值**: `Preset`
 > * **选项**:
->     * $n$
->     * 对应以 eV 为单位的能量上限
+>     * $n$: 对应以 eV 为单位的能量上限
 > * **建议**: 使用默认值。
-
-CC_FESHBACH_DELTA_INTC
 
 ### `CC_FESHBACH_DELTA_INTC`
 
@@ -208,11 +188,8 @@ CC_FESHBACH_DELTA_INTC
 > * **类型**: `INTEGER`
 > * **默认值**: `Preset`
 > * **选项**:
->     * $n$
->     * 对应以 eV 为单位的能量上限
+>     * $n$: 对应以 eV 为单位的能量上限
 > * **建议**: 使用默认值。
-
-CC_DO_NAO
 
 ### `CC_DO_NAO`
 
@@ -221,10 +198,8 @@ CC_DO_NAO
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不计算 NAO
->     * 1
->     * 计算 NAO
+>     * `0`: 不计算 NAO
+>     * `1`: 计算 NAO
 > * **建议**: 应正确指定初态和末态。
 
 ## 7.9.11.1 单中心近似
@@ -259,8 +234,6 @@ $(1s,2s,2p,\ldots)$。已有工作测试了两种用于 OCA-EOM-CCSD 计算的 M
 
 示例 [7.9.11.2](#ex:auger1) 和 [7.9.11.2](#ex:auger1) 演示了 OCA 计算。
 
-CC_FESHBACH_OCA
-
 ### `CC_FESHBACH_OCA`
 
 > **通过 OCA 方法启用俄歇宽度计算。**
@@ -268,13 +241,9 @@ CC_FESHBACH_OCA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 1
->     * 1s 空穴
->     * 2
->     * 2s 空穴。
+>     * `1`: 1s 空穴
+>     * `2`: 2s 空穴。
 > * **建议**: 无
-
-OCA_ATOM_INDEX
 
 ### `OCA_ATOM_INDEX`
 
@@ -283,8 +252,7 @@ OCA_ATOM_INDEX
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * $n$
->     * 遵循 molecule 段中的顺序。
+>     * $n$: 遵循 molecule 段中的顺序。
 > * **建议**: 无
 
 ## 7.9.11.2 示例

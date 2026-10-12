@@ -45,8 +45,6 @@ to semi-numerical calculation of the Hessian.
 
 ## 5.3.8.2 Job Control and Examples for DFT-3c
 
-FDIFF_STENCIL_3C
-
 ### `FDIFF_STENCIL_3C`
 
 > **Specifies whether to use a 5-point stencil for derivatives of the “3c” part of DFT-3c.**
@@ -54,8 +52,7 @@ FDIFF_STENCIL_3C
 > * **Type**: `STRING`
 > * **Default**: `No default`
 > * **Options**:
->     * 5
->     * Use the 5-point stencil
+>     * `5`: Use the 5-point stencil
 > * **Recommendation**: If this variable is not specified then Q-Chem will use a 3-point stencil, which has proven adequate in previous testing. Use the 5-point stencil only if questions arise about the accuracy of the semi-numerical frequencies.
 
 ???+ example "Example 5.4: HF-3c calculation on the I ${}^{-}$ (H ${}_{2}$ O) complex."

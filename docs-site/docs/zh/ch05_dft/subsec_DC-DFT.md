@@ -45,8 +45,6 @@ DC-DFT 的解析能量梯度可用，[[1144]](../bib_references/bib.md#bib1196)
 DC_DFT = TRUE。注意，由于 $E_{\text{DFT}}[\rho]$ 从不被对角化，因此在 SCF 流程末尾计算的任何后续性质均基于 Hartree-Fock 密度。
 这包括单粒子能级、Mulliken 电荷、多极矩等。
 
-DC_DFT
-
 ### `DC_DFT`
 
 > **控制是否使用 DC-DFT。**
@@ -54,13 +52,6 @@ DC_DFT
 > * **类型**: `Boolean`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不执行 DC-DFT。
->     * TRUE
->     * 在 Hartree-Fock 层级将密度迭代至自洽，然后
->     * 使用
->     * METHOD
->     * 指定的泛函对
->     * $E_{\text{DFT}}[\rho_{\text{HF}}]$
->     * 求值。
+>     * `FALSE`: 不执行 DC-DFT。
+>     * `TRUE`: 在 Hartree-Fock 层级将密度迭代至自洽，然后使用 METHOD 指定的泛函对 $E_{\text{DFT}}[\rho_{\text{HF}}]$ 求值。
 > * **建议**: 按需使用。解析梯度可用，但在当前实现中是串行瓶颈。

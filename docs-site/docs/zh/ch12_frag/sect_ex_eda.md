@@ -138,8 +138,6 @@ $$
 
 其余相关的 rem 变量包括 CIS_N_ROOTS，它指定在 ALMO-CIS/TDA 以及完整 CIS/TDA 计算中要计算的根（roots）数目；以及 EIGSLV_METH（见第 [12.16](sect_ALMO-CIS.md) 节），其默认值为 1（使用 Davidson 迭代求解器）。需要注意的是，EDA 所关注的态数目由孤立片段的态数目（激基复合物情形）或由发生激子耦合的态的总数（激基缔合物/excimer 情形）来控制。在后一种情形下，通常将 CIS_N_ROOTS 设置为大于 $M$ 的值，以确保所有感兴趣的态都被包含在 ALMO-CIS/TDA 与完整 CIS/TDA 计算之中，因为可能会出现态排序（state-ordering）的变化。
 
-EX_EDA
-
 ### `EX_EDA`
 
 > **执行一个含有一个或多个激发片段的 ALMO-EDA 计算。**
@@ -147,9 +145,8 @@ EX_EDA
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 执行 EDA，并考虑激发态分子。
->     * FALSE
+>     * `TRUE`: 执行 EDA，并考虑激发态分子。
+>     * `FALSE`
 > * **建议**: 无
 
 ???+ example "示例 12.35: 在 CIS/6-31+G(d)

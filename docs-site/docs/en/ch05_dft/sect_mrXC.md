@@ -34,8 +34,6 @@ several times is achieved for the XC matrix.
 The smooth part of the calculation with MRXC can also be combined
 with FTC (see Section [4.6.5](../ch04_scf/sect_FTC.md)) to achieve a further gain in efficiency.
 
-MRXC
-
 ### `MRXC`
 
 > **Controls the use of MRXC.**
@@ -43,16 +41,12 @@ MRXC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not use MRXC
->     * 1
->     * Use MRXC in the evaluation of the XC part
+>     * `0`: Do not use MRXC
+>     * `1`: Use MRXC in the evaluation of the XC part
 > * **Recommendation**: MRXC is very efficient for medium and large molecules, especially when medium and large basis sets are used.
 
 The following two keywords control the smoothness precision. The default value
 is carefully selected to maintain high accuracy.
-
-MRXC_CLASS_THRESH_MULT
 
 ### `MRXC_CLASS_THRESH_MULT`
 
@@ -61,11 +55,8 @@ MRXC_CLASS_THRESH_MULT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $im$
->     * An integer
+>     * $im$: An integer
 > * **Recommendation**: A prefactor in the threshold for MRXC error control: $im\times 10^{-io}$
-
-MRXC_CLASS_THRESH_ORDER
 
 ### `MRXC_CLASS_THRESH_ORDER`
 
@@ -74,13 +65,10 @@ MRXC_CLASS_THRESH_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $io$
->     * An integer
+>     * $io$: An integer
 > * **Recommendation**: The exponent in the threshold of the MRXC error control: $im\times 10^{-io}$
 
 The next keyword controls the order of the B-spline interpolation:
-
-LOCAL_INTERP_ORDER
 
 ### `LOCAL_INTERP_ORDER`
 
@@ -89,6 +77,5 @@ LOCAL_INTERP_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * An integer
+>     * $n$: An integer
 > * **Recommendation**: The default value is sufficiently accurate

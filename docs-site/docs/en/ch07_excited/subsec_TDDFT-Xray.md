@@ -35,8 +35,6 @@ Job control variables for SRC functionals are provided below and their use in
 conjunction with the CVS approximation is illustrated in Example [7.12.2.1](#ex:TDDFT-CVS-0).
 See Section [7.3.6.1](subsec_TDDFT-Control.md#subsec:TDDFT-Control:Basic) for basic TDDFT job control.
 
-HF_SR
-
 ### `HF_SR`
 
 > **Sets the fraction of Hartree-Fock exchange at $r_{12}=0$ .**
@@ -44,13 +42,8 @@ HF_SR
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * =
->     * $n/1000$
+>     * $n$: Corresponding to = $n/1000$
 > * **Recommendation**: None
-
-HF_LR
 
 ### `HF_LR`
 
@@ -59,13 +52,8 @@ HF_LR
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * =
->     * $n/1000$
+>     * $n$: Corresponding to = $n/1000$
 > * **Recommendation**: None
-
-OMEGA
 
 ### `OMEGA`
 
@@ -74,14 +62,8 @@ OMEGA
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\omega=n/1000$
->     * , in units of bohr
->     * ${}^{-1}$
+>     * $n$: Corresponding to $\omega=n/1000$ , in units of bohr ${}^{-1}$
 > * **Recommendation**: None
-
-OMEGA2
 
 ### `OMEGA2`
 
@@ -90,14 +72,8 @@ OMEGA2
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\omega_{2}=n/1000$
->     * , in units of bohr
->     * ${}^{-1}$
+>     * $n$: Corresponding to $\omega_{2}=n/1000$ , in units of bohr ${}^{-1}$
 > * **Recommendation**: None
-
-SRC_DFT
 
 ### `SRC_DFT`
 
@@ -106,10 +82,8 @@ SRC_DFT
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * 1
->     * SRC1 functional.
->     * 2
->     * SRC2 functional.
+>     * `1`: SRC1 functional.
+>     * `2`: SRC2 functional.
 > * **Recommendation**: None
 
 ???+ example "Example 7.206: Calculation of carbon K-edge [C(1s) $\rightarrow$ virtual excitations] using SRC-TDDFT within the CVS approximation."
@@ -161,8 +135,6 @@ of the isolated atom.[[118]](../bib_references/bib.md#bib113)
 This probably suffices to account for relativistic effects for K-edge excitations, although in the case of L- or
 M-edge excitations the situation is complicated by spin-orbit coupling.
 
-REL_SHIFT
-
 ### `REL_SHIFT`
 
 > **Corrects the calculated TDDFT excitation energy for scalar relativistic effects.**
@@ -170,8 +142,7 @@ REL_SHIFT
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $Z$
->     * Corresponding to the atomic number of the core-ionized element.
+>     * $Z$: Corresponding to the atomic number of the core-ionized element.
 > * **Recommendation**: The relativistic correction is equal to the difference of relativistic (Douglas-Kroll-Hess) and non-relativistic Hartree-Fock/cc-pCVTZ eigenvalues for the $1s$ orbital of the isolated atom.
 
 ???+ example "Example 7.207: Calculation of core-excited states at the phosphorus K-edge, including a scalar relativistic shift."
@@ -223,8 +194,6 @@ Currently fTDDFTs works only for restricted CIS/TDA calculations and is not para
 is performed in serial.)
 **
 
-FAST_XAS
-
 ### `FAST_XAS`
 
 > **Controls whether fast TDDFT for core excitations is used.**
@@ -232,11 +201,8 @@ FAST_XAS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Use fast TDDFT.
+>     * `TRUE`: Use fast TDDFT.
 > * **Recommendation**: None
-
-XAS_SCREEN_LEVEL
 
 ### `XAS_SCREEN_LEVEL`
 
@@ -245,13 +211,8 @@ XAS_SCREEN_LEVEL
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $1$
->     * only evaluate integrals that include the inner core basis function on relevant atom(s).
->     * $2$
->     * only evaluate integrals that include basis functions on relevant atom(s).
+>     * $1$: only evaluate integrals that include the inner core basis function on relevant atom(s). $2$ only evaluate integrals that include basis functions on relevant atom(s).
 > * **Recommendation**: 1
-
-XAS_EDGE
 
 ### `XAS_EDGE`
 
@@ -260,11 +221,8 @@ XAS_EDGE
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Corresponding to the nuclear charge of element being excited.
+>     * $n$: Corresponding to the nuclear charge of element being excited.
 > * **Recommendation**: None
-
-TDDFT_NVIRT
 
 ### `TDDFT_NVIRT`
 
@@ -273,10 +231,8 @@ TDDFT_NVIRT
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Corresponding to the lowest energy
->     * $n$
->     * virtual orbitals.
+>     * $n$: Corresponding to the lowest energy
+>     * $n$: virtual orbitals.
 > * **Recommendation**: None
 
 ???+ example "Example 7.208: Fast, low-memory calculation of core-excited states at the oxygen K-edge of CO using fTDDFTs."

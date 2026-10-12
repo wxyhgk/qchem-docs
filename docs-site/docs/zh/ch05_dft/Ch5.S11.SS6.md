@@ -6,8 +6,6 @@ title: "5.11.6 CDFT-CI 作业控制与示例"
 
 （2026 年 7 月 4 日）
 
-CDFTCI
-
 ### `CDFTCI`
 
 > **发起一次约束密度泛函理论-组态相互作用（constrained DFT-configuration interaction, CDFT-CI）计算**
@@ -15,13 +13,9 @@ CDFTCI
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 执行 CDFT-CI 计算
->     * FALSE
->     * 不执行 CDFT-CI
+>     * `TRUE`: 执行 CDFT-CI 计算
+>     * `FALSE`: 不执行 CDFT-CI
 > * **建议**: 若需要进行 CDFT-CI 计算，则设置为 TRUE。
-
-CDFTCI_PRINT
 
 ### `CDFTCI_PRINT`
 
@@ -30,17 +24,11 @@ CDFTCI_PRINT
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 仅打印 CDFT-CI 终态的能量和系数
->     * 1
->     * 在级别 0 基础上增加 CDFT-CI 的重叠矩阵、哈密顿矩阵和布居矩阵
->     * 2
->     * 在级别 1 基础上增加 CDFT-CI 布居矩阵的本征向量和本征值
->     * 3
->     * 在级别 2 基础上增加促分子（promolecule）轨道系数和能量
+>     * `0`: 仅打印 CDFT-CI 终态的能量和系数
+>     * `1`: 在级别 0 基础上增加 CDFT-CI 的重叠矩阵、哈密顿矩阵和布居矩阵
+>     * `2`: 在级别 1 基础上增加 CDFT-CI 布居矩阵的本征向量和本征值
+>     * `3`: 在级别 2 基础上增加促分子（promolecule）轨道系数和能量
 > * **建议**: 级别 3 主要用于程序调试；级别 1 和 2 可能有助于分析耦合矩阵元。
-
-CDFT_LAMBDA_MODE
 
 ### `CDFT_LAMBDA_MODE`
 
@@ -49,14 +37,9 @@ CDFT_LAMBDA_MODE
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 使用标准的 CDFT 计算。
->     * TRUE
->     * 不指定目标电荷与自旋约束，而是使用输入数据中的值
->     * 作为 Becke 权重势的取值。
+>     * `FALSE`: 使用标准的 CDFT 计算。
+>     * `TRUE`: 不指定目标电荷与自旋约束，而是使用输入数据中的值作为 Becke 权重势的取值。
 > * **建议**: 通常应设置为 FALSE。设置为 TRUE 可用于扫描不同强度的电荷或自旋局域化，因为与常规 CDFT(-CI) 计算相比，其收敛特性有所改善。
-
-CDFTCI_SKIP_PROMOLECULES
 
 ### `CDFTCI_SKIP_PROMOLECULES`
 
@@ -65,11 +48,8 @@ CDFTCI_SKIP_PROMOLECULES
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 执行标准的 CDFT-CI 计算。
->     * TRUE
->     * 直接使用给定的电荷/自旋约束，
->     * 不进行促分子计算。
+>     * `FALSE`: 执行标准的 CDFT-CI 计算。
+>     * `TRUE`: 直接使用给定的电荷/自旋约束， 不进行促分子计算。
 > * **建议**: 设置为 TRUE 可用于对约束值进行扫描。
 
 **注意：**
@@ -78,8 +58,6 @@ CDFT_LAMBDA_MODE 与 CDFTCI_SKIP_PROMOLECULES
 互不兼容（二者不能同时使用）。
 **
 
-CDFTCI_SVD_THRESH
-
 ### `CDFTCI_SVD_THRESH`
 
 > **默认情况下，在对 CDFT-CI 矩阵进行对角化之前，会先执行对称正交化（symmetric orthogonalization）。如果 CDFT-CI 重叠矩阵接近奇异（即某些非绝热态（diabatic states）接近简并），那么该正交化可能导致数值不稳定。在计算 $\mathbf{S}^{-1/2}$ 时，小于 $10^{-\mathrm{CDFTCI\_SVD\_THRESH}}$ 的本征值将被舍弃。**
@@ -87,13 +65,8 @@ CDFTCI_SVD_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `4`
 > * **选项**:
->     * $n$
->     * 对应阈值
->     * $10^{-n}$
->     * 。
+>     * $n$: 对应阈值 $10^{-n}$。
 > * **建议**: 如果在最终对角化过程中遇到数值不稳定，可以减小该值。
-
-CDFTCI_STOP
 
 ### `CDFTCI_STOP`
 
@@ -102,17 +75,9 @@ CDFTCI_STOP
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 在收敛第
->     * $n$
->     * 个态后停止（第一个态为态
->     * $1$
->     * ）
->     * $0$
->     * 不提前停止
+>     * $n$: 在收敛第
+>     * $n$: 个态后停止（第一个态为态 $1$） $0$ 不提前停止
 > * **建议**: 如果某些非绝热态能够收敛而另一些不能收敛，则使用该设置。
-
-CDFTCI_RESTART
 
 ### `CDFTCI_RESTART`
 
@@ -121,10 +86,7 @@ CDFTCI_RESTART
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 从第
->     * $n+1$
->     * 个态开始计算
+>     * $n$: 从第 $n+1$ 个态开始计算
 > * **建议**: 与 CDFTCI_STOP 配合使用该设置。
 
 ???+ example "示例 5.5.28: 计算阴离子型绿色荧光蛋白（GFP）生色团（CHR:1–27）与酪氨酸残基（TYR:28–43）之间耦合的 CDFT-CI 计算。两个非绝热态为 CHR( $M_{S}=0$ ) $\cdots$ TYR( $M_{S}=0$ ) 和 CHR( $M_{S}=1/2$ ) $\cdots$ TYR( $M_{S}=1/2$ )。"

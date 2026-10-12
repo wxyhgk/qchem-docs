@@ -9,8 +9,6 @@ title: "6.19.1 Introduction"
 The methods described below are related to valence bond theory and are handled by
 the GVBMAN module. The following models are available:
 
-CORRELATION
-
 ### `CORRELATION`
 
 > **Specifies the correlation level in GVB models handled by GVBMAN.**
@@ -18,14 +16,7 @@ CORRELATION
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * PP
->     * CCVB
->     * GVB_IP
->     * GVB_SIP
->     * GVB_DIP
->     * OP
->     * NP
->     * 2P
+>     * `PP`: CCVB GVB_IP GVB_SIP GVB_DIP OP NP 2P
 > * **Recommendation**: As a rough guide, use PP for biradicaloids, and CCVB for polyradicaloids involving strong spin correlations. Consult the literature for further guidance.
 
 Molecules where electron correlation is strong are characterized by small

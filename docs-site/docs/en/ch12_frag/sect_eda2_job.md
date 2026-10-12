@@ -109,8 +109,6 @@ Miscellaneous:
 EDA2_PRINT_LEVEL: print additional details for some of the EDA terms (*e.g.* solvation-corrected ELEC/PAULI)
 when set to $>1$ (default: 1)
 
-EDA2
-
 ### `EDA2`
 
 > **Switch on EDA2 and specify the option set number.**
@@ -118,28 +116,13 @@ EDA2
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 0
->     * Do not run through EDA2.
->     * 1
->     * Frozen energy decomposition + nMDQ-uFERF polarization
->     * (the standard EDA2 option)
->     * 2
->     * Frozen energy decomposition + (AO-block-based) ALMO polarization
->     * (old scheme with the addition of frozen decomposition)
->     * 3
->     * Frozen energy decomposition + oDQ-FERF polarization
->     * (NOT commonly used)
->     * 4
->     * Frozen wave function relaxation + Frozen energy decomposition + nDQ-FERF polarization
->     * (NOT commonly used)
->     * 5
->     * Frozen energy decomposition + polMO polarization
->     * (NOT commonly used).
->     * 10
->     * No preset. Completely controlled by user’s
->     * $rem
->     * input
->     * (for developers only)
+>     * `0`: Do not run through EDA2.
+>     * `1`: Frozen energy decomposition + nMDQ-uFERF polarization (the standard EDA2 option)
+>     * `2`: Frozen energy decomposition + (AO-block-based) ALMO polarization (old scheme with the addition of frozen decomposition)
+>     * `3`: Frozen energy decomposition + oDQ-FERF polarization (NOT commonly used)
+>     * `4`: Frozen wave function relaxation + Frozen energy decomposition + nDQ-FERF polarization (NOT commonly used)
+>     * `5`: Frozen energy decomposition + polMO polarization (NOT commonly used).
+>     * `10`: No preset. Completely controlled by user’s $rem input (for developers only)
 > * **Recommendation**: Turn on for Q-Chem ’s ALMO-EDA jobs unless CTA with the old scheme is desired. Option 1 is recommended in general, especially when substantially large basis sets are employed. The original ALMO scheme (option 2) can be used when the employed basis set is of small or medium size (arguably no larger than augmented triple- $\zeta$ ). The other options are rarely used for routine applications.
 
 Note that starting with **Q-Chem** v. 5.2, if JOBTYPE = EDA
@@ -192,8 +175,6 @@ indicates that the 2nd fragment will skip the spin alignment procedure. Typicall
 interactions between radicals and closed-shell molecules, spin alignment only needs to
 be applied to the radicals.
 
-EDA_ALIGN_FRGM_SPIN
-
 ### `EDA_ALIGN_FRGM_SPIN`
 
 > **Turn on the fragment spin alignment procedure**
@@ -201,12 +182,9 @@ EDA_ALIGN_FRGM_SPIN
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not performed the spin alignment procedure (turned on by default in unrestricted cases)
->     * 1
->     * Perform fragment spin alignment; use GDM for the polarization step preceding the MOM calculations
->     * 2
->     * Perform fragment spin alignment; use GDM and perform stability analysis for the polarization step
+>     * `0`: Do not performed the spin alignment procedure (turned on by default in unrestricted cases)
+>     * `1`: Perform fragment spin alignment; use GDM for the polarization step preceding the MOM calculations
+>     * `2`: Perform fragment spin alignment; use GDM and perform stability analysis for the polarization step
 > * **Recommendation**: Use 1 or 2 when the radical is of highly symmetric structure
 
 Another feature that can be useful for systems involving open-shell species

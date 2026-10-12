@@ -95,8 +95,6 @@ methods available (*i.e.* the recognized options to the METHOD keyword)
 are as follows. Ground-state methods are also a valid option for
 the CORRELATION keyword.
 
-METHOD
-
 ### `METHOD`
 
 > **Specifies the level of theory, either DFT or wave function-based.**
@@ -104,101 +102,36 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `HF`
 > * **Options**:
->     * MP2
->     * Sections
->     * 6.3
->     * and
->     * 6.4
->     * RI-MP2
->     * Section
->     * 6.6
->     * Local_MP2
->     * Section
->     * 6.5
->     * RILMP2
->     * Section
->     * 6.6.2
->     * ATTMP2
->     * Section
->     * 6.7
->     * ATTRIMP2
->     * Section
->     * 6.7
->     * ZAPT2
->     * A more efficient restricted open-shell MP2 method.
->     * 632
->     * Jayatilaka D., Lee T. J.
->     * Chem. Phys. Lett.
->     * (1992)
->     * ,
->     * 199
->     * ,
->     * pp. 211
->     * .
->     * Link
->     * MP3
->     * Section
->     * 6.3
->     * MP4SDQ
->     * Section
->     * 6.3
->     * MP4
->     * Section
->     * 6.3
->     * CCD
->     * Section
->     * 6.12
->     * CCD(2)
->     * Section
->     * 6.13
->     * CCSD
->     * Section
->     * 6.12
->     * CCSDT
->     * Section
->     * 6.12.3
->     * CC2
->     * Section
->     * 6.12
->     * CCSD(T)
->     * Section
->     * 6.13
->     * CCSD(2)
->     * Section
->     * 6.13
->     * CCSD(fT)
->     * Section
->     * 6.13.3
->     * CCSD(dT)
->     * Section
->     * 6.13.3
->     * QCISD
->     * Section
->     * 6.12
->     * QCISD(T)
->     * Section
->     * 6.13
->     * OD
->     * Section
->     * 6.12
->     * OD(T)
->     * Section
->     * 6.13
->     * OD(2)
->     * Section
->     * 6.13
->     * VOD
->     * Section
->     * 6.14
->     * VOD(2)
->     * Section
->     * 6.14
->     * QCCD
->     * Section
->     * 6.12
->     * QCCD(T)
->     * QCCD(2)
->     * VQCCD
->     * Section
->     * 6.14
+>     * `MP2`: Sections 6.3 and 6.4
+>     * `RI-MP2`: Section 6.6
+>     * `Local_MP2`: Section 6.5
+>     * `RILMP2`: Section 6.6.2
+>     * `ATTMP2`: Section 6.7
+>     * `ATTRIMP2`: Section 6.7
+>     * `ZAPT2`: A more efficient restricted open-shell MP2 method.
+>     * `632`: Jayatilaka D., Lee T. J. Chem. Phys. Lett. (1992) ,
+>     * `199`: , pp. 211 . Link
+>     * `MP3`: Section 6.3
+>     * `MP4SDQ`: Section 6.3
+>     * `MP4`: Section 6.3
+>     * `CCD`: Section 6.12
+>     * `CCD(2)`: Section 6.13
+>     * `CCSD`: Section 6.12
+>     * `CCSDT`: Section 6.12.3
+>     * `CC2`: Section 6.12
+>     * `CCSD(T)`: Section 6.13
+>     * `CCSD(2)`: Section 6.13
+>     * `CCSD(fT)`: Section 6.13.3
+>     * `CCSD(dT)`: Section 6.13.3
+>     * `QCISD`: Section 6.12
+>     * `QCISD(T)`: Section 6.13
+>     * `OD`: Section 6.12
+>     * `OD(T)`: Section 6.13
+>     * `OD(2)`: Section 6.13
+>     * `VOD`: Section 6.14
+>     * `VOD(2)`: Section 6.14
+>     * `QCCD`: Section 6.12
+>     * `QCCD(T)`
+>     * `QCCD(2)`
+>     * `VQCCD`: Section 6.14
 > * **Recommendation**: Consult the literature for guidance.

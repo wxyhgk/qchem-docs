@@ -49,8 +49,6 @@ and 1 atm respectively), or else to 1 if they are to be altered. Note that the
 temperatures should be specified in Kelvin and pressures in atmospheres.
 See Example 10.8.2.
 
-ISOTOPES
-
 ### `ISOTOPES`
 
 > **Specifies if non-default masses are to be used in the frequency calculation.**
@@ -58,12 +56,8 @@ ISOTOPES
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use default masses only.
->     * TRUE
->     * Read isotope masses from
->     * $isotopes
->     * section.
+>     * `FALSE`: Use default masses only.
+>     * `TRUE`: Read isotope masses from $isotopes section.
 > * **Recommendation**: None
 
 ???+ example "Example 10.39: An EDF1/6-31G* optimization, followed by a vibrational analysis including isotopic substitution. Doing the

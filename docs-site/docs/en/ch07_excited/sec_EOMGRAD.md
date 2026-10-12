@@ -761,8 +761,6 @@ and polarization of light is assumed to be along the $z$-axis (the polarization 
 will be ignored).
 These features are illustrated in examples [7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1)-[7.9.22.1](Ch7.S9.SS22.md#ex:CCFE1) below.
 
-CC_FREE_ELECTRON
-
 ### `CC_FREE_ELECTRON`
 
 > **Specifies whether properties involving free electrons will be computed.**
@@ -770,10 +768,8 @@ CC_FREE_ELECTRON
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: None
-
-DYSON_PW_COUPLING
 
 ### `DYSON_PW_COUPLING`
 
@@ -782,5 +778,5 @@ DYSON_PW_COUPLING
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (do not compute coupling)`
 > * **Options**:
->     * TRUE/FLSE
+>     * `TRUE/FLSE`
 > * **Recommendation**: Activate when needed. CC_DO_DYSON must be turned on.

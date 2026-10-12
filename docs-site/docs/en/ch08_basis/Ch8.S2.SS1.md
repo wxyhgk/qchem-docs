@@ -90,8 +90,6 @@ and any SCF level of theory (see Section [4.4.2](../ch04_scf/sect_guess.md)).
 
 The following *$rem* keyword controls the basis set:
 
-BASIS
-
 ### `BASIS`
 
 > **Sets the basis set to be used.**
@@ -99,10 +97,7 @@ BASIS
 > * **Type**: `STRING`
 > * **Default**: `No default basis set`
 > * **Options**:
->     * General, Gen
->     * User-defined. See section below
->     * Symbol
->     * Use standard basis sets as in the table below
->     * Mixed
->     * Use a combination of different basis sets
+>     * `General, Gen`: User-defined. See section below
+>     * `Symbol`: Use standard basis sets as in the table below
+>     * `Mixed`: Use a combination of different basis sets
 > * **Recommendation**: Consult literature and reviews to aid your selection.

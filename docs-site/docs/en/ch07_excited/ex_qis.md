@@ -19,8 +19,6 @@ Example 7.9.31 illustrates this capability for water molecule.
 Core should not be frozen.
 **
 
-PRINT_QIS
-
 ### `PRINT_QIS`
 
 > **Requests to dump stuff needed for OpenFermion.**
@@ -28,8 +26,7 @@ PRINT_QIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Print stuff for QIS in user directory.
+>     * `TRUE`: Print stuff for QIS in user directory.
 > * **Recommendation**: Beware of size of the files.
 
 ???+ example "Example 7.180: CCSD/STO-3G calculation of water molecule with print-out for OpenFermion."

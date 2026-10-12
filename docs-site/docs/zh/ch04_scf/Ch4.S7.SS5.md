@@ -14,8 +14,6 @@ OVPROJECTION 是双基组计算的默认投影机制；
 不建议对其进行更改。
 SCF 变量（*例如*，THRESH）的指定将同时应用于两个基组中的计算。
 
-DUAL_BASIS_ENERGY
-
 ### `DUAL_BASIS_ENERGY`
 
 > **启用双基组 SCF（HF 或 DFT）能量校正。**

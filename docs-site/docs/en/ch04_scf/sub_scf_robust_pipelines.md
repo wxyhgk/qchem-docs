@@ -76,8 +76,6 @@ experimental values and may not be optimal for all use cases;
 so, the users are encouraged to share their settings with the Q-Chem Office,
 if the defaults don’t yield convergence for their use cases.
 
-SCF_ROBUST_WINDOW_SIZE
-
 ### `SCF_ROBUST_WINDOW_SIZE`
 
 > **Controls the size of the window of logarithms of DIIS error or RMS gradients used for detecting oscillations or a plateau in robust SCF procedures.**
@@ -85,11 +83,8 @@ SCF_ROBUST_WINDOW_SIZE
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * n
->     * Customized.
+>     * `n`: Customized.
 > * **Recommendation**: None
-
-SCF_ROBUST_MIN_SIGN_CHANGES
 
 ### `SCF_ROBUST_MIN_SIGN_CHANGES`
 
@@ -98,11 +93,8 @@ SCF_ROBUST_MIN_SIGN_CHANGES
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * n
->     * Customized.
+>     * `n`: Customized.
 > * **Recommendation**: None
-
-SCF_ROBUST_PLATEAU_WINDOWS
 
 ### `SCF_ROBUST_PLATEAU_WINDOWS`
 
@@ -111,11 +103,8 @@ SCF_ROBUST_PLATEAU_WINDOWS
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * n
->     * Customized.
+>     * `n`: Customized.
 > * **Recommendation**: None
-
-SCF_ROBUST_SLOPE_THRESH
 
 ### `SCF_ROBUST_SLOPE_THRESH`
 
@@ -124,8 +113,5 @@ SCF_ROBUST_SLOPE_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * n
->     * Customized to
->     * $10^{-n}$
->     * .
+>     * `n`: Customized to $10^{-n}$ .
 > * **Recommendation**: None

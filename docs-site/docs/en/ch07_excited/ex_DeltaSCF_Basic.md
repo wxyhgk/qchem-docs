@@ -11,8 +11,6 @@ excited state calculations with more ease. This section is enabled by setting DE
 = TRUE in the *$rem* input section. A basic job demonstrating the defaults
 is given in Example 7.7.10.
 
-DELTA_SCF
-
 ### `DELTA_SCF`
 
 > **Trigger a $\Delta$ SCF calculation.**
@@ -20,12 +18,8 @@ DELTA_SCF
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * $\Delta$
->     * SCF calculation will not be performed.
->     * TRUE
->     * $\Delta$
->     * SCF will be performed.
+>     * `FALSE`: $\Delta$ SCF calculation will not be performed.
+>     * `TRUE`: $\Delta$ SCF will be performed.
 > * **Recommendation**: Set to TRUE if $\Delta$ SCF calculation is desired.
 
 ???+ example "Example 7.61: By default, restricted open-shell SCF calculations are performed for both the singlet, doublet (cation),
@@ -72,10 +66,8 @@ projection method, as detailed in Section [7.7.3](sect_OpSing.md).[[1511]](../b
 > * **Type**: `STRING`
 > * **Default**: `Restricted`
 > * **Options**:
->     * Restricted
->     * Perform a restricted open-shell singlet (ROKS) SCF calculation.
->     * Unrestricted
->     * Perform an unrestricted spin-symmetry broken SCF calculation.
+>     * `Restricted`: Perform a restricted open-shell singlet (ROKS) SCF calculation.
+>     * `Unrestricted`: Perform an unrestricted spin-symmetry broken SCF calculation.
 > * **Recommendation**: Consult the literature.
 
 ### `Doublet`
@@ -85,10 +77,8 @@ projection method, as detailed in Section [7.7.3](sect_OpSing.md).[[1511]](../b
 > * **Type**: `STRING`
 > * **Default**: `Restricted`
 > * **Options**:
->     * Restricted
->     * Perform a restricted open-shell doublet SCF calculation.
->     * Unrestricted
->     * Perform an unrestricted doublet SCF calculation.
+>     * `Restricted`: Perform a restricted open-shell doublet SCF calculation.
+>     * `Unrestricted`: Perform an unrestricted doublet SCF calculation.
 > * **Recommendation**: Carry out restricted if possible.
 
 ### `Triplet`
@@ -98,10 +88,8 @@ projection method, as detailed in Section [7.7.3](sect_OpSing.md).[[1511]](../b
 > * **Type**: `STRING`
 > * **Default**: `Restricted`
 > * **Options**:
->     * Restricted
->     * Perform a restricted open-shell triplet SCF calculation.
->     * Unrestricted
->     * Perform an unrestricted triplet SCF calculation.
+>     * `Restricted`: Perform a restricted open-shell triplet SCF calculation.
+>     * `Unrestricted`: Perform an unrestricted triplet SCF calculation.
 > * **Recommendation**: Carry out restricted if possible.
 
 ### `SOMO_1`
@@ -111,11 +99,7 @@ projection method, as detailed in Section [7.7.3](sect_OpSing.md).[[1511]](../b
 > * **Type**: `INTEGER`
 > * **Default**: `HOMO`
 > * **Options**:
->     * $0<n<$
->     * LUMO
->     * Any integer
->     * $n\in$
->     * [1, HOMO] is allowed
+>     * $0<n<$: LUMO Any integer $n\in$ [1, HOMO] is allowed
 > * **Recommendation**: Chose the desired orbital to excited from based on prior inspection of the ground state orbitals and the desired state to target.
 
 ### `SOMO_2`
@@ -125,9 +109,7 @@ projection method, as detailed in Section [7.7.3](sect_OpSing.md).[[1511]](../b
 > * **Type**: `INTEGER`
 > * **Default**: `LUMO`
 > * **Options**:
->     * HOMO
->     * $<n$
->     * Any integer greater than or equal to the LUMO.
+>     * `HOMO`: $<n$ Any integer greater than or equal to the LUMO.
 > * **Recommendation**: Chose the desired orbital to excite into based on prior inspection of the ground state orbitals and the desired state to target.
 
 ???+ example "Example 7.62: A unrestricted triplet and spin-symmetry broken SCF calculation.
@@ -234,7 +216,7 @@ is used as the guess.
 > * **Type**: `STRING`
 > * **Default**: `closed_shell`
 > * **Options**:
->     * closed_shell, tddft_nto
+>     * `closed_shell, tddft_nto`
 > * **Recommendation**: The canonical MOs are rotated into the NTO basis and an electron is removed from the hole level for the TDDFT NTO guess.
 
 ### `Triplet_SCF_Guess`
@@ -254,8 +236,7 @@ is used as the guess.
 > * **Type**: `INT`
 > * **Default**: `1, if the TDDFT NTOs were requested as the guess for any calculation`
 > * **Options**:
->     * $n>0$
->     * Any integer greater than 1
+>     * $n>0$: Any integer greater than 1
 > * **Recommendation**: Choose according to the TDDFT you’re interested in targeting.
 
 In addition to the guess, the SCF algorithm employed is also crucial for efficiently converging to the desired
@@ -308,8 +289,7 @@ thresholds depending on the nature of the SCF solver.
 > * **Type**: `INTEGER`
 > * **Default**: `5 if`
 > * **Options**:
->     * $n$
->     * Any positive integer.
+>     * $n$: Any positive integer.
 > * **Recommendation**: Follow defaults.
 
 ### `Doublet_SCF_Convergence`
@@ -319,8 +299,7 @@ thresholds depending on the nature of the SCF solver.
 > * **Type**: `INTEGER`
 > * **Default**: `5 if`
 > * **Options**:
->     * $n$
->     * Any positive integer.
+>     * $n$: Any positive integer.
 > * **Recommendation**: Follow defaults.
 
 ### `Triplet_SCF_Convergence`
@@ -330,8 +309,7 @@ thresholds depending on the nature of the SCF solver.
 > * **Type**: `INTEGER`
 > * **Default**: `5 if`
 > * **Options**:
->     * $n$
->     * Any positive integer.
+>     * $n$: Any positive integer.
 > * **Recommendation**: Follow defaults.
 
 When SGM is employed as an SCF solver, the scale factor for the (square) of the orbital gradient can be adjusted .
@@ -343,10 +321,7 @@ When SGM is employed as an SCF solver, the scale factor for the (square) of the 
 > * **Type**: `INTEGER`
 > * **Default**: `75`
 > * **Options**:
->     * $n$
->     * Any integer
->     * $n\in[1,100]$
->     * .
+>     * $n$: Any integer $n\in[1,100]$ .
 > * **Recommendation**: See documentation on DELTA_GRADIENT_SCALE .
 
 ### `Doublet_SGM_Gradient`
@@ -356,10 +331,7 @@ When SGM is employed as an SCF solver, the scale factor for the (square) of the 
 > * **Type**: `INTEGER`
 > * **Default**: `75`
 > * **Options**:
->     * $n$
->     * Any integer between
->     * $[1,100]$
->     * .
+>     * $n$: Any integer between $[1,100]$ .
 > * **Recommendation**: See documentation on DELTA_GRADIENT_SCALE .
 
 ### `Triplet_SGM_Gradient`
@@ -369,10 +341,7 @@ When SGM is employed as an SCF solver, the scale factor for the (square) of the 
 > * **Type**: `INTEGER`
 > * **Default**: `75`
 > * **Options**:
->     * $n$
->     * Any integer between
->     * $[1,100]$
->     * .
+>     * $n$: Any integer between $[1,100]$ .
 > * **Recommendation**: See documentation on DELTA_GRADIENT_SCALE .
 
 Exclusively for ROKS calculations on singlet states, the mixing between the SOMOs can either be allowed or supressed.
@@ -384,10 +353,8 @@ Exclusively for ROKS calculations on singlet states, the mixing between the SOMO
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Supressing mixing between SOMOs.
->     * TRUE
->     * Allow mixing of SOMOs.
+>     * `FALSE`: Supressing mixing between SOMOs.
+>     * `TRUE`: Allow mixing of SOMOs.
 > * **Recommendation**: See documentation on ROKS_SS_MIXING .
 
 The $\Delta$SCF driver allows you to produce cube plots of the SOMOs; these are essential to visually inspect
@@ -402,12 +369,9 @@ converging to the state you are seeking.
 > * **Type**: `STRING`
 > * **Default**: `Both`
 > * **Options**:
->     * Alpha
->     * Plots the SOMOs of the alpha orbitals
->     * Beta
->     * Plots the SOMOs of the beta orbitals
->     * Both
->     * Plots the SOMOs of both the alpha and beta orbitals
+>     * `Alpha`: Plots the SOMOs of the alpha orbitals
+>     * `Beta`: Plots the SOMOs of the beta orbitals
+>     * `Both`: Plots the SOMOs of both the alpha and beta orbitals
 > * **Recommendation**: Inspect the orbitals when in doubts about the SCF solution.
 
 ### `Doublet_SOMO_Print`
@@ -417,9 +381,7 @@ converging to the state you are seeking.
 > * **Type**: `STRING`
 > * **Default**: `Both`
 > * **Options**:
->     * Alpha Plots the SOMOs of the alpha orbitals
->     * Beta Plots the SOMOs of the beta orbitals
->     * Both Plots the SOMOs of both the alpha and beta orbitals
+>     * Alpha Plots the SOMOs of the alpha orbitals: Beta Plots the SOMOs of the beta orbitals Both Plots the SOMOs of both the alpha and beta orbitals
 > * **Recommendation**: Inspect the orbitals when in doubts about the SCF solution.
 
 ### `Triplet_SOMO_Print`
@@ -429,9 +391,7 @@ converging to the state you are seeking.
 > * **Type**: `STRING`
 > * **Default**: `Both`
 > * **Options**:
->     * Alpha Plots the SOMOs of the alpha orbitals
->     * Beta Plots the SOMOs of the beta orbitals
->     * Both Plots the SOMOs of both the alpha and beta orbitals
+>     * Alpha Plots the SOMOs of the alpha orbitals: Beta Plots the SOMOs of the beta orbitals Both Plots the SOMOs of both the alpha and beta orbitals
 > * **Recommendation**: Inspect the orbitals when in doubts about the SCF solution.
 
 Finally, when describing core excitations for highly symmetrical molecules (*e.g.*, ethylene, N${}_{2}$, or
@@ -447,9 +407,7 @@ This can be accomplished with the following keywords:
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n>1$
->     * Any integer
->     * $n\in[2,N_{\text{occ}}]$
+>     * $n>1$: Any integer $n\in[2,N_{\text{occ}}]$
 > * **Recommendation**: Set this variable to the total number of core orbitals to localize (for example, 2 in N ${}_{2}$ or 6 in benzene).
 
 ### `Localize_Offset`
@@ -459,9 +417,7 @@ This can be accomplished with the following keywords:
 > * **Type**: `INTEGER`
 > * **Default**: `$\text{HOMO}-n$`
 > * **Options**:
->     * $x$
->     * Any integer
->     * $x\in[1,\text{HOMO}-n]$
+>     * $x$: Any integer $x\in[1,\text{HOMO}-n]$
 > * **Recommendation**: Consider the number of atoms with orbitals lower in energy than those you are interested on and set this variable to that number. For example, set $x=2$ when attempting to reach the carbon K-edge in CS ${}_{2}$ , due to the two 1s sulfur orbitals.
 
 If you are unable to converge to the desired solution after exploring different SCF guesses and algorithms, as

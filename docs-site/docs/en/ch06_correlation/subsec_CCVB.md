@@ -93,8 +93,6 @@ number of active singlet geminals must be specified by GVB_N_PAIRS.
 After this, an initial guess is chosen. There are three main options for this,
 specified by the following keyword
 
-CCVB_GUESS
-
 ### `CCVB_GUESS`
 
 > **Specifies the initial guess for CCVB calculations**
@@ -102,18 +100,9 @@ CCVB_GUESS
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * 1
->     * Standard GVBMAN guess (orbital localization via
->     * GVB_LOCAL
->     * + Sano procedure).
->     * 2
->     * Use orbitals from previous GVBMAN calculation, along with
->     * SCF_GUESS
->     * =
->     * READ
->     * .
->     * 3
->     * Convert UHF orbitals into pairing VB form.
+>     * `1`: Standard GVBMAN guess (orbital localization via GVB_LOCAL + Sano procedure).
+>     * `2`: Use orbitals from previous GVBMAN calculation, along with SCF_GUESS = READ .
+>     * `3`: Convert UHF orbitals into pairing VB form.
 > * **Recommendation**: Option 1 is the most useful overall. The success of GVBMAN methods is often dependent on localized orbitals, and this guess shoots for these. Option 2 is useful for comparing results to other GVBMAN methods, or if other GVBMAN methods are able to obtain a desired result more efficiently. Option 3 can be useful for bond-breaking situations when a pertinent UHF solution has been found. It works best for small systems, or if the unrestriction is a local phenomenon within a larger molecule. If the unrestriction is non-local and the system is large, this guess will often produce a solution that is not the global minimum. Any UHF solution has a certain number of pairs that are unrestricted, and this will be output by the program. If GVB_N_PAIRS exceeds this number, the standard GVBMAN initial-guess procedure will be used to obtain a guess for the excess pairs
 
 For potential energy surfaces, restarting from a previously computed CCVB
@@ -138,8 +127,6 @@ In addition to the parent CCVB method as discussed up until now, we have
 included two related schemes for energy optimization, whose operation is
 controlled by the following keyword:
 
-CCVB_METHOD
-
 ### `CCVB_METHOD`
 
 > **Optionally modifies the basic CCVB method**
@@ -147,12 +134,9 @@ CCVB_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Standard CCVB model
->     * 3
->     * Independent electron pair approximation (IEPA) to CCVB
->     * 4
->     * Variational PP (the CCVB reference energy)
+>     * `1`: Standard CCVB model
+>     * `3`: Independent electron pair approximation (IEPA) to CCVB
+>     * `4`: Variational PP (the CCVB reference energy)
 > * **Recommendation**: Option 1 is generally recommended. Option 4 is useful for preconditioning, and for obtaining localized-orbital solutions, which may be used in subsequent calculations. It is also useful for cases in which the regular GVBMAN PP code becomes variationally unstable. Option 3 is a simple independent-amplitude approximation to CCVB. It avoids the cubic-scaling amplitude equations of CCVB, and also is able to reach the correct dissociation energy for any molecular system (unlike regular CCVB which does so only for cases in which UHF can reach a correct dissociate limit). However the IEPA approximation to CCVB is sometimes variationally unstable, which we have yet to observe in regular CCVB.
 
 ???+ example "Example 6.52: N ${}_{2}$ molecule in the intermediately dissociated region. In this case, SCF_ALGORITHM DIIS is necessary to obtain the symmetry unbroken RHF

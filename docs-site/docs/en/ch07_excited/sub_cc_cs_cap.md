@@ -25,8 +25,6 @@ atomic charges options.[[741]](../bib_references/bib.md#bib774)
 CCMAN2. The complex CC/EOM code is engaged by COMPLEX_CCMAN;
 the specific parameters should be specified in the *$complex_ccman* section.
 
-COMPLEX_CCMAN
-
 ### `COMPLEX_CCMAN`
 
 > **Requests complex-scaled or CAP-augmented CC/EOM calculations.**
@@ -34,8 +32,7 @@ COMPLEX_CCMAN
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Engage complex CC/EOM code.
+>     * `TRUE`: Engage complex CC/EOM code.
 > * **Recommendation**: Not available in CCMAN. Need to specify CAP strength or complex-scaling parameter in $complex_ccman section.
 
 The *$complex_ccman* section is used to specify the details of the

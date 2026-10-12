@@ -32,8 +32,6 @@ FNO 截断常常导致 CCSD 与 EOM 流程的收敛变慢。尽管如此，尽�
 更多细节请参见第 [7.9.14](../ch07_excited/sec_FNO.md) 节及文献 [[1104]](../bib_references/bib.md#bib1153)
 。
 
-CC_FNO_THRESH
-
 ### `CC_FNO_THRESH`
 
 > **初始化 FNO 截断，并为两种截断判据（OCCT 和 POVO）设置所用阈值**
@@ -48,8 +46,6 @@ CC_FNO_THRESH
 >     * $ab.cd$
 >     * %
 > * **建议**：无
-
-CC_FNO_USEPOP
 
 ### `CC_FNO_USEPOP`
 

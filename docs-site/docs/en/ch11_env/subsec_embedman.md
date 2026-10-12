@@ -66,8 +66,6 @@ users disable symmetry for calculations with INTEGRAL_SYMMETRY =
 FALSE, and POINT_GROUP_SYMMETRY = FALSE. Refer to the sample
 input for correct job settings.
 
-EMBEDMAN
-
 ### `EMBEDMAN`
 
 > **Turns density embedding on.**
@@ -75,13 +73,9 @@ EMBEDMAN
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not use density embedding.
->     * 1
->     * Turn on density embedding.
+>     * `0`: Do not use density embedding.
+>     * `1`: Turn on density embedding.
 > * **Recommendation**: Use for QM/QM density embedded calculations.
-
-EMBED_THEORY
 
 ### `EMBED_THEORY`
 
@@ -90,15 +84,10 @@ EMBED_THEORY
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No post HF method, only DFT on fragment one.
->     * 1
->     * Perform CCSD(T) calculation on fragment one.
->     * 2
->     * Perform MP2 calculation on fragment one.
+>     * `0`: No post HF method, only DFT on fragment one.
+>     * `1`: Perform CCSD(T) calculation on fragment one.
+>     * `2`: Perform MP2 calculation on fragment one.
 > * **Recommendation**: This should be 1 or 2 for the high-level QM calculation of fragment 1-in-2, and 0 for fragment 2-in-1 low-level QM calculation.
-
-EMBED_MU
 
 ### `EMBED_MU`
 
@@ -107,12 +96,8 @@ EMBED_MU
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * n
->     * $\mu=10^{n}$
->     * .
+>     * `n`: $\mu=10^{n}$ .
 > * **Recommendation**: Values of 2 - 7 are recommended. A higher value of $\mu$ leads to better orthogonality of the fragment MOs but $\mu>10^{7}$ introduces numerical noise. $\mu<10^{2}$ results in non-additive terms becoming too large. Energy corrections are fairly insensitive to changes in $\mu$ within the range of $10^{2}-10^{7}$ .
-
-EMBED_THRESH
 
 ### `EMBED_THRESH`
 
@@ -121,9 +106,7 @@ EMBED_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * n
->     * Threshold
->     * $=n/1000$
+>     * `n`: Threshold $=n/1000$
 > * **Recommendation**: Acceptable values range from 0 to 1000. Should only need to be tuned for non-highly localized MOs
 
 ???+ example "Example 11.11.47: Input for a MP2/PBE density embedding calculation of He-in-HF. The sum

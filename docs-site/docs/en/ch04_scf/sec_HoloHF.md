@@ -96,8 +96,6 @@ the **libnoci** package (see Section [7.5.2](../ch07_excited/subsec_LIBNOCI.md)
 USE_LIBNOCI = TRUE and designed for locating multiple SCF solutions for
 use in NOCI calculations.
 
-SCF_HOLOMORPHIC
-
 ### `SCF_HOLOMORPHIC`
 
 > **Turn on the use of holomorphic Hartree-Fock orbitals.**
@@ -105,13 +103,9 @@ SCF_HOLOMORPHIC
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Holomorphic Hartree-Fock is turned off
->     * TRUE
->     * Holomorphic Hartree-Fock is turned on.
+>     * `FALSE`: Holomorphic Hartree-Fock is turned off
+>     * `TRUE`: Holomorphic Hartree-Fock is turned on.
 > * **Recommendation**: If TRUE, holomorphic Hartree-Fock complex orbital coefficients will always be used. If FALSE, but COMPLEX = TRUE , complex Hermitian orbitals will be used.
-
-SCF_EESCALE_MAG
 
 ### `SCF_EESCALE_MAG`
 
@@ -120,12 +114,8 @@ SCF_EESCALE_MAG
 > * **Type**: `INTEGER`
 > * **Default**: `$10000$`
 > * **Options**:
->     * $abcde$
->     * corresponding to
->     * $a.bcde$
+>     * $abcde$: corresponding to $a.bcde$
 > * **Recommendation**: For holomorphic Hartree-Fock orbitals, only the magnitude of the input is used, while for real Hartree-Fock orbitals, the input sign indicates the sign of $\lambda$ .
-
-SCF_EESCALE_ARG
 
 ### `SCF_EESCALE_ARG`
 
@@ -134,7 +124,5 @@ SCF_EESCALE_ARG
 > * **Type**: `INTEGER`
 > * **Default**: `$00000$`
 > * **Options**:
->     * $abcde$
->     * corresponding to
->     * $a.bcde$
+>     * $abcde$: corresponding to $a.bcde$
 > * **Recommendation**: A complex phase angle of $00500$ , meaning $0.0500$ , is usually sufficient to follow a solution safely past the Coulson-Fischer point and onto its complex holomorphic counterpart.

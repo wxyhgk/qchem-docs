@@ -14,8 +14,6 @@ PAO-SCF 计算往往系统性地低估结合能（因为按定义，对原子可
 
 使用 PAO 的计算由以下 *$rem* 变量控制。PAO_METHOD = PAO 启动 PAO-SCF 计算，而用于迭代 PAO 的算法可通过 PAO_ALGORITHM 控制。
 
-PAO_ALGORITHM
-
 ### `PAO_ALGORITHM`
 
 > **用于优化极化原子轨道的算法（参见 PAO_METHOD）**
@@ -28,8 +26,6 @@ PAO_ALGORITHM
 >     * 1
 >     * 使用保守（但较慢）的策略收敛 PAO。
 > * **建议**：无
-
-PAO_METHOD
 
 ### `PAO_METHOD`
 

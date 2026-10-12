@@ -8,8 +8,6 @@ title: "10.10.3 MOProp 模块的作业控制"
 
 通过 *$rem* 变量 MOPROP 指定作业编号即可调用 MOProp 模块。除电学性质外，该模块还可以计算 NMR 化学位移（MOPROP = NMR）；此功能在第 [10.11](sec_magnetic.md) 节中描述。
 
-MOPROP
-
 ### `MOPROP`
 
 > **指定 MOProp 模块的作业编号。**
@@ -17,21 +15,13 @@ MOPROP
 > * **类型**: `STRING`
 > * **默认值**: `0`
 > * **可选值**:
->     * NMR
+>     * `NMR`
 >     * NMR 化学屏蔽张量。
->     * STATIC_POLAR
->     * 静态极化率。
->     * ISSC
->     * 间接核自旋-自旋耦合张量。
->     * DYN_POLAR
->     * 动态极化率。
->     * HYPERPOL
->     * 利用 Wigner 的
->     * $2n+1$
->     * 规则计算一阶超极化率。
+>     * `STATIC_POLAR`: 静态极化率。
+>     * `ISSC`: 间接核自旋-自旋耦合张量。
+>     * `DYN_POLAR`: 动态极化率。
+>     * `HYPERPOL`: 利用 Wigner 的 $2n+1$ 规则计算一阶超极化率。
 > * **建议**: 无
-
-MOPROP_PERTNUM
 
 ### `MOPROP_PERTNUM`
 
@@ -40,13 +30,9 @@ MOPROP_PERTNUM
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 一次性全部处理。
->     * $n$
->     * 分批处理微扰密度。
+>     * `0`: 一次性全部处理。
+>     * $n$: 分批处理微扰密度。
 > * **建议**: 使用默认值。对于大体系，可能需要限制该数目以避免内存耗尽。
-
-MOPROP_CONV_1ST
 
 ### `MOPROP_CONV_1ST`
 
@@ -55,13 +41,8 @@ MOPROP_CONV_1ST
 > * **类型**: `INTEGER`
 > * **默认值**: `6`
 > * **可选值**:
->     * $n<10$
->     * 收敛阈值设为
->     * $10^{-n}$
->     * 。
+>     * $n<10$: 收敛阈值设为 $10^{-n}$。
 > * **建议**: 无
-
-MOPROP_CONV_2ND
 
 ### `MOPROP_CONV_2ND`
 
@@ -70,13 +51,8 @@ MOPROP_CONV_2ND
 > * **类型**: `INTEGER`
 > * **默认值**: `6`
 > * **可选值**:
->     * $n<10$
->     * 收敛阈值设为
->     * $10^{-n}$
->     * 。
+>     * $n<10$: 收敛阈值设为 $10^{-n}$。
 > * **建议**: 无
-
-MOPROP_MAXITER_1ST
 
 ### `MOPROP_MAXITER_1ST`
 
@@ -85,13 +61,9 @@ MOPROP_MAXITER_1ST
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **可选值**:
->     * $n$
->     * 将最大迭代次数设为
->     * $n$
->     * 。
+>     * $n$: 将最大迭代次数设为
+>     * $n$: 。
 > * **建议**: 使用默认值。
-
-MOPROP_MAXITER_2ND
 
 ### `MOPROP_MAXITER_2ND`
 
@@ -100,13 +72,9 @@ MOPROP_MAXITER_2ND
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **可选值**:
->     * $n$
->     * 将最大迭代次数设为
->     * $n$
->     * 。
+>     * $n$: 将最大迭代次数设为
+>     * $n$: 。
 > * **建议**: 使用默认值。
-
-MOPROP_ISSC_PRINT_REDUCED
 
 ### `MOPROP_ISSC_PRINT_REDUCED`
 
@@ -115,17 +83,9 @@ MOPROP_ISSC_PRINT_REDUCED
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不打印
->     * $\mathbf{K}$
->     * 。
->     * TRUE
->     * 打印
->     * $\mathbf{K}$
->     * 。
+>     * `FALSE`: 不打印 $\mathbf{K}$。
+>     * `TRUE`: 打印 $\mathbf{K}$。
 > * **建议**: 无
-
-MOPROP_ISSC_SKIP_FC
 
 ### `MOPROP_ISSC_SKIP_FC`
 
@@ -134,13 +94,9 @@ MOPROP_ISSC_SKIP_FC
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 计算费米接触贡献。
->     * TRUE
->     * 跳过费米接触贡献。
+>     * `FALSE`: 计算费米接触贡献。
+>     * `TRUE`: 跳过费米接触贡献。
 > * **建议**: 无
-
-MOPROP_ISSC_SKIP_SD
 
 ### `MOPROP_ISSC_SKIP_SD`
 
@@ -149,13 +105,9 @@ MOPROP_ISSC_SKIP_SD
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 计算自旋-偶极贡献。
->     * TRUE
->     * 跳过自旋-偶极贡献。
+>     * `FALSE`: 计算自旋-偶极贡献。
+>     * `TRUE`: 跳过自旋-偶极贡献。
 > * **建议**: 无
-
-MOPROP_ISSC_SKIP_PSO
 
 ### `MOPROP_ISSC_SKIP_PSO`
 
@@ -164,13 +116,9 @@ MOPROP_ISSC_SKIP_PSO
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 计算顺磁自旋-轨道贡献。
->     * TRUE
->     * 跳过顺磁自旋-轨道贡献。
+>     * `FALSE`: 计算顺磁自旋-轨道贡献。
+>     * `TRUE`: 跳过顺磁自旋-轨道贡献。
 > * **建议**: 无
-
-MOPROP_ISSC_SKIP_DSO
 
 ### `MOPROP_ISSC_SKIP_DSO`
 
@@ -179,13 +127,9 @@ MOPROP_ISSC_SKIP_DSO
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 计算抗磁自旋-轨道贡献。
->     * TRUE
->     * 跳过抗磁自旋-轨道贡献。
+>     * `FALSE`: 计算抗磁自旋-轨道贡献。
+>     * `TRUE`: 跳过抗磁自旋-轨道贡献。
 > * **建议**: 无
-
-MOPROP_DIIS
 
 ### `MOPROP_DIIS`
 
@@ -194,13 +138,9 @@ MOPROP_DIIS
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **可选值**:
->     * 0
->     * 关闭 DIIS。
->     * 5
->     * 开启 DIIS。
+>     * `0`: 关闭 DIIS。
+>     * `5`: 开启 DIIS。
 > * **建议**: 无
-
-MOPROP_DIIS_DIM_SS
 
 ### `MOPROP_DIIS_DIM_SS`
 
@@ -209,15 +149,10 @@ MOPROP_DIIS_DIM_SS
 > * **类型**: `INTEGER`
 > * **默认值**: `20`
 > * **可选值**:
->     * 0
->     * 不使用 DIIS。
->     * $n$
->     * 使用维数为
->     * $n$
->     * 的子空间。
+>     * `0`: 不使用 DIIS。
+>     * $n$: 使用维数为
+>     * $n$: 的子空间。
 > * **建议**: 无
-
-SAVE_LAST_GPX
 
 ### `SAVE_LAST_GPX`
 
@@ -226,13 +161,9 @@ SAVE_LAST_GPX
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * False
->     * 1
->     * True
+>     * `0`: False
+>     * `1`: True
 > * **建议**: 无
-
-MOPROP_RESTART
 
 ### `MOPROP_RESTART`
 
@@ -241,8 +172,6 @@ MOPROP_RESTART
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 非重启计算。
->     * 1
->     * 使用相同的临时目录（scratch directory）从先前的计算重启。
+>     * `0`: 非重启计算。
+>     * `1`: 使用相同的临时目录（scratch directory）从先前的计算重启。
 > * **建议**: 还需要同时设置 "SCF_GUESS READ" 和 "SKIP_SCFMAN TRUE"，以确保使用同一组分子轨道（MO）。

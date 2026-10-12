@@ -130,8 +130,6 @@ wave functions.
 
 ## 4.5.17.1 Job Control
 
-INTERNAL_STABILITY
-
 ### `INTERNAL_STABILITY`
 
 > **Perform internal stability analysis in GEN_SCFMAN.**
@@ -139,13 +137,9 @@ INTERNAL_STABILITY
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform internal stability analysis after convergence.
->     * TRUE
->     * Perform internal stability analysis and generate the corrected MOs.
+>     * `FALSE`: Do not perform internal stability analysis after convergence.
+>     * `TRUE`: Perform internal stability analysis and generate the corrected MOs.
 > * **Recommendation**: Turn it on when the SCF solution is prone to unstable solutions, especially for open-shell species.
-
-FD_MAT_VEC_PROD
 
 ### `FD_MAT_VEC_PROD`
 
@@ -154,13 +148,9 @@ FD_MAT_VEC_PROD
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE (TRUE when the employed functional contains non-local correlation (except VV10))`
 > * **Options**:
->     * FALSE
->     * Compute Hessian-vector product analytically.
->     * TRUE
->     * Use finite difference to compute Hessian-vector product.
+>     * `FALSE`: Compute Hessian-vector product analytically.
+>     * `TRUE`: Use finite difference to compute Hessian-vector product.
 > * **Recommendation**: Set it to TRUE when analytical Hessian is not available. Note: For simple R and USCF calculations, it can always be set to FALSE , which indicates that only the NLC part will be computed with finite difference (if its analytic orbital hessian is unavailable).
-
-INTERNAL_STABILITY_ITER
 
 ### `INTERNAL_STABILITY_ITER`
 
@@ -170,11 +160,8 @@ INTERNAL_STABILITY_ITER
 > * **Default**: `0 (automatically set to 1 if`
 > * **Options**:
 >     * $n$
->     * $n$
->     * new SCF calculations permitted.
+>     * $n$: new SCF calculations permitted.
 > * **Recommendation**: Give a larger number if 1 is not enough (still unstable).
-
-INTERNAL_STABILITY_DAVIDSON_ITER
 
 ### `INTERNAL_STABILITY_DAVIDSON_ITER`
 
@@ -183,13 +170,9 @@ INTERNAL_STABILITY_DAVIDSON_ITER
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $n$
->     * Perform up to
->     * $n$
->     * Davidson iterations.
+>     * $n$: Perform up to
+>     * $n$: Davidson iterations.
 > * **Recommendation**: Use the default.
-
-INTERNAL_STABILITY_CONV
 
 ### `INTERNAL_STABILITY_CONV`
 
@@ -198,13 +181,8 @@ INTERNAL_STABILITY_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `4 (3 when`
 > * **Options**:
->     * $n$
->     * Terminate Davidson iterations when the norm of the residual vector is below 10
->     * ${}^{-n}$
->     * .
+>     * $n$: Terminate Davidson iterations when the norm of the residual vector is below 10 ${}^{-n}$ .
 > * **Recommendation**: Use the default.
-
-INTERNAL_STABILITY_ROOTS
 
 ### `INTERNAL_STABILITY_ROOTS`
 
@@ -213,10 +191,8 @@ INTERNAL_STABILITY_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * $n$
->     * Solve for
->     * $n$
->     * lowest eigenvalues.
+>     * $n$: Solve for
+>     * $n$: lowest eigenvalues.
 > * **Recommendation**: Use the default.
 
 ???+ example "Example 4.18: Unrestricted SCF calculation of triplet B ${}_{2}$ using B97M-V/6-31g with the GDM

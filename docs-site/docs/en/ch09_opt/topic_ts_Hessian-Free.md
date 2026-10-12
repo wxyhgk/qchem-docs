@@ -33,8 +33,6 @@ more efficient than exact Hessian calculation for substantially large systems.
 At the moment, this method does not support QM/MM or systems with fixed atoms.
 **
 
-GEOM_OPT_CHARAC
-
 ### `GEOM_OPT_CHARAC`
 
 > **Use the finite difference Davidson method to characterize the resulting energy minimum/transition state.**
@@ -42,13 +40,9 @@ GEOM_OPT_CHARAC
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * do not characterize the resulting stationary point.
->     * TRUE
->     * perform a characterization of the stationary point.
+>     * `FALSE`: do not characterize the resulting stationary point.
+>     * `TRUE`: perform a characterization of the stationary point.
 > * **Recommendation**: Set it to TRUE when the character of a stationary point needs to be verified, especially for a transition structure.
-
-GEOM_OPT_CHARAC_CONV
 
 ### `GEOM_OPT_CHARAC_CONV`
 
@@ -57,8 +51,5 @@ GEOM_OPT_CHARAC_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `0 (use the built-in default value 10`
 > * **Options**:
->     * $n$
->     * Set the convergence criterion to 10
->     * ${}^{-n}$
->     * .
+>     * $n$: Set the convergence criterion to 10 ${}^{-n}$ .
 > * **Recommendation**: Use the default. If it fails to converge, consider loosening the criterion with caution.

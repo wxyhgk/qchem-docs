@@ -12,8 +12,6 @@ parameters (thresholds, max. iterations *etc.*) should be set in the *$rem*
 section. PE-ADC supports the excited state analysis
 (STATE_ANALYSIS) carried out by the **libwfa** module.
 
-PE
-
 ### `PE`
 
 > **Turns PE on.**
@@ -21,10 +19,8 @@ PE
 > * **Type**: `BOOLEAN`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Perform a PE calculation.
->     * False
->     * Don’t perform a PE calculation.
+>     * `True`: Perform a PE calculation.
+>     * `False`: Don’t perform a PE calculation.
 > * **Recommendation**: Set the $rem variable to TRUE to start a PE calculation.
 
 **Note: 
@@ -71,10 +67,8 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `BOOLEAN`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Turns DIIS acceleration on.
->     * FALSE
->     * Turns DIIS acceleration off (normal Jacobi solver is used).
+>     * `TRUE`: Turns DIIS acceleration on.
+>     * `FALSE`: Turns DIIS acceleration off (normal Jacobi solver is used).
 > * **Recommendation**: TRUE
 
 ### `CONVERGENCE_INDUCED`
@@ -84,9 +78,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n\leq 12$
->     * Corresponding to
->     * $10^{-n}$
+>     * $n\leq 12$: Corresponding to $10^{-n}$
 > * **Recommendation**: Use the default unless higher accuracy is desired.
 
 ### `MAXITER`
@@ -106,10 +98,8 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Enable border options.
->     * FALSE
->     * Disable border options.
+>     * `TRUE`: Enable border options.
+>     * `FALSE`: Disable border options.
 > * **Recommendation**: None
 
 ### `BORDER_TYPE`
@@ -119,10 +109,8 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `REMOVE`
 > * **Options**:
->     * REMOVE
->     * remove multipole moments/polarizabilities.
->     * REDIST
->     * redistribute multipole moments/polarizabilities.
+>     * `REMOVE`: remove multipole moments/polarizabilities.
+>     * `REDIST`: redistribute multipole moments/polarizabilities.
 > * **Recommendation**: None
 
 ### `BORDER_RMIN`
@@ -132,8 +120,7 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `FLOAT`
 > * **Default**: `2.2`
 > * **Options**:
->     * $r>0$
->     * (Unit depends on BORDER_RMIN_UNIT)
+>     * $r>0$: (Unit depends on BORDER_RMIN_UNIT)
 > * **Recommendation**: None
 
 ### `BORDER_RMIN_UNIT`
@@ -143,10 +130,8 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `AU`
 > * **Options**:
->     * AU
->     * Use atomic units.
->     * AA
->     * Use Angstrom.
+>     * `AU`: Use atomic units.
+>     * `AA`: Use Angstrom.
 > * **Recommendation**: None
 
 ### `BORDER_REDIST_ORDER`
@@ -176,10 +161,8 @@ section. Do not place them in the *$rem* section.
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Redistribute polarizabilities.
->     * FALSE
->     * Remove polarizabilities.
+>     * `TRUE`: Redistribute polarizabilities.
+>     * `FALSE`: Remove polarizabilities.
 > * **Recommendation**: None
 
 ???+ example "Example 11.52: Input for a PE-HF calculation of 4-Nitroaniline in presence of six water

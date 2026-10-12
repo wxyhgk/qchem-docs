@@ -44,8 +44,6 @@ ROHF_DIAG_SCALE_B, if poor convergence behavior is encountered.
 
 ## 4.5.18.1 Job Control
 
-ROSCF_DIAG_SCALE_A
-
 ### `ROSCF_DIAG_SCALE_A`
 
 > **When performing canonical restricted open-shell SCF calculations, scale the open-shell diagonal $\alpha$ Fock matrix block (and, thus, singly occupied $\alpha$ orbital energies) during the SCF iterations in order to mitigate aufbau principle violations in case of poorly converging systems. After convergence, proper canonical orbital energies are restored.**
@@ -53,15 +51,8 @@ ROSCF_DIAG_SCALE_A
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $n$
->     * Scale
->     * $\alpha$
->     * orbital energies by a factor of
->     * $n\cdot 10^{-}2$
->     * .
+>     * $n$: Scale $\alpha$ orbital energies by a factor of $n\cdot 10^{-}2$ .
 > * **Recommendation**: In case of convergence issues, try series of different values, e.g., $\pm 800$ , $\pm 400$ , $\pm 200$ , $\pm 100$ , $\pm 50$ , $\pm 20$ , $\pm 10$ .
-
-ROSCF_DIAG_SCALE_B
 
 ### `ROSCF_DIAG_SCALE_B`
 
@@ -70,10 +61,5 @@ ROSCF_DIAG_SCALE_B
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $n$
->     * Scale
->     * $\beta$
->     * orbital energies by a factor of
->     * $n\cdot 10^{-}2$
->     * .
+>     * $n$: Scale $\beta$ orbital energies by a factor of $n\cdot 10^{-}2$ .
 > * **Recommendation**: See ROSCF_DIAG_SCALE_A for recommendations.

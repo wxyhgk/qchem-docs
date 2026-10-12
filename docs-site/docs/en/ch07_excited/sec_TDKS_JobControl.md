@@ -62,8 +62,6 @@ subsequent **Q-Chem** job, and the scratch directory should be given the same na
 By default, the intermediate results are automatically stored every 1,000 steps. If the job is stopped accidentally before
 reaching the requested number of time steps, it can be easily be restarted from the last saved step.
 
-TDKS_RESTART
-
 ### `TDKS_RESTART`
 
 > **Restart the calculation by continuing the previous job**
@@ -71,10 +69,8 @@ TDKS_RESTART
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * The TDKS calculation continues from the previous calculation.
->     * FALSE
->     * The TDKS calculation starts from the beginning.
+>     * `TRUE`: The TDKS calculation continues from the previous calculation.
+>     * `FALSE`: The TDKS calculation starts from the beginning.
 > * **Recommendation**: None.
 
 ???+ example "Example 7.34: TDKS calculation illustrating restart capability."
@@ -158,14 +154,10 @@ The remaining job control parameters belong in the *$tdks* input section.
 > * **Type**: `STRING`
 > * **Default**: `MMUT`
 > * **Options**:
->     * EULER
->     * Euler method
->     * MMUT
->     * Modified mid-point unitary transformation method
->     * LFLPPC
->     * Linear Fock, linear density predictor/corrector method
->     * EPPC
->     * Exponential density predictor/corrector method
+>     * `EULER`: Euler method
+>     * `MMUT`: Modified mid-point unitary transformation method
+>     * `LFLPPC`: Linear Fock, linear density predictor/corrector method
+>     * `EPPC`: Exponential density predictor/corrector method
 > * **Recommendation**: Use MMUT, LFLPPC, or EPPC. (The Euler method is not recommended.) The two predictor/corrector methods provide stable dynamics using larger time steps as compared to MMUT, and furthermore provide on-the-fly consistency checks on the stability of the dynamics, but these algorithms are more expensive than MMUT on a per-step basis.
 
 ### `PC_Fock_Thresh`
@@ -175,7 +167,7 @@ The remaining job control parameters belong in the *$tdks* input section.
 > * **Type**: `INTEGER`
 > * **Default**: `7 (for`
 > * **Options**:
->     * > 0
+>     * `> 0`
 > * **Recommendation**: None.
 
 ### `PC_Den_Thresh`
@@ -185,7 +177,7 @@ The remaining job control parameters belong in the *$tdks* input section.
 > * **Type**: `INTEGER`
 > * **Default**: `7 (for`
 > * **Options**:
->     * > 0
+>     * `> 0`
 > * **Recommendation**: None.
 
 ### `PC_Max_Iter`
@@ -195,7 +187,7 @@ The remaining job control parameters belong in the *$tdks* input section.
 > * **Type**: `INTEGER`
 > * **Default**: `20`
 > * **Options**:
->     * > 0
+>     * `> 0`
 > * **Recommendation**: None.
 
 ## 7.4.2.2 Perturbing Field
@@ -214,19 +206,12 @@ field are available, and this choice is specified by means of the **Field_Type**
 > * **Type**: `STRING`
 > * **Default**: `DELTA`
 > * **Options**:
->     * DELTA
->     * $\delta$
->     * -function kick
->     * CW
->     * continuous-wave field
->     * IMPULSE
->     * impulse field (Gaussian envelope)
->     * IMPULSE2
->     * impulse field (cosine-squared envelope)
->     * STATIC
->     * static field
->     * NONE
->     * no field
+>     * `DELTA`: $\delta$ -function kick
+>     * `CW`: continuous-wave field
+>     * `IMPULSE`: impulse field (Gaussian envelope)
+>     * `IMPULSE2`: impulse field (cosine-squared envelope)
+>     * `STATIC`: static field
+>     * `NONE`: no field
 > * **Recommendation**: None.
 
 These choices for **Field_Type** can be summarized as follows.
@@ -283,7 +268,7 @@ in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set using **Field_Vec
 > * **Type**: `VECTOR`
 > * **Default**: `1.0 1.0 1.0`
 > * **Options**:
->     * NONE
+>     * `NONE`
 > * **Recommendation**: NONE
 
 ### `Field_Amp`
@@ -293,7 +278,7 @@ in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set using **Field_Vec
 > * **Type**: `DOUBLE`
 > * **Default**: `0.0001`
 > * **Options**:
->     * NONE
+>     * `NONE`
 > * **Recommendation**: Values of $10^{-3}$ – $10^{-4}$ a.u. correspond to weak fields and are appropriate for simulating absorption spectra ( i.e. , within the linear-response regime but without the root-by-root calculation that is required for LR-TDDFT. Larger field amplitudes correspond to strong-field dynamics, as for example in second harmonic generation.
 
 ### `Field_Frequency`
@@ -303,7 +288,7 @@ in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set using **Field_Vec
 > * **Type**: `DOUBLE`
 > * **Default**: `0.001`
 > * **Options**:
->     * NONE
+>     * `NONE`
 > * **Recommendation**: The use of energy units is for convenience when using the TDKS to generate broadband spectra.
 
 ### `Field_Peak`
@@ -313,7 +298,7 @@ in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set using **Field_Vec
 > * **Type**: `DOUBLE`
 > * **Default**: `0.0`
 > * **Options**:
->     * NONE
+>     * `NONE`
 > * **Recommendation**: NONE
 
 ### `Field_Tau`
@@ -323,7 +308,7 @@ in the *$tdks* section. The direction $\mathbf{A}_{0}$ is set using **Field_Vec
 > * **Type**: `DOUBLE`
 > * **Default**: `0.7`
 > * **Options**:
->     * NONE
+>     * `NONE`
 > * **Recommendation**: NONE
 
 ## 7.4.2.3 Complex Absorbing Potential
@@ -393,10 +378,8 @@ The following variables in the *$tdks* input section control the use of a CAP i
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * TRUE
->     * Use a CAP
->     * FALSE
->     * Do not use a CAP
+>     * `TRUE`: Use a CAP
+>     * `FALSE`: Do not use a CAP
 > * **Recommendation**: None.
 
 ### `CAP_R0`
@@ -406,7 +389,7 @@ The following variables in the *$tdks* input section control the use of a CAP i
 > * **Type**: `DOUBLE`
 > * **Default**: `0`
 > * **Options**:
->     * > 0
+>     * `> 0`
 > * **Recommendation**: A value greater than twice the largest atomic van der Waals radius is recommended and should be tested as needed.
 
 ### `CAP_Eta`
@@ -416,5 +399,5 @@ The following variables in the *$tdks* input section control the use of a CAP i
 > * **Type**: `DOUBLE`
 > * **Default**: `1.0`
 > * **Options**:
->     * > 0
+>     * `> 0`
 > * **Recommendation**: Values of 4.0–5.0 are typical but testing is recommended.

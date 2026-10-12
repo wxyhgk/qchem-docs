@@ -54,8 +54,6 @@ CC_SP_T_CONV（$T$ 与 $\Lambda$ 振幅的阈值）
 分别需要使用更大的步长或更大的场强。
 **
 
-CC_SINGLE_PREC
-
 ### `CC_SINGLE_PREC`
 
 > **CCSD 计算的精度选择。仅在 CCMAN2 中可用。**
@@ -68,8 +66,6 @@ CC_SINGLE_PREC
 >     * 2
 >     * 先进行单精度计算，随后执行双精度清理（clean-up）迭代
 > * **建议**：使用单精度时，请勿设置过于严格的收敛阈值
-
-CC_SP_T_CONV
 
 ### `CC_SP_T_CONV`
 
@@ -84,8 +80,6 @@ CC_SP_T_CONV
 >     * 收敛判据
 > * **建议**：在纯单精度计算中，设为 4 以与双精度的默认阈值保持一致。与清理（clean-up）版本一起使用时，它应小于双精度阈值，以免引入额外的迭代。
 
-CC_SP_E_CONV
-
 ### `CC_SP_E_CONV`
 
 > **CCSD 计算中单精度下的能量收敛判据。**
@@ -99,8 +93,6 @@ CC_SP_E_CONV
 >     * 收敛判据
 > * **建议**：在纯单精度计算中，设为 6 以与双精度的默认阈值保持一致。与清理（clean-up）版本一起使用时，它应小于双精度阈值，以免引入额外的迭代。
 
-CC_SP_DM
-
 ### `CC_SP_DM`
 
 > **CCSD 与 EOM-CCSD 中间量、密度矩阵、梯度以及 $\langle\hat{S}^{2}\rangle$ 计算的精度选择。**
@@ -112,8 +104,6 @@ CC_SP_DM
 >     * 单精度计算
 > * **建议**：无（NONE）
 
-CC_ERASE_DP_INTEGRALS
-
 ### `CC_ERASE_DP_INTEGRALS`
 
 > **控制在单精度计算中是否存储以双精度计算所得的必要对象。**
@@ -124,8 +114,6 @@ CC_ERASE_DP_INTEGRALS
 >     * 1
 >     * 不存储
 > * **建议**：如果打算在双精度下执行清理（clean-up），请勿清除积分。
-
-LIBPT_MIXED_PRECISION
 
 ### `LIBPT_MIXED_PRECISION`
 

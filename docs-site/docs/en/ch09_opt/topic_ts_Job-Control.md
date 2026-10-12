@@ -23,8 +23,6 @@ they have similar matching variables/controls. The decreasing order of
 precedence for setting of rem variables are as follows:
 1) *$geom_opt* variables, 2) GEOM_OPT variables, 3) Default.
 
-JOBTYPE
-
 ### `JOBTYPE`
 
 > **Specifies the calculation.**
@@ -32,15 +30,10 @@ JOBTYPE
 > * **Type**: `STRING`
 > * **Default**: `Default is single-point, which should be changed to one of the following options.`
 > * **Options**:
->     * OPT
->     * Equilibrium structure optimization.
->     * TS
->     * Transition structure optimization.
->     * RPATH
->     * Intrinsic reaction path following.
+>     * `OPT`: Equilibrium structure optimization.
+>     * `TS`: Transition structure optimization.
+>     * `RPATH`: Intrinsic reaction path following.
 > * **Recommendation**: Application-dependent.
-
-GEOM_OPT_DRIVER
 
 ### `GEOM_OPT_DRIVER`
 
@@ -49,8 +42,6 @@ GEOM_OPT_DRIVER
 > * **Type**: `STRING`
 > * **Default**: `LIBOPT3`
 > * **Options**:
->     * OPTIMIZE
->     * Use the original optimization original driver.
->     * LIBOPT3
->     * Use the new driver.
+>     * `OPTIMIZE`: Use the original optimization original driver.
+>     * `LIBOPT3`: Use the new driver.
 > * **Recommendation**: Note that the new driver is still under active development.

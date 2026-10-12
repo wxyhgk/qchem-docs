@@ -64,8 +64,6 @@ the *$rem* variable SCFMI_FREEZE_SS. Such a calculation can be
 interpreted as an active fragment being embedded in a frozen environment where
 the interaction between them is treated quantum mechanically.
 
-SCFMI_MODE
-
 ### `SCFMI_MODE`
 
 > **Determine whether generalized SCF-MI is used and also the property of the working basis.**
@@ -73,15 +71,10 @@ SCFMI_MODE
 > * **Type**: `INTEGER`
 > * **Default**: `0 (“1” is used by basic “EDA2” calculations).`
 > * **Options**:
->     * 0
->     * AO-block based SCF-MI (the original definition of ALMOs).
->     * 1
->     * Generalized SCF-MI with basis vectors that are non-orthogonal between fragments.
->     * 2
->     * Generalized SCF-MI with basis vectors that are orthogonal between fragments.
+>     * `0`: AO-block based SCF-MI (the original definition of ALMOs).
+>     * `1`: Generalized SCF-MI with basis vectors that are non-orthogonal between fragments.
+>     * `2`: Generalized SCF-MI with basis vectors that are orthogonal between fragments.
 > * **Recommendation**: None
-
-SCFMI_FREEZE_SS
 
 ### `SCFMI_FREEZE_SS`
 
@@ -90,10 +83,8 @@ SCFMI_FREEZE_SS
 > * **Type**: `INTEGER`
 > * **Default**: `0 (all fragments are active)`
 > * **Options**:
->     * $n$
->     * Freeze the first
->     * $n$
->     * fragments.
+>     * $n$: Freeze the first
+>     * $n$: fragments.
 > * **Recommendation**: None
 
 ???+ example "Example 12.12: Generalized SCF-MI calculation for the water dimer with single Roothaan-step

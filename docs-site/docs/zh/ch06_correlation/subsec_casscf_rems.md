@@ -6,8 +6,6 @@ title: "6.20.2 CAS-CI 与 CASSCF 作业控制选项"
 
 （2026 年 7 月 4 日）
 
-CAS_METHOD
-
 ### `CAS_METHOD`
 
 > **指示是否请求轨道优化。**
@@ -23,8 +21,6 @@ CAS_METHOD
 >     * CASSCF（进行轨道优化）
 > * **建议**：为获得最佳精度请使用 2，但对于大活性空间，此类计算可能变得不可行。
 
-CAS_M_S
-
 ### `CAS_M_S`
 
 > **CAS 波函数中期望的非配对电子数。**
@@ -36,8 +32,6 @@ CAS_M_S
 >     * 对于具有
 >     * $N$
 >     * 个非配对电子的波函数
-
-CAS_N_ELEC
 
 ### `CAS_N_ELEC`
 
@@ -54,8 +48,6 @@ CAS_N_ELEC
 >     * 在活性空间中包含所有电子
 > * **建议**：对给定体系使用尽可能小的活性空间。
 
-CAS_N_ORB
-
 ### `CAS_N_ORB`
 
 > **指定活性轨道数。**
@@ -71,8 +63,6 @@ CAS_N_ORB
 >     * 在活性空间中包含所有轨道
 > * **建议**：对给定体系使用尽可能小的活性空间。
 
-CAS_N_ROOTS
-
 ### `CAS_N_ROOTS`
 
 > **指定要求解的电子态数目。**
@@ -85,8 +75,6 @@ CAS_N_ROOTS
 >     * $N$
 >     * 个根（本征值）
 
-CAS_THRESH
-
 ### `CAS_THRESH`
 
 > **指定包含在 CAS 哈密顿量中的矩阵元阈值。**
@@ -97,8 +85,6 @@ CAS_THRESH
 >     * $N$
 >     * 对应阈值为
 >     * $10^{-N}$
-
-CAS_SAVE_NAT_ORBS
 
 ### `CAS_SAVE_NAT_ORBS`
 
@@ -112,8 +98,6 @@ CAS_SAVE_NAT_ORBS
 >     * FALSE
 >     * 不保存 CAS 自然轨道
 
-MAX_CASSCF_CYCLES
-
 ### `MAX_CASSCF_CYCLES`
 
 > **CASSCF 轨道优化的最大循环次数。**
@@ -124,8 +108,6 @@ MAX_CASSCF_CYCLES
 >     * $N$
 >     * 将最大优化循环次数设置为
 >     * $N$
-
-CAS_USE_RI
 
 ### `CAS_USE_RI`
 
@@ -140,8 +122,6 @@ CAS_USE_RI
 >     * 对双电子积分使用 RI 近似
 > * **建议**：解析积分更精确，RI 积分更快。
 
-CAS_DAVIDSON_TOL
-
 ### `CAS_DAVIDSON_TOL`
 
 > **指定 CAS 中所用 Davidson 求解器的收敛容限。**
@@ -153,8 +133,6 @@ CAS_DAVIDSON_TOL
 >     * 对应阈值为
 >     * $10^{-N}$
 > * **建议**：默认值在大多数情况下均已适用。
-
-CAS_DAVIDSON_MAXVECTORS
 
 ### `CAS_DAVIDSON_MAXVECTORS`
 
@@ -169,8 +147,6 @@ CAS_DAVIDSON_MAXVECTORS
 >     * 加上
 >     * CAS_N_ROOTS
 > * **建议**：默认值在大多数情况下均已适用。
-
-CAS_SOLVER
 
 ### `CAS_SOLVER`
 
@@ -187,8 +163,6 @@ CAS_SOLVER
 >     * 节）
 >     * 3
 >     * 截断 CI（CIS、CISD、CISDT 等）
-
-TRUNC_CI_LEVEL
 
 ### `TRUNC_CI_LEVEL`
 

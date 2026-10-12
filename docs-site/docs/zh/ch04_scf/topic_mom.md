@@ -12,8 +12,6 @@ title: "4.5.14 最大重叠方法（MOM）"
 
 与 MOM 相关的 *$rem* 变量完整列表如下：
 
-MOM_PRINT
-
 ### `MOM_PRINT`
 
 > **控制 MOM 过程内部是否输出打印信息。**
@@ -21,13 +19,9 @@ MOM_PRINT
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 关闭打印输出
->     * TRUE
->     * 开启打印输出。
+>     * `FALSE`: 关闭打印输出
+>     * `TRUE`: 开启打印输出。
 > * **建议**: 无
-
-MOM_START
 
 ### `MOM_START`
 
@@ -36,14 +30,9 @@ MOM_START
 > * **类型**: `INTEGER`
 > * **默认值**: `0 (FALSE)`
 > * **可选值**:
->     * 0 (FALSE)
->     * 不使用 MOM
->     * $n$
->     * MOM 从第 $n$ 步循环开始启用
->     * .
+>     * `0 (FALSE)`: 不使用 MOM
+>     * $n$: MOM 从第 $n$ 步循环开始启用 .
 > * **建议**: 若希望保留初始轨道，设置为 1。若要用 MOM 辅助收敛，应先运行一次不使用 MOM 的 SCF，以确定 SCF 从哪一步开始振荡，并将 MOM 设置为在振荡开始之前稍早处启用。
-
-MOM_METHOD
 
 ### `MOM_METHOD`
 
@@ -52,10 +41,8 @@ MOM_METHOD
 > * **类型**: `INTEGER`
 > * **默认值**: `MOM`
 > * **可选值**:
->     * MOM
->     * 最大化与上一步 SCF 循环轨道的重叠度。
->     * IMOM
->     * 最大化与初始猜测（initial guess）轨道的重叠度。
+>     * `MOM`: 最大化与上一步 SCF 循环轨道的重叠度。
+>     * `IMOM`: 最大化与初始猜测（initial guess）轨道的重叠度。
 > * **建议**: 若能获得合适的猜测轨道，则 IMOM 可以更可靠地收敛到所需解。75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , 第 1501 页。链接
 
 ???+ example "示例 4.4.17：一个演示如何收敛 DMX 的 ${}^{3}\!A_{2}$ 态 ROHF 计算的例子。注意其中从先前的闭壳层（closed-shell）计算读入轨道，以及使用 MOM 来维持轨道占据。若不使用 MOM，得到的是 ${}^{3}B_{1}$ 态。"

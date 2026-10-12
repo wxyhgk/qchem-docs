@@ -29,8 +29,6 @@ In some cases, it may be useful to print out the atomic Becke populations that
 are defined by these atomic cell functions. Becke population analysis may be
 requested by setting POP_BECKE to TRUE in the input file.
 
-POP_BECKE
-
 ### `POP_BECKE`
 
 > **Controls the printing of atomic Becke populations.**
@@ -38,10 +36,8 @@ POP_BECKE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Print atomic Becke populations.
->     * FALSE
->     * Do not print atomic Becke populations.
+>     * `TRUE`: Print atomic Becke populations.
+>     * `FALSE`: Do not print atomic Becke populations.
 > * **Recommendation**: None
 
 The default quadrature scheme uses atomic cell functions that intersect
@@ -60,8 +56,6 @@ Slater[[1268]](../bib_references/bib.md#bib1321)
  and the *ab initio*-derived weights
 due to Pacios.[[1034]](../bib_references/bib.md#bib1077)
 
-BECKE_SHIFT
-
 ### `BECKE_SHIFT`
 
 > **Controls atomic cell shifting in determination of Becke weights.**
@@ -69,15 +63,9 @@ BECKE_SHIFT
 > * **Type**: `STRING`
 > * **Default**: `BRAGG_SLATER`
 > * **Options**:
->     * UNSHIFTED
->     * Use Becke weighting without atomic size corrections,
->     * based on bond midpoints.
->     * BRAGG_SLATER
->     * Use the empirical radii introduced by Bragg and Slater.
->     * UNIVERSAL_DENSITY
->     * Use the
->     * ab initio
->     * radii introduced by Pacios.
+>     * `UNSHIFTED`: Use Becke weighting without atomic size corrections, based on bond midpoints.
+>     * `BRAGG_SLATER`: Use the empirical radii introduced by Bragg and Slater.
+>     * `UNIVERSAL_DENSITY`: Use the ab initio radii introduced by Pacios.
 > * **Recommendation**: If interested in the partitioning of the default atomic quadrature, use UNSHIFTED . If using for physical interpretation, choose BRAGG_SLATER or UNIVERSAL_DENSITY . All cDFT calculations and calculations where POP_BECKE = TRUE will default to BRAGG_SLATER radii, otherwise the default grid is UNSHIFTED .
 
 ## Fragment-Based Hirshfeld Partition:
@@ -102,8 +90,6 @@ In order to apply FBH partitioning, one must define fragments within the *$molec
 to host the constraints, but the input for the *$cdft* section remains unchanged and still applies
 constraints on a per-atom basis.
 
-CDFT_POP
-
 ### `CDFT_POP`
 
 > **Sets the charge partitioning scheme for cDFT or cDFT-CI jobs.**
@@ -111,8 +97,6 @@ CDFT_POP
 > * **Type**: `STRING`
 > * **Default**: `BECKE`
 > * **Options**:
->     * BECKE
->     * Linear combination of atomic Becke functions
->     * FBH
->     * Fragment-based Hirshfeld partition
+>     * `BECKE`: Linear combination of atomic Becke functions
+>     * `FBH`: Fragment-based Hirshfeld partition
 > * **Recommendation**: None

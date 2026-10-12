@@ -10,8 +10,6 @@ John Parkhill 与伯克利分校的 Head-Gordon 教授合作，开发了一类�
 
 在实现过程中，非局域耦合簇模型也被实现至 ${\hat{T}}_{6}$。由于其算法是显式稀疏的，相对于现有 CCSD 实现而言其计算代价要高得多（绝不应用来替代现有的 CCMAN 代码），但这一能力可能对开发用途有价值，且在计算可行的情况下，高于 CCSDTQ 的模型具有极高的精度。若要使用 PQ、PH、它们的含动态关联的"+SD"版本，或这套机器生成的簇代码，请设置 METHOD = MGC。
 
-MGC_AMODEL
-
 ### `MGC_AMODEL`
 
 > **近似簇模型的选择。**
@@ -30,8 +28,6 @@ MGC_AMODEL
 >     * 对模型的多参考组态耦合簇（Multi-Reference Coupled Cluster, MR-CC）版本。（实验性）
 > * **建议**：无
 
-MGC_NLPAIRS
-
 ### `MGC_NLPAIRS`
 
 > **振幅上的局域对数目。**
@@ -42,8 +38,6 @@ MGC_NLPAIRS
 >     * 必须大于 1，其对应 PP 模型。
 >     * PQ 取 2，PH 取 3。
 > * **建议**：无
-
-MGC_AMPS
 
 ### `MGC_AMPS`
 
@@ -59,8 +53,6 @@ MGC_AMPS
 >     * 123456，一个已排序的整数列表，对应每一个将被迭代的振幅。PQ 选择 1234，PH 选择 123456
 > * **建议**：无
 
-MGC_LOCALINTS
-
 ### `MGC_LOCALINTS`
 
 > **对积分施加的对过滤。**
@@ -70,8 +62,6 @@ MGC_LOCALINTS
 > * **选项**：
 >     * 对双电子积分施加对过滤，可显著降低计算代价。对于大于 1 的对局域性通常很有用。
 > * **建议**：无
-
-MGC_LOCALINTER
 
 ### `MGC_LOCALINTER`
 

@@ -10,8 +10,6 @@ For MECP optimization, set MECP_OPT = TRUE in the *$rem*
 section, and note that the *$derivative_coupling* input section discussed in
 Section [9.8.2](subsec_deriv-couple-jobcontrol.md) is not necessary in this case.
 
-MECP_OPT
-
 ### `MECP_OPT`
 
 > **Determines whether we are doing MECP optimizations.**
@@ -19,13 +17,9 @@ MECP_OPT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Do MECP optimization.
->     * FALSE
->     * Do not do MECP optimization.
+>     * `TRUE`: Do MECP optimization.
+>     * `FALSE`: Do not do MECP optimization.
 > * **Recommendation**: None.
-
-MECP_METHODS
 
 ### `MECP_METHODS`
 
@@ -34,15 +28,10 @@ MECP_METHODS
 > * **Type**: `STRING`
 > * **Default**: `BRANCHING_PLANE`
 > * **Options**:
->     * BRANCHING_PLANE
->     * Use the branching-plane updating method.
->     * MECP_DIRECT
->     * Use the direct method.
->     * PENALTY_FUNCTION
->     * Use the penalty-constrained method.
+>     * `BRANCHING_PLANE`: Use the branching-plane updating method.
+>     * `MECP_DIRECT`: Use the direct method.
+>     * `PENALTY_FUNCTION`: Use the penalty-constrained method.
 > * **Recommendation**: The direct method is stable for small molecules or molecules with high symmetry. The branching-plane updating method is more efficient for larger molecules but does not work if the two states have different symmetries. If using the branching-plane updating method, GEOM_OPT_COORDS must be set to 0 in the $rem section, as this algorithm is available in Cartesian coordinates only. The penalty-constrained method converges slowly and is suggested only if other methods fail.
-
-MECP_STATE1
 
 ### `MECP_STATE1`
 
@@ -51,21 +40,8 @@ MECP_STATE1
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `None`
 > * **Options**:
->     * [
->     * $i$
->     * ,
->     * $j$
->     * ]
->     * Find the
->     * $j$
->     * th excited state with the total spin
->     * $i$
->     * ;
->     * $j=0$
->     * means the SCF ground state.
+>     * `[`: $i$ , $j$ ] Find the $j$ th excited state with the total spin $i$ ; $j=0$ means the SCF ground state.
 > * **Recommendation**: $i$ is ignored for restricted calculations; for unrestricted calculations, $i$ can only be 0 or 1.
-
-MECP_STATE2
 
 ### `MECP_STATE2`
 
@@ -74,21 +50,8 @@ MECP_STATE2
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `None`
 > * **Options**:
->     * [
->     * $i$
->     * ,
->     * $j$
->     * ]
->     * Find the
->     * $j$
->     * th excited state with the total spin
->     * $i$
->     * ;
->     * $j=0$
->     * means the SCF ground state.
+>     * `[`: $i$ , $j$ ] Find the $j$ th excited state with the total spin $i$ ; $j=0$ means the SCF ground state.
 > * **Recommendation**: $i$ is ignored for restricted calculations; for unrestricted calculations, $i$ can only be 0 or 1.
-
-CIS_S2_THRESH
 
 ### `CIS_S2_THRESH`
 
@@ -97,14 +60,8 @@ CIS_S2_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `120`
 > * **Options**:
->     * $n$
->     * Sets the
->     * $\langle\hat{S}^{2}\rangle$
->     * threshold to
->     * $n/100$
+>     * $n$: Sets the $\langle\hat{S}^{2}\rangle$ threshold to $n/100$
 > * **Recommendation**: For the default case, states with $\langle\hat{S}^{2}\rangle>1.2$ are treated as triplet states and other states are treated as singlets.
-
-MECP_PROJ_HESS
 
 ### `MECP_PROJ_HESS`
 
@@ -113,8 +70,8 @@ MECP_PROJ_HESS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **Recommendation**: Use the default.
 
 ???+ example "Example 9.29: MECP optimization of an intersection between the S ${}_{2}$ and S ${}_{3}$ states of

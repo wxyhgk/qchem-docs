@@ -122,8 +122,6 @@ $\Delta$ 的矩阵元是代表电子自由度的动力学变量。
 初始速度必须通过 *$velocity* 段或下文描述的 AIMD_INIT_VELOC 关键字来指定。
 此外，任何从头算分子动力学任务都必须指定以下 *$rem* 变量：
 
-AIMD_METHOD
-
 ### `AIMD_METHOD`
 
 > **选择从头算分子动力学算法。**
@@ -131,15 +129,10 @@ AIMD_METHOD
 > * **类型**: `STRING`
 > * **默认值**: `BOMD`
 > * **选项**:
->     * BOMD
->     * 玻恩-奥本海默分子动力学（Born-Oppenheimer molecular dynamics）。
->     * CURVY
->     * 曲步扩展拉格朗日分子动力学（Curvy-steps Extended Lagrangian molecular dynamics）。
->     * QCMD
->     * Meyer-Miller 非绝热分子动力学（Meyer-Miller nonadiabatic molecular dynamics）。
+>     * `BOMD`: 玻恩-奥本海默分子动力学（Born-Oppenheimer molecular dynamics）。
+>     * `CURVY`: 曲步扩展拉格朗日分子动力学（Curvy-steps Extended Lagrangian molecular dynamics）。
+>     * `QCMD`: Meyer-Miller 非绝热分子动力学（Meyer-Miller nonadiabatic molecular dynamics）。
 > * **建议**: BOMD 在能量守恒可接受的条件下产生精确的经典分子动力学。ELMD 是对精确经典动力学的一种近似，其有效性应针对所关心的性质进行检验。QCMD 启动 Meyer-Miller 非绝热动力学方法，包括对称经典方法（symmetric quasiclassical approach）或传统的 Ehrenfest 方法。
-
-TIME_STEP
 
 ### `TIME_STEP`
 
@@ -151,8 +144,6 @@ TIME_STEP
 >     * 由用户指定。
 > * **建议**: 较小的时间步长带来更好的能量守恒；时间步长过大可能导致任务完全失败。在能量守恒可接受的前提下，尽可能增大时间步长。
 
-AIMD_TIME_STEP_CONVERSION
-
 ### `AIMD_TIME_STEP_CONVERSION`
 
 > **修改分子动力学的时间步长以提高粒度。**
@@ -160,15 +151,9 @@ AIMD_TIME_STEP_CONVERSION
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * $n$
->     * 分子动力学时间步长为
->     * TIME_STEP
->     * /
->     * $n$
->     * a.u.
+>     * $n$: 分子动力学时间步长为 TIME_STEP /
+>     * $n$: a.u.
 > * **建议**: 无
-
-AIMD_STEPS
 
 ### `AIMD_STEPS`
 
@@ -204,8 +189,6 @@ Fock 矩阵外推可以显著减少每个时间步所需的 SCF 迭代次数，�
 
 通过为 $N$ 和 $M$ 指定数值来请求 Fock 矩阵外推，形式为以下两个 *$rem* 变量：
 
-FOCK_EXTRAP_ORDER
-
 ### `FOCK_EXTRAP_ORDER`
 
 > **指定 Fock 矩阵外推的多项式阶数 $N$。**
@@ -213,15 +196,8 @@ FOCK_EXTRAP_ORDER
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $N$
->     * 使用
->     * $N$
->     * 阶多项式进行外推（
->     * $N>0$
->     * ）。
+>     * $N$: 使用 $N$ 阶多项式进行外推（$N>0$）。
 > * **建议**: 无
-
-FOCK_EXTRAP_POINTS
 
 ### `FOCK_EXTRAP_POINTS`
 
@@ -230,11 +206,7 @@ FOCK_EXTRAP_POINTS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $M$
->     * 保存
->     * $M$
->     * 个 Fock 矩阵用于外推
->     * $(M>N)$
+>     * $M$: 保存 $M$ 个 Fock 矩阵用于外推 $(M>N)$
 > * **建议**: 到一定程度为止，保留更多 Fock 矩阵的高阶外推比低阶外推更快且能量守恒更好。在许多情况下，方案（$N$ = 6，$M$ = 12）配合 SCF_CONVERGENCE = 6，可在保持能量守恒的同时节省约 50% 的计算成本。
 
 当使用轨道未经优化的底层电子结构方法（如 MP2）计算核力时，
@@ -245,8 +217,6 @@ FOCK_EXTRAP_POINTS
 [[1304]](../bib_references/bib.md#bib1360)，
 且 $Z$ 矢量（响应）外推的语法与 Fock 外推类似。
 
-Z_EXTRAP_ORDER
-
 ### `Z_EXTRAP_ORDER`
 
 > **指定 $Z$ 矢量外推的多项式阶数 $N$。**
@@ -254,15 +224,8 @@ Z_EXTRAP_ORDER
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $N$
->     * 使用
->     * $N$
->     * 阶多项式进行外推（
->     * $N>0$
->     * ）。
+>     * $N$: 使用 $N$ 阶多项式进行外推（$N>0$）。
 > * **建议**: 无
-
-Z_EXTRAP_POINTS
 
 ### `Z_EXTRAP_POINTS`
 
@@ -271,13 +234,7 @@ Z_EXTRAP_POINTS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $M$
->     * 保存
->     * $M$
->     * 个先前的
->     * $Z$
->     * 矢量用于外推
->     * $(M>N)$
+>     * $M$: 保存 $M$ 个先前的 $Z$ 矢量用于外推 $(M>N)$
 > * **建议**: 在使用默认 $Z$ 矢量收敛设置的情况下，$(M,N)=(4,2)$ 外推被证明能提供最大的加速。在该设置下，迭代次数可减少 2–3 倍。
 
 假设能量守恒良好，BOMD 计算代表在玻恩-奥本海默（Born-Oppenheimer）势能面上的
@@ -323,8 +280,6 @@ ELMD 方法是否明显更高效已不再清楚[[559]](../bib_references/bib.md#
 
 ELMD 任务需要以下 *$rem* 变量：
 
-AIMD_FICT_MASS
-
 ### `AIMD_FICT_MASS`
 
 > **以原子单位指定虚拟电子质量 $\mu$ 的值，其中 $\mu$ 的量纲为（能量）$\times$（时间）${}^{2}$。**
@@ -334,8 +289,6 @@ AIMD_FICT_MASS
 > * **选项**:
 >     * 由用户指定
 > * **建议**: 在测试计算中使用了 50–200 a.u. 范围内的值；相关示例与讨论参见文献 558 Herbert J. M., Head-Gordon M. J. Chem. Phys. (2004), 121, pp. 11542. Link。
-
-AIMD_PRINT
 
 ### `AIMD_PRINT`
 

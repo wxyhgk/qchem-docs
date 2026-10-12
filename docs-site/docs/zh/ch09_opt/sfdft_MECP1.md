@@ -8,8 +8,6 @@ title: "9.8.4 作业控制与示例"
 
 进行 MECP（最小能量交叉点，Minimum Energy Crossing Point）优化时，在 *$rem* 区段中设置 MECP_OPT = TRUE，并注意本例中不需要第 [9.8.2](subsec_deriv-couple-jobcontrol.md) 节讨论的 *$derivative_coupling* 输入区段。
 
-MECP_OPT
-
 ### `MECP_OPT`
 
 > **决定是否进行 MECP 优化。**
@@ -17,13 +15,9 @@ MECP_OPT
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 进行 MECP 优化。
->     * FALSE
->     * 不进行 MECP 优化。
+>     * `TRUE`: 进行 MECP 优化。
+>     * `FALSE`: 不进行 MECP 优化。
 > * **建议**: 无。
-
-MECP_METHODS
 
 ### `MECP_METHODS`
 
@@ -32,15 +26,10 @@ MECP_METHODS
 > * **类型**: `STRING`
 > * **默认值**: `BRANCHING_PLANE`
 > * **选项**:
->     * BRANCHING_PLANE
->     * 使用分支平面（branching-plane）更新方法。
->     * MECP_DIRECT
->     * 使用直接法（direct method）。
->     * PENALTY_FUNCTION
->     * 使用罚约束（penalty-constrained）方法。
+>     * `BRANCHING_PLANE`: 使用分支平面（branching-plane）更新方法。
+>     * `MECP_DIRECT`: 使用直接法（direct method）。
+>     * `PENALTY_FUNCTION`: 使用罚约束（penalty-constrained）方法。
 > * **建议**: 直接法对于小分子或高对称性分子是稳定的。分支平面更新方法对于较大分子更高效，但如果两个态具有不同的对称性则无法使用。若使用分支平面更新方法，必须在 $rem 区段中将 GEOM_OPT_COORDS 设置为 0，因为该算法仅在笛卡尔坐标下可用。罚约束方法收敛缓慢，仅建议在其他方法失败时使用。
-
-MECP_STATE1
 
 ### `MECP_STATE1`
 
@@ -49,21 +38,8 @@ MECP_STATE1
 > * **类型**: `INTEGER/INTEGER ARRAY`
 > * **默认值**: `None`
 > * **选项**:
->     * [
->     * $i$
->     * ,
->     * $j$
->     * ]
->     * 查找总自旋为
->     * $i$
->     * 的第
->     * $j$
->     * 个激发态；
->     * $j=0$
->     * 表示 SCF 基态。
+>     * `[`: $i$ , $j$ ] 查找总自旋为 $i$ 的第 $j$ 个激发态； $j=0$ 表示 SCF 基态。
 > * **建议**: 在受限（restricted）计算中 $i$ 被忽略；在非受限（unrestricted）计算中，$i$ 只能取 0 或 1。
-
-MECP_STATE2
 
 ### `MECP_STATE2`
 
@@ -72,21 +48,8 @@ MECP_STATE2
 > * **类型**: `INTEGER/INTEGER ARRAY`
 > * **默认值**: `None`
 > * **选项**:
->     * [
->     * $i$
->     * ,
->     * $j$
->     * ]
->     * 查找总自旋为
->     * $i$
->     * 的第
->     * $j$
->     * 个激发态；
->     * $j=0$
->     * 表示 SCF 基态。
+>     * `[`: $i$ , $j$ ] 查找总自旋为 $i$ 的第 $j$ 个激发态； $j=0$ 表示 SCF 基态。
 > * **建议**: 在受限（restricted）计算中 $i$ 被忽略；在非受限（unrestricted）计算中，$i$ 只能取 0 或 1。
-
-CIS_S2_THRESH
 
 ### `CIS_S2_THRESH`
 
@@ -95,14 +58,8 @@ CIS_S2_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `120`
 > * **选项**:
->     * $n$
->     * 将
->     * $\langle\hat{S}^{2}\rangle$
->     * 阈值设置为
->     * $n/100$
+>     * $n$: 将 $\langle\hat{S}^{2}\rangle$ 阈值设置为 $n/100$
 > * **建议**: 在默认情况下，$\langle\hat{S}^{2}\rangle>1.2$ 的态被视为三重态，其余态被视为单重态。
-
-MECP_PROJ_HESS
 
 ### `MECP_PROJ_HESS`
 
@@ -111,8 +68,8 @@ MECP_PROJ_HESS
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **建议**: 使用默认值。
 
 ???+ example "示例 9.29: 使用直接法在 SOS-CIS(D0) 级别下对 NO ${}_{2}^{-}$ 的 S ${}_{2}$ 与 S ${}_{3}$ 态之间的交叉点进行 MECP 优化。"

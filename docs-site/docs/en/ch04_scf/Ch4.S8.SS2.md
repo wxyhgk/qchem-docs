@@ -10,8 +10,6 @@ HFPC/DFPC calculations are controlled with the following *$rem*. HFPT
 turns on the HFPC/DFPC approximation. Note that HFPT_BASIS specifies
 the secondary basis set.
 
-HFPT
-
 ### `HFPT`
 
 > **Activates HFPC/DFPC calculation.**
@@ -19,10 +17,8 @@ HFPT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * Single-point energy only
+>     * `Single-point energy only`
 > * **Recommendation**: Use Dual-Basis to capture large-basis effects at smaller basis cost. See reference for recommended basis set, functional, and grid pairings.
-
-HFPT_BASIS
 
 ### `HFPT_BASIS`
 
@@ -31,10 +27,8 @@ HFPT_BASIS
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * None
+>     * `None`
 > * **Recommendation**: See reference for recommended basis set, functional, and grid pairings.
-
-DFPT_XC_GRID
 
 ### `DFPT_XC_GRID`
 
@@ -43,10 +37,8 @@ DFPT_XC_GRID
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * None
+>     * `None`
 > * **Recommendation**: See reference for recommended basis set, functional, and grid pairings.
-
-DFPT_EXCHANGE
 
 ### `DFPT_EXCHANGE`
 
@@ -55,5 +47,5 @@ DFPT_EXCHANGE
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * None
+>     * `None`
 > * **Recommendation**: See reference for recommended basis set, functional, and grid pairings.

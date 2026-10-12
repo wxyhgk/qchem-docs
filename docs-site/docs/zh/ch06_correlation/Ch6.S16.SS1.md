@@ -27,8 +27,6 @@ CCSD 可用的溶剂模型（solvent models）在第 [11.2](../ch11_env/topic_so
 **若使用冻结核心/虚轨道计算梯度或性质，算法会将冻结轨道替换为限制性（restricted）轨道。
 这不会影响能量，但会改变 CCMAN 输出中的轨道编号。**
 
-CC_REF_PROP
-
 ### `CC_REF_PROP`
 
 > **是否计算非弛豫（期望值）或完整响应（包含轨道弛豫项）的单粒子 CCSD 性质。当前包含的性质有永久偶极矩、电子密度沿各方向的二阶矩（$\langle x^{2}\rangle$、$\langle y^{2}\rangle$ 和 $\langle z^{2}\rangle$）以及 $\langle r^{2}\rangle=\langle x^{2}\rangle+\langle y^{2}\rangle+\langle z^{2}\rangle$。此选项与 JOBTYPE = FORCE、OPT 或 FREQ 不兼容。**
@@ -39,8 +37,6 @@ CC_REF_PROP
 >     * FALSE, TRUE
 > * **建议**：计算性质需要求解额外的方程（$\lambda$-CCSD 方程），其开销与 CCSD 方程大致相同。如果不需要性质，请使用默认值。性质计算本身的开销较低。通过指定 NBO = TRUE、= TRUE 以及 JOBTYPE = FORCE，可以用 NBO 软件包分析 CCSD 单粒子密度。
 
-CC_REF_PROP_TE
-
 ### `CC_REF_PROP_TE`
 
 > **请求计算非弛豫的双粒子 CCSD 性质。目前包含的双粒子性质有 $\langle\hat{S}^{2}\rangle$。单粒子性质也将一并计算，因为与 $\langle\hat{S}^{2}\rangle$ 的开销相比，单粒子性质计算的额外开销很小。变量 CC_REF_PROP 也必须设置为 TRUE。**
@@ -50,8 +46,6 @@ CC_REF_PROP_TE
 > * **可选值**：
 >     * FALSE, TRUE
 > * **建议**：双粒子性质的计算开销很大，因为需要计算并使用双粒子密度矩阵（开销大致相当于一次解析梯度计算的开销）。除非确实需要，否则请勿请求双粒子性质。
-
-CC_FULLRESPONSE
 
 ### `CC_FULLRESPONSE`
 

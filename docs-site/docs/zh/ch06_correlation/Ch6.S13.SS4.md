@@ -19,8 +19,6 @@ title: "6.13.4 作业控制选项"
 为获得 **libpt** (T) 代码的最佳性能，应请求并行执行，参见第 [2.2.1.1](../ch02_install/ssect_general-usage.md#sec:parallel) 节。
 **
 
-USE_LIBPT
-
 ### `USE_LIBPT`
 
 > **在 CCMAN2 中为 CCSD(T) 计算启用 libpt。**
@@ -28,11 +26,9 @@ USE_LIBPT
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **建议**: 现在所有实数（real-valued）CC/EOM-CC 计算均默认使用 libpt
-
-CC_INCL_CORE_CORR
 
 ### `CC_INCL_CORE_CORR`
 
@@ -41,6 +37,6 @@ CC_INCL_CORE_CORR
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * FALSE
+>     * `TRUE`
+>     * `FALSE`
 > * **建议**: 使用默认值，除非不希望包含核-价关联或核关联（*例如*，为了与其他方法比较，或所用地基组无法描述核关联）。

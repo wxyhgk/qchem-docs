@@ -12,8 +12,6 @@ title: "5.5.5 多分辨率交换-相关（MRXC）方法"
 如第 [4.6.5](../ch04_scf/sect_FTC.md) 节所述，XC 泛函足够复杂，因此对它们的积分通常通过数值求积来完成。
 求积有两种基本类型。一种是原子中心网格（atom-centered grid, ACG），即第 [4.6.5](../ch04_scf/sect_FTC.md) 节所述的原子求积叠加方案。ACG 在原子核附近具有较高的点密度，以处理紧凑的核心密度，而在价区和非键区域（电子密度较为平滑的地方）点密度较低。另一种类型是均匀间距立方网格（even-spaced cubic grid, ESCG），它通常与赝势和平面波基函数配合使用，此时仅假设价电子密度和非键电子密度是平滑的。在量子化学中，ACG 使用得更为频繁，因为它能够精确处理分子的全电子计算。MRXC 将这两种积分方案无缝结合起来，把密度和 XC 矩阵中平滑部分的计算放到 ESCG 上，从而达到最佳的计算效率。与电子密度平滑部分相关的计算是 DFT 计算中 XC 部分的主要瓶颈，而由于 ESCG 分辨率较低，这部分计算可以以快得多的速率完成。为实现两种网格之间的精确转换，采用了快速傅里叶变换和 B 样条插值，使得最终结果与仅使用 ACG 时完全相同，同时 XC 矩阵的计算可获得数倍的加速。MRXC 中平滑部分的计算还可以与 FTC（见第 [4.6.5](../ch04_scf/sect_FTC.md) 节）结合使用，以进一步提升效率。
 
-MRXC
-
 ### `MRXC`
 
 > **控制 MRXC 的使用。**
@@ -29,8 +27,6 @@ MRXC
 
 以下两个关键字控制平滑性精度。默认值经过精心选取，以维持高精度。
 
-MRXC_CLASS_THRESH_MULT
-
 ### `MRXC_CLASS_THRESH_MULT`
 
 > **控制平滑性精度的（阈值）前置因子**
@@ -41,8 +37,6 @@ MRXC_CLASS_THRESH_MULT
 >     * $im$
 >     * 一个整数
 > * **建议**：MRXC 误差控制阈值中的前置因子：$im\times 10^{-io}$
-
-MRXC_CLASS_THRESH_ORDER
 
 ### `MRXC_CLASS_THRESH_ORDER`
 
@@ -56,8 +50,6 @@ MRXC_CLASS_THRESH_ORDER
 > * **建议**：MRXC 误差控制阈值中的指数：$im\times 10^{-io}$
 
 下一个关键字控制 B 样条插值的阶数：
-
-LOCAL_INTERP_ORDER
 
 ### `LOCAL_INTERP_ORDER`
 

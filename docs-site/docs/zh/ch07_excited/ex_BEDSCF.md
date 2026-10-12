@@ -58,8 +58,6 @@ Fock 矩阵构建。然而，在 ROKS 情况下以及对于包含 VV10
 $10^{-3}~{}E_{h}$ 或 0.03 eV，就会相当成问题）。进一步降低
 SCF_CONVERGENCE 可能会损害偶极矩或核梯度等性质，因此不推荐这样做。
 
-SCF_ALGORITHM
-
 ### `SCF_ALGORITHM`
 
 > **用于使 SCF 收敛的算法。**
@@ -67,12 +65,8 @@ SCF_ALGORITHM
 > * **类型**: `STRING`
 > * **默认值**: `None`
 > * **选项**:
->     * SGM
->     * SGM_LS
->     * SGM_QLS
+>     * `SGM`: SGM_LS SGM_QLS
 > * **建议**: SGM 应仅用于 RO-$\Delta$SCF 或 ROKS 计算。对于 R- 或 U-$\Delta$SCF，推荐使用 SGM_LS，但它也可用于 RO-$\Delta$SCF 或 ROKS。SGM_QLS 是 R- 和 U-$\Delta$SCF 计算中较慢但更稳健的选择。
-
-DELTA_GRADIENT_SCALE
 
 ### `DELTA_GRADIENT_SCALE`
 
@@ -84,8 +78,6 @@ DELTA_GRADIENT_SCALE
 >     * $N$
 > * **建议**: 使用默认值。对于有问题的情况，$N=$ 50、25、10 甚至 $N=1$ 可能会有用。
 
-ROKS
-
 ### `ROKS`
 
 > **控制是否执行 ROKS 计算。**
@@ -93,10 +85,8 @@ ROKS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行 ROKS。
->     * TRUE
->     * 将执行 ROKS。
+>     * `FALSE`: 不执行 ROKS。
+>     * `TRUE`: 将执行 ROKS。
 > * **建议**: 若需要 ROKS 计算，请设置为 TRUE。同时应确保 UNRESTRICTED = FALSE。
 
 ???+ example "示例 7.52: 使用 SGM_QLS 并以基态轨道作为初始猜测，对 Be 原子 $2s$ 到 $2p$ 的限制型 $\Delta$SCF 双激发进行计算。"

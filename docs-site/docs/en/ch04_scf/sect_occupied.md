@@ -84,8 +84,6 @@ or
 
 The other *$rem* variables related to altering the orbital occupancies are:
 
-SCF_GUESS_PRINT
-
 ### `SCF_GUESS_PRINT`
 
 > **Controls printing of guess MOs, Fock and density matrices.**
@@ -93,27 +91,17 @@ SCF_GUESS_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not print guesses.
->     * SAD
->     * 1
->     * Atomic density matrices and molecular matrix.
->     * 2
->     * Level 1 plus density matrices.
->     * CORE and GWH
->     * 1
->     * No extra output.
->     * 2
->     * Level 1 plus Fock and density matrices and, MO coefficients and
->     * eigenvalues.
->     * READ
->     * 1
->     * No extra output
->     * 2
->     * Level 1 plus density matrices, MO coefficients and eigenvalues.
+>     * `0`: Do not print guesses.
+>     * `SAD`
+>     * `1`: Atomic density matrices and molecular matrix.
+>     * `2`: Level 1 plus density matrices.
+>     * `CORE and GWH`
+>     * `1`: No extra output.
+>     * `2`: Level 1 plus Fock and density matrices and, MO coefficients and eigenvalues.
+>     * `READ`
+>     * `1`: No extra output
+>     * `2`: Level 1 plus density matrices, MO coefficients and eigenvalues.
 > * **Recommendation**: None
-
-SCF_GUESS_MIX
 
 ### `SCF_GUESS_MIX`
 
@@ -122,16 +110,9 @@ SCF_GUESS_MIX
 > * **Type**: `INTEGER`
 > * **Default**: `0 (FALSE)`
 > * **Options**:
->     * 0 (FALSE)
->     * Do not mix HOMO and LUMO in SCF guess.
->     * 1 (TRUE)
->     * Add 10% of LUMO to HOMO to break symmetry.
->     * $n$
->     * Add
->     * $10n$
->     * % of LUMO to HOMO (
->     * $0<n<10$
->     * ).
+>     * `0 (FALSE)`: Do not mix HOMO and LUMO in SCF guess.
+>     * `1 (TRUE)`: Add 10% of LUMO to HOMO to break symmetry.
+>     * $n$: Add $10n$ % of LUMO to HOMO ( $0<n<10$ ).
 > * **Recommendation**: When performing unrestricted calculations on molecules with an even number of electrons, it is often necessary to break alpha/beta symmetry in the initial guess with this option, or by specifying input for $occupied .
 
 ???+ example "Example 4.6: Input for an unrestricted HF calculation on H ${}_{2}$ in the

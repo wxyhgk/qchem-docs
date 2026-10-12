@@ -34,8 +34,6 @@ $$
 
 此过程可以通过下面的 REM 变量进行定制。DIIS 和 GDM 方法均可使用，但建议在使用 DIIS 时开启 MOM，以保持轨道的排序。后 HF（Post-HF）关联方法也可以应用。默认情况下，它们作用于最后定位到的那个解，但可以通过 SCF_MINFIND_RUNCORR 变量更改。
 
-SCF_SAVEMINIMA
-
 ### `SCF_SAVEMINIMA`
 
 > **开启 SCF 元动力学并指定要定位的解的数量。**
@@ -43,15 +41,10 @@ SCF_SAVEMINIMA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不使用 SCF 元动力学
->     * $n$
->     * 尝试寻找
->     * $n$
->     * 个不同的 SCF 解。
+>     * `0`: 不使用 SCF 元动力学
+>     * $n$: 尝试寻找
+>     * $n$: 个不同的 SCF 解。
 > * **建议**: 执行 SCF 轨道元动力学并尝试定位 $n$ 个不同的 SCF 解。注意这些解不一定都是极小值，通常会找到许多鞍点。最后一个被定位到的解将用于任何 SCF 后续处理。在具有无限点群的体系中，目前该过程无法区分不同密度的空间旋转，因此很可能多次收敛到这些（通过旋转相关联的）解上。
-
-SCF_READMINIMA
 
 ### `SCF_READMINIMA`
 
@@ -60,21 +53,11 @@ SCF_READMINIMA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * $n$
->     * 读入
->     * $n$
->     * 个先前的解，并尝试将它们全部定位。
->     * $-n$
->     * 读入
->     * $n$
->     * 个先前的解，但仅尝试定位第
->     * $n$
->     * 个解（在
->     * libnoci
->     * 中不可用）。
+>     * $n$: 读入
+>     * $n$: 个先前的解，并尝试将它们全部定位。 $-n$ 读入
+>     * $n$: 个先前的解，但仅尝试定位第
+>     * $n$: 个解（在 libnoci 中不可用）。
 > * **建议**: 该选项实际上未必能定位所有所需的解，而且可能还会找到其他解。当找到 SCF_SAVEMINIMA 中指定的解数量时，SCF 也会停止。其他几何构型下的解也可以被读入并用作起始轨道。如果找到的某个解与读入的某个解在 SCF_MINFIND_READDISTTHRESH 的阈值范围内匹配，则其轨道会被保存在对应位置，供以后计算使用。该算法的工作原理是从正在寻找的极小值所对应的轨道和密度出发重新起步。在经历 10 次失败的重启（由 SCF_MINFIND_RESTARTSTEPS 定义）之后，算法会转向另一个先前的极小值并尝试定位它。如果没有需要查找的极小值，重启时会进行随机混合（随机混合参数为正常值的 10 倍）。注意在 libnoci 中，先前的极小值通过 NOCI_REFGEN = 1 读入，而精确解的指定方式如第 4.9.3 节所述
-
-SCF_MINFIND_WELLTHRESH
 
 ### `SCF_MINFIND_WELLTHRESH`
 
@@ -83,12 +66,8 @@ SCF_MINFIND_WELLTHRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **取值选项**:
->     * $n$
->     * 对应阈值为
->     * $10^{-n}$
+>     * $n$: 对应阈值为 $10^{-n}$
 > * **建议**: 当 DIIS 误差小于 $10^{-n}$ 时，关闭惩罚项，以观察是否已收敛到一个新解。
-
-SCF_MINFIND_RESTARTSTEPS
 
 ### `SCF_MINFIND_RESTARTSTEPS`
 
@@ -97,13 +76,9 @@ SCF_MINFIND_RESTARTSTEPS
 > * **类型**: `INTEGER`
 > * **默认值**: `300`
 > * **取值选项**:
->     * $n$
->     * 在
->     * $n$
->     * 步后重启。
+>     * $n$: 在
+>     * $n$: 步后重启。
 > * **建议**: 如果 SCF 计算花费大量步数仍未找到解，降低此数值可能加快解的搜索。如果体系收敛到解的速度非常慢，则可能需要提高此数值。
-
-SCF_MINFIND_INCREASEFACTOR
 
 ### `SCF_MINFIND_INCREASEFACTOR`
 
@@ -112,12 +87,8 @@ SCF_MINFIND_INCREASEFACTOR
 > * **类型**: `INTEGER`
 > * **默认值**: `10100 表示 1.01`
 > * **取值选项**:
->     * $abcde$
->     * 对应
->     * $a.bcde$
+>     * $abcde$: 对应 $a.bcde$
 > * **建议**: 如果算法收敛到一个与先前已定位解相对应的解，则同时增大该处惩罚函数的归一化系数 N 和宽度参数 lambda。然后执行一次重启。
-
-SCF_MINFIND_INITLAMBDA
 
 ### `SCF_MINFIND_INITLAMBDA`
 
@@ -126,12 +97,8 @@ SCF_MINFIND_INITLAMBDA
 > * **类型**: `INTEGER`
 > * **默认值**: `02000 表示 2.000`
 > * **取值选项**:
->     * $abcde$
->     * 对应
->     * $ab.cde$
+>     * $abcde$: 对应 $ab.cde$
 > * **建议**: 用于填充某个解所在势阱（well）的高斯函数的初始逆宽度（*即*，逆方差）。以电子数 ${}^{(}-1)$ 为单位度量。增大该值有助于避免反复收敛到同一个解。
-
-SCF_MINFIND_INITNORM
 
 ### `SCF_MINFIND_INITNORM`
 
@@ -140,12 +107,8 @@ SCF_MINFIND_INITNORM
 > * **类型**: `INTEGER`
 > * **默认值**: `01000 表示 1.000`
 > * **取值选项**:
->     * $abcde$
->     * 对应
->     * $ab.cde$
+>     * $abcde$: 对应 $ab.cde$
 > * **建议**: 用于填充势阱的高斯函数的初始归一化系数。以 Hartree（原子单位能量）为单位度量。
-
-SCF_MINFIND_RANDOMMIXING
 
 ### `SCF_MINFIND_RANDOMMIXING`
 
@@ -154,13 +117,8 @@ SCF_MINFIND_RANDOMMIXING
 > * **类型**: `INTEGER`
 > * **默认值**: `00200 表示 0.02 弧度`
 > * **取值选项**:
->     * $abcde$
->     * 对应
->     * $a.bcde$
->     * 弧度
+>     * $abcde$: 对应 $a.bcde$ 弧度
 > * **建议**: 定位到一个 SCF 解后，对轨道进行随机混合，使其在轨道空间中移动到新的位置。每次随机选取一对占据轨道和虚轨道，并在二者之间按 0 到此值之间的随机角度旋转。如果该值为负，则恰好执行此数目的操作，*例如*，$-15708$ 几乎正好交换两个轨道。任何 $<-15708$ 的数值都会使轨道被完全精确地交换。
-
-SCF_MINFIND_NRANDOMMIXES
 
 ### `SCF_MINFIND_NRANDOMMIXES`
 
@@ -169,13 +127,9 @@ SCF_MINFIND_NRANDOMMIXES
 > * **类型**: `INTEGER`
 > * **默认值**: `10`
 > * **取值选项**:
->     * $n$
->     * 执行
->     * $n$
->     * 次随机混合。
+>     * $n$: 执行
+>     * $n$: 次随机混合。
 > * **建议**: 这是每个独立密度中尝试混合的占据/虚轨道对数目（*即*，对于非限制计算，alpha 和 beta 空间各自都会进行这么多次旋转）。如果该值为负，则只混合能量最高的 25% 占据轨道和能量最低的 25% 虚轨道。
-
-SCF_MINFIND_READDISTTHRESH
 
 ### `SCF_MINFIND_READDISTTHRESH`
 
@@ -184,12 +138,8 @@ SCF_MINFIND_READDISTTHRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `00100 表示 0.1`
 > * **取值选项**:
->     * $abcde$
->     * 对应
->     * $ab.cde$
+>     * $abcde$: 对应 $ab.cde$
 > * **建议**: 判断某个极小值与读入的极小值是否为同一解的阈值。以电子数为单位度量。如果两个极小值彼此之间的距离小于此值，应降低该阈值以区分它们。
-
-SCF_MINFIND_MIXMETHOD
 
 ### `SCF_MINFIND_MIXMETHOD`
 
@@ -198,15 +148,10 @@ SCF_MINFIND_MIXMETHOD
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 随机混合（Random mixing）：任意轨道之间均可选取。
->     * 1
->     * 活性混合（Active mixing）：基于能量选取，选取概率随与费米（Fermi）能级的距离而衰减。
->     * 2
->     * 活性 Alpha 空间混合（Active Alpha space mixing）：基于能量选取，仅在 alpha 空间中随与费米能级的距离而衰减。
+>     * `0`: 随机混合（Random mixing）：任意轨道之间均可选取。
+>     * `1`: 活性混合（Active mixing）：基于能量选取，选取概率随与费米（Fermi）能级的距离而衰减。
+>     * `2`: 活性 Alpha 空间混合（Active Alpha space mixing）：基于能量选取，仅在 alpha 空间中随与费米能级的距离而衰减。
 > * **建议**: 随机混合往往会找到能量非常高的解。如果希望得到较低能量的解，请使用 1 或 2。
-
-SCF_MINFIND_MIXENERGY
 
 ### `SCF_MINFIND_MIXENERGY`
 
@@ -215,7 +160,5 @@ SCF_MINFIND_MIXENERGY
 > * **类型**: `INTEGER`
 > * **默认值**: `00200 表示 00.200`
 > * **取值选项**:
->     * $abcde$
->     * 对应
->     * $ab.cde$
+>     * $abcde$: 对应 $ab.cde$
 > * **建议**:

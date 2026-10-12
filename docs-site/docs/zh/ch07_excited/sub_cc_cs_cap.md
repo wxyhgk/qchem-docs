@@ -16,8 +16,6 @@ title: "7.9.10 亚稳态的 EOM-CC 计算"
  这些方法仅在 CCMAN2 中可用。复数 CC/EOM 代码由 COMPLEX_CCMAN 启用；
 具体参数应在 *$complex_ccman* 段中指定。
 
-COMPLEX_CCMAN
-
 ### `COMPLEX_CCMAN`
 
 > **请求复标度或 CAP 增强的 CC/EOM 计算。**

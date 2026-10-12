@@ -13,8 +13,6 @@ Section [7.2.2](subsec_CIS.md). As these methods rely on the RI approximation,
 AUX_BASIS needs to be set by following the same guide as in RI-MP2
 (Section [6.6](../ch06_correlation/topic_rimp2.md)).
 
-METHOD
-
 ### `METHOD`
 
 > **Excited state method of choice**
@@ -22,17 +20,8 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * RICIS(D)
->     * Activate RI-CIS(D)
->     * SOSCIS(D)
->     * Activate SOS-CIS(D)
->     * SOSCIS(D0)
->     * Activate SOS-CIS(D
->     * ${}_{0}$
->     * )
+>     * `RICIS(D)`: Activate RI-CIS(D) SOSCIS(D) Activate SOS-CIS(D) SOSCIS(D0) Activate SOS-CIS(D ${}_{0}$ )
 > * **Recommendation**: None
-
-CIS_N_ROOTS
 
 ### `CIS_N_ROOTS`
 
@@ -41,14 +30,9 @@ CIS_N_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * Looks for
->     * $n$
->     * excited states
+>     * $n$: $n>0$ Looks for
+>     * $n$: excited states
 > * **Recommendation**: None
-
-CIS_SINGLETS
 
 ### `CIS_SINGLETS`
 
@@ -57,13 +41,9 @@ CIS_SINGLETS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Solve for singlet states
->     * FALSE
->     * Do not solve for singlet states.
+>     * `TRUE`: Solve for singlet states
+>     * `FALSE`: Do not solve for singlet states.
 > * **Recommendation**: None
-
-CIS_TRIPLETS
 
 ### `CIS_TRIPLETS`
 
@@ -72,13 +52,9 @@ CIS_TRIPLETS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Solve for triplet states
->     * FALSE
->     * Do not solve for triplet states.
+>     * `TRUE`: Solve for triplet states
+>     * `FALSE`: Do not solve for triplet states.
 > * **Recommendation**: None
-
-CIS_STATE_DERIV
 
 ### `CIS_STATE_DERIV`
 
@@ -87,13 +63,9 @@ CIS_STATE_DERIV
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Select the
->     * $n$
->     * th state.
+>     * $n$: Select the
+>     * $n$: th state.
 > * **Recommendation**: Check to see that the states do no change order during an optimization. For closed-shell systems, either CIS_SINGLETS or CIS_TRIPLETS must be set to false.
-
-MEM_STATIC
 
 ### `MEM_STATIC`
 
@@ -102,11 +74,8 @@ MEM_STATIC
 > * **Type**: `INTEGER`
 > * **Default**: `192`
 > * **Options**:
->     * $n$
->     * User-defined number of megabytes.
+>     * $n$: User-defined number of megabytes.
 > * **Recommendation**: At least $150(N^{2}+N)D$ of is required ( $N$ : number of basis functions, $D$ : size of a double precision storage, usually 8). Because a number of matrices with $N^{2}$ size also need to be stored, 32–160 MB of additional is needed.
-
-MEM_TOTAL
 
 ### `MEM_TOTAL`
 
@@ -115,11 +84,8 @@ MEM_TOTAL
 > * **Type**: `INTEGER`
 > * **Default**: `2000`
 > * **Options**:
->     * $n$
->     * User-defined number of megabytes
+>     * $n$: User-defined number of megabytes
 > * **Recommendation**: The minimum memory requirement of RI-CIS(D) is approximately MEM_STATIC + max $(3SVXD,3X^{2}D)$ ( $S$ : number of excited states, $X$ : number of auxiliary basis functions, $D$ : size of a double precision storage, usually 8). However, because RI-CIS(D) uses a batching scheme for efficient evaluations of electron repulsion integrals, specifying more memory will significantly speed up the calculation. Put as much memory as possible if you are not sure what to use, but never put any more than what is available. The minimum memory requirement of SOS-CIS(D) and SOS-CIS(D ${}_{0}$ ) is approximately MEM_STATIC + $20X^{2}D$ . SOS-CIS(D ${}_{0}$ ) gradient calculation becomes more efficient when $30X^{2}D$ more memory space is given. Like in RI-CIS(D), put as much memory as possible if you are not sure what to use. The actual memory size used in these calculations will be printed out in the output file to give a guide about the required memory.
-
-SOS_FACTOR
 
 ### `SOS_FACTOR`
 
@@ -128,11 +94,8 @@ SOS_FACTOR
 > * **Type**: `INTEGER`
 > * **Default**: `1300000`
 > * **Options**:
->     * $n$
->     * $c_{T}=n/1000000$
+>     * $n$: $c_{T}=n/1000000$
 > * **Recommendation**: Use the default
-
-SOS_UFACTOR
 
 ### `SOS_UFACTOR`
 
@@ -141,8 +104,7 @@ SOS_UFACTOR
 > * **Type**: `INTEGER`
 > * **Default**: `151`
 > * **Options**:
->     * $n$
->     * $c_{U}=n/100$
+>     * $n$: $c_{U}=n/100$
 > * **Recommendation**: Use the default
 
 ???+ example "Example 7.67: Input for an RI-CIS(D) calculation."

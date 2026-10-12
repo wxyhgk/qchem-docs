@@ -116,8 +116,6 @@ TRUE on the calculation of the initial state and TRANS_MOM_READ =
 TRUE on the calculation of the final state. The non-orthogonality of
 the orbital bases is accounted for.
 
-ROKS
-
 ### `ROKS`
 
 > **Controls whether ROKS calculation will be performed.**
@@ -125,13 +123,9 @@ ROKS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * ROKS is not performed.
->     * TRUE
->     * ROKS will be performed.
+>     * `FALSE`: ROKS is not performed.
+>     * `TRUE`: ROKS will be performed.
 > * **Recommendation**: Set to TRUE if ROKS calculation is desired. Make sure that UNRESTRICTED is not set to TRUE .
-
-ROKS_LEVEL_SHIFT
 
 ### `ROKS_LEVEL_SHIFT`
 
@@ -140,15 +134,8 @@ ROKS_LEVEL_SHIFT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No shift
->     * $N$
->     * level shift of
->     * $N$
->     * /100 hartree.
+>     * `0`: No shift $N$ level shift of $N$ /100 hartree.
 > * **Recommendation**: Use in cases of problematic DIIS convergence. Only available for the ROKS implementation on the old SCF engine ( GEN_SCFMAN = FALSE ).
-
-ROKS_SS_MIXING
 
 ### `ROKS_SS_MIXING`
 
@@ -157,13 +144,9 @@ ROKS_SS_MIXING
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Supress coupling.
->     * 1
->     * Allow coupling.
+>     * `0`: Supress coupling.
+>     * `1`: Allow coupling.
 > * **Recommendation**: Supress coupling when the resuling states are difficult to converge and / or overlap significantly with the ground state. Only for GDM and SGM-based solvers.
-
-TRANS_MOM_SAVE
 
 ### `TRANS_MOM_SAVE`
 
@@ -172,13 +155,9 @@ TRANS_MOM_SAVE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Dont save orbitals.
->     * TRUE
->     * Save orbitals.
+>     * `FALSE`: Dont save orbitals.
+>     * `TRUE`: Save orbitals.
 > * **Recommendation**: Saves the orbitals of the calculation for which this variable is set. It usually would be the ground state calculation but it could be any restricted SCF, unrestricted SCF, or ROKS calculation, which allows computing general inter-state transition dipoles.
-
-TRANS_MOM_READ
 
 ### `TRANS_MOM_READ`
 
@@ -187,10 +166,8 @@ TRANS_MOM_READ
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Don’t read orbitals.
->     * TRUE
->     * Read orbitals.
+>     * `FALSE`: Don’t read orbitals.
+>     * `TRUE`: Read orbitals.
 > * **Recommendation**: It assumes that a set of orbitals was previously saved with TRANS_MOM_SAVE . If so, reads said orbitals and computes the transition dipole moment with the orbitals of the current calculation.
 
 ???+ example "Example 7.50: RO-PBE0/6-311+G* excited state gradient of formaldehyde, using the ground

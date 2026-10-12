@@ -64,8 +64,6 @@ $$
 
 可以通过将 OCC_RI_K 设置为 true 来启用 occ-RI-K，或者（自 **Q-Chem** 5.2 起）使用 AUX_BASIS_K 为 K 指定辅助基组。
 
-OCC_RI_K
-
 ### `OCC_RI_K`
 
 > **控制是否使用 occ-RI-K 近似来构建交换矩阵**
@@ -73,8 +71,7 @@ OCC_RI_K
 > * **类型**: `LOGICAL`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 使用 occ-RI-K。
+>     * `True`: 使用 occ-RI-K。
 > * **建议**: 体系越大，性能越好
 
 ## 4.6.8.1 用于交换能梯度求值的 occ-RI-K
@@ -103,8 +100,6 @@ $$
 
 其中运算代价为 $o^{2}NX+o[\mathrm{NB2}]X$。
 
-RI_K_GRAD
-
 ### `RI_K_GRAD`
 
 > **开启核梯度计算**
@@ -112,8 +107,7 @@ RI_K_GRAD
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 使用基于 occ-RI-K 的梯度
+>     * `TRUE`: 使用基于 occ-RI-K 的梯度
 > * **建议**: 配合使用 "RI_J false"
 
 ???+ example "示例 4.21: 使用 occ-RI-K 方法进行能量与梯度计算的 Q-Chem 输入。"

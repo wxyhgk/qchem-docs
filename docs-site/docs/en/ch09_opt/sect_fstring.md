@@ -44,8 +44,6 @@ described below, along with examples. Consult Refs. [[104]](../bib_references/b
 [[1245]](../bib_references/bib.md#bib1296)
  for a guide to a typical use of this method.
 
-FSM_NNODE
-
 ### `FSM_NNODE`
 
 > **Specifies the number of nodes along the string**
@@ -53,11 +51,8 @@ FSM_NNODE
 > * **Type**: `INTEGER`
 > * **Default**: `12`
 > * **Options**:
->     * $N$
->     * number of nodes in FSM calculation
+>     * $N$: number of nodes in FSM calculation
 > * **Recommendation**: $N=15$ . Use 10 to 20 nodes for a typical calculation. Reaction paths that connect multiple elementary steps should be separated into individual elementary steps, and one FSM job run for each pair of intermediates. Use a higher number when the FSM is followed by an approximate-Hessian based transition state search (Section 9.3.3 ).
-
-FSM_NGRAD
 
 ### `FSM_NGRAD`
 
@@ -66,11 +61,8 @@ FSM_NGRAD
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $N$
->     * Number of perpendicular gradients per node
+>     * $N$: Number of perpendicular gradients per node
 > * **Recommendation**: Anything between 2 and 6 should work, where increasing the number is only needed for difficult reaction paths.
-
-FSM_MODE
 
 ### `FSM_MODE`
 
@@ -79,13 +71,9 @@ FSM_MODE
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 1
->     * Cartesian
->     * 2
->     * LST
+>     * `1`: Cartesian
+>     * `2`: LST
 > * **Recommendation**: In most cases, LST is superior to Cartesian interpolation.
-
-FSM_OPT_MODE
 
 ### `FSM_OPT_MODE`
 
@@ -94,10 +82,8 @@ FSM_OPT_MODE
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 1
->     * Conjugate gradients
->     * 2
->     * Quasi-Newton method with BFGS Hessian update
+>     * `1`: Conjugate gradients
+>     * `2`: Quasi-Newton method with BFGS Hessian update
 > * **Recommendation**: The quasi-Newton method is more efficient when the number of nodes is high.
 
 An example input appears below. Note that the *$molecule* section includes

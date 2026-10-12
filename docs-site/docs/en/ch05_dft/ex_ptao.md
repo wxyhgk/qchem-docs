@@ -28,8 +28,6 @@ of strong static correlation effects.
 
 There are several *$rem* variables that are used for TAO-DFT.
 
-TAO_DFT
-
 ### `TAO_DFT`
 
 > **Controls whether to use TAO-DFT.**
@@ -37,13 +35,9 @@ TAO_DFT
 > * **Type**: `Boolean`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not use TAO-DFT
->     * TRUE
->     * Use TAO-DFT
+>     * `FALSE`: Do not use TAO-DFT
+>     * `TRUE`: Use TAO-DFT
 > * **Recommendation**: NONE
-
-TAO_DFT_THETA
 
 ### `TAO_DFT_THETA`
 
@@ -52,11 +46,8 @@ TAO_DFT_THETA
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * $m$
->     * Customize the mantissa for the fictitious temperature.
+>     * $m$: Customize the mantissa for the fictitious temperature.
 > * **Recommendation**: NONE
-
-TAO_DFT_THETA_NDP
 
 ### `TAO_DFT_THETA_NDP`
 
@@ -65,11 +56,8 @@ TAO_DFT_THETA_NDP
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $n$
->     * Customize the exponential power for the fictitious temperature.
+>     * $n$: Customize the exponential power for the fictitious temperature.
 > * **Recommendation**: NONE
-
-PTAO
 
 ### `PTAO`
 
@@ -78,10 +66,8 @@ PTAO
 > * **Type**: `Boolean`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform the pTAO/TDA method
->     * TRUE
->     * Perform the pTAO/TDA method
+>     * `FALSE`: Do not perform the pTAO/TDA method
+>     * `TRUE`: Perform the pTAO/TDA method
 > * **Recommendation**: NONE
 
 Note that setting TAO_DFT_THETA = 0 recovers ordinary

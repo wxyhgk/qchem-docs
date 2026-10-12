@@ -37,37 +37,13 @@ Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `CPCM`
 > * **Options**:
->     * CPCM
->     * Conductor-like PCM of Ref.
->     * 275
->     * Cossi M. et al.
->     * J. Comput. Chem.
->     * (2003)
->     * ,
->     * 24
->     * ,
->     * pp. 669
->     * .
->     * Link
->     * ,
->     * with
->     * $f_{\varepsilon}=(\varepsilon-1)/\varepsilon$
->     * .
->     * CPCM1
->     * Equivalent to CPCM.
->     * CPCM2
->     * Original conductor-like screening model of Ref.
->     * , with
->     * $f_{\varepsilon}=(\varepsilon-1)/(\varepsilon+1/2)$
->     * .
->     * IEFPCM
->     * IEF-PCM with an asymmetric
->     * $\mathbf{K}$
->     * matrix.
->     * SSVPE
->     * SS(V)PE model, equivalent to IEF-PCM with a symmetric
->     * $\mathbf{K}$
->     * matrix.
+>     * `CPCM`: Conductor-like PCM of Ref.
+>     * `275`: Cossi M. et al. J. Comput. Chem. (2003) ,
+>     * `24`: , pp. 669 . Link , with $f_{\varepsilon}=(\varepsilon-1)/\varepsilon$ .
+>     * `CPCM1`: Equivalent to CPCM.
+>     * `CPCM2`: Original conductor-like screening model of Ref. , with $f_{\varepsilon}=(\varepsilon-1)/(\varepsilon+1/2)$ .
+>     * `IEFPCM`: IEF-PCM with an asymmetric $\mathbf{K}$ matrix.
+>     * `SSVPE`: SS(V)PE model, equivalent to IEF-PCM with a symmetric $\mathbf{K}$ matrix.
 > * **Recommendation**: The IEF-PCM/SS(V)PE model is more sophisticated model than C-PCM, and formally more appropriate for low-dielectric solvents, but it is also more complicated to work with. In practice there is often little difference between these models; see Ref. 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link . Regarding the two versions of C-PCM and the choice of $f_{\varepsilon}$ in Eq. ( 11.3 ), the choice $x=0$ has been suggested for neutral solutes and $x=1/2$ for ions; again, see Ref. 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link for a discussion of these distinctions.
 
 ### `Method`
@@ -77,14 +53,10 @@ Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `SwiG`
 > * **Options**:
->     * SwiG
->     * Switching/Gaussian method
->     * ISwiG
->     * “Improved” Switching/Gaussian method with an alternative switching function
->     * Spherical
->     * Use a single, fixed sphere for the cavity surface.
->     * Fixed
->     * Use discretization point charges instead of smooth Gaussians.
+>     * `SwiG`: Switching/Gaussian method
+>     * `ISwiG`: “Improved” Switching/Gaussian method with an alternative switching function
+>     * `Spherical`: Use a single, fixed sphere for the cavity surface.
+>     * `Fixed`: Use discretization point charges instead of smooth Gaussians.
 > * **Recommendation**: Use of SwiG is recommended only because it is slightly more efficient than the switching function of ISwiG . On the other hand, ISwiG offers some conceptually more appealing features and may be superior in certain cases. Consult Refs. 754 Lange A. W., Herbert J. M. J. Chem. Phys. (2010) , 133 , pp. 244111 . Link , 756 Lange A. W., Herbert J. M. Chem. Phys. Lett. (2011) , 509 , pp. 77 . Link for a discussion of these differences. The Fixed option uses the Variable Tesserae Number (VTN) algorithm of Li and Jensen, 812 Li H., Jensen J. H. J. Comput. Chem. (2004) , 25 , pp. 1449 . Link with Lebedev grid points. VTN uses point charges with no switching function or Gaussian blurring, and is therefore subject to discontinuities that may cause errors in analytic gradients and lead to slow convergence in geometry optimizations. 753 Lange A. W., Herbert J. M. J. Phys. Chem. Lett. (2010) , 1 , pp. 556 . Link Its use is not recommended except to make contact with other calculations in the literature.
 
 ### `Solver`
@@ -94,10 +66,8 @@ Do not place them in the *$rem* section.
 > * **Type**: `STRING`
 > * **Default**: `INVERSION`
 > * **Options**:
->     * INVERSION
->     * Direct matrix inversion
->     * CG
->     * Iterative conjugate gradient
+>     * `INVERSION`: Direct matrix inversion
+>     * `CG`: Iterative conjugate gradient
 > * **Recommendation**: Matrix inversion is faster for small solutes because it needs to be performed only once in a single-point calculation. However, the CG solver (which must be applied at each SCF iteration) is recommended if the number of discretization points approaches or exceeds $\sim$ 10,000. Linear-scaling options for large-scale MM/PCM and QM/MM/PCM calculations are discussed in Section 11.2.5 .
 
 ### `SwitchThresh`
@@ -107,10 +77,7 @@ Do not place them in the *$rem* section.
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n$
->     * Discard grid points when the switching function is less than
->     * $10^{-n}$
->     * .
+>     * $n$: Discard grid points when the switching function is less than $10^{-n}$ .
 > * **Recommendation**: Use the default, which is found to avoid discontinuities within machine precision. Increasing $n$ reduces the cost of PCM calculations but can introduce discontinuities in the potential energy surface. If the PCM part of the calculation becomes too expensive it is better to reduce the number of discretization points ( HeavyPoints and HPoints , described below), or to use Solver = CG , than it is to adjust .
 
 Construction of the solute cavity is an important part of the model and users
@@ -141,38 +108,15 @@ for PCM applications is unclear.
 > * **Type**: `STRING`
 > * **Default**: `Bondi`
 > * **Options**:
->     * Bondi
->     * Use the (extended) set of Bondi radii (Ref.
->     * 1186
->     * Rowland R. S., Taylor R.
->     * J. Phys. Chem.
->     * (1996)
->     * ,
->     * 100
->     * ,
->     * pp. 7384
->     * .
->     * Link
->     * ).
->     * FF
->     * Use Lennard-Jones radii from a molecular mechanics force field.
->     * UFF
->     * Use radii from the Universal Force Field (Ref.
->     * 1146
->     * Rappé A. K. et al.
->     * J. Am. Chem. Soc.
->     * (1992)
->     * ,
->     * 114
->     * ,
->     * pp. 10024
->     * .
->     * Link
->     * ).
->     * Read
->     * Read the atomic radii from a
->     * $van_der_waals
->     * input section.
+>     * `Bondi`: Use the (extended) set of Bondi radii (Ref.
+>     * `1186`: Rowland R. S., Taylor R. J. Phys. Chem. (1996) ,
+>     * `100`: , pp. 7384 . Link ).
+>     * `FF`: Use Lennard-Jones radii from a molecular mechanics force field.
+>     * `UFF`: Use radii from the Universal Force Field (Ref.
+>     * `1146`: Rappé A. K. et al. J. Am. Chem. Soc. (1992) ,
+>     * `114`: , pp. 10024 . Link ).
+>     * `Read`
+>     * `Read the atomic radii from a`: $van_der_waals input section.
 > * **Recommendation**: Bondi radii are widely used. The FF option requires the user to specify an MM force field using the FORCE_FIELD variable in the $rem section, and also to define the atom types in the $molecule section (see Section 11.3 ). This is not required for UFF radii. For user-defined radii, see Section 11.2.10 for the format of the $van_der_waals input section.
 
 ### `vdwScale`
@@ -182,10 +126,7 @@ for PCM applications is unclear.
 > * **Type**: `FLOAT`
 > * **Default**: `1.2`
 > * **Options**:
->     * $\alpha$
->     * Use a scaling factor of
->     * $\alpha>0$
->     * .
+>     * $\alpha$: Use a scaling factor of $\alpha>0$ .
 > * **Recommendation**: The default value is widely used in PCM calculations, although a value of 1.0 might be appropriate if using a solvent-accessible surface.
 
 ### `SASradius`
@@ -195,10 +136,7 @@ for PCM applications is unclear.
 > * **Type**: `FLOAT`
 > * **Default**: `0.0`
 > * **Options**:
->     * $r$
->     * Use a solvent probe radius of
->     * $r$
->     * , in Å.
+>     * $r$: Use a solvent probe radius of $r$ , in Å.
 > * **Recommendation**: The solvent probe radius is added to the scaled van der Waals radii of the solute atoms. A common solvent probe radius for water is 1.4 Å, but smaller values (0.2–0.5 Å) have also been used historically. 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link
 
 ### `SurfaceType`
@@ -208,10 +146,8 @@ for PCM applications is unclear.
 > * **Type**: `STRING`
 > * **Default**: `VDW_SAS`
 > * **Options**:
->     * VDW_SAS
->     * van der Waals or solvent-accessible surface
->     * SES
->     * solvent-excluded surface
+>     * `VDW_SAS`: van der Waals or solvent-accessible surface
+>     * `SES`: solvent-excluded surface
 > * **Recommendation**: The vdW surface and the SAS are each comprised simply of atomic spheres and thus share a common option; the only difference is the specification of a solvent probe radius, SASradius . For a true vdW surface, the probe radius should be zero (which is the default), whereas for the SAS the atomic radii are traditionally not scaled, hence vdwScale should be set to 1.0 (which is not the default). For the SES, only SwiG discretization is available, but this can be used with any set of (scaled or unscaled) atomic radii, or with radii that are augmented by SASradius .
 
 Note from the description of the **Radii** keyword
@@ -355,25 +291,12 @@ Ref. [[753]](../bib_references/bib.md#bib786)
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Prints PCM energy and basic surface grid information. Minimal additional printing.
->     * 1
->     * Level 0 plus PCM solute-solvent interaction energy components and Gauss’ Law error.
->     * 2
->     * Level 1 plus surface grid switching parameters and a
->     * .PQR
->     * file for
->     * visualization of the cavity surface apparent surface charges.
->     * 3
->     * Level 2 plus a
->     * .PQR
->     * file for visualization of the electrostatic
->     * potential at the surface grid created by the converged solute.
->     * 4
->     * Level 3 plus additional surface grid information, electrostatic potential
->     * and apparent surface charges on each SCF cycle.
->     * 5
->     * Level 4 plus extensive debugging information.
+>     * `0`: Prints PCM energy and basic surface grid information. Minimal additional printing.
+>     * `1`: Level 0 plus PCM solute-solvent interaction energy components and Gauss’ Law error.
+>     * `2`: Level 1 plus surface grid switching parameters and a .PQR file for visualization of the cavity surface apparent surface charges.
+>     * `3`: Level 2 plus a .PQR file for visualization of the electrostatic potential at the surface grid created by the converged solute.
+>     * `4`: Level 3 plus additional surface grid information, electrostatic potential and apparent surface charges on each SCF cycle.
+>     * `5`: Level 4 plus extensive debugging information.
 > * **Recommendation**: Use the default unless further information is desired.
 
 Finally, note that setting **Method** to **Spherical** in the *$pcm*
@@ -392,10 +315,7 @@ points used to discretize the surface.
 > * **Type**: `FLOAT`
 > * **Default**: `None`
 > * **Options**:
->     * $R$
->     * Use a radius of
->     * $R$
->     * , in Ångstroms.
+>     * $R$: Use a radius of $R$ , in Ångstroms.
 > * **Recommendation**: None.
 
 ### `CavityCenter`
@@ -405,10 +325,7 @@ points used to discretize the surface.
 > * **Type**: `FLOAT`
 > * **Default**: `0.0 0.0 0.0`
 > * **Options**:
->     * $x$
->     * $y$
->     * $z$
->     * Coordinates of the cavity center, in Ångstroms.
+>     * $x$: $y$ $z$ Coordinates of the cavity center, in Ångstroms.
 > * **Recommendation**: The format is followed by three floating-point values, delineated by spaces. Uses the same coordinate system as the $molecule section.
 
 Finally, the HetPCM method (Section [11.2.3.5](topic_pcm-em.md#sec:HetPCM)) is activated by the appearance of a keyword
@@ -658,10 +575,7 @@ listed in Table [11.4](#table:PCM-solvents).
 > * **Type**: `FLOAT`
 > * **Default**: `78.39`
 > * **Options**:
->     * $\varepsilon$
->     * Use a dielectric constant
->     * $\varepsilon>0$
->     * .
+>     * $\varepsilon$: Use a dielectric constant $\varepsilon>0$ .
 > * **Recommendation**: The static ( i.e. , zero-frequency) dielectric constant is what is usually called “the” dielectric constant. The default corresponds to water at 25 ${}^{\circ}$ C.
 
 ### `OpticalDielectric`
@@ -671,10 +585,7 @@ listed in Table [11.4](#table:PCM-solvents).
 > * **Type**: `FLOAT`
 > * **Default**: `1.78`
 > * **Options**:
->     * $\varepsilon_{\infty}$
->     * Use an optical dielectric constant
->     * $\varepsilon_{\infty}>0$
->     * .
+>     * $\varepsilon_{\infty}$: Use an optical dielectric constant $\varepsilon_{\infty}>0$ .
 > * **Recommendation**: The default corresponds to water at 25 ${}^{\circ}$ C. Note that $\varepsilon_{\infty}=n^{2}$ , where $n$ is the solvent’s index of refraction.
 
 ### `SolventName`
@@ -684,17 +595,8 @@ listed in Table [11.4](#table:PCM-solvents).
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * name
->     * Use values
->     * $\varepsilon$
->     * and
->     * $\varepsilon_{\infty}$
->     * corresponding to solvent
->     * name
->     * in
->     * Table
->     * 11.4
->     * .
+>     * `name`: Use values $\varepsilon$ and $\varepsilon_{\infty}$ corresponding to solvent
+>     * `name`: in Table 11.4 .
 > * **Recommendation**: The use of is incompatible with explicit specification of either Dielectric or OpticalDielectric .
 
 | SolventName | $\varepsilon$ | $\varepsilon_{\infty}$ | SolventName | $\varepsilon$ | $\varepsilon_{\infty}$ | SolventName | $\varepsilon$ | $\varepsilon_{\infty}$ |
@@ -812,16 +714,13 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * Cav
->     * Cavitation energy
->     * Buck
->     * Buckingham dispersion and repulsion energy from atomic number
->     * LJ
->     * Lennard-Jones dispersion and repulsion energy from force field
->     * BuckCav
->     * Buck + Cav
->     * LJCav
->     * LJ + Cav
+>     * `Cav`: Cavitation energy
+>     * `Buck`: Buckingham dispersion and repulsion energy from atomic number
+>     * `LJ`: Lennard-Jones dispersion and repulsion energy from force field
+>     * `BuckCav`
+>     * `Buck + Cav`
+>     * `LJCav`
+>     * `LJ + Cav`
 > * **Recommendation**: A very limited set of parameters for the Buckingham potential is available at present.
 
 ### `NSolventAtoms`
@@ -831,10 +730,7 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $N$
->     * Specifies that there are
->     * $N$
->     * different types of atoms.
+>     * $N$: Specifies that there are $N$ different types of atoms.
 > * **Recommendation**: This keyword is necessary when NonEls = Buck , LJ , BuckCav , or LJCav . Methanol ( $\rm CH_{3}OH$ ), for example, has three types of atoms (C, H, and O).
 
 ### `SolventAtom`
@@ -844,16 +740,11 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `Various`
 > * **Default**: `None.`
 > * **Options**:
->     * Input (TYPE)
->     * Description
->     * Number1 (INTEGER):
->     * The atomic number of the atom
->     * Number2 (INTEGER):
->     * How many of this atom are in a solvent molecule
->     * Number3 (INTEGER):
->     * Force field atom type
->     * SASradius (FLOAT):
->     * Probe radius (in Å) for defining the solvent accessible surface
+>     * `Input (TYPE)`: Description
+>     * `Number1 (INTEGER):`: The atomic number of the atom
+>     * `Number2 (INTEGER):`: How many of this atom are in a solvent molecule
+>     * `Number3 (INTEGER):`: Force field atom type
+>     * `SASradius (FLOAT):`: Probe radius (in Å) for defining the solvent accessible surface
 > * **Recommendation**: If not using LJ or LJCav , then Number3 should be set to 0. The keyword is necessary when NonEls = Buck , LJ , BuckCav , or LJCav
 
 ### `Temperature`
@@ -863,10 +754,7 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `FLOAT`
 > * **Default**: `300.0`
 > * **Options**:
->     * $T$
->     * Use a temperature of
->     * $T$
->     * , in Kelvin.
+>     * $T$: Use a temperature of $T$ , in Kelvin.
 > * **Recommendation**: Used only for the cavitation energy.
 
 ### `Pressure`
@@ -876,10 +764,7 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `FLOAT`
 > * **Default**: `1.0`
 > * **Options**:
->     * $P$
->     * Use a pressure of
->     * $P$
->     * , in bar.
+>     * $P$: Use a pressure of $P$ , in bar.
 > * **Recommendation**: Used only for the cavitation energy.
 
 ### `SolventRho`
@@ -889,12 +774,7 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `FLOAT`
 > * **Default**: `Determined for water, based on temperature.`
 > * **Options**:
->     * $\rho$
->     * Use a density of
->     * $\rho$
->     * , in molecules/Å
->     * ${}^{3}$
->     * .
+>     * $\rho$: Use a density of $\rho$ , in molecules/Å ${}^{3}$ .
 > * **Recommendation**: Used only for the cavitation energy.
 
 ### `SolventRadius`
@@ -904,10 +784,7 @@ nonelectrostatic parameters for PCM calculations.
 > * **Type**: `FLOAT`
 > * **Default**: `None`
 > * **Options**:
->     * $r$
->     * Use a radius of
->     * $r$
->     * , in Å.
+>     * $r$: Use a radius of $r$ , in Å.
 > * **Recommendation**: Used only for the cavitation energy.
 
 The following example illustrates the use of the nonelectrostatic interactions.
@@ -974,10 +851,8 @@ performed with PCM, but it is turned off while the perturbation scheme is employ
 > * **Type**: `STRING`
 > * **Default**: `No default.`
 > * **Options**:
->     * Marcus
->     * Do slow-fast charge separation with the Marcus partition.
->     * Pekar
->     * Do slow-fast charge separation with the Pekar partition.
+>     * `Marcus`: Do slow-fast charge separation with the Marcus partition.
+>     * `Pekar`: Do slow-fast charge separation with the Pekar partition.
 > * **Recommendation**: Charge separation is used in conjunction with the StateSpecific keyword in $pcm .
 
 ### `StateSpecific`
@@ -987,12 +862,9 @@ performed with PCM, but it is turned off while the perturbation scheme is employ
 > * **Type**: `Various`
 > * **Default**: `No default.`
 > * **Options**:
->     * Perturb
->     * Perform ptSS and ptLR for vertical excitations.
->     * External
->     * Perform self-consistent EI-SS-PCM to the excited state (for emission).
->     * Internal
->     * Perform self-consistent II-SS-PCM to the excited state (for emission or excitation).
+>     * `Perturb`: Perform ptSS and ptLR for vertical excitations.
+>     * `External`: Perform self-consistent EI-SS-PCM to the excited state (for emission).
+>     * `Internal`: Perform self-consistent II-SS-PCM to the excited state (for emission or excitation).
 > * **Recommendation**: Use for vertical excition energies ptSS-PCM or in very polar cases the nonequilibrium II-SS-PCM, and equilibrium EI-SS-PCM for emission energies of long-lived excited states.
 
 ### `Td_CEq_NonEq`
@@ -1002,14 +874,10 @@ performed with PCM, but it is turned off while the perturbation scheme is employ
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * 1
->     * Calculate nonequilibrium excited-state free energy in absorption based on the equilibrium ground-state reaction field via an RPA calculation at the ground-state geometry.
->     * 2
->     * Calculate nonequilibrium excited-state free energy in absorption based on the nonequilibrium excited-state reaction field via an RPA calculation at the ground-state geometry.
->     * 3
->     * Calculate equilibrium excited-state free energy in emission based on the equilibrium excited-state reaction field via an RPA calculation at the excited-state geometry.
->     * 4
->     * Calculate nonequilibrium ground-state free energy in emission based on the nonequilibrium ground-state reaction field via a pure single-point energy calculation at the excited-state geometry.
+>     * `1`: Calculate nonequilibrium excited-state free energy in absorption based on the equilibrium ground-state reaction field via an RPA calculation at the ground-state geometry.
+>     * `2`: Calculate nonequilibrium excited-state free energy in absorption based on the nonequilibrium excited-state reaction field via an RPA calculation at the ground-state geometry.
+>     * `3`: Calculate equilibrium excited-state free energy in emission based on the equilibrium excited-state reaction field via an RPA calculation at the excited-state geometry.
+>     * `4`: Calculate nonequilibrium ground-state free energy in emission based on the nonequilibrium ground-state reaction field via a pure single-point energy calculation at the excited-state geometry.
 > * **Recommendation**: Option 2 and 3 need to be iterated until the excited-state reaction field converges. Option 1 is the first iteration of option 2. After the equilibrium excited state reaction field of option 3 converges, option 4 is executed.
 
 ???+ example "Example 11.8: LR-TDDFT/LR-C-PCM low-lying vertical excitation energy"

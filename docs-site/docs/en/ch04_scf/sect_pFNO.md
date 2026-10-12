@@ -47,8 +47,6 @@ finite temperature ($T_{\mathrm{init}}$ = $T_{\mathrm{final}}$), or the system c
 from a higher temperature down to the final temperature. So far, no
 zero-temperature extrapolation has been implemented.
 
-OCCUPATIONS
-
 ### `OCCUPATIONS`
 
 > **Activates pFON calculation.**
@@ -56,15 +54,10 @@ OCCUPATIONS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Integer occupation numbers
->     * 1
->     * Not yet implemented
->     * 2
->     * Pseudo-fractional occupation numbers (pFON)
+>     * `0`: Integer occupation numbers
+>     * `1`: Not yet implemented
+>     * `2`: Pseudo-fractional occupation numbers (pFON)
 > * **Recommendation**: Use pFON to improve convergence for small-gap systems.
-
-FON_T_START
 
 ### `FON_T_START`
 
@@ -76,8 +69,6 @@ FON_T_START
 >     * Any desired initial temperature.
 > * **Recommendation**: Pick the temperature to either reproduce experimental conditions ( e.g. room temperature) or as low as possible to approach zero-temperature.
 
-FON_T_END
-
 ### `FON_T_END`
 
 > **Final electronic temperature for FON calculation.**
@@ -88,8 +79,6 @@ FON_T_END
 >     * Any desired final temperature.
 > * **Recommendation**: Pick the temperature to either reproduce experimental conditions ( e.g. room temperature) or as low as possible to approach zero-temperature.
 
-FON_NORB
-
 ### `FON_NORB`
 
 > **Number of orbitals above and below the Fermi level that are allowed to have fractional occupancies.**
@@ -97,11 +86,8 @@ FON_NORB
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * number of active orbitals
+>     * $n$: number of active orbitals
 > * **Recommendation**: The number of valence orbitals is a reasonable choice.
-
-FON_T_SCALE
 
 ### `FON_T_SCALE`
 
@@ -110,15 +96,9 @@ FON_T_SCALE
 > * **Type**: `INTEGER`
 > * **Default**: `90`
 > * **Options**:
->     * $n$
->     * temperature is scaled by
->     * $0.01\cdot n$
->     * in each cycle (cooling method 1)
->     * $n$
->     * temperature is decreased by n K in each cycle (cooling method 2)
+>     * $n$: temperature is scaled by $0.01\cdot n$ in each cycle (cooling method 1)
+>     * $n$: temperature is decreased by n K in each cycle (cooling method 2)
 > * **Recommendation**: The cooling rate should be neither too slow nor too fast. Too slow may lead to final energies that are at undesirably high temperatures. Too fast may lead to convergence issues. Reasonable choices for methods 1 and 2 are 98 and 50, respectively. When in doubt, use constant temperature.
-
-FON_E_THRESH
 
 ### `FON_E_THRESH`
 
@@ -127,12 +107,8 @@ FON_E_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * freeze occupations below DIIS error of
->     * $10^{-n}$
+>     * $n$: freeze occupations below DIIS error of $10^{-n}$
 > * **Recommendation**: This should be one or two numbers bigger than the desired SCF convergence threshold.
-
-FON_T_METHOD
 
 ### `FON_T_METHOD`
 
@@ -141,10 +117,8 @@ FON_T_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * temperature is scaled by a factor in each cycle
->     * 2
->     * temperature is decreased by a constant number in each cycle
+>     * `1`: temperature is scaled by a factor in each cycle
+>     * `2`: temperature is decreased by a constant number in each cycle
 > * **Recommendation**: We have made slightly better experience with a constant cooling rate. However, choose constant temperature when in doubt.
 
 ???+ example "Example 4.11: pFON calculation of a metal cluster."

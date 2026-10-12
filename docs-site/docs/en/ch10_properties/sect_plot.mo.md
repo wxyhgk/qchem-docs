@@ -223,8 +223,6 @@ directory must be used, and the SKIP_CIS_RPA *$rem* variable must be
 set to TRUE. To further reduce computational time, the
 SCF_GUESS *$rem* can be set to READ.
 
-SKIP_CIS_RPA
-
 ### `SKIP_CIS_RPA`
 
 > **Skips the solution of the CIS, RPA, TDA or TDDFT equations for wave function analysis.**
@@ -232,7 +230,7 @@ SKIP_CIS_RPA
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE / FALSE
+>     * `TRUE / FALSE`
 > * **Recommendation**: Set to true to speed up the generation of plot data if the same calculation has been run previously with the scratch files saved.
 
 ## 10.5.4.1 New *$plots* input

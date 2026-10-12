@@ -49,10 +49,7 @@ as well as the reference for the CG solver.[[561]](../bib_references/bib.md#bib5
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * Conjugate gradient converges when the maximum residual is less than
->     * $10^{-n}$
->     * .
+>     * $n$: Conjugate gradient converges when the maximum residual is less than $10^{-n}$ .
 > * **Recommendation**: The default typically affords PCM energies on par with the precision of matrix inversion for small systems. For systems that have difficulty with SCF convergence, one should increase $n$ or try the matrix inversion solver. For well-behaved or very large systems, a smaller $n$ might be permissible.
 
 ### `DComp`
@@ -62,12 +59,9 @@ as well as the reference for the CG solver.[[561]](../bib_references/bib.md#bib5
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Turns off matrix decomposition
->     * 1
->     * Turns on matrix decomposition
->     * 3
->     * Option 1 plus only stores upper half of matrix and enhances gradient evaluation
+>     * `0`: Turns off matrix decomposition
+>     * `1`: Turns on matrix decomposition
+>     * `3`: Option 1 plus only stores upper half of matrix and enhances gradient evaluation
 > * **Recommendation**: None
 
 ### `PreCond`
@@ -107,8 +101,7 @@ as well as the reference for the CG solver.[[561]](../bib_references/bib.md#bib5
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * The highest order multipole in the multipole expansion.
+>     * $n$: The highest order multipole in the multipole expansion.
 > * **Recommendation**: Increasing the multipole order improves accuracy but also adds more computational expense. The default yields satisfactory performance in common QM/MM/PCM applications.
 
 ### `Theta`
@@ -118,8 +111,7 @@ as well as the reference for the CG solver.[[561]](../bib_references/bib.md#bib5
 > * **Type**: `FLOAT`
 > * **Default**: `0.6`
 > * **Options**:
->     * $n$
->     * A number between zero and one.
+>     * $n$: A number between zero and one.
 > * **Recommendation**: The default is recommended for general usage. This variable determines when the use of a multipole expansion is valid. For a given grid point and box center in the FMM, a multipole expansion is accepted when $r/d\leq$ , where $d$ is the distance from the grid point to the box center and $r$ is the radius of the box. Setting to one will accept all multipole expansions, whereas setting it to zero will accept none. If not accepted, the grid point’s interaction with each point inside the box is computed explicitly. A low is more accurate but also more expensive than a higher .
 
 ### `NBox`
@@ -129,8 +121,7 @@ as well as the reference for the CG solver.[[561]](../bib_references/bib.md#bib5
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * The maximum number of grid points for a leaf box.
+>     * $n$: The maximum number of grid points for a leaf box.
 > * **Recommendation**: The default is recommended. This option is for advanced users only. The adaptive FMM boxing algorithm divides space into smaller and smaller boxes until each box has less than or equal to grid points. Modification of the threshold can lead to speedup or slowdown depending on the molecular system and other FMM variables.
 
 A sample input file for the linear-scaling QM/MM/PCM methodology

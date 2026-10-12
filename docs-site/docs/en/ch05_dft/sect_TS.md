@@ -141,8 +141,6 @@ obtained in **FHI-aims**. For full self-consistency, however, these scaling fact
 The TS-vdW dispersion energy is requested by setting TSVDW =
 TRUE. Energies and analytic gradients are available.
 
-TSVDW
-
 ### `TSVDW`
 
 > **Flag to switch on the TS-vdW method**
@@ -150,15 +148,10 @@ TSVDW
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not apply TS-vdW.
->     * 1
->     * Apply the TS-vdW method to obtain the TS-vdW energy.
->     * 2
->     * Apply the TS-vdW method to obtain the TS-vdW energy and corresponding gradients.
+>     * `0`: Do not apply TS-vdW.
+>     * `1`: Apply the TS-vdW method to obtain the TS-vdW energy.
+>     * `2`: Apply the TS-vdW method to obtain the TS-vdW energy and corresponding gradients.
 > * **Recommendation**: Since TS-vdW is itself a form of dispersion correction, it should not be used in conjunction with any of the dispersion corrections described in Section 5.7.3 .
-
-TSVDW_SR
 
 ### `TSVDW_SR`
 
@@ -167,12 +160,8 @@ TSVDW_SR
 > * **Type**: `INTEGER`
 > * **Default**: `no default value defined`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n\cdot 10^{-4}$
+>     * $n$: Corresponding to $n\cdot 10^{-4}$
 > * **Recommendation**: Use predefined values for supported functionals, otherwise consult Ref. 1361 Tkatchenko A., Scheffler M. Phys. Rev. Lett. (2009) , 102 , pp. 073005 . Link and other relevant literature.
-
-HIRSHFELD_CONV
 
 ### `HIRSHFELD_CONV`
 
@@ -181,12 +170,8 @@ HIRSHFELD_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `same as SCF_CONVERGENCE`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
+>     * $n$: Corresponding to $10^{-n}$
 > * **Recommendation**: 5
-
-HIRSHMOD
 
 ### `HIRSHMOD`
 
@@ -195,16 +180,11 @@ HIRSHMOD
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * 0
->     * Do not apply modifiers to the Hirshfeld volumes.
->     * 1
->     * Apply built-in modifier to H.
->     * 2
->     * Apply built-in modifier to H and C.
->     * 3
->     * Apply built-in modifier to H, C and N.
->     * 4
->     * Apply built-in modifier to H, C, N and O
+>     * `0`: Do not apply modifiers to the Hirshfeld volumes.
+>     * `1`: Apply built-in modifier to H.
+>     * `2`: Apply built-in modifier to H and C.
+>     * `3`: Apply built-in modifier to H, C and N.
+>     * `4`: Apply built-in modifier to H, C, N and O
 > * **Recommendation**: Use the default
 
 ???+ example "Example 5.15: Sample input illustrating a calculation of a water molecule, including the

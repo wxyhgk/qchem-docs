@@ -91,8 +91,6 @@ $$
 
 设置 JOBTYPE = RRAMAN 即可调用共振拉曼强度的计算。
 
-RR_NO_NORMALISE
-
 ### `RR_NO_NORMALISE`
 
 > **控制频率计算任务是否计算共振拉曼强度**
@@ -100,10 +98,8 @@ RR_NO_NORMALISE
 > * **类型**: `LOGICAL`
 > * **默认值**: `False`
 > * **可选项**:
->     * False
->     * 归一化 RR 强度
->     * True
->     * 不归一化 RR 强度
+>     * `False`: 归一化 RR 强度
+>     * `True`: 不归一化 RR 强度
 > * **推荐设置**: False
 
 ???+ example "示例 10.44: 计算共振拉曼强度。"

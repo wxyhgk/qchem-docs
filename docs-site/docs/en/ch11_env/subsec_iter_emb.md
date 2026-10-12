@@ -35,8 +35,6 @@ $$
 
 The keywords for triggering these features are EMB_POL and EMB_DIPOLE, respectively.
 
-EMB_ITER
-
 ### `EMB_ITER`
 
 > **Turns iterative projection-based density embedding on**
@@ -44,13 +42,9 @@ EMB_ITER
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not iterate over different fragments.
->     * TRUE
->     * Turn on iterative density embedding.
+>     * `FALSE`: Do not iterate over different fragments.
+>     * `TRUE`: Turn on iterative density embedding.
 > * **Recommendation**: None
-
-EMB_POL
 
 ### `EMB_POL`
 
@@ -59,13 +53,9 @@ EMB_POL
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute the iterative polarizability tensor
->     * TRUE
->     * Compute the iterative polarizability tensor
+>     * `FALSE`: Do not compute the iterative polarizability tensor
+>     * `TRUE`: Compute the iterative polarizability tensor
 > * **Recommendation**: None
-
-EMB_DIPOLE
 
 ### `EMB_DIPOLE`
 
@@ -74,8 +64,6 @@ EMB_DIPOLE
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute the iterative dipole moment
->     * TRUE
->     * Compute the iterative dipole moment
+>     * `FALSE`: Do not compute the iterative dipole moment
+>     * `TRUE`: Compute the iterative dipole moment
 > * **Recommendation**: None

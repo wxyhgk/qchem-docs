@@ -49,8 +49,6 @@ $$
 
 虽然 Mulliken 和 Löwdin 布居分析被广泛使用，并且可用于提供电子密度变化以及局域自旋极化的信息，但不应将其解释为体系中原子的氧化态。对于这类信息，我们建议使用成键分析技术（LOBA 或 NBO）。
 
-POP_MULLIKEN
-
 ### `POP_MULLIKEN`
 
 > **控制是否运行 Mulliken 布居分析。**
@@ -58,19 +56,11 @@ POP_MULLIKEN
 > * **类型**: `LOGICAL/INTEGER`
 > * **默认值**: `TRUE (or 1)`
 > * **选项**:
->     * FALSE (or 0)
->     * 不计算 Mulliken 布居。
->     * TRUE (or 1)
->     * 计算 Mulliken 布居。
->     * 2
->     * 同时计算每个占据轨道的各壳层布居。
->     * 3
->     * 输出与 2 相同，并额外给出核中心处的轨道密度。
->     * $-1$
->     * 计算基态以及任意 CIS、RPA 或 TDDFT 激发态的 Mulliken 电荷。
+>     * `FALSE`（或 `0`）: 不计算 Mulliken 布居。
+>     * `TRUE`（或 `1`）: 计算 Mulliken 布居。
+>     * `2`: 同时计算每个占据轨道的各壳层布居。
+>     * `3`: 输出与 2 相同，并额外给出核中心处的轨道密度。 $-1$ 计算基态以及任意 CIS、RPA 或 TDDFT 激发态的 Mulliken 电荷。
 > * **建议**: 保持为 TRUE，除非需要激发态电荷。Mulliken 分析只是微不足道的额外计算，无论对基态还是激发态均如此。
-
-LOWDIN_POPULATION
 
 ### `LOWDIN_POPULATION`
 
@@ -79,10 +69,8 @@ LOWDIN_POPULATION
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不计算 Löwdin 布居。
->     * TRUE
->     * 运行 Löwdin 布居分析。
+>     * `FALSE`: 不计算 Löwdin 布居。
+>     * `TRUE`: 运行 Löwdin 布居分析。
 > * **建议**: 无
 
 ## 10.2.2.2 由静电势导出的电荷
@@ -98,8 +86,6 @@ LOWDIN_POPULATION
 因此，还提供了一种基于原子中心 Lebedev 网格的替代程序，[[590]](../bib_references/bib.md#bib612)
  它用少得多的网格点即可给出非常相似的电荷。若要使用 Lebedev 网格实现，必须设置 *$rem* 变量 CHELPG_H 和 CHELPG_HA，分别指定氢原子和重原子的 Lebedev 网格点数。
 
-CHELPG
-
 ### `CHELPG`
 
 > **控制是否计算 CHELPG 电荷。**
@@ -107,13 +93,9 @@ CHELPG
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不计算 ChElPG 电荷。
->     * TRUE
->     * 计算 ChElPG 电荷。
+>     * `FALSE`: 不计算 ChElPG 电荷。
+>     * `TRUE`: 计算 ChElPG 电荷。
 > * **建议**: 如需要则设为 TRUE。对于大分子，计算 ChElPG 电荷会带来一定开销，尤其当网格点数很大时。注意，若要获得 ChElPG 电荷，POP_MULLIKEN 也必须设为 TRUE（即默认值）。
-
-CHELPG_HEAD
 
 ### `CHELPG_HEAD`
 
@@ -122,13 +104,8 @@ CHELPG_HEAD
 > * **类型**: `INTEGER`
 > * **默认值**: `28`
 > * **选项**:
->     * $N$
->     * 对应于
->     * $N/10$
->     * 的头部空间，单位为 Å。
+>     * $N$: 对应于 $N/10$ 的头部空间，单位为 Å。
 > * **建议**: 使用默认值，即 Breneman 和 Wiberg 推荐的值。159 Breneman C. M., Wiberg K. B. J. Comput. Chem. (1990) , 11 , pp. 361 . Link
-
-CHELPG_DX
 
 ### `CHELPG_DX`
 
@@ -137,13 +114,8 @@ CHELPG_DX
 > * **类型**: `INTEGER`
 > * **默认值**: `6`
 > * **选项**:
->     * $N$
->     * 对应于
->     * $N/20$
->     * 的网格间距，单位为 Å。
+>     * $N$: 对应于 $N/20$ 的网格间距，单位为 Å。
 > * **建议**: 使用默认值，它对应于 Breneman 和 Wiberg 的“稠密网格”（dense grid），159 Breneman C. M., Wiberg K. B. J. Comput. Chem. (1990) , 11 , pp. 361 . Link ，除非代价过高，此时可选择更大的值。注意，此默认值是针对笛卡尔网格而非 Lebedev 网格设定的。对于 Lebedev 网格，通常可以使用更大的值。
-
-CHELPG_HA
 
 ### `CHELPG_HA`
 
@@ -152,13 +124,8 @@ CHELPG_HA
 > * **类型**: `INTEGER`
 > * **默认值**: `NONE`
 > * **选项**:
->     * $N$
->     * 每个原子使用
->     * $N$
->     * 个 Lebedev 点。
+>     * $N$: 每个原子使用 $N$ 个 Lebedev 点。
 > * **建议**: $N$ 必须是 Lebedev 网格已定义的取值之一；参见 Table 5.2 。
-
-CHELPG_H
 
 ### `CHELPG_H`
 
@@ -167,10 +134,7 @@ CHELPG_H
 > * **类型**: `INTEGER`
 > * **默认值**: `NONE`
 > * **选项**:
->     * $N$
->     * 每个原子使用
->     * $N$
->     * 个 Lebedev 点。
+>     * $N$: 每个原子使用 $N$ 个 Lebedev 点。
 > * **建议**: $N$ 必须是 Lebedev 网格已定义的取值之一；参见 Table 5.2 。此外，它必须始终小于或等于 CHELPG_HA 。若更大，将自动设置为 CHELPG_HA 的值。
 
 另一组与之密切相关的基于 ESP 的电荷是所谓“Merz-Kollman”电荷，[[1258]](../bib_references/bib.md#bib1310)
@@ -192,8 +156,6 @@ ESP_CHARGES 和 RESP_CHARGES 均可用于从 CIS 或 TDDFT 计算（RPA 或 TDA�
 
 **
 
-ESP_CHARGES
-
 ### `ESP_CHARGES`
 
 > **控制是否计算基于 Merz-Kollman ESP 导出的电荷。**
@@ -201,13 +163,9 @@ ESP_CHARGES
 > * **类型**: `INTEGER`
 > * **默认值**: `NONE`
 > * **选项**:
->     * 1
->     * 在每个原子周围使用 Lebedev 网格点。
->     * 2
->     * 在每个原子周围使用球谐函数网格点。
+>     * `1`: 在每个原子周围使用 Lebedev 网格点。
+>     * `2`: 在每个原子周围使用球谐函数网格点。
 > * **建议**: NONE
-
-RESP_CHARGES
 
 ### `RESP_CHARGES`
 
@@ -216,13 +174,9 @@ RESP_CHARGES
 > * **类型**: `INTEGER`
 > * **默认值**: `NONE`
 > * **选项**:
->     * 1
->     * 在每个原子周围使用 Lebedev 网格点。
->     * 2
->     * 在每个原子周围使用球谐函数网格点。
+>     * `1`: 在每个原子周围使用 Lebedev 网格点。
+>     * `2`: 在每个原子周围使用球谐函数网格点。
 > * **建议**: NONE
-
-ESP_SURFACE_DENSITY
 
 ### `ESP_SURFACE_DENSITY`
 
@@ -231,10 +185,7 @@ ESP_SURFACE_DENSITY
 > * **类型**: `INTEGER`
 > * **默认值**: `500`
 > * **选项**:
->     * $n$
->     * 间距为
->     * $0.001\times n$
->     * （单位为 Å）
+>     * $n$: 间距为 $0.001\times n$ （单位为 Å）
 > * **建议**: 默认值对应 0.5 Å 间距。
 
 ## 10.2.2.3 Hirshfeld 电荷
@@ -287,8 +238,6 @@ $$
 
 与原始 Hirshfeld 方案相比，迭代式 Hirshfeld 方案通常给出更合理的电荷。以 LiF 为例，原始 Hirshfeld 方案预测的原子电荷为 $\pm$0.57，而迭代方案将这些电荷增大至 $\pm$0.93。式 ([10.6](#eq:hirshc)) 中的积分通过数值求积评估，每次 Hirshfeld-I 迭代的代价与计算原始 Hirshfeld 电荷的代价相等。进行 Hirshfeld-I 分析时，必须将 *$rem* 变量 POINT_GROUP_SYMMETRY 设为 FALSE。
 
-HIRSHFELD
-
 ### `HIRSHFELD`
 
 > **控制是否运行 Hirshfeld 布居分析。**
@@ -296,13 +245,9 @@ HIRSHFELD
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 计算 Hirshfeld 布居。
->     * FALSE
->     * 不计算 Hirshfeld 布居。
+>     * `TRUE`: 计算 Hirshfeld 布居。
+>     * `FALSE`: 不计算 Hirshfeld 布居。
 > * **建议**: 无
-
-HIRSHFELD_READ
 
 ### `HIRSHFELD_READ`
 
@@ -311,13 +256,9 @@ HIRSHFELD_READ
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 从磁盘读入先前 Hirshfeld 计算产生的孤立原子密度。
->     * FALSE
->     * 生成新的孤立原子密度。
+>     * `TRUE`: 从磁盘读入先前 Hirshfeld 计算产生的孤立原子密度。
+>     * `FALSE`: 生成新的孤立原子密度。
 > * **建议**: 除非体系很大，否则使用默认值。注意，原子的顺序及所用基组应与先前的 Hirshfeld 计算保持一致（坐标可以改变）。先前的计算应使用 -save 选项运行。
-
-HIRSHFELD_SPHAVG
 
 ### `HIRSHFELD_SPHAVG`
 
@@ -326,13 +267,9 @@ HIRSHFELD_SPHAVG
 > * **类型**: `LOGICAL`
 > * **默认值**: `TRUE`
 > * **选项**:
->     * TRUE
->     * 对原子密度进行球平均。
->     * FALSE
->     * 不进行球平均。
+>     * `TRUE`: 对原子密度进行球平均。
+>     * `FALSE`: 不进行球平均。
 > * **建议**: 使用默认值。
-
-CM5
 
 ### `CM5`
 
@@ -341,13 +278,9 @@ CM5
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 计算 CM5 布居。
->     * FALSE
->     * 不计算 CM5 布居。
+>     * `TRUE`: 计算 CM5 布居。
+>     * `FALSE`: 不计算 CM5 布居。
 > * **建议**: 无
-
-HIRSHITER
 
 ### `HIRSHITER`
 
@@ -356,13 +289,9 @@ HIRSHITER
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 计算迭代式 Hirshfeld 布居。
->     * FALSE
->     * 不计算迭代式 Hirshfeld 布居。
+>     * `TRUE`: 计算迭代式 Hirshfeld 布居。
+>     * `FALSE`: 不计算迭代式 Hirshfeld 布居。
 > * **建议**: 无
-
-HIRSHITER_THRESH
 
 ### `HIRSHITER_THRESH`
 
@@ -371,12 +300,7 @@ HIRSHITER_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **选项**:
->     * $N$
->     * 对应于
->     * $N/10000$
->     * 的收敛判据，单位为
->     * $e$
->     * 。
+>     * $N$: 对应于 $N/10000$ 的收敛判据，单位为 $e$。
 > * **建议**: 使用默认值，即文献 170 Bultinck P. et al. J. Chem. Phys. (2007) , 126 , pp. 144111 . Link 中推荐的值。
 
 ???+ example "示例 10.1: $\rm F^{-}(H_{2}O)$ 的迭代式 Hirshfeld 布居分析"

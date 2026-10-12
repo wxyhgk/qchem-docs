@@ -271,8 +271,6 @@ Poisson’s equation is solved on a three-dimensional Cartesian grid and the ene
 invariant unless the grid spacing is very small.
 **
 
-PEQS_SWITCH
-
 ### `PEQS_SWITCH`
 
 > **Inclusion of solvent effects begins when the SCF error falls below 10 ${}^{-\rm PEQS\_SWITCH}$ .**
@@ -280,9 +278,7 @@ PEQS_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $n$
->     * Corresponding to 10
->     * ${}^{-n}$
+>     * $n$: Corresponding to 10 ${}^{-n}$
 > * **Recommendation**: Use the default unless solvent effects need to be incorporated earlier in the SCF procedure.
 
 Further job control for the Poisson equation solver (PEqS) routines is set up in two sections:
@@ -335,10 +331,8 @@ Available keywords are described below.
 > * **Type**: `INTEGER`
 > * **Default**: `5000`
 > * **Options**:
->     * $n$
->     * Corresponding to a batch size of
->     * $n$
->     * grid points.
+>     * $n$: Corresponding to a batch size of
+>     * $n$: grid points.
 > * **Recommendation**: For large grids ( $\geq 10^{6}$ grid points), a batch size $n\approx N_{x}N_{y}N_{z}/5$ is recommended.
 
 ### `MaxIter`
@@ -348,7 +342,7 @@ Available keywords are described below.
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * User-defined.
+>     * `User-defined.`
 > * **Recommendation**: Use the default unless the calculation fails to converge.
 
 ### `OpticalDielectric`
@@ -358,10 +352,7 @@ Available keywords are described below.
 > * **Type**: `FLOAT`
 > * **Default**: `1.7778`
 > * **Options**:
->     * $\varepsilon_{\rm opt}$
->     * Desired value of
->     * $\varepsilon_{\text{opt}}$
->     * (dimensionless).
+>     * $\varepsilon_{\rm opt}$: Desired value of $\varepsilon_{\text{opt}}$ (dimensionless).
 > * **Recommendation**: The optical dielectric is equal to the square of the index of refraction. The default value corresponds to water at 25 ${}^{\circ}$ C.
 
 ### `PolarIterScale`
@@ -371,8 +362,7 @@ Available keywords are described below.
 > * **Type**: `FLOAT`
 > * **Default**: `0.6`
 > * **Options**:
->     * $\eta$
->     * Desired value of the dimensionless mixing parameter.
+>     * $\eta$: Desired value of the dimensionless mixing parameter.
 > * **Recommendation**: Use the default, which was tested in Refs. 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link and 48 Andreussi O., Dabo I., Marzari N. J. Chem. Phys. (2012) , 136 , pp. 064102 . Link , unless the calculation proves difficult to converge.
 
 ### `Print`
@@ -382,12 +372,9 @@ Available keywords are described below.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Basic printing including some PEqS information at each SCF iteration.
->     * 1
->     * Additional printing include atomic vdW radii used in cavity construction.
->     * 2
->     * Debugging information.
+>     * `0`: Basic printing including some PEqS information at each SCF iteration.
+>     * `1`: Additional printing include atomic vdW radii used in cavity construction.
+>     * `2`: Debugging information.
 > * **Recommendation**: Use 0 or 1.
 
 ### `SoluteCavity`
@@ -397,18 +384,10 @@ Available keywords are described below.
 > * **Type**: `STRING`
 > * **Default**: `Vacuum`
 > * **Options**:
->     * Vacuum
->     * Perform calculation in vacuum,
->     * $\varepsilon(\mathbf{r})\equiv 1$
->     * .
->     * RigidVDW
->     * Create a cavity using spherically symmetric error functions.
->     * Spherical
->     * Create a single spherical cavity around the solute.
->     * Arbitrary
->     * Create a user-defined dielectric cavity as obtained from the
->     * $epsilon
->     * input section.
+>     * `Vacuum`: Perform calculation in vacuum, $\varepsilon(\mathbf{r})\equiv 1$ .
+>     * `RigidVDW`: Create a cavity using spherically symmetric error functions.
+>     * `Spherical`: Create a single spherical cavity around the solute.
+>     * `Arbitrary`: Create a user-defined dielectric cavity as obtained from the $epsilon input section.
 > * **Recommendation**: None.
 
 ### `SolventDielectric`
@@ -418,10 +397,7 @@ Available keywords are described below.
 > * **Type**: `FLOAT`
 > * **Default**: `78.39`
 > * **Options**:
->     * $\varepsilon$
->     * Desired value of
->     * $\varepsilon$
->     * (dimensionless).
+>     * $\varepsilon$: Desired value of $\varepsilon$ (dimensionless).
 > * **Recommendation**: The default value corresponds to water at 25 ${}^{\circ}$ C.
 
 ### `SolverThresh`
@@ -431,9 +407,7 @@ Available keywords are described below.
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Corresponding to 10
->     * ${}^{-n}$
+>     * $n$: Corresponding to 10 ${}^{-n}$
 > * **Recommendation**: Use the default unless a tighter convergence criterion is desired, at greater computational cost.
 
 ## 11.2.11.4 Cavity Construction
@@ -480,36 +454,13 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 > * **Type**: `STRING`
 > * **Default**: `Bondi`
 > * **Options**:
->     * Bondi
->     * Use the modified Bondi set (Ref.
->     * 1186
->     * Rowland R. S., Taylor R.
->     * J. Phys. Chem.
->     * (1996)
->     * ,
->     * 100
->     * ,
->     * pp. 7384
->     * .
->     * Link
->     * ).
->     * UFF
->     * Universal Force Field radii (Ref.
->     * 1146
->     * Rappé A. K. et al.
->     * J. Am. Chem. Soc.
->     * (1992)
->     * ,
->     * 114
->     * ,
->     * pp. 10024
->     * .
->     * Link
->     * ).
->     * Read
->     * User-defined radii from a
->     * $van_der_waals
->     * input section.
+>     * `Bondi`: Use the modified Bondi set (Ref.
+>     * `1186`: Rowland R. S., Taylor R. J. Phys. Chem. (1996) ,
+>     * `100`: , pp. 7384 . Link ).
+>     * `UFF`: Universal Force Field radii (Ref.
+>     * `1146`: Rappé A. K. et al. J. Am. Chem. Soc. (1992) ,
+>     * `114`: , pp. 10024 . Link ).
+>     * `Read`: User-defined radii from a $van_der_waals input section.
 > * **Recommendation**: None. The Read option works in the same way as the corresponding keyword in the $pcm section, which is described in Section 11.2.4.1 with the format of the $van_der_waals input section described in Section 11.2.10 .
 
 ### `RigidScale`
@@ -519,10 +470,7 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 > * **Type**: `FLOAT`
 > * **Default**: `0.265 Å`
 > * **Options**:
->     * $\Delta$
->     * Specifies the desired value (in Å); see Eq. (
->     * 11.43
->     * ).
+>     * $\Delta$: Specifies the desired value (in Å); see Eq. ( 11.43 ).
 > * **Recommendation**: Use the default value, which was tuned in Ref. 390 Fisicaro G. et al. J. Chem. Phys. (2016) , 144 , pp. 014103 . Link so that errors in small-molecule solvation energies were $\approx 1$ kcal/mol.
 
 ### `VDWtype`
@@ -532,12 +480,9 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 > * **Type**: `STRING`
 > * **Default**: `Scaled`
 > * **Options**:
->     * Unscaled
->     * $d_{A}=r_{\mathrm{vdW}}$
->     * Scaled
->     * $d_{A}=r_{\mathrm{vdW}}\times scale$
->     * Shifted
->     * $d_{A}=(r_{\mathrm{vdW}}+shift)\times scale$
+>     * `Unscaled`: $d_{A}=r_{\mathrm{vdW}}$
+>     * `Scaled`: $d_{A}=r_{\mathrm{vdW}}\times scale$
+>     * `Shifted`: $d_{A}=(r_{\mathrm{vdW}}+shift)\times scale$
 > * **Recommendation**: None. The values of $scale$ and $shift$ are set with the VDWscale and VDWshift keywords, respectively.
 
 ### `VDWscale`
@@ -547,8 +492,7 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 > * **Type**: `FLOAT`
 > * **Default**: `1.2`
 > * **Options**:
->     * $scale$
->     * Specifies the desired dimensionless scaling factor for the atomic vdW radii.
+>     * $scale$: Specifies the desired dimensionless scaling factor for the atomic vdW radii.
 > * **Recommendation**: Use the default value.
 
 ### `VDWshift`
@@ -558,8 +502,7 @@ sets radius of the atomic sphere for atom $A$. By default, $d_{A}=1.2\,r_{\rm vd
 > * **Type**: `FLOAT`
 > * **Default**: `0.0 Ångstroms`
 > * **Options**:
->     * $shift$
->     * Specifies the desired shift (in Å).
+>     * $shift$: Specifies the desired shift (in Å).
 > * **Recommendation**: If VDWtype is set to Shifted , the vdW scale factor is set to 1.0 by default. This can be adjusted using the VDWScale keyword.
 
 Setting the **SoluteCavity** keyword to **Spherical** requests the
@@ -588,8 +531,7 @@ $\alpha=4/L$ by default.
 > * **Type**: `FLOAT`
 > * **Default**: `No default.`
 > * **Options**:
->     * $R$
->     * Desired spherical cavity radius (in Å).
+>     * $R$: Desired spherical cavity radius (in Å).
 > * **Recommendation**: None. See the Supporting Information of Ref. 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link for more information.
 
 ### `InterpolLength`
@@ -599,8 +541,7 @@ $\alpha=4/L$ by default.
 > * **Type**: `FLOAT`
 > * **Default**: `No default.`
 > * **Options**:
->     * $L$
->     * Desired interpolation length (in Å).
+>     * $L$: Desired interpolation length (in Å).
 > * **Recommendation**: None.
 
 ### `InterpolScale`
@@ -610,10 +551,7 @@ $\alpha=4/L$ by default.
 > * **Type**: `FLOAT`
 > * **Default**: `$\alpha$`
 > * **Options**:
->     * $\alpha$
->     * Desired interpolation scale factor (in Å
->     * ${}^{-1}$
->     * ).
+>     * $\alpha$: Desired interpolation scale factor (in Å ${}^{-1}$ ).
 > * **Recommendation**: Use the default unless a broader (smaller $\alpha$ ) or narrower (larger $\alpha$ ) transition region is desired.
 
 ### `Interface`
@@ -623,10 +561,8 @@ $\alpha=4/L$ by default.
 > * **Type**: `STRING`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Modify the dielectric function to simulate an interface between solvent and vacuum.
->     * False
->     * Perform a solvation calculation in bulk solvent.
+>     * `True`: Modify the dielectric function to simulate an interface between solvent and vacuum.
+>     * `False`: Perform a solvation calculation in bulk solvent.
 > * **Recommendation**: The user will also need to specify the length scale on which the dielectric is smoothly interpolated from the bulk solvent value to vacuum, and the location of the Gibbs dividing surface (see below).
 
 By setting **Interface** = **True**, the dielectric function on the Cartesian grid is
@@ -655,8 +591,7 @@ controls the sharpness of the interpolation across the Gibbs dividing surface.
 > * **Type**: `FLOAT`
 > * **Default**: `None`
 > * **Options**:
->     * $L_{\rm interface}$
->     * Desired interface length (in Å).
+>     * $L_{\rm interface}$: Desired interface length (in Å).
 > * **Recommendation**: This sets the value $\beta=4/L_{\rm interface}$ in Eq. ( 11.45 ). See the Supporting Information of Ref. 267 Coons M. P., You Z.-Q., Herbert J. M. J. Am. Chem. Soc. (2016) , 138 , pp. 10879 . Link for a full description of the solvent/vacuum interface construction.
 
 ### `GibbsDS`
@@ -666,8 +601,7 @@ controls the sharpness of the interpolation across the Gibbs dividing surface.
 > * **Type**: `FLOAT`
 > * **Default**: `None`
 > * **Options**:
->     * $z_{\mathrm{GDS}}$
->     * Desired location of the Gibbs dividing surface (in Å).
+>     * $z_{\mathrm{GDS}}$: Desired location of the Gibbs dividing surface (in Å).
 > * **Recommendation**: Consult the literature. One such way to determine this value is to compute a density profile of the solvent as a function of $z$ and set this location to be where the solvent density has decreased to 50% of the bulk value. Usually $z_{\mathrm{GDS}}\approx L_{\rm interface}/2$ .
 
 ### `NonequilJob`
@@ -677,10 +611,8 @@ controls the sharpness of the interpolation across the Gibbs dividing surface.
 > * **Type**: `STRING`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Compute the nonequilibrium free energy for a vertical ionization process.
->     * False
->     * Compute the equilibrium solvation free energy.
+>     * `True`: Compute the nonequilibrium free energy for a vertical ionization process.
+>     * `False`: Compute the equilibrium solvation free energy.
 > * **Recommendation**: None.
 
 ### `NonequilPartition`
@@ -690,10 +622,8 @@ controls the sharpness of the interpolation across the Gibbs dividing surface.
 > * **Type**: `STRING`
 > * **Default**: `Marcus`
 > * **Options**:
->     * Marcus
->     * Employ the Marcus partitioning scheme.
->     * Pekar
->     * Employ the Pekar partitioning scheme.
+>     * `Marcus`: Employ the Marcus partitioning scheme.
+>     * `Pekar`: Employ the Pekar partitioning scheme.
 > * **Recommendation**: Use the default. Although the fast and slow solvation responses are different between the two approaches, the total solvation free energy is the same, 1530 You Z.-Q. et al. J. Chem. Phys. (2015) , 143 , pp. 204104 . Link but the Pekar scheme is computationally more expensive than the Marcus scheme.
 
 ### `NonequilState`
@@ -703,10 +633,8 @@ controls the sharpness of the interpolation across the Gibbs dividing surface.
 > * **Type**: `STRING`
 > * **Default**: `Reference`
 > * **Options**:
->     * Reference
->     * The reference (initial) state, from which an electron will be removed.
->     * Ionized
->     * The final (ionized) state.
+>     * `Reference`: The reference (initial) state, from which an electron will be removed.
+>     * `Ionized`: The final (ionized) state.
 > * **Recommendation**: None. Both values will be needed in a compound input job, in order to compute the nonequilibrium response to vertical ionization; see Example 11.2.11.5 .
 
 Lastly, by setting **SoluteCavity** to **Arbitrary** in the *$peqs* input section, the user may choose to specify a

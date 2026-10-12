@@ -36,8 +36,6 @@ $$
 
 where $\alpha$ is the exponent of a particular basis function and $\theta$ is specified by the *$rem* keyword COMPLEX_THETA.
 
-COMPLEX_BASIS
-
 ### `COMPLEX_BASIS`
 
 > **Defines the complex basis.**
@@ -45,16 +43,10 @@ COMPLEX_BASIS
 > * **Type**: `STRING`
 > * **Default**: `No default complex basis set`
 > * **Options**:
->     * Symbol
->     * Use a standard basis set
->     * ZBASIS_GENERAL, ZBASIS_GEN
->     * User-defined. As for
->     * BASIS
->     * ZBASIS_MIXED
->     * User-defined mixed basis
+>     * `Symbol`: Use a standard basis set
+>     * `ZBASIS_GENERAL, ZBASIS_GEN`: User-defined. As for BASIS
+>     * `ZBASIS_MIXED`: User-defined mixed basis
 > * **Recommendation**: Consult Ref. 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link and the Basis Set Exchange.
-
-COMPLEX_THETA
 
 ### `COMPLEX_THETA`
 
@@ -63,7 +55,5 @@ COMPLEX_THETA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * $\theta=n/10$
->     * (degrees)
+>     * $n$: $\theta=n/10$ (degrees)
 > * **Recommendation**: Consult Ref. 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link . Usually calculations at several different values of $\theta$ (a “ $\theta$ -trajectory”) should be performed.

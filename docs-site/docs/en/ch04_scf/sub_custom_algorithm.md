@@ -17,8 +17,6 @@ SCF procedure. With the current implementation, at most four distinct
 algorithms (usually more than enough) can be employed in one single SCF
 calculation based on GEN_SCFMAN, and the basic job control is as follows:
 
-GEN_SCFMAN_HYBRID_ALGO
-
 ### `GEN_SCFMAN_HYBRID_ALGO`
 
 > **Use multiple algorithms in an SCF calculation based on GEN_SCFMAN.**
@@ -26,15 +24,9 @@ GEN_SCFMAN_HYBRID_ALGO
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use a single SCF algorithm (given by
->     * SCF_ALGORITHM
->     * ).
->     * TRUE
->     * Use multiple SCF algorithms (to be specified).
+>     * `FALSE`: Use a single SCF algorithm (given by SCF_ALGORITHM ).
+>     * `TRUE`: Use multiple SCF algorithms (to be specified).
 > * **Recommendation**: Set it to TRUE when the use of more than one algorithm is desired.
-
-GEN_SCFMAN_ALGO_1
 
 ### `GEN_SCFMAN_ALGO_1`
 
@@ -43,15 +35,8 @@ GEN_SCFMAN_ALGO_1
 > * **Type**: `STRING`
 > * **Default**: `0`
 > * **Options**:
->     * All the available
->     * SCF_ALGORITHM
->     * options, including the GEN_SCFMAN
->     * additions (Section
->     * 4.3
->     * ).
+>     * `All the available`: SCF_ALGORITHM options, including the GEN_SCFMAN additions (Section 4.3 ).
 > * **Recommendation**: None
-
-GEN_SCFMAN_ITER_1
 
 ### `GEN_SCFMAN_ITER_1`
 
@@ -60,10 +45,8 @@ GEN_SCFMAN_ITER_1
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: None
-
-GEN_SCFMAN_CONV_1
 
 ### `GEN_SCFMAN_CONV_1`
 
@@ -73,8 +56,7 @@ GEN_SCFMAN_CONV_1
 > * **Default**: `0`
 > * **Options**:
 >     * $n$
->     * 10
->     * ${}^{-n}$
+>     * `10`: ${}^{-n}$
 > * **Recommendation**: None
 
 **Note: 

@@ -103,8 +103,6 @@ These CVS-active orbitals are arranged such that they precede the valence orbita
 but follow the CVS-inactive orbitals in the molecular orbital ordering
 (use *$reorder_mo* section to customize if required).
 
-CVS_EOM_SHIFT
-
 ### `CVS_EOM_SHIFT`
 
 > **Specifies energy shift in CVS-EOM calculations.**
@@ -112,16 +110,8 @@ CVS_EOM_SHIFT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * corresponds to
->     * $n\times 10^{-3}$
->     * hartree shift (
->     * i.e.
->     * , 11000 = 11 hartree); solve for
->     * eigenstates around this value.
+>     * $n$: corresponds to $n\times 10^{-3}$ hartree shift ( i.e. , 11000 = 11 hartree); solve for eigenstates around this value.
 > * **Recommendation**: Improves the stability of the calculations.
-
-N_FC_CVS_INACTIVE
 
 ### `N_FC_CVS_INACTIVE`
 
@@ -130,14 +120,9 @@ N_FC_CVS_INACTIVE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * n, where 0
->     * $\leq$
->     * n
->     * $\leq$
->     * total FC orbitals
+>     * `n, where 0`: $\leq$
+>     * `n`: $\leq$ total FC orbitals
 > * **Recommendation**: Useful in cluster calculations.
-
-CVS_EOM_PRECONV_SINGLES
 
 ### `CVS_EOM_PRECONV_SINGLES`
 
@@ -146,13 +131,9 @@ CVS_EOM_PRECONV_SINGLES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * do not pre-converge
->     * 1
->     * pre-converge singles
+>     * `0`: do not pre-converge
+>     * `1`: pre-converge singles
 > * **Recommendation**: Sometimes helps with problematic convergence.
-
-CVS_EE_SINGLETS
 
 ### `CVS_EE_SINGLETS`
 
@@ -161,17 +142,8 @@ CVS_EE_SINGLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-CVS_EE_TRIPLETS
 
 ### `CVS_EE_TRIPLETS`
 
@@ -180,17 +152,8 @@ CVS_EE_TRIPLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * excited states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ excited states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-CVS_SF_STATES
 
 ### `CVS_SF_STATES`
 
@@ -199,17 +162,8 @@ CVS_SF_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * SF states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ SF states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-CVS_IP_STATES
 
 ### `CVS_IP_STATES`
 
@@ -218,16 +172,8 @@ CVS_IP_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * [i,j,k…]
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states in the second irrep
->     * etc.
+>     * `[i,j,k…]`: Find $i$ ionized states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-CVS_IP_ALPHA
 
 ### `CVS_IP_ALPHA`
 
@@ -236,17 +182,8 @@ CVS_IP_ALPHA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ ionized states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
-
-CVS_IP_BETA
 
 ### `CVS_IP_BETA`
 
@@ -255,14 +192,7 @@ CVS_IP_BETA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * Find
->     * $i$
->     * ionized states in the first irrep,
->     * $j$
->     * states
->     * in the second irrep
->     * etc.
+>     * $[i,j,k\ldots]$: Find $i$ ionized states in the first irrep, $j$ states in the second irrep etc.
 > * **Recommendation**: None
 
 ## 7.9.9.1 EOM-CC Calculations of RIXS
@@ -289,8 +219,6 @@ Finally, one can request to compute REXS (cross-section for the “elastic” pe
 CC_REF_PROP = 1 (by default, REXS is not calculated)
 This feature is only available within fc-CVS-EOM-EE-CCSD.
 
-CC_EOM_RIXS
-
 ### `CC_EOM_RIXS`
 
 > **Whether or not the RIXS scattering moments and cross-sections will be calculated.**
@@ -298,16 +226,10 @@ CC_EOM_RIXS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Perform RIXS within fc-CVS-EOM-EE-CCSD using the response wave functions of the CCSD reference state only
->     * 2
->     * Perform RIXS within fc-CVS-EOM-EE-CCSD response theory along with the wave-function analysis of RIXS transition density matrices
->     * 11
->     * Perform RIXS within the standard EOM-EE-CCSD using the response wave functions of the CCSD reference state only
->     * 12
->     * Use
->     * $\sigma$
->     * -intermediates for RIXS response calculations within the standard EOM-EE-CCSD
+>     * `1`: Perform RIXS within fc-CVS-EOM-EE-CCSD using the response wave functions of the CCSD reference state only
+>     * `2`: Perform RIXS within fc-CVS-EOM-EE-CCSD response theory along with the wave-function analysis of RIXS transition density matrices
+>     * `11`: Perform RIXS within the standard EOM-EE-CCSD using the response wave functions of the CCSD reference state only
+>     * `12`: Use $\sigma$ -intermediates for RIXS response calculations within the standard EOM-EE-CCSD
 > * **Recommendation**: Use 1 to deploy fc-CVS-EOM-EE-CCSD with robust convergence
 
 **Note: 

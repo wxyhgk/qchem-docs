@@ -99,8 +99,6 @@ minimization to converge to the minimum in difficult cases.
 The following *$rem* variables permit some customization of the DIIS
 iterations:
 
-DIIS_SUBSPACE_SIZE
-
 ### `DIIS_SUBSPACE_SIZE`
 
 > **Controls the size of the DIIS and/or RCA subspace during the SCF.**
@@ -108,10 +106,8 @@ DIIS_SUBSPACE_SIZE
 > * **Type**: `INTEGER`
 > * **Default**: `15`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: None
-
-DIIS_PRINT
 
 ### `DIIS_PRINT`
 
@@ -120,19 +116,12 @@ DIIS_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Minimal print out.
->     * 1
->     * Chosen method and DIIS coefficients and solutions.
->     * 2
->     * Level 1 plus changes in multipole moments.
->     * 3
->     * Level 2 plus Multipole moments.
->     * 4
->     * Level 3 plus extrapolated Fock matrices.
+>     * `0`: Minimal print out.
+>     * `1`: Chosen method and DIIS coefficients and solutions.
+>     * `2`: Level 1 plus changes in multipole moments.
+>     * `3`: Level 2 plus Multipole moments.
+>     * `4`: Level 3 plus extrapolated Fock matrices.
 > * **Recommendation**: Use the default
-
-DIIS_ERR_RMS
 
 ### `DIIS_ERR_RMS`
 
@@ -141,15 +130,9 @@ DIIS_ERR_RMS
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Use the RMS value of the error vector to measure convergence.
->     * FALSE
->     * Use the maximum value of
->     * $\mathbf{SPF}-\mathbf{FPS}$
->     * instead.
+>     * `TRUE`: Use the RMS value of the error vector to measure convergence.
+>     * `FALSE`: Use the maximum value of $\mathbf{SPF}-\mathbf{FPS}$ instead.
 > * **Recommendation**: Use the default.
-
-DIIS_SEPARATE_ERRVEC
 
 ### `DIIS_SEPARATE_ERRVEC`
 
@@ -158,16 +141,6 @@ DIIS_SEPARATE_ERRVEC
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use a combined
->     * $\alpha$
->     * and
->     * $\beta$
->     * error vector.
->     * TRUE
->     * Use separate error vectors for the
->     * $\alpha$
->     * and
->     * $\beta$
->     * spaces.
+>     * `FALSE`: Use a combined $\alpha$ and $\beta$ error vector.
+>     * `TRUE`: Use separate error vectors for the $\alpha$ and $\beta$ spaces.
 > * **Recommendation**: When using DIIS in Q-Chem a convenient optimization for unrestricted calculations is to sum the $\alpha$ and $\beta$ error vectors into a single vector which is used for extrapolation. This is often extremely effective, but in some pathological systems with symmetry breaking, can lead to false solutions being detected, where the $\alpha$ and $\beta$ components of the error vector cancel exactly giving a zero DIIS error. While an extremely uncommon occurrence, if it is suspected, set = TRUE to check.

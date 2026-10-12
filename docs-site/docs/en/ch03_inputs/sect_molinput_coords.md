@@ -20,8 +20,6 @@ that is defined by the coordinates provided in the *$molecule* section. This ca
 in the *$rem* section, which disables rotation into the standard orientation. The coordinate system that **Q-Chem** uses, whether it is
 the standard one or the user’s, is printed in the **Q-Chem** output file immediately below where the input file is reproduced.
 
-NO_REORIENT
-
 ### `NO_REORIENT`
 
 > **Disable rotation into the standard nuclear orientation.**
@@ -29,12 +27,8 @@ NO_REORIENT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use the standard nuclear orientation.
->     * TRUE
->     * Use the coordinate system defined by the
->     * $molecule
->     * section.
+>     * `FALSE`: Use the standard nuclear orientation.
+>     * `TRUE`: Use the coordinate system defined by the $molecule section.
 > * **Recommendation**: Use the default unless you have a reason to want a different coordinate system.
 
 ## 3.3.2.1 Cartesian Coordinates

@@ -11,8 +11,6 @@ performance of the DFT quadrature procedure by providing a better screening of n
 values. Using this option will yield improved efficiency at each successive iteration
 due to more effective screening.
 
-INCDFT
-
 ### `INCDFT`
 
 > **Toggles the use of the IncDFT procedure for DFT energy calculations.**
@@ -20,13 +18,9 @@ INCDFT
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Do not use IncDFT
->     * TRUE
->     * Use IncDFT
+>     * `FALSE`: Do not use IncDFT
+>     * `TRUE`: Use IncDFT
 > * **Recommendation**: Turning this option on can lead to faster SCF calculations, particularly towards the end of the SCF. Please note that for some systems use of this option may lead to convergence problems.
-
-INCDFT_DENDIFF_THRESH
 
 ### `INCDFT_DENDIFF_THRESH`
 
@@ -35,13 +29,8 @@ INCDFT_DENDIFF_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `SCF_CONVERGENCE`
 > * **Options**:
->     * $n$
->     * Corresponding to a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: Corresponding to a threshold of $10^{-n}$ .
 > * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten the threshold.
-
-INCDFT_GRIDDIFF_THRESH
 
 ### `INCDFT_GRIDDIFF_THRESH`
 
@@ -50,13 +39,8 @@ INCDFT_GRIDDIFF_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `SCF_CONVERGENCE`
 > * **Options**:
->     * $n$
->     * Corresponding to a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: Corresponding to a threshold of $10^{-n}$ .
 > * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten the threshold.
-
-INCDFT_DENDIFF_VARTHRESH
 
 ### `INCDFT_DENDIFF_VARTHRESH`
 
@@ -65,13 +49,8 @@ INCDFT_DENDIFF_VARTHRESH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Corresponding to a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: Corresponding to a threshold of $10^{-n}$ .
 > * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten accuracy. If this fails, set to 0 and use a static threshold.
-
-INCDFT_GRIDDIFF_VARTHRESH
 
 ### `INCDFT_GRIDDIFF_VARTHRESH`
 
@@ -80,8 +59,5 @@ INCDFT_GRIDDIFF_VARTHRESH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Corresponding to a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: Corresponding to a threshold of $10^{-n}$ .
 > * **Recommendation**: If the default value causes convergence problems, set this value higher to tighten accuracy. If this fails, set to 0 and use a static threshold.

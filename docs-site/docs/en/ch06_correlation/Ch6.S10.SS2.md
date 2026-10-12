@@ -6,8 +6,6 @@ title: "6.10.2 dRPA Job Control"
 
 (July 4, 2026)
 
-CLENSHAW_NGRID
-
 ### `CLENSHAW_NGRID`
 
 > **Number of grid points for the Curtis-Clenshaw quadrature.**

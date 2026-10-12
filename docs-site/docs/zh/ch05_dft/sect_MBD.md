@@ -93,8 +93,6 @@ Q-Chem 中 MBD 的当前实现基于 LibMBD[[575]](../bib_references/bib.md#bib5
 
 这是一个可移植的 Fortran 库，已与众多量子化学程序对接，其中请求 SCF 梯度的计算由 **Q-Chem** 专用代码完成。
 
-MBDVDW
-
 ### `MBDVDW`
 
 > **开启 MBD-vdW 方法的开关标志**
@@ -111,8 +109,6 @@ MBDVDW
 >     * MBD_SCF
 >     * 计算 MBD-vdW 对能量、核梯度以及 SCF 梯度的贡献。
 > * **建议**：NONE
-
-MBDVDW_BETA
 
 ### `MBDVDW_BETA`
 

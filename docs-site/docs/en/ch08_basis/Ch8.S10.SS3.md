@@ -41,8 +41,6 @@ keyword entirely, **Q-Chem** will automatically provide the matching one.
 
 The following *$rem* variable controls which ECP is used:
 
-ECP
-
 ### `ECP`
 
 > **Defines the effective core potential and associated basis set to be used**
@@ -50,12 +48,8 @@ ECP
 > * **Type**: `STRING`
 > * **Default**: `No ECP`
 > * **Options**:
->     * General, Gen
->     * User defined. (
->     * $ecp
->     * keyword required)
->     * Symbol
->     * Use standard ECPs discussed above.
+>     * `General, Gen`: User defined. ( $ecp keyword required)
+>     * `Symbol`: Use standard ECPs discussed above.
 > * **Recommendation**: ECPs are recommended for first row transition metals and heavier elements. Consult the reviews for more details.
 
 ## 8.10.3.2 Combining ECPs

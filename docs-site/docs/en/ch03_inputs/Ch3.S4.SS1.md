@@ -66,8 +66,6 @@ A complete list of *$rem* variables can be found in Appendix [B](../app_b_quick
 
 In this manual, *$rem* variables will be described using the following format:
 
-REM_VARIABLE_NAME
-
 ### `REM_VARIABLE_NAME`
 
 > **A short description of what the variable controls.**
@@ -80,8 +78,6 @@ REM_VARIABLE_NAME
 
 For example:
 
-IQMOL_FCHK
-
 ### `IQMOL_FCHK`
 
 > **Controls printing of a formatted checkpoint file that can be read by the IQmol program.**
@@ -89,10 +85,7 @@ IQMOL_FCHK
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Generate a checkpoint file named
->     * inputfilename.fchk
->     * .
+>     * `TRUE`: Generate a checkpoint file named inputfilename.fchk .
 > * **Recommendation**: For many Q-Chem jobs there is no reason not to generate the checkpoint file. Note that GUI = 2 (used by IQmol ) is synonymous with = TRUE .
 
 If a default setting is indicated for a particular *$rem* variable, then it is

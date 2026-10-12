@@ -72,8 +72,6 @@ In CCMAN2, triples corrections can be computed using two different backends,
 Triples corrections are requested by using METHOD or
 EOM_CORR:
 
-METHOD
-
 ### `METHOD`
 
 > **Specifies the calculation method.**
@@ -81,15 +79,10 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `No default value`
 > * **Options**:
->     * EOM-CCSD(DT)
->     * EOM-CCSD(dT), available for EE, SF, and IP
->     * EOM-CCSD(FT)
->     * EOM-CCSD(fT), available for EE, SF, IP, and EA
->     * EOM-CCSD(ST)
->     * EOM-CCSD(sT), available for IP
+>     * `EOM-CCSD(DT)`: EOM-CCSD(dT), available for EE, SF, and IP
+>     * `EOM-CCSD(FT)`: EOM-CCSD(fT), available for EE, SF, IP, and EA
+>     * `EOM-CCSD(ST)`: EOM-CCSD(sT), available for IP
 > * **Recommendation**: None
-
-EOM_CORR
 
 ### `EOM_CORR`
 
@@ -98,12 +91,9 @@ EOM_CORR
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * SD(DT)
->     * EOM-CCSD(dT), available for EE, SF, and IP
->     * SD(FT)
->     * EOM-CCSD(fT), available for EE, SF, IP, and EA
->     * SD(ST)
->     * EOM-CCSD(sT), available for IP
+>     * `SD(DT)`: EOM-CCSD(dT), available for EE, SF, and IP
+>     * `SD(FT)`: EOM-CCSD(fT), available for EE, SF, IP, and EA
+>     * `SD(ST)`: EOM-CCSD(sT), available for IP
 > * **Recommendation**: None
 
 **Note: 

@@ -15,8 +15,6 @@ charges (*$external_charges*) is also not supported. Analytic gradients are
 available when Mulliken, Löwdin, or CM5 embedding charges are used, but not yet
 available for ChElPG embedding charges.
 
-XPOL
-
 ### `XPOL`
 
 > **Perform a self-consistent XPol calculation.**
@@ -24,10 +22,8 @@ XPOL
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform an XPol calculation.
->     * FALSE
->     * Do not perform an XPol calculation.
+>     * `TRUE`: Perform an XPol calculation.
+>     * `FALSE`: Do not perform an XPol calculation.
 > * **Recommendation**: NONE
 
 Other XPol options are specified via keywords contained in the *$xpol* section.
@@ -40,14 +36,9 @@ These keywords are given below.
 > * **Type**: `STRING`
 > * **Default**: `Charges`
 > * **Options**:
->     * None
->     * No embedding charges.
->     * Charges
->     * Atomic point charges (standard XPol method).
->     * Density
->     * Fragment densities (as in the FMO method; see Sec.
->     * 12.12
->     * )
+>     * `None`: No embedding charges.
+>     * `Charges`: Atomic point charges (standard XPol method).
+>     * `Density`: Fragment densities (as in the FMO method; see Sec. 12.12 )
 > * **Recommendation**: The standard XPol method uses atomic point charges.
 
 ### `charges`
@@ -57,14 +48,12 @@ These keywords are given below.
 > * **Type**: `STRING`
 > * **Default**: `CM5`
 > * **Options**:
->     * Mulliken
->     * Mulliken charges
->     * Lowdin
->     * Löwdin charges
->     * CHELPG
->     * ChElPG charges
->     * CM5
->     * CM5 charges
+>     * `Mulliken`
+>     * `Mulliken charges`
+>     * `Lowdin`: Löwdin charges
+>     * `CHELPG`: ChElPG charges
+>     * `CM5`
+>     * `CM5 charges`
 > * **Recommendation**: Problems with Mulliken charges in extended basis sets can lead to XPol convergence failure. Löwdin charges tend to be somewhat more stable, while ChElPG charges are quite robust and provide an accurate electrostatic embedding. However, ChElPG charges are more expensive to compute and they perform slightly worse than CM5 charges in systems with charged monomers. The CM5 charges are a cost-effective and slightly more accurate choice. For XSAPT calculations (Section 12.10 ), CM5 charges are recommended. However, CM5 charges are not yet available for AIFDEM jobs (Section 12.14 ) and in that case ChElPG charges are recommended.
 
 ### `print`
@@ -74,8 +63,7 @@ These keywords are given below.
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * Desired print level
+>     * $n$: Desired print level
 > * **Recommendation**: Higher values print additional information
 
 Especially in the context of SAPT(KS) calculations (see

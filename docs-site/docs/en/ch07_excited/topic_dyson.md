@@ -111,8 +111,6 @@ EE/SF1 - IP/EA1, EE/SF1 - IP/EA2,$\ldots$, EE/SF2
 implementation keeps reference transitions separate, in accordance with
 separating keywords.
 
-CC_DO_DYSON
-
 ### `CC_DO_DYSON`
 
 > **CCMAN2: starts all types of Dyson orbitals calculations. Desired type is determined by requesting corresponding EOM-XX transitions CCMAN: whether the reference-state Dyson orbitals will be calculated for EOM-IP/EA-CCSD calculations.**
@@ -120,10 +118,8 @@ CC_DO_DYSON
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (the option must be specified to run this calculation)`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: none
-
-CC_DO_DYSON_EE
 
 ### `CC_DO_DYSON_EE`
 
@@ -132,7 +128,7 @@ CC_DO_DYSON_EE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE (the option must be specified to run this calculation)`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: none
 
 Dyson orbitals are most easily visualized by setting IQMOL_FCHK =

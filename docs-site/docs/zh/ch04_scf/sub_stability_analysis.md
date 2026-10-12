@@ -77,8 +77,6 @@ GEN_SCFMAN 允许在单个作业中执行多次 SCF 计算和稳定性分析，�
 
 ## 4.5.17.1 作业控制（Job Control）
 
-INTERNAL_STABILITY
-
 ### `INTERNAL_STABILITY`
 
 > **在 GEN_SCFMAN 中执行内部稳定性分析。**
@@ -86,13 +84,9 @@ INTERNAL_STABILITY
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 收敛后不执行内部稳定性分析。
->     * TRUE
->     * 执行内部稳定性分析并生成修正后的 MO。
+>     * `FALSE`: 收敛后不执行内部稳定性分析。
+>     * `TRUE`: 执行内部稳定性分析并生成修正后的 MO。
 > * **建议**: 当 SCF 解容易出现不稳定解时开启此项，尤其是对开壳层物种。
-
-FD_MAT_VEC_PROD
 
 ### `FD_MAT_VEC_PROD`
 
@@ -101,13 +95,9 @@ FD_MAT_VEC_PROD
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE (当所用泛函包含非局部相关（VV10 除外）时为 TRUE)`
 > * **选项**:
->     * FALSE
->     * 以解析方式计算 Hessian-向量乘积。
->     * TRUE
->     * 使用有限差分计算 Hessian-向量乘积。
+>     * `FALSE`: 以解析方式计算 Hessian-向量乘积。
+>     * `TRUE`: 使用有限差分计算 Hessian-向量乘积。
 > * **建议**: 当解析 Hessian 不可用时设置为 TRUE。注意：对于简单的 R 和 USCF 计算，此项始终可以设置为 FALSE，这表示只有 NLC 部分会用有限差分计算（前提是其解析轨道 Hessian 不可用）。
-
-INTERNAL_STABILITY_ITER
 
 ### `INTERNAL_STABILITY_ITER`
 
@@ -116,12 +106,8 @@ INTERNAL_STABILITY_ITER
 > * **类型**: `INTEGER`
 > * **默认值**: `0 (若 INTERNAL_STABILITY = TRUE，则自动设为 1)`
 > * **选项**:
->     * $n$
->     * 允许进行 $n$
->     * 次新的 SCF 计算。
+>     * $n$: 允许进行 $n$ 次新的 SCF 计算。
 > * **建议**: 如果 1 次不够（结果仍不稳定），请给出更大的数值。
-
-INTERNAL_STABILITY_DAVIDSON_ITER
 
 ### `INTERNAL_STABILITY_DAVIDSON_ITER`
 
@@ -130,13 +116,9 @@ INTERNAL_STABILITY_DAVIDSON_ITER
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **选项**:
->     * $n$
->     * 最多执行
->     * $n$
->     * 次 Davidson 迭代。
+>     * $n$: 最多执行
+>     * $n$: 次 Davidson 迭代。
 > * **建议**: 使用默认值。
-
-INTERNAL_STABILITY_CONV
 
 ### `INTERNAL_STABILITY_CONV`
 
@@ -145,13 +127,8 @@ INTERNAL_STABILITY_CONV
 > * **类型**: `INTEGER`
 > * **默认值**: `4 (当 FD_MAT_VEC_PROD = TRUE 时为 3)`
 > * **选项**:
->     * $n$
->     * 当残差向量的范数低于 10
->     * ${}^{-n}$
->     * 时终止 Davidson 迭代。
+>     * $n$: 当残差向量的范数低于 10 ${}^{-n}$ 时终止 Davidson 迭代。
 > * **建议**: 使用默认值。
-
-INTERNAL_STABILITY_ROOTS
 
 ### `INTERNAL_STABILITY_ROOTS`
 
@@ -160,10 +137,8 @@ INTERNAL_STABILITY_ROOTS
 > * **类型**: `INTEGER`
 > * **默认值**: `2`
 > * **选项**:
->     * $n$
->     * 求解
->     * $n$
->     * 个最低本征值。
+>     * $n$: 求解
+>     * $n$: 个最低本征值。
 > * **建议**: 使用默认值。
 
 ???+ example "示例 4.18: 使用 B97M-V/6-31g 和 GDM 算法对三重态 B ${}_{2}$ 进行非限制性 SCF 计算。当第一个解被判定为鞍点时执行位移，第二次 SCF 计算得到稳定的解。"

@@ -90,8 +90,6 @@ auxiliary basis sets using an *$aux_basis* (or *$aux_basis_j*, *$aux_basis_k*, *
 input section, whose syntax generally follows
 the *$basis* input section documented above in Section [8.4](sect_userbasis.md).
 
-AUX_BASIS
-
 ### `AUX_BASIS`
 
 > **Sets the auxiliary basis set to be used**
@@ -99,16 +97,10 @@ AUX_BASIS
 > * **Type**: `STRING`
 > * **Default**: `No default auxiliary basis set`
 > * **Options**:
->     * General, Gen
->     * User-defined. As for
->     * BASIS
->     * Symbol
->     * Use standard auxiliary basis sets as in the table below
->     * Mixed
->     * Use a combination of different basis sets
+>     * `General, Gen`: User-defined. As for BASIS
+>     * `Symbol`: Use standard auxiliary basis sets as in the table below
+>     * `Mixed`: Use a combination of different basis sets
 > * **Recommendation**: Consult literature and Basis Set Exchange to aid your selection.
-
-AUX_BASIS_J
 
 ### `AUX_BASIS_J`
 
@@ -117,16 +109,10 @@ AUX_BASIS_J
 > * **Type**: `STRING`
 > * **Default**: `No default auxiliary basis set`
 > * **Options**:
->     * General, Gen
->     * User-defined. As for
->     * BASIS
->     * Symbol
->     * Use standard auxiliary basis sets as in the table below
->     * Mixed
->     * Use a combination of different basis sets
+>     * `General, Gen`: User-defined. As for BASIS
+>     * `Symbol`: Use standard auxiliary basis sets as in the table below
+>     * `Mixed`: Use a combination of different basis sets
 > * **Recommendation**: Consult literature and Basis Set Exchange to aid your selection.
-
-AUX_BASIS_K
 
 ### `AUX_BASIS_K`
 
@@ -135,16 +121,10 @@ AUX_BASIS_K
 > * **Type**: `STRING`
 > * **Default**: `No default auxiliary basis set`
 > * **Options**:
->     * General, Gen
->     * User-defined. As for
->     * BASIS
->     * Symbol
->     * Use standard auxiliary basis sets as in the table below
->     * Mixed
->     * Use a combination of different basis sets
+>     * `General, Gen`: User-defined. As for BASIS
+>     * `Symbol`: Use standard auxiliary basis sets as in the table below
+>     * `Mixed`: Use a combination of different basis sets
 > * **Recommendation**: Consult literature and Basis Set Exchange to aid your selection.
-
-AUX_BASIS_CORR
 
 ### `AUX_BASIS_CORR`
 
@@ -153,13 +133,9 @@ AUX_BASIS_CORR
 > * **Type**: `STRING`
 > * **Default**: `No default auxiliary basis set`
 > * **Options**:
->     * General, Gen
->     * User-defined. As for
->     * BASIS
->     * Symbol
->     * Use standard auxiliary basis sets as in the table below
->     * Mixed
->     * Use a combination of different basis sets
+>     * `General, Gen`: User-defined. As for BASIS
+>     * `Symbol`: Use standard auxiliary basis sets as in the table below
+>     * `Mixed`: Use a combination of different basis sets
 > * **Recommendation**: Consult literature and Basis Set Exchange to aid your selection.
 
 | Symbolic Name | Atoms Supported |

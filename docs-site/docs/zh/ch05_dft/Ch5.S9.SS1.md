@@ -61,8 +61,6 @@ XYG3 推荐的基组是 6-311+G(3df,2p)。
 双杂化 DFT 的任务控制变量（job control variables）如下所述。请注意，PT2 相关能也可以使用高效的分辨率恒等（resolution-of-identity, RI）方法计算。
 自 **Q-Chem** 5.2 起，只需通过 AUX_BASIS_CORR 指定辅助基组即可调用 RIMP2。参见第 [6.6](../ch06_correlation/topic_rimp2.md) 节。
 
-DH
-
 ### `DH`
 
 > **控制是否应用 DH-DFT 方案。**
@@ -70,15 +68,11 @@ DH
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **取值选项**:
->     * FALSE（或 0）
->     * 不应用 DH-DFT 方案
->     * TRUE（或 1）
->     * 应用 DH-DFT 方案
+>     * `FALSE`（或 `0`）: 不应用 DH-DFT 方案
+>     * `TRUE`（或 `1`）: 应用 DH-DFT 方案
 > * **建议**: 无（NONE）
 
 以下 *$rem* 变量与 $\omega$B97X-2(LP) 和 $\omega$B97X-2(TQZ) 泛函相关。
-
-SSS_FACTOR
 
 ### `SSS_FACTOR`
 
@@ -87,15 +81,8 @@ SSS_FACTOR
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * $n$
->     * 对应于
->     * $c_{\mathrm{ss}}=n/10^{6}$
->     * （见式 (
->     * 5.62
->     * )）。
+>     * $n$: 对应于 $c_{\mathrm{ss}}=n/10^{6}$ （见式 ( 5.62 )）。
 > * **建议**: 无（NONE）
-
-SOS_FACTOR
 
 ### `SOS_FACTOR`
 
@@ -104,12 +91,7 @@ SOS_FACTOR
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * $n$
->     * 对应于
->     * $c_{\mathrm{os}}=n/10^{6}$
->     * （见式 (
->     * 5.62
->     * )）。
+>     * $n$: 对应于 $c_{\mathrm{os}}=n/10^{6}$ （见式 ( 5.62 )）。
 > * **建议**: 无（NONE）
 
 ???+ example "示例 5.18: B2PLYP 泛函在 LiH 上的应用（使用与不使用 RI）"

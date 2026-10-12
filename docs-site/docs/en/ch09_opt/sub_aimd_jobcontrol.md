@@ -139,8 +139,6 @@ using a *$velocity* section or via the AIMD_INIT_VELOC keyword
 described below. In addition, the following *$rem* variables must be specified
 for any *ab initio* molecular dynamics job:
 
-AIMD_METHOD
-
 ### `AIMD_METHOD`
 
 > **Selects an ab initio molecular dynamics algorithm.**
@@ -148,15 +146,10 @@ AIMD_METHOD
 > * **Type**: `STRING`
 > * **Default**: `BOMD`
 > * **Options**:
->     * BOMD
->     * Born-Oppenheimer molecular dynamics.
->     * CURVY
->     * Curvy-steps Extended Lagrangian molecular dynamics.
->     * QCMD
->     * Meyer-Miller nonadiabatic molecular dynamics.
+>     * `BOMD`: Born-Oppenheimer molecular dynamics.
+>     * `CURVY`: Curvy-steps Extended Lagrangian molecular dynamics.
+>     * `QCMD`: Meyer-Miller nonadiabatic molecular dynamics.
 > * **Recommendation**: BOMD yields exact classical molecular dynamics, provided that the energy is tolerably conserved. ELMD is an approximation to exact classical dynamics whose validity should be tested for the properties of interest. QCMD initiates Meyer-Miller nonadiabatic dynamics methods including the symmetric quasiclassical approach or the traditional Ehrenfest method.
-
-TIME_STEP
 
 ### `TIME_STEP`
 
@@ -165,10 +158,8 @@ TIME_STEP
 > * **Type**: `INTEGER`
 > * **Default**: `None.`
 > * **Options**:
->     * User-specified.
+>     * `User-specified.`
 > * **Recommendation**: Smaller time steps lead to better energy conservation; too large a time step may cause the job to fail entirely. Make the time step as large as possible, consistent with tolerable energy conservation.
-
-AIMD_TIME_STEP_CONVERSION
 
 ### `AIMD_TIME_STEP_CONVERSION`
 
@@ -177,15 +168,9 @@ AIMD_TIME_STEP_CONVERSION
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * The molecular dynamics time step is
->     * TIME_STEP
->     * /
->     * $n$
->     * a.u.
+>     * $n$: The molecular dynamics time step is TIME_STEP /
+>     * $n$: a.u.
 > * **Recommendation**: None
-
-AIMD_STEPS
 
 ### `AIMD_STEPS`
 
@@ -194,7 +179,7 @@ AIMD_STEPS
 > * **Type**: `INTEGER`
 > * **Default**: `None.`
 > * **Options**:
->     * User-specified.
+>     * `User-specified.`
 > * **Recommendation**: None.
 
 *Ab initio* molecular dynamics calculations can be quite expensive, and
@@ -231,8 +216,6 @@ dynamics (without energy drift) can be obtained at significantly reduced cost.
 Fock matrix extrapolation is requested by specifying values for $N$ and $M$, as
 in the form of the following two *$rem* variables:
 
-FOCK_EXTRAP_ORDER
-
 ### `FOCK_EXTRAP_ORDER`
 
 > **Specifies the polynomial order $N$ for Fock matrix extrapolation.**
@@ -240,15 +223,8 @@ FOCK_EXTRAP_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * Extrapolate using an
->     * $N$
->     * th-order polynomial (
->     * $N>0$
->     * ).
+>     * $N$: Extrapolate using an $N$ th-order polynomial ( $N>0$ ).
 > * **Recommendation**: None
-
-FOCK_EXTRAP_POINTS
 
 ### `FOCK_EXTRAP_POINTS`
 
@@ -257,11 +233,7 @@ FOCK_EXTRAP_POINTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $M$
->     * Save
->     * $M$
->     * Fock matrices for use in extrapolation
->     * $(M>N)$
+>     * $M$: Save $M$ Fock matrices for use in extrapolation $(M>N)$
 > * **Recommendation**: Higher-order extrapolations with more saved Fock matrices are faster and conserve energy better than low-order extrapolations, up to a point. In many cases, the scheme ( $N$ = 6, $M$ = 12), in conjunction with SCF_CONVERGENCE = 6, is found to provide about a 50% savings in computational cost while still conserving energy.
 
 When nuclear forces are computed using underlying electronic structure methods
@@ -275,8 +247,6 @@ the SCF equations. Extrapolation is again useful here,[[1304]](../bib_references
  and
 the syntax for $Z$-vector (response) extrapolation is similar to Fock extrapolation.
 
-Z_EXTRAP_ORDER
-
 ### `Z_EXTRAP_ORDER`
 
 > **Specifies the polynomial order $N$ for Z-vector extrapolation.**
@@ -284,15 +254,8 @@ Z_EXTRAP_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * Extrapolate using an
->     * $N$
->     * th-order polynomial (
->     * $N>0$
->     * ).
+>     * $N$: Extrapolate using an $N$ th-order polynomial ( $N>0$ ).
 > * **Recommendation**: None
-
-Z_EXTRAP_POINTS
 
 ### `Z_EXTRAP_POINTS`
 
@@ -301,13 +264,7 @@ Z_EXTRAP_POINTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $M$
->     * Save
->     * $M$
->     * previous
->     * $Z$
->     * -vectors for use in extrapolation
->     * $(M>N)$
+>     * $M$: Save $M$ previous $Z$ -vectors for use in extrapolation $(M>N)$
 > * **Recommendation**: Using the default $Z$ -vector convergence settings, a $(M,N)=(4,2)$ extrapolation was shown to provide the greatest speedup. At this setting, a 2–3-fold reduction in iterations was demonstrated.
 
 Assuming decent conservation, a BOMD calculation represents exact classical
@@ -366,8 +323,6 @@ sets.[[559]](../bib_references/bib.md#bib573)
 
 The following *$rem* variables are required for ELMD jobs:
 
-AIMD_FICT_MASS
-
 ### `AIMD_FICT_MASS`
 
 > **Specifies the value of the fictitious electronic mass $\mu$ , in atomic units, where $\mu$ has dimensions of (energy) $\times$ (time) ${}^{2}$ .**
@@ -375,10 +330,8 @@ AIMD_FICT_MASS
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * User-specified
+>     * `User-specified`
 > * **Recommendation**: Values in the range of 50–200 a.u. have been employed in test calculations; consult Ref. 558 Herbert J. M., Head-Gordon M. J. Chem. Phys. (2004) , 121 , pp. 11542 . Link for examples and discussion.
-
-AIMD_PRINT
 
 ### `AIMD_PRINT`
 
@@ -387,5 +340,5 @@ AIMD_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * User-specified
+>     * `User-specified`
 > * **Recommendation**: Higher values result in more verbose output.

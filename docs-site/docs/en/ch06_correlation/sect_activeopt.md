@@ -34,8 +34,6 @@ for jobs in which the MP2 amplitudes are very poor guesses for the converged
 cluster amplitudes, and therefore initial iterations varying only the
 amplitudes will be beneficial:
 
-CC_PRECONV_T2Z
-
 ### `CC_PRECONV_T2Z`
 
 > **Whether to pre-converge the cluster amplitudes before beginning orbital optimization in optimized orbital cluster methods.**
@@ -43,19 +41,14 @@ CC_PRECONV_T2Z
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No pre-convergence before orbital optimization.
->     * $n$
->     * Up to
->     * $n$
->     * iterations in this pre-convergence procedure.
+>     * `0`: No pre-convergence before orbital optimization.
+>     * $n$: Up to
+>     * $n$: iterations in this pre-convergence procedure.
 > * **Recommendation**: Experiment with this option in cases of convergence failure.
 
 Other options that are useful include those that permit some damping of step
 sizes, and modify or disable the standard DIIS procedure. The main choices are
 as follows.
-
-CC_DIIS
 
 ### `CC_DIIS`
 
@@ -64,20 +57,10 @@ CC_DIIS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Activates procedure 2 initially, and procedure 1 when gradients are smaller
->     * than
->     * DIIS12_SWITCH
->     * .
->     * 1
->     * Uses error vectors defined as differences between parameter vectors from
->     * successive iterations. Most efficient near convergence.
->     * 2
->     * Error vectors are defined as gradients scaled by square root of the
->     * approximate diagonal Hessian. Most efficient far from convergence.
+>     * `0`: Activates procedure 2 initially, and procedure 1 when gradients are smaller than DIIS12_SWITCH .
+>     * `1`: Uses error vectors defined as differences between parameter vectors from successive iterations. Most efficient near convergence.
+>     * `2`: Error vectors are defined as gradients scaled by square root of the approximate diagonal Hessian. Most efficient far from convergence.
 > * **Recommendation**: DIIS1 can be more stable. If DIIS problems are encountered in the early stages of a calculation (when gradients are large) try DIIS1.
-
-CC_DIIS_START
 
 ### `CC_DIIS_START`
 
@@ -87,10 +70,8 @@ CC_DIIS_START
 > * **Default**: `3`
 > * **Options**:
 >     * $n$
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Occasionally DIIS can cause optimized orbital coupled-cluster calculations to diverge through large orbital changes. If this is seen, DIIS should be disabled.
-
-CC_DOV_THRESH
 
 ### `CC_DOV_THRESH`
 
@@ -99,17 +80,13 @@ CC_DOV_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `$2502$`
 > * **Options**:
->     * $abcde$
->     * Integer code is mapped to
->     * $abc\times 10^{-de}$
+>     * $abcde$: Integer code is mapped to $abc\times 10^{-de}$
 > * **Recommendation**: Increase to 0.5 or 0.75 for non convergent coupled-cluster calculations.
 
 **Note: 
 
 Works only for CCMAN jobs, not enabled in CCMAN2.
 **
-
-CC_THETA_STEPSIZE
 
 ### `CC_THETA_STEPSIZE`
 
@@ -118,20 +95,11 @@ CC_THETA_STEPSIZE
 > * **Type**: `INTEGER`
 > * **Default**: `$100$`
 > * **Options**:
->     * $abcde$
->     * Integer code is mapped to
->     * $abc\times 10^{-de}$
->     * If the initial step is smaller than 0.5, the program will increase step
->     * when gradients are smaller than the value of
->     * THETA_GRAD_THRESH
->     * ,
->     * up to a limit of 0.5.
+>     * $abcde$: Integer code is mapped to $abc\times 10^{-de}$ If the initial step is smaller than 0.5, the program will increase step when gradients are smaller than the value of THETA_GRAD_THRESH , up to a limit of 0.5.
 > * **Recommendation**: Try a smaller value in cases of poor convergence and very large orbital gradients. For example, a value of 01001 translates to 0.1
 
 An even stronger—and more-or-less last resort—option permits iteration of the
 cluster amplitudes without changing the orbitals:
-
-CC_PRECONV_T2Z_EACH
 
 ### `CC_PRECONV_T2Z_EACH`
 
@@ -140,10 +108,7 @@ CC_PRECONV_T2Z_EACH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No pre-convergence before orbital optimization.
->     * $n$
->     * Up to
->     * $n$
->     * iterations in this pre-convergence procedure.
+>     * `0`: No pre-convergence before orbital optimization.
+>     * $n$: Up to
+>     * $n$: iterations in this pre-convergence procedure.
 > * **Recommendation**: A very slow last resort option for jobs that do not converge.

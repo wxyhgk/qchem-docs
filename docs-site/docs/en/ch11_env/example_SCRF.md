@@ -74,8 +74,7 @@ As with other parts of the **Q-Chem** input file, this input section is not case
 > * **Type**: `FLOAT`
 > * **Default**: `No default.`
 > * **Options**:
->     * $a$
->     * Cavity radius in Å.
+>     * $a$: Cavity radius in Å.
 > * **Recommendation**: None
 
 ### `Dielectric`
@@ -85,10 +84,7 @@ As with other parts of the **Q-Chem** input file, this input section is not case
 > * **Type**: `FLOAT`
 > * **Default**: `78.39`
 > * **Options**:
->     * $\varepsilon$
->     * Use a (dimensionless) value of
->     * $\varepsilon$
->     * .
+>     * $\varepsilon$: Use a (dimensionless) value of $\varepsilon$ .
 > * **Recommendation**: The default value corresponds to water at 25 ${}^{\circ}$ C.
 
 ### `MultipoleOrder`
@@ -98,10 +94,7 @@ As with other parts of the **Q-Chem** input file, this input section is not case
 > * **Type**: `INTEGER`
 > * **Default**: `15`
 > * **Options**:
->     * $\ell$
->     * Include up to
->     * $\ell$
->     * th order multipoles.
+>     * $\ell$: Include up to $\ell$ th order multipoles.
 > * **Recommendation**: Use the default. The multipole expansion is usually converged by order $\ell$ = 15.
 
 ???+ example "Example 11.1: Multipole expansion model at the Hartree-Fock level; H ${}_{2}$ O in acetonitrile"

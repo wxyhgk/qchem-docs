@@ -76,8 +76,6 @@ can be affected by the step size (GEOM_OPT_DMAX), and using a step
 size smaller than the default value can provide better results. Also, it is
 often challenging to converge the strings in freezing/growing-string calculations.
 
-STATE_FOLLOW
-
 ### `STATE_FOLLOW`
 
 > **Turns on state following.**
@@ -85,13 +83,9 @@ STATE_FOLLOW
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not use state-following.
->     * TRUE
->     * Use state-following.
+>     * `FALSE`: Do not use state-following.
+>     * `TRUE`: Use state-following.
 > * **Recommendation**: None.
-
-FOLLOW_ENERGY
 
 ### `FOLLOW_ENERGY`
 
@@ -100,15 +94,9 @@ FOLLOW_ENERGY
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use dynamic thresholds, based on energy difference between steps.
->     * $n$
->     * Search over selected state
->     * $E_{\rm est}\pm n\times 10^{-6}~{}E_{h}$
->     * .
+>     * `0`: Use dynamic thresholds, based on energy difference between steps.
+>     * $n$: Search over selected state $E_{\rm est}\pm n\times 10^{-6}~{}E_{h}$ .
 > * **Recommendation**: Use a wider energy window to follow a state diabatically, smaller window to remain on the adiabatic state most of the time.
-
-FOLLOW_OVERLAP
 
 ### `FOLLOW_OVERLAP`
 
@@ -117,8 +105,6 @@ FOLLOW_OVERLAP
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use dynamic thresholds, based on energy difference between steps.
->     * $n$
->     * Percentage overlap for previous step and current step.
+>     * `0`: Use dynamic thresholds, based on energy difference between steps.
+>     * $n$: Percentage overlap for previous step and current step.
 > * **Recommendation**: Use a higher value to require states have higher degree of similarity to be considered the same (more often selected based on energy).

@@ -21,8 +21,6 @@ $$
  该近似忽略了轨道弛豫效应，而轨道弛豫效应可以通过非厄米自洽场（non-Hermitian self-consistent-field, NH-SCF）程序来纳入。[[931]](../bib_references/bib.md#bib970)
  实际上，NH-SCF 能量泛函与全纯 Hartree-Fock（Holomorphic Hartree-Fock）能量泛函（式 [4.70](sec_HoloHF.md#eq:HoloHFEnergy)）相同，只是用途不同。使用复基函数（CBFs）的静态交换理论和 NH-SCF 理论在 **Q-Chem** 中均可用。复基组的指定方法在第 [8.7](../ch08_basis/sect_zbas.md) 节中描述。
 
-COMPLEX_EXPONENTS
-
 ### `COMPLEX_EXPONENTS`
 
 > **启用使用 CBFs 的非厄米计算。**
@@ -30,11 +28,8 @@ COMPLEX_EXPONENTS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 执行使用 CBFs 的非厄米计算
+>     * `TRUE`: 执行使用 CBFs 的非厄米计算
 > * **建议**: 若希望进行使用 CBFs 的非厄米计算，则设为 TRUE。
-
-COMPLEX_SPIN_STATE
 
 ### `COMPLEX_SPIN_STATE`
 
@@ -43,12 +38,8 @@ COMPLEX_SPIN_STATE
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * $2S+1$
->     * 一个自旋态
->     * $S$
+>     * $2S+1$: 一个自旋态 $S$
 > * **建议**: 无
-
-COMPLEX_N_ELECTRON
 
 ### `COMPLEX_N_ELECTRON`
 
@@ -57,13 +48,8 @@ COMPLEX_N_ELECTRON
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 在
->     * $N+n$
->     * 电子体系上执行非厄米计算
+>     * $n$: 在 $N+n$ 电子体系上执行非厄米计算
 > * **建议**: 无
-
-COMPLEX_STATIC_EXCHANGE
 
 ### `COMPLEX_STATIC_EXCHANGE`
 
@@ -72,13 +58,9 @@ COMPLEX_STATIC_EXCHANGE
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 执行静态交换计算
->     * FALSE
->     * 不执行静态交换计算
+>     * `TRUE`: 执行静态交换计算
+>     * `FALSE`: 不执行静态交换计算
 > * **建议**: 若希望进行静态交换计算，则设为 TRUE。
-
-COMPLEX_SCF
 
 ### `COMPLEX_SCF`
 
@@ -87,17 +69,11 @@ COMPLEX_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不执行 NH-SCF 计算
->     * 1
->     * 执行限制性（restricted）NH-SCF 计算
->     * 2
->     * 执行非限制性（unrestricted）NH-SCF 计算
->     * 3
->     * 执行开壳层限制性（restricted, open-shell）NH-SCF 计算
+>     * `0`: 不执行 NH-SCF 计算
+>     * `1`: 执行限制性（restricted）NH-SCF 计算
+>     * `2`: 执行非限制性（unrestricted）NH-SCF 计算
+>     * `3`: 执行开壳层限制性（restricted, open-shell）NH-SCF 计算
 > * **建议**: 无
-
-COMPLEX_METSCF
 
 ### `COMPLEX_METSCF`
 
@@ -106,17 +82,11 @@ COMPLEX_METSCF
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * 0
->     * Roothaan 迭代
->     * 1
->     * DIIS
->     * 3
->     * ADIIS
->     * 21
->     * Newton-MINRES
+>     * `0`: Roothaan 迭代
+>     * `1`: DIIS
+>     * `3`: ADIIS
+>     * `21`: Newton-MINRES
 > * **建议**: 使用默认值（DIIS）。
-
-COMPLEX_SCF_GUESS
 
 ### `COMPLEX_SCF_GUESS`
 
@@ -125,17 +95,11 @@ COMPLEX_SCF_GUESS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 使用来自静态交换计算的猜测
->     * 1
->     * 读取实基组的 MO 系数
->     * 2
->     * 读取实基组的密度矩阵
->     * 1000
->     * 从先前的计算读取猜测
+>     * `0`: 使用来自静态交换计算的猜测
+>     * `1`: 读取实基组的 MO 系数
+>     * `2`: 读取实基组的密度矩阵
+>     * `1000`: 从先前的计算读取猜测
 > * **建议**: 使用来自静态交换计算的猜测。注意，对于临时阴离子，这需要指定 COMPLEX_TARGET。
-
-COMPLEX_TARGET
 
 ### `COMPLEX_TARGET`
 
@@ -144,6 +108,5 @@ COMPLEX_TARGET
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $n$
->     * 附加电子的轨道索引（从零开始）
+>     * $n$: 附加电子的轨道索引（从零开始）
 > * **建议**: $n$ 应始终大于 $N_{\text{occ}}-1$。

@@ -423,10 +423,7 @@ Descriptor Database）。该数据库的最新版本可通过以下地址获取�
 > * **类型**: `STRING`
 > * **默认值**: `water`
 > * **可选值**:
->     * 表
->     * 11.7
->     * 所列溶剂列表中的任意名称
->     * 。
+>     * 表: 11.7 所列溶剂列表中的任意名称。
 > * **建议**: 无
 
 ### `Print`
@@ -436,14 +433,9 @@ Descriptor Database）。该数据库的最新版本可通过以下地址获取�
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 最简输出
->     * 1
->     * 能量分项的详细分解（在 SCF 收敛时）
->     * 2
->     * 附加信息，取决于具体的 SM
->     * $x$
->     * 模型
+>     * `0`: 最简输出
+>     * `1`: 能量分项的详细分解（在 SCF 收敛时）
+>     * `2`: 附加信息，取决于具体的 SM $x$ 模型
 > * **建议**: print = 1 得到的能量分项可能有用，尽管默认情况下已输出摘要。print = 2 的值可能仅用于诊断问题。
 
 ???+ example "示例 11.16: 使用用户自定义溶剂的 SMD 模型。"
@@ -623,39 +615,9 @@ Löwdin 电荷在较大基组中的不稳定性，仅限于 6-31G*、6-31+G* 和
 > * **类型**: `STRING`
 > * **默认值**: `CM5`
 > * **可选值**:
->     * CM5
->     * Charge Model 5 电荷，
->     * 参见 911
->     * Marenich A. V. 等，
->     * J. Chem. Theory Comput.
->     * (2012)
->     * ，
->     * 第 8
->     * 卷，
->     * 第 527 页
->     * 。链接
->     * MK
->     * Merz-Singh-Kollman 电荷，
->     * 参见 1258
->     * Singh U. C.、Kollman P. A.，
->     * J. Comput. Chem.
->     * (1984)
->     * ，
->     * 第 5
->     * 卷，
->     * 第 129 页
->     * 。链接
->     * CHELPG
->     * ChElPG 电荷，
->     * 参见 159
->     * Breneman C. M.、Wiberg K. B.，
->     * J. Comput. Chem.
->     * (1990)
->     * ，
->     * 第 11
->     * 卷，
->     * 第 361 页
->     * 。链接
+>     * `CM5`: Charge Model 5 电荷， 参见 911 Marenich A. V. 等， J. Chem. Theory Comput. (2012)， 第 8 卷， 第 527 页。链接
+>     * `MK`: Merz-Singh-Kollman 电荷， 参见 1258 Singh U. C.、Kollman P. A.， J. Comput. Chem. (1984)， 第 5 卷， 第 129 页。链接
+>     * `CHELPG`: ChElPG 电荷， 参见 159 Breneman C. M.、Wiberg K. B.， J. Comput. Chem. (1990)， 第 11 卷， 第 361 页。链接
 > * **建议**: 无。Merz-Singh-Kollman 电荷和 ChElPG 电荷分别通过拟合以重现 van der Waals 表面上或立方网格上的分子静电势获得，而 CM5 是基于 Hirshfeld 布居分析的经验模型。
 
 ???+ example "示例 11.17: 使用 SM12CM5 计算水在 1-octanol 溶剂中的溶剂化自由能。"
@@ -708,8 +670,6 @@ C-PCM 的结果在精度上与 IEF-PCM 的结果基本没有差别。
 来开启。若直接使用 SM$x$ 模型收敛 SCF 存在困难，将该 *$rem*
 变量设为 TRUE 也可能有所帮助。
 
-SMX_GAS_PHASE
-
 ### `SMX_GAS_PHASE`
 
 > **在使用 SM $x$ 模型进行计算之前先收敛气相 SCF**
@@ -717,10 +677,8 @@ SMX_GAS_PHASE
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 直接运行 SMx 计算
->     * TRUE
->     * 先运行气相计算
+>     * `FALSE`: 直接运行 SMx 计算
+>     * `TRUE`: 先运行气相计算
 > * **建议**: 除非需要溶剂化自由能，否则使用默认值。若 SCF 计算否则无法收敛，则将其设为 TRUE。
 
 ???+ example "示例 11.18: 四氢呋喃（THF）在戊烷溶剂中的 SMD 力计算。"

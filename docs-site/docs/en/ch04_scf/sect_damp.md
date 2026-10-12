@@ -43,8 +43,6 @@ variable SCF_ALGORITHM should be set to DAMP,
 DP_DIIS or DP_GDM. The other relevant *$rem* variables are
 as the following:
 
-NDAMP
-
 ### `NDAMP`
 
 > **Determine the mixing coefficient. $\alpha$ = /100.**
@@ -55,8 +53,6 @@ NDAMP
 >     * User-defined. Integers between 0 and 100.
 > * **Recommendation**: Increase if strong fluctuations happen during the SCF process.
 
-MAX_DP_CYCLES
-
 ### `MAX_DP_CYCLES`
 
 > **The maximum number of SCF iterations with damping when SCF_ALGORITHM = DP_DIIS and DP_GDM . See also THRESH_DP_SWITCH .**
@@ -64,14 +60,10 @@ MAX_DP_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * 1
->     * Only a single SCF step with damping, and no damping for the remaining SCF steps.
+>     * `1`: Only a single SCF step with damping, and no damping for the remaining SCF steps.
 >     * $n$
->     * $n$
->     * SCF iterations with damping before turning damping off.
+>     * $n$: SCF iterations with damping before turning damping off.
 > * **Recommendation**: Increase this number if strong fluctuation continues after damping is turned off.
-
-THRESH_DP_SWITCH
 
 ### `THRESH_DP_SWITCH`
 
@@ -80,7 +72,7 @@ THRESH_DP_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * User-defined.
+>     * `User-defined.`
 > * **Recommendation**: None
 
 ???+ example "Example 4.8: Input for a UKS calculation of water cation using DIIS after damping in the early stage of the SCF process."

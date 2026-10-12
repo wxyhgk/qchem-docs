@@ -209,8 +209,6 @@ transitions involving the extra electron.
 
 **
 
-STATE_ANALYSIS
-
 ### `STATE_ANALYSIS`
 
 > **Triggers the general state analysis via libwfa .**
@@ -218,13 +216,9 @@ STATE_ANALYSIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not run excited state analysis.
->     * TRUE
->     * Activate excited state analysis.
+>     * `FALSE`: Do not run excited state analysis.
+>     * `TRUE`: Activate excited state analysis.
 > * **Recommendation**: This analysis produces only minimal computational overhead (as long as no cube files are produced) and can be activated whenever some additional information about the excited state is required.
-
-WFA_LEVEL
 
 ### `WFA_LEVEL`
 
@@ -233,28 +227,13 @@ WFA_LEVEL
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * 1
->     * Only perform some population analyses.
->     * 2
->     * Also perform exciton analysis and compute natural (transition/difference) orbitals.
->     * 3
->     * Also perform charge transfer number analysis.
->     * 4
->     * Maximal output including cube files for NTOs (this is needed to reproduce Ref.
->     * 686
->     * Kimber P., Plasser F.
->     * Phys. Chem. Chem. Phys.
->     * (2020)
->     * ,
->     * 22
->     * ,
->     * pp. 6058
->     * .
->     * Link
->     * )
+>     * `1`: Only perform some population analyses.
+>     * `2`: Also perform exciton analysis and compute natural (transition/difference) orbitals.
+>     * `3`: Also perform charge transfer number analysis.
+>     * `4`: Maximal output including cube files for NTOs (this is needed to reproduce Ref.
+>     * `686`: Kimber P., Plasser F. Phys. Chem. Chem. Phys. (2020) ,
+>     * `22`: , pp. 6058 . Link )
 > * **Recommendation**: Reduce if you want less print-out.
-
-NTO_PAIRS
 
 ### `NTO_PAIRS`
 
@@ -263,13 +242,8 @@ NTO_PAIRS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * Write
->     * $N$
->     * NTO/NO/NDO pairs per excited state.
+>     * $N$: Write $N$ NTO/NO/NDO pairs per excited state.
 > * **Recommendation**: This controls the print-out to the standard output. Use WFA_ORB_THRESH if you want to modify the number of orbitals exported.
-
-WFA_ORB_THRESH
 
 ### `WFA_ORB_THRESH`
 
@@ -278,13 +252,7 @@ WFA_ORB_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $N$
->     * Export all NTO/NO/NDO pairs with a weight above
->     * $10^{-N}$
->     * .
-
-WFA_REF_STATE
-
+>     * $N$: Export all NTO/NO/NDO pairs with a weight above $10^{-N}$ .
 ### `WFA_REF_STATE`
 
 > **Controls the reference state for the transition and difference density matrices used by libwfa . This keyword works for CIS/TDDFT/SF-TDDFT computations. Use CC_STATE_TO_OPT for EOM-CC.**
@@ -292,14 +260,9 @@ WFA_REF_STATE
 > * **Type**: `INTEGER`
 > * **Default**: `-1`
 > * **Options**:
->     * -1
->     * Use default: ground-state for standard CIS/TDDFT computations,
->     * first response state for SF-TDDFT.
->     * 0
->     * Reference state
->     * N
->     * $N$
->     * th excited state/response state.
+>     * `-1`: Use default: ground-state for standard CIS/TDDFT computations, first response state for SF-TDDFT.
+>     * `0`: Reference state
+>     * `N`: $N$ th excited state/response state.
 > * **Recommendation**: NONE
 
 ???+ example "Example 10.7: Basic excited-state analysis example for formaldehyde at the ADC(2)/def2-SV(P) level:

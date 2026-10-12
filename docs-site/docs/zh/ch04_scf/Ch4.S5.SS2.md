@@ -8,8 +8,6 @@ title: "4.5.2 基本收敛控制选项"
 
 另请参见后续章节中更详细的选项，并注意 SCF（自洽场）收敛判据与积分类阈值（integral threshold）必须以相互兼容的方式设置（这通常意味着 THRESH 的值应至少比 SCF_CONVERGENCE 高 3）。
 
-MAX_SCF_CYCLES
-
 ### `MAX_SCF_CYCLES`
 
 > **控制所允许的 SCF 迭代最大次数。**
@@ -21,8 +19,6 @@ MAX_SCF_CYCLES
 >     * $n>0$
 >     * 由用户自行选择。
 > * **建议**：对于收敛缓慢的体系（例如含有过渡金属的体系），应增大该值。
-
-SCF_ALGORITHM
 
 ### `SCF_ALGORITHM`
 
@@ -104,8 +100,6 @@ SCF_ALGORITHM
 **注**：
 关于 ROBUST 或 ROBUST_STABLE 算法的使用，参见第 [4.5.13](sub_scf_robust_pipelines.md) 节。
 关于平方梯度极小化（Squared Gradient Minimization, SGM）及相关算法，参见第 [4.5.15](sect_SGM-SCF.md) 节。
-
-SCF_CONVERGENCE
 
 ### `SCF_CONVERGENCE`
 

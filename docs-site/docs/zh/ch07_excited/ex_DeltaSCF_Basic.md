@@ -8,8 +8,6 @@ title: "7.7.10 Δ SCF 驱动"
 
 *$delta_scf* 输入部分可用于更便捷地控制 $\Delta$SCF 单重态、双重态和三重态激发态计算。该部分通过在 *$rem* 输入部分中设置 DELTA_SCF = TRUE 来启用。示例 7.7.10 给出了一个使用默认设置的基本作业。
 
-DELTA_SCF
-
 ### `DELTA_SCF`
 
 > **触发一次 $\Delta$ SCF 计算。**
@@ -17,12 +15,8 @@ DELTA_SCF
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不执行 $\Delta$
->     * SCF 计算。
->     * TRUE
->     * 执行 $\Delta$
->     * SCF 计算。
+>     * `FALSE`: 不执行 $\Delta$ SCF 计算。
+>     * `TRUE`: 执行 $\Delta$ SCF 计算。
 > * **建议**: 若希望进行 $\Delta$ SCF 计算,请设置为 TRUE。
 
 ???+ example "示例 7.61: 默认情况下,针对与 HOMO $\to$ LUMO 跃迁相关的单重态、双重态(阳离子)和三重态,均执行受限开壳层 SCF 计算。"
@@ -59,10 +53,8 @@ DELTA_SCF
 > * **类型**: `STRING`
 > * **默认值**: `Restricted`
 > * **可选值**:
->     * Restricted
->     * 执行受限开壳层单重态(ROKS) SCF 计算。
->     * Unrestricted
->     * 执行非受限的自旋对称性破缺 SCF 计算。
+>     * `Restricted`: 执行受限开壳层单重态(ROKS) SCF 计算。
+>     * `Unrestricted`: 执行非受限的自旋对称性破缺 SCF 计算。
 > * **建议**: 请查阅相关文献。
 
 ### `Doublet`
@@ -72,10 +64,8 @@ DELTA_SCF
 > * **类型**: `STRING`
 > * **默认值**: `Restricted`
 > * **可选值**:
->     * Restricted
->     * 执行受限开壳层双重态 SCF 计算。
->     * Unrestricted
->     * 执行非受限双重态 SCF 计算。
+>     * `Restricted`: 执行受限开壳层双重态 SCF 计算。
+>     * `Unrestricted`: 执行非受限双重态 SCF 计算。
 > * **建议**: 尽可能使用受限方式。
 
 ### `Triplet`
@@ -85,10 +75,8 @@ DELTA_SCF
 > * **类型**: `STRING`
 > * **默认值**: `Restricted`
 > * **可选值**:
->     * Restricted
->     * 执行受限开壳层三重态 SCF 计算。
->     * Unrestricted
->     * 执行非受限三重态 SCF 计算。
+>     * `Restricted`: 执行受限开壳层三重态 SCF 计算。
+>     * `Unrestricted`: 执行非受限三重态 SCF 计算。
 > * **建议**: 尽可能使用受限方式。
 
 ### `SOMO_1`
@@ -98,11 +86,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `HOMO`
 > * **可选值**:
->     * $0<n<$
->     * LUMO
->     * 任意整数
->     * $n\in$
->     * [1, HOMO] 均允许
+>     * $0<n<$: LUMO 任意整数 $n\in$ [1, HOMO] 均允许
 > * **建议**: 根据此前对基态轨道的检查以及所要瞄准的目标态,选择期望的激发源轨道。
 
 ### `SOMO_2`
@@ -112,9 +96,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `LUMO`
 > * **可选值**:
->     * HOMO
->     * $<n$
->     * 大于或等于 LUMO 的任意整数。
+>     * `HOMO`: $<n$ 大于或等于 LUMO 的任意整数。
 > * **建议**: 根据此前对基态轨道的检查以及所要瞄准的目标态,选择期望的激发目标轨道。
 
 ???+ example "示例 7.62: 一次非受限三重态与自旋对称性破缺 SCF 计算。所期望的核心激发通过 SOMO_1 和 SOMO_2 关键字来瞄准"
@@ -205,7 +187,7 @@ DELTA_SCF
 > * **类型**: `STRING`
 > * **默认值**: `closed_shell`
 > * **可选值**:
->     * closed_shell, tddft_nto
+>     * `closed_shell, tddft_nto`
 > * **建议**: 对于 TDDFT NTO 初猜,正则 MO 会被旋转至 NTO 基,并从空穴能级移去一个电子。
 
 ### `Triplet_SCF_Guess`
@@ -225,8 +207,7 @@ DELTA_SCF
 > * **类型**: `INT`
 > * **默认值**: `1, if the TDDFT NTOs were requested as the guess for any calculation`
 > * **可选值**:
->     * $n>0$
->     * 大于 1 的任意整数
+>     * $n>0$: 大于 1 的任意整数
 > * **建议**: 根据你感兴趣的目标 TDDFT 态进行选择。
 
 除初猜之外,所采用的 SCF 算法对于高效收敛到期望的 SCF 解也至关重要。$\Delta$SCF 驱动会根据所需的目标态设置合理的默认值: 若寻求 HOMO $\rightarrow{}$ LUMO 跃迁则使用 GDM(第 [4.5.7](../ch04_scf/sect_gdm.md) 节),若请求更高激发态则使用 MOM(第 [7.7.2](ex_OpSing.md) 节)算法。然而在某些情况下,GDM 对于收敛更高激发态可能非常有用(这些态因对称性而避免了变分坍缩);反之,如果 HOMO $\rightarrow{}$ LUMO 跃迁并非最低激发态,GDM 可能会坍缩到不同的解。此外,MOM 算法也可能无法收敛。请查阅关于不同 SCF 算法在激发态计算中优缺点的文献,并从 **Q-Chem** 提供的众多求解器中进行选择(第 [4.5](../ch04_scf/sect_convergence.md)、[7.7.2](ex_OpSing.md)、[7.7.5](ex_BEDSCF.md) 和 [7.7.8](ex_ROSTEP.md) 节)。
@@ -270,8 +251,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `5 if`
 > * **可选值**:
->     * $n$
->     * 任意正整数。
+>     * $n$: 任意正整数。
 > * **建议**: 遵循默认值。
 
 ### `Doublet_SCF_Convergence`
@@ -281,8 +261,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `5 if`
 > * **可选值**:
->     * $n$
->     * 任意正整数。
+>     * $n$: 任意正整数。
 > * **建议**: 遵循默认值。
 
 ### `Triplet_SCF_Convergence`
@@ -292,8 +271,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `5 if`
 > * **可选值**:
->     * $n$
->     * 任意正整数。
+>     * $n$: 任意正整数。
 > * **建议**: 遵循默认值。
 
 当采用 SGM 作为 SCF 求解器时,可以调整轨道梯度(平方项)的比例因子。
@@ -305,10 +283,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `75`
 > * **可选值**:
->     * $n$
->     * 任意整数
->     * $n\in[1,100]$
->     * 。
+>     * $n$: 任意整数 $n\in[1,100]$。
 > * **建议**: 参见关于 DELTA_GRADIENT_SCALE 的文档。
 
 ### `Doublet_SGM_Gradient`
@@ -318,10 +293,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `75`
 > * **可选值**:
->     * $n$
->     * 介于以下范围内的任意整数
->     * $[1,100]$
->     * 。
+>     * $n$: 介于以下范围内的任意整数 $[1,100]$。
 > * **建议**: 参见关于 DELTA_GRADIENT_SCALE 的文档。
 
 ### `Triplet_SGM_Gradient`
@@ -331,10 +303,7 @@ DELTA_SCF
 > * **类型**: `INTEGER`
 > * **默认值**: `75`
 > * **可选值**:
->     * $n$
->     * 介于以下范围内的任意整数
->     * $[1,100]$
->     * 。
+>     * $n$: 介于以下范围内的任意整数 $[1,100]$。
 > * **建议**: 参见关于 DELTA_GRADIENT_SCALE 的文档。
 
 仅针对单重态的 ROKS 计算,SOMO 之间的混合可以被允许或被抑制。
@@ -346,10 +315,8 @@ DELTA_SCF
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 抑制 SOMO 之间的混合。
->     * TRUE
->     * 允许 SOMO 之间的混合。
+>     * `FALSE`: 抑制 SOMO 之间的混合。
+>     * `TRUE`: 允许 SOMO 之间的混合。
 > * **建议**: 参见关于 ROKS_SS_MIXING 的文档。
 
 $\Delta$SCF 驱动允许你生成 SOMO 的 cube 图;这对于目视检查所找到的 SCF 解的性质($n\to\pi^{\ast}$、$\pi\to$ 里德堡(Rydberg)、$1s\to\sigma^{\ast}$ 等)至关重要,并且除输出中打印的 SOMO 轨道重叠之外,还能帮助你确认 SCF 计算是否正在收敛到你所寻求的态。
@@ -361,12 +328,9 @@ $\Delta$SCF 驱动允许你生成 SOMO 的 cube 图;这对于目视检查所找�
 > * **类型**: `STRING`
 > * **默认值**: `Both`
 > * **可选值**:
->     * Alpha
->     * 绘制 alpha 轨道的 SOMO
->     * Beta
->     * 绘制 beta 轨道的 SOMO
->     * Both
->     * 绘制 alpha 和 beta 两者轨道的 SOMO
+>     * `Alpha`: 绘制 alpha 轨道的 SOMO
+>     * `Beta`: 绘制 beta 轨道的 SOMO
+>     * `Both`: 绘制 alpha 和 beta 两者轨道的 SOMO
 > * **建议**: 当对 SCF 解存有疑虑时,检查这些轨道。
 
 ### `Doublet_SOMO_Print`
@@ -376,9 +340,7 @@ $\Delta$SCF 驱动允许你生成 SOMO 的 cube 图;这对于目视检查所找�
 > * **类型**: `STRING`
 > * **默认值**: `Both`
 > * **可选值**:
->     * Alpha 绘制 alpha 轨道的 SOMO
->     * Beta 绘制 beta 轨道的 SOMO
->     * Both 绘制 alpha 和 beta 两者轨道的 SOMO
+>     * Alpha 绘制 alpha 轨道的 SOMO: Beta 绘制 beta 轨道的 SOMO Both 绘制 alpha 和 beta 两者轨道的 SOMO
 > * **建议**: 当对 SCF 解存有疑虑时,检查这些轨道。
 
 ### `Triplet_SOMO_Print`
@@ -388,9 +350,7 @@ $\Delta$SCF 驱动允许你生成 SOMO 的 cube 图;这对于目视检查所找�
 > * **类型**: `STRING`
 > * **默认值**: `Both`
 > * **可选值**:
->     * Alpha 绘制 alpha 轨道的 SOMO
->     * Beta 绘制 beta 轨道的 SOMO
->     * Both 绘制 alpha 和 beta 两者轨道的 SOMO
+>     * Alpha 绘制 alpha 轨道的 SOMO: Beta 绘制 beta 轨道的 SOMO Both 绘制 alpha 和 beta 两者轨道的 SOMO
 > * **建议**: 当对 SCF 解存有疑虑时,检查这些轨道。
 
 最后,在描述高度对称分子(*e.g.*, 乙烯、N${}_{2}$ 或苯)的核心激发时,由于核心轨道离域在整个分子上,需要用 $\Delta$SCF 定域化核心轨道以获得准确的激发能。[[168]](../bib_references/bib.md#bib162)
@@ -404,9 +364,7 @@ $\Delta$SCF 驱动允许你生成 SOMO 的 cube 图;这对于目视检查所找�
 > * **类型**: `INTEGER`
 > * **默认值**: `None`
 > * **可选值**:
->     * $n>1$
->     * 任意整数
->     * $n\in[2,N_{\text{occ}}]$
+>     * $n>1$: 任意整数 $n\in[2,N_{\text{occ}}]$
 > * **建议**: 将该变量设置为要定域化的核心轨道总数(例如,在 N ${}_{2}$ 中为 2,在苯中为 6)。
 
 ### `Localize_Offset`
@@ -416,9 +374,7 @@ $\Delta$SCF 驱动允许你生成 SOMO 的 cube 图;这对于目视检查所找�
 > * **类型**: `INTEGER`
 > * **默认值**: `$\text{HOMO}-n$`
 > * **可选值**:
->     * $x$
->     * 任意整数
->     * $x\in[1,\text{HOMO}-n]$
+>     * $x$: 任意整数 $x\in[1,\text{HOMO}-n]$
 > * **建议**: 考虑能量低于你所关心轨道的那些原子的轨道数目,并将该变量设置为该数目。例如,当试图达到 CS ${}_{2}$ 的碳 K 边时,由于存在两个硫的 1s 轨道,设置 $x=2$。
 
 如果在尝试了不同的 SCF 初猜和算法之后,依据打印的重叠以及目视检查仍无法收敛到期望的解,建议你改用本节前述的标准输入方式(即使用顺序输入以及 *$reorder_mo* 或 *$occupied* 部分)来进行计算,以便对 SCF 过程实现更精细的控制。

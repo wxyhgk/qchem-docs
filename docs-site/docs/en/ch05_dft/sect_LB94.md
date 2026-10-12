@@ -53,8 +53,6 @@ $$
 An LB94 calculation is requested by setting EXCHANGE = LB94
 in the *$rem* section. Additional job control and examples appear below.
 
-LB94_BETA
-
 ### `LB94_BETA`
 
 > **Sets the $\beta$ parameter for the LB94 XC potential**
@@ -62,10 +60,7 @@ LB94_BETA
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\beta=n/10000$
->     * .
+>     * $n$: Corresponding to $\beta=n/10000$ .
 > * **Recommendation**: Use the default.
 
 ???+ example "Example 5.23: Applications of LB94 XC potential to N ${}_{2}$ molecule."

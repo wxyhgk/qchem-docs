@@ -6,8 +6,6 @@ title: "6.21.3 iFCI 的任务控制"
 
 （2026 年 7 月 4 日）
 
-IFCI_TUPLES
-
 ### `IFCI_TUPLES`
 
 > **要求解的 $n$ 体展开阶数。注意 $n>2$ 可能带来高昂的计算代价。**
@@ -25,8 +23,6 @@ IFCI_TUPLES
 >     * $n=4$
 > * **建议**：初始体系分析使用 $n=2$，更高精度使用 $n>2$。
 
-IFCI_READ
-
 ### `IFCI_READ`
 
 > **若已存在 TUPLES_1E_DATA 文件，则利用该文件重启 iFCI 计算。**
@@ -39,8 +35,6 @@ IFCI_READ
 >     * 1
 >     * 从先前文件重启
 > * **建议**：若不存在先前运行的文件则使用 0；若希望基于先前数据重启则使用 1。
-
-IFCI_TRIPLETS
 
 ### `IFCI_TRIPLETS`
 
@@ -56,8 +50,6 @@ IFCI_TRIPLETS
 >     * 2
 >     * 五重态（Quintet）
 > * **建议**：无
-
-IFCI_ZETA
 
 ### `IFCI_ZETA`
 
@@ -80,8 +72,6 @@ IFCI_ZETA
 >     * 最严格（Maximum）
 > * **建议**：使用 65，并增大到 75 以检验收敛性。
 
-HBCI_EPS1
-
 ### `HBCI_EPS1`
 
 > **决定 HBCI 空间的维数。**
@@ -98,8 +88,6 @@ HBCI_EPS1
 >     * ${}_{\mathrm{h}}$
 > * **建议**：使用默认值，或采用 500 以获得更严格的收敛。
 
-IFCI_TUPLE_THRESH
-
 ### `IFCI_TUPLE_THRESH`
 
 > **将阈值内的近简并 geminal（孪生函数）收缩为一个体（one body）。**
@@ -113,8 +101,6 @@ IFCI_TUPLE_THRESH
 >     * E
 >     * ${}_{\mathrm{h}}$
 > * **建议**：使用默认值，除非存在一组高度相关的占据轨道。
-
-IFCI_TRIPLES_SCREEN
 
 ### `IFCI_TRIPLES_SCREEN`
 
@@ -130,8 +116,6 @@ IFCI_TRIPLES_SCREEN
 >     * ${}_{\mathrm{h}}$
 > * **建议**：使用默认值，除非希望对给定体系的三重积（triads）采用更宽松（$n$ 更大）或更严格（$n$ 更小）的考虑。设为 0 将计算所有三重积（代价高昂）。
 
-IFCI_QUAD_SCREEN
-
 ### `IFCI_QUAD_SCREEN`
 
 > **用于判定一个四体项是否显著的截断阈值（ $\mathcal{C}_{4}$ ）。**
@@ -146,8 +130,6 @@ IFCI_QUAD_SCREEN
 >     * ${}_{\mathrm{h}}$
 > * **建议**：与 IFCI_TRIPLES_SCREEN 相同，但需注意 $4$ 体项的计算代价显著更高。
 
-IFCI_STATE_ADD
-
 ### `IFCI_STATE_ADD`
 
 > **当各态之间存在简并时，为 HBCI 求解器添加额外的态。**
@@ -161,8 +143,6 @@ IFCI_STATE_ADD
 >     * ${}_{\mathrm{h}}$
 >     * 范围内的态
 > * **建议**：使用默认值，除非已知存在简并态。
-
-IFCI_PRINT
 
 ### `IFCI_PRINT`
 
@@ -183,8 +163,6 @@ IFCI_PRINT
 >     * 调试（Bug testing）输出
 > * **建议**：推荐 2，1-3 均合适，大于 4 则无必要（请自行斟酌后果）。
 
-IFCI_NO_THRESH
-
 ### `IFCI_NO_THRESH`
 
 > **在针对各增量（increment）的自然轨道（NO）生成步骤中，等价于 HBCI 的 $\varepsilon_{1}$。**
@@ -199,8 +177,6 @@ IFCI_NO_THRESH
 >     * ${}_{\mathrm{h}}$
 > * **建议**：设置为与 HBCI_EPS1 相同。
 
-IFCI_REF_ITER
-
 ### `IFCI_REF_ITER`
 
 > **使用 HF 或 PP 参考密度。**
@@ -213,8 +189,6 @@ IFCI_REF_ITER
 >     * 1
 >     * PP
 > * **建议**：使用 0。
-
-IFCI_OCC
 
 ### `IFCI_OCC`
 

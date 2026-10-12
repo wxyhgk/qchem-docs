@@ -15,8 +15,6 @@ QM/MM calculations are described in Section [11.3](sec_QMMM.md).
 
 QM/MM jobs that use the **Charmm** interface are controlled using the following *$rem* keywords:
 
-QM_MM
-
 ### `QM_MM`
 
 > **Turns on the Q-Chem / Charmm interface.**
@@ -24,17 +22,9 @@ QM_MM
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Do QM/MM calculation through the
->     * Q-Chem
->     * /
->     * Charmm
->     * interface.
->     * FALSE
->     * Turn this feature off.
+>     * `TRUE`: Do QM/MM calculation through the Q-Chem / Charmm interface.
+>     * `FALSE`: Turn this feature off.
 > * **Recommendation**: Use the default unless running calculations with Charmm .
-
-QMMM_PRINT
 
 ### `QMMM_PRINT`
 
@@ -43,13 +33,9 @@ QMMM_PRINT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Limit molecule, point charge, and analysis printing.
->     * FALSE
->     * Normal printing.
+>     * `TRUE`: Limit molecule, point charge, and analysis printing.
+>     * `FALSE`: Normal printing.
 > * **Recommendation**: Use the default unless running calculations with Charmm .
-
-QMMM_CHARGES
 
 ### `QMMM_CHARGES`
 
@@ -58,13 +44,9 @@ QMMM_CHARGES
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Writes a charges.dat file with the Mulliken charges from the QM region.
->     * FALSE
->     * No file written.
+>     * `TRUE`: Writes a charges.dat file with the Mulliken charges from the QM region.
+>     * `FALSE`: No file written.
 > * **Recommendation**: Use the default unless running calculations with Charmm where charges on the QM region need to be saved.
-
-ESP_EFIELD
 
 ### `ESP_EFIELD`
 
@@ -73,15 +55,10 @@ ESP_EFIELD
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Computes ESP only.
->     * 1
->     * Computes ESP and electric field.
->     * 2
->     * Computes electric field only.
+>     * `0`: Computes ESP only.
+>     * `1`: Computes ESP and electric field.
+>     * `2`: Computes electric field only.
 > * **Recommendation**: None.
-
-GEOM_PRINT
 
 ### `GEOM_PRINT`
 
@@ -90,13 +67,9 @@ GEOM_PRINT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Prints out all geometric information; bond distances, angles, torsions.
->     * FALSE
->     * Normal printing of distance matrix.
+>     * `TRUE`: Prints out all geometric information; bond distances, angles, torsions.
+>     * `FALSE`: Normal printing of distance matrix.
 > * **Recommendation**: Use if you want to be able to quickly examine geometric parameters at the beginning and end of optimizations. Only prints in the beginning of single point energy calculations.
-
-QMMM_FULL_HESSIAN
 
 ### `QMMM_FULL_HESSIAN`
 
@@ -105,13 +78,9 @@ QMMM_FULL_HESSIAN
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Evaluates full Hessian.
->     * FALSE
->     * Hessian for QM-QM block only.
+>     * `TRUE`: Evaluates full Hessian.
+>     * `FALSE`: Hessian for QM-QM block only.
 > * **Recommendation**: None
-
-LINK_ATOM_PROJECTION
 
 ### `LINK_ATOM_PROJECTION`
 
@@ -120,13 +89,9 @@ LINK_ATOM_PROJECTION
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Performs the projection
->     * FALSE
->     * No projection
+>     * `TRUE`: Performs the projection
+>     * `FALSE`: No projection
 > * **Recommendation**: Necessary in a full QM/MM Hessian evaluation on a system with link atoms
-
-HESS_AND_GRAD
 
 ### `HESS_AND_GRAD`
 
@@ -135,13 +100,9 @@ HESS_AND_GRAD
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Evaluates both gradient and Hessian.
->     * FALSE
->     * Evaluates Hessian only.
+>     * `TRUE`: Evaluates both gradient and Hessian.
+>     * `FALSE`: Evaluates Hessian only.
 > * **Recommendation**: Use only in a frequency (and thus Hessian) evaluation.
-
-GAUSSIAN_BLUR
 
 ### `GAUSSIAN_BLUR`
 
@@ -150,13 +111,9 @@ GAUSSIAN_BLUR
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Delocalizes external charges with Gaussian functions.
->     * FALSE
->     * Point charges
+>     * `TRUE`: Delocalizes external charges with Gaussian functions.
+>     * `FALSE`: Point charges
 > * **Recommendation**: None
-
-SKIP_CHARGE_SELF_INTERACT
 
 ### `SKIP_CHARGE_SELF_INTERACT`
 
@@ -165,10 +122,8 @@ SKIP_CHARGE_SELF_INTERACT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * No electrostatic interactions among external charges.
->     * FALSE
->     * Computes the electrostatic interactions among external charges.
+>     * `TRUE`: No electrostatic interactions among external charges.
+>     * `FALSE`: Computes the electrostatic interactions among external charges.
 > * **Recommendation**: None
 
 ???+ example "Example 11.27: Do a basic QM/MM optimization of the water dimer. You need Charmm to do

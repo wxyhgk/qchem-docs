@@ -16,8 +16,6 @@ the same as for GDM, with the exception of the specification of
 SCF_ALGORITHM, which can be either DIIS_DM
 (recommended) or DM.
 
-PSEUDO_CANONICAL
-
 ### `PSEUDO_CANONICAL`
 
 > **When SCF_ALGORITHM = DM , this controls the way the initial step, and steps after subspace resets are taken.**
@@ -25,8 +23,6 @@ PSEUDO_CANONICAL
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use Roothaan steps when (re)initializing
->     * TRUE
->     * Use a steepest descent step when (re)initializing
+>     * `FALSE`: Use Roothaan steps when (re)initializing
+>     * `TRUE`: Use a steepest descent step when (re)initializing
 > * **Recommendation**: The default is usually more efficient, but choosing TRUE sometimes avoids problems with orbital reordering.

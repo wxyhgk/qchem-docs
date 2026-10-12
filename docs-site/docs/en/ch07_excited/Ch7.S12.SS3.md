@@ -40,8 +40,6 @@ to resonant x-ray emission spectroscopy (involving an excited electronic state)
 state as a non-*aufbau* solution of the SCF equations, *e.g.*, using algorithms such as
 (Section [4.5.14](../ch04_scf/topic_mom.md)), SGM (Section [4.5.15](../ch04_scf/sect_SGM-SCF.md)), or STEP (Section [4.5.16](../ch04_scf/sect_STEP-SCF.md)).
 
-NCORE_XES
-
 ### `NCORE_XES`
 
 > **Specifies how many core levels to use in a Koopmans-type XES calculation.**
@@ -49,15 +47,9 @@ NCORE_XES
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Compute transition dipoles corresponding to the first (lowest energy)
->     * $n$
->     * core orbitals,
->     * $\phi_{c}$
->     * .
+>     * $n$: Compute transition dipoles corresponding to the first (lowest energy)
+>     * $n$: core orbitals, $\phi_{c}$ .
 > * **Recommendation**: None
-
-NVAL_XES
 
 ### `NVAL_XES`
 
@@ -66,12 +58,8 @@ NVAL_XES
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Compute transition dipoles corresponding to the highest
->     * $n$
->     * occupied orbitals,
->     * $\phi_{v}$
->     * .
+>     * $n$: Compute transition dipoles corresponding to the highest
+>     * $n$: occupied orbitals, $\phi_{v}$ .
 > * **Recommendation**: Setting $n=1$ will include the HOMO in the occupied space, $n=2$ will include HOMO and $\text{HOMO}-1$ , etc.
 
 ???+ example "Example 7.211: The calculation of the XES spectrum of water using the Koopmans approach with a short-range corrected functional."
@@ -129,8 +117,6 @@ Section [7.12.3.3](#ex:XAS-2).) Optionally, one may use TPDFT_LUMO to occupy th
 to an excitation energy calculation [Eq. ([7.179](#eq:TPDFT-ee))], or omit this variable to compute the core-level electron
 binding energy [Eq. ([7.178](#eq:TPDFT-ip))].
 
-TPDFT_ATOM
-
 ### `TPDFT_ATOM`
 
 > **Activate TP-DFT by specifying the atom from which to remove an electron.**
@@ -138,13 +124,9 @@ TPDFT_ATOM
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Remove an electron from the lowest-energy orbital on the atom whose index is
->     * $n$
->     * .
+>     * $n$: Remove an electron from the lowest-energy orbital on the atom whose index is
+>     * $n$: .
 > * **Recommendation**: Be sure to set UNRESTRICTED = TRUE for TP-DFT calculations.
-
-TPDFT_FRAC
 
 ### `TPDFT_FRAC`
 
@@ -153,15 +135,8 @@ TPDFT_FRAC
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * Remove
->     * $n/100$
->     * of an electron from the orbital specified using
->     * TPDFT_ATOM
->     * .
+>     * $n$: Remove $n/100$ of an electron from the orbital specified using TPDFT_ATOM .
 > * **Recommendation**: None
-
-TPDFT_LUMO
 
 ### `TPDFT_LUMO`
 
@@ -170,10 +145,7 @@ TPDFT_LUMO
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Add
->     * $n/100$
->     * of an electron to the LUMO.
+>     * $n$: Add $n/100$ of an electron to the LUMO.
 > * **Recommendation**: Leave = 0 for core-level binding energy calculations [Eq. ( 7.178 )] or use = 50 to implement Eq. ( 7.179 ).
 
 ???+ example "Example 7.212: TP-DFT excitation energy calculation, removing $n_{i}=1/2$ from O(1s) and placing it in the LUMO."
@@ -216,8 +188,6 @@ Consult Refs. [[626]](../bib_references/bib.md#bib650)
  for best practices regarding which generalized
 Slater-type method to use.
 
-FRACTIONAL_ELECTRON
-
 ### `FRACTIONAL_ELECTRON`
 
 > **Specify the fraction of an electron to be removed from the occupied space.**
@@ -225,13 +195,8 @@ FRACTIONAL_ELECTRON
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $-n$
->     * Remove
->     * $n/1000$
->     * of an electron.
+>     * $-n$: Remove $n/1000$ of an electron.
 > * **Recommendation**: The original Slater method ( $n_{i}=1/2$ ) corresponds to = $-$ 500 but there can be other choices.
-
-FRAC_VIR_ELEC
 
 ### `FRAC_VIR_ELEC`
 
@@ -240,13 +205,8 @@ FRAC_VIR_ELEC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Add
->     * $n/1000$
->     * of an electron.
+>     * $n$: Add $n/1000$ of an electron.
 > * **Recommendation**: A value $>0$ should be used for excitation (XAS or XES), whereas the default is appropriate for ionization (XPS).
-
-FRAC_ELEC_ORB
 
 ### `FRAC_ELEC_ORB`
 
@@ -255,13 +215,8 @@ FRAC_ELEC_ORB
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Remove from
->     * $\phi_{n}$
->     * .
+>     * $n$: Remove from $\phi_{n}$ .
 > * **Recommendation**: None
-
-FRAC_VIR_ELEC_ORB
 
 ### `FRAC_VIR_ELEC_ORB`
 
@@ -270,10 +225,7 @@ FRAC_VIR_ELEC_ORB
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Add to
->     * $\phi_{n}$
->     * .
+>     * $n$: Add to $\phi_{n}$ .
 > * **Recommendation**: Use this only if FRAC_VIR_ELEC $>0$ .
 
 ???+ example "Example 7.213: Original Slater transition method (STM) for oxygen K-shell XPS, removing $n_{i}=1/2$ electron from O(1s) core orbital.

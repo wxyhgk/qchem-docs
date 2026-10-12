@@ -29,8 +29,6 @@ $$
 
 初始核自由度的采样分布通过 QCMD_INITNUC 关键字请求。目前支持从 Wigner 分布或 Boltzmann 分布中同时采样初始位置和速度。从这两种分布中的任一种进行采样都需要有可用的频率计算结果。或者，用户也可以使用 *$velocity* 节输入速度，如第 [9.9.2 节](sub_aimd_jobcontrol.md) 所述。
 
-QCMD_METHOD
-
 ### `QCMD_METHOD`
 
 > **指定非绝热 Meyer-Miller 分子动力学方法。**
@@ -43,8 +41,6 @@ QCMD_METHOD
 >     * SQC
 >     * 对称准经典 Meyer-Miller 分子动力学
 > * **建议**：无
-
-QCMD_INITSTATE
 
 ### `QCMD_INITSTATE`
 
@@ -59,8 +55,6 @@ QCMD_INITSTATE
 >     * 的整数。
 > * **建议**：无
 
-QCMD_INITNUC
-
 ### `QCMD_INITNUC`
 
 > **指定采样初始核位置和速度时所使用的分布。**
@@ -74,8 +68,6 @@ QCMD_INITNUC
 >     * Boltzmann 分布
 > * **建议**：与 AIMD_TEMP 配合使用。
 
-QCMD_WARMUP
-
 ### `QCMD_WARMUP`
 
 > **指定在动力学开始之前，初始构型与采样构型之间线性插值的步数，以实现准确的状态跟踪。**
@@ -85,8 +77,6 @@ QCMD_WARMUP
 > * **选项**：
 >     * $n$
 > * **建议**：无
-
-SQC_GAMADJUST
 
 ### `SQC_GAMADJUST`
 

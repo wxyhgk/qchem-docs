@@ -37,8 +37,6 @@ while each rank exploits OpenMP for shared-memory parallelism within a node.
 This strategy is particularly effective for large systems,
 providing excellent scalability with minimal communication overhead.
 
-IDERIV
-
 ### `IDERIV`
 
 > **Controls the order of derivatives that are evaluated analytically. The user is not normally required to specify a value, unless numerical derivatives are desired. The derivatives will be evaluated numerically if is set lower than JOBTYPE requires.**
@@ -46,15 +44,10 @@ IDERIV
 > * **Type**: `INTEGER`
 > * **Default**: `Set to the order of derivative that`
 > * **Options**:
->     * 2
->     * Analytic second derivatives of the energy (Hessian)
->     * 1
->     * Analytic first derivatives of the energy.
->     * 0
->     * Analytic energies only.
+>     * `2`: Analytic second derivatives of the energy (Hessian)
+>     * `1`: Analytic first derivatives of the energy.
+>     * `0`: Analytic energies only.
 > * **Recommendation**: Usually set to the maximum possible for efficiency. Note that will be set lower if analytic derivatives of the requested order are not available.
-
-FDIFF_STEPSIZE_QFF
 
 ### `FDIFF_STEPSIZE_QFF`
 
@@ -63,13 +56,8 @@ FDIFF_STEPSIZE_QFF
 > * **Type**: `INTEGER`
 > * **Default**: `5291`
 > * **Options**:
->     * $n$
->     * Use a step size of
->     * $n\times 10^{-5}$
->     * .
+>     * $n$: Use a step size of $n\times 10^{-5}$ .
 > * **Recommendation**: Use the default, unless the potential surface is very flat, in which case a larger value should be used.
-
-FINITEDIFFSZ_POWER
 
 ### `FINITEDIFFSZ_POWER`
 
@@ -78,13 +66,8 @@ FINITEDIFFSZ_POWER
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Use an exponent of
->     * $10^{-n}$
->     * .
+>     * $n$: Use an exponent of $10^{-n}$ .
 > * **Recommendation**: None.
-
-FDIFF_STEPSIZE
 
 ### `FDIFF_STEPSIZE`
 
@@ -93,17 +76,9 @@ FDIFF_STEPSIZE
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * Use a step size of
->     * $n\times 10^{-m}$
->     * , where
->     * $m$
->     * is
->     * FINITEDIFFSZ_POWER
->     * .
+>     * $n$: Use a step size of $n\times 10^{-m}$ , where
+>     * $m$: is FINITEDIFFSZ_POWER .
 > * **Recommendation**: Use the default except in cases where the potential surface is very flat in which case a larger value should be used. See FDIFF_STEPSIZE_QFF for third and fourth derivatives.
-
-FDIFF_STEPSIZE_B
 
 ### `FDIFF_STEPSIZE_B`
 
@@ -112,17 +87,9 @@ FDIFF_STEPSIZE_B
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * Use a step size of
->     * $n\times 10^{-m}$
->     * , where
->     * $m$
->     * is
->     * FINITEDIFFSZ_POWER
->     * .
+>     * $n$: Use a step size of $n\times 10^{-m}$ , where
+>     * $m$: is FINITEDIFFSZ_POWER .
 > * **Recommendation**: None.
-
-FDIFF_STEPSIZE_M
 
 ### `FDIFF_STEPSIZE_M`
 
@@ -131,17 +98,9 @@ FDIFF_STEPSIZE_M
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * Use a step size of
->     * $n\times 10^{-m}$
->     * , where
->     * $m$
->     * is
->     * FINITEDIFFSZ_POWER
->     * .
+>     * $n$: Use a step size of $n\times 10^{-m}$ , where
+>     * $m$: is FINITEDIFFSZ_POWER .
 > * **Recommendation**: None.
-
-FDIFF_STENCIL
 
 ### `FDIFF_STENCIL`
 
@@ -150,34 +109,5 @@ FDIFF_STENCIL
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Corresponds to regular
->     * ${\cal{O}}({h^{2}})$
->     * stencil for first-order
->     * and economical
->     * ${\cal{O}}({h^{2}})$
->     * stencil for second-order
->     * finite-difference calculation.
->     * $2$
->     * Corresponds to regular
->     * ${\cal{O}}({h^{2}})$
->     * stencil for first-order
->     * and regular
->     * ${\cal{O}}({h^{2}})$
->     * stencil for second-order
->     * finite-difference calculation.
->     * $3$
->     * Corresponds to regular
->     * ${\cal{O}}({h^{4}})$
->     * stencil for first-order
->     * and economical
->     * ${\cal{O}}({h^{4}})$
->     * stencil for second-order
->     * finite-difference calculation.
->     * $4$
->     * Corresponds to regular
->     * ${\cal{O}}({h^{4}})$
->     * stencil for first-order
->     * finite-difference calculation. This option is unavailable in v. 6.4 for second-order
->     * finite-difference calculation.
+>     * `1`: Corresponds to regular ${\cal{O}}({h^{2}})$ stencil for first-order and economical ${\cal{O}}({h^{2}})$ stencil for second-order finite-difference calculation. $2$ Corresponds to regular ${\cal{O}}({h^{2}})$ stencil for first-order and regular ${\cal{O}}({h^{2}})$ stencil for second-order finite-difference calculation. $3$ Corresponds to regular ${\cal{O}}({h^{4}})$ stencil for first-order and economical ${\cal{O}}({h^{4}})$ stencil for second-order finite-difference calculation. $4$ Corresponds to regular ${\cal{O}}({h^{4}})$ stencil for first-order finite-difference calculation. This option is unavailable in v. 6.4 for second-order finite-difference calculation.
 > * **Recommendation**: None.

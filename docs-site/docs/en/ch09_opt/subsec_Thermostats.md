@@ -162,8 +162,6 @@ approach is appropriate.
     $end
     ```
 
-AIMD_THERMOSTAT
-
 ### `AIMD_THERMOSTAT`
 
 > **Applies thermostatting to AIMD trajectories.**
@@ -171,13 +169,9 @@ AIMD_THERMOSTAT
 > * **Type**: `INTEGER`
 > * **Default**: `none`
 > * **Options**:
->     * LANGEVIN
->     * Stochastic, white-noise Langevin thermostat
->     * NOSE_HOOVER
->     * Time-reversible, Nosé-Hoovery chain thermostat
+>     * `LANGEVIN`: Stochastic, white-noise Langevin thermostat
+>     * `NOSE_HOOVER`: Time-reversible, Nosé-Hoovery chain thermostat
 > * **Recommendation**: Use either thermostat for sampling the canonical (NVT) ensemble.
-
-AIMD_LANGEVIN_TIMESCALE
 
 ### `AIMD_LANGEVIN_TIMESCALE`
 
@@ -186,13 +180,9 @@ AIMD_LANGEVIN_TIMESCALE
 > * **Type**: `INTEGER`
 > * **Default**: `none`
 > * **Options**:
->     * $n$
->     * Thermostat timescale,asn
->     * $n$
->     * fs
+>     * $n$: Thermostat timescale,asn
+>     * $n$: fs
 > * **Recommendation**: Smaller values (roughly 100) equate to tighter thermostats but may inhibit rapid sampling. Larger values ( $\geq 1000$ ) allow for more rapid sampling but may take longer to reach thermal equilibrium.
-
-NOSE_HOOVER_LENGTH
 
 ### `NOSE_HOOVER_LENGTH`
 
@@ -201,13 +191,9 @@ NOSE_HOOVER_LENGTH
 > * **Type**: `INTEGER`
 > * **Default**: `none`
 > * **Options**:
->     * $n$
->     * Chain length of
->     * $n$
->     * auxiliary variables
+>     * $n$: Chain length of
+>     * $n$: auxiliary variables
 > * **Recommendation**: Typically 3-6
-
-NOSE_HOOVER_TIMESCALE
 
 ### `NOSE_HOOVER_TIMESCALE`
 
@@ -216,8 +202,6 @@ NOSE_HOOVER_TIMESCALE
 > * **Type**: `INTEGER`
 > * **Default**: `none`
 > * **Options**:
->     * $n$
->     * Thermostat timescale, as
->     * $n$
->     * fs
+>     * $n$: Thermostat timescale, as
+>     * $n$: fs
 > * **Recommendation**: Smaller values (roughly 100) equate to tighter thermostats but may inhibit rapid sampling. Larger values ( $\geq 1000$ ) allow for more rapid sampling but may take longer to reach thermal equilibrium.

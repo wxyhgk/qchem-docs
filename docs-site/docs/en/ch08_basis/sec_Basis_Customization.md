@@ -41,8 +41,6 @@ that contain diffuse functions, tightening the integral threshold sometimes has 
 effect of *decreasing* the time-to-solution, by significantly reducing the number of SCF cycles
 at only a modest per-cycle increase in cost.[[479]](../bib_references/bib.md#bib495)
 
-PRINT_GENERAL_BASIS
-
 ### `PRINT_GENERAL_BASIS`
 
 > **Controls print out of built in basis sets in input format**
@@ -50,13 +48,9 @@ PRINT_GENERAL_BASIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Print out standard basis set information
->     * FALSE
->     * Do not print out standard basis set information
+>     * `TRUE`: Print out standard basis set information
+>     * `FALSE`: Do not print out standard basis set information
 > * **Recommendation**: Useful for modification of standard basis sets.
-
-BASIS_LIN_DEP_THRESH
 
 ### `BASIS_LIN_DEP_THRESH`
 
@@ -65,7 +59,5 @@ BASIS_LIN_DEP_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * Sets the threshold to
->     * $10^{-n}$
+>     * $n$: Sets the threshold to $10^{-n}$
 > * **Recommendation**: Set to 5 or smaller if you have a poorly behaved SCF and you suspect linear dependence in you basis set. Lower values (larger thresholds) may affect the accuracy of the calculation.

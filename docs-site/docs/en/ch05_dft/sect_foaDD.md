@@ -18,8 +18,6 @@ correction term is equivalent to the frozen-orbital approximation method. Its
 implementation in **Q-Chem** supports only local and GGA functionals at present,
 not meta-GGA, hybrid, or non-local functionals. Job control variables and examples appear below.
 
-FOA_FUNDGAP
-
 ### `FOA_FUNDGAP`
 
 > **Compute the frozen-orbital approximation of the fundamental gap.**
@@ -27,15 +25,9 @@ FOA_FUNDGAP
 > * **Type**: `Boolean`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute FOA derivative discontinuity and fundamental gap.
->     * TRUE
->     * Compute and print FOA fundamental gap information. Implies
->     * KS_GAP_PRINT
->     * .
+>     * `FALSE`: Do not compute FOA derivative discontinuity and fundamental gap.
+>     * `TRUE`: Compute and print FOA fundamental gap information. Implies KS_GAP_PRINT .
 > * **Recommendation**: Use in conjunction with KS_GAP_UNIT if true.
-
-KS_GAP_PRINT
 
 ### `KS_GAP_PRINT`
 
@@ -44,13 +36,9 @@ KS_GAP_PRINT
 > * **Type**: `Boolean`
 > * **Default**: `false`
 > * **Options**:
->     * false
->     * (default) do not print gap information
->     * true
->     * print gap information
+>     * `false`: (default) do not print gap information
+>     * `true`: print gap information
 > * **Recommendation**: Use in conjunction with KS_GAP_UNIT if true.
-
-KS_GAP_UNIT
 
 ### `KS_GAP_UNIT`
 
@@ -59,10 +47,8 @@ KS_GAP_UNIT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * (default) hartrees
->     * 1
->     * eV
+>     * `0`: (default) hartrees
+>     * `1`: eV
 > * **Recommendation**: none
 
 ???+ example "Example 5.29: Frozen-orbital approximation of derivative discontinuity with

@@ -13,8 +13,6 @@ are considered in Eq. ([12.85](Ch12.S16.SS1.md#eq:almo-cis)). To run this type 
 one needs to set ALMOCIS_FRAGOV $>0$, and currently three different
 modes are supported:
 
-ALMOCIS_FRAGOV
-
 ### `ALMOCIS_FRAGOV`
 
 > **Doing ALMO-CIS/TDA calculations with transitions from occupied orbitals on the 1st fragment and virtuals in the full system**
@@ -22,22 +20,10 @@ ALMOCIS_FRAGOV
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Doing standard ALMO-CIS/TDA calculations (if
->     * LOCAL_CIS
->     * $>0$
->     * )
->     * 1
->     * Reading user-specified active fragment O-V pairs from the
->     * $frag_ov_pairs section
->     * 2
->     * Excitations on the
->     * first
->     * fragment only
->     * 3
->     * Excitations from the occupied orbitals on the
->     * first
->     * fragment to all virtuals in the system
+>     * `0`: Doing standard ALMO-CIS/TDA calculations (if `LOCAL_CIS` $>0$)
+>     * `1`: Reading user-specified active fragment O-V pairs from the *$frag_ov_pairs* section
+>     * `2`: Excitations on the *first* fragment only
+>     * `3`: Excitations from the occupied orbitals on the *first* fragment to all virtuals in the system
 > * **Recommendation**: None
 
 The format of the *$frag_ov_pairs* section:

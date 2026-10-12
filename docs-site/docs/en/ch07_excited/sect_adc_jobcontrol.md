@@ -46,8 +46,6 @@ the irreducible representation of the excited state wave function.
 Users can choose to calculate any molecule as $C_{1}$ symmetric by setting
 CC_SYMMETRY = FALSE.
 
-METHOD
-
 ### `METHOD`
 
 > **Controls the order in perturbation theory of ADC.**
@@ -55,27 +53,16 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * ADC(1)
->     * Perform ADC(1) calculation.
->     * ADC(2)
->     * Perform ADC(2)-s, IP-ADC(2)-s or EA-ADC(2)-s calculation.
->     * ADC(2)-x
->     * Perform ADC(2)-x calculation.
->     * ADC(3)
->     * Perform ADC(3), IP-ADC(3) or EA-ADC(3) calculation.
->     * SOS-ADC(2)
->     * Perform spin-opposite scaled ADC(2)-s calculation.
->     * SOS-ADC(2)-x
->     * Perform spin-opposite scaled ADC(2)-x calculation.
->     * CVS-ADC(1)
->     * Perform ADC(1) calculation of core excitations.
->     * CVS-ADC(2)
->     * Perform ADC(2)-s calculation of core excitations.
->     * CVS-ADC(2)-x
->     * Perform ADC(2)-x calculation of core excitations.
+>     * `ADC(1)`: Perform ADC(1) calculation.
+>     * `ADC(2)`: Perform ADC(2)-s, IP-ADC(2)-s or EA-ADC(2)-s calculation.
+>     * `ADC(2)-x`: Perform ADC(2)-x calculation.
+>     * `ADC(3)`: Perform ADC(3), IP-ADC(3) or EA-ADC(3) calculation.
+>     * `SOS-ADC(2)`: Perform spin-opposite scaled ADC(2)-s calculation.
+>     * `SOS-ADC(2)-x`: Perform spin-opposite scaled ADC(2)-x calculation.
+>     * `CVS-ADC(1)`: Perform ADC(1) calculation of core excitations.
+>     * `CVS-ADC(2)`: Perform ADC(2)-s calculation of core excitations.
+>     * `CVS-ADC(2)-x`: Perform ADC(2)-x calculation of core excitations.
 > * **Recommendation**: None
-
-EE_STATES
 
 ### `EE_STATES`
 
@@ -84,17 +71,8 @@ EE_STATES
 > * **Type**: `INTEGER/ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * states for the first irrep,
->     * $n_{2}$
->     * states for the second irrep, …
+>     * $n>0$: Number of states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ states for the first irrep, $n_{2}$ states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of excited states in case of unrestricted or open-shell calculations. In restricted calculations it can also be used, if neither EE_SINGLETS nor EE_TRIPLETS is given. Then, it has the same effect as setting EE_SINGLETS .
-
-EE_SINGLETS
 
 ### `EE_SINGLETS`
 
@@ -103,17 +81,8 @@ EE_SINGLETS
 > * **Type**: `INTEGER/ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of singlet states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * states for the first irrep,
->     * $n_{2}$
->     * states for the second irrep, …
+>     * $n>0$: Number of singlet states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ states for the first irrep, $n_{2}$ states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of excited states in case of restricted calculations of singlet states. In unrestricted calculations it can also be used, if EE_STATES not set. Then, it has the same effect as setting EE_STATES .
-
-EE_TRIPLETS
 
 ### `EE_TRIPLETS`
 
@@ -122,17 +91,8 @@ EE_TRIPLETS
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of triplet states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * states for the first irrep,
->     * $n_{2}$
->     * states for the second irrep, …
+>     * $n>0$: Number of triplet states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ states for the first irrep, $n_{2}$ states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of excited states in case of restricted calculations of triplet states.
-
-IP_STATES
 
 ### `IP_STATES`
 
@@ -141,17 +101,8 @@ IP_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * states for the first irrep,
->     * $n_{2}$
->     * states for the second irrep, …
+>     * $n>0$: Number of states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ states for the first irrep, $n_{2}$ states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of ionized states in case of restricted calculations.
-
-EOM_IP_ALPHA
 
 ### `EOM_IP_ALPHA`
 
@@ -160,21 +111,8 @@ EOM_IP_ALPHA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of
->     * $\alpha$
->     * -ionized states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * $\alpha$
->     * -ionized states for the first irrep,
->     * $n_{2}$
->     * $\alpha$
->     * -ionized states for the second irrep, …
+>     * $n>0$: Number of $\alpha$ -ionized states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ $\alpha$ -ionized states for the first irrep, $n_{2}$ $\alpha$ -ionized states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of $\alpha$ -ionized states in case of unrestricted or open-shell calculations.
-
-EOM_IP_BETA
 
 ### `EOM_IP_BETA`
 
@@ -183,21 +121,8 @@ EOM_IP_BETA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of
->     * $\beta$
->     * -ionized states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * $\beta$
->     * -ionized states for the first irrep,
->     * $n_{2}$
->     * $\beta$
->     * -ionized states for the second irrep, …
+>     * $n>0$: Number of $\beta$ -ionized states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ $\beta$ -ionized states for the first irrep, $n_{2}$ $\beta$ -ionized states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of $\beta$ -ionized states in case of unrestricted or open-shell calculations.
-
-EA_STATES
 
 ### `EA_STATES`
 
@@ -206,17 +131,8 @@ EA_STATES
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * states for the first irrep,
->     * $n_{2}$
->     * states for the second irrep, …
+>     * $n>0$: Number of states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ states for the first irrep, $n_{2}$ states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of electron-attached states in case of restricted calculations.
-
-EOM_EA_ALPHA
 
 ### `EOM_EA_ALPHA`
 
@@ -225,21 +141,8 @@ EOM_EA_ALPHA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of
->     * $\alpha$
->     * -electron-attached states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * $\alpha$
->     * -electron-attached states for the first irrep,
->     * $n_{2}$
->     * $\alpha$
->     * -electron-attached states for the second irrep, …
+>     * $n>0$: Number of $\alpha$ -electron-attached states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ $\alpha$ -electron-attached states for the first irrep, $n_{2}$ $\alpha$ -electron-attached states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of $\alpha$ -electron-attached states in case of unrestricted or open-shell calculations.
-
-EOM_EA_BETA
 
 ### `EOM_EA_BETA`
 
@@ -248,21 +151,8 @@ EOM_EA_BETA
 > * **Type**: `INTEGER/INTEGER ARRAY`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of
->     * $\beta$
->     * -electron-attached states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * $\beta$
->     * -electron-attached states for the first irrep,
->     * $n_{2}$
->     * $\beta$
->     * -electron-attached states for the second irrep, …
+>     * $n>0$: Number of $\beta$ -electron-attached states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ $\beta$ -electron-attached states for the first irrep, $n_{2}$ $\beta$ -electron-attached states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of $\beta$ -electron-attached states in case of unrestricted or open-shell calculations.
-
-CC_SYMMETRY
 
 ### `CC_SYMMETRY`
 
@@ -271,13 +161,9 @@ CC_SYMMETRY
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Employ point-group symmetry
->     * FALSE
->     * Do not use point-group symmetry
+>     * `TRUE`: Employ point-group symmetry
+>     * `FALSE`: Do not use point-group symmetry
 > * **Recommendation**: None
-
-ADC_DENSITY_ORDER
 
 ### `ADC_DENSITY_ORDER`
 
@@ -286,21 +172,9 @@ ADC_DENSITY_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 3
->     * Use a third-order ground state density computed from the IP-ADC(3)
->     * effective transition moments and the corresponding
->     * fourth order static self-energy according to the
->     * $\Sigma(4)$
->     * scheme
->     * 4
->     * Use an improved third-order ground state density and the corresponding
->     * improved fourth-order static self-energy computed according to the
->     * self-consistent
->     * $\Sigma(4+)$
->     * procedure
+>     * `3`: Use a third-order ground state density computed from the IP-ADC(3) effective transition moments and the corresponding fourth order static self-energy according to the $\Sigma(4)$ scheme
+>     * `4`: Use an improved third-order ground state density and the corresponding improved fourth-order static self-energy computed according to the self-consistent $\Sigma(4+)$ procedure
 > * **Recommendation**: In case of IP-ADC(3) calculations, employing the $\Sigma(4+)$ scheme provides more accurate ionization potentials and ionized state dipole moments.
-
-ADC_DENSITY_MAXITER
 
 ### `ADC_DENSITY_MAXITER`
 
@@ -309,11 +183,8 @@ ADC_DENSITY_MAXITER
 > * **Type**: `INTEGER`
 > * **Default**: `1000`
 > * **Options**:
->     * $n$
->     * User-defined integer.
+>     * $n$: User-defined integer.
 > * **Recommendation**: Use the default value.
-
-ADC_DIRECT
 
 ### `ADC_DIRECT`
 
@@ -322,25 +193,9 @@ ADC_DIRECT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Directly evaluate some
->     * $N^{6}$
->     * -scaling tensor contractions. This will reduce the memory
->     * requirement by
->     * $\sim$
->     * 10 %.
->     * FALSE
->     * Precompute all possible
->     * $N^{6}$
->     * -scaling intermediates. This will speed up ADC(3)
->     * calculations considerably (by a factor of
->     * $\sim$
->     * 3 in case of ADC(3) for
->     * $N$
->     * -electron excitations and somewhat less for IP- and EA-ADC(3)).
+>     * `TRUE`: Directly evaluate some $N^{6}$ -scaling tensor contractions. This will reduce the memory requirement by $\sim$ 10 %.
+>     * `FALSE`: Precompute all possible $N^{6}$ -scaling intermediates. This will speed up ADC(3) calculations considerably (by a factor of $\sim$ 3 in case of ADC(3) for $N$ -electron excitations and somewhat less for IP- and EA-ADC(3)).
 > * **Recommendation**: Use the default value unless memory is the bottleneck.
-
-ADC_STRICT_ISR
 
 ### `ADC_STRICT_ISR`
 
@@ -349,17 +204,9 @@ ADC_STRICT_ISR
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Scale the second-order part of the ground state contribution to one-electron
->     * properties of ionized/electron-attached states by the
->     * one-hole/one-particle character of the respective states
->     * as implied by the strict ISR derivation.
->     * FALSE
->     * Use the full second-order ground state contribution for each
->     * ionized/electron-attached state property.
+>     * `TRUE`: Scale the second-order part of the ground state contribution to one-electron properties of ionized/electron-attached states by the one-hole/one-particle character of the respective states as implied by the strict ISR derivation.
+>     * `FALSE`: Use the full second-order ground state contribution for each ionized/electron-attached state property.
 > * **Recommendation**: Use the default value. Both options are, however, valid second-order treatments of ionized/electron-attached state properties and should yield very similar results for states with predominant one-hole/one-particle chaaracter.
-
-ADC_DO_DYSON
 
 ### `ADC_DO_DYSON`
 
@@ -368,13 +215,9 @@ ADC_DO_DYSON
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Output Dyson orbitals as cube files.
->     * FALSE
->     * Do not output Dyson orbitals.
+>     * `TRUE`: Output Dyson orbitals as cube files.
+>     * `FALSE`: Do not output Dyson orbitals.
 > * **Recommendation**: Set to TRUE if visualization of ionization/electron-attachment processes is desired.
-
-ADC_CAP
 
 ### `ADC_CAP`
 
@@ -383,11 +226,8 @@ ADC_CAP
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Perform a subspace-projected CAP/ADC calculation.
+>     * `1`: Perform a subspace-projected CAP/ADC calculation.
 > * **Recommendation**: Set to 1 for the computation of CAP/ADC subspace projections.
-
-CAP_X
 
 ### `CAP_X`
 
@@ -396,11 +236,8 @@ CAP_X
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * User-defined integer.
+>     * $n>0$: User-defined integer.
 > * **Recommendation**: Usually, values of 2000 to 4000 (corresponding to onset values between 2.0 and 4.0 a.u.) give reasonable results.
-
-CAP_X_STEP
 
 ### `CAP_X_STEP`
 
@@ -409,11 +246,8 @@ CAP_X_STEP
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $n>0$
->     * User-defined integer.
+>     * $n>0$: User-defined integer.
 > * **Recommendation**: None.
-
-CAP_X_END
 
 ### `CAP_X_END`
 
@@ -422,11 +256,8 @@ CAP_X_END
 > * **Type**: `INTEGER`
 > * **Default**: `CAP_X`
 > * **Options**:
->     * $n>\text{\mbox{{\small CAP\_X}}}$
->     * User-defined integer.
+>     * $n>\text{\mbox{{\small CAP\_X}}}$: User-defined integer.
 > * **Recommendation**: Use this keyword if CAP onset series are desired.
-
-ADC_PROP_ES
 
 ### `ADC_PROP_ES`
 
@@ -435,13 +266,9 @@ ADC_PROP_ES
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate excited, ionized or electron-attached state properties.
->     * FALSE
->     * Do not compute state properties.
+>     * `TRUE`: Calculate excited, ionized or electron-attached state properties.
+>     * `FALSE`: Do not compute state properties.
 > * **Recommendation**: Set to TRUE , if properties are required.
-
-ADC_PROP_ES2ES
 
 ### `ADC_PROP_ES2ES`
 
@@ -450,14 +277,9 @@ ADC_PROP_ES2ES
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate state-to-state transition properties.
->     * FALSE
->     * Do not compute transition properties between excited, ionized or
->     * electron-attached states.
+>     * `TRUE`: Calculate state-to-state transition properties.
+>     * `FALSE`: Do not compute transition properties between excited, ionized or electron-attached states.
 > * **Recommendation**: Set to TRUE , if state-to-state properties (ADC, IP-ADC, EA-ADC) or sum-over-states two-photon absorption cross-sections (only ADC) are required.
-
-ADC_PROP_TPA
 
 ### `ADC_PROP_TPA`
 
@@ -466,13 +288,9 @@ ADC_PROP_TPA
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate two-photon absorption cross-sections.
->     * FALSE
->     * Do not compute two-photon absorption cross-sections.
+>     * `TRUE`: Calculate two-photon absorption cross-sections.
+>     * `FALSE`: Do not compute two-photon absorption cross-sections.
 > * **Recommendation**: Set to TRUE , if to obtain two-photon absorption cross-sections.
-
-STATE_ANALYSIS
 
 ### `STATE_ANALYSIS`
 
@@ -481,13 +299,9 @@ STATE_ANALYSIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform excited state analyses.
->     * FALSE
->     * No excited state analyses or export will be performed.
+>     * `TRUE`: Perform excited state analyses.
+>     * `FALSE`: No excited state analyses or export will be performed.
 > * **Recommendation**: Set to TRUE , if detailed analysis of the excited, ionized or electron-attached states is required or if density or orbital plots are needed.
-
-ADC_C_T
 
 ### `ADC_C_T`
 
@@ -496,12 +310,8 @@ ADC_C_T
 > * **Type**: `INTEGER`
 > * **Default**: `1300`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n\cdot 10^{-3}$
+>     * $n$: Corresponding to $n\cdot 10^{-3}$
 > * **Recommendation**: Use the default.
-
-ADC_C_C
 
 ### `ADC_C_C`
 
@@ -510,12 +320,8 @@ ADC_C_C
 > * **Type**: `INTEGER`
 > * **Default**: `1170`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n\cdot 10^{-3}$
+>     * $n$: Corresponding to $n\cdot 10^{-3}$
 > * **Recommendation**: Use the default.
-
-ADC_C_X
 
 ### `ADC_C_X`
 
@@ -524,12 +330,8 @@ ADC_C_X
 > * **Type**: `INTEGER`
 > * **Default**: `1300`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n\cdot 10^{-3}$
+>     * $n$: Corresponding to $n\cdot 10^{-3}$
 > * **Recommendation**: Use the default.
-
-ADC_NGUESS_SINGLES
 
 ### `ADC_NGUESS_SINGLES`
 
@@ -538,11 +340,8 @@ ADC_NGUESS_SINGLES
 > * **Type**: `INTEGER`
 > * **Default**: `Equals to the number of excited states requested.`
 > * **Options**:
->     * $n$
->     * User-defined integer.
+>     * $n$: User-defined integer.
 > * **Recommendation**: Increase if there are convergence problems.
-
-ADC_NGUESS_DOUBLES
 
 ### `ADC_NGUESS_DOUBLES`
 
@@ -551,11 +350,7 @@ ADC_NGUESS_DOUBLES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined integer.
-
-ADC_DO_DIIS
-
+>     * $n$: User-defined integer.
 ### `ADC_DO_DIIS`
 
 > **Activates the use of the DIIS algorithm for the calculation of ADC(2) excited states.**
@@ -563,13 +358,9 @@ ADC_DO_DIIS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Use DIIS algorithm.
->     * FALSE
->     * Do diagonalization using Davidson algorithm.
+>     * `TRUE`: Use DIIS algorithm.
+>     * `FALSE`: Do diagonalization using Davidson algorithm.
 > * **Recommendation**: None.
-
-ADC_DIIS_START
 
 ### `ADC_DIIS_START`
 
@@ -578,11 +369,8 @@ ADC_DIIS_START
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * User-defined integer.
+>     * $n$: User-defined integer.
 > * **Recommendation**: Set to a large number to switch off DIIS steps.
-
-ADC_DIIS_SIZE
 
 ### `ADC_DIIS_SIZE`
 
@@ -591,11 +379,8 @@ ADC_DIIS_SIZE
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * $n$
->     * User-defined integer
+>     * $n$: User-defined integer
 > * **Recommendation**: None
-
-ADC_DIIS_MAXITER
 
 ### `ADC_DIIS_MAXITER`
 
@@ -604,11 +389,8 @@ ADC_DIIS_MAXITER
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * $n$
->     * User-defined integer.
+>     * $n$: User-defined integer.
 > * **Recommendation**: Increase in case of slow convergence.
-
-ADC_DIIS_ECONV
 
 ### `ADC_DIIS_ECONV`
 
@@ -617,12 +399,8 @@ ADC_DIIS_ECONV
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
+>     * $n$: Corresponding to $10^{-n}$
 > * **Recommendation**: None
-
-ADC_DIIS_RCONV
 
 ### `ADC_DIIS_RCONV`
 
@@ -631,12 +409,8 @@ ADC_DIIS_RCONV
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $10^{-n}$
+>     * $n$: Corresponding to $10^{-n}$
 > * **Recommendation**: None
-
-ADC_DAVIDSON_MAXSUBSPACE
 
 ### `ADC_DAVIDSON_MAXSUBSPACE`
 
@@ -645,11 +419,8 @@ ADC_DAVIDSON_MAXSUBSPACE
 > * **Type**: `INTEGER`
 > * **Default**: `$5\times$`
 > * **Options**:
->     * $n$
->     * User-defined integer.
+>     * $n$: User-defined integer.
 > * **Recommendation**: Should be at least 2–4 $\times$ the number of excited states to calculate. The larger the value the more disk space is required.
-
-ADC_DAVIDSON_MAXITER
 
 ### `ADC_DAVIDSON_MAXITER`
 
@@ -658,11 +429,8 @@ ADC_DAVIDSON_MAXITER
 > * **Type**: `INTEGER`
 > * **Default**: `60`
 > * **Options**:
->     * $n$
->     * Number of iterations
+>     * $n$: Number of iterations
 > * **Recommendation**: Use the default unless convergence problems are encountered.
-
-ADC_DAVIDSON_CONV
 
 ### `ADC_DAVIDSON_CONV`
 
@@ -671,13 +439,8 @@ ADC_DAVIDSON_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `$6$`
 > * **Options**:
->     * $n\leq 12$
->     * Corresponding to
->     * $10^{-n}$
->     * .
+>     * $n\leq 12$: Corresponding to $10^{-n}$ .
 > * **Recommendation**: Use the default unless higher accuracy is required or convergence problems are encountered.
-
-ADC_DAVIDSON_THRESH
 
 ### `ADC_DAVIDSON_THRESH`
 
@@ -686,12 +449,8 @@ ADC_DAVIDSON_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `Twice the value of`
 > * **Options**:
->     * $n\leq 14$
->     * Corresponding to
->     * $10^{-n}$
+>     * $n\leq 14$: Corresponding to $10^{-n}$
 > * **Recommendation**: Use the default unless convergence problems are encountered. The threshold value $10^{-n}$ should always be smaller than the convergence criterion ADC_DAVIDSON_CONV .
-
-ADC_PRINT
 
 ### `ADC_PRINT`
 
@@ -700,16 +459,11 @@ ADC_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Quiet: almost only results are printed.
->     * 1
->     * Normal: basic status information and results are printed.
->     * 2
->     * Debug: more status information, extended information on timings.
->     * …
+>     * `0`: Quiet: almost only results are printed.
+>     * `1`: Normal: basic status information and results are printed.
+>     * `2`: Debug: more status information, extended information on timings.
+>     * `…`
 > * **Recommendation**: Use the default.
-
-ADC_CVS
 
 ### `ADC_CVS`
 
@@ -718,13 +472,9 @@ ADC_CVS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Activates the CVS approximation.
->     * FALSE
->     * Do not compute core-excited states using the CVS approximation.
+>     * `TRUE`: Activates the CVS approximation.
+>     * `FALSE`: Do not compute core-excited states using the CVS approximation.
 > * **Recommendation**: Set to TRUE , if to obtain core-excited states for the simulation of x-ray absorption spectra. In the case of TRUE , the $rem variable CC_REST_OCC has to be defined as well.
-
-CC_REST_OCC
 
 ### `CC_REST_OCC`
 
@@ -733,14 +483,9 @@ CC_REST_OCC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Restrict
->     * $n$
->     * energetically lowest occupied orbitals to correspond to the
->     * active core space.
+>     * $n$: Restrict
+>     * $n$: energetically lowest occupied orbitals to correspond to the active core space.
 > * **Recommendation**: Example: cytosine with the molecular formula C ${}_{4}$ H ${}_{5}$ N ${}_{3}$ O includes one oxygen atom. To calculate O 1s core-excited states, $n$ has to be set to 1, because the 1s orbital of oxygen is the energetically lowest. To obtain the N 1s core excitations, the integer $n$ has to be set to 4, because the 1s orbital of the oxygen atom is included as well, since it is energetically below the three 1s orbitals of the nitrogen atoms. Accordingly, to simulate the C 1s spectrum of cytosine, $n$ must be set to 8.
-
-SF_STATES
 
 ### `SF_STATES`
 
@@ -749,14 +494,7 @@ SF_STATES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Number of states to calculate for each irrep or
->     * $[n_{1},n_{2},...]$
->     * Compute
->     * $n_{1}$
->     * states for the first irrep,
->     * $n_{2}$
->     * states for the second irrep, …
+>     * $n>0$: Number of states to calculate for each irrep or $[n_{1},n_{2},...]$ Compute $n_{1}$ states for the first irrep, $n_{2}$ states for the second irrep, …
 > * **Recommendation**: Use this variable to define the number of excited states in the case of a spin-flip calculation. SF-ADC is available for ADC(2)-s, ADC(2)-x and ADC(3).
 
 **Keywords for SS-PCM control in *$pcm***:
@@ -768,15 +506,10 @@ SF_STATES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No self-consistent SS-PCM.
->     * 1
->     * Single SS-PCM calculation (SCF+ADC) with the solvent field found on disk.
->     * $n>$
->     * 1
->     * Do a maximum of
->     * $n$
->     * automatic solvent-field iterations.
+>     * `0`: No self-consistent SS-PCM.
+>     * `1`: Single SS-PCM calculation (SCF+ADC) with the solvent field found on disk. $n>$
+>     * `1`: Do a maximum of
+>     * $n$: automatic solvent-field iterations.
 > * **Recommendation**: We recommend to use 15 steps max. Typical convergence is 3-5 steps. In difficult cases 6-12. If the solvent-field iteration do not converge in 15 steps, something is wrong. Make sure that a solvent field has been stored on disk by a previous job.
 
 ### `EQSTATE`
@@ -786,13 +519,10 @@ SF_STATES
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * MP2 ground state (for PTED approach)
->     * 1
->     * energetically lowest excited state
->     * 2
->     * 2nd lowest excited state
->     * …
+>     * `0`: MP2 ground state (for PTED approach)
+>     * `1`: energetically lowest excited state
+>     * `2`: 2nd lowest excited state
+>     * `…`
 > * **Recommendation**: Given that only one class of excited states is calculated, the state will be selected according to its energetic position shown in the “Exited-State Summary” of the output file. A maximum of 99 states is stored and can be selected.
 
 ### `EQS_CONV`
@@ -802,12 +532,9 @@ SF_STATES
 > * **Type**: `INTEGER`
 > * **Default**: `SCF_CONVERGENCE`
 > * **Options**:
->     * 3
->     * May be sufficient for emission energies
->     * 4
->     * Assured converged total energies (2.7 meV)
->     * 5
->     * Really tight
+>     * `3`: May be sufficient for emission energies
+>     * `4`: Assured converged total energies (2.7 meV)
+>     * `5`: Really tight
 > * **Recommendation**: Use the default.
 
 ### `EQS_REF`
@@ -817,9 +544,7 @@ SF_STATES
 > * **Type**: `INTEGER`
 > * **Default**: `Same as`
 > * **Options**:
->     * 1
->     * First excited state
->     * 2
->     * Second excited state
->     * …
+>     * `1`: First excited state
+>     * `2`: Second excited state
+>     * `…`
 > * **Recommendation**: Only needed when computing singlet states in the solvent field of a triplet reference.

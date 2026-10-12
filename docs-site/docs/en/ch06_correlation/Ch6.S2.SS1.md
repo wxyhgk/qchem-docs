@@ -42,8 +42,6 @@ CORE_CHARACTER *$rem*, as summarized in Table [6.1](#tab:corechar).
 
 Table 6.1:  A summary of the effects of different core definitions
 
-N_FROZEN_CORE
-
 ### `N_FROZEN_CORE`
 
 > **Sets the number of frozen core orbitals in a post-Hartree–Fock calculation.**
@@ -51,12 +49,9 @@ N_FROZEN_CORE
 > * **Type**: `INTEGER`
 > * **Default**: `FC`
 > * **Options**:
->     * FC
->     * Frozen Core approximation (all core orbitals frozen).
->     * $n$
->     * Freeze
->     * $n$
->     * core orbitals (if set to 0, all electrons will be active).
+>     * `FC`: Frozen Core approximation (all core orbitals frozen).
+>     * $n$: Freeze
+>     * $n$: core orbitals (if set to 0, all electrons will be active).
 > * **Recommendation**: Correlated calculations calculations are more efficient with frozen core orbitals. Use default if possible.
 
 **Note: 
@@ -66,8 +61,6 @@ does not work correctly in QM/MM calculations. One should
 specify the number of frozen core orbitals explicitly.
 **
 
-N_FROZEN_VIRTUAL
-
 ### `N_FROZEN_VIRTUAL`
 
 > **Sets the number of frozen virtual orbitals in a post-Hartree–Fock calculation.**
@@ -75,13 +68,9 @@ N_FROZEN_VIRTUAL
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Freeze
->     * $n$
->     * virtual orbitals.
+>     * $n$: Freeze
+>     * $n$: virtual orbitals.
 > * **Recommendation**: None
-
-CORE_CHARACTER
 
 ### `CORE_CHARACTER`
 
@@ -90,15 +79,9 @@ CORE_CHARACTER
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use energy-based definition.
->     * 1-4
->     * Use Mulliken-based definition (see Table
->     * 6.1
->     * for details).
+>     * `0`: Use energy-based definition.
+>     * `1-4`: Use Mulliken-based definition (see Table 6.1 for details).
 > * **Recommendation**: Use the default, unless performing calculations on molecules with heavy elements.
-
-PRINT_CORE_CHARACTER
 
 ### `PRINT_CORE_CHARACTER`
 
@@ -107,10 +90,7 @@ PRINT_CORE_CHARACTER
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No additional output is printed.
->     * 1
->     * Prints core characters of occupied MOs.
->     * 2
->     * Print level 1, plus prints the core character of AOs.
+>     * `0`: No additional output is printed.
+>     * `1`: Prints core characters of occupied MOs.
+>     * `2`: Print level 1, plus prints the core character of AOs.
 > * **Recommendation**: Use the default, unless you are uncertain about what the core character is.

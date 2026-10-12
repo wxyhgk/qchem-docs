@@ -61,12 +61,9 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * TF
->     * Use Thomas-Fermi kinetic energy functional.
->     * PW91k / LC94
->     * Use kinetic energy functional based on PW91.
->     * None
->     * Do not include any kinetic energy functional.
+>     * `TF`: Use Thomas-Fermi kinetic energy functional.
+>     * `PW91k / LC94`: Use kinetic energy functional based on PW91.
+>     * `None`: Do not include any kinetic energy functional.
 > * **Recommendation**: Use the same level of approximation as for the non-additive exchange-correlation energy functional.
 
 ### `XC_Func`
@@ -76,13 +73,9 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * NAME
->     * can be any of the LDA or GGA exchange-correlation functionals available in
->     * Q-Chem
->     * .
->     * None
->     * Do not include any exchange-correlation energy functional.
+>     * `NAME`
+>     * `NAME`: can be any of the LDA or GGA exchange-correlation functionals available in Q-Chem .
+>     * `None`: Do not include any exchange-correlation energy functional.
 > * **Recommendation**: Only use LDA or GGA-type functionals.
 
 ### `X_Func`
@@ -92,13 +85,9 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * NAME
->     * can be any of the LDA or GGA exchange functionals available in
->     * Q-Chem
->     * .
->     * None
->     * Do not include any exchange energy functional.
+>     * `NAME`
+>     * `NAME`: can be any of the LDA or GGA exchange functionals available in Q-Chem .
+>     * `None`: Do not include any exchange energy functional.
 > * **Recommendation**: Only use LDA or GGA-type functionals. XC_Func and are mutually exclusive.
 
 ### `C_Func`
@@ -108,13 +97,9 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * NAME
->     * can be any of the LDA or GGA correlation functionals available in
->     * Q-Chem
->     * .
->     * None
->     * Do not include any exchange energy functional.
+>     * `NAME`
+>     * `NAME`: can be any of the LDA or GGA correlation functionals available in Q-Chem .
+>     * `None`: Do not include any exchange energy functional.
 > * **Recommendation**: Only use LDA or GGA-type functionals. XC_Func and are mutually exclusive.
 
 ### `Expansion`
@@ -124,10 +109,8 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * SE/super/supermolecular
->     * Supermolecular basis is used for both System A and B.
->     * ME/mono/monomer
->     * Monomer expansion basis is used on each System A and B.
+>     * `SE/super/supermolecular`: Supermolecular basis is used for both System A and B.
+>     * `ME/mono/monomer`: Monomer expansion basis is used on each System A and B.
 > * **Recommendation**: SE should be used for testing purposes only, since it is more expensive. Use the ME as standard choice, particularly for large systems.
 
 ### `rhoA_method`
@@ -137,12 +120,9 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `HF`
 > * **Options**:
->     * HF
->     * Use Hartree-Fock method.
->     * DFT
->     * Use Density Functional Theory.
->     * MP
->     * Use Second-Order Møller-Plesset perturbation theory.
+>     * `HF`: Use Hartree-Fock method.
+>     * `DFT`: Use Density Functional Theory.
+>     * `MP`: Use Second-Order Møller-Plesset perturbation theory.
 > * **Recommendation**: Use either HF or DFT.
 
 ### `rhoB_method`
@@ -152,12 +132,9 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * HF
->     * Use Hartree-Fock method.
->     * DFT
->     * Use Density Functional Theory.
->     * MP
->     * Use Second-Order Moller-Pleset method.
+>     * `HF`: Use Hartree-Fock method.
+>     * `DFT`: Use Density Functional Theory.
+>     * `MP`: Use Second-Order Moller-Pleset method.
 > * **Recommendation**: Use either HF or DFT.
 
 ### `XC_Func_B`
@@ -167,11 +144,8 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * NAME
->     * can be any of the LDA, GGA, or global hybrid-GGA exchange-correlation functionals available in
->     * Q-Chem
->     * .
+>     * `NAME`
+>     * `NAME`: can be any of the LDA, GGA, or global hybrid-GGA exchange-correlation functionals available in Q-Chem .
 > * **Recommendation**: None
 
 ### `X_Func_B`
@@ -181,11 +155,8 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * NAME
->     * can be any of the LDA or GGA exchange functionals available in
->     * Q-Chem
->     * .
+>     * `NAME`
+>     * `NAME`: can be any of the LDA or GGA exchange functionals available in Q-Chem .
 > * **Recommendation**: XC_Func_B and are mutually exclusive.
 
 ### `C_Func_B`
@@ -195,11 +166,8 @@ Method for environment density: **rhoB_method**
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * NAME
->     * can be any of the LDA or GGA correlation functionals available in
->     * Q-Chem
->     * .
+>     * `NAME`
+>     * `NAME`: can be any of the LDA or GGA correlation functionals available in Q-Chem .
 > * **Recommendation**: XC_Func_B and are mutually exclusive.
 
 ### `PrintLevel`
@@ -209,14 +177,10 @@ Method for environment density: **rhoB_method**
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * minimum print level
->     * 1
->     * extended print level
->     * 2
->     * maximum print level
->     * 3
->     * maximum print level and additional text files (densities, etc.)
+>     * `0`: minimum print level
+>     * `1`: extended print level
+>     * `2`: maximum print level
+>     * `3`: maximum print level and additional text files (densities, etc.)
 > * **Recommendation**: Use minimal print level.
 
 ## 11.7.3.1 Superposition of Molecular Densities
@@ -235,10 +199,8 @@ The molecular densities and the superposed density matrices are saved into text 
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Do a superposition of molecular densities to build the density of fragment B.
->     * FALSE
->     * Don’t do a superposition, use the whole fragment B.
+>     * `TRUE`: Do a superposition of molecular densities to build the density of fragment B.
+>     * `FALSE`: Don’t do a superposition, use the whole fragment B.
 > * **Recommendation**: The molecular densities are calculated with the method specified with the keyword: rhoB_method .
 
 In the second case, the individual density matrices are expected to be already calculated independently
@@ -251,10 +213,8 @@ and are required to be present in the same folder of the calculation.
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Read and superpose the molecular densities to build the density of fragment B.
->     * FALSE
->     * Don’t do a superposition, use the whole fragment B.
+>     * `TRUE`: Read and superpose the molecular densities to build the density of fragment B.
+>     * `FALSE`: Don’t do a superposition, use the whole fragment B.
 > * **Recommendation**: The files with the molecular density matrices should be .txt files, numerated from 0, with the prefix SCF_Dens_B_Subfrag_ .
 
 **Note: 
@@ -292,10 +252,8 @@ The first line should also contain the dimensions of the density matrix (`<nbas>
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Read the density for subsystem A from file.
->     * FALSE
->     * Do not use density from file.
+>     * `TRUE`: Read the density for subsystem A from file.
+>     * `FALSE`: Do not use density from file.
 > * **Recommendation**: None
 
 ### `import_rhoB`
@@ -305,10 +263,8 @@ The first line should also contain the dimensions of the density matrix (`<nbas>
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Read the environment density from file.
->     * FALSE
->     * Do not use density from file.
+>     * `TRUE`: Read the environment density from file.
+>     * `FALSE`: Do not use density from file.
 > * **Recommendation**: None
 
 ## 11.7.3.3 Pre-Polarization of the Environment Density
@@ -331,12 +287,8 @@ with the **prepol** keyword. The different pre-polarization options are describe
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Turn on pre-polarization of
->     * $\rho_{B}(\mathbf{r})$
->     * .
->     * FALSE
->     * Do not pre-polarize the environment density.
+>     * `TRUE`: Turn on pre-polarization of $\rho_{B}(\mathbf{r})$ .
+>     * `FALSE`: Do not pre-polarize the environment density.
 > * **Recommendation**: See Ref. 1166 Ricardi N. et al. Phys. Chem. Chem. Phys. (2018) , 20 , pp. 26053 . Link for a review of FDET polarization schemes.
 
 ### `prepol_type`
@@ -346,18 +298,9 @@ with the **prepol** keyword. The different pre-polarization options are describe
 > * **Type**: `STRING`
 > * **Default**: `Mulliken`
 > * **Options**:
->     * Mulliken
->     * Use Mulliken charges of system A to pre-polarize
->     * $\rho_{B}(\mathbf{r})$
->     * .
->     * CHELPG
->     * Use ChElPG charges of system A to pre-polarize
->     * $\rho_{B}(\mathbf{r})$
->     * .
->     * elstat / Coulomb
->     * Use electrostatic embedding potential (using density and nuclear charges of A) to pre-polarize
->     * $\rho_{B}(\mathbf{r})$
->     * .
+>     * `Mulliken`: Use Mulliken charges of system A to pre-polarize $\rho_{B}(\mathbf{r})$ .
+>     * `CHELPG`: Use ChElPG charges of system A to pre-polarize $\rho_{B}(\mathbf{r})$ .
+>     * `elstat / Coulomb`: Use electrostatic embedding potential (using density and nuclear charges of A) to pre-polarize $\rho_{B}(\mathbf{r})$ .
 > * **Recommendation**: None
 
 ### `root_Aref`
@@ -367,10 +310,8 @@ with the **prepol** keyword. The different pre-polarization options are describe
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * n
->     * Use
->     * n
->     * th state of A for pre-polarization scheme (ground state = 0).
+>     * `n`: Use
+>     * `n`: th state of A for pre-polarization scheme (ground state = 0).
 > * **Recommendation**: None
 
 ## 11.7.3.4 Miscellaneous Options
@@ -382,10 +323,8 @@ with the **prepol** keyword. The different pre-polarization options are describe
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Print extra options and save components to disk.
->     * FALSE
->     * Do not print extra info.
+>     * `TRUE`: Print extra options and save components to disk.
+>     * `FALSE`: Do not print extra info.
 > * **Recommendation**: This option creates multiple files and additional details in the output. Use only for debugging purposes.
 
 ### `rhoB_basis`
@@ -395,18 +334,9 @@ with the **prepol** keyword. The different pre-polarization options are describe
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * General, Gen
->     * User-defined. See Section
->     * 8.4
->     * .
->     * Symbol
->     * Use standard basis sets as in the tables in Section
->     * 8.3
->     * .
->     * Mixed
->     * Use a combination of different built-in basis sets (see Section
->     * 8.5
->     * ).
+>     * `General, Gen`: User-defined. See Section 8.4 .
+>     * `Symbol`: Use standard basis sets as in the tables in Section 8.3 .
+>     * `Mixed`: Use a combination of different built-in basis sets (see Section 8.5 ).
 > * **Recommendation**: Smaller basis for fragment B can be used to improve the performance of embedding calculations.
 
 **Note: 
@@ -421,12 +351,9 @@ All basis used within the FDE-Man module use PURECART = 2111.
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Do not print molecular properties.
->     * 1
->     * Print molecular properties only for fragment A.
->     * 2
->     * Print molecular properties for both fragments A and B.
+>     * `0`: Do not print molecular properties.
+>     * `1`: Print molecular properties only for fragment A.
+>     * `2`: Print molecular properties for both fragments A and B.
 > * **Recommendation**: None
 
 If the user desires to *only* save the embedding potential without performing an embedding calculation, it can be done
@@ -440,8 +367,6 @@ of the embedding potential are saved to disk into text files as mentioned above 
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Generate embedding potential and exit FDE-Man.
->     * FALSE
->     * Perform regular embedding calculation.
+>     * `TRUE`: Generate embedding potential and exit FDE-Man.
+>     * `FALSE`: Perform regular embedding calculation.
 > * **Recommendation**: None

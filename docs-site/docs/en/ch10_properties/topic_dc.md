@@ -441,8 +441,6 @@ and the LUMO of the acceptor. They *$rem* options
 STS_TRANS_DONOR and STS_TRANS_ACCEPTOR can be used to select a
 range of occupied and virtual orbitals for FMO coupling calculations.
 
-STS_TRANS_DONOR
-
 ### `STS_TRANS_DONOR`
 
 > **Control the range of frontier MOs for the donor in the FMO approach to ET couplings.**
@@ -450,17 +448,8 @@ STS_TRANS_DONOR
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * $o$
->     * -
->     * $v$
->     * Compute couplings between
->     * $o$
->     * and
->     * $v$
->     * occupied and virtual MOs, respectively.
+>     * $o$: - $v$ Compute couplings between $o$ and $v$ occupied and virtual MOs, respectively.
 > * **Recommendation**: None
-
-STS_TRANS_ACCEPTOR
 
 ### `STS_TRANS_ACCEPTOR`
 
@@ -469,14 +458,7 @@ STS_TRANS_ACCEPTOR
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * $o$
->     * -
->     * $v$
->     * Compute couplings between
->     * $o$
->     * and
->     * $v$
->     * occupied and virtual MOs, respectively.
+>     * $o$: - $v$ Compute couplings between $o$ and $v$ occupied and virtual MOs, respectively.
 > * **Recommendation**: None
 
 ???+ example "Example 10.76: Calculate the electron-transfer coupling for a stacked ethylene dimer with the FMO approach"

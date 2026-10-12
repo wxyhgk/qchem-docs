@@ -8,8 +8,6 @@ title: "4.10.2 作业控制"
 
 xTB 计算通过常规的 *$rem* 段进行请求。唯一必需的关键词是 METHOD = XTB；其余所有控制项均为可选。电荷与多重度在 *$molecule* 段中以标准方式指定。在 xTB 模式下，**Q-Chem** 在构造占据模式时会自动使用价电子，因此用户只需给出化学上正确的分子电荷和多重度即可。
 
-METHOD
-
 ### `METHOD`
 
 > **XTB**
@@ -20,8 +18,6 @@ METHOD
 >     * 无。
 > * **建议**：设置为 XTB 。
 
-BASIS
-
 ### `BASIS`
 
 > **XTB**
@@ -31,8 +27,6 @@ BASIS
 > * **可选项**：
 >     * 无
 > * **建议**：对于 METHOD = XTB ，BASIS = XTB 是隐含指定的，可以省略。不允许使用其他基组。
-
-XTB_FERMI_TEMP
 
 ### `XTB_FERMI_TEMP`
 

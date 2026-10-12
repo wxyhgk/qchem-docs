@@ -17,8 +17,6 @@ title: "9.2.3 无需 Hessian 的驻点特征判定"
 目前，该方法不支持 QM/MM（量子力学/分子力学）或含有冻结原子的体系。
 **
 
-GEOM_OPT_CHARAC
-
 ### `GEOM_OPT_CHARAC`
 
 > **使用有限差分 Davidson 方法对所得到的能量极小点/过渡态进行特征判定。**
@@ -26,13 +24,9 @@ GEOM_OPT_CHARAC
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **取值选项**:
->     * FALSE
->     * 不对所得驻点进行特征判定。
->     * TRUE
->     * 对驻点进行特征判定。
+>     * `FALSE`: 不对所得驻点进行特征判定。
+>     * `TRUE`: 对驻点进行特征判定。
 > * **建议**: 当需要确认驻点的性质时（尤其是过渡结构），将其设置为 TRUE。
-
-GEOM_OPT_CHARAC_CONV
 
 ### `GEOM_OPT_CHARAC_CONV`
 
@@ -41,8 +35,5 @@ GEOM_OPT_CHARAC_CONV
 > * **类型**: `INTEGER`
 > * **默认值**: `0 (use the built-in default value 10`
 > * **取值选项**:
->     * $n$
->     * 将收敛判据设置为 10
->     * ${}^{-n}$
->     * 。
+>     * $n$: 将收敛判据设置为 10 ${}^{-n}$。
 > * **建议**: 使用默认值。若不收敛，可谨慎地放宽该判据。

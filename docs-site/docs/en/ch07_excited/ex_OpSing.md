@@ -68,8 +68,6 @@ description for both equilibrium and nonequilibrium effects
 
 The following *$rem* is used to invoke the MOM:
 
-MOM_START
-
 ### `MOM_START`
 
 > **Determines when MOM is switched on to preserve orbital occupancies.**
@@ -77,15 +75,10 @@ MOM_START
 > * **Type**: `INTEGER`
 > * **Default**: `0 (FALSE)`
 > * **Options**:
->     * 0 (FALSE)
->     * MOM is not used
->     * $n$
->     * MOM begins on cycle
->     * $n$
->     * .
+>     * `0 (FALSE)`: MOM is not used
+>     * $n$: MOM begins on cycle
+>     * $n$: .
 > * **Recommendation**: For calculations on excited states, an initial calculation without MOM is usually required to get satisfactory starting orbitals. These orbitals should be read in setting SCF_GUESS = TRUE and = 1.
-
-MOM_METHOD
 
 ### `MOM_METHOD`
 
@@ -94,10 +87,8 @@ MOM_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `MOM`
 > * **Options**:
->     * MOM
->     * Maximize overlap with the orbitals from the previous SCF cycle.
->     * IMOM
->     * Maximize overlap with the initial guess orbitals.
+>     * `MOM`: Maximize overlap with the orbitals from the previous SCF cycle.
+>     * `IMOM`: Maximize overlap with the initial guess orbitals.
 > * **Recommendation**: If appropriate guess orbitals can be obtained, then IMOM can provide more reliable convergence to the desired solution. 75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , pp. 1501 . Link
 
 ???+ example "Example 7.46: Calculation of the lowest singlet state of CO."
@@ -250,8 +241,6 @@ used to avoid de-excitations to the core hole. The *$rem* variable
 CORE_IONIZE allows only the hole to be specified so that not all
 occupied orbitals need to be entered in the *$solute* section.
 
-CORE_IONIZE
-
 ### `CORE_IONIZE`
 
 > **Indicates how orbitals are specified for reduced excitation spaces.**
@@ -259,12 +248,8 @@ CORE_IONIZE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * all valence orbitals are listed in
->     * $solute
->     * section
->     * 2
->     * only hole(s) are specified all other occupations same as ground state
+>     * `1`: all valence orbitals are listed in $solute section
+>     * `2`: only hole(s) are specified all other occupations same as ground state
 > * **Recommendation**: For MOM + TDDFT this specifies the input form of the $solute section. If set to 1 all occupied orbitals must be specified, 2 only the empty orbitals to ignore must be specified.
 
 ???+ example "Example 7.49: O(1s) core excited state using MOM followed by excitations among valence

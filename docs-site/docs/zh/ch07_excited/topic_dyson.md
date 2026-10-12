@@ -72,8 +72,6 @@ EE/SF1 - IP/EA1, EE/SF1 - IP/EA2,$\ldots$, EE/SF2
 - IP/EA1, EE/SF2 - IP/EA2,$\ldots$，依此类推。CCMAN
 实现会将参考态跃迁单独保留，以与相应关键字的划分保持一致。
 
-CC_DO_DYSON
-
 ### `CC_DO_DYSON`
 
 > **CCMAN2: 启动所有类型的戴森轨道计算。期望的类型通过请求相应的 EOM-XX 跃迁来确定。 CCMAN: 对于 EOM-IP/EA-CCSD 计算，是否计算参考态的戴森轨道。**
@@ -81,10 +79,8 @@ CC_DO_DYSON
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE （必须指定该选项才能运行此计算）`
 > * **选项**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **建议**: 无
-
-CC_DO_DYSON_EE
 
 ### `CC_DO_DYSON_EE`
 
@@ -93,7 +89,7 @@ CC_DO_DYSON_EE
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE （必须指定该选项才能运行此计算）`
 > * **选项**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **建议**: 无
 
 设置 IQMOL_FCHK =

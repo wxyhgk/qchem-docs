@@ -12,8 +12,6 @@ title: "7.8.6 CIS(D) 作业控制与示例"
 
 要请求 CIS(D) 计算，应将 METHOD *$rem* 变量设置为 CIS(D)，并通过 EE_STATES（或在适当情况下使用 EE_SINGLETS 和 EE_TRIPLETS）指定要计算的激发态数目。或者，当 EXCHANGE = HF、CORRELATION = CI 且 EOM_CORR = CIS(D) 时也会执行 CIS(D)。SF-CIS(D) 通过使用 SF_STATES 调用。
 
-EE_STATES
-
 ### `EE_STATES`
 
 > **设置要查找的激发态根（roots）数目。对于闭壳层参考态，默认归入 EE_SINGLETS。对于开壳层参考态，指定所有低能态。**
@@ -30,8 +28,6 @@ EE_STATES
 >     * 个态，
 >     * 依此类推。
 > * **建议**：无
-
-EE_SINGLETS
 
 ### `EE_SINGLETS`
 
@@ -50,8 +46,6 @@ EE_SINGLETS
 >     * 依此类推。
 > * **建议**：无
 
-EE_TRIPLETS
-
 ### `EE_TRIPLETS`
 
 > **设置要查找的三重态（triplet）激发态根数目。仅对闭壳层参考态有效。**
@@ -68,8 +62,6 @@ EE_TRIPLETS
 >     * 个态，
 >     * 依此类推。
 > * **建议**：无
-
-SF_STATES
 
 ### `SF_STATES`
 
@@ -92,8 +84,6 @@ SF_STATES
 
 在激发态计算中，指定的是*跃迁（transition）*的对称性，而非*目标态（target state）*的对称性。目标态的对称性等于参考态对称性与跃迁对称性的直积。对于闭壳层分子，参考态是全对称的，因此目标态的对称性与跃迁的对称性相同；但对于开壳层参考态，情况则并非如此。
 **
-
-CC_STATE_TO_OPT
 
 ### `CC_STATE_TO_OPT`
 

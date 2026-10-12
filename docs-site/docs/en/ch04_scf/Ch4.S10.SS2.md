@@ -13,8 +13,6 @@ Charge and multiplicity are specified in the standard way in the
 electrons when constructing the occupation pattern, so users should simply
 provide the chemically correct molecular charge and multiplicity.
 
-METHOD
-
 ### `METHOD`
 
 > **XTB**
@@ -22,10 +20,8 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * None.
+>     * `None.`
 > * **Recommendation**: Set to XTB .
-
-BASIS
 
 ### `BASIS`
 
@@ -34,10 +30,8 @@ BASIS
 > * **Type**: `STRING`
 > * **Default**: `XTB (implied)`
 > * **Options**:
->     * None
+>     * `None`
 > * **Recommendation**: For METHOD = XTB , BASIS = XTB is implied and may be omitted. No other basis is allowed.
-
-XTB_FERMI_TEMP
 
 ### `XTB_FERMI_TEMP`
 
@@ -46,8 +40,7 @@ XTB_FERMI_TEMP
 > * **Type**: `INTEGER`
 > * **Default**: `300`
 > * **Options**:
->     * $n\geq 0$
->     * Temperature in Kelvin.
+>     * $n\geq 0$: Temperature in Kelvin.
 > * **Recommendation**: The default is usually appropriate. Setting XTB_FERMI_TEMP = 0 recovers integer occupations.
 
 Standard SCF controls such as SCF_ALGORITHM and

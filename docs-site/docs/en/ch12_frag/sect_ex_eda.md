@@ -211,8 +211,6 @@ CIS_N_ROOTS is usually set to a value that is larger than $M$ to
 ensure that all states of interest are captured in the ALMO-CIS/TDA and full
 CIS/TDA calculations, as changes in state-ordering might occur.
 
-EX_EDA
-
 ### `EX_EDA`
 
 > **Perform an ALMO-EDA calculation with one or more fragments excited.**
@@ -220,9 +218,8 @@ EX_EDA
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Perform EDA with excited-state molecule(s) taken into account.
->     * FALSE
+>     * `TRUE`: Perform EDA with excited-state molecule(s) taken into account.
+>     * `FALSE`
 > * **Recommendation**: None
 
 ???+ example "Example 12.35: EDA for the lowest two excited states of the formamide-water complex at the

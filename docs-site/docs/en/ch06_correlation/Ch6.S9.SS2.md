@@ -21,7 +21,7 @@ MPR-BWs2
 > * **Type**: `STRING`
 > * **Default**: `BWS2`
 > * **Options**:
->     * MPR-BWS2
+>     * `MPR-BWS2`
 > * **Recommendation**: In order to activate MPR-BWs2, the method keyword has to be set to MPR-BWS2 or MPRBWS2
 
 ### `MPR_A0`
@@ -31,12 +31,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `1000`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $A_{0}$
->     * .
+>     * $n$: where $n/1000$ is the value of $A_{0}$ .
 > * **Recommendation**: Since $A_{0}$ is equal to $\alpha$ in BW-s2 theory, its standard value is set to $\alpha=A_{0}=1$ and recreates BW-s2. If both MPR_A0 and ALPHA are defined in the input file, the last read takes priority.
 
 ### `MPR_A1`
@@ -46,12 +41,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $A_{1}$
->     * .
+>     * $n$: where $n/1000$ is the value of $A_{1}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_A2`
@@ -61,12 +51,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $A_{2}$
->     * .
+>     * $n$: where $n/1000$ is the value of $A_{2}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_A3`
@@ -76,12 +61,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $A_{3}$
->     * .
+>     * $n$: where $n/1000$ is the value of $A_{3}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_A4`
@@ -91,12 +71,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $A_{4}$
->     * .
+>     * $n$: where $n/1000$ is the value of $A_{4}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_B0`
@@ -106,12 +81,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $B_{0}$
->     * .
+>     * $n$: where $n/1000$ is the value of $B_{0}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_B1`
@@ -121,12 +91,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $B_{1}$
->     * .
+>     * $n$: where $n/1000$ is the value of $B_{1}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_B3`
@@ -136,12 +101,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $B_{3}$
->     * .
+>     * $n$: where $n/1000$ is the value of $B_{3}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_B4`
@@ -151,12 +111,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the value of
->     * $B_{4}$
->     * .
+>     * $n$: where $n/1000$ is the value of $B_{4}$ .
 > * **Recommendation**: Large values lead to convergence issues.
 
 ### `MPR_A0_NONITER`
@@ -166,12 +121,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $A_{0}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $A_{0}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_A1_NONITER`
@@ -181,12 +131,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $A_{1}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $A_{1}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_A2_NONITER`
@@ -196,12 +141,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $A_{2}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $A_{2}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_A3_NONITER`
@@ -211,12 +151,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $A_{3}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $A_{3}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_A4_NONITER`
@@ -226,12 +161,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $A_{4}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $A_{4}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_B0_NONITER`
@@ -241,12 +171,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $B_{0}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $B_{0}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_B1_NONITER`
@@ -256,12 +181,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $B_{1}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $B_{1}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_B3_NONITER`
@@ -271,12 +191,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $B_{3}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $B_{3}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `MPR_B4_NONITER`
@@ -286,12 +201,7 @@ MPR-BWs2
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * where
->     * $n/1000$
->     * is the non-iterative value of
->     * $B_{4}$
->     * .
+>     * $n$: where $n/1000$ is the non-iterative value of $B_{4}$ .
 > * **Recommendation**: Arbitrary values are possible.
 
 ### `PARAM_GRADIENT`
@@ -301,10 +211,8 @@ MPR-BWs2
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Computes the iterative and non-iterative parameter gradient.
->     * FALSE
->     * Does not compute the parameter gradient.
+>     * `TRUE`: Computes the iterative and non-iterative parameter gradient.
+>     * `FALSE`: Does not compute the parameter gradient.
 > * **Recommendation**: If required, set to TRUE.
 
 ???+ example "Example 6.24: MPR-BWs2 calculation on formaldehyde with $A_{0}=1$ and $B_{0}=-1$ ."

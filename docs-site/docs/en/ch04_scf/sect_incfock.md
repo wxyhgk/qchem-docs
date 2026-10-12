@@ -54,8 +54,6 @@ SCF is carried out using the direct SCF algorithm and are clearly complementary
 algorithms. These options are controlled by the following input parameters,
 which are only used with direct SCF calculations.
 
-INCFOCK
-
 ### `INCFOCK`
 
 > **Iteration number after which the incremental Fock matrix algorithm is initiated**
@@ -66,8 +64,6 @@ INCFOCK
 >     * User-defined (0 switches INCFOCK off)
 > * **Recommendation**: May be necessary to allow several iterations before switching on INCFOCK.
 
-RESET_INCFOCK
-
 ### `RESET_INCFOCK`
 
 > **Iteration number after which the incremental Fock matrix algorithm is reset**
@@ -76,9 +72,6 @@ RESET_INCFOCK
 > * **Default**: `15`
 > * **Options**:
 >     * User-defined (0 switches RESET_INCFOCK off)
-
-VARTHRESH
-
 ### `VARTHRESH`
 
 > **Controls the temporary integral cut-off threshold, $t=10^{-\mathrm{VARTHRESH}}\times(\text{DIIS error})$**
@@ -86,8 +79,7 @@ VARTHRESH
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined threshold
+>     * $n$: User-defined threshold
 > * **Recommendation**: 3 has been found to be a practical level, and can slightly speed up SCF evaluation.
 
 ???+ example "Example 4.20: Q-Chem input for a large single point energy calculation. This would be

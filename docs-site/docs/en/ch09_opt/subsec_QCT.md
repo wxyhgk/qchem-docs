@@ -46,8 +46,6 @@ details of our QCT-MD implementation are described in detail in Appendix A of
 Ref. [[747]](../bib_references/bib.md#bib780)
 .
 
-AIMD_QCT_WHICH_TRAJECTORY
-
 ### `AIMD_QCT_WHICH_TRAJECTORY`
 
 > **Picks a set of vibrational quantum numbers from a random distribution.**
@@ -55,14 +53,9 @@ AIMD_QCT_WHICH_TRAJECTORY
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * $n$
->     * Picks the
->     * $n$
->     * th set of random initial velocities.
->     * $-n$
->     * Uses an average over
->     * $n$
->     * random initial velocities.
+>     * $n$: Picks the
+>     * $n$: th set of random initial velocities. $-n$ Uses an average over
+>     * $n$: random initial velocities.
 > * **Recommendation**: Pick a positive number if you want the initial velocities to correspond to a particular set of vibrational occupation numbers and choose a different number for each of your trajectories. If initial velocities are desired that corresponds to an average over $n$ trajectories, pick a negative number.
 
 Below is a simple example input for running a QCT-MD simulation of the
@@ -135,8 +128,6 @@ AIMD_STEPS to zero. This will generate $m$ random geometries
 sampled from the vibrational wave function corresponding to an average
 over $n$ trajectories at the user-specified simulation temperature.
 
-AIMD_QCT_INITPOS
-
 ### `AIMD_QCT_INITPOS`
 
 > **Chooses the initial geometry in a QCT-MD simulation.**
@@ -144,15 +135,9 @@ AIMD_QCT_INITPOS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $0$
->     * Use the equilibrium geometry.
->     * $n$
->     * Picks a random geometry according to the harmonic vibrational wave function.
->     * $-n$
->     * Generates
->     * $n$
->     * random geometries sampled from
->     * the harmonic vibrational wave function.
+>     * $0$: Use the equilibrium geometry.
+>     * $n$: Picks a random geometry according to the harmonic vibrational wave function. $-n$ Generates
+>     * $n$: random geometries sampled from the harmonic vibrational wave function.
 > * **Recommendation**: None.
 
 For systems that are described well within the harmonic oscillator model and

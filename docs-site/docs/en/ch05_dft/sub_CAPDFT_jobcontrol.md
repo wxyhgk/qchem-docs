@@ -44,8 +44,6 @@ however, this cannot be used for invoking CAP-DFT calculations,
 and the keywords CAP_GRID, CAP_GRID_SWITCH and CAP_NEW_GRID will not be recognized.
 **
 
-CAP_SCF
-
 ### `CAP_SCF`
 
 > **Invokes a CAP-SCF calculation.**
@@ -53,13 +51,9 @@ CAP_SCF
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Invoke a CAP-SCF calculation using the more recent implementation that also allows for CAP-DFT calculations.
->     * FALSE
->     * Do not invoke a CAP-SCF calculation using the more recent implementation.
+>     * `TRUE`: Invoke a CAP-SCF calculation using the more recent implementation that also allows for CAP-DFT calculations.
+>     * `FALSE`: Do not invoke a CAP-SCF calculation using the more recent implementation.
 > * **Recommendation**: Set to ‘TRUE’ for CAP-DFT calculations, or when re-evaluation of the CAP on a different grid during the SCF iterations is desired (see also CAP_GRID_SWITCH and CAP_NEW_GRID .)
-
-CAP_GRID
 
 ### `CAP_GRID`
 
@@ -68,46 +62,10 @@ CAP_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `If`
 > * **Options**:
->     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
->     * $n$
->     * Use SG-
->     * $n$
->     * for all atoms,
->     * $n=1,2,$
->     * or
->     * $3$
->     * .
->     * $XY$
->     * A string of two six-digit integers
->     * $X$
->     * and
->     * $Y$
->     * , where
->     * $X$
->     * is the number of radial points
->     * and
->     * $Y$
->     * is the number of angular points where possible numbers of Lebedev angular
->     * points, which must be an allowed value from Table
->     * 5.2
->     * in
->     * Section
->     * 5.5
->     * .
->     * $-XY$
->     * Similar format for Gauss-Legendre grids, with the six-digit integer
->     * $X$
->     * corresponding
->     * to the number of radial points and the six-digit integer
->     * $Y$
->     * providing the number of
->     * Gauss-Legendre angular points,
->     * $Y=2N^{2}$
->     * .
+>     * `0`: Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * $n$: Use SG-
+>     * $n$: for all atoms, $n=1,2,$ or $3$ . $XY$ A string of two six-digit integers $X$ and $Y$ , where $X$ is the number of radial points and $Y$ is the number of angular points where possible numbers of Lebedev angular points, which must be an allowed value from Table 5.2 in Section 5.5 . $-XY$ Similar format for Gauss-Legendre grids, with the six-digit integer $X$ corresponding to the number of radial points and the six-digit integer $Y$ providing the number of Gauss-Legendre angular points, $Y=2N^{2}$ .
 > * **Recommendation**: Employing a coarser CAP grid in the initial SCF iterations might facilitate finding the resonance state, while using a finer grid might improve convergence behavior. See also CAP_GRID_SWITCH and CAP_NEW_GRID .
-
-CAP_GRID_SWITCH
 
 ### `CAP_GRID_SWITCH`
 
@@ -116,13 +74,9 @@ CAP_GRID_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * Re-evaluate the CAP on a new grid starting from SCF interation
->     * $n$
->     * .
+>     * $n$: Re-evaluate the CAP on a new grid starting from SCF interation
+>     * $n$: .
 > * **Recommendation**: The optimal value is system-dependent. Allow for a sufficient number of iterations with the initial CAP grid to ensure that the resonance state is found.
-
-CAP_NEW_GRID
 
 ### `CAP_NEW_GRID`
 
@@ -131,9 +85,7 @@ CAP_NEW_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `99000590`
 > * **Options**:
->     * The same options as
->     * CAP_GRID
->     * (see above).
+>     * `The same options as`: CAP_GRID (see above).
 > * **Recommendation**: Use a finer grid than CAP_GRID .
 
 ## 5.13.2.2 Finding Resonance States of Temporary Anions using CAP-DFT

@@ -38,8 +38,6 @@ SNK 在支持 OpenMP 并行以及单指令多数据（SIMD）向量指令的硬�
 
 目前 SNK 可用于 HF 交换、全局杂化（global hybrids）以及作用程分离杂化（range-separated hybrids）。将 SNK 设为 1 即可启用该方法。网格与阈值也可通过下文讨论的 rem 变量来设置。
 
-SNK
-
 ### `SNK`
 
 > **控制是否在交换矩阵的构造中使用半数值交换。**
@@ -50,8 +48,6 @@ SNK
 >     * $n>0$
 >     * 使用 SNK。
 > * **建议**：用于大体系/大基组。
-
-SNK_GRID
 
 ### `SNK_GRID`
 
@@ -86,8 +82,6 @@ SNK_GRID
 >     * 中所列的允许值。
 > * **建议**：除非出现数值积分问题或网格误差不可接受，否则请使用默认值。注意，Gauss-Legendre 网格（ $-XY$ ）不能用于 SNK。
 
-SNK_BATCH_SIZE
-
 ### `SNK_BATCH_SIZE`
 
 > **指定 SNK 所使用的目标网格批次大小。**
@@ -100,8 +94,6 @@ SNK_BATCH_SIZE
 >     * $n$
 >     * 个网格点。
 > * **建议**：使用默认值。批次过大可能导致筛选效果变差。
-
-SNK_THRESH_B
 
 ### `SNK_THRESH_B`
 
@@ -116,8 +108,6 @@ SNK_THRESH_B
 >     * 。
 > * **建议**：除非需要更高精度（调大）或更佳性能（调小），否则使用默认值。
 
-SNK_THRESH_E
-
 ### `SNK_THRESH_E`
 
 > **忽略对交换能有贡献的积分时的截断值，其阈值定义为 $10^{-\mbox{{\small SNK\_THRESH\_E}}}$ 。**
@@ -130,8 +120,6 @@ SNK_THRESH_E
 >     * $10^{-n}$
 >     * 。
 > * **建议**：除非需要更高精度（调大）或更佳性能（调小），否则使用默认值。
-
-SNK_THRESH_K
 
 ### `SNK_THRESH_K`
 
@@ -146,8 +134,6 @@ SNK_THRESH_K
 >     * 。
 > * **建议**：除非需要更高精度（调大）或更佳性能（调小），否则使用默认值。
 
-SNK_THRESH_FP32_M
-
 ### `SNK_THRESH_FP32_M`
 
 > **将 SNK_THRESH_E 与 SNK_THRESH_K 相乘，以确定以单精度（fp32）计算积分时的截断值，该乘子因子定义为 $10^{\mbox{{\small SNK\_THRESH\_FP32\_M}}}$ 。**
@@ -160,8 +146,6 @@ SNK_THRESH_FP32_M
 >     * $10^{n}$
 >     * 。
 > * **建议**：对大多数体系而言，默认值可带来显著的加速，而精度损失可以忽略。在少数罕见情况下，使用混合精度可能因 fp32 溢出而产生 inf/nan。此时可通过 $\mbox{{\small SNK\_THRESH\_FP32\_M}}=0$ 关闭混合精度积分。注意，若在 SNK 交换能中检测到 inf/nan，则 SCF 将在关闭混合精度的情况下继续运行。
-
-SNK_PRINT_TIMING
 
 ### `SNK_PRINT_TIMING`
 

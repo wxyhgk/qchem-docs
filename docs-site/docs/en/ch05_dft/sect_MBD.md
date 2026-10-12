@@ -146,8 +146,6 @@ The current implementation of MBD in Q-Chem is based on LibMBD,[[575]](../bib_re
 a portable Fortran library interfaced to a multitude of quantum chemical codes, with
 calculations requesting SCF gradients are done by a **Q-Chem**-specific code.
 
-MBDVDW
-
 ### `MBDVDW`
 
 > **Flag to switch on the MBD-vdW method**
@@ -155,17 +153,11 @@ MBDVDW
 > * **Type**: `STRING`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not calculate MBD.
->     * MBD_SP
->     * Calculate the MBD-vdW contribution to the energy.
->     * MBD_FORCES
->     * Calculate the MBD-vdW contribution to the energy and the nuclear gradient.
->     * MBD_SCF
->     * Calculate the MBD-vdW contribution to the energy, the nuclear as well as the SCF gradient.
+>     * `0`: Do not calculate MBD.
+>     * `MBD_SP`: Calculate the MBD-vdW contribution to the energy.
+>     * `MBD_FORCES`: Calculate the MBD-vdW contribution to the energy and the nuclear gradient.
+>     * `MBD_SCF`: Calculate the MBD-vdW contribution to the energy, the nuclear as well as the SCF gradient.
 > * **Recommendation**: NONE
-
-MBDVDW_BETA
 
 ### `MBDVDW_BETA`
 
@@ -174,9 +166,7 @@ MBDVDW_BETA
 > * **Type**: `INTEGER`
 > * **Default**: `no default value defined`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $n\cdot 10^{-4}$
+>     * $n$: Corresponding to $n\cdot 10^{-4}$
 > * **Recommendation**: Use predefined values for supported functionals, otherwise consult Ref. 43 Ambrosetti A. et al. J. Chem. Phys. (2014) , 140 , pp. 18A508 . Link and other relevant literature.
 
 ???+ example "Example 5.16: Sample input illustrating a calculation of a water molecule, including the

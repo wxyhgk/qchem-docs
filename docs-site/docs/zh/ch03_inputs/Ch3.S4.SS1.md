@@ -56,8 +56,6 @@ title: "3.4.1 概述"
 
 在本手册中，*$rem* 变量将按以下格式描述：
 
-IQMOL_FCHK
-
 ### `IQMOL_FCHK`
 
 > **控制是否打印可被 IQmol 程序读取的格式化检查点文件（formatted checkpoint file）。**

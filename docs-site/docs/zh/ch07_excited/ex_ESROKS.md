@@ -34,8 +34,6 @@ ROKS 的主要局限在于它只能描述含一个断裂电子对的态。因此
 
 要执行 ROKS 激发态计算，只需设置关键字 ROKS = TRUE 并确保 UNRESTRICTED = FALSE。建议先对该体系进行一次预备性的基态计算，然后通过 SCF_GUESS = READ 利用基态轨道构造初始猜测。两个任意的组态之间（通常是基态与用 $\Delta$SCF 或 ROKS 计算得到的某个激发态）的跃迁偶极矩，可以在初态计算中设置 TRANS_MOM_SAVE = TRUE、在末态计算中设置 TRANS_MOM_READ = TRUE 来求得。轨道基组之间的非正交性已被考虑在内。
 
-ROKS
-
 ### `ROKS`
 
 > **控制是否执行 ROKS 计算。**
@@ -43,13 +41,9 @@ ROKS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不执行 ROKS。
->     * TRUE
->     * 执行 ROKS。
+>     * `FALSE`: 不执行 ROKS。
+>     * `TRUE`: 执行 ROKS。
 > * **建议**: 若希望进行 ROKS 计算则设为 TRUE。请确保 UNRESTRICTED 未被设为 TRUE。
-
-ROKS_LEVEL_SHIFT
 
 ### `ROKS_LEVEL_SHIFT`
 
@@ -58,15 +52,8 @@ ROKS_LEVEL_SHIFT
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 不平移
->     * $N$
->     * 平移量为
->     * $N$
->     * /100 hartree。
+>     * `0`: 不平移 $N$ 平移量为 $N$ /100 hartree。
 > * **建议**: 在 DIIS 收敛困难的情况使用。仅对基于旧 SCF 引擎（GEN_SCFMAN = FALSE）的 ROKS 实现可用。
-
-ROKS_SS_MIXING
 
 ### `ROKS_SS_MIXING`
 
@@ -75,13 +62,9 @@ ROKS_SS_MIXING
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **可选值**:
->     * 0
->     * 抑制耦合。
->     * 1
->     * 允许耦合。
+>     * `0`: 抑制耦合。
+>     * `1`: 允许耦合。
 > * **建议**: 当所得态难以收敛和/或与基态重叠显著时，抑制耦合。仅适用于基于 GDM 和 SGM 的求解器。
-
-TRANS_MOM_SAVE
 
 ### `TRANS_MOM_SAVE`
 
@@ -90,13 +73,9 @@ TRANS_MOM_SAVE
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不保存轨道。
->     * TRUE
->     * 保存轨道。
+>     * `FALSE`: 不保存轨道。
+>     * `TRUE`: 保存轨道。
 > * **建议**: 保存设置该变量的那次计算的轨道。通常会是基态计算，但也可以是任意受限 SCF、非受限 SCF 或 ROKS 计算，从而允许计算一般的态间跃迁偶极矩。
-
-TRANS_MOM_READ
 
 ### `TRANS_MOM_READ`
 
@@ -105,10 +84,8 @@ TRANS_MOM_READ
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * FALSE
->     * 不读取轨道。
->     * TRUE
->     * 读取轨道。
+>     * `FALSE`: 不读取轨道。
+>     * `TRUE`: 读取轨道。
 > * **建议**: 该选项假定先前已用 TRANS_MOM_SAVE 保存过一组轨道。若是如此，则读取这些轨道，并与当前计算的轨道一起求跃迁偶极矩。
 
 ???+ example "示例 7.50: 在 RO-PBE0/6-311+G* 水平下计算甲醛激发态的梯度，使用基态轨道作为初始猜测。此处采用了文献 714 Kowalczyk T. et al. J. Chem. Phys. (2013), 138, pp. 164101. Link. 中基于 DIIS 的实现。"

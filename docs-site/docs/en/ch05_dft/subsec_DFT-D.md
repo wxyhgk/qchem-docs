@@ -19,8 +19,6 @@ an alternative to the use of a non-local correlation functional, is known as
 There are currently three unique DFT-D methods in **Q-Chem**. These are
 requested via the *$rem* variable DFT_D and are discussed below.
 
-DFT_D
-
 ### `DFT_D`
 
 > **Controls the empirical dispersion correction to be added to a DFT calculation.**
@@ -28,176 +26,46 @@ DFT_D
 > * **Type**: `LOGICAL`
 > * **Default**: `None`
 > * **Options**:
->     * FALSE
->     * (or 0) Do not apply the DFT-D2, DFT-CHG, or DFT-D3 scheme
->     * EMPIRICAL_GRIMME
->     * DFT-D2 dispersion correction from Grimme
->     * 494
->     * Grimme S.
->     * J. Comput. Chem.
->     * (2006)
->     * ,
->     * 27
->     * ,
->     * pp. 1787
->     * .
->     * Link
->     * EMPIRICAL_CHG
->     * DFT-CHG dispersion correction from Chai and Head-Gordon
->     * 224
->     * Chai J.-D., Head-Gordon M.
->     * Phys. Chem. Chem. Phys.
->     * (2008)
->     * ,
->     * 10
->     * ,
->     * pp. 6615
->     * .
->     * Link
->     * EMPIRICAL_GRIMME3
->     * DFT-D3(0) dispersion correction from Grimme (deprecated as
->     * of
->     * Q-Chem
->     * 5.0)
->     * D3_ZERO
->     * DFT-D3(0) dispersion correction from Grimme
->     * et al.
->     * 486
->     * Grimme S. et al.
->     * J. Chem. Phys.
->     * (2010)
->     * ,
->     * 132
->     * ,
->     * pp. 154104
->     * .
->     * Link
->     * D3S_ZERO
->     * DFT-D3S(0) dispersion correction from Tkachenko and Head-Gordon
->     * 1362
->     * Tkatchenko N. V., Head-Gordon M.
->     * J. Chem. Theory Comput.
->     * (2024)
->     * ,
->     * 20
->     * ,
->     * pp. 9741
->     * .
->     * Link
->     * D3_BJ
->     * DFT-D3(BJ) dispersion correction from Grimme
->     * et al.
->     * 488
->     * Grimme S., Ehrlich S., Goerigk L.
->     * J. Comput. Chem.
->     * (2011)
->     * ,
->     * 32
->     * ,
->     * pp. 1456
->     * .
->     * Link
->     * D3S_BJ
->     * DFT-D3S(BJ) dispersion correction from Tkachenko and Head-Gordon
->     * 1362
->     * Tkatchenko N. V., Head-Gordon M.
->     * J. Chem. Theory Comput.
->     * (2024)
->     * ,
->     * 20
->     * ,
->     * pp. 9741
->     * .
->     * Link
->     * D3_CSO
->     * DFT-D3(CSO) dispersion correction from Schröder
->     * et al.
->     * 1218
->     * Schröder H., Creon A., Schwabe T.
->     * J. Chem. Theory Comput.
->     * (2015)
->     * ,
->     * 11
->     * ,
->     * pp. 3163
->     * .
->     * Link
->     * D3_ZEROM
->     * DFT-D3M(0) dispersion correction from Smith
->     * et al.
->     * 1278
->     * Smith D. G. et al.
->     * J. Phys. Chem. Lett.
->     * (2016)
->     * ,
->     * 7
->     * ,
->     * pp. 2197
->     * .
->     * Link
->     * D3_BJM
->     * DFT-D3M(BJ) dispersion correction from Smith
->     * et al.
->     * 1278
->     * Smith D. G. et al.
->     * J. Phys. Chem. Lett.
->     * (2016)
->     * ,
->     * 7
->     * ,
->     * pp. 2197
->     * .
->     * Link
->     * D3_OP
->     * DFT-D3(op) dispersion correction from Witte
->     * et al.
->     * 1481
->     * Witte J. et al.
->     * J. Chem. Theory Comput.
->     * (2017)
->     * ,
->     * 13
->     * ,
->     * pp. 2043
->     * .
->     * Link
->     * D3
->     * Automatically select the “best” available D3 dispersion correction
->     * D4
->     * DFT-D4 dispersion correction from Caldeweyher
->     * et al.
->     * 178
->     * Caldeweyher E., Bannwarth C., Grimme S.
->     * J. Chem. Phys.
->     * (2017)
->     * ,
->     * 147
->     * ,
->     * pp. 034112
->     * .
->     * Link
->     * ,
->     * 179
->     * Caldeweyher E. et al.
->     * J. Chem. Phys.
->     * (2019)
->     * ,
->     * 150
->     * ,
->     * pp. 154122
->     * .
->     * Link
->     * ,
->     * 180
->     * Caldeweyher E. et al.
->     * Phys. Chem. Chem. Phys.
->     * (2020)
->     * ,
->     * 22
->     * ,
->     * pp. 8499
->     * .
->     * Link
+>     * `FALSE`: (or 0) Do not apply the DFT-D2, DFT-CHG, or DFT-D3 scheme
+>     * `EMPIRICAL_GRIMME`: DFT-D2 dispersion correction from Grimme
+>     * `494`: Grimme S. J. Comput. Chem. (2006) ,
+>     * `27`: , pp. 1787 . Link
+>     * `EMPIRICAL_CHG`: DFT-CHG dispersion correction from Chai and Head-Gordon
+>     * `224`: Chai J.-D., Head-Gordon M. Phys. Chem. Chem. Phys. (2008) ,
+>     * `10`: , pp. 6615 . Link
+>     * `EMPIRICAL_GRIMME3`: DFT-D3(0) dispersion correction from Grimme (deprecated as of Q-Chem 5.0)
+>     * `D3_ZERO`: DFT-D3(0) dispersion correction from Grimme et al.
+>     * `486`: Grimme S. et al. J. Chem. Phys. (2010) ,
+>     * `132`: , pp. 154104 . Link
+>     * `D3S_ZERO`: DFT-D3S(0) dispersion correction from Tkachenko and Head-Gordon
+>     * `1362`: Tkatchenko N. V., Head-Gordon M. J. Chem. Theory Comput. (2024) ,
+>     * `20`: , pp. 9741 . Link
+>     * `D3_BJ`: DFT-D3(BJ) dispersion correction from Grimme et al.
+>     * `488`: Grimme S., Ehrlich S., Goerigk L. J. Comput. Chem. (2011) ,
+>     * `32`: , pp. 1456 . Link
+>     * `D3S_BJ`: DFT-D3S(BJ) dispersion correction from Tkachenko and Head-Gordon
+>     * `1362`: Tkatchenko N. V., Head-Gordon M. J. Chem. Theory Comput. (2024) ,
+>     * `20`: , pp. 9741 . Link
+>     * `D3_CSO`: DFT-D3(CSO) dispersion correction from Schröder et al.
+>     * `1218`: Schröder H., Creon A., Schwabe T. J. Chem. Theory Comput. (2015) ,
+>     * `11`: , pp. 3163 . Link
+>     * `D3_ZEROM`: DFT-D3M(0) dispersion correction from Smith et al.
+>     * `1278`: Smith D. G. et al. J. Phys. Chem. Lett. (2016) ,
+>     * `7`: , pp. 2197 . Link
+>     * `D3_BJM`: DFT-D3M(BJ) dispersion correction from Smith et al.
+>     * `1278`: Smith D. G. et al. J. Phys. Chem. Lett. (2016) ,
+>     * `7`: , pp. 2197 . Link
+>     * `D3_OP`: DFT-D3(op) dispersion correction from Witte et al.
+>     * `1481`: Witte J. et al. J. Chem. Theory Comput. (2017) ,
+>     * `13`: , pp. 2043 . Link
+>     * `D3`: Automatically select the “best” available D3 dispersion correction
+>     * `D4`: DFT-D4 dispersion correction from Caldeweyher et al.
+>     * `178`: Caldeweyher E., Bannwarth C., Grimme S. J. Chem. Phys. (2017) ,
+>     * `147`: , pp. 034112 . Link ,
+>     * `179`: Caldeweyher E. et al. J. Chem. Phys. (2019) ,
+>     * `150`: , pp. 154122 . Link ,
+>     * `180`: Caldeweyher E. et al. Phys. Chem. Chem. Phys. (2020) ,
+>     * `22`: , pp. 8499 . Link
 > * **Recommendation**: Use D4 if the specified functional is avialable. Currently, only a subset of functionals in DFT-D4 is supported. It includes B3LYP, B97, B1LYP, PBE0, PW6B95, M06L, M06, WB97, WB97X, CAMB3LYP, PBE02, PBE0DH, MPW1K, MPWB1K, B1B95, B1PW91, B2GPPLYP, B2PLYP, B3P86, B3PW91, O3LYP, REVPBE, REVPBE0, REVTPSS, REVTPSSH, SCAN, TPSS0, TPSSH, X3LYP, TPSS, BP86, BLYP, BPBE, MPW1PW91, MPW1LYP, PBE, RPBE, and PW91.
 
 The oldest of these approaches is DFT-D2,[[494]](../bib_references/bib.md#bib502)
@@ -285,8 +153,6 @@ $$
 This version is activated by setting DFT_D = EMPIRICAL_CHG, and the
 damping parameter $a$ is controlled by the keyword DFT_D_A.
 
-DFT_D_A
-
 ### `DFT_D_A`
 
 > **Controls the strength of dispersion corrections in the Chai–Head-Gordon DFT-D scheme, Eq. ( 5.28 ).**
@@ -294,10 +160,7 @@ DFT_D_A
 > * **Type**: `INTEGER`
 > * **Default**: `600`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $a=n/100$
->     * .
+>     * $n$: Corresponding to $a=n/100$ .
 > * **Recommendation**: Use the default.
 
 **Note: 
@@ -511,8 +374,6 @@ defaults can still be overwritten by the user.
 
 **
 
-DFT_D3_S6
-
 ### `DFT_D3_S6`
 
 > **The linear parameter $s_{6}$ in eq. ( 5.29 ). Used in all forms of DFT-D3.**
@@ -520,13 +381,8 @@ DFT_D3_S6
 > * **Type**: `INTEGER`
 > * **Default**: `100000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{6}=n/100000$
->     * .
+>     * $n$: Corresponding to $s_{6}=n/100000$ .
 > * **Recommendation**: NONE
-
-DFT_D3_RS6
 
 ### `DFT_D3_RS6`
 
@@ -535,13 +391,8 @@ DFT_D3_RS6
 > * **Type**: `INTEGER`
 > * **Default**: `100000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{r,6}=n/100000$
->     * .
+>     * $n$: Corresponding to $s_{r,6}=n/100000$ .
 > * **Recommendation**: NONE
-
-DFT_D3_S8
 
 ### `DFT_D3_S8`
 
@@ -550,13 +401,8 @@ DFT_D3_S8
 > * **Type**: `INTEGER`
 > * **Default**: `100000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{8}=n/100000$
->     * .
+>     * $n$: Corresponding to $s_{8}=n/100000$ .
 > * **Recommendation**: NONE
-
-DFT_D3_RS8
 
 ### `DFT_D3_RS8`
 
@@ -565,13 +411,8 @@ DFT_D3_RS8
 > * **Type**: `INTEGER`
 > * **Default**: `100000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{r,8}=n/100000$
->     * .
+>     * $n$: Corresponding to $s_{r,8}=n/100000$ .
 > * **Recommendation**: NONE
-
-DFT_D3_A1
 
 ### `DFT_D3_A1`
 
@@ -580,13 +421,8 @@ DFT_D3_A1
 > * **Type**: `INTEGER`
 > * **Default**: `100000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\alpha_{1}=n/100000$
->     * .
+>     * $n$: Corresponding to $\alpha_{1}=n/100000$ .
 > * **Recommendation**: NONE
-
-DFT_D3_A2
 
 ### `DFT_D3_A2`
 
@@ -595,13 +431,8 @@ DFT_D3_A2
 > * **Type**: `INTEGER`
 > * **Default**: `100000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\alpha_{2}=n/100000$
->     * .
+>     * $n$: Corresponding to $\alpha_{2}=n/100000$ .
 > * **Recommendation**: NONE
-
-DFT_D3_POWER
 
 ### `DFT_D3_POWER`
 
@@ -610,17 +441,12 @@ DFT_D3_POWER
 > * **Type**: `INTEGER`
 > * **Default**: `600000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\beta_{6}=n/100000$
->     * .
+>     * $n$: Corresponding to $\beta_{6}=n/100000$ .
 > * **Recommendation**: NONE
 
 The three-body interaction term, $E^{(3)}$,[[486]](../bib_references/bib.md#bib504)
  must be
 explicitly turned on, if desired.
-
-DFT_D3_3BODY
 
 ### `DFT_D3_3BODY`
 
@@ -629,10 +455,8 @@ DFT_D3_3BODY
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Do not apply the three-body interaction term
->     * TRUE
->     * Apply the three-body interaction term
+>     * `FALSE`（或 `0`）: Do not apply the three-body interaction term
+>     * `TRUE`: Apply the three-body interaction term
 > * **Recommendation**: NONE
 
 More recently, Grimme published an extended D3 model,
@@ -694,8 +518,6 @@ The coefficients $a$ and $b$ are parametrized to match cationic static
 polarzizabilies and TD-DFT derived molecular dispersion coefficients,
 respectively.
 
-DFT_D4_S6
-
 ### `DFT_D4_S6`
 
 > **The linear parameter $s_{6}$ . Used in DFT-D4.**
@@ -703,13 +525,8 @@ DFT_D4_S6
 > * **Type**: `INTEGER`
 > * **Default**: `Optimized number for the specified functional`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{6}=n/100000000$
->     * .
+>     * $n$: Corresponding to $s_{6}=n/100000000$ .
 > * **Recommendation**: NONE
-
-DFT_D4_S8
 
 ### `DFT_D4_S8`
 
@@ -718,13 +535,8 @@ DFT_D4_S8
 > * **Type**: `INTEGER`
 > * **Default**: `Optimized number for the specified functional`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{8}=n/100000000$
->     * .
+>     * $n$: Corresponding to $s_{8}=n/100000000$ .
 > * **Recommendation**: NONE
-
-DFT_D4_S10
 
 ### `DFT_D4_S10`
 
@@ -733,13 +545,8 @@ DFT_D4_S10
 > * **Type**: `INTEGER`
 > * **Default**: `Optimized number for the specified functional`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{10}=n/100000000$
->     * .
+>     * $n$: Corresponding to $s_{10}=n/100000000$ .
 > * **Recommendation**: NONE
-
-DFT_D4_A1
 
 ### `DFT_D4_A1`
 
@@ -748,13 +555,8 @@ DFT_D4_A1
 > * **Type**: `INTEGER`
 > * **Default**: `Optimized number for the specified functional`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\alpha_{1}=n/100000000$
->     * .
+>     * $n$: Corresponding to $\alpha_{1}=n/100000000$ .
 > * **Recommendation**: NONE
-
-DFT_D4_A2
 
 ### `DFT_D4_A2`
 
@@ -763,13 +565,8 @@ DFT_D4_A2
 > * **Type**: `INTEGER`
 > * **Default**: `Optimized number for the specified functional`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\alpha_{2}=n/100000000$
->     * .
+>     * $n$: Corresponding to $\alpha_{2}=n/100000000$ .
 > * **Recommendation**: NONE
-
-DFT_D4_S9
 
 ### `DFT_D4_S9`
 
@@ -778,13 +575,8 @@ DFT_D4_S9
 > * **Type**: `INTEGER`
 > * **Default**: `Optimized number for the specified functional`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $s_{9}=n/100000000$
->     * .
+>     * $n$: Corresponding to $s_{9}=n/100000000$ .
 > * **Recommendation**: NONE
-
-DFT_D4_WF
 
 ### `DFT_D4_WF`
 
@@ -793,13 +585,8 @@ DFT_D4_WF
 > * **Type**: `INTEGER`
 > * **Default**: `600000000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $wf=n/100000000$
->     * .
+>     * $n$: Corresponding to $wf=n/100000000$ .
 > * **Recommendation**: Use default
-
-DFT_D4_GA
 
 ### `DFT_D4_GA`
 
@@ -808,13 +595,8 @@ DFT_D4_GA
 > * **Type**: `INTEGER`
 > * **Default**: `300000000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $ga=n/100000000$
->     * .
+>     * $n$: Corresponding to $ga=n/100000000$ .
 > * **Recommendation**: Use default
-
-DFT_D4_GC
 
 ### `DFT_D4_GC`
 
@@ -823,10 +605,7 @@ DFT_D4_GC
 > * **Type**: `INTEGER`
 > * **Default**: `200000000`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $gc=n/100000000$
->     * .
+>     * $n$: Corresponding to $gc=n/100000000$ .
 > * **Recommendation**: Use default
 
 ???+ example "Example 5.13: Applications of B3LYP-D3(0) with custom parameters to a methane dimer."

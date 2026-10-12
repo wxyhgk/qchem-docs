@@ -390,8 +390,6 @@ ${}^{d}$Gradients are not supported but single-point calculations can be perform
 Table 11.2: 
 Summary of analytic energy gradient and Hessian capabilities with implicit solvent models.
 
-SOLVENT_METHOD
-
 ### `SOLVENT_METHOD`
 
 > **Sets the preferred solvent method.**
@@ -399,50 +397,16 @@ SOLVENT_METHOD
 > * **Type**: `STRING`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not use a solvation model.
->     * KIRKWOOD
->     * Use the Kirkwood-Onsager model (Section
->     * 11.2.2
->     * ).
->     * PCM
->     * Use an apparent surface charge, polarizable continuum model
->     * (Section
->     * 11.2.3
->     * ).
->     * ISOSVP
->     * Use the isodensity implementation of the SS(V)PE model
->     * (Section
->     * 11.2.6
->     * ).
->     * COSMO
->     * Use COSMO (Section
->     * 11.2.8
->     * ).
->     * SM8
->     * Use version 8 of the Cramer-Truhlar SM
->     * $x$
->     * model (Section
->     * 11.2.9.1
->     * ).
->     * SM12
->     * Use version 12 of the SM
->     * $x$
->     * model (Section
->     * 11.2.9.2
->     * ).
->     * SMD
->     * Use SMD (Section
->     * 11.2.9.3
->     * ).
->     * CHEM_SOL
->     * Use the Langevin Dipoles model (Section
->     * 11.2.10
->     * ).
->     * PEQS
->     * Use the Poisson Equation Solver (Section
->     * 11.2.11
->     * ).
+>     * `0`: Do not use a solvation model.
+>     * `KIRKWOOD`: Use the Kirkwood-Onsager model (Section 11.2.2 ).
+>     * `PCM`: Use an apparent surface charge, polarizable continuum model (Section 11.2.3 ).
+>     * `ISOSVP`: Use the isodensity implementation of the SS(V)PE model (Section 11.2.6 ).
+>     * `COSMO`: Use COSMO (Section 11.2.8 ).
+>     * `SM8`: Use version 8 of the Cramer-Truhlar SM $x$ model (Section 11.2.9.1 ).
+>     * `SM12`: Use version 12 of the SM $x$ model (Section 11.2.9.2 ).
+>     * `SMD`: Use SMD (Section 11.2.9.3 ).
+>     * `CHEM_SOL`: Use the Langevin Dipoles model (Section 11.2.10 ).
+>     * `PEQS`: Use the Poisson Equation Solver (Section 11.2.11 ).
 > * **Recommendation**: Consult the literature ( e.g. , Ref. 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link ). PCM is a collective name for a family of models and additional input options may be required in this case, in order to fully specify the model; see Section 11.2.3 . Several versions of SM12 are available as well, as discussed in Section 11.2.9.2 .
 
 Before going into detail about each of these models, a few potential points of

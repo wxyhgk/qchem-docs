@@ -41,8 +41,6 @@ variables. PAO_METHOD = PAO invokes PAO-SCF calculations,
 while the algorithm used to iterate the PAOs can be controlled with
 PAO_ALGORITHM.
 
-PAO_ALGORITHM
-
 ### `PAO_ALGORITHM`
 
 > **Algorithm used to optimize polarized atomic orbitals (see PAO_METHOD )**
@@ -50,13 +48,9 @@ PAO_ALGORITHM
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Use efficient (and riskier) strategy to converge PAOs.
->     * 1
->     * Use conservative (and slower) strategy to converge PAOs.
+>     * `0`: Use efficient (and riskier) strategy to converge PAOs.
+>     * `1`: Use conservative (and slower) strategy to converge PAOs.
 > * **Recommendation**: None
-
-PAO_METHOD
 
 ### `PAO_METHOD`
 
@@ -65,8 +59,6 @@ PAO_METHOD
 > * **Type**: `STRING`
 > * **Default**: `EPAO`
 > * **Options**:
->     * PAO
->     * Perform PAO-SCF instead of conventional SCF.
->     * EPAO
->     * Obtain EPAOs after a conventional SCF.
+>     * `PAO`: Perform PAO-SCF instead of conventional SCF.
+>     * `EPAO`: Obtain EPAOs after a conventional SCF.
 > * **Recommendation**: None

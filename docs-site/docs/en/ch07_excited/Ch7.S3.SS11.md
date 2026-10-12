@@ -50,8 +50,6 @@ This facilitates the optimization of minimum-energy crossing points (MECPs) betw
 The rem variables for TDDFT-1D calculations are similar to those for CIS calculations and
 the following *$rem* variables are used to control TDDFT-1D.
 
-CIS1D_N_ROOTS
-
 ### `CIS1D_N_ROOTS`
 
 > **Sets the number of CIS-1D and TDDFT-1D states to calculate. The lowest eigenstate of $\mathbf{H}$ is the ground state, followed by excited states.**
@@ -59,14 +57,9 @@ CIS1D_N_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * , Calculate the lowest
->     * $n$
->     * CIS-1D or TDDFT-1D states.
+>     * $n$: $n>0$ , Calculate the lowest
+>     * $n$: CIS-1D or TDDFT-1D states.
 > * **Recommendation**: None
-
-CIS1D_ED_CONVERGENCE
 
 ### `CIS1D_ED_CONVERGENCE`
 
@@ -75,13 +68,8 @@ CIS1D_ED_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `7`
 > * **Options**:
->     * $n$
->     * Convergence achieved when the error is lower than
->     * $10^{-n}$
->     * .
+>     * $n$: Convergence achieved when the error is lower than $10^{-n}$ .
 > * **Recommendation**: Convergence on the roots of $\mathbf{H}$ is controlled by CIS_CONVERGENCE , which is set to 9 by default for a CIS-1D or TDDFT-1D calculation. If CIS_CONVERGENCE is increased then should also be increased.
-
-CIS1D_MAX_CYCLES
 
 ### `CIS1D_MAX_CYCLES`
 
@@ -90,13 +78,9 @@ CIS1D_MAX_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `60`
 > * **Options**:
->     * $n$
->     * Use up to
->     * $n$
->     * iterations.
+>     * $n$: Use up to
+>     * $n$: iterations.
 > * **Recommendation**: The memory allocated for the Davidson iterations (used to diagonalize $\mathbf{H}$ ) is $(n_{\text{occ}}n_{\text{virt}}+\text{2})$ ( )( CIS1D_N_ROOTS )/2 double-precision numbers, where $n_{\text{occ}}$ and $n_{\text{virt}}$ are the number of occupied and virtual orbitals, respectively. Larger values of may require increasing MEM_TOTAL .
-
-CIS1D_SCALE_GD
 
 ### `CIS1D_SCALE_GD`
 
@@ -105,14 +89,8 @@ CIS1D_SCALE_GD
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * $0\leq n\leq 100$
->     * , The coupling element is scaled by
->     * $n/100$
->     * .
+>     * $n$: $0\leq n\leq 100$ , The coupling element is scaled by $n/100$ .
 > * **Recommendation**: There is no rigorous way to determine the coupling elements in $\mathbf{H}$ , since the Kohn-Sham determinant is not a true wave function, so the couplings are computed using a “pseudo-wave function” approach. 1028 Ou Q., Alguire E. C., Subotnik J. E. J. Phys. Chem. B (2015) , 119 , pp. 7150 . Link , 1548 Zhang X., Herbert J. M. J. Chem. Phys. (2015) , 142 , pp. 064109 . Link It sometimes becomes necessary to scale the coupling elements to obtain accurate potential energy surfaces, and the scaling factor has to be determined with some benchmarking. 56 Athavale V., Teh H.-H., Subotnik J. E. J. Chem. Phys. (2021) , 155 , pp. 154105 . Link
-
-CIS1D_SCALE_SD
 
 ### `CIS1D_SCALE_SD`
 
@@ -121,14 +99,8 @@ CIS1D_SCALE_SD
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * $0\leq n\leq 100$
->     * , The coupling element is scaled by
->     * $n/100$
->     * .
+>     * $n$: $0\leq n\leq 100$ , The coupling element is scaled by $n/100$ .
 > * **Recommendation**: Same as CIS1D_SCALE_GD .
-
-CIS1D_STATE_DERIV
 
 ### `CIS1D_STATE_DERIV`
 
@@ -137,14 +109,9 @@ CIS1D_STATE_DERIV
 > * **Type**: `INTEGER`
 > * **Default**: `$-1$`
 > * **Options**:
->     * $n$
->     * $n\geq 0$
->     * , Selects the
->     * $n$
->     * th CIS-1D/TDDFT-1D state.
+>     * $n$: $n\geq 0$ , Selects the
+>     * $n$: th CIS-1D/TDDFT-1D state.
 > * **Recommendation**: None
-
-CIS1D_DER_NUMSTATE
 
 ### `CIS1D_DER_NUMSTATE`
 
@@ -153,12 +120,8 @@ CIS1D_DER_NUMSTATE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not calculate derivative couplings.
->     * $n$
->     * Calculate
->     * $n(n-1)/2$
->     * pairs of derivative couplings.
+>     * `0`: Do not calculate derivative couplings.
+>     * $n$: Calculate $n(n-1)/2$ pairs of derivative couplings.
 > * **Recommendation**: None
 
 ## 7.3.11.2 Examples of TDDFT-1D

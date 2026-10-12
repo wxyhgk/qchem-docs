@@ -18,8 +18,6 @@ RAS_N_ROOTS, and the number of active occupied and virtual orbital
 comprising the “active” RAS2 space. RASCI2 calculations also require
 specification of an auxiliary basis via AUX_BASIS.
 
-RAS_N_ROOTS
-
 ### `RAS_N_ROOTS`
 
 > **Sets the number of RAS-CI roots to be computed.**
@@ -27,14 +25,9 @@ RAS_N_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * Compute
->     * $n$
->     * RAS-CI states
+>     * $n$: $n>0$ Compute
+>     * $n$: RAS-CI states
 > * **Recommendation**: None. Only works with RASCI2
-
-RAS_ACT_OCC
 
 ### `RAS_ACT_OCC`
 
@@ -43,11 +36,8 @@ RAS_ACT_OCC
 > * **Type**: `Integer`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * user defined integer
+>     * $n$: user defined integer
 > * **Recommendation**: None. Only works with RASCI2
-
-RAS_ACT_VIR
 
 ### `RAS_ACT_VIR`
 
@@ -56,11 +46,8 @@ RAS_ACT_VIR
 > * **Type**: `Integer`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * user defined integer
+>     * $n$: user defined integer
 > * **Recommendation**: None. Only works with RASCI2.
-
-RAS_ACT_DIFF
 
 ### `RAS_ACT_DIFF`
 
@@ -69,19 +56,9 @@ RAS_ACT_DIFF
 > * **Type**: `Integer`
 > * **Default**: `None`
 > * **Options**:
->     * 1
->     * odd number of electrons or cations
->     * 0
->     * even number of electrons
->     * $-1$
->     * anions
->     * $n$
->     * $n<-99$
->     * triggers RAS2-SF at DDCI level of excitations
->     * $n=-451$
->     * and
->     * $n=-452$
->     * triggers restart mechanism that restores the last best guess for each state to the number of states requested
+>     * `1`: odd number of electrons or cations
+>     * `0`: even number of electrons $-1$ anions
+>     * $n$: $n<-99$ triggers RAS2-SF at DDCI level of excitations $n=-451$ and $n=-452$ triggers restart mechanism that restores the last best guess for each state to the number of states requested
 > * **Recommendation**: Set to 0 would be appropriate for most singlet systems. Only works with RASCI2.
 
 Note that other *$rem* variables that can be used to control the evaluation of
@@ -90,8 +67,6 @@ iterations, and N_FROZEN_CORE and N_FROZEN_VIRTUAL to
 exclude core and/or virtual orbitals from the RASCI2 calculation. Please see
 the sample inputs below for more details.
 
-RAS_CALC_SOC
-
 ### `RAS_CALC_SOC`
 
 > **Controls whether to calculate the SOC constants for RAS2 jobs only.**
@@ -99,10 +74,8 @@ RAS_CALC_SOC
 > * **Type**: `Integer/Logical`
 > * **Default**: `False`
 > * **Options**:
->     * False
->     * Do not perform the SOC calculation.
->     * True
->     * Perform the SOC calculation.
+>     * `False`: Do not perform the SOC calculation.
+>     * `True`: Perform the SOC calculation.
 > * **Recommendation**: This $rem variable is used to control the spin-orbit coupling (SOC) analysis section.
 
 Note: For SOC calculations, RASCI2 method by default computes both the
@@ -112,8 +85,6 @@ MOLDEN_FORMAT and NTO_PAIRS, are needed for the NTO
 analysis. Details of the two variables are provided in the following *$rem*
 sections:
 
-MOLDEN_FORMAT
-
 ### `MOLDEN_FORMAT`
 
 > **Sets the output format of NTOs in RASCI2 SOC analysis to MolDen format.**
@@ -121,15 +92,8 @@ MOLDEN_FORMAT
 > * **Type**: `Logical`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Append
->     * MolDen
->     * input file at the end of the
->     * Q-Chem
->     * output file.
+>     * `True`: Append MolDen input file at the end of the Q-Chem output file.
 > * **Recommendation**: Currently, SOC-NTO analysis in RASCI2 only works with MolDen . Other visualization tools are not supported at the moment. Please see the Visualizing Orbitals Using MolDen section for more information.
-
-NTO_PAIRS
 
 ### `NTO_PAIRS`
 
@@ -138,13 +102,8 @@ NTO_PAIRS
 > * **Type**: `Integer`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * Write
->     * $N$
->     * NTO pairs per SOC transition.
+>     * $N$: Write $N$ NTO pairs per SOC transition.
 > * **Recommendation**: If activated ( $N>0$ ), a minimum of two NTO pairs will be printed for each transition. Increase the value of $N$ if additional NTOs are desired. See Section 7.13.3 for information on visualizing NTOs.
-
-RAS_PCM_INIT
 
 ### `RAS_PCM_INIT`
 
@@ -153,6 +112,5 @@ RAS_PCM_INIT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * include solvation
+>     * `TRUE`: include solvation
 > * **Recommendation**: This triggers the nonequilibrium version of state-specific solvation. Additional keywords are necessary for the equilibrium version.

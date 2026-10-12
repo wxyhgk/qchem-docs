@@ -19,8 +19,6 @@ The minimum input also requires specifying the desired (non-zero) value for
 RAS_ROOTS, the number of electrons in the “active” RAS2 space and
 the number of orbitals in RAS1 and RAS2 subspaces.
 
-RAS_ROOTS
-
 ### `RAS_ROOTS`
 
 > **Sets the number of RAS-CI roots to be computed.**
@@ -28,14 +26,9 @@ RAS_ROOTS
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * $n>0$
->     * Compute
->     * $n$
->     * RAS-CI states
+>     * $n$: $n>0$ Compute
+>     * $n$: RAS-CI states
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_ELEC
 
 ### `RAS_ELEC`
 
@@ -44,12 +37,8 @@ RAS_ELEC
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * User-defined integer,
->     * $n>0$
+>     * $n$: User-defined integer, $n>0$
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_ELEC_ALPHA
 
 ### `RAS_ELEC_ALPHA`
 
@@ -58,12 +47,8 @@ RAS_ELEC_ALPHA
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * User-defined integer,
->     * $n>0$
+>     * $n$: User-defined integer, $n>0$
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_ELEC_BETA
 
 ### `RAS_ELEC_BETA`
 
@@ -72,12 +57,8 @@ RAS_ELEC_BETA
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * User-defined integer,
->     * $n>0$
+>     * $n$: User-defined integer, $n>0$
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_ACT
 
 ### `RAS_ACT`
 
@@ -86,12 +67,8 @@ RAS_ACT
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * $n$
->     * User-defined integer,
->     * $n>0$
+>     * $n$: User-defined integer, $n>0$
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_OCC
 
 ### `RAS_OCC`
 
@@ -100,12 +77,8 @@ RAS_OCC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined integer,
->     * $n>0$
+>     * $n$: User-defined integer, $n>0$
 > * **Recommendation**: These are the initial doubly occupied orbitals (RAS1) before including $hole$ type of excitations. The RAS1 space starts from the lowest orbital up to , i.e. no frozen orbitals option available yet. Only works with RAS-CI.
-
-RAS_DO_HOLE
 
 ### `RAS_DO_HOLE`
 
@@ -114,13 +87,9 @@ RAS_DO_HOLE
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Include hole configurations (RAS1 to RAS2 excitations)
->     * FALSE
->     * Do not include hole configurations
+>     * `TRUE`: Include hole configurations (RAS1 to RAS2 excitations)
+>     * `FALSE`: Do not include hole configurations
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_DO_PART
 
 ### `RAS_DO_PART`
 
@@ -129,13 +98,9 @@ RAS_DO_PART
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Include particle configurations (RAS2 to RAS3 excitations)
->     * FALSE
->     * Do not include particle configurations
+>     * `TRUE`: Include particle configurations (RAS2 to RAS3 excitations)
+>     * `FALSE`: Do not include particle configurations
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_AMPL_PRINT
 
 ### `RAS_AMPL_PRINT`
 
@@ -144,12 +109,8 @@ RAS_AMPL_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * $n$
->     * User-defined integer,
->     * $n\geq 0$
+>     * $n$: User-defined integer, $n\geq 0$
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_ACT_ORB
 
 ### `RAS_ACT_ORB`
 
@@ -158,13 +119,8 @@ RAS_ACT_ORB
 > * **Type**: `INTEGER ARRAY`
 > * **Default**: `From`
 > * **Options**:
->     * $[i,j,k...]$
->     * The number of orbitals must be equal to the
->     * RAS_ACT
->     * variable
+>     * $[i,j,k...]$: The number of orbitals must be equal to the RAS_ACT variable
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_NATORB
 
 ### `RAS_NATORB`
 
@@ -173,13 +129,9 @@ RAS_NATORB
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Compute natural orbital occupancies for all states
->     * FALSE
->     * Do not compute natural orbital occupancies
+>     * `TRUE`: Compute natural orbital occupancies for all states
+>     * `FALSE`: Do not compute natural orbital occupancies
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_NATORB_STATE
 
 ### `RAS_NATORB_STATE`
 
@@ -188,13 +140,8 @@ RAS_NATORB_STATE
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $i$
->     * Saves the natural orbitals for the
->     * $i$
->     * th state
+>     * $i$: Saves the natural orbitals for the $i$ th state
 > * **Recommendation**: None. Only works with RAS-CI and if GUI = 2.
-
-RAS_GUESS_CS
 
 ### `RAS_GUESS_CS`
 
@@ -203,13 +150,9 @@ RAS_GUESS_CS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Imposes to start with
->     * $n$
->     * closed shell guesses
+>     * $n$: Imposes to start with
+>     * $n$: closed shell guesses
 > * **Recommendation**: Only relevant for the computation of singlet states. Only works with RAS-CI.
-
-RAS_SPIN_MULT
 
 ### `RAS_SPIN_MULT`
 
@@ -218,14 +161,8 @@ RAS_SPIN_MULT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Compute any spin multiplicity
->     * $2n+1$
->     * User-defined integer,
->     * $n\geq 0$
+>     * `0`: Compute any spin multiplicity $2n+1$ User-defined integer, $n\geq 0$
 > * **Recommendation**: option is only available for $M_{S}=0$ systems, that is, with the same number of $\alpha$ and $\beta$ electrons.
-
-RAS_PT2
 
 ### `RAS_PT2`
 
@@ -234,13 +171,9 @@ RAS_PT2
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Compute RASCI(2) energy corrections
->     * FALSE
->     * Do not compute RASCI(2) energy corrections
+>     * `TRUE`: Compute RASCI(2) energy corrections
+>     * `FALSE`: Do not compute RASCI(2) energy corrections
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_PT2_PARTITION
 
 ### `RAS_PT2_PARTITION`
 
@@ -249,13 +182,9 @@ RAS_PT2_PARTITION
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 2
->     * Epstein-Nesbet (EN) partitioning
->     * 0
->     * Do both DK and EN partitionings
+>     * `2`: Epstein-Nesbet (EN) partitioning
+>     * `0`: Do both DK and EN partitionings
 > * **Recommendation**: Only for RAS-CI if RAS_PT2 is set to true.
-
-RAS_PT2_VSHIFT
 
 ### `RAS_PT2_VSHIFT`
 
@@ -264,11 +193,8 @@ RAS_PT2_VSHIFT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * User-defined integer
+>     * $n$: User-defined integer
 > * **Recommendation**: Only for RAS-CI if RAS_PT2 is set to true.
-
-RAS_SRDFT
 
 ### `RAS_SRDFT`
 
@@ -277,17 +203,9 @@ RAS_SRDFT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Compute RASCI-
->     * $sr$
->     * DFT states and energies
->     * FALSE
->     * Do not perform a RASCI-
->     * $sr$
->     * DFT calculation
+>     * `TRUE`: Compute RASCI- $sr$ DFT states and energies
+>     * `FALSE`: Do not perform a RASCI- $sr$ DFT calculation
 > * **Recommendation**: None. Only works with RAS-CI. RAS_SRDFT_EXC and RAS_SRDFT_COR need to be set.
-
-RAS_SRDFT_EXC
 
 ### `RAS_SRDFT_EXC`
 
@@ -296,19 +214,10 @@ RAS_SRDFT_EXC
 > * **Type**: `STRING`
 > * **Default**: `No default`
 > * **Options**:
->     * NAME
->     * Use
->     * =
->     * NAME
->     * , where
->     * NAME
->     * is
->     * one of the short-range exchange functionals listed in
->     * Section
->     * 5.3.3
+>     * `NAME`: Use =
+>     * `NAME`: , where
+>     * `NAME`: is one of the short-range exchange functionals listed in Section 5.3.3
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_SRDFT_COR
 
 ### `RAS_SRDFT_COR`
 
@@ -317,18 +226,10 @@ RAS_SRDFT_COR
 > * **Type**: `STRING`
 > * **Default**: `No default`
 > * **Options**:
->     * NAME
->     * Use
->     * =
->     * NAME
->     * , where
->     * NAME
->     * is
->     * one of the short-range correlation functionals listed in Section
->     * 5.3.4
+>     * `NAME`: Use =
+>     * `NAME`: , where
+>     * `NAME`: is one of the short-range correlation functionals listed in Section 5.3.4
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_OMEGA
 
 ### `RAS_OMEGA`
 
@@ -337,14 +238,8 @@ RAS_OMEGA
 > * **Type**: `INTEGER`
 > * **Default**: `400`
 > * **Options**:
->     * $n$
->     * Corresponding to
->     * $\omega=n/1000$
->     * , in units of bohr
->     * ${}^{-1}$
+>     * $n$: Corresponding to $\omega=n/1000$ , in units of bohr ${}^{-1}$
 > * **Recommendation**: None. Range-separation parameter is typical indicated by $\omega$ or $\mu$ . Only works with RAS-CI.
-
-RAS_SRDFT_DAMP
 
 ### `RAS_SRDFT_DAMP`
 
@@ -353,12 +248,8 @@ RAS_SRDFT_DAMP
 > * **Type**: `REAL`
 > * **Default**: `0.5`
 > * **Options**:
->     * $\alpha$
->     * Damping factor
->     * $0<\alpha<1$
+>     * $\alpha$: Damping factor $0<\alpha<1$
 > * **Recommendation**: Modify in case of convergence issues along the RAS-CI- $sr$ DFT iterations. Only works with RAS-CI
-
-RAS_SRDFT_SA_ROOTS
 
 ### `RAS_SRDFT_SA_ROOTS`
 
@@ -367,11 +258,8 @@ RAS_SRDFT_SA_ROOTS
 > * **Type**: `INTEGER ARRAY`
 > * **Default**: `All computed states`
 > * **Options**:
->     * $[i,j,k\ldots]$
->     * List of states.
+>     * $[i,j,k\ldots]$: List of states.
 > * **Recommendation**: None. Only works with RAS-CI
-
-RAS_NFRAG
 
 ### `RAS_NFRAG`
 
@@ -380,11 +268,8 @@ RAS_NFRAG
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Number of fragments to be considered
+>     * $n$: Number of fragments to be considered
 > * **Recommendation**: Only for RAS-CI. The printed information level is controlled by RAS_PRINT .
-
-RAS_NFRAG_ATOMS
 
 ### `RAS_NFRAG_ATOMS`
 
@@ -393,12 +278,8 @@ RAS_NFRAG_ATOMS
 > * **Type**: `INTEGER ARRAY`
 > * **Default**: `None`
 > * **Options**:
->     * $[i,j,k...]$
->     * The sum of the numbers must be equal to the total number
->     * of atoms in the systems
+>     * $[i,j,k...]$: The sum of the numbers must be equal to the total number of atoms in the systems
 > * **Recommendation**: None. Only works with RAS-CI.
-
-RAS_FRAG_SETS
 
 ### `RAS_FRAG_SETS`
 
@@ -407,13 +288,9 @@ RAS_FRAG_SETS
 > * **Type**: `INTEGER ARRAY`
 > * **Default**: `[NOcc,NAct,NVir]`
 > * **Options**:
->     * $[i,j,k...]$
->     * Defines sets of canonical MOs to be localized into
->     * $n$
->     * fragments
+>     * $[i,j,k...]$: Defines sets of canonical MOs to be localized into
+>     * $n$: fragments
 > * **Recommendation**: Setting within RAS1, RAS2 and RAS3 spaces alleviates the computational cost of the localization procedure. It might also result in improved fragment orbitals. Only works with RAS-CI.
-
-CALC_SOC
 
 ### `CALC_SOC`
 
@@ -422,13 +299,9 @@ CALC_SOC
 > * **Type**: `INTEGER/LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not perform the SOC calculation.
->     * TRUE
->     * Perform the SOC calculation.
+>     * `FALSE`: Do not perform the SOC calculation.
+>     * `TRUE`: Perform the SOC calculation.
 > * **Recommendation**: In addition to TRUE and FALSE , the EOM-CC code has more variants of SOC evaluation; see Section 7.9.21.4 .
-
-RAS_SOC_2E
 
 ### `RAS_SOC_2E`
 
@@ -437,13 +310,9 @@ RAS_SOC_2E
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Do not compute two-electron mean-field contribution.
->     * TRUE
->     * Compute two-electron mean-field contribution.
+>     * `FALSE`: Do not compute two-electron mean-field contribution.
+>     * `TRUE`: Compute two-electron mean-field contribution.
 > * **Recommendation**: None.
-
-RAS_SOC_SYM_DENS
 
 ### `RAS_SOC_SYM_DENS`
 
@@ -452,16 +321,6 @@ RAS_SOC_SYM_DENS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not average
->     * $\alpha$
->     * and
->     * $\beta$
->     * densities .
->     * TRUE
->     * Average
->     * $\alpha$
->     * and
->     * $\beta$
->     * densities.
+>     * `FALSE`: Do not average $\alpha$ and $\beta$ densities .
+>     * `TRUE`: Average $\alpha$ and $\beta$ densities.
 > * **Recommendation**: None.

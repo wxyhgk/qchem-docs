@@ -18,8 +18,6 @@ SGM 算法的完整细节见参考文献 [[511]](../bib_references/bib.md#bib526
 
 SGM 的使用由 *$rem* 部分的 SCF_ALGORITHM 变量控制：
 
-SCF_ALGORITHM
-
 ### `SCF_ALGORITHM`
 
 > **用于收敛 SCF 的算法。**
@@ -32,8 +30,6 @@ SCF_ALGORITHM
 >     * SGM_QLS
 >     * 仅适用于 R 和 U 轨道
 > * **建议**：SGM 应仅用于 RO 或 OS_RO 轨道。对于 R 或 U 轨道，推荐使用 SGM_LS，但它也可用于 RO 和 OS_RO 轨道。SGM_QLS 是一种速度较慢但更稳健的选择，适用于 R 和 U 计算。
-
-DELTA_GRADIENT_SCALE
 
 ### `DELTA_GRADIENT_SCALE`
 

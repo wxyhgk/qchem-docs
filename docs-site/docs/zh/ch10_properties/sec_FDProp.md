@@ -24,8 +24,6 @@ FDIFF_STENCIL = 3 或 4 获得。传统上，在一阶导数的语境下，它�
 而每个秩则在单个节点内部利用 OpenMP 实现共享内存并行。
 该策略对于大体系尤其有效，能够以极小的通信开销提供出色的可扩展性。
 
-IDERIV
-
 ### `IDERIV`
 
 > **控制以解析方式计算的导数阶数。用户通常无需指定该值，除非希望使用数值导数。若该值设置得低于 JOBTYPE 所要求的阶数，则导数将以数值方式计算。**
@@ -41,8 +39,6 @@ IDERIV
 >     * 仅解析能量。
 > * **建议**：出于效率考虑，通常设置为尽可能大的值。注意，若无法获得所请求阶数的解析导数，该值将被自动调低。
 
-FDIFF_STEPSIZE_QFF
-
 ### `FDIFF_STEPSIZE_QFF`
 
 > **以有限差分计算三阶与四阶导数时所使用的位移量。**
@@ -56,8 +52,6 @@ FDIFF_STEPSIZE_QFF
 >     * 。
 > * **建议**：使用默认值，除非势能面非常平坦，此时应使用较大的值。
 
-FINITEDIFFSZ_POWER
-
 ### `FINITEDIFFSZ_POWER`
 
 > **控制以有限差分计算导数时所用步长数量级的指数。**
@@ -70,8 +64,6 @@ FINITEDIFFSZ_POWER
 >     * $10^{-n}$
 >     * 。
 > * **建议**：无。
-
-FDIFF_STEPSIZE
 
 ### `FDIFF_STEPSIZE`
 
@@ -90,8 +82,6 @@ FDIFF_STEPSIZE
 >     * 的值。
 > * **建议**：使用默认值，除非势能面非常平坦，此时应使用较大的值。三阶与四阶导数请参阅 FDIFF_STEPSIZE_QFF。
 
-FDIFF_STEPSIZE_B
-
 ### `FDIFF_STEPSIZE_B`
 
 > **以有限差分计算导数时所用到的外静态磁场。**
@@ -109,8 +99,6 @@ FDIFF_STEPSIZE_B
 >     * 的值。
 > * **建议**：无。
 
-FDIFF_STEPSIZE_M
-
 ### `FDIFF_STEPSIZE_M`
 
 > **以有限差分计算导数时所用到的核磁矩场。**
@@ -127,8 +115,6 @@ FDIFF_STEPSIZE_M
 >     * FINITEDIFFSZ_POWER
 >     * 的值。
 > * **建议**：无。
-
-FDIFF_STENCIL
 
 ### `FDIFF_STENCIL`
 

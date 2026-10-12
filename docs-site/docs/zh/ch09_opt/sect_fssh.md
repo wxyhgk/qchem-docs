@@ -16,8 +16,6 @@ title: "9.9.7 最少跳跃面跳跃（Fewest-Switches Surface Hopping）"
 
 要请求 FSSH 计算，只需在激发态 AIMD 模拟所需的变量之外再添加少数几个 *$rem* 变量。目前，FSSH 计算只能使用玻恩-奥本海默分子动力学（BOMD）方法进行。此外，FSSH 计算不支持优化速度 Verlet（optimized velocity Verlet, OVV）积分方法。
 
-FSSH_LOWESTSURFACE
-
 ### `FSSH_LOWESTSURFACE`
 
 > **指定面跳跃计算中所考虑的最低能量态。**
@@ -25,13 +23,9 @@ FSSH_LOWESTSURFACE
 > * **类型**: `INTEGER`
 > * **默认值**: `None`
 > * **选项**:
->     * $n$
->     * 在 FSSH 计算中仅考虑
->     * $n$
->     * 及以上的状态。
+>     * $n$: 在 FSSH 计算中仅考虑
+>     * $n$: 及以上的状态。
 > * **建议**: 无
-
-FSSH_NSURFACES
 
 ### `FSSH_NSURFACES`
 
@@ -40,13 +34,9 @@ FSSH_NSURFACES
 > * **类型**: `INTEGER`
 > * **默认值**: `None`
 > * **选项**:
->     * $n$
->     * 在面跳跃计算中考虑
->     * $n$
->     * 个状态。
+>     * $n$: 在面跳跃计算中考虑
+>     * $n$: 个状态。
 > * **建议**: 任何可能与活跃势能面在能量上接近的状态都应包含在面跳跃计算中。
-
-FSSH_INITIALSURFACE
 
 ### `FSSH_INITIALSURFACE`
 
@@ -55,18 +45,8 @@ FSSH_INITIALSURFACE
 > * **类型**: `INTEGER`
 > * **默认值**: `None`
 > * **选项**:
->     * $n$
->     * 一个介于
->     * FSSH_LOWESTSURFACE
->     * 与
->     * FSSH_LOWESTSURFACE
->     * $+$
->     * FSSH_NSURFACES
->     * $-1$
->     * 之间的整数。
+>     * $n$: 一个介于 FSSH_LOWESTSURFACE 与 FSSH_LOWESTSURFACE $+$ FSSH_NSURFACES $-1$ 之间的整数。
 > * **建议**: 无
-
-AFSSH
 
 ### `AFSSH`
 
@@ -75,13 +55,9 @@ AFSSH
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 传统面跳跃，无退相位。
->     * 1
->     * 使用增广最少跳跃面跳跃（AFSSH）。
+>     * `0`: 传统面跳跃，无退相位。
+>     * `1`: 使用增广最少跳跃面跳跃（AFSSH）。
 > * **建议**: AFSSH 会增加计算成本，但可能提高某些体系的精度。更多细节参见文献 1321 Subotnik J. E., Shenvi N. J. Chem. Phys. (2011) , 134 , pp. 024105 . Link , 1324 Subotnik J. E. J. Phys. Chem. A (2011) , 114 , pp. 12083 . Link , 749 Landry B. R., Subotnik J. E. J. Chem. Phys. (2012) , 137 , pp. 22A513 . Link。
-
-AIMD_SHORT_TIME_STEP
 
 ### `AIMD_SHORT_TIME_STEP`
 
@@ -90,24 +66,11 @@ AIMD_SHORT_TIME_STEP
 > * **类型**: `INTEGER`
 > * **默认值**: `TIME_STEP`
 > * **选项**:
->     * $n$
->     * 指定电子时间步时长为
->     * $n$
->     * /
->     * AIMD_TIME_STEP_CONVERSION
->     * a.u. 如果
->     * $n$
->     * 小于核时间步变量
->     * TIME_STEP
->     * ，则电子波函数将在每个核时间步内被多次积分，
->     * 并对能量梯度、导数耦合等核量使用线性插值。注意
->     * $n$
->     * 必须能整除
->     * TIME_STEP
->     * 。
+>     * $n$: 指定电子时间步时长为
+>     * $n$: / AIMD_TIME_STEP_CONVERSION a.u. 如果
+>     * $n$: 小于核时间步变量 TIME_STEP，则电子波函数将在每个核时间步内被多次积分， 并对能量梯度、导数耦合等核量使用线性插值。注意
+>     * $n$: 必须能整除 TIME_STEP。
 > * **建议**: 在长时间模拟中保持密度矩阵的迹接近于 1 的前提下，尽量取较大的值。注意，虽然为电子时间步指定合适的时长对于维持准确的波函数时间演化至关重要，但纯电子时间步采用线性插值来估计重要物理量。因此，较短的电子时间步并不能替代合理的核时间步。
-
-FSSH_CONTINUE
 
 ### `FSSH_CONTINUE`
 
@@ -117,10 +80,7 @@ FSSH_CONTINUE
 > * **默认值**: `0`
 > * **Options**:
 > * **选项**:
->     * $0$
->     * 从头开始新计算。
->     * $1$
->     * 从上一次运行重启。
+>     * $0$: 从头开始新计算。 $1$ 从上一次运行重启。
 > * **建议**: 无
 
 ???+ example "示例 9.44: FSSH 模拟。注意必须通过 CALC_NAC 请求解析导数耦合，但无需包含 $derivative_coupling 段。CIS_STATE_DERIV  likewise 也是如此，它会被自动设置为初始活跃面。最后，对于在能量上可以到达导数耦合较大区域的体系，必须谨慎选择足够小的时间步，因此这里选择了 AIMD_TIME_STEP_CONVERSION 和 TIME_STEP 。"

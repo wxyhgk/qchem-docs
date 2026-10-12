@@ -32,8 +32,6 @@ CCSD or EOM-CCSD multipole moments and other properties, use
 CC_REF_PROP = TRUE and CC_EOM_PROP = TRUE.
 **
 
-PRINT_RADII_GYRE
-
 ### `PRINT_RADII_GYRE`
 
 > **Controls printing of MO centroids and radii of gyration.**
@@ -41,20 +39,14 @@ PRINT_RADII_GYRE
 > * **Type**: `LOGICAL/INTEGER`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE (or 1)
->     * Print the centroid and radius of gyration for each occupied MO
->     * and each density.
->     * 2
->     * Print centroids and radii of gyration for the virtual MOs as well.
->     * FALSE (or 0)
->     * Do not calculate these quantities.
+>     * `TRUE`（或 `1`）: Print the centroid and radius of gyration for each occupied MO and each density.
+>     * `2`: Print centroids and radii of gyration for the virtual MOs as well.
+>     * `FALSE`（或 `0`）: Do not calculate these quantities.
 > * **Recommendation**: None
 
 **Q-Chem** can compute Cartesian multipole moments of the charge density to
 arbitrary order, both for the ground state and for excited states
 calculated using the CIS or TDDFT methods.
-
-MULTIPOLE_ORDER
 
 ### `MULTIPOLE_ORDER`
 
@@ -63,13 +55,9 @@ MULTIPOLE_ORDER
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * Calculate moments to
->     * $n$
->     * th order.
+>     * $n$: Calculate moments to
+>     * $n$: th order.
 > * **Recommendation**: Use the default unless higher multipoles are required.
-
-CIS_MOMENTS
 
 ### `CIS_MOMENTS`
 
@@ -78,8 +66,6 @@ CIS_MOMENTS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not calculate excited-state moments.
->     * TRUE
->     * Calculate moments for each excited state.
+>     * `FALSE`: Do not calculate excited-state moments.
+>     * `TRUE`: Calculate moments for each excited state.
 > * **Recommendation**: Set to TRUE if excited-state moments are desired. (This is a trivial additional calculation.) The MULTIPOLE_ORDER controls how many multipole moments are printed.

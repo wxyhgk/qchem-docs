@@ -185,8 +185,6 @@ EMD 分析本身的开关 EMD_ANALYSIS、用于构造约化真实空间电荷分
 循环数 MAX_SINKHORN_CYCLES。较大的正则化参数通常能改善与精确 EMD 的一致性，但若核矩阵变得过于尖锐，则可能导致数值不稳定。较小的正则化参数能改善数值鲁棒性，
 但相对于精确 EMD 会引入更大的近似误差。
 
-EMD_ANALYSIS
-
 ### `EMD_ANALYSIS`
 
 > **控制是否执行推土机距离（EMD）分析。**
@@ -194,13 +192,9 @@ EMD_ANALYSIS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行 EMD 分析。
->     * TRUE
->     * 执行 EMD 分析。
+>     * `FALSE`: 不执行 EMD 分析。
+>     * `TRUE`: 执行 EMD 分析。
 > * **建议**: 该关键字激活对真实空间密度差的正、负两部分之间推土机距离（EMD）的求值。相应的电荷分布构建于 EMD_FIT_GRID 所指定的网格上。
-
-EMD_FIT_GRID
 
 ### `EMD_FIT_GRID`
 
@@ -209,15 +203,8 @@ EMD_FIT_GRID
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * $N$
->     * 网格规格
->     * $N$
->     * 的格式与
->     * XC_GRID
->     * 相同。
+>     * $N$: 网格规格 $N$ 的格式与 XC_GRID 相同。
 > * **建议**: 该关键字定义用于进入 EMD 计算的密度差约化网格表示的网格。输入格式与 XC_GRID 相同，但其取值应不大于 XC_GRID。推荐的选取是 19000026；对于较大分子，可以使用更小的网格，精度损失甚微。更稠密的网格通常能改善 EMD 结果的质量，但同时也会增加传输问题的计算开销。
-
-SINKHORN
 
 ### `SINKHORN`
 
@@ -226,13 +213,9 @@ SINKHORN
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 使用精确的运输单纯形算法。
->     * TRUE
->     * 使用熵正则化的 Sinkhorn–Knopp 算法。
+>     * `FALSE`: 使用精确的运输单纯形算法。
+>     * `TRUE`: 使用熵正则化的 Sinkhorn–Knopp 算法。
 > * **建议**: Sinkhorn–Knopp 算法为精确推土机距离提供高效的近似，对于大网格通常更为可取。相应的正则化强度由 SINKHORN_REG 控制。
-
-MAX_SINKHORN_CYCLES
 
 ### `MAX_SINKHORN_CYCLES`
 
@@ -241,13 +224,8 @@ MAX_SINKHORN_CYCLES
 > * **类型**: `INTEGER`
 > * **默认值**: `50`
 > * **选项**:
->     * $N$
->     * 最多执行
->     * $N$
->     * 次 Sinkhorn 迭代。
+>     * $N$: 最多执行 $N$ 次 Sinkhorn 迭代。
 > * **建议**: 若 Sinkhorn 迭代在默认循环次数内不收敛，可增大此值。仅当 SINKHORN 设为 1 时该关键字才有效。
-
-SINKHORN_THRESHOLD
 
 ### `SINKHORN_THRESHOLD`
 
@@ -256,13 +234,8 @@ SINKHORN_THRESHOLD
 > * **类型**: `INTEGER`
 > * **默认值**: `3`
 > * **选项**:
->     * $N$
->     * 将 Sinkhorn 迭代收敛至阈值
->     * $10^{-N}$
->     * 。
+>     * $N$: 将 Sinkhorn 迭代收敛至阈值 $10^{-N}$。
 > * **建议**: $N$ 值较小对应较宽松的收敛判据，而较大的值对应更严格的收敛要求。仅当 SINKHORN 设为 1 时该关键字才有效。
-
-SINKHORN_REG
 
 ### `SINKHORN_REG`
 
@@ -271,10 +244,7 @@ SINKHORN_REG
 > * **类型**: `INTEGER`
 > * **默认值**: `100`
 > * **选项**:
->     * $N$
->     * 对 Sinkhorn 核使用正则化参数
->     * $N$
->     * 。
+>     * $N$: 对 Sinkhorn 核使用正则化参数 $N$。
 > * **建议**: 该关键字控制 EMD 问题 Sinkhorn 表述中熵正则化的强度。较大的值通常给出更接近精确 EMD 的结果，但也可能导致数值不稳定或收敛变慢。较小的值数值上更稳健，但与精确最优传输解的偏差更大。在当前实现中，用户指定的正则化参数在构造 Sinkhorn 核之前会按距离矩阵的最大元素进行内部缩放。仅当 SINKHORN 设为 1 时该关键字才有效。
 
 ???+ example "示例 10.10: 使用 PBE 泛函对水分子进行基础 TDDFT 计算，并采用精确的运输单纯形算法对前三个激发单重态和三重态进行 EMD 分析。"

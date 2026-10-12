@@ -24,8 +24,6 @@ Weigend[[1442]](../bib_references/bib.md#bib1502)
 in conjunction with PARI-K. The errors associated with the PARI-K approximation
 appear to be only slightly worse than standard RI-HF.[[938]](../bib_references/bib.md#bib978)
 
-PARI_K
-
 ### `PARI_K`
 
 > **Controls the use of the PARI-K approximation in the construction of the exchange matrix**
@@ -33,6 +31,5 @@ PARI_K
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Use PARI-K.
+>     * `TRUE`: Use PARI-K.
 > * **Recommendation**: Use for basis sets aug-cc-pVTZ and larger.

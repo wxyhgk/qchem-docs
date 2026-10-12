@@ -21,8 +21,6 @@ codes can be used even if the basis does not contain $g$ or $h$ functions;
 PURECART = 1111 (or 2222) specifies to use pure (or Cartesian)
 functions for all angular momentum types.
 
-PURECART
-
 ### `PURECART`
 
 > **INTEGER**
@@ -30,8 +28,7 @@ PURECART
 > * **Type**: `Controls the use of pure (spherical harmonic) or Cartesian angular forms`
 > * **Default**: `1111`
 > * **Options**:
->     * $hgfd$
->     * Use 1 for pure and 2 for Cartesian.
+>     * $hgfd$: Use 1 for pure and 2 for Cartesian.
 > * **Recommendation**: This is pre-defined for all standard basis sets
 
 In standard basis sets all functions are pure, except for the $d$ functions

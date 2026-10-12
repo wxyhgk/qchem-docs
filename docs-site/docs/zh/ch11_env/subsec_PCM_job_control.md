@@ -100,10 +100,7 @@ title: "11.2.4 PCM 任务控制"
 > * **类型**: `INTEGER`
 > * **默认值**: `8`
 > * **选项**:
->     * $n$
->     * 当切换函数（switching function）小于
->     * $10^{-n}$
->     * 时舍弃网格点。
+>     * $n$: 当切换函数（switching function）小于 $10^{-n}$ 时舍弃网格点。
 > * **建议**: 使用默认值，经验证该值可在机器精度范围内避免不连续性。增大 $n$ 可降低 PCM 计算的成本，但可能在势能面中引入不连续性。如果计算中的 PCM 部分开销过大，更好的办法是减少离散化点的数目（即下文所述的 HeavyPoints 和 HPoints），或改用 Solver = CG，而不是调整该参数。
 
 溶质空腔的构建是该模型的重要组成部分，用户应就此查阅相关文献，尤其是关于原子球所采用的半径。**Q-Chem** 提供的默认值对应于几十年来形成的共识做法，即使用经因子 $\alpha_{\text{vdW}}=1.2$ 缩放的范德华（vdW）半径 $\{R_{\text{vdW},A}\}$；参见式 ([11.4](topic_pcm-em.md#eq:PCM_atomic_radii))。最广泛使用的 vdW 半径是由 Bondi 根据晶体学数据确定的，[[146]](../bib_references/bib.md#bib136)
@@ -121,38 +118,14 @@ title: "11.2.4 PCM 任务控制"
 > * **类型**: `STRING`
 > * **默认值**: `Bondi`
 > * **选项**:
->     * Bondi
->     * 使用（扩展的）Bondi 半径集合（参见文献
->     * 1186
->     * Rowland R. S., Taylor R.
->     * J. Phys. Chem.
->     * (1996)
->     * ,
->     * 100
->     * ,
->     * pp. 7384
->     * .
->     * Link
->     * ）。
->     * FF
->     * 使用来自分子力学力场的 Lennard-Jones 半径。
->     * UFF
->     * 使用来自通用力场（Universal Force Field）的半径（参见文献
->     * 1146
->     * Rappé A. K. et al.
->     * J. Am. Chem. Soc.
->     * (1992)
->     * ,
->     * 114
->     * ,
->     * pp. 10024
->     * .
->     * Link
->     * ）。
->     * Read
->     * 从
->     * $van_der_waals
->     * 输入部分读取原子半径。
+>     * `Bondi`: 使用（扩展的）Bondi 半径集合（参见文献
+>     * `1186`: Rowland R. S., Taylor R. J. Phys. Chem. (1996) ,
+>     * `100`: , pp. 7384 . Link）。
+>     * `FF`: 使用来自分子力学力场的 Lennard-Jones 半径。
+>     * `UFF`: 使用来自通用力场（Universal Force Field）的半径（参见文献
+>     * `1146`: Rappé A. K. et al. J. Am. Chem. Soc. (1992) ,
+>     * `114`: , pp. 10024 . Link）。
+>     * `Read`: 从 $van_der_waals 输入部分读取原子半径。
 > * **建议**: Bondi 半径被广泛使用。选项 FF 要求用户在 $rem 部分通过 FORCE_FIELD 变量指定分子力学力场，并在 $molecule 部分定义原子类型（见第 11.3 节）。使用 UFF 半径时则不需要这些设置。对于用户自定义半径，$van_der_waals 输入部分的格式见第 11.2.10 节。
 
 ### `vdwScale`
@@ -162,10 +135,7 @@ title: "11.2.4 PCM 任务控制"
 > * **类型**: `FLOAT`
 > * **默认值**: `1.2`
 > * **选项**:
->     * $\alpha$
->     * 使用缩放因子
->     * $\alpha>0$
->     * 。
+>     * $\alpha$: 使用缩放因子 $\alpha>0$。
 > * **建议**: 该默认值在 PCM 计算中被广泛使用，但如果采用溶剂可及表面（solvent-accessible surface），取值 1.0 可能更为合适。
 
 ### `SASradius`
@@ -175,10 +145,7 @@ title: "11.2.4 PCM 任务控制"
 > * **类型**: `FLOAT`
 > * **默认值**: `0.0`
 > * **选项**:
->     * $r$
->     * 使用溶剂探针半径
->     * $r$
->     * ，单位为 Å。
+>     * $r$: 使用溶剂探针半径 $r$，单位为 Å。
 > * **建议**: 溶剂探针半径会加到溶质原子经缩放后的范德华半径上。水常用的溶剂探针半径为 1.4 Å，但历史上也曾使用更小的值（0.2–0.5 Å）。 569 Herbert J. M. Wiley Interdiscip. Rev.: Comput. Mol. Sci. (2021) , 11 , pp. e1519 . Link
 
 ### `SurfaceType`
@@ -188,10 +155,8 @@ title: "11.2.4 PCM 任务控制"
 > * **类型**: `STRING`
 > * **默认值**: `VDW_SAS`
 > * **选项**:
->     * VDW_SAS
->     * 范德华表面或溶剂可及表面
->     * SES
->     * 溶剂排除表面（solvent-excluded surface）
+>     * `VDW_SAS`: 范德华表面或溶剂可及表面
+>     * `SES`: 溶剂排除表面（solvent-excluded surface）
 > * **建议**: vdW 表面和溶剂可及表面（SAS）均仅由原子球构成，因此二者共用相同的选项；唯一区别在于是否指定溶剂探针半径 SASradius。对于真正的 vdW 表面，探针半径应为零（此即默认值）；而对于 SAS，传统上原子半径不进行缩放，因此应将 vdwScale 设为 1.0（这并非默认值）。对于 SES，仅有 SwiG 离散化方案可用，但它可以与任何（缩放或未缩放的）原子半径集合，或经 SASradius 增大的半径配合使用。
 
 请注意 **Radii** 关键字的说明：用户可以使用 *$van_der_waals* 输入部分为空腔构建指定自己的原子半径。

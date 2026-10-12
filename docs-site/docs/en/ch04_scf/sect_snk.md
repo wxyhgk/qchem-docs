@@ -55,8 +55,6 @@ SNK is currently available for HF exchange, global hybrids, and range-separated 
 may be invoked by setting SNK to be 1. The grid and thresholds may also be set via
 the rem variables discussed below.
 
-SNK
-
 ### `SNK`
 
 > **Controls the use of seminumerical exchange in the construction of the exchange matrix.**
@@ -64,11 +62,8 @@ SNK
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Use SNK.
+>     * $n>0$: Use SNK.
 > * **Recommendation**: Use for large systems/basis sets.
-
-SNK_GRID
 
 ### `SNK_GRID`
 
@@ -77,34 +72,10 @@ SNK_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `Use SG-1; Use DFT grid (`
 > * **Options**:
->     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
->     * $n$
->     * Use SG-
->     * $n$
->     * for all atoms,
->     * $n=1,2$
->     * , or 3
->     * $XY$
->     * A string of two six-digit integers
->     * $X$
->     * and
->     * $Y$
->     * , where
->     * $X$
->     * is the number of radial points
->     * and
->     * $Y$
->     * is the number of angular points, where possible numbers of Lebedev angular
->     * points must be allowed values from Table
->     * 5.2
->     * in
->     * Section
->     * 5.5
->     * .
+>     * `0`: Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * $n$: Use SG-
+>     * $n$: for all atoms, $n=1,2$ , or 3 $XY$ A string of two six-digit integers $X$ and $Y$ , where $X$ is the number of radial points and $Y$ is the number of angular points, where possible numbers of Lebedev angular points must be allowed values from Table 5.2 in Section 5.5 .
 > * **Recommendation**: Use the default unless numerical integration problems arise or grid errors become unacceptable. Note that Gauss-Legendre grids ( $-XY$ ) are not available for SNK.
-
-SNK_BATCH_SIZE
 
 ### `SNK_BATCH_SIZE`
 
@@ -113,13 +84,9 @@ SNK_BATCH_SIZE
 > * **Type**: `INTEGER`
 > * **Default**: `128`
 > * **Options**:
->     * $n$
->     * Use grid batch sizes of
->     * $n$
->     * grid points.
+>     * $n$: Use grid batch sizes of
+>     * $n$: grid points.
 > * **Recommendation**: Use the default. Larger batch sizes may lead to poorer screening.
-
-SNK_THRESH_B
 
 ### `SNK_THRESH_B`
 
@@ -128,13 +95,8 @@ SNK_THRESH_B
 > * **Type**: `INTEGER`
 > * **Default**: `14`
 > * **Options**:
->     * $n$
->     * for a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: for a threshold of $10^{-n}$ .
 > * **Recommendation**: Use the default unless higher accuracy (increase) or better performance (decrease) is desired.
-
-SNK_THRESH_E
 
 ### `SNK_THRESH_E`
 
@@ -143,13 +105,8 @@ SNK_THRESH_E
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * $n$
->     * for a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: for a threshold of $10^{-n}$ .
 > * **Recommendation**: Use the default unless higher accuracy (increase) or better performance (decrease) is desired.
-
-SNK_THRESH_K
 
 ### `SNK_THRESH_K`
 
@@ -158,13 +115,8 @@ SNK_THRESH_K
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n$
->     * for a threshold of
->     * $10^{-n}$
->     * .
+>     * $n$: for a threshold of $10^{-n}$ .
 > * **Recommendation**: Use the default unless higher accuracy (increase) or better performance (decrease) is desired.
-
-SNK_THRESH_FP32_M
 
 ### `SNK_THRESH_FP32_M`
 
@@ -173,13 +125,8 @@ SNK_THRESH_FP32_M
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * for a factor of
->     * $10^{n}$
->     * .
+>     * $n$: for a factor of $10^{n}$ .
 > * **Recommendation**: For most systems, the default gives appreciable speedups with insignificant losses to accuracy. In some rare cases, the use of mixed precision may result in infs/nans due to fp32 overflow. In this case, mixed precision integrals may be disabled with $\mbox{{\small SNK\_THRESH\_FP32\_M}}=0$ . Note that if an inf/nan is detected in the SNK exchange energy, the SCF will proceed with mixed precision disabled.
-
-SNK_PRINT_TIMING
 
 ### `SNK_PRINT_TIMING`
 
@@ -188,8 +135,7 @@ SNK_PRINT_TIMING
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n>0$
->     * Print timing information.
+>     * $n>0$: Print timing information.
 > * **Recommendation**: No recommendation.
 
 ???+ example "Example 4.22: Q-Chem input for an energy calculation with $\omega$ B97M-V/SNK."

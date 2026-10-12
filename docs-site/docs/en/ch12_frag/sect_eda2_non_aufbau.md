@@ -92,8 +92,6 @@ To do that, one can simply add SCFMI_MOM = TRUE to the *$rem* setup of an
 SCF-MI calculation (see Section [12.6.2](sect_gen_scfmi.md)). The non-*aufbau* electronic
 configuration can be specified through the *$scfmi_mom* section in the same way.
 
-EDA2_MOM
-
 ### `EDA2_MOM`
 
 > **Perform ALMO-EDA calculation with non- aufbau electronic configurations using MOM**
@@ -101,15 +99,9 @@ EDA2_MOM
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Standard ALMO-EDA calculation
->     * TRUE
->     * ALMO-EDA for non-
->     * aufbau
->     * states
+>     * `FALSE`: Standard ALMO-EDA calculation
+>     * `TRUE`: ALMO-EDA for non- aufbau states
 > * **Recommendation**: None
-
-SCFMI_MOM
 
 ### `SCFMI_MOM`
 
@@ -118,10 +110,8 @@ SCFMI_MOM
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Standard SCF-MI calculation
->     * TRUE
->     * SCF-MI calculation with MOM
+>     * `FALSE`: Standard SCF-MI calculation
+>     * `TRUE`: SCF-MI calculation with MOM
 > * **Recommendation**: None
 
 Note that EDA2_MOM and SCFMI_MOM can be used without

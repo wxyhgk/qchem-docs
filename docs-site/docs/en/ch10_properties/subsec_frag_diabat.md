@@ -452,8 +452,6 @@ the syntax is documented in detail in Sec. [12.6.7](../ch12_frag/sect_eda2_non_
 different diabatic states are separated by “–”. For diabatic states that do not involve
 on-fragment excitations, simply write “–” with no additional specification.
 
-FRAG_DIABAT_METHOD
-
 ### `FRAG_DIABAT_METHOD`
 
 > **Specify fragment based diabatization method**
@@ -461,35 +459,15 @@ FRAG_DIABAT_METHOD
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * ALMO_MSDFT
->     * Perform ALMO(MSDFT) diabatization
->     * POD
->     * Perform projection operator diabatization (the original method)
->     * POD2_L
->     * Perform POD2 with Löwdin orthogonalization
->     * POD2_GS
->     * Perform POD2 with Grad-Schmidt orthogonalization
->     * ESID
->     * The energy-split-in-dimer method,
->     * 1384
->     * Valeev E. F. et al.
->     * J. Am. Chem. Soc.
->     * (2006)
->     * ,
->     * 128
->     * ,
->     * pp. 9882
->     * .
->     * Link
->     * which is equivalent to
->     * the FMO approach
->     * introduced in Section
->     * 10.15.2.5
->     * FODFT
->     * Calculate electronic coupling using fragment orbital DFT
+>     * `ALMO_MSDFT`: Perform ALMO(MSDFT) diabatization
+>     * `POD`: Perform projection operator diabatization (the original method)
+>     * `POD2_L`: Perform POD2 with Löwdin orthogonalization
+>     * `POD2_GS`: Perform POD2 with Grad-Schmidt orthogonalization
+>     * `ESID`: The energy-split-in-dimer method,
+>     * `1384`: Valeev E. F. et al. J. Am. Chem. Soc. (2006) ,
+>     * `128`: , pp. 9882 . Link which is equivalent to the FMO approach introduced in Section 10.15.2.5
+>     * `FODFT`: Calculate electronic coupling using fragment orbital DFT
 > * **Recommendation**: NONE
-
-FRAG_DIABAT_DOHT
 
 ### `FRAG_DIABAT_DOHT`
 
@@ -498,13 +476,9 @@ FRAG_DIABAT_DOHT
 > * **Type**: `BOOLEAN`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Do hole transfer
->     * FALSE
->     * Do electron transfer
+>     * `TRUE`: Do hole transfer
+>     * `FALSE`: Do electron transfer
 > * **Recommendation**: Need to be specified for POD and FODFT calculations
-
-FRAG_DIABAT_PRINT
 
 ### `FRAG_DIABAT_PRINT`
 
@@ -513,13 +487,8 @@ FRAG_DIABAT_PRINT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No additional prints
->     * $\geq 1$
->     * Print additional details
+>     * `0`: No additional prints $\geq 1$ Print additional details
 > * **Recommendation**: Use the default unless debug information is needed
-
-MSDFT_METHOD
 
 ### `MSDFT_METHOD`
 
@@ -528,17 +497,9 @@ MSDFT_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * 1
->     * The original MSDFT scheme [Eq. (
->     * 10.208
->     * )]
->     * 2
->     * The ALMO(MSDFT2) approach [Eq. (
->     * 10.211
->     * )]
+>     * `1`: The original MSDFT scheme [Eq. ( 10.208 )]
+>     * `2`: The ALMO(MSDFT2) approach [Eq. ( 10.211 )]
 > * **Recommendation**: Use the default method. Note that the method will be automatically reset to 1 if a meta-GGA functional is requested.
-
-MSDFT_PINV_THRESH
 
 ### `MSDFT_PINV_THRESH`
 
@@ -547,12 +508,8 @@ MSDFT_PINV_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n$
->     * Set the threshold to 10
->     * ${}^{-n}$
+>     * $n$: Set the threshold to 10 ${}^{-n}$
 > * **Recommendation**: Use the default value
-
-EX_ALMO_MSDFT
 
 ### `EX_ALMO_MSDFT`
 
@@ -561,16 +518,9 @@ EX_ALMO_MSDFT
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Will calculate ALMO-
->     * $\Delta$
->     * SCF states as specified in
->     * $scfmi_mom
->     * FALSE
->     * Performing ground-state ALMO(MSDFT) calculations.
+>     * `TRUE`: Will calculate ALMO- $\Delta$ SCF states as specified in $scfmi_mom
+>     * `FALSE`: Performing ground-state ALMO(MSDFT) calculations.
 > * **Recommendation**: None
-
-POD_MULTI_PAIRS
 
 ### `POD_MULTI_PAIRS`
 
@@ -579,21 +529,9 @@ POD_MULTI_PAIRS
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate the couplings between multiple pairs of orbitals
->     * FALSE
->     * Only calculate the
->     * $D$
->     * (HOMO)–
->     * $A$
->     * (HOMO) coupling (for hole transfer) or the
->     * $D$
->     * (LUMO)–
->     * $A$
->     * (LUMO) coupling (for electron transfer)
+>     * `TRUE`: Calculate the couplings between multiple pairs of orbitals
+>     * `FALSE`: Only calculate the $D$ (HOMO)– $A$ (HOMO) coupling (for hole transfer) or the $D$ (LUMO)– $A$ (LUMO) coupling (for electron transfer)
 > * **Recommendation**: None
-
-POD_WINDOW
 
 ### `POD_WINDOW`
 
@@ -602,21 +540,10 @@ POD_WINDOW
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $n$
->     * Including
->     * $n$
->     * frontier occupied orbitals (from
->     * $\text{HOMO}-n+1$
->     * to HOMO)
->     * and
->     * $n$
->     * frontier virtual orbitals (from LUMO to
->     * $\text{LUMO}+n-1$
->     * ) for both
->     * donor and acceptor
+>     * $n$: Including
+>     * $n$: frontier occupied orbitals (from $\text{HOMO}-n+1$ to HOMO) and
+>     * $n$: frontier virtual orbitals (from LUMO to $\text{LUMO}+n-1$ ) for both donor and acceptor
 > * **Recommendation**: None
-
-FODFT_METHOD
 
 ### `FODFT_METHOD`
 
@@ -625,34 +552,10 @@ FODFT_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * FODFT(
->     * $\mathrm{2n-1}$
->     * )@
->     * $D^{+}A$
->     * (HT) / FODFT(
->     * $\mathrm{2n+1}$
->     * )@
->     * $D^{-}A$
->     * (ET)
->     * 2
->     * FODFT(
->     * $\mathrm{2n}$
->     * )@
->     * $DA$
->     * 3
->     * FODFT(
->     * $\mathrm{2n-1}$
->     * )@
->     * $DA$
->     * (HT) / FODFT(
->     * $\mathrm{2n+1}$
->     * )@
->     * $D^{-}A^{-}$
->     * (ET)
+>     * `1`: FODFT( $\mathrm{2n-1}$ )@ $D^{+}A$ (HT) / FODFT( $\mathrm{2n+1}$ )@ $D^{-}A$ (ET)
+>     * `2`: FODFT( $\mathrm{2n}$ )@ $DA$
+>     * `3`: FODFT( $\mathrm{2n-1}$ )@ $DA$ (HT) / FODFT( $\mathrm{2n+1}$ )@ $D^{-}A^{-}$ (ET)
 > * **Recommendation**: The default approach shows the best overall performance
-
-FODFT_DONOR
 
 ### `FODFT_DONOR`
 
@@ -661,10 +564,8 @@ FODFT_DONOR
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * First fragment as donor
->     * 2
->     * Second fragment as donor
+>     * `1`: First fragment as donor
+>     * `2`: Second fragment as donor
 > * **Recommendation**: With FODFT_METHOD = 1, the charged fragment needs to be the donor fragment
 
 ???+ example "Example 10.77: ALMO(MSDFT2) calculation for hole transfer in ethylene dimer"

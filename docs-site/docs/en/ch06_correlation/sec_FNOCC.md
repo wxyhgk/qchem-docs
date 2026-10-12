@@ -65,8 +65,6 @@ The benchmarks show negligible errors in singlet–triplet gaps for a variety of
 For more details, see Section [7.9.14](../ch07_excited/sec_FNO.md) and the Ref. [[1104]](../bib_references/bib.md#bib1153)
 .
 
-CC_FNO_THRESH
-
 ### `CC_FNO_THRESH`
 
 > **Initialize the FNO truncation and sets the threshold to be used for both cutoffs (OCCT and POVO)**
@@ -74,15 +72,8 @@ CC_FNO_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `None`
 > * **Options**:
->     * range
->     * 0000-10000
->     * $abcd$
->     * Corresponding to
->     * $ab.cd$
->     * %
+>     * `range`: 0000-10000 $abcd$ Corresponding to $ab.cd$ %
 > * **Recommendation**: None
-
-CC_FNO_USEPOP
 
 ### `CC_FNO_USEPOP`
 
@@ -91,8 +82,7 @@ CC_FNO_USEPOP
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * POVO
+>     * `0`: POVO
 > * **Recommendation**: None
 
 ???+ example "Example 6.48: CCSD(T) calculation using FNO with POVO = 65%"

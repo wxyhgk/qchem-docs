@@ -300,8 +300,6 @@ given as examples [10.8.7.3](#ex:VibronicPFB1) and [10.8.7.3](#ex:VibronicPFB1
 There are two *$rem* variables and one section *$vibronic*
 involved in vibronic spectra calculations.
 
-SAVE_VIBRONIC_PARAMS
-
 ### `SAVE_VIBRONIC_PARAMS`
 
 > **Save information about excited state which is requested in vibronic spectra simulation.**
@@ -309,10 +307,8 @@ SAVE_VIBRONIC_PARAMS
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
+>     * `FALSE`
 > * **Recommendation**: TRUE
-
-VIBRONIC_SPECTRA
 
 ### `VIBRONIC_SPECTRA`
 
@@ -321,14 +317,10 @@ VIBRONIC_SPECTRA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * No vibronic spectra is predicted.
->     * 1
->     * OPA spectra is calculated.
->     * 2
->     * OPE spectra is calculated.
->     * 3
->     * RRS spectra is calculated.
+>     * `0`: No vibronic spectra is predicted.
+>     * `1`: OPA spectra is calculated.
+>     * `2`: OPE spectra is calculated.
+>     * `3`: RRS spectra is calculated.
 > * **Recommendation**: Use the default.
 
 Variables in the *$vibronic* section:
@@ -340,12 +332,9 @@ Variables in the *$vibronic* section:
 > * **Type**: `INTEGER`
 > * **Default**: `-1`
 > * **Options**:
->     * 1
->     * FC.
->     * 2
->     * FCHT.
->     * 3
->     * VG.
+>     * `1`: FC.
+>     * `2`: FCHT.
+>     * `3`: VG.
 > * **Recommendation**: User defined
 
 ### `TEMPERATURE`
@@ -355,8 +344,7 @@ Variables in the *$vibronic* section:
 > * **Type**: `FLOAT`
 > * **Default**: `$298.15$`
 > * **Options**:
->     * $t$
->     * temperature, in K.
+>     * $t$: temperature, in K.
 > * **Recommendation**: User defined
 
 ### `FREQ_RANGE`
@@ -366,10 +354,7 @@ Variables in the *$vibronic* section:
 > * **Type**: `FLOAT`
 > * **Default**: `$1.0\ 40000.0\ 10.0$`
 > * **Options**:
->     * $\nu_{\text{min}}\ \nu_{\text{max}}\ \delta\nu$
->     * minimum, maximum and step size, in
->     * $\text{cm}^{-1}$
->     * .
+>     * $\nu_{\text{min}}\ \nu_{\text{max}}\ \delta\nu$: minimum, maximum and step size, in $\text{cm}^{-1}$ .
 > * **Recommendation**: User defined
 
 ### `TIME_RANGE`
@@ -379,8 +364,7 @@ Variables in the *$vibronic* section:
 > * **Type**: `FLOAT and INTEGER`
 > * **Default**: `$1.0\ 40000$`
 > * **Options**:
->     * $\delta t\ n_{\text{step}}$
->     * time step size in a.u., and the number of steps.
+>     * $\delta t\ n_{\text{step}}$: time step size in a.u., and the number of steps.
 > * **Recommendation**: User defined
 
 ### `DAMPING`
@@ -390,10 +374,7 @@ Variables in the *$vibronic* section:
 > * **Type**: `FLOAT`
 > * **Default**: `$300.0$`
 > * **Options**:
->     * $\gamma$
->     * damping factor, in
->     * $\text{cm}^{-1}$
->     * .
+>     * $\gamma$: damping factor, in $\text{cm}^{-1}$ .
 > * **Recommendation**: User defined
 
 ### `FREQ_SCALE_FACTOR`
@@ -403,10 +384,7 @@ Variables in the *$vibronic* section:
 > * **Type**: `FLOAT`
 > * **Default**: `$1.0\ 1.0\ 1.0\ 1.0$`
 > * **Options**:
->     * $\lambda_{\text{H}}^{g}\ \lambda_{\text{H}}^{e}\ \lambda_{\text{ZPE}}^{g}\ \lambda_{\text{ZPE}}^{e}$
->     * scale factor for ground state harmonic frequency,
->     * for excited state harmonic frequency, for ground state zero-point energy,
->     * and for excited state zero-point energy
+>     * $\lambda_{\text{H}}^{g}\ \lambda_{\text{H}}^{e}\ \lambda_{\text{ZPE}}^{g}\ \lambda_{\text{ZPE}}^{e}$: scale factor for ground state harmonic frequency, for excited state harmonic frequency, for ground state zero-point energy, and for excited state zero-point energy
 > * **Recommendation**: User defined
 
 ### `EPSILON`
@@ -416,10 +394,7 @@ Variables in the *$vibronic* section:
 > * **Type**: `FLOAT`
 > * **Default**: `$25.0$`
 > * **Options**:
->     * $\varepsilon$
->     * broadening factor, in
->     * $\text{cm}^{-1}$
->     * .
+>     * $\varepsilon$: broadening factor, in $\text{cm}^{-1}$ .
 > * **Recommendation**: User defined
 
 ## 10.8.7.3 Vibronic Job Examples

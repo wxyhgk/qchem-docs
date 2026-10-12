@@ -9,8 +9,6 @@ title: "7.9.26 Job Control for EOM-CC(2,3)"
 EOM-CC(2,3) is invoked by METHOD=EOM-CC(2,3).
 The following options are available:
 
-EOM_PRECONV_SD
-
 ### `EOM_PRECONV_SD`
 
 > **Solves the EOM-CCSD equations, prints energies, then uses EOM-CCSD vectors as initial vectors in EOM-CC(2,3). Very convenient for calculations using energy additivity schemes.**
@@ -18,13 +16,9 @@ EOM_PRECONV_SD
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Do
->     * $n$
->     * SD iterations
+>     * $n$: Do
+>     * $n$: SD iterations
 > * **Recommendation**: Turning this option on is recommended
-
-CC_REST_AMPL
 
 ### `CC_REST_AMPL`
 
@@ -33,13 +27,9 @@ CC_REST_AMPL
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Do apply restrictions
->     * TRUE
->     * Do not apply restrictions
+>     * `FALSE`: Do apply restrictions
+>     * `TRUE`: Do not apply restrictions
 > * **Recommendation**: None
-
-CC_REST_TRIPLES
 
 ### `CC_REST_TRIPLES`
 
@@ -48,11 +38,8 @@ CC_REST_TRIPLES
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Applies the restrictions
+>     * `1`: Applies the restrictions
 > * **Recommendation**: None
-
-CC_REST_OCC
 
 ### `CC_REST_OCC`
 
@@ -61,13 +48,9 @@ CC_REST_OCC
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Restrict
->     * $n$
->     * occupied orbitals.
+>     * $n$: Restrict
+>     * $n$: occupied orbitals.
 > * **Recommendation**: None
-
-CC_REST_VIR
 
 ### `CC_REST_VIR`
 
@@ -76,10 +59,8 @@ CC_REST_VIR
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Restrict
->     * $n$
->     * virtual orbitals.
+>     * $n$: Restrict
+>     * $n$: virtual orbitals.
 > * **Recommendation**: None
 
 To select the active space, orbitals can be reordered by specifying the new

@@ -39,8 +39,6 @@ desirable to use the dual basis HF method to further improve execution times
 
 For the size of required memory, the following need to be considered.
 
-MEM_STATIC
-
 ### `MEM_STATIC`
 
 > **Sets the memory for AO-integral evaluations and their transformations in Q-Chem 4.1 or older versions.**
@@ -48,11 +46,8 @@ MEM_STATIC
 > * **Type**: `INTEGER`
 > * **Default**: `192`
 > * **Options**:
->     * $n$
->     * User-defined number of megabytes.
+>     * $n$: User-defined number of megabytes.
 > * **Recommendation**: For RI-MP2 calculations using Q-Chem 4.1 or older versions, $150(ON+V)$ of is required. Because a number of matrices with $N^{2}$ size also need to be stored, 32–160 MB of additional is needed.
-
-MEM_TOTAL
 
 ### `MEM_TOTAL`
 
@@ -61,8 +56,7 @@ MEM_TOTAL
 > * **Type**: `INTEGER`
 > * **Default**: `2000`
 > * **Options**:
->     * $n$
->     * User-defined number of megabytes.
+>     * $n$: User-defined number of megabytes.
 > * **Recommendation**: Use the default, or set to the physical memory of your machine. The minimum requirement is $3X^{2}$ .
 
 ???+ example "Example 6.4: Q-Chem input for an RI-MP2 geometry optimization."

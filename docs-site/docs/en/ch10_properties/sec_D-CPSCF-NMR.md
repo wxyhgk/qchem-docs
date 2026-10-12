@@ -44,8 +44,6 @@ To request a NMR chemical shift calculation using the density matrix approach,
 set JOBTYPE to NMR in the *$rem* section.
 Additional job-control variables can be found below.
 
-D_CPSCF_PERTNUM
-
 ### `D_CPSCF_PERTNUM`
 
 > **Specifies whether to do the perturbations one at a time, or all together.**
@@ -53,13 +51,9 @@ D_CPSCF_PERTNUM
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Perturbed densities to be calculated all together.
->     * 1
->     * Perturbed densities to be calculated one at a time.
+>     * `0`: Perturbed densities to be calculated all together.
+>     * `1`: Perturbed densities to be calculated one at a time.
 > * **Recommendation**: None
-
-D_SCF_CONV_1
 
 ### `D_SCF_CONV_1`
 
@@ -68,13 +62,8 @@ D_SCF_CONV_1
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n<10$
->     * Sets convergence threshold to
->     * $10^{-n}$
->     * .
+>     * $n<10$: Sets convergence threshold to $10^{-n}$ .
 > * **Recommendation**: The criterion for level-1 convergence must be less than or equal to the level-2 criterion, otherwise the D-CPSCF will not converge.
-
-D_SCF_CONV_2
 
 ### `D_SCF_CONV_2`
 
@@ -83,13 +72,8 @@ D_SCF_CONV_2
 > * **Type**: `INTEGER`
 > * **Default**: `4`
 > * **Options**:
->     * $n<10$
->     * Sets convergence threshold to
->     * $10^{-n}$
->     * .
+>     * $n<10$: Sets convergence threshold to $10^{-n}$ .
 > * **Recommendation**: None
-
-D_SCF_MAX_1
 
 ### `D_SCF_MAX_1`
 
@@ -98,11 +82,8 @@ D_SCF_MAX_1
 > * **Type**: `INTEGER`
 > * **Default**: `100`
 > * **Options**:
->     * $n$
->     * User defined.
+>     * $n$: User defined.
 > * **Recommendation**: Use the default.
-
-D_SCF_MAX_2
 
 ### `D_SCF_MAX_2`
 
@@ -111,11 +92,8 @@ D_SCF_MAX_2
 > * **Type**: `INTEGER`
 > * **Default**: `30`
 > * **Options**:
->     * $n$
->     * User defined.
+>     * $n$: User defined.
 > * **Recommendation**: Use the default.
-
-D_SCF_DIIS
 
 ### `D_SCF_DIIS`
 
@@ -125,8 +103,7 @@ D_SCF_DIIS
 > * **Default**: `11`
 > * **Options**:
 >     * $n$
->     * $n$
->     * = 0 specifies no DIIS extrapolation is to be used.
+>     * $n$: = 0 specifies no DIIS extrapolation is to be used.
 > * **Recommendation**: Use the default.
 
 ???+ example "Example 10.61: NMR chemical shifts via the D-CPSCF method, showing all input options."

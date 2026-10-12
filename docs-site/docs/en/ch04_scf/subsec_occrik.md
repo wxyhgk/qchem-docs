@@ -87,8 +87,6 @@ same number of SCF iterations to converge and to yield accurate energies.
 The occ-RI-K can be invoked by either setting OCC_RI_K to be true, or (since **Q-Chem** 5.2) specifying
 auxiliary basis set for K using AUX_BASIS_K.
 
-OCC_RI_K
-
 ### `OCC_RI_K`
 
 > **Controls the use of the occ-RI-K approximation for constructing the exchange matrix**
@@ -96,8 +94,7 @@ OCC_RI_K
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Use occ-RI-K.
+>     * `True`: Use occ-RI-K.
 > * **Recommendation**: Larger the system, better the performance
 
 ## 4.6.8.1 occ-RI-K for exchange energy gradient evaluation
@@ -133,8 +130,6 @@ $$
 
 where the operation cost is $o^{2}NX+o[\mathrm{NB2}]X$.
 
-RI_K_GRAD
-
 ### `RI_K_GRAD`
 
 > **Turn on the nuclear gradient calculations**
@@ -142,8 +137,7 @@ RI_K_GRAD
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Use occ-RI-K based gradient
+>     * `TRUE`: Use occ-RI-K based gradient
 > * **Recommendation**: Use "RI_J false"
 
 ???+ example "Example 4.21: Q-Chem input for a energy and gradient calculations with occ-RI-K method."

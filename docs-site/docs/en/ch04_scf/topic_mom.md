@@ -28,8 +28,6 @@ configuration that may be far from the converged one.
 
 The MOM-related *$rem* variables in full are the following:
 
-MOM_PRINT
-
 ### `MOM_PRINT`
 
 > **Switches printing on within the MOM procedure.**
@@ -37,13 +35,9 @@ MOM_PRINT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Printing is turned off
->     * TRUE
->     * Printing is turned on.
+>     * `FALSE`: Printing is turned off
+>     * `TRUE`: Printing is turned on.
 > * **Recommendation**: None
-
-MOM_START
 
 ### `MOM_START`
 
@@ -52,15 +46,10 @@ MOM_START
 > * **Type**: `INTEGER`
 > * **Default**: `0 (FALSE)`
 > * **Options**:
->     * 0 (FALSE)
->     * MOM is not used
->     * $n$
->     * MOM begins on cycle
->     * $n$
->     * .
+>     * `0 (FALSE)`: MOM is not used
+>     * $n$: MOM begins on cycle
+>     * $n$: .
 > * **Recommendation**: Set to 1 if preservation of initial orbitals is desired. If MOM is to be used to aid convergence, an SCF without MOM should be run to determine when the SCF starts oscillating. MOM should be set to start just before the oscillations.
-
-MOM_METHOD
 
 ### `MOM_METHOD`
 
@@ -69,10 +58,8 @@ MOM_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `MOM`
 > * **Options**:
->     * MOM
->     * Maximize overlap with the orbitals from the previous SCF cycle.
->     * IMOM
->     * Maximize overlap with the initial guess orbitals.
+>     * `MOM`: Maximize overlap with the orbitals from the previous SCF cycle.
+>     * `IMOM`: Maximize overlap with the initial guess orbitals.
 > * **Recommendation**: If appropriate guess orbitals can be obtained, then IMOM can provide more reliable convergence to the desired solution. 75 Barca G. M. J., Gilbert A. T. B., Gill P. M. W. J. Chem. Theory Comput. (2018) , 14 , pp. 1501 . Link
 
 ???+ example "Example 4.4.17: An example showing how to converge a ROHF calculation on the ${}^{3}\!A_{2}$ state

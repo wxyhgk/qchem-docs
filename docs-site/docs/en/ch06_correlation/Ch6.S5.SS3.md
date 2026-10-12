@@ -61,8 +61,6 @@ The code is called by setting LMP2 option for CORRELATION.
 Localization must be specified in LOCOOCCVIRT. AO linear dependency
 is treated differently for different localization schemes.
 
-LOCOOCCVIRT
-
 ### `LOCOOCCVIRT`
 
 > **Localizes MO orbitals.**
@@ -70,8 +68,7 @@ LOCOOCCVIRT
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 2
->     * Repeatedly remove basis functions when linear dependency is present. This will CHANGE SCF result but work with VV-HV.
+>     * `2`: Repeatedly remove basis functions when linear dependency is present. This will CHANGE SCF result but work with VV-HV.
 > * **Recommendation**: Use 2 since VV-HV is preferred. The reason that a non-default is recommended is that it will result in different SCF energies.
 
 Different methods for localizing orbitals can be chosen. $\lambda$-Boys is recommended for the occupied space.
@@ -95,7 +92,7 @@ $\lambda=100$ is recommended.
 > * **Type**: `STRING`
 > * **Default**: `newboys`
 > * **Options**:
->     * newboys, cholesky, pipekmezey
+>     * `newboys, cholesky, pipekmezey`
 > * **Recommendation**: Use the default since $\lambda$ -Boys orbitals are shown to be very effective.
 
 ### `lambda`
@@ -105,8 +102,7 @@ $\lambda=100$ is recommended.
 > * **Type**: `FLOAT`
 > * **Default**: `0`
 > * **Options**:
->     * 100
->     * Preferred parameter
+>     * `100`: Preferred parameter
 > * **Recommendation**: Using larger $\lambda$ will decrease the accuracy of the local MP2 code.
 
 VV-HV is the recommended localization method for the virtual space.
@@ -132,9 +128,7 @@ to control what elements to retain in $\mathbf{J}$.
 > * **Type**: `INTEGER`
 > * **Default**: `60`
 > * **Options**:
->     * 55 (
->     * $\epsilon=10^{-5.5}$
->     * , close to VeryTight in DLPNO-MP2), 50, 60, 65, 70
+>     * `55 (`: $\epsilon=10^{-5.5}$ , close to VeryTight in DLPNO-MP2), 50, 60, 65, 70
 > * **Recommendation**: The default typically recovers 99.997% correlation energy and has 0.1 kcalmol energy difference error. The error scales linearly with $\epsilon$ , meaning that using 50 will accelerate the code by 3 to 5 times but the error will also be 10 $\times$ bigger.
 
 All other thresholds for inner prescreening are listed here, they can be changed similarly.
@@ -173,8 +167,7 @@ but cannot both be enabled at the same time.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1450
->     * $\kappa=1.45$
+>     * `1450`: $\kappa=1.45$
 > * **Recommendation**: $\kappa=1.10$ is recommended for non-covalent interactions.
 
 ### `bw`
@@ -184,8 +177,7 @@ but cannot both be enabled at the same time.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * enabled
+>     * `1`: enabled
 > * **Recommendation**: Use 1 if BW is needed.
 
 ### `bw_alpha`
@@ -195,9 +187,7 @@ but cannot both be enabled at the same time.
 > * **Type**: `INTEGER`
 > * **Default**: `1000`
 > * **Options**:
->     * 4000
->     * $\alpha=4$
->     * .
+>     * `4000`: $\alpha=4$ .
 > * **Recommendation**: $\alpha=4$ is recommended for best chemical energy differences. Together with $\gamma$ , $\alpha=\gamma=2$ is recommended.
 
 ### `bw_gamma`
@@ -207,9 +197,7 @@ but cannot both be enabled at the same time.
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 2000
->     * $\gamma=2$
->     * .
+>     * `2000`: $\gamma=2$ .
 > * **Recommendation**: $\alpha=\gamma=2$ is recommended for best chemistry.
 
 ???+ example "Example 6.3: A closed-shell example with $\epsilon=10^{-6}$ . For other cases, modify the geometry, basis sets, and threshold as needed."

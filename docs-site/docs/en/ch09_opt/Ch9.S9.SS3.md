@@ -6,8 +6,6 @@ title: "9.9.3 Additional Job Control and Examples"
 
 (July 4, 2026)
 
-AIMD_INIT_VELOC
-
 ### `AIMD_INIT_VELOC`
 
 > **Specifies the method for selecting initial nuclear velocities.**
@@ -15,31 +13,13 @@ AIMD_INIT_VELOC
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * THERMAL
->     * Random sampling of nuclear velocities from a Maxwell-Boltzmann
->     * distribution. The user must specify the temperature in Kelvin via
->     * the
->     * $rem
->     * variable
->     * AIMD_TEMP
->     * .
->     * ZPE
->     * Choose velocities in order to put zero-point vibrational energy into
->     * each normal mode, with random signs. This option requires that a
->     * frequency job to be run beforehand.
->     * QUASICLASSICAL
->     * Puts vibrational energy into each normal mode. In contrast to the
->     * ZPE option, here the vibrational energies are sampled from a
->     * Boltzmann distribution at the desired simulation temperature. This
->     * also triggers several other options, as described below.
->     * OLD
->     * Use the same initial velocities as the immediately preceding AIMD job.
->     * RESTART
->     * Use the final velocities from a previous AIMD job,
->     * reading them from disk.
+>     * `THERMAL`: Random sampling of nuclear velocities from a Maxwell-Boltzmann distribution. The user must specify the temperature in Kelvin via the $rem variable AIMD_TEMP .
+>     * `ZPE`: Choose velocities in order to put zero-point vibrational energy into each normal mode, with random signs. This option requires that a frequency job to be run beforehand.
+>     * `QUASICLASSICAL`: Puts vibrational energy into each normal mode. In contrast to the
+>     * ZPE option, here the vibrational energies are sampled from a: Boltzmann distribution at the desired simulation temperature. This also triggers several other options, as described below.
+>     * `OLD`: Use the same initial velocities as the immediately preceding AIMD job.
+>     * `RESTART`: Use the final velocities from a previous AIMD job, reading them from disk.
 > * **Recommendation**: This variable need only be specified in the event that velocities are not specified explicitly in a $velocity section.
-
-AIMD_INIT_VELOC_NANO_RANDOM
 
 ### `AIMD_INIT_VELOC_NANO_RANDOM`
 
@@ -48,11 +28,8 @@ AIMD_INIT_VELOC_NANO_RANDOM
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * FALSE
->     * Use a less precise random seed.
+>     * `FALSE`: Use a less precise random seed.
 > * **Recommendation**: Leave this set to TRUE unless necessary. This option determines the source of the random seed used for sampling random initial velocities when AIMD_INIT_VELOC requires such. Setting the option to FALSE will have the seed based on the system time in seconds, meaning that two otherwise identical simulations starting in the same second will produce identical initial velocities. With the option set to TRUE, such collisions are virtually impossible. The option is kept for legacy purposes. There should rarely ever be a need to set it to FALSE.
-
-AIMD_MOMENTS
 
 ### `AIMD_MOMENTS`
 
@@ -61,13 +38,9 @@ AIMD_MOMENTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $n$
->     * Output the first
->     * $n$
->     * multipole moments.
+>     * $n$: Output the first
+>     * $n$: multipole moments.
 > * **Recommendation**: None
-
-AIMD_TEMP
 
 ### `AIMD_TEMP`
 
@@ -79,8 +52,6 @@ AIMD_TEMP
 >     * User-specified number of Kelvin.
 > * **Recommendation**: This variable is only useful in conjunction with AIMD_INIT_VELOC = THERMAL . Note that the simulations are run at constant energy, rather than constant temperature, so the mean nuclear kinetic energy will fluctuate in the course of the simulation.
 
-DEUTERATE
-
 ### `DEUTERATE`
 
 > **Requests that all hydrogen atoms be replaces with deuterium.**
@@ -88,8 +59,7 @@ DEUTERATE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Replace hydrogens with deuterium.
+>     * `TRUE`: Replace hydrogens with deuterium.
 > * **Recommendation**: Replacing hydrogen atoms reduces the fastest vibrational frequencies by a factor of 1.4, which allow for a larger fictitious mass and time step in ELMD calculations. There is no reason to replace hydrogens in BOMD calculations.
 
 ???+ example "Example 9.34: Simulating thermal fluctuations of the water dimer at 298 K."

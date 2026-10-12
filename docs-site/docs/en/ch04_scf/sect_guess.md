@@ -130,8 +130,6 @@ where $c_{x}$ is a constant, typically $c_{x}=1.75$.
 The selection of these choices (or whether to read in the orbitals) is
 controlled by the following *$rem* variables:
 
-SCF_GUESS
-
 ### `SCF_GUESS`
 
 > **Specifies the initial guess procedure to use for the SCF.**
@@ -139,54 +137,20 @@ SCF_GUESS
 > * **Type**: `STRING`
 > * **Default**: `SAD`
 > * **Options**:
->     * CORE
->     * Diagonalize core Hamiltonian
->     * SAD
->     * Superposition of atomic density
->     * 801
->     * Lenthe J. H. Van et al.
->     * J. Comput. Chem.
->     * (2006)
->     * ,
->     * 27
->     * ,
->     * pp. 926
->     * .
->     * Link
->     * SAP
->     * Superposition of atomic potentials
->     * 797
->     * Lehtola S.
->     * J. Chem. Theory Comput.
->     * (2019)
->     * ,
->     * 15
->     * ,
->     * pp. 1593
->     * .
->     * Link
->     * (only available with
->     * GEN_SCFMAN
->     * =
->     * TRUE
->     * )
->     * AUTOSAD
->     * On-the-fly superposition of atomic densities
->     * SADMO
->     * Purified superposition of atomic densities (available only with
->     * standard basis sets)
->     * GWH
->     * Apply generalized Wolfsberg-Helmholtz approximation
->     * READ
->     * Read previous MOs from disk
->     * FRAGMO
->     * Superimposing converged
->     * fragment MOs (see Section
->     * 12.3
->     * )
+>     * `CORE`: Diagonalize core Hamiltonian
+>     * `SAD`: Superposition of atomic density
+>     * `801`: Lenthe J. H. Van et al. J. Comput. Chem. (2006) ,
+>     * `27`: , pp. 926 . Link
+>     * `SAP`: Superposition of atomic potentials
+>     * `797`: Lehtola S. J. Chem. Theory Comput. (2019) ,
+>     * `15`: , pp. 1593 . Link (only available with GEN_SCFMAN =
+>     * `TRUE`: )
+>     * `AUTOSAD`: On-the-fly superposition of atomic densities
+>     * `SADMO`: Purified superposition of atomic densities (available only with standard basis sets)
+>     * `GWH`: Apply generalized Wolfsberg-Helmholtz approximation
+>     * `READ`: Read previous MOs from disk
+>     * `FRAGMO`: Superimposing converged fragment MOs (see Section 12.3 )
 > * **Recommendation**: SAD, AUTOSAD, or SADMO guess for standard basis sets. For either standard or user-customized general basis sets, AUTOSAD is recommended and used as default. If these options fail, use the SAP guess; try the GWH or core Hamiltonian guess only as a last resort. For mixed basis sets, only the AUTOSAD, SAP, GWH, and core Hamiltonian guesses are currently available. For ROHF it can be useful to READ guesses from an SCF calculation on the corresponding cation or anion. Note that because the density is made spherical, this may favor an undesired state for atomic systems, especially transition metals. Use FRAGMO in a fragment MO calculation.
-
-SCF_GUESS_ALWAYS
 
 ### `SCF_GUESS_ALWAYS`
 
@@ -195,16 +159,9 @@ SCF_GUESS_ALWAYS
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * False
->     * Do not generate a new guess for each series of SCF iterations in an
->     * optimization; use MOs from the previous SCF calculation for the guess,
->     * if available.
->     * True
->     * Generate a new guess for each series of SCF iterations in a geometry
->     * optimization.
+>     * `False`: Do not generate a new guess for each series of SCF iterations in an optimization; use MOs from the previous SCF calculation for the guess, if available.
+>     * `True`: Generate a new guess for each series of SCF iterations in a geometry optimization.
 > * **Recommendation**: Use the default unless SCF convergence issues arise
-
-GUESS_GRID
 
 ### `GUESS_GRID`
 
@@ -213,39 +170,7 @@ GUESS_GRID
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 0
->     * Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
->     * $n$
->     * Use SG-
->     * $n$
->     * for all atoms,
->     * $n=1,2$
->     * , or 3
->     * $XY$
->     * A string of two six-digit integers
->     * $X$
->     * and
->     * $Y$
->     * , where
->     * $X$
->     * is the number of radial points
->     * and
->     * $Y$
->     * is the number of angular points where possible numbers of Lebedev angular
->     * points, which must be an allowed value from Table
->     * 5.2
->     * in
->     * Section
->     * 5.5
->     * .
->     * $-XY$
->     * Similar format for Gauss-Legendre grids, with the six-digit integer
->     * $X$
->     * corresponding
->     * to the number of radial points and the six-digit integer
->     * $Y$
->     * providing the number of
->     * Gauss-Legendre angular points,
->     * $Y=2N^{2}$
->     * .
+>     * `0`: Use SG-0 for H, C, N, and O; SG-1 for all other atoms.
+>     * $n$: Use SG-
+>     * $n$: for all atoms, $n=1,2$ , or 3 $XY$ A string of two six-digit integers $X$ and $Y$ , where $X$ is the number of radial points and $Y$ is the number of angular points where possible numbers of Lebedev angular points, which must be an allowed value from Table 5.2 in Section 5.5 . $-XY$ Similar format for Gauss-Legendre grids, with the six-digit integer $X$ corresponding to the number of radial points and the six-digit integer $Y$ providing the number of Gauss-Legendre angular points, $Y=2N^{2}$ .
 > * **Recommendation**: Larger grids may be required if the SAP guess is poor.

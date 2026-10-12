@@ -94,8 +94,6 @@ $$
 
 OVOCV 分析是针对自旋极化计算编写的，因此必须设置 UNRESTRICTED = TRUE。
 
-OVOCV_ANALYSIS
-
 ### `OVOCV_ANALYSIS`
 
 > **执行 OVOCV 分析**
@@ -103,13 +101,9 @@ OVOCV_ANALYSIS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不进行 OVOCV 分析
->     * 1
->     * 进行 OVOCV 分析
+>     * `0`: 不进行 OVOCV 分析
+>     * `1`: 进行 OVOCV 分析
 > * **建议**: 无
-
-OVOCV_QUADRATURE
 
 ### `OVOCV_QUADRATURE`
 
@@ -118,21 +112,18 @@ OVOCV_QUADRATURE
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **取值选项**:
->     * -1
->     * 出于调试目的的调试输出
->     * 5
+>     * `-1`: 出于调试目的的调试输出
+>     * `5`
 >     * 5 点求积
->     * 9
+>     * `9`
 >     * 9 点求积
->     * 13
+>     * `13`
 >     * 13 点求积
->     * 17
+>     * `17`
 >     * 17 点求积
->     * 21
+>     * `21`
 >     * 21 点求积
 > * **建议**: 基态分析使用 5，激发态分析使用 9 或 13。增大求积点数可获得更高精度的 $\Delta E$
-
-SAVE_OVOCV_INIT_DATA
 
 ### `SAVE_OVOCV_INIT_DATA`
 
@@ -141,13 +132,9 @@ SAVE_OVOCV_INIT_DATA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不保存初态数据
->     * 1
->     * 保存初态数据
+>     * `0`: 不保存初态数据
+>     * `1`: 保存初态数据
 > * **建议**: 在初态计算中设置为 1
-
-LOAD_OVOCV_INIT_DATA
 
 ### `LOAD_OVOCV_INIT_DATA`
 
@@ -156,13 +143,9 @@ LOAD_OVOCV_INIT_DATA
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不加载初态数据
->     * 1
->     * 加载初态数据
+>     * `0`: 不加载初态数据
+>     * `1`: 加载初态数据
 > * **建议**: 在末态计算中设置为 1
-
-OVOCV_THRESH
 
 ### `OVOCV_THRESH`
 
@@ -171,13 +154,8 @@ OVOCV_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `500`
 > * **取值选项**:
->     * $N$
->     * 对能量降低的贡献超过
->     * $0.001\times N$
->     * kJ/mol 的 OVOCV 将被保存
+>     * $N$: 对能量降低的贡献超过 $0.001\times N$ kJ/mol 的 OVOCV 将被保存
 > * **建议**: 无
-
-SAVE_OVOCV
 
 ### `SAVE_OVOCV`
 
@@ -186,10 +164,8 @@ SAVE_OVOCV
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不保存显著 OVOCV
->     * 1
->     * 保存显著 OVOCV
+>     * `0`: 不保存显著 OVOCV
+>     * `1`: 保存显著 OVOCV
 > * **建议**: 设置为 1 以保存 OVOCV。注意还需设置用于绘制 cube 文件的 REM 参数
 
 ???+ example "示例 10.10.16: 极化态与完全收敛的 SCF 态之间的 OVOCV 分析。"
@@ -372,8 +348,6 @@ $$
 
 因此，$\hat{P}_{\text{G}}$ 与 $\hat{P}_{\text{FRZ}}$ 之间的联系揭示了主激发，而 $\hat{P}_{\text{FRZ}}$ 与 $\hat{P}_{\text{E}}$ 之间的联系则揭示了轨道弛豫效应。
 
-OVOCV_EXCITE_ANALYSIS
-
 ### `OVOCV_EXCITE_ANALYSIS`
 
 > **执行用于 OO-DFT 激发分析的 OVOCV 分析**
@@ -381,13 +355,9 @@ OVOCV_EXCITE_ANALYSIS
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **取值选项**:
->     * 0
->     * 不进行 OVOCV OO-DFT 分析
->     * 1
->     * 进行 OVOCV OO-DFT 分析
+>     * `0`: 不进行 OVOCV OO-DFT 分析
+>     * `1`: 进行 OVOCV OO-DFT 分析
 > * **建议**: 无
-
-OVOCV_EXCITE_TYPE
 
 ### `OVOCV_EXCITE_TYPE`
 
@@ -396,20 +366,9 @@ OVOCV_EXCITE_TYPE
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **取值选项**:
->     * 1
->     * 使用
->     * $\alpha$
->     * 空间中最大的 OVOCV 对构造 FRZ 态
->     * 2
->     * 使用
->     * $\beta$
->     * 空间中最大的 OVOCV 对构造 FRZ 态
->     * 3
->     * 使用
->     * $\alpha$
->     * 和
->     * $\beta$
->     * 空间中最大的 OVOCV 对构造 FRZ 态（用于双激发）
+>     * `1`: 使用 $\alpha$ 空间中最大的 OVOCV 对构造 FRZ 态
+>     * `2`: 使用 $\beta$ 空间中最大的 OVOCV 对构造 FRZ 态
+>     * `3`: 使用 $\alpha$ 和 $\beta$ 空间中最大的 OVOCV 对构造 FRZ 态（用于双激发）
 > * **建议**: 单激发使用 1 或 2，双激发使用 3
 
 ???+ example "示例 10.10.18: NH ${}_{3}$ 与 F ${}_{2}$ 之间长距离电荷转移的 OVOCV OO-DFT 分析。"

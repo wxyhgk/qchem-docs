@@ -94,8 +94,6 @@ $$
 
 The OVOCV analysis is coded for the spin polarized calculations, so UNRESTRICTED = TRUE must be set.
 
-OVOCV_ANALYSIS
-
 ### `OVOCV_ANALYSIS`
 
 > **Perform OVOCV analysis**
@@ -103,13 +101,9 @@ OVOCV_ANALYSIS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not do OVOCV analysis
->     * 1
->     * Do OVOCV analysis
+>     * `0`: Do not do OVOCV analysis
+>     * `1`: Do OVOCV analysis
 > * **Recommendation**: None
-
-OVOCV_QUADRATURE
 
 ### `OVOCV_QUADRATURE`
 
@@ -118,21 +112,18 @@ OVOCV_QUADRATURE
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * -1
->     * Printings for debug purpose
->     * 5
->     * 5 quadratures
->     * 9
->     * 9 quadratures
->     * 13
->     * 13 quadratures
->     * 17
->     * 17 quadratures
->     * 21
->     * 21 quadratures
+>     * `-1`: Printings for debug purpose
+>     * `5`
+>     * `5 quadratures`
+>     * `9`
+>     * `9 quadratures`
+>     * `13`
+>     * `13 quadratures`
+>     * `17`
+>     * `17 quadratures`
+>     * `21`
+>     * `21 quadratures`
 > * **Recommendation**: Use 5 for ground state analysis, 9 or 13 for excited state analysis. Increase quadrature numbers to get higher accuracy in $\Delta E$
-
-SAVE_OVOCV_INIT_DATA
 
 ### `SAVE_OVOCV_INIT_DATA`
 
@@ -141,13 +132,9 @@ SAVE_OVOCV_INIT_DATA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not save initial state data
->     * 1
->     * Save initial state data
+>     * `0`: Do not save initial state data
+>     * `1`: Save initial state data
 > * **Recommendation**: Set to 1 at the initial state calculation
-
-LOAD_OVOCV_INIT_DATA
 
 ### `LOAD_OVOCV_INIT_DATA`
 
@@ -156,13 +143,9 @@ LOAD_OVOCV_INIT_DATA
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not load initial state data
->     * 1
->     * Load initial state data
+>     * `0`: Do not load initial state data
+>     * `1`: Load initial state data
 > * **Recommendation**: Set to 1 at the final state calculation
-
-OVOCV_THRESH
 
 ### `OVOCV_THRESH`
 
@@ -171,13 +154,8 @@ OVOCV_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $N$
->     * OVOCVs that contributes more than
->     * $0.001\times N$
->     * kJ/mol in energy decrease will be saved
+>     * $N$: OVOCVs that contributes more than $0.001\times N$ kJ/mol in energy decrease will be saved
 > * **Recommendation**: None
-
-SAVE_OVOCV
 
 ### `SAVE_OVOCV`
 
@@ -186,10 +164,8 @@ SAVE_OVOCV
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not save significant OVOCVs
->     * 1
->     * Save significant OVOCVs
+>     * `0`: Do not save significant OVOCVs
+>     * `1`: Save significant OVOCVs
 > * **Recommendation**: Set to 1 to save OVOCVs. Note REMs for plotting cube files need also be set
 
 ???+ example "Example 10.10.16: OVOCV analysis between a polarized state and the fully converged SCF state."
@@ -372,8 +348,6 @@ $$
 
 As a result, the connection between $\hat{P}_{\text{G}}$ and $\hat{P}_{\text{FRZ}}$ reveals the primary excitation, and the connection between $\hat{P}_{\text{FRZ}}$ and $\hat{P}_{\text{E}}$ reveals the orbital relaxation effect.
 
-OVOCV_EXCITE_ANALYSIS
-
 ### `OVOCV_EXCITE_ANALYSIS`
 
 > **Perform OVOCV analysis for OO-DFT excitation analysis**
@@ -381,13 +355,9 @@ OVOCV_EXCITE_ANALYSIS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not do OVOCV OO-DFT analysis
->     * 1
->     * Do OVOCV OO-DFT analysis
+>     * `0`: Do not do OVOCV OO-DFT analysis
+>     * `1`: Do OVOCV OO-DFT analysis
 > * **Recommendation**: None
-
-OVOCV_EXCITE_TYPE
 
 ### `OVOCV_EXCITE_TYPE`
 
@@ -396,20 +366,9 @@ OVOCV_EXCITE_TYPE
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * 1
->     * Construct FRZ state using the largest OVOCV pair in
->     * $\alpha$
->     * space
->     * 2
->     * Construct FRZ state using the largest OVOCV pair in
->     * $\beta$
->     * space
->     * 3
->     * Construct FRZ state using the largest OVOCV pair in both
->     * $\alpha$
->     * and
->     * $\beta$
->     * space (for double excitation)
+>     * `1`: Construct FRZ state using the largest OVOCV pair in $\alpha$ space
+>     * `2`: Construct FRZ state using the largest OVOCV pair in $\beta$ space
+>     * `3`: Construct FRZ state using the largest OVOCV pair in both $\alpha$ and $\beta$ space (for double excitation)
 > * **Recommendation**: Use 1 or 2 for single excitation, 3 for double excitation
 
 ???+ example "Example 10.10.18: OVOCV OO-DFT analysis for long distance charge transfer between NH ${}_{3}$ and F ${}_{2}$ ."

@@ -19,8 +19,6 @@ the environment (B).
 The current implementation allows only for closed shell fragments.
 **
 
-FDE
-
 ### `FDE`
 
 > **Turns density embedding on.**
@@ -28,17 +26,13 @@ FDE
 > * **Type**: `BOOLEAN`
 > * **Default**: `False`
 > * **Options**:
->     * True
->     * Perform an FDET calculation.
->     * False
->     * Don’t perform FDET calculation.
+>     * `True`: Perform an FDET calculation.
+>     * `False`: Don’t perform FDET calculation.
 > * **Recommendation**: Set the $rem variable to TRUE to start a FDET calculation.
 
 Enabling FDE-Man, the specification of the embedding method and other job control
 parameters (thresholds, max. iterations *etc.*) should be set in the *$rem*
 section.
-
-METHOD
 
 ### `METHOD`
 
@@ -47,18 +41,7 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * NAME
->     * Use
->     * =
->     * NAME
->     * , where
->     * NAME
->     * is either
->     * HF
->     * for Hartree-Fock theory or
->     * else one of the DFT methods listed in Section
->     * 5.3.5
->     * .
+>     * `NAME`: Use = NAME , where NAME is either HF for Hartree-Fock theory or else one of the DFT methods listed in Section 5.3.5 .
 > * **Recommendation**: None
 
 Other DFT functionals can also be requested with the EXCHANGE and CORRELATION keywords as described
@@ -85,8 +68,6 @@ linearized FDET approximation.[[1539]](../bib_references/bib.md#bib1603)
 Similar to the other methods, the ADC specifications have to be done inside the
 *$rem* section, as shown below.
 
-METHOD
-
 ### `METHOD`
 
 > **Determines which FDET-based method should be used if FDE = TRUE .**
@@ -94,18 +75,12 @@ METHOD
 > * **Type**: `STRING`
 > * **Default**: `None`
 > * **Options**:
->     * adc(2)
->     * Perform an FDE-ADC(2)-s calculation.
->     * adc(2)-x
->     * Perform an FDE-ADC(2)-x calculation.
->     * adc(3)
->     * Perform an FDE-ADC(3) calculation (potential constructed with MP(2) density).
->     * cvs-adc(2)
->     * Perform an FDE-ADC(2)-s calculation of core excitations.
->     * cvs-adc(2)-x
->     * Perform an FDE-ADC(2)-x calculation of core excitations.
->     * cvs-adc(3)
->     * Perform an FDE-ADC(3) calculation of core excitations.
+>     * `adc(2)`: Perform an FDE-ADC(2)-s calculation.
+>     * `adc(2)-x`: Perform an FDE-ADC(2)-x calculation.
+>     * `adc(3)`: Perform an FDE-ADC(3) calculation (potential constructed with MP(2) density).
+>     * `cvs-adc(2)`: Perform an FDE-ADC(2)-s calculation of core excitations.
+>     * `cvs-adc(2)-x`: Perform an FDE-ADC(2)-x calculation of core excitations.
+>     * `cvs-adc(3)`: Perform an FDE-ADC(3) calculation of core excitations.
 > * **Recommendation**: None
 
 FDE-ADC also supports the excited state analysis

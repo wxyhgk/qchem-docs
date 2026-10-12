@@ -54,8 +54,6 @@ fixed atomic positions with soft harmonic confining potentials, which achieves e
 (*i.e.*, optimization) of all atomic coordinates, so that a proper vibrational frequency calculation can be performed. The use of
 harmonic confining potentials as a replacement for fixed atom constraints is described in Section [9.4.7](subsec_HarmonicConfiner.md).
 
-FRZN_OPT
-
 ### `FRZN_OPT`
 
 > **Controls whether the job uses zeroed Hessian technique in the frequency calculations**
@@ -63,13 +61,9 @@ FRZN_OPT
 > * **Type**: `LOGICAL`
 > * **Default**: `False`
 > * **Options**:
->     * False
->     * Do not use the zeroed out Hessian
->     * True
->     * Use the zeroed out Hessian
+>     * `False`: Do not use the zeroed out Hessian
+>     * `True`: Use the zeroed out Hessian
 > * **Recommendation**: False
-
-FRZ_ATOMS
 
 ### `FRZ_ATOMS`
 
@@ -78,7 +72,7 @@ FRZ_ATOMS
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: None
 
 **Note: 

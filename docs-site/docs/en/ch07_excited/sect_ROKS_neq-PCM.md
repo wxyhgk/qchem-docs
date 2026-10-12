@@ -41,10 +41,8 @@ printed after the converged fRF-SCF calculation.
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Save the reaction field in the current job.
->     * FALSE
->     * Do not save the reaction field in the current job.
+>     * `TRUE`: Save the reaction field in the current job.
+>     * `FALSE`: Do not save the reaction field in the current job.
 > * **Recommendation**: The reaction field is saved for the reference state, which is for $\Delta$ SCF or ROKS just the SCF result, but for TDDFT + II-SS-PCM the chosen reference state (see Section 7.3.7.2 ). Activating RF_ptSS_SAVE for several subsequent jobs overwrites the reaction field.
 
 ### `RF_ptSS_Read`
@@ -54,10 +52,8 @@ printed after the converged fRF-SCF calculation.
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Read the reaction field in the current job.
->     * FALSE
->     * Do not read the reaction field in the current job.
+>     * `TRUE`: Read the reaction field in the current job.
+>     * `FALSE`: Do not read the reaction field in the current job.
 > * **Recommendation**: The SCF result corresponds to zeroth order solvation of the final state. For first-order nonequilibrium solvation add the ptSS correction printed after the fRF-SCF.
 
 ???+ example "Example 7.60: Vertical excitation energy of formaldehyde in acetonitrile with ROKS + PCM and a nonequilibrium ptSS-PCM correction."

@@ -10,8 +10,6 @@ title: "7.11.12 RASCI2 的任务控制选项"
 
 RAS-CI2 方法的使用通过将 CORRELATION = RASCI2 且 EXCHANGE = HF 来控制。最基本的输入还要求指定 RAS_N_ROOTS 所需的（非零）值，以及构成"活性" RAS2 空间的活性占据轨道和虚轨道数目。RASCI2 计算还需要通过 AUX_BASIS 指定一个辅助基组。
 
-RAS_N_ROOTS
-
 ### `RAS_N_ROOTS`
 
 > **设置要计算的 RAS-CI 根（态）数目。**
@@ -19,14 +17,9 @@ RAS_N_ROOTS
 > * **类型**: `INTEGER`
 > * **默认值**: `None`
 > * **选项**:
->     * $n$
->     * $n>0$
->     * 计算
->     * $n$
->     * 个 RAS-CI 态
+>     * $n$: $n>0$ 计算
+>     * $n$: 个 RAS-CI 态
 > * **建议**: 无。仅适用于 RASCI2
-
-RAS_ACT_OCC
 
 ### `RAS_ACT_OCC`
 
@@ -35,11 +28,8 @@ RAS_ACT_OCC
 > * **类型**: `Integer`
 > * **默认值**: `None`
 > * **选项**:
->     * $n$
->     * 用户定义的整数
+>     * $n$: 用户定义的整数
 > * **建议**: 无。仅适用于 RASCI2
-
-RAS_ACT_VIR
 
 ### `RAS_ACT_VIR`
 
@@ -48,11 +38,8 @@ RAS_ACT_VIR
 > * **类型**: `Integer`
 > * **默认值**: `None`
 > * **选项**:
->     * $n$
->     * 用户定义的整数
+>     * $n$: 用户定义的整数
 > * **建议**: 无。仅适用于 RASCI2。
-
-RAS_ACT_DIFF
 
 ### `RAS_ACT_DIFF`
 
@@ -61,24 +48,12 @@ RAS_ACT_DIFF
 > * **类型**: `Integer`
 > * **默认值**: `None`
 > * **选项**:
->     * 1
->     * 奇数个电子或阳离子
->     * 0
->     * 偶数个电子
->     * $-1$
->     * 阴离子
->     * $n$
->     * $n<-99$
->     * 在 DDCI 激发级别触发 RAS2-SF
->     * $n=-451$
->     * 以及
->     * $n=-452$
->     * 触发重启（restart）机制，将每个态的最新最佳猜测波函数恢复至所请求的态数目
+>     * `1`: 奇数个电子或阳离子
+>     * `0`: 偶数个电子 $-1$ 阴离子
+>     * $n$: $n<-99$ 在 DDCI 激发级别触发 RAS2-SF $n=-451$ 以及 $n=-452$ 触发重启（restart）机制，将每个态的最新最佳猜测波函数恢复至所请求的态数目
 > * **建议**: 设置为 0 适用于大多数单重态体系。仅适用于 RASCI2。
 
 请注意，其他可用于控制 RASCI2 计算评估的 *$rem* 变量包括：MAX_CIS_CYCLES（Davidson 迭代的最大次数），以及 N_FROZEN_CORE 和 N_FROZEN_VIRTUAL（从 RASCI2 计算中排除-core 和/或虚轨道）。更多细节请参阅下方的示例输入。
-
-RAS_CALC_SOC
 
 ### `RAS_CALC_SOC`
 
@@ -87,15 +62,11 @@ RAS_CALC_SOC
 > * **类型**: `Integer/Logical`
 > * **默认值**: `False`
 > * **选项**:
->     * False
->     * 不执行 SOC 计算。
->     * True
->     * 执行 SOC 计算。
+>     * `False`: 不执行 SOC 计算。
+>     * `True`: 执行 SOC 计算。
 > * **建议**: 该 $rem 变量用于控制自旋-轨道耦合（SOC）分析部分。
 
 注意：对于 SOC 计算，RASCI2 方法默认同时计算单电子和双电子平均场贡献。SOC 分析之后可以触发 SOC-NTO 分析。NTO 分析需要两个额外参数，MOLDEN_FORMAT 和 NTO_PAIRS。这两个变量的详细信息见以下 *$rem* 各节：
-
-MOLDEN_FORMAT
 
 ### `MOLDEN_FORMAT`
 
@@ -104,15 +75,8 @@ MOLDEN_FORMAT
 > * **类型**: `Logical`
 > * **默认值**: `False`
 > * **选项**:
->     * True
->     * 在
->     * Q-Chem
->     * 输出文件末尾追加
->     * MolDen
->     * 输入文件。
+>     * `True`: 在 Q-Chem 输出文件末尾追加 MolDen 输入文件。
 > * **建议**: 目前，RASCI2 中的 SOC-NTO 分析仅支持 MolDen 格式，暂不支持其他可视化工具。更多信息请参阅"使用 MolDen 可视化轨道"一节。
-
-NTO_PAIRS
 
 ### `NTO_PAIRS`
 
@@ -121,13 +85,8 @@ NTO_PAIRS
 > * **类型**: `Integer`
 > * **默认值**: `0`
 > * **选项**:
->     * $N$
->     * 为每个 SOC 跃迁写出
->     * $N$
->     * 对 NTO。
+>     * $N$: 为每个 SOC 跃迁写出 $N$ 对 NTO。
 > * **建议**: 若启用（$N>0$），每个跃迁至少会打印两对 NTO。如需更多 NTO，请增大 $N$ 的值。有关 NTO 可视化的信息，请参见 7.13.3 节。
-
-RAS_PCM_INIT
 
 ### `RAS_PCM_INIT`
 
@@ -136,6 +95,5 @@ RAS_PCM_INIT
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * TRUE
->     * 包含溶剂化
+>     * `TRUE`: 包含溶剂化
 > * **建议**: 这会触发型定溶剂化的非平衡（nonequilibrium）版本。平衡版本还需要额外的关键字。

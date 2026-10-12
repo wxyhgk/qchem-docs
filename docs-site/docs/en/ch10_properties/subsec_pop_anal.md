@@ -66,8 +66,6 @@ localized spin polarizations, they should not be interpreted as oxidation
 states of the atoms in the system. For such information we would recommend a
 bonding analysis technique (LOBA or NBO).
 
-POP_MULLIKEN
-
 ### `POP_MULLIKEN`
 
 > **Controls running of Mulliken population analysis.**
@@ -75,20 +73,11 @@ POP_MULLIKEN
 > * **Type**: `LOGICAL/INTEGER`
 > * **Default**: `TRUE (or 1)`
 > * **Options**:
->     * FALSE (or 0)
->     * Do not calculate Mulliken populations.
->     * TRUE (or 1)
->     * Calculate Mulliken populations.
->     * 2
->     * Also calculate shell populations for each occupied orbital.
->     * 3
->     * Same output as 2 and also orbital densities at the nuclear centers.
->     * $-1$
->     * Calculate Mulliken charges for both the ground state and any CIS,
->     * RPA, or TDDFT excited states.
+>     * `FALSE`（或 `0`）: Do not calculate Mulliken populations.
+>     * `TRUE`（或 `1`）: Calculate Mulliken populations.
+>     * `2`: Also calculate shell populations for each occupied orbital.
+>     * `3`: Same output as 2 and also orbital densities at the nuclear centers. $-1$ Calculate Mulliken charges for both the ground state and any CIS, RPA, or TDDFT excited states.
 > * **Recommendation**: Leave as TRUE , unless excited-state charges are desired. Mulliken analysis is a trivial additional calculation, for ground or excited states.
-
-LOWDIN_POPULATION
 
 ### `LOWDIN_POPULATION`
 
@@ -97,10 +86,8 @@ LOWDIN_POPULATION
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not calculate Löwdin populations.
->     * TRUE
->     * Run Löwdin population analysis.
+>     * `FALSE`: Do not calculate Löwdin populations.
+>     * `TRUE`: Run Löwdin population analysis.
 > * **Recommendation**: None
 
 ## 10.2.2.2 Charges derived from the electrostatic potential
@@ -137,8 +124,6 @@ far fewer grid points. In order to use the Lebedev grid implementation the
 specify the number of Lebedev grid points for the hydrogen atoms and the heavy
 atoms, respectively.
 
-CHELPG
-
 ### `CHELPG`
 
 > **Controls the calculation of CHELPG charges.**
@@ -146,13 +131,9 @@ CHELPG
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not calculate ChElPG charges.
->     * TRUE
->     * Compute ChElPG charges.
+>     * `FALSE`: Do not calculate ChElPG charges.
+>     * `TRUE`: Compute ChElPG charges.
 > * **Recommendation**: Set to TRUE if desired. For large molecules, there is some overhead associated with computing ChElPG charges, especially if the number of grid points is large. Note that POP_MULLIKEN must also be set to TRUE (which is the default value) in order to get ChElPG charges.
-
-CHELPG_HEAD
 
 ### `CHELPG_HEAD`
 
@@ -161,13 +142,8 @@ CHELPG_HEAD
 > * **Type**: `INTEGER`
 > * **Default**: `28`
 > * **Options**:
->     * $N$
->     * Corresponding to a head space of
->     * $N/10$
->     * , in Å.
+>     * $N$: Corresponding to a head space of $N/10$ , in Å.
 > * **Recommendation**: Use the default, which is the value recommended by Breneman and Wiberg. 159 Breneman C. M., Wiberg K. B. J. Comput. Chem. (1990) , 11 , pp. 361 . Link
-
-CHELPG_DX
 
 ### `CHELPG_DX`
 
@@ -176,13 +152,8 @@ CHELPG_DX
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $N$
->     * Corresponding to a grid space of
->     * $N/20$
->     * , in Å.
+>     * $N$: Corresponding to a grid space of $N/20$ , in Å.
 > * **Recommendation**: Use the default, which corresponds to the “dense grid” of Breneman and Wiberg, 159 Breneman C. M., Wiberg K. B. J. Comput. Chem. (1990) , 11 , pp. 361 . Link , unless the cost is prohibitive, in which case a larger value can be selected. Note that this default value is set with the Cartesian grid in mind and not the Lebedev grid. In the Lebedev case, a larger value can typically be used.
-
-CHELPG_HA
 
 ### `CHELPG_HA`
 
@@ -191,13 +162,8 @@ CHELPG_HA
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $N$
->     * Use
->     * $N$
->     * Lebedev points per atom.
+>     * $N$: Use $N$ Lebedev points per atom.
 > * **Recommendation**: $N$ must be one of the defined values for a Lebedev grid; see Table 5.2 .
-
-CHELPG_H
 
 ### `CHELPG_H`
 
@@ -206,10 +172,7 @@ CHELPG_H
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $N$
->     * Use
->     * $N$
->     * Lebedev points per atom.
+>     * $N$: Use $N$ Lebedev points per atom.
 > * **Recommendation**: $N$ must be one of the defined values for a Lebedev grid; see Table 5.2 . Furthermore, must always be less than or equal to CHELPG_HA . If it is greater, it will automatically be set to the value of CHELPG_HA .
 
 A closely-related set of ESP-derived charges are the so-called “Merz-Kollman" charges,[[1258]](../bib_references/bib.md#bib1310)
@@ -243,8 +206,6 @@ excited state density not the unrelaxed density.
 
 **
 
-ESP_CHARGES
-
 ### `ESP_CHARGES`
 
 > **Controls the calculations of Merz-Kollman ESP-derived charges.**
@@ -252,13 +213,9 @@ ESP_CHARGES
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * 1
->     * Use Lebedev grid points around each atom.
->     * 2
->     * Use spherical harmonics grid points around each atom.
+>     * `1`: Use Lebedev grid points around each atom.
+>     * `2`: Use spherical harmonics grid points around each atom.
 > * **Recommendation**: NONE
-
-RESP_CHARGES
 
 ### `RESP_CHARGES`
 
@@ -267,13 +224,9 @@ RESP_CHARGES
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * 1
->     * Use Lebedev grid points around each atom.
->     * 2
->     * Use spherical harmonics grid points around each atom.
+>     * `1`: Use Lebedev grid points around each atom.
+>     * `2`: Use spherical harmonics grid points around each atom.
 > * **Recommendation**: NONE
-
-ESP_SURFACE_DENSITY
 
 ### `ESP_SURFACE_DENSITY`
 
@@ -282,10 +235,7 @@ ESP_SURFACE_DENSITY
 > * **Type**: `INTEGER`
 > * **Default**: `500`
 > * **Options**:
->     * $n$
->     * Spacing of
->     * $0.001\times n$
->     * (in Å)
+>     * $n$: Spacing of $0.001\times n$ (in Å)
 > * **Recommendation**: The default corresponds to 0.5 Å spacing.
 
 ## 10.2.2.3 Hirshfeld charges
@@ -393,8 +343,6 @@ each iteration of Hirshfeld-I is equal to the cost of computing the
 original Hirshfeld charges. The *$rem* variable POINT_GROUP_SYMMETRY must be set to FALSE for
 Hirshfeld-I analysis.
 
-HIRSHFELD
-
 ### `HIRSHFELD`
 
 > **Controls running of Hirshfeld population analysis.**
@@ -402,13 +350,9 @@ HIRSHFELD
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate Hirshfeld populations.
->     * FALSE
->     * Do not calculate Hirshfeld populations.
+>     * `TRUE`: Calculate Hirshfeld populations.
+>     * `FALSE`: Do not calculate Hirshfeld populations.
 > * **Recommendation**: None
-
-HIRSHFELD_READ
 
 ### `HIRSHFELD_READ`
 
@@ -417,13 +361,9 @@ HIRSHFELD_READ
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Read in isolated atomic densities from previous Hirshfeld calculation from disk.
->     * FALSE
->     * Generate new isolated atomic densities.
+>     * `TRUE`: Read in isolated atomic densities from previous Hirshfeld calculation from disk.
+>     * `FALSE`: Generate new isolated atomic densities.
 > * **Recommendation**: Use the default unless system is large. Note, atoms should be in the same order with same basis set used as in the previous Hirshfeld calculation (although coordinates can change). The previous calculation should be run with the -save switch.
-
-HIRSHFELD_SPHAVG
 
 ### `HIRSHFELD_SPHAVG`
 
@@ -432,13 +372,9 @@ HIRSHFELD_SPHAVG
 > * **Type**: `LOGICAL`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Spherically average atomic densities.
->     * FALSE
->     * Do not spherically average.
+>     * `TRUE`: Spherically average atomic densities.
+>     * `FALSE`: Do not spherically average.
 > * **Recommendation**: Use the default.
-
-CM5
 
 ### `CM5`
 
@@ -447,13 +383,9 @@ CM5
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate CM5 populations.
->     * FALSE
->     * Do not calculate CM5 populations.
+>     * `TRUE`: Calculate CM5 populations.
+>     * `FALSE`: Do not calculate CM5 populations.
 > * **Recommendation**: None
-
-HIRSHITER
 
 ### `HIRSHITER`
 
@@ -462,13 +394,9 @@ HIRSHITER
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Calculate iterative Hirshfeld populations.
->     * FALSE
->     * Do not calculate iterative Hirshfeld populations.
+>     * `TRUE`: Calculate iterative Hirshfeld populations.
+>     * `FALSE`: Do not calculate iterative Hirshfeld populations.
 > * **Recommendation**: None
-
-HIRSHITER_THRESH
 
 ### `HIRSHITER_THRESH`
 
@@ -477,12 +405,7 @@ HIRSHITER_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `5`
 > * **Options**:
->     * $N$
->     * Corresponding to the convergence criterion of
->     * $N/10000$
->     * , in
->     * $e$
->     * .
+>     * $N$: Corresponding to the convergence criterion of $N/10000$ , in $e$ .
 > * **Recommendation**: Use the default, which is the value recommended in Ref. 170 Bultinck P. et al. J. Chem. Phys. (2007) , 126 , pp. 144111 . Link
 
 ???+ example "Example 10.1: Iterative Hirshfeld population analysis for $\rm F^{-}(H_{2}O)$"

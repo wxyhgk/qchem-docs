@@ -28,8 +28,6 @@ Alternatively it is possible to localize high and low frequency
 modes separately in a single calculation using LOCALFREQ_GROUPS and
 related inputs.
 
-LOCALFREQ
-
 ### `LOCALFREQ`
 
 > **Controls whether a vibrational mode localization calculation is performed.**
@@ -37,13 +35,9 @@ LOCALFREQ
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Localized mode calculation with a Pipek-Mezey like criterion.
->     * 2
->     * Localized mode calculation with a Boys like criterion.
+>     * `1`: Localized mode calculation with a Pipek-Mezey like criterion.
+>     * `2`: Localized mode calculation with a Boys like criterion.
 > * **Recommendation**: None
-
-LOCALFREQ_THRESH
 
 ### `LOCALFREQ_THRESH`
 
@@ -52,11 +46,8 @@ LOCALFREQ_THRESH
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * User-specified integer.
+>     * $n$: User-specified integer.
 > * **Recommendation**: None
-
-LOCALFREQ_MAX_ITER
 
 ### `LOCALFREQ_MAX_ITER`
 
@@ -65,11 +56,8 @@ LOCALFREQ_MAX_ITER
 > * **Type**: `INTEGER`
 > * **Default**: `200`
 > * **Options**:
->     * $n$
->     * User-specified integer.
+>     * $n$: User-specified integer.
 > * **Recommendation**: None
-
-LOCALFREQ_SELECT
 
 ### `LOCALFREQ_SELECT`
 
@@ -78,11 +66,8 @@ LOCALFREQ_SELECT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * Select a subset of normal modes.
+>     * `TRUE`: Select a subset of normal modes.
 > * **Recommendation**: None
-
-LOCALFREQ_GROUPS
 
 ### `LOCALFREQ_GROUPS`
 
@@ -91,15 +76,10 @@ LOCALFREQ_GROUPS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 1
->     * Define one subset of modes to localize independently.
->     * 2
->     * Define two subsets of modes to localize independently.
->     * 3
->     * Define three subsets of modes to localize independently.
+>     * `1`: Define one subset of modes to localize independently.
+>     * `2`: Define two subsets of modes to localize independently.
+>     * `3`: Define three subsets of modes to localize independently.
 > * **Recommendation**: None
-
-LOCALFREQ_GROUP1
 
 ### `LOCALFREQ_GROUP1`
 
@@ -108,8 +88,7 @@ LOCALFREQ_GROUP1
 > * **Type**: `INTEGER`
 > * **Default**: `NONE`
 > * **Options**:
->     * $n$
->     * User-specified integer.
+>     * $n$: User-specified integer.
 > * **Recommendation**: Modes will be included starting with the lowest frequency mode and then in ascending energy order up to the defined value.
 
 LOCALFREQ_GROUP2 and LOCALFREQ_GROUP3 are defined similarly.

@@ -35,8 +35,6 @@ $$
 
 其中 $\alpha$ 是某个基函数的指数，$\theta$ 由 *$rem* 关键字 COMPLEX_THETA 指定。
 
-COMPLEX_BASIS
-
 ### `COMPLEX_BASIS`
 
 > **定义复基组。**
@@ -52,8 +50,6 @@ COMPLEX_BASIS
 >     * ZBASIS_MIXED
 >     * 用户自定义混合基组
 > * **建议**：参阅文献 1457 White A. F., Head-Gordon M., McCurdy C. W. J. Chem. Phys. (2015) , 142 , pp. 054103 . Link 以及 Basis Set Exchange（基组交换库）。
-
-COMPLEX_THETA
 
 ### `COMPLEX_THETA`
 

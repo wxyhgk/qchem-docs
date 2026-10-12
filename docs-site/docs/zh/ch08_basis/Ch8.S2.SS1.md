@@ -86,8 +86,6 @@ Jensen 极化一致（polarization consistent）基组[[635]](../bib_references/
 
 以下 *$rem* 关键字用于控制基组：
 
-BASIS
-
 ### `BASIS`
 
 > **设置所使用的基组。**

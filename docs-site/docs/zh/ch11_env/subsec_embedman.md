@@ -50,8 +50,6 @@ EMBEDMAN 设为 1。这是通过标准的 **Q-Chem** 片段输入语法完成的
 还建议用户禁用对称性，即设置 INTEGRAL_SYMMETRY =
 FALSE 和 POINT_GROUP_SYMMETRY = FALSE。请参阅示例输入以获取正确的作业设置。
 
-EMBEDMAN
-
 ### `EMBEDMAN`
 
 > **开启密度嵌入功能。**
@@ -64,8 +62,6 @@ EMBEDMAN
 >     * 1
 >     * 开启密度嵌入。
 > * **推荐设置**：用于 QM/QM 密度嵌入计算。
-
-EMBED_THEORY
 
 ### `EMBED_THEORY`
 
@@ -82,8 +78,6 @@ EMBED_THEORY
 >     * 对片段 1 执行 MP2 计算。
 > * **推荐设置**：对于片段 1-in-2 的高级别 QM 计算，此项应设为 1 或 2；对于片段 2-in-1 的低级别 QM 计算，应设为 0。
 
-EMBED_MU
-
 ### `EMBED_MU`
 
 > **指定投影算符缩放因子 $\mu$ 的指数值 [式 ( 11.120 ) 和 ( 11.122 )]。**
@@ -95,8 +89,6 @@ EMBED_MU
 >     * $\mu=10^{n}$
 >     * .
 > * **推荐设置**：推荐使用 2 - 7 范围内的值。$\mu$ 值越大，片段分子轨道（MO）的正交性越好，但 $\mu>10^{7}$ 会引入数值噪声。$\mu<10^{2}$ 会导致非加和项（non-additive terms）过大。在 $10^{2}-10^{7}$ 范围内，能量修正对 $\mu$ 的变化相当不敏感。
-
-EMBED_THRESH
 
 ### `EMBED_THRESH`
 

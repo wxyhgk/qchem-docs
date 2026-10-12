@@ -326,8 +326,6 @@ ALMO(MSDFT)/ALMO(MSDFT2) 方法可用于计算基态电子转移或空穴转移�
 
 基于 ALMO 的 $\Delta$SCF 态通过 *$scfmi_mom* 部分指定，其语法在第 [12.6.7](../ch12_frag/sect_eda2_non_aufbau.md) 节中有详细说明。不同非绝热态的指定内容之间用 "–" 分隔。对于不涉及片段内激发的非绝热态，只需写 "–" 而无需附加指定。
 
-FRAG_DIABAT_METHOD
-
 ### `FRAG_DIABAT_METHOD`
 
 > **指定基于片段的非绝热化方法**
@@ -335,34 +333,15 @@ FRAG_DIABAT_METHOD
 > * **类型**: `STRING`
 > * **默认值**: `NONE`
 > * **可选值**:
->     * ALMO_MSDFT
->     * 执行 ALMO(MSDFT) 非绝热化
->     * POD
->     * 执行投影算符非绝热化（原始方法）
->     * POD2_L
->     * 执行采用 Löwdin 正交化的 POD2
->     * POD2_GS
->     * 执行采用 Gram-Schmidt 正交化的 POD2
->     * ESID
->     * 能量分裂二聚体法（energy-split-in-dimer method），
->     * 1384
->     * Valeev E. F. et al.
->     * J. Am. Chem. Soc.
->     * (2006)
->     * ,
->     * 128
->     * ,
->     * pp. 9882
->     * .
->     * 链接（Link）
->     * 该选项等价于
->     * 第 10.15.2.5 节中介绍的
->     * FMO 方法
->     * FODFT
->     * 使用片段轨道 DFT 计算电子耦合
+>     * `ALMO_MSDFT`: 执行 ALMO(MSDFT) 非绝热化
+>     * `POD`: 执行投影算符非绝热化（原始方法）
+>     * `POD2_L`: 执行采用 Löwdin 正交化的 POD2
+>     * `POD2_GS`: 执行采用 Gram-Schmidt 正交化的 POD2
+>     * `ESID`: 能量分裂二聚体法（energy-split-in-dimer method），
+>     * `1384`: Valeev E. F. et al. J. Am. Chem. Soc. (2006) ,
+>     * `128`: , pp. 9882 . 链接（Link） 该选项等价于第 10.15.2.5 节中介绍的 FMO 方法
+>     * `FODFT`: 使用片段轨道 DFT 计算电子耦合
 > * **建议**: NONE
-
-FRAG_DIABAT_DOHT
 
 ### `FRAG_DIABAT_DOHT`
 
@@ -371,13 +350,9 @@ FRAG_DIABAT_DOHT
 > * **类型**: `BOOLEAN`
 > * **默认值**: `TRUE`
 > * **可选值**:
->     * TRUE
->     * 执行空穴转移（hole transfer）
->     * FALSE
->     * 执行电子转移（electron transfer）
+>     * `TRUE`: 执行空穴转移（hole transfer）
+>     * `FALSE`: 执行电子转移（electron transfer）
 > * **建议**: 对于 POD 和 FODFT 计算需要指定
-
-FRAG_DIABAT_PRINT
 
 ### `FRAG_DIABAT_PRINT`
 
@@ -386,13 +361,8 @@ FRAG_DIABAT_PRINT
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * 0
->     * 不额外打印任何内容
->     * $\geq 1$
->     * 打印附加细节信息
+>     * `0`: 不额外打印任何内容 $\geq 1$ 打印附加细节信息
 > * **建议**: 除非需要调试信息，否则使用默认值
-
-MSDFT_METHOD
 
 ### `MSDFT_METHOD`
 
@@ -401,17 +371,9 @@ MSDFT_METHOD
 > * **类型**: `INTEGER`
 > * **默认值**: `2`
 > * **可选值**:
->     * 1
->     * 原始 MSDFT 格式 [式 (
->     * 10.208
->     * )]
->     * 2
->     * ALMO(MSDFT2) 方法 [式 (
->     * 10.211
->     * )]
+>     * `1`: 原始 MSDFT 格式 [式 ( 10.208 )]
+>     * `2`: ALMO(MSDFT2) 方法 [式 ( 10.211 )]
 > * **建议**: 使用默认方法。注意，若请求的是.meta-GGA 泛函，该方法会被自动重置为 1。
-
-MSDFT_PINV_THRESH
 
 ### `MSDFT_PINV_THRESH`
 
@@ -420,12 +382,8 @@ MSDFT_PINV_THRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `4`
 > * **可选值**:
->     * $n$
->     * 将阈值设为 10
->     * ${}^{-n}$
+>     * $n$: 将阈值设为 10 ${}^{-n}$
 > * **建议**: 使用默认值
-
-EX_ALMO_MSDFT
 
 ### `EX_ALMO_MSDFT`
 
@@ -434,17 +392,9 @@ EX_ALMO_MSDFT
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * TRUE
->     * 将按
->     * $scfmi_mom
->     * 中的指定计算 ALMO-
->     * $\Delta$
->     * SCF 态
->     * FALSE
->     * 执行基态 ALMO(MSDFT) 计算。
+>     * `TRUE`: 将按 $scfmi_mom 中的指定计算 ALMO- $\Delta$ SCF 态
+>     * `FALSE`: 执行基态 ALMO(MSDFT) 计算。
 > * **建议**: 无
-
-POD_MULTI_PAIRS
 
 ### `POD_MULTI_PAIRS`
 
@@ -453,21 +403,9 @@ POD_MULTI_PAIRS
 > * **类型**: `BOOLEAN`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * TRUE
->     * 计算多对轨道之间的耦合
->     * FALSE
->     * 仅计算
->     * $D$
->     * (HOMO)–
->     * $A$
->     * (HOMO) 耦合（空穴转移）或
->     * $D$
->     * (LUMO)–
->     * $A$
->     * (LUMO) 耦合（电子转移）
+>     * `TRUE`: 计算多对轨道之间的耦合
+>     * `FALSE`: 仅计算 $D$ (HOMO)– $A$ (HOMO) 耦合（空穴转移）或 $D$ (LUMO)– $A$ (LUMO) 耦合（电子转移）
 > * **建议**: 无
-
-POD_WINDOW
 
 ### `POD_WINDOW`
 
@@ -476,20 +414,10 @@ POD_WINDOW
 > * **类型**: `INTEGER`
 > * **默认值**: `5`
 > * **可选值**:
->     * $n$
->     * 对给体和受体均包含
->     * $n$
->     * 个前沿占据轨道（从
->     * $\text{HOMO}-n+1$
->     * 到 HOMO）
->     * 以及
->     * $n$
->     * 个前沿虚轨道（从 LUMO 到
->     * $\text{LUMO}+n-1$
->     * ）
+>     * $n$: 对给体和受体均包含
+>     * $n$: 个前沿占据轨道（从 $\text{HOMO}-n+1$ 到 HOMO） 以及
+>     * $n$: 个前沿虚轨道（从 LUMO 到 $\text{LUMO}+n-1$）
 > * **建议**: 无
-
-FODFT_METHOD
 
 ### `FODFT_METHOD`
 
@@ -498,34 +426,10 @@ FODFT_METHOD
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **可选值**:
->     * 1
->     * FODFT(
->     * $\mathrm{2n-1}$
->     * )@
->     * $D^{+}A$
->     * （空穴转移）/ FODFT(
->     * $\mathrm{2n+1}$
->     * )@
->     * $D^{-}A$
->     * （电子转移）
->     * 2
->     * FODFT(
->     * $\mathrm{2n}$
->     * )@
->     * $DA$
->     * 3
->     * FODFT(
->     * $\mathrm{2n-1}$
->     * )@
->     * $DA$
->     * （空穴转移）/ FODFT(
->     * $\mathrm{2n+1}$
->     * )@
->     * $D^{-}A^{-}$
->     * （电子转移）
+>     * `1`: FODFT( $\mathrm{2n-1}$ )@ $D^{+}A$ （空穴转移）/ FODFT( $\mathrm{2n+1}$ )@ $D^{-}A$ （电子转移）
+>     * `2`: FODFT( $\mathrm{2n}$ )@ $DA$
+>     * `3`: FODFT( $\mathrm{2n-1}$ )@ $DA$ （空穴转移）/ FODFT( $\mathrm{2n+1}$ )@ $D^{-}A^{-}$ （电子转移）
 > * **建议**: 默认方法的整体表现最佳
-
-FODFT_DONOR
 
 ### `FODFT_DONOR`
 
@@ -534,10 +438,8 @@ FODFT_DONOR
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **可选值**:
->     * 1
->     * 以第一个片段作为给体
->     * 2
->     * 以第二个片段作为给体
+>     * `1`: 以第一个片段作为给体
+>     * `2`: 以第二个片段作为给体
 > * **建议**: 当 FODFT_METHOD = 1 时，带电片段必须作为给体片段
 
 ???+ example "示例 10.77: 乙烯二聚体空穴转移的 ALMO(MSDFT2) 计算"

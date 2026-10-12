@@ -19,8 +19,6 @@ strong electronic coupling between multiple chromophores or where there is
 significant multireference character in the excited state.[[572]](../bib_references/bib.md#bib586)
 )
 
-NTO_PAIRS
-
 ### `NTO_PAIRS`
 
 > **Controls the writing of hole/particle NTO pairs for excited state.**
@@ -28,10 +26,7 @@ NTO_PAIRS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * $N$
->     * Write
->     * $N$
->     * NTO pairs per excited state.
+>     * $N$: Write $N$ NTO pairs per excited state.
 > * **Recommendation**: If activated ( $N>0$ ), a minimum of two NTO pairs will be printed for each state. Increase the value of $N$ if additional NTOs are desired.
 
 When NTO_PAIRS $>0$, **Q-Chem** will generate the NTOs in **MolDen**

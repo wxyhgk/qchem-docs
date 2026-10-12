@@ -14,8 +14,6 @@ gdm
 
 与 GDM 相关的 *$rem* 选项包括 SCF_ALGORITHM（应设置为 GDM 或 DIIS_GDM），以及以下选项：
 
-MAX_DIIS_CYCLES
-
 ### `MAX_DIIS_CYCLES`
 
 > **当 SCF_ALGORITHM 为 DIIS_GDM 或 DIIS_DM 时，在切换到（几何）直接极小化之前所允许的最大 DIIS 迭代次数。另见 THRESH_DIIS_SWITCH 。**
@@ -29,8 +27,6 @@ MAX_DIIS_CYCLES
 >     * $n$
 >     * 在切换到 (G)DM 之前的 DIIS 迭代次数。
 > * **建议**：无
-
-THRESH_DIIS_SWITCH
 
 ### `THRESH_DIIS_SWITCH`
 

@@ -43,8 +43,6 @@ Roothaan step (which also serves up a properly orthogonalized set of orbitals).
 *$rem* options relevant to GDM are SCF_ALGORITHM which should be set
 to either GDM or DIIS_GDM and the following:
 
-MAX_DIIS_CYCLES
-
 ### `MAX_DIIS_CYCLES`
 
 > **The maximum number of DIIS iterations before switching to (geometric) direct minimization when SCF_ALGORITHM is DIIS_GDM or DIIS_DM . See also THRESH_DIIS_SWITCH .**
@@ -52,14 +50,10 @@ MAX_DIIS_CYCLES
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * 1
->     * Only a single Roothaan step before switching to (G)DM
+>     * `1`: Only a single Roothaan step before switching to (G)DM
 >     * $n$
->     * $n$
->     * DIIS iterations before switching to (G)DM.
+>     * $n$: DIIS iterations before switching to (G)DM.
 > * **Recommendation**: None
-
-THRESH_DIIS_SWITCH
 
 ### `THRESH_DIIS_SWITCH`
 
@@ -68,7 +62,7 @@ THRESH_DIIS_SWITCH
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * User-defined.
+>     * `User-defined.`
 > * **Recommendation**: None
 
 ???+ example "Example 4.12: Input for a UHF calculation using geometric direct minimization (GDM) on the

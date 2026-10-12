@@ -23,8 +23,6 @@ $$
 
 在某些情况下，打印由这些原子胞元函数定义的原子 Becke 布居数可能很有用。可以通过在输入文件中将 POP_BECKE 设置为 TRUE 来请求进行 Becke 布居分析。
 
-POP_BECKE
-
 ### `POP_BECKE`
 
 > **控制原子 Becke 布居数的打印输出。**
@@ -32,10 +30,8 @@ POP_BECKE
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **可选值**:
->     * TRUE
->     * 打印原子 Becke 布居数。
->     * FALSE
->     * 不打印原子 Becke 布居数。
+>     * `TRUE`: 打印原子 Becke 布居数。
+>     * `FALSE`: 不打印原子 Becke 布居数。
 > * **建议**: 无
 
 默认的求积方案使用在键中点处精确相交的原子胞元函数。因此，默认的原子胞元函数会给出在物理上无意义的原子布居数。不过，可以利用原子半径判据来平移原子胞元函数的交点。[[94]](../bib_references/bib.md#bib73)
@@ -45,8 +41,6 @@ $\approx 1$ 开始下降到 $\approx 0$ 的位置会随每个原子的原子半�
  以及 Pacios 提出的
 *ab initio*（从头算）导出的权重[[1034]](../bib_references/bib.md#bib1077)。
 
-BECKE_SHIFT
-
 ### `BECKE_SHIFT`
 
 > **控制在确定 Becke 权重时的原子胞元平移。**
@@ -54,15 +48,9 @@ BECKE_SHIFT
 > * **类型**: `STRING`
 > * **默认值**: `BRAGG_SLATER`
 > * **可选值**:
->     * UNSHIFTED
->     * 使用不含原子尺寸修正的 Becke 权重，
->     * 即基于键中点的划分。
->     * BRAGG_SLATER
->     * 使用 Bragg 和 Slater 提出的经验半径。
->     * UNIVERSAL_DENSITY
->     * 使用
->     * ab initio
->     * 方法导出的、由 Pacios 提出的半径。
+>     * `UNSHIFTED`: 使用不含原子尺寸修正的 Becke 权重， 即基于键中点的划分。
+>     * `BRAGG_SLATER`: 使用 Bragg 和 Slater 提出的经验半径。
+>     * `UNIVERSAL_DENSITY`: 使用 ab initio 方法导出的、由 Pacios 提出的半径。
 > * **建议**: 如果关注的是默认原子求积的划分，请使用 UNSHIFTED。如果用于物理诠释，请选择 BRAGG_SLATER 或 UNIVERSAL_DENSITY。所有 cDFT 计算以及 POP_BECKE = TRUE 的计算将默认使用 BRAGG_SLATER 半径，否则默认网格为 UNSHIFTED。
 
 ## 基于片段的 Hirshfeld 划分方案：
@@ -82,8 +70,6 @@ $$
 FBH 划分直接来自孤立片段的密度，这些密度不像 Becke 划分中有效原子半径的选择那样具有任意性。
 为了应用 FBH 划分，必须在 *$molecule* 区块中定义片段以承载约束条件，但 *$cdft* 区块的输入保持不变，仍按逐原子的方式施加约束。
 
-CDFT_POP
-
 ### `CDFT_POP`
 
 > **设置 cDFT 或 cDFT-CI 作业的电荷划分方案。**
@@ -91,8 +77,6 @@ CDFT_POP
 > * **类型**: `STRING`
 > * **默认值**: `BECKE`
 > * **可选值**:
->     * BECKE
->     * 原子 Becke 函数的线性组合
->     * FBH
->     * 基于片段的 Hirshfeld 划分
+>     * `BECKE`: 原子 Becke 函数的线性组合
+>     * `FBH`: 基于片段的 Hirshfeld 划分
 > * **建议**: 无

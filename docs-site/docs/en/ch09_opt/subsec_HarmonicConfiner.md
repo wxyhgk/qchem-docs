@@ -178,8 +178,6 @@ to be able to maintain the same potential energy surface between jobs. For examp
 geometry optimization with pairwise confiners would generate a *$coords* section which
 could then used in a frequency job that needs to match the forces of the optimization job.
 
-HARM_OPT
-
 ### `HARM_OPT`
 
 > **Controls whether the job uses confining potentials**
@@ -187,15 +185,10 @@ HARM_OPT
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not use the potentials
->     * 1
->     * Use cartesian confining potential
->     * 2
->     * Use pairwise confining potential
+>     * `0`: Do not use the potentials
+>     * `1`: Use cartesian confining potential
+>     * `2`: Use pairwise confining potential
 > * **Recommendation**: False
-
-HOATOMS
 
 ### `HOATOMS`
 
@@ -204,10 +197,8 @@ HOATOMS
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: None
-
-HARM_FORCE
 
 ### `HARM_FORCE`
 
@@ -216,5 +207,5 @@ HARM_FORCE
 > * **Type**: `INTEGER`
 > * **Default**: `No default`
 > * **Options**:
->     * User defined
+>     * `User defined`
 > * **Recommendation**: None

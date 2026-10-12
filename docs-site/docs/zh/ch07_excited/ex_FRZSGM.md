@@ -49,8 +49,6 @@ D${}_{\mathrm{f}}$ 和 V${}_{\mathrm{f}}$ 块分别只包含 4 号和 2 号 MO�
 在 UKS 情形下，分别对 $\alpha$ 和 $\beta$ MO 集合执行两次独立的 RKS 计算。由于可能存在 $\alpha$ 和 $\beta$ 电子的激发，因此引入 b_frozen 和 vb_frozen 来冻结 $\beta$ MOs。
 $\beta$ MOs 可以使用 *$reorder_beta* 输入段进行重新排序。
 
-FROZEN_ORBITAL
-
 ### `FROZEN_ORBITAL`
 
 > **启用受约束优化库（在输出文件中打印 A frozen … calculation will be performed using … ）。**
@@ -58,13 +56,9 @@ FROZEN_ORBITAL
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行受约束优化。
->     * TRUE
->     * 执行受约束优化。
+>     * `FALSE`: 不执行受约束优化。
+>     * `TRUE`: 执行受约束优化。
 > * **建议**: 仅与 GDM 优化算法配合使用。为使受约束优化有效，用户必须按照上文说明手动重新排序 MOs。
-
-A_FROZEN
 
 ### `A_FROZEN`
 
@@ -73,15 +67,9 @@ A_FROZEN
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **选项**:
->     * 0
->     * 不冻结任何向量。
->     * Af
->     * 冻结最后 Af 个占据
->     * $\alpha$
->     * MOs。
+>     * `0`: 不冻结任何向量。
+>     * `Af`: 冻结最后 Af 个占据 $\alpha$ MOs。
 > * **建议**: 无
-
-VA_FROZEN
 
 ### `VA_FROZEN`
 
@@ -90,15 +78,9 @@ VA_FROZEN
 > * **类型**: `INTEGER`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * 0
->     * 不冻结任何向量。
->     * VAf
->     * 冻结最后 VAf 个虚
->     * $\alpha$
->     * MOs。
+>     * `0`: 不冻结任何向量。
+>     * `VAf`: 冻结最后 VAf 个虚 $\alpha$ MOs。
 > * **建议**: 无
-
-B_FROZEN
 
 ### `B_FROZEN`
 
@@ -107,15 +89,9 @@ B_FROZEN
 > * **类型**: `INTEGER`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不冻结任何向量。
->     * Bf
->     * 冻结最后 Bf 个占据
->     * $\beta$
->     * MOs。
+>     * `FALSE`: 不冻结任何向量。
+>     * `Bf`: 冻结最后 Bf 个占据 $\beta$ MOs。
 > * **建议**: 无
-
-VB_FROZEN
 
 ### `VB_FROZEN`
 
@@ -124,12 +100,8 @@ VB_FROZEN
 > * **类型**: `INTEGER`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * 0
->     * 不冻结任何向量。
->     * VBf
->     * 冻结最后 VBf 个虚
->     * $\beta$
->     * MOs。
+>     * `0`: 不冻结任何向量。
+>     * `VBf`: 冻结最后 VBf 个虚 $\beta$ MOs。
 > * **建议**: 无
 
 ???+ example "示例 7.7.56：使用 FRZ-SGM 方法计算四氟乙烯–乙烯二聚体中最低层间分子间电荷转移激发的冻结-释放计算输入示例 144 Bogo N. et al. Phys. Chem. Chem. Phys. (2025) , 27 , pp. 17533 . Link ."

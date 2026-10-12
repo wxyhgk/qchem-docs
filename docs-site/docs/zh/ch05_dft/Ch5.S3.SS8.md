@@ -35,8 +35,6 @@ HF-3c 和 PBEh-3c 方法是针对上述基组进行参数化的。虽然 **Q-Che
 
 ## 5.3.8.2 DFT-3c 的任务控制与示例
 
-FDIFF_STENCIL_3C
-
 ### `FDIFF_STENCIL_3C`
 
 > **指定是否对 DFT-3c 中"3c"部分的导数使用 5 点差分模板（5-point stencil）。**

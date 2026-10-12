@@ -163,8 +163,6 @@ At the moment the $g$-tensor is only implemented at the CCSD level.
 
 Only one keyword is necessary in the *$rem* section to activate the magnetic property module.
 
-MAGNET
-
 ### `MAGNET`
 
 > **Activate the magnetic property module.**
@@ -172,10 +170,8 @@ MAGNET
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Don’t activate the magnetic property module.
->     * TRUE (or 1)
->     * Activate the magnetic property module.
+>     * `FALSE`（或 `0`）: Don’t activate the magnetic property module.
+>     * `TRUE`（或 `1`）: Activate the magnetic property module.
 > * **Recommendation**: None.
 
 All other options are controlled through the *$magnet* input section, which has
@@ -189,10 +185,8 @@ Current options are:
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate hyperfine interaction tensors.
->     * TRUE (or 1)
->     * Calculate hyperfine interaction tensors.
+>     * `FALSE`（或 `0`）: Don’t calculate hyperfine interaction tensors.
+>     * `TRUE`（或 `1`）: Calculate hyperfine interaction tensors.
 > * **Recommendation**: None. Due to the nature of the property, which requires the spin density, this is not meaningful for restricted (RHF) references. Only UHF (not ROHF) is available.
 
 ### `Electric`
@@ -202,10 +196,8 @@ Current options are:
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate EFG tensors and nuclear quadrupole parameters.
->     * TRUE (or 1)
->     * Calculate EFG tensors and nuclear quadrupole parameters.
+>     * `FALSE`（或 `0`）: Don’t calculate EFG tensors and nuclear quadrupole parameters.
+>     * `TRUE`（或 `1`）: Calculate EFG tensors and nuclear quadrupole parameters.
 > * **Recommendation**: None.
 
 For both hyperfine and EFG tensors, the results for all nuclei are automatically calculated.
@@ -217,10 +209,8 @@ For both hyperfine and EFG tensors, the results for all nuclei are automatically
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * False (or 0)
->     * Don’t calculate excited state hyperfine couplings.
->     * True (or 1)
->     * Calculate excited state hyperfine couplings.
+>     * `False (or 0)`: Don’t calculate excited state hyperfine couplings.
+>     * `True (or 1)`: Calculate excited state hyperfine couplings.
 > * **Recommendation**: None.
 
 ### `Hyperfine_Full_NRoots`
@@ -230,8 +220,7 @@ For both hyperfine and EFG tensors, the results for all nuclei are automatically
 > * **Type**: `INTEGER`
 > * **Default**: `1`
 > * **Options**:
->     * n
->     * Calculate hyperfine couplings between lowest n CIS/TDA-TDDFT states.
+>     * `n`: Calculate hyperfine couplings between lowest n CIS/TDA-TDDFT states.
 > * **Recommendation**: None.
 
 ### `Hyperfine_Full_Root_Offset`
@@ -241,10 +230,7 @@ For both hyperfine and EFG tensors, the results for all nuclei are automatically
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * m
->     * Calculate hyperfine couplings between lowest n CIS/TDA-TDDFT states, starting at m
->     * ${}^{\text{th}}$
->     * root.
+>     * `m`: Calculate hyperfine couplings between lowest n CIS/TDA-TDDFT states, starting at m ${}^{\text{th}}$ root.
 > * **Recommendation**: None.
 
 ### `Hyperfine_Full_Singlet_Other_Singlet`
@@ -254,10 +240,8 @@ For both hyperfine and EFG tensors, the results for all nuclei are automatically
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * False (or 0)
->     * Don’t calculate excited state hyperfine couplings between singlets.
->     * True (or 1)
->     * Calculate excited state hyperfine couplings between singlets.
+>     * `False (or 0)`: Don’t calculate excited state hyperfine couplings between singlets.
+>     * `True (or 1)`: Calculate excited state hyperfine couplings between singlets.
 > * **Recommendation**: None.
 
 ### `Hyperfine_Full_Triplet_Other_Triplet`
@@ -267,16 +251,12 @@ For both hyperfine and EFG tensors, the results for all nuclei are automatically
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * False (or 0)
->     * Don’t calculate excited state hyperfine couplings between triplets.
->     * True (or 1)
->     * Calculate excited state hyperfine couplings between triplets.
+>     * `False (or 0)`: Don’t calculate excited state hyperfine couplings between triplets.
+>     * `True (or 1)`: Calculate excited state hyperfine couplings between triplets.
 > * **Recommendation**: None.
 
 Calculation of g-tensor is activated by specifying the G_TENSOR keyword in the *$rem* section.
 Example [10.11.4.4](#ex:CCSD-gtensor) illustrates g-tensor calculation for water cation.
-
-G_TENSOR
 
 ### `G_TENSOR`
 
@@ -285,10 +265,8 @@ G_TENSOR
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE (or 0)
->     * Don’t calculate g-tensor
->     * TRUE (or 1)
->     * Calculate g-tensor.
+>     * `FALSE`（或 `0`）: Don’t calculate g-tensor
+>     * `TRUE`（或 `1`）: Calculate g-tensor.
 > * **Recommendation**: None.
 
 ???+ example "Example 10.62: Calculating hyperfine and EFG tensors for the glycine cation."

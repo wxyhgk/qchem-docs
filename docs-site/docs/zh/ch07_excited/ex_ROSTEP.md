@@ -56,8 +56,6 @@ $\Delta$SCF（R- 或 U-STEP）与 RO-STEP 计算的作业控制：
 在 *$rem* 部分激活 STEP 之后，
 其余的 STEP 选项均通过 *$step* 输入部分来处理。
 
-STEP
-
 ### `STEP`
 
 > **激活 STEP 流程。**
@@ -65,10 +63,8 @@ STEP
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不应用 STEP 能级平移算法。
->     * TRUE
->     * 应用 STEP 能级平移算法。
+>     * `FALSE`: 不应用 STEP 能级平移算法。
+>     * `TRUE`: 应用 STEP 能级平移算法。
 > * **建议**: 无
 
 ### `Epsilon`
@@ -88,12 +84,9 @@ STEP
 > * **类型**: `INTEGER`
 > * **默认值**: `1`
 > * **选项**:
->     * 0
->     * 不在 SCF 循环之间打印任何关于 STEP 的信息。
->     * 1
->     * 打印每个 SCF 循环所施加的能级平移（R- 和 U-STEP）。
->     * 2
->     * 打印每个 SCF 循环中混合态与三重态的能级平移（RO-STEP）。
+>     * `0`: 不在 SCF 循环之间打印任何关于 STEP 的信息。
+>     * `1`: 打印每个 SCF 循环所施加的能级平移（R- 和 U-STEP）。
+>     * `2`: 打印每个 SCF 循环中混合态与三重态的能级平移（RO-STEP）。
 > * **建议**: 使用默认值。能级平移为 0 表明 *aufbau* 判据足以确定轨道占据方式；平移 $>0$ 则意味着占据空间的选择违背了 *aufbau* 原则。
 
 ### `Always_Active`
@@ -103,15 +96,10 @@ STEP
 > * **类型**: `STRING`
 > * **默认值**: `None`
 > * **选项**:
->     * alpha
->     * 对 alpha 自旋轨道施加恒定的能级平移。
->     * beta
->     * 对 beta 自旋轨道施加恒定的能级平移。
->     * both
->     * 对 alpha 和 beta 自旋轨道均施加恒定的能级平移。
+>     * `alpha`: 对 alpha 自旋轨道施加恒定的能级平移。
+>     * `beta`: 对 beta 自旋轨道施加恒定的能级平移。
+>     * `both`: 对 alpha 和 beta 自旋轨道均施加恒定的能级平移。
 > * **建议**: 在动态能级平移无法取得满意结果时使用。对于 U-STEP，该约束只需施加在必须维持非 *aufbau* 组态的轨道上（即单电子 alpha 激发只需施加 alpha 约束，而双电子激发则需要同时施加两种约束）。对于 RO-STEP，该关键字默认为 both 且无法关闭。对于 R-STEP，只有当使用动态能级平移参数无法找到目标双激发组态时，采用 both 才是合理的。
-
-ROKS
 
 ### `ROKS`
 
@@ -120,10 +108,8 @@ ROKS
 > * **类型**: `LOGICAL`
 > * **默认值**: `FALSE`
 > * **选项**:
->     * FALSE
->     * 不执行 ROKS。
->     * TRUE
->     * 执行 ROKS。
+>     * `FALSE`: 不执行 ROKS。
+>     * `TRUE`: 执行 ROKS。
 > * **建议**: 若需要 ROKS 计算则设为 TRUE。同时应确保 UNRESTRICTED = FALSE。
 
 ???+ example "示例 7.58: 使用带 STEP 的 $\Delta$ SCF 方法计算乙炔最低能量的 $\pi\rightarrow\pi^{\ast}$ 跃迁"

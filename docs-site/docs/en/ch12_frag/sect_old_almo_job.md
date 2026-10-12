@@ -6,8 +6,6 @@ title: "12.5.5 Job Control Options"
 
 (July 4, 2026)
 
-FRGM_METHOD
-
 ### `FRGM_METHOD`
 
 > **Specifies a locally-projected method.**
@@ -15,27 +13,13 @@ FRGM_METHOD
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * STOLL
->     * Locally-projected SCF equations of Stoll are solved.
->     * GIA
->     * Locally-projected SCF equations of Gianinetti are solved.
->     * NOSCF_RS
->     * Single Roothaan-step correction to the
->     * FRAGMO
->     * initial guess.
->     * NOSCF_ARS
->     * Approximate single Roothaan-step correction to the
->     * FRAGMO
->     * initial guess.
->     * NOSCF_DRS
->     * Double Roothaan-step correction to the
->     * FRAGMO
->     * initial guess.
->     * NOSCF_RS_FOCK
->     * Non-converged SCF energy of the single Roothaan-step MOs.
+>     * `STOLL`: Locally-projected SCF equations of Stoll are solved.
+>     * `GIA`: Locally-projected SCF equations of Gianinetti are solved.
+>     * `NOSCF_RS`: Single Roothaan-step correction to the FRAGMO initial guess.
+>     * `NOSCF_ARS`: Approximate single Roothaan-step correction to the FRAGMO initial guess.
+>     * `NOSCF_DRS`: Double Roothaan-step correction to the FRAGMO initial guess.
+>     * `NOSCF_RS_FOCK`: Non-converged SCF energy of the single Roothaan-step MOs.
 > * **Recommendation**: STOLL and GIA are for variational optimization of the ALMOs. NOSCF options are for computationally fast corrections of the FRAGMO initial guess.
-
-FRGM_LPCORR
 
 ### `FRGM_LPCORR`
 
@@ -44,27 +28,16 @@ FRGM_LPCORR
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * ARS
->     * Approximate Roothaan-step perturbative correction.
->     * RS
->     * Single Roothaan-step perturbative correction.
->     * EXACT_SCF
->     * Full SCF variational correction.
->     * ARS_EXACT_SCF
->     * Both
->     * ARS
->     * and
->     * EXACT_SCF
->     * in a single job.
->     * RS_EXACT_SCF
->     * Both
->     * RS
->     * and
->     * EXACT_SCF
->     * in a single job.
+>     * `ARS`: Approximate Roothaan-step perturbative correction.
+>     * `RS`: Single Roothaan-step perturbative correction.
+>     * `EXACT_SCF`: Full SCF variational correction.
+>     * `ARS_EXACT_SCF`: Both
+>     * `ARS`: and
+>     * `EXACT_SCF`: in a single job.
+>     * `RS_EXACT_SCF`: Both
+>     * `RS`: and
+>     * `EXACT_SCF`: in a single job.
 > * **Recommendation**: For large basis sets use ARS , use RS if ARS fails.
-
-SCF_PRINT_FRGM
 
 ### `SCF_PRINT_FRGM`
 
@@ -73,13 +46,9 @@ SCF_PRINT_FRGM
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE
->     * The output is printed to the parent job output file.
->     * FALSE
->     * The output is not printed.
+>     * `TRUE`: The output is printed to the parent job output file.
+>     * `FALSE`: The output is not printed.
 > * **Recommendation**: Use TRUE if details about isolated fragments are important.
-
-EDA_BSSE
 
 ### `EDA_BSSE`
 
@@ -88,10 +57,8 @@ EDA_BSSE
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: Set to TRUE unless a very large basis set is used.
-
-EDA_COVP
 
 ### `EDA_COVP`
 
@@ -100,10 +67,8 @@ EDA_COVP
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: Set to TRUE to perform COVP analysis in an EDA or SCF-MI(RS) job.
-
-EDA_PRINT_COVP
 
 ### `EDA_PRINT_COVP`
 
@@ -112,10 +77,8 @@ EDA_PRINT_COVP
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * TRUE/FALSE
+>     * `TRUE/FALSE`
 > * **Recommendation**: Set to TRUE to print COVP orbitals instead of conventional MOs.
-
-NVO_LIN_MAX_ITE
 
 ### `NVO_LIN_MAX_ITE`
 
@@ -124,11 +87,8 @@ NVO_LIN_MAX_ITE
 > * **Type**: `INTEGER`
 > * **Default**: `30`
 > * **Options**:
->     * $n$
->     * User–defined number of iterations.
+>     * $n$: User–defined number of iterations.
 > * **Recommendation**: None.
-
-NVO_LIN_CONVERGENCE
 
 ### `NVO_LIN_CONVERGENCE`
 
@@ -137,11 +97,8 @@ NVO_LIN_CONVERGENCE
 > * **Type**: `INTEGER`
 > * **Default**: `3`
 > * **Options**:
->     * $n$
->     * User–defined number.
+>     * $n$: User–defined number.
 > * **Recommendation**: Solution of the single-excitation amplitude equations is considered converged if the maximum residual is less than $10^{-n}$ multiplied by the current DIIS error. For the ARS correction, $n$ is automatically set to 1 since the locally-projected DIIS error is normally several orders of magnitude smaller than the full DIIS error.
-
-NVO_METHOD
 
 ### `NVO_METHOD`
 
@@ -150,11 +107,8 @@ NVO_METHOD
 > * **Type**: `INTEGER`
 > * **Default**: `9`
 > * **Options**:
->     * $n$
->     * User–defined number.
+>     * $n$: User–defined number.
 > * **Recommendation**: This is an experimental option. Use the default.
-
-NVO_UVV_PRECISION
 
 ### `NVO_UVV_PRECISION`
 
@@ -163,11 +117,8 @@ NVO_UVV_PRECISION
 > * **Type**: `INTEGER`
 > * **Default**: `11`
 > * **Options**:
->     * $n$
->     * User–defined number.
+>     * $n$: User–defined number.
 > * **Recommendation**: must be the same as or larger than THRESH .
-
-NVO_UVV_MAXPWR
 
 ### `NVO_UVV_MAXPWR`
 
@@ -176,11 +127,8 @@ NVO_UVV_MAXPWR
 > * **Type**: `INTEGER`
 > * **Default**: `10`
 > * **Options**:
->     * $n$
->     * User–defined number.
+>     * $n$: User–defined number.
 > * **Recommendation**: None.
-
-NVO_TRUNCATE_DIST
 
 ### `NVO_TRUNCATE_DIST`
 
@@ -189,24 +137,12 @@ NVO_TRUNCATE_DIST
 > * **Type**: `INTEGER`
 > * **Default**: `$-$`
 > * **Options**:
->     * $n>0$
->     * If distance between a pair of atoms is more than
->     * $n$
->     * Ångstroms
->     * do not include the atomic block.
->     * $-$
->     * 2
->     * Do not use distance threshold, use
->     * NVO_TRUNCATE_PRECOND
->     * instead.
->     * $-$
->     * 1
->     * Include all blocks.
->     * 0
->     * Include diagonal blocks only.
+>     * $n>0$: If distance between a pair of atoms is more than
+>     * $n$: Ångstroms do not include the atomic block. $-$
+>     * `2`: Do not use distance threshold, use NVO_TRUNCATE_PRECOND instead. $-$
+>     * `1`: Include all blocks.
+>     * `0`: Include diagonal blocks only.
 > * **Recommendation**: This option does not affect the final result. However, it affects the rate of the PCG algorithm convergence. For small systems, use the default.
-
-NVO_TRUNCATE_PRECOND
 
 ### `NVO_TRUNCATE_PRECOND`
 
@@ -215,9 +151,5 @@ NVO_TRUNCATE_PRECOND
 > * **Type**: `INTEGER`
 > * **Default**: `2`
 > * **Options**:
->     * $n$
->     * If the maximum element in an atomic block is less than
->     * $10^{-n}$
->     * do not include
->     * the block.
+>     * $n$: If the maximum element in an atomic block is less than $10^{-n}$ do not include the block.
 > * **Recommendation**: Use the default. Increasing $n$ improves convergence of the PCG algorithm but overall may slow down calculations.

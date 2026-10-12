@@ -138,8 +138,6 @@ $$
 \Delta E_{\mathrm{disp}}=\left(E_{\mathrm{xc}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}[\mathbf{P}_{A}]\right)-\left(E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{\mathrm{frz}}]-\sum_{A}E_{\mathrm{xc}}^{\mathrm{DF}}[\mathbf{P}_{A}]\right). \tag{12.17}
 $$
 
-FRZ_ORTHO_DECOMP
-
 ### `FRZ_ORTHO_DECOMP`
 
 > **Perform the decomposition of frozen interaction energy based on the orthogonal decomposition of the 1PDM associated with the frozen wave function.**
@@ -147,13 +145,9 @@ FRZ_ORTHO_DECOMP
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE (automatically set to`
 > * **Options**:
->     * FALSE
->     * Do not perform the orthogonal decomposition.
->     * TRUE
->     * Perform the frozen energy decomposition using orthogonal fragment densities.
+>     * `FALSE`: Do not perform the orthogonal decomposition.
+>     * `TRUE`: Perform the frozen energy decomposition using orthogonal fragment densities.
 > * **Recommendation**: Use default value automatically set by “EDA2”. Note that users are allowed to turn off the orthogonal decomposition by setting to $-1$ . Also, for calculations that involve ECPs, it is automatically set to FALSE since unreasonable results will be produced otherwise.
-
-FRZ_ORTHO_DECOMP_CONV
 
 ### `FRZ_ORTHO_DECOMP_CONV`
 
@@ -162,11 +156,8 @@ FRZ_ORTHO_DECOMP_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `6`
 > * **Options**:
->     * $n$
->     * $10^{-n}$
+>     * $n$: $10^{-n}$
 > * **Recommendation**: Use the default unless tighter convergence is preferred.
-
-EDA_CLS_ELEC
 
 ### `EDA_CLS_ELEC`
 
@@ -175,13 +166,9 @@ EDA_CLS_ELEC
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE (automatically set to`
 > * **Options**:
->     * FALSE
->     * Do not compute the classical ELEC and PAULI terms.
->     * TRUE
->     * Perform the classical decomposition.
+>     * `FALSE`: Do not compute the classical ELEC and PAULI terms.
+>     * `TRUE`: Perform the classical decomposition.
 > * **Recommendation**: TRUE
-
-EDA_CLS_DISP
 
 ### `EDA_CLS_DISP`
 
@@ -190,13 +177,9 @@ EDA_CLS_DISP
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Use the DISP term computed with orthogonal decomposition (if available).
->     * TRUE
->     * Use the DISP term computed using undistorted monomer densities.
+>     * `FALSE`: Use the DISP term computed with orthogonal decomposition (if available).
+>     * `TRUE`: Use the DISP term computed using undistorted monomer densities.
 > * **Recommendation**: Set it to TRUE when orthogonal decomposition is not performed.
-
-DISP_FREE_X
 
 ### `DISP_FREE_X`
 
@@ -205,17 +188,8 @@ DISP_FREE_X
 > * **Type**: `STRING`
 > * **Default**: `HF`
 > * **Options**:
->     * Exchange functionals (
->     * e.g.
->     * revPBE) or exchange-correlation functionals (
->     * e.g.
->     * B3LYP)
->     * supported by
->     * Q-Chem
->     * .
+>     * `Exchange functionals (`: e.g. revPBE) or exchange-correlation functionals ( e.g. B3LYP) supported by Q-Chem .
 > * **Recommendation**: HF is recommended for hybrid (primary) functionals ( e.g. $\omega$ B97X-V) and revPBE for semi-local ones ( e.g. B97M-V). Other reasonable options ( e.g. B3LYP for B3LYP-D3) can also be applied.
-
-DISP_FREE_C
 
 ### `DISP_FREE_C`
 
@@ -224,7 +198,5 @@ DISP_FREE_C
 > * **Type**: `STRING`
 > * **Default**: `NONE`
 > * **Options**:
->     * Correlation functionals supported by
->     * Q-Chem
->     * .
+>     * Correlation functionals supported by: Q-Chem .
 > * **Recommendation**: Put the appropriate correlation functional paired with the chosen exchange functional ( e.g. put PBE if DISP_FREE_X is revPBE); put NONE if DISP_FREE_X is set to an exchange-correlation functional.

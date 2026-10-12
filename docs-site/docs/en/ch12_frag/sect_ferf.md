@@ -115,8 +115,6 @@ $$
 
 Benchmark calculations on the S22, S66 and Ionic43 datasets shows that the POL energy is hardly changed using uFERFs, while a general 5-10 times speedup for FERF creation and 20% average speedup for the whole EDA calculation is achieved. In addition, the importance of monopole uFERFs (response to scaled nuclear charges) for intermolecular interactions is recognized for strong ion-neutral interactions. Therefore, it is recommended to use MDQ-uFERFs for the calculation of POL energy in ALMO-EDA calculations.
 
-CHILD_MP
-
 ### `CHILD_MP`
 
 > **Compute FERFs for fragments and use them as the basis for SCF-MI calculations.**
@@ -124,13 +122,9 @@ CHILD_MP
 > * **Type**: `BOOLEAN`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not compute FERFs (use the full AO span of each fragment).
->     * TRUE
->     * Compute fragment FERFs.
+>     * `FALSE`: Do not compute FERFs (use the full AO span of each fragment).
+>     * `TRUE`: Compute fragment FERFs.
 > * **Recommendation**: Use FERFs to compute polarization energy when large basis sets are used. In an “EDA2” calculation, this $rem variable is set based on the given option automatically.
-
-CHILD_MP_ORDERS
 
 ### `CHILD_MP_ORDERS`
 
@@ -139,15 +133,10 @@ CHILD_MP_ORDERS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 21
->     * D
->     * 232
->     * DQ
->     * 2343
->     * DQO
+>     * `21`: D
+>     * `232`: DQ
+>     * `2343`: DQO
 > * **Recommendation**: Use 232 (DQ) when FERF is needed.
-
-FRAG_CPSCF_MAXITER
 
 ### `FRAG_CPSCF_MAXITER`
 
@@ -156,10 +145,8 @@ FRAG_CPSCF_MAXITER
 > * **Type**: `INTEGER`
 > * **Default**: `50`
 > * **Options**:
->     * User-defined
+>     * `User-defined`
 > * **Recommendation**: Use the default
-
-FRAG_CPSCF_CONV
 
 ### `FRAG_CPSCF_CONV`
 
@@ -168,12 +155,8 @@ FRAG_CPSCF_CONV
 > * **Type**: `INTEGER`
 > * **Default**: `8`
 > * **Options**:
->     * $n$
->     * Convergence is reached when the RMS error is below
->     * $10^{-n}$
+>     * $n$: Convergence is reached when the RMS error is below $10^{-n}$
 > * **Recommendation**: Use the default
-
-EDA_UFERF
 
 ### `EDA_UFERF`
 
@@ -182,10 +165,8 @@ EDA_UFERF
 > * **Type**: `BOOLEAN`
 > * **Default**: `TRUE`
 > * **Options**:
->     * TRUE
->     * Use uFERFs
->     * FALSE
->     * Use FERFs
+>     * `TRUE`: Use uFERFs
+>     * `FALSE`: Use FERFs
 > * **Recommendation**: Use the default uFERFs, use FALSE when FERFs are desired.
 
 ???+ example "Example 12.13: Generalized SCF-MI calculation for the water dimer using nDQ FERFs."

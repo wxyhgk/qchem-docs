@@ -6,8 +6,6 @@ title: "9.9.3 附加任务控制与示例"
 
 （2026 年 7 月 4 日）
 
-AIMD_INIT_VELOC
-
 ### `AIMD_INIT_VELOC`
 
 > **指定选取初始核速度的方法。**
@@ -33,8 +31,6 @@ AIMD_INIT_VELOC
 >     * 从磁盘读取。
 > * **建议**：仅当未在 $velocity 区段中显式指定速度时，才需要设置此变量。
 
-AIMD_INIT_VELOC_NANO_RANDOM
-
 ### `AIMD_INIT_VELOC_NANO_RANDOM`
 
 > **使用更精确的随机种子来生成随机初始速度。**
@@ -45,8 +41,6 @@ AIMD_INIT_VELOC_NANO_RANDOM
 >     * FALSE
 >     * 使用精度较低的随机种子。
 > * **建议**：除非必要，请保持此选项为 TRUE。当 AIMD_INIT_VELOC 需要抽样随机初始速度时，此选项决定所用随机种子的来源。若将该选项设为 FALSE，则种子基于以秒为单位的系统时间，这意味着在同一秒内启动的两个otherwise完全相同的模拟将产生相同的初始速度。设为 TRUE 时，此类碰撞几乎不可能发生。保留该选项是出于历史兼容目的，通常几乎没有必要将其设为 FALSE。
-
-AIMD_MOMENTS
 
 ### `AIMD_MOMENTS`
 
@@ -61,8 +55,6 @@ AIMD_MOMENTS
 >     * 阶多极矩。
 > * **建议**：无
 
-AIMD_TEMP
-
 ### `AIMD_TEMP`
 
 > **指定用于麦克斯韦-玻尔兹曼速度抽样的温度（以开尔文为单位）。**
@@ -72,8 +64,6 @@ AIMD_TEMP
 > * **可选值**：
 >     * 用户指定的开尔文数值。
 > * **建议**：此变量仅与 AIMD_INIT_VELOC = THERMAL 配合使用时才有意义。注意，模拟是在恒定能量而非恒定温度下进行的，因此核平均动能会在模拟过程中波动。
-
-DEUTERATE
 
 ### `DEUTERATE`
 

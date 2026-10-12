@@ -46,8 +46,6 @@ conditions in **Q-Chem** remove translation and rotation, numerical noise in the
 forces and propagation can lead to translation and rotation over time. A
 translation-rotation correction is activated by the PROJ_TRANSROT keyword.
 
-AIMD_NUCL_VACF_POINTS
-
 ### `AIMD_NUCL_VACF_POINTS`
 
 > **Number of time points to use in the velocity auto-correlation function for an AIMD trajectory**
@@ -55,15 +53,9 @@ AIMD_NUCL_VACF_POINTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not compute velocity auto-correlation function.
->     * $1\leq n\leq\mbox{{\small AIMD\_STEPS}}$
->     * Compute velocity auto-correlation function for last
->     * $n$
->     * time steps of the trajectory.
+>     * `0`: Do not compute velocity auto-correlation function. $1\leq n\leq\mbox{{\small AIMD\_STEPS}}$ Compute velocity auto-correlation function for last
+>     * $n$: time steps of the trajectory.
 > * **Recommendation**: If the VACF is desired, set equal to the value of AIMD_STEPS .
-
-AIMD_NUCL_DACF_POINTS
 
 ### `AIMD_NUCL_DACF_POINTS`
 
@@ -72,15 +64,9 @@ AIMD_NUCL_DACF_POINTS
 > * **Type**: `INTEGER`
 > * **Default**: `0`
 > * **Options**:
->     * 0
->     * Do not compute dipole auto-correlation function.
->     * $1\leq n\leq\mbox{{\small AIMD\_STEPS}}$
->     * Compute dipole auto-correlation function for last
->     * $n$
->     * timesteps of the trajectory.
+>     * `0`: Do not compute dipole auto-correlation function. $1\leq n\leq\mbox{{\small AIMD\_STEPS}}$ Compute dipole auto-correlation function for last
+>     * $n$: timesteps of the trajectory.
 > * **Recommendation**: If the DACF is desired, set equal to the value of AIMD_STEPS .
-
-AIMD_NUCL_SAMPLE_RATE
 
 ### `AIMD_NUCL_SAMPLE_RATE`
 
@@ -89,14 +75,9 @@ AIMD_NUCL_SAMPLE_RATE
 > * **Type**: `INTEGER`
 > * **Default**: `None.`
 > * **Options**:
->     * $1\leq n\leq\mbox{{\small AIMD\_STEPS}}$
->     * Update the velocity/dipole auto-correlation function
->     * every
->     * $n$
->     * steps.
+>     * $1\leq n\leq\mbox{{\small AIMD\_STEPS}}$: Update the velocity/dipole auto-correlation function every
+>     * $n$: steps.
 > * **Recommendation**: Since the velocity and dipole moment are routinely calculated for ab initio methods, this variable should almost always be set to 1 when the VACF or DACF is desired.
-
-PROJ_TRANSROT
 
 ### `PROJ_TRANSROT`
 
@@ -105,8 +86,6 @@ PROJ_TRANSROT
 > * **Type**: `LOGICAL`
 > * **Default**: `FALSE`
 > * **Options**:
->     * FALSE
->     * Do not apply translation/rotation corrections.
->     * TRUE
->     * Apply translation/rotation corrections.
+>     * `FALSE`: Do not apply translation/rotation corrections.
+>     * `TRUE`: Apply translation/rotation corrections.
 > * **Recommendation**: When computing spectra (see AIMD_NUCL_DACF_POINTS , for example), this option can be used to remove artificial, contaminating peaks stemming from translational and/or rotational motion. Recommend setting to TRUE for all dynamics-based spectral simulations.

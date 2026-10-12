@@ -23,66 +23,83 @@ def extract_remblock(rem_div, url_mapper=None, current_doc=""):
     bold_tag = rem_div.find("span", class_="ltx_font_bold")
     var_name = bold_tag.get_text(strip=True) if bold_tag else "VARIABLE"
 
-    # Convert inner content to text/markdown
-    # We can inspect the sections inside remblock
-    text_lines = []
-    
     # Process internal math first
     for m in rem_div.find_all("math"):
         alt = clean_latex(m.get("alttext", ""))
         m.replace_with(f"${alt}$")
 
+    # Process em / i tags
+    for em in rem_div.find_all(["em", "i"]):
+        em.replace_with(f"*{em.get_text()}*")
+
+    # Process code tags
+    for code in rem_div.find_all("code"):
+        code.replace_with(f"`{code.get_text()}`")
+
     # Process internal links
     if url_mapper and current_doc:
         for a in rem_div.find_all("a"):
             href = a.get("href", "")
-            if href and not href.startswith("http"):
+            if href and not href.startswith("http") and not href.startswith("mailto:") and not href.startswith("#"):
                 new_href = url_mapper(href, current_doc)
                 a["href"] = new_href
 
-    full_text = rem_div.get_text("\n")
-    lines = [l.strip() for l in full_text.splitlines() if l.strip()]
-
-    # Parse sections: Description, TYPE, DEFAULT, OPTIONS, RECOMMENDATION
+    p = rem_div.find("p")
     description = []
     var_type = ""
     default_val = ""
     options = []
     recommendation = []
 
-    current_section = "desc"
-    for line in lines:
-        if line == var_name:
-            continue
-        if line.startswith("TYPE:"):
-            current_section = "type"
-            val = line[5:].strip()
-            if val:
-                var_type = val
-            continue
-        elif line.startswith("DEFAULT:"):
-            current_section = "default"
-            val = line[8:].strip()
-            if val:
-                default_val = val
-            continue
-        elif line.startswith("OPTIONS:"):
-            current_section = "options"
-            continue
-        elif line.startswith("RECOMMENDATION:"):
-            current_section = "rec"
-            continue
+    if p:
+        current_sec = "desc"
+        for elem in p.children:
+            if isinstance(elem, str):
+                t = elem.strip()
+                if "TYPE:" in t:
+                    current_sec = "type"
+                    continue
+                elif "DEFAULT:" in t:
+                    current_sec = "default"
+                    continue
+                elif "OPTIONS:" in t:
+                    current_sec = "options"
+                    continue
+                elif "RECOMMENDATION:" in t:
+                    current_sec = "rec"
+                    continue
 
-        if current_section == "desc":
-            description.append(line)
-        elif current_section == "type" and not var_type:
-            var_type = line
-        elif current_section == "default" and not default_val:
-            default_val = line
-        elif current_section == "options":
-            options.append(line)
-        elif current_section == "rec":
-            recommendation.append(line)
+            if hasattr(elem, "name") and elem.name == "span" and "ltx_tabular" in elem.get("class", []):
+                rows = elem.find_all("span", class_="ltx_tr")
+                if current_sec == "options":
+                    for tr in rows:
+                        tds = tr.find_all("span", class_=lambda c: c and "ltx_td" in c)
+                        if len(tds) >= 2:
+                            k = tds[0].get_text(" ", strip=True)
+                            d = tds[1].get_text(" ", strip=True)
+                            if d:
+                                options.append(f"`{k}`: {d}")
+                            else:
+                                options.append(f"`{k}`")
+                        elif len(tds) == 1:
+                            k = tds[0].get_text(" ", strip=True)
+                            options.append(f"`{k}`")
+                elif current_sec == "type":
+                    txt = elem.get_text(" ", strip=True)
+                    if txt:
+                        var_type = txt
+                elif current_sec == "default":
+                    txt = elem.get_text(" ", strip=True)
+                    if txt:
+                        default_val = txt
+                elif current_sec == "desc":
+                    txt = elem.get_text(" ", strip=True)
+                    if txt:
+                        description.append(txt)
+                elif current_sec == "rec":
+                    txt = elem.get_text(" ", strip=True)
+                    if txt:
+                        recommendation.append(txt)
 
     md_out = [f"### `{var_name}`\n"]
     if description:
@@ -230,6 +247,10 @@ def convert_html_to_md(html_str, url_mapper=None, current_doc="", asset_rel_path
         code_str = pre.get_text()
         md_code = f"\n\n```qchem\n{code_str.strip()}\n```\n\n"
         pre.replace_with(soup.new_string(md_code))
+
+    # Decompose stray keyword blocks
+    for kw in content.find_all("div", class_=lambda c: c and "keywords" in c):
+        kw.decompose()
 
     # Pre-process remblock
     for rem in content.find_all("div", class_="remblock"):

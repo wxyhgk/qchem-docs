@@ -37,8 +37,6 @@ $$
 
 增量式 Fock 矩阵构建和可变阈值仅在使用直接 SCF（direct SCF）算法进行计算时才会启用，二者是相辅相成的算法。这些选项由以下输入参数控制，这些参数仅用于直接 SCF 计算。
 
-INCFOCK
-
 ### `INCFOCK`
 
 > **在此迭代次数之后启动增量式 Fock 矩阵算法**
@@ -49,8 +47,6 @@ INCFOCK
 >     * 用户自定义（设为 0 则关闭 INCFOCK）
 > * **建议**: 可能需要先允许进行若干次迭代后再开启 INCFOCK。
 
-RESET_INCFOCK
-
 ### `RESET_INCFOCK`
 
 > **在此迭代次数之后重置增量式 Fock 矩阵算法**
@@ -59,9 +55,6 @@ RESET_INCFOCK
 > * **默认值**: `15`
 > * **可选值**:
 >     * 用户自定义（设为 0 则关闭 RESET_INCFOCK）
-
-VARTHRESH
-
 ### `VARTHRESH`
 
 > **控制临时积分截断阈值，$t=10^{-\mathrm{VARTHRESH}}\times(\text{DIIS error})$**
@@ -69,8 +62,7 @@ VARTHRESH
 > * **类型**: `INTEGER`
 > * **默认值**: `0`
 > * **可选值**:
->     * $n$
->     * 用户自定义阈值
+>     * $n$: 用户自定义阈值
 > * **建议**: 3 被认为是一个实用的取值，可以略微加速 SCF 的评估。
 
 ???+ example "示例 4.20: 大型单点能计算的 Q-Chem 输入。该示例适用于中等大小的分子；但对于真正大规模的计算，CFMM 和 LinK 算法的效率要高得多。"
